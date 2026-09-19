@@ -1,25 +1,150 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#101426">
-  <title>Senku por Latinoamérica | Los juegos de Matías</title>
-  <style>
-    :root{color-scheme:dark;font-family:system-ui,sans-serif;background:#101426;color:#f5f6ff}*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at top right,#352865,transparent 65%)}main{width:min(850px,90%);margin:auto;padding:36px 0 70px}a{color:#c4ff74;text-underline-offset:5px}a:focus-visible{outline:3px solid #c4ff74;outline-offset:6px}.label{margin-top:72px;color:#c4ff74;text-transform:uppercase;letter-spacing:.15em;font-size:.8rem;font-weight:800}h1{font-size:clamp(2.5rem,7vw,4.5rem);line-height:1.08;letter-spacing:-.04em}section{padding:clamp(24px,5vw,48px);border:1px solid #ffffff25;border-radius:24px;background:#ffffff05;margin-top:36px}h2{font-size:1.5rem}p{color:#b9bed5;line-height:1.7}.badge{display:inline-block;background:#a17aff22;color:#d3c1ff;border-radius:100px;padding:8px 14px;font-size:.85rem}
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#efbd58">
+<title>Senku por Latinoamérica | Matías Game Lab</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#151311;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;touch-action:none;user-select:none}
+canvas{position:fixed;inset:0;margin:auto;width:min(100vw,1100px);height:auto;max-height:100vh;aspect-ratio:16/9;background:#ddd;image-rendering:pixelated}
+.hud{position:fixed;inset:0;pointer-events:none}.top{position:absolute;top:max(10px,env(safe-area-inset-top));left:50%;transform:translateX(-50%);display:flex;gap:8px}.pill{background:#251d19d9;color:#fff;padding:8px 11px;border-radius:999px;font-size:13px;font-weight:900;white-space:nowrap}.home{position:absolute;top:max(58px,calc(env(safe-area-inset-top) + 54px));left:14px;pointer-events:auto;text-decoration:none;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:#fffdf2eb;color:#2e251f;font-size:20px;box-shadow:0 6px 18px #0003}.controls{position:absolute;left:0;right:0;bottom:max(18px,env(safe-area-inset-bottom));display:flex;justify-content:space-between;padding:0 18px;pointer-events:none}.cluster{display:flex;gap:10px;pointer-events:auto}.btn{border:0;border-radius:50%;width:68px;height:68px;background:#ffffffe8;color:#2e251f;font-size:26px;font-weight:1000;box-shadow:0 6px 18px #0003}.jump{width:76px;height:76px;background:#efb84ff2}.action{width:76px;height:76px;background:#75a96eef;font-size:22px;display:none}.overlay{position:fixed;inset:0;z-index:20;display:grid;place-items:center;padding:20px;background:linear-gradient(#2d211952,#2d2119ae)}.card{width:min(92vw,580px);background:#fff6e3f7;color:#29211d;border-radius:26px;padding:28px 24px;text-align:center;box-shadow:0 24px 80px #0006}.logo{font-size:clamp(42px,9vw,72px);line-height:.92;font-weight:1000;margin:0}.sub{font-weight:900;color:#98512f;font-size:clamp(18px,4vw,24px);margin:9px 0 18px}.copy{line-height:1.45;color:#5d4a40;margin:0 auto 20px}.primary{border:0;border-radius:999px;background:#d96d38;color:#fff;padding:14px 26px;font-size:18px;font-weight:1000}.hidden{display:none!important}#toast{position:fixed;z-index:18;top:17%;left:50%;transform:translate(-50%,-8px);background:#2c231fd9;color:#fff;padding:11px 16px;border-radius:18px;font-weight:900;opacity:0;transition:.25s;pointer-events:none;max-width:88vw;text-align:center}#toast.show{opacity:1;transform:translate(-50%,0)}@media(pointer:fine){.controls{opacity:.3}.btn{width:58px;height:58px}.jump,.action{width:65px;height:65px}}
+</style>
 </head>
 <body>
-  <main>
-    <a href="index.html">&larr; Volver a Los juegos de Matías</a>
-    <p class="label">Nuestro primer juego</p>
-    <h1>Senku por Latinoamérica</h1>
-    <!-- Reemplaza esta sección con el juego cuando esté listo. Conserva el enlace para volver al inicio. -->
-    <section id="juego" aria-label="Espacio del juego">
-      <span class="badge">En construcción</span>
-      <h2>Una nueva aventura está por comenzar.</h2>
-      <p>Matías y Javier están preparando su primer juego. Este será el lugar para jugar cuando esté listo.</p>
-    </section>
-  </main>
+<canvas id="game" width="1100" height="619"></canvas>
+<div class="hud">
+  <div class="top">
+    <div class="pill">🐾 <span id="zone">Casa</span></div>
+    <div class="pill" id="objective">Encuentra una salida</div>
+    <div class="pill">🧃 <span id="count">0</span></div>
+  </div>
+  <a class="home" href="index.html" aria-label="Volver al inicio">⌂</a>
+  <div class="controls">
+    <div class="cluster"><button class="btn" id="left">←</button><button class="btn" id="right">→</button></div>
+    <div class="cluster"><button class="btn action" id="action">💬</button><button class="btn jump" id="jump">↑</button></div>
+  </div>
+</div>
+<div id="intro" class="overlay">
+  <div class="card">
+    <h1 class="logo">SENKU</h1>
+    <div class="sub">La gran escapada — México</div>
+    <p class="copy">Senku quiere salir de casa. Explora, encuentra Churus y descubre qué hay afuera.</p>
+    <button id="start" class="primary">DESPERTAR</button>
+  </div>
+</div>
+<div id="modal" class="overlay hidden">
+  <div class="card">
+    <h1 class="logo" id="mt">SENKU</h1>
+    <div class="sub" id="ms"></div>
+    <p class="copy" id="mc"></p>
+    <button id="mb" class="primary">CONTINUAR</button>
+  </div>
+</div>
+<div id="toast"></div>
+<script>
+(()=> {
+const c=document.getElementById('game'),x=c.getContext('2d');x.imageSmoothingEnabled=false;
+const W=c.width,H=c.height;
+const zone=document.getElementById('zone'),objective=document.getElementById('objective'),count=document.getElementById('count'),action=document.getElementById('action'),toast=document.getElementById('toast');
+const intro=document.getElementById('intro'),modal=document.getElementById('modal'),mt=document.getElementById('mt'),ms=document.getElementById('ms'),mc=document.getElementById('mc'),mb=document.getElementById('mb');
+let scene='house',running=false,last=performance.now(),time=0,modalAction=null,busTimer=null,near=null;
+let churus=Number(localStorage.getItem('senku_churus')||0),secret=localStorage.getItem('senku_secret')==='1';
+const keys={l:false,r:false,j:false,a:false};let jl=false,al=false;
+const p={x:85,y:430,w:54,h:44,vx:0,vy:0,ground:false,face:1,anim:0,speed:330,jump:575};
+let items=[];
+const info={house:['Casa','Encuentra una salida'],street:['Calle','Explora la calle'],bus:['Autobús','Viaja de polizón'],taco:['Taquería','Investiga el lugar']};
+
+function hud(){zone.textContent=info[scene][0];objective.textContent=info[scene][1];count.textContent=churus}
+function save(){localStorage.setItem('senku_churus',churus);if(secret)localStorage.setItem('senku_secret','1')}
+function say(m,ms=1500){toast.textContent=m;toast.classList.add('show');clearTimeout(say.t);say.t=setTimeout(()=>toast.classList.remove('show'),ms)}
+function show(a,b,d,button='CONTINUAR',fn=null){running=false;mt.textContent=a;ms.textContent=b;mc.textContent=d;mb.textContent=button;modalAction=fn;modal.classList.remove('hidden')}
+mb.onclick=()=>{modal.classList.add('hidden');const f=modalAction;modalAction=null;if(f)f();running=true};
+
+function setScene(s){
+ scene=s;near=null;action.style.display='none';if(busTimer){clearTimeout(busTimer);busTimer=null}
+ if(s==='house'){p.x=85;p.y=430;items=[]}
+ if(s==='street'){p.x=50;p.y=430;items=[{x:190,y:430,t:0},{x:330,y:360,t:0},{x:520,y:430,t:0},{x:720,y:374,t:0}]}
+ if(s==='bus'){p.x=170;p.y=430;items=[]}
+ if(s==='taco'){p.x=60;p.y=430;items=[{x:230,y:430,t:0},{x:580,y:430,t:0},{x:744,y:355,t:0}]}
+ p.vx=p.vy=0;hud()
+}
+function hold(id,k){const e=document.getElementById(id),on=q=>{q.preventDefault();keys[k]=true},off=q=>{q.preventDefault();keys[k]=false};e.addEventListener('pointerdown',on);e.addEventListener('pointerup',off);e.addEventListener('pointercancel',off);e.addEventListener('pointerleave',off)}
+hold('left','l');hold('right','r');hold('jump','j');hold('action','a');
+addEventListener('keydown',e=>{if(e.code==='ArrowLeft'||e.code==='KeyA')keys.l=true;if(e.code==='ArrowRight'||e.code==='KeyD')keys.r=true;if(e.code==='ArrowUp'||e.code==='Space'||e.code==='KeyW'){keys.j=true;e.preventDefault()}if(e.code==='KeyE'||e.code==='Enter')keys.a=true});
+addEventListener('keyup',e=>{if(e.code==='ArrowLeft'||e.code==='KeyA')keys.l=false;if(e.code==='ArrowRight'||e.code==='KeyD')keys.r=false;if(e.code==='ArrowUp'||e.code==='Space'||e.code==='KeyW')keys.j=false;if(e.code==='KeyE'||e.code==='Enter')keys.a=false});
+document.getElementById('start').onclick=()=>{intro.classList.add('hidden');setScene('house');running=true;say('Senku ya se mueve en píxeles 🐾',1800)};
+
+function platforms(){
+ if(scene==='house')return[{x:0,y:504,w:W,h:115},{x:100,y:430,w:190,h:74},{x:380,y:400,w:170,h:20},{x:680,y:345,w:135,h:159},{x:878,y:278,w:88,h:20}];
+ if(scene==='street')return[{x:0,y:505,w:W,h:114},{x:280,y:420,w:125,h:85},{x:475,y:455,w:100,h:50},{x:685,y:408,w:105,h:97}];
+ if(scene==='bus')return[{x:0,y:505,w:W,h:114},{x:250,y:440,w:150,h:65},{x:585,y:440,w:150,h:65}];
+ return[{x:0,y:505,w:W,h:114},{x:645,y:422,w:120,h:83}]
+}
+function physics(dt){
+ const dir=(keys.r?1:0)-(keys.l?1:0),target=dir*p.speed;p.vx+=(target-p.vx)*Math.min(1,dt*10);if(dir)p.face=dir;
+ if(keys.j&&!jl&&p.ground){p.vy=-p.jump;p.ground=false}jl=keys.j;p.vy+=1500*dt;p.x+=p.vx*dt;p.x=Math.max(3,Math.min(W-p.w-3,p.x));
+ const old=p.y;p.y+=p.vy*dt;p.ground=false;
+ for(const q of platforms())if(p.x+p.w>q.x&&p.x<q.x+q.w&&old+p.h<=q.y+7&&p.y+p.h>=q.y&&p.vy>=0){p.y=q.y-p.h;p.vy=0;p.ground=true}
+ if(p.y>H+80){p.x=50;p.y=380;p.vy=0}p.anim+=dt
+}
+function collect(){for(const q of items)if(!q.t&&Math.hypot(p.x+27-q.x,p.y+18-q.y)<35){q.t=1;churus++;save();hud();say('+1 Churu 🧃',700)}}
+function interaction(){
+ near=null;action.style.display='none';const px=p.x+27,py=p.y+18;
+ if(scene==='house'&&Math.hypot(px-918,py-250)<95)near='window';
+ if(scene==='street'){if(Math.hypot(px-530,py-430)<80)near='box';else if(Math.hypot(px-820,py-420)<90)near='dog';else if(px>990)near='bus'}
+ if(scene==='taco'&&Math.hypot(px-875,py-440)<100)near='rat';
+ if(near){action.style.display='block';action.textContent=near==='bus'?'🚌':near==='window'?'⬆️':near==='box'?'🔎':'💬'}
+ if(keys.a&&!al&&near)act();al=keys.a
+}
+function act(){
+ if(near==='window')show('CAPÍTULO 1','México','Senku logra salir de casa. Ahora toca investigar la calle.','SALIR',()=>setScene('street'));
+ if(near==='box'){churus+=3;save();hud();say('+3 Churus secretos 🧃🧃🧃',1800);p.x=620}
+ if(near==='dog')show('PERRO DE LA BANQUETA','Una pista','“Ese autobús huele a comida, pero el conductor no parece amar a los animales.”','ENTENDIDO');
+ if(near==='bus')show('AUTOBÚS','Viaje gratis','Senku sube sin boleto.','SUBIR',()=>{setScene('bus');busTimer=setTimeout(()=>{if(scene!=='bus')return;show('¡FUERA, GATO!','2 segundos después…','El conductor descubre a Senku y lo baja en la siguiente parada.','CAER DE PIE',()=>setScene('taco'))},2000)});
+ if(near==='rat'){if(!secret){secret=true;save();show('RATA ESCONDIDA','Traje exclusivo','“Psst… toma este traje. Te ayudará a pasar desapercibido.”','RECIBIR',()=>say('¡Traje secreto desbloqueado! 🧣',1800))}else say('La rata ya te dio su traje.')}
+}
+function update(dt){if(!running)return;physics(dt);collect();interaction()}
+
+function rr(a,b,w,h,r){x.beginPath();x.roundRect(a,b,w,h,r)}
+function drawChuru(q){if(q.t)return;x.save();x.translate(q.x,q.y+Math.sin(time*4+q.x)*4);x.fillStyle='#edc45a';rr(-9,-19,18,33,5);x.fill();x.fillStyle='#9d5938';x.fillRect(-6,-13,12,12);x.restore()}
+function pix(gx,gy,s,col){x.fillStyle=col;x.fillRect(gx*s,gy*s,s,s)}
+function pts(a,s,col){for(const q of a)pix(q[0],q[1],s,col)}
+function senku(){
+ const s=3,m=Math.abs(p.vx)>18&&p.ground,frame=!p.ground?'jump':m?(Math.floor(p.anim*8)%2?'w1':'w2'):'idle';
+ x.save();x.translate(Math.round(p.x),Math.round(p.y));if(p.face<0){x.translate(48,0);x.scale(-1,1)}
+ const fur='#d9bc95',stripe='#94714b',white='#f4eee5',dark='#2d241f',ear='#e1a895';
+ x.fillStyle='#0003';x.fillRect(9*s,13*s,8*s,1*s);
+ pts(frame==='w1'?[[1,9],[1,8],[0,7],[0,6],[1,5],[2,5]]:[[1,8],[1,7],[0,6],[0,5],[1,4],[2,4]],s,dark);
+ x.fillStyle=dark;x.fillRect(4*s,5*s,7*s,5*s);x.fillRect(10*s,3*s,4*s,5*s);
+ x.fillStyle=fur;x.fillRect(5*s,6*s,5*s,3*s);x.fillRect(11*s,4*s,2*s,3*s);
+ pts([[11,2],[10,3],[12,2],[13,3]],s,dark);pts([[11,3],[12,3]],s,ear);
+ pts([[5,6],[6,6],[5,7],[7,5],[8,6],[9,7]],s,stripe);pts([[10,7],[11,7],[12,6]],s,white);
+ pts([[12,5]],s,'#e7cf72');pts([[12,6]],s,'#d6938e');
+ const legs=frame==='jump'?[[6,9],[7,9],[10,9],[13,8]]:frame==='w1'?[[4,10],[8,10],[12,9]]:frame==='w2'?[[5,9],[9,10],[11,10]]:[[5,10],[8,10],[11,10]];
+ pts(legs,s,white);x.restore()
+}
+function house(){
+ let g=x.createLinearGradient(0,0,0,H);g.addColorStop(0,'#f5deb2');g.addColorStop(.79,'#edcd95');g.addColorStop(.8,'#b8754d');g.addColorStop(1,'#8d573b');x.fillStyle=g;x.fillRect(0,0,W,H);
+ x.fillStyle='#638568';x.fillRect(100,374,190,130);x.fillStyle='#83553c';x.fillRect(380,400,170,20);x.fillRect(400,420,16,84);x.fillRect(515,420,16,84);x.fillStyle='#6f4932';x.fillRect(680,345,135,159);x.fillStyle='#704f3a';x.fillRect(878,278,88,20);
+ x.fillStyle='#6d4934';x.fillRect(900,137,145,155);x.fillStyle='#92d6eb';x.fillRect(910,147,125,135);x.fillStyle='#efc55a';x.beginPath();x.arc(1000,174,16,0,Math.PI*2);x.fill()
+}
+function street(){
+ x.fillStyle='#9ed9ec';x.fillRect(0,0,W,335);x.fillStyle='#f0d8a4';x.fillRect(0,335,W,170);
+ const cs=['#da7658','#e7b55d','#6da7a0','#cf7b83','#8ca66e','#d28a50'];[0,178,360,545,730,910].forEach((a,i)=>{x.fillStyle=cs[i];x.fillRect(a,230,160,190);x.fillStyle='#59483c';x.fillRect(a+58,325,45,95)});
+ x.fillStyle='#d5c3aa';x.fillRect(0,420,W,85);x.fillStyle='#6a6a68';x.fillRect(0,505,W,114);x.fillStyle='#b36b42';x.fillRect(280,420,125,85);x.fillRect(685,408,105,97);x.fillStyle='#9f7655';x.fillRect(475,455,100,50);
+ x.fillStyle='#9b6b45';x.beginPath();x.ellipse(830,447,32,20,0,0,Math.PI*2);x.fill();x.beginPath();x.arc(856,431,18,0,Math.PI*2);x.fill();
+ x.fillStyle='#d5b139';x.fillRect(974,364,160,118);x.fillStyle='#4c7078';x.fillRect(993,381,96,40)
+}
+function bus(){x.fillStyle='#d6b23c';x.fillRect(0,0,W,H);x.fillStyle='#79b7cb';for(let a=60;a<1080;a+=220)x.fillRect(a,70,170,160);x.fillStyle='#5c493d';x.fillRect(0,505,W,114);for(const a of [90,330,590,840]){x.fillStyle='#884f3d';x.fillRect(a,330,135,175)}}
+function taco(){
+ x.fillStyle='#f0d08d';x.fillRect(0,0,W,505);x.fillStyle='#9c4d36';x.fillRect(0,0,W,92);x.fillStyle='#fff5dc';x.font='900 36px system-ui';x.fillText('TAQUERÍA EL BIGOTE',356,59);x.fillStyle='#86533d';x.fillRect(258,320,380,185);x.fillStyle='#9b6940';x.fillRect(835,432,105,73);
+ x.fillStyle='#7e7771';x.beginPath();x.ellipse(884,451,17,12,0,0,Math.PI*2);x.fill();x.beginPath();x.arc(898,443,10,0,Math.PI*2);x.fill();x.fillStyle='#695149';x.fillRect(0,505,W,114)
+}
+function draw(){time+=1/60;x.clearRect(0,0,W,H);if(scene==='house')house();if(scene==='street')street();if(scene==='bus')bus();if(scene==='taco')taco();items.forEach(drawChuru);senku()}
+function loop(now){const dt=Math.min((now-last)/1000,.033);last=now;update(dt);draw();requestAnimationFrame(loop)}
+hud();requestAnimationFrame(loop)
+})();
+</script>
 </body>
 </html>
