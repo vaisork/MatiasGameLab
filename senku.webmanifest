@@ -1,0 +1,17 @@
+{
+  "name": "Senku — Aventura por México",
+  "short_name": "Senku",
+  "start_url": "./senku.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#151311",
+  "theme_color": "#0a84f8",
+  "icons": [
+    {
+      "src": "assets/icon/senku-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

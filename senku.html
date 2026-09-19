@@ -4,7 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
 <meta name="theme-color" content="#efbd58">
-<title>Senku — México · v0.4.1 | Matías Game Lab</title>
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Senku">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/icon/senku-icon-192.png?v=042">
+<link rel="apple-touch-icon" sizes="192x192" href="assets/icon/senku-icon-192.png?v=042">
+<link rel="manifest" href="senku.webmanifest?v=042">
+<title>Senku — México · v0.4.2 | Matías Game Lab</title>
 <style>
 *{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#151311;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;touch-action:none;user-select:none}
 canvas{position:fixed;inset:0;margin:auto;width:min(100vw,1100px);height:auto;max-height:100vh;aspect-ratio:16/9;background:#ddd;image-rendering:pixelated}
@@ -112,7 +119,7 @@ canvas{position:fixed;inset:0;margin:auto;width:min(100vw,1100px);height:auto;ma
     </div>
   </div>
 </div>
-<div class="version">v0.4.1 · 19/09/26 · 07:51</div>
+<div class="version">v0.4.2 · 19/09/26 · 08:28</div>
 
 <div id="toast"></div>
 <script>
@@ -170,7 +177,7 @@ function hold(id,k){const e=document.getElementById(id),on=q=>{q.preventDefault(
 hold('left','l');hold('right','r');hold('jump','j');hold('action','a');
 addEventListener('keydown',e=>{if(e.code==='ArrowLeft'||e.code==='KeyA')keys.l=true;if(e.code==='ArrowRight'||e.code==='KeyD')keys.r=true;if(e.code==='ArrowUp'||e.code==='Space'||e.code==='KeyW'){keys.j=true;e.preventDefault()}if(e.code==='KeyE'||e.code==='Enter')keys.a=true});
 addEventListener('keyup',e=>{if(e.code==='ArrowLeft'||e.code==='KeyA')keys.l=false;if(e.code==='ArrowRight'||e.code==='KeyD')keys.r=false;if(e.code==='ArrowUp'||e.code==='Space'||e.code==='KeyW')keys.j=false;if(e.code==='KeyE'||e.code==='Enter')keys.a=false});
-document.getElementById('start').onclick=()=>{intro.classList.add('hidden');setScene('house');running=true;say('Senku v0.4.1 · la rata ya se mueve 🐀',1800)};
+document.getElementById('start').onclick=()=>{intro.classList.add('hidden');setScene('house');running=true;say('Senku v0.4.2 · nuevo icono para tu pantalla de inicio 🐾',1800)};
 
 function platforms(){
  if(scene==='house')return[{x:0,y:504,w:W,h:115},{x:100,y:430,w:190,h:74},{x:380,y:400,w:170,h:20},{x:680,y:345,w:135,h:159},{x:878,y:278,w:88,h:20}];
