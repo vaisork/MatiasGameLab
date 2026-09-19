@@ -73,7 +73,7 @@ function hold(id,k){const e=document.getElementById(id),on=q=>{q.preventDefault(
 hold('left','l');hold('right','r');hold('jump','j');hold('action','a');
 addEventListener('keydown',e=>{if(e.code==='ArrowLeft'||e.code==='KeyA')keys.l=true;if(e.code==='ArrowRight'||e.code==='KeyD')keys.r=true;if(e.code==='ArrowUp'||e.code==='Space'||e.code==='KeyW'){keys.j=true;e.preventDefault()}if(e.code==='KeyE'||e.code==='Enter')keys.a=true});
 addEventListener('keyup',e=>{if(e.code==='ArrowLeft'||e.code==='KeyA')keys.l=false;if(e.code==='ArrowRight'||e.code==='KeyD')keys.r=false;if(e.code==='ArrowUp'||e.code==='Space'||e.code==='KeyW')keys.j=false;if(e.code==='KeyE'||e.code==='Enter')keys.a=false});
-document.getElementById('start').onclick=()=>{intro.classList.add('hidden');setScene('house');running=true;say('Senku ya se mueve en píxeles 🐾',1800)};
+document.getElementById('start').onclick=()=>{intro.classList.add('hidden');setScene('house');running=true;say('Nuevo Senku: más parecido al de verdad 🐾',1800)};
 
 function platforms(){
  if(scene==='house')return[{x:0,y:504,w:W,h:115},{x:100,y:430,w:190,h:74},{x:380,y:400,w:170,h:20},{x:680,y:345,w:135,h:159},{x:878,y:278,w:88,h:20}];
@@ -109,20 +109,119 @@ function update(dt){if(!running)return;physics(dt);collect();interaction()}
 function rr(a,b,w,h,r){x.beginPath();x.roundRect(a,b,w,h,r)}
 function drawChuru(q){if(q.t)return;x.save();x.translate(q.x,q.y+Math.sin(time*4+q.x)*4);x.fillStyle='#edc45a';rr(-9,-19,18,33,5);x.fill();x.fillStyle='#9d5938';x.fillRect(-6,-13,12,12);x.restore()}
 function pix(gx,gy,s,col){x.fillStyle=col;x.fillRect(gx*s,gy*s,s,s)}
-function pts(a,s,col){for(const q of a)pix(q[0],q[1],s,col)}
+function fillPix(grid,x0,y0,w,h,code){
+ for(let yy=0;yy<h;yy++)for(let xx=0;xx<w;xx++){
+  const gx=x0+xx,gy=y0+yy;
+  if(gy>=0&&gy<grid.length&&gx>=0&&gx<grid[0].length)grid[gy][gx]=code
+ }
+}
+function putPix(grid,pts,code){for(const [gx,gy] of pts)if(gy>=0&&gy<grid.length&&gx>=0&&gx<grid[0].length)grid[gy][gx]=code}
 function senku(){
- const s=3,m=Math.abs(p.vx)>18&&p.ground,frame=!p.ground?'jump':m?(Math.floor(p.anim*8)%2?'w1':'w2'):'idle';
- x.save();x.translate(Math.round(p.x),Math.round(p.y));if(p.face<0){x.translate(48,0);x.scale(-1,1)}
- const fur='#d9bc95',stripe='#94714b',white='#f4eee5',dark='#2d241f',ear='#e1a895';
- x.fillStyle='#0003';x.fillRect(9*s,13*s,8*s,1*s);
- pts(frame==='w1'?[[1,9],[1,8],[0,7],[0,6],[1,5],[2,5]]:[[1,8],[1,7],[0,6],[0,5],[1,4],[2,4]],s,dark);
- x.fillStyle=dark;x.fillRect(4*s,5*s,7*s,5*s);x.fillRect(10*s,3*s,4*s,5*s);
- x.fillStyle=fur;x.fillRect(5*s,6*s,5*s,3*s);x.fillRect(11*s,4*s,2*s,3*s);
- pts([[11,2],[10,3],[12,2],[13,3]],s,dark);pts([[11,3],[12,3]],s,ear);
- pts([[5,6],[6,6],[5,7],[7,5],[8,6],[9,7]],s,stripe);pts([[10,7],[11,7],[12,6]],s,white);
- pts([[12,5]],s,'#e7cf72');pts([[12,6]],s,'#d6938e');
- const legs=frame==='jump'?[[6,9],[7,9],[10,9],[13,8]]:frame==='w1'?[[4,10],[8,10],[12,9]]:frame==='w2'?[[5,9],[9,10],[11,10]]:[[5,10],[8,10],[11,10]];
- pts(legs,s,white);x.restore()
+ const s=3;
+ const moving=Math.abs(p.vx)>18&&p.ground;
+ const frame=!p.ground?'jump':moving?(Math.floor(p.anim*8)%2?'w1':'w2'):'idle';
+ const pal={
+  o:'#2b211b', b:'#d8bb91', h:'#bf956b', t:'#7d5e43',
+  c:'#f4eee4', e:'#dda393', y:'#d9bd55', d:'#171411', n:'#d78b86'
+ };
+ const g=Array.from({length:15},()=>Array(19).fill(null));
+
+ // Cola: cambia unos pocos píxeles entre frames para que "camine".
+ const tails={
+  idle:[[4,9],[3,9],[2,8],[1,7],[1,6],[2,5],[3,5]],
+  w1:[[4,9],[3,9],[2,9],[1,8],[1,7],[2,6],[3,6]],
+  w2:[[4,9],[3,8],[2,7],[1,6],[1,5],[2,4],[3,4]],
+  jump:[[4,9],[3,9],[2,8],[1,7],[1,6],[1,5],[2,4]]
+ };
+ for(const [tx,ty] of tails[frame]){
+  putPix(g,[[tx,ty],[tx,ty+1]],'o');
+  if(tx>1) putPix(g,[[tx,ty]],'b');
+ }
+ // Rayas de la cola
+ const tailStripes=frame==='w2'?[[1,5],[2,7],[3,8]]:[[1,7],[2,8],[3,9]];
+ putPix(g,tailStripes,'t');
+
+ // Cuerpo: silueta más alargada y ligera, parecida a Senku.
+ putPix(g,[
+  [6,6],[7,6],[8,6],[9,6],[10,6],[11,6],
+  [5,7],[6,7],[7,7],[8,7],[9,7],[10,7],[11,7],[12,7],
+  [5,8],[6,8],[7,8],[8,8],[9,8],[10,8],[11,8],[12,8],
+  [5,9],[6,9],[7,9],[8,9],[9,9],[10,9],[11,9],[12,9],
+  [6,10],[7,10],[8,10],[9,10],[10,10],[11,10],[12,10],
+  [7,11],[8,11],[9,11],[10,11],[11,11]
+ ],'o');
+ fillPix(g,6,7,6,3,'b');
+ fillPix(g,7,10,4,1,'b');
+ putPix(g,[[6,8],[7,8],[7,9],[8,9],[9,10]],'h');
+
+ // Rayas suaves del lomo, como las de la foto.
+ putPix(g,[[7,7],[8,7],[9,8],[10,8],[6,9]],'t');
+
+ // Cuello y pecho claro.
+ putPix(g,[[11,8],[11,9],[12,8],[11,10]],'c');
+
+ // Cabeza grande pero no exagerada.
+ putPix(g,[
+  [11,3],[12,3],[13,3],[14,3],[15,3],
+  [10,4],[11,4],[12,4],[13,4],[14,4],[15,4],[16,4],
+  [10,5],[11,5],[12,5],[13,5],[14,5],[15,5],[16,5],[17,5],
+  [10,6],[11,6],[12,6],[13,6],[14,6],[15,6],[16,6],[17,6],
+  [11,7],[12,7],[13,7],[14,7],[15,7],[16,7],[17,7],
+  [12,8],[13,8],[14,8],[15,8],[16,8]
+ ],'o');
+ fillPix(g,11,4,5,3,'b');
+ fillPix(g,12,7,4,1,'b');
+
+ // Orejas oscuras y puntiagudas.
+ putPix(g,[[11,2],[12,1],[13,3],[15,2],[16,1],[16,3]],'o');
+ putPix(g,[[12,2],[16,2]],'e');
+ putPix(g,[[11,3],[12,3],[15,3],[16,3]],'t');
+
+ // Máscara / rayas de la cara.
+ putPix(g,[[12,4],[13,4],[11,5],[12,5],[13,5]],'h');
+ putPix(g,[[12,4],[14,4]],'t');
+
+ // Hocico y barbilla claros.
+ putPix(g,[[15,6],[16,6],[15,7],[16,7],[14,7]],'c');
+
+ // Ojo grande dorado y nariz rosada.
+ putPix(g,[[15,5]],'y');
+ putPix(g,[[16,5]],'d');
+ putPix(g,[[17,6]],'n');
+
+ // Patas: tres poses reales usando muy pocos píxeles.
+ const legs={
+  idle:{
+   dark:[[6,11],[6,12],[7,12],[10,11],[10,12],[11,12],[13,9],[13,10],[13,11]],
+   light:[[6,13],[7,13],[10,13],[11,13],[13,12]]
+  },
+  w1:{
+   dark:[[5,11],[5,12],[6,12],[9,11],[9,12],[10,12],[13,9],[14,10],[14,11]],
+   light:[[5,13],[6,13],[9,13],[10,13],[14,12]]
+  },
+  w2:{
+   dark:[[7,11],[7,12],[8,12],[11,11],[12,11],[12,12],[13,9],[12,10],[12,11]],
+   light:[[7,13],[8,13],[12,13],[13,12]]
+  },
+  jump:{
+   dark:[[6,11],[7,11],[8,11],[10,11],[11,11],[12,11],[13,9],[14,9],[14,10]],
+   light:[[7,12],[11,12],[14,11]]
+  }
+ };
+ putPix(g,legs[frame].dark,'o');
+ putPix(g,legs[frame].light,'c');
+
+ // Pequeño cambio de altura en cada paso: da vida sin añadir frames.
+ const bob=frame==='w1'?1:0;
+ x.save();
+ x.translate(Math.round(p.x),Math.round(p.y)-bob);
+ if(p.face<0){x.translate(19*s,0);x.scale(-1,1)}
+ x.fillStyle='rgba(0,0,0,.18)';x.fillRect(4*s,14*s,11*s,s);
+ for(let gy=0;gy<g.length;gy++)for(let gx=0;gx<g[gy].length;gx++){
+  const code=g[gy][gx];
+  if(code)pix(gx,gy,s,pal[code]);
+ }
+ x.restore()
 }
 function house(){
  let g=x.createLinearGradient(0,0,0,H);g.addColorStop(0,'#f5deb2');g.addColorStop(.79,'#edcd95');g.addColorStop(.8,'#b8754d');g.addColorStop(1,'#8d573b');x.fillStyle=g;x.fillRect(0,0,W,H);
