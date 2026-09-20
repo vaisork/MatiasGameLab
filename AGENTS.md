@@ -85,9 +85,29 @@ No reemplazar todo `senku.html` para cambiar una rata, perro, traje, fondo u otr
 
 ## Trabajo paralelo
 
-Arte y programación pueden avanzar en paralelo. Los chats de arte suben recursos a `assets/`; Codex/Cloud consume esas rutas desde el código. Evitar transportar ZIP, Base64 o copias completas de HTML entre agentes cuando el repositorio puede ser la fuente común.
+Arte y programación pueden avanzar en paralelo. Los chats de arte suben recursos a `assets/`; Codex/Cloud consume esas rutas desde el código. Evitar transportar ZIP, Base64, parches o copias completas de HTML entre agentes cuando el repositorio puede ser la fuente común.
 
 Si dos trabajos dependen del mismo archivo o ruta, comprobar el HEAD antes de integrar. Nunca sobrescribir silenciosamente trabajo ajeno.
+
+## Protocolo de ramas para entregas de desarrollo
+
+Los agentes de desarrollo pueden guardar y subir su trabajo al repositorio sin publicarlo en `main`. Para evitar que Javier tenga que transportar archivos, parches o copias de código entre chats, toda entrega de código preparada por un desarrollador debe preferir una **rama de trabajo/entrega**.
+
+Flujo estándar:
+
+1. El desarrollador lee y registra el HEAD actual de `main` antes de empezar.
+2. Crea o utiliza una rama de entrega identificable para su tarea, por ejemplo `claude/senku-<tarea>` o `codex/<proyecto>-<tarea>`.
+3. Puede hacer commits y push de su trabajo **únicamente a esa rama de entrega**.
+4. Deja en la propia rama la documentación de entrega correspondiente, incluyendo el HEAD base, cambios, pruebas, pendientes y estado de publicación.
+5. Comunica a Javier y al Chat Integrador el nombre exacto de la rama y el commit de entrega.
+6. El Chat Integrador compara la rama contra el `main` actual, revisa conflictos y valida la entrega.
+7. Solo cuando Javier autoriza **"sube"**, el Chat Integrador lleva los cambios aprobados a `main` y verifica la publicación.
+
+**Hacer push a una rama de entrega NO equivale a publicar.** Los desarrolladores no deben hacer merge, push directo ni integración final a `main` salvo autorización expresa que cambie su función.
+
+Si `main` cambió desde el HEAD base de la entrega, el Integrador debe detectar la divergencia antes de integrar. No debe sobrescribir silenciosamente ni pedir a Javier que transporte manualmente archivos si el trabajo ya puede compartirse mediante una rama del repositorio.
+
+Este protocolo aplica a Claude, Codex/Cloud y futuros agentes que preparen código, salvo que su función específica establezca un flujo diferente.
 
 ## Contrato de entrega de assets
 
