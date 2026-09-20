@@ -18,6 +18,8 @@ Los cinco pueblos de inicio comparten tres elementos básicos, aunque cada uno l
 
 El nombre propio, apariencia y organización de estos espacios puede variar en cada pueblo.
 
+Cada pueblo desarrolla **gastronomía, armas, herramientas, materiales y productos característicos** de su cultura y entorno. Estos bienes pueden circular fuera de su lugar de origen mediante comercio, viajeros e intercambio, pero conservan su identidad cultural.
+
 **NECESIDAD DE JUGABILIDAD:** precios, calidad de alimentos, ventajas por especie, efectos de equipo, reglas de intercambio y cualquier bonificación mecánica deben definirse fuera de Historia.
 
 ---
