@@ -48,6 +48,7 @@ El Historiador debe revisar este archivo antes de ampliar el mundo. Una idea inc
 - La identidad final debe darles rasgos propios y reconocibles, no limitarse a convertirlos en “humanos murciélago”.
 
 - La lista jugable actual queda formada por **Humanos, Felaryn, Dravak, Marevyn y Vesperi**, salvo que Javier decida cambiarla más adelante.
+- **Regla física de especies jugables:** ninguna de estas especies tendrá vuelo natural. Sus diferencias deberán expresarse mediante otras adaptaciones corporales, sentidos, movilidad o resistencia.
 
 ## Clases y caminos
 
