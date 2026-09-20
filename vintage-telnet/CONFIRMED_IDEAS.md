@@ -14,6 +14,8 @@ El Historiador debe revisar este archivo antes de ampliar el mundo. Una idea inc
 - Los cinco pueblos de inicio quedan nombrados así: **Valdren** (Humanos), **Khariel** (Felaryn), **Brumak** (Dravak), **Narevia** (Marevyn) y **Velmora** (Vesperi).
 - Javier delega al Historiador el nombre y diseño de pueblos principales y secundarios, siempre dentro del canon confirmado. El detalle oficial de asentamientos vive en `SETTLEMENTS.md`.
 - La **ciudad principal** se llama **Vaisgard**. Será un núcleo distinto y de mayor escala, separado de los pueblos de inicio.
+- **Vaisgard es anterior a los cinco pueblos de inicio.** Las poblaciones actuales se asentaron primero en la ciudad y, con el tiempo, grupos de cada una fundaron sus propios pueblos al buscar formas de vida y entornos más adecuados para sus comunidades.
+- La historia estructural de este proceso se documenta en `HISTORY.md`.
 - **Vaisork** es el nombre del **Dungeon Master** dentro de Vintage Telnet.
 - Las distintas especies tendrán hábitats propios o característicos.
 - Habrá mazmorras y áreas de exploración.
