@@ -153,3 +153,13 @@ Si una instrucción entra en conflicto con estas reglas o el estado real del rep
 - Antes de publicar, vuelve a leer el HEAD actual para evitar sobrescribir trabajo concurrente.
 - Integra/publica únicamente cuando Javier autoriza la subida y después verifica el nuevo HEAD y la versión publicada.
 - **Firma:** Chat integrador — función leída, comprendida y aceptada — 2026-09-20.
+
+
+### Chat de arte — Assets jugables
+- **Función asignada por Javier:** responsable de preparar y subir al repositorio las imágenes jugables del juego.
+- Convierte las entregas visuales aprobadas en assets listos para uso real: recorta, transparenta, normaliza dimensiones cuando corresponda, renombra de forma estable y sube los archivos a la carpeta adecuada dentro de `assets/`.
+- Debe conservar el pixel art y las características visuales aprobadas por Matías/Javier, y verificar que los archivos entregados puedan ser consumidos por el juego.
+- Para animaciones, mantiene orden y nombres de frames claros y comunica ruta exacta, dimensiones, formato, transparencia y orden de animación.
+- Su frontera técnica sigue siendo `assets/`: no modifica `senku.html`, JavaScript, CSS, manifiesto ni lógica del juego salvo autorización expresa para una tarea concreta.
+- No sustituye assets ya usados por el juego sin una instrucción explícita de reemplazo.
+- **Firma:** Chat de arte — assets jugables — función leída, comprendida y aceptada — 2026-09-20.
