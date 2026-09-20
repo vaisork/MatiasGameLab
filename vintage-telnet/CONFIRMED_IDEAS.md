@@ -25,7 +25,29 @@ El Historiador debe revisar este archivo antes de ampliar el mundo. Una idea inc
 - También poseen una **vista privilegiada**, superior a la de una persona común y especialmente útil para orientarse y observar a distancia en terrenos montañosos.
 - La cultura, el aspecto definitivo, la historia y el nombre concreto de su pueblo todavía están pendientes de desarrollo.
 - **NECESIDAD DE JUGABILIDAD:** la distancia exacta de salto, el alcance/ventaja concreta de su visión y cualquier efecto mecánico asociado deberán definirse con Jugabilidad; el Historiador solo fija aquí que ambas son capacidades características de la especie.
-- La lista definitiva de especies aún no está cerrada.
+
+### Humanos
+- Los **humanos** existen como una de las especies jugables.
+- Son humanos normales de este mundo de fantasía. No necesitan una alteración física especial para justificar su existencia.
+
+### Dravak
+- Los **Dravak** quedan confirmados como una especie propia.
+- Su característica física principal será que son **muy pequeños** en comparación con los humanos.
+- Su identidad cultural, proporciones exactas, capacidades y hábitat concreto todavía deben desarrollarse.
+
+### Marevyn
+- Los **Marevyn** quedan confirmados como una especie propia.
+- Su dirección física será **alta, estilizada y muy integrada con la naturaleza**, tomando como referencia general ciertas sensaciones visuales de pueblos fantásticos orgánicos y exuberantes, sin copiar directamente una especie existente de otra obra.
+- Mantienen una afinidad conceptual con ambientes de agua, lagos, ríos y humedales.
+- Su apariencia definitiva y sus capacidades exactas todavía deben desarrollarse.
+
+### Vesperi
+- Los **Vesperi** quedan confirmados como una especie propia.
+- Se mantiene la dirección de una especie asociada a zonas nocturnas, bosques profundos, cavernas abiertas o lugares con poca luz.
+- Su apariencia física característica todavía está **pendiente de diseño**.
+- La identidad final debe darles rasgos propios y reconocibles, no limitarse a convertirlos en “humanos murciélago”.
+
+- La lista jugable actual queda formada por **Humanos, Felaryn, Dravak, Marevyn y Vesperi**, salvo que Javier decida cambiarla más adelante.
 
 ## Clases y caminos
 
