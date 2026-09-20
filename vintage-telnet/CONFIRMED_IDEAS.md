@@ -31,7 +31,10 @@ El Historiador debe revisar este archivo antes de ampliar el mundo. Una idea inc
 - Su hábitat de origen es un **pueblo situado entre las montañas**.
 - Los Felaryn tienen una capacidad natural destacada para **saltar grandes distancias**.
 - También poseen una **vista privilegiada**, superior a la de una persona común y especialmente útil para orientarse y observar a distancia en terrenos montañosos.
-- La cultura, el aspecto definitivo y la historia de los Felaryn todavía están pendientes de desarrollo. Su pueblo de inicio ya está definido como **Khariel**.
+- La cultura de los Felaryn tendrá una **inspiración japonesa tradicional** en arquitectura, disciplina, estética y tradición marcial, adaptada como una identidad propia de Vintage Telnet.
+- Esta inspiración es una herramienta interna de diseño y no debe presentarse al jugador como una copia literal de Japón ni como una cultura real trasladada al mundo.
+- Su pueblo de inicio es **Khariel**. Su aspecto definitivo y su historia profunda todavía están pendientes de desarrollo.
+- Existirá una tradición guerrera Felaryn inspirada en guerreros samurái, pero su nombre propio, jerarquías, códigos y función exacta dentro del mundo todavía deben desarrollarse.
 - **NECESIDAD DE JUGABILIDAD:** la distancia exacta de salto, el alcance/ventaja concreta de su visión y cualquier efecto mecánico asociado deberán definirse con Jugabilidad; el Historiador solo fija aquí que ambas son capacidades características de la especie.
 
 ### Humanos
