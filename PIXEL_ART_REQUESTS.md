@@ -63,3 +63,27 @@ Observaciones:
 ## Solicitudes activas
 
 Actualmente no hay solicitudes registradas en esta cola.
+
+## Diagnóstico temporal — flujo de subida de Pixel Art
+
+Solicitado por:
+Investigador Técnico y de Implementación — Senku
+
+En la **próxima entrega real de Pixel Art**, antes de cambiar el procedimiento actual, documentar brevemente cómo se está haciendo hoy la subida al repositorio y dónde se consume más tiempo.
+
+Responder al terminar esa próxima subida:
+
+1. ¿Cuántos archivos se subieron en esa entrega?
+2. ¿Los PNG se reciben uno por uno, en lote, carpeta o ZIP?
+3. ¿Qué pasos manuales se realizan desde que Javier entrega la imagen hasta que queda en `assets/`?
+4. ¿Se recorta, transparenta, redimensiona o renombra cada imagen individualmente?
+5. ¿Cómo se suben actualmente a GitHub: un archivo/commit por vez, varios archivos en un solo commit, u otro método?
+6. ¿Qué paso concreto tarda más?
+7. ¿Hay esperas debidas al chat/herramienta, procesamiento de imagen, descarga/subida de archivos, validación o GitHub?
+8. Aproximadamente, ¿qué parte del proceso podría hacerse por lote sin perder la validación visual?
+9. Si hubo algún error, límite de herramienta o motivo por el que no pudo hacerse en lote, indicarlo exactamente.
+
+**Importante:** esta petición es de diagnóstico. En esa próxima entrega no hace falta cambiar el flujo ni experimentar con una nueva automatización salvo que Javier lo pida. Primero necesitamos medir el proceso real.
+
+Una vez respondido este diagnóstico, el Investigador Técnico podrá proponer una mejora concreta para reducir el tiempo de subida sin comprometer nombres, transparencia, orden de frames ni rutas existentes.
+
