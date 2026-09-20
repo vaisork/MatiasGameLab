@@ -50,10 +50,10 @@ El Historiador no sustituye:
 ## Trabajo narrativo todavía abierto
 
 Áreas importantes aún por desarrollar o repartir:
-- diseño completo de **Vaisgard**;
+- diseño completo de **Vaisgard** — **primera versión completada en `VAISGARD.md`; queda abierta a expansión**;
 - anatomía, cultura e historia final de cada especie;
 - capacidades narrativas de Dravak, Marevyn y Vesperi;
-- mapa regional y conexiones entre los cinco pueblos y Vaisgard;
+- mapa regional y conexiones entre los cinco pueblos y Vaisgard — **primera arquitectura definida en `REGIONS.md`**;
 - historia antigua del mundo — **iniciada en `HISTORY.md`; faltan eras y causas anteriores/posteriores**;
 - nombres y funciones de regiones;
 - primeras mazmorras;
@@ -81,6 +81,8 @@ Estos especialistas no son necesarios automáticamente. El Arquitecto decidirá 
 - `FUTURE_IDEAS.md` — incubadora de ideas no activas.
 - `SETTLEMENTS.md` — pueblos y asentamientos.
 - `HISTORY.md` — arquitectura histórica y cronología del mundo.
+- `VAISGARD.md` — ciudad principal, estructura e historia.
+- `REGIONS.md` — geografía inicial y caminos.
 - `SECRETS.md` — información reservada del Dungeon Master.
 - `GAMEPLAY.md` — fuente de verdad mecánica.
 
