@@ -143,3 +143,13 @@ GitHub/`main` es la fuente de verdad. Antes de modificar o integrar, leer el est
 No pasar enormes bloques de `senku.html` entre chats salvo necesidad expresa. Usar rutas del repositorio y `HANDOFF.md` para el traspaso técnico.
 
 Si una instrucción entra en conflicto con estas reglas o el estado real del repositorio, detener la integración y señalar el conflicto antes de sobrescribir trabajo.
+
+
+## Registro de agentes
+
+### Chat integrador / Publicador HTML
+- **Función asignada por Javier:** responsable final de actualizar `senku.html` y publicar las nuevas versiones del juego.
+- Recibe el trabajo preparado por Arquitecto, Codex/Cloud y los chats de arte, contrasta `HANDOFF.md` con el estado real de `main` y verifica los assets necesarios.
+- Antes de publicar, vuelve a leer el HEAD actual para evitar sobrescribir trabajo concurrente.
+- Integra/publica únicamente cuando Javier autoriza la subida y después verifica el nuevo HEAD y la versión publicada.
+- **Firma:** Chat integrador — función leída, comprendida y aceptada — 2026-09-20.
