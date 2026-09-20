@@ -65,13 +65,14 @@ El Historiador debe revisar este archivo antes de ampliar el mundo. Una idea inc
 
 ## Clases y caminos
 
-- Existirán clases o caminos de personaje.
-- **Artífice** queda confirmado como nombre de una clase.
-- El Artífice tendrá afinidad narrativa con **arco, herramientas, construcción, reparación y fabricación**. El detalle exacto de qué puede construir, reparar o fabricar pertenece a Jugabilidad.
-- El nombre provisional **Vigía** queda descartado para esta clase.
-- Guerrero, mago y pícaro siguen como conceptos previos todavía pendientes de revisión de nombre y forma final.
-- La relación exacta entre guerrero y paladín todavía debe resolverse.
-- Las reglas, progresión, poderes y balance de las clases pertenecen a Jugabilidad.
+- Las cuatro clases base confirmadas son **Arcano, Juramentado, Sombra y Artífice**.
+- **Arcano** es la clase asociada a la magia. Su arma inicial prevista es una **varita**, que podrá evolucionar posteriormente hacia formas más poderosas como un báculo según lo que defina Jugabilidad.
+- **Juramentado** es la clase asociada al combate directo y al uso de **espadas medianas o pesadas**.
+- **Sombra** es la clase asociada al **sigilo, movimiento discreto, ataques sorpresivos y armas ligeras como cuchillos o puñales**.
+- **Artífice** es la clase asociada al **arco, herramientas, construcción, reparación y fabricación**.
+- El nombre provisional **Vigía** queda descartado para la clase Artífice.
+- Los términos genéricos guerrero, mago y pícaro quedan como referencias internas de diseño, no como nombres oficiales de clase.
+- Las reglas, progresión, poderes, pesos de armas, fabricación, balance y capacidades exactas pertenecen a Jugabilidad.
 
 ## Magia oscura y necromancia
 
