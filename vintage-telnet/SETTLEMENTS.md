@@ -8,6 +8,20 @@ Los cinco pueblos de inicio son pequeños, limitados y distintos de la ciudad pr
 
 ---
 
+## Estructura común de los pueblos de inicio
+
+Los cinco pueblos de inicio comparten tres elementos básicos, aunque cada uno los presenta de acuerdo con su cultura y arquitectura:
+
+- **Forja o taller:** lugar donde se fabrican, reparan o comercian armas y herramientas según lo que permita Jugabilidad.
+- **Alimentos y comercio:** espacio donde habitantes y jugadores pueden conseguir comida y bienes básicos.
+- **Centro comunitario:** espacio abierto de reunión e intercambio entre jugadores; no tiene que ser un edificio cerrado ni llamarse “ayuntamiento”.
+
+El nombre propio, apariencia y organización de estos espacios puede variar en cada pueblo.
+
+**NECESIDAD DE JUGABILIDAD:** precios, calidad de alimentos, ventajas por especie, efectos de equipo, reglas de intercambio y cualquier bonificación mecánica deben definirse fuera de Historia.
+
+---
+
 ## Pueblos de inicio
 
 ### Valdren — Pueblo de inicio de los Humanos
