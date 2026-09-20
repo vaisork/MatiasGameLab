@@ -11,7 +11,7 @@
 <link rel="icon" type="image/png" sizes="192x192" href="assets/icon/senku-icon-192.png?v=050">
 <link rel="apple-touch-icon" sizes="192x192" href="assets/icon/senku-icon-192.png?v=050">
 <link rel="manifest" href="senku.webmanifest?v=050">
-<title>Senku — México · v0.5.0 | estructura ligera</title>
+<title>Senku — México · v0.5.1 | ratita blanca</title>
 <style>
 *{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#151311;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;touch-action:none;user-select:none}
 canvas{position:fixed;inset:0;margin:auto;width:min(100vw,1100px);height:auto;max-height:100vh;aspect-ratio:16/9;background:#ddd;image-rendering:pixelated}
@@ -119,7 +119,7 @@ canvas{position:fixed;inset:0;margin:auto;width:min(100vw,1100px);height:auto;ma
     </div>
   </div>
 </div>
-<div class="version">v0.5.0 · 19/09/26 · 23:38 · estructura ligera</div>
+<div class="version">v0.5.1 · 19/09/26 · 23:38 · ratita blanca</div>
 
 <div id="toast"></div>
 <script>
@@ -135,7 +135,7 @@ let churus=Number(localStorage.getItem('senku_churus')||0),secret=localStorage.g
 let selectedSkin=localStorage.getItem('senku_skin')||'normal';
 const senkuSheet=new Image();senkuSheet.src='assets/senku/senku-sprites.png?v=050';
 const secretRatSheet=new Image();secretRatSheet.src='assets/trajes/rata/walk-sheet.png?v=050';
-const ratSheet=new Image();ratSheet.src='assets/rata/white-rat-sheet.png?v=050';
+const ratSheet=new Image();ratSheet.src='assets/rata/white-rat-sprite-v2.png?v=051';
 const spriteBuffer=document.createElement('canvas');spriteBuffer.width=72;spriteBuffer.height=72;const sx=spriteBuffer.getContext('2d');sx.imageSmoothingEnabled=false;
 const keys={l:false,r:false,j:false,a:false};let jl=false,al=false;
 const p={x:85,y:430,w:54,h:44,vx:0,vy:0,ground:false,face:1,anim:0,speed:330,jump:575};
