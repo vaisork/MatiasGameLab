@@ -60,7 +60,8 @@ canvas{position:fixed;inset:0;margin:auto;width:min(100vw,1100px);height:auto;ma
     <div class="pill" id="objective">Encuentra una salida</div>
     <div class="pill">🧃 <span id="count">0</span></div>
   </div>
-  <a class="home" href="index.html" aria-label="Volver al inicio">⌂</a>\n  <button class="wardrobe" id="wardrobe" aria-label="Abrir trajes">👕</button>
+  <a class="home" href="index.html" aria-label="Volver al inicio">⌂</a>
+  <button class="wardrobe" id="wardrobe" aria-label="Abrir trajes">👕</button>
   <div class="controls">
     <div class="cluster"><button class="btn" id="left">←</button><button class="btn" id="right">→</button></div>
     <div class="cluster"><button class="btn action" id="action">💬</button><button class="btn jump" id="jump">↑</button></div>
@@ -133,6 +134,7 @@ const previewImg=skinPreview.querySelector('img'),basePreviewSrc='assets/senku/m
 let scene='house',running=false,last=performance.now(),time=0,modalAction=null,busTimer=null,near=null,wardrobeWasRunning=false;
 let churus=Number(localStorage.getItem('senku_churus')||0),secret=localStorage.getItem('senku_secret')==='1';
 let selectedSkin=localStorage.getItem('senku_skin')||'normal';
+let collected=new Set(JSON.parse(localStorage.getItem('senku_collected')||'[]'));
 const senkuSheet=new Image();senkuSheet.src='assets/senku/senku-sprites.png?v=050';
 const secretRatSheet=new Image();secretRatSheet.src='assets/trajes/rata/walk-sheet.png?v=050';
 const ratSheet=new Image();ratSheet.src='assets/rata/white-rat-sprite-v2.png?v=051';
@@ -142,10 +144,11 @@ const spriteBuffer=document.createElement('canvas');spriteBuffer.width=72;sprite
 const keys={l:false,r:false,j:false,a:false};let jl=false,al=false;
 const p={x:85,y:430,w:54,h:44,vx:0,vy:0,ground:false,face:1,anim:0,speed:330,jump:575};
 let items=[];
+let cupY=174,cupVy=0;
 const info={house:['Casa','Encuentra una salida'],street:['Calle','Explora la calle'],bus:['Autobús','Viaja de polizón'],taco:['Taquería','Investiga el lugar']};
 
 function hud(){zone.textContent=info[scene][0];objective.textContent=info[scene][1];count.textContent=churus;renderWardrobe()}
-function save(){localStorage.setItem('senku_churus',churus);localStorage.setItem('senku_skin',selectedSkin);if(secret)localStorage.setItem('senku_secret','1')}
+function save(){localStorage.setItem('senku_churus',churus);localStorage.setItem('senku_skin',selectedSkin);if(secret)localStorage.setItem('senku_secret','1');localStorage.setItem('senku_collected',JSON.stringify([...collected]))}
 function renderWardrobe(){
  if(selectedSkin==='secret'&&!secret)selectedSkin='normal';
  if(selectedSkin==='gold'&&churus<300)selectedSkin='normal';
@@ -172,10 +175,10 @@ mb.onclick=()=>{modal.classList.add('hidden');const f=modalAction;modalAction=nu
 
 function setScene(s){
  scene=s;near=null;action.style.display='none';if(busTimer){clearTimeout(busTimer);busTimer=null}
- if(s==='house'){p.x=85;p.y=430;items=[]}
- if(s==='street'){p.x=50;p.y=430;items=[{x:190,y:430,t:0},{x:330,y:360,t:0},{x:520,y:430,t:0},{x:720,y:374,t:0}]}
+ if(s==='house'){p.x=85;p.y=430;items=[];cupY=174;cupVy=0}
+ if(s==='street'){p.x=50;p.y=430;items=[{id:'street-0',x:190,y:430},{id:'street-1',x:330,y:360},{id:'street-2',x:520,y:430},{id:'street-3',x:720,y:374}].map(q=>({...q,t:collected.has(q.id)?1:0}))}
  if(s==='bus'){p.x=170;p.y=430;items=[]}
- if(s==='taco'){p.x=60;p.y=430;items=[{x:230,y:430,t:0},{x:580,y:430,t:0},{x:744,y:355,t:0}]}
+ if(s==='taco'){p.x=60;p.y=430;items=[{id:'taco-0',x:230,y:430},{id:'taco-1',x:580,y:430},{id:'taco-2',x:744,y:355}].map(q=>({...q,t:collected.has(q.id)?1:0}))}
  p.vx=p.vy=0;hud()
 }
 function hold(id,k){const e=document.getElementById(id),on=q=>{q.preventDefault();keys[k]=true},off=q=>{q.preventDefault();keys[k]=false};e.addEventListener('pointerdown',on);e.addEventListener('pointerup',off);e.addEventListener('pointercancel',off);e.addEventListener('pointerleave',off)}
@@ -197,7 +200,7 @@ function physics(dt){
  for(const q of platforms())if(p.x+p.w>q.x&&p.x<q.x+q.w&&old+p.h<=q.y+7&&p.y+p.h>=q.y&&p.vy>=0){p.y=q.y-p.h;p.vy=0;p.ground=true}
  if(p.y>H+80){p.x=50;p.y=380;p.vy=0}p.anim+=dt
 }
-function collect(){for(const q of items)if(!q.t&&Math.hypot(p.x+27-q.x,p.y+18-q.y)<35){q.t=1;churus++;save();hud();say('+1 Churu 🧃',700)}}
+function collect(){for(const q of items)if(!q.t&&Math.hypot(p.x+27-q.x,p.y+18-q.y)<35){q.t=1;collected.add(q.id);churus++;save();hud();say('+1 Churu 🧃',700)}}
 function interaction(){
  near=null;action.style.display='none';const px=p.x+27,py=p.y+18;
  if(scene==='house'&&Math.hypot(px-918,py-250)<95)near='window';
@@ -208,12 +211,13 @@ function interaction(){
 }
 function act(){
  if(near==='window')show('CAPÍTULO 1','México','Senku logra salir de casa. Ahora toca investigar la calle.','SALIR',()=>setScene('street'));
- if(near==='box'){churus+=3;save();hud();say('+3 Churus secretos 🧃🧃🧃',1800);p.x=620}
+ if(near==='box'){if(!collected.has('street-box')){collected.add('street-box');churus+=3;save();hud();say('+3 Churus secretos 🧃🧃🧃',1800)}else say('La caja ya está vacía.',1200);p.x=620}
  if(near==='dog')show('PERRO DE LA BANQUETA','Una pista','“Ese autobús huele a comida, pero el conductor no parece amar a los animales.”','ENTENDIDO');
  if(near==='bus')show('AUTOBÚS','Viaje gratis','Senku sube sin boleto.','SUBIR',()=>{setScene('bus');busTimer=setTimeout(()=>{if(scene!=='bus')return;show('¡FUERA, GATO!','2 segundos después…','El conductor descubre a Senku y lo baja en la siguiente parada.','CAER DE PIE',()=>setScene('taco'))},2000)});
  if(near==='rat'){if(!secret){secret=true;save();hud();show('RATA ESCONDIDA','Traje exclusivo','“Psst… toma este traje. Te ayudará a pasar desapercibido.”','RECIBIR',()=>say('¡Traje secreto desbloqueado! 🧣',1800))}else say('La rata ya te dio su traje.')}
 }
-function update(dt){if(!running)return;physics(dt);collect();interaction()}
+function update(dt){if(!running)return;physics(dt);collect();interaction();fallCup(dt)}
+function fallCup(dt){if(scene!=='house'||cupY>=488)return;cupVy+=1500*dt;cupY=Math.min(488,cupY+cupVy*dt);if(cupY>=488)cupVy=0}
 
 function rr(a,b,w,h,r){x.beginPath();x.roundRect(a,b,w,h,r)}
 function drawChuru(q){if(q.t)return;x.save();x.translate(q.x,q.y+Math.sin(time*4+q.x)*4);x.fillStyle='#edc45a';rr(-9,-19,18,33,5);x.fill();x.fillStyle='#9d5938';x.fillRect(-6,-13,12,12);x.restore()}
@@ -254,7 +258,7 @@ function senku(){
 function house(){
  let g=x.createLinearGradient(0,0,0,H);g.addColorStop(0,'#f5deb2');g.addColorStop(.79,'#edcd95');g.addColorStop(.8,'#b8754d');g.addColorStop(1,'#8d573b');x.fillStyle=g;x.fillRect(0,0,W,H);
  x.fillStyle='#638568';x.fillRect(100,374,190,130);x.fillStyle='#83553c';x.fillRect(380,400,170,20);x.fillRect(400,420,16,84);x.fillRect(515,420,16,84);x.fillStyle='#6f4932';x.fillRect(680,345,135,159);x.fillStyle='#704f3a';x.fillRect(878,278,88,20);
- x.fillStyle='#6d4934';x.fillRect(900,137,145,155);x.fillStyle='#92d6eb';x.fillRect(910,147,125,135);x.fillStyle='#efc55a';x.beginPath();x.arc(1000,174,16,0,Math.PI*2);x.fill()
+ x.fillStyle='#6d4934';x.fillRect(900,137,145,155);x.fillStyle='#92d6eb';x.fillRect(910,147,125,135);x.fillStyle='#efc55a';x.beginPath();x.arc(1000,cupY,16,0,Math.PI*2);x.fill()
 }
 function street(){
  x.fillStyle='#9ed9ec';x.fillRect(0,0,W,335);x.fillStyle='#f0d8a4';x.fillRect(0,335,W,170);
