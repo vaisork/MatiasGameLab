@@ -30,6 +30,13 @@ existente para representar otro contenido.
 
 ## Requisitos
 
+- Proyecto remoto exclusivo de MatiasGameLab y tarea exclusiva de Vintage Telnet.
+  No usar el proyecto `/home/jdiaz/ojo-de-agua` ni conversaciones de ese proyecto.
+  Checkout propuesto: `/home/jdiaz/MatiasGameLab-deploy`; debe registrarse como un
+  proyecto remoto independiente en Codex antes de asignar trabajo al operador.
+  Las instrucciones enviadas inicialmente al hilo general «Conéctate desde tu
+  celular» quedaron revocadas por el puente el 2026-09-20. No retomarlas allí.
+
 - Raspberry Pi OS/Debian con systemd, Python **3.11+**, módulo sqlite3, venv y pip.
 - Git, acceso de lectura a `vaisork/MatiasGameLab`, sudo para preparar el servicio.
 - Disco local persistente con espacio libre. Registrar modelo, arquitectura, SO,
