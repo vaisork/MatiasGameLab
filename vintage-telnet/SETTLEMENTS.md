@@ -38,11 +38,15 @@ Las viviendas no forman una superficie completamente plana. El pueblo crece vert
 
 La disposición de Khariel refleja las capacidades naturales de los Felaryn: su gran visión y su facilidad para cubrir grandes distancias mediante saltos.
 
-**Carácter del lugar:** elevado, abierto al horizonte y difícil de recorrer para quien no conoce la montaña.
+**Carácter del lugar:** elevado, abierto al horizonte, disciplinado y difícil de recorrer para quien no conoce la montaña.
+
+**Dirección cultural:** Khariel sigue una inspiración japonesa tradicional reinterpretada dentro de Vintage Telnet. Su arquitectura, ceremonias, disciplina y tradición marcial deben sentirse propias de los Felaryn y no como una reproducción literal de una cultura real.
 
 **Elementos narrativos:**
-- terrazas habitadas;
+- terrazas habitadas con arquitectura de madera y piedra, techos inclinados y espacios ordenados;
 - miradores;
+- jardines y patios de contemplación;
+- puentes y senderos escalonados entre niveles;
 - senderos estrechos y rutas alternativas entre distintos niveles;
 - zonas donde los Felaryn pueden desplazarse de una manera que otras especies no considerarían normal;
 - campanas, señales o puntos de observación para vigilar los pasos montañosos.
