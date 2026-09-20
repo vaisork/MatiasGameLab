@@ -154,6 +154,7 @@ Si una instrucción entra en conflicto con estas reglas o el estado real del rep
 - Prepara entregas reproducibles en `vintage-telnet/ops/RASPBERRY_HANDOFF.md`. El futuro agente Raspberry opera y despliega versiones identificadas, comprueba servicios, almacenamiento y conectividad y devuelve evidencia; no rediseña el juego ni mantiene una variante de código independiente.
 - Distingue pruebas locales de pruebas físicas en Raspberry. No afirma despliegue ni funcionamiento real en ella sin evidencia del operador. No abre puertos del router ni publica servicios a Internet.
 - Mantiene la transferencia técnica de este juego dentro de `vintage-telnet/`, sin mezclarla con el `HANDOFF.md` de Senku. No firma ni modifica las funciones de otros agentes.
+- **Ampliación asignada por Javier (2026-09-20):** asume también, por el momento, el puente operativo con la Raspberry: entrega directamente instrucciones y commits al agente remoto, consulta sus resultados, corrige el repositorio y coordina el despliegue y las pruebas reales. Javier no necesita transportar mensajes ni operar la terminal. Puede publicar la rama técnica de entrega para su instalación y revisión; la integración final de `main` conserva su coordinación existente. No afecta servicios ajenos ni expone el juego a Internet.
 - **Firma:** Desarrollador de Servidor de Vintage Telnet — función leída, comprendida y aceptada — 2026-09-20.
 
 ### Chat integrador / Publicador HTML

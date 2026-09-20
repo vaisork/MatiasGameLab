@@ -3,7 +3,9 @@
 ## Estado y coordinación
 
 Preparado por **Desarrollador de Servidor de Vintage Telnet**, 2026-09-20.
-No se ha desplegado ni probado físicamente en Raspberry desde esta entrega.
+El estado real de despliegue se registra en `RASPBERRY_REPORT.md`; la preparación
+original solo se probó localmente. Javier amplió la función del desarrollador
+para actuar también como puente directo con el operador remoto (2026-09-20).
 El operador instala, configura y verifica; no diseña mecánicas ni hace cambios
 independientes en el servidor. Devuelve resultados mediante `RASPBERRY_REPORT.md`.
 Si encuentra un problema, conserva evidencia sin secretos y lo devuelve al agente
@@ -14,9 +16,11 @@ Versión de esta entrega: **0.1.0**, etiqueta propuesta **`vintage-telnet-v0.1.0
 rama de preparación `codex/vintage-telnet-server`. Base leída:
 `bb2fef58ee1607d216e3bbc77b3d623489d24e9b`.
 El commit de implementación se informa en la entrega final del agente. No instalar
-el HEAD base: solo contiene documentación. La etiqueta y rama locales requieren
-publicación por el integrador antes de que el operador las descargue de GitHub.
-No asumir que esta etiqueta ya está publicada ni sustituirla por `main` o `latest`.
+el HEAD base: solo contiene documentación. El puente publica la rama técnica
+para instalación por SHA y revisión; esto no integra `main` ni publica Senku.
+La etiqueta 0.1.0 identifica la preparación inicial; el operador debe usar el SHA
+de despliegue comunicado por el puente, que puede incluir correcciones posteriores.
+No sustituir el SHA por `main` o `latest`.
 
 El integrador debe volver a leer `main`, preservar trabajo concurrente y publicar
 la versión revisada. Si integra por squash o cambia código, debe comunicar el
@@ -37,7 +41,7 @@ existente para representar otro contenido.
 
 ## Instalación inicial (ejecutar en la Raspberry, no en el equipo del repositorio)
 
-Obtener primero del integrador el SHA publicado. Reemplazar el marcador; no seguir
+Obtener primero del puente o integrador el SHA publicado. Reemplazar el marcador; no seguir
 si falta. Los comandos asumen una instalación nueva y rutas libres. Si ya existe
 un servicio/base, inspeccionarlos y seguir el apartado de actualización, sin borrarlos.
 
@@ -199,7 +203,9 @@ de esta prueba. No arrancar una segunda autoridad con una copia de producción.
    de prueba en dispositivo. No declarar acceso remoto comprobado por probar LAN.
 
 Completar `RASPBERRY_REPORT.md` con commit exacto, evidencia y pendientes. Entregar
-ese reporte al agente repositorio mediante Javier; no cambiar código para ocultar
+ese reporte directamente al agente repositorio en la conversación remota; el puente
+consulta resultados y conserva el reporte en Git, sin intervención manual de Javier.
+No cambiar código para ocultar
 errores. Excluir claves, passwords, cookies, bases completas y datos innecesarios.
 
 ## Fuera de la responsabilidad del operador
