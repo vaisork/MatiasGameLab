@@ -49,6 +49,8 @@ El Historiador debe revisar este archivo antes de ampliar el mundo. Una idea inc
 
 - La lista jugable actual queda formada por **Humanos, Felaryn, Dravak, Marevyn y Vesperi**, salvo que Javier decida cambiarla más adelante.
 - **Regla física de especies jugables:** ninguna de estas especies tendrá vuelo natural. Sus diferencias deberán expresarse mediante otras adaptaciones corporales, sentidos, movilidad o resistencia.
+- **Regla de presentación al jugador:** las inspiraciones internas usadas para diseñar una especie (por ejemplo, animales reales o equivalentes de fantasía clásica) **no se revelan en la selección inicial**. El jugador elegirá leyendo el nombre de la especie, su aspecto propio, hábitat, rasgos naturales y capacidades características. No se presentará a un Felaryn como “hombre gato”, ni a otra especie como “basada en” un animal concreto, un elfo, un enano u otra referencia externa.
+- Las comparaciones con animales u otras obras sirven únicamente como herramientas internas de diseño entre Javier y el Historiador; el mundo debe presentar cada especie como una identidad propia.
 
 ## Clases y caminos
 
