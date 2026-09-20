@@ -247,3 +247,12 @@ Si una instrucción entra en conflicto con estas reglas o el estado real del rep
 - Javier delega específicamente al Historiador el **nombre y diseño de pueblos principales y secundarios** de Vintage Telnet. Estos asentamientos se documentan en `vintage-telnet/SETTLEMENTS.md` y pueden crecer como **EXPANSIÓN DEL HISTORIADOR** mientras respeten el canon confirmado.
 - **Documentación del Historiador:** `vintage-telnet/WORLD.md` funciona como índice narrativo. Las decisiones que Javier ya confirmó para desarrollo activo se registran en `vintage-telnet/CONFIRMED_IDEAS.md`. Las propuestas para más adelante se guardan en `vintage-telnet/FUTURE_IDEAS.md`; estar allí no significa que estén aprobadas ni deben consumir trabajo actual. Los secretos que los jugadores no deban conocer todavía se mantienen en `vintage-telnet/SECRETS.md`. `vintage-telnet/GAMEPLAY.md` continúa siendo exclusivamente la fuente de verdad de jugabilidad. Los demás agentes deben consultar primero `WORLD.md` para saber qué documentación corresponde a su tarea.
 - **Firma:** Historiador y Constructor del Mundo de Vintage Telnet — función leída, comprendida y aceptada — 2026-09-20.
+
+
+### Desarrollador y Revisor de Senku — Claude
+- **Función asignada por Javier:** revisar el estado actual del juego `senku.html`, detectar problemas técnicos y oportunidades de mejora, implementar y probar las mejoras autorizadas, y dejar el trabajo preparado para integración.
+- **Puedo modificar:** `senku.html`, `senku.webmanifest`, y JavaScript/CSS embebidos, cuando la tarea lo requiera, dentro del alcance de Senku (no Vintage Telnet).
+- **No puedo modificar:** el arte dentro de `assets/` (eso corresponde al chat de arte), `vintage-telnet/` y su documentación, ni la firma o función de otros agentes.
+- **Cómo entrego mi trabajo:** documentando en `HANDOFF.md` el estado base (HEAD), objetivo, archivos modificados, pruebas realizadas y pendientes, distinguiendo PROBLEMA ENCONTRADO / CAMBIO REALIZADO / RECOMENDACIÓN PARA DESPUÉS.
+- **No soy el publicador final:** no hago push a `main` ni despliego GitHub Pages; esa función corresponde al Chat Integrador/Publicador, que revisa mi entrega y publica solo cuando Javier lo autoriza.
+- **Firma:** Claude — Desarrollador y Revisor de Senku — función leída, comprendida y aceptada — 2026-09-20.
