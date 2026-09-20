@@ -11,7 +11,7 @@
 <link rel="icon" type="image/png" sizes="192x192" href="assets/icon/senku-icon-192.png?v=050">
 <link rel="apple-touch-icon" sizes="192x192" href="assets/icon/senku-icon-192.png?v=050">
 <link rel="manifest" href="senku.webmanifest?v=050">
-<title>Senku — México · v0.5.3 | progreso reinicia</title>
+<title>Senku — México · v0.5.4 | taza en mesa</title>
 <style>
 *{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#151311;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;touch-action:none;user-select:none}
 canvas{position:fixed;inset:0;margin:auto;width:min(100vw,1100px);height:auto;max-height:100vh;aspect-ratio:16/9;background:#ddd;image-rendering:pixelated}
@@ -120,7 +120,7 @@ canvas{position:fixed;inset:0;margin:auto;width:min(100vw,1100px);height:auto;ma
     </div>
   </div>
 </div>
-<div class="version">v0.5.3 · 20/09/26 · progreso reinicia</div>
+<div class="version">v0.5.4 · 20/09/26 · taza en mesa</div>
 
 <div id="toast"></div>
 <script>
@@ -144,7 +144,7 @@ const spriteBuffer=document.createElement('canvas');spriteBuffer.width=72;sprite
 const keys={l:false,r:false,j:false,a:false};let jl=false,al=false;
 const p={x:85,y:430,w:54,h:44,vx:0,vy:0,ground:false,face:1,anim:0,speed:330,jump:575};
 let items=[];
-let cupY=174,cupVy=0;
+let cupX=465,cupY=384,cupVy=0,cupKnocked=false;
 const info={house:['Casa','Encuentra una salida'],street:['Calle','Explora la calle'],bus:['Autobús','Viaja de polizón'],taco:['Taquería','Investiga el lugar']};
 
 function hud(){zone.textContent=info[scene][0];objective.textContent=info[scene][1];count.textContent=churus;renderWardrobe()}
@@ -175,7 +175,7 @@ mb.onclick=()=>{modal.classList.add('hidden');const f=modalAction;modalAction=nu
 
 function setScene(s){
  scene=s;near=null;action.style.display='none';if(busTimer){clearTimeout(busTimer);busTimer=null}
- if(s==='house'){p.x=85;p.y=430;items=[];cupY=174;cupVy=0}
+ if(s==='house'){p.x=85;p.y=430;items=[];cupX=465;cupY=384;cupVy=0;cupKnocked=false}
  if(s==='street'){p.x=50;p.y=430;items=[{id:'street-0',x:190,y:430},{id:'street-1',x:330,y:360},{id:'street-2',x:520,y:430},{id:'street-3',x:720,y:374}].map(q=>({...q,t:collected.has(q.id)?1:0}))}
  if(s==='bus'){p.x=170;p.y=430;items=[]}
  if(s==='taco'){p.x=60;p.y=430;items=[{id:'taco-0',x:230,y:430},{id:'taco-1',x:580,y:430},{id:'taco-2',x:744,y:355}].map(q=>({...q,t:collected.has(q.id)?1:0}))}
@@ -216,8 +216,9 @@ function act(){
  if(near==='bus')show('AUTOBÚS','Viaje gratis','Senku sube sin boleto.','SUBIR',()=>{setScene('bus');busTimer=setTimeout(()=>{if(scene!=='bus')return;show('¡FUERA, GATO!','2 segundos después…','El conductor descubre a Senku y lo baja en la siguiente parada.','CAER DE PIE',()=>setScene('taco'))},2000)});
  if(near==='rat'){if(!secret){secret=true;save();hud();show('RATA ESCONDIDA','Traje exclusivo','“Psst… toma este traje. Te ayudará a pasar desapercibido.”','RECIBIR',()=>say('¡Traje secreto desbloqueado! 🧣',1800))}else say('La rata ya te dio su traje.')}
 }
-function update(dt){if(!running)return;physics(dt);collect();interaction();fallCup(dt)}
-function fallCup(dt){if(scene!=='house'||cupY>=488)return;cupVy+=1500*dt;cupY=Math.min(488,cupY+cupVy*dt);if(cupY>=488)cupVy=0}
+function update(dt){if(!running)return;physics(dt);collect();interaction();bumpCup();fallCup(dt)}
+function bumpCup(){if(scene!=='house'||cupKnocked)return;if(Math.hypot(p.x+27-cupX,p.y+18-cupY)<48){cupKnocked=true;cupX=566}}
+function fallCup(dt){if(scene!=='house'||!cupKnocked||cupY>=488)return;cupVy+=1500*dt;cupY=Math.min(488,cupY+cupVy*dt);if(cupY>=488)cupVy=0}
 
 function rr(a,b,w,h,r){x.beginPath();x.roundRect(a,b,w,h,r)}
 function drawChuru(q){if(q.t)return;x.save();x.translate(q.x,q.y+Math.sin(time*4+q.x)*4);x.fillStyle='#edc45a';rr(-9,-19,18,33,5);x.fill();x.fillStyle='#9d5938';x.fillRect(-6,-13,12,12);x.restore()}
@@ -258,7 +259,7 @@ function senku(){
 function house(){
  let g=x.createLinearGradient(0,0,0,H);g.addColorStop(0,'#f5deb2');g.addColorStop(.79,'#edcd95');g.addColorStop(.8,'#b8754d');g.addColorStop(1,'#8d573b');x.fillStyle=g;x.fillRect(0,0,W,H);
  x.fillStyle='#638568';x.fillRect(100,374,190,130);x.fillStyle='#83553c';x.fillRect(380,400,170,20);x.fillRect(400,420,16,84);x.fillRect(515,420,16,84);x.fillStyle='#6f4932';x.fillRect(680,345,135,159);x.fillStyle='#704f3a';x.fillRect(878,278,88,20);
- x.fillStyle='#6d4934';x.fillRect(900,137,145,155);x.fillStyle='#92d6eb';x.fillRect(910,147,125,135);x.fillStyle='#efc55a';x.beginPath();x.arc(1000,cupY,16,0,Math.PI*2);x.fill()
+ x.fillStyle='#6d4934';x.fillRect(900,137,145,155);x.fillStyle='#92d6eb';x.fillRect(910,147,125,135);x.fillStyle='#efc55a';x.beginPath();x.arc(cupX,cupY,16,0,Math.PI*2);x.fill()
 }
 function street(){
  x.fillStyle='#9ed9ec';x.fillRect(0,0,W,335);x.fillStyle='#f0d8a4';x.fillRect(0,335,W,170);

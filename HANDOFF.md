@@ -49,6 +49,15 @@ Javier pidió que las versiones nuevas tengan un pequeño identificador abajo a 
 - Verificado visualmente en navegador (servidor local): el texto se ve correcto en la esquina inferior derecha, sin recortarse ni chocar con otros elementos.
 - A partir de ahora actualizaré este identificador (versión + fecha + etiqueta corta) en cada entrega de código a esta rama, para que sea fácil confirmar visualmente qué versión está cargada.
 
+### Cuarta actualización posterior (mismo HEAD base, misma rama)
+Javier pidió arreglar la taza: en vez de empezar flotando en la ventana y caer sola al entrar a Casa, ahora debe estar arriba de la mesa y caerse cuando Senku la tira (la toca/golpea).
+- `cupX`/`cupY` iniciales cambiaron de la ventana (`1000,174`) a la superficie de la mesa (`465,384`), centrada sobre `fillRect(380,400,170,20)` (coordenadas ya existentes en el código de la mesa).
+- Nueva función `bumpCup()`: si Senku se acerca a menos de 48px del centro de la taza mientras está en Casa y la taza no ha sido tirada, se marca como tirada y la taza se reubica al borde derecho de la mesa (`cupX=566`, fuera de la superficie sólida de la mesa).
+- `fallCup()` (ya existente de la entrega anterior) ahora solo cae una vez que `bumpCup()` la marcó como tirada; usa la misma gravedad y el mismo piso real (`cupY` tope 488) que ya estaba probado.
+- Verificado visualmente en navegador: la taza se ve correctamente sentada sobre la mesa al entrar a Casa (ya no aparece en la ventana).
+- Verificado con simulación en Node de la física real del juego (mismas fórmulas de `physics()`, gravedad, colisión de plataformas): Senku puede subirse/saltar junto a la mesa, la taza se activa incluso en el aire cerca de la mesa, y cae limpiamente hasta el piso libre entre la mesa y el clóset (`x=566`), sin atravesar ni chocar con ningún mueble. No se pudo sostener la tecla de movimiento de forma confiable vía automatización del navegador para una prueba interactiva en vivo; la simulación en Node reemplaza esa prueba con las mismas fórmulas exactas del código.
+- `<title>` y `<div class="version">` actualizados a `v0.5.4 · 20/09/26 · taza en mesa`.
+
 ### Pruebas realizadas
 - Parseo del HTML completo sin errores tras cada cambio.
 - Parseo/ejecución del JS embebido con Node (`new Function(...)`) sin errores de sintaxis tras cada cambio.
