@@ -1,125 +1,156 @@
 # Vintage Telnet — Principios de Jugabilidad
 
-Este documento es la **fuente de verdad de las reglas de jugabilidad de Vintage Telnet** dentro de MatiasGameLab.
+Este documento es la **fuente de verdad de los criterios y límites de jugabilidad de Vintage Telnet** dentro de MatiasGameLab.
 
-## Autoridad sobre las reglas de juego
+## Frontera entre Jugabilidad e Historiador
 
-Las reglas de jugabilidad se definen en el trabajo conjunto entre Javier/Matías y el **Diseñador de Jugabilidad de Vintage Telnet**.
+El **Historiador** propone y desarrolla el contenido del juego: clases, magias, poderes, monstruos, zonas, objetos, armas, aventuras, personajes, narrativa y demás elementos del mundo.
 
-Los demás agentes pueden implementar reglas aprobadas, analizarlas técnicamente, señalar problemas o proponer ideas, pero **no deben crear, cambiar, eliminar ni reinterpretar reglas de jugabilidad por su cuenta**.
+El **Diseñador de Jugabilidad**, trabajando con Javier/Matías, NO sustituye al Historiador ni inventa ese contenido. Su responsabilidad es establecer los **criterios de avance, límites y principios mecánicos generales** que ese contenido debe respetar.
 
-Si una implementación necesita una regla que todavía no existe, debe marcarla como **decisión pendiente de jugabilidad** y devolverla al Diseñador de Jugabilidad. No debe inventarla para poder continuar.
+Cuando el Historiador cree una zona nueva, debe presentar también las necesidades o criterios de jugabilidad que esa zona introduce. Javier y el Diseñador de Jugabilidad revisarán esas necesidades y definirán o aprobarán los criterios correspondientes antes de que se conviertan en reglas.
 
-El Arquitecto de MatiasGameLab coordina arquitectura, responsabilidades y límites entre agentes. El Diseñador de Jugabilidad es responsable de mantener coherentes las reglas de cómo se juega Vintage Telnet. Javier y Matías conservan la dirección creativa y las decisiones finales sobre qué juego quieren.
+El Historiador puede proponer nuevas mecánicas o necesidades. No debe convertir unilateralmente una propuesta en regla de jugabilidad. De la misma manera, Jugabilidad no debe decidir por su cuenta qué clases, magias, monstruos o historias deben existir.
 
-## Método de diseño
+El Arquitecto de MatiasGameLab coordina arquitectura, responsabilidades y límites entre agentes.
 
-Vintage Telnet no se diseñará completo de una sola vez.
+## Principios confirmados
 
-El proceso es:
+### 1. RPG de progresión
+El personaje comienza con capacidades limitadas y puede hacerse más poderoso conforme avanza en el juego. Los criterios de avance deben permitir crecimiento sostenido sin obligar al jugador a permanecer para siempre en una sola especialización.
 
-1. Recuperar mediante preguntas la experiencia que Javier quiere conservar o reconstruir.
-2. Identificar el núcleo de jugabilidad.
-3. Convertir decisiones aprobadas en reglas claras y comprobables.
-4. Mantener separadas las reglas confirmadas, las ideas en exploración y las decisiones pendientes.
-5. Sólo después entregar reglas suficientemente definidas para implementación.
+### 2. Clase inicial con especialización flexible
+Todo jugador comienza con una clase básica. Las clases concretas y su contenido serán propuestas por el Historiador.
 
-La historia, narrativa concreta y contenido de aventuras no sustituyen las reglas de jugabilidad.
+La clase inicial establece una dirección de desarrollo, pero no encierra permanentemente al personaje. En el futuro, un jugador podrá adquirir parte de las fortalezas de otras clases o desplazarse hacia otra especialización.
 
-## Principios confirmados hasta ahora
+Avanzar dentro de la orientación natural de la clase debe ser más eficiente. Desarrollarse significativamente hacia otra clase debe requerir **más esfuerzo**. La forma exacta de medir ese esfuerzo todavía no está definida.
 
-### 1. Progresión RPG
-Vintage Telnet será un RPG de progresión. El personaje comienza con capacidades limitadas y aumenta su poder y posibilidades mediante el juego.
+No se debe permitir que un personaje obtenga fácilmente todas las ventajas de todas las clases.
 
-### 2. Combate y crecimiento
-El combate forma parte de la progresión. El jugador comenzará enfrentándose a enemigos débiles y podrá enfrentarse a amenazas mayores conforme su personaje mejore.
+### 3. Mundo persistente
+El jugador regresa al juego en el lugar donde quedó la última vez y continúa desde allí. No comienza una partida nueva cada vez que entra.
 
-Los números exactos, fórmulas, estadísticas, ritmo de progresión y balance todavía no están definidos.
+Las acciones importantes pueden dejar consecuencias visibles para otros jugadores.
 
-### 3. Caminos o clases de personaje
-Existirán diferentes formas de desarrollar al personaje, incluyendo conceptos como guerrero o mago.
+### 4. Exploración Telnet
+El desplazamiento básico conserva la lógica clásica de Telnet: norte, sur, este y oeste.
 
-Todavía está pendiente decidir cómo se obtiene o elige una clase y qué otras clases existirán.
+El mundo puede contener ciudades, caminos, mazmorras y otros lugares conectados. Los trayectos largos pueden recorrerse como caminos reales dentro del mundo en lugar de ser únicamente saltos instantáneos entre destinos.
 
-### 4. Equipamiento
-El equipamiento será una parte importante de la mejora del personaje. No todo objeto del juego necesitará una representación física.
+### 5. Mapa general y descubrimiento
+El jugador dispondrá de orientación mediante un mapa general, pero el mapa no tiene que revelar todo lo que existe.
 
-### 5. Piezas físicas
-Determinadas mejoras importantes tendrán una pieza física imprimible en 3D que pueda aplicarse a la figura base del jugador.
+Pueden existir zonas escondidas que deban descubrirse mediante palabras secretas, pistas, condiciones u otros mecanismos propuestos por el Historiador y aprobados en sus criterios de jugabilidad.
 
-El diseño debe favorecer piezas prácticas y reutilizables —por ejemplo armas, báculos, prendas o accesorios— en lugar de exigir imprimir una figura completa cada vez que el personaje mejora.
+Descubrir que existe un lugar oculto forma parte de la exploración.
 
-Las piezas pueden imprimirse en un solo color. Pintarlas posteriormente es opcional y no debe ser requisito de jugabilidad salvo que una regla futura establezca lo contrario.
+### 6. Persistencia de monstruos
+Los monstruos comunes reaparecen después de cierto tiempo. El tiempo exacto puede definirse posteriormente.
 
-### 6. Ganar una pieza no equivale a poder usarla
-Cuando un jugador consigue dentro del juego una mejora que requiere pieza física, obtener la recompensa digital no basta para activarla.
+Los monstruos principales, especialmente fuertes o difíciles de vencer, pueden ser únicos y persistentes. Una vez derrotados permanecen muertos para los demás jugadores.
 
-Debe existir un proceso de activación física.
+El mundo debe conservar evidencia de que ese monstruo existió y fue derrotado —por ejemplo restos u otra señal definida por el contenido— y debe poder quedar registrado quién logró la derrota.
 
-### 7. Ciclo de activación física
-El principio actualmente acordado es:
+### 7. Mundo multijugador e interacción
+Los jugadores pueden coincidir en el mismo mundo y comunicarse mediante texto.
 
-**Ganar la mejora → fabricar/recibir la pieza → colocarla físicamente en la figura del jugador → enviar evidencia fotográfica → validar la evidencia → habilitar el uso dentro del juego.**
+Se contempla comunicación contextual cuando jugadores se encuentran. También puede existir un chat general; su forma exacta permanece pendiente.
 
-La entrega de la pieza por parte del Maestro de Forja **no activa por sí sola** la mejora.
+El PvP está permitido. Un jugador puede iniciar un ataque directo contra otro sin que sea obligatorio aceptar previamente un duelo o mantener una conversación.
 
-### 8. Evidencia del jugador
-Es responsabilidad del jugador demostrar que aplicó la pieza a su personaje físico mediante una imagen.
+El jugador atacado debe recibir información clara de que está siendo atacado.
 
-Hasta que esa evidencia sea validada, la mejora correspondiente no puede utilizarse dentro del juego.
+### 8. Protección ante diferencias extremas de poder
+El PvP abierto no debe convertir una diferencia enorme de poder en una muerte inevitable para el jugador débil.
 
-### 9. Maestro de Forja
-Javier Díaz es el **Maestro de Forja**. Puede además participar como jugador y ejercer funciones de Maestro del Juego.
+Cuando un jugador extremadamente fuerte ataca a uno claramente inferior, el jugador débil debe disponer de una oportunidad real de escapar. La fórmula o mecanismo exacto todavía debe definirse.
 
-El hecho de que Javier fabrique o entregue una pieza no sustituye el requisito de evidencia del jugador.
+### 9. Combate semi-automático con intervención estratégica
+Una vez iniciado el combate, los ataques básicos pueden continuar automáticamente.
 
-### 10. Validador de Forja
-Se prevé un agente/chat separado encargado de validar el cumplimiento del proceso de forja a partir de la evidencia correspondiente.
+El jugador no necesita ordenar manualmente cada golpe, especialmente contra enemigos comunes. Durante el combate debe poder intervenir estratégicamente mediante las capacidades que el contenido del juego le proporcione: por ejemplo magia, poderes especiales, objetos, defensa o huida.
 
-Ese agente **no define las reglas de la forja**. Aplica las reglas documentadas aquí y registra/verifica su cumplimiento.
+Las capacidades especiales no deben estar disponibles sin límite todo el tiempo. El sistema deberá incluir criterios que hagan importante decidir cuándo utilizarlas. El mecanismo exacto queda pendiente.
 
-## Decisiones de jugabilidad todavía abiertas
+Los combates rutinarios pueden requerir poca intervención; los enfrentamientos peligrosos deben hacer que las decisiones del jugador tengan mayor importancia.
 
-Entre otras, aún deben definirse:
+### 10. No existe muerte permanente del personaje
+La llamada “muerte” dentro de Vintage Telnet es una **derrota**, no la eliminación permanente del personaje.
 
-- núcleo exacto de acciones que el jugador repetirá;
-- objetivo o estructura de una sesión;
-- creación inicial del personaje;
-- elección u obtención de clases;
-- atributos y estadísticas;
-- sistema exacto de combate;
-- exploración;
-- comandos e interfaz Telnet;
-- inventario;
-- economía;
-- experiencia y niveles;
-- muerte y consecuencias;
-- cooperación y competencia;
-- frecuencia y rareza de recompensas físicas;
-- reglas exactas de validación;
-- qué ocurre con una pieza perdida, retirada o rota;
-- balance entre recompensas exclusivamente digitales y recompensas físicas.
+Una derrota no borra al personaje ni destruye todo el progreso acumulado. Esto es especialmente importante porque el personaje puede estar vinculado a piezas físicas impresas.
 
-Que algo aparezca en esta lista significa que **ningún agente debe asumir una respuesta todavía**.
+El Historiador puede proponer dónde y de qué forma reaparece un personaje derrotado de acuerdo con el mundo. Si esa propuesta necesita nuevos criterios mecánicos, deberán revisarse en Jugabilidad.
 
-## Regla para implementación
+### 11. Riesgo de pérdida de armas
+Morir frente a monstruos comunes no provoca pérdida del arma por este principio.
 
-Antes de implementar una mecánica de Vintage Telnet, el agente responsable debe comprobar este documento.
+Las derrotas contra monstruos excepcionalmente poderosos y las derrotas en PvP sí pueden provocar pérdida de armas.
 
-- Si la regla está confirmada: puede implementarse respetando su intención.
-- Si está pendiente: no debe inventarse.
-- Si la implementación revela una contradicción: debe señalarse.
-- Si se propone una mejora: se presenta como propuesta, no como regla existente.
-- Si Javier/Matías y el Diseñador de Jugabilidad aprueban una nueva regla, este documento debe actualizarse para mantener una única fuente de verdad.
+Cuando un jugador pierde el derecho sobre un arma, conservar físicamente una pieza impresa no le permite seguir utilizándola dentro del juego. Debe volver a obtener legítimamente el derecho a usarla conforme a las reglas del juego.
 
-## Responsabilidad del Diseñador de Jugabilidad
+### 12. Equipamiento físico
+No todo objeto requiere representación física. Determinadas mejoras importantes tendrán una pieza imprimible en 3D que pueda aplicarse a la figura base del jugador.
 
-El Diseñador de Jugabilidad mantiene este documento como contrato de cómo funciona el juego.
+Las piezas deben favorecer un sistema práctico de accesorios —armas, báculos, prendas u otros elementos que proponga el contenido— en vez de exigir imprimir una figura completa en cada mejora.
 
-Su trabajo incluye entrevistar, estructurar, probar conceptualmente y documentar reglas. No le corresponde convertir por iniciativa propia esas reglas en historia, código, arte o arquitectura técnica.
+Pueden imprimirse en un solo color. Pintarlas posteriormente es opcional.
+
+### 13. Activación de piezas físicas
+Ganar una mejora que requiere pieza física no basta para poder utilizarla.
+
+El ciclo acordado es:
+
+**Ganar la mejora → fabricar/recibir la pieza → colocarla físicamente en la figura del jugador → enviar evidencia fotográfica → validar la evidencia → habilitar su uso dentro del juego.**
+
+Que el Maestro de Forja fabrique o entregue la pieza no la activa por sí solo.
+
+### 14. Maestro y Validador de Forja
+Javier Díaz es el **Maestro de Forja** y también puede participar como jugador y ejercer como Maestro del Juego.
+
+El jugador debe presentar evidencia de haber aplicado la pieza a su figura.
+
+Se prevé un **Validador de Forja** separado que comprueba esa evidencia y registra la validación. El Validador aplica las reglas; no las inventa.
+
+## Cómo debe trabajar el Historiador con este documento
+
+El Historiador debe usar estos principios como límites para crear contenido.
+
+Puede proponer libremente clases, magias, poderes, enemigos, zonas, objetos, armas, personajes y aventuras siempre que no contradigan los criterios confirmados.
+
+Para una zona o contenido que necesite un criterio nuevo, debe indicar claramente:
+
+- qué propone;
+- qué necesidad de jugabilidad aparece;
+- qué comportamiento necesita que el sistema permita.
+
+Jugabilidad definirá con Javier el criterio general necesario. Después el Historiador podrá continuar desarrollando el contenido dentro de ese criterio.
+
+## Decisiones mecánicas todavía abiertas
+
+Siguen sin fijarse, entre otras:
+
+- fórmulas y estadísticas concretas;
+- medida exacta del esfuerzo para desarrollarse fuera de la clase inicial;
+- tiempos de reaparición de monstruos comunes;
+- mecanismo exacto de habilidades/poderes limitados;
+- fórmula concreta para huir;
+- protección exacta ante diferencias extremas de poder;
+- consecuencias adicionales de una derrota;
+- funcionamiento técnico y reglas finales de los canales de chat;
+- reglas exactas de transferencia o recuperación de armas perdidas;
+- frecuencia y rareza de recompensas físicas.
+
+Que algo esté abierto significa que **no debe inventarse como regla definitiva para poder implementar**.
+
+## Regla para otros agentes
+
+Antes de implementar una mecánica de Vintage Telnet, revisar este documento.
+
+Si un criterio está confirmado, debe respetarse. Si está pendiente, debe devolverse para decisión. Una propuesta no se convierte en regla hasta que se aprueba y se incorpora aquí.
 
 ---
 
-**Estado:** diseño inicial en curso.  
+**Estado:** diseño de criterios en curso.  
 **Juego:** Vintage Telnet  
-**Repositorio:** MatiasGameLab
+**Fuente de verdad de jugabilidad:** `vintage-telnet/GAMEPLAY.md`
