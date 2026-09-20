@@ -43,6 +43,12 @@ Javier pidió el mismo tratamiento para el traje secreto de la rata: que el desb
 - `save()` tampoco se tocó: sigue escribiendo `senku_secret` en `localStorage`, pero ya no se lee al iniciar, igual que pasó con los churus.
 - El traje "Gato dorado" y la selección general de traje (`selectedSkin`) no se tocaron fuera de este efecto en cascada.
 
+### Tercera actualización posterior (mismo HEAD base, misma rama)
+Javier pidió que las versiones nuevas tengan un pequeño identificador abajo a la derecha para confirmar en pantalla que la actualización cargó. Ya existía ese elemento (`<div class="version">`, esquina inferior derecha) pero no se había actualizado en las dos entregas anteriores de esta rama.
+- `<title>` y `<div class="version">` actualizados de `v0.5.2 · 20/09/26 · perro nuevo` a `v0.5.3 · 20/09/26 · progreso reinicia`.
+- Verificado visualmente en navegador (servidor local): el texto se ve correcto en la esquina inferior derecha, sin recortarse ni chocar con otros elementos.
+- A partir de ahora actualizaré este identificador (versión + fecha + etiqueta corta) en cada entrega de código a esta rama, para que sea fácil confirmar visualmente qué versión está cargada.
+
 ### Pruebas realizadas
 - Parseo del HTML completo sin errores tras cada cambio.
 - Parseo/ejecución del JS embebido con Node (`new Function(...)`) sin errores de sintaxis tras cada cambio.
