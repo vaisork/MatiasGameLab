@@ -32,6 +32,10 @@ Contiene los nombres, ubicación, identidad y función narrativa de los pueblos 
 
 Resumen de coordinación preparado para el Arquitecto: canon actual, autoridad delegada al Historiador, límites, trabajo abierto y posibles especialidades a evaluar.
 
+### 6. Historia del mundo — `HISTORY.md`
+
+Contiene la cronología y arquitectura histórica del mundo: qué ocurrió, en qué orden general y qué consecuencias dejó. El Narrador utiliza esta base, pero no la sustituye.
+
 ## Relación con el Narrador
 
 El Historiador construye la **historia estructural y la arquitectura del mundo**: hechos pasados, lugares, culturas, causas, consecuencias, ruinas, conflictos, relaciones y secretos. El Narrador utiliza esa base para crear relatos, escenas, encuentros y experiencias concretas de los jugadores. El Historiador no debe asumir por defecto la función del Narrador.
@@ -52,4 +56,5 @@ El Historiador define qué necesita el mundo, por qué lo necesita y qué funci�
 **Secretos:** `vintage-telnet/SECRETS.md`  
 **Pueblos y asentamientos:** `vintage-telnet/SETTLEMENTS.md`  
 **Estado para Arquitecto:** `vintage-telnet/HISTORIAN_STATUS.md`  
+**Historia del mundo:** `vintage-telnet/HISTORY.md`  
 **Fuente mecánica:** `vintage-telnet/GAMEPLAY.md`
