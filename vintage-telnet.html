@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#020806">
+  <title>Vintage Telnet — Matías Game Lab</title>
+  <style>
+    :root{color-scheme:dark;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:#020806;color:#8dffb2}
+    *{box-sizing:border-box}body{margin:0;min-height:100vh;min-height:100dvh;background:radial-gradient(circle at 50% 35%,#103622 0,#06130d 35%,#020806 72%);display:grid;place-items:center;padding:24px}
+    main{width:min(760px,100%);border:1px solid #77ffad55;border-radius:18px;background:#020806e8;box-shadow:0 0 50px #44ff8826, inset 0 0 30px #44ff8808;overflow:hidden}
+    .bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:13px 16px;border-bottom:1px solid #77ffad33;background:#07130e;color:#75d993;font-size:.78rem}
+    .lights{display:flex;gap:7px}.lights i{width:9px;height:9px;border-radius:50%;background:#8dffb2;opacity:.45}
+    .screen{padding:clamp(24px,6vw,54px)}.logo{margin:0 0 12px;color:#eaffef;font-size:clamp(2rem,8vw,4.8rem);line-height:.95;letter-spacing:-.06em}.status{display:inline-block;margin:14px 0 28px;padding:6px 10px;border:1px solid #77ffad66;border-radius:999px;color:#b7ffcc;font-size:.78rem;text-transform:uppercase;letter-spacing:.08em}
+    p{line-height:1.8;margin:0 0 18px;color:#9deeb6}.prompt{margin-top:34px;color:#c7ffd8}.cursor{display:inline-block;width:9px;height:1.05em;margin-left:5px;vertical-align:-2px;background:#8dffb2;animation:blink 1s steps(1) infinite}@keyframes blink{50%{opacity:0}}
+    .back{display:inline-block;margin-top:34px;color:#07130e;background:#8dffb2;text-decoration:none;font-family:system-ui,sans-serif;font-weight:800;padding:13px 18px;border-radius:10px}.back:hover{background:#b9ffcf}.back:focus-visible{outline:3px solid #fff;outline-offset:5px}
+    small{display:block;margin-top:22px;color:#5fa675;line-height:1.6}
+  </style>
+</head>
+<body>
+  <main>
+    <div class="bar"><span>MATÍAS GAME LAB / VINTAGE TELNET</span><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span></div>
+    <section class="screen">
+      <h1 class="logo">VINTAGE<br>TELNET</h1>
+      <span class="status">En construcción</span>
+      <p>La puerta al mundo de Vintage Telnet ya está preparada. Esta será la interfaz web para entrar desde teléfono, iPad o computadora.</p>
+      <p>El mundo persistente vivirá en el servidor de Vintage Telnet. Esta página será el cliente de acceso cuando la conexión esté lista.</p>
+      <div class="prompt">&gt; esperando servidor<span class="cursor" aria-hidden="true"></span></div>
+      <a class="back" href="index.html">&larr; Volver a los juegos</a>
+      <small>Versión inicial de publicación. Todavía no conecta con la Raspberry Pi.</small>
+    </section>
+  </main>
+</body>
+</html>
