@@ -9,7 +9,9 @@ El Historiador debe revisar este archivo antes de ampliar el mundo. Una idea inc
 - Vintage Telnet ocurre en un **mundo de fantasía mágica clásica**.
 - Será un mundo grande y persistente pensado para que distintos jugadores puedan recorrerlo y desarrollar historias diferentes.
 - El mundo tendrá una **ciudad principal**.
-- Habrá **cinco pueblos de principiantes**, relacionados con las especies de sus habitantes.
+- Habrá **cinco pueblos de inicio**, uno para cada especie jugable actual: Humanos, Felaryn, Dravak, Marevyn y Vesperi.
+- Estos pueblos serán **asentamientos pequeños y de espacio limitado**; no son ciudades grandes.
+- La **ciudad principal** será un núcleo distinto y de mayor escala, separado de los pueblos de inicio.
 - Las distintas especies tendrán hábitats propios o característicos.
 - Habrá mazmorras y áreas de exploración.
 - El mundo podrá crecer posteriormente con nuevas ciudades, regiones y zonas por descubrir.
