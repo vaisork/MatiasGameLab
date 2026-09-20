@@ -66,7 +66,10 @@ El Historiador debe revisar este archivo antes de ampliar el mundo. Una idea inc
 ## Clases y caminos
 
 - Existirán clases o caminos de personaje.
-- Guerrero, mago y pícaro están aceptados como conceptos que se desarrollarán.
+- **Artífice** queda confirmado como nombre de una clase.
+- El Artífice tendrá afinidad narrativa con **arco, herramientas, construcción, reparación y fabricación**. El detalle exacto de qué puede construir, reparar o fabricar pertenece a Jugabilidad.
+- El nombre provisional **Vigía** queda descartado para esta clase.
+- Guerrero, mago y pícaro siguen como conceptos previos todavía pendientes de revisión de nombre y forma final.
 - La relación exacta entre guerrero y paladín todavía debe resolverse.
 - Las reglas, progresión, poderes y balance de las clases pertenecen a Jugabilidad.
 
