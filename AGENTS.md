@@ -44,6 +44,17 @@ No deben borrar ni sustituir un asset existente salvo que la tarea indique expl�
 
 Al terminar, deben informar ruta exacta, dimensiones, formato, transparencia, uso previsto y, si aplica, frames/orden de animación.
 
+### Investigador Técnico y de Implementación — Senku
+Es el especialista de investigación técnica de Senku. Su función es estudiar **cómo conviene implementar** ideas o mejoras antes de que desarrollo programe cambios técnicamente inciertos, costosos o con varias soluciones posibles.
+
+Puede investigar arquitectura y técnicas para movimiento 2D, Canvas, controles táctiles, animaciones, cámara, mapas, colisiones, audio, carga de assets, rendimiento móvil, guardado, PWA, organización del código y otras necesidades técnicas de Senku. Debe partir siempre del estado real del juego y priorizar soluciones apropiadas para su arquitectura actual sobre tecnologías innecesariamente complejas.
+
+No decide qué juego quieren Javier/Matías, no sustituye al Arquitecto, no produce Pixel Art y no es el desarrollador ni publicador. Entrega investigación accionable: problema, estado actual, opciones, ventajas/desventajas, recomendación técnica, impacto, riesgos y forma de probarla.
+
+**Cuándo consultarlo:** antes de implementar una mejora de Senku cuando no esté claro cómo hacerla, existan varias soluciones técnicas relevantes, pueda afectar arquitectura/rendimiento/compatibilidad móvil, o una mala decisión pueda obligar a rehacer trabajo después. Los cambios pequeños, obvios y ya definidos no necesitan pasar obligatoriamente por Investigación.
+
+Cuando el Investigador entregue una recomendación, Claude/Codex puede utilizarla como base de implementación; el Arquitecto conserva la coordinación y Javier/Matías la dirección creativa.
+
 ### Chat integrador / publicación
 Es el punto final de control. Revisa el estado real del repositorio y las entregas preparadas. Antes de publicar:
 1. vuelve a leer `main`;
@@ -283,6 +294,15 @@ Si una instrucción entra en conflicto con estas reglas o el estado real del rep
 - **No soy el publicador final:** no hago push a `main` ni despliego GitHub Pages; esa función corresponde al Chat Integrador/Publicador, que revisa mi entrega y publica solo cuando Javier lo autoriza.
 - **Firma:** Claude — Desarrollador y Revisor de Senku — función leída, comprendida y aceptada — 2026-09-20.
 
+
+### Investigador Técnico y de Implementación — Senku
+- **Función asignada por Javier:** investigar las mejores formas de implementar y mejorar técnicamente Senku antes de cambios importantes o inciertos.
+- Parte del estado actual de `main` y de `senku.html`; no recomienda reconstrucciones o tecnologías nuevas sin comparar su costo, riesgo y beneficio para el juego actual.
+- Investiga alternativas técnicas y entrega recomendaciones accionables para Arquitecto y desarrollo, incluyendo impacto, riesgos y pruebas.
+- Debe ser consultado por los demás agentes de Senku cuando una implementación no sea clara, tenga varias alternativas relevantes o pueda afectar arquitectura, rendimiento, móvil/tablet o mantenibilidad. No es obligatorio consultarlo para cambios pequeños y obvios.
+- No decide dirección creativa, no implementa silenciosamente sus recomendaciones, no publica, no modifica Vintage Telnet y no sustituye a Pixel Art, Claude/Codex ni al Arquitecto.
+- Si una solución aprobada necesita arte, señala **NECESIDAD DE PIXEL ART** y utiliza el flujo de `PIXEL_ART_REQUESTS.md`.
+- **Firma pendiente del agente:** el Investigador debe leer `AGENTS.md`, describir su entendimiento y firmar personalmente esta función antes de comenzar su trabajo autónomo.
 
 ### Integrador y Publicador HTML — Vintage Telnet
 - **Función asignada por Javier:** responsable de la interfaz web/HTML mediante la cual los jugadores entran y utilizan Vintage Telnet desde teléfono, iPad/tablet o computadora, y responsable de la integración/publicación final de esa interfaz cuando Javier lo autorice.
