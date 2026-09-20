@@ -20,7 +20,11 @@ El Historiador debe revisar este archivo antes de ampliar el mundo. Una idea inc
 - Existirán distintas especies inteligentes y la especie del personaje será independiente de su clase.
 - La primera especie original confirmada se llama **Felaryn**.
 - Los Felaryn parten de una mezcla conceptual entre rasgos humano-gato y algunos rasgos tradicionalmente asociados a los elfos.
-- Su cultura, aspecto definitivo, capacidades, historia y hábitat concreto todavía están pendientes de desarrollo.
+- Su hábitat de origen es un **pueblo situado entre las montañas**.
+- Los Felaryn tienen una capacidad natural destacada para **saltar grandes distancias**.
+- También poseen una **vista privilegiada**, superior a la de una persona común y especialmente útil para orientarse y observar a distancia en terrenos montañosos.
+- La cultura, el aspecto definitivo, la historia y el nombre concreto de su pueblo todavía están pendientes de desarrollo.
+- **NECESIDAD DE JUGABILIDAD:** la distancia exacta de salto, el alcance/ventaja concreta de su visión y cualquier efecto mecánico asociado deberán definirse con Jugabilidad; el Historiador solo fija aquí que ambas son capacidades características de la especie.
 - La lista definitiva de especies aún no está cerrada.
 
 ## Clases y caminos
