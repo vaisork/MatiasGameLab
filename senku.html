@@ -11,7 +11,7 @@
 <link rel="icon" type="image/png" sizes="192x192" href="assets/icon/senku-icon-192.png?v=050">
 <link rel="apple-touch-icon" sizes="192x192" href="assets/icon/senku-icon-192.png?v=050">
 <link rel="manifest" href="senku.webmanifest?v=050">
-<title>Senku — México · v0.5.1 | ratita blanca</title>
+<title>Senku — México · v0.5.2 | perro nuevo</title>
 <style>
 *{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#151311;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;touch-action:none;user-select:none}
 canvas{position:fixed;inset:0;margin:auto;width:min(100vw,1100px);height:auto;max-height:100vh;aspect-ratio:16/9;background:#ddd;image-rendering:pixelated}
@@ -119,7 +119,7 @@ canvas{position:fixed;inset:0;margin:auto;width:min(100vw,1100px);height:auto;ma
     </div>
   </div>
 </div>
-<div class="version">v0.5.1 · 19/09/26 · 23:38 · ratita blanca</div>
+<div class="version">v0.5.2 · 20/09/26 · perro nuevo</div>
 
 <div id="toast"></div>
 <script>
@@ -136,6 +136,8 @@ let selectedSkin=localStorage.getItem('senku_skin')||'normal';
 const senkuSheet=new Image();senkuSheet.src='assets/senku/senku-sprites.png?v=050';
 const secretRatSheet=new Image();secretRatSheet.src='assets/trajes/rata/walk-sheet.png?v=050';
 const ratSheet=new Image();ratSheet.src='assets/rata/white-rat-sprite-v2.png?v=051';
+const dogStand=new Image();dogStand.src='assets/perro/dog-standing.png?v=052';
+const dogCrouch=new Image();dogCrouch.src='assets/perro/dog-crouched.png?v=052';
 const spriteBuffer=document.createElement('canvas');spriteBuffer.width=72;spriteBuffer.height=72;const sx=spriteBuffer.getContext('2d');sx.imageSmoothingEnabled=false;
 const keys={l:false,r:false,j:false,a:false};let jl=false,al=false;
 const p={x:85,y:430,w:54,h:44,vx:0,vy:0,ground:false,face:1,anim:0,speed:330,jump:575};
@@ -258,7 +260,13 @@ function street(){
  x.fillStyle='#9ed9ec';x.fillRect(0,0,W,335);x.fillStyle='#f0d8a4';x.fillRect(0,335,W,170);
  const cs=['#da7658','#e7b55d','#6da7a0','#cf7b83','#8ca66e','#d28a50'];[0,178,360,545,730,910].forEach((a,i)=>{x.fillStyle=cs[i];x.fillRect(a,230,160,190);x.fillStyle='#59483c';x.fillRect(a+58,325,45,95)});
  x.fillStyle='#d5c3aa';x.fillRect(0,420,W,85);x.fillStyle='#6a6a68';x.fillRect(0,505,W,114);x.fillStyle='#b36b42';x.fillRect(280,420,125,85);x.fillRect(685,408,105,97);x.fillStyle='#9f7655';x.fillRect(475,455,100,50);
- x.fillStyle='#9b6b45';x.beginPath();x.ellipse(830,447,32,20,0,0,Math.PI*2);x.fill();x.beginPath();x.arc(856,431,18,0,Math.PI*2);x.fill();
+ const dogNear=Math.hypot((p.x+27)-820,(p.y+18)-420)<120;
+ const dogImg=dogNear?dogStand:dogCrouch;
+ if(dogImg.complete&&dogImg.naturalWidth){
+   const maxW=150,maxH=105,sc=Math.min(maxW/dogImg.naturalWidth,maxH/dogImg.naturalHeight);
+   const dw=dogImg.naturalWidth*sc,dh=dogImg.naturalHeight*sc;
+   x.save();x.imageSmoothingEnabled=false;x.drawImage(dogImg,850-dw/2,505-dh,dw,dh);x.restore();
+ }
  x.fillStyle='#d5b139';x.fillRect(974,364,160,118);x.fillStyle='#4c7078';x.fillRect(993,381,96,40)
 }
 function bus(){x.fillStyle='#d6b23c';x.fillRect(0,0,W,H);x.fillStyle='#79b7cb';for(let a=60;a<1080;a+=220)x.fillRect(a,70,170,160);x.fillStyle='#5c493d';x.fillRect(0,505,W,114);for(const a of [90,330,590,840]){x.fillStyle='#884f3d';x.fillRect(a,330,135,175)}}
