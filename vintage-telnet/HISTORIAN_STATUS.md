@@ -30,7 +30,7 @@ Vintage Telnet está en fase de **construcción inicial del mundo**. Ya existen 
 
 Javier autoriza al Historiador a:
 - nombrar y diseñar pueblos principales y secundarios;
-- desarrollar historia, geografía, acontecimientos, lugares, misterios y secretos dentro del canon confirmado;
+- desarrollar historia, geografía, acontecimientos, lugares, culturas, ruinas, conflictos, misterios y secretos dentro del canon confirmado, proporcionando la arquitectura histórica que después puede usar el Narrador;
 - ampliar autónomamente contenido que no cambie los pilares fundamentales;
 - establecer qué NPC necesita una historia y qué función debe cumplir, sin construir al NPC completo;
 - identificar necesidades de mecánicas sin convertirlas unilateralmente en reglas.
@@ -40,6 +40,7 @@ Los asentamientos se documentan en `SETTLEMENTS.md`.
 ## Límites
 
 El Historiador no sustituye:
+- al Narrador, que convierte la historia y arquitectura del mundo en relatos, escenas, encuentros y experiencias concretas para los jugadores;
 - al Diseñador de Jugabilidad para reglas, fórmulas, balance o progresión mecánica;
 - al futuro Creador de NPCs;
 - a programación, arte, publicación u otros especialistas;
