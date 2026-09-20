@@ -32,6 +32,10 @@ Contiene los nombres, ubicación, identidad y función narrativa de los pueblos 
 
 Resumen de coordinación preparado para el Arquitecto: canon actual, autoridad delegada al Historiador, límites, trabajo abierto y posibles especialidades a evaluar.
 
+## Relación con el Narrador
+
+El Historiador construye la **historia estructural y la arquitectura del mundo**: hechos pasados, lugares, culturas, causas, consecuencias, ruinas, conflictos, relaciones y secretos. El Narrador utiliza esa base para crear relatos, escenas, encuentros y experiencias concretas de los jugadores. El Historiador no debe asumir por defecto la función del Narrador.
+
 ## Relación con Jugabilidad
 
 `GAMEPLAY.md` es la fuente de verdad mecánica. El Historiador puede documentar una necesidad del mundo, pero si requiere una regla, fórmula, limitación o sistema nuevo debe marcarse como **NECESIDAD DE JUGABILIDAD** y coordinarse con Javier y el Diseñador de Jugabilidad.
