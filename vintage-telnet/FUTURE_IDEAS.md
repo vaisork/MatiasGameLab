@@ -6,6 +6,13 @@ Nada de lo que aparezca aquí debe consumir tiempo de desarrollo actual ni trata
 
 ## Ideas guardadas
 
+### Guerra futura entre especies
+
+- Se plantea como posibilidad para una etapa posterior del juego una **guerra entre distintas especies o pueblos**.
+- **No existe en el presente del mundo**, no forma parte de la historia inicial y no debe afectar el desarrollo actual.
+- Su causa, participantes, escala y consecuencias no están definidos.
+- Solo debe retomarse cuando Javier decida trabajar una etapa futura del mundo.
+
 ### Civilización o especie tecnológicamente avanzada con magia
 
 - Se planteó la existencia futura de una civilización o especie con tecnología avanzada combinada con la magia del mundo.
