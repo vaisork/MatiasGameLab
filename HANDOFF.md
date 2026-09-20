@@ -28,6 +28,14 @@ Revisión general de Senku solicitada por Javier: detectar problemas técnicos, 
 2. **Duplicación injusta de churus (pedido por Javier):** los churus de calle/taquería y la caja secreta se podían volver a recolectar cada vez que se reiniciaba el juego, porque el contador total se guardaba en localStorage pero qué churus ya se habían agarrado no. Ahora cada churu/caja tiene un id estable y se guarda en `localStorage.senku_collected` cuáles ya se dieron; no se vuelven a otorgar. El juego sigue reiniciando en Casa cada vez (así lo pidió Javier, sin guardar posición/escena). También corregido que la caja secreta podía darse +3 churus repetidamente parado ahí sin cerrar el juego.
 3. **Taza que cae en Casa (pedido por Javier):** la taza (círculo amarillo dentro de la ventana) estaba fija en el aire. Ahora cae con la misma gravedad que el salto de Senku hasta el piso real de la habitación (no la repisa de la ventana) y se queda ahí. Tarda ~0.65s en caer. Solo aplica a la escena Casa.
 
+### Actualización posterior a esta entrega (mismo HEAD base, misma rama)
+Javier pidió, por el momento, revertir solo la parte de persistencia del cambio #2: quiere que el conteo de churus **arranque siempre en 0** al cargar el juego, en vez de recordar entre sesiones lo ya recolectado. Cambio mínimo y acotado a esa petición:
+- `churus` y `collected` ya no se inicializan leyendo `localStorage.senku_churus` / `localStorage.senku_collected`; siempre inician en `0` / vacío al cargar la página.
+- Dentro de una misma sesión (sin recargar), un churu/caja ya recolectado sigue sin poder volver a darse — eso no cambió.
+- `selectedSkin` y `secret` (traje/rata secreta) siguen persistiendo igual que antes; no se tocó esa parte a propósito (Javier pidió solo este cambio).
+- `save()` no se modificó: sigue escribiendo `senku_churus`/`senku_collected` en `localStorage`, pero ya no se leen al iniciar, así que quedan sin efecto por ahora. Se puede limpiar ese guardado muerto si Javier confirma que este es el comportamiento definitivo y no algo temporal.
+- Nota: esto no resuelve el pendiente del traje "Gato dorado" (300 churus) — lo deja igual de inalcanzable, ya que el máximo por sesión sigue siendo 10.
+
 ### Pruebas realizadas
 - Parseo del HTML completo sin errores tras cada cambio.
 - Parseo/ejecución del JS embebido con Node (`new Function(...)`) sin errores de sintaxis tras cada cambio.
