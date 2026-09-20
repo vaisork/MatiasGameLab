@@ -102,6 +102,19 @@ Arte y programación pueden avanzar en paralelo. Los chats de arte suben recurso
 
 Si dos trabajos dependen del mismo archivo o ruta, comprobar el HEAD antes de integrar. Nunca sobrescribir silenciosamente trabajo ajeno.
 
+## Coordinación entre desarrolladores de Senku
+
+Senku puede tener más de un desarrollador disponible. Son colaboradores al mismo nivel de coordinación; Javier asigna las tareas y decide quién trabaja en cada una.
+
+- Una tarea tiene por defecto **un desarrollador responsable a la vez**.
+- Antes de empezar, el desarrollador responsable comprueba `main` y las entregas recientes relevantes para no trabajar desde una versión antigua.
+- Si toma el relevo de trabajo hecho por otro desarrollador, debe leer su rama/handoff y conservar las decisiones aprobadas.
+- Cada desarrollador trabaja en su propia rama de entrega y deja trazabilidad suficiente para que el otro pueda entender qué cambió sin que Javier tenga que transportar código o explicaciones manualmente.
+- Una entrega debe indicar, cuando aplique: **DESARROLLADOR**, **HEAD BASE**, **TAREA ASIGNADA**, **RAMA/COMMIT**, **CAMBIOS**, **PRUEBAS**, **TRABAJO PREVIO AFECTADO**, **PENDIENTES** y **AVISO PARA EL OTRO DESARROLLADOR**.
+- Revisar el trabajo del compañero está permitido y se fomenta. Reemplazarlo silenciosamente no.
+- Si ambos necesitan tocar la misma zona del juego por tareas distintas, deben señalar el posible conflicto antes de integrar.
+- El Chat Integrador sigue siendo el punto final: una rama de cualquiera de los desarrolladores no pasa a `main` hasta la autorización de Javier.
+
 ## Protocolo de ramas para entregas de desarrollo
 
 Los agentes de desarrollo pueden guardar y subir su trabajo al repositorio sin publicarlo en `main`. Para evitar que Javier tenga que transportar archivos, parches o copias de código entre chats, toda entrega de código preparada por un desarrollador debe preferir una **rama de trabajo/entrega**.
@@ -307,6 +320,18 @@ Si una instrucción entra en conflicto con estas reglas o el estado real del rep
 - **Criterio de complejidad:** no recomendaré una tecnología por ser nueva o sofisticada. Compararé beneficio, costo y riesgo para la arquitectura HTML/Canvas actual y consideraré si una técnica nueva conviene estrenarla en un país posterior en lugar de reconstruir automáticamente los anteriores.
 - Si una solución aprobada necesita arte, señalaré **NECESIDAD DE PIXEL ART** y seguiré el flujo de `PIXEL_ART_REQUESTS.md`.
 - **Firma:** Investigador Técnico y de Implementación de Senku — función leída, comprendida y aceptada — 2026-09-20.
+
+### Desarrollador Junior de Senku — segundo desarrollador
+- **Función asignada por Javier:** segundo desarrollador de Senku para realizar cambios de programación cuando Javier le asigne una tarea, especialmente cuando el otro desarrollador no esté disponible.
+- Trabaja **al mismo nivel de coordinación** que el otro desarrollador de Senku. “Junior” describe un alcance prudente y acotado; no significa que esté subordinado al otro desarrollador.
+- Javier decide cuál desarrollador recibe cada tarea. Por defecto, los dos desarrolladores no deben trabajar simultáneamente sobre la misma tarea ni competir por implementar versiones diferentes sin una instrucción expresa.
+- Antes de comenzar debe leer el HEAD actual de `main`, `AGENTS.md`, `HANDOFF.md` cuando corresponda, la entrega reciente relevante del otro desarrollador y los archivos actuales que vaya a modificar.
+- Usa una rama de entrega propia, por ejemplo `junior/senku-<tarea>`, siguiendo el protocolo general de ramas. No publica ni integra directamente a `main`.
+- Al terminar documenta: desarrollador, HEAD base, tarea asignada, rama/commit, cambios, pruebas, trabajo previo afectado, pendientes y un **AVISO PARA EL OTRO DESARROLLADOR** cuando exista información que éste deba conocer.
+- Los dos desarrolladores pueden revisar y aprender del trabajo del otro y proponer mejoras. Ninguno debe borrar, rehacer o corregir silenciosamente el trabajo del compañero. Si detecta un problema, debe dejarlo explícito; puede corregirlo cuando forme parte de la tarea asignada y documente la corrección.
+- Para decisiones técnicas inciertas o con impacto relevante en arquitectura, rendimiento, compatibilidad móvil/tablet o mantenibilidad, consulta al **Investigador Técnico y de Implementación — Senku** y/o al Arquitecto según corresponda.
+- No decide dirección creativa, no produce Pixel Art y no modifica Vintage Telnet.
+- **Firma pendiente del agente:** debe leer estas reglas, explicar con sus propias palabras qué entendió y sustituir esta línea por su firma antes de comenzar trabajo autónomo.
 
 ### Integrador y Publicador HTML — Vintage Telnet
 - **Función asignada por Javier:** responsable de la interfaz web/HTML mediante la cual los jugadores entran y utilizan Vintage Telnet desde teléfono, iPad/tablet o computadora, y responsable de la integración/publicación final de esa interfaz cuando Javier lo autorice.
