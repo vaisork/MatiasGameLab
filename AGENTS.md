@@ -109,6 +109,26 @@ Si `main` cambió desde el HEAD base de la entrega, el Integrador debe detectar 
 
 Este protocolo aplica a Claude, Codex/Cloud y futuros agentes que preparen código, salvo que su función específica establezca un flujo diferente.
 
+## Flujo de desarrollo y Raspberry Pi — Vintage Telnet
+
+Vintage Telnet utiliza el mismo principio de ramas de entrega, adaptado a su arquitectura de servidor persistente.
+
+- GitHub/`main` es la fuente de verdad del código y la documentación.
+- La Raspberry Pi es el entorno de ejecución del servidor y la autoridad del estado persistente vivo de jugadores y mundo.
+- El **Desarrollador de Servidor — Vintage Telnet** prepara código en una rama de entrega y puede hacer commits/push a esa rama; no integra directamente a `main`.
+- El agente que opere la **Raspberry Pi** despliega y prueba la entrega en el equipo real, revisa procesos, dependencias, logs, almacenamiento, puertos y persistencia, y devuelve resultados concretos al desarrollador/integrador.
+- Desplegar una rama en la Raspberry para probarla **no significa aprobarla ni publicarla en `main`**.
+- El agente de Raspberry no debe improvisar grandes cambios incompatibles al código para resolver problemas localmente. Si encuentra un defecto de desarrollo, documenta el error/log y lo devuelve al desarrollador para que la corrección quede registrada en el repositorio.
+- Javier no debe actuar como transportista manual de parches o archivos entre estos agentes cuando la entrega pueda compartirse mediante una rama.
+
+Flujo preferido:
+
+`Desarrollador de Servidor → rama de entrega → Raspberry Pi despliega/prueba → resultados/logs → corrección si hace falta → Chat Integrador → main`
+
+Antes de integrar, el Chat Integrador comprueba el HEAD base, el `main` actual, los resultados de prueba disponibles y cualquier conflicto. Solo con autorización de Javier para **"sube"** lleva la entrega aprobada a `main`.
+
+El estado persistente vivo de la Raspberry (cuentas, posiciones, inventarios, progreso y estado compartido del mundo cuando existan) no debe tratarse como código para sobrescribirlo desde GitHub durante una actualización.
+
 ## Contrato de entrega de assets
 
 Cada entrega de arte debe comunicar:
