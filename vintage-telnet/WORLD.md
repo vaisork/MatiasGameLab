@@ -36,6 +36,14 @@ Resumen de coordinación preparado para el Arquitecto: canon actual, autoridad d
 
 Contiene la cronología y arquitectura histórica del mundo: qué ocurrió, en qué orden general y qué consecuencias dejó. El Narrador utiliza esta base, pero no la sustituye.
 
+### 7. Vaisgard — `VAISGARD.md`
+
+Contiene la historia, estructura urbana, zonas y función narrativa de la ciudad principal.
+
+### 8. Regiones y caminos — `REGIONS.md`
+
+Define la geografía narrativa inicial alrededor de Vaisgard, la ubicación relativa de los cinco pueblos y las rutas que los conectan.
+
 ## Relación con el Narrador
 
 El Historiador construye la **historia estructural y la arquitectura del mundo**: hechos pasados, lugares, culturas, causas, consecuencias, ruinas, conflictos, relaciones y secretos. El Narrador utiliza esa base para crear relatos, escenas, encuentros y experiencias concretas de los jugadores. El Historiador no debe asumir por defecto la función del Narrador.
@@ -57,4 +65,6 @@ El Historiador define qué necesita el mundo, por qué lo necesita y qué funci�
 **Pueblos y asentamientos:** `vintage-telnet/SETTLEMENTS.md`  
 **Estado para Arquitecto:** `vintage-telnet/HISTORIAN_STATUS.md`  
 **Historia del mundo:** `vintage-telnet/HISTORY.md`  
+**Ciudad principal:** `vintage-telnet/VAISGARD.md`  
+**Regiones y caminos:** `vintage-telnet/REGIONS.md`  
 **Fuente mecánica:** `vintage-telnet/GAMEPLAY.md`
