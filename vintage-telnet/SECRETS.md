@@ -17,12 +17,43 @@ Consultar secretos únicamente cuando una tarea de implementación, Dungeon Mast
 ### Reino oculto de dragones
 
 - **Existe desde el inicio del juego** un reino de dragones que no es conocido por los jugadores al comenzar.
+- Su nombre interno de trabajo y canon secreto es **Syraketh**.
+- Syraketh se encuentra en una enorme región cavernosa geotérmica más allá de los niveles conocidos del subsuelo de la región inicial.
 - El reino permanecerá **oculto durante una etapa importante de la experiencia** y debe descubrirse jugando.
 - No debe presentarse como parte del conocimiento público inicial del mundo.
-- El acceso será mediante una ruta especial y no evidente, posiblemente subterránea o por un paso antiguo.
-- Javier delega al Historiador la decisión concreta de **cómo se descubre y por dónde se accede**, siempre que respete el canon y no requiera inventar unilateralmente una regla mecánica nueva.
-- Si el acceso necesita una condición mecánica específica, debe marcarse como **NECESIDAD DE JUGABILIDAD** antes de implementarse.
-- La localización exacta, historia interna, habitantes concretos y relación del reino con el resto del mundo quedan pendientes de desarrollo secreto por el Historiador.
+
+#### Acceso secreto
+
+Una parte de los niveles inferiores de Vaisgard conecta con estructuras mucho más antiguas que los conductos utilizados actualmente por la ciudad.
+
+Entre ellas existe una galería sellada conocida únicamente en documentación del Historiador como **la Galería del Río Seco**.
+
+La galería no conduce directamente al reino. Desemboca en un sistema natural de túneles profundos denominado **la Raíz de Ceniza**, que se extiende por debajo de regiones que los habitantes recorren en la superficie sin conocer su verdadera profundidad.
+
+Uno de los recorridos de la Raíz de Ceniza permite alcanzar, tras un trayecto largo y peligroso, las cavidades exteriores de Syraketh.
+
+El acceso debe sentirse como el descubrimiento de una conexión imposible de deducir desde el mapa superficial.
+
+#### Historia secreta
+
+Syraketh es anterior a los cinco pueblos actuales.
+
+Su aislamiento no demuestra que los dragones construyeran Vaisgard. **No existe todavía canon que identifique a los constructores originales de Vaisgard con los dragones.**
+
+En algún momento remoto, los caminos subterráneos que comunicaban regiones profundas quedaron bloqueados, olvidados o abandonados. Las poblaciones que posteriormente ocuparon Vaisgard reutilizaron solo las capas superiores y perdieron conocimiento de las rutas inferiores.
+
+El Historiador puede desarrollar posteriormente:
+- la organización interna de Syraketh;
+- su historia;
+- por qué permaneció aislado;
+- qué sabe el reino sobre la superficie;
+- qué relación tuvo, si alguna, con pueblos antiguos anteriores a la memoria actual.
+
+#### Frontera con Jugabilidad
+
+El Historiador puede establecer pistas, ruinas y lógica narrativa del descubrimiento.
+
+**NECESIDAD DE JUGABILIDAD:** cualquier requisito exacto para abrir sellos, sobrevivir al trayecto, detectar entradas, atravesar obstáculos o acceder al reino debe ser diseñado por Jugabilidad antes de implementarse.
 
 ### Afinidades ocultas entre productos, especies y entornos
 
