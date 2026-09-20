@@ -129,6 +129,32 @@ Antes de integrar, el Chat Integrador comprueba el HEAD base, el `main` actual, 
 
 El estado persistente vivo de la Raspberry (cuentas, posiciones, inventarios, progreso y estado compartido del mundo cuando existan) no debe tratarse como código para sobrescribirlo desde GitHub durante una actualización.
 
+## Solicitudes de Pixel Art
+
+`PIXEL_ART_REQUESTS.md` es la cola común de solicitudes visuales de MatiasGameLab. Aplica a Senku, Vintage Telnet y futuros juegos.
+
+Cuando un agente de juego, diseño, narrativa, programación u otra especialidad necesite una imagen jugable:
+
+1. Primero revisa `assets/` para comprobar si el recurso ya existe.
+2. Si no existe, registra la necesidad en `PIXEL_ART_REQUESTS.md` con el contexto suficiente para que Pixel Art entienda qué se necesita, sin inventar decisiones que correspondan a Javier, Matías u otro especialista.
+3. El agente de Pixel Art revisa esa cola como punto de entrada de trabajo y vuelve a comprobar los assets existentes antes de crear o pedir material.
+4. Si para completar la solicitud hace falta una imagen original, referencia, fotografía, dibujo o decisión visual que deba proporcionar Javier/Matías, **Pixel Art se la pide directamente a Javier**. Javier no debe tener que adivinar qué archivo falta ni transportar solicitudes entre agentes.
+5. Pixel Art prepara el recurso dentro de su frontera de trabajo, lo sube a `assets/` y actualiza la solicitud con la ruta exacta y el estado.
+6. El agente solicitante consume la ruta del repositorio cuando el estado sea **LISTO EN ASSETS**.
+
+Los agentes solicitantes no deben generar silenciosamente arte definitivo para saltarse este flujo. Pueden describir la función que debe cumplir el recurso, dimensiones o requisitos técnicos conocidos, pero la dirección creativa continúa perteneciendo a Javier/Matías y las decisiones propias de Pixel Art corresponden al agente de arte.
+
+Estados estándar de una solicitud:
+
+- **SOLICITADO** — necesidad registrada.
+- **PENDIENTE DE JAVIER/MATÍAS** — Pixel Art necesita material o decisión de dirección creativa.
+- **EN ARTE** — Pixel Art está preparando el recurso.
+- **LISTO EN ASSETS** — recurso subido y ruta documentada.
+- **BLOQUEADO** — existe una dependencia que impide continuar.
+- **CANCELADO** — la necesidad dejó de existir.
+
+`PIXEL_ART_REQUESTS.md` coordina trabajo; no sustituye los archivos de arte ni es una fuente de canon, jugabilidad o historia.
+
 ## Contrato de entrega de assets
 
 Cada entrega de arte debe comunicar:
