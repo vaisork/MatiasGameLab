@@ -24,6 +24,16 @@ Consultar secretos únicamente cuando una tarea de implementación, Dungeon Mast
 - Si el acceso necesita una condición mecánica específica, debe marcarse como **NECESIDAD DE JUGABILIDAD** antes de implementarse.
 - La localización exacta, historia interna, habitantes concretos y relación del reino con el resto del mundo quedan pendientes de desarrollo secreto por el Historiador.
 
+### Afinidades ocultas entre productos, especies y entornos
+
+- El mundo contiene **afinidades y antagonismos ocultos** entre ciertos productos, materiales, armas, alimentos, especies y entornos.
+- Los jugadores **no reciben esta información de forma explícita al inicio**. Deben descubrirla jugando, viajando, probando objetos y observando sus efectos.
+- Un objeto excelente para una especie, cultura o entorno puede resultar mediocre o incluso especialmente malo para otra combinación incompatible.
+- Las oposiciones pueden inspirarse en relaciones del mundo como agua/fuego, humedad/calor, roca/vegetación u otras que el Historiador desarrolle de forma coherente.
+- Estas relaciones no deben reducirse a una tabla pública de “elementos” al comienzo del juego; forman parte del conocimiento que se aprende dentro del mundo.
+- El Historiador puede definir qué afinidades existen narrativamente y por qué.
+- **NECESIDAD DE JUGABILIDAD:** cualquier bonificación, penalización, multiplicador, resistencia, daño o efecto cuantificado debe ser diseñado y aprobado por Jugabilidad antes de implementarse.
+
 ## Regla de revelación
 
 Este reino no debe mencionarse en documentación o presentación pública para jugadores hasta que exista una decisión narrativa de revelarlo.
