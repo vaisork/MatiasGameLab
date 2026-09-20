@@ -11,6 +11,7 @@ Vintage Telnet está en fase de **construcción inicial del mundo**. Ya existen 
 - Fantasía mágica clásica.
 - Mundo grande, persistente y multijugador.
 - Ciudad principal: **Vaisgard**.
+- **Vaisgard es anterior a los cinco pueblos**; las cinco poblaciones se asentaron primero allí y posteriormente fundaron sus pueblos propios.
 - Dungeon Master: **Vaisork**.
 - Cinco especies jugables actuales: **Humanos, Felaryn, Dravak, Marevyn y Vesperi**.
 - Cinco pueblos pequeños de inicio:
@@ -53,7 +54,7 @@ El Historiador no sustituye:
 - anatomía, cultura e historia final de cada especie;
 - capacidades narrativas de Dravak, Marevyn y Vesperi;
 - mapa regional y conexiones entre los cinco pueblos y Vaisgard;
-- historia antigua del mundo;
+- historia antigua del mundo — **iniciada en `HISTORY.md`; faltan eras y causas anteriores/posteriores**;
 - nombres y funciones de regiones;
 - primeras mazmorras;
 - monstruos y criaturas;
@@ -79,6 +80,7 @@ Estos especialistas no son necesarios automáticamente. El Arquitecto decidirá 
 - `CONFIRMED_IDEAS.md` — decisiones activas.
 - `FUTURE_IDEAS.md` — incubadora de ideas no activas.
 - `SETTLEMENTS.md` — pueblos y asentamientos.
+- `HISTORY.md` — arquitectura histórica y cronología del mundo.
 - `SECRETS.md` — información reservada del Dungeon Master.
 - `GAMEPLAY.md` — fuente de verdad mecánica.
 
