@@ -71,6 +71,8 @@ Cuando Javier autorice **"sube"**, publica la entrega aprobada, verifica el nuev
 
 El juego principal es `senku.html`, un juego HTML/Canvas 2D orientado especialmente a teléfono/tablet.
 
+Para planificar el crecimiento técnico de nuevos niveles o países de Senku, el Arquitecto y desarrollo deben consultar `SENKU_GROWTH_RESEARCH.md` cuando la tarea afecte estructura de escenas, reutilización de sistemas o incorporación progresiva de capacidades nuevas.
+
 Mantener el HTML ligero. No incrustar grandes imágenes Base64. El arte vive en `assets/`.
 
 Estructura prevista:
