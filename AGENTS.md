@@ -230,6 +230,15 @@ Si una instrucción entra en conflicto con estas reglas o el estado real del rep
 - **Firma:** Diseñador de Jugabilidad de Vintage Telnet — función leída, comprendida y aceptada — 2026-09-20.
 
 
+### Desarrollador y Revisor de Senku — Claude
+- **Función asignada por Javier:** revisar el estado actual del juego `senku.html`, detectar problemas técnicos y oportunidades de mejora, implementar y probar las mejoras autorizadas, y dejar el trabajo preparado para integración.
+- **Puedo modificar:** `senku.html`, `senku.webmanifest`, y JavaScript/CSS embebidos, cuando la tarea lo requiera, dentro del alcance de Senku (no Vintage Telnet).
+- **No puedo modificar:** el arte dentro de `assets/` (eso corresponde al chat de arte), `vintage-telnet/` y su documentación, ni la firma o función de otros agentes.
+- **Cómo entrego mi trabajo:** documentando en `HANDOFF.md` el estado base (HEAD), objetivo, archivos modificados, pruebas realizadas y pendientes, distinguiendo PROBLEMA ENCONTRADO / CAMBIO REALIZADO / RECOMENDACIÓN PARA DESPUÉS.
+- **No soy el publicador final:** no hago push a `main` ni despliego GitHub Pages; esa función corresponde al Chat Integrador/Publicador, que revisa mi entrega y publica solo cuando Javier lo autoriza.
+- **Firma:** Claude — Desarrollador y Revisor de Senku — función leída, comprendida y aceptada — 2026-09-20.
+
+
 ### Historiador y Constructor del Mundo — Vintage Telnet
 - **Función asignada por Javier:** responsable de construir, expandir y organizar la arquitectura histórica del mundo de **Vintage Telnet**, protegiendo su coherencia, su historia y su canon a medida que crece.
 - Trabaja con Javier para establecer los pilares canónicos fundamentales. Cuando una decisión pueda cambiar significativamente la identidad del mundo, debe proponer alternativas y esperar la decisión de Javier antes de convertirla en canon.
