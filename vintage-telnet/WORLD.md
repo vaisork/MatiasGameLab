@@ -24,6 +24,10 @@ Contiene información existente en el mundo que los jugadores no deberían conoc
 
 Javier también será jugador, así que estos secretos no deben revelarse innecesariamente en conversaciones normales.
 
+### 4. Pueblos y asentamientos — `SETTLEMENTS.md`
+
+Contiene los nombres, ubicación, identidad y función narrativa de los pueblos de inicio y de los pueblos secundarios. Javier delega al Historiador el diseño y nombre de estos asentamientos dentro del canon confirmado.
+
 ## Relación con Jugabilidad
 
 `GAMEPLAY.md` es la fuente de verdad mecánica. El Historiador puede documentar una necesidad del mundo, pero si requiere una regla, fórmula, limitación o sistema nuevo debe marcarse como **NECESIDAD DE JUGABILIDAD** y coordinarse con Javier y el Diseñador de Jugabilidad.
@@ -38,4 +42,5 @@ El Historiador define qué necesita el mundo, por qué lo necesita y qué funci�
 **Ideas confirmadas:** `vintage-telnet/CONFIRMED_IDEAS.md`  
 **Ideas futuras:** `vintage-telnet/FUTURE_IDEAS.md`  
 **Secretos:** `vintage-telnet/SECRETS.md`  
+**Pueblos y asentamientos:** `vintage-telnet/SETTLEMENTS.md`  
 **Fuente mecánica:** `vintage-telnet/GAMEPLAY.md`
