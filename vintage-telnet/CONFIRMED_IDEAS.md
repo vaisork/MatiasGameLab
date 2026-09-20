@@ -18,8 +18,9 @@ El Historiador debe revisar este archivo antes de ampliar el mundo. Una idea inc
 
 - No todos los personajes serán humanos.
 - Existirán distintas especies inteligentes y la especie del personaje será independiente de su clase.
-- Se desarrollará una **especie original** inspirada en una mezcla conceptual entre rasgos humano-gato y algunos rasgos asociados a los elfos.
-- El nombre, cultura, aspecto definitivo y demás detalles de esa especie todavía están pendientes.
+- La primera especie original confirmada se llama **Felaryn**.
+- Los Felaryn parten de una mezcla conceptual entre rasgos humano-gato y algunos rasgos tradicionalmente asociados a los elfos.
+- Su cultura, aspecto definitivo, capacidades, historia y hábitat concreto todavía están pendientes de desarrollo.
 - La lista definitiva de especies aún no está cerrada.
 
 ## Clases y caminos
