@@ -1,0 +1,18 @@
+{
+  "senku_menu": "assets/senku/menu-base.jpg",
+  "senku_sprites": "assets/senku/senku-sprites.png",
+  "traje_rata_menu": "assets/trajes/rata/menu.webp",
+  "traje_rata_walk_sheet": {
+    "src": "assets/trajes/rata/walk-sheet.png",
+    "frames": 7,
+    "frame_width": 96,
+    "frame_height": 72
+  },
+  "rata_npc_sheet": {
+    "src": "assets/rata/white-rat-sheet.png",
+    "frames": 3,
+    "frame_width": 160,
+    "frame_height": 136
+  },
+  "fondos": "assets/backgrounds/"
+}
