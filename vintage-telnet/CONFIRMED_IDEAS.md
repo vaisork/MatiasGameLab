@@ -11,6 +11,8 @@ El Historiador debe revisar este archivo antes de ampliar el mundo. Una idea inc
 - El mundo tendrá una **ciudad principal**.
 - Habrá **cinco pueblos de inicio**, uno para cada especie jugable actual: Humanos, Felaryn, Dravak, Marevyn y Vesperi.
 - Estos pueblos serán **asentamientos pequeños y de espacio limitado**; no son ciudades grandes.
+- Los cinco pueblos de inicio quedan nombrados así: **Valdren** (Humanos), **Khariel** (Felaryn), **Brumak** (Dravak), **Narevia** (Marevyn) y **Velmora** (Vesperi).
+- Javier delega al Historiador el nombre y diseño de pueblos principales y secundarios, siempre dentro del canon confirmado. El detalle oficial de asentamientos vive en `SETTLEMENTS.md`.
 - La **ciudad principal** se llama **Vaisgard**. Será un núcleo distinto y de mayor escala, separado de los pueblos de inicio.
 - **Vaisork** es el nombre del **Dungeon Master** dentro de Vintage Telnet.
 - Las distintas especies tendrán hábitats propios o característicos.
