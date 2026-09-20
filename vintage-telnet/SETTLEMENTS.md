@@ -43,6 +43,8 @@ Su diseño busca que un jugador humano sienta que parte desde un lugar sencillo 
 
 **Función:** servir como punto de partida humano y como contraste con los hábitats más especializados de otras especies.
 
+**Origen histórico:** Valdren nació cuando familias humanas procedentes de Vaisgard comenzaron a ocupar de manera permanente los Llanos de Edran. Los primeros asentamientos fueron agrícolas y de paso. Con el tiempo, la ruta hacia la ciudad convirtió a Valdren en proveedor habitual de alimentos y bienes sencillos.
+
 ---
 
 ### Khariel — Pueblo de inicio de los Felaryn
@@ -67,6 +69,8 @@ La disposición de Khariel refleja las capacidades naturales de los Felaryn: su 
 - zonas donde los Felaryn pueden desplazarse de una manera que otras especies no considerarían normal;
 - campanas, señales o puntos de observación para vigilar los pasos montañosos.
 
+**Origen histórico:** Khariel surgió de campamentos Felaryn levantados en la Sierra de Hoshai. Sus primeros habitantes regresaban con frecuencia a Vaisgard, pero las terrazas de montaña demostraron ser mucho más adecuadas para su forma de desplazarse y observar el territorio. Con las generaciones, el asentamiento temporal se convirtió en pueblo y desarrolló una identidad cultural propia.
+
 **NECESIDAD DE JUGABILIDAD:** cualquier distancia exacta de salto, acceso exclusivo o ventaja mecánica por altura debe definirse en Jugabilidad.
 
 ---
@@ -85,6 +89,8 @@ El pueblo no pretende ser subterráneo ni convertir a los Dravak en una copia de
 - pasajes interiores y patios diminutos;
 - talleres que aprovechan cada espacio disponible;
 - una zona exterior preparada para recibir visitantes de mayor tamaño.
+
+**Origen histórico:** Brumak nació cuando comunidades Dravak dejaron los espacios amplios de Vaisgard y comenzaron a adaptar grietas, terrazas rocosas y cavidades superficiales de los Pedrales de Korven. Su pueblo no fue excavado como una ciudad subterránea: fue construido aprovechando una geografía que otras poblaciones consideraban demasiado fragmentada.
 
 **NECESIDAD DE JUGABILIDAD:** si el tamaño de los Dravak permite atravesar espacios inaccesibles para otras especies, esa ventaja deberá definirse posteriormente como criterio mecánico.
 
@@ -106,6 +112,8 @@ Las construcciones se integran con el agua y la vegetación en lugar de intentar
 - zonas de pesca, recolección y navegación;
 - vegetación que forma parte de la arquitectura.
 
+**Origen histórico:** Narevia comenzó como una red de refugios y plataformas estacionales construidas por Marevyn procedentes de Vaisgard. Al comprobar que podían vivir integrados con las Aguas de Lethra sin intentar dominar o secar el entorno, esos refugios se volvieron permanentes y terminaron unidos en un solo pueblo.
+
 La apariencia y capacidades definitivas de los Marevyn todavía se desarrollarán por separado.
 
 ---
@@ -126,6 +134,8 @@ No se define a los Vesperi como murciélagos, topos ni criaturas voladoras. La i
 - espacios que cambian notablemente de sensación entre el día y la noche;
 - lugares que un visitante puede pasar por alto aunque estén cerca.
 
+**Origen histórico:** Velmora nació de pequeños grupos Vesperi que exploraron el Bosque de Nhal buscando condiciones de luz y percepción más adecuadas que las de la gran ciudad. Los primeros refugios fueron difíciles de encontrar incluso para visitantes amistosos. Con el tiempo, esos refugios se conectaron mediante señales y senderos discretos hasta formar el pueblo actual.
+
 La anatomía y capacidades naturales definitivas de los Vesperi siguen pendientes de diseño.
 
 ---
@@ -135,7 +145,9 @@ La anatomía y capacidades naturales definitivas de los Vesperi siguen pendiente
 ### Vaisgard
 Vaisgard es la **ciudad principal** del mundo conocido y no pertenece exclusivamente a ninguna de las cinco especies.
 
-Su diseño completo tendrá su propia etapa de desarrollo. Debe funcionar como un núcleo de escala muy superior a los pueblos de inicio y como lugar donde las distintas poblaciones del mundo pueden encontrarse.
+Es anterior a los cinco pueblos y fue el gran asentamiento común de Humanos, Felaryn, Dravak, Marevyn y Vesperi antes de la fundación de sus comunidades propias.
+
+Su historia, estructura urbana y zonas principales se documentan en `VAISGARD.md`.
 
 **Dungeon Master:** Vaisork.
 
