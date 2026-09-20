@@ -132,7 +132,7 @@ const intro=document.getElementById('intro'),modal=document.getElementById('moda
 const skins=document.getElementById('skins'),wardrobe=document.getElementById('wardrobe'),closeSkins=document.getElementById('closeSkins'),introWardrobe=document.getElementById('introWardrobe'),skinPreview=document.getElementById('skinPreview'),previewBadge=document.getElementById('previewBadge');
 const previewImg=skinPreview.querySelector('img'),basePreviewSrc='assets/senku/menu-base.jpg?v=050',secretPreviewSrc='assets/trajes/rata/menu.webp?v=050';
 let scene='house',running=false,last=performance.now(),time=0,modalAction=null,busTimer=null,near=null,wardrobeWasRunning=false;
-let churus=0,secret=localStorage.getItem('senku_secret')==='1';
+let churus=0,secret=false;
 let selectedSkin=localStorage.getItem('senku_skin')||'normal';
 let collected=new Set();
 const senkuSheet=new Image();senkuSheet.src='assets/senku/senku-sprites.png?v=050';

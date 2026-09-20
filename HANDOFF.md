@@ -36,6 +36,13 @@ Javier pidió, por el momento, revertir solo la parte de persistencia del cambio
 - `save()` no se modificó: sigue escribiendo `senku_churus`/`senku_collected` en `localStorage`, pero ya no se leen al iniciar, así que quedan sin efecto por ahora. Se puede limpiar ese guardado muerto si Javier confirma que este es el comportamiento definitivo y no algo temporal.
 - Nota: esto no resuelve el pendiente del traje "Gato dorado" (300 churus) — lo deja igual de inalcanzable, ya que el máximo por sesión sigue siendo 10.
 
+### Segunda actualización posterior (mismo HEAD base, misma rama)
+Javier pidió el mismo tratamiento para el traje secreto de la rata: que el desbloqueo tampoco persista entre cargas del juego.
+- `secret` (si ya se desbloqueó el traje de la rata) ya no se inicializa leyendo `localStorage.senku_secret`; ahora siempre arranca en `false` al cargar la página. Hay que volver a encontrar a la rata en la taquería en cada sesión para desbloquearlo.
+- No hizo falta tocar nada más: si `selectedSkin` guardado en `localStorage.senku_skin` era `'secret'`, la lógica ya existente en `renderWardrobe()` (`if(selectedSkin==='secret'&&!secret)selectedSkin='normal'`) lo regresa solo a `'normal'` cuando `secret` es `false`.
+- `save()` tampoco se tocó: sigue escribiendo `senku_secret` en `localStorage`, pero ya no se lee al iniciar, igual que pasó con los churus.
+- El traje "Gato dorado" y la selección general de traje (`selectedSkin`) no se tocaron fuera de este efecto en cascada.
+
 ### Pruebas realizadas
 - Parseo del HTML completo sin errores tras cada cambio.
 - Parseo/ejecución del JS embebido con Node (`new Function(...)`) sin errores de sintaxis tras cada cambio.
