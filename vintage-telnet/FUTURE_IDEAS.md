@@ -13,13 +13,6 @@ Nada de lo que aparezca aquí debe consumir tiempo de desarrollo actual ni trata
 - **No debe aparecer ni desarrollarse en la experiencia inicial del juego.**
 - Su naturaleza, origen, localización, nivel tecnológico y relación con el resto del mundo no están definidos.
 
-### Elfos como especie separada
-
-- Se habló inicialmente de elfos como referencia de fantasía clásica.
-- Después surgió la idea de crear una especie original humano-gato con ciertos rasgos inspirados en los elfos.
-- Todavía no está decidido si los elfos existirán además como una especie independiente.
-- No desarrollar esta cuestión hasta que Javier quiera retomarla.
-
 ### Paladín como clase independiente
 
 - Se mencionó paladín junto con guerrero.
