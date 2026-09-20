@@ -23,12 +23,13 @@ El Historiador debe revisar este archivo antes de ampliar el mundo. Una idea inc
 
 - No todos los personajes serán humanos.
 - Existirán distintas especies inteligentes y la especie del personaje será independiente de su clase.
+- No se usarán elfos, enanos u otras especies clásicas como lista base de especies jugables. Vintage Telnet desarrollará identidades propias; las referencias clásicas o animales pueden utilizarse internamente durante el diseño, pero no sustituyen la identidad final de cada especie.
 - La primera especie original confirmada se llama **Felaryn**.
 - Los Felaryn parten de una mezcla conceptual entre rasgos humano-gato y algunos rasgos tradicionalmente asociados a los elfos.
 - Su hábitat de origen es un **pueblo situado entre las montañas**.
 - Los Felaryn tienen una capacidad natural destacada para **saltar grandes distancias**.
 - También poseen una **vista privilegiada**, superior a la de una persona común y especialmente útil para orientarse y observar a distancia en terrenos montañosos.
-- La cultura, el aspecto definitivo, la historia y el nombre concreto de su pueblo todavía están pendientes de desarrollo.
+- La cultura, el aspecto definitivo y la historia de los Felaryn todavía están pendientes de desarrollo. Su pueblo de inicio ya está definido como **Khariel**.
 - **NECESIDAD DE JUGABILIDAD:** la distancia exacta de salto, el alcance/ventaja concreta de su visión y cualquier efecto mecánico asociado deberán definirse con Jugabilidad; el Historiador solo fija aquí que ambas son capacidades características de la especie.
 
 ### Humanos
