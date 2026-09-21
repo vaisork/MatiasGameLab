@@ -226,3 +226,78 @@ No publicar hasta autorización expresa de Javier. Comparar esta rama contra el 
 **LISTO PARA REVISIÓN:** SÍ  
 **PUBLICADA EN `main`:** SÍ — autorización “Sube” recibida el 2026-09-21  
 **MERGE COMMIT:** `c156fce377203534f7d9cb14632ef4f36815310c`
+
+
+## INTEGRACIÓN DE ARTE HTML — Vintage Telnet
+
+**Fecha:** 2026-09-21  
+**Estado:** INTEGRADO EN `main`
+
+### Origen de la entrega
+- Rama: `art/vintage-telnet-html-assets`
+- Commit de arte revisado: `886314bfd9be648938cc7668e2527a079050d231`
+- Estado antes de integrar: rama 1 commit adelante de `main` y 0 atrás.
+
+### Qué se integró
+Biblioteca modular de arte para la carcasa HTML de Vintage Telnet en:
+`vintage-telnet/assets/html-ui/`
+
+Incluye:
+- botones para Inventario, Mapa, Huir y Poderes;
+- ornamento de esquina;
+- divisor horizontal dorado;
+- textura azul/pizarra repetible;
+- preview móvil de referencia;
+- `README.md` y `ASSET_MANIFEST.md` con instrucciones de uso, tamaños y alcance.
+
+### Criterio de revisión aplicado
+- Los PNG son assets modulares; no sustituyen controles HTML reales.
+- La terminal Telnet negro/verde debe mantenerse separada de la carcasa visual exterior.
+- El arte sigue una dirección más juvenil/mobile-first y menos recargada.
+- El botón `Poderes` queda como categoría visual; no define mecánicas ni poderes concretos.
+- No se modificó `vintage-telnet.html` durante esta integración.
+- No se modificó Senku.
+
+### Pendiente
+La siguiente tarea separada será adaptar `vintage-telnet.html` para consumir estos assets sin romper la lógica existente ni la ruta única de acciones del cliente.
+
+### Resultado
+- Arte integrado a `main`: SÍ.
+- HTML actualizado para usar el arte: NO, pendiente de una tarea posterior.
+- Publicación/servidor Raspberry: sin cambios por esta integración.
+
+
+## PREPARACIÓN DE BASE DE DATOS Y JUGABILIDAD REAL — Vintage Telnet
+
+**Fecha:** 2026-09-21  
+**Estado:** PREPARACIÓN DOCUMENTADA; SERVIDOR V2 NO INTEGRADO
+
+### Trabajo realizado
+- Revisada la rama `claude/vintage-telnet-server-v2`.
+- Commit revisado: `ca7be621cc7862cf4cbb7a34eaea0a787820cf63`.
+- La entrega reporta SQLite real, cuentas/sesiones, aprobación del Dungeon Master, especies, ubicación persistente, movimiento N/S/E/O, chat local y API estructurada.
+- La rama está divergida respecto a `main`; no se integró automáticamente.
+- Se creó `vintage-telnet/DATABASE_GAMEPLAY_PREP.md` con el primer vertical slice jugable real, requisitos mínimos de persistencia, contrato cliente-servidor necesario, seguridad, pruebas y secuencia recomendada.
+
+### Primer hito jugable acordado para preparación
+`Abrir → entrar → aprobar cuenta → elegir especie → aparecer en pueblo → moverse → ver otro jugador → hablar → cerrar → volver → conservar ubicación.`
+
+### Importante
+- No se implementó ni inventó combate.
+- No se modificó `vintage-telnet.html`.
+- No se desplegó nada a Raspberry Pi.
+- No se integró la rama de servidor V2.
+- La siguiente acción técnica corresponde a revisión/actualización del servidor V2 contra el `main` vigente y cierre del contrato cliente-servidor.
+
+
+## PRIORIDAD P0 — PRIMER SLICE JUGABLE REAL
+
+Javier fijó la prioridad del siguiente hito:
+
+**ENTRAR → ELEGIR ESPECIE → MOVERSE POR EL PUEBLO**
+
+Se creó `vintage-telnet/FIRST_PLAYABLE_SLICE.md` con el alcance completo, contrato mínimo requerido, persistencia, responsabilidades y prueba de aceptación.
+
+Por decisión de alcance, quedan fuera de este primer slice: chat, combate, PvP, clases, estadísticas, inventario, Arcanes, poderes, economía, monstruos, secretos y mapa completo.
+
+El objetivo es llegar antes a una versión realmente persistente y jugable en teléfono.

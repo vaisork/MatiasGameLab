@@ -434,6 +434,26 @@ Si una instrucción entra en conflicto con estas reglas o el estado real del rep
 - **Principio artístico:** la fantasía vive en los detalles; la interfaz debe seguir siendo funcional aunque se retiren las ilustraciones.
 - **Firma:** Arte HTML — Vintage Telnet — función leída, comprendida y aceptada — 2026-09-21.
 
+#### Biblioteca de imágenes HTML — primera entrega
+- **Repositorio de imágenes dentro de MatiasGameLab:** `vintage-telnet/assets/html-ui/`.
+- Esta carpeta es la ubicación estable para el arte modular de la **carcasa HTML de Vintage Telnet**. No corresponde a Pixel Art de Senku ni a contenido de la terminal Telnet.
+- **Subcarpetas iniciales:** `buttons/`, `ornaments/`, `dividers/`, `backgrounds/` y `previews/`.
+- **Assets de la primera familia juvenil/mobile-first:**
+  - `buttons/button-inventario-normal.png` — control exterior estándar;
+  - `buttons/button-mapa-important.png` — control exterior importante;
+  - `buttons/button-huir-danger.png` — acción de peligro/escape;
+  - `buttons/button-poderes-special.png` — acceso a magia, habilidades y otros poderes especiales;
+  - `ornaments/corner-ornament-top-left.png` — esquina modular de panel/marco;
+  - `dividers/divider-horizontal-gold-diamond.png` — separador horizontal;
+  - `backgrounds/background-slate-blue-subtle-tile.png` — textura exterior sutil y repetible;
+  - `previews/vintage-telnet-ui-style-guide-mobile.png` — guía completa de la familia en contexto móvil.
+- Los PNG se prepararon en tamaños web razonables para evitar cargar en el juego las imágenes originales sobredimensionadas. La guía completa es referencia visual; el desarrollador debe consumir los assets individuales para la interfaz real.
+- **Dirección aprobada para esta exploración:** más juvenil y amigable para niños, menos ornamentada y menos “vintage pesado”, manteniendo pizarra/azul oscuro, bronce cálido, marfil, vino para peligro y violeta para poderes. La terminal continúa negro + verde fósforo.
+- El botón **Poderes** no define una mecánica concreta: funciona como acceso visual para futuras magias, habilidades y poderes que Jugabilidad/Historiador definan. Arte HTML no inventa qué poderes existen.
+- La documentación técnica de uso, dimensiones y estado de esta entrega vive junto a los assets en `vintage-telnet/assets/html-ui/README.md` y `ASSET_MANIFEST.md`.
+- **Aviso al Desarrollador Junior:** integrar técnicamente estos recursos solo cuando la tarea lo requiera; no reconstruir la interfaz desde la imagen de preview ni alterar la terminal negro/verde.
+- **Estado:** LISTO EN RAMA DE ARTE — pendiente de revisión/integración a `main` según el flujo del proyecto.
+
 ### Desarrollador de Servidor — Vintage Telnet — Claude
 - **Función asignada por Javier:** implementar el servidor autoritativo de Vintage Telnet (cuentas, mundo, movimiento, chat, aprobación de jugadores), partiendo de la base rescatada de la entrega histórica `codex/vintage-telnet-server` (PR #1) y dentro de las decisiones ya publicadas por el **Arquitecto de Vintage Telnet y Raspberry Pi** en `vintage-telnet/ARCHITECTURE_STATUS.md`.
 - **Relación con el Arquitecto:** no tengo autoridad arquitectónica sobre Vintage Telnet — esa función es del Arquitecto de Vintage Telnet y Raspberry Pi. Implemento dentro del stack y la secuencia técnica que ya decidió (Python + Flask/Waitress + SQLite, HTTP primero, WebSocket solo cuando una capacidad real lo requiera, contrato cliente-servidor explícito, persistencia con migraciones/backup antes de guardar mundo real). Si necesito una decisión arquitectónica que ese documento no cubre, la registro como pendiente y no la invento.
