@@ -99,3 +99,42 @@ No publicar hasta autorización expresa de Javier. Comparar esta rama contra el 
 **LISTO PARA REVISIÓN:** SÍ  
 **PUBLICADA EN `main`:** SÍ — autorización “Sube” recibida el 2026-09-21  
 **MERGE COMMIT:** `c156fce377203534f7d9cb14632ef4f36815310c`
+
+
+## INTEGRACIÓN DE ARTE HTML — Vintage Telnet
+
+**Fecha:** 2026-09-21  
+**Estado:** INTEGRADO EN `main`
+
+### Origen de la entrega
+- Rama: `art/vintage-telnet-html-assets`
+- Commit de arte revisado: `886314bfd9be648938cc7668e2527a079050d231`
+- Estado antes de integrar: rama 1 commit adelante de `main` y 0 atrás.
+
+### Qué se integró
+Biblioteca modular de arte para la carcasa HTML de Vintage Telnet en:
+`vintage-telnet/assets/html-ui/`
+
+Incluye:
+- botones para Inventario, Mapa, Huir y Poderes;
+- ornamento de esquina;
+- divisor horizontal dorado;
+- textura azul/pizarra repetible;
+- preview móvil de referencia;
+- `README.md` y `ASSET_MANIFEST.md` con instrucciones de uso, tamaños y alcance.
+
+### Criterio de revisión aplicado
+- Los PNG son assets modulares; no sustituyen controles HTML reales.
+- La terminal Telnet negro/verde debe mantenerse separada de la carcasa visual exterior.
+- El arte sigue una dirección más juvenil/mobile-first y menos recargada.
+- El botón `Poderes` queda como categoría visual; no define mecánicas ni poderes concretos.
+- No se modificó `vintage-telnet.html` durante esta integración.
+- No se modificó Senku.
+
+### Pendiente
+La siguiente tarea separada será adaptar `vintage-telnet.html` para consumir estos assets sin romper la lógica existente ni la ruta única de acciones del cliente.
+
+### Resultado
+- Arte integrado a `main`: SÍ.
+- HTML actualizado para usar el arte: NO, pendiente de una tarea posterior.
+- Publicación/servidor Raspberry: sin cambios por esta integración.
