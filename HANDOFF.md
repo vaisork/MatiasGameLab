@@ -2,7 +2,7 @@
 
 ## ENTREGA PARA CHATGPT
 
-**Estado:** ENTREGA PREPARADA EN RAMA — NO PUBLICADA
+**Estado:** PUBLICADA EN `main`
 
 ### Desarrollador
 Desarrollador Junior de Vintage Telnet
@@ -97,4 +97,5 @@ Aplicar la investigación `VT-RES-002` para optimizar la interfaz HTML de Vintag
 No publicar hasta autorización expresa de Javier. Comparar esta rama contra el HEAD vigente de `main` antes de integrar.
 
 **LISTO PARA REVISIÓN:** SÍ  
-**LISTO PARA PUBLICAR:** SOLO TRAS AUTORIZACIÓN “sube”
+**PUBLICADA EN `main`:** SÍ — autorización “Sube” recibida el 2026-09-21  
+**MERGE COMMIT:** `c156fce377203534f7d9cb14632ef4f36815310c`
