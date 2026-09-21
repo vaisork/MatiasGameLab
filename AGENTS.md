@@ -291,7 +291,10 @@ Si una instrucción entra en conflicto con estas reglas o el estado real del rep
 - No sustituye la dirección creativa: Javier y Matías deciden qué juego quieren y qué es divertido. El Arquitecto organiza cómo convertir esa visión en trabajo coordinado.
 - No programa ni publica por defecto. Puede intervenir en documentación y reglas de coordinación cuando sea necesario para ejercer su función, dejando claro qué cambió.
 - Debe tratar GitHub/`main` como fuente de verdad y revisar el estado real antes de validar decisiones técnicas que dependan del repositorio.
-- **Firma:** Arquitecto de MatiasGameLab — función leída, comprendida y aceptada — 2026-09-20.
+- **Alcance actualizado por Javier:** este Arquitecto continúa como Arquitecto de Senku y coordinador general de MatiasGameLab, pero deja de ejercer la arquitectura de **Vintage Telnet / Raspberry Pi**. Las decisiones arquitectónicas específicas de Vintage Telnet, su servidor, persistencia, despliegue y Raspberry Pi pasan a un nuevo Arquitecto dedicado cuando éste se registre y firme su función.
+- **ESTADO EN VINTAGE TELNET / RASPBERRY PI: INACTIVO — FUNCIÓN ENTREGADA**
+- **Firma de salida de Vintage Telnet / Raspberry Pi:** Arquitecto de MatiasGameLab — dejo formalmente la función de Arquitecto de Vintage Telnet / Raspberry Pi y conservo únicamente Senku y la coordinación general compartida — 2026-09-21.
+- **Firma vigente:** Arquitecto de Senku y coordinación general de MatiasGameLab — función actualizada, comprendida y aceptada — 2026-09-21.
 
 
 ### Diseñador de Jugabilidad — Vintage Telnet
