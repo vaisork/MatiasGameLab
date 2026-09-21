@@ -161,3 +161,16 @@ La siguiente tarea separada será adaptar `vintage-telnet.html` para consumir es
 - No se desplegó nada a Raspberry Pi.
 - No se integró la rama de servidor V2.
 - La siguiente acción técnica corresponde a revisión/actualización del servidor V2 contra el `main` vigente y cierre del contrato cliente-servidor.
+
+
+## PRIORIDAD P0 — PRIMER SLICE JUGABLE REAL
+
+Javier fijó la prioridad del siguiente hito:
+
+**ENTRAR → ELEGIR ESPECIE → MOVERSE POR EL PUEBLO**
+
+Se creó `vintage-telnet/FIRST_PLAYABLE_SLICE.md` con el alcance completo, contrato mínimo requerido, persistencia, responsabilidades y prueba de aceptación.
+
+Por decisión de alcance, quedan fuera de este primer slice: chat, combate, PvP, clases, estadísticas, inventario, Arcanes, poderes, economía, monstruos, secretos y mapa completo.
+
+El objetivo es llegar antes a una versión realmente persistente y jugable en teléfono.
