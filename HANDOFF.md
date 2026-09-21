@@ -2,7 +2,7 @@
 
 ## ENTREGA PARA CHATGPT
 
-**Estado:** ENTREGA PREPARADA EN RAMA — NO PUBLICADA
+**Estado:** PUBLICADA EN `main`
 
 ### Desarrollador
 Desarrollador Junior de Vintage Telnet
@@ -91,4 +91,5 @@ Nada de esto representa persistencia real.
 No publicar hasta que Javier diga **“sube”**. Antes de integrar, volver a leer `main`, comparar esta rama y verificar que no haya cambios concurrentes en `vintage-telnet.html`, `AGENTS.md` o `HANDOFF.md`.
 
 **LISTO PARA REVISIÓN:** SÍ  
-**LISTO PARA PUBLICAR:** SOLO TRAS AUTORIZACIÓN “sube”
+**PUBLICADA EN `main`:** SÍ — autorización “sube” recibida el 2026-09-21  
+**MERGE COMMIT:** `41e31ca22c7da24c7c4c9db74c52eb1afcd71b9f`
