@@ -371,3 +371,197 @@ La Raspberry Pi es la **instalación activa** del contenido que utiliza el juego
 GitHub continúa siendo la fuente versionada de código y contenido público autorizado; SQLite y el contenido verdaderamente reservado viven fuera de cada release.
 
 El HTML es una vista. No es repositorio de historia ni autoridad narrativa.
+
+## 12. Despliegue automático confirmado por Javier
+
+**Decisión de Javier:** las actualizaciones de historia/contenido deben llegar automáticamente a la Raspberry Pi.
+
+Se adopta un modelo **pull desde Raspberry**, no push entrante desde GitHub.
+
+### Por qué
+
+- no abre un puerto adicional en la Raspberry;
+- no necesita exponer un webhook del hogar/servidor;
+- no entrega credenciales SSH de la Raspberry a GitHub Actions;
+- si GitHub o la red fallan, el juego conserva la última historia válida;
+- permite validar antes de activar;
+- el contenido y el código pueden actualizarse con ciclos distintos.
+
+### Flujo automático
+
+```text
+Historiador / Narrador
+        ↓
+PR de contenido
+        ↓
+main
+        ↓
+Raspberry detecta nuevo SHA de main
+        ↓
+extrae SOLO vintage-telnet/content/
+        ↓
+validador instalado localmente
+        ↓
+si pasa
+  crea content-releases/<sha>/
+  cambia symlink current-content
+  recarga contenido / reinicia servicio de forma controlada
+si falla
+  conserva current-content anterior
+  registra error
+```
+
+### Rutas operativas propuestas
+
+```text
+/var/lib/vintage-telnet/
+  vintage.sqlite3
+  private-content/
+  content-releases/
+    <git-sha>/
+  current-content -> content-releases/<git-sha>
+
+/var/cache/vintage-telnet/
+  content-source/        # checkout/cache de solo lectura para obtener contenido
+
+/opt/vintage-telnet/current/
+  ... servidor y validador instalados ...
+```
+
+El servidor debe cargar contenido desde:
+
+```text
+/var/lib/vintage-telnet/current-content
+```
+
+y no directamente desde el checkout temporal usado para descargar.
+
+### Frecuencia inicial
+
+Usar un `systemd timer` cada **2 minutos**.
+
+Esto da publicación automática suficientemente rápida sin requerir infraestructura de webhook ni consultas continuas.
+
+La frecuencia se puede cambiar más adelante sin tocar el formato de contenido.
+
+### Qué dispara una activación
+
+Un nuevo SHA de `main` no basta por sí solo.
+
+El actualizador compara el contenido de:
+
+```text
+vintage-telnet/content/
+```
+
+Si esa carpeta no cambió desde la última versión activa, no crea un release de contenido nuevo ni reinicia el servicio.
+
+### Actualización atómica
+
+Nunca copiar archivos directamente encima de `current-content`.
+
+Secuencia:
+
+1. descargar a staging;
+2. validar;
+3. crear `content-releases/<sha>`;
+4. verificar permisos;
+5. cambiar symlink `current-content` de una sola operación;
+6. recargar/reiniciar el servidor;
+7. ejecutar health check;
+8. si falla, volver el symlink a la versión anterior y recuperar el servicio.
+
+Así un archivo parcial o una caída de red no deja el mundo a medias.
+
+### Estado que nunca toca el actualizador
+
+El actualizador de historia tiene prohibido modificar:
+
+- `vintage.sqlite3`;
+- `private-content/`;
+- `/etc/vintage-telnet/server.env`;
+- backups;
+- releases de código.
+
+### Privilegios
+
+El actualizador debe ejecutarse con un usuario sin privilegios de administración y con acceso de escritura únicamente a:
+
+- cache de contenido;
+- `content-releases/`;
+- symlink `current-content`.
+
+No debe poder escribir la base de datos ni leer secretos que no necesita.
+
+### Fallos
+
+Un fallo de contenido no tira el juego.
+
+Si:
+
+- GitHub no responde;
+- no hay Internet;
+- JSON es inválido;
+- una salida apunta a una sala inexistente;
+- falta un archivo obligatorio;
+- falla el health check después de activar;
+
+entonces se conserva o restaura automáticamente la última versión válida y se registra el error para diagnóstico.
+
+### Código vs historia
+
+La automatización aquí descrita despliega **contenido narrativo**, no código Python.
+
+Un cambio en:
+
+```text
+vintage-telnet/content/
+```
+
+puede publicarse automáticamente tras validación.
+
+Un cambio en:
+
+```text
+vintage-telnet/server/
+vintage-telnet/requirements.txt
+vintage-telnet/ops/
+```
+
+sigue el flujo de despliegue de código, con pruebas y revisión correspondientes.
+
+### Contenido privado
+
+`private-content/` no se sincroniza desde el repositorio público.
+
+Si posteriormente se crea una fuente privada autorizada para Historiador/Narrador, tendrá un proceso separado con credenciales de solo lectura y las mismas garantías de staging → validación → activación atómica.
+
+### Primera implementación operativa requerida
+
+El Desarrollador de Servidor/operación debe preparar:
+
+- `scripts/validate-vintage-content.py`;
+- `ops/update-content.sh` o equivalente;
+- `ops/vintage-content-update.service`;
+- `ops/vintage-content-update.timer`;
+- registro del SHA de contenido activo;
+- rollback automático;
+- health check posterior a activación;
+- pruebas locales con contenido válido e inválido.
+
+### Prueba de aceptación
+
+La automatización queda aprobada cuando pueda demostrarse:
+
+1. servidor usando contenido A;
+2. merge de contenido B a `main`;
+3. Raspberry detecta B sin intervención manual;
+4. valida B;
+5. activa B;
+6. las partidas/SQLite permanecen intactas;
+7. contenido C inválido llega a `main`;
+8. Raspberry rechaza C y continúa sirviendo B;
+9. logs explican claramente el rechazo.
+
+**No se considera probado en Raspberry hasta ejecutar esta secuencia físicamente en ella.**
+
