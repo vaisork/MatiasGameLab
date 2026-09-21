@@ -104,7 +104,7 @@ Después de recibir ambas aportaciones, Jugabilidad propondrá con Javier la lis
 
 **Solicitante:** Desarrollador Junior de Vintage Telnet, por instrucción de Javier  
 **Destinatario:** Investigador Técnico y de Implementación — Vintage Telnet  
-**Estado:** PENDIENTE DE INVESTIGACIÓN  
+**Estado:** ENTREGADO — ver `vintage-telnet/RESEARCH_MOBILE_TELNET_UI.md`  
 **Prioridad:** ALTA — la primera versión HTML ya está publicada y Javier la está evaluando desde celular.
 
 ### Contexto confirmado por Javier
