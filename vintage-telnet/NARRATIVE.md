@@ -166,3 +166,78 @@ Cuando Historiador y Jugabilidad resuelvan lo anterior, Desarrollo necesitará p
 Una microzona inicial debería permitir comprobar la experiencia antes de construir regiones enormes: varias habitaciones cercanas al pueblo, más de un tipo de encuentro débil, alguna señal de peligro superior, un descubrimiento que no dependa de matar y una razón natural para regresar.
 
 Las cantidades exactas y la estructura técnica deben decidirlas Jugabilidad/Desarrollo. El objetivo narrativo de la prueba es comprobar si un jugador termina su primera salida pensando **“quiero volver a ver qué hay más adelante”**, no solamente **“necesito repetir esto para subir”.**
+
+
+## VT-NAR-002A–E — Primeras salidas según la especie
+
+**Decisión de dirección creativa:** el punto de partida no se elige independientemente de la especie. Cada personaje comienza en el pueblo correspondiente a su especie y su primera salida ocurre en esa región.
+
+- **Humano → Valdren → Llanos de Edran.**
+- **Felaryn → Khariel → Sierra de Hoshai.**
+- **Dravak → Brumak → Pedrales de Korven.**
+- **Marevyn → Narevia → Aguas de Lethra.**
+- **Vesperi → Velmora → Bosque de Nhal.**
+
+Marcos, Matías y Javier podrán por ello comenzar separados si eligen especies distintas. Sus primeras experiencias no necesitan sincronizarse ni conducirlos inmediatamente al mismo lugar.
+
+### VT-NAR-002A — Humano: salir de Valdren
+
+El primer exterior debe sentirse abierto y cotidiano: parcelas, caminos de tierra, cercas y tránsito rural. El jugador puede detectar señales de **Mordelindes** antes de verlos —tallos roídos, pequeños montículos o huellas— y encontrar también **Espinajos de rastrojo**, cuya postura y púas comunican que no toda criatura reacciona igual al acercamiento.
+
+La salida empieza enseñando a leer un terreno aparentemente sencillo. Más adelante, cercas partidas, huellas profundas o el silencio de la fauna menor pueden anunciar que un **Cornalomo** ha pasado por la zona. El descubrimiento importante para un principiante no es derrotarlo: es comprender que el campo continúa más allá de su capacidad actual.
+
+**Sensación buscada:** “Conozco este paisaje, pero todavía no conozco todo lo que vive en él.”
+
+### VT-NAR-002B — Felaryn: descender desde Khariel
+
+La primera salida aprovecha terrazas, roca, desnivel y líneas de visión. **Uñapiedras** pueden descubrirse por arañazos, mudas o piedras pulidas; los **Saltacrestas** introducen movimiento entre niveles y señales de alarma.
+
+El paisaje permite percibir acontecimientos antes de alcanzarlos. Marcas profundas, restos en lugares elevados o un silencio repentino pueden indicar territorio de un **Rasgacumbres**. La narración debe recompensar observar desde una posición segura antes de avanzar, sin asumir todavía una bonificación mecánica de visión Felaryn.
+
+**Sensación buscada:** “Desde aquí puedo ver lejos; entender lo que estoy viendo es otra cosa.”
+
+### VT-NAR-002C — Dravak: recorrer las grietas de Brumak
+
+La primera salida se construye alrededor de detalles pequeños: hendiduras, piedra cálida, sombras y espacios que un viajero grande podría ignorar. Los **Cascapedernales** dejan raspaduras, mudas y golpeteos; los **Colagrietas** hacen que alimento desaparecido o marcas en el polvo puedan conducir a un encuentro.
+
+El primer aviso de una amenaza superior puede llegar sin que el jugador vea criatura alguna: vibraciones, grietas nuevas y fauna menor abandonando una zona anuncian un posible **Quebrarrocas**.
+
+**Sensación buscada:** “Lo importante no siempre está delante de mí; a veces está debajo o dentro de la piedra.”
+
+### VT-NAR-002D — Marevyn: abandonar las plataformas de Narevia
+
+La primera salida mezcla orillas, barro, raíces, juncos y agua. Los **Pinzajuncos** pueden descubrirse por agujeros y juncos cortados; los **Saltalodos**, por llamadas, salpicaduras y huellas cerca del agua.
+
+La región debe enseñar pronto que una superficie tranquila no equivale a seguridad. Juncos aplastados, ondas grandes o la desaparición repentina de fauna menor pueden anunciar un **Dorsalodo** antes de verlo.
+
+**Sensación buscada:** “El agua muestra señales, pero también esconde cosas.”
+
+### VT-NAR-002E — Vesperi: internarse fuera de Velmora
+
+La primera salida utiliza poca luz, raíces, niebla y señales sutiles. Los **Rondamusgos** pueden confundirse con el entorno hasta moverse; las redes de una **Hilaria de niebla** pueden revelarse por gotas suspendidas o follaje unido de forma extraña.
+
+Aquí el jugador aprende una lección distinta: la ausencia también informa. Un tramo demasiado silencioso, árboles dañados o fauna que cambia sus rutas pueden indicar el territorio de un **Rasgacorteza**.
+
+**Sensación buscada:** “Ver no basta; tengo que notar qué cambió.”
+
+### Estructura compartida sin convertirlas en la misma aventura
+
+Las cinco primeras salidas pueden compartir una estructura técnica sencilla —pueblo → borde conocido → exterior → señal de riesgo → posibilidad de regresar—, pero narrativamente enseñan cinco maneras diferentes de leer el mundo:
+
+- Edran: rastros visibles en un paisaje abierto.
+- Hoshai: distancia, altura y señales verticales.
+- Korven: vibración, grietas y espacios pequeños.
+- Lethra: orillas, sonido y lo oculto bajo el agua.
+- Nhal: camuflaje, silencio y cambios sutiles.
+
+No es necesario que los tres jugadores se reúnan durante esta fase. Si eligen especies diferentes, la separación inicial puede hacer valioso el momento futuro en que comparen lo que cada uno conoce o finalmente coincidan en una ruta o en Vaisgard.
+
+### Estado de dependencias
+
+**NECESIDAD DEL HISTORIADOR — RESUELTA PARA PRIMERA VERSIÓN:** CREATURES.md aporta fauna menor, amenazas superiores, comportamiento y señales ambientales para las cinco regiones.
+
+**NECESIDAD DE JUGABILIDAD — ABIERTA:** siguen pendientes las reglas que convierten estos encuentros en progresión: peligro relativo, recompensas, recuperación, retirada, cooperación, reaparición, derrota y medidas contra repetición óptima.
+
+**NECESIDAD DE NPC — NO BLOQUEANTE PARA ESTA PRUEBA:** estas primeras salidas pueden empezar mediante entorno y criaturas. Los NPC serán necesarios cuando se incorporen encargos, rumores personales, comercio o relaciones.
+
+**NECESIDAD TÉCNICA — POSTERIOR:** implementar una microzona por especie solo después de que Jugabilidad haya definido el mínimo mecánico necesario.
