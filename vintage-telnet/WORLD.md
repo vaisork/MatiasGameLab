@@ -50,6 +50,12 @@ Define la fauna común, comportamiento, rastros y amenazas superiores de las cin
 
 No contiene estadísticas ni balance; esos criterios pertenecen a Jugabilidad.
 
+### 10. Especies jugables — `SPECIES.md`
+
+Define los rasgos naturales corporales, sensoriales y ambientales de Humanos, Felaryn, Dravak, Marevyn y Vesperi. Sirve como fuente narrativa para que Jugabilidad pueda diseñar atributos sin inventar biología o capacidades por su cuenta.
+
+No contiene valores ni bonificaciones mecánicas.
+
 ## Relación con el Narrador
 
 El Historiador construye la **historia estructural y la arquitectura del mundo**: hechos pasados, lugares, culturas, causas, consecuencias, ruinas, conflictos, relaciones y secretos. El Narrador utiliza esa base para crear relatos, escenas, encuentros y experiencias concretas de los jugadores. El Historiador no debe asumir por defecto la función del Narrador.
@@ -74,4 +80,5 @@ El Historiador define qué necesita el mundo, por qué lo necesita y qué funci�
 **Ciudad principal:** `vintage-telnet/VAISGARD.md`  
 **Regiones y caminos:** `vintage-telnet/REGIONS.md`  
 **Criaturas y fauna:** `vintage-telnet/CREATURES.md`  
+**Especies jugables:** `vintage-telnet/SPECIES.md`  
 **Fuente mecánica:** `vintage-telnet/GAMEPLAY.md`
