@@ -11,7 +11,7 @@
 <link rel="icon" type="image/png" sizes="192x192" href="assets/icon/senku-icon-192.png?v=050">
 <link rel="apple-touch-icon" sizes="192x192" href="assets/icon/senku-icon-192.png?v=050">
 <link rel="manifest" href="senku.webmanifest?v=050">
-<title>Senku — México · v0.5.4 | taza en mesa</title>
+<title>Senku — México · v0.5.5 | churus del camión</title>
 <style>
 *{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#151311;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;touch-action:none;user-select:none}
 canvas{position:fixed;inset:0;margin:auto;width:min(100vw,1100px);height:auto;max-height:100vh;aspect-ratio:16/9;background:#ddd;image-rendering:pixelated}
@@ -120,7 +120,7 @@ canvas{position:fixed;inset:0;margin:auto;width:min(100vw,1100px);height:auto;ma
     </div>
   </div>
 </div>
-<div class="version">v0.5.4 · 20/09/26 · taza en mesa</div>
+<div class="version">v0.5.5 · 20/09/26 · churus del camión</div>
 
 <div id="toast"></div>
 <script>
@@ -177,7 +177,7 @@ function setScene(s){
  scene=s;near=null;action.style.display='none';if(busTimer){clearTimeout(busTimer);busTimer=null}
  if(s==='house'){p.x=85;p.y=430;items=[];cupX=465;cupY=384;cupVy=0;cupKnocked=false}
  if(s==='street'){p.x=50;p.y=430;items=[{id:'street-0',x:190,y:430},{id:'street-1',x:330,y:360},{id:'street-2',x:520,y:430},{id:'street-3',x:720,y:374}].map(q=>({...q,t:collected.has(q.id)?1:0}))}
- if(s==='bus'){p.x=170;p.y=430;items=[]}
+ if(s==='bus'){p.x=170;p.y=430;items=[{id:'bus-0',x:110,y:430},{id:'bus-1',x:154,y:430},{id:'bus-2',x:198,y:430},{id:'bus-3',x:242,y:430},{id:'bus-4',x:286,y:430},{id:'bus-5',x:330,y:430},{id:'bus-6',x:374,y:430},{id:'bus-7',x:418,y:430},{id:'bus-8',x:462,y:430},{id:'bus-9',x:506,y:430},{id:'bus-10',x:550,y:430},{id:'bus-11',x:594,y:430},{id:'bus-12',x:638,y:430},{id:'bus-13',x:682,y:430},{id:'bus-14',x:726,y:430},{id:'bus-15',x:770,y:430},{id:'bus-16',x:814,y:430},{id:'bus-17',x:858,y:430},{id:'bus-18',x:902,y:430},{id:'bus-19',x:946,y:430}].map(q=>({...q,t:collected.has(q.id)?1:0}))}
  if(s==='taco'){p.x=60;p.y=430;items=[{id:'taco-0',x:230,y:430},{id:'taco-1',x:580,y:430},{id:'taco-2',x:744,y:355}].map(q=>({...q,t:collected.has(q.id)?1:0}))}
  p.vx=p.vy=0;hud()
 }
@@ -213,7 +213,7 @@ function act(){
  if(near==='window')show('CAPÍTULO 1','México','Senku logra salir de casa. Ahora toca investigar la calle.','SALIR',()=>setScene('street'));
  if(near==='box'){if(!collected.has('street-box')){collected.add('street-box');churus+=3;save();hud();say('+3 Churus secretos 🧃🧃🧃',1800)}else say('La caja ya está vacía.',1200);p.x=620}
  if(near==='dog')show('PERRO DE LA BANQUETA','Una pista','“Ese autobús huele a comida, pero el conductor no parece amar a los animales.”','ENTENDIDO');
- if(near==='bus')show('AUTOBÚS','Viaje gratis','Senku sube sin boleto.','SUBIR',()=>{setScene('bus');busTimer=setTimeout(()=>{if(scene!=='bus')return;show('¡FUERA, GATO!','2 segundos después…','El conductor descubre a Senku y lo baja en la siguiente parada.','CAER DE PIE',()=>setScene('taco'))},2000)});
+ if(near==='bus')show('AUTOBÚS','Viaje gratis','Senku sube sin boleto. ¡Alguien tiró una bolsa de Churus adentro!','SUBIR',()=>{setScene('bus');say('¡Junta los que puedas antes de que te bajen! 🧃',1600);busTimer=setTimeout(()=>{if(scene!=='bus')return;show('¡FUERA, GATO!','2 segundos después…','El conductor descubre a Senku y lo baja en la siguiente parada.','CAER DE PIE',()=>setScene('taco'))},2000)});
  if(near==='rat'){if(!secret){secret=true;save();hud();show('RATA ESCONDIDA','Traje exclusivo','“Psst… toma este traje. Te ayudará a pasar desapercibido.”','RECIBIR',()=>say('¡Traje secreto desbloqueado! 🧣',1800))}else say('La rata ya te dio su traje.')}
 }
 function update(dt){if(!running)return;physics(dt);collect();interaction();bumpCup();fallCup(dt)}
