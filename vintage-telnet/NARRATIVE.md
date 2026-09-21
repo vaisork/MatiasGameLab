@@ -356,3 +356,33 @@ Jugabilidad debe decidir:
 - relación entre conversación local, grupos y PvP.
 
 **Criterio narrativo:** la comunicación debe permitir que los jugadores se enseñen cosas entre ellos sin convertir el conocimiento social en exploración automática.
+
+
+## Recomendación inicial — compartir conocimiento sin transferencia automática
+
+Para la primera versión jugable, el Narrador recomienda **no crear todavía un sistema formal de transferencia de descubrimientos entre personajes**.
+
+La comunicación puede funcionar de forma natural:
+
+- en el **chat general**, un jugador escribe libremente aquello que quiera contar;
+- cuando varios jugadores coinciden físicamente en una misma zona, pueden utilizar el **chat local**;
+- un jugador puede describir una ruta, advertir de una criatura, contar dónde vio algo o transmitir una pista utilizando sus propias palabras;
+- escuchar esa información no modifica automáticamente el mapa, el registro de exploración ni el estado de descubrimiento del receptor.
+
+Si Matías dice “encontré huellas enormes al norte de Valdren”, Javier puede recordar la información y decidir buscar el lugar. El sistema no necesita convertir esa frase automáticamente en un marcador exacto.
+
+Esto conserva una característica valiosa del mundo: la información procedente de otros jugadores puede ser incompleta, imprecisa, exagerada, equivocada o incluso deliberadamente falsa. El descubrimiento personal sigue siendo diferente de aquello que alguien contó.
+
+### Posible expansión futura
+
+Más adelante, si el juego lo necesita, el Historiador puede proponer contenido que permita transmitir conocimiento de una manera más precisa: mapas físicos, cartas, documentos, habilidades, magia u otros recursos del mundo. Jugabilidad decidiría entonces qué efecto mecánico tiene cada uno.
+
+Estos sistemas **no son necesarios para la primera versión** y no deben bloquear el desarrollo del chat.
+
+### Recomendación para Jugabilidad
+
+Para la primera implementación:
+
+**chat = comunicación entre personas; descubrimiento = acción del personaje en el mundo.**
+
+Mantener ambos conceptos separados hasta que las pruebas con jugadores demuestren que hace falta una mecánica adicional.
