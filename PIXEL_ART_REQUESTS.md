@@ -117,7 +117,7 @@ Solicitado por:
 Claude — Desarrollador y Revisor de Senku
 
 Estado:
-SOLICITADO
+LISTO EN ASSETS
 
 Objetivo en el juego:
 Sprite animado de la rata escondida en la Taquería (escena `taco`), NPC que entrega el traje secreto.
@@ -137,13 +137,13 @@ Decisiones visuales ya aprobadas:
 Ninguna — se pide el set completo desde cero, sin partir de ningún archivo existente.
 
 Necesita material de Javier/Matías:
-Por determinar — si no hay una referencia visual previa de la rata en otro lado, puede hacer falta que Javier/Matías definan la pose y estilo antes de producir los 3 frames.
+No — Javier proporcionó directamente los 3 frames visuales el 2026-09-20.
 
 Entrega:
-- Ruta final: (pendiente)
-- Dimensiones: (pendiente)
-- Formato: (pendiente)
-- Frames/orden: (pendiente)
+- Ruta final: `assets/rata/white-rat-sprite-v2.png`
+- Dimensiones: 480×136 px; 3 frames de 160×136 px
+- Formato: PNG con transparencia
+- Frames/orden: izquierda→derecha: Frame 1, Frame 2, Frame 3
 
 Observaciones:
 Se revisaron los 4 archivos de rata que había en el repo abriéndolos directamente en navegador, fuera del juego (no era un problema de cómo el juego los usa, los archivos en sí estaban dañados):
@@ -176,3 +176,16 @@ Responder al terminar esa próxima subida:
 
 Una vez respondido este diagnóstico, el Investigador Técnico podrá proponer una mejora concreta para reducir el tiempo de subida sin comprometer nombres, transparencia, orden de frames ni rutas existentes.
 
+
+
+## Diagnóstico de subida — entrega rata blanca 2026-09-20
+
+1. Archivos subidos: 1 spritesheet final, construido a partir de 3 PNG entregados juntos por Javier.
+2. Recepción: lote de 3 PNG en el mismo mensaje.
+3. Pasos: revisar solicitud y HEAD; inspeccionar dimensiones; retirar únicamente el fondo oscuro conectado al borde conservando contornos; recortar; normalizar cada pose a 160×136; mantener línea de apoyo consistente; componer los 3 frames en fila; conservar transparencia; reducir a pixel-art por vecino más cercano; validar dimensiones; subir el PNG y documentar la ruta.
+4. Los tres originales necesitaron preparación y se procesaron como lote con las mismas reglas.
+5. GitHub: spritesheet y documentación en un solo commit.
+6. Paso más costoso: transparencia y encuadre consistente de los tres originales.
+7. Esperas: principalmente procesamiento/validación de imagen; GitHub no fue el cuello principal.
+8. Recorte, transparencia, escalado, alineación y composición pueden hacerse por lote; conservar validación visual final.
+9. Limitación: los originales llegaron RGB sin alfa y fondo negro; borrar todo negro dañaría el contorno. Se eliminó solo el fondo oscuro conectado al borde.
