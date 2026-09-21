@@ -138,3 +138,26 @@ La siguiente tarea separada será adaptar `vintage-telnet.html` para consumir es
 - Arte integrado a `main`: SÍ.
 - HTML actualizado para usar el arte: NO, pendiente de una tarea posterior.
 - Publicación/servidor Raspberry: sin cambios por esta integración.
+
+
+## PREPARACIÓN DE BASE DE DATOS Y JUGABILIDAD REAL — Vintage Telnet
+
+**Fecha:** 2026-09-21  
+**Estado:** PREPARACIÓN DOCUMENTADA; SERVIDOR V2 NO INTEGRADO
+
+### Trabajo realizado
+- Revisada la rama `claude/vintage-telnet-server-v2`.
+- Commit revisado: `ca7be621cc7862cf4cbb7a34eaea0a787820cf63`.
+- La entrega reporta SQLite real, cuentas/sesiones, aprobación del Dungeon Master, especies, ubicación persistente, movimiento N/S/E/O, chat local y API estructurada.
+- La rama está divergida respecto a `main`; no se integró automáticamente.
+- Se creó `vintage-telnet/DATABASE_GAMEPLAY_PREP.md` con el primer vertical slice jugable real, requisitos mínimos de persistencia, contrato cliente-servidor necesario, seguridad, pruebas y secuencia recomendada.
+
+### Primer hito jugable acordado para preparación
+`Abrir → entrar → aprobar cuenta → elegir especie → aparecer en pueblo → moverse → ver otro jugador → hablar → cerrar → volver → conservar ubicación.`
+
+### Importante
+- No se implementó ni inventó combate.
+- No se modificó `vintage-telnet.html`.
+- No se desplegó nada a Raspberry Pi.
+- No se integró la rama de servidor V2.
+- La siguiente acción técnica corresponde a revisión/actualización del servidor V2 contra el `main` vigente y cierre del contrato cliente-servidor.
