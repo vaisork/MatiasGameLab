@@ -3,186 +3,254 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#16120d">
-  <title>Vintage Telnet — Primera interfaz jugable</title>
+  <meta name="theme-color" content="#17110b">
+  <title>Vintage Telnet — Cliente móvil V2</title>
   <style>
     :root{
       color-scheme:dark;
-      --ink:#eadfc7;--muted:#b7a98e;--gold:#d8b56b;--gold2:#8f6f38;
-      --panel:#17130f;--panel2:#211a13;--deep:#0d0b09;--line:#4c3d2a;
-      --safe:#9fca9a;--warn:#e3bd72;--danger:#d98878;
+      --shell:#17110b;--shell2:#24190f;--panel:#20170f;--line:#5a4328;
+      --ink:#eadfc7;--muted:#bcae92;--gold:#d7b56a;--danger:#d98b78;
+      --term:#030806;--term2:#06110b;--green:#8dff9f;--green2:#5abf70;--green3:#baffc3;
       font-family:Georgia,"Times New Roman",serif;
     }
     *{box-sizing:border-box}
-    html{background:#0d0b09}
-    body{
-      margin:0;min-height:100vh;min-height:100dvh;color:var(--ink);
-      background:
-        radial-gradient(circle at 20% 0%,#302418 0,transparent 35%),
-        radial-gradient(circle at 90% 20%,#241c14 0,transparent 30%),
-        linear-gradient(#120f0c,#090806);
-    }
+    html,body{margin:0;min-height:100%;background:#0b0806;color:var(--ink)}
+    body{min-height:100dvh;background:
+      radial-gradient(circle at 18% 0%,#3a2918 0,transparent 28%),
+      radial-gradient(circle at 85% 10%,#2a1d11 0,transparent 25%),
+      linear-gradient(#171009,#090604)}
     button,input{font:inherit}
     button{touch-action:manipulation}
-    .app{max-width:1380px;margin:auto;min-height:100dvh;padding:clamp(10px,2vw,24px)}
+    .app{
+      width:min(1380px,100%);min-height:100dvh;margin:auto;padding:
+      max(10px,env(safe-area-inset-top)) clamp(10px,2vw,22px)
+      max(10px,env(safe-area-inset-bottom));
+      display:grid;grid-template-rows:auto auto 1fr auto;gap:10px
+    }
     .topbar{
-      display:flex;gap:12px;align-items:center;justify-content:space-between;
-      border:1px solid var(--line);border-radius:14px 14px 0 0;padding:12px 14px;
-      background:#14100dcc;position:sticky;top:0;z-index:8;backdrop-filter:blur(10px)
+      min-height:48px;display:flex;align-items:center;justify-content:space-between;gap:12px;
+      padding:8px 12px;border:1px solid var(--line);border-radius:12px;
+      background:linear-gradient(180deg,#2a1e13,#17100b);box-shadow:0 10px 35px #0007
     }
-    .brand{min-width:0}.brand strong{font-size:clamp(1rem,2.5vw,1.35rem);letter-spacing:.08em}
-    .brand small{display:block;color:var(--muted);margin-top:3px}
-    .status-dot{display:inline-flex;align-items:center;gap:8px;color:var(--warn);font:700 .78rem ui-monospace,monospace;text-transform:uppercase;white-space:nowrap}
-    .status-dot i{width:9px;height:9px;border-radius:50%;background:var(--warn);box-shadow:0 0 12px #e3bd7288}
-    .notice{
-      border:1px solid #765d35;background:#2a2115;color:#f1d79b;
-      padding:10px 13px;font:600 .82rem/1.45 ui-sans-serif,system-ui,sans-serif
+    .brand strong{font-size:clamp(.98rem,2.4vw,1.3rem);letter-spacing:.08em}
+    .brand small{display:block;color:var(--muted);font:600 .72rem/1.2 ui-sans-serif,system-ui,sans-serif;margin-top:2px}
+    .status{display:flex;align-items:center;gap:7px;color:#e5c37a;font:700 .72rem ui-monospace,monospace;text-transform:uppercase;white-space:nowrap}
+    .status i{width:8px;height:8px;border-radius:50%;background:#e5c37a;box-shadow:0 0 10px #e5c37aaa}
+    .demo-note{
+      border:1px solid #6e5431;border-radius:10px;background:#2a2115;color:#efd59a;
+      padding:7px 10px;font:600 .76rem/1.35 ui-sans-serif,system-ui,sans-serif
     }
-    .layout{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:14px;margin-top:14px}
-    .maincol,.sidecol{min-width:0}.card{
-      border:1px solid var(--line);border-radius:14px;background:linear-gradient(180deg,#1b1611f2,#100d0bf2);
-      box-shadow:0 12px 40px #0007;overflow:hidden
+    .layout{min-height:0;display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:12px}
+    .game-shell,.side{min-height:0}
+    .game-shell{
+      min-height:0;border:1px solid var(--line);border-radius:16px;background:linear-gradient(180deg,#21170f,#110c08);
+      box-shadow:0 18px 55px #0008;padding:10px;display:grid;grid-template-rows:minmax(0,1fr) auto auto;gap:9px
     }
-    .card+.card{margin-top:14px}
-    .card-head{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:11px 14px;border-bottom:1px solid var(--line);background:#201a14}
-    .eyebrow{color:var(--gold);font:700 .72rem ui-monospace,monospace;letter-spacing:.12em;text-transform:uppercase}
-    .location{font-size:clamp(1.2rem,3.5vw,1.65rem);margin:3px 0 0}
-    .story{padding:clamp(16px,3vw,28px);min-height:290px}
-    .story p{font-size:clamp(1.04rem,2.1vw,1.2rem);line-height:1.78;margin:0 0 1em;max-width:74ch}
-    .story .system{color:var(--muted);font:italic .95rem/1.55 ui-sans-serif,system-ui,sans-serif;border-left:2px solid var(--gold2);padding-left:12px}
-    .story-log{display:flex;flex-direction:column;gap:14px}
-    .entry{animation:reveal .16s ease-out}
-    @keyframes reveal{from{opacity:.2;transform:translateY(3px)}}
-    .entry .cmd{color:#9ec7a4;font:700 .85rem ui-monospace,monospace;margin-bottom:6px}
-    .important{margin:0 14px 14px;border:1px solid #745c37;background:#251c12;padding:11px 12px;border-radius:10px;color:#f0d89d;font:600 .9rem/1.45 ui-sans-serif,system-ui,sans-serif}
-    .controls{padding:14px;display:grid;grid-template-columns:1fr 1.2fr 1fr;gap:10px;align-items:end}
-    .move{display:grid;grid-template-columns:repeat(3,58px);grid-template-rows:repeat(3,52px);justify-content:center;gap:6px}
-    .move button:nth-child(1){grid-column:2}.move button:nth-child(2){grid-column:1;grid-row:2}.move button:nth-child(3){grid-column:2;grid-row:2}.move button:nth-child(4){grid-column:3;grid-row:2}.move button:nth-child(5){grid-column:2;grid-row:3}
-    .actions{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+    .terminal{
+      min-height:0;border:1px solid #285d37;border-radius:12px;background:
+      radial-gradient(circle at 50% 0%,#0c1a11 0,transparent 30%),
+      linear-gradient(180deg,var(--term2),var(--term));
+      box-shadow:inset 0 0 28px #2dff6b0b,0 0 0 1px #000;
+      color:var(--green);font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+      display:grid;grid-template-rows:auto minmax(0,1fr) auto;overflow:hidden
+    }
+    .terminal-head{
+      display:flex;justify-content:space-between;align-items:center;gap:10px;
+      padding:9px 12px;border-bottom:1px solid #184a27;background:#020604;color:var(--green2)
+    }
+    .terminal-head strong{color:var(--green3);font-size:.9rem}
+    .terminal-head span{font-size:.7rem;text-transform:uppercase;letter-spacing:.08em}
+    .log{min-height:0;overflow:auto;padding:12px 14px;scrollbar-color:#2d6d3d #020503}
+    .entry{margin:0 0 14px}
+    .entry:last-child{margin-bottom:0}
+    .entry .cmd{color:var(--green3);font-weight:800;font-size:.84rem;margin-bottom:5px}
+    .entry p{margin:0;color:var(--green);font-size:clamp(.98rem,2vw,1.06rem);line-height:1.52;max-width:78ch}
+    .entry p.system{color:#70c985}
+    .terminal-alert{
+      border-top:1px solid #174426;background:#020604;padding:8px 12px;color:#79d88d;
+      font-size:.77rem;line-height:1.35
+    }
+    .controls-row{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:center}
+    .dpad{
+      display:grid;grid-template-columns:repeat(3,50px);grid-template-rows:repeat(3,46px);gap:5px;justify-content:center
+    }
+    .dpad button:nth-child(1){grid-column:2}
+    .dpad button:nth-child(2){grid-column:1;grid-row:2}
+    .dpad button:nth-child(3){grid-column:2;grid-row:2}
+    .dpad button:nth-child(4){grid-column:3;grid-row:2}
+    .dpad button:nth-child(5){grid-column:2;grid-row:3}
+    .combat-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .tool-row{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}
     .btn{
-      min-height:50px;border:1px solid #6c5738;border-radius:10px;background:linear-gradient(#312719,#211a12);
-      color:var(--ink);font:700 .9rem ui-sans-serif,system-ui,sans-serif;padding:10px 8px;cursor:pointer
+      min-height:46px;border:1px solid #6d5434;border-radius:10px;background:linear-gradient(#342719,#21180f);
+      color:var(--ink);font:700 .84rem ui-sans-serif,system-ui,sans-serif;padding:8px;cursor:pointer
     }
-    .btn:hover{border-color:var(--gold);background:#382c1c}.btn:active{transform:translateY(1px)}
-    .btn:focus-visible,input:focus-visible{outline:3px solid #f3d28a;outline-offset:2px}
-    .btn.primary{background:#d4b16a;color:#21170b;border-color:#efd18f}
-    .btn.danger{border-color:#7c493f;color:#f1bbb0}.btn.ghost{background:#15110e;color:var(--muted)}
-    .command-wrap{padding:0 14px 14px}
-    .command{display:flex;gap:8px}
-    .command label{position:absolute;left:-9999px}
-    .command input{min-width:0;flex:1;min-height:50px;border-radius:10px;border:1px solid #6c5738;background:#090806;color:#e9f0df;padding:0 14px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:16px}
-    .hint{margin:8px 2px 0;color:#877b69;font:.78rem/1.4 ui-sans-serif,system-ui,sans-serif}
-    .quick{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:14px}
-    .panel-body{padding:14px}.facts{display:grid;gap:10px}
-    .fact{border-bottom:1px solid #382e22;padding-bottom:9px}.fact:last-child{border:0}.fact b{display:block;color:var(--gold);font:.72rem ui-monospace,monospace;text-transform:uppercase;letter-spacing:.08em;margin-bottom:3px}.fact span{color:#ddd0b6}
-    .mapbox{padding:14px}.map{
-      display:grid;grid-template-columns:repeat(5,1fr);gap:6px;align-items:center;min-height:210px;
-      padding:18px;border:1px solid #3f3428;border-radius:12px;background:linear-gradient(135deg,#17120d,#0b0907)
+    .btn:hover{border-color:var(--gold)}
+    .btn:active{transform:translateY(1px)}
+    .btn:focus-visible,input:focus-visible,.close:focus-visible{outline:3px solid #f0d18c;outline-offset:2px}
+    .btn.primary{background:#d8b56a;color:#20160b;border-color:#f1d28f}
+    .btn.danger{border-color:#7d4b41;color:#f2c3b9}
+    .btn.term{
+      background:#061009;color:var(--green3);border-color:#28623a;font-family:ui-monospace,monospace
     }
-    .node{min-height:48px;border:1px dashed #4f4334;border-radius:9px;display:grid;place-items:center;text-align:center;padding:5px;color:#796f5f;font:700 .72rem ui-sans-serif,system-ui,sans-serif}
-    .node.seen{border-style:solid;color:#d7c7a7;background:#1e1812}.node.here{border-color:var(--gold);color:#ffdf99;background:#3a2b17;box-shadow:0 0 0 2px #d8b56b22}
-    .node.unknown{opacity:.5}.map-note{color:#948775;font:.76rem/1.5 ui-sans-serif,system-ui,sans-serif;margin-top:9px}
-    dialog{width:min(620px,calc(100% - 24px));border:1px solid #6a5537;border-radius:14px;background:#15110e;color:var(--ink);padding:0;box-shadow:0 24px 90px #000c}
-    dialog::backdrop{background:#050403c9;backdrop-filter:blur(2px)}
-    .modal-head{display:flex;justify-content:space-between;align-items:center;padding:13px 15px;border-bottom:1px solid var(--line)}
-    .modal-body{padding:16px}.modal-body h3{color:var(--gold);margin:.3em 0}.modal-body p,.modal-body li{line-height:1.6;color:#d7c9ad}
-    .close{width:44px;height:44px;border-radius:9px;border:1px solid #5a4933;background:#211a13;color:#fff;font-size:1.2rem}
-    .footer{padding:14px 4px 4px;color:#746b5e;font:.75rem/1.5 ui-sans-serif,system-ui,sans-serif;text-align:center}
-    @media(max-width:900px){
-      .layout{grid-template-columns:1fr}.sidecol{display:grid;grid-template-columns:1fr 1fr;gap:14px}.sidecol .card{margin:0}.story{min-height:260px}
+    .commandbar{display:flex;gap:8px}
+    .commandbar input{
+      min-width:0;flex:1;min-height:48px;border-radius:10px;border:1px solid #2a673c;background:#020604;color:var(--green3);
+      padding:0 12px;font:16px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace
     }
-    @media(max-width:620px){
-      .app{padding:0}.topbar{border-radius:0;border-left:0;border-right:0}.brand small{display:none}.status-dot span{display:none}
-      .notice{border-left:0;border-right:0}
-      .layout{margin-top:0;gap:0}.card{border-radius:0;border-left:0;border-right:0;box-shadow:none}.card+.card{margin-top:0;border-top:0}
-      .sidecol{display:block}.sidecol .card{margin:0;border-top:0}.story{padding:18px 15px;min-height:250px}
-      .controls{grid-template-columns:1fr;padding:12px}.actions{grid-template-columns:repeat(3,1fr)}
-      .move{grid-template-columns:repeat(3,68px);grid-template-rows:repeat(3,56px)}
-      .command-wrap{padding:0 12px 14px}.quick{padding:12px}
-      .sidecol .card.collapsible .panel-body,.sidecol .card.collapsible .mapbox{display:none}
-      .sidecol .card.collapsible.open .panel-body,.sidecol .card.collapsible.open .mapbox{display:block}
-      .tap-toggle{cursor:pointer}
+    .side{display:grid;grid-template-rows:1fr auto;gap:12px}
+    .card{
+      min-height:0;border:1px solid var(--line);border-radius:14px;background:linear-gradient(180deg,#21180f,#120d09);
+      box-shadow:0 14px 40px #0006;overflow:hidden
+    }
+    .card-head{padding:10px 12px;border-bottom:1px solid var(--line);background:#2a1e13}
+    .card-head b{display:block;color:var(--gold);font:700 .72rem ui-monospace,monospace;text-transform:uppercase;letter-spacing:.08em}
+    .card-head span{font-size:.95rem}
+    .mapbox{padding:12px;height:100%}
+    .map{
+      height:100%;min-height:250px;display:grid;grid-template-columns:repeat(5,1fr);gap:6px;align-items:center;
+      padding:14px;border:1px solid #463523;border-radius:12px;background:#100b07
+    }
+    .node{min-height:46px;border:1px dashed #574936;border-radius:8px;display:grid;place-items:center;text-align:center;padding:4px;color:#776c5e;font:700 .7rem ui-sans-serif,system-ui,sans-serif}
+    .node.seen{border-style:solid;color:#d7c7a7;background:#21180f}
+    .node.here{border-color:var(--gold);color:#ffe1a0;background:#3a2916;box-shadow:0 0 0 2px #d8b56b22}
+    .node.unknown{opacity:.5}
+    .map-note{margin:8px 0 0;color:#9b8d78;font:.74rem/1.4 ui-sans-serif,system-ui,sans-serif}
+    .facts{padding:12px;display:grid;gap:9px}
+    .fact{display:grid;grid-template-columns:110px 1fr;gap:8px;border-bottom:1px solid #392b1c;padding-bottom:8px;font:.82rem/1.35 ui-sans-serif,system-ui,sans-serif}
+    .fact:last-child{border:0;padding-bottom:0}
+    .fact b{color:var(--gold)}
+    dialog{
+      width:min(620px,calc(100% - 20px));max-height:min(82dvh,720px);border:1px solid #6c5332;border-radius:16px;
+      background:#17100b;color:var(--ink);padding:0;box-shadow:0 26px 90px #000d
+    }
+    dialog::backdrop{background:#050302c9;backdrop-filter:blur(3px)}
+    .modal-head{display:flex;justify-content:space-between;align-items:center;padding:11px 13px;border-bottom:1px solid var(--line);background:#271b11}
+    .modal-body{padding:14px;overflow:auto;max-height:calc(82dvh - 60px)}
+    .modal-body h3{margin:.2em 0 .6em;color:var(--gold)}
+    .modal-body p{line-height:1.55;color:#d9ccb1}
+    .close{width:44px;height:44px;border-radius:9px;border:1px solid #5d4930;background:#1b130d;color:#fff;font-size:1.2rem}
+    .footer{color:#796d5d;font:.7rem ui-sans-serif,system-ui,sans-serif;text-align:center}
+
+    @media(max-width:959px){
+      .layout{grid-template-columns:1fr}
+      .side{display:none}
+    }
+    @media(max-width:640px){
+      .app{
+        height:100dvh;overflow:hidden;padding:max(6px,env(safe-area-inset-top)) 6px max(6px,env(safe-area-inset-bottom));
+        grid-template-rows:auto auto minmax(0,1fr);gap:6px
+      }
+      .topbar{min-height:44px;padding:6px 9px;border-radius:10px}
+      .brand small{display:none}.status span{display:none}
+      .demo-note{padding:5px 8px;font-size:.68rem}
+      .layout{min-height:0}
+      .game-shell{
+        height:100%;min-height:0;border-radius:12px;padding:6px;gap:6px;
+        grid-template-rows:minmax(0,1fr) auto auto
+      }
+      .terminal-head{padding:7px 9px}
+      .terminal-head strong{font-size:.82rem}
+      .terminal-head span{font-size:.62rem}
+      .log{padding:10px 11px}
+      .entry{margin-bottom:11px}
+      .entry p{font-size:16px;line-height:1.48}
+      .terminal-alert{padding:6px 9px;font-size:.69rem}
+      .controls-row{grid-template-columns:auto 1fr;gap:7px}
+      .dpad{grid-template-columns:repeat(3,46px);grid-template-rows:repeat(3,44px);gap:4px}
+      .btn{min-height:44px;padding:6px;font-size:.76rem;border-radius:9px}
+      .combat-actions{grid-template-columns:1fr;gap:5px}
+      .tool-row{gap:5px}
+      .tool-row .btn{font-size:.7rem}
+      .commandbar{gap:5px}
+      .commandbar input{min-height:46px}
+      dialog{width:calc(100% - 12px);max-height:88dvh;border-radius:16px 16px 8px 8px;margin:auto 6px 6px}
+      .modal-body{max-height:calc(88dvh - 58px)}
+      .footer{display:none}
+    }
+    @media(max-width:390px){
+      .dpad{grid-template-columns:repeat(3,42px);grid-template-rows:repeat(3,42px)}
+      .tool-row .btn{font-size:.66rem;padding-inline:3px}
+      .combat-actions .btn{font-size:.7rem}
+    }
+    @media(prefers-reduced-motion:reduce){
+      *,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}
     }
   </style>
 </head>
 <body>
 <div class="app">
   <header class="topbar">
-    <div class="brand"><strong>VINTAGE TELNET</strong><small>Matías Game Lab · cliente web</small></div>
-    <div class="status-dot" title="Demostración local, sin servidor"><i></i><span>Demo local</span></div>
+    <div class="brand"><strong>VINTAGE TELNET</strong><small>Cliente web · Matías Game Lab</small></div>
+    <div class="status" title="Demostración local, sin servidor"><i></i><span>Demo local</span></div>
   </header>
 
-  <div class="notice" role="status">
-    DEMOSTRACIÓN DE INTERFAZ · No está conectada a la Raspberry Pi y no guarda progreso. La distribución de esta microzona es temporal y no establece canon.
-  </div>
+  <div class="demo-note" role="status">DEMO LOCAL · sin Raspberry Pi · sin persistencia · la microzona no define el mapa final.</div>
 
   <div class="layout">
-    <main class="maincol">
-      <section class="card" aria-labelledby="placeTitle">
-        <div class="card-head">
-          <div><div class="eyebrow">Ubicación actual</div><h1 class="location" id="placeTitle">Valdren · plaza central</h1></div>
-          <button class="btn ghost" data-action="mirar">Mirar</button>
+    <main class="game-shell">
+      <section class="terminal" aria-labelledby="placeTitle">
+        <div class="terminal-head">
+          <strong id="placeTitle">VALDREN / PLAZA CENTRAL</strong>
+          <span>TELNET SESSION</span>
         </div>
-        <div class="story" id="story" aria-live="polite">
-          <div class="story-log" id="storyLog">
-            <div class="entry">
-              <p>Valdren es un pueblo humano de caminos de tierra, construcciones de madera y piedra y pequeñas parcelas de cultivo. Desde esta plaza sencilla se percibe el movimiento cotidiano de talleres, huertos y viajeros.</p>
-              <p class="system">Esta escena utiliza únicamente elementos públicos ya descritos para Valdren. El recorrido que ves aquí sirve para probar la interfaz y todavía no define el mapa definitivo.</p>
-            </div>
+        <div class="log" id="storyLog" aria-live="polite">
+          <div class="entry">
+            <div class="cmd">&gt; conectar</div>
+            <p>Valdren es un pueblo humano de caminos de tierra, construcciones de madera y piedra y pequeñas parcelas de cultivo. Desde esta plaza sencilla se percibe el movimiento cotidiano de talleres, huertos y viajeros.</p>
+          </div>
+          <div class="entry">
+            <div class="cmd">&gt; sistema</div>
+            <p class="system">La distribución de esta microzona existe solo para probar la interfaz. No establece canon ni guarda progreso.</p>
           </div>
         </div>
-        <div class="important" id="important">No hay combate activo. Explora con los botones o escribe un comando.</div>
+        <div class="terminal-alert" id="important">Sin combate activo. Explora con los controles o escribe un comando.</div>
       </section>
 
-      <section class="card">
-        <div class="card-head"><div><div class="eyebrow">Acciones</div><div>Botón y comando → misma acción</div></div></div>
-        <div class="controls">
-          <div class="move" aria-label="Movimiento cardinal">
-            <button class="btn" data-action="norte" aria-label="Ir al norte">N</button>
-            <button class="btn" data-action="oeste" aria-label="Ir al oeste">O</button>
-            <button class="btn ghost" data-action="mirar" aria-label="Mirar">◎</button>
-            <button class="btn" data-action="este" aria-label="Ir al este">E</button>
-            <button class="btn" data-action="sur" aria-label="Ir al sur">S</button>
-          </div>
-          <div class="actions">
-            <button class="btn primary" data-action="atacar">Atacar</button>
-            <button class="btn danger" data-action="huir">Huir</button>
-            <button class="btn" data-open="mapDialog">Mapa</button>
-          </div>
-          <div class="actions">
-            <button class="btn" data-open="characterDialog">Personaje</button>
-            <button class="btn" data-open="inventoryDialog">Inventario</button>
-            <button class="btn ghost" data-action="ayuda">Ayuda</button>
-          </div>
+      <section class="controls-row" aria-label="Controles principales">
+        <div class="dpad" aria-label="Movimiento cardinal">
+          <button class="btn term" data-action="norte" aria-label="Ir al norte">N</button>
+          <button class="btn term" data-action="oeste" aria-label="Ir al oeste">O</button>
+          <button class="btn term" data-action="mirar" aria-label="Mirar">◎</button>
+          <button class="btn term" data-action="este" aria-label="Ir al este">E</button>
+          <button class="btn term" data-action="sur" aria-label="Ir al sur">S</button>
         </div>
-        <div class="command-wrap">
-          <form class="command" id="commandForm">
-            <label for="commandInput">Escribe un comando</label>
-            <input id="commandInput" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="Escribe: norte, mirar, mapa…">
-            <button class="btn primary" type="submit">Enviar</button>
-          </form>
-          <p class="hint">Demo: norte/sur/este/oeste, mirar, atacar, huir, mapa, personaje, inventario, ayuda. También acepta n/s/e/o.</p>
+        <div class="combat-actions">
+          <button class="btn primary" data-action="atacar">Atacar</button>
+          <button class="btn danger" data-action="huir">Huir</button>
+        </div>
+      </section>
+
+      <section>
+        <form class="commandbar" id="commandForm">
+          <input id="commandInput" aria-label="Escribe un comando" autocomplete="off" autocapitalize="none" spellcheck="false" enterkeyhint="send" placeholder="> comando...">
+          <button class="btn primary" type="submit">Enviar</button>
+        </form>
+        <div class="tool-row" aria-label="Herramientas">
+          <button class="btn" data-action="mapa">Mapa</button>
+          <button class="btn" data-action="personaje">Personaje</button>
+          <button class="btn" data-action="inventario">Inventario</button>
+          <button class="btn" data-action="ayuda">Ayuda</button>
         </div>
       </section>
     </main>
 
-    <aside class="sidecol">
-      <section class="card collapsible open" id="mapCard">
-        <div class="card-head tap-toggle" data-toggle="mapCard"><div><div class="eyebrow">Mapa conocido</div><div>Orientación de la demo</div></div><span aria-hidden="true">⌄</span></div>
+    <aside class="side">
+      <section class="card">
+        <div class="card-head"><b>Mapa conocido</b><span>Orientación de la demo</span></div>
         <div class="mapbox">
           <div class="map" id="miniMap" aria-label="Mapa de demostración">
             <div></div><div class="node seen" data-room="norte">Camino norte</div><div></div><div></div><div></div>
             <div class="node seen" data-room="oeste">Taller</div><div></div><div class="node here" data-room="centro">Plaza</div><div></div><div class="node seen" data-room="este">Huertos</div>
             <div></div><div class="node seen" data-room="sur">Camino sur</div><div></div><div></div><div class="node unknown">?</div>
           </div>
-          <p class="map-note">Solo muestra lugares de esta demostración. “?” representa que el cliente puede ocultar información no descubierta; no corresponde a un secreto real del canon.</p>
+          <p class="map-note">“?” demuestra que el cliente puede ocultar información no descubierta; no corresponde a un secreto real.</p>
         </div>
       </section>
-
-      <section class="card collapsible open" id="stateCard">
-        <div class="card-head tap-toggle" data-toggle="stateCard"><div><div class="eyebrow">Estado visible</div><div>Datos de interfaz</div></div><span aria-hidden="true">⌄</span></div>
-        <div class="panel-body facts">
-          <div class="fact"><b>Conexión</b><span>Sin servidor · demostración local</span></div>
+      <section class="card">
+        <div class="card-head"><b>Estado visible</b><span>Datos de interfaz</span></div>
+        <div class="facts">
+          <div class="fact"><b>Conexión</b><span>Demo local</span></div>
           <div class="fact"><b>Persistencia</b><span>No guarda cambios</span></div>
           <div class="fact"><b>Combate</b><span id="combatState">Inactivo</span></div>
           <div class="fact"><b>Última acción</b><span id="lastAction">mirar</span></div>
@@ -191,82 +259,80 @@
     </aside>
   </div>
 
-  <div class="footer">Vertical slice de cliente · Vintage Telnet · rama de desarrollo, no persistente</div>
+  <div class="footer">Vintage Telnet · vertical slice móvil V2 · texto primero, HTML como herramienta</div>
 </div>
 
 <dialog id="mapDialog">
   <div class="modal-head"><strong>Mapa</strong><button class="close" data-close aria-label="Cerrar">×</button></div>
-  <div class="modal-body"><h3>Orientación sin revelar el mundo</h3><p>El mapa definitivo deberá renderizar únicamente lo que el servidor autorice como conocido por el personaje. Esta demo usa una microzona temporal para probar tamaño, lectura y navegación táctil.</p><div id="mapClone"></div></div>
+  <div class="modal-body"><h3>Mapa conocido</h3><p>Esta vista móvil saca el mapa del flujo principal para dejar más espacio a la terminal.</p><div id="mapClone"></div></div>
 </dialog>
 <dialog id="characterDialog">
   <div class="modal-head"><strong>Personaje</strong><button class="close" data-close aria-label="Cerrar">×</button></div>
-  <div class="modal-body"><h3>Panel preparado</h3><p>El personaje real deberá llegar desde el servidor. No se muestran estadísticas ficticias porque atributos y valores todavía dependen de Jugabilidad y del estado persistente.</p></div>
+  <div class="modal-body"><h3>Panel preparado</h3><p>El personaje real debe llegar desde el servidor. No se inventan estadísticas mientras Jugabilidad y persistencia sigan pendientes.</p></div>
 </dialog>
 <dialog id="inventoryDialog">
   <div class="modal-head"><strong>Inventario</strong><button class="close" data-close aria-label="Cerrar">×</button></div>
-  <div class="modal-body"><h3>Sin inventario simulado</h3><p>Este panel demuestra el espacio y la interacción. Los objetos reales deberán provenir del servidor; la demo no finge que existe un inventario guardado.</p></div>
+  <div class="modal-body"><h3>Sin inventario simulado</h3><p>El panel existe como herramienta HTML, pero los objetos reales deberán provenir del servidor.</p></div>
+</dialog>
+<dialog id="helpDialog">
+  <div class="modal-head"><strong>Ayuda</strong><button class="close" data-close aria-label="Cerrar">×</button></div>
+  <div class="modal-body"><h3>Comandos de esta demo</h3><p>Norte, sur, este, oeste, mirar, atacar, huir, mapa, personaje, inventario y ayuda. También puedes usar n/s/e/o.</p></div>
 </dialog>
 
 <script>
 (() => {
   const rooms = {
-    centro:{title:"Valdren · plaza central",text:"La plaza central pequeña reúne los caminos del pueblo. Alrededor se perciben viviendas, talleres básicos y el trabajo de los huertos.", exits:{norte:"norte",sur:"sur",este:"este",oeste:"oeste"}},
-    norte:{title:"Valdren · camino norte",text:"El camino de tierra deja atrás la plaza. Viajeros y noticias de otras regiones forman parte habitual de la vida de Valdren.",exits:{sur:"centro"}},
-    sur:{title:"Valdren · camino sur",text:"El camino continúa entre construcciones sencillas y parcelas de cultivo. La demostración termina antes de definir destinos que correspondan al mapa real.",exits:{norte:"centro"}},
-    este:{title:"Valdren · borde de los huertos",text:"Pequeñas parcelas de cultivo forman parte del paisaje de Valdren. Aquí la demo solo prueba lectura, orientación y regreso a la plaza.",exits:{oeste:"centro"}},
-    oeste:{title:"Valdren · zona de talleres",text:"Talleres básicos forman parte del pueblo. Esta interfaz no asigna comerciantes, precios, objetos ni reglas que todavía pertenecen a otros sistemas.",exits:{este:"centro"}}
+    centro:{title:"VALDREN / PLAZA CENTRAL",text:"La plaza central pequeña reúne los caminos del pueblo. Alrededor se perciben viviendas, talleres básicos y el trabajo de los huertos.",exits:{norte:"norte",sur:"sur",este:"este",oeste:"oeste"}},
+    norte:{title:"VALDREN / CAMINO NORTE",text:"El camino de tierra deja atrás la plaza. Viajeros y noticias de otras regiones forman parte habitual de la vida de Valdren.",exits:{sur:"centro"}},
+    sur:{title:"VALDREN / CAMINO SUR",text:"El camino continúa entre construcciones sencillas y parcelas de cultivo. La demostración termina antes de definir destinos que correspondan al mapa real.",exits:{norte:"centro"}},
+    este:{title:"VALDREN / BORDE DE LOS HUERTOS",text:"Pequeñas parcelas de cultivo forman parte del paisaje de Valdren. Aquí la demo solo prueba lectura, orientación y regreso a la plaza.",exits:{oeste:"centro"}},
+    oeste:{title:"VALDREN / ZONA DE TALLERES",text:"Talleres básicos forman parte del pueblo. Esta interfaz no asigna comerciantes, precios, objetos ni reglas que todavía pertenecen a otros sistemas.",exits:{este:"centro"}}
   };
   let room="centro";
-  const storyLog=document.querySelector("#storyLog");
+  const log=document.querySelector("#storyLog");
   const title=document.querySelector("#placeTitle");
   const important=document.querySelector("#important");
   const lastAction=document.querySelector("#lastAction");
   const combat=document.querySelector("#combatState");
   const input=document.querySelector("#commandInput");
 
+  function scrollLog(){ log.scrollTop=log.scrollHeight; }
   function append(command,text,kind="normal"){
     const wrap=document.createElement("div");wrap.className="entry";
     const c=document.createElement("div");c.className="cmd";c.textContent="> "+command;
-    const p=document.createElement("p");p.textContent=text;
-    if(kind==="system")p.className="system";
-    wrap.append(c,p);storyLog.append(wrap);
-    while(storyLog.children.length>6)storyLog.firstElementChild.remove();
-    wrap.scrollIntoView({behavior:"smooth",block:"nearest"});
+    const p=document.createElement("p");p.textContent=text;if(kind==="system")p.className="system";
+    wrap.append(c,p);log.append(wrap);
+    while(log.children.length>8)log.firstElementChild.remove();
+    requestAnimationFrame(scrollLog);
   }
-  function updateMap(){
-    document.querySelectorAll("[data-room]").forEach(n=>n.classList.toggle("here",n.dataset.room===room));
-  }
+  function updateMap(){document.querySelectorAll("[data-room]").forEach(n=>n.classList.toggle("here",n.dataset.room===room));}
   function move(dir){
     const next=rooms[room].exits[dir];
     if(!next){append(dir,"No hay una salida de demostración en esa dirección. Esto no define una pared ni ruta del mundo definitivo.","system");return;}
-    room=next;title.textContent=rooms[room].title;updateMap();append(dir,rooms[room].text);important.textContent="Te has movido dentro de la microzona local. Este cambio no se guarda.";
+    room=next;title.textContent=rooms[room].title;updateMap();append(dir,rooms[room].text);
+    important.textContent="Movimiento local de demostración. No se guarda.";
   }
-  function openDialog(id){const d=document.getElementById(id);if(d && !d.open)d.showModal();}
+  function openDialog(id){const d=document.getElementById(id);if(d&&!d.open)d.showModal();}
   function perform(raw){
     const value=(raw||"").trim().toLowerCase();
-    const aliases={n:"norte",s:"sur",e:"este",o:"oeste","ver":"mirar","look":"mirar","map":"mapa","inventario":"inventario","inv":"inventario","personaje":"personaje","char":"personaje","ataca":"atacar","flee":"huir"};
-    const action=aliases[value]||value;
-    if(!action)return;
-    lastAction.textContent=action;
+    const aliases={n:"norte",s:"sur",e:"este",o:"oeste",ver:"mirar",look:"mirar",map:"mapa",inv:"inventario",char:"personaje",ataca:"atacar",flee:"huir"};
+    const action=aliases[value]||value;if(!action)return;lastAction.textContent=action;
     if(["norte","sur","este","oeste"].includes(action)){move(action);return;}
     if(action==="mirar"){append("mirar",rooms[room].text);important.textContent="Observas el lugar. Leer sigue siendo parte central de la exploración.";return;}
-    if(action==="atacar"){append("atacar","No hay un objetivo de combate autorizado en esta demostración. El cliente ya reserva esta acción para enviarla al mismo sistema que usaría el comando.","system");combat.textContent="Inactivo";important.textContent="NECESIDAD DE JUGABILIDAD: objetivo/contexto de ataque y respuesta de combate.";return;}
-    if(action==="huir"){append("huir","No hay combate activo del que huir. La acción existe como entrada de interfaz, pero su resultado real debe decidirlo el servidor según Jugabilidad.","system");important.textContent="NECESIDAD DEL SERVIDOR: resolver y devolver el resultado real de HUIR.";return;}
-    if(action==="mapa"){openDialog("mapDialog");append("mapa","Abres el mapa conocido de la demostración.","system");return;}
-    if(action==="personaje"){openDialog("characterDialog");append("personaje","Abres el panel de personaje. No se inventan estadísticas.","system");return;}
-    if(action==="inventario"){openDialog("inventoryDialog");append("inventario","Abres el inventario. No se simulan objetos persistentes.","system");return;}
-    if(action==="ayuda"){append("ayuda","Puedes moverte con norte, sur, este y oeste; mirar; abrir mapa, personaje o inventario; y probar atacar o huir. Los botones envían estas mismas acciones.","system");return;}
-    append(action,"Comando no reconocido por esta demostración local. El parser real y sus mensajes deberán seguir el contrato definido por Jugabilidad/servidor.","system");
+    if(action==="atacar"){append("atacar","No hay un objetivo de combate autorizado en esta demostración. Botón y comando ya comparten la misma acción.","system");combat.textContent="Inactivo";important.textContent="NECESIDAD DE JUGABILIDAD: objetivo y respuesta de combate.";return;}
+    if(action==="huir"){append("huir","No hay combate activo. El resultado real de HUIR deberá resolverlo el servidor según Jugabilidad.","system");important.textContent="NECESIDAD DEL SERVIDOR: resolver HUIR.";return;}
+    if(action==="mapa"){openDialog("mapDialog");append("mapa","Abres el mapa conocido.","system");return;}
+    if(action==="personaje"){openDialog("characterDialog");append("personaje","Abres el panel de personaje.","system");return;}
+    if(action==="inventario"){openDialog("inventoryDialog");append("inventario","Abres el inventario.","system");return;}
+    if(action==="ayuda"){openDialog("helpDialog");append("ayuda","Abres la ayuda de comandos de esta demo.","system");return;}
+    append(action,"Comando no reconocido por esta demostración local.","system");
   }
-
   document.querySelectorAll("[data-action]").forEach(b=>b.addEventListener("click",()=>perform(b.dataset.action)));
-  document.querySelectorAll("[data-open]").forEach(b=>b.addEventListener("click",()=>perform(b.dataset.open==="mapDialog"?"mapa":b.dataset.open==="characterDialog"?"personaje":"inventario")));
   document.querySelector("#commandForm").addEventListener("submit",e=>{e.preventDefault();perform(input.value);input.value="";input.focus();});
   document.querySelectorAll("[data-close]").forEach(b=>b.addEventListener("click",()=>b.closest("dialog").close()));
   document.querySelectorAll("dialog").forEach(d=>d.addEventListener("click",e=>{if(e.target===d)d.close();}));
-  document.querySelectorAll("[data-toggle]").forEach(h=>h.addEventListener("click",()=>{if(matchMedia("(max-width:620px)").matches)document.getElementById(h.dataset.toggle).classList.toggle("open");}));
   document.querySelector("#mapClone").append(document.querySelector("#miniMap").cloneNode(true));
-  updateMap();
+  updateMap();scrollLog();
 })();
 </script>
 </body>
