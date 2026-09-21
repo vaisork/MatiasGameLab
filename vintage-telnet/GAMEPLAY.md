@@ -113,9 +113,54 @@ El jugador debe presentar evidencia de haber aplicado la pieza a su figura.
 Se prevé un **Validador de Forja** separado que comprueba esa evidencia y registra la validación. El Validador aplica las reglas; no las inventa.
 
 
+## 15. Interfaz híbrida — espíritu Telnet con capacidades HTML
+
+Vintage Telnet conservará el **texto, la lectura, el descubrimiento y la estructura de mundo de un MUD/Telnet**, pero no obligará al jugador a utilizar una terminal antigua ni a memorizar comandos frecuentes.
+
+La interfaz HTML forma parte deliberada de la experiencia. Su función es hacer más accesibles y legibles las acciones habituales sin eliminar el carácter textual del juego.
+
+### Texto e historia como núcleo
+Las descripciones de lugares, encuentros, criaturas, conversaciones, rumores, historia y descubrimientos continúan presentándose principalmente mediante texto. Leer el mundo sigue siendo una parte fundamental de jugar.
+
+Las mejoras visuales no deben convertir Vintage Telnet en un juego gráfico convencional que relegue el texto a un elemento secundario.
+
+### Botones para acciones frecuentes
+Las acciones que el jugador realiza constantemente pueden tener botones visibles y táctiles.
+
+Quedan confirmados como ejemplos fundamentales:
+- movimiento por direcciones;
+- atacar;
+- huir.
+
+La interfaz podrá añadir otras acciones frecuentes cuando Jugabilidad las apruebe. El jugador no debe necesitar abrir el teclado y escribir una dirección cada vez que quiera desplazarse.
+
+### Una acción, distintas formas de entrada
+Cuando una acción pueda ejecutarse mediante botón y mediante comando escrito, ambas entradas representan **la misma acción del juego**. No existen reglas diferentes por utilizar botón o texto.
+
+Los comandos escritos pueden conservarse para jugadores que prefieran utilizarlos y para interacciones especiales, conversación, descubrimientos o secretos cuando corresponda.
+
+### Mapa HTML más detallado
+Vintage Telnet aprovechará HTML para ofrecer un mapa visual más claro y detallado que el que sería habitual en una terminal clásica.
+
+El mapa ayuda a comprender lugares, caminos y orientación, pero **no revela automáticamente zonas secretas, rutas ocultas ni información que el personaje todavía no haya descubierto**.
+
+La interfaz puede mejorar la orientación sin eliminar la exploración.
+
+### Información en pantallas legibles
+Información que resulte incómoda dentro del flujo continuo de texto puede mostrarse mediante pantallas o paneles HTML fáciles de consultar.
+
+Esto puede incluir, según las reglas que se definan posteriormente, personaje, inventario, equipo, mapa, ayuda, instrucciones y estado de combate.
+
+El objetivo es evitar que información importante quede enterrada entre mensajes y facilitar el uso desde teléfono, iPad/tablet y computadora.
+
+### Principio de diseño
+**El mundo se descubre y se narra con el espíritu de un Telnet; las acciones frecuentes y la información compleja aprovechan una interfaz web moderna.**
+
+HTML debe reducir fricción, no resolver automáticamente decisiones del jugador ni revelar aquello que todavía debe descubrir.
+
 ## Investigación disponible para Jugabilidad — capacidades HTML y comandos
 
-**ESTADO: INFORMACIÓN PARA DECISIÓN — NO ES TODAVÍA UNA REGLA DE JUGABILIDAD.**
+**ESTADO: INVESTIGACIÓN CONSUMIDA PARCIALMENTE — la dirección híbrida HTML/Telnet ya está confirmada; quedan decisiones específicas por cerrar.**
 
 El Investigador Técnico completó `vintage-telnet/RESEARCH_SPANISH_COMMANDS_WEB_UI.md`. El Diseñador de Jugabilidad debe leerla antes de cerrar las reglas de exploración, interacción, combate, inventario, mapa y controles.
 
