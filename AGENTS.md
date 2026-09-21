@@ -331,7 +331,7 @@ Si una instrucción entra en conflicto con estas reglas o el estado real del rep
 - Los dos desarrolladores pueden revisar y aprender del trabajo del otro y proponer mejoras. Ninguno debe borrar, rehacer o corregir silenciosamente el trabajo del compañero. Si detecta un problema, debe dejarlo explícito; puede corregirlo cuando forme parte de la tarea asignada y documente la corrección.
 - Para decisiones técnicas inciertas o con impacto relevante en arquitectura, rendimiento, compatibilidad móvil/tablet o mantenibilidad, consulta al **Investigador Técnico y de Implementación — Senku** y/o al Arquitecto según corresponda.
 - No decide dirección creativa, no produce Pixel Art y no modifica Vintage Telnet.
-- **Firma pendiente del agente:** debe leer estas reglas, explicar con sus propias palabras qué entendió y sustituir esta línea por su firma antes de comenzar trabajo autónomo.
+- **Firma:** Desarrollador Junior de Senku — segundo desarrollador — función leída, comprendida y aceptada — 2026-09-20.
 
 ### Integrador y Publicador HTML — Vintage Telnet
 - **Función asignada por Javier:** responsable de la interfaz web/HTML mediante la cual los jugadores entran y utilizan Vintage Telnet desde teléfono, iPad/tablet o computadora, y responsable de la integración/publicación final de esa interfaz cuando Javier lo autorice.
