@@ -296,3 +296,63 @@ Ejemplo de flujo deseado:
 5. ninguna ayuda HTML revela anticipadamente un enemigo oculto, una ruta secreta o la solución de una pista.
 
 **NECESIDAD DE JUGABILIDAD:** decidir qué información adicional proporciona evaluar peligro, cuándo está disponible y cómo distingue una amenaza apropiada de una claramente superior sin convertir el sistema en una predicción perfecta.
+
+
+## Propuesta para Jugabilidad — encuentro y comunicación entre jugadores
+
+**Dirección aprobada por Javier:** existen dos contextos distintos de comunicación entre jugadores.
+
+### Chat general
+
+El chat general permite que jugadores que no están físicamente juntos hablen y que todos los participantes del canal puedan enterarse de aquello que un jugador decida contar.
+
+Escuchar información por el chat general **no equivale a haberla descubierto personalmente**. Si un jugador publica que encontró una ruina, criatura, entrada o pista, los demás adquieren información social, pero el juego no debería marcar automáticamente el lugar como explorado ni revelar en su mapa aquello que su personaje todavía no ha visitado.
+
+### Encuentro en la misma zona
+
+Cuando dos o más jugadores coinciden en la misma zona, la interfaz puede abrir o habilitar un **menú local de interacción**. Su propósito es hacer evidente que hay otros jugadores presentes y permitir comunicación contextual sin obligar a escribir comandos especiales.
+
+Desde Narrativa, las opciones iniciales útiles son:
+
+- **Hablar:** abrir conversación local con los jugadores presentes.
+- **Compartir información:** contar voluntariamente un descubrimiento, pista, rumor o lugar conocido.
+- **Ver jugadores presentes:** identificar quién está actualmente en la zona.
+- **Cerrar/minimizar conversación:** continuar explorando sin mantener abierto el panel.
+
+Acciones mecánicas como comerciar, formar grupo, ayudar, desafiar o atacar pueden incorporarse al menú si Jugabilidad las aprueba; Narrativa no las establece aquí como reglas.
+
+### Tres estados narrativos de conocimiento
+
+Para preservar el valor de explorar, conviene distinguir conceptualmente:
+
+1. **DESCUBRIMIENTO PERSONAL:** el personaje estuvo allí, examinó o cumplió la condición correspondiente.
+2. **INFORMACIÓN COMPARTIDA:** otro jugador le contó voluntariamente algo.
+3. **RUMOR:** información escuchada cuya exactitud puede no estar confirmada.
+
+Un jugador puede utilizar información compartida para decidir adónde viajar, pero deberá llegar y descubrir personalmente el lugar para convertirla en descubrimiento propio cuando corresponda.
+
+### Ejemplo
+
+Matías descubre personalmente algo en las Aguas de Lethra y lo cuenta en el chat general. Javier, que comenzó en Hoshai, puede enterarse y decidir viajar en el futuro. El mapa de Javier no debería comportarse como si ya hubiera explorado Lethra.
+
+Si posteriormente ambos coinciden en una zona, el menú local les permite hablar y compartir información directamente. Encontrarse físicamente conserva así un valor social propio aunque exista chat general.
+
+### Protección de secretos
+
+Compartir información debe transmitir **lo que el jugador conoce o decide decir**, no consultar la verdad reservada del mundo para completar su explicación.
+
+La interfaz no debe convertir automáticamente un rumor en verdad, mostrar una solución secreta porque alguien mencionó una pista ni desbloquear una ruta oculta que el receptor todavía no ha descubierto según sus condiciones.
+
+### NECESIDAD DE JUGABILIDAD
+
+Jugabilidad debe decidir:
+
+- funcionamiento y alcance exacto del chat general;
+- definición mecánica de “misma zona” para habilitar conversación local;
+- qué acciones adicionales aparecen en el menú de jugadores presentes;
+- cómo se representa información compartida frente a descubrimiento personal;
+- si compartir información puede crear anotaciones, pistas o referencias en el mapa sin marcar el lugar como explorado;
+- cómo funcionan bloqueo, silencio, privacidad y otras protecciones de comunicación;
+- relación entre conversación local, grupos y PvP.
+
+**Criterio narrativo:** la comunicación debe permitir que los jugadores se enseñen cosas entre ellos sin convertir el conocimiento social en exploración automática.
