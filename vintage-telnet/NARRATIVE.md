@@ -386,3 +386,75 @@ Para la primera implementación:
 **chat = comunicación entre personas; descubrimiento = acción del personaje en el mundo.**
 
 Mantener ambos conceptos separados hasta que las pruebas con jugadores demuestren que hace falta una mecánica adicional.
+
+
+## Respuesta del Narrador — VT-GAME-001: rasgos de especie perceptibles en aventura
+
+A partir de SPECIES.md y de VT-NAR-002, Narrativa necesita que la especie elegida cambie **cómo se experimenta una situación**, sin determinar la clase ni sustituir los atributos que el jugador decide desarrollar.
+
+### Humanos — generalidad y decisiones del jugador
+
+Narrativamente, el Humano no necesita recibir una percepción extraordinaria. Su experiencia debe servir como referencia general del mundo: observa, se desplaza y manipula el entorno sin una adaptación corporal extrema.
+
+La identidad humana no debería depender de inventar una ventaja espectacular para competir con las demás especies. Si Jugabilidad representa mecánicamente su fisiología generalista, debe hacerlo sin convertirla en superioridad universal.
+
+**Necesidad narrativa:** que la ausencia de especialización racial deje especialmente visible el desarrollo elegido por el propio jugador.
+
+### Felaryn — ver y alcanzar posibilidades
+
+En aventuras con altura o terreno abierto, un Felaryn debería poder percibir detalles lejanos que otros personajes pueden no distinguir todavía. También deben existir situaciones donde su salto, equilibrio o control corporal hagan concebible una ruta o posición diferente.
+
+Esto no significa que toda ruta elevada sea exclusiva ni que la visión revele secretos detrás de obstáculos.
+
+**Necesidad narrativa:** poder presentar información o posibilidades espaciales condicionadas por distancia, altura, equilibrio y capacidad natural de salto.
+
+### Dravak — otra escala del mismo mundo
+
+Un Dravak debe experimentar algunos espacios de manera distinta debido a su tamaño. Una abertura secundaria puede ser una ruta real para él; un mecanismo pequeño puede resultar más accesible; una vibración en piedra puede convertirse en advertencia narrativa.
+
+La diferencia también puede producir obstáculos: altura, alcance o equipo construido para cuerpos mayores.
+
+**Necesidad narrativa:** que tamaño y vibración puedan cambiar rutas perceptibles, acceso físico y señales ambientales sin convertirse en detección mágica.
+
+### Marevyn — el agua como espacio explorable
+
+Un Marevyn debería poder tratar agua, plataformas húmedas, corrientes e inmersiones con mayor naturalidad. En una aventura, una corriente o movimiento del agua puede proporcionarle información que otro personaje no interpreta igual.
+
+No debe significar respiración acuática ni detección perfecta bajo el agua.
+
+**Necesidad narrativa:** que agua, respiración, natación, equilibrio húmedo y corrientes puedan modificar opciones de exploración y percepción.
+
+### Vesperi — información donde otros reciben incertidumbre
+
+En penumbra, un Vesperi debería conservar información visual útil y percibir sonidos o cambios sutiles que otros pueden perder. Esto encaja directamente con Nhal: movimiento, silencio y pequeñas variaciones pueden ser pistas.
+
+No debe equivaler a visión en oscuridad absoluta, ecolocalización ni sigilo automático.
+
+**Necesidad narrativa:** permitir diferencias de información según iluminación, sonido y señales ambientales sutiles.
+
+### Principio transversal para Jugabilidad
+
+Narrativa recomienda distinguir dos tipos de diferencia racial:
+
+1. **Capacidad natural contextual:** cambia qué puede percibir, intentar o recorrer el personaje por su cuerpo/especie.
+2. **Desarrollo elegido:** los puntos iniciales y de nivel expresan en qué decide fortalecerse el jugador.
+
+No conviene que los puntos borren completamente las verdades biológicas del canon, ni que la especie predetermine el desarrollo. Un Felaryn sin inversión especializada sigue siendo Felaryn y conserva su naturaleza; un Humano muy desarrollado puede superar a personajes de otras especies en capacidades que las reglas permitan, sin adquirir por ello automáticamente su anatomía o sentidos raciales.
+
+### Aplicación narrativa a grupos mixtos
+
+Las diferencias ganan valor cuando los jugadores cooperan. En una misma expedición, distintos personajes pueden recibir o habilitar información contextual diferente: uno distingue algo lejano, otro nota una vibración, otro interpreta una corriente o percibe mejor en penumbra. Después pueden comunicarlo mediante el sistema de conversación ya propuesto.
+
+Esto crea razones para colaborar sin exigir una composición concreta del grupo.
+
+### Petición concreta a Jugabilidad
+
+Al definir atributos y reparto de puntos, conservar espacio mecánico para que:
+- los rasgos naturales anteriores sigan siendo perceptibles aunque no todos sean atributos;
+- invertir puntos pueda mejorar capacidades sin convertir automáticamente al personaje en otra especie;
+- ninguna especie quede obligada a una clase;
+- percepción contextual pueda cambiar la información presentada por la narración/interfaz;
+- rutas contextuales puedan depender de condiciones corporales cuando el contenido lo requiera;
+- un grupo mixto pueda beneficiarse de perspectivas diferentes sin necesitar todas las especies para completar aventuras normales.
+
+**Estado Narrador VT-GAME-001: ENTREGADO.**
