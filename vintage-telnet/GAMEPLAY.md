@@ -112,6 +112,45 @@ El jugador debe presentar evidencia de haber aplicado la pieza a su figura.
 
 Se prevé un **Validador de Forja** separado que comprueba esa evidencia y registra la validación. El Validador aplica las reglas; no las inventa.
 
+
+## Investigación disponible para Jugabilidad — capacidades HTML y comandos
+
+**ESTADO: INFORMACIÓN PARA DECISIÓN — NO ES TODAVÍA UNA REGLA DE JUGABILIDAD.**
+
+El Investigador Técnico completó `vintage-telnet/RESEARCH_SPANISH_COMMANDS_WEB_UI.md`. El Diseñador de Jugabilidad debe leerla antes de cerrar las reglas de exploración, interacción, combate, inventario, mapa y controles.
+
+La investigación demuestra que Vintage Telnet no está limitado a una terminal Telnet pura. Clientes/juegos MUD modernos como Written Realms, Nexus/Iron Realms y Mudlet conservan texto y comandos como núcleo, pero aprovechan HTML/interfaz moderna para añadir mapa, brújula, inventario, barras de estado, objetos/personajes interactivos, botones de habilidades, chat separado y adaptación táctil.
+
+### Capacidad especialmente importante
+
+Una misma acción puede tener dos entradas sin crear dos juegos distintos:
+
+- el jugador escribe `norte`; o
+- toca un botón **Norte**.
+
+Ambas pueden convertirse en la misma acción canónica validada por el servidor. El navegador presenta y solicita; el servidor continúa siendo autoridad del personaje y del mundo.
+
+Esto también puede aplicarse a mirar, inventario, tomar, hablar, atacar, huir, habilidades y otras acciones que Jugabilidad apruebe.
+
+### Preguntas que Jugabilidad debe decidir aprovechando estas capacidades
+
+- ¿Qué acciones deben seguir premiando que el jugador descubra/escriba un comando?
+- ¿Qué acciones frecuentes deben tener botón táctil para evitar fricción innecesaria?
+- ¿Qué comandos y abreviaciones en español forman el vocabulario inicial?
+- ¿El mapa es interactivo? ¿Qué permite tocar y qué permanece oculto?
+- ¿Los objetos/personajes visibles pueden tocarse para mostrar acciones contextuales?
+- ¿Qué información de vida, recursos, equipo y combate merece representación visual?
+- ¿Qué acciones de combate aparecen como botones y cuáles requieren comando?
+- ¿Cómo se evita que los botones revelen secretos que el jugador todavía no descubrió?
+- ¿Cómo debe funcionar un equivalente de `considerar/evaluar` para comunicar peligro?
+- ¿Qué interfaz necesita teléfono/iPad frente a computadora sin cambiar las reglas del mundo?
+
+### Principio técnico propuesto para evaluación
+
+**Texto/comandos como núcleo + HTML como ayuda de orientación e interacción + servidor como única autoridad.**
+
+Esto es una posibilidad técnica investigada, no una decisión aprobada. Jugabilidad debe decidir qué partes mejoran realmente la experiencia de Vintage Telnet. Arquitecto y Desarrollo decidirán después cómo implementar las reglas aprobadas.
+
 ## Cómo debe trabajar el Historiador con este documento
 
 El Historiador debe usar estos principios como límites para crear contenido.
