@@ -241,3 +241,58 @@ No es necesario que los tres jugadores se reúnan durante esta fase. Si eligen e
 **NECESIDAD DE NPC — NO BLOQUEANTE PARA ESTA PRUEBA:** estas primeras salidas pueden empezar mediante entorno y criaturas. Los NPC serán necesarios cuando se incorporen encargos, rumores personales, comercio o relaciones.
 
 **NECESIDAD TÉCNICA — POSTERIOR:** implementar una microzona por especie solo después de que Jugabilidad haya definido el mínimo mecánico necesario.
+
+
+## Señales narrativas de peligro para Jugabilidad — VT-NAR-002
+
+Estas señales son información que la narración puede comunicar antes de un encuentro. **No establecen niveles, porcentajes ni fórmulas.** Jugabilidad decidirá si además existe una acción \`evaluar\`, un indicador HTML u otra ayuda.
+
+### Principio común
+
+El jugador principiante no debería necesitar perder un combate para descubrir que una amenaza era claramente superior. El mundo debe ofrecer señales interpretables. Tampoco debe mostrarse automáticamente “enemigo imposible” desde cualquier distancia: primero hay que percibir algo.
+
+La interfaz HTML puede resaltar información que el personaje ya percibió, pero no debe anticipar una criatura oculta, una salida secreta ni la causa real de una señal.
+
+### Valdren / Humano — peligro visible en el campo
+
+Un tramo normal puede mostrar cultivos, actividad de Mordelindes o rastros de Espinajos. Antes de un posible Cornalomo, la descripción puede cambiar: cercas partidas, huellas profundas, árboles jóvenes raspados y ausencia de fauna menor. Si después aparece la criatura, el jugador ya tuvo oportunidad de comprender que algo grande está cerca.
+
+**Lectura que aprende el jugador:** daños grandes y desaparición de fauna pequeña = conviene avanzar con cautela.
+
+### Khariel / Felaryn — peligro observado a distancia
+
+En Hoshai el aviso puede aparecer antes de entrar físicamente al lugar peligroso: restos en altura, marcas profundas, Saltacrestas alarmados o una terraza inesperadamente silenciosa pueden anunciar un Rasgacumbres.
+
+**Lectura que aprende el jugador:** usar la distancia y observar antes de descender puede evitar un encuentro peligroso.
+
+### Brumak / Dravak — peligro sentido en el terreno
+
+En Korven no hace falta ver al Quebrarrocas. Vibraciones, piedras desplazadas, grietas recientes y Cascapedernales abandonando una zona pueden formar una advertencia progresiva.
+
+**Lectura que aprende el jugador:** si el terreno cambia bajo sus pies, seguir adelante puede ser más peligroso que aquello que ve en pantalla.
+
+### Narevia / Marevyn — peligro bajo una superficie tranquila
+
+En Lethra, ondas grandes sin causa visible, juncos aplastados, marcas de arrastre y desaparición de Pinzajuncos o Saltalodos pueden preceder a un Dorsalodo.
+
+**Lectura que aprende el jugador:** antes de cruzar o acercarse al agua, observar la orilla y la superficie importa.
+
+### Velmora / Vesperi — el silencio como advertencia
+
+En Nhal el cambio puede ser una ausencia: dejan de aparecer Rondamusgos, hay redes de Hilarias abandonadas, árboles marcados y un tramo del bosque queda demasiado silencioso antes de un posible Rasgacorteza.
+
+**Lectura que aprende el jugador:** en un entorno normalmente lleno de señales pequeñas, que desaparezcan también comunica información.
+
+### Requisito narrativo para la interfaz híbrida
+
+Si Jugabilidad implementa \`evaluar\` o un botón equivalente, debería **complementar** estas señales y no reemplazarlas. La narración debe seguir teniendo valor.
+
+Ejemplo de flujo deseado:
+
+1. el jugador entra o mira hacia un lugar;
+2. el texto presenta únicamente señales perceptibles;
+3. el jugador decide observar/evaluar, avanzar, atacar o retirarse según lo que realmente tenga disponible;
+4. la interfaz puede organizar la información ya descubierta;
+5. ninguna ayuda HTML revela anticipadamente un enemigo oculto, una ruta secreta o la solución de una pista.
+
+**NECESIDAD DE JUGABILIDAD:** decidir qué información adicional proporciona evaluar peligro, cuándo está disponible y cómo distingue una amenaza apropiada de una claramente superior sin convertir el sistema en una predicción perfecta.
