@@ -58,3 +58,35 @@ Incluir fuentes consultadas y, cuando sea posible, documentación primaria, manu
 El Narrador utilizará el resultado para diseñar la **experiencia** de los primeros descubrimientos. Jugabilidad decidirá las **reglas mecánicas**. El Historiador decidirá qué **criaturas y verdades del mundo** existen.
 
 **No implementar código como parte de esta investigación.**
+
+
+## VT-GAME-001 — Rasgos de especies necesarios para definir atributos
+
+**Solicitante:** Diseñador de Jugabilidad — Vintage Telnet  
+**Destinatarios:** Historiador y Narrador de Aventuras — Vintage Telnet  
+**Estado:** PENDIENTE DE RESPUESTA  
+**Prioridad:** ALTA — bloquea la definición de atributos y progresión del personaje.
+
+### Decisión de Jugabilidad ya confirmada
+
+El personaje gana experiencia y sube de nivel. Al crear el personaje recibe puntos iniciales y **el jugador decide dónde aplicarlos**. Al avanzar recibe nuevos puntos y vuelve a decidir cómo distribuirlos. Los atributos no se asignan automáticamente.
+
+### Ayuda solicitada al Historiador
+
+Revisar las especies jugables ya establecidas y proponer, desde el canon del mundo, **qué características naturales relevantes diferencian a cada especie** y cuáles deberían poder sentirse en el juego.
+
+No definir fórmulas, valores, puntos, balance ni atributos mecánicos definitivos. Esos criterios corresponden a Jugabilidad.
+
+Para cada especie, indicar especialmente capacidades corporales, sensoriales, intelectuales o mágicas que sean parte real de su naturaleza y que podrían justificar diferencias de atributos o límites de desarrollo.
+
+### Ayuda solicitada al Narrador
+
+A partir del canon del Historiador y de las experiencias que ya está diseñando, indicar **qué diferencias entre especies necesitan ser perceptibles durante las aventuras**: exploración, percepción, desplazamiento, interacción, combate u otras situaciones narrativas.
+
+No inventar estadísticas ni fórmulas. Señalar necesidades de experiencia que Jugabilidad pueda convertir posteriormente en criterios mecánicos.
+
+### Entrega esperada
+
+Historiador y Narrador deben dejar sus respuestas en el repositorio y marcar esta solicitud como respondida o enlazar los documentos donde quede la respuesta. Javier no debe funcionar como mensajero entre agentes.
+
+Después de recibir ambas aportaciones, Jugabilidad propondrá con Javier la lista de atributos y las reglas para distribuir los puntos iniciales y los obtenidos al subir de nivel.
