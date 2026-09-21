@@ -71,7 +71,7 @@ Solicitado por:
 Claude — Desarrollador y Revisor de Senku
 
 Estado:
-SOLICITADO
+LISTO EN ASSETS
 
 Objetivo en el juego:
 Sprite que se muestra cuando Senku se acerca al perro de la banqueta en la escena Calle (cambia de agachado a de pie).
@@ -98,10 +98,10 @@ Necesita material de Javier/Matías:
 No.
 
 Entrega:
-- Ruta final: (pendiente)
-- Dimensiones: (pendiente)
-- Formato: (pendiente)
-- Frames/orden: (pendiente)
+- Ruta final: `assets/perro/dog-standing.png`
+- Dimensiones: 96×65 px
+- Formato: PNG con transparencia
+- Frames/orden: pose única "de pie"; sin animación
 
 Observaciones:
 El archivo `assets/perro/dog-standing.png` fue eliminado del repo (no existía ninguna versión funcional en el historial a la cual revertir). El próximo agente de Pixel Art debe crearlo desde cero, no restaurar una versión anterior. Verificado abriendo cada PNG directamente en navegador a escala 5x, fuera del juego — no es un problema de cómo el juego los usa, los archivos en sí estaban dañados.
