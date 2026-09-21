@@ -63,3 +63,12 @@ En la revisión actual no aparece código de servidor de Vintage Telnet, esquema
 ## ESTADO
 
 Este documento es un mapa de investigación, no una decisión de arquitectura. No se ha implementado ni probado servidor alguno en Raspberry como parte de esta revisión.
+
+
+## INVESTIGACIÓN COMPLETADA — COMANDOS E INTERFAZ WEB
+
+Se completó `RESEARCH_SPANISH_COMMANDS_WEB_UI.md`.
+
+Hallazgo principal: existe una vía probada entre Telnet puro y RPG web tradicional: mantener texto/comandos como núcleo y usar HTML para mapa descubierto, brújula, estado, inventario y acciones contextuales. Written Realms, Nexus/Achaea y Mudlet aportan referencias actuales.
+
+Para Vintage Telnet se recomienda investigar/prototipar un parser español controlado (verbos canónicos + alias + objetos contextuales + desambiguación) y que botones y comandos produzcan la misma acción canónica validada por servidor. No está aprobado ni implementado todavía.
