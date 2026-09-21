@@ -3,32 +3,271 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#020806">
-  <title>Vintage Telnet — Matías Game Lab</title>
+  <meta name="theme-color" content="#16120d">
+  <title>Vintage Telnet — Primera interfaz jugable</title>
   <style>
-    :root{color-scheme:dark;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:#020806;color:#8dffb2}
-    *{box-sizing:border-box}body{margin:0;min-height:100vh;min-height:100dvh;background:radial-gradient(circle at 50% 35%,#103622 0,#06130d 35%,#020806 72%);display:grid;place-items:center;padding:24px}
-    main{width:min(760px,100%);border:1px solid #77ffad55;border-radius:18px;background:#020806e8;box-shadow:0 0 50px #44ff8826, inset 0 0 30px #44ff8808;overflow:hidden}
-    .bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:13px 16px;border-bottom:1px solid #77ffad33;background:#07130e;color:#75d993;font-size:.78rem}
-    .lights{display:flex;gap:7px}.lights i{width:9px;height:9px;border-radius:50%;background:#8dffb2;opacity:.45}
-    .screen{padding:clamp(24px,6vw,54px)}.logo{margin:0 0 12px;color:#eaffef;font-size:clamp(2rem,8vw,4.8rem);line-height:.95;letter-spacing:-.06em}.status{display:inline-block;margin:14px 0 28px;padding:6px 10px;border:1px solid #77ffad66;border-radius:999px;color:#b7ffcc;font-size:.78rem;text-transform:uppercase;letter-spacing:.08em}
-    p{line-height:1.8;margin:0 0 18px;color:#9deeb6}.prompt{margin-top:34px;color:#c7ffd8}.cursor{display:inline-block;width:9px;height:1.05em;margin-left:5px;vertical-align:-2px;background:#8dffb2;animation:blink 1s steps(1) infinite}@keyframes blink{50%{opacity:0}}
-    .back{display:inline-block;margin-top:34px;color:#07130e;background:#8dffb2;text-decoration:none;font-family:system-ui,sans-serif;font-weight:800;padding:13px 18px;border-radius:10px}.back:hover{background:#b9ffcf}.back:focus-visible{outline:3px solid #fff;outline-offset:5px}
-    small{display:block;margin-top:22px;color:#5fa675;line-height:1.6}
+    :root{
+      color-scheme:dark;
+      --ink:#eadfc7;--muted:#b7a98e;--gold:#d8b56b;--gold2:#8f6f38;
+      --panel:#17130f;--panel2:#211a13;--deep:#0d0b09;--line:#4c3d2a;
+      --safe:#9fca9a;--warn:#e3bd72;--danger:#d98878;
+      font-family:Georgia,"Times New Roman",serif;
+    }
+    *{box-sizing:border-box}
+    html{background:#0d0b09}
+    body{
+      margin:0;min-height:100vh;min-height:100dvh;color:var(--ink);
+      background:
+        radial-gradient(circle at 20% 0%,#302418 0,transparent 35%),
+        radial-gradient(circle at 90% 20%,#241c14 0,transparent 30%),
+        linear-gradient(#120f0c,#090806);
+    }
+    button,input{font:inherit}
+    button{touch-action:manipulation}
+    .app{max-width:1380px;margin:auto;min-height:100dvh;padding:clamp(10px,2vw,24px)}
+    .topbar{
+      display:flex;gap:12px;align-items:center;justify-content:space-between;
+      border:1px solid var(--line);border-radius:14px 14px 0 0;padding:12px 14px;
+      background:#14100dcc;position:sticky;top:0;z-index:8;backdrop-filter:blur(10px)
+    }
+    .brand{min-width:0}.brand strong{font-size:clamp(1rem,2.5vw,1.35rem);letter-spacing:.08em}
+    .brand small{display:block;color:var(--muted);margin-top:3px}
+    .status-dot{display:inline-flex;align-items:center;gap:8px;color:var(--warn);font:700 .78rem ui-monospace,monospace;text-transform:uppercase;white-space:nowrap}
+    .status-dot i{width:9px;height:9px;border-radius:50%;background:var(--warn);box-shadow:0 0 12px #e3bd7288}
+    .notice{
+      border:1px solid #765d35;background:#2a2115;color:#f1d79b;
+      padding:10px 13px;font:600 .82rem/1.45 ui-sans-serif,system-ui,sans-serif
+    }
+    .layout{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:14px;margin-top:14px}
+    .maincol,.sidecol{min-width:0}.card{
+      border:1px solid var(--line);border-radius:14px;background:linear-gradient(180deg,#1b1611f2,#100d0bf2);
+      box-shadow:0 12px 40px #0007;overflow:hidden
+    }
+    .card+.card{margin-top:14px}
+    .card-head{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:11px 14px;border-bottom:1px solid var(--line);background:#201a14}
+    .eyebrow{color:var(--gold);font:700 .72rem ui-monospace,monospace;letter-spacing:.12em;text-transform:uppercase}
+    .location{font-size:clamp(1.2rem,3.5vw,1.65rem);margin:3px 0 0}
+    .story{padding:clamp(16px,3vw,28px);min-height:290px}
+    .story p{font-size:clamp(1.04rem,2.1vw,1.2rem);line-height:1.78;margin:0 0 1em;max-width:74ch}
+    .story .system{color:var(--muted);font:italic .95rem/1.55 ui-sans-serif,system-ui,sans-serif;border-left:2px solid var(--gold2);padding-left:12px}
+    .story-log{display:flex;flex-direction:column;gap:14px}
+    .entry{animation:reveal .16s ease-out}
+    @keyframes reveal{from{opacity:.2;transform:translateY(3px)}}
+    .entry .cmd{color:#9ec7a4;font:700 .85rem ui-monospace,monospace;margin-bottom:6px}
+    .important{margin:0 14px 14px;border:1px solid #745c37;background:#251c12;padding:11px 12px;border-radius:10px;color:#f0d89d;font:600 .9rem/1.45 ui-sans-serif,system-ui,sans-serif}
+    .controls{padding:14px;display:grid;grid-template-columns:1fr 1.2fr 1fr;gap:10px;align-items:end}
+    .move{display:grid;grid-template-columns:repeat(3,58px);grid-template-rows:repeat(3,52px);justify-content:center;gap:6px}
+    .move button:nth-child(1){grid-column:2}.move button:nth-child(2){grid-column:1;grid-row:2}.move button:nth-child(3){grid-column:2;grid-row:2}.move button:nth-child(4){grid-column:3;grid-row:2}.move button:nth-child(5){grid-column:2;grid-row:3}
+    .actions{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+    .btn{
+      min-height:50px;border:1px solid #6c5738;border-radius:10px;background:linear-gradient(#312719,#211a12);
+      color:var(--ink);font:700 .9rem ui-sans-serif,system-ui,sans-serif;padding:10px 8px;cursor:pointer
+    }
+    .btn:hover{border-color:var(--gold);background:#382c1c}.btn:active{transform:translateY(1px)}
+    .btn:focus-visible,input:focus-visible{outline:3px solid #f3d28a;outline-offset:2px}
+    .btn.primary{background:#d4b16a;color:#21170b;border-color:#efd18f}
+    .btn.danger{border-color:#7c493f;color:#f1bbb0}.btn.ghost{background:#15110e;color:var(--muted)}
+    .command-wrap{padding:0 14px 14px}
+    .command{display:flex;gap:8px}
+    .command label{position:absolute;left:-9999px}
+    .command input{min-width:0;flex:1;min-height:50px;border-radius:10px;border:1px solid #6c5738;background:#090806;color:#e9f0df;padding:0 14px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:16px}
+    .hint{margin:8px 2px 0;color:#877b69;font:.78rem/1.4 ui-sans-serif,system-ui,sans-serif}
+    .quick{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:14px}
+    .panel-body{padding:14px}.facts{display:grid;gap:10px}
+    .fact{border-bottom:1px solid #382e22;padding-bottom:9px}.fact:last-child{border:0}.fact b{display:block;color:var(--gold);font:.72rem ui-monospace,monospace;text-transform:uppercase;letter-spacing:.08em;margin-bottom:3px}.fact span{color:#ddd0b6}
+    .mapbox{padding:14px}.map{
+      display:grid;grid-template-columns:repeat(5,1fr);gap:6px;align-items:center;min-height:210px;
+      padding:18px;border:1px solid #3f3428;border-radius:12px;background:linear-gradient(135deg,#17120d,#0b0907)
+    }
+    .node{min-height:48px;border:1px dashed #4f4334;border-radius:9px;display:grid;place-items:center;text-align:center;padding:5px;color:#796f5f;font:700 .72rem ui-sans-serif,system-ui,sans-serif}
+    .node.seen{border-style:solid;color:#d7c7a7;background:#1e1812}.node.here{border-color:var(--gold);color:#ffdf99;background:#3a2b17;box-shadow:0 0 0 2px #d8b56b22}
+    .node.unknown{opacity:.5}.map-note{color:#948775;font:.76rem/1.5 ui-sans-serif,system-ui,sans-serif;margin-top:9px}
+    dialog{width:min(620px,calc(100% - 24px));border:1px solid #6a5537;border-radius:14px;background:#15110e;color:var(--ink);padding:0;box-shadow:0 24px 90px #000c}
+    dialog::backdrop{background:#050403c9;backdrop-filter:blur(2px)}
+    .modal-head{display:flex;justify-content:space-between;align-items:center;padding:13px 15px;border-bottom:1px solid var(--line)}
+    .modal-body{padding:16px}.modal-body h3{color:var(--gold);margin:.3em 0}.modal-body p,.modal-body li{line-height:1.6;color:#d7c9ad}
+    .close{width:44px;height:44px;border-radius:9px;border:1px solid #5a4933;background:#211a13;color:#fff;font-size:1.2rem}
+    .footer{padding:14px 4px 4px;color:#746b5e;font:.75rem/1.5 ui-sans-serif,system-ui,sans-serif;text-align:center}
+    @media(max-width:900px){
+      .layout{grid-template-columns:1fr}.sidecol{display:grid;grid-template-columns:1fr 1fr;gap:14px}.sidecol .card{margin:0}.story{min-height:260px}
+    }
+    @media(max-width:620px){
+      .app{padding:0}.topbar{border-radius:0;border-left:0;border-right:0}.brand small{display:none}.status-dot span{display:none}
+      .notice{border-left:0;border-right:0}
+      .layout{margin-top:0;gap:0}.card{border-radius:0;border-left:0;border-right:0;box-shadow:none}.card+.card{margin-top:0;border-top:0}
+      .sidecol{display:block}.sidecol .card{margin:0;border-top:0}.story{padding:18px 15px;min-height:250px}
+      .controls{grid-template-columns:1fr;padding:12px}.actions{grid-template-columns:repeat(3,1fr)}
+      .move{grid-template-columns:repeat(3,68px);grid-template-rows:repeat(3,56px)}
+      .command-wrap{padding:0 12px 14px}.quick{padding:12px}
+      .sidecol .card.collapsible .panel-body,.sidecol .card.collapsible .mapbox{display:none}
+      .sidecol .card.collapsible.open .panel-body,.sidecol .card.collapsible.open .mapbox{display:block}
+      .tap-toggle{cursor:pointer}
+    }
   </style>
 </head>
 <body>
-  <main>
-    <div class="bar"><span>MATÍAS GAME LAB / VINTAGE TELNET</span><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span></div>
-    <section class="screen">
-      <h1 class="logo">VINTAGE<br>TELNET</h1>
-      <span class="status">En construcción</span>
-      <p>La puerta al mundo de Vintage Telnet ya está preparada. Esta será la interfaz web para entrar desde teléfono, iPad o computadora.</p>
-      <p>El mundo persistente vivirá en el servidor de Vintage Telnet. Esta página será el cliente de acceso cuando la conexión esté lista.</p>
-      <div class="prompt">&gt; esperando servidor<span class="cursor" aria-hidden="true"></span></div>
-      <a class="back" href="index.html">&larr; Volver a los juegos</a>
-      <small>Versión inicial de publicación. Todavía no conecta con la Raspberry Pi.</small>
-    </section>
-  </main>
+<div class="app">
+  <header class="topbar">
+    <div class="brand"><strong>VINTAGE TELNET</strong><small>Matías Game Lab · cliente web</small></div>
+    <div class="status-dot" title="Demostración local, sin servidor"><i></i><span>Demo local</span></div>
+  </header>
+
+  <div class="notice" role="status">
+    DEMOSTRACIÓN DE INTERFAZ · No está conectada a la Raspberry Pi y no guarda progreso. La distribución de esta microzona es temporal y no establece canon.
+  </div>
+
+  <div class="layout">
+    <main class="maincol">
+      <section class="card" aria-labelledby="placeTitle">
+        <div class="card-head">
+          <div><div class="eyebrow">Ubicación actual</div><h1 class="location" id="placeTitle">Valdren · plaza central</h1></div>
+          <button class="btn ghost" data-action="mirar">Mirar</button>
+        </div>
+        <div class="story" id="story" aria-live="polite">
+          <div class="story-log" id="storyLog">
+            <div class="entry">
+              <p>Valdren es un pueblo humano de caminos de tierra, construcciones de madera y piedra y pequeñas parcelas de cultivo. Desde esta plaza sencilla se percibe el movimiento cotidiano de talleres, huertos y viajeros.</p>
+              <p class="system">Esta escena utiliza únicamente elementos públicos ya descritos para Valdren. El recorrido que ves aquí sirve para probar la interfaz y todavía no define el mapa definitivo.</p>
+            </div>
+          </div>
+        </div>
+        <div class="important" id="important">No hay combate activo. Explora con los botones o escribe un comando.</div>
+      </section>
+
+      <section class="card">
+        <div class="card-head"><div><div class="eyebrow">Acciones</div><div>Botón y comando → misma acción</div></div></div>
+        <div class="controls">
+          <div class="move" aria-label="Movimiento cardinal">
+            <button class="btn" data-action="norte" aria-label="Ir al norte">N</button>
+            <button class="btn" data-action="oeste" aria-label="Ir al oeste">O</button>
+            <button class="btn ghost" data-action="mirar" aria-label="Mirar">◎</button>
+            <button class="btn" data-action="este" aria-label="Ir al este">E</button>
+            <button class="btn" data-action="sur" aria-label="Ir al sur">S</button>
+          </div>
+          <div class="actions">
+            <button class="btn primary" data-action="atacar">Atacar</button>
+            <button class="btn danger" data-action="huir">Huir</button>
+            <button class="btn" data-open="mapDialog">Mapa</button>
+          </div>
+          <div class="actions">
+            <button class="btn" data-open="characterDialog">Personaje</button>
+            <button class="btn" data-open="inventoryDialog">Inventario</button>
+            <button class="btn ghost" data-action="ayuda">Ayuda</button>
+          </div>
+        </div>
+        <div class="command-wrap">
+          <form class="command" id="commandForm">
+            <label for="commandInput">Escribe un comando</label>
+            <input id="commandInput" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="Escribe: norte, mirar, mapa…">
+            <button class="btn primary" type="submit">Enviar</button>
+          </form>
+          <p class="hint">Demo: norte/sur/este/oeste, mirar, atacar, huir, mapa, personaje, inventario, ayuda. También acepta n/s/e/o.</p>
+        </div>
+      </section>
+    </main>
+
+    <aside class="sidecol">
+      <section class="card collapsible open" id="mapCard">
+        <div class="card-head tap-toggle" data-toggle="mapCard"><div><div class="eyebrow">Mapa conocido</div><div>Orientación de la demo</div></div><span aria-hidden="true">⌄</span></div>
+        <div class="mapbox">
+          <div class="map" id="miniMap" aria-label="Mapa de demostración">
+            <div></div><div class="node seen" data-room="norte">Camino norte</div><div></div><div></div><div></div>
+            <div class="node seen" data-room="oeste">Taller</div><div></div><div class="node here" data-room="centro">Plaza</div><div></div><div class="node seen" data-room="este">Huertos</div>
+            <div></div><div class="node seen" data-room="sur">Camino sur</div><div></div><div></div><div class="node unknown">?</div>
+          </div>
+          <p class="map-note">Solo muestra lugares de esta demostración. “?” representa que el cliente puede ocultar información no descubierta; no corresponde a un secreto real del canon.</p>
+        </div>
+      </section>
+
+      <section class="card collapsible open" id="stateCard">
+        <div class="card-head tap-toggle" data-toggle="stateCard"><div><div class="eyebrow">Estado visible</div><div>Datos de interfaz</div></div><span aria-hidden="true">⌄</span></div>
+        <div class="panel-body facts">
+          <div class="fact"><b>Conexión</b><span>Sin servidor · demostración local</span></div>
+          <div class="fact"><b>Persistencia</b><span>No guarda cambios</span></div>
+          <div class="fact"><b>Combate</b><span id="combatState">Inactivo</span></div>
+          <div class="fact"><b>Última acción</b><span id="lastAction">mirar</span></div>
+        </div>
+      </section>
+    </aside>
+  </div>
+
+  <div class="footer">Vertical slice de cliente · Vintage Telnet · rama de desarrollo, no persistente</div>
+</div>
+
+<dialog id="mapDialog">
+  <div class="modal-head"><strong>Mapa</strong><button class="close" data-close aria-label="Cerrar">×</button></div>
+  <div class="modal-body"><h3>Orientación sin revelar el mundo</h3><p>El mapa definitivo deberá renderizar únicamente lo que el servidor autorice como conocido por el personaje. Esta demo usa una microzona temporal para probar tamaño, lectura y navegación táctil.</p><div id="mapClone"></div></div>
+</dialog>
+<dialog id="characterDialog">
+  <div class="modal-head"><strong>Personaje</strong><button class="close" data-close aria-label="Cerrar">×</button></div>
+  <div class="modal-body"><h3>Panel preparado</h3><p>El personaje real deberá llegar desde el servidor. No se muestran estadísticas ficticias porque atributos y valores todavía dependen de Jugabilidad y del estado persistente.</p></div>
+</dialog>
+<dialog id="inventoryDialog">
+  <div class="modal-head"><strong>Inventario</strong><button class="close" data-close aria-label="Cerrar">×</button></div>
+  <div class="modal-body"><h3>Sin inventario simulado</h3><p>Este panel demuestra el espacio y la interacción. Los objetos reales deberán provenir del servidor; la demo no finge que existe un inventario guardado.</p></div>
+</dialog>
+
+<script>
+(() => {
+  const rooms = {
+    centro:{title:"Valdren · plaza central",text:"La plaza central pequeña reúne los caminos del pueblo. Alrededor se perciben viviendas, talleres básicos y el trabajo de los huertos.", exits:{norte:"norte",sur:"sur",este:"este",oeste:"oeste"}},
+    norte:{title:"Valdren · camino norte",text:"El camino de tierra deja atrás la plaza. Viajeros y noticias de otras regiones forman parte habitual de la vida de Valdren.",exits:{sur:"centro"}},
+    sur:{title:"Valdren · camino sur",text:"El camino continúa entre construcciones sencillas y parcelas de cultivo. La demostración termina antes de definir destinos que correspondan al mapa real.",exits:{norte:"centro"}},
+    este:{title:"Valdren · borde de los huertos",text:"Pequeñas parcelas de cultivo forman parte del paisaje de Valdren. Aquí la demo solo prueba lectura, orientación y regreso a la plaza.",exits:{oeste:"centro"}},
+    oeste:{title:"Valdren · zona de talleres",text:"Talleres básicos forman parte del pueblo. Esta interfaz no asigna comerciantes, precios, objetos ni reglas que todavía pertenecen a otros sistemas.",exits:{este:"centro"}}
+  };
+  let room="centro";
+  const storyLog=document.querySelector("#storyLog");
+  const title=document.querySelector("#placeTitle");
+  const important=document.querySelector("#important");
+  const lastAction=document.querySelector("#lastAction");
+  const combat=document.querySelector("#combatState");
+  const input=document.querySelector("#commandInput");
+
+  function append(command,text,kind="normal"){
+    const wrap=document.createElement("div");wrap.className="entry";
+    const c=document.createElement("div");c.className="cmd";c.textContent="> "+command;
+    const p=document.createElement("p");p.textContent=text;
+    if(kind==="system")p.className="system";
+    wrap.append(c,p);storyLog.append(wrap);
+    while(storyLog.children.length>6)storyLog.firstElementChild.remove();
+    wrap.scrollIntoView({behavior:"smooth",block:"nearest"});
+  }
+  function updateMap(){
+    document.querySelectorAll("[data-room]").forEach(n=>n.classList.toggle("here",n.dataset.room===room));
+  }
+  function move(dir){
+    const next=rooms[room].exits[dir];
+    if(!next){append(dir,"No hay una salida de demostración en esa dirección. Esto no define una pared ni ruta del mundo definitivo.","system");return;}
+    room=next;title.textContent=rooms[room].title;updateMap();append(dir,rooms[room].text);important.textContent="Te has movido dentro de la microzona local. Este cambio no se guarda.";
+  }
+  function openDialog(id){const d=document.getElementById(id);if(d && !d.open)d.showModal();}
+  function perform(raw){
+    const value=(raw||"").trim().toLowerCase();
+    const aliases={n:"norte",s:"sur",e:"este",o:"oeste","ver":"mirar","look":"mirar","map":"mapa","inventario":"inventario","inv":"inventario","personaje":"personaje","char":"personaje","ataca":"atacar","flee":"huir"};
+    const action=aliases[value]||value;
+    if(!action)return;
+    lastAction.textContent=action;
+    if(["norte","sur","este","oeste"].includes(action)){move(action);return;}
+    if(action==="mirar"){append("mirar",rooms[room].text);important.textContent="Observas el lugar. Leer sigue siendo parte central de la exploración.";return;}
+    if(action==="atacar"){append("atacar","No hay un objetivo de combate autorizado en esta demostración. El cliente ya reserva esta acción para enviarla al mismo sistema que usaría el comando.","system");combat.textContent="Inactivo";important.textContent="NECESIDAD DE JUGABILIDAD: objetivo/contexto de ataque y respuesta de combate.";return;}
+    if(action==="huir"){append("huir","No hay combate activo del que huir. La acción existe como entrada de interfaz, pero su resultado real debe decidirlo el servidor según Jugabilidad.","system");important.textContent="NECESIDAD DEL SERVIDOR: resolver y devolver el resultado real de HUIR.";return;}
+    if(action==="mapa"){openDialog("mapDialog");append("mapa","Abres el mapa conocido de la demostración.","system");return;}
+    if(action==="personaje"){openDialog("characterDialog");append("personaje","Abres el panel de personaje. No se inventan estadísticas.","system");return;}
+    if(action==="inventario"){openDialog("inventoryDialog");append("inventario","Abres el inventario. No se simulan objetos persistentes.","system");return;}
+    if(action==="ayuda"){append("ayuda","Puedes moverte con norte, sur, este y oeste; mirar; abrir mapa, personaje o inventario; y probar atacar o huir. Los botones envían estas mismas acciones.","system");return;}
+    append(action,"Comando no reconocido por esta demostración local. El parser real y sus mensajes deberán seguir el contrato definido por Jugabilidad/servidor.","system");
+  }
+
+  document.querySelectorAll("[data-action]").forEach(b=>b.addEventListener("click",()=>perform(b.dataset.action)));
+  document.querySelectorAll("[data-open]").forEach(b=>b.addEventListener("click",()=>perform(b.dataset.open==="mapDialog"?"mapa":b.dataset.open==="characterDialog"?"personaje":"inventario")));
+  document.querySelector("#commandForm").addEventListener("submit",e=>{e.preventDefault();perform(input.value);input.value="";input.focus();});
+  document.querySelectorAll("[data-close]").forEach(b=>b.addEventListener("click",()=>b.closest("dialog").close()));
+  document.querySelectorAll("dialog").forEach(d=>d.addEventListener("click",e=>{if(e.target===d)d.close();}));
+  document.querySelectorAll("[data-toggle]").forEach(h=>h.addEventListener("click",()=>{if(matchMedia("(max-width:620px)").matches)document.getElementById(h.dataset.toggle).classList.toggle("open");}));
+  document.querySelector("#mapClone").append(document.querySelector("#miniMap").cloneNode(true));
+  updateMap();
+})();
+</script>
 </body>
 </html>
