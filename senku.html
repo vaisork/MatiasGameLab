@@ -11,7 +11,7 @@
 <link rel="icon" type="image/png" sizes="192x192" href="assets/icon/senku-icon-192.png?v=050">
 <link rel="apple-touch-icon" sizes="192x192" href="assets/icon/senku-icon-192.png?v=050">
 <link rel="manifest" href="senku.webmanifest?v=050">
-<title>Senku — México · v0.5.6 | taquería mejorada</title>
+<title>Senku — México · v0.5.7 | rata escondida</title>
 <style>
 *{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#151311;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;touch-action:none;user-select:none}
 canvas{position:fixed;inset:0;margin:auto;width:min(100vw,1100px);height:auto;max-height:100vh;aspect-ratio:16/9;background:#ddd;image-rendering:pixelated}
@@ -120,7 +120,7 @@ canvas{position:fixed;inset:0;margin:auto;width:min(100vw,1100px);height:auto;ma
     </div>
   </div>
 </div>
-<div class="version">v0.5.6 · 21/09/26 · taquería mejorada</div>
+<div class="version">v0.5.7 · 21/09/26 · rata escondida</div>
 
 <div id="toast"></div>
 <script>
@@ -132,7 +132,7 @@ const intro=document.getElementById('intro'),modal=document.getElementById('moda
 const skins=document.getElementById('skins'),wardrobe=document.getElementById('wardrobe'),closeSkins=document.getElementById('closeSkins'),introWardrobe=document.getElementById('introWardrobe'),skinPreview=document.getElementById('skinPreview'),previewBadge=document.getElementById('previewBadge');
 const previewImg=skinPreview.querySelector('img'),basePreviewSrc='assets/senku/menu-base.jpg?v=050',secretPreviewSrc='assets/trajes/rata/menu.webp?v=050';
 let scene='house',running=false,last=performance.now(),time=0,modalAction=null,busTimer=null,near=null,wardrobeWasRunning=false;
-let churus=0,secret=false;
+let churus=0,secret=false,ratPeekShown=false;
 let selectedSkin=localStorage.getItem('senku_skin')||'normal';
 let collected=new Set();
 const senkuSheet=new Image();senkuSheet.src='assets/senku/senku-sprites.png?v=050';
@@ -201,11 +201,17 @@ function physics(dt){
  if(p.y>H+80){p.x=50;p.y=380;p.vy=0}p.anim+=dt
 }
 function collect(){for(const q of items)if(!q.t&&Math.hypot(p.x+27-q.x,p.y+18-q.y)<35){q.t=1;collected.add(q.id);churus++;save();hud();say('+1 Churu 🧃',700)}}
+function ratOut(){return secret||(time%5)<2}
 function interaction(){
  near=null;action.style.display='none';const px=p.x+27,py=p.y+18;
  if(scene==='house'&&Math.hypot(px-918,py-250)<95)near='window';
  if(scene==='street'){if(Math.hypot(px-530,py-430)<80)near='box';else if(Math.hypot(px-820,py-420)<90)near='dog';else if(px>990)near='bus'}
- if(scene==='taco'&&Math.hypot(px-875,py-440)<100)near='rat';
+ if(scene==='taco'){
+   const out=ratOut();
+   if(out&&!ratPeekShown&&!secret){ratPeekShown=true;say('¡Psst, ahí está! 🐀',1100)}
+   if(!out)ratPeekShown=false;
+   if(out&&Math.hypot(px-875,py-440)<100)near='rat';
+ }
  if(near){action.style.display='block';action.textContent=near==='bus'?'🚌':near==='window'?'⬆️':near==='box'?'🔎':'💬'}
  if(keys.a&&!al&&near)act();al=keys.a
 }
@@ -276,7 +282,7 @@ function street(){
 }
 function bus(){x.fillStyle='#d6b23c';x.fillRect(0,0,W,H);x.fillStyle='#79b7cb';for(let a=60;a<1080;a+=220)x.fillRect(a,70,170,160);x.fillStyle='#5c493d';x.fillRect(0,505,W,114);for(const a of [90,330,590,840]){x.fillStyle='#884f3d';x.fillRect(a,330,135,175)}}
 function drawRat(){
- if(!ratSheet.complete||!ratSheet.naturalWidth)return;
+ if(!ratOut()||!ratSheet.complete||!ratSheet.naturalWidth)return;
  const close=near==='rat',seq=close?[0,1,2,1]:[0,0,0,1,2,1,0,0],fps=close?7:4.2;
  const frame=seq[Math.floor(time*fps)%seq.length],bob=Math.sin(time*2.2)*1.5;
  x.save();x.imageSmoothingEnabled=false;
