@@ -129,6 +129,27 @@
     .modal-body{padding:14px;overflow:auto;max-height:calc(82dvh - 60px)}
     .modal-body h3{margin:.2em 0 .6em;color:var(--gold)}
     .modal-body p{line-height:1.55;color:#d9ccb1}
+    .character-preview{
+      min-height:300px;border:1px dashed #725a38;border-radius:14px;background:
+      radial-gradient(circle at 50% 35%,#3a2a19 0,transparent 38%),#110c08;
+      display:grid;place-items:center;text-align:center;padding:20px;color:#b9a98d;
+      font:600 .82rem/1.5 ui-sans-serif,system-ui,sans-serif
+    }
+    .character-preview strong{display:block;color:var(--gold);font-size:1rem;margin-bottom:6px}
+    dialog.fullscreen{
+      width:100vw;max-width:none;height:100dvh;max-height:none;margin:0;border:0;border-radius:0
+    }
+    dialog.fullscreen .modal-head{
+      min-height:58px;padding-top:max(11px,env(safe-area-inset-top));position:sticky;top:0;z-index:2
+    }
+    dialog.fullscreen .modal-body{
+      max-height:none;height:calc(100dvh - 58px);padding:clamp(16px,4vw,34px);
+      padding-bottom:max(24px,env(safe-area-inset-bottom))
+    }
+    .help-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;max-width:900px;margin:auto}
+    .help-section{border:1px solid #503d27;border-radius:14px;background:#120d09;padding:15px}
+    .help-section h3{margin:0 0 8px;color:var(--gold)}
+    .help-section p{margin:0}
     .close{width:44px;height:44px;border-radius:9px;border:1px solid #5d4930;background:#1b130d;color:#fff;font-size:1.2rem}
     .footer{color:#796d5d;font:.7rem ui-sans-serif,system-ui,sans-serif;text-align:center}
 
@@ -166,6 +187,10 @@
       .commandbar input{min-height:46px}
       dialog{width:calc(100% - 12px);max-height:88dvh;border-radius:16px 16px 8px 8px;margin:auto 6px 6px}
       .modal-body{max-height:calc(88dvh - 58px)}
+      dialog.fullscreen{width:100vw;height:100dvh;max-height:none;margin:0;border-radius:0}
+      dialog.fullscreen .modal-body{height:calc(100dvh - 58px);max-height:none}
+      .help-grid{grid-template-columns:1fr}
+      .character-preview{min-height:240px}
       .footer{display:none}
     }
     @media(max-width:390px){
@@ -268,15 +293,28 @@
 </dialog>
 <dialog id="characterDialog">
   <div class="modal-head"><strong>Personaje</strong><button class="close" data-close aria-label="Cerrar">×</button></div>
-  <div class="modal-body"><h3>Panel preparado</h3><p>El personaje real debe llegar desde el servidor. No se inventan estadísticas mientras Jugabilidad y persistencia sigan pendientes.</p></div>
+  <div class="modal-body">
+    <div class="character-preview" id="characterPreview">
+      <div><strong>Imagen 3D del personaje</strong>Pendiente del asset que subirá el Dungeon Master. El cliente queda preparado para mostrarla aquí sin inventar una ruta.</div>
+    </div>
+  </div>
 </dialog>
 <dialog id="inventoryDialog">
   <div class="modal-head"><strong>Inventario</strong><button class="close" data-close aria-label="Cerrar">×</button></div>
   <div class="modal-body"><h3>Sin inventario simulado</h3><p>El panel existe como herramienta HTML, pero los objetos reales deberán provenir del servidor.</p></div>
 </dialog>
-<dialog id="helpDialog">
-  <div class="modal-head"><strong>Ayuda</strong><button class="close" data-close aria-label="Cerrar">×</button></div>
-  <div class="modal-body"><h3>Comandos de esta demo</h3><p>Norte, sur, este, oeste, mirar, atacar, huir, mapa, personaje, inventario y ayuda. También puedes usar n/s/e/o.</p></div>
+<dialog id="helpDialog" class="fullscreen">
+  <div class="modal-head"><strong>Ayuda de Vintage Telnet</strong><button class="close" data-close aria-label="Cerrar">×</button></div>
+  <div class="modal-body">
+    <div class="help-grid">
+      <section class="help-section"><h3>Movimiento</h3><p>Norte, sur, este y oeste. También puedes usar n, s, e y o.</p></section>
+      <section class="help-section"><h3>Explorar</h3><p>Usa Mirar para volver a leer el lugar actual. El mapa muestra únicamente orientación permitida por el cliente.</p></section>
+      <section class="help-section"><h3>Combate</h3><p>Atacar y Huir están visibles, pero la resolución real dependerá del servidor y de las reglas de Jugabilidad.</p></section>
+      <section class="help-section"><h3>Herramientas</h3><p>Mapa, Personaje e Inventario se abren fuera de la terminal para no interrumpir la lectura.</p></section>
+      <section class="help-section"><h3>Comandos</h3><p>Los botones y los comandos escritos representan la misma acción. Puedes escribirlos en la línea inferior y pulsar Enviar.</p></section>
+      <section class="help-section"><h3>Estado de esta versión</h3><p>Es una demostración local: todavía no conecta con Raspberry Pi ni guarda progreso real.</p></section>
+    </div>
+  </div>
 </dialog>
 
 <script>
