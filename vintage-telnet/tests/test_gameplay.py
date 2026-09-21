@@ -113,7 +113,7 @@ class GameplayTests(unittest.TestCase):
         self.post("/species", dict(species="felaryn"))
         me = self.client.get("/api/me").json["player"]
         self.assertEqual(me["species"], "felaryn")
-        self.assertEqual(me["room"], "khariel")
+        self.assertEqual(me["room"], "khariel_centro")
         # Elegir de nuevo no debe cambiar nada (ya tiene especie).
         self.post("/species", dict(species="humano"))
         me_again = self.client.get("/api/me").json["player"]
@@ -132,11 +132,22 @@ class GameplayTests(unittest.TestCase):
     def test_movement_between_rooms_and_invalid_direction(self):
         self.register()
         self.approve("matias")
-        self.post("/species", dict(species="felaryn"))  # starts in khariel, exit: west -> vaisgard
-        self.assertEqual(self.client.get("/api/room").json["room"]["id"], "khariel")
+        self.post("/species", dict(species="felaryn"))  # starts in khariel_centro
+        self.assertEqual(self.client.get("/api/room").json["room"]["id"], "khariel_centro")
+
+        # Moverse dentro del pueblo, a la microzona interna (forja).
+        into_forja = self.post("/move", dict(direction="north"))
+        self.assertEqual(into_forja.status_code, 303)
+        self.assertEqual(self.client.get("/api/room").json["room"]["id"], "khariel_forja")
+
+        # Desde la forja, una direccion sin salida real es rechazada.
         invalid = self.post("/move", dict(direction="north"))
         self.assertEqual(invalid.status_code, 400)
-        self.assertEqual(self.client.get("/api/room").json["room"]["id"], "khariel")
+        self.assertEqual(self.client.get("/api/room").json["room"]["id"], "khariel_forja")
+
+        # Volver al centro y salir del pueblo hacia Vaisgard.
+        self.post("/move", dict(direction="south"))
+        self.assertEqual(self.client.get("/api/room").json["room"]["id"], "khariel_centro")
         moved = self.post("/move", dict(direction="west"))
         self.assertEqual(moved.status_code, 303)
         self.assertEqual(self.client.get("/api/room").json["room"]["id"], "vaisgard")
@@ -162,6 +173,105 @@ class GameplayTests(unittest.TestCase):
         self.post("/move", dict(direction="west"))
         room_after = other.get("/api/room").json["room"]
         self.assertNotIn("Matías", room_after["others_present"])
+
+    # --- Puntos de la revisión del Arquitecto (PR #6) -----------------------
+
+    def test_csp_allows_self_images_and_nonced_script(self):
+        page = self.client.get("/")
+        csp = page.headers["Content-Security-Policy"]
+        self.assertIn("img-src 'self'", csp)
+        self.assertIn("script-src 'nonce-", csp)
+        html = page.get_data(as_text=True)
+        match = re.search(r"script-src 'nonce-([^']+)'", csp)
+        self.assertIn(f'nonce="{match[1]}"', html)
+
+    @patch.dict(os.environ, {"VT_DM_PASSWORD": "dm-secret-value"})
+    def test_second_species_starts_in_its_own_confirmed_town(self):
+        self.register("javier", name="Javier")
+        self.approve("javier")
+        self.post("/species", dict(species="marevyn"))
+        me = self.client.get("/api/me").json["player"]
+        self.assertEqual(me["species"], "marevyn")
+        self.assertEqual(me["room"], "narevia_centro")
+
+    @patch.dict(os.environ, {"VT_DM_PASSWORD": "dm-secret-value"})
+    def test_species_and_room_persist_after_app_restart(self):
+        self.register()
+        self.approve("matias")
+        self.post("/species", dict(species="felaryn"))
+        self.post("/move", dict(direction="north"))  # khariel_centro -> khariel_forja
+        cookie = self.client.get_cookie("vt_session").value
+
+        app2 = create_app(self.config)
+        resumed = app2.test_client()
+        resumed.set_cookie("vt_session", cookie)
+        me = resumed.get("/api/me").json["player"]
+        self.assertEqual(me["species"], "felaryn")
+        self.assertEqual(me["room"], "khariel_forja")
+
+    @patch.dict(os.environ, {"VT_DM_PASSWORD": "dm-secret-value"})
+    def test_typed_command_moves_exactly_like_the_button(self):
+        self.register()
+        self.approve("matias")
+        self.post("/species", dict(species="felaryn"))  # khariel_centro
+        response = self.post("/command", dict(text="norte"))
+        self.assertEqual(response.status_code, 303)
+        self.assertEqual(self.client.get("/api/room").json["room"]["id"], "khariel_forja")
+        # Alias de una sola letra, igual que los botones N/S/E/O.
+        self.post("/command", dict(text="s"))
+        self.assertEqual(self.client.get("/api/room").json["room"]["id"], "khariel_centro")
+        # "mirar" no mueve.
+        self.post("/command", dict(text="mirar"))
+        self.assertEqual(self.client.get("/api/room").json["room"]["id"], "khariel_centro")
+        # Cualquier otro texto sigue funcionando como chat local.
+        self.post("/command", dict(text="hola a todos"))
+        bodies = [m["body"] for m in self.client.get("/api/room").json["room"]["messages"]]
+        self.assertIn("hola a todos", bodies)
+
+    @patch.dict(os.environ, {"VT_DM_PASSWORD": "dm-secret-value"})
+    def test_structured_move_and_species_api_contract(self):
+        self.register()
+        self.approve("matias")
+        me = self.client.get("/api/me").json
+        csrf_token = me["csrf"]
+
+        species_response = self.client.post(
+            "/api/species", json={"species": "felaryn", "csrf": csrf_token}
+        )
+        self.assertEqual(species_response.status_code, 200)
+        species_body = species_response.json
+        self.assertTrue(species_body["accepted"])
+        self.assertEqual(species_body["species"], "felaryn")
+        self.assertEqual(species_body["room"]["id"], "khariel_centro")
+
+        accepted_move = self.client.post(
+            "/api/move", json={"direction": "norte", "csrf": csrf_token}
+        )
+        self.assertEqual(accepted_move.status_code, 200)
+        accepted_body = accepted_move.json
+        self.assertTrue(accepted_body["accepted"])
+        self.assertEqual(accepted_body["previous_room"], "khariel_centro")
+        self.assertEqual(accepted_body["current_room"]["id"], "khariel_forja")
+
+        rejected_move = self.client.post(
+            "/api/move", json={"direction": "norte", "csrf": csrf_token}
+        )
+        self.assertEqual(rejected_move.status_code, 400)
+        rejected_body = rejected_move.json
+        self.assertFalse(rejected_body["accepted"])
+        self.assertIsNotNone(rejected_body["reason"])
+        self.assertEqual(rejected_body["current_room"]["id"], "khariel_forja")
+
+    @patch.dict(os.environ, {"VT_DM_PASSWORD": "dm-secret-value"})
+    def test_dm_login_is_rate_limited_separately_from_register_login(self):
+        for _ in range(20):
+            response = self.post("/dm/login", dict(dm_password="incorrecta"), csrf_path="/dm")
+            self.assertEqual(response.status_code, 401)
+        limited = self.post("/dm/login", dict(dm_password="incorrecta"), csrf_path="/dm")
+        self.assertEqual(limited.status_code, 429)
+        # El limite de /dm/login no consume el cupo de /register ni /login
+        # (llaves separadas: "dm:<ip>" vs "<ip>").
+        self.assertEqual(self.register().status_code, 303)
 
 
 if __name__ == "__main__":

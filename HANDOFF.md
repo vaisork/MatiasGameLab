@@ -1,5 +1,52 @@
 # HANDOFF — Entrega técnica
 
+## ENTREGA — Respuesta a la revisión del Arquitecto (PR #6)
+
+**Desarrollador:** Claude (Desarrollador de Servidor de Vintage Telnet)
+
+**Estado:** LISTO PARA REVISIÓN
+
+**Rama:** `claude/vintage-telnet-server-v2`
+
+### Objetivo
+Responder punto por punto a la revisión del Arquitecto en el PR #6 (`REVISIÓN DEL ARQUITECTO — NO LISTA PARA INTEGRAR TODAVÍA`).
+
+### 1. Rebase/actualización contra `main`
+Mergeado `origin/main` (traía la integración de arte, `DATABASE_GAMEPLAY_PREP.md` y `FIRST_PLAYABLE_SLICE.md`, el documento de prioridad P0 de Javier). Conflicto real solo en `AGENTS.md` (dos secciones nuevas en paralelo), resuelto conservando ambas. `HANDOFF.md` mergeó solo. 25/25 pruebas pasan después del merge.
+
+### 2. CSP para assets — bug real confirmado y corregido
+Verifiqué en consola del navegador **antes** de tocar nada: la política `default-src 'none'` sin `img-src` bloqueaba de verdad las 4 imágenes de fondo/botones (`net::ERR_BLOCKED_BY_RESPONSE` / CSP violation) — se veían en mis pruebas anteriores porque las había probado sobre `vintage-telnet.html` (PR #7, sin CSP) o sin fijarme en la consola de esta página en particular. También descubrí que el `<script>` inline de los diálogos (Personaje/Inventario/Poderes/Ayuda) estaba bloqueado por la misma razón — nunca abrían en el servidor real.
+- Agregué `img-src 'self'`.
+- Para el script, en vez de `'unsafe-inline'` (que debilita CSP para todo el sitio), implementé un **nonce por request** (`g.csp_nonce`, inyectado en la plantilla vía `context_processor`) y `script-src 'nonce-...'`.
+- Verificado en consola: cero violaciones CSP después del cambio; los 4 diálogos abren correctamente.
+
+### 3. Microzona interna por pueblo (P0)
+`world.py` reescrito: cada uno de los 5 pueblos de inicio ahora es una microzona de 3-4 salas (`_centro`, `_forja`, `_mercado`, y `_sendero` cuando queda una cuarta dirección libre), no una sala única. El punto central conserva exactamente las mismas conexiones externas que ya existían hacia Vaisgard/caminos. Narevia (que ya usaba 2 direcciones para caminos externos) solo tiene forja+mercado, sin sendero adicional — sus 4 direcciones ya prueban N/S/E/O igualmente. Verificado con un BFS que las 22 salas resultantes son alcanzables desde Vaisgard y no hay salidas colgantes. Todo sigue marcado `[PLACEHOLDER]` explícitamente: no se presenta como canon.
+
+### 4. Botón y comando = misma acción
+Extraje la lógica de movimiento a una función única `attempt_move()`, usada por el botón (`/move`), el contrato JSON (`/api/move`) y el nuevo cuadro de texto. El cuadro de texto ahora postea a `/command`: si el texto es norte/sur/este/oeste (o n/s/e/o), ejecuta exactamente la misma acción autoritativa que el botón correspondiente; si es "mirar", refresca; cualquier otro texto sigue funcionando como chat local (fuera de alcance P0 según `FIRST_PLAYABLE_SLICE.md`, pero se conserva porque ya funcionaba y no cuesta nada mantenerlo).
+
+### 5. Contrato estructurado de movimiento/especie
+Agregué `POST /api/species` y `POST /api/move` (JSON in/out), compartiendo la misma lógica autoritativa que las rutas HTML (`attempt_choose_species`, `attempt_move`). `/api/move` responde `{accepted, previous_room, current_room: {id, name, description, exits, ...}, reason}` tal como pide `FIRST_PLAYABLE_SLICE.md`. Las rutas HTML (`/move`, `/species`) se conservan como fallback funcional para la plantilla actual, tal como el Arquitecto autorizó explícitamente. Para que un cliente JSON pueda enviar el CSRF sin parsear HTML, `GET /api/me` ahora también devuelve el token `csrf` vigente.
+
+### 6. Pruebas agregadas (6 nuevas, 25 en total)
+- CSP: `img-src 'self'` y `script-src 'nonce-...'` presentes en la respuesta, y el nonce del header coincide con el del `<script>` renderizado.
+- Segunda especie (`marevyn`) confirmando que cada una llega a su propio pueblo (`narevia_centro`).
+- Persistencia de especie **y sala** (no solo sesión) tras recrear la app con un dispositivo nuevo.
+- Comando escrito ("norte", alias "s", "mirar", y texto libre) produciendo exactamente el mismo resultado que los botones/chat.
+- Contrato estructurado `/api/species` + `/api/move` (aceptado y rechazado).
+- Rate limit propio de `/dm/login` (clave separada de `/register`/`/login`, no comparten cupo).
+
+### Bug real encontrado y corregido durante esta entrega
+Al extraer `attempt_choose_species()`, el caso "ya tenías especie elegida" pasó de ser un redirect silencioso a tratarse como error renderizando la plantilla sin pasarle `room` — como en ese punto el jugador ya tenía especie, la plantilla intentaba la vista de mundo y fallaba con `UndefinedError`. Corregido separando "ya elegida" (no-op, redirect) de "especie inválida" (error real, sin necesitar `room` porque el jugador sigue sin especie en ese caso). Detectado por la propia suite de pruebas, no en manual.
+
+### Riesgo/nota para el Arquitecto
+El mínimo de contraseña de 8 caracteres sigue igual (decisión explícita de Javier, ya registrada en la entrega anterior) — no es parte de esta respuesta a la revisión.
+
+**LISTO PARA PUBLICAR:** NO — vuelve a quedar para revisión del Arquitecto según pidió ("cuando la rama se actualice con estos puntos, volver a revisión").
+
+---
+
 ## ENTREGA — Login real + arte integrado en el servidor (mismo origen)
 
 **Desarrollador:** Claude (Desarrollador de Servidor de Vintage Telnet)

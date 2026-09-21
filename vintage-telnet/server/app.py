@@ -49,13 +49,20 @@ def create_app(config=None):
         if request.method == "POST":
             expected = session.get("csrf", "")
             supplied = request.form.get("csrf", "")
-            if not expected or not hmac.compare_digest(expected.encode(), supplied.encode()):
+            if not supplied and request.is_json:
+                supplied = (request.get_json(silent=True) or {}).get("csrf", "")
+            if not expected or not hmac.compare_digest(expected.encode(), str(supplied).encode()):
                 abort(400, "Formulario vencido. Recarga la página.")
+        g.csp_nonce = secrets.token_urlsafe(16)
         if request.endpoint in ("health", "html_ui_assets"):
             return
         session.setdefault("csrf", secrets.token_urlsafe(32))
         g.player = store.player_for_token(path, session.get("token"))
         g.dm = bool(session.get("dm"))
+
+    @app.context_processor
+    def inject_csp_nonce():
+        return {"csp_nonce": getattr(g, "csp_nonce", "")}
 
     @app.after_request
     def headers(response):
@@ -63,8 +70,10 @@ def create_app(config=None):
         response.headers["X-Content-Type-Options"] = "nosniff"
         response.headers["X-Frame-Options"] = "DENY"
         response.headers["Referrer-Policy"] = "no-referrer"
+        nonce = getattr(g, "csp_nonce", "")
         response.headers["Content-Security-Policy"] = (
-            "default-src 'none'; style-src 'unsafe-inline'; form-action 'self'; "
+            f"default-src 'none'; style-src 'unsafe-inline'; img-src 'self'; "
+            f"script-src 'nonce-{nonce}'; form-action 'self'; "
             "frame-ancestors 'none'; base-uri 'none'")
         return response
 
@@ -90,6 +99,37 @@ def create_app(config=None):
         view = world.describe_room(room_id, [p["name"] for p in others])
         view["messages"] = store.recent_messages(path, room_id)
         return view
+
+    # Intenciones canonicas: boton y comando escrito deben terminar en la misma
+    # accion autoritativa del servidor (ver FIRST_PLAYABLE_SLICE.md).
+    DIRECTION_ALIASES = {
+        "norte": "north", "n": "north", "north": "north",
+        "sur": "south", "s": "south", "south": "south",
+        "este": "east", "e": "east", "east": "east",
+        "oeste": "west", "o": "west", "west": "west",
+    }
+    LOOK_ALIASES = {"mirar", "ver", "look"}
+
+    def attempt_move(player, direction):
+        """Unica logica autoritativa de movimiento. Devuelve
+        (accepted, previous_room_id, new_room_id_or_None, reason_or_None)."""
+        previous_room = player["room"]
+        room = world.get_room(previous_room)
+        destination = room["exits"].get(direction) if room else None
+        if not destination:
+            return False, previous_room, None, "No puedes ir en esa dirección."
+        store.move_player(path, player["id"], destination)
+        return True, previous_room, destination, None
+
+    def attempt_choose_species(player, species_id):
+        """Devuelve (accepted, species_or_None, room_or_None, reason_or_None)."""
+        if player["species"] is not None:
+            return False, None, None, "Ya elegiste tu especie."
+        if species_id not in world.SPECIES_IDS:
+            return False, None, None, "Elige una especie de la lista."
+        room_id = world.get_starting_room_for_species(species_id)
+        store.set_species(path, player["id"], species_id, room_id)
+        return True, species_id, room_id, None
 
     @app.get("/")
     def index():
@@ -142,13 +182,12 @@ def create_app(config=None):
     def choose_species():
         require_approved_player()
         if g.player["species"] is not None:
+            # Ya eligio: no es un error de validacion, solo no hay nada que hacer.
             return redirect(url_for("index"), code=303)
-        species_id = request.form.get("species", "")
-        if species_id not in world.SPECIES_IDS:
+        accepted, _species, _room, reason = attempt_choose_species(g.player, request.form.get("species", ""))
+        if not accepted:
             return render_template("entry.html", player=g.player, species_list=world.SPECIES,
-                                   error="Elige una especie de la lista."), 400
-        room_id = world.get_starting_room_for_species(species_id)
-        store.set_species(path, g.player["id"], species_id, room_id)
+                                   error=reason), 400
         return redirect(url_for("index"), code=303)
 
     @app.post("/move")
@@ -156,14 +195,11 @@ def create_app(config=None):
         require_approved_player()
         if g.player["species"] is None:
             abort(403)
-        direction = request.form.get("direction", "")
-        room = world.get_room(g.player["room"])
-        destination = room["exits"].get(direction) if room else None
-        if not destination:
+        accepted, _previous, _new, reason = attempt_move(g.player, request.form.get("direction", ""))
+        if not accepted:
             room_data = room_view(g.player["room"], g.player["id"])
             return render_template("entry.html", player=g.player, species_list=world.SPECIES,
-                                   room=room_data, error="No puedes ir en esa dirección."), 400
-        store.move_player(path, g.player["id"], destination)
+                                   room=room_data, error=reason), 400
         return redirect(url_for("index"), code=303)
 
     @app.post("/room/say")
@@ -177,11 +213,36 @@ def create_app(config=None):
         store.add_message(path, g.player["room"], g.player["id"], body)
         return redirect(url_for("index"), code=303)
 
+    @app.post("/command")
+    def command():
+        """Unico cuadro de texto de la terminal: si el texto es un comando de
+        movimiento/mirar canonico, ejecuta la misma accion autoritativa que los
+        botones de la cruceta; en cualquier otro caso, lo trata como chat local
+        (fuera del alcance P0, pero se conserva porque ya funciona)."""
+        require_approved_player()
+        if g.player["species"] is None:
+            abort(403)
+        raw = request.form.get("text", "").strip().lower()
+        if raw in DIRECTION_ALIASES:
+            accepted, _previous, _new, reason = attempt_move(g.player, DIRECTION_ALIASES[raw])
+            if not accepted:
+                room_data = room_view(g.player["room"], g.player["id"])
+                return render_template("entry.html", player=g.player, species_list=world.SPECIES,
+                                       room=room_data, error=reason), 400
+            return redirect(url_for("index"), code=303)
+        if raw in LOOK_ALIASES:
+            return redirect(url_for("index"), code=303)
+        if raw and len(raw) <= 500:
+            store.add_message(path, g.player["room"], g.player["id"], request.form.get("text", "").strip())
+        return redirect(url_for("index"), code=303)
+
     @app.get("/api/me")
     def me():
+        # csrf va incluido para que un cliente JSON (fetch) pueda reusarlo en
+        # los POST estructurados (/api/species, /api/move) sin parsear HTML.
         if g.player is None:
-            abort(401)
-        return jsonify(player=dict(g.player), world_status="under_construction")
+            return jsonify(player=None, csrf=session.get("csrf")), 401
+        return jsonify(player=dict(g.player), world_status="under_construction", csrf=session.get("csrf"))
 
     @app.get("/api/room")
     def api_room():
@@ -189,6 +250,38 @@ def create_app(config=None):
         if g.player["species"] is None:
             abort(409)
         return jsonify(room=room_view(g.player["room"], g.player["id"]))
+
+    @app.post("/api/species")
+    def api_choose_species():
+        """Contrato estructurado (FIRST_PLAYABLE_SLICE.md): responde con la
+        especie confirmada, el pueblo/sala inicial y el estado actualizado."""
+        require_approved_player()
+        payload = request.get_json(silent=True) or {}
+        accepted, species_id, room_id, reason = attempt_choose_species(g.player, payload.get("species", ""))
+        if not accepted:
+            return jsonify(accepted=False, reason=reason), 400
+        return jsonify(accepted=True, species=species_id, room=room_view(room_id, g.player["id"]))
+
+    @app.post("/api/move")
+    def api_move():
+        """Contrato estructurado (FIRST_PLAYABLE_SLICE.md): responde con
+        aceptada/rechazada, sala anterior, sala actual y salidas -- el cliente
+        no debe deducir la ubicacion interpretando texto narrativo."""
+        require_approved_player()
+        if g.player["species"] is None:
+            abort(409)
+        payload = request.get_json(silent=True) or {}
+        direction = DIRECTION_ALIASES.get(str(payload.get("direction", "")).strip().lower())
+        if direction is None:
+            return jsonify(accepted=False, reason="Dirección desconocida."), 400
+        accepted, previous_room, new_room, reason = attempt_move(g.player, direction)
+        current_room_id = new_room if accepted else previous_room
+        return jsonify(
+            accepted=accepted,
+            previous_room=previous_room,
+            reason=reason,
+            current_room=room_view(current_room_id, g.player["id"]),
+        ), (200 if accepted else 400)
 
     @app.get("/healthz")
     def health():
@@ -213,6 +306,9 @@ def create_app(config=None):
 
     @app.post("/dm/login")
     def dm_login():
+        if not store.allow_attempt(path, "dm:" + (request.remote_addr or "unknown")):
+            return render_template("dm.html", authenticated=False, configured=dm_auth.is_configured(),
+                                   error="Demasiados intentos. Espera un minuto."), 429
         if not dm_auth.is_configured():
             return render_template("dm.html", authenticated=False, configured=False,
                                    error="El panel del Dungeon Master no está configurado en este servidor."), 503

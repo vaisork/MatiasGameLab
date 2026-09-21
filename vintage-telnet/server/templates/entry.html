@@ -331,11 +331,12 @@
         <div class="divider" role="presentation"></div>
 
         <section>
-          <form class="commandbar" method="post" action="/room/say">
+          <form class="commandbar" method="post" action="/command">
             <input type="hidden" name="csrf" value="{{ session.csrf }}">
-            <input name="body" aria-label="Decir algo" autocomplete="off" maxlength="500" placeholder="> decir algo...">
+            <input name="text" aria-label="Escribe un comando" autocomplete="off" autocapitalize="none" spellcheck="false" enterkeyhint="send" maxlength="500" placeholder="> norte, mirar, decir algo...">
             <button class="btn primary" type="submit">Enviar</button>
           </form>
+          <p style="color:var(--muted);font-size:.72rem;margin:4px 0 0">Norte/sur/este/oeste (o n/s/e/o) mueven igual que los botones; "mirar" refresca; cualquier otro texto se dice en voz alta en esta sala.</p>
           <div class="tool-row" aria-label="Herramientas">
             <button class="btn" type="button" data-open="characterDialog">Personaje</button>
             <button class="btn" type="button" data-open="inventoryDialog">Inventario</button>
@@ -381,7 +382,7 @@
   <div class="modal-body"><h3>Cómo jugar</h3><p>Usa los botones N/S/E/O para moverte (los que no tienen salida real aparecen apagados). Escribe algo en el cuadro de texto y presiona Enviar para hablar con quien esté en tu misma sala. Personaje, Inventario, Poderes y Ayuda son paneles informativos; combate todavía no existe.</p></div>
 </dialog>
 
-<script>
+<script nonce="{{ csp_nonce }}">
 (() => {
   document.querySelectorAll("[data-open]").forEach(b => b.addEventListener("click", () => {
     const d = document.getElementById(b.dataset.open);
