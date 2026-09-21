@@ -88,7 +88,11 @@ Requisitos conocidos:
 - Ruta relacionada en assets: `assets/perro/dog-standing.png` (reemplazar en el mismo archivo).
 
 Decisiones visuales ya aprobadas:
-Ninguna nueva — solo se pide que la pose "de pie" ya aprobada anteriormente se entregue sin corromperse.
+Ninguna — hay que empezar de cero. Se revisaron las 3 versiones que ha tenido este archivo en el historial del repo y **ninguna sirve**:
+- `f504221` (la más reciente): corrupta — dos fragmentos diminutos en esquinas opuestas del lienzo, centro transparente.
+- `d03f203` ("reemplazo con versión limpia"): completamente en blanco/transparente.
+- `2ce3f94` (original, dos poses): la cabeza se ve bien pero el cuerpo tiene ruido de píxeles corrupto.
+`dog-crouched.png` sí es una referencia válida de calidad/estilo a seguir.
 
 Necesita material de Javier/Matías:
 No.
@@ -100,7 +104,7 @@ Entrega:
 - Frames/orden: (pendiente)
 
 Observaciones:
-El archivo subido más reciente en `assets/perro/dog-standing.png` (commit `f504221`) está corrompido: al abrirlo se ven dos fragmentos de pixel art diminutos en esquinas opuestas del lienzo, con todo el centro transparente — no se ve un perro completo. Verificado abriendo el PNG directamente en navegador a escala 5x, fuera del juego. Necesita re-exportarse/re-subirse.
+El archivo `assets/perro/dog-standing.png` fue eliminado del repo (no existía ninguna versión funcional en el historial a la cual revertir). El próximo agente de Pixel Art debe crearlo desde cero, no restaurar una versión anterior. Verificado abriendo cada PNG directamente en navegador a escala 5x, fuera del juego — no es un problema de cómo el juego los usa, los archivos en sí estaban dañados.
 
 ---
 
@@ -127,10 +131,10 @@ Requisitos conocidos:
 - Frames/poses: 3 frames para animación de espera/parpadeo (secuencia usada en `drawRat()`: `[0,0,0,1,2,1,0,0]` en reposo, `[0,1,2,1]` cuando Senku está cerca).
 - Dirección/orientación: igual que el diseño ya aprobado en `rata_1.png` (frame 1, ver abajo).
 - Referencias existentes: `assets/rata/rata_1.png` (este frame sí está bien).
-- Ruta relacionada en assets: actualmente el código lee un solo spritesheet combinado en `assets/rata/white-rat-sprite-v2.png` (480×136px = 3 frames de 160px pegados). Los archivos nuevos se subieron como 3 PNG separados (`rata_1.png`, `rata_2.png`, `rata_3.png`) en vez de un spritesheet combinado — cuando los 3 frames estén validados, avisar para que Claude actualice `senku.html` y decida si conviene mantenerlos separados o pedir que se combinen en un solo spritesheet como antes.
+- Ruta relacionada en assets: el código lee un spritesheet combinado en `assets/rata/white-rat-sprite-v2.png` (480×136px = 3 frames de 160px pegados). El plan más simple es seguir entregando así: **un solo PNG de 480×136px con los 3 frames pegados en fila**, mismo nombre de archivo. Si se prefiere entregar 3 archivos sueltos (como `rata_1.png`, `rata_2.png`, `rata_3.png` de 160×136px cada uno), avisar en esta entrada y Claude actualiza `senku.html` para leerlos así en vez del spritesheet.
 
 Decisiones visuales ya aprobadas:
-El estilo/diseño de `rata_1.png` (rata blanca completa, limpia) ya es el que se quiere usar.
+El estilo/diseño de `rata_1.png` (rata blanca completa, limpia, la única de las 4 imágenes de rata que salió bien) ya es el que se quiere usar como referencia.
 
 Necesita material de Javier/Matías:
 No.
@@ -142,12 +146,12 @@ Entrega:
 - Frames/orden: (pendiente)
 
 Observaciones:
-Verificado abriendo cada PNG directamente en navegador, fuera del juego:
-- `assets/rata/white-rat-sprite-v2.png` (el que usa el juego ahora mismo) está **completamente transparente/en blanco** — la rata es invisible en el juego publicado ahora mismo. No es un problema nuevo de esta entrega, ya existía antes.
-- `rata_1.png` (commit `9ccdbd1`) — correcto, listo para usar.
-- `rata_2.png` (commit `e86f085`/`16b4172`) — completamente transparente/en blanco, mismo problema que el spritesheet viejo.
-- `rata_3.png` (commit `b01d86c`) — corrompido/fragmentado: se ven pedazos sueltos (orejas, cola) y una línea de píxeles de colores random abajo, no una rata completa.
-Con 2 de los 3 frames rotos, no tiene caso que Claude actualice el código todavía — el resultado se vería igual de mal o peor que ahora.
+Se revisó cada PNG abriéndolo directamente en navegador, fuera del juego (no es un problema de cómo el juego los usa, los archivos en sí estaban dañados):
+- `assets/rata/white-rat-sprite-v2.png` (el spritesheet que lee el código) y su duplicado `white-rat-sheet.png` estaban **completamente transparentes/en blanco** — la única versión que ha existido de este archivo, sin historial de una versión buena. Se eliminaron del repo.
+- `rata_1.png` (commit `9ccdbd1`) — correcto, se conserva como referencia de estilo.
+- `rata_2.png` (commit `e86f085`/`16b4172`) — completamente transparente/en blanco. Se eliminó.
+- `rata_3.png` (commit `b01d86c`) — corrompido/fragmentado: pedazos sueltos (orejas, cola) y una línea de píxeles de colores random abajo, no una rata completa. Se eliminó.
+El próximo agente de Pixel Art puede usar `rata_1.png` como referencia de estilo/pose ya aprobada y solo necesita producir 2 frames más (o rehacer los 3 como un spritesheet único, ver arriba).
 
 ## Diagnóstico temporal — flujo de subida de Pixel Art
 
