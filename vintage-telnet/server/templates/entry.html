@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vintage Telnet</title>
+<style>
+  :root {color-scheme: dark; font-family: ui-monospace, monospace; background: #101916; color: #d6eddd}
+  body {max-width: 44rem; margin: auto; padding: 1.5rem; line-height: 1.6}
+  h1 {color: #a2e4b8} section {border-top: 1px solid #486553; margin-top: 2rem}
+  label {display: block; margin-top: 1rem} input, button {font: inherit; padding: .75rem; box-sizing: border-box}
+  input {display: block; width: 100%; max-width: 30rem} button {margin-top: 1rem; cursor: pointer}
+  .error {color: #ffd0b0} small {display: block}
+</style>
+<main>
+<h1>Vintage Telnet</h1>
+{% if error %}<p class="error" role="alert">{{ error }}</p>{% endif %}
+{% if player %}
+  <h2>Jugador #{{ '%04d' | format(player.player_number) }}</h2>
+  <p>Bienvenido, {{ player.name }}.</p>
+  <p>Tu acceso quedó registrado. El mundo todavía está en construcción.</p>
+  <p>Tu cuenta permanece guardada en el servidor cuando cierras este dispositivo.</p>
+  <form method="post" action="/logout">
+    <input type="hidden" name="csrf" value="{{ session.csrf }}">
+    <button type="submit">Cerrar sesión</button>
+  </form>
+{% else %}
+  <p>Entra con tu cuenta para recuperar tu número de jugador.</p>
+  <section><h2>Entrar</h2>
+  <form method="post" action="/login">
+    <input type="hidden" name="csrf" value="{{ session.csrf }}">
+    <label>Usuario <input name="username" autocomplete="username" required maxlength="32" autocapitalize="none" spellcheck="false"></label>
+    <label>Contraseña <input name="password" type="password" autocomplete="current-password" required maxlength="128"></label>
+    <button type="submit">Entrar</button>
+  </form></section>
+  <section><h2>Crear cuenta</h2>
+  <form method="post" action="/register">
+    <input type="hidden" name="csrf" value="{{ session.csrf }}">
+    <label>Nombre para mostrar <input name="name" required maxlength="60" autocomplete="nickname"></label>
+    <small>Puede ser un apodo; no necesitas dar tu nombre completo.</small>
+    <label>Usuario <input name="username" required minlength="3" maxlength="32" pattern="[a-zA-Z0-9_]{3,32}" autocomplete="username" autocapitalize="none" spellcheck="false"></label>
+    <small>Entre 3 y 32 letras sin acentos, números o guion bajo.</small>
+    <label>Contraseña <input name="password" type="password" required minlength="12" maxlength="128" autocomplete="new-password"></label>
+    <small>Entre 12 y 128 caracteres. Guarda tu usuario y contraseña para volver.</small>
+    <button type="submit">Registrarme</button>
+  </form></section>
+{% endif %}
+</main>
+</html>

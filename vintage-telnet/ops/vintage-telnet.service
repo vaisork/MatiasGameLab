@@ -1,0 +1,26 @@
+[Unit]
+Description=Vintage Telnet authoritative entry server
+After=network.target
+
+[Service]
+Type=simple
+User=vintage-telnet
+Group=vintage-telnet
+WorkingDirectory=/opt/vintage-telnet/current/vintage-telnet
+EnvironmentFile=/etc/vintage-telnet/server.env
+Environment=PYTHONUNBUFFERED=1
+Environment=PYTHONDONTWRITEBYTECODE=1
+ExecStart=/opt/vintage-telnet/current/vintage-telnet/.venv/bin/python -m server
+Restart=on-failure
+RestartSec=5
+StateDirectory=vintage-telnet
+StateDirectoryMode=0700
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/vintage-telnet
+
+[Install]
+WantedBy=multi-user.target
