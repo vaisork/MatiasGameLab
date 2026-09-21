@@ -17,18 +17,18 @@ Este archivo evita que una rama antigua parezca trabajo pendiente por el solo he
 
 ## Ramas activas o con entrega pendiente
 
-| Rama | Proyecto | Estado operativo | Git vs main | Objetivo / coordinación | Responsable de mantener la fila |
-|---|---|---|---|---|---|
-| `arch/workflow-agents-index` | Compartido | **EN PREPARACIÓN** | rama de esta propia entrega; ejecutar script para cifras actuales | Separar contratos, compactar AGENTS, índice de ramas y auditoría determinista. Cambio compartido: no altera autoridad de Senku ni Vintage Telnet. | Arquitecto Vintage Telnet durante esta entrega; revisión compartida antes de integrar |
-| `art/vintage-telnet-html-assets` | Vintage Telnet | **LISTA PARA REVISIÓN/INTEGRACIÓN** | ahead 1 / behind 0 | Biblioteca modular HTML juvenil/mobile-first en `vintage-telnet/assets/html-ui/`; el commit declara pendiente de revisión/integración. | Arquitecto Vintage Telnet |
-| `junior/vintage-telnet-help-character` | Vintage Telnet | **ACTIVA — NECESITA REVISIÓN SOBRE MAIN ACTUAL** | ahead 2 / behind 3 | Ayuda fullscreen + placeholder de imagen 3D de personaje. Handoff declara entrega preparada, no publicada y dependencia de asset. | Arquitecto Vintage Telnet |
-| `claude/senku-revision-inicial` | Senku | **PR #2 ABIERTA — CLASIFICACIÓN/ACTUALIZACIÓN CORRESPONDE A SENKU** | ahead 5 / behind 99 | Fix HUD, churus no duplicables y taza en Casa; PR abierta. No evaluar ni integrar desde Vintage Telnet. | Arquitecto Senku / coordinación general |
+| Rama | Proyecto | Estado operativo | Git vs main | Documento de coordinación | Objetivo | Responsable de mantener la fila |
+|---|---|---|---|---|---|---|
+| `arch/workflow-agents-index` | Compartido | **EN PREPARACIÓN** | rama de esta propia entrega; ejecutar script para cifras actuales | PR #5 | Separar contratos, compactar AGENTS, índice de ramas y auditoría determinista. Cambio compartido: no altera autoridad de Senku ni Vintage Telnet. | Arquitecto Vintage Telnet durante esta entrega; revisión compartida antes de integrar |
+| `art/vintage-telnet-html-assets` | Vintage Telnet | **LISTA PARA REVISIÓN/INTEGRACIÓN** | ahead 1 / behind 0 | `vintage-telnet/assets/html-ui/README.md` + `ASSET_MANIFEST.md` en la rama | Biblioteca modular HTML juvenil/mobile-first; el commit declara pendiente de revisión/integración. | Arquitecto Vintage Telnet |
+| `junior/vintage-telnet-help-character` | Vintage Telnet | **ACTIVA — NECESITA REVISIÓN SOBRE MAIN ACTUAL** | ahead 2 / behind 3 | `HANDOFF.md` de la rama (legado); al rebasar debe migrarse a `vintage-telnet/handoffs/` | Ayuda fullscreen + placeholder de imagen 3D de personaje; dependencia de asset. | Arquitecto Vintage Telnet |
+| `claude/senku-revision-inicial` | Senku | **PR #2 ABIERTA — CLASIFICACIÓN/ACTUALIZACIÓN CORRESPONDE A SENKU** | ahead 5 / behind 99 | PR #2 + `HANDOFF.md` de la rama | Fix HUD, churus no duplicables y taza en Casa. No evaluar ni integrar desde Vintage Telnet. | Arquitecto Senku / coordinación general |
 
 ## Ramas no activas o que no deben confundirse con una entrega lista
 
 | Rama | Proyecto | Clasificación | Git vs main | Motivo |
 |---|---|---|---|---|
-| `codex/vintage-telnet-server` | Vintage Telnet | **SUPERADA COMO RAMA DE MERGE / RESCATE PARCIAL** | ahead 3 / behind 100 | PR #1 conserva una base útil de servidor, pero el Arquitecto ya decidió no mergearla directamente; se rescatará sobre rama fresca. |
+| `codex/vintage-telnet-server` | Vintage Telnet | **SUPERADA COMO RAMA DE MERGE / RESCATE PARCIAL** | ahead 3 / behind 100 | PR #1 cerrada conserva una base útil de servidor, pero no se mergeará directamente; se rescatará sobre rama fresca. |
 | `junior/vintage-telnet-mobile-v2` | Vintage Telnet | **ABSORBIDA** | ahead 0 / behind 9 | Sus cambios ya están contenidos en `main`. |
 | `junior/vintage-telnet-vertical-slice` | Vintage Telnet | **ABSORBIDA** | ahead 0 / behind 16 | Sus cambios ya están contenidos en `main`. |
 | `claude/pixel-art-requests-dog-rat` | MatiasGameLab / Senku | **PENDIENTE DE CLASIFICACIÓN POR SU RESPONSABLE** | ahead 1 / behind 69 | Rama vieja sin PR; no corresponde al Arquitecto de Vintage Telnet decidir si se cierra o rescata. |
