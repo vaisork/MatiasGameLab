@@ -9,7 +9,7 @@ import sqlite3
 from flask import Flask, abort, g, jsonify, redirect, render_template, request, session, url_for
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from . import store
+from . import dm_auth, store, world
 
 
 def create_app(config=None):
@@ -50,6 +50,7 @@ def create_app(config=None):
             return
         session.setdefault("csrf", secrets.token_urlsafe(32))
         g.player = store.player_for_token(path, session.get("token"))
+        g.dm = bool(session.get("dm"))
 
     @app.after_request
     def headers(response):
@@ -69,9 +70,28 @@ def create_app(config=None):
         session["token"] = token
         return redirect(url_for("index"), code=303)
 
+    def require_approved_player():
+        if g.player is None:
+            abort(401)
+        if g.player["status"] != "approved":
+            abort(403)
+
+    def require_dm():
+        if not g.dm:
+            abort(403)
+
+    def room_view(room_id, player_id):
+        others = store.players_in_room(path, room_id, exclude_id=player_id)
+        view = world.describe_room(room_id, [p["name"] for p in others])
+        view["messages"] = store.recent_messages(path, room_id)
+        return view
+
     @app.get("/")
     def index():
-        return render_template("entry.html", player=g.player)
+        room = None
+        if g.player is not None and g.player["status"] == "approved" and g.player["room"]:
+            room = room_view(g.player["room"], g.player["id"])
+        return render_template("entry.html", player=g.player, species_list=world.SPECIES, room=room)
 
     @app.post("/register")
     def register():
@@ -113,11 +133,57 @@ def create_app(config=None):
         session.clear()
         return redirect(url_for("index"), code=303)
 
+    @app.post("/species")
+    def choose_species():
+        require_approved_player()
+        if g.player["species"] is not None:
+            return redirect(url_for("index"), code=303)
+        species_id = request.form.get("species", "")
+        if species_id not in world.SPECIES_IDS:
+            return render_template("entry.html", player=g.player, species_list=world.SPECIES,
+                                   error="Elige una especie de la lista."), 400
+        room_id = world.get_starting_room_for_species(species_id)
+        store.set_species(path, g.player["id"], species_id, room_id)
+        return redirect(url_for("index"), code=303)
+
+    @app.post("/move")
+    def move():
+        require_approved_player()
+        if g.player["species"] is None:
+            abort(403)
+        direction = request.form.get("direction", "")
+        room = world.get_room(g.player["room"])
+        destination = room["exits"].get(direction) if room else None
+        if not destination:
+            room_data = room_view(g.player["room"], g.player["id"])
+            return render_template("entry.html", player=g.player, species_list=world.SPECIES,
+                                   room=room_data, error="No puedes ir en esa dirección."), 400
+        store.move_player(path, g.player["id"], destination)
+        return redirect(url_for("index"), code=303)
+
+    @app.post("/room/say")
+    def say():
+        require_approved_player()
+        if g.player["species"] is None:
+            abort(403)
+        body = request.form.get("body", "").strip()
+        if not body or len(body) > 500:
+            abort(400)
+        store.add_message(path, g.player["room"], g.player["id"], body)
+        return redirect(url_for("index"), code=303)
+
     @app.get("/api/me")
     def me():
         if g.player is None:
             abort(401)
         return jsonify(player=dict(g.player), world_status="under_construction")
+
+    @app.get("/api/room")
+    def api_room():
+        require_approved_player()
+        if g.player["species"] is None:
+            abort(409)
+        return jsonify(room=room_view(g.player["room"], g.player["id"]))
 
     @app.get("/healthz")
     def health():
@@ -125,5 +191,49 @@ def create_app(config=None):
             db.execute("SELECT id FROM players LIMIT 1").fetchone()
             version = db.execute("PRAGMA user_version").fetchone()[0]
         return jsonify(status="ok", schema_version=version)
+
+    # --- Dungeon Master ---------------------------------------------------
+
+    @app.get("/dm")
+    def dm_panel():
+        if not g.dm:
+            return render_template("dm.html", authenticated=False, configured=dm_auth.is_configured())
+        pending = store.list_by_status(path, "pending")
+        approved = store.list_by_status(path, "approved")
+        return render_template("dm.html", authenticated=True, pending=pending, approved=approved)
+
+    @app.post("/dm/login")
+    def dm_login():
+        if not dm_auth.is_configured():
+            return render_template("dm.html", authenticated=False, configured=False,
+                                   error="El panel del Dungeon Master no está configurado en este servidor."), 503
+        if not dm_auth.check_secret(request.form.get("dm_password", "")):
+            return render_template("dm.html", authenticated=False, configured=True,
+                                   error="Contraseña de Dungeon Master incorrecta."), 401
+        session["dm"] = True
+        return redirect(url_for("dm_panel"), code=303)
+
+    @app.post("/dm/logout")
+    def dm_logout():
+        session.pop("dm", None)
+        return redirect(url_for("dm_panel"), code=303)
+
+    @app.post("/dm/approve")
+    def dm_approve():
+        require_dm()
+        store.set_status(path, request.form.get("username", ""), "approved")
+        return redirect(url_for("dm_panel"), code=303)
+
+    @app.post("/dm/reject")
+    def dm_reject():
+        require_dm()
+        store.set_status(path, request.form.get("username", ""), "rejected")
+        return redirect(url_for("dm_panel"), code=303)
+
+    @app.post("/dm/remove")
+    def dm_remove():
+        require_dm()
+        store.set_status(path, request.form.get("username", ""), "removed", revoke_sessions=True)
+        return redirect(url_for("dm_panel"), code=303)
 
     return app

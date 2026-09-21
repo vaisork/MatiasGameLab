@@ -7,18 +7,74 @@
   :root {color-scheme: dark; font-family: ui-monospace, monospace; background: #101916; color: #d6eddd}
   body {max-width: 44rem; margin: auto; padding: 1.5rem; line-height: 1.6}
   h1 {color: #a2e4b8} section {border-top: 1px solid #486553; margin-top: 2rem}
-  label {display: block; margin-top: 1rem} input, button {font: inherit; padding: .75rem; box-sizing: border-box}
-  input {display: block; width: 100%; max-width: 30rem} button {margin-top: 1rem; cursor: pointer}
+  label {display: block; margin-top: 1rem} input, button, select {font: inherit; padding: .75rem; box-sizing: border-box}
+  input, select {display: block; width: 100%; max-width: 30rem} button {margin-top: 1rem; cursor: pointer}
   .error {color: #ffd0b0} small {display: block}
+  .exits {display: flex; flex-wrap: wrap; gap: .5rem}
+  .exits form {display: inline} .exits button {margin-top: 0}
+  .messages {list-style: none; padding: 0; margin: 0}
+  .messages li {padding: .35rem 0; border-bottom: 1px solid #223530}
+  .who {color: #8fb39c; font-size: .9em}
+  .species-option {display: block; margin-top: .75rem}
+  .species-option input {display: inline; width: auto}
 </style>
 <main>
 <h1>Vintage Telnet</h1>
 {% if error %}<p class="error" role="alert">{{ error }}</p>{% endif %}
+
 {% if player %}
   <h2>Jugador #{{ '%04d' | format(player.player_number) }}</h2>
   <p>Bienvenido, {{ player.name }}.</p>
-  <p>Tu acceso quedó registrado. El mundo todavía está en construcción.</p>
-  <p>Tu cuenta permanece guardada en el servidor cuando cierras este dispositivo.</p>
+
+  {% if player.status == 'pending' %}
+    <p>Tu cuenta todavía está pendiente de aprobación del Dungeon Master.</p>
+
+  {% elif player.status in ('rejected', 'removed') %}
+    <p>Tu cuenta no está habilitada para entrar al mundo.</p>
+
+  {% elif player.species is none %}
+    <section><h2>Elige tu especie</h2>
+    <form method="post" action="/species">
+      <input type="hidden" name="csrf" value="{{ session.csrf }}">
+      {% for s in species_list %}
+        <label class="species-option"><input type="radio" name="species" value="{{ s.id }}" required>
+          {{ s.name }} — {{ s.blurb }}</label>
+      {% endfor %}
+      <button type="submit">Confirmar especie</button>
+    </form></section>
+
+  {% elif room %}
+    <section>
+      <h2>{{ room.name }}</h2>
+      <p>{{ room.description }}</p>
+      {% if room.others_present %}
+        <p class="who">También aquí: {{ room.others_present | join(', ') }}</p>
+      {% endif %}
+      <div class="exits">
+        {% for exit in room.exits %}
+          <form method="post" action="/move">
+            <input type="hidden" name="csrf" value="{{ session.csrf }}">
+            <input type="hidden" name="direction" value="{{ exit.direction }}">
+            <button type="submit">{{ exit.label }}</button>
+          </form>
+        {% endfor %}
+      </div>
+    </section>
+
+    <section><h2>Conversación local</h2>
+      <ul class="messages">
+        {% for m in room.messages %}
+          <li><strong>{{ m.name }}:</strong> {{ m.body }}</li>
+        {% endfor %}
+      </ul>
+      <form method="post" action="/room/say">
+        <input type="hidden" name="csrf" value="{{ session.csrf }}">
+        <label>Decir algo <input name="body" maxlength="500" required></label>
+        <button type="submit">Enviar</button>
+      </form>
+    </section>
+  {% endif %}
+
   <form method="post" action="/logout">
     <input type="hidden" name="csrf" value="{{ session.csrf }}">
     <button type="submit">Cerrar sesión</button>
@@ -43,6 +99,7 @@
     <small>Entre 12 y 128 caracteres. Guarda tu usuario y contraseña para volver.</small>
     <button type="submit">Registrarme</button>
   </form></section>
+  <p><small>Tu cuenta queda pendiente de aprobación del Dungeon Master antes de poder jugar.</small></p>
 {% endif %}
 </main>
 </html>

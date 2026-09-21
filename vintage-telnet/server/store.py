@@ -8,6 +8,12 @@ import sqlite3
 import time
 import uuid
 
+STATUSES = ("pending", "approved", "rejected", "removed")
+
+PLAYER_COLUMNS = (
+    "id, player_number, username, name, status, species, room, created_at, last_access_at"
+)
+
 
 def utcnow():
     return datetime.now(timezone.utc).isoformat(timespec="microseconds")
@@ -35,36 +41,60 @@ def initialize(path):
         db.execute("PRAGMA journal_mode = WAL")
         db.execute("BEGIN IMMEDIATE")
         version = db.execute("PRAGMA user_version").fetchone()[0]
-        if version not in (0, 1):
+        if version not in (0, 1, 2):
             raise RuntimeError("Versión de base de datos no soportada; no iniciar ni degradar.")
-        if version == 1:
+        if version == 2:
             return
-        statements = [
-            """CREATE TABLE players (
-                player_number INTEGER PRIMARY KEY AUTOINCREMENT,
-                id TEXT NOT NULL UNIQUE,
-                username TEXT NOT NULL UNIQUE,
-                name TEXT NOT NULL,
-                password_hash TEXT NOT NULL,
-                created_at TEXT NOT NULL,
-                last_access_at TEXT NOT NULL)""",
-            """CREATE TABLE access_events (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                player_id TEXT NOT NULL REFERENCES players(id),
-                kind TEXT NOT NULL CHECK(kind IN ('register', 'login')),
-                occurred_at TEXT NOT NULL)""",
-            "CREATE INDEX access_player_time ON access_events(player_id, occurred_at)",
-            """CREATE TABLE sessions (
-                token_hash TEXT PRIMARY KEY,
-                player_id TEXT NOT NULL REFERENCES players(id),
-                expires_at INTEGER NOT NULL)""",
-            """CREATE TABLE auth_limits (
-                key TEXT PRIMARY KEY, window_start INTEGER NOT NULL,
-                attempts INTEGER NOT NULL)""",
-        ]
-        for statement in statements:
-            db.execute(statement)
-        db.execute("PRAGMA user_version = 1")
+        if version == 0:
+            statements = [
+                """CREATE TABLE players (
+                    player_number INTEGER PRIMARY KEY AUTOINCREMENT,
+                    id TEXT NOT NULL UNIQUE,
+                    username TEXT NOT NULL UNIQUE,
+                    name TEXT NOT NULL,
+                    password_hash TEXT NOT NULL,
+                    status TEXT NOT NULL DEFAULT 'pending'
+                        CHECK(status IN ('pending', 'approved', 'rejected', 'removed')),
+                    species TEXT,
+                    room TEXT,
+                    created_at TEXT NOT NULL,
+                    last_access_at TEXT NOT NULL)""",
+                """CREATE TABLE access_events (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    player_id TEXT NOT NULL REFERENCES players(id),
+                    kind TEXT NOT NULL CHECK(kind IN ('register', 'login')),
+                    occurred_at TEXT NOT NULL)""",
+                "CREATE INDEX access_player_time ON access_events(player_id, occurred_at)",
+                """CREATE TABLE sessions (
+                    token_hash TEXT PRIMARY KEY,
+                    player_id TEXT NOT NULL REFERENCES players(id),
+                    expires_at INTEGER NOT NULL)""",
+                """CREATE TABLE auth_limits (
+                    key TEXT PRIMARY KEY, window_start INTEGER NOT NULL,
+                    attempts INTEGER NOT NULL)""",
+                """CREATE TABLE room_messages (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    room TEXT NOT NULL,
+                    player_id TEXT NOT NULL REFERENCES players(id),
+                    body TEXT NOT NULL,
+                    created_at TEXT NOT NULL)""",
+                "CREATE INDEX room_messages_room_time ON room_messages(room, created_at)",
+            ]
+            for statement in statements:
+                db.execute(statement)
+        else:  # version == 1: upgrade an existing deployment in place
+            db.execute("""ALTER TABLE players ADD COLUMN status TEXT NOT NULL DEFAULT 'pending'
+                          CHECK(status IN ('pending', 'approved', 'rejected', 'removed'))""")
+            db.execute("ALTER TABLE players ADD COLUMN species TEXT")
+            db.execute("ALTER TABLE players ADD COLUMN room TEXT")
+            db.execute("""CREATE TABLE room_messages (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    room TEXT NOT NULL,
+                    player_id TEXT NOT NULL REFERENCES players(id),
+                    body TEXT NOT NULL,
+                    created_at TEXT NOT NULL)""")
+            db.execute("CREATE INDEX room_messages_room_time ON room_messages(room, created_at)")
+        db.execute("PRAGMA user_version = 2")
 
 
 def allow_attempt(path, address):
@@ -110,8 +140,78 @@ def player_for_token(path, token):
     if not token:
         return None
     with connect(path) as db:
-        return db.execute("""SELECT p.id, p.player_number, p.username, p.name,
-                             p.created_at, p.last_access_at FROM players p
-                             JOIN sessions s ON s.player_id = p.id
-                             WHERE s.token_hash = ? AND s.expires_at > ?""",
-                          (digest(token), int(time.time()))).fetchone()
+        return db.execute(
+            """SELECT p.id, p.player_number, p.username, p.name, p.status, p.species, p.room,
+                      p.created_at, p.last_access_at
+               FROM players p
+               JOIN sessions s ON s.player_id = p.id
+               WHERE s.token_hash = ? AND s.expires_at > ?""",
+            (digest(token), int(time.time())),
+        ).fetchone()
+
+
+def player_by_username(db, username):
+    return db.execute(f"SELECT {PLAYER_COLUMNS} FROM players WHERE username = ?", (username,)).fetchone()
+
+
+def list_by_status(path, status):
+    with connect(path) as db:
+        return db.execute(
+            f"SELECT {PLAYER_COLUMNS} FROM players WHERE status = ? ORDER BY player_number", (status,)
+        ).fetchall()
+
+
+def set_status(path, username, status, revoke_sessions=False):
+    """Returns the updated player row, or None if the username doesn't exist."""
+    if status not in STATUSES:
+        raise ValueError(f"Estado desconocido: {status}")
+    with connect(path) as db:
+        player = player_by_username(db, username)
+        if player is None:
+            return None
+        db.execute("UPDATE players SET status = ? WHERE id = ?", (status, player["id"]))
+        if revoke_sessions:
+            db.execute("DELETE FROM sessions WHERE player_id = ?", (player["id"],))
+        return player_by_username(db, username)
+
+
+def set_species(path, player_id, species, room):
+    """Only takes effect the first time (species must currently be NULL)."""
+    with connect(path) as db:
+        db.execute(
+            "UPDATE players SET species = ?, room = ? WHERE id = ? AND species IS NULL",
+            (species, room, player_id),
+        )
+
+
+def move_player(path, player_id, room):
+    with connect(path) as db:
+        db.execute("UPDATE players SET room = ? WHERE id = ?", (room, player_id))
+
+
+def players_in_room(path, room, exclude_id=None):
+    with connect(path) as db:
+        rows = db.execute(
+            "SELECT name, username FROM players WHERE room = ? AND status = 'approved' AND id != ?",
+            (room, exclude_id or ""),
+        ).fetchall()
+        return [dict(row) for row in rows]
+
+
+def add_message(path, room, player_id, body):
+    with connect(path) as db:
+        db.execute(
+            "INSERT INTO room_messages(room, player_id, body, created_at) VALUES (?, ?, ?, ?)",
+            (room, player_id, body, utcnow()),
+        )
+
+
+def recent_messages(path, room, limit=30):
+    with connect(path) as db:
+        rows = db.execute(
+            """SELECT m.body, m.created_at, p.name, p.username FROM room_messages m
+               JOIN players p ON p.id = m.player_id
+               WHERE m.room = ? ORDER BY m.id DESC LIMIT ?""",
+            (room, limit),
+        ).fetchall()
+        return [dict(row) for row in reversed(rows)]

@@ -41,8 +41,9 @@ def main():
             if result != ["ok"] or foreign:
                 raise SystemExit(1)
         else:
-            query = ("SELECT id, player_number, username, name, created_at, last_access_at "
-                     "FROM players ORDER BY player_number" if args.command == "players" else
+            query = ("SELECT id, player_number, username, name, status, species, room, "
+                     "created_at, last_access_at FROM players ORDER BY player_number"
+                     if args.command == "players" else
                      "SELECT a.id, p.player_number, a.kind, a.occurred_at FROM access_events a "
                      "JOIN players p ON p.id = a.player_id ORDER BY a.id DESC LIMIT 100")
             print(json.dumps([dict(row) for row in db.execute(query)], ensure_ascii=False, indent=2))
