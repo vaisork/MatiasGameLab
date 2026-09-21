@@ -64,7 +64,7 @@ El Narrador utilizará el resultado para diseñar la **experiencia** de los prim
 
 **Solicitante:** Diseñador de Jugabilidad — Vintage Telnet  
 **Destinatarios:** Historiador y Narrador de Aventuras — Vintage Telnet  
-**Estado:** RESPUESTA DEL HISTORIADOR ENTREGADA — ver `vintage-telnet/SPECIES.md`; PENDIENTE APORTACIÓN DEL NARRADOR  
+**Estado:** RESPUESTAS ENTREGADAS — Historiador en `vintage-telnet/SPECIES.md`; Narrador en `vintage-telnet/NARRATIVE.md`  
 **Prioridad:** ALTA — bloquea la definición de atributos y progresión del personaje.
 
 ### Decisión de Jugabilidad ya confirmada
