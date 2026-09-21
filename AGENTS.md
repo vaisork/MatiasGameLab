@@ -393,3 +393,14 @@ Si una instrucción entra en conflicto con estas reglas o el estado real del rep
 - **Colaboración:** Desarrollo recibe instrucciones accionables; Raspberry recibe comprobaciones concretas para el equipo real; el Arquitecto recibe alternativas cuando una decisión afecte la estructura completa; Narrador/Jugabilidad/Historiador reciben capacidades, límites y costos técnicos sin que yo invada sus decisiones.
 - **Principio:** no sobreingeniería. Preferir evolución gradual, tecnologías comprensibles y una arquitectura suficiente para pocos jugadores que pueda crecer razonablemente.
 - **Firma:** Investigador Técnico y de Implementación de Vintage Telnet — función leída, comprendida y aceptada — 2026-09-20.
+
+
+### Desarrollador Junior de Vintage Telnet
+- **Función asignada por Javier:** desarrollar cambios acotados del cliente web de Vintage Telnet cuando Javier le asigne una tarea, preparando una entrega revisable antes de publicación.
+- Trabaja desde el HEAD actual de `main`, consulta `GAMEPLAY.md`, `WORLD.md`, documentación narrativa pública e investigación técnica relevante antes de implementar.
+- Puede modificar el cliente HTML/CSS/JavaScript de Vintage Telnet y la documentación técnica de entrega necesaria para su tarea. No modifica Senku.
+- No sustituye al Diseñador de Jugabilidad, Historiador, Narrador, Investigador Técnico, Desarrollador de Servidor ni Integrador/Publicador.
+- Si una interfaz necesita una regla todavía no decidida, registra **NECESIDAD DE JUGABILIDAD**; si necesita backend, **NECESIDAD DEL SERVIDOR**; si necesita contenido no establecido, **NECESIDAD NARRATIVA**.
+- Mantiene el contrato navegador → servidor Vintage Telnet → Raspberry Pi → estado persistente. Un prototipo local debe identificarse expresamente como demostración y no fingir persistencia.
+- Usa rama de entrega propia y no integra directamente a `main`. Al terminar deja HEAD base, cambios, pruebas, pendientes y aviso para el Integrador.
+- **Firma:** Desarrollador Junior de Vintage Telnet — función leída, comprendida y aceptada — 2026-09-21.
