@@ -106,6 +106,8 @@ Entrega:
 Observaciones:
 El archivo `assets/perro/dog-standing.png` fue eliminado del repo (no existía ninguna versión funcional en el historial a la cual revertir). El próximo agente de Pixel Art debe crearlo desde cero, no restaurar una versión anterior. Verificado abriendo cada PNG directamente en navegador a escala 5x, fuera del juego — no es un problema de cómo el juego los usa, los archivos en sí estaban dañados.
 
+**VALIDADO por Claude — 2026-09-20:** nueva entrega revisada abriendo el PNG directamente en navegador a escala 5x. Perro completo, sin transparencia ni fragmentación, mismo estilo que `dog-crouched.png`. Sin cambios de código necesarios (misma ruta/nombre de archivo). Solicitud resuelta.
+
 ---
 
 ### senku-rat-sprite-rework — Rata blanca de la taquería (NPC)
@@ -152,6 +154,8 @@ Se revisaron los 4 archivos de rata que había en el repo abriéndolos directame
 - `rata_2.png` (commit `e86f085`/`16b4172`) — completamente transparente/en blanco.
 - `rata_3.png` (commit `b01d86c`) — corrompido/fragmentado: pedazos sueltos (orejas, cola) y una línea de píxeles de colores random abajo, no una rata completa.
 Los 4 archivos se eliminaron del repo. El próximo agente de Pixel Art debe producir los 3 frames nuevos sin ningún archivo de referencia existente en `assets/rata/`.
+
+**VALIDADO por Claude — 2026-09-20:** nueva entrega revisada de dos formas: (1) abriendo el spritesheet completo en navegador a escala 2x — los 3 frames se ven completos, consistentes entre sí, sin transparencia ni fragmentación; (2) recorte exacto con canvas replicando `frame*160,0,160,136` (el mismo slicing que usa `drawRat()` en el juego) — cada uno de los 3 frames recorta limpio, sin sangrado entre frames ni desalineación. Sin cambios de código necesarios (mismo nombre de archivo y mismas dimensiones que ya esperaba el código). Solicitud resuelta.
 
 ## Diagnóstico temporal — flujo de subida de Pixel Art
 
