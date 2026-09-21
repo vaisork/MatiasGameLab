@@ -2,100 +2,56 @@
 
 ## ENTREGA PARA CHATGPT
 
-**Estado:** PUBLICADA EN `main`
+**Estado:** ENTREGA PREPARADA EN RAMA — NO PUBLICADA
 
 ### Desarrollador
 Desarrollador Junior de Vintage Telnet
 
 ### Estado base
-Commit/HEAD de `main`:
-`4f015d48a7cfbc7cdf0fbac0e1fd7afe70876270`
+`main`: `7d572f09bbd8f8a4edcba55ec113e27ecf3b6398`
 
 ### Rama
-`junior/vintage-telnet-mobile-v2`
+`junior/vintage-telnet-help-character`
 
 ### Objetivo
-Aplicar la investigación `VT-RES-002` para optimizar la interfaz HTML de Vintage Telnet en celular y separar visualmente la carcasa HTML café de la terminal Telnet negra/verde.
+Aplicar dos decisiones nuevas de Javier:
+1. preparar el panel **Personaje** para mostrar una imagen 3D que subirá el Dungeon Master;
+2. hacer que **Ayuda** ocupe toda la pantalla.
 
 ### Archivos modificados
 - `vintage-telnet.html`
 - `HANDOFF.md`
 
-### Investigación consumida
-- `vintage-telnet/RESEARCH_MOBILE_TELNET_UI.md`
-
 ### Cambios realizados
-- Terminal Telnet convertida en una zona visual inequívoca: negro casi puro, texto verde y tipografía monoespaciada.
-- Carcasa HTML conservada en tonos café/ocre para distinguir herramientas web de la sesión Telnet.
-- Layout móvil rehecho como shell de alto visible con terminal flexible y scroll interno.
-- En teléfono, mapa/estado dejan de ocupar espacio permanente; mapa/personaje/inventario/ayuda se abren en dialogs.
-- Controles principales compactados sin reducirlos por debajo de objetivos táctiles prácticos.
-- Cruceta N/O/Mirar/E/S mantenida con relación espacial clara.
-- Atacar y Huir permanecen visibles como acciones principales de demo.
-- Entrada de comandos conserva 16 px, añade `enterkeyhint="send"` y permanece próxima a la terminal.
-- Safe areas incorporadas para notch/home indicator.
-- Se eliminó `scrollIntoView` del documento: ahora solo se desplaza el log interno de terminal.
-- Añadido soporte `prefers-reduced-motion`.
-- Responsive reorganizado: compacto <=640 px, intermedio hasta 959 px, lateral persistente desde 960 px.
-- No se añadieron frameworks ni lógica paralela de botones.
+- `Ayuda` ahora abre un `<dialog>` de pantalla completa.
+- La ayuda está organizada en secciones: movimiento, explorar, combate, herramientas, comandos y estado de la demo.
+- En móvil la ayuda usa una sola columna; en pantallas mayores usa dos columnas.
+- El panel `Personaje` incluye un área visual preparada para la futura imagen 3D.
+- No se inventó ninguna ruta de asset.
+- Se documenta explícitamente que el asset lo subirá el Dungeon Master.
+- No se modificó Jugabilidad, servidor, persistencia ni canon.
 
-### Qué es funcional
-- Navegación local de demo por N/S/E/O.
-- Mirar.
-- Entrada escrita de comandos y alias n/s/e/o.
-- Botones y comandos siguen entrando por la misma función `perform()`.
-- Mapa/personaje/inventario/ayuda mediante dialogs.
-- Scroll interno de terminal.
-- Layout compacto para teléfono y dos columnas en escritorio.
-- Indicadores locales de última acción y combate.
+### Dependencia pendiente
+**ASSET DEL DUNGEON MASTER:** imagen 3D del personaje y su ruta definitiva en el repositorio.
 
-### Qué sigue siendo demostración
-- Ubicación y conectividad de la microzona.
-- Mapa mostrado.
-- Estado de sesión.
-- Combate.
-- Inventario/personaje.
-- Todo continúa sin Raspberry Pi ni persistencia real.
-
-### NECESIDAD DEL SERVIDOR
-- Sin cambios respecto a la entrega anterior: contrato de acciones, estado persistente, ubicación real, inventario, combate, descubrimiento y resincronización.
-
-### NECESIDAD DE JUGABILIDAD
-- Sin cambios respecto a la entrega anterior: objetivo de ataque, huida, vocabulario definitivo y datos exactos de combate/personaje/mapa.
+Cuando el asset exista, Desarrollo podrá reemplazar el placeholder por la imagen real sin rediseñar el panel.
 
 ### Pruebas realizadas
-- Comprobación estructural de terminal negra/verde.
-- Comprobación de media query móvil <=640 px.
-- Comprobación de terminal con scroll interno.
-- Comprobación de targets táctiles de 44–46 px o mayores.
-- Comprobación de safe areas superior e inferior.
-- Comprobación de dialogs para mapa/personaje/inventario/ayuda.
-- Comprobación de `enterkeyhint="send"`.
-- Comprobación de ruta única `perform()` para botón y comando.
-- Comprobación de ausencia de `scrollIntoView`.
-- Comprobación de `prefers-reduced-motion`.
-- Confirmación de que no se añadió framework externo.
+- Verificación de que `helpDialog` usa clase `fullscreen`.
+- Verificación de ancho 100vw y alto 100dvh.
+- Verificación de safe areas en cabecera y cuerpo de ayuda.
+- Verificación de layout de ayuda a una columna en móvil.
+- Verificación de placeholder de Personaje sin ruta inventada.
+- Confirmación de que botones/comandos existentes no fueron modificados.
 
-### Prueba visual que Javier/Matías deben hacer
-1. Abrir en teléfono vertical.
-2. Confirmar que se percibe inmediatamente la separación: café = cliente HTML; negro/verde = Telnet.
-3. Revisar cuántas líneas de texto caben sin scroll de página.
-4. Moverse con una mano usando N/S/E/O.
-5. Probar Mirar, Atacar y Huir.
-6. Escribir 5–10 comandos seguidos con el teclado abierto.
-7. Abrir/cerrar mapa, personaje, inventario y ayuda.
-8. Girar teléfono a horizontal y regresar.
-9. Probar en iPad vertical/horizontal.
-10. Decidir si los controles siguen ocupando demasiado o si la proporción ya se siente correcta.
+### Prueba visual para Javier/Matías
+1. Abrir Ayuda y comprobar que ocupa toda la pantalla.
+2. Cerrar Ayuda con la X.
+3. Abrir Personaje y comprobar que el espacio para la imagen 3D se entiende.
+4. Confirmar que el resto de la interfaz V2 se mantiene igual.
 
-### Riesgos/conflictos
-- Validación visual final requiere teléfono/iPad real.
-- La terminal usa scroll interno en móvil; Javier/Matías deben confirmar que esta interacción resulta natural.
-- Si `main` cambia antes de integrar, el Integrador debe volver a comparar la rama.
-
-### Aviso para el Integrador/Publicador
-No publicar hasta autorización expresa de Javier. Comparar esta rama contra el HEAD vigente de `main` antes de integrar.
+### Aviso para Integrador
+No publicar hasta autorización expresa de Javier.
 
 **LISTO PARA REVISIÓN:** SÍ  
-**PUBLICADA EN `main`:** SÍ — autorización “Sube” recibida el 2026-09-21  
-**MERGE COMMIT:** `c156fce377203534f7d9cb14632ef4f36815310c`
+**LISTO PARA PUBLICAR:** SOLO TRAS AUTORIZACIÓN “sube”
