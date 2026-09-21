@@ -129,15 +129,15 @@ Requisitos conocidos:
 - Tamaño o escala: cada frame 160×136px; el juego recorta 3 frames de 160px de ancho consecutivos.
 - Formato: PNG con transparencia.
 - Frames/poses: 3 frames para animación de espera/parpadeo (secuencia usada en `drawRat()`: `[0,0,0,1,2,1,0,0]` en reposo, `[0,1,2,1]` cuando Senku está cerca).
-- Dirección/orientación: igual que el diseño ya aprobado en `rata_1.png` (frame 1, ver abajo).
-- Referencias existentes: `assets/rata/rata_1.png` (este frame sí está bien).
-- Ruta relacionada en assets: el código lee un spritesheet combinado en `assets/rata/white-rat-sprite-v2.png` (480×136px = 3 frames de 160px pegados). El plan más simple es seguir entregando así: **un solo PNG de 480×136px con los 3 frames pegados en fila**, mismo nombre de archivo. Si se prefiere entregar 3 archivos sueltos (como `rata_1.png`, `rata_2.png`, `rata_3.png` de 160×136px cada uno), avisar en esta entrada y Claude actualiza `senku.html` para leerlos así en vez del spritesheet.
+- Dirección/orientación: sin archivo de referencia en el repo ahora mismo (ver Observaciones) — pedir a Javier/Matías una referencia visual si hace falta.
+- Referencias existentes: ninguna en `assets/` (se eliminaron las 3 que había, ver Observaciones).
+- Ruta relacionada en assets: el código lee un spritesheet combinado en `assets/rata/white-rat-sprite-v2.png` (480×136px = 3 frames de 160px pegados). El plan más simple es entregar así: **un solo PNG de 480×136px con los 3 frames pegados en fila**, mismo nombre de archivo. Si se prefiere entregar 3 archivos sueltos (por ejemplo `rata_1.png`, `rata_2.png`, `rata_3.png` de 160×136px cada uno), avisar en esta entrada y Claude actualiza `senku.html` para leerlos así en vez del spritesheet.
 
 Decisiones visuales ya aprobadas:
-El estilo/diseño de `rata_1.png` (rata blanca completa, limpia, la única de las 4 imágenes de rata que salió bien) ya es el que se quiere usar como referencia.
+Ninguna — se pide el set completo desde cero, sin partir de ningún archivo existente.
 
 Necesita material de Javier/Matías:
-No.
+Por determinar — si no hay una referencia visual previa de la rata en otro lado, puede hacer falta que Javier/Matías definan la pose y estilo antes de producir los 3 frames.
 
 Entrega:
 - Ruta final: (pendiente)
@@ -146,12 +146,12 @@ Entrega:
 - Frames/orden: (pendiente)
 
 Observaciones:
-Se revisó cada PNG abriéndolo directamente en navegador, fuera del juego (no es un problema de cómo el juego los usa, los archivos en sí estaban dañados):
-- `assets/rata/white-rat-sprite-v2.png` (el spritesheet que lee el código) y su duplicado `white-rat-sheet.png` estaban **completamente transparentes/en blanco** — la única versión que ha existido de este archivo, sin historial de una versión buena. Se eliminaron del repo.
-- `rata_1.png` (commit `9ccdbd1`) — correcto, se conserva como referencia de estilo.
-- `rata_2.png` (commit `e86f085`/`16b4172`) — completamente transparente/en blanco. Se eliminó.
-- `rata_3.png` (commit `b01d86c`) — corrompido/fragmentado: pedazos sueltos (orejas, cola) y una línea de píxeles de colores random abajo, no una rata completa. Se eliminó.
-El próximo agente de Pixel Art puede usar `rata_1.png` como referencia de estilo/pose ya aprobada y solo necesita producir 2 frames más (o rehacer los 3 como un spritesheet único, ver arriba).
+Se revisaron los 4 archivos de rata que había en el repo abriéndolos directamente en navegador, fuera del juego (no era un problema de cómo el juego los usa, los archivos en sí estaban dañados):
+- `assets/rata/white-rat-sprite-v2.png` (el spritesheet que lee el código) y su duplicado `white-rat-sheet.png` — completamente transparentes/en blanco. Sin historial de una versión buena.
+- `rata_1.png` (commit `9ccdbd1`) — este sí se veía bien, pero por instrucción de Javier se eliminó también para que la entrega completa se rehaga de cero, sin mezclar con trabajo del agente anterior.
+- `rata_2.png` (commit `e86f085`/`16b4172`) — completamente transparente/en blanco.
+- `rata_3.png` (commit `b01d86c`) — corrompido/fragmentado: pedazos sueltos (orejas, cola) y una línea de píxeles de colores random abajo, no una rata completa.
+Los 4 archivos se eliminaron del repo. El próximo agente de Pixel Art debe producir los 3 frames nuevos sin ningún archivo de referencia existente en `assets/rata/`.
 
 ## Diagnóstico temporal — flujo de subida de Pixel Art
 
