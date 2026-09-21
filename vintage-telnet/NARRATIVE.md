@@ -87,3 +87,82 @@ Las entradas selladas y niveles inferiores pueden alimentar aventuras posteriore
 
 **Responsable:** Narrador de Aventuras — Vintage Telnet  
 **Estado:** estructura inicial creada — 2026-09-20.
+
+
+## Experiencia inicial de fortalecimiento — Salidas al campo
+
+**AVENTURA:** VT-NAR-002 — Primeras salidas  
+**Estado:** PROPUESTA NARRATIVA / DEPENDENCIAS ABIERTAS  
+**Jugadores iniciales conocidos:** Marcos, Matías y Javier.
+
+### Intención
+
+Los personajes comienzan débiles. Fortalecerse enfrentándose a criaturas débiles forma parte natural de sus primeras salidas fuera del asentamiento, pero el campo no debe sentirse como una habitación donde se repite `matar criatura` hasta alcanzar un número.
+
+Cada salida debe poder producir al menos dos tipos de experiencia: **fortalecimiento** y **descubrimiento**. Un jugador puede regresar porque consiguió progreso, porque encontró algo interesante, porque descubrió una ruta, porque percibió un peligro que todavía no puede afrontar o porque ayudó a otro jugador.
+
+### Ritmo narrativo propuesto
+
+**1. El borde seguro.**  
+Al salir del pueblo, el jugador entra en un entorno reconocible y cercano. Puede encontrar criaturas apropiadas para un principiante y aprender que observar el lugar antes de atacar tiene valor.
+
+**2. El campo empieza a hablar.**  
+Entre encuentros aparecen pequeñas señales: huellas, restos, sonidos, vegetación alterada, objetos perdidos, rastros de viajeros o cambios en el terreno. No todo hallazgo conduce a una misión ni todo tiene que ser importante.
+
+**3. Elegir hasta dónde seguir.**  
+Alejarse debe sentirse como una decisión. Las descripciones pueden advertir gradualmente que el entorno está cambiando o que existen criaturas/amenazas que todavía no conviene enfrentar. El Narrador puede comunicar peligro; la forma mecánica de medirlo corresponde a Jugabilidad.
+
+**4. Regresar también es jugar.**  
+Volver al asentamiento no debe sentirse necesariamente como fracaso. El jugador puede regresar con progreso, información, objetos permitidos por Jugabilidad, rumores o conocimiento de un camino que después querrá explorar.
+
+**5. Los tres jugadores pueden contar historias distintas.**  
+Marcos, Matías y Javier no tienen que realizar exactamente los mismos encuentros en el mismo orden. El mundo persistente debe permitir que uno encuentre algo y se lo comunique a los demás, que dos jugadores ayuden a un tercero o que descubran juntos que una zona supera todavía sus capacidades.
+
+### Principios narrativos
+
+- Evitar como estructura principal encargos artificiales del tipo “mata 10 criaturas” sin una razón dentro del mundo.
+- Las criaturas débiles deben pertenecer al entorno y tener sentido allí; el Historiador decide cuáles son.
+- Una criatura débil no tiene que ser únicamente una bolsa de experiencia: su presencia puede revelar algo del terreno, clima, ecosistema o actividad cercana.
+- Deben existir señales narrativas antes de ciertos peligros importantes. El jugador puede equivocarse, pero el mundo debe darle información que pueda aprender a leer.
+- Encontrar algo que todavía no se puede vencer puede ser un descubrimiento satisfactorio.
+- La cooperación debe poder surgir del mundo: avisar de peligro, acompañarse, compartir un hallazgo o ayudar a regresar. Las ventajas mecánicas de grupo pertenecen a Jugabilidad.
+- El comienzo no revela los grandes secretos del mundo. Los primeros descubrimientos deben abrir preguntas.
+
+### Relación con VT-NAR-001
+
+VT-NAR-001, **Las señales del camino**, no necesita ocurrir como una misión separada. Sus rumores, pistas y pequeños descubrimientos pueden aparecer durante estas primeras salidas de fortalecimiento. Así, progresión y narrativa comienzan juntas.
+
+### NECESIDAD DEL HISTORIADOR — criaturas iniciales
+
+Para continuar, el Historiador debe definir contenido canónico apropiado para las regiones iniciales:
+
+- criaturas débiles que un personaje principiante pueda encontrar cerca de cada pueblo;
+- comportamiento visible y relación de esas criaturas con su entorno;
+- rastros/restos/recursos que puedan tener sentido narrativo;
+- amenazas claramente superiores que puedan percibirse temprano sin estar destinadas a ser vencidas todavía;
+- diferencias regionales suficientes para que salir desde Valdren, Khariel, Brumak, Narevia o Velmora no sea la misma experiencia con nombres cambiados.
+
+El Historiador no necesita fijar estadísticas, XP, daño, respawn ni balance.
+
+### NECESIDAD DE JUGABILIDAD — bucle inicial
+
+Para convertir esta experiencia en algo jugable hace falta definir criterios generales para:
+
+- cómo sabe aproximadamente un principiante si una criatura parece adecuada, peligrosa o muy superior;
+- qué obtiene al vencer criaturas comunes y cómo contribuye eso al fortalecimiento;
+- qué valor mecánico, si alguno, tiene explorar/descubrir;
+- cómo funciona la retirada contra criaturas;
+- recuperación/descanso entre encuentros;
+- cooperación y reparto de recompensas cuando varios principiantes combaten juntos;
+- cómo impedir que la estrategia óptima sea permanecer indefinidamente en un punto matando la misma criatura reaparecida;
+- qué consecuencias tiene una derrota durante esta etapa, respetando que no existe muerte permanente.
+
+### NECESIDAD TÉCNICA — más adelante
+
+Cuando Historiador y Jugabilidad resuelvan lo anterior, Desarrollo necesitará poder representar al menos habitaciones/salidas, criaturas, encuentros, descubrimientos y estado persistente. Esta sección describe una necesidad, no una arquitectura técnica obligatoria.
+
+### Criterio narrativo para una primera prueba
+
+Una microzona inicial debería permitir comprobar la experiencia antes de construir regiones enormes: varias habitaciones cercanas al pueblo, más de un tipo de encuentro débil, alguna señal de peligro superior, un descubrimiento que no dependa de matar y una razón natural para regresar.
+
+Las cantidades exactas y la estructura técnica deben decidirlas Jugabilidad/Desarrollo. El objetivo narrativo de la prueba es comprobar si un jugador termina su primera salida pensando **“quiero volver a ver qué hay más adelante”**, no solamente **“necesito repetir esto para subir”.**
