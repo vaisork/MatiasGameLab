@@ -11,7 +11,7 @@
 <link rel="icon" type="image/png" sizes="192x192" href="assets/icon/senku-icon-192.png?v=050">
 <link rel="apple-touch-icon" sizes="192x192" href="assets/icon/senku-icon-192.png?v=050">
 <link rel="manifest" href="senku.webmanifest?v=050">
-<title>Senku — México · v0.5.5 | churus del camión</title>
+<title>Senku — México · v0.5.6 | taquería mejorada</title>
 <style>
 *{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#151311;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;touch-action:none;user-select:none}
 canvas{position:fixed;inset:0;margin:auto;width:min(100vw,1100px);height:auto;max-height:100vh;aspect-ratio:16/9;background:#ddd;image-rendering:pixelated}
@@ -120,7 +120,7 @@ canvas{position:fixed;inset:0;margin:auto;width:min(100vw,1100px);height:auto;ma
     </div>
   </div>
 </div>
-<div class="version">v0.5.5 · 20/09/26 · churus del camión</div>
+<div class="version">v0.5.6 · 21/09/26 · taquería mejorada</div>
 
 <div id="toast"></div>
 <script>
@@ -284,9 +284,23 @@ function drawRat(){
  x.restore()
 }
 function taco(){
- x.fillStyle='#f0d08d';x.fillRect(0,0,W,505);x.fillStyle='#9c4d36';x.fillRect(0,0,W,92);x.fillStyle='#fff5dc';x.font='900 36px system-ui';x.fillText('TAQUERÍA EL BIGOTE',356,59);x.fillStyle='#86533d';x.fillRect(258,320,380,185);
+ x.fillStyle='#f0d08d';x.fillRect(0,0,W,505);
+ x.fillStyle='#e0b877';x.fillRect(0,300,W,205);
+ x.fillStyle='#d1a463';for(let ty=312;ty<500;ty+=30)for(let tx=0;tx<W;tx+=60)x.fillRect(tx,ty,54,24);
+ x.strokeStyle='#3a2a22';x.lineWidth=2;x.beginPath();x.moveTo(60,108);x.quadraticCurveTo(550,155,1040,108);x.stroke();
+ const lightColors=['#f3d24a','#f08a4b','#e8563c'];for(let i=0;i<15;i++){const t=i/14,lx=60+t*980,ly=108+Math.sin(t*Math.PI)*47;x.fillStyle=lightColors[i%3];x.beginPath();x.arc(lx,ly,6,0,Math.PI*2);x.fill()}
+ x.fillStyle='#231a16';x.fillRect(90,150,150,98);x.fillStyle='#d9b25a';x.font='900 15px system-ui';x.fillText('MENÚ',108,172);x.fillStyle='#e8dcc4';[190,210,228].forEach(ly=>x.fillRect(108,ly,110,6));
+ x.fillStyle='#9c4d36';x.fillRect(0,0,W,92);x.fillStyle='#fff5dc';x.font='900 36px system-ui';x.fillText('TAQUERÍA EL BIGOTE',356,59);
+ const stripeColors=['#c94f3c','#f3efe1'];for(let i=0;i<12;i++){x.fillStyle=stripeColors[i%2];x.fillRect(258+i*32,252,32,26)}
+ for(let i=0;i<12;i++){x.fillStyle=stripeColors[i%2];x.beginPath();x.moveTo(258+i*32,278);x.lineTo(258+i*32+16,292);x.lineTo(258+i*32+32,278);x.fill()}
+ x.fillStyle='#86533d';x.fillRect(258,320,380,185);
+ x.fillStyle='#9c6a4c';x.fillRect(258,320,380,16);
+ x.fillStyle='#4b4b4b';x.fillRect(300,300,150,22);
+ const foodColors=['#d98a3d','#c9542f','#e8c15a'];[320,345,370,395,420].forEach((fx,i)=>{x.fillStyle=foodColors[i%3];x.beginPath();x.ellipse(fx,309,9,5,0,0,Math.PI*2);x.fill()});
  drawRat();
  x.fillStyle='#9b6940';x.fillRect(835,432,105,73);
+ x.fillStyle='#c9542f';x.beginPath();x.arc(860,442,8,0,Math.PI*2);x.fill();
+ x.fillStyle='#7fae5c';x.beginPath();x.arc(886,442,8,0,Math.PI*2);x.fill();
  x.fillStyle='#695149';x.fillRect(0,505,W,114)
 }
 function draw(){time+=1/60;x.clearRect(0,0,W,H);if(scene==='house')house();if(scene==='street')street();if(scene==='bus')bus();if(scene==='taco')taco();items.forEach(drawChuru);senku()}
