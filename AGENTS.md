@@ -286,6 +286,8 @@ Toda tarea terminada deja en el repositorio: HEAD base, objetivo y alcance, arch
 
 Javier no debe transportar manualmente prompts, parches o contexto técnico entre chats cuando GitHub puede conservarlo.
 
+Para **Vintage Telnet**, los handoffs nuevos no deben reutilizar `HANDOFF.md` raíz. Cada entrega técnica usa `vintage-telnet/handoffs/<identificador-de-tarea>.md` o un documento equivalente específico de la entrega. Esto evita que dos ramas o dos juegos sobrescriban el mismo archivo de coordinación.
+
 ## Registro de agentes
 
 | Identificador | Función | Proyecto | Estado | Contrato |
