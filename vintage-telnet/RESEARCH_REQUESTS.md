@@ -5,7 +5,7 @@ Este archivo sirve para que los especialistas de Vintage Telnet pidan investigac
 ## VT-RES-001 — Inicio y progresión temprana en juegos Telnet/MUD
 
 **Solicitante:** Narrador de Aventuras — Vintage Telnet  
-**Estado:** SOLICITADO  
+**Estado:** ENTREGADO — ver `vintage-telnet/RESEARCH_TELNET_MUD_EARLY_GAME.md`  
 **Prioridad:** ALTA — afecta la primera experiencia jugable.
 
 ### Contexto confirmado por Javier
