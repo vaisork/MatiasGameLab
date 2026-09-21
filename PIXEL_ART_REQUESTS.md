@@ -62,7 +62,92 @@ Observaciones:
 
 ## Solicitudes activas
 
-Actualmente no hay solicitudes registradas en esta cola.
+### senku-dog-standing-rework — Perro de la calle, pose "de pie"
+
+Juego:
+Senku
+
+Solicitado por:
+Claude — Desarrollador y Revisor de Senku
+
+Estado:
+SOLICITADO
+
+Objetivo en el juego:
+Sprite que se muestra cuando Senku se acerca al perro de la banqueta en la escena Calle (cambia de agachado a de pie).
+
+Recurso:
+Personaje/NPC
+
+Requisitos conocidos:
+- Tamaño o escala: se dibuja escalado a máx. 150×105px conservando proporción; el archivo actual mide 96×65px.
+- Formato: PNG con transparencia.
+- Frames/poses: pose única "de pie" (sin animación).
+- Dirección/orientación: igual que `dog-crouched.png` (misma escena, mismo punto de anclaje).
+- Referencias existentes: `assets/perro/dog-crouched.png` (esta sí funciona bien, sirve de referencia de calidad/estilo).
+- Ruta relacionada en assets: `assets/perro/dog-standing.png` (reemplazar en el mismo archivo).
+
+Decisiones visuales ya aprobadas:
+Ninguna nueva — solo se pide que la pose "de pie" ya aprobada anteriormente se entregue sin corromperse.
+
+Necesita material de Javier/Matías:
+No.
+
+Entrega:
+- Ruta final: (pendiente)
+- Dimensiones: (pendiente)
+- Formato: (pendiente)
+- Frames/orden: (pendiente)
+
+Observaciones:
+El archivo subido más reciente en `assets/perro/dog-standing.png` (commit `f504221`) está corrompido: al abrirlo se ven dos fragmentos de pixel art diminutos en esquinas opuestas del lienzo, con todo el centro transparente — no se ve un perro completo. Verificado abriendo el PNG directamente en navegador a escala 5x, fuera del juego. Necesita re-exportarse/re-subirse.
+
+---
+
+### senku-rat-sprite-rework — Rata blanca de la taquería (NPC)
+
+Juego:
+Senku
+
+Solicitado por:
+Claude — Desarrollador y Revisor de Senku
+
+Estado:
+SOLICITADO
+
+Objetivo en el juego:
+Sprite animado de la rata escondida en la Taquería (escena `taco`), NPC que entrega el traje secreto.
+
+Recurso:
+NPC / animación
+
+Requisitos conocidos:
+- Tamaño o escala: cada frame 160×136px; el juego recorta 3 frames de 160px de ancho consecutivos.
+- Formato: PNG con transparencia.
+- Frames/poses: 3 frames para animación de espera/parpadeo (secuencia usada en `drawRat()`: `[0,0,0,1,2,1,0,0]` en reposo, `[0,1,2,1]` cuando Senku está cerca).
+- Dirección/orientación: igual que el diseño ya aprobado en `rata_1.png` (frame 1, ver abajo).
+- Referencias existentes: `assets/rata/rata_1.png` (este frame sí está bien).
+- Ruta relacionada en assets: actualmente el código lee un solo spritesheet combinado en `assets/rata/white-rat-sprite-v2.png` (480×136px = 3 frames de 160px pegados). Los archivos nuevos se subieron como 3 PNG separados (`rata_1.png`, `rata_2.png`, `rata_3.png`) en vez de un spritesheet combinado — cuando los 3 frames estén validados, avisar para que Claude actualice `senku.html` y decida si conviene mantenerlos separados o pedir que se combinen en un solo spritesheet como antes.
+
+Decisiones visuales ya aprobadas:
+El estilo/diseño de `rata_1.png` (rata blanca completa, limpia) ya es el que se quiere usar.
+
+Necesita material de Javier/Matías:
+No.
+
+Entrega:
+- Ruta final: (pendiente)
+- Dimensiones: (pendiente)
+- Formato: (pendiente)
+- Frames/orden: (pendiente)
+
+Observaciones:
+Verificado abriendo cada PNG directamente en navegador, fuera del juego:
+- `assets/rata/white-rat-sprite-v2.png` (el que usa el juego ahora mismo) está **completamente transparente/en blanco** — la rata es invisible en el juego publicado ahora mismo. No es un problema nuevo de esta entrega, ya existía antes.
+- `rata_1.png` (commit `9ccdbd1`) — correcto, listo para usar.
+- `rata_2.png` (commit `e86f085`/`16b4172`) — completamente transparente/en blanco, mismo problema que el spritesheet viejo.
+- `rata_3.png` (commit `b01d86c`) — corrompido/fragmentado: se ven pedazos sueltos (orejas, cola) y una línea de píxeles de colores random abajo, no una rata completa.
+Con 2 de los 3 frames rotos, no tiene caso que Claude actualice el código todavía — el resultado se vería igual de mal o peor que ahora.
 
 ## Diagnóstico temporal — flujo de subida de Pixel Art
 
