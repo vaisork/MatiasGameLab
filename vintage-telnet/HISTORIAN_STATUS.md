@@ -57,7 +57,7 @@ El Historiador no sustituye:
 - historia antigua del mundo — **iniciada en `HISTORY.md`; faltan eras y causas anteriores/posteriores**;
 - nombres y funciones de regiones;
 - primeras mazmorras;
-- monstruos y criaturas;
+- monstruos y criaturas — **primera fauna regional y amenazas iniciales completadas en `CREATURES.md`; expansión posterior abierta**;
 - clases, magias, objetos y armas desde su función narrativa;
 - necesidades de NPCs;
 - estructura de secretos y descubrimientos;
@@ -83,6 +83,7 @@ Estos especialistas no son necesarios automáticamente. El Arquitecto decidirá 
 - `HISTORY.md` — arquitectura histórica y cronología del mundo.
 - `VAISGARD.md` — ciudad principal, estructura e historia.
 - `REGIONS.md` — geografía inicial y caminos.
+- `CREATURES.md` — fauna inicial, rastros y amenazas regionales; entrega para VT-NAR-002.
 - `SECRETS.md` — información reservada del Dungeon Master.
 - `GAMEPLAY.md` — fuente de verdad mecánica.
 
