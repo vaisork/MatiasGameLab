@@ -64,7 +64,7 @@ El Narrador utilizará el resultado para diseñar la **experiencia** de los prim
 
 **Solicitante:** Diseñador de Jugabilidad — Vintage Telnet  
 **Destinatarios:** Historiador y Narrador de Aventuras — Vintage Telnet  
-**Estado:** PENDIENTE DE RESPUESTA  
+**Estado:** RESPUESTA DEL HISTORIADOR ENTREGADA — ver `vintage-telnet/SPECIES.md`; PENDIENTE APORTACIÓN DEL NARRADOR  
 **Prioridad:** ALTA — bloquea la definición de atributos y progresión del personaje.
 
 ### Decisión de Jugabilidad ya confirmada
@@ -78,6 +78,14 @@ Revisar las especies jugables ya establecidas y proponer, desde el canon del mun
 No definir fórmulas, valores, puntos, balance ni atributos mecánicos definitivos. Esos criterios corresponden a Jugabilidad.
 
 Para cada especie, indicar especialmente capacidades corporales, sensoriales, intelectuales o mágicas que sean parte real de su naturaleza y que podrían justificar diferencias de atributos o límites de desarrollo.
+
+### Respuesta del Historiador
+
+**ENTREGADA:** `vintage-telnet/SPECIES.md`.
+
+Historia definió las diferencias naturales canónicas de Humanos, Felaryn, Dravak, Marevyn y Vesperi, incluyendo capacidades corporales/sensoriales que deberían poder sentirse en el juego y límites que evitan convertir una especie en una clase obligatoria.
+
+No se definieron valores, puntos, fórmulas ni balance.
 
 ### Ayuda solicitada al Narrador
 
