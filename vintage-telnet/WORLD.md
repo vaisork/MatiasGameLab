@@ -44,6 +44,12 @@ Contiene la historia, estructura urbana, zonas y función narrativa de la ciudad
 
 Define la geografía narrativa inicial alrededor de Vaisgard, la ubicación relativa de los cinco pueblos y las rutas que los conectan.
 
+### 9. Criaturas y fauna inicial — `CREATURES.md`
+
+Define la fauna común, comportamiento, rastros y amenazas superiores de las cinco regiones iniciales. Su primera versión responde directamente a la dependencia del Historiador en `VT-NAR-002 — Primeras salidas`.
+
+No contiene estadísticas ni balance; esos criterios pertenecen a Jugabilidad.
+
 ## Relación con el Narrador
 
 El Historiador construye la **historia estructural y la arquitectura del mundo**: hechos pasados, lugares, culturas, causas, consecuencias, ruinas, conflictos, relaciones y secretos. El Narrador utiliza esa base para crear relatos, escenas, encuentros y experiencias concretas de los jugadores. El Historiador no debe asumir por defecto la función del Narrador.
@@ -67,4 +73,5 @@ El Historiador define qué necesita el mundo, por qué lo necesita y qué funci�
 **Historia del mundo:** `vintage-telnet/HISTORY.md`  
 **Ciudad principal:** `vintage-telnet/VAISGARD.md`  
 **Regiones y caminos:** `vintage-telnet/REGIONS.md`  
+**Criaturas y fauna:** `vintage-telnet/CREATURES.md`  
 **Fuente mecánica:** `vintage-telnet/GAMEPLAY.md`
