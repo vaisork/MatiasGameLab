@@ -1,6 +1,71 @@
 # HANDOFF — Entrega técnica
 
-## ENTREGA PARA CHATGPT
+## ENTREGA — Integración de arte HTML en vintage-telnet.html
+
+**Desarrollador:** Claude (Desarrollador de Servidor de Vintage Telnet, autorizado por Javier expresamente para esta tarea puntual de cliente — no es mi función firmada habitual)
+
+**Estado:** LISTO PARA REVISIÓN
+
+### Estado base
+Commit/HEAD de `main`: `8e7042f6aab3974a939f639f51a7fbf37bcd457a` (incluye la integración de la biblioteca de arte a `main`, ver entrada "INTEGRACIÓN DE ARTE HTML" más abajo).
+
+### Rama
+`junior/vintage-telnet-art-integration`
+
+### Tarea asignada
+Javier pidió adaptar `vintage-telnet.html` para consumir la biblioteca de arte ya subida en `vintage-telnet/assets/html-ui/` (ver la integración previa de esa biblioteca a `main` más abajo en este mismo archivo), sin romper la lógica existente ni la ruta única de acciones (`perform()`).
+
+### Archivos modificados
+- `vintage-telnet.html` únicamente.
+
+### Cambios realizados
+- **Paleta:** las variables CSS de la carcasa exterior (`--shell`, `--shell2`, `--panel`, `--line`, `--ink`, `--muted`) pasan de café/ocre a pizarra azul + bronce + marfil, siguiendo la dirección "juvenil, mobile-first, menos cargada" del `README.md`/`AGENTS.md` de la biblioteca. La terminal (`--term*`, `--green*`) **no se tocó**.
+- **Textura de fondo:** se agregó `background-slate-blue-subtle-tile.png` como capa adicional del fondo general (sutil, no interfiere con la lectura).
+- **Esquina ornamental:** `corner-ornament-top-left.png` aplicada como `::before` decorativo en la esquina superior izquierda de `.game-shell` (no interactivo, `pointer-events:none`).
+- **Divisor:** `divider-horizontal-gold-diamond.png` como separador entre los controles de combate y la barra de comandos.
+- **Tres botones reales reemplazados por el arte** (mismo `data-action`, mismo `perform()`, sin cambios de comportamiento):
+  - `Mapa` → `button-mapa-important.png`
+  - `Inventario` → `button-inventario-normal.png`
+  - `Huir` → `button-huir-danger.png`
+- **Botón nuevo `Poderes`** (`button-poderes-special.png`) agregado al `tool-row`, con su propio diálogo modal siguiendo el mismo patrón que "Personaje"/"Inventario" (panel preparado, sin inventar mecánicas: el texto aclara explícitamente que no define qué poderes existen). Se agregó también al listado de comandos del diálogo de Ayuda y como rama nueva en `perform()`.
+- `Atacar` y `Personaje` (sin asset dedicado en la biblioteca) quedan como botones CSS planos, heredando la nueva paleta automáticamente vía las variables.
+- `tool-row` pasó de grid de 4 columnas fijas a `flex-wrap`, para que los botones con imagen (proporción 3:1 fija) no se compriman ilegibles en pantallas angostas — se acomodan 2 por fila en vez de 4-5 forzados.
+- Cada botón con imagen conserva accesibilidad real: elemento `<button>`, `aria-label` explícito y texto visualmente oculto (`.sr-only`) para lectores de pantalla — no son solo un `<img>` decorativo.
+
+### Bug encontrado y corregido durante la implementación
+Las clases inicialmente usadas para los botones (`.map`, `.inventory`, etc.) colisionaban con la clase `.map` ya existente (la cuadrícula del mini-mapa en el panel lateral), que fija `background:#100b07` por shorthand y reseteaba silenciosamente `background-size`/`background-repeat` de los botones (el arte se veía repetido en mosaico en vez de contenido). Se renombraron a `.btn-map`, `.btn-inventory`, `.btn-flee`, `.btn-powers` para evitar cualquier colisión de nombres.
+
+### Pruebas realizadas
+- Verificado en navegador (Browser pane) en desktop (~1345px) y móvil (375×812, iPhone): los 7 assets cargan con 200 OK, sin errores de consola.
+- Confirmado por `getComputedStyle` que `background-size:contain`/`background-repeat:no-repeat` se aplican correctamente tras corregir la colisión de clases.
+- Probada la interacción real: click en Mapa/Inventario/Poderes abre su diálogo; click en Huir dispara el mismo mensaje de `perform()` que antes ("No hay combate activo..."); todo pasa por la misma función única, sin lógica paralela.
+- Confirmado que en móvil (375×812) todo el contenido entra sin scroll de página (`scrollHeight === innerHeight`).
+- Confirmado con `read_page` (árbol de accesibilidad) que los 4 botones con imagen exponen nombre accesible ("Mapa", "Inventario", "Huir", "Poderes") — inicialmente fallaba (el `.sr-only` no bastaba en la herramienta de lectura usada) y se corrigió agregando `aria-label` explícito además del texto oculto.
+- No se agregaron frameworks ni dependencias nuevas.
+
+### Qué sigue siendo demostración
+Sin cambios respecto a la entrega anterior: todo sigue siendo cliente local sin servidor ni persistencia. Esta tarea es puramente visual/de integración de arte.
+
+### NECESIDAD DEL SERVIDOR / NECESIDAD DE JUGABILIDAD
+Sin cambios respecto a la entrega anterior. El nuevo botón "Poderes" es únicamente un acceso visual preparado; no define ni implica ninguna mecánica de magia/habilidades.
+
+### Trabajo previo afectado
+Ninguno: no se tocó lógica de `perform()`, `move()`, `rooms`, ni la estructura de datos existente. Los cuatro botones que ya abrían diálogos (Mapa, Personaje, Inventario, Ayuda) siguen abriendo exactamente los mismos diálogos que antes.
+
+### Pendiente / aviso para el Desarrollador Junior y Arte HTML
+- No se usó el asset de fondo (`background-slate-blue-subtle-tile.png`) más que como textura general; si Arte HTML quiere un uso distinto, es una iteración visual separada.
+- Quedan sin arte dedicado: Personaje, Atacar, Ayuda — si Arte HTML produce esos assets más adelante, se pueden integrar con el mismo patrón (`.btn-art` + clase modificadora + `aria-label`).
+- Esta entrega fue hecha por mí (rol de servidor) con autorización puntual de Javier porque no había nadie más trabajando en ello en ese momento; el Desarrollador Junior de Vintage Telnet sigue siendo el responsable natural de este archivo hacia adelante.
+
+### Aviso para el Integrador/Publicador
+No publicar hasta autorización expresa de Javier. Comparar contra el HEAD vigente de `main` antes de integrar — esta rama solo toca `vintage-telnet.html`, sin solapamiento con las otras ramas activas (`claude/vintage-telnet-server-v2`, que no toca este archivo).
+
+**LISTO PARA REVISIÓN:** SÍ
+**LISTO PARA PUBLICAR:** NO — falta autorización de Javier ("sube").
+
+---
+
+## ENTREGA PARA CHATGPT (histórico — publicada)
 
 **Estado:** PUBLICADA EN `main`
 
