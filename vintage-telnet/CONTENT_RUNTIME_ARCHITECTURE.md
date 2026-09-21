@@ -438,9 +438,9 @@ y no directamente desde el checkout temporal usado para descargar.
 
 ### Frecuencia inicial
 
-Usar un `systemd timer` cada **2 minutos**.
+Usar un `systemd timer` cada **10 horas**.
 
-Esto da publicación automática suficientemente rápida sin requerir infraestructura de webhook ni consultas continuas.
+Esto reduce consultas innecesarias y sigue siendo suficiente para contenido narrativo, que no requiere propagación casi en tiempo real.
 
 La frecuencia se puede cambiar más adelante sin tocar el formato de contenido.
 
