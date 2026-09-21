@@ -47,12 +47,16 @@ El Historiador no sustituye:
 - a programación, arte, publicación u otros especialistas;
 - al Arquitecto cuando exista una duda de fronteras.
 
+## Entregas a otros especialistas
+
+- **Jugabilidad / VT-GAME-001 — Rasgos de especies:** aportación del Historiador entregada en `SPECIES.md`. Define diferencias naturales de las cinco especies sin fórmulas ni balance. La solicitud queda pendiente de la aportación independiente del Narrador antes de que Jugabilidad cierre atributos.
+
 ## Trabajo narrativo todavía abierto
 
 Áreas importantes aún por desarrollar o repartir:
 - diseño completo de **Vaisgard** — **primera versión completada en `VAISGARD.md`; queda abierta a expansión**;
-- anatomía, cultura e historia final de cada especie;
-- capacidades narrativas de Dravak, Marevyn y Vesperi;
+- anatomía, cultura e historia final de cada especie — **rasgos naturales necesarios para Jugabilidad definidos en `SPECIES.md`; apariencia/cultura profunda siguen abiertas**;
+- capacidades narrativas de Dravak, Marevyn y Vesperi — **primera definición completada en `SPECIES.md`; expansión posterior abierta**;
 - mapa regional y conexiones entre los cinco pueblos y Vaisgard — **primera arquitectura definida en `REGIONS.md`**;
 - historia antigua del mundo — **iniciada en `HISTORY.md`; faltan eras y causas anteriores/posteriores**;
 - nombres y funciones de regiones;
@@ -84,6 +88,7 @@ Estos especialistas no son necesarios automáticamente. El Arquitecto decidirá 
 - `VAISGARD.md` — ciudad principal, estructura e historia.
 - `REGIONS.md` — geografía inicial y caminos.
 - `CREATURES.md` — fauna inicial, rastros y amenazas regionales; entrega para VT-NAR-002.
+- `SPECIES.md` — rasgos naturales de las cinco especies; entrega del Historiador para VT-GAME-001.
 - `SECRETS.md` — información reservada del Dungeon Master.
 - `GAMEPLAY.md` — fuente de verdad mecánica.
 
