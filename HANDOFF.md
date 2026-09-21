@@ -1,5 +1,51 @@
 # HANDOFF — Entrega técnica
 
+## ENTREGA — Login real + arte integrado en el servidor (mismo origen)
+
+**Desarrollador:** Claude (Desarrollador de Servidor de Vintage Telnet)
+
+**Estado:** LISTO PARA REVISIÓN
+
+**Rama:** `claude/vintage-telnet-server-v2` (mismo commit base que la entrega anterior de esta rama)
+
+### Objetivo
+Javier pidió una pantalla de login real antes de entrar al mundo — no la demo local de `vintage-telnet.html` (PR #7), sino el servidor real (PR #6) con la misma identidad visual. Esto reemplaza `server/templates/entry.html` por una versión que reutiliza el arte de `vintage-telnet/assets/html-ui/` (mismo origen, sin CORS) y conecta login/registro/mundo/movimiento/chat a las rutas reales que ya existían.
+
+### Archivos nuevos
+- `vintage-telnet/assets/html-ui/` — traída desde `origin/main` (ya estaba fusionada ahí vía el PR de Arte HTML); esta rama no la tenía porque nació de un commit de `main` anterior a esa fusión.
+
+### Archivos modificados
+- `vintage-telnet/server/app.py`:
+  - Nueva ruta `GET /assets/html-ui/<path:filename>` (vía `send_from_directory`, con `before_request` saltando la verificación de sesión/CSRF para esa ruta) — el servidor no tenía carpeta estática habilitada (`static_folder=None` deliberado, ver pruebas de seguridad existentes), así que agregué exactamente esta carpeta, no una carpeta estática general.
+  - **Cambio de política de contraseña, a pedido explícito de Javier**: el mínimo bajó de 12 a **8 caracteres**. Se lo señalé como una reducción real de seguridad antes de hacerlo; Javier lo confirmó explícitamente sabiendo el trade-off.
+- `vintage-telnet/server/templates/entry.html` — reescrito completo:
+  - Login/registro real con el arte nuevo (pizarra azul + bronce + marfil), mismas rutas/campos de siempre (`/login`, `/register`, csrf).
+  - Vista de mundo real: sala/descripción/salidas vienen de `GET` a `/` con los datos reales del jugador (ya no hay `rooms` simulado en JavaScript). Los botones N/S/E/O son formularios reales a `/move`; se deshabilitan cuando esa dirección no es una salida real de la sala actual.
+  - Chat real: formulario a `/room/say`, mensajes mostrados vienen de `room.messages`.
+  - Atacar/Huir quedan visiblemente deshabilitados con `title="Combate todavía no implementado"` — no se simula combate que no existe.
+  - Personaje/Inventario/Poderes/Ayuda siguen como diálogos informativos honestos (igual que en la demo), sin JavaScript de simulación de mundo.
+
+### Cuenta real creada
+Registré la cuenta `vaisork` a través del formulario real del navegador (no por comando, para no dejar la contraseña en ningún archivo ni historial de shell) y la aprobé desde `/dm`. Contraseña con hash `scrypt` vía `werkzeug`, nunca almacenada ni mostrada en texto plano en ningún archivo de este repositorio.
+
+### Pruebas realizadas
+- Suite completa: **19/19 pruebas siguen pasando** sin modificarlas (el cambio de mínimo de contraseña no rompe ninguna, ya usaban contraseñas de prueba más largas).
+- Prueba real de punta a punta en el navegador, con la cuenta `vaisork` real: registro → visible en `/dm` → aprobar → elegir especie (Dravak) → aparece en Brumak con solo la salida norte habilitada → mover al norte → llega a Vaisgard con las 4 salidas habilitadas → confirmado en `/dm` que quedó `especie=dravak`, `sala=vaisgard`.
+- Verifiqué (renderizando la plantilla directo con Jinja2, con datos de Brumak) que los botones de dirección sin salida real quedan con el atributo `disabled` — al principio pensé que había un bug porque los 4 botones aparecían habilitados, pero era porque el jugador ya se había movido a Vaisgard (que sí tiene las 4 salidas) mientras yo revisaba otra pestaña.
+
+### Qué sigue sin existir (a propósito)
+Combate, inventario, personaje, poderes reales — solo quedan como paneles honestos que dicen que no existen todavía. Mapa lateral con nodos visuales (el de la demo) no se replicó; el panel lateral ahora muestra datos reales (jugador, especie, sala) en vez del mapa ficticio.
+
+### Riesgos/conflictos
+Ninguno nuevo: esta entrega solo toca archivos ya propios de esta rama (`app.py`, `entry.html`) más la carpeta de arte que ya es idéntica a la de `main`, así que al fusionar no debería haber conflicto contra la integración de arte ya publicada.
+
+### Aviso
+El mínimo de contraseña de 8 caracteres es más bajo que el estándar recomendado (12+). Fue una decisión explícita de Javier después de que se lo señalé; si más adelante se agrega más gente al servidor, vale la pena reconsiderarlo.
+
+**LISTO PARA PUBLICAR:** NO — sigue pendiente la revisión del Arquitecto de Vintage Telnet y autorización de Javier para `main`. El servidor de prueba con la cuenta real de Javier quedó corriendo localmente para que pueda seguir jugando; no es la Raspberry Pi ni un despliegue público.
+
+---
+
 ## ENTREGA — Claude, Desarrollador de Servidor de Vintage Telnet
 
 **Estado:** ENTREGA PREPARADA EN RAMA, PENDIENTE DE REVISIÓN

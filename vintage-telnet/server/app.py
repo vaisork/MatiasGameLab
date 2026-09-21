@@ -6,10 +6,15 @@ import re
 import secrets
 import sqlite3
 
-from flask import Flask, abort, g, jsonify, redirect, render_template, request, session, url_for
+from flask import (Flask, abort, g, jsonify, redirect, render_template, request, send_from_directory,
+                    session, url_for)
 from werkzeug.security import check_password_hash, generate_password_hash
 
 from . import dm_auth, store, world
+
+# Biblioteca de arte HTML (vintage-telnet/assets/html-ui/), servida explícitamente en vez de
+# habilitar una carpeta estática general -- mantiene el resto del árbol del repo fuera de HTTP.
+HTML_UI_ASSETS_DIR = Path(__file__).resolve().parent.parent / "assets" / "html-ui"
 
 
 def create_app(config=None):
@@ -46,7 +51,7 @@ def create_app(config=None):
             supplied = request.form.get("csrf", "")
             if not expected or not hmac.compare_digest(expected.encode(), supplied.encode()):
                 abort(400, "Formulario vencido. Recarga la página.")
-        if request.endpoint == "health":
+        if request.endpoint in ("health", "html_ui_assets"):
             return
         session.setdefault("csrf", secrets.token_urlsafe(32))
         g.player = store.player_for_token(path, session.get("token"))
@@ -102,7 +107,7 @@ def create_app(config=None):
         password = request.form.get("password", "")
         if (not re.fullmatch(r"[a-z0-9_]{3,32}", username)
                 or not 1 <= len(name) <= 60 or any(ord(c) < 32 for c in name)
-                or not 12 <= len(password) <= 128):
+                or not 8 <= len(password) <= 128):
             return render_template("entry.html", error="Revisa el nombre, usuario y contraseña según las indicaciones."), 400
         try:
             token = store.register(path, username, name, generate_password_hash(password), session.get("token"))
@@ -191,6 +196,10 @@ def create_app(config=None):
             db.execute("SELECT id FROM players LIMIT 1").fetchone()
             version = db.execute("PRAGMA user_version").fetchone()[0]
         return jsonify(status="ok", schema_version=version)
+
+    @app.get("/assets/html-ui/<path:filename>")
+    def html_ui_assets(filename):
+        return send_from_directory(HTML_UI_ASSETS_DIR, filename)
 
     # --- Dungeon Master ---------------------------------------------------
 
