@@ -1008,51 +1008,32 @@ Después de esta entrega, el Narrador podrá escribir las escenas, conversacione
 **Próximo responsable:** especialista de NPCs / Historiador según la responsabilidad vigente en AGENTS.md.
 
 
-## Dirección narrativa para Arte y cartografía — VT-ART-001
+## Handoff de Narrativa a Arte — VT-ART-001
 
-**Propósito:** impedir que una ilustración conceptual convierta por accidente arquetipos de fantasía, nombres generados o geografía decorativa en canon de Vintage Telnet.
+La guía visual que anteriormente vivía en este documento queda **sustituida por la fuente canónica del Historiador**:
 
-### Regla principal
+- `vintage-telnet/ART_WORLD_GUIDE.md`
 
-Arte **representa el canon; no lo completa**. Cuando falte una verdad del mundo, el espacio puede quedar ambiguo, sin nombre o pendiente del Historiador. Una imagen atractiva no convierte por sí sola un elemento en parte del mundo.
+Narrativa no mantiene una segunda definición de anatomía, pueblos, arquitectura, geografía, criaturas ni cartografía. Si existe diferencia entre una descripción visual antigua de `NARRATIVE.md` y la guía del Historiador, **manda `ART_WORLD_GUIDE.md` y las fuentes canónicas que ésta indique**.
 
-En una pieza que pretenda representar el mundo real de Vintage Telnet, solo deben aparecer como nombres, pueblos, regiones, rutas, monumentos, ruinas, mazmorras, mares, cordilleras o lugares identificables aquellos que ya estén confirmados por la fuente canónica correspondiente.
+### Responsabilidad que conserva el Narrador
 
-No deben introducirse nombres nuevos para llenar huecos de un mapa. Tampoco debe dibujarse un elemento espectacular —árbol sagrado, ciudad flotante, fortaleza ancestral, gran cascada, templo, ruina o mazmorra— de manera que parezca un hecho canónico si el Historiador no lo ha establecido.
+Cuando una ilustración represente una aventura o momento jugable, Narrativa sí puede definir:
 
-### Anclas visuales ya establecidas para los cinco comienzos
+- qué momento se está mostrando;
+- qué está haciendo el personaje;
+- qué información ya ha percibido;
+- atmósfera y tensión de la escena;
+- punto de vista narrativo;
+- qué descubrimiento o emoción se busca comunicar.
 
-- **Valdren / Humanos / Llanos de Edran:** paisaje abierto, caminos, parcelas, cercas, cultivos y vida terrestre cotidiana. La identidad humana es adaptabilidad y diversidad, no una profesión o clase única.
-- **Khariel / Felaryn / Sierra de Hoshai:** montaña, desnivel, terrazas, roca, altura, equilibrio y líneas de visión. La cultura debe evocar la dirección japonesa ya establecida y la especie debe conservar rasgos felinos reconocibles.
-- **Brumak / Dravak / Pedrales de Korven:** piedra, grietas, desniveles y espacios cuya escala tenga sentido para una especie mucho más pequeña que un humano. No convertirlos automáticamente en grandes dragonborn ni en una cultura definida solo por fuerza física.
-- **Narevia / Marevyn / Aguas de Lethra:** agua, orillas, barro, raíces, juncos, humedad, pasarelas y espacios parcialmente acuáticos. No convertirlos automáticamente en “elfos del árbol mágico” ni deducir ciudades flotantes o cascadas monumentales sin canon.
-- **Velmora / Vesperi / Bosque de Nhal:** bosque denso, penumbra, niebla, raíces, sombras, camuflaje natural y señales sutiles. No convertirlos automáticamente en enanos industriales, inventores o una cultura mecánica.
+Eso no autoriza a Narrativa a completar biología, geografía, arquitectura, historia o cultura que el Historiador no haya definido.
 
-### Regla transversal de representación
+### Mapas y descubrimiento
 
-**Especie ≠ clase ≠ profesión ≠ personalidad.**
+Para la **realidad geográfica y visual del mapa**, Arte debe seguir `ART_WORLD_GUIDE.md`, `REGIONS.md`, `SETTLEMENTS.md` y `VAISGARD.md` según corresponda.
 
-Una ilustración de una especie no debe comunicar que todos sus miembros son guerreros, magos, artesanos, sombras o cualquier otra clase. Las clases siguen siendo independientes de la especie.
+Para **qué parte de esa realidad conoce el personaje y cuándo puede verla en su interfaz**, sigue vigente el handoff a Jugabilidad sobre mapa conceptual vs. mapa descubierto.
 
-Las capacidades naturales tampoco deben exagerarse hasta convertirse en poderes no canónicos: Felaryn no vuelan; Dravak no poseen sonar ni visión a través de piedra; Marevyn respiran aire; Vesperi no ven en oscuridad absoluta.
-
-### Vaisgard
-
-Vaisgard es la ciudad común y el punto donde convergen las cinco rutas. No debe representarse como propiedad cultural exclusiva de una especie. Puede comunicar mezcla, tránsito y antigüedad, pero cualquier monumento, distrito oculto o explicación visual de su origen debe respetar lo ya establecido por el Historiador.
-
-### Cartografía conceptual
-
-Una ilustración puede mostrar de forma conceptual que los cinco territorios pertenecen a un mismo mundo y se relacionan con Vaisgard. Esto **no autoriza** a fijar distancias exactas, fronteras, orientación cardinal, accidentes geográficos, islas, desiertos, mares, cordilleras, rutas secundarias, ruinas o mazmorras que todavía no hayan sido establecidos.
-
-Cuando Arte necesite completar una composición:
-1. usar terreno ambiental sin nombre cuando sea compatible con el canon;
-2. evitar etiquetas inventadas;
-3. evitar iconos de lugares concretos no confirmados;
-4. pedir al Historiador definición si el elemento necesita convertirse en lugar real;
-5. marcar explícitamente una pieza como **CONCEPTUAL / NO CANÓNICA** cuando explore posibilidades todavía no aprobadas.
-
-### Principio de descubrimiento
-
-La documentación artística del proyecto y el conocimiento del jugador no son lo mismo. Aunque exista en el futuro un mapa interno completo para producción, la interfaz jugable no debe asumir que un personaje recién creado conoce automáticamente toda esa geografía.
-
-**Estado VT-ART-001:** guía narrativa lista para Arte. No crea geografía nueva.
+**Estado VT-ART-001:** LIMPIADO / ALINEADO CON HISTORIADOR.  
+**Fuente visual autoritativa:** `ART_WORLD_GUIDE.md`.
