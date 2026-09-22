@@ -3,7 +3,7 @@
 **Fecha:** 2026-09-22  
 **HEAD base de `main`:** `a5f47e1ca3ee98bd1babf906fc70a246c8081fc7`  
 **Rama:** `art-director/vintage-initial-audit`  
-**PR de definición del rol consultada:** #29 — `arch/vintage-art-director` — abierta, no fusionada al momento de esta revisión.
+**PR de definición del rol consultada:** #29 — `arch/vintage-art-director` — abierta, no fusionada al momento de esta revisión.\n**Cambio concurrente revisado:** durante esta auditoría `main` avanzó a `a7b20511aeb39f4f54d164e4991396fdf7012c8f`; el cambio únicamente releva temporalmente a Arte HTML y no modifica el canon de especies. La rama conserva trazabilidad de su HEAD base original.
 
 ## Firma
 
@@ -13,7 +13,7 @@ No se duplica en esta rama la definición del rol que ya existe en la PR #29. Es
 
 ## Fuentes leídas
 
-- `AGENTS.md` completo desde el HEAD base.
+- `AGENTS.md` completo desde el HEAD base y el delta posterior de `main` en `a7b20511aeb39f4f54d164e4991396fdf7012c8f`.
 - `vintage-telnet/ART_WORLD_GUIDE.md`.
 - `vintage-telnet/SPECIES.md`.
 - `vintage-telnet/CONFIRMED_IDEAS.md`.
