@@ -246,6 +246,42 @@ class ValidateVintageContentTests(unittest.TestCase):
             )
         )
 
+    def test_missing_description_is_reported(self):
+        def mutate(fixture: ContentFixture):
+            del fixture.files[
+                "settlements/test-settlement.json"
+            ]["rooms"][0]["description"]
+
+        errors = self.run_fixture(mutate)
+        self.assertTrue(
+            any(
+                (
+                    "required field 'description' "
+                    "must be a non-empty string"
+                )
+                in error
+                for error in errors
+            )
+        )
+
+    def test_empty_description_is_reported(self):
+        def mutate(fixture: ContentFixture):
+            fixture.files[
+                "settlements/test-settlement.json"
+            ]["rooms"][0]["description"] = "   "
+
+        errors = self.run_fixture(mutate)
+        self.assertTrue(
+            any(
+                (
+                    "required field 'description' "
+                    "must be a non-empty string"
+                )
+                in error
+                for error in errors
+            )
+        )
+
     def test_empty_required_field_is_reported(self):
         def mutate(fixture: ContentFixture):
             fixture.files[
