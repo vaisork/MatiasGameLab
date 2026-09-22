@@ -1,11 +1,13 @@
 from __future__ import annotations
 
 from copy import deepcopy
+import json
 import importlib.util
 from pathlib import Path
 import unittest
 
 MODULE_PATH = Path(__file__).resolve().parents[1] / "npc_generator_adapter.py"
+FIXTURE = Path(__file__).resolve().parent / "fixtures" / "npc-authoritative-synthetic.json"
 spec = importlib.util.spec_from_file_location("npc_generator_adapter", MODULE_PATH)
 adapter = importlib.util.module_from_spec(spec)
 assert spec and spec.loader
@@ -76,6 +78,12 @@ class FakeBridge:
 
 
 class NpcGeneratorAdapterTests(unittest.TestCase):
+    def test_shared_synthetic_fixture_is_valid(self):
+        npc = json.loads(FIXTURE.read_text(encoding="utf-8"))
+        normalized = adapter.normalize_authoritative_npc(npc)
+        self.assertEqual(normalized["id"], "test_npc_ollama_bridge_001")
+        self.assertEqual(normalized["status"], "synthetic-test-only")
+
     def test_normalizes_authoritative_contract(self):
         npc = adapter.normalize_authoritative_npc(synthetic_npc())
         self.assertEqual(npc["id"], "test_npc_001")
