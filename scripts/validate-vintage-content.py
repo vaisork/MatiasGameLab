@@ -15,6 +15,7 @@ from pathlib import Path
 from typing import Any, Iterable
 
 SCHEMA_VERSION = 1
+ALLOWED_EXIT_DIRECTIONS = {"north", "south", "east", "west"}
 VERSION_RE = re.compile(r"^\d+\.\d+\.\d+$")
 PRIVATE_MARKERS = (
     "private-content/",
@@ -302,7 +303,7 @@ def validate_content(content_dir: Path) -> list[str]:
                     room, "name", room_path
                 )
                 errors.require_nonempty_string(
-                    room, "description_id", room_path
+                    room, "description", room_path
                 )
 
                 exits = room.get("exits")
@@ -320,6 +321,11 @@ def validate_content(content_dir: Path) -> list[str]:
                             errors.add(
                                 room_path,
                                 "exit direction must be a non-empty string",
+                            )
+                        elif direction not in ALLOWED_EXIT_DIRECTIONS:
+                            errors.add(
+                                room_path,
+                                f"exit direction '{direction}' is not allowed in schema v{SCHEMA_VERSION}",
                             )
                         if (
                             not isinstance(target, str)
