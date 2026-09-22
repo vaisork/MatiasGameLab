@@ -650,3 +650,18 @@ Si un criterio está confirmado, debe respetarse. Si está pendiente, debe devol
 **Estado:** matemática v1 aprobada y lista para implementación; quedan contenido concreto y ajustes de balance por pruebas reales.  
 **Juego:** Vintage Telnet  
 **Fuente de verdad de jugabilidad:** `vintage-telnet/GAMEPLAY.md`
+
+
+## Handoff del Narrador — mapa conceptual vs. mapa descubierto
+
+**Origen:** VT-ART-001 en \`NARRATIVE.md\`.  
+**Estado:** PROPUESTA PARA JUGABILIDAD.
+
+Narrativa recomienda separar dos objetos que cumplen funciones distintas:
+
+- **Mapa conceptual/de producción:** puede servir al equipo para comprender la relación general entre regiones y Vaisgard, siempre sujeto al canon del Historiador.
+- **Mapa del jugador:** debe representar únicamente conocimiento que el personaje pueda poseer legítimamente y no revelar de antemano lugares, rutas, ruinas, mazmorras, peligros o secretos no descubiertos.
+
+El mapa jugable puede crecer conforme el personaje explora, recibe información legítima o utiliza futuros objetos/capacidades que Jugabilidad apruebe. Que otro jugador mencione un lugar por chat no debería convertir automáticamente esa información en una ubicación exacta del mapa.
+
+**NECESIDAD DE JUGABILIDAD:** definir más adelante qué estados de conocimiento cartográfico existen, qué acciones actualizan el mapa y qué información puede mostrarse sin destruir la exploración. Esta decisión no bloquea la implementación del bucle jugable inicial.
