@@ -137,10 +137,25 @@ def enrich_generated_npc(
     *,
     enrich_fn: Callable[..., dict[str, Any]] | None = None,
 ) -> dict[str, Any]:
-    authoritative = normalize_authoritative_npc(record)
+    if not isinstance(record, dict):
+        raise NpcGeneratorContractError("NPC generator output must be a JSON object")
+
+    already_locked = record.get("personality_locked") is True
+    if already_locked:
+        authoritative_source = {
+            key: deepcopy(value)
+            for key, value in record.items()
+            if key not in _RESERVED_PERSONALITY_FIELDS
+        }
+        authoritative = normalize_authoritative_npc(authoritative_source)
+        bridge_input = deepcopy(record)
+    else:
+        authoritative = normalize_authoritative_npc(record)
+        bridge_input = authoritative
+
     before = deepcopy(authoritative)
     fn = enrich_fn or _default_enrich_fn()
-    enriched = fn(authoritative, personality_client)
+    enriched = fn(bridge_input, personality_client)
 
     if not isinstance(enriched, dict):
         raise NpcGeneratorContractError("personality bridge must return an NPC object")
