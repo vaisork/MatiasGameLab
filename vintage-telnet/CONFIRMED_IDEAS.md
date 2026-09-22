@@ -90,6 +90,10 @@ El Historiador debe revisar este archivo antes de ampliar el mundo. Una idea inc
 - En el mundo existen animales normales.
 - También existen seres llamados **Arcanes**.
 - Un Arcane no es un animal, aunque puede parecerse a uno.
+- Su dirección visual parte de **formas animales familiares asociadas a mascotas o fauna cercana**, especialmente perros, gatos, conejos, aves y ratones, alteradas por al menos una anomalía imposible o claramente extraña.
+- La anomalía puede ser física, sensorial o ambiental: por ejemplo cuatro orejas, ojos de profundidad imposible, dos colas, aura tenue, sombra doble, bigotes luminosos o movimiento anormalmente silencioso.
+- El descubrimiento debe poder funcionar mediante lectura: primero puede parecer un animal normal y solo después una descripción más atenta revela que algo no encaja.
+- El catálogo inicial y las instrucciones específicas para Narrador y Arte viven en `ARCANES.md`.
 - Puede presentar rasgos que recuerden a varias criaturas o características extrañas que indiquen que no es un animal común.
 - No siempre será fácil reconocer inmediatamente que una criatura es un Arcane.
 - La dirección confirmada es que un jugador pueda tener hasta **tres Arcanes** y pueda guardarlos en su casa.
