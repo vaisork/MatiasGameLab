@@ -59,6 +59,7 @@ El Historiador no sustituye:
 ## Handoff a Arte
 
 - **Canon visual del mundo:** creado `ART_WORLD_GUIDE.md` como puerta de entrada obligatoria para ilustraciones de Vintage Telnet. Establece qué documentos debe leer Arte según la tarea, qué puede interpretar y qué debe devolver al Historiador en vez de inventar.
+- **Arcanes:** creado `ARCANES.md` con su identidad visual/narrativa, separación de animales y criaturas, regla de nombre elegido por el jugador y ocho formas iniciales basadas en perro, gato, conejo, ave y ratón.
 
 ## Trabajo narrativo todavía abierto
 
