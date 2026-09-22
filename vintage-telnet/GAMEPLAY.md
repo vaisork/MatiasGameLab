@@ -245,6 +245,27 @@ El diseño debe evitar una proliferación innecesaria de estados difíciles de r
 
 Todavía no están definidos valores iniciales, PA por nivel, costes, fórmulas de precisión/potencia/defensa/daño, cantidad y progresión de HP, umbrales narrativos de condición, catálogo y efectos de heridas, fórmula y capacidad de fatiga, velocidad exacta de recuperación, relación numérica de armas/armadura, probabilidades/grados de éxito ni reglas concretas de poderes.
 
+## 18. Progresión incremental de la dificultad
+
+La progresión del personaje y la progresión de la dificultad del mundo son **curvas relacionadas pero distintas**.
+
+Subir de nivel aumenta las capacidades del personaje. Al mismo tiempo, conforme el jugador avanza, los desafíos pueden exigir progresivamente mejores decisiones, mayor comprensión de la información disponible y mejor administración de atributos, estado y recursos.
+
+**El aumento de dificultad no debe limitarse a inflar HP, daño u otras estadísticas de enemigos.** La dificultad también puede crecer mediante situaciones que exijan relacionar más información y tomar decisiones más complejas.
+
+Como orientación psicopedagógica ya investigada, la exigencia cognitiva puede crecer gradualmente desde señales evidentes hacia combinaciones de señales, ambigüedad, ausencia o contradicción de información y, posteriormente, memoria de información anterior. La aplicación concreta de estos principios a escenas pertenece al Narrador y a Psicopedagogía; Jugabilidad establece únicamente el criterio de progresión.
+
+La curva matemática de atributos deberá evaluarse junto con esta dificultad incremental. Un coste creciente de especialización y una dificultad creciente pueden castigar dos veces al jugador si ambas curvas son demasiado agresivas.
+
+Por ello, antes de aprobar PA por nivel, costes de atributos o tramos definitivos, las simulaciones deberán comprobar conjuntamente:
+- crecimiento del especialista, doble especialista y generalista;
+- aumento esperado de exigencia de los desafíos;
+- que los niveles altos sigan ofreciendo decisiones útiles de progreso;
+- que especializarse siga siendo viable sin convertirse en una solución universal;
+- que la dificultad avanzada premie mejor lectura y decisión, no solamente cifras mayores.
+
+**Principio confirmado:** subir de nivel aumenta la capacidad del personaje, pero el aumento de dificultad debe ser incremental y no limitarse a aumentar estadísticas enemigas; también debe introducir gradualmente situaciones que exijan mejores decisiones y comprensión de la información.
+
 ## Investigación disponible para Jugabilidad — capacidades HTML y comandos
 
 **ESTADO: INVESTIGACIÓN CONSUMIDA PARCIALMENTE — la dirección híbrida HTML/Telnet ya está confirmada; quedan decisiones específicas por cerrar.**
