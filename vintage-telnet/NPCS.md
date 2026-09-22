@@ -261,3 +261,256 @@ Todos los siguientes personajes están en **BORRADOR** hasta validación de posi
 2. Narrador elige qué NPC será el primero implementado en el playtest.
 3. Para ese NPC se prepara conversación mínima jugable: primer encuentro, seguimiento, “no sé”, negativa y reacción al regreso.
 4. Después se diseña la segunda capa de población sin presentar todos los nombres simultáneamente.
+
+
+---
+
+# VT-NPC-PLAYTEST-001 — Taren, conversación mínima jugable
+
+**NPC elegido:** VT-NPC-KHA-001 — Taren  
+**Región de prueba:** Khariel / Sierra de Hoshai  
+**Motivo de selección:** existe ya una prueba técnica real con personaje Felaryn situado en Khariel. Esto permite que la primera conversación narrativa se pruebe sobre una ruta ya utilizada sin exigir otro punto de inicio.  
+**Estado:** LISTO PARA VALIDACIÓN NARRATIVA / HISTÓRICA. No implementado todavía.
+
+## Objetivo de la conversación
+
+Comprobar que el jugador puede:
+
+1. reconocer a una persona concreta y recordar su voz;
+2. preguntar algo sencillo sin recibir un bloque de lore;
+3. salir de Khariel con una idea útil pero incompleta;
+4. observar una señal del entorno;
+5. volver;
+6. conseguir una respuesta diferente porque trae información nueva;
+7. seguir teniendo que sacar la conclusión por sí mismo.
+
+La conversación no otorga una misión formal ni revela automáticamente un Rasgacumbres.
+
+## Estado conversacional mínimo
+
+### Estado T0 — no conoce al jugador
+
+**Presentación breve del Narrador:**
+
+> Un Felaryn permanece junto al borde de la terraza, inmóvil frente al viento. No parece estar vigilando una sola cosa; recorre con la mirada caminos, riscos y terrazas inferiores.
+
+**Al hablar por primera vez:**
+
+> “¿Vas a bajar? Antes dime qué cambia allá abajo. No qué crees que es. Qué cambia.”
+
+Esto fija su voz: Taren pide observación antes de interpretación.
+
+### Pregunta: “¿Qué debo mirar?”
+
+> “Movimiento. Distancia. Lo que estaba y deja de estar. Una piedra caída no cuenta la misma historia que cinco.”
+
+**Lo que hace:** enseña una forma de observar.  
+**Lo que no hace:** no enumera amenazas ni resuelve la salida.
+
+### Pregunta: “¿Es peligroso salir?”
+
+> “A veces. También es peligroso bajar sin mirar. Desde aquí tienes tiempo para decidir.”
+
+Si el jugador insiste con “¿qué hay abajo?”:
+
+> “Uñapiedras, Saltacrestas, viajeros cuando pasan. Y cosas que prefiero reconocer por sus señales antes de verlas de cerca.”
+
+La última frase abre curiosidad sin nombrar una amenaza superior.
+
+### Pregunta por Uñapiedras
+
+> “Busca arañazos finos y roca pulida. Si ves una, probablemente ella ya te vio moverte.”
+
+### Pregunta por Saltacrestas
+
+> “Los oirás antes de entender qué hacen. Si varios cambian de sitio o llaman a la vez, mira qué provocó el cambio.”
+
+### Pregunta demasiado amplia: “¿Qué está pasando en la sierra?”
+
+> Taren tarda un momento en responder.
+>
+> “En toda la sierra, demasiadas cosas. Si me dices dónde y qué viste, quizá podamos hablar de la misma.”
+
+**Función:** el NPC no acepta preguntas omniscientes como si tuviera acceso al estado global.
+
+### Pregunta que Taren no puede responder
+
+Ejemplo: “¿Qué hay detrás de todas las montañas?”
+
+> “No lo sé. Y si alguien te responde sin preguntarte qué montaña, desconfía un poco.”
+
+**Función:** normalizar que un NPC diga “no sé”.
+
+---
+
+## Estado T1 — el jugador regresa con una señal común
+
+Condición narrativa: el jugador ha observado una señal coherente con Uñapiedras o Saltacrestas.
+
+### Arañazos / muda / roca pulida
+
+> “Eso encaja con Uñapiedras. ¿Estaban cerca de una grieta o en una superficie abierta?”
+
+Si el jugador aporta ubicación:
+
+> “Entonces ya tienes algo mejor que un nombre: sabes dónde buscar y dónde no meter la mano sin mirar.”
+
+### Llamadas / huellas / piedras pequeñas desplazadas
+
+> “Podrían ser Saltacrestas. Lo importante es si estaban huyendo de ti o mirando hacia otra parte.”
+
+**Función de lectura:** una pista conocida produce contexto, pero el NPC sigue pidiendo relación entre señales.
+
+---
+
+## Estado T2 — el jugador regresa con una señal preocupante
+
+Condición narrativa: el jugador ha observado una combinación como silencio repentino, marcas profundas, restos elevados o piedras desplazadas desde una cornisa.
+
+### Si solo trae una señal
+
+Jugador: “Había marcas profundas.”
+
+> “Profundas no basta. ¿Dónde? ¿Cuántas? ¿Había actividad alrededor?”
+
+El NPC evita convertir una sola pista en diagnóstico.
+
+### Si trae dos señales relacionadas
+
+Jugador: “Había marcas profundas y los Saltacrestas dejaron de llamar.”
+
+> Taren deja de mirar al jugador y vuelve la vista hacia las terrazas inferiores.
+>
+> “Eso ya son dos cambios que apuntan al mismo lugar. Yo no bajaría deprisa.”
+
+**Importante:** no dice “es un Rasgacumbres”. La conclusión permanece abierta.
+
+### Si además vio restos en altura
+
+> “Marcas profundas. Silencio. Restos arriba.”
+>
+> Taren guarda silencio unos segundos.
+>
+> “Ya tienes suficiente para decidir si quieres acercarte o conservar la distancia. Yo conservaría la distancia.”
+
+Esto expresa una opinión personal, no una orden del sistema.
+
+---
+
+## Estado T3 — jugador pregunta directamente por Rasgacumbres
+
+### Sin señales previas
+
+> “Existen. No voy a convertir cada ruido de la montaña en uno.”
+
+### Con señales parciales
+
+> “Podría ser. También podrías estar juntando cosas que no tienen la misma causa. Mira otra vez antes de ponerle nombre.”
+
+### Con combinación fuerte de señales
+
+> “Sí. Eso se parece demasiado a su territorio para ignorarlo.”
+>
+> “Parecerse no significa que yo pueda decirte dónde está ahora.”
+
+Taren puede reconocer un patrón cuando existe información suficiente, pero no revela posición ni estado que no conoce.
+
+---
+
+## Estado T4 — el jugador vuelve sin haber observado nada útil
+
+Jugador: “No vi nada.”
+
+> “Eso puede significar dos cosas: que no había nada que ver, o que todavía no sabes qué estabas buscando.”
+>
+> “La próxima vez elige una cosa: movimiento, sonido o cambios en los animales. Empieza por una.”
+
+**Principio psicopedagógico:** segunda oportunidad sin castigo ni sermón.
+
+---
+
+## Estado T5 — el jugador intenta convertir a Taren en tutorial
+
+Preguntas como:
+- “¿Qué comando uso?”
+- “¿Qué nivel necesito?”
+- “¿Cuántos puntos tengo que tener?”
+
+**Respuesta dentro del mundo:**
+
+> “No sé de qué hablas. Si quieres saber si estás preparado para bajar, dime qué sabes hacer y qué viste.”
+
+Taren no reconoce terminología de interfaz o estadísticas como lenguaje del mundo.
+
+---
+
+## Estado T6 — Taren no quiere responder
+
+Para preguntas insistentes sobre algo que no puede verificar:
+
+> “Ya te dije lo que sé. Repetirlo con más seguridad no lo vuelve cierto.”
+
+Para preguntas que intentan obtener un secreto sin fundamento:
+
+> “No tengo una historia escondida para cada sombra. Si encuentras algo, tráeme algo que podamos comparar.”
+
+**Función:** una negativa puede tener personalidad sin ser hostil ni cerrar la interacción.
+
+---
+
+## Confianza y Presencia — comportamiento narrativo
+
+Taren no cambia hechos según Presencia.
+
+Una recepción más favorable puede sentirse como:
+- ofrece una segunda pregunta;
+- explica con un ejemplo adicional;
+- admite una duda propia;
+- muestra paciencia.
+
+Una recepción menos favorable puede sentirse como:
+- respuesta más corta;
+- exige una observación concreta;
+- termina la conversación antes.
+
+Nunca:
+- inventa conocimiento;
+- confirma una hipótesis absurda;
+- revela una amenaza oculta;
+- obliga al jugador a creer una interpretación.
+
+**NECESIDAD DE JUGABILIDAD:** las condiciones y fórmulas concretas de Presencia siguen fuera de esta ficha.
+
+---
+
+## Memoria mínima que necesita el sistema
+
+Para que esta conversación cumpla su función, técnicamente bastaría con recordar estados sencillos por personaje:
+
+- habló_con_taren;
+- pregunto_por_salida_khariel;
+- vio_senal_unapiedra;
+- vio_senal_saltacresta;
+- vio_marca_profunda;
+- noto_silencio_terraza;
+- vio_restos_altura;
+- regreso_a_taren_despues_senal.
+
+Estos nombres son **descriptivos, no un esquema técnico obligatorio**.
+
+**NECESIDAD TÉCNICA:** Arquitectura decide cómo representar estos estados.
+
+---
+
+## Criterio de aceptación del playtest
+
+Taren funciona si el jugador:
+
+- recuerda que pide describir cambios y no conclusiones;
+- sale con una idea concreta de qué observar;
+- vuelve voluntariamente después de detectar algo;
+- entiende que una sola señal puede ser insuficiente;
+- combina dos o más señales sin que el NPC le entregue inmediatamente la solución;
+- distingue “Taren cree/aconseja” de “el juego confirmó un hecho”.
+
+Si el jugador solo pulsa opciones hasta recibir “la respuesta correcta”, la conversación necesita simplificación o rediseño.
