@@ -155,6 +155,26 @@ Antes de integrar, el Chat Integrador comprueba el HEAD base, el `main` actual, 
 
 El estado persistente vivo de la Raspberry (cuentas, posiciones, inventarios, progreso y estado compartido del mundo cuando existan) no debe tratarse como código para sobrescribirlo desde GitHub durante una actualización.
 
+## Canon visual de mundo — Vintage Telnet
+
+Todo agente que cree ilustraciones, mapas, pueblos, especies, criaturas, arquitectura o escenas visuales de **Vintage Telnet** debe comenzar por:
+
+`vintage-telnet/ART_WORLD_GUIDE.md`
+
+Ese documento es la puerta de entrada visual mantenida por el **Historiador y Constructor del Mundo**.
+
+Regla de autoridad para imágenes de Vintage Telnet:
+
+- **Historiador:** define qué existe y cómo es físicamente/culturalmente el mundo.
+- **Narrador:** define qué escena, momento o experiencia se representa.
+- **Arte:** decide cómo volverlo visible sin cambiar el canon.
+
+Una imagen previa, aunque haya sido generada por otro agente o aprobada como referencia, **no es fuente de verdad por sí sola**. Puede servir como moodboard o composición, pero si contradice el canon escrito debe corregirse.
+
+Arte no debe inventar para completar una imagen nombres, regiones, biología, poderes, culturas, criaturas, ciudades, rutas, ruinas importantes ni símbolos históricos. Si falta una verdad necesaria, debe marcar **CANON VISUAL INSUFICIENTE** y pedir definición al Historiador.
+
+Para una tarea concreta, `ART_WORLD_GUIDE.md` indica exactamente qué otros documentos deben leerse. No reconstruir el canon navegando documentos al azar.
+
 ## Solicitudes de Pixel Art
 
 `PIXEL_ART_REQUESTS.md` es la cola común de solicitudes visuales de MatiasGameLab. Aplica a Senku, Vintage Telnet y futuros juegos.
