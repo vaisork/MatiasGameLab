@@ -21,7 +21,7 @@ También se recuperan dos decisiones previas de Javier que todavía no estaban p
 - `vintage-telnet/assets/html-ui/buttons/button-inventario-normal.png`
 - `vintage-telnet/assets/html-ui/buttons/button-huir-danger.png`
 
-El asset `button-poderes-special.png` no se conecta todavía a ninguna acción porque Jugabilidad no ha definido una acción `poderes` en este cliente.
+El asset `button-poderes-special.png` ahora se usa como acceso visual a un panel **Poderes**. El panel no simula ninguna magia/habilidad: deja explícita la dependencia de Jugabilidad.
 
 ## Cambios
 
@@ -33,7 +33,7 @@ El asset `button-poderes-special.png` no se conecta todavía a ninguna acción p
 - Divisor del artista aplicado entre controles de comando y herramientas.
 - Ayuda abre en `100vw × 100dvh` con safe-area.
 - Personaje incluye placeholder explícito para futura imagen 3D, sin inventar ruta.
-- No se implementa Poderes todavía.
+- Se añade acceso `Poderes` como panel preparado, sin inventar poderes, costes, efectos ni reglas.
 
 ## Verificaciones estructurales
 
@@ -44,7 +44,7 @@ Comprobado en el HTML de la rama:
 - `perform(raw)` sigue siendo la ruta de acciones;
 - Ayuda usa `dialog.fullscreen`;
 - Personaje contiene `characterPreview`;
-- no existe `data-action="poderes"` ni nueva mecánica inventada.
+- existe `data-action="poderes"` únicamente como apertura de panel; no ejecuta mecánica de juego.
 
 ## Límites
 
