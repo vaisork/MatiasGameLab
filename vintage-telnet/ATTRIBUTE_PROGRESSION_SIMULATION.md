@@ -522,3 +522,148 @@ Este cierre NO define todavía:
 - forma técnica exacta de interpolar la competencia general +8 a través de los niveles.
 
 La fuente de verdad normativa continúa siendo `vintage-telnet/GAMEPLAY.md`.
+
+
+## SIMULACIÓN INTEGRAL DE JUGABILIDAD V1 — cierre previo a implementación
+
+**Fecha:** 2026-09-22  
+**Estado:** BASE V1 APROBADA PARA IMPLEMENTACIÓN.
+
+Después del cierre de crecimiento se simularon conjuntamente:
+- crecimiento de atributos;
+- combate físico;
+- HP;
+- fatiga;
+- muerte/reaparición;
+- huida y protección PvP;
+- dificultad relativa de enemigos;
+- cadencia de poderes;
+- perfiles especialista, doble especialista, equilibrado, irregular y casual.
+
+### Hallazgo de balance importante
+
+La primera pasada hizo a **Destreza** demasiado dominante porque mejoraba en exceso ataque y bloqueo simultáneamente.
+
+La segunda pasada corrigió ese problema reduciendo su peso defensivo/ofensivo combinado. El principio resultante es:
+
+- Destreza domina precisión física y participa poco en daño;
+- Fuerza domina potencia física;
+- Agilidad domina esquiva;
+- Resistencia domina absorción/HP/fatiga;
+- Percepción apoya lectura de aperturas y algunas acciones, pero no reemplaza decisión;
+- ninguna estadística resuelve por sí sola ataque, defensa y supervivencia.
+
+### Márgenes de combate observados
+
+Contra un enemigo equilibrado del mismo nivel, un margen de 1.0 representa paridad aproximada.
+
+Resultados orientativos de la pasada corregida:
+
+| Perfil | Nivel 10 | Nivel 25 | Nivel 50 | Nivel 75 | Nivel 100 |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Casual | 1.05 | 1.13 | 1.07 | 1.06 | 1.09 |
+| Doble F/R | 1.32 | 1.33 | 1.35 | 1.40 | 1.38 |
+| Equilibrado | 1.00 | 1.00 | 1.00 | 1.00 | 1.00 |
+| Especialista Destreza | 1.22 | 1.23 | 1.25 | 1.28 | 1.30 |
+| Especialista Fuerza | 1.31 | 1.40 | 1.33 | 1.29 | 1.23 |
+| Especialista Agilidad | 0.98 | 0.88 | 0.85 | 0.86 | 0.84 |
+| Irregular | 1.22 | 1.19 | 1.14 | 1.22 | 1.28 |
+
+Interpretación:
+- el casual sigue siendo viable;
+- el equilibrado sirve como referencia estable;
+- especialistas físicos ofensivos destacan;
+- un especialista puro en Agilidad no es buen duelista directo, pero sigue teniendo valor defensivo, de huida y exploración;
+- no toda especialización debe producir el mismo resultado en combate.
+
+### Enemigos comunes, peligrosos y jefes
+
+Al nivel 100 se comparó la misma población contra tres escalas relativas:
+
+| Perfil | Común ~80% | Peligroso ~100% | Jefe ~120% |
+| --- | ---: | ---: | ---: |
+| Especialista Fuerza | 1.54 | 1.23 | 1.03 |
+| Especialista Destreza | 1.62 | 1.30 | 1.08 |
+| Especialista Agilidad | 1.05 | 0.84 | 0.70 |
+| Doble F/R | 1.72 | 1.38 | 1.15 |
+| Equilibrado | 1.25 | 1.00 | 0.83 |
+| Irregular | 1.60 | 1.28 | 1.07 |
+| Casual | 1.36 | 1.09 | 0.91 |
+
+Conclusión:
+**todos los perfiles razonables deben poder progresar contra contenido común; desafíos superiores pueden requerir build, equipo, lectura, poderes o cooperación apropiados.**
+
+### HP observado al nivel 100
+
+Con la fórmula v1:
+- especialista Fuerza: ~251 HP;
+- especialista Destreza: ~251 HP;
+- especialista Agilidad: ~251 HP;
+- doble Fuerza/Resistencia: ~321 HP;
+- equilibrado: ~275 HP;
+- irregular: ~296 HP;
+- casual: ~290 HP.
+
+Esto mantiene a Resistencia como inversión significativa sin convertirla en única fuente de vida.
+
+### Fatiga
+
+Se probaron combates intensos con distintos valores de Resistencia.
+
+La simulación confirmó:
+- Resistencia baja acumula fatiga más rápido;
+- Resistencia alta conserva una ventaja clara en combate prolongado;
+- una acción de descanso puede cambiar sensiblemente el estado;
+- los umbrales 70/90 dejan espacio suficiente antes de cansancio/ag agotamiento;
+- fatiga no necesita funcionar como segunda barra de HP.
+
+### Huida y protección PvP
+
+Con oponentes similares, la primera huida parte alrededor de 50%.
+
+Ejemplo orientativo con diferencia de nivel del atacante:
+
+| Ventaja de nivel del atacante | 1er intento | 2º intento | 3er intento |
+| ---: | ---: | ---: | ---: |
+| 0 | 50% | 65% | 80% |
+| 10 | 56% | 71% | 86% |
+| 20 | 62% | 77% | 92% |
+| 30 | 68% | 83% | 95% |
+| 40 | 74% | 89% | 95% |
+| 50 | 80% | 95% | 95% |
+
+Esto satisface el criterio aprobado de que una diferencia extrema de poder no convierta el PvP en muerte inevitable para el jugador débil.
+
+### Muerte y reaparición
+
+Se adopta recuperación intermedia:
+- 60% HP;
+- 40 fatiga;
+- heridas reducidas un grado;
+- máximo una herida persistente;
+- sin pérdida de nivel, PA o XP.
+
+Objetivo: la muerte importa sin provocar una espiral de castigo.
+
+### Cadencia de poderes
+
+Para un combate ilustrativo de 12 rondas:
+- poder rápido / recarga 2: hasta ~6 usos;
+- poder fuerte / recarga 4: hasta ~3 usos;
+- poder mayor / recarga 8: hasta ~2 usos.
+
+Estos valores son categorías base. El poder concreto puede usar restricciones adicionales.
+
+### Resultado final
+
+La simulación integral considera suficientemente estable la matemática v1 para empezar implementación.
+
+La fuente normativa queda en:
+
+`vintage-telnet/GAMEPLAY.md` — sección **20. Matemática de Jugabilidad v1 — lista para implementación**.
+
+A partir de aquí, los cambios deben venir de:
+1. pruebas reales;
+2. contenido concreto del Historiador;
+3. observación de partidas de jugadores reales;
+4. ajustes de parámetros, evitando reabrir innecesariamente los principios ya cerrados.
