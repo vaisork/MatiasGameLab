@@ -172,3 +172,22 @@ systemd ya endurecida: usuario dedicado, `ProtectSystem=strict`,
 `NoNewPrivileges`, `PrivateTmp`, directorio de estado separado). No
 desplegar sin haber corrido la suite completa fuera de la Raspberry
 primero, según la secuencia técnica de `../ARCHITECTURE_STATUS.md`.
+
+### Respaldo periódico
+
+[`../ops/backup.sh`](../ops/backup.sh) +
+[`../ops/vintage-telnet-backup.service`](../ops/vintage-telnet-backup.service) +
+[`../ops/vintage-telnet-backup.timer`](../ops/vintage-telnet-backup.timer):
+respaldo diario de `vintage.sqlite3` vía `server.admin backup` (que ya
+verifica integridad de la copia), con poda automática de backups de más de
+14 días (`VT_BACKUP_KEEP_DAYS`). Activar junto con el servicio principal:
+
+```bash
+sudo systemctl enable --now vintage-telnet-backup.timer
+```
+
+Esto responde al pendiente que el operador de Raspberry dejó explícito en
+`../ops/RASPBERRY_REPORT.md`: no había política de respaldo antes de la
+primera instalación real. El script no reemplaza una copia fuera del
+equipo (disco externo, otra máquina); eso sigue siendo una decisión
+operativa aparte.

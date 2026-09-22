@@ -1,0 +1,18 @@
+[Unit]
+Description=Vintage Telnet SQLite backup (one-shot)
+After=vintage-telnet.service
+
+[Service]
+Type=oneshot
+User=vintage-telnet
+Group=vintage-telnet
+ExecStart=/opt/vintage-telnet/current/vintage-telnet/ops/backup.sh
+Environment=PYTHONUNBUFFERED=1
+Environment=PYTHONDONTWRITEBYTECODE=1
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/backups/vintage-telnet
+ReadOnlyPaths=/var/lib/vintage-telnet
+UMask=0077
