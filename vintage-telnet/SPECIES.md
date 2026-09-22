@@ -78,7 +78,7 @@ Su experiencia puede sentirse menos condicionada por una especialización corpor
 
 ## Naturaleza
 
-Los Felaryn poseen una apariencia humanoide propia con **pelo visible y orejas similares a las de un gato**, integradas de forma natural en su anatomía. Estos rasgos son canónicos, pero la especie no debe presentarse al jugador como una simple mezcla o como “hombre gato”.
+Los Felaryn poseen una apariencia humanoide propia con **pelo visible, orejas similares a las de un gato y cola felina**, integradas de forma natural en su anatomía. Estos rasgos son canónicos, pero la especie no debe presentarse al jugador como una simple mezcla o como “hombre gato”.
 
 Los Felaryn están adaptados a desplazarse y orientarse en terrenos montañosos con grandes diferencias de altura.
 
@@ -88,6 +88,8 @@ Para sostener coherentemente esas capacidades, su fisiología incluye además un
 
 ## Rasgos naturales relevantes
 
+- orejas felinas claramente diferenciadas de las orejas élficas;
+- cola felina funcional como parte normal de su silueta;
 - piernas con gran capacidad de impulso;
 - saltos naturales considerablemente superiores a los de un Humano;
 - visión a larga distancia especialmente desarrollada;
@@ -113,15 +115,20 @@ Un Felaryn debería notar que altura, distancia, terrazas, riscos, puntos de obs
 
 ## Naturaleza
 
-Los Dravak son **muy pequeños en comparación con un Humano**.
+Los Dravak son **más pequeños y compactos que un Humano adulto**, pero no deben representarse como diminutos ni con proporciones infantiles. Un Dravak adulto debe leerse visualmente como un adulto de su propia especie.
 
 Su cuerpo está adaptado a moverse con comodidad entre espacios compactos y superficies fragmentadas.
+
+Su anatomía presenta además **zonas corporales endurecidas de aspecto mineral o pétreo**, con textura resistente y, en algunos individuos, vetas o fisuras que pueden recordar roca calentada o lava bajo una corteza sólida. Esto es una característica visual y material del cuerpo, no implica que estén hechos de lava ni que posean inmunidad al fuego.
 
 Su menor escala cambia la forma en que perciben y recorren una construcción, una grieta, un taller o un terreno rocoso.
 
 ## Rasgos naturales relevantes
 
-- estatura y masa corporal notablemente menores que las humanas;
+- estatura y masa corporal menores que las humanas, sin proporciones de niño;
+- constitución compacta y adulta;
+- placas, zonas o texturas dérmicas endurecidas de apariencia mineral/pétrea;
+- posibles vetas o fisuras de aspecto volcánico sutil, sin lava expuesta;
 - centro de gravedad bajo y buen control en espacios reducidos;
 - facilidad natural para recorrer huecos, pasajes y superficies que resultan incómodos para cuerpos mayores;
 - manos proporcionadas a su tamaño, capaces de trabajar con objetos y detalles pequeños;
@@ -154,6 +161,8 @@ Un Dravak debería descubrir rutas, refugios y detalles espaciales que otras esp
 
 Los Marevyn son altos, estilizados y están naturalmente adaptados a vivir en regiones donde el agua forma parte constante del entorno.
 
+Su anatomía debe mostrar esa relación de manera visible: presentan **rasgos inspirados en peces y vida acuática**, especialmente **escamas parciales** integradas en la piel. Las escamas no cubren necesariamente todo el cuerpo y pueden concentrarse en zonas como cuello, hombros, antebrazos, costados o piernas, manteniendo una silueta humanoide elegante y propia.
+
 Su relación con lagos, ríos y humedales no es únicamente cultural: su cuerpo se desenvuelve especialmente bien dentro y alrededor del agua.
 
 No son una especie acuática completa y no se establece que respiren bajo el agua.
@@ -161,6 +170,8 @@ No son una especie acuática completa y no se establece que respiren bajo el agu
 ## Rasgos naturales relevantes
 
 - cuerpo alto y estilizado;
+- escamas parciales visibles como rasgo corporal canónico;
+- detalles anatómicos de inspiración acuática/ictia sin convertirlos en peces humanoides;
 - brazos y piernas largos, útiles para vadear, alcanzar y desplazarse entre plataformas naturales;
 - gran soltura al nadar;
 - control de respiración superior al humano durante inmersiones;
@@ -191,10 +202,14 @@ Un Marevyn debería relacionarse con canales, orillas, corrientes y zonas inunda
 
 Los Vesperi están adaptados a zonas donde la luz es escasa: bosques profundos, cavernas abiertas y ambientes nocturnos.
 
+Su anatomía hace visible esa adaptación: poseen **ojos notablemente grandes**, dominantes en el rostro, adecuados para captar información en condiciones de baja luz. Su postura natural tiende a ser **ligeramente encorvada o recogida**, dándoles una silueta cautelosa y distinta de Humanos, Felaryn y Marevyn.
+
 Su principal diferencia natural es **sensorial**, no el vuelo ni una anatomía de murciélago.
 
 ## Rasgos naturales relevantes
 
+- ojos notablemente grandes como rasgo anatómico canónico;
+- postura naturalmente algo encorvada/recogida;
 - visión especialmente eficaz con luz tenue;
 - capacidad para distinguir movimiento y formas con iluminación que resulta insuficiente para un Humano;
 - oído sensible a cambios y sonidos pequeños del entorno;
@@ -224,10 +239,10 @@ Las diferencias canónicas que pueden justificar futuros criterios de atributos 
 | Especie | Diferencias naturales principales |
 | --- | --- |
 | Humanos | fisiología generalista, sin especialización sensorial o ambiental extrema |
-| Felaryn | impulso/salto, visión a distancia, equilibrio y control corporal |
-| Dravak | tamaño reducido, movilidad en espacios compactos, detalle manual, sensibilidad a vibraciones sólidas |
-| Marevyn | adaptación al agua, natación, control de respiración, equilibrio húmedo y lectura de corrientes |
-| Vesperi | visión en baja luz, oído sensible y orientación mediante señales sutiles |
+| Felaryn | orejas y cola felinas, impulso/salto, visión a distancia, equilibrio y control corporal |
+| Dravak | tamaño menor y cuerpo compacto, piel/zones endurecidas de aspecto mineral, movilidad en espacios compactos, detalle manual, sensibilidad a vibraciones sólidas |
+| Marevyn | cuerpo alto con escamas parciales y rasgos acuáticos, natación, control de respiración, equilibrio húmedo y lectura de corrientes |
+| Vesperi | ojos muy grandes, postura encorvada, visión en baja luz, oído sensible y orientación mediante señales sutiles |
 
 ## Lo que el Historiador NO solicita
 
