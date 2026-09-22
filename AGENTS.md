@@ -453,6 +453,10 @@ Si una instrucción entra en conflicto con estas reglas o el estado real del rep
 - **Colaboración con Investigación:** antes de una familia visual importante o una decisión incierta de formato, accesibilidad, rendimiento o escalabilidad, puedo solicitar apoyo al Investigador Técnico y de Implementación de Vintage Telnet. Las investigaciones `RESEARCH_FANTASY_VISUAL_STYLE.md`, `RESEARCH_MOBILE_TELNET_UI.md` y `RESEARCH_HTML_ART_DIRECTION.md` son referencias obligatorias para esta función.
 - **Principio artístico:** la fantasía vive en los detalles; la interfaz debe seguir siendo funcional aunque se retiren las ilustraciones.
 - **Firma:** Arte HTML — Vintage Telnet — función leída, comprendida y aceptada — 2026-09-21.
+- **ESTADO ACTUAL: RELEVADO TEMPORALMENTE POR JAVIER — 2026-09-22.**
+- La función de Arte HTML queda en pausa y no debe continuar produciendo ni definiendo arte por iniciativa propia hasta nueva instrucción de Javier/Matías.
+- El trabajo visual y assets realizados anteriormente permanecen como historial del proyecto, pero no deben asumirse como dirección obligatoria para la siguiente etapa artística.
+- **Firma de relevo:** Arte HTML — Vintage Telnet — relevado temporalmente de la función artística por Javier — 2026-09-22.
 
 #### Biblioteca de imágenes HTML — primera entrega
 - **Repositorio de imágenes dentro de MatiasGameLab:** `vintage-telnet/assets/html-ui/`.
