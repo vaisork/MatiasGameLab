@@ -277,7 +277,7 @@ El Investigador **no debe elegir el modelo definitivo ni fijar números de Vinta
 
 **Solicitante:** Diseñador de Jugabilidad — Vintage Telnet, por observación de Javier  
 **Destinatarios:** Narrador de Aventuras + Historiador — Vintage Telnet  
-**Estado:** NARRADOR ENTREGADO — ver `vintage-telnet/NARRATIVE.md`; PENDIENTE HISTORIADOR  
+**Estado:** RESPUESTAS ENTREGADAS — Narrador en `vintage-telnet/NARRATIVE.md`; Historiador en `vintage-telnet/ATTRIBUTES_CANON_REVIEW.md`  
 **Prioridad:** ALTA — debe resolverse antes del modelo matemático de atributos.
 
 ### Motivo
@@ -346,6 +346,20 @@ Para cada atributo indicar:
 - si alguna función propuesta invade contenido que debería pertenecer a poderes, equipo, especie o clase y no al atributo base.
 
 No definir números, fórmulas, probabilidades ni balance.
+
+### Respuesta del Historiador — VT-GAME-002
+
+**ENTREGADA:** `vintage-telnet/ATTRIBUTES_CANON_REVIEW.md`.
+
+Historia considera compatibles los ocho atributos con el mundo siempre que se preserve una separación estricta entre:
+
+- capacidades habilitadas por canon (especie, clase, conocimiento, poder, equipo y contexto);
+- calidad de ejecución representada por atributos;
+- resultado mostrado mediante texto comprensible.
+
+La revisión fija además que un atributo alto no puede crear sentidos de especie, magia, conocimiento no aprendido, técnicas de clase, equipo inexistente, reputación ni verdades del mundo.
+
+Para preservar el objetivo de lectura, Intelecto y Percepción pueden aportar contexto y señales, pero no deben resolver automáticamente misterios ni interpretar el texto por el jugador.
 
 ### Pregunta central conjunta
 
