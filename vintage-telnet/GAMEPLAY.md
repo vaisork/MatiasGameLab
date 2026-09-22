@@ -212,9 +212,30 @@ Resistencia no dificulta por sí sola que te golpeen; Agilidad no absorbe daño;
 
 **Ninguna defensa debe ser siempre la mejor.** La descripción del ataque, enemigo, terreno, equipo y estado debe poder ayudar al jugador a decidir. Las alternativas no deben ser botones equivalentes que ejecutan la misma tirada con nombres diferentes.
 
+### Vida, heridas y fatiga
+
+Se confirma un modelo híbrido de información: el jugador podrá consultar **vida numérica exacta (HP)** y, simultáneamente, recibir un **estado narrativo** comprensible sobre la condición del personaje. La interfaz no debe obligar a elegir entre precisión matemática y lectura narrativa.
+
+Se mantienen separados tres conceptos:
+- **Vida/HP:** cuánto daño puede soportar el personaje antes de ser derrotado.
+- **Heridas:** consecuencias concretas del daño que pueden llegar a afectar temporalmente determinadas capacidades. Su catálogo y efectos exactos siguen pendientes.
+- **Fatiga:** desgaste producido por esfuerzo; no es equivalente al daño ni constituye una segunda barra de vida.
+
+La fatiga tendrá una **barra/valor visible** y también estados o señales narrativas comprensibles. Resistencia influirá en la relación del personaje con la fatiga, pero la fórmula exacta permanece pendiente.
+
+Una fatiga elevada no provoca automáticamente derrota. Debe afectar de manera comprensible la capacidad de mantener determinadas acciones, su coste o eficacia, favoreciendo cambios de estrategia.
+
+La recuperación de fatiga será **combinada**:
+1. existe recuperación gradual cuando cesa el esfuerzo que la genera;
+2. una acción explícita de descanso permite una recuperación más rápida o eficaz.
+
+Los ritmos, condiciones, interrupciones y cantidades exactas de recuperación todavía no están definidos.
+
+El diseño debe evitar una proliferación innecesaria de estados difíciles de recordar. Las condiciones importantes deben ser pocas, significativas y comunicadas con claridad.
+
 ### Pendiente antes de las matemáticas de combate
 
-Todavía no están definidos valores iniciales, PA por nivel, costes, fórmulas de precisión/potencia/defensa/daño, vida/HP/heridas, relación numérica de armas/armadura, probabilidades/grados de éxito ni reglas concretas de poderes.
+Todavía no están definidos valores iniciales, PA por nivel, costes, fórmulas de precisión/potencia/defensa/daño, cantidad y progresión de HP, umbrales narrativos de condición, catálogo y efectos de heridas, fórmula y capacidad de fatiga, velocidad exacta de recuperación, relación numérica de armas/armadura, probabilidades/grados de éxito ni reglas concretas de poderes.
 
 ## Investigación disponible para Jugabilidad — capacidades HTML y comandos
 
