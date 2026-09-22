@@ -52,6 +52,10 @@ El Historiador no sustituye:
 - **Jugabilidad / VT-GAME-001 — Rasgos de especies:** aportación del Historiador entregada en `SPECIES.md`. La solicitud ya cuenta también con la aportación del Narrador.
 - **Jugabilidad / VT-GAME-002 — Matriz de 8 atributos para juego de lectura:** revisión canónica entregada en `ATTRIBUTES_CANON_REVIEW.md`. Los ocho atributos son compatibles si no sustituyen especie, clase, conocimiento, poder, equipo ni decisiones de lectura del jugador.
 
+## Entrega para presentación
+
+- **Presentación pública de Vintage Telnet:** texto del Historiador preparado en `PRESENTATION_HISTORIAN.md`, sin spoilers ni secretos del Dungeon Master. Incluye mundo, Vaisgard, cinco pueblos/especies, exploración mediante lectura, atributos narrados y promesa de expansión.
+
 ## Trabajo narrativo todavía abierto
 
 Áreas importantes aún por desarrollar o repartir:
@@ -91,6 +95,7 @@ Estos especialistas no son necesarios automáticamente. El Arquitecto decidirá 
 - `CREATURES.md` — fauna inicial, rastros y amenazas regionales; entrega para VT-NAR-002.
 - `SPECIES.md` — rasgos naturales de las cinco especies; entrega del Historiador para VT-GAME-001.
 - `SECRETS.md` — información reservada del Dungeon Master.
+- `PRESENTATION_HISTORIAN.md` — texto público del mundo para la presentación.
 - `GAMEPLAY.md` — fuente de verdad mecánica.
 
 ---
