@@ -9,6 +9,7 @@ Group=vintage-telnet
 ExecStart=/opt/vintage-telnet/current/vintage-telnet/ops/backup.sh
 Environment=PYTHONUNBUFFERED=1
 Environment=PYTHONDONTWRITEBYTECODE=1
+Environment=VT_DATA_DIR=/var/lib/vintage-telnet
 NoNewPrivileges=true
 PrivateTmp=true
 ProtectSystem=strict

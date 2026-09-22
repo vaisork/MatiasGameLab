@@ -2,22 +2,23 @@
 # Respaldo periodico de vintage.sqlite3, pensado para correr como
 # vintage-telnet-backup.service (via el timer .timer).
 #
+# VT_DATA_DIR se recibe por variable de entorno (Environment= en el unit,
+# no un secreto), no leyendo server.env: ese archivo es root:root 0600
+# porque contiene VT_SECRET_KEY/VT_DM_PASSWORD, y este servicio corre sin
+# privilegios (User=vintage-telnet) -- no debe ni necesita leerlo.
+#
 # Usa server.admin backup, que ya verifica integridad de la copia
 # (PRAGMA integrity_check) y nunca sobrescribe un backup existente.
 # Falla con exit code != 0 si algo sale mal, para que systemd/journal
 # lo registren como fallo real, no un exito silencioso.
 set -eu
 
-ENV_FILE="${VT_BACKUP_ENV_FILE:-/etc/vintage-telnet/server.env}"
 RELEASE_DIR="${VT_BACKUP_RELEASE_DIR:-/opt/vintage-telnet/current/vintage-telnet}"
 BACKUP_DIR="${VT_BACKUP_DIR:-/var/backups/vintage-telnet}"
 KEEP_DAYS="${VT_BACKUP_KEEP_DAYS:-14}"
 
-# shellcheck source=/dev/null
-. "$ENV_FILE"
-
 if [ -z "${VT_DATA_DIR:-}" ]; then
-    echo "VT_DATA_DIR no esta definida (revisar $ENV_FILE)" >&2
+    echo "VT_DATA_DIR no esta definida en el entorno del servicio (revisar Environment= en vintage-telnet-backup.service)" >&2
     exit 1
 fi
 
