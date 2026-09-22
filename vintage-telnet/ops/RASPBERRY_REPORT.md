@@ -75,6 +75,13 @@ previa (sin systemd) y luego la instalación systemd final.
   validada conforme al checklist acordado de arranque automático, salud del
   servicio y continuidad del juego. Esta confirmación cierra el pendiente de
   reboot físico. No se añaden aquí salidas de comandos no copiadas al reporte.
+- **Validación final de accesos y persistencia — CONFIRMADA POR JAVIER:** tras el
+  reboot, los accesos `Vintage-Telnet-Juego.desktop` y
+  `Vintage-Telnet-DM.desktop` abrieron correctamente. Javier movió al jugador
+  de prueba, cerró el navegador, volvió a abrir `Vintage-Telnet-Juego` y
+  confirmó que el personaje reapareció en la misma sala. Con esto queda
+  validada de punta a punta la cadena: reboot → arranque automático de
+  `systemd` → accesos Juego/DM → estado persistente tras cierre/reapertura.
 
 ## Prueba manual previa (sin systemd) — 2026-09-22
 
