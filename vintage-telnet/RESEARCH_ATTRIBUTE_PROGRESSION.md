@@ -379,3 +379,14 @@ Los modelos que más merece la pena simular son los que separan claramente:
 BatMUD aporta un precedente especialmente relevante de costes crecientes y máximos dentro de un MUD; D&D muestra point buy creciente y caps; GW2 muestra separación de capas y tiers; RuneScape muestra cómo una curva creciente sostiene progresión larga.
 
 **Siguiente paso correcto: simulación, no decisión intuitiva.** Jugabilidad debe probar los cuatro candidatos con números hipotéticos antes de convertir alguno en regla.
+
+
+## SIMULACIÓN POSTERIOR
+
+La comparación numérica exploratoria solicitada por Javier fue realizada y está documentada en:
+
+`vintage-telnet/ATTRIBUTE_PROGRESSION_SIMULATION.md`
+
+La simulación usa valores deliberadamente hipotéticos y NO convierte 2 PA/nivel ni ninguna tabla de costes en regla.
+
+Resultado preliminar: lineal puro y hard cap cercano presentan problemas claros a 100 niveles. La siguiente ronda debería concentrarse en coste creciente por tramos, híbrido suave y lineal + soft caps como control, variando PA/nivel y, sobre todo, incorporando los efectos mecánicos reales de los ocho atributos cuando Jugabilidad los defina.
