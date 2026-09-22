@@ -70,8 +70,27 @@ previa (sin systemd) y luego la instalación systemd final.
   URL correcta.
 - Javier borró el `Vintage-Telnet.desktop` duplicado; quedan solo
   `Vintage-Telnet-Juego.desktop` y `Vintage-Telnet-DM.desktop` en el escritorio.
-- **Pendiente:** reinicio físico de la Raspberry con el servicio activo,
-  todavía no probado.
+
+## Reinicio físico de la Raspberry — 2026-09-21 23:51 CST / 2026-09-22 ~05:51 UTC
+
+- Javier reinició físicamente la Raspberry (`sudo reboot`) con el servicio
+  activo, en un momento acordado con él (afecta otros servicios del mismo
+  equipo, no solo Vintage Telnet).
+- `uptime -s` tras volver: `2026-09-21 23:50:54`, confirma el reinicio real.
+- `systemctl status vintage-telnet.service` → `active (running)`, arrancado
+  automáticamente por systemd (`enabled`) sin ninguna intervención manual,
+  ~7s después del boot (`Started ... 23:51:01`).
+- `curl http://127.0.0.1:8080/healthz` → `{"schema_version":2,"status":"ok"}`.
+- Persistencia del jugador de prueba verificada vía el propio panel `/dm`
+  (no pude leer el archivo SQLite directo: `/var/lib/vintage-telnet` es
+  0700 del usuario de sistema `vintage-telnet`, correcto por diseño; lo
+  hice a través de la API real, autenticándome con `VT_DM_PASSWORD` como
+  cualquier Dungeon Master real lo haría): jugador **#0001**,
+  `vtprueba_systemd`, especie `humano`, sala `road_north` — mismo estado
+  que antes del reinicio, sin pérdida de datos.
+- **Con esto se cierra el último pendiente listado en este reporte.** Todos
+  los puntos de "Pruebas físicas obligatorias" de `RASPBERRY_HANDOFF.md`
+  quedan cubiertos para esta entrega.
 
 ## Prueba manual previa (sin systemd) — 2026-09-22
 
