@@ -145,3 +145,31 @@ Incluye:
 - lote e IDs duplicados.
 
 **ESTADO DE PRUEBAS DEL ADAPTADOR: 12/12 OK.**
+
+
+## Prueba de integración PR #23 ↔ PR #20
+
+Se ejecutó manualmente una integración temporal usando:
+
+- PR #20 `server/npc_personality.py` blob SHA:
+  `9d6b55ab0d07d5ecd29451c92afbf44c2e8cbda6`
+- PR #23 `npc_generator_adapter.py` blob SHA:
+  `ffb27932043ede414a89369d1bbc54923ba1fc47`
+- fixture autoritativo blob SHA:
+  `67f75743d3c56fcfb9e89cc667bc60e0256e8acc`
+
+Se usó un cliente falso que implementa la misma interfaz de generación, sin conexión a Ollama real.
+
+Resultados:
+- primera pasada: exactamente 1 generación;
+- `personality_locked=true`;
+- provenance usa `vt-npc-personality-v1`;
+- todos los campos autoritativos originales permanecen idénticos;
+- segunda pasada: 0 llamadas nuevas;
+- un payload de personalidad que intentó añadir `knowledge_allowed` fue rechazado por PR #20 con:
+  `Ollama intentó devolver campos no autorizados: knowledge_allowed`.
+
+Se añadió además:
+`vintage-telnet/tests/test_npc_generator_bridge_integration.py`
+
+Ese test se omite en una rama donde PR #20 no esté presente y se activa automáticamente cuando ambas piezas convivan.
