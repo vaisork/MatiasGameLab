@@ -24,7 +24,7 @@ Todo jugador comienza con una clase básica. Las clases concretas y su contenido
 
 La clase inicial establece una dirección de desarrollo, pero no encierra permanentemente al personaje. En el futuro, un jugador podrá adquirir parte de las fortalezas de otras clases o desplazarse hacia otra especialización.
 
-Avanzar dentro de la orientación natural de la clase debe ser más eficiente. Desarrollarse significativamente hacia otra clase debe requerir **más esfuerzo**. La forma exacta de medir ese esfuerzo todavía no está definida.
+Avanzar dentro de la orientación natural de la clase debe ser más eficiente. Como regla v1, desarrollar una capacidad equivalente fuera de la orientación natural de la clase tendrá un **sobrecoste base del 50%** respecto de su coste normal, siempre que el canon permita adquirirla. Los poderes y restricciones concretas siguen perteneciendo al Historiador.
 
 No se debe permitir que un personaje obtenga fácilmente todas las ventajas de todas las clases.
 
@@ -46,7 +46,7 @@ Pueden existir zonas escondidas que deban descubrirse mediante palabras secretas
 Descubrir que existe un lugar oculto forma parte de la exploración.
 
 ### 6. Persistencia de monstruos
-Los monstruos comunes reaparecen después de cierto tiempo. El tiempo exacto puede definirse posteriormente.
+Los monstruos comunes reaparecen después de cierto tiempo. Como referencia v1, el respawn común será de aproximadamente **5 minutos**, configurable por criatura/zona. Enemigos especiales pueden tener tiempos mayores.
 
 Los monstruos principales, especialmente fuertes o difíciles de vencer, pueden ser únicos y persistentes. Una vez derrotados permanecen muertos para los demás jugadores.
 
@@ -64,14 +64,14 @@ El jugador atacado debe recibir información clara de que está siendo atacado.
 ### 8. Protección ante diferencias extremas de poder
 El PvP abierto no debe convertir una diferencia enorme de poder en una muerte inevitable para el jugador débil.
 
-Cuando un jugador extremadamente fuerte ataca a uno claramente inferior, el jugador débil debe disponer de una oportunidad real de escapar. La fórmula o mecanismo exacto todavía debe definirse.
+Cuando un jugador extremadamente fuerte ataca a uno claramente inferior, el jugador débil debe disponer de una oportunidad real de escapar. La fórmula v1 de huida y la protección por diferencia de nivel quedan definidas en la sección 20.
 
 ### 9. Combate semi-automático con intervención estratégica
 Una vez iniciado el combate, los ataques básicos pueden continuar automáticamente.
 
 El jugador no necesita ordenar manualmente cada golpe, especialmente contra enemigos comunes. Durante el combate debe poder intervenir estratégicamente mediante las capacidades que el contenido del juego le proporcione: por ejemplo magia, poderes especiales, objetos, defensa o huida.
 
-Las capacidades especiales no deben estar disponibles sin límite todo el tiempo. El sistema deberá incluir criterios que hagan importante decidir cuándo utilizarlas. El mecanismo exacto queda pendiente.
+Las capacidades especiales no deben estar disponibles sin límite todo el tiempo. La v1 utiliza categorías de recarga aproximadas de 2, 4 y 8 rondas según potencia; el Historiador propone cada poder y Jugabilidad lo asigna a una categoría compatible.
 
 Los combates rutinarios pueden requerir poca intervención; los enfrentamientos peligrosos deben hacer que las decisiones del jugador tengan mayor importancia.
 
@@ -88,7 +88,7 @@ El punto utilizado debe respetar el contexto de la zona y no colocar al personaj
 
 Una muerte no borra al personaje ni destruye todo el progreso acumulado. Esto es especialmente importante porque el personaje puede estar vinculado a piezas físicas impresas.
 
-Las consecuencias adicionales de morir, el criterio exacto para elegir entre varios puntos válidos y cualquier requisito para activar/descubrir puntos de reaparición permanecen pendientes.
+La recuperación v1 después de morir queda fijada en la sección 20. La selección concreta entre puntos válidos y cualquier requisito de descubrimiento/activación siguen dependiendo del diseño narrativo y de zona.
 
 ### 11. Riesgo de pérdida de armas
 Morir frente a monstruos comunes no provoca pérdida del arma por este principio.
@@ -243,7 +243,7 @@ El diseño debe evitar una proliferación innecesaria de estados difíciles de r
 
 ### Pendiente antes de las matemáticas de combate
 
-Todavía no están definidos valores iniciales, fórmulas de precisión/potencia/defensa/daño, cantidad y progresión de HP, umbrales narrativos de condición, catálogo y efectos de heridas, fórmula y capacidad de fatiga, velocidad exacta de recuperación, relación numérica de armas/armadura, probabilidades/grados de éxito ni reglas concretas de poderes. **PA por nivel y la curva base de coste de atributos ya están confirmados en la sección 19.**
+La v1 ya define valores iniciales, crecimiento, HP, precisión, daño físico, defensa, fatiga, heridas, reaparición y huida en las secciones 19–20. Siguen abiertos los valores concretos de armas/armaduras, críticos, poderes individuales y ajustes finos derivados de pruebas reales.
 
 ## 18. Progresión incremental de la dificultad
 
@@ -320,6 +320,259 @@ La dificultad incremental del mundo deberá calibrarse contra este modelo de cre
 
 Los valores iniciales exactos de los atributos y las fórmulas derivadas de combate, exploración, investigación y social siguen pendientes.
 
+
+## 20. Matemática de Jugabilidad v1 — lista para implementación
+
+**Estado:** APROBADA COMO BASE V1 PARA ARRANCAR EL JUEGO.  
+**Objetivo:** disponer de una matemática completa y coherente para la primera implementación y ajustar posteriormente con partidas reales sin cambiar los principios de diseño.
+
+### 20.1 Valores iniciales
+
+Todo personaje comienza con **10** en cada uno de los ocho atributos base:
+
+- Fuerza 10
+- Resistencia 10
+- Agilidad 10
+- Percepción 10
+- Intelecto 10
+- Voluntad 10
+- Destreza 10
+- Presencia 10
+
+La progresión posterior usa los **2 PA por nivel** y la curva de costes confirmada en la sección 19.
+
+### 20.2 Competencia general
+
+La competencia general crece gradualmente desde 0 en nivel 1 hasta aproximadamente **+8 en nivel 100**.
+
+Referencia lineal v1:
+
+`CG = 8 × (nivel - 1) / 99`
+
+El motor puede almacenar este valor internamente con decimales aunque la interfaz no necesite mostrarlo como atributo independiente.
+
+**Nivel aporta competencia general; PA aportan identidad y especialización.**
+
+### 20.3 Vida máxima
+
+Fórmula base v1:
+
+`HPmax = 100 + 1.25 × (nivel - 1) + 2.5 × (Resistencia - 10) + 0.5 × (Voluntad - 10)`
+
+Objetivo:
+- todos ganan vida por experiencia;
+- Resistencia es la principal fuente atributiva de supervivencia;
+- Voluntad aporta una contribución secundaria;
+- ningún atributo de ataque aumenta HP.
+
+### 20.4 Ataque físico
+
+La precisión y la potencia permanecen separadas.
+
+**Probabilidad base de impacto v1:**
+
+`Impacto = limitar(55 + 0.45×(Destreza-10) + 0.18×(Percepción-10) + 0.5×(CG_atacante-CG_defensor), 25, 90)`
+
+**Daño físico bruto v1 con arma base 10:**
+
+`DañoBruto = BaseArma + 0.48×(Fuerza-10) + 0.12×(Destreza-10) + 0.25×CG`
+
+`BaseArma = 10` es únicamente la referencia de arma básica para arrancar. Armas concretas podrán cambiar ese valor cuando el contenido/equipamiento sea definido.
+
+Principios:
+- Destreza coloca el golpe;
+- Fuerza aporta la mayor parte de la potencia;
+- Percepción ayuda moderadamente a detectar una oportunidad;
+- Destreza no debe convertirse simultáneamente en mejor ataque y mejor defensa universal.
+
+### 20.5 Defensas físicas
+
+El jugador puede elegir una respuesta apropiada cuando el contexto lo permita.
+
+**Esquivar — Agilidad:**
+
+`ImpactoTrasEsquiva = limitar(Impacto - 0.48×(AgilidadDefensor-10) - 0.12×(PercepciónDefensor-10), 20, 90)`
+
+Evita contacto; no reduce daño si el golpe finalmente conecta.
+
+**Bloquear/desviar — Destreza:**
+
+Requiere arma, escudo u objeto adecuado.
+
+`ReducciónBloqueo = mínimo(32%, 10% + 0.35%×(DestrezaDefensor-10))`
+
+Bloquear no debe estar disponible cuando el ataque, posición o equipo lo hagan incoherente.
+
+**Resistir — Resistencia:**
+
+`ReducciónResistencia = mínimo(38%, 0.55%×(ResistenciaDefensor-10))`
+
+Resistir acepta el impacto y reduce sus consecuencias; no reduce la probabilidad de ser golpeado.
+
+**Regla:** ninguna de las tres defensas debe ser siempre óptima. El texto del ataque, terreno, equipo y estado debe dar información útil para elegir.
+
+### 20.6 Escala de dificultad de enemigos
+
+Para la primera implementación se usa una referencia relativa al desafío esperado del nivel:
+
+- **enemigo común:** alrededor del 80% de la referencia de poder del nivel;
+- **enemigo peligroso:** alrededor del 100%;
+- **jefe/desafío superior:** alrededor del 120% o más según contenido.
+
+Estos porcentajes son referencias de calibración, no obligación de que todos los monstruos se generen por multiplicación automática.
+
+**Regla de diseño:** todos los perfiles razonables deben poder progresar contra contenido común. La especialización determina qué desafíos superiores resultan más accesibles.
+
+Los jefes pueden requerir mejor lectura, estrategia, equipo, poderes o cooperación y no están obligados a ser derrotables por toda build solo por compartir nivel.
+
+### 20.7 Fatiga
+
+La fatiga usa una escala visible de **0–100**.
+
+Estados v1:
+- 0–69: operativo;
+- 70–89: **cansado**;
+- 90–100: **agotado**.
+
+Llegar a 100 de fatiga **no mata** al personaje. Limita la capacidad de mantener acciones exigentes y/o reduce su eficacia.
+
+Resistencia reduce la fatiga generada por acciones mediante el modificador base:
+
+`ModFatiga = máximo(0.55, 1 - 0.007×(Resistencia-10))`
+
+`FatigaGanada = CosteBaseAcción × ModFatiga`
+
+El coste base de cada acción concreta pertenece a la tabla de acciones/poderes y puede balancearse sin cambiar esta regla.
+
+**Descanso:** una acción explícita de descanso produce recuperación fuerte de fatiga y puede ser interrumpida por peligro/combate. Además existe recuperación gradual fuera de esfuerzo intenso.
+
+### 20.8 Heridas
+
+Para evitar saturación de estados, la v1 utiliza únicamente tres grados:
+
+1. **leve**
+2. **moderada**
+3. **grave**
+
+Las heridas son consecuencias concretas diferentes del HP y de la fatiga. Sus efectos deben ser comprensibles y temporales.
+
+No se deben acumular listas largas de estados menores. El contenido puede describir una herida de muchas maneras, pero mecánicamente debe mapearla a uno de estos tres grados.
+
+### 20.9 Muerte y reaparición
+
+Al llegar a 0 HP:
+- el personaje muere;
+- termina el combate;
+- no pierde nivel, PA ni XP por la muerte;
+- reaparece en un punto seguro válido definido para la zona.
+
+Estado v1 al reaparecer:
+- **60% del HP máximo**;
+- **40 puntos de fatiga**;
+- una herida grave baja a moderada;
+- una herida moderada baja a leve;
+- una herida leve desaparece;
+- como regla de simplicidad, tras el respawn no debe persistir más de **una herida**.
+
+Esto implementa la recuperación intermedia aprobada: morir tiene consecuencia, pero no crea un ciclo de muerte inmediata.
+
+### 20.10 Huida y protección PvP
+
+La huida parte de aproximadamente **50%** cuando atacante y defensor tienen condiciones comparables.
+
+Fórmula v1 de referencia:
+
+`Huir% = limitar(50 + 0.45×ΔAgilidad + 0.15×ΔPercepción + ProtecciónDesnivel + 15×FallosPrevios - PenalizaciónFatiga, 20, 95)`
+
+Donde:
+- `ΔAgilidad = AgilidadJugador - AgilidadOponente`;
+- `ΔPercepción = PercepciónJugador - PercepciónOponente`;
+- `ProtecciónDesnivel = mínimo(30, 0.6 × niveles que el atacante supera al jugador)`;
+- cada intento fallido consecutivo aporta **+15 puntos porcentuales** al siguiente intento;
+- una fatiga superior a 70 puede aplicar penalización.
+
+Esto hace que una diferencia extrema de poder incremente, en vez de reducir, la posibilidad de escape del jugador débil.
+
+El máximo de 95% preserva incertidumbre sin convertir una enorme diferencia de nivel en ejecución inevitable.
+
+### 20.11 Poderes y PP
+
+PA y PP siguen siendo economías completamente separadas.
+
+Se fija para la v1:
+- **1 PP en cada hito de 5 niveles**;
+- niveles 5, 10, 15... 100;
+- **20 hitos/PP potenciales** durante la primera etapa 1–100.
+
+Categorías base de recarga:
+- **poder rápido:** alrededor de 2 rondas;
+- **poder fuerte:** alrededor de 4 rondas;
+- **poder mayor:** alrededor de 8 rondas o una restricción equivalente más fuerte.
+
+El Historiador propone poderes concretos. Jugabilidad decide su coste en PP, categoría de recarga y cualquier atributo que afecte su ejecución.
+
+No existe un atributo mágico universal.
+
+### 20.12 Desarrollo fuera de clase
+
+Como regla v1, una capacidad equivalente fuera de la orientación natural de la clase tiene un **sobrecoste base del 50%**.
+
+Este sobrecoste:
+- no permite aprender algo prohibido por canon;
+- no crea poderes que el Historiador no haya definido;
+- no convierte todas las clases en equivalentes;
+- sí permite movilidad de especialización a largo plazo.
+
+### 20.13 Mirar, observar y examinar
+
+Se fijan tres niveles mínimos de inspección textual:
+
+- **mirar:** descripción general de la situación/lugar;
+- **observar:** enfoca señales relevantes de una zona, objetivo o cambio;
+- **examinar:** inspección detallada de un elemento concreto.
+
+Una pista no debe revelarse automáticamente mediante un botón contextual antes de que el jugador tenga información legítima para buscarla.
+
+En las primeras experiencias, repetir mirar/observar no debe consumir irreversiblemente una oportunidad crítica de comprensión. Los primeros errores razonables deben ser recuperables.
+
+### 20.14 Respawn de monstruos
+
+Referencia v1:
+- monstruo común: alrededor de **5 minutos**;
+- monstruo especial: tiempo mayor/configurable por contenido;
+- monstruo principal único: permanece muerto según la regla persistente ya confirmada.
+
+El respawn concreto puede configurarse por criatura/zona sin cambiar este principio.
+
+### 20.15 Parámetros afinables después de pruebas reales
+
+La v1 está lista para implementación, pero estos valores se consideran **afinables sin rediseñar el sistema**:
+
+- BaseArma y valores de armas/armaduras;
+- costes base de fatiga por acción;
+- impacto exacto de estados cansado/agotado;
+- efectos concretos de heridas leve/moderada/grave;
+- porcentajes finos de precisión, bloqueo, resistencia y huida;
+- dificultad concreta de cada enemigo;
+- cooldown/coste PP de cada poder;
+- tiempos de respawn de criaturas especiales.
+
+Modificar estos parámetros requiere pruebas y registro de balance, pero no reabrir los principios de Jugabilidad completos.
+
+### 20.16 Criterio de lanzamiento
+
+Esta matemática se considera suficiente para **arrancar la implementación jugable**.
+
+El siguiente ciclo de balance debe basarse en partidas reales y telemetría/pruebas con varios perfiles:
+- especialista;
+- doble especialista;
+- equilibrado;
+- irregular;
+- casual/no optimizado.
+
+Especialmente importante: un niño que haya distribuido PA de forma imperfecta debe poder seguir progresando y entender por qué una acción funcionó o falló.
+
+
 ## Investigación disponible para Jugabilidad — capacidades HTML y comandos
 
 **ESTADO: INVESTIGACIÓN CONSUMIDA PARCIALMENTE — la dirección híbrida HTML/Telnet ya está confirmada; quedan decisiones específicas por cerrar.**
@@ -376,13 +629,10 @@ Jugabilidad definirá con Javier el criterio general necesario. Después el Hist
 
 Siguen sin fijarse, entre otras:
 
-- fórmulas y estadísticas concretas;
-- medida exacta del esfuerzo para desarrollarse fuera de la clase inicial;
-- tiempos de reaparición de monstruos comunes;
-- mecanismo exacto de habilidades/poderes limitados;
-- fórmula concreta para huir;
-- protección exacta ante diferencias extremas de poder;
-- consecuencias adicionales de una derrota;
+- valores concretos de armas y armaduras;
+- críticos y otros efectos avanzados de combate;
+- balance de poderes concretos propuestos por el Historiador;
+- efectos exactos de cada herida y de los estados de fatiga tras pruebas reales;
 - funcionamiento técnico y reglas finales de los canales de chat;
 - reglas exactas de transferencia o recuperación de armas perdidas;
 - frecuencia y rareza de recompensas físicas.
