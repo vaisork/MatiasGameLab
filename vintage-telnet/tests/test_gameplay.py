@@ -1,3 +1,4 @@
+from concurrent.futures import ThreadPoolExecutor
 import os
 import re
 import tempfile
@@ -5,7 +6,7 @@ import unittest
 from unittest.mock import patch
 
 from server.app import create_app
-from server import store
+from server import store, world
 
 
 class GameplayTests(unittest.TestCase):
@@ -243,6 +244,9 @@ class GameplayTests(unittest.TestCase):
         self.assertTrue(species_body["accepted"])
         self.assertEqual(species_body["species"], "felaryn")
         self.assertEqual(species_body["room"]["id"], "khariel_centro")
+        self.assertEqual(species_body["town"], "Khariel")
+        self.assertEqual(species_body["player"]["species"], "felaryn")
+        self.assertEqual(species_body["player"]["room"], "khariel_centro")
 
         accepted_move = self.client.post(
             "/api/move", json={"direction": "norte", "csrf": csrf_token}
@@ -272,6 +276,66 @@ class GameplayTests(unittest.TestCase):
         # El limite de /dm/login no consume el cupo de /register ni /login
         # (llaves separadas: "dm:<ip>" vs "<ip>").
         self.assertEqual(self.register().status_code, 303)
+
+    @patch.dict(os.environ, {"VT_DM_PASSWORD": "dm-secret-value"})
+    def test_api_errors_are_structured_json_not_html(self):
+        # Sin sesion en absoluto (un cliente JSON primero pide /api/me para
+        # tener csrf, aunque no este logueado).
+        anon_csrf = self.client.get("/api/me").json["csrf"]
+        unauth_room = self.client.get("/api/room")
+        self.assertEqual(unauth_room.status_code, 401)
+        self.assertEqual(unauth_room.json["error"], "unauthenticated")
+        unauth_move = self.client.post("/api/move", json={"direction": "norte", "csrf": anon_csrf})
+        self.assertEqual(unauth_move.status_code, 401)
+        self.assertEqual(unauth_move.json["error"], "unauthenticated")
+
+        # Pendiente de aprobacion.
+        self.register()
+        pending = self.client.get("/api/room")
+        self.assertEqual(pending.status_code, 403)
+        self.assertEqual(pending.json["error"], "not_approved")
+        self.assertEqual(pending.json["status"], "pending")
+
+        # Aprobado pero todavia sin especie.
+        self.approve("matias")
+        no_species = self.client.get("/api/room")
+        self.assertEqual(no_species.status_code, 409)
+        self.assertEqual(no_species.json["error"], "species_required")
+
+    @patch.dict(os.environ, {"VT_DM_PASSWORD": "dm-secret-value"})
+    def test_chat_never_exposes_other_players_login_username(self):
+        self.register("secretlogin", name="Alguien")
+        self.approve("secretlogin")
+        self.post("/species", dict(species="felaryn"))
+        self.post("/room/say", dict(body="hola"))
+
+        other = self.app.test_client()
+        self.post("/register", dict(username="observador", name="Observador", password="otra clave larga"), other)
+        self.approve("observador", self.dm_client())
+        self.post("/species", dict(species="felaryn"), other)
+
+        room = other.get("/api/room").json["room"]
+        serialized = str(room)
+        self.assertIn("Alguien", serialized)
+        self.assertNotIn("secretlogin", serialized)
+
+    def test_concurrent_species_selection_is_truly_atomic(self):
+        self.register()
+        with store.connect(self.path) as db:
+            player_id = db.execute("SELECT id FROM players WHERE username = ?", ("matias",)).fetchone()[0]
+
+        def attempt(species_id):
+            room_id = world.get_starting_room_for_species(species_id)
+            return store.set_species(self.path, player_id, species_id, room_id)
+
+        with ThreadPoolExecutor(max_workers=4) as pool:
+            results = list(pool.map(attempt, ["felaryn", "humano", "dravak", "marevyn"]))
+
+        self.assertEqual(sum(results), 1)
+        with store.connect(self.path) as db:
+            row = db.execute("SELECT species, room FROM players WHERE id = ?", (player_id,)).fetchone()
+        self.assertIsNotNone(row["species"])
+        self.assertEqual(row["room"], world.get_starting_room_for_species(row["species"]))
 
 
 if __name__ == "__main__":

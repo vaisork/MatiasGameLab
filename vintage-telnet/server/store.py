@@ -176,12 +176,17 @@ def set_status(path, username, status, revoke_sessions=False):
 
 
 def set_species(path, player_id, species, room):
-    """Only takes effect the first time (species must currently be NULL)."""
+    """Solo toma efecto la primera vez (species debe ser NULL todavia).
+
+    Atomico de verdad: usa rowcount para saber si ESTA llamada fue la que
+    escribio, en vez de asumirlo por el estado leido antes del UPDATE. Dos
+    POST concurrentes solo pueden hacer que una de las dos devuelva True."""
     with connect(path) as db:
-        db.execute(
+        cursor = db.execute(
             "UPDATE players SET species = ?, room = ? WHERE id = ? AND species IS NULL",
             (species, room, player_id),
         )
+        return cursor.rowcount > 0
 
 
 def move_player(path, player_id, room):
@@ -207,9 +212,11 @@ def add_message(path, room, player_id, body):
 
 
 def recent_messages(path, room, limit=30):
+    # Solo identidad publica (name): el username es la credencial de login de
+    # otro jugador y no debe salir en el chat.
     with connect(path) as db:
         rows = db.execute(
-            """SELECT m.body, m.created_at, p.name, p.username FROM room_messages m
+            """SELECT m.body, m.created_at, p.name FROM room_messages m
                JOIN players p ON p.id = m.player_id
                WHERE m.room = ? ORDER BY m.id DESC LIMIT ?""",
             (room, limit),

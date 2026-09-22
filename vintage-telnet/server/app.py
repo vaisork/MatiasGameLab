@@ -122,14 +122,26 @@ def create_app(config=None):
         return True, previous_room, destination, None
 
     def attempt_choose_species(player, species_id):
-        """Devuelve (accepted, species_or_None, room_or_None, reason_or_None)."""
-        if player["species"] is not None:
-            return False, None, None, "Ya elegiste tu especie."
+        """Devuelve (accepted, species_or_None, room_or_None, reason_or_None).
+        La atomicidad real la garantiza store.set_species (rowcount), no una
+        lectura previa de player["species"]: asi dos POST casi simultaneos no
+        pueden terminar ambos con accepted=True."""
         if species_id not in world.SPECIES_IDS:
             return False, None, None, "Elige una especie de la lista."
         room_id = world.get_starting_room_for_species(species_id)
-        store.set_species(path, player["id"], species_id, room_id)
+        updated = store.set_species(path, player["id"], species_id, room_id)
+        if not updated:
+            return False, None, None, "Ya elegiste tu especie."
         return True, species_id, room_id, None
+
+    def api_player_state(player):
+        """Errores JSON estables para rutas /api/*: unauthenticated /
+        not_approved. Devuelve None si puede continuar."""
+        if player is None:
+            return jsonify(error="unauthenticated"), 401
+        if player["status"] != "approved":
+            return jsonify(error="not_approved", status=player["status"]), 403
+        return None
 
     @app.get("/")
     def index():
@@ -246,30 +258,45 @@ def create_app(config=None):
 
     @app.get("/api/room")
     def api_room():
-        require_approved_player()
+        error = api_player_state(g.player)
+        if error:
+            return error
         if g.player["species"] is None:
-            abort(409)
+            return jsonify(error="species_required"), 409
         return jsonify(room=room_view(g.player["room"], g.player["id"]))
 
     @app.post("/api/species")
     def api_choose_species():
         """Contrato estructurado (FIRST_PLAYABLE_SLICE.md): responde con la
-        especie confirmada, el pueblo/sala inicial y el estado actualizado."""
-        require_approved_player()
+        especie confirmada, el pueblo inicial, la sala inicial y el estado
+        actualizado del jugador."""
+        error = api_player_state(g.player)
+        if error:
+            return error
         payload = request.get_json(silent=True) or {}
         accepted, species_id, room_id, reason = attempt_choose_species(g.player, payload.get("species", ""))
         if not accepted:
             return jsonify(accepted=False, reason=reason), 400
-        return jsonify(accepted=True, species=species_id, room=room_view(room_id, g.player["id"]))
+        updated_player = store.player_for_token(path, session.get("token"))
+        town = world.get_room(room_id)
+        return jsonify(
+            accepted=True,
+            species=species_id,
+            town=town["name"] if town else None,
+            room=room_view(room_id, g.player["id"]),
+            player=dict(updated_player) if updated_player else None,
+        )
 
     @app.post("/api/move")
     def api_move():
         """Contrato estructurado (FIRST_PLAYABLE_SLICE.md): responde con
         aceptada/rechazada, sala anterior, sala actual y salidas -- el cliente
         no debe deducir la ubicacion interpretando texto narrativo."""
-        require_approved_player()
+        error = api_player_state(g.player)
+        if error:
+            return error
         if g.player["species"] is None:
-            abort(409)
+            return jsonify(error="species_required"), 409
         payload = request.get_json(silent=True) or {}
         direction = DIRECTION_ALIASES.get(str(payload.get("direction", "")).strip().lower())
         if direction is None:

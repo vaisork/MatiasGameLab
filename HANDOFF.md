@@ -1,5 +1,41 @@
 # HANDOFF — Entrega técnica
 
+## ENTREGA — Segunda respuesta a la revisión del Arquitecto (PR #6, rondas 3 y 4)
+
+**Desarrollador:** Claude (Desarrollador de Servidor de Vintage Telnet)
+
+**Estado:** LISTO PARA REVISIÓN
+
+**Rama:** `claude/vintage-telnet-server-v2`
+
+### Objetivo
+El Arquitecto dejó dos revisiones más en el PR #6 después de la respuesta anterior (rondas 3 y 4), validando lo ya corregido y encontrando 6 puntos nuevos: 2 operativos y 4 de seguridad/contrato API.
+
+### 1-2. Puntos operativos (ronda 3)
+- `vintage-telnet/ops/server.env.example` no incluía `VT_DM_PASSWORD` → sin ella, cualquiera que copie ese archivo tal cual deja `/dm` deshabilitado y no puede completar el recorrido P0. Agregado como placeholder no secreto, con comentario explicando por qué es obligatoria.
+- `vintage-telnet/server/README.md` estaba desfasado (decía 19 pruebas, describía todo como formularios HTML clásicos). Reescrito: 28 pruebas, `/command`, `POST /api/species`, `POST /api/move`, contrato de errores JSON, CSP con nonce, microzonas por pueblo, privacidad del chat, y una nota sobre `PR #8`/`CONTENT_RUNTIME_ARCHITECTURE.md` (la geografía se migrará a contenido versionado más adelante, no en este servidor).
+
+### 3-6. Puntos de seguridad/contrato (ronda 4)
+- **`POST /api/species` incompleto:** ahora responde también `town` (nombre del pueblo, tomado del `name` de la sala central) y `player` (estado completo actualizado, releído de la base después de escribir), no solo `accepted`/`species`/`room`.
+- **Errores HTML en rutas API:** `/api/room`, `/api/species` y `/api/move` ya no usan `require_approved_player()` (que hace `abort()`, HTML). Nuevo helper `api_player_state()` devuelve `{"error": "unauthenticated"}` (401), `{"error": "not_approved", "status": ...}` (403) o `{"error": "species_required"}` (409) en JSON. Las rutas de formulario (`/move`, `/species`, `/command`, `/room/say`) siguen devolviendo HTML sin cambios.
+- **Username filtrándose en el chat:** `store.recent_messages()` seleccionaba `p.username` además de `p.name` y `/api/room` lo exponía en cada mensaje. Quitado por completo de la consulta — el chat solo expone `name` (identidad pública), nunca la credencial de login de otro jugador.
+- **Elección de especie no era atómica de verdad:** `set_species()` hacía el `UPDATE ... WHERE species IS NULL` pero no comprobaba si realmente escribió; dos POST casi simultáneos podían terminar ambos con `accepted=True` con datos distintos (uno de los dos se pisaba silenciosamente). Corregido usando `cursor.rowcount`: la función ahora devuelve si *esta* llamada fue la que efectivamente escribió, y `attempt_choose_species()` usa ese resultado en vez de una lectura previa de `player["species"]`.
+
+### Pruebas agregadas (3 nuevas, 28 en total)
+- Contrato de errores JSON para `/api/room` y `/api/move`: no autenticado, pendiente de aprobación, y aprobado-sin-especie, verificando el `error` exacto en cada caso.
+- El chat nunca expone el `username` de otro jugador (registra una cuenta con username distinto a su nombre público y confirma que el username no aparece en ningún lado de `/api/room`).
+- Elección de especie concurrente con `ThreadPoolExecutor` (4 hilos, 4 especies distintas) contra `store.set_species` directamente: exactamente una escritura tiene efecto, y el estado final en la base es consistente (especie y sala coinciden).
+
+### Rebase
+`main` avanzó de nuevo (contenido narrativo, atributos, nuevo especialista de Psicopedagogía infantil). Mergeado sin problema: único conflicto real fue `AGENTS.md` (dos secciones nuevas en paralelo), resuelto conservando ambas. Nada de esto toca `vintage-telnet/server/`.
+
+### Riesgos/nota para el Arquitecto
+La extracción de `world.py` hacia `vintage-telnet/content/` (PR #8) sigue sin hacerse aquí — el Arquitecto ya la dejó explícitamente como entrega separada posterior, no bloqueante para este PR.
+
+**LISTO PARA PUBLICAR:** NO — vuelve a quedar para revisión.
+
+---
+
 ## ENTREGA — Respuesta a la revisión del Arquitecto (PR #6)
 
 **Desarrollador:** Claude (Desarrollador de Servidor de Vintage Telnet)
