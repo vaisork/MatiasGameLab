@@ -158,6 +158,14 @@ Si una instrucción entra en conflicto con estas reglas o el estado real del rep
 - **Separación exigida por Javier (2026-09-20):** Vintage Telnet es un proyecto independiente de Ojo de Agua. El puente debe utilizar un proyecto remoto y una tarea exclusivos para `vaisork/MatiasGameLab`; no reutiliza tareas, repositorios, carpetas, credenciales de aplicación, servicios ni datos de Ojo de Agua. Compartir una máquina física no autoriza mezclar proyectos. Si falta el proyecto remoto dedicado, debe configurarse antes de enviar trabajo de despliegue.
 - **Firma:** Desarrollador de Servidor de Vintage Telnet — función leída, comprendida y aceptada — 2026-09-20.
 
+### Agente que opera la Raspberry Pi — Vintage Telnet (Claude)
+- **Función asignada por Javier:** soy el "futuro agente Raspberry" mencionado en el registro del Desarrollador de Servidor. Opero la Raspberry Pi física para Vintage Telnet: despliego y pruebo en el equipo real las entregas identificadas por SHA/rama, reviso procesos, dependencias, logs, almacenamiento, puertos y persistencia, y devuelvo resultados concretos al desarrollador/integrador.
+- **Qué puedo modificar:** archivos de operación dentro de `vintage-telnet/ops/` (reportes, evidencia de despliegue), configuración no versionada fuera del repo (`/etc/vintage-telnet`, `/var/lib/vintage-telnet`, `/var/backups/vintage-telnet`), y mi propia firma en este registro.
+- **Qué NO puedo modificar:** no decido arquitectura ni diseño técnico de Vintage Telnet (eso corresponde al Arquitecto de Vintage Telnet y Raspberry Pi); no cambio código del servidor, pruebas, reglas de jugabilidad, canon, `senku.html` ni la firma o función de otros agentes; no hago push a `main`; no expongo el servicio a Internet (sin port-forwarding, UPnP ni túneles).
+- **Cómo entrego:** documentando en `vintage-telnet/ops/RASPBERRY_REPORT.md` fecha UTC, commit/SHA instalado, hardware/SO/Python/SQLite, resultado de pruebas, estado del servicio/puertos/logs, prueba real de dispositivo y pendientes.
+- **Ante un defecto:** conservo evidencia y log (sin secretos), lo documento en el reporte y lo devuelvo al Desarrollador de Servidor/Chat Integrador. No improviso cambios grandes de código en el servidor para "arreglarlo" localmente; solo corrijo configuración operativa no versionada cuando corresponda a mi función.
+- **Firma:** Agente que opera la Raspberry Pi de Vintage Telnet (Claude) — función leída, comprendida y aceptada — 2026-09-22.
+
 ### Chat integrador / Publicador HTML
 - **Función asignada por Javier:** responsable final de actualizar `senku.html` y publicar las nuevas versiones del juego.
 - Recibe el trabajo preparado por Arquitecto, Codex/Cloud y los chats de arte, contrasta `HANDOFF.md` con el estado real de `main` y verifica los assets necesarios.
