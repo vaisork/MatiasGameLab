@@ -89,6 +89,26 @@ previa (sin systemd) y luego la instalación systemd final.
   la LAN. La confirmación se registra como prueba funcional del usuario;
   no se inventan aquí IPs, salidas de comandos ni cambios de red que no
   hayan quedado documentados por el operador.
+- **Detalle técnico de la prueba LAN/celular — operador, 2026-09-22 ~06:12–06:22
+  UTC:** para habilitar el acceso externo se cambió `VT_HOST` de `127.0.0.1`
+  a la IP LAN real de la Pi (`192.168.86.34`) y se agregó esa IP a
+  `VT_TRUSTED_HOSTS` en `/etc/vintage-telnet/server.env` (comando corrido
+  por Javier con sudo), seguido de `systemctl restart vintage-telnet`.
+  Sigue siendo HTTP sin cifrar, solo para la LAN de confianza — no expuesto
+  a Internet.
+  - Javier entró primero como jugador desde el celular y registró una
+    cuenta (usuario `vaisork`, nombre `Visor`); la aprobó él mismo desde
+    `/dm`. Detectó y corrigió un error propio: entró directo a
+    `.../dm/login` por URL (esa ruta solo acepta POST del formulario, no
+    visita directa — dio `405 Method Not Allowed`); la ruta correcta es
+    `/dm`. Después borró esa primera cuenta y se registró de nuevo como
+    usuario `visor` / nombre `Vaisork`.
+  - Verificado por el operador vía `/dm` (API real, no acceso directo a la
+    base): jugador **#0003**, usuario `visor`, nombre `Vaisork`, especie
+    **felaryn**, sala `khariel_forja`. Javier confirmó que tras moverse y
+    volver a entrar, la posición se mantuvo — coincide con lo observado acá.
+  - Cuenta de prueba del operador (`vtprueba_systemd`, #0001) sigue intacta
+    sin tocarse.
 
 ## Prueba manual previa (sin systemd) — 2026-09-22
 
