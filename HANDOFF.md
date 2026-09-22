@@ -1,5 +1,31 @@
 # HANDOFF — Entrega técnica
 
+## ENTREGA — Backup periódico y arreglo de log de esquema (PR #28)
+
+**Desarrollador:** Claude (Desarrollador de Servidor de Vintage Telnet)
+
+**Estado:** LISTO PARA REVISIÓN
+
+**Rama:** `claude/vintage-telnet-server-followups`
+
+### Objetivo
+Dos commits (`faa9add`, `6c6a1bf`) quedaron hechos **después** de que PR #6 se fusionara a `main`, así que nunca llegaron a `main`. El usuario señaló el pendiente explícitamente apuntando a `backup.sh`. Los llevé a una rama nueva partiendo de `origin/main` actual.
+
+### Cambios
+- `server/__main__.py`: el log de arranque ya no dice "esquema 1" fijo — lee `PRAGMA user_version` real.
+- Nuevo `ops/backup.sh` + `ops/vintage-telnet-backup.service` + `ops/vintage-telnet-backup.timer` (systemd, `OnCalendar=daily`, poda a los `VT_BACKUP_KEEP_DAYS` días — default 14), documentado en `server/README.md`.
+- El commit `faa9add` (confirmación de reinicio físico) se descartó del cherry-pick: su contenido en `RASPBERRY_REPORT.md` quedó completamente superado por una versión más detallada que ya llegó a `main` por otra rama (prueba LAN/celular) — sin pérdida de información, solo evité duplicar texto.
+
+### Pruebas
+28/28 pruebas contra el `main` actual (`python -m unittest discover -s tests -v`).
+
+### Pendiente
+El operador de Raspberry todavía necesita correr `sudo systemctl enable --now vintage-telnet-backup.timer` en la máquina física para activar el respaldo — este PR solo entrega el código.
+
+**LISTO PARA PUBLICAR:** Abierto como [PR #28](https://github.com/vaisork/MatiasGameLab/pull/28), pendiente de revisión.
+
+---
+
 ## ENTREGA — Ajustes tras la instalación real en Raspberry Pi
 
 **Desarrollador:** Claude (Desarrollador de Servidor de Vintage Telnet)
