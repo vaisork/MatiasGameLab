@@ -228,5 +228,70 @@ previa (sin systemd) y luego la instalación systemd final.
      datos que importen.
   5. Reinicio físico de la Raspberry con el servicio activo: **VALIDADO posteriormente por Javier** tras la instalación systemd; pendiente cerrado.
 
+## Actualización a 6c6a1bf y defecto real en el timer de backup — 2026-09-22
+
+- SHA `6c6a1bf56691b94ea6748c6b740e6da49d97f773` instalado en `/opt/vintage-telnet`
+  vía `ops/update_v2_authorized.py` (script del operador, corrido por Javier con
+  sudo). Backup previo a la actualización, nuevo release con venv/dependencias,
+  **28/28 pruebas OK**, symlink `current` movido, servicio principal reiniciado
+  y verificado. Log de arranque confirma el fix del mensaje de esquema:
+  `INFO:root:Vintage Telnet inicia en ...; esquema 2` (antes decía "esquema 1"
+  hardcodeado; ahora lee `PRAGMA user_version` real).
+- El propio script del operador tuvo un bug: revisaba salud en `127.0.0.1`, pero
+  el servicio en ese momento escuchaba en la IP LAN (`192.168.86.34`, config
+  temporal para la prueba desde el celular de Javier — ver más abajo). El
+  `health()` falló por eso, no por un problema del servicio; se verificó manual
+  que el servicio sí estaba sano. Corregido en el script (host configurable por
+  `VT_HEALTH_HOST`) para la próxima actualización.
+- **Defecto real encontrado — `ops/backup.sh` no puede correr como está
+  configurado.** `vintage-telnet-backup.service` corre como `User=vintage-telnet`
+  y `backup.sh` intenta leer `/etc/vintage-telnet/server.env` directamente
+  (`. "$ENV_FILE"`) para obtener `VT_DATA_DIR`. Ese archivo es `0600 root:root`
+  por diseño (contiene `VT_SECRET_KEY` y `VT_DM_PASSWORD`) — el usuario
+  `vintage-telnet` no tiene permiso de lectura sobre él. Al correr manualmente
+  el servicio para probarlo (`sudo systemctl start vintage-telnet-backup.service`):
+  ```
+  Job for vintage-telnet-backup.service failed because the control process
+  exited with error code.
+  ```
+  `journalctl -u vintage-telnet-backup.service`:
+  ```
+  backup.sh[6950]: /opt/.../ops/backup.sh: 17: .: cannot open
+    /etc/vintage-telnet/server.env: Permission denied
+  Main process exited, code=exited, status=2/INVALIDARGUMENT
+  Failed with result 'exit-code'.
+  ```
+  El servicio principal no tiene este problema porque `systemd` carga
+  `EnvironmentFile=` como root (PID 1) antes de bajar privilegios al ejecutar
+  el proceso — `backup.sh` en cambio hace el `source` él mismo, ya como usuario
+  sin privilegios. **No apliqué ningún arreglo yo mismo** (por ejemplo aflojar
+  los permisos del archivo de secretos) porque cambiaría el modelo de
+  seguridad sin que el desarrollador/Arquitecto lo decida; lo devuelvo como
+  defecto para que se corrija en el código/unit del backup, no en la
+  configuración de secretos.
+  - Opciones que el desarrollador podría evaluar (sin que el operador decida
+    cuál): que `backup.sh` reciba `VT_DATA_DIR` por `Environment=` en el unit
+    en vez de leer `server.env` directamente (igual que ya hace el servicio
+    principal con el resto de variables), o dar al usuario `vintage-telnet`
+    acceso de solo lectura a un archivo separado que solo tenga `VT_DATA_DIR`
+    (sin secretos), o correr el backup como root con `ExecStart` acotado.
+- El timer (`vintage-telnet-backup.timer`) sí quedó instalado, habilitado y
+  con su próxima corrida programada (`systemctl list-timers`) — pero como el
+  service falla, **el backup automático diario no está funcionando todavía**.
+  Ninguna corrida real produjo un archivo en `/var/backups/vintage-telnet`
+  aparte del backup manual previo a la actualización (`pre-update-*.sqlite3`,
+  hecho por el script del operador con el usuario correcto).
+- **Cambio operativo temporal (revertido):** para la prueba de Javier desde su
+  celular en la misma LAN, se cambió `VT_HOST`/`VT_TRUSTED_HOSTS` en
+  `server.env` de `127.0.0.1` a la IP LAN real de la Pi; confirmado
+  funcionando desde su celular (cuenta `visor`/nombre `Vaisork`, especie
+  felaryn, sala `khariel_forja`, posición persistida). Revertido a loopback
+  al terminar la prueba y verificado (`ss -ltnp` solo muestra `127.0.0.1:8080`
+  después del revert).
+- **Pendiente:** que el desarrollador corrija `backup.sh`/su unit para que
+  pueda leer `VT_DATA_DIR` sin necesitar acceso a los secretos del archivo
+  root-only; el operador vuelve a probar una corrida manual cuando llegue esa
+  corrección.
+
 No adjuntar contraseñas, claves, cookies, hashes ni bases. No afirmar resultados
 de pruebas que no se ejecutaron. Acceso desde fuera de casa: fuera de esta entrega.
