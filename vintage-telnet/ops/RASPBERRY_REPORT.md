@@ -82,6 +82,13 @@ previa (sin systemd) y luego la instalación systemd final.
   confirmó que el personaje reapareció en la misma sala. Con esto queda
   validada de punta a punta la cadena: reboot → arranque automático de
   `systemd` → accesos Juego/DM → estado persistente tras cierre/reapertura.
+- **Prueba LAN desde dispositivos externos — VALIDADA POR JAVIER:** Javier
+  confirmó acceso correcto al mismo servidor de Vintage Telnet desde una
+  **laptop** y un **celular** conectados a la red local. Esto valida el uso
+  del juego desde dispositivos reales distintos de la Raspberry dentro de
+  la LAN. La confirmación se registra como prueba funcional del usuario;
+  no se inventan aquí IPs, salidas de comandos ni cambios de red que no
+  hayan quedado documentados por el operador.
 
 ## Prueba manual previa (sin systemd) — 2026-09-22
 
