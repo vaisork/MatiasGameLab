@@ -906,3 +906,103 @@ Antes de fijar la matemática 1–100, cada atributo debería superar tres pregu
 Si un atributo falla estas pruebas, debe revisarse antes de asignarle puntos, costes o curvas.
 
 **Estado VT-GAME-002A: PRUEBA NARRATIVA ENTREGADA A JUGABILIDAD.**
+
+
+## NECESIDAD DE NPC — VT-NPC-001: población mínima para primera prueba jugable
+
+**Solicitante:** Narrador de Aventuras — Vintage Telnet  
+**Prioridad:** ALTA — necesaria para convertir las primeras salidas en una experiencia jugable completa.  
+**Estado:** SOLICITADO AL RESPONSABLE DE NPCs / HISTORIADOR SEGÚN ORGANIZACIÓN VIGENTE.
+
+### Objetivo
+
+Crear la población NPC mínima necesaria para probar las cinco experiencias iniciales sin intentar poblar todavía todo Vintage Telnet.
+
+La primera versión debe favorecer **pocos NPCs memorables y funcionales** antes que una gran cantidad de personajes superficiales.
+
+### Alcance inicial recomendado
+
+Preparar aproximadamente **3–4 NPCs relevantes por pueblo inicial**:
+
+- Valdren — Humanos / Llanos de Edran
+- Khariel — Felaryn / Sierra de Hoshai
+- Brumak — Dravak / Pedrales de Korven
+- Narevia — Marevyn / Aguas de Lethra
+- Velmora — Vesperi / Bosque de Nhal
+
+Objetivo aproximado total: **15–20 NPCs iniciales**. No es una cuota obligatoria; si una función puede resolverse naturalmente con menos personajes, evitar crear NPCs innecesarios.
+
+### Funciones narrativas que necesitamos cubrir
+
+En cada pueblo, el conjunto de NPCs debería permitir cubrir estas necesidades:
+
+1. **Vínculo con el hogar.**  
+   Alguien que haga sentir que el personaje pertenece a un lugar real y que permita introducir de forma natural aspectos cotidianos del asentamiento.
+
+2. **Vínculo con el exterior.**  
+   Alguien cuya actividad, conocimiento o posición permita hablar naturalmente del campo, caminos, alrededores o peligros próximos sin convertirse en un tutorial ambulante.
+
+3. **Información, rumor o memoria local.**  
+   Alguien que pueda transmitir información incompleta, rumores, observaciones o recuerdos. Lo que diga un NPC no debe convertirse automáticamente en verdad canónica si habla desde conocimiento limitado.
+
+4. **Razón para regresar.**  
+   Uno de los anteriores —o un NPC adicional cuando tenga sentido— debe permitir que volver al pueblo después de explorar tenga valor narrativo: conversación nueva, reacción a un hallazgo, información contextual u otra consecuencia coherente.
+
+### Necesidades para la primera prueba
+
+Los NPCs deben poder sostener interacciones textuales sencillas como:
+
+- hablar;
+- preguntar por el pueblo o alrededores;
+- preguntar por una criatura/señal después de haberla encontrado;
+- escuchar un rumor;
+- reaccionar a un descubrimiento o regreso cuando corresponda.
+
+No necesitamos todavía árboles enormes de diálogo ni misiones enciclopédicas.
+
+### Integración con VT-NAR-001 y VT-NAR-002
+
+Los NPCs deben poder apoyar:
+
+- **VT-NAR-001 — Las señales del camino**, aportando rumor, memoria local o conexión con rutas y mundo exterior;
+- **VT-NAR-002 — Primeras salidas**, ayudando a que salir, observar, enfrentarse a fauna, reconocer peligro y regresar formen una experiencia narrativa continua.
+
+No deben revelar automáticamente secretos, soluciones ni amenazas ocultas.
+
+### Libertad del responsable de NPCs / Historiador
+
+Narrativa solicita **funciones**, no personajes prefabricados.
+
+El responsable correspondiente debe decidir, respetando el canon:
+
+- nombre;
+- especie;
+- oficio/rol concreto;
+- edad o etapa vital cuando sea relevante;
+- personalidad;
+- relaciones;
+- forma de hablar;
+- conocimiento real;
+- creencias equivocadas;
+- rumores que conoce;
+- historia personal.
+
+Evitar que todos los pueblos tengan copias con distinto nombre del mismo “guía”, “mercader” o “anciano”.
+
+### Entrega que necesita Narrativa
+
+Para cada NPC inicial, documentar como mínimo:
+
+- pueblo y ubicación habitual;
+- función en la comunidad;
+- personalidad breve;
+- qué sabe realmente;
+- qué cree pero podría estar equivocado;
+- qué puede contar inicialmente;
+- qué información requiere que el jugador haya visto/hecho algo antes;
+- relación relevante con otros NPCs, si existe;
+- límites: qué no sabe o no debe revelar.
+
+Después de esta entrega, el Narrador podrá escribir las escenas, conversaciones y variaciones necesarias para las primeras pruebas sin inventar unilateralmente el canon de los personajes.
+
+**Próximo responsable:** especialista de NPCs / Historiador según la responsabilidad vigente en AGENTS.md.
