@@ -111,3 +111,17 @@ como autoridad explícita del generador. Se añadieron los campos obligatorios:
 - `limits`
 
 También se añadieron pruebas específicas para rechazar fichas que omitan cualquiera de esos campos.
+
+
+## Fixture compartido para prueba física posterior
+
+Se añadió:
+
+`vintage-telnet/tests/fixtures/npc-authoritative-synthetic.json`
+
+Es una ficha explícitamente **NO CANÓNICA**, con IDs `test_*`, preparada para:
+- validar el contrato del adaptador;
+- servir como entrada reproducible a la prueba física de PR #20 / Issue #21;
+- evitar inventar una ficha distinta en cada ejecución.
+
+La suite del adaptador incluye una prueba que carga y valida este fixture.
