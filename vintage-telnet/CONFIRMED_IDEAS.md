@@ -30,13 +30,13 @@ El Historiador debe revisar este archivo antes de ampliar el mundo. Una idea inc
 - No se usarán elfos, enanos u otras especies clásicas como lista base de especies jugables. Vintage Telnet desarrollará identidades propias; las referencias clásicas o animales pueden utilizarse internamente durante el diseño, pero no sustituyen la identidad final de cada especie.
 - La primera especie original confirmada se llama **Felaryn**.
 - Los Felaryn parten de una mezcla conceptual entre rasgos humano-gato y algunos rasgos tradicionalmente asociados a los elfos.
-- **Rasgo físico confirmado:** los Felaryn tienen **pelo visible y orejas similares a las de un gato**, integradas de forma natural en su anatomía. Estos rasgos forman parte de su identidad visual propia y no deben presentarse al jugador como una comparación externa del tipo “hombre gato”.
+- **Rasgos físicos confirmados:** los Felaryn tienen **pelaje corporal corto y fino, cabello de cuero cabelludo, orejas felinas, cola funcional, piernas digitígradas y pies con almohadillas**, integrados en una anatomía humanoide propia. El rostro conserva mandíbula humanoide y no presenta hocico animal largo. La definición anatómica completa vive en `SPECIES.md`.
 - Su hábitat de origen es un **pueblo situado entre las montañas**.
 - Los Felaryn tienen una capacidad natural destacada para **saltar grandes distancias**.
 - También poseen una **vista privilegiada**, superior a la de una persona común y especialmente útil para orientarse y observar a distancia en terrenos montañosos.
 - La cultura de los Felaryn tendrá una **inspiración japonesa tradicional** en arquitectura, disciplina, estética y tradición marcial, adaptada como una identidad propia de Vintage Telnet.
 - Esta inspiración es una herramienta interna de diseño y no debe presentarse al jugador como una copia literal de Japón ni como una cultura real trasladada al mundo.
-- Su pueblo de inicio es **Khariel**. Su aspecto definitivo y su historia profunda todavía están pendientes de desarrollo.
+- Su pueblo de inicio es **Khariel**. Su anatomía visual principal ya está cerrada en `SPECIES.md`; su historia profunda y detalles culturales adicionales siguen abiertos a desarrollo.
 - Existirá una tradición guerrera Felaryn inspirada en guerreros samurái, pero su nombre propio, jerarquías, códigos y función exacta dentro del mundo todavía deben desarrollarse.
 - **NECESIDAD DE JUGABILIDAD:** la distancia exacta de salto, el alcance/ventaja concreta de su visión y cualquier efecto mecánico asociado deberán definirse con Jugabilidad; el Historiador solo fija aquí que ambas son capacidades características de la especie.
 
@@ -46,20 +46,23 @@ El Historiador debe revisar este archivo antes de ampliar el mundo. Una idea inc
 
 ### Dravak
 - Los **Dravak** quedan confirmados como una especie propia.
-- Su característica física principal será que son **muy pequeños** en comparación con los humanos.
-- Su identidad cultural, proporciones exactas, capacidades y hábitat concreto todavía deben desarrollarse.
+- Un adulto suele medir aproximadamente **65–75 % de la altura de un Humano adulto comparable**: claramente más bajo y compacto, pero no diminuto ni de proporciones infantiles.
+- Poseen **placas dérmicas minerales/pétreas** en zonas corporales frecuentes y pueden presentar vetas o fisuras minerales comunes pero no obligatorias; no exponen lava ni son humanoides dracónicos.
+- La anatomía visual principal y proporciones adultas están cerradas en `SPECIES.md`; la identidad cultural profunda puede seguir desarrollándose.
 
 ### Marevyn
 - Los **Marevyn** quedan confirmados como una especie propia.
-- Su dirección física será **alta, estilizada y muy integrada con la naturaleza**, tomando como referencia general ciertas sensaciones visuales de pueblos fantásticos orgánicos y exuberantes, sin copiar directamente una especie existente de otra obra.
-- Mantienen una afinidad conceptual con ambientes de agua, lagos, ríos y humedales.
-- Su apariencia definitiva y sus capacidades exactas todavía deben desarrollarse.
+- Son **altos y estilizados**, con anatomía visible de adaptación acuática: escamas parciales siempre presentes, orejas cortas con borde cartilaginoso de aspecto de aleta y membranas interdigitales moderadas en manos y pies.
+- Respiran aire y no poseen branquias, cola de pez ni una gran aleta dorsal como rasgos de especie.
+- Mantienen afinidad corporal y cultural con ambientes de agua, lagos, ríos y humedales.
+- La anatomía visual principal está cerrada en `SPECIES.md`; capacidades y límites mecánicos siguen perteneciendo a Jugabilidad.
 
 ### Vesperi
 - Los **Vesperi** quedan confirmados como una especie propia.
 - Se mantiene la dirección de una especie asociada a zonas nocturnas, bosques profundos, cavernas abiertas o lugares con poca luz.
-- Su apariencia física característica todavía está **pendiente de diseño**.
-- La identidad final debe darles rasgos propios y reconocibles, no limitarse a convertirlos en “humanos murciélago”.
+- Su anatomía visual principal está cerrada: **ojos muy grandes, cráneo superior algo ancho, orejas cortas/redondeadas de concha profunda, brazos proporcionalmente largos, piel mate y postura natural recogida con ligera inclinación hacia delante**.
+- No vuelan, no poseen rasgos de murciélago como alas o nariz especializada y no deben resolverse visualmente como elfos oscuros.
+- La definición anatómica completa vive en `SPECIES.md`.
 
 - La lista jugable actual queda formada por **Humanos, Felaryn, Dravak, Marevyn y Vesperi**, salvo que Javier decida cambiarla más adelante.
 - **Regla física de especies jugables:** ninguna de estas especies tendrá vuelo natural. Sus diferencias deberán expresarse mediante otras adaptaciones corporales, sentidos, movilidad o resistencia.
