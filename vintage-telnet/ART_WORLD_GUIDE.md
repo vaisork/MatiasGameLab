@@ -205,6 +205,7 @@ Identidad visual obligatoria:
 
 - **pelo visible**;
 - **orejas claramente similares a las de un gato**, no orejas élficas;
+- **cola felina visible** como parte normal de la anatomía;
 - cuerpo ágil y preparado para salto/equilibrio;
 - postura dinámica;
 - ojos y expresión que puedan reforzar su gran capacidad visual;
@@ -229,14 +230,14 @@ Khariel puede utilizar:
 
 ## Dravak
 
-Canon físico actualmente seguro:
+Canon físico confirmado:
 
-- son **muy pequeños respecto a un Humano**;
-- deben verse como adultos de una especie propia;
+- son **más pequeños y compactos que un Humano adulto**, pero no diminutos;
+- deben verse como adultos de una especie propia, nunca como niños;
+- poseen zonas corporales endurecidas de aspecto mineral o pétreo;
+- pueden mostrar vetas o fisuras sutiles que recuerden roca calentada bajo una corteza sólida;
 - cuerpo y postura adecuados a espacios compactos y terreno fragmentado;
-- escala visual claramente distinta.
-
-Su diseño final todavía admite desarrollo.
+- su silueta debe comunicar dureza y estabilidad sin convertirlos en enanos o dragones.
 
 **Evitar:**
 - niño humano pequeño;
@@ -252,15 +253,16 @@ Cuando una imagen requiera rasgos anatómicos Dravak todavía no definidos, cons
 
 ## Marevyn
 
-Canon físico actualmente seguro:
+Canon físico confirmado:
 
 - altos;
 - estilizados;
 - anatomía elegante y fluida;
+- **escamas parciales visibles** integradas en la piel;
+- rasgos corporales de inspiración acuática/ictia;
 - especialmente adaptados a agua, lagos, ríos y humedales;
-- deben transmitir comodidad corporal alrededor del agua.
-
-Su identidad visual final todavía admite desarrollo.
+- deben transmitir comodidad corporal alrededor del agua;
+- deben poder reconocerse como Marevyn sin depender de orejas élficas.
 
 **Evitar:**
 - elfo acuático genérico;
@@ -274,15 +276,16 @@ Cuando haga falta definir orejas, piel, manos, pies u otros rasgos aún no canon
 
 ## Vesperi
 
-Canon físico actualmente seguro:
+Canon físico confirmado:
 
+- **ojos notablemente grandes**, dominantes en el rostro;
+- **postura naturalmente algo encorvada o recogida**;
 - especie adaptada a poca luz;
 - visión eficaz en penumbra;
 - oído sensible;
 - cuerpo y postura compatibles con bosque denso y orientación por señales sutiles;
-- no vuelan.
-
-Su anatomía definitiva todavía admite desarrollo.
+- no vuelan;
+- la silueta debe sentirse nocturna y perceptiva, no élfica.
 
 **Evitar:**
 - elfo oscuro genérico;
