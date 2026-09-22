@@ -169,6 +169,7 @@ En `main` sí están registrados y firmados:
 - Diseñador de Jugabilidad;
 - Historiador y Constructor del Mundo;
 - Narrador de Aventuras;
+- Psicopedagogía y Experiencia Infantil;
 - Investigador Técnico y de Implementación;
 - Integrador y Publicador HTML;
 - Desarrollador Junior de Vintage Telnet.

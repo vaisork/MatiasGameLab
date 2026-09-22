@@ -458,3 +458,451 @@ Al definir atributos y reparto de puntos, conservar espacio mecánico para que:
 - un grupo mixto pueda beneficiarse de perspectivas diferentes sin necesitar todas las especies para completar aventuras normales.
 
 **Estado Narrador VT-GAME-001: ENTREGADO.**
+
+
+## Handoff explícito Narrador ↔ Jugabilidad — estado 2026-09-21
+
+Este bloque elimina una ambigüedad de coordinación detectada entre Narrador y Diseñador de Jugabilidad.
+
+### Lo que el Narrador ya entregó a Jugabilidad
+
+- **VT-GAME-001:** aportación narrativa sobre diferencias de especies — ENTREGADA.
+- Cinco variantes regionales de **VT-NAR-002** según especie/pueblo inicial — ENTREGADAS.
+- Señales narrativas regionales para comunicar peligro — ENTREGADAS.
+- Recomendación sobre acción/función de evaluar peligro — ENTREGADA como necesidad narrativa, pendiente de criterio mecánico.
+- Propuesta de chat general + conversación local al coincidir jugadores — ENTREGADA.
+- Criterio inicial de conocimiento: el chat comunica información, pero no transfiere automáticamente descubrimientos ni mapa — ENTREGADO.
+
+### Lo que el Narrador espera ahora de Jugabilidad
+
+Estas decisiones siguen abiertas en GAMEPLAY.md o son necesarias para convertir VT-NAR-001/002 en contenido listo para implementación:
+
+1. **Progresión temprana:** cómo contribuyen los encuentros comunes al fortalecimiento y qué recompensas/progreso puede esperar un principiante.
+2. **Peligro / evaluar:** qué información mecánica recibe el jugador para distinguir una criatura apropiada, peligrosa o claramente superior, y si existe botón/comando Evaluar.
+3. **Retirada:** criterio general de huida contra criaturas durante las primeras salidas.
+4. **Recuperación:** cómo recupera un principiante recursos/estado entre encuentros y qué papel tiene volver al pueblo.
+5. **Derrota temprana:** consecuencias mecánicas de ser derrotado por fauna común, respetando ausencia de muerte permanente y ausencia de pérdida de arma frente a monstruos comunes.
+6. **Cooperación:** criterio básico para combatir juntos y tratamiento general de recompensas/progreso compartido.
+7. **Antifarmeo / reaparición:** criterio suficiente para que la estrategia óptima no sea permanecer indefinidamente matando la misma criatura común.
+8. **Descubrimiento e investigación:** qué acciones generales existen para observar/investigar/buscar y qué estado mecánico, si alguno, registra un descubrimiento personal.
+9. **Chat:** cerrar el criterio mínimo de chat general y chat local ya propuesto por Javier/Narrador; los detalles técnicos pueden quedar para Arquitectura/Desarrollo.
+10. **Atributos:** después de VT-GAME-001, definir con Javier la lista de atributos y la distribución de puntos iniciales/de nivel, preservando los rasgos naturales de especie.
+
+### Lo que NO estoy esperando de Jugabilidad
+
+Narrativa no necesita que Jugabilidad invente criaturas, historias, pistas, NPCs, secretos, nombres, regiones ni escenas. Tampoco necesita fórmulas finales de balance para empezar a redactar contenido; necesita criterios generales suficientes para no contradecir las reglas.
+
+### Trabajo que debe el Narrador después del handoff
+
+Cuando Jugabilidad cierre un mínimo suficiente de los puntos anteriores, el Narrador debe:
+
+- convertir las cinco variantes de VT-NAR-002 en secuencias concretas de primera salida;
+- concretar VT-NAR-001 donde las acciones de observación/investigación ya estén claras;
+- escribir textos, pistas, señales de peligro, decisiones y retornos correspondientes;
+- indicar a Desarrollo qué contenido narrativo queda listo para implementar, sin diseñar su arquitectura.
+
+### Estado de coordinación
+
+**VT-GAME-001 no está pendiente del Narrador.** Esa entrega está cerrada.
+
+**Sí existe una dependencia activa Narrador ← Jugabilidad** para pasar de diseño narrativo a aventuras iniciales listas para implementación.
+
+El Narrador puede seguir escribiendo ambientación mientras tanto, pero no debe convertir las decisiones mecánicas anteriores en reglas por su cuenta.
+
+**Próximo responsable:** Diseñador de Jugabilidad, para responder/cerrar los criterios anteriores en GAMEPLAY.md. Después vuelve el turno al Narrador.
+
+
+## Respuesta del Narrador — VT-GAME-002: los ocho atributos en un RPG de lectura
+
+### Criterio narrativo central
+
+Los ocho atributos propuestos **pueden funcionar en Vintage Telnet**, pero solo si se diseñan como modificadores de la experiencia textual y no como una simulación invisible de animaciones propias de un videojuego gráfico.
+
+Un atributo merece existir si puede cambiar de manera comprensible al menos una de estas cosas:
+
+1. **lo que el personaje percibe o comprende en el texto;**
+2. **las acciones/opciones que puede intentar;**
+3. **la manera en que el texto describe el resultado de una acción;**
+4. **las consecuencias que produce esa acción.**
+
+El jugador no necesita reflejos físicos para que su personaje sea ágil ni habilidad manual real para que sea diestro. El jugador toma decisiones; el personaje ejecuta de acuerdo con sus capacidades.
+
+La narración debe evitar resolver automáticamente la aventura porque un número sea alto. Los atributos deben aportar posibilidades e información, no reemplazar la lectura, la deducción ni la elección.
+
+### 1. Fuerza
+
+**Sí funciona claramente en texto.**
+
+Puede manifestarse mediante acciones como levantar, empujar, arrastrar, sujetar, forzar, romper o mover objetos; también puede influir narrativamente en golpes físicos cuando Jugabilidad lo considere.
+
+Ejemplo de diferencia textual: ante una puerta deformada, todos pueden verla; un personaje suficientemente fuerte puede tener una opción viable de forzarla. Otro puede buscar una llave, mecanismo, ruta alternativa o ayuda.
+
+**Cuidado:** Fuerza no debe convertirse en “abre todos los obstáculos”. Una puerta puede requerir conocimiento, herramienta, llave o condición narrativa aunque el personaje sea muy fuerte.
+
+### 2. Resistencia
+
+**Funciona, pero corre riesgo de sentirse invisible si solo significa más vida.**
+
+Narrativamente puede expresarse mediante cuánto esfuerzo físico puede sostener el personaje, exposición a condiciones adversas, marchas, fatiga y capacidad de continuar después de situaciones físicamente exigentes.
+
+El texto puede comunicar estados: respiración pesada, agotamiento, recuperación, dificultad creciente para continuar.
+
+**Recomendación:** si Resistencia termina reducida únicamente a una cifra de vida/HP, aporta poco a la experiencia de lectura. Debe tener consecuencias legibles fuera del daño directo para justificar su identidad separada.
+
+### 3. Agilidad
+
+**Puede funcionar, pero debe traducirse de “movimiento visual” a decisiones y resultados textuales.**
+
+No necesitamos que el jugador esquive físicamente. Ante una criatura que embiste, una cornisa inestable o un terreno peligroso, el jugador decide qué intentar y Agilidad influye en cómo lo ejecuta el personaje.
+
+Puede afectar esquiva, reacción corporal, equilibrio dinámico, atravesar rápidamente un peligro o reposicionarse durante combate.
+
+**Solapamiento a vigilar:** equilibrio ya forma parte natural de algunos rasgos de especie y también aparece en la definición provisional de Agilidad. Jugabilidad debe distinguir entre capacidad racial contextual y desarrollo general del atributo.
+
+### 4. Percepción
+
+**Es uno de los atributos más naturalmente compatibles con un juego de lectura.**
+
+Puede cambiar directamente la descripción recibida. Dos jugadores en el mismo lugar no tienen por qué leer exactamente la misma cantidad de información.
+
+Una descripción base puede decir que el camino está tranquilo. Un personaje que percibe mejor puede recibir además una anomalía: huellas, silencio extraño, vegetación movida, olor, sonido o detalle material.
+
+Esto encaja especialmente bien con las señales de peligro de VT-NAR-002.
+
+**Regla narrativa importante:** Percepción entrega señales, no conclusiones. Notar una marca no significa comprender quién la hizo ni qué significa.
+
+### 5. Intelecto
+
+**También funciona muy bien en texto si se usa para comprender y relacionar información, no para pensar en lugar del jugador.**
+
+Puede ayudar con escritura, símbolos, mecanismos conceptuales, conocimiento estudiado, comparación de evidencias y comprensión de ciertos indicios.
+
+Pero el juego no debe responder automáticamente un misterio porque Intelecto sea alto.
+
+Una buena separación sería:
+- Percepción: “ves tres marcas paralelas bajo el polvo”.
+- Intelecto/conocimiento aplicable: “reconoces que no parecen desgaste normal”.
+- Jugador: decide qué cree, qué investiga y qué hace después.
+
+**Riesgo:** convertir Intelecto en botón “resolver acertijo”. Eso dañaría el núcleo de lectura y descubrimiento.
+
+### 6. Voluntad
+
+**Puede funcionar, aunque necesita situaciones narrativas reales para no convertirse en una estadística abstracta.**
+
+Puede manifestarse ante miedo, coerción, dolor, presión sobrenatural, concentración o mantenimiento de determinadas acciones/poderes cuando el contenido del mundo lo justifique.
+
+El texto puede mostrar que el personaje siente la presión aunque consiga resistirla. Resistir no debe borrar la escena.
+
+**Riesgo:** si casi ninguna aventura contiene presión mental, miedo, concentración o efectos equivalentes, Voluntad se vuelve un atributo que el jugador apenas percibe. Jugabilidad e Historiador deben confirmar que tendrá suficiente uso real.
+
+### 7. Destreza
+
+**Funciona en texto siempre que signifique ejecución precisa y no reflejos del jugador.**
+
+Puede afectar manipulación fina, mecanismos, herramientas, reparación/fabricación y uso preciso de determinadas armas o acciones.
+
+El jugador puede decidir “intento liberar el mecanismo sin romperlo”; Destreza ayuda a determinar cómo lo ejecuta el personaje.
+
+**Solapamiento a vigilar:** debe mantenerse claramente separada de Agilidad. Narrativamente propongo:
+- Agilidad = control del cuerpo en movimiento.
+- Destreza = control preciso de manos/herramientas/ejecución fina.
+
+También debe respetar rasgos como la escala y manos Dravak: un atributo alto no cambia la anatomía del personaje.
+
+### 8. Presencia
+
+**Puede enriquecer mucho un juego textual, pero es el atributo que exige más cuidado narrativo.**
+
+Vintage Telnet contiene conversación real entre jugadores y tendrá NPCs. Presencia nunca debe decidir si el jugador “puede hablar”.
+
+Puede influir en cómo NPCs reciben un intento de persuadir, intimidar, negociar, liderar o causar una impresión concreta, siempre considerando contexto, relación, reputación y lo que se dijo/hizo.
+
+**Regla narrativa importante:** Presencia no debe reemplazar el contenido de una conversación. Un jugador no debería poder escribir cualquier absurdo y obtener éxito automático porque su puntuación sea alta.
+
+Tampoco debe aplicarse mecánicamente de la misma forma a conversación entre jugadores humanos: los jugadores reales deciden qué creen y cómo reaccionan.
+
+### Solapamientos que deben resolverse antes de las fórmulas
+
+Los ocho son narrativamente defendibles, pero hay cuatro fronteras especialmente importantes:
+
+- **Fuerza / Resistencia:** producir fuerza vs sostener esfuerzo/soportar desgaste.
+- **Agilidad / Destreza:** control corporal en movimiento vs precisión de ejecución fina.
+- **Percepción / Intelecto:** encontrar/notar información vs interpretarla/comprenderla.
+- **Intelecto / Voluntad:** comprender/aprender vs mantener control mental/concentración.
+
+Si estas fronteras no aparecen en acciones textuales reales, entonces tener ocho atributos solo añade números.
+
+### Cómo debería sentirse una comprobación sin convertir el juego en tiradas opacas
+
+El texto debe explicar causalmente lo ocurrido siempre que sea razonable.
+
+Mala experiencia:
+> Fallaste. Requisito insuficiente.
+
+Mejor experiencia:
+> Empujas la losa, pero apenas consigues separarla del suelo. Es demasiado pesada para moverla así tú solo.
+
+El jugador entiende el problema y puede decidir: fortalecerse, buscar ayuda, usar una herramienta o encontrar otra ruta.
+
+No recomiendo que el jugador vea continuamente tiradas internas para cada frase. Los números pueden existir en el sistema, pero la experiencia principal debe comunicar **situación y consecuencia**.
+
+### Los atributos no deben fabricar secretos
+
+Un valor alto no debe hacer aparecer información que no existe en el contenido.
+
+Narrativa debe preparar capas reales de información y opciones. El sistema decide cuáles son perceptibles o viables según personaje, especie, estado y contexto.
+
+Esto permite que los atributos sean importantes sin generar texto arbitrario ni revelar automáticamente soluciones reservadas.
+
+### Relación con rasgos de especie
+
+La revisión de VT-GAME-001 se mantiene: especie y atributo son capas diferentes.
+
+Ejemplos:
+- Percepción alta no concede visión Felaryn ni visión Vesperi en baja luz.
+- Agilidad alta no convierte a un Humano en un Felaryn ni reproduce automáticamente su salto natural.
+- Destreza alta no reduce el tamaño corporal para acceder a un paso Dravak.
+- Resistencia alta no concede adaptación Marevyn al agua.
+
+Los atributos pueden mejorar capacidades generales; los rasgos de especie determinan posibilidades corporales/sensoriales propias cuando el canon las establece.
+
+### Conclusión del Narrador
+
+**No recomiendo eliminar ninguno de los ocho todavía.** Los ocho pueden traducirse a una experiencia textual real.
+
+Pero antes de aprobar la matriz definitiva, Jugabilidad debería construir para cada atributo una pequeña lista de **acciones textuales concretas del juego**. Si dos atributos terminan resolviendo casi siempre las mismas acciones, deben revisarse o fusionarse antes de diseñar la matemática 1–100.
+
+La prueba correcta no es “¿este atributo existe en otros RPG?”, sino:
+
+> **¿Qué leerá, podrá intentar o experimentará de manera diferente un jugador de Vintage Telnet por haber desarrollado este atributo?**
+
+Si no podemos responder eso con ejemplos de juego, ese atributo todavía no está listo.
+
+**Estado Narrador VT-GAME-002: ENTREGADO.**
+
+
+## Prueba textual de atributos — VT-GAME-002A
+
+**Objetivo:** comprobar que los ocho atributos producen diferencias que el jugador pueda leer, decidir y experimentar en Vintage Telnet.
+
+Los comandos siguientes son **propuestas narrativas de prueba**, no vocabulario mecánico aprobado. Jugabilidad debe decidir qué acciones serán comandos, botones o acciones contextuales.
+
+### Fuerza — cambiar físicamente el entorno
+
+**Situación base:**
+> Una carreta volcada bloquea casi todo el sendero. Una de sus ruedas está hundida en el barro.
+
+**Acción propuesta:** \`empujar carreta\`
+
+**Respuesta cuando la capacidad no basta:**
+> Apoyas el hombro contra la madera y empujas. La carreta cruje, pero la rueda hundida apenas se mueve. Solo no parece suficiente.
+
+**Respuesta cuando la capacidad sí basta:**
+> Clavas los pies en el suelo y empujas. La rueda sale del barro con un golpe húmedo y la carreta se desplaza lo suficiente para dejar libre el sendero.
+
+**Decisión que permanece en manos del jugador:** intentar con ayuda, buscar una palanca, rodear el obstáculo o volver después.
+
+**Prueba superada:** Fuerza cambia una posibilidad física y su consecuencia es perfectamente narrable.
+
+---
+
+### Resistencia — sostener esfuerzo y soportar desgaste
+
+**Situación base:**
+> El ascenso continúa bajo una lluvia fría. El refugio que viste desde abajo todavía queda lejos.
+
+**Acción propuesta:** \`continuar\`
+
+**Respuesta con poca capacidad restante:**
+> Sigues subiendo, pero las piernas empiezan a pesarte y el frío se mete bajo la ropa. Podrías continuar, aunque hacerlo así tendrá un costo físico cada vez mayor.
+
+**Respuesta con buena capacidad para sostener el esfuerzo:**
+> Mantienes un paso constante pese a la pendiente y la lluvia. Respiras con fuerza, pero todavía puedes continuar sin que el cansancio domine tus movimientos.
+
+**Decisión que permanece en manos del jugador:** continuar, descansar, regresar o buscar otro refugio.
+
+**Prueba superada con condición:** funciona si Resistencia afecta esfuerzo, fatiga y condiciones; si solo aumenta una barra de vida, narrativamente pierde gran parte de su identidad.
+
+---
+
+### Agilidad — ejecutar movimiento corporal bajo presión
+
+**Situación base:**
+> El Espinajo baja la cabeza y carga por el sendero estrecho. A tu derecha hay una zanja; a la izquierda, una cerca baja.
+
+**Acciones propuestas:** \`esquivar\`, \`saltar cerca\`, \`retroceder\`
+
+**Respuesta ante una ejecución corporal insuficiente:**
+> Intentas apartarte en el último instante, pero tu pie resbala en la tierra suelta. Evitas el golpe de lleno, aunque el animal alcanza a rozarte al pasar.
+
+**Respuesta ante una buena ejecución corporal:**
+> Esperas hasta que la carga está cerca y te apartas con un movimiento rápido. El Espinajo pasa junto a ti y necesita espacio para girar.
+
+**Decisión que permanece en manos del jugador:** qué maniobra intentar y cuándo abandonar el enfrentamiento.
+
+**Prueba superada:** el jugador decide; Agilidad representa la capacidad del personaje para ejecutar el movimiento, no los reflejos físicos de quien sostiene el teléfono.
+
+---
+
+### Percepción — recibir señales adicionales, no soluciones
+
+**Situación base para todos:**
+> El camino atraviesa un campo aparentemente tranquilo. Más adelante se levanta una cerca de madera.
+
+**Acción propuesta:** \`mirar\` o \`observar camino\`
+
+**Descripción base:**
+> La hierba se mueve con el viento. No ves animales cerca.
+
+**Información adicional cuando Percepción/contexto lo permite:**
+> Junto a la cerca distingues dos postes quebrados hacia afuera. En el barro hay marcas profundas y demasiado anchas para las criaturas pequeñas que has visto cerca del pueblo.
+
+**Lo que NO debe decir automáticamente:**
+> Hay un Cornalomo peligroso adelante. No avances.
+
+El jugador debe interpretar las señales o buscar más información.
+
+**Prueba superada con especial fuerza:** Percepción puede modificar directamente el texto sin convertirlo en una respuesta automática.
+
+---
+
+### Intelecto — comprender información sin resolver la decisión
+
+**Situación base:**
+El jugador ya encontró las marcas junto a la cerca.
+
+**Acción propuesta:** \`examinar marcas\`
+
+**Respuesta sin conocimiento/comprensión suficiente:**
+> Las marcas son profundas y están separadas de forma irregular. Algo pesado pasó por aquí, pero no sabes determinar mucho más.
+
+**Respuesta cuando la capacidad y el conocimiento contextual permiten interpretar más:**
+> La profundidad no parece causada únicamente por peso: varias marcas están concentradas frente a los postes rotos. Lo que pasó por aquí probablemente empujó o golpeó la cerca antes de cruzarla.
+
+**Lo que NO debe resolver:**
+> Fue un Cornalomo y está exactamente dos habitaciones al norte.
+
+**Decisión que permanece en manos del jugador:** relacionar esta información con rumores, criaturas conocidas, rutas y riesgos.
+
+**Prueba superada:** Intelecto enriquece la interpretación; no juega el misterio por el jugador.
+
+---
+
+### Voluntad — mantener una decisión bajo presión mental
+
+**Situación base:**
+> Desde la galería oscura llega un sonido grave y repetitivo. Cada golpe parece acercarse. Una sensación de alarma difícil de explicar te empuja a abandonar el lugar.
+
+**Acciones propuestas:** \`mantener posición\`, \`concentrarse\`, \`retirarse\`
+
+**Respuesta cuando la presión supera al personaje:**
+> Intentas permanecer inmóvil, pero la tensión rompe tu concentración. Das varios pasos hacia la salida antes de conseguir detenerte.
+
+**Respuesta cuando logra sostenerse:**
+> El miedo no desaparece. Aun así, controlas la respiración y consigues mantenerte donde estás el tiempo suficiente para decidir tu siguiente acción.
+
+**Decisión que permanece en manos del jugador:** avanzar, observar, utilizar una capacidad o retirarse.
+
+**Prueba superada con condición:** Voluntad funciona si el mundo contiene presión mental, miedo, concentración u otras situaciones reales que la utilicen. No debe significar simplemente “ignoras la narración de miedo”.
+
+---
+
+### Destreza — ejecutar una acción fina con precisión
+
+**Situación base:**
+> Una pequeña caja de viaje tiene el cierre doblado. Entre la tapa y el marco apenas cabe la punta de una herramienta.
+
+**Acciones propuestas:** \`examinar cierre\`, \`manipular cierre\`, \`forzar caja\`
+
+**Respuesta ante poca precisión:**
+> Introduces la herramienta en el hueco, pero el cierre se mueve junto con toda la tapa. Si sigues haciendo fuerza de esta manera podrías dañar el mecanismo o lo que haya dentro.
+
+**Respuesta ante buena precisión:**
+> Mantienes la herramienta firme y haces presión justo bajo la pieza torcida. El cierre cede un poco sin deformarse más.
+
+**Decisión que permanece en manos del jugador:** continuar cuidadosamente, usar fuerza, buscar otra herramienta o dejarlo.
+
+**Prueba superada:** Destreza se siente distinta de Agilidad porque trabaja sobre precisión manual, herramienta y ejecución fina, no sobre desplazamiento corporal.
+
+---
+
+### Presencia — modificar la recepción social, no escribir la conversación por el jugador
+
+**Situación base:**
+> Un carretero enfadado bloquea el paso. “Nadie cruza hasta que encuentre lo que me robaron.”
+
+El jugador puede escribir o seleccionar una intención de diálogo.
+
+**Acciones posibles:** \`hablar carretero\`, \`persuadir carretero\`, \`intimidar carretero\` — nombres provisionales.
+
+**Ejemplo de intención del jugador:**
+> “Déjame pasar. Puedo buscar tu carga desde el otro lado y volver si encuentro alguna pista.”
+
+**Respuesta cuando el intento causa poca impresión:**
+> El carretero te mira con desconfianza. “Eso podría decirlo cualquiera. Si quieres ayudar, demuéstrame primero que no vienes con los ladrones.”
+
+**Respuesta cuando contexto y Presencia favorecen el intento:**
+> El carretero te observa unos segundos y finalmente se aparta. “Está bien. Si de verdad vas a buscarla, fíjate en las marcas de pintura azul de las cajas.”
+
+En ambos casos la conversación continúa; un resultado desfavorable puede abrir otra vía en lugar de cerrar el juego.
+
+**Reglas narrativas:**
+- Presencia no bloquea la conversación normal.
+- No convierte una mentira absurda en verdad.
+- NPCs conservan conocimientos, intereses y límites.
+- Contra otros jugadores humanos, Presencia no obliga a creer, obedecer ni aceptar una negociación.
+
+**Prueba superada:** es especialmente apropiada para un RPG textual si afecta reacción y oportunidad sin sustituir lo que el jugador comunica.
+
+---
+
+## Prueba combinada — una misma escena, varios atributos
+
+La utilidad real de los ocho aparece mejor cuando **una escena admite enfoques diferentes**.
+
+> Al norte del camino hay una caseta abandonada. La puerta está trabada. Cerca de la pared encuentras barro removido y dentro se escucha un golpeteo débil.
+
+Posibles aproximaciones:
+
+- **Fuerza:** intentar forzar la puerta.
+- **Resistencia:** llegar o continuar actuando tras una marcha/exposición que haya producido desgaste.
+- **Agilidad:** alcanzar una abertura alta o atravesar con seguridad una zona físicamente inestable, si el espacio lo permite.
+- **Percepción:** notar huellas, sonidos o detalles que no aparecen en la descripción básica.
+- **Intelecto:** interpretar las señales o comprender cómo funciona un cierre/mecanismo conocido.
+- **Voluntad:** mantener concentración o decisión si existe una presión mental real en la escena.
+- **Destreza:** manipular cuidadosamente el cierre.
+- **Presencia:** obtener información o cooperación de una persona relacionada con el lugar, si existe.
+
+**Importante:** no es necesario ni recomendable que toda escena utilice los ocho. El contenido debe usar solamente los atributos que tengan sentido.
+
+## Recomendación de interfaz narrativa
+
+No recomiendo ocho botones permanentes llamados Fuerza, Resistencia, Agilidad, etc.
+
+El jugador debe pensar en **acciones del mundo**, no en “usar una estadística”:
+
+- mirar;
+- examinar;
+- empujar;
+- saltar;
+- manipular;
+- hablar;
+- continuar;
+- retirarse.
+
+El sistema puede consultar internamente los atributos pertinentes. La narración devuelve el resultado en lenguaje del mundo.
+
+Esto mantiene el espíritu Telnet: **el jugador ordena una acción; el personaje la ejecuta según quién es y cómo se ha desarrollado.**
+
+## Criterio de aceptación propuesto para Jugabilidad
+
+Antes de fijar la matemática 1–100, cada atributo debería superar tres preguntas:
+
+1. ¿Podemos escribir al menos varias acciones/situaciones frecuentes donde importe?
+2. ¿El jugador puede entender por el texto por qué esa capacidad fue relevante?
+3. ¿Produce una experiencia suficientemente distinta de los otros siete?
+
+Si un atributo falla estas pruebas, debe revisarse antes de asignarle puntos, costes o curvas.
+
+**Estado VT-GAME-002A: PRUEBA NARRATIVA ENTREGADA A JUGABILIDAD.**

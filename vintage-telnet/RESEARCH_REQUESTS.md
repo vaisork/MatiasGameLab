@@ -209,3 +209,170 @@ Siempre que sea útil, incluir un esquema textual/wireframe simple de la pantall
 El **Desarrollador Junior de Vintage Telnet** utilizará la recomendación para preparar la siguiente iteración del cliente HTML. Javier decidirá si la experiencia visual propuesta conserva la sensación que quiere antes de publicar nuevos cambios.
 
 **No implementar la optimización final como parte de esta investigación.**
+
+
+## VT-RES-003 — Modelo de progresión matemática de atributos y especialización
+
+**Solicitante:** Diseñador de Jugabilidad — Vintage Telnet  
+**Destinatario:** Investigador Técnico y de Implementación — Vintage Telnet  
+**Estado:** ENTREGADO — ver `vintage-telnet/RESEARCH_ATTRIBUTE_PROGRESSION.md`  
+**Prioridad:** ALTA — bloquea la definición numérica del sistema de atributos.
+
+### Decisiones de Jugabilidad ya confirmadas
+
+- Primera etapa del juego: niveles **1–100**.
+- Ocho atributos base: **Fuerza, Resistencia, Agilidad, Percepción, Intelecto, Voluntad, Destreza y Presencia**.
+- Los rasgos naturales de especie son un sistema distinto y no se compran con puntos de atributo.
+- Cada subida de nivel entrega **Puntos de Atributo (PA)** para que el jugador decida cómo desarrollar sus atributos.
+- Existe además una progresión de poderes mediante hitos cada **5 niveles**.
+- Los **Puntos de Poder (PP)** y los **Puntos de Atributo (PA)** son sistemas completamente separados: no se convierten entre sí ni compiten por la misma reserva.
+- Los poderes concretos son contenido del Historiador; esta investigación no debe inventarlos.
+- Todavía NO están decididos los valores iniciales, PA por nivel, máximos de atributo, costes ni curvas.
+
+### Investigación solicitada
+
+Investigar cómo RPG, CRPG, MMORPG y especialmente MUD/Telnet relevantes han resuelto matemáticamente la progresión de atributos durante campañas largas. El objetivo no es copiar un juego, sino aportar evidencia para construir el modelo de Vintage Telnet.
+
+Comparar como mínimo:
+
+1. **Coste lineal:** subir un atributo cuesta siempre lo mismo.
+2. **Coste creciente:** los valores altos requieren progresivamente más puntos.
+3. **Rendimientos decrecientes / soft caps:** el atributo puede seguir creciendo, pero cada incremento aporta menos poder efectivo.
+4. **Hard caps:** límites absolutos y sus consecuencias.
+5. **Modelos híbridos:** tramos, umbrales, escalados distintos u otras soluciones documentadas.
+6. Cómo estos modelos afectan a personajes **especializados vs. equilibrados**.
+7. Cómo evitan —o no evitan— que invertir todo en un solo atributo sea una estrategia dominante.
+8. Cómo mantienen significativos los puntos obtenidos en niveles altos sin provocar inflación estadística.
+9. Relación entre progresión de atributos, equipo y habilidades/poderes sin mezclar sus monedas de progreso.
+10. Qué problemas aparecen al diseñar para aproximadamente **100 niveles** y qué técnicas permiten ampliar el juego posteriormente sin rehacer toda la matemática.
+
+### Evidencia y ejemplos
+
+Buscar ejemplos concretos y documentados. Priorizar documentación oficial, manuales, reglas publicadas, wikis oficiales o fuentes históricas fiables. Cuando una fórmula exacta no sea pública, distinguir claramente entre dato documentado e interpretación.
+
+### Análisis esperado
+
+Para cada modelo encontrado, explicar cómo funciona, ejemplos, ventajas, problemas/exploits, efecto sobre especialización y diversidad, comportamiento a corto/largo plazo y qué podría adaptarse conceptualmente a Vintage Telnet.
+
+Incluir una comparación específica entre **coste lineal**, **coste creciente**, **soft cap** y **modelo híbrido**.
+
+### Preguntas que debe ayudarnos a responder
+
+- ¿Debe costar lo mismo pasar un atributo de 10→11 que de 50→51?
+- ¿Conviene controlar la especialización mediante coste creciente, rendimientos decrecientes, límites, o una combinación?
+- ¿Cómo podemos permitir personajes muy especializados sin que una sola estadística rompa el juego?
+- ¿Qué estructura deja suficiente espacio matemático para 100 niveles?
+- ¿Cómo podemos dejar abierta una futura expansión por encima del nivel 100 sin diseñar ahora una progresión infinita?
+
+### Entrega esperada
+
+Crear **vintage-telnet/RESEARCH_ATTRIBUTE_PROGRESSION.md** y enlazarlo desde esta solicitud. Terminar con **2–4 modelos candidatos** para que Jugabilidad los pueda simular posteriormente.
+
+El Investigador **no debe elegir el modelo definitivo ni fijar números de Vintage Telnet**. La decisión y el balance corresponden a Jugabilidad con Javier/Matías.
+
+**No implementar código ni simulador como parte de esta investigación.**
+
+
+## VT-GAME-002 — Revisión narrativa/canónica de la matriz de 8 atributos para un juego Telnet de lectura
+
+**Solicitante:** Diseñador de Jugabilidad — Vintage Telnet, por observación de Javier  
+**Destinatarios:** Narrador de Aventuras + Historiador — Vintage Telnet  
+**Estado:** RESPUESTAS ENTREGADAS — Narrador en `vintage-telnet/NARRATIVE.md`; Historiador en `vintage-telnet/ATTRIBUTES_CANON_REVIEW.md`  
+**Prioridad:** ALTA — debe resolverse antes del modelo matemático de atributos.
+
+### Motivo
+
+Javier detectó un riesgo importante: Vintage Telnet es ante todo un juego de **redacción, lectura, decisiones textuales y acciones Telnet**, aunque el cliente HTML facilite acciones frecuentes mediante botones. No debemos diseñar atributos como si fueran para un videojuego gráfico de movimiento/reflejos en tiempo real.
+
+Jugabilidad preparó una matriz conceptual inicial, pero **NO queda aprobada todavía**. Narrador e Historiador deben revisarla desde sus respectivas competencias antes de que Jugabilidad construya las fórmulas.
+
+### Los 8 atributos que Jugabilidad está estudiando
+
+1. Fuerza
+2. Resistencia
+3. Agilidad
+4. Percepción
+5. Intelecto
+6. Voluntad
+7. Destreza
+8. Presencia
+
+### Matriz conceptual provisional de Jugabilidad
+
+- **Fuerza:** potencia física, manipulación de peso, romper/empujar/trepar por fuerza; no sustituye Resistencia.
+- **Resistencia:** aguante, supervivencia, cansancio y tolerancia a esfuerzo/condiciones físicas.
+- **Agilidad:** movimiento corporal, esquiva, posicionamiento, equilibrio y reacción; no sustituye Destreza.
+- **Percepción:** detectar amenazas, detalles, rastros y cambios; notar no equivale a comprender.
+- **Intelecto:** conocimiento, investigación, comprensión, descifrado y aprendizaje; no equivale a fortaleza mental.
+- **Voluntad:** concentración, disciplina mental, resistencia a miedo/coerción y mantenimiento de capacidades que lo requieran.
+- **Destreza:** precisión manual con armas, herramientas, mecanismos, fabricación/reparación y otras ejecuciones finas.
+- **Presencia:** influencia social, negociación, liderazgo, persuasión/intimidación contextual; conversación normal no debe quedar bloqueada por este atributo.
+
+### Principios provisionales a revisar
+
+- Fuerza != Resistencia.
+- Agilidad != Destreza.
+- Percepción != Intelecto.
+- Intelecto != Voluntad.
+- Presencia no debe convertirse en permiso para hablar.
+- Los atributos no sustituyen rasgos naturales de especie.
+- Ningún atributo debería absorber demasiadas funciones importantes.
+- Una acción importante puede depender de más de un atributo, pero la interfaz y el texto deben seguir siendo comprensibles.
+
+### Revisión solicitada al Narrador
+
+Revisar los ocho atributos pensando exclusivamente en **cómo se experimentan en lectura**.
+
+Para cada atributo indicar:
+- qué puede mostrar legítimamente la narración al jugador;
+- qué tipo de información, opciones textuales o resultados diferentes podría producir;
+- cuáles de las funciones provisionales serían difíciles, artificiales o invisibles en un Telnet;
+- cómo representar combate, exploración e interacción sin exigir reflejos físicos del jugador;
+- cómo evitar que el sistema se convierta en una sucesión de tiradas opacas que sustituyan la lectura y las decisiones;
+- qué atributos pueden enriquecer descripciones, elecciones o consecuencias;
+- qué solapamientos narrativos ve entre los ocho.
+
+No definir números, fórmulas, probabilidades ni balance.
+
+### Revisión solicitada al Historiador
+
+Revisar los ocho atributos contra el **canon y las capacidades que realmente existen en el mundo**.
+
+Para cada atributo indicar:
+- si la función propuesta tiene sentido en el mundo ya establecido;
+- qué funciones contradicen o confunden rasgos de especies, clases, magia u otras verdades del canon;
+- dónde debemos preservar una capacidad natural de especie aunque otro personaje tenga un atributo muy alto;
+- si falta alguna categoría de capacidad importante para representar el mundo mediante estos ocho atributos;
+- si alguna función propuesta invade contenido que debería pertenecer a poderes, equipo, especie o clase y no al atributo base.
+
+No definir números, fórmulas, probabilidades ni balance.
+
+### Respuesta del Historiador — VT-GAME-002
+
+**ENTREGADA:** `vintage-telnet/ATTRIBUTES_CANON_REVIEW.md`.
+
+Historia considera compatibles los ocho atributos con el mundo siempre que se preserve una separación estricta entre:
+
+- capacidades habilitadas por canon (especie, clase, conocimiento, poder, equipo y contexto);
+- calidad de ejecución representada por atributos;
+- resultado mostrado mediante texto comprensible.
+
+La revisión fija además que un atributo alto no puede crear sentidos de especie, magia, conocimiento no aprendido, técnicas de clase, equipo inexistente, reputación ni verdades del mundo.
+
+Para preservar el objetivo de lectura, Intelecto y Percepción pueden aportar contexto y señales, pero no deben resolver automáticamente misterios ni interpretar el texto por el jugador.
+
+### Pregunta central conjunta
+
+**¿Cómo deben manifestarse estos ocho atributos en un RPG que se juega principalmente leyendo texto, tomando decisiones y seleccionando/escribiendo acciones, de forma que realmente cambien la experiencia narrada sin convertir Vintage Telnet en un videojuego gráfico imaginado sobre una terminal?**
+
+### Entrega esperada
+
+Narrador e Historiador deben responder en sus documentos correspondientes (`NARRATIVE.md` y el documento de canon apropiado) y enlazar aquí sus respuestas. Javier no debe actuar como mensajero.
+
+Después de ambas revisiones, **Jugabilidad recupera el turno** para:
+1. corregir la matriz de los ocho atributos;
+2. construir una matriz de acciones textuales reales;
+3. comprobar balance funcional entre los ocho;
+4. recién entonces diseñar con Javier el modelo matemático 1–100.
+
+**No implementar código. No fijar valores numéricos. No convertir esta matriz provisional en regla hasta completar la revisión.**

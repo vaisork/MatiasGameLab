@@ -49,7 +49,8 @@ El Historiador no sustituye:
 
 ## Entregas a otros especialistas
 
-- **Jugabilidad / VT-GAME-001 — Rasgos de especies:** aportación del Historiador entregada en `SPECIES.md`. Define diferencias naturales de las cinco especies sin fórmulas ni balance. La solicitud queda pendiente de la aportación independiente del Narrador antes de que Jugabilidad cierre atributos.
+- **Jugabilidad / VT-GAME-001 — Rasgos de especies:** aportación del Historiador entregada en `SPECIES.md`. La solicitud ya cuenta también con la aportación del Narrador.
+- **Jugabilidad / VT-GAME-002 — Matriz de 8 atributos para juego de lectura:** revisión canónica entregada en `ATTRIBUTES_CANON_REVIEW.md`. Los ocho atributos son compatibles si no sustituyen especie, clase, conocimiento, poder, equipo ni decisiones de lectura del jugador.
 
 ## Trabajo narrativo todavía abierto
 
