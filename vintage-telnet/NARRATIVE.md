@@ -458,3 +458,55 @@ Al definir atributos y reparto de puntos, conservar espacio mecánico para que:
 - un grupo mixto pueda beneficiarse de perspectivas diferentes sin necesitar todas las especies para completar aventuras normales.
 
 **Estado Narrador VT-GAME-001: ENTREGADO.**
+
+
+## Handoff explícito Narrador ↔ Jugabilidad — estado 2026-09-21
+
+Este bloque elimina una ambigüedad de coordinación detectada entre Narrador y Diseñador de Jugabilidad.
+
+### Lo que el Narrador ya entregó a Jugabilidad
+
+- **VT-GAME-001:** aportación narrativa sobre diferencias de especies — ENTREGADA.
+- Cinco variantes regionales de **VT-NAR-002** según especie/pueblo inicial — ENTREGADAS.
+- Señales narrativas regionales para comunicar peligro — ENTREGADAS.
+- Recomendación sobre acción/función de evaluar peligro — ENTREGADA como necesidad narrativa, pendiente de criterio mecánico.
+- Propuesta de chat general + conversación local al coincidir jugadores — ENTREGADA.
+- Criterio inicial de conocimiento: el chat comunica información, pero no transfiere automáticamente descubrimientos ni mapa — ENTREGADO.
+
+### Lo que el Narrador espera ahora de Jugabilidad
+
+Estas decisiones siguen abiertas en GAMEPLAY.md o son necesarias para convertir VT-NAR-001/002 en contenido listo para implementación:
+
+1. **Progresión temprana:** cómo contribuyen los encuentros comunes al fortalecimiento y qué recompensas/progreso puede esperar un principiante.
+2. **Peligro / evaluar:** qué información mecánica recibe el jugador para distinguir una criatura apropiada, peligrosa o claramente superior, y si existe botón/comando Evaluar.
+3. **Retirada:** criterio general de huida contra criaturas durante las primeras salidas.
+4. **Recuperación:** cómo recupera un principiante recursos/estado entre encuentros y qué papel tiene volver al pueblo.
+5. **Derrota temprana:** consecuencias mecánicas de ser derrotado por fauna común, respetando ausencia de muerte permanente y ausencia de pérdida de arma frente a monstruos comunes.
+6. **Cooperación:** criterio básico para combatir juntos y tratamiento general de recompensas/progreso compartido.
+7. **Antifarmeo / reaparición:** criterio suficiente para que la estrategia óptima no sea permanecer indefinidamente matando la misma criatura común.
+8. **Descubrimiento e investigación:** qué acciones generales existen para observar/investigar/buscar y qué estado mecánico, si alguno, registra un descubrimiento personal.
+9. **Chat:** cerrar el criterio mínimo de chat general y chat local ya propuesto por Javier/Narrador; los detalles técnicos pueden quedar para Arquitectura/Desarrollo.
+10. **Atributos:** después de VT-GAME-001, definir con Javier la lista de atributos y la distribución de puntos iniciales/de nivel, preservando los rasgos naturales de especie.
+
+### Lo que NO estoy esperando de Jugabilidad
+
+Narrativa no necesita que Jugabilidad invente criaturas, historias, pistas, NPCs, secretos, nombres, regiones ni escenas. Tampoco necesita fórmulas finales de balance para empezar a redactar contenido; necesita criterios generales suficientes para no contradecir las reglas.
+
+### Trabajo que debe el Narrador después del handoff
+
+Cuando Jugabilidad cierre un mínimo suficiente de los puntos anteriores, el Narrador debe:
+
+- convertir las cinco variantes de VT-NAR-002 en secuencias concretas de primera salida;
+- concretar VT-NAR-001 donde las acciones de observación/investigación ya estén claras;
+- escribir textos, pistas, señales de peligro, decisiones y retornos correspondientes;
+- indicar a Desarrollo qué contenido narrativo queda listo para implementar, sin diseñar su arquitectura.
+
+### Estado de coordinación
+
+**VT-GAME-001 no está pendiente del Narrador.** Esa entrega está cerrada.
+
+**Sí existe una dependencia activa Narrador ← Jugabilidad** para pasar de diseño narrativo a aventuras iniciales listas para implementación.
+
+El Narrador puede seguir escribiendo ambientación mientras tanto, pero no debe convertir las decisiones mecánicas anteriores en reglas por su cuenta.
+
+**Próximo responsable:** Diseñador de Jugabilidad, para responder/cerrar los criterios anteriores en GAMEPLAY.md. Después vuelve el turno al Narrador.
