@@ -304,7 +304,7 @@ Esta competencia general:
 - no convierte a todos los personajes en iguales;
 - proporciona un piso de experiencia acumulada para que especialista, generalista y jugador casual sigan siendo funcionales.
 
-La implementación matemática exacta de cómo se distribuye ese +8 entre los niveles puede ser continua o por hitos, siempre que conserve el resultado de progresión aprobado y sea transparente para Jugabilidad.
+Para la v1 se adopta una progresión lineal de esa competencia general, detallada en la sección 20: `CG = 8 × (nivel - 1) / 99`.
 
 ### Principio de balance
 
@@ -318,7 +318,7 @@ La dificultad incremental del mundo deberá calibrarse contra este modelo de cre
 - un personaje equilibrado conserve valor por versatilidad;
 - una distribución casual o imperfecta no arruine permanentemente al personaje.
 
-Los valores iniciales exactos de los atributos y las fórmulas derivadas de combate, exploración, investigación y social siguen pendientes.
+Los valores iniciales y las fórmulas físicas base de la v1 ya están definidos en la sección 20. Exploración, investigación y social conservan los principios de atributos confirmados y se afinarán con contenido real sin permitir que los atributos sustituyan la comprensión del jugador.
 
 
 ## 20. Matemática de Jugabilidad v1 — lista para implementación
@@ -647,6 +647,6 @@ Si un criterio está confirmado, debe respetarse. Si está pendiente, debe devol
 
 ---
 
-**Estado:** diseño de criterios en curso.  
+**Estado:** matemática v1 aprobada y lista para implementación; quedan contenido concreto y ajustes de balance por pruebas reales.  
 **Juego:** Vintage Telnet  
 **Fuente de verdad de jugabilidad:** `vintage-telnet/GAMEPLAY.md`
