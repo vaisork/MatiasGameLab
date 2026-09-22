@@ -24,6 +24,8 @@ REQUIRED_FIELDS = {
     "conditional_knowledge",
     "narrative_function",
     "gameplay_function",
+    "capabilities",
+    "limits",
     "memory_hooks",
 }
 
@@ -110,6 +112,8 @@ def normalize_authoritative_npc(record: Any) -> dict[str, Any]:
     normalized["conditional_knowledge"] = _require_dict_list(
         record, "conditional_knowledge"
     )
+    normalized["capabilities"] = _require_string_list(record, "capabilities")
+    normalized["limits"] = _require_string_list(record, "limits")
     normalized["memory_hooks"] = _require_string_list(record, "memory_hooks")
 
     if not normalized["knowledge_forbidden"]:
