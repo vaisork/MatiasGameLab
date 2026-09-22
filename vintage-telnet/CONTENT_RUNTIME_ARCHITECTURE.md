@@ -72,7 +72,7 @@ Ejemplo:
   "id": "valdren_plaza",
   "settlement": "valdren",
   "name": "Plaza de Valdren",
-  "description_id": "room.valdren_plaza.default",
+  "description": "Texto público aprobado para describir esta sala.",
   "exits": {
     "north": "valdren_camino_norte",
     "east": "valdren_taller",
@@ -85,6 +85,10 @@ Ejemplo:
 Los IDs son técnicos, estables y no se traducen.
 
 Los textos visibles pueden cambiar sin cambiar el ID de la sala.
+
+Para el P0, la descripción pública básica de la sala vive **inline** en `description`. No se usa todavía `description_id`: no existe un registro/resolvedor de descripciones y añadir esa indirección antes de necesitar localización o variantes solo crea un contrato incompleto. Los eventos narrativos, primeras llegadas, rumores y textos condicionados siguen viviendo separados bajo `narrative/`.
+
+En `schema_version = 1`, las claves de `exits` admitidas son únicamente `north`, `south`, `east` y `west`, porque corresponden al movimiento cardinal aprobado para el primer slice. Nuevos tipos de desplazamiento exigirán una versión de esquema posterior.
 
 ## 3. Cómo representar narrativa
 
@@ -241,6 +245,7 @@ Debe comprobar, como mínimo:
 - JSON válido;
 - IDs únicos;
 - cada salida apunta a una sala existente;
+- cada dirección de salida pertenece al conjunto permitido por la versión de esquema (`north`, `south`, `east`, `west` en v1);
 - cada narrativa apunta a una sala existente cuando corresponda;
 - especies iniciales apuntan a asentamientos/salas existentes;
 - ningún archivo público referencia rutas de contenido privado;
