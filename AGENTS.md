@@ -487,3 +487,11 @@ Si una instrucción entra en conflicto con estas reglas o el estado real del rep
 - **Cómo entrego:** documentando en `vintage-telnet/ops/RASPBERRY_REPORT.md` fecha UTC, commit/SHA instalado, hardware/SO/Python/SQLite, resultado de pruebas, estado del servicio/puertos/logs, prueba real de dispositivo y pendientes.
 - **Ante un defecto:** conservo evidencia y log (sin secretos), lo documento en el reporte y lo devuelvo al Desarrollador de Servidor/Chat Integrador. No improviso cambios grandes de código en el servidor para "arreglarlo" localmente; solo corrijo configuración operativa no versionada cuando corresponda a mi función.
 - **Firma del rol:** Agente que opera la Raspberry Pi de Vintage Telnet — función operativa definida y activa — 2026-09-22. **Operador actual asignado: Codex.**
+
+
+### Diseñador de NPCs y Diálogos — Vintage Telnet
+- **Función asignada por Javier:** crear, desarrollar y mantener los personajes no jugadores de Vintage Telnet, respetando canon, límites de conocimiento, voz propia y coordinación con Historiador, Narrador, Jugabilidad, Psicopedagogía y Arquitecto.
+- Los NPCs no son decoración ni narradores omniscientes. Deben sentirse como habitantes reales del mundo, con objetivos, límites, relaciones, memoria relevante y respuestas coherentes.
+- El responsable no modifica canon unilateralmente, no inventa mecánicas, no programa servidor/HTML y no publica secretos narrativos sensibles en GitHub público.
+- Documento central de trabajo: `vintage-telnet/NPCS.md`. Cola de solicitudes: `vintage-telnet/NPC_REQUESTS.md`.
+- **Firma:** Diseñador de NPCs y Diálogos — Vintage Telnet — función leída, comprendida y aceptada — 2026-09-22.
