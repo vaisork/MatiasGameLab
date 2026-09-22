@@ -1006,3 +1006,53 @@ Para cada NPC inicial, documentar como mínimo:
 Después de esta entrega, el Narrador podrá escribir las escenas, conversaciones y variaciones necesarias para las primeras pruebas sin inventar unilateralmente el canon de los personajes.
 
 **Próximo responsable:** especialista de NPCs / Historiador según la responsabilidad vigente en AGENTS.md.
+
+
+## Dirección narrativa para Arte y cartografía — VT-ART-001
+
+**Propósito:** impedir que una ilustración conceptual convierta por accidente arquetipos de fantasía, nombres generados o geografía decorativa en canon de Vintage Telnet.
+
+### Regla principal
+
+Arte **representa el canon; no lo completa**. Cuando falte una verdad del mundo, el espacio puede quedar ambiguo, sin nombre o pendiente del Historiador. Una imagen atractiva no convierte por sí sola un elemento en parte del mundo.
+
+En una pieza que pretenda representar el mundo real de Vintage Telnet, solo deben aparecer como nombres, pueblos, regiones, rutas, monumentos, ruinas, mazmorras, mares, cordilleras o lugares identificables aquellos que ya estén confirmados por la fuente canónica correspondiente.
+
+No deben introducirse nombres nuevos para llenar huecos de un mapa. Tampoco debe dibujarse un elemento espectacular —árbol sagrado, ciudad flotante, fortaleza ancestral, gran cascada, templo, ruina o mazmorra— de manera que parezca un hecho canónico si el Historiador no lo ha establecido.
+
+### Anclas visuales ya establecidas para los cinco comienzos
+
+- **Valdren / Humanos / Llanos de Edran:** paisaje abierto, caminos, parcelas, cercas, cultivos y vida terrestre cotidiana. La identidad humana es adaptabilidad y diversidad, no una profesión o clase única.
+- **Khariel / Felaryn / Sierra de Hoshai:** montaña, desnivel, terrazas, roca, altura, equilibrio y líneas de visión. La cultura debe evocar la dirección japonesa ya establecida y la especie debe conservar rasgos felinos reconocibles.
+- **Brumak / Dravak / Pedrales de Korven:** piedra, grietas, desniveles y espacios cuya escala tenga sentido para una especie mucho más pequeña que un humano. No convertirlos automáticamente en grandes dragonborn ni en una cultura definida solo por fuerza física.
+- **Narevia / Marevyn / Aguas de Lethra:** agua, orillas, barro, raíces, juncos, humedad, pasarelas y espacios parcialmente acuáticos. No convertirlos automáticamente en “elfos del árbol mágico” ni deducir ciudades flotantes o cascadas monumentales sin canon.
+- **Velmora / Vesperi / Bosque de Nhal:** bosque denso, penumbra, niebla, raíces, sombras, camuflaje natural y señales sutiles. No convertirlos automáticamente en enanos industriales, inventores o una cultura mecánica.
+
+### Regla transversal de representación
+
+**Especie ≠ clase ≠ profesión ≠ personalidad.**
+
+Una ilustración de una especie no debe comunicar que todos sus miembros son guerreros, magos, artesanos, sombras o cualquier otra clase. Las clases siguen siendo independientes de la especie.
+
+Las capacidades naturales tampoco deben exagerarse hasta convertirse en poderes no canónicos: Felaryn no vuelan; Dravak no poseen sonar ni visión a través de piedra; Marevyn respiran aire; Vesperi no ven en oscuridad absoluta.
+
+### Vaisgard
+
+Vaisgard es la ciudad común y el punto donde convergen las cinco rutas. No debe representarse como propiedad cultural exclusiva de una especie. Puede comunicar mezcla, tránsito y antigüedad, pero cualquier monumento, distrito oculto o explicación visual de su origen debe respetar lo ya establecido por el Historiador.
+
+### Cartografía conceptual
+
+Una ilustración puede mostrar de forma conceptual que los cinco territorios pertenecen a un mismo mundo y se relacionan con Vaisgard. Esto **no autoriza** a fijar distancias exactas, fronteras, orientación cardinal, accidentes geográficos, islas, desiertos, mares, cordilleras, rutas secundarias, ruinas o mazmorras que todavía no hayan sido establecidos.
+
+Cuando Arte necesite completar una composición:
+1. usar terreno ambiental sin nombre cuando sea compatible con el canon;
+2. evitar etiquetas inventadas;
+3. evitar iconos de lugares concretos no confirmados;
+4. pedir al Historiador definición si el elemento necesita convertirse en lugar real;
+5. marcar explícitamente una pieza como **CONCEPTUAL / NO CANÓNICA** cuando explore posibilidades todavía no aprobadas.
+
+### Principio de descubrimiento
+
+La documentación artística del proyecto y el conocimiento del jugador no son lo mismo. Aunque exista en el futuro un mapa interno completo para producción, la interfaz jugable no debe asumir que un personaje recién creado conoce automáticamente toda esa geografía.
+
+**Estado VT-ART-001:** guía narrativa lista para Arte. No crea geografía nueva.
