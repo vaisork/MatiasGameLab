@@ -68,9 +68,10 @@ previa (sin systemd) y luego la instalación systemd final.
   que la instalación systemd funciona igual que la prueba manual anterior
   (puerto 8081) y que los dos accesos directos del escritorio apuntan a la
   URL correcta.
+- Javier borró el `Vintage-Telnet.desktop` duplicado; quedan solo
+  `Vintage-Telnet-Juego.desktop` y `Vintage-Telnet-DM.desktop` en el escritorio.
 - **Pendiente:** reinicio físico de la Raspberry con el servicio activo,
-  todavía no probado; decidir si se borra el `Vintage-Telnet.desktop`
-  duplicado.
+  todavía no probado.
 
 ## Prueba manual previa (sin systemd) — 2026-09-22
 
