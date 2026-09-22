@@ -1,5 +1,39 @@
 # HANDOFF — Entrega técnica
 
+## ENTREGA — Ajustes tras la instalación real en Raspberry Pi
+
+**Desarrollador:** Claude (Desarrollador de Servidor de Vintage Telnet)
+
+**Estado:** LISTO PARA REVISIÓN
+
+**Rama:** `claude/vintage-telnet-server-v2`
+
+### Contexto
+El operador de Raspberry Pi instaló esta rama como servicio `systemd` real (reemplazando el despliegue viejo de `codex/vintage-telnet-server`/PR #1, sin borrar sus datos), corrió las 28 pruebas ahí mismo (28/28 OK, Raspberry Pi 5, Debian 13, Python 3.13.5), probó el flujo completo desde un navegador real, y confirmó que el servicio sobrevive un reinicio físico de la Raspberry con los datos intactos. Reporte completo en `vintage-telnet/ops/RASPBERRY_REPORT.md`.
+
+Dejó dos pendientes concretos en ese reporte; los resuelvo acá.
+
+### 1. Mensaje de log desactualizado
+`server/__main__.py` tenía hardcodeado `"esquema 1"` en el log de arranque, aunque el esquema real ya es la versión 2. No era un fallo funcional, solo una observación del operador. Corregido para que lea `PRAGMA user_version` real de la base al arrancar — no se puede volver a desactualizar sola en el próximo cambio de esquema.
+
+### 2. Sin política de respaldo
+El operador señaló explícitamente que no había decisión de backup antes de la primera instalación real con datos. Agregué:
+- `vintage-telnet/ops/backup.sh`: llama a `server.admin backup` (que ya verifica integridad de la copia) y poda backups de más de 14 días.
+- `vintage-telnet/ops/vintage-telnet-backup.service` + `.timer`: unidad `systemd` endurecida (mismo estilo que el servicio principal) que corre el respaldo una vez al día.
+- Documentado en `server/README.md` cómo activarlo (`systemctl enable --now vintage-telnet-backup.timer`).
+
+No reemplaza una copia fuera del equipo (disco externo/otra máquina) — eso sigue siendo una decisión operativa aparte, señalada como tal en el README.
+
+### Pruebas
+28/28 siguen pasando sin cambios (el fix de `__main__.py` no tiene lógica nueva que probar aparte de lo que ya cubre `test_http.py`; verifiqué manualmente que el log ahora dice "esquema 2").
+
+### Riesgo
+Los archivos nuevos de `ops/` no se instalan solos — el operador de Raspberry debe habilitar el timer manualmente la próxima vez que sincronice esta rama. No pasa nada si no lo hace todavía; el servicio principal sigue funcionando igual.
+
+**LISTO PARA PUBLICAR:** NO — como el resto de esta rama, sigue esperando revisión del Arquitecto antes de tocar `main`.
+
+---
+
 ## ENTREGA — Segunda respuesta a la revisión del Arquitecto (PR #6, rondas 3 y 4)
 
 **Desarrollador:** Claude (Desarrollador de Servidor de Vintage Telnet)
