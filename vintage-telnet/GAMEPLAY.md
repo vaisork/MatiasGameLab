@@ -75,12 +75,20 @@ Las capacidades especiales no deben estar disponibles sin límite todo el tiempo
 
 Los combates rutinarios pueden requerir poca intervención; los enfrentamientos peligrosos deben hacer que las decisiones del jugador tengan mayor importancia.
 
-### 10. No existe muerte permanente del personaje
-La llamada “muerte” dentro de Vintage Telnet es una **derrota**, no la eliminación permanente del personaje.
+### 10. Muerte, derrota y reaparición
+Cuando la vida del personaje llega a **0 HP**, el personaje cae muerto y el combate termina. Esta muerte no elimina permanentemente al personaje ni borra todo su progreso.
 
-Una derrota no borra al personaje ni destruye todo el progreso acumulado. Esto es especialmente importante porque el personaje puede estar vinculado a piezas físicas impresas.
+Después de morir, el personaje reaparece en un **punto de reaparición válido y seguro**.
 
-El Historiador puede proponer dónde y de qué forma reaparece un personaje derrotado de acuerdo con el mundo. Si esa propuesta necesita nuevos criterios mecánicos, deberán revisarse en Jugabilidad.
+El hogar del personaje puede funcionar como punto de reaparición cuando corresponda, pero no será obligatoriamente el destino después de cada muerte. En viajes largos, mazmorras u otras zonas extensas pueden existir puntos de reaparición que eviten obligar al jugador a repetir innecesariamente un trayecto largo hasta regresar desde su pueblo.
+
+El punto utilizado debe respetar el contexto de la zona y no colocar al personaje inmediatamente en una situación inevitable de nuevo combate o muerte.
+
+**Jugabilidad define el comportamiento general de muerte y reaparición. El Narrador define qué lugares concretos del mundo funcionan como puntos de reaparición y cómo se presentan o justifican dentro de la experiencia narrativa.**
+
+Una muerte no borra al personaje ni destruye todo el progreso acumulado. Esto es especialmente importante porque el personaje puede estar vinculado a piezas físicas impresas.
+
+Las consecuencias adicionales de morir, el criterio exacto para elegir entre varios puntos válidos y cualquier requisito para activar/descubrir puntos de reaparición permanecen pendientes.
 
 ### 11. Riesgo de pérdida de armas
 Morir frente a monstruos comunes no provoca pérdida del arma por este principio.
