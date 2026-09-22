@@ -142,3 +142,41 @@ Se corrigió el contrato para que:
 - salas exijan `description` inline en lugar de `description_id`;
 - schema v1 acepte únicamente `north`, `south`, `east`, `west` como direcciones de salida;
 - exista una prueba sintética específica para rechazar una dirección fuera del conjunto permitido.
+
+
+## Evidencia final tras ajuste solicitado por el Arquitecto
+
+Se añadieron dos pruebas específicas:
+
+- `test_missing_description_is_reported`
+- `test_empty_description_is_reported`
+
+Para ejecutar la suite actualizada se materializaron localmente los contenidos exactos leídos desde la rama del PR #10:
+
+- `scripts/validate-vintage-content.py` SHA de contenido: `a54173a46cb03c5dd85a2cbc3792e33ef8ad0d39`
+- `vintage-telnet/tests/test_validate_vintage_content.py` SHA de contenido: `184aca3cdbfe119ce234d70324451374f74ad98b`
+
+Comandos ejecutados:
+
+```bash
+python scripts/validate-vintage-content.py
+python -m unittest discover -s vintage-telnet/tests -p 'test_*.py' -v
+```
+
+Resultado real:
+
+```text
+Vintage Telnet content validation OK
+Ran 15 tests in 1.393s
+OK
+```
+
+Entre las 15 pruebas pasan explícitamente:
+
+```text
+test_missing_description_is_reported ... ok
+test_empty_description_is_reported ... ok
+test_unsupported_exit_direction_is_reported ... ok
+```
+
+**EVIDENCIA FINAL:** suite actualizada completa 15/15 OK.
