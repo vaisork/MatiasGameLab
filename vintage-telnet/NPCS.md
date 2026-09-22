@@ -514,3 +514,528 @@ Taren funciona si el jugador:
 - distingue “Taren cree/aconseja” de “el juego confirmó un hecho”.
 
 Si el jugador solo pulsa opciones hasta recibir “la respuesta correcta”, la conversación necesita simplificación o rediseño.
+
+
+---
+
+# Profundización de personalidad — cinco NPCs ancla
+
+Esta capa no cambia sus funciones narrativas. Añade rasgos que deben sobrevivir a la generación dinámica de diálogo para que el personaje siga siendo reconocible aunque la frase exacta cambie.
+
+## Mara — rasgos persistentes
+
+**MANÍAS:** cuando piensa, enrolla y desenrolla un tramo corto de cuerda. Si alguien exagera un relato, deja de tocar la cuerda y lo mira en silencio.
+
+**LE IRRITA:** la gente que presenta una suposición como si fuera algo que vio con sus propios ojos.
+
+**HUMOR:** seco y cotidiano. Se burla más de las malas decisiones que de las personas.
+
+**CONTRADICCIÓN PERSONAL:** dice que no cree en “corazonadas”, pero a veces cambia de ruta porque los campos le parecen demasiado quietos. Si se lo señalan, insiste en que eso es observación, no intuición.
+
+**ERROR TÍPICO:** tiende a atribuir demasiado pronto los problemas de cultivos a fauna común porque es lo que ve todos los días.
+
+**CUANDO EMPIEZA A CONFIAR:** deja de preguntar “¿estás seguro?” y empieza a preguntar “¿qué hacemos con eso?”.
+
+**CUANDO SE ENOJA:** habla todavía menos. No grita.
+
+**ALGO QUE LE HACE REÍR:** historias donde alguien termina cubierto de barro por intentar ahorrar dos pasos.
+
+**RELACIONES INICIALES:** respeta el trabajo de Oren aunque discuten sobre si un problema se arregla primero con herramientas o mirando el terreno. Con Ilya se impacienta porque mezcla hechos y rumores, pero también acude a ella cuando necesita saber qué ha oído la gente.
+
+**VOZ QUE NO DEBE PERDERSE:** práctica, concreta, sin dramatismo.
+
+## Taren — rasgos persistentes
+
+**MANÍAS:** antes de responder una pregunta difícil mira el lugar al que se refiere, incluso si la respuesta no está allí.
+
+**LE IRRITA:** las palabras absolutas: “siempre”, “nunca”, “seguro”, cuando la evidencia es incompleta.
+
+**HUMOR:** casi invisible. Corrige exageraciones con tanta seriedad que a veces tarda un momento en notarse que estaba bromeando.
+
+**CONTRADICCIÓN PERSONAL:** exige paciencia a los demás, pero cuando cree haber reconocido un patrón puede volverse demasiado terco y tardar en aceptar una explicación alternativa.
+
+**ERROR TÍPICO:** confía mucho en comparaciones espaciales y puede infravalorar una señal que no encaja bien con lo que puede observar desde altura.
+
+**CUANDO EMPIEZA A CONFIAR:** comparte también lo que duda, no solamente lo que sabe.
+
+**CUANDO SE ENOJA:** deja de corregir. Una respuesta demasiado breve de Taren es peor señal que una discusión.
+
+**ALGO QUE LE HACE REÍR:** que alguien describa con enorme precisión algo completamente irrelevante.
+
+**RELACIONES INICIALES:** Vael considera que Taren mira demasiado y toca demasiado poco; Taren considera que Vael arregla cosas antes de entender por qué se rompieron. Isen es de las pocas personas capaces de sacarlo de una conversación excesivamente seria.
+
+**VOZ QUE NO DEBE PERDERSE:** precisión antes que certeza.
+
+## Neki — rasgos persistentes
+
+**MANÍAS:** golpea suavemente superficies con un nudillo o herramienta cuando está pensando. A veces responde a un sonido antes que a una frase.
+
+**LE IRRITA:** que alguien diga “es solo una piedra” o “es solo un ruido”.
+
+**HUMOR:** rápido, físico y algo travieso. Le gustan las comparaciones absurdas de tamaño.
+
+**CONTRADICCIÓN PERSONAL:** predica que hay que confirmar una señal varias veces, pero su curiosidad puede hacerla acercarse demasiado a una grieta interesante.
+
+**ERROR TÍPICO:** interpreta con demasiada confianza algunos sonidos porque conoce muy bien los talleres de Brumak y espera que el mundo exterior se comporte igual de ordenadamente.
+
+**CUANDO EMPIEZA A CONFIAR:** presta herramientas pequeñas sin preguntar tres veces para qué se usarán.
+
+**CUANDO SE ENOJA:** acelera el habla y empieza a terminar las frases de los demás.
+
+**ALGO QUE LE HACE REÍR:** visitantes grandes intentando pasar por lugares claramente hechos a escala Dravak.
+
+**RELACIONES INICIALES:** Tovo aprecia su oído pero detesta que devuelva herramientas en el bolsillo equivocado. Piri sabe que Neki se distrae hablando de grietas y usa eso para hacerla quedarse a comer.
+
+**VOZ QUE NO DEBE PERDERSE:** energía, sonido, textura y curiosidad.
+
+## Luma — rasgos persistentes
+
+**MANÍAS:** acomoda cuerdas o recipientes mientras escucha; si algo la preocupa, deja las manos completamente quietas.
+
+**LE IRRITA:** que alguien llame “quieta” al agua solamente porque no ve movimiento.
+
+**HUMOR:** suave. Hace comparaciones con cosas que flotan, se hunden o toman caminos inesperados.
+
+**CONTRADICCIÓN PERSONAL:** suele pedir varias señales antes de concluir, pero es mucho más protectora cuando se trata de alguien que conoce y puede aconsejar retirarse con evidencia incompleta.
+
+**ERROR TÍPICO:** confía especialmente en patrones de agua y puede tardar en valorar una señal que proviene de tierra seca o altura.
+
+**CUANDO EMPIEZA A CONFIAR:** cuenta qué habría hecho ella, no solo qué observó.
+
+**CUANDO SE ENOJA:** sigue hablando con calma, pero deja de suavizar las palabras.
+
+**ALGO QUE LE HACE REÍR:** las cosas que alguien intenta mantener secas inútilmente durante demasiado tiempo.
+
+**RELACIONES INICIALES:** Sela cree que Luma convierte cualquier charco en una investigación; Luma cree que Sela convierte cualquier conversación en un mercado. Orin y Luma discrepan sobre cuánto riesgo es aceptable antes de cerrar o reparar un paso.
+
+**VOZ QUE NO DEBE PERDERSE:** calma, comparación de señales y respeto por la incertidumbre.
+
+## Sair — rasgos persistentes
+
+**MANÍAS:** toca discretamente marcas de ruta al pasar, incluso cuando no necesita comprobarlas. Recuerda cambios pequeños en objetos que otros no notarían.
+
+**LE IRRITA:** que alguien rellene un silencio hablando solo porque le incomoda.
+
+**HUMOR:** raro y muy seco; a veces tarda varios segundos en revelar que una frase era una broma.
+
+**CONTRADICCIÓN PERSONAL:** enseña a notar ausencias, pero puede obsesionarse con un patrón faltante y pasar por alto algo nuevo que nunca había estado allí antes.
+
+**ERROR TÍPICO:** confía demasiado en su memoria de recorridos familiares.
+
+**CUANDO EMPIEZA A CONFIAR:** permite silencios más largos sin dar por terminada la conversación y comparte detalles que normalmente consideraría demasiado pequeños para explicar.
+
+**CUANDO SE ENOJA:** responde literalmente a las preguntas y deja de ofrecer cualquier contexto adicional.
+
+**ALGO QUE LE HACE REÍR:** cuando alguien encuentra por accidente una señal discreta después de buscarla de la forma más complicada posible.
+
+**RELACIONES INICIALES:** Mirel afirma que Sair podría notar la ausencia de una hoja concreta; Sair responde que Mirel podría venderle esa misma hoja si creyera que alguien la necesita. Dovar discute con él sobre cuándo una marca vieja debe repararse y cuándo conviene dejar que desaparezca.
+
+**VOZ QUE NO DEBE PERDERSE:** silencios, ausencia, comparación con patrones previos.
+
+---
+
+# Segunda tanda — diez NPCs comunitarios
+
+Esta tanda completa **15 NPCs iniciales**: tres por cada pueblo. No todos deben presentarse durante la primera sesión. Su función es crear relaciones y perspectivas distintas alrededor de los cinco NPCs ancla.
+
+## Valdren
+
+### VT-NPC-VAL-002 — Oren
+
+**Especie:** Humano  
+**Lugar habitual:** taller/forja de Valdren.  
+**Función en el mundo:** repara herramientas de campo y objetos cotidianos; cualquier regla de fabricación o precio pertenece a Jugabilidad.
+
+**PERSONALIDAD:** paciente con los objetos, menos paciente con las personas. Le gusta arreglar una cosa bien una vez.
+
+**FORMA DE HABLAR:** compara problemas con piezas dobladas, mangos flojos y uniones mal hechas. No usa muchas palabras.
+
+**QUIERE:** que las herramientas de Valdren duren y que la gente deje de devolver cosas “casi rotas”.
+
+**TEME:** una avería pequeña ignorada hasta convertirse en accidente.
+
+**SABE:** desgaste normal de herramientas, qué daños son comunes en trabajo agrícola y qué marcas parecen venir de fuerza externa.
+
+**NO SABE:** fauna más allá de lo que ve cerca del pueblo; no identifica criaturas por una marca aislada.
+
+**CREE:** casi todos los problemas parecen misteriosos hasta que alguien limpia el barro y mira la pieza.
+
+**MANÍA:** prueba dos veces cualquier cierre que otra persona jura haber arreglado.
+
+**LE IRRITA:** “aguanta todavía”.
+
+**HUMOR:** extremadamente seco.
+
+**ERROR TÍPICO:** busca causas mecánicas incluso cuando el problema viene del entorno o de una criatura.
+
+**RELACIONES:** discute amistosamente con Mara sobre si primero hay que mirar el terreno o reparar lo roto. Desconfía de los rumores de Ilya, aunque siempre termina preguntándole quién contó cada uno.
+
+**MEMORIA RELEVANTE:** recuerda qué objeto llevó el jugador, si lo dañó otra vez del mismo modo y si siguió una recomendación anterior.
+
+**DIÁLOGO DE REFERENCIA:** “No está roto. Está avisando. Si sigues usándolo así, entonces sí estará roto.”
+
+**ESTADO:** BORRADOR.
+
+### VT-NPC-VAL-003 — Ilya
+
+**Especie:** Humana  
+**Lugar habitual:** zona de alimentos y comercio de Valdren.  
+**Función en el mundo:** intercambia bienes cotidianos y, por tratar con viajeros, escucha muchas versiones de lo que ocurre en los caminos.
+
+**PERSONALIDAD:** sociable, rápida para recordar caras y lenta para olvidar una historia interesante.
+
+**FORMA DE HABLAR:** empieza por la parte más llamativa y luego, si se le pregunta, separa quién lo vio de quién solo lo oyó.
+
+**QUIERE:** saber qué está pasando antes que el resto del pueblo.
+
+**TEME:** ser la última persona en enterarse de algo importante.
+
+**SABE:** quién llegó recientemente, qué mercancías aparecen de otras regiones y qué rumores circulan.
+
+**NO SABE:** si un rumor es verdad solo porque lo escuchó varias veces.
+
+**CREE:** dos rumores parecidos suelen tener alguna raíz común. A veces se equivoca.
+
+**MANÍA:** recuerda la procedencia de un rumor mejor que las palabras exactas.
+
+**LE IRRITA:** que le pidan “la verdad” sobre algo que nadie ha comprobado.
+
+**HUMOR:** juguetón; disfruta desmontando exageraciones de viajeros.
+
+**ERROR TÍPICO:** sobrevalora la coincidencia entre dos relatos independientes.
+
+**RELACIONES:** Mara la considera útil y agotadora. Oren dice que un rumor no puede arreglar una bisagra; Ilya responde que sí puede decirle quién la rompió.
+
+**MEMORIA RELEVANTE:** recuerda qué rumores contó al jugador y si este volvió con evidencia que los apoye o contradiga.
+
+**DIÁLOGO DE REFERENCIA:** “Puedo decirte lo que escuché, quién lo dijo y cuánto había bebido. La verdad tendrás que buscarla tú.”
+
+**ESTADO:** BORRADOR.
+
+## Khariel
+
+### VT-NPC-KHA-002 — Vael
+
+**Especie:** Felaryn  
+**Lugar habitual:** taller de Khariel.  
+**Función en el mundo:** trabaja con herramientas, piezas y reparaciones adaptadas a un asentamiento de terrazas y desniveles.
+
+**PERSONALIDAD:** práctico, orgulloso de las soluciones simples y algo competitivo.
+
+**FORMA DE HABLAR:** empieza por “hazlo” antes que por “míralo”; piensa con las manos.
+
+**QUIERE:** que nada útil permanezca roto por exceso de contemplación.
+
+**TEME:** que la disciplina se vuelva excusa para no actuar.
+
+**SABE:** desgaste de piezas, daños por caída, tensión y uso en desnivel.
+
+**NO SABE:** no observa rutas tan bien como Taren y a veces confunde ausencia de daño con ausencia de riesgo.
+
+**CREE:** una solución imperfecta que funciona hoy vale más que una perfecta que llega mañana.
+
+**MANÍA:** endereza objetos mientras conversa.
+
+**LE IRRITA:** que Taren diga “todavía no sabemos suficiente”.
+
+**HUMOR:** competitivo; convierte tareas pequeñas en desafíos.
+
+**ERROR TÍPICO:** actúa antes de reunir suficiente información.
+
+**RELACIONES:** rivalidad amistosa con Taren. Isen consigue que ambos dejen de discutir ofreciéndoles versiones contradictorias de la misma historia.
+
+**MEMORIA RELEVANTE:** recuerda si el jugador intentó reparar, improvisar o abandonar un problema.
+
+**DIÁLOGO DE REFERENCIA:** “Puedes observar esa cuerda una hora. Seguirá rota.”
+
+**ESTADO:** BORRADOR.
+
+### VT-NPC-KHA-003 — Isen
+
+**Especie:** Felaryn  
+**Lugar habitual:** área de alimento/comercio y terrazas comunitarias de Khariel.  
+**Función en el mundo:** distribuye alimentos y trata con quienes suben y bajan por las rutas cercanas.
+
+**PERSONALIDAD:** cordial, perspicaz y ligeramente burlona.
+
+**FORMA DE HABLAR:** pregunta por las personas antes que por los objetos. Recuerda quién contó cada cosa.
+
+**QUIERE:** que Khariel no se vuelva tan disciplinado que sus habitantes olviden hablar entre sí.
+
+**TEME:** que una preocupación real quede escondida detrás de orgullo o silencio.
+
+**SABE:** hábitos de viajeros, horarios cotidianos y cambios sociales visibles en el pueblo.
+
+**NO SABE:** interpretar rastros de montaña con la precisión de Taren.
+
+**CREE:** cuando tres personas evitan el mismo sendero sin ponerse de acuerdo, vale la pena preguntar por qué.
+
+**MANÍA:** ofrece comida justo cuando una conversación se vuelve demasiado solemne.
+
+**LE IRRITA:** la gente que responde una pregunta sencilla con una lección.
+
+**HUMOR:** cálido y oportuno.
+
+**ERROR TÍPICO:** puede atribuir un cambio de conducta a razones sociales cuando hay una causa ambiental.
+
+**RELACIONES:** se burla afectuosamente de la seriedad de Taren y de la impaciencia de Vael.
+
+**MEMORIA RELEVANTE:** recuerda cómo llegó el jugador —tranquilo, herido, nervioso, acompañado— y compara visitas posteriores.
+
+**DIÁLOGO DE REFERENCIA:** “Si Taren te pidió que observaras antes de bajar, felicidades. Ya has tenido la conversación que todos tenemos.”
+
+**ESTADO:** BORRADOR.
+
+## Brumak
+
+### VT-NPC-BRU-002 — Tovo
+
+**Especie:** Dravak  
+**Lugar habitual:** taller pequeño de Brumak.  
+**Función en el mundo:** ajusta herramientas y piezas de precisión.
+
+**PERSONALIDAD:** metódico, orgulloso y extremadamente ordenado.
+
+**FORMA DE HABLAR:** enumera pasos; detesta saltarse uno.
+
+**QUIERE:** que cada cosa vuelva exactamente al lugar donde pertenece.
+
+**TEME:** fallos pequeños que nadie puede reproducir porque nadie recuerda qué hizo.
+
+**SABE:** mecanismos sencillos, ajustes finos, desgaste y diferencias entre vibraciones de herramienta y de estructura.
+
+**NO SABE:** no explora tanto el exterior como Neki.
+
+**CREE:** si un problema no puede repetirse, todavía no se entiende.
+
+**MANÍA:** cuenta piezas en voz baja.
+
+**LE IRRITA:** que Neki mezcle herramientas entre bolsillos.
+
+**HUMOR:** involuntario; puede explicar una nimiedad con solemnidad absoluta.
+
+**ERROR TÍPICO:** espera demasiada regularidad de fenómenos naturales.
+
+**RELACIONES:** aprecia a Neki pero discuten constantemente sobre orden. Piri le guarda comida porque Tovo puede olvidar comer mientras trabaja.
+
+**MEMORIA RELEVANTE:** recuerda exactamente qué explicación dio antes y corrige al jugador si la cita mal.
+
+**DIÁLOGO DE REFERENCIA:** “Primero dime qué ocurrió. Luego dime qué tocaste. En ese orden.”
+
+**ESTADO:** BORRADOR.
+
+### VT-NPC-BRU-003 — Piri
+
+**Especie:** Dravak  
+**Lugar habitual:** zona de alimentos/comercio de Brumak.  
+**Función en el mundo:** maneja comida y bienes cotidianos en un espacio pequeño siempre lleno de tránsito.
+
+**PERSONALIDAD:** vivaz, hospitalaria y experta en notar cuándo alguien está demasiado concentrado para admitir que tiene hambre.
+
+**FORMA DE HABLAR:** rápida; cambia de tema y vuelve al anterior sin avisar.
+
+**QUIERE:** que la gente de Brumak tenga un lugar donde detenerse y hablar, aunque sea poco tiempo.
+
+**TEME:** que las preocupaciones se vuelvan normales por repetición y nadie las mencione.
+
+**SABE:** qué zonas reciben menos tránsito de lo normal, quién dejó de aparecer y qué pequeñas molestias se repiten.
+
+**NO SABE:** causas técnicas de vibraciones o grietas.
+
+**CREE:** cuando un lugar deja de recibir gente antes de que exista una explicación, alguien ya vio algo.
+
+**MANÍA:** pone comida frente a la gente antes de preguntar si la quiere.
+
+**LE IRRITA:** “después como”.
+
+**HUMOR:** rápido y afectuoso.
+
+**ERROR TÍPICO:** interpreta ausencia de personas como señal de peligro cuando a veces solo cambió una rutina.
+
+**RELACIONES:** hace de amortiguador entre Neki y Tovo. Conoce las discusiones de ambos de memoria.
+
+**MEMORIA RELEVANTE:** recuerda quién dejó una conversación a medias y la retoma días después.
+
+**DIÁLOGO DE REFERENCIA:** “Come primero. Si la grieta sigue ahí en tres bocados, merece conversación.”
+
+**ESTADO:** BORRADOR.
+
+## Narevia
+
+### VT-NPC-NAR-002 — Sela
+
+**Especie:** Marevyn  
+**Lugar habitual:** zona de alimentos/comercio próxima al agua.  
+**Función en el mundo:** intercambia alimentos y bienes cotidianos vinculados al pueblo y sus rutas acuáticas.
+
+**PERSONALIDAD:** expresiva, sociable y buena para leer el ánimo de una conversación.
+
+**FORMA DE HABLAR:** usa historias cortas y comparaciones exageradas; distingue con claridad cuándo está contando algo divertido y cuándo habla en serio.
+
+**QUIERE:** que Narevia siga sintiéndose como un lugar donde la gente se detiene a hablar, no solo a pasar.
+
+**TEME:** que un peligro se normalice porque todos esperan que otra persona lo mencione.
+
+**SABE:** cambios en tránsito, capturas/recolección cotidiana y rumores de quienes llegan por los pasos y canales.
+
+**NO SABE:** interpretar todas las señales del agua como Luma.
+
+**CREE:** si dos personas regresan mojadas y ninguna quiere contar por qué, probablemente hay una buena historia. No siempre una buena explicación.
+
+**MANÍA:** intenta adivinar de dónde viene alguien por lo que lleva pegado a la ropa.
+
+**LE IRRITA:** respuestas de una sola palabra cuando hizo una pregunta de verdad.
+
+**HUMOR:** abierto y juguetón.
+
+**ERROR TÍPICO:** completa huecos de una historia con la explicación más entretenida.
+
+**RELACIONES:** amiga y contrapunto de Luma. Orin la considera poco seria hasta que descubre que recuerda detalles sociales que él pasó por alto.
+
+**MEMORIA RELEVANTE:** recuerda versiones diferentes de una misma historia y puede confrontar al jugador con lo que contó anteriormente.
+
+**DIÁLOGO DE REFERENCIA:** “No te pregunto por curiosidad. Bueno, sí. Pero la curiosidad también sirve.”
+
+**ESTADO:** BORRADOR.
+
+### VT-NPC-NAR-003 — Orin
+
+**Especie:** Marevyn  
+**Lugar habitual:** plataformas, pasos y zonas de mantenimiento de Narevia.  
+**Función en el mundo:** revisa estructuras cotidianas próximas al agua.
+
+**PERSONALIDAD:** cuidadoso, escéptico y muy responsable.
+
+**FORMA DE HABLAR:** quiere medidas prácticas: cuánto se movió, cuánto duró, dónde ocurrió.
+
+**QUIERE:** evitar cerrar un paso por miedo, pero tampoco mantenerlo abierto por orgullo.
+
+**TEME:** tomar una decisión pública sobre información incompleta.
+
+**SABE:** desgaste de plataformas, amarres y pasos; distingue cambios normales de agua de daños físicos visibles en estructuras.
+
+**NO SABE:** identificar criaturas ocultas por señales biológicas con la experiencia de Luma.
+
+**CREE:** la seguridad mejora cuando alguien escribe o recuerda exactamente qué cambió.
+
+**MANÍA:** vuelve a comprobar un amarre después de que otra persona lo revisó.
+
+**LE IRRITA:** “parecía más o menos”.
+
+**HUMOR:** escaso pero no inexistente; le hacen gracia los errores de cálculo que no causaron daño.
+
+**ERROR TÍPICO:** puede mantener abierto un paso demasiado tiempo esperando evidencia más concreta.
+
+**RELACIONES:** discute con Luma sobre cuánta evidencia basta para recomendar evitar una zona. Sela lo acusa de querer medir hasta las conversaciones.
+
+**MEMORIA RELEVANTE:** recuerda lugares y condiciones exactas mencionadas anteriormente.
+
+**DIÁLOGO DE REFERENCIA:** “¿Grande comparado con qué? Dame una referencia y entonces empezamos.”
+
+**ESTADO:** BORRADOR.
+
+## Velmora
+
+### VT-NPC-VEL-002 — Mirel
+
+**Especie:** Vesperi  
+**Lugar habitual:** zona de alimentos/comercio de Velmora.  
+**Función en el mundo:** intercambia bienes cotidianos y conoce los ritmos de quienes cruzan los senderos discretos del pueblo.
+
+**PERSONALIDAD:** tranquila, perspicaz y divertida de una forma difícil de anticipar.
+
+**FORMA DE HABLAR:** aparenta distraerse, pero recuerda detalles pequeños de conversaciones anteriores.
+
+**QUIERE:** que la gente no confunda silencio con aislamiento.
+
+**TEME:** que los visitantes dejen de preguntar por miedo a parecer perdidos.
+
+**SABE:** cambios en tránsito, quién utiliza qué senderos y qué bienes llegan o dejan de llegar.
+
+**NO SABE:** leer todas las marcas del bosque como Sair.
+
+**CREE:** cuando un objeto cotidiano desaparece de varios hogares, suele haber una causa práctica antes que misteriosa.
+
+**MANÍA:** guarda objetos pequeños que alguien dejó olvidados y espera a que vuelva a buscarlos.
+
+**LE IRRITA:** que alguien finja haber visto una señal para no admitir que se perdió.
+
+**HUMOR:** seco e inesperado.
+
+**ERROR TÍPICO:** interpreta problemas desde hábitos de la comunidad y puede tardar en considerar una causa externa.
+
+**RELACIONES:** provoca a Sair con rumores deliberadamente exagerados para ver cuánto tarda en corregirlos. Dovar le pide que deje de guardar piezas “por si vuelven por ellas”.
+
+**MEMORIA RELEVANTE:** recuerda objetos, preguntas y pequeñas contradicciones del jugador entre visitas.
+
+**DIÁLOGO DE REFERENCIA:** “No pasa nada por perderse. Pasa algo cuando te pierdes y luego inventas el camino.”
+
+**ESTADO:** BORRADOR.
+
+### VT-NPC-VEL-003 — Dovar
+
+**Especie:** Vesperi  
+**Lugar habitual:** taller de Velmora y senderos inmediatos donde repara elementos de uso cotidiano.  
+**Función en el mundo:** mantiene herramientas y elementos físicos visibles de rutas y viviendas; no define por sí mismo el sistema oficial de señalización.
+
+**PERSONALIDAD:** reflexivo, algo gruñón y muy respetuoso de las cosas viejas.
+
+**FORMA DE HABLAR:** pregunta si algo realmente necesita ser reemplazado antes de tocarlo.
+
+**QUIERE:** reparar sin borrar las señales de uso que ayudan a reconocer un lugar.
+
+**TEME:** que mejorar demasiado una ruta elimine información que sus habitantes usan para orientarse.
+
+**SABE:** materiales, desgaste y cambios físicos en marcas, superficies y objetos.
+
+**NO SABE:** distinguir siempre desgaste natural de intervención deliberada.
+
+**CREE:** una reparación puede empeorar un lugar si elimina demasiado de su historia visible.
+
+**MANÍA:** conserva piezas viejas hasta estar seguro de que nadie las necesita para comparar.
+
+**LE IRRITA:** “pon uno nuevo y ya”.
+
+**HUMOR:** refunfuñón; sus quejas suelen ser más teatrales que reales.
+
+**ERROR TÍPICO:** conserva cosas más tiempo del necesario.
+
+**RELACIONES:** discute con Sair sobre cuándo una marca gastada deja de ser útil. Mirel se burla de la cantidad de objetos que Dovar se niega a tirar.
+
+**MEMORIA RELEVANTE:** recuerda cómo cambió físicamente un lugar entre visitas y puede contrastar descripciones del jugador con su propio registro mental.
+
+**DIÁLOGO DE REFERENCIA:** “Nuevo no significa mejor. A veces solo significa que todavía no sabes leerlo.”
+
+**ESTADO:** BORRADOR.
+
+---
+
+# Relaciones de pueblo — primera red social
+
+Estas relaciones sirven para que los NPCs puedan hablar unos de otros sin que todos compartan la misma opinión.
+
+- **Valdren:** Mara = observación del terreno; Oren = solución práctica; Ilya = información social/rumor. Mara confía en Oren para reparar y en Ilya para enterarse, pero discute con ambos sobre sus excesos.
+- **Khariel:** Taren = observar antes de concluir; Vael = actuar y reparar; Isen = leer a las personas. Los tres se equilibran y se fastidian mutuamente.
+- **Brumak:** Neki = curiosidad sensorial; Tovo = método; Piri = ritmo social. Neki y Tovo chocan; Piri evita que el choque se vuelva serio.
+- **Narevia:** Luma = señales naturales; Orin = evidencia estructural; Sela = memoria social. Luma y Orin pueden llegar a recomendaciones distintas con la misma información incompleta.
+- **Velmora:** Sair = patrones y ausencias; Dovar = materia y desgaste; Mirel = hábitos de la comunidad. Sus desacuerdos permiten que una misma anomalía tenga varias explicaciones iniciales.
+
+## Regla para Ollama / generación dinámica futura
+
+Cuando un modelo genere variantes de diálogo, **no debe recibir solo “nombre + oficio”**. Como mínimo necesita una ficha compacta con:
+
+- voz;
+- deseo;
+- temor;
+- irritación;
+- humor;
+- error típico;
+- conocimiento permitido;
+- desconocimiento;
+- creencias no confirmadas;
+- relación con interlocutores relevantes;
+- confianza actual con el jugador;
+- hechos que recuerda del jugador;
+- hechos del mundo que el personaje todavía no puede conocer.
+
+La variación de lenguaje puede ser dinámica. **La identidad, memoria y límites no.**
