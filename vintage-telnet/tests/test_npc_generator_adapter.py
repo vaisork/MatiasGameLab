@@ -58,10 +58,10 @@ class FakeBridge:
         self.calls = 0
 
     def __call__(self, npc, client):
-        self.calls += 1
-        client.calls += 1
         if npc.get("personality_locked") is True:
             return deepcopy(npc)
+        self.calls += 1
+        client.calls += 1
         result = deepcopy(npc)
         result["personality"] = deepcopy(PERSONALITY)
         result["personality_provenance"] = {
