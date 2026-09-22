@@ -459,3 +459,218 @@ Psicopedagogía considera que los ocho atributos **pueden seguir en evaluación*
 
 El siguiente trabajo de Psicopedagogía debe ocurrir sobre escenas reales de la primera aventura, no solo sobre ejemplos aislados de atributos.
 
+## VT-PSY-002 — Revisión del primer slice y primeras salidas
+
+**Fuentes revisadas:** `FIRST_PLAYABLE_SLICE.md` y VT-NAR-001 / VT-NAR-002A–E en `NARRATIVE.md`.
+
+### 1. Primer slice técnico: ENTRAR → ELEGIR ESPECIE → MOVERSE
+
+El primer slice es deliberadamente técnico y eso es correcto. No conviene forzar todavía una prueba compleja de comprensión donde el objetivo real es comprobar identidad, persistencia y movimiento.
+
+Sí existen tres riesgos de experiencia infantil:
+
+#### Selección de especie
+
+La elección entre cinco especies puede convertirse en una pared de texto si se vuelca demasiada información canónica de `SPECIES.md`.
+
+**Recomendación psicopedagógica:**
+- presentar por especie una descripción corta y concreta;
+- distinguir claramente **cómo se siente jugarla** de datos de lore secundarios;
+- permitir abrir “saber más” para quien quiera profundizar;
+- no exigir memorizar rasgos antes de empezar;
+- evitar decisiones irreversibles basadas en diferencias que el jugador todavía no entiende.
+
+**Prueba de aceptación infantil:** un jugador debe poder explicar con sus palabras por qué eligió una especie sin necesitar recordar una ficha larga.
+
+#### Primeras salas del pueblo
+
+La primera descripción no debe intentar presentar historia, geografía, cultura, controles y objetivos al mismo tiempo.
+
+**Recomendación:**
+- primera sala: 2–4 ideas relevantes como máximo;
+- salidas visibles de forma clara;
+- un detalle memorable del lugar;
+- una invitación natural a moverse;
+- texto adicional opcional mediante `mirar`, `examinar` o interacción.
+
+La primera sesión debe enseñar que **moverse produce texto nuevo**, no que hay que leer un manual antes de jugar.
+
+#### Error de movimiento
+
+Cuando no existe una salida, el mensaje debe enseñar orientación:
+
+Malo:
+> No puedes ir por ahí.
+
+Mejor:
+> Hacia el norte, las casas cierran el paso. Desde aquí puedes continuar al este o regresar al sur.
+
+Esto reduce confusión de interfaz y ayuda a construir un mapa mental del pueblo.
+
+### 2. VT-NAR-001 — Las señales del camino
+
+La estructura es psicopedagógicamente fuerte porque no entrega una misión épica inmediata y propone que el jugador conozca el pueblo, encuentre un rumor y relacione una pista con algo del mundo.
+
+**Tipo de comprensión dominante:** relación + memoria narrativa.
+
+**Riesgo:** si el rumor, la pista y el descubrimiento aparecen demasiado juntos, el jugador no necesita recordar nada; si están demasiado separados desde la primera sesión, puede olvidar la relación antes de aprender que recordar importa.
+
+**Recomendación inicial:** la primera relación significativa debería ocurrir dentro de la misma sesión o a pocos movimientos de distancia. Después se puede ampliar progresivamente la distancia temporal.
+
+### 3. VT-NAR-002A — Humano / Valdren
+
+**Fortaleza:** excelente para comprensión directa y relación causal.
+
+Señales como tallos roídos, montículos, cercas partidas, huellas profundas y silencio de fauna son concretas y fáciles de imaginar.
+
+**Carga de lectura recomendada:** ligera.
+
+**Primera lección útil:** “el terreno cambia antes de que aparezca el peligro”.
+
+**Demostración de comprensión:** reducir velocidad, observar, retroceder o buscar otra ruta al detectar señales grandes.
+
+**Riesgo:** si cada amenaza fuerte siempre viene acompañada de “silencio + huellas profundas”, el niño aprenderá una contraseña mecánica en vez de leer el contexto.
+
+### 4. VT-NAR-002B — Felaryn / Khariel
+
+**Fortaleza:** introduce una habilidad cognitiva distinta: usar distancia y altura para obtener información antes de actuar.
+
+**Tipo de comprensión:** atención al detalle + relación espacial.
+
+**Carga recomendada:** ligera a media.
+
+**Demostración de comprensión:** observar desde una posición segura antes de descender o acercarse.
+
+**Riesgo:** texto espacial demasiado complejo puede perderse en móvil.
+
+**Recomendación:** describir posición con referencias simples y consistentes: arriba/abajo, cerca/lejos, izquierda/derecha solo cuando sea estable y necesario.
+
+### 5. VT-NAR-002C — Dravak / Brumak
+
+**Fortaleza:** enseña que una señal no necesita ser visual. Vibraciones, grietas y cambios en fauna permiten ampliar la lectura del mundo.
+
+**Tipo de comprensión:** relación + inferencia.
+
+**Carga recomendada:** media.
+
+**Demostración de comprensión:** relacionar varios cambios pequeños con una amenaza mayor antes de verla.
+
+**Riesgo:** si “vibración = Quebrarrocas” aparece demasiado pronto como regla fija, se pierde inferencia.
+
+**Recomendación:** introducir primero varias causas posibles de vibración o grieta; después hacer que la combinación de señales sea la pista fuerte.
+
+### 6. VT-NAR-002D — Marevyn / Narevia
+
+**Fortaleza:** muy buena para enseñar que lo visible puede ser incompleto y que el agua transmite información por ondas, sonidos y cambios de fauna.
+
+**Tipo de comprensión:** atención al detalle + inferencia.
+
+**Carga recomendada:** media.
+
+**Demostración de comprensión:** no asumir que “agua tranquila = seguridad”.
+
+**Riesgo de frustración:** amenazas ocultas sin segunda oportunidad.
+
+**Recomendación:** antes de una primera emboscada peligrosa, ofrecer al menos dos señales diferentes: por ejemplo ondas + fauna que se retira. Una sola señal tenue puede pasar inadvertida sin que eso signifique mala lectura.
+
+### 7. VT-NAR-002E — Vesperi / Velmora
+
+**Fortaleza:** es la variante más rica para atención al detalle porque usa ausencia, silencio y cambio de patrón.
+
+**Tipo de comprensión:** detalle + contradicción con expectativa + inferencia.
+
+**Carga recomendada:** media, no alta al principio.
+
+**Demostración de comprensión:** notar que “algo falta” o que el entorno se comporta distinto.
+
+**Riesgo alto:** las pistas negativas —algo que no está, un ruido que dejó de oírse— son cognitivamente más difíciles que una huella visible.
+
+**Recomendación:** no usar ausencia como única pista crítica en las primeras escenas. Debe ir acompañada de una señal positiva hasta que el jugador aprenda que el silencio también comunica.
+
+### 8. Progresión recomendada entre las cinco regiones
+
+Aunque cada especie empiece en un lugar distinto, conviene que todas enseñen una progresión equivalente de lectura:
+
+**Etapa 1 — Señal obvia**
+- huella;
+- objeto roto;
+- sonido claro;
+- cambio visible.
+
+**Etapa 2 — Dos señales relacionadas**
+- huellas + cerca rota;
+- ondas + fauna ausente;
+- grietas + vibración.
+
+**Etapa 3 — Señal ambigua**
+- algo que puede tener varias causas.
+
+**Etapa 4 — Ausencia o contradicción**
+- silencio;
+- rutas alteradas;
+- versiones incompatibles.
+
+**Etapa 5 — Memoria**
+- una señal actual recuerda algo leído antes.
+
+Esto permite que las regiones sean diferentes sin que una especie reciba una experiencia cognitivamente mucho más difícil desde el minuto uno.
+
+### 9. Regla de móvil
+
+Como Vintage Telnet se jugará mucho en teléfono, una pista crítica no debería depender de:
+
+- releer un párrafo enorme;
+- recordar exactamente una palabra escondida muchas líneas atrás;
+- distinguir visualmente texto demasiado compacto;
+- desplazarse mucho hacia arriba para recuperar contexto inmediato.
+
+Cuando una escena necesite memoria larga, puede apoyarse en diario, historial consultable, notas, mapa o registros ya descubiertos, siempre que esas ayudas no revelen la solución.
+
+### 10. Primer criterio de dificultad narrativa
+
+Para las primeras sesiones propongo esta regla de diseño:
+
+- **1 objetivo cognitivo principal por escena corta**;
+- **máximo 1–2 pistas críticas** para una decisión inmediata;
+- ambientación libre, pero claramente separable de las señales funcionales por redacción natural;
+- primera inferencia importante con segunda oportunidad;
+- consecuencias corregibles cuando el error fue razonable.
+
+No es una regla permanente. Es un andamiaje inicial para enseñar al jugador que prestar atención sirve.
+
+### 11. Hallazgo principal
+
+VT-NAR-002 ya contiene algo muy valioso: cada región enseña **una forma distinta de leer el mundo**.
+
+- Edran: rastros visibles.
+- Hoshai: distancia y posición.
+- Korven: vibración y cambios físicos.
+- Lethra: señales en agua y fauna.
+- Nhal: ausencia y cambios sutiles.
+
+Psicopedagógicamente, esto es mejor que cinco tutoriales idénticos con distinto decorado.
+
+### 12. Solicitudes al Narrador
+
+1. Para cada primera salida, crear una microescena de 3–5 movimientos con:
+   - una señal;
+   - una segunda oportunidad;
+   - una decisión que aproveche haber leído.
+2. No explicar la lección (“el silencio significa peligro”); dejar que la consecuencia la vuelva comprensible.
+3. Mantener la primera inferencia de cada región cercana temporalmente a la pista.
+4. En Nhal, acompañar las primeras pistas de ausencia con otra señal concreta.
+5. En Lethra, dar al menos dos indicios antes de una amenaza oculta importante.
+
+### 13. Solicitudes a Jugabilidad
+
+1. Confirmar que observar/mirar/examinar pueda reforzar una pista sin consumir una oportunidad crítica injustamente.
+2. Definir si algunas señales ambientales aparecen a todos y otras dependen de Percepción/contexto.
+3. Evitar que la interfaz muestre botones del tipo “investigar pista” antes de que el jugador haya detectado que existe algo interesante.
+4. Diseñar el fracaso inicial como recuperable: una mala lectura razonable debe enseñar, no castigar de forma desproporcionada.
+
+## Estado
+
+**VT-PSY-002: REVISIÓN ENTREGADA.**
+
+El primer slice técnico puede avanzar sin añadir dificultad lectora artificial. La primera prueba real de “leer para jugar mejor” debería empezar en las microzonas narrativas de VT-NAR-002, una vez que Narrador y Jugabilidad concreten la interacción mínima.
+
