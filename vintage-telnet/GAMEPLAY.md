@@ -573,6 +573,130 @@ El siguiente ciclo de balance debe basarse en partidas reales y telemetría/prue
 Especialmente importante: un niño que haya distribuido PA de forma imperfecta debe poder seguir progresando y entender por qué una acción funcionó o falló.
 
 
+
+## 21. Arcanes — vínculo, compañía y poder único
+
+**Estado:** CRITERIO V1 APROBADO.  
+**Canon de referencia:** `vintage-telnet/ARCANES.md`.
+
+Los Arcanes son contenido del mundo definido por el Historiador y presentado mediante escenas por el Narrador. Jugabilidad define únicamente cómo un jugador puede establecer el vínculo y qué límites mecánicos tiene después.
+
+### 21.1 No se capturan automáticamente
+
+Un Arcane **no se obtiene simplemente derrotándolo, tocándolo o repitiendo una acción**.
+
+El flujo general aprobado es:
+
+**encontrar → observar → comprender su comportamiento → comprobar compatibilidad → generar confianza mediante decisiones → vínculo voluntario → nombrar.**
+
+El Narrador decide la escena concreta, las señales y el comportamiento. El sistema debe permitir que leer esas señales mejore las decisiones del jugador.
+
+### 21.2 Confianza sin barra numérica visible
+
+La confianza puede representarse internamente mediante pocos estados discretos, por ejemplo:
+
+- desconfiado;
+- tolera la presencia;
+- se acerca;
+- confía;
+- vínculo posible.
+
+No se mostrará una barra tipo `63/100` ni se diseñará el vínculo como una actividad de farmeo.
+
+**Repetir indefinidamente la misma acción no aumenta confianza por sí solo.** El avance depende del contexto y de decisiones compatibles con lo que el Arcane comunica mediante su comportamiento.
+
+Un error razonable puede cerrar el vínculo durante ese encuentro sin convertir necesariamente al Arcane en imposible para siempre, salvo que el contenido establezca una condición real distinta.
+
+### 21.3 Compatibilidad basada en poderes ya adquiridos
+
+Algunos Arcanes pueden aceptar prácticamente a cualquier personaje. Otros pueden tener incompatibilidades concretas.
+
+Para mantener el sistema simple, en la v1 la compatibilidad especial **solo consulta poderes concretos que el personaje ya haya adquirido**.
+
+No se calcula con:
+- porcentajes;
+- una puntuación de afinidad;
+- el valor total de atributos;
+- la clase por sí sola;
+- una etiqueta genérica de “especialista”.
+
+El contenido de un Arcane puede declarar una lista simple de poderes incompatibles. Si el jugador ya posee uno de esos poderes, ese Arcane no puede establecer vínculo con él.
+
+La incompatibilidad es una condición real del mundo, no una tirada con una probabilidad pequeña de éxito.
+
+El Narrador debe presentar el rechazo mediante comportamiento comprensible del Arcane y, cuando sea posible, dar señales antes de que el jugador invierta mucho tiempo intentando el vínculo.
+
+### 21.4 Un vínculo existente no se rompe retroactivamente
+
+Por defecto, adquirir después un poder que habría impedido el vínculo **no elimina un Arcane que ya era compañero del jugador**.
+
+Una excepción futura tendría que ser diseñada explícitamente como contenido especial y revisada por Jugabilidad; no debe surgir automáticamente de la comprobación de compatibilidad.
+
+### 21.5 Nombre elegido por el jugador
+
+Antes del vínculo, el Arcane se identifica únicamente mediante apariencia, comportamiento y anomalía, conforme a `ARCANES.md`.
+
+Cuando el vínculo queda establecido, **el jugador elige su nombre individual** y el servidor lo guarda de forma persistente.
+
+El Historiador, Narrador, Arte y el sistema no deben imponer previamente un nombre propio a un Arcane todavía no vinculado.
+
+### 21.6 Límite y acompañante activo
+
+Un jugador puede tener como máximo **tres Arcanes vinculados**.
+
+- Puede conservarlos en su casa.
+- Solo **un Arcane puede viajar como acompañante activo a la vez**.
+- Los demás permanecen guardados en casa hasta que el jugador cambie su acompañante.
+- Un Arcane que permanece en casa no aporta su poder al personaje.
+
+Esto evita acumulación simultánea de beneficios y mantiene legible la relación con cada compañero.
+
+### 21.7 Un solo poder fijo por Arcane
+
+Cada Arcane aporta:
+
+1. **compañía**;
+2. **un único poder propio fijo**.
+
+El Arcane:
+- no sube de nivel;
+- no gana PA ni PP;
+- no posee árbol de habilidades;
+- no desbloquea poderes adicionales;
+- no mejora progresivamente su poder;
+- no necesita una segunda matemática de atributos paralela a la del jugador.
+
+El Historiador define/valida qué poder pertenece a cada tipo de Arcane. El Narrador decide cómo se descubre o se expresa en la experiencia. Jugabilidad valida únicamente su efecto mecánico y balance antes de implementarlo.
+
+El poder puede ser activo, pasivo o contextual según el contenido concreto, pero **solo el Arcane acompañante activo puede aportar ese poder**.
+
+### 21.8 Sin muerte permanente ordinaria
+
+Un Arcane vinculado no se pierde permanentemente por una derrota ordinaria del jugador o por quedar incapacitado durante una situación peligrosa.
+
+La v1 debe permitir narrar retirada, incapacidad o regreso/recuperación en casa sin borrar el vínculo ni el nombre elegido por el jugador.
+
+Las condiciones exactas de recuperación pueden ajustarse cuando existan los primeros poderes y escenas concretas.
+
+### 21.9 Principio de diseño
+
+**El Arcane se consigue comprendiendo y construyendo un vínculo, no farmeando una barra; después es compañía + un poder fijo, no un segundo personaje que haya que levelear.**
+
+Esta simplicidad es deliberada: los Arcanes deben añadir identidad, exploración y decisiones al mundo sin crear un sistema paralelo de progresión.
+
+### 21.10 Handoff al Narrador
+
+Con estas reglas cerradas, el Narrador ya puede diseñar encuentros concretos donde:
+- el Arcane inicialmente se presenta según el canon de `ARCANES.md`;
+- el jugador recibe señales de su comportamiento;
+- existen acciones adecuadas e inadecuadas;
+- puede aparecer una incompatibilidad con un poder ya adquirido;
+- el vínculo requiere decisiones y no repetición;
+- al aceptar permanecer con el jugador se habilita el momento de nombrarlo;
+- la escena no necesita inventar niveles, estadísticas ni progresión para el Arcane.
+
+El Narrador puede proponer para cada Arcane qué conductas permiten ganar confianza y qué señales muestran rechazo. Si necesita una nueva regla mecánica, debe devolverla a Jugabilidad antes de convertirla en norma.
+
 ## Investigación disponible para Jugabilidad — capacidades HTML y comandos
 
 **ESTADO: INVESTIGACIÓN CONSUMIDA PARCIALMENTE — la dirección híbrida HTML/Telnet ya está confirmada; quedan decisiones específicas por cerrar.**
