@@ -86,7 +86,7 @@
     .dpad button:nth-child(4){grid-column:3;grid-row:2}
     .dpad button:nth-child(5){grid-column:2;grid-row:3}
     .combat-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-    .tool-row{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;position:relative;padding-top:9px}
+    .tool-row{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:7px;position:relative;padding-top:9px}
     .tool-row::before{
       content:"";position:absolute;left:8%;right:8%;top:0;height:8px;
       background:url("vintage-telnet/assets/html-ui/dividers/divider-horizontal-gold-diamond.png") no-repeat center/contain;
