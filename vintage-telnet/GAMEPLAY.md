@@ -158,6 +158,64 @@ El objetivo es evitar que información importante quede enterrada entre mensajes
 
 HTML debe reducir fricción, no resolver automáticamente decisiones del jugador ni revelar aquello que todavía debe descubrir.
 
+## 16. Atributos base orientados a lectura — confirmados conceptualmente
+
+Después de las revisiones VT-GAME-002 del Narrador e Historiador y VT-PSY-001/001A de Psicopedagogía, se mantienen los ocho atributos base: **Fuerza, Resistencia, Agilidad, Percepción, Intelecto, Voluntad, Destreza y Presencia**.
+
+Los rasgos naturales de especie son una capa distinta. Un atributo alto no crea anatomía, sentidos, magia, conocimientos, equipo, reputación ni técnicas que el personaje no posea.
+
+### Regla de lectura
+
+Para escenas que pretendan premiar comprensión se adopta:
+
+**Información → Comprensión → Acción → Consecuencia.**
+
+Los atributos pueden cambiar la información recibida, qué puede intentar el personaje, la calidad de ejecución o las consecuencias. No deben sustituir sistemáticamente la comprensión del jugador.
+
+- **Percepción aporta señales; Intelecto aporta contexto/conocimiento; el jugador realiza la deducción final cuando corresponda.**
+- **Agilidad gobierna ejecución corporal; Destreza, ejecución manual fina.**
+- **Fuerza gobierna potencia; Resistencia, capacidad de sostener y soportar esfuerzo.**
+- **Presencia mejora la recepción de una propuesta plausible; no convierte automáticamente una mala decisión o argumento absurdo en éxito.**
+
+Los fallos relevantes deben tener una causa narrativamente interpretable cuando sea razonable, aunque la fórmula interna permanezca oculta.
+
+## 17. Principios confirmados del combate físico basado en atributos
+
+El combate continúa siendo **semi-automático**, pero leer debe mejorar las decisiones del jugador incluso cuando sus atributos no cambien.
+
+**Leer la situación → decidir qué intentar → ejecutar según atributos, equipo, estado y contexto → recibir una consecuencia narrada.**
+
+### Ataque físico normal
+
+- **Destreza:** precisión y calidad con que se coloca el ataque.
+- **Fuerza:** potencia física transmitida cuando conecta.
+
+Fuerza no determina por regla general tanto precisión como potencia.
+
+Los demás atributos intervienen solo cuando el contexto lo justifica: Percepción puede revelar aperturas; Agilidad ayuda en movimiento/reacción/posición; Resistencia sostiene rendimiento prolongado; Voluntad actúa bajo presión mental, dolor o concentración; Intelecto aporta conocimiento legítimo; Presencia puede intervenir en intimidación, coordinación o provocación. Ninguno aumenta automáticamente cada golpe.
+
+Los poderes concretos pertenecen al contenido del Historiador. Jugabilidad decidirá posteriormente qué atributos afectan cada tipo de poder; no se establece un atributo mágico universal.
+
+Un resultado incompleto no debe narrarse siempre como “fallaste”: puede ser esquivado, bloqueado, desviado, interrumpido, mal colocado o superficial según lo ocurrido.
+
+### Defensa física
+
+| Defensa | Atributo principal | Función |
+| --- | --- | --- |
+| **Esquivar** | Agilidad | evitar que el ataque conecte mediante movimiento corporal |
+| **Bloquear/desviar** | Destreza | manejar correctamente arma, escudo u objeto apropiado |
+| **Resistir** | Resistencia | soportar mejor las consecuencias cuando el ataque conecta |
+
+Percepción puede aportar una señal previa cuando exista algo legítimo que detectar, pero no elige la respuesta.
+
+Resistencia no dificulta por sí sola que te golpeen; Agilidad no absorbe daño; Destreza no garantiza bloqueo si equipo, posición o ataque lo hacen inapropiado.
+
+**Ninguna defensa debe ser siempre la mejor.** La descripción del ataque, enemigo, terreno, equipo y estado debe poder ayudar al jugador a decidir. Las alternativas no deben ser botones equivalentes que ejecutan la misma tirada con nombres diferentes.
+
+### Pendiente antes de las matemáticas de combate
+
+Todavía no están definidos valores iniciales, PA por nivel, costes, fórmulas de precisión/potencia/defensa/daño, vida/HP/heridas, relación numérica de armas/armadura, probabilidades/grados de éxito ni reglas concretas de poderes.
+
 ## Investigación disponible para Jugabilidad — capacidades HTML y comandos
 
 **ESTADO: INVESTIGACIÓN CONSUMIDA PARCIALMENTE — la dirección híbrida HTML/Telnet ya está confirmada; quedan decisiones específicas por cerrar.**
