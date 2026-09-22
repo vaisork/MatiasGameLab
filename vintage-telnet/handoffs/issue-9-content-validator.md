@@ -83,7 +83,7 @@ Resultado real:
 
 ```text
 Vintage Telnet content validation OK
-Ran 13 tests
+Ran 12 tests
 OK
 ```
 
@@ -100,8 +100,9 @@ Casos probados:
 9. JSON no listado en manifest;
 10. versión de manifest inválida;
 11. referencia a private-content;
-12. dirección de salida no permitida en schema v1;
-13. códigos de salida CLI válido/inválido.
+12. códigos de salida CLI válido/inválido.
+
+Después de la revisión contra la versión más reciente de PR #8 se añadió una **prueba 13** para dirección de salida no permitida. Esa corrección quedó revisada estáticamente en GitHub; esta sesión no dispone de runner/CI del repositorio ni acceso de red desde el contenedor para clonar y reejecutar la suite, por lo que no se afirma falsamente un resultado posterior.
 
 ## Límites respetados
 
