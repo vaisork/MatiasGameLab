@@ -93,6 +93,8 @@ El Historiador debe revisar este archivo antes de ampliar el mundo. Una idea inc
 - Puede presentar rasgos que recuerden a varias criaturas o características extrañas que indiquen que no es un animal común.
 - No siempre será fácil reconocer inmediatamente que una criatura es un Arcane.
 - La dirección confirmada es que un jugador pueda tener hasta **tres Arcanes** y pueda guardarlos en su casa.
+- **El nombre individual de un Arcane lo elige el jugador** cuando el Arcane pasa a ser su compañero/mascota. Antes de ese vínculo, el mundo y el Narrador deben describirlo por su apariencia, comportamiento y rasgo anómalo, no asignarle un nombre propio fijo.
+- El Historiador define qué es un Arcane y sus rasgos de mundo; el Narrador deberá resolver cómo se presenta y se establece el vínculo en ficción, y Jugabilidad deberá definir cualquier regla mecánica asociada a conseguirlo o adoptarlo.
 - La mecánica exacta para conseguirlos, transportarlos, almacenarlos o limitar su cantidad debe coordinarse con Jugabilidad.
 
 ## Objetos físicos y Forja
