@@ -361,6 +361,27 @@ La revisión fija además que un atributo alto no puede crear sentidos de especi
 
 Para preservar el objetivo de lectura, Intelecto y Percepción pueden aportar contexto y señales, pero no deben resolver automáticamente misterios ni interpretar el texto por el jugador.
 
+### Respuesta de Psicopedagogía — VT-GAME-002 / VT-PSY-001
+
+**ENTREGADA:** `vintage-telnet/PSYCHOPEDAGOGY.md`.
+
+Psicopedagogía revisó las ocho escenas textuales de VT-GAME-002A y concluye que los ocho atributos pueden seguir en evaluación, pero no todos prueban comprensión lectora por sí mismos.
+
+Se fija una distinción de diseño:
+
+- **capacidad del personaje:** qué puede percibir, resistir o ejecutar;
+- **comprensión del jugador:** qué entiende, relaciona o deduce de lo leído.
+
+Para escenas cuyo objetivo sea fomentar lectura, se propone la cadena:
+
+**Información → Comprensión → Acción → Consecuencia**
+
+Percepción puede revelar señales; Intelecto puede aportar contexto legítimo; Presencia puede mejorar cómo se transmite una propuesta plausible. Ninguno debe sustituir automáticamente la interpretación o decisión del jugador.
+
+Se señalan riesgos altos de sustitución de comprensión en **Intelecto** y **Presencia**, y necesidad de señales previas claras en **Resistencia** y **Voluntad**.
+
+Psicopedagogía devuelve cinco decisiones a Jugabilidad antes de cerrar la matriz matemática y solicita al Narrador escenas reales donde leer cambie la acción elegida, no únicamente el resultado de una tirada.
+
 ### Pregunta central conjunta
 
 **¿Cómo deben manifestarse estos ocho atributos en un RPG que se juega principalmente leyendo texto, tomando decisiones y seleccionando/escribiendo acciones, de forma que realmente cambien la experiencia narrada sin convertir Vintage Telnet en un videojuego gráfico imaginado sobre una terminal?**
