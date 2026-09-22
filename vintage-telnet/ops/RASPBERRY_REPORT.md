@@ -292,6 +292,74 @@ previa (sin systemd) y luego la instalación systemd final.
   pueda leer `VT_DATA_DIR` sin necesitar acceso a los secretos del archivo
   root-only; el operador vuelve a probar una corrida manual cuando llegue esa
   corrección.
+- **Actualización 2026-09-22:** el fix ya está escrito, probado en aislado y
+  mergeado a `main` (cierra Issue #32, PR #35, commit `93bb5bea...`).
+  **Todavía no desplegado en producción** — falta que Javier corra
+  `sudo python3 ~/MatiasGameLab/vintage-telnet/ops/update_v3_authorized.py`
+  (queda pendiente, se retomó primero el Issue #15 a pedido de Javier).
+
+## Issue #15 — staging HTTPS de prueba fuera de la LAN — 2026-09-22
+
+**Estado: STAGING WEB DE PRUEBA LISTO.**
+
+- **Mecanismo elegido:** Tailscale Funnel (la Raspberry ya tenía Tailscale
+  instalado y conectado para SSH remoto — ver más abajo). Publica un proxy
+  HTTPS saliente hacia `http://127.0.0.1:8080`, sin abrir el puerto 8080 al
+  router, sin port-forwarding ni UPnP. **Corrección importante sobre una
+  descripción anterior del operador en esta misma conversación:** Funnel
+  expone el servicio a **Internet público**, no solo a la red Tailscale de
+  Javier — cualquiera con la URL puede acceder a la pantalla de
+  registro/login del juego (no a `/dm`, que sigue protegido por su propia
+  contraseña). La URL no está enlazada en ningún lado público, pero no es
+  privada en sentido estricto. Javier autorizó expresamente esto en el chat
+  después de que el operador se lo aclarara.
+- **URL de prueba:** `https://raspberrypi.tail3d212e.ts.net/` (certificado
+  HTTPS válido emitido automáticamente por Tailscale, no autofirmado).
+- **Pasos reales:**
+  1. Javier habilitó Funnel a nivel de cuenta Tailscale (paso de
+     administrador, solo lo puede hacer el dueño de la cuenta).
+  2. Javier corrió `sudo tailscale set --operator=jdiaz` una vez, para que
+     el operador pudiera manejar `tailscale funnel`/`serve` sin sudo de ahí
+     en adelante.
+  3. Operador: `tailscale funnel --bg 8080`.
+  4. Primer intento dio `400 Bad Request: Host 'raspberrypi.tail3d212e.ts.net'
+     is not trusted` — `VT_TRUSTED_HOSTS` en `server.env` no incluía el
+     dominio de Funnel. Javier agregó el dominio a `VT_TRUSTED_HOSTS` con
+     sudo y reinició el servicio.
+- **Validación completa por la URL pública** (navegador real, no curl):
+  registro de cuenta de prueba (`vtprueba_funnel`, jugador **#0004**) →
+  aprobación desde `/dm` con la contraseña real → especie **Dravak**
+  elegida → aparece en pueblo inicial "Brumak" → movimiento al norte hasta
+  "Vaisgard" → **recarga completa de la página (navegación nueva, no solo
+  refresh)** → sigue en "Vaisgard", confirma persistencia real también por
+  esta vía.
+- **Salud local y externa:** `curl http://127.0.0.1:8080/healthz` y
+  `curl https://raspberrypi.tail3d212e.ts.net/healthz` devuelven ambos
+  `{"schema_version":2,"status":"ok"}`.
+- **Cómo apagar el acceso externo sin tocar el mundo** (no borra datos, no
+  reinicia el servicio principal, el juego sigue funcionando en la LAN):
+  ```
+  tailscale funnel --https=443 off
+  ```
+  Revertir `VT_TRUSTED_HOSTS` a `localhost,127.0.0.1` (quitando el dominio
+  `.ts.net`) es opcional para cerrar del todo esa puerta, pero no es
+  necesario para que Funnel deje de enrutar tráfico — sin Funnel activo, ese
+  hostname ya no es alcanzable desde ningún lado igual.
+- **Cambios operativos:** Tailscale instalado y conectado (cuenta
+  `vaisork@gmail.com`), operador Tailscale configurado (`jdiaz`), Funnel
+  habilitado apuntando a `127.0.0.1:8080`, `VT_TRUSTED_HOSTS` ampliado con
+  el dominio `.ts.net`. Nada de esto toca `/var/lib/vintage-telnet` ni los
+  secretos existentes.
+- **No enlazado en ningún lado público** (ni `index.html`, ni menús, ni
+  documentación promocional), tal como pide el issue. La URL queda
+  documentada acá y se la entrego directamente a Javier.
+- **Pendiente:** decidir con Javier cuánto tiempo queda Funnel activo (¿se
+  apaga después de cada sesión de prueba, o queda disponible hasta que se
+  decida publicar/discontinuar?). No hay reinicio físico de la Raspberry
+  probado con Funnel activo todavía (si la Raspberry reinicia,
+  `tailscaled`/`vintage-telnet.service` vuelven solos por sus units, pero
+  `tailscale funnel` no persiste automáticamente entre reinicios salvo que
+  se confirme lo contrario — pendiente de verificar).
 
 No adjuntar contraseñas, claves, cookies, hashes ni bases. No afirmar resultados
 de pruebas que no se ejecutaron. Acceso desde fuera de casa: fuera de esta entrega.
