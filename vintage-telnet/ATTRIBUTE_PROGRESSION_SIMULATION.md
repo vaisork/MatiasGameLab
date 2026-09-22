@@ -1,7 +1,7 @@
 # Estudio experimental — Simulación de progresión de atributos
 
 **Fecha:** 2026-09-21  
-**Estado:** SIMULACIÓN EXPLORATORIA — NÚMEROS NO APROBADOS  
+**Estado:** SIMULACIÓN HISTÓRICA + MODELO DE CRECIMIENTO APROBADO AL FINAL DEL DOCUMENTO  
 **Deriva de:** `RESEARCH_ATTRIBUTE_PROGRESSION.md`  
 **Consumidor:** Diseñador de Jugabilidad con Javier/Matías
 
@@ -458,3 +458,67 @@ Debe probar los cinco perfiles contra niveles de desafío 10/25/50/75/100 y medi
 - si la dificultad crece demasiado rápido al mismo tiempo que aumenta el coste de especialización.
 
 **Conclusión provisional:** 2 PA/nivel + coste creciente medio merece funcionar como punto central de comparación en la próxima simulación, acompañado por alternativas más lenta y más rápida. No se aprueba todavía porque falta modelar dificultad y efectos reales de atributos.
+
+
+## CIERRE DE JUGABILIDAD — modelo de crecimiento aprobado
+
+**Fecha de cierre:** 2026-09-22  
+**Estado:** APROBADO POR JAVIER PARA LA PRIMERA ETAPA 1–100.
+
+Después de ampliar las pruebas a múltiples tipos de jugador y comparar curvas de coste, se cierra el crecimiento base con estas reglas:
+
+### 1. Velocidad de PA
+
+**2 PA por nivel.**
+
+De nivel 1 a nivel 100 esto genera 198 PA procedentes de las 99 subidas de nivel, sin contar cualquier decisión futura sobre valores iniciales.
+
+### 2. Curva suave de coste creciente
+
+| Valor actual del atributo | Coste del siguiente +1 |
+| --- | ---: |
+| 10–19 | 1 PA |
+| 20–34 | 2 PA |
+| 35–44 | 3 PA |
+| 45–59 | 4 PA |
+| 60+ | 5 PA |
+
+La intención es reducir extremos sin borrar la especialización.
+
+En la simulación orientativa a nivel 100, esta curva produjo aproximadamente:
+- especialista: atributo principal ~64;
+- doble especialista: ~48;
+- equilibrado: ~30;
+- irregular: ~45;
+- casual: ~35.
+
+Estas cifras describen perfiles de prueba, no caps ni objetivos obligatorios.
+
+### 3. Competencia general acumulada
+
+Se aprueba además una capa de crecimiento general equivalente aproximadamente a **+8 de competencia base acumulada al nivel 100**.
+
+Su objetivo es que un personaje veterano conserve competencia funcional fuera de su especialidad. El nivel representa experiencia general; los PA representan identidad y especialización.
+
+La forma exacta de repartir gradualmente este +8 durante los 100 niveles puede definirse en implementación/balance posterior, pero debe conservar el comportamiento aprobado y no aparecer como un salto repentino al nivel 100.
+
+### 4. Resultado buscado
+
+El sistema debe mantener simultáneamente:
+- especialistas extraordinarios en su foco;
+- dobles especialistas viables;
+- generalistas valiosos por versatilidad;
+- jugadores casuales capaces de progresar aunque su reparto no sea óptimo;
+- ausencia de una estadística universal que sustituya varias funciones.
+
+### 5. Qué sigue abierto
+
+Este cierre NO define todavía:
+- valores iniciales exactos de atributos;
+- fórmulas finales de daño, precisión, defensa, exploración, investigación o interacción social;
+- progresión exacta de HP;
+- efectos numéricos de equipo;
+- aplicación concreta de poderes;
+- forma técnica exacta de interpolar la competencia general +8 a través de los niveles.
+
+La fuente de verdad normativa continúa siendo `vintage-telnet/GAMEPLAY.md`.
