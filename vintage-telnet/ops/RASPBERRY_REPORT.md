@@ -70,8 +70,11 @@ previa (sin systemd) y luego la instalación systemd final.
   URL correcta.
 - Javier borró el `Vintage-Telnet.desktop` duplicado; quedan solo
   `Vintage-Telnet-Juego.desktop` y `Vintage-Telnet-DM.desktop` en el escritorio.
-- **Pendiente:** reinicio físico de la Raspberry con el servicio activo,
-  todavía no probado.
+- **Reinicio físico final — VALIDADO POR JAVIER:** después de reiniciar completamente
+  la Raspberry con el servicio activo, Javier confirmó que la prueba quedó
+  validada conforme al checklist acordado de arranque automático, salud del
+  servicio y continuidad del juego. Esta confirmación cierra el pendiente de
+  reboot físico. No se añaden aquí salidas de comandos no copiadas al reporte.
 
 ## Prueba manual previa (sin systemd) — 2026-09-22
 
@@ -189,8 +192,7 @@ previa (sin systemd) y luego la instalación systemd final.
      manualmente (cubierto por suite, no por mí a mano).
   4. Decidir política de respaldo antes de cualquier instalación real con
      datos que importen.
-  5. Reinicio físico de la Raspberry con el servicio activo: no probado,
-     pendiente si se decide instalar como systemd.
+  5. Reinicio físico de la Raspberry con el servicio activo: **VALIDADO posteriormente por Javier** tras la instalación systemd; pendiente cerrado.
 
 No adjuntar contraseñas, claves, cookies, hashes ni bases. No afirmar resultados
 de pruebas que no se ejecutaron. Acceso desde fuera de casa: fuera de esta entrega.
