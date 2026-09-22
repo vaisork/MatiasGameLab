@@ -30,6 +30,7 @@ El Historiador debe revisar este archivo antes de ampliar el mundo. Una idea inc
 - No se usarán elfos, enanos u otras especies clásicas como lista base de especies jugables. Vintage Telnet desarrollará identidades propias; las referencias clásicas o animales pueden utilizarse internamente durante el diseño, pero no sustituyen la identidad final de cada especie.
 - La primera especie original confirmada se llama **Felaryn**.
 - Los Felaryn parten de una mezcla conceptual entre rasgos humano-gato y algunos rasgos tradicionalmente asociados a los elfos.
+- **Rasgo físico confirmado:** los Felaryn tienen **pelo visible y orejas similares a las de un gato**, integradas de forma natural en su anatomía. Estos rasgos forman parte de su identidad visual propia y no deben presentarse al jugador como una comparación externa del tipo “hombre gato”.
 - Su hábitat de origen es un **pueblo situado entre las montañas**.
 - Los Felaryn tienen una capacidad natural destacada para **saltar grandes distancias**.
 - También poseen una **vista privilegiada**, superior a la de una persona común y especialmente útil para orientarse y observar a distancia en terrenos montañosos.
