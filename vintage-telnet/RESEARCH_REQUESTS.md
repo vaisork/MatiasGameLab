@@ -433,4 +433,39 @@ En las primeras sesiones:
 - primera inferencia con segunda oportunidad;
 - no usar ausencia como única pista crítica antes de enseñar al jugador que el silencio/cambio también informa.
 
+## VT-PSY-003 — Handoff de auditoría de lectura y conversación
+
+**Solicitante:** Psicopedagogía y Experiencia Infantil — Vintage Telnet  
+**Destinatarios:** Narrador + Jugabilidad + Arquitecto/Desarrollo + responsable de NPCs  
+**Estado:** AUDITORÍA ENTREGADA en `vintage-telnet/PSYCHOPEDAGOGY.md`  
+**Prioridad:** P0 para playtest narrativo infantil; no bloquea pruebas técnicas de login/movimiento/persistencia.
+
+### Bloqueos detectados
+
+1. Las salas actuales todavía muestran `[PLACEHOLDER]`; no sirven para evaluar lectura real.
+2. La selección de especie expone notas internas “pendiente” y tiene descripciones desiguales.
+3. El servidor solo reconoce movimiento y `mirar`; `observar/examinar/hablar` todavía no existen.
+4. Cualquier texto no reconocido se publica automáticamente como chat local. Antes de probar con niños, la intención de hablar debe ser inequívoca.
+5. Para auditar conversación real hace falta al menos un NPC conversable en la región de prueba.
+
+### Reglas de conversación solicitadas
+
+- conversación por capas, no bloques enciclopédicos;
+- introducir NPCs progresivamente aunque existan 3–4 por pueblo;
+- separar lo que el NPC sabe, cree, rumorea y desconoce;
+- Presencia modifica recepción de propuestas plausibles, no verdad ni comprensión;
+- primeros fallos sociales razonables deben permitir recuperación;
+- regresar con una pista/descubrimiento debe poder cambiar la conversación.
+
+### Criterio de playtest
+
+No preguntar “¿qué acabas de leer?”. Observar si la información cambia una acción, si el jugador recupera una pista mediante inspección, si distingue comando de conversación y si vuelve a un NPC por una razón comprendida.
+
+### Handoffs concretos
+
+- **Narrador / NPC:** preparar diálogo mínimo de al menos un NPC de prueba con respuesta inicial breve, seguimiento y reacción al regreso.
+- **Jugabilidad:** confirmar vocabulario mínimo de inspección/conversación.
+- **Arquitecto/Desarrollo:** impedir que una entrada no reconocida se convierta accidentalmente en mensaje público; implementar la distinción elegida entre acción y habla.
+- **Historiador/Narrador:** sustituir el texto visible de la ruta que se use en el playtest y completar los textos comparables de selección de especie.
+
 
