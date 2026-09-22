@@ -27,7 +27,7 @@ Población mínima para Valdren, Khariel, Brumak, Narevia y Velmora, priorizando
 **Solicitante:** Psicopedagogía y Experiencia Infantil  
 **Prioridad:** P0 para playtest narrativo  
 **Fuente:** `vintage-telnet/RESEARCH_REQUESTS.md` / `PSYCHOPEDAGOGY.md`  
-**Estado:** RESPUESTA INICIAL PREPARADA
+**Estado:** RESPUESTA P0 PREPARADA — TAREN SELECCIONADO
 
 ### Requisitos asumidos
 - respuesta inicial breve;
@@ -39,3 +39,30 @@ Población mínima para Valdren, Khariel, Brumak, Narevia y Velmora, priorizando
 
 ### Dependencia técnica
 El servidor todavía debe distinguir de forma inequívoca órdenes, conversación con NPC y chat entre jugadores.
+
+
+---
+
+## VT-NPC-PLAYTEST-001 — Taren como primer NPC conversable
+
+**Estado:** LISTO PARA VALIDACIÓN
+
+Se selecciona a Taren (Khariel) para la primera prueba porque la prueba técnica real más reciente ya dejó un personaje Felaryn en Khariel.
+
+La especificación completa está en `NPCS.md` e incluye:
+- primer encuentro;
+- preguntas de seguimiento;
+- respuesta “no sé”;
+- negativa;
+- señales comunes;
+- combinación de señales;
+- reacción al regreso;
+- límites de Presencia;
+- memoria mínima esperada;
+- criterio de aceptación infantil.
+
+**NECESIDAD DEL HISTORIADOR:** validar que el rol cotidiano de Taren no introduzca una institución o jerarquía no definida.
+
+**NECESIDAD DEL NARRADOR:** validar que el grado de información de la conversación encaje con VT-NAR-001/002B y elegir la escena concreta de introducción.
+
+**NECESIDAD TÉCNICA:** implementar después de cerrar la separación entre comando, NPC y chat local.
