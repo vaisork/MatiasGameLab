@@ -4,6 +4,14 @@ Esta es la cola común para recursos visuales jugables que todavía necesitan tr
 
 Antes de añadir una solicitud, revisar `assets/` y las solicitudes existentes para evitar duplicados. Las reglas completas están en `AGENTS.md`.
 
+### Regla especial — Vintage Telnet
+
+Toda solicitud visual de **Vintage Telnet** debe usar `vintage-telnet/ART_WORLD_GUIDE.md` como primera fuente.
+
+La solicitud debe indicar las **fuentes de canon** concretas que aplican. Si la imagen exige una verdad del mundo que no aparece en esas fuentes, Pixel Art/Arte no la inventa: marca **CANON VISUAL INSUFICIENTE** y devuelve la pregunta al Historiador.
+
+Las imágenes conceptuales previas pueden citarse como referencias visuales, pero nunca sustituyen el canon escrito.
+
 ## Cómo solicitar un recurso
 
 Copiar esta plantilla al final del documento:
@@ -33,6 +41,7 @@ Requisitos conocidos:
 - Frames/poses:
 - Dirección/orientación:
 - Referencias existentes:
+- Fuentes de canon (obligatorio para Vintage Telnet):
 - Ruta relacionada en assets:
 
 Decisiones visuales ya aprobadas:
