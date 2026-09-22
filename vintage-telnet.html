@@ -114,6 +114,10 @@
       background-image:linear-gradient(#260d10a3,#260d10a3),url("vintage-telnet/assets/html-ui/buttons/button-huir-danger.png");
       border-color:#98535a;color:#fff;text-shadow:0 1px 2px #000
     }
+    .btn.asset-powers{
+      background-image:linear-gradient(#1712259f,#1712259f),url("vintage-telnet/assets/html-ui/buttons/button-poderes-special.png");
+      border-color:#75649c;color:#fff8e9;text-shadow:0 1px 2px #000
+    }
     .btn.term{
       background:#061009;color:var(--green3);border-color:#28623a;font-family:ui-monospace,monospace
     }
@@ -277,6 +281,7 @@
           <button class="btn asset-map" data-action="mapa">Mapa</button>
           <button class="btn" data-action="personaje">Personaje</button>
           <button class="btn asset-inventory" data-action="inventario">Inventario</button>
+          <button class="btn asset-powers" data-action="poderes">Poderes</button>
           <button class="btn" data-action="ayuda">Ayuda</button>
         </div>
       </section>
@@ -325,6 +330,10 @@
   <div class="modal-head"><strong>Inventario</strong><button class="close" data-close aria-label="Cerrar">×</button></div>
   <div class="modal-body"><h3>Sin inventario simulado</h3><p>El panel existe como herramienta HTML, pero los objetos reales deberán provenir del servidor.</p></div>
 </dialog>
+<dialog id="powersDialog">
+  <div class="modal-head"><strong>Poderes</strong><button class="close" data-close aria-label="Cerrar">×</button></div>
+  <div class="modal-body"><h3>Panel preparado</h3><p>Este acceso queda reservado para magias, habilidades u otros poderes cuando Jugabilidad defina cuáles existen y cómo se usan. No se simula ningún poder en esta demo.</p></div>
+</dialog>
 <dialog id="helpDialog" class="fullscreen">
   <div class="modal-head"><strong>Ayuda de Vintage Telnet</strong><button class="close" data-close aria-label="Cerrar">×</button></div>
   <div class="modal-body">
@@ -332,7 +341,7 @@
       <section class="help-section"><h3>Movimiento</h3><p>Norte, sur, este y oeste. También puedes usar n, s, e y o.</p></section>
       <section class="help-section"><h3>Explorar</h3><p>Usa Mirar para volver a leer el lugar actual. El mapa muestra únicamente orientación permitida por el cliente.</p></section>
       <section class="help-section"><h3>Combate</h3><p>Atacar y Huir están visibles, pero la resolución real dependerá del servidor y de las reglas de Jugabilidad.</p></section>
-      <section class="help-section"><h3>Herramientas</h3><p>Mapa, Personaje e Inventario se abren fuera de la terminal para no interrumpir la lectura.</p></section>
+      <section class="help-section"><h3>Herramientas</h3><p>Mapa, Personaje, Inventario y Poderes se abren fuera de la terminal para no interrumpir la lectura. Poderes todavía no tiene mecánica definida.</p></section>
       <section class="help-section"><h3>Comandos</h3><p>Los botones y los comandos escritos representan la misma acción. Puedes escribirlos en la línea inferior y pulsar Enviar.</p></section>
       <section class="help-section"><h3>Estado de esta versión</h3><p>Es una demostración local: todavía no conecta con Raspberry Pi ni guarda progreso real.</p></section>
     </div>
@@ -384,6 +393,7 @@
     if(action==="mapa"){openDialog("mapDialog");append("mapa","Abres el mapa conocido.","system");return;}
     if(action==="personaje"){openDialog("characterDialog");append("personaje","Abres el panel de personaje.","system");return;}
     if(action==="inventario"){openDialog("inventoryDialog");append("inventario","Abres el inventario.","system");return;}
+    if(action==="poderes"){openDialog("powersDialog");append("poderes","Abres el panel reservado para poderes. La mecánica todavía depende de Jugabilidad.","system");return;}
     if(action==="ayuda"){openDialog("helpDialog");append("ayuda","Abres la ayuda de comandos de esta demo.","system");return;}
     append(action,"Comando no reconocido por esta demostración local.","system");
   }
