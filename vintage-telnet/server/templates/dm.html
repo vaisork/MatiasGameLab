@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="es">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vintage Telnet — Dungeon Master</title>
+<style>
+  :root {color-scheme: dark; font-family: ui-monospace, monospace; background: #101916; color: #d6eddd}
+  body {max-width: 56rem; margin: auto; padding: 1.5rem; line-height: 1.6}
+  h1 {color: #a2e4b8} section {border-top: 1px solid #486553; margin-top: 2rem}
+  label {display: block; margin-top: 1rem} input, button {font: inherit; padding: .75rem; box-sizing: border-box}
+  input {display: block; width: 100%; max-width: 24rem} button {margin-top: .5rem; cursor: pointer}
+  .error {color: #ffd0b0}
+  table {border-collapse: collapse; width: 100%; margin-top: 1rem}
+  th, td {border: 1px solid #2c453c; padding: .5rem; text-align: left; vertical-align: top; font-size: .9em}
+  th {color: #8fb39c}
+  form.inline {display: inline}
+  .danger {color: #ffb0b0}
+</style>
+<main>
+<h1>Vintage Telnet — Panel del Dungeon Master</h1>
+{% if error %}<p class="error" role="alert">{{ error }}</p>{% endif %}
+
+{% if not authenticated %}
+  {% if not configured %}
+    <p>El panel del Dungeon Master no está configurado en este servidor (falta <code>VT_DM_PASSWORD</code>).</p>
+  {% endif %}
+  <form method="post" action="/dm/login">
+    <input type="hidden" name="csrf" value="{{ session.csrf }}">
+    <label>Contraseña de Dungeon Master
+      <input name="dm_password" type="password" required maxlength="200" autocomplete="off">
+    </label>
+    <button type="submit">Entrar</button>
+  </form>
+{% else %}
+  <form method="post" action="/dm/logout" class="inline">
+    <input type="hidden" name="csrf" value="{{ session.csrf }}">
+    <button type="submit">Cerrar sesión de Dungeon Master</button>
+  </form>
+
+  <section><h2>Cuentas pendientes de aprobación</h2>
+    {% if not pending %}
+      <p>No hay cuentas pendientes.</p>
+    {% else %}
+      <table>
+        <thead><tr><th>Jugador</th><th>Usuario</th><th>Nombre</th><th>Creada</th><th></th></tr></thead>
+        <tbody>
+          {% for p in pending %}
+          <tr>
+            <td>#{{ '%04d' | format(p.player_number) }}</td>
+            <td>{{ p.username }}</td>
+            <td>{{ p.name }}</td>
+            <td>{{ p.created_at }}</td>
+            <td>
+              <form method="post" action="/dm/approve" class="inline">
+                <input type="hidden" name="csrf" value="{{ session.csrf }}">
+                <input type="hidden" name="username" value="{{ p.username }}">
+                <button type="submit">Aceptar</button>
+              </form>
+              <form method="post" action="/dm/reject" class="inline">
+                <input type="hidden" name="csrf" value="{{ session.csrf }}">
+                <input type="hidden" name="username" value="{{ p.username }}">
+                <button type="submit" class="danger">Rechazar</button>
+              </form>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% endif %}
+  </section>
+
+  <section><h2>Jugadores aprobados</h2>
+    {% if not approved %}
+      <p>No hay jugadores aprobados todavía.</p>
+    {% else %}
+      <table>
+        <thead><tr><th>Jugador</th><th>Usuario</th><th>Nombre</th><th>Especie</th><th>Sala</th><th>Último acceso</th><th></th></tr></thead>
+        <tbody>
+          {% for p in approved %}
+          <tr>
+            <td>#{{ '%04d' | format(p.player_number) }}</td>
+            <td>{{ p.username }}</td>
+            <td>{{ p.name }}</td>
+            <td>{{ p.species or '-' }}</td>
+            <td>{{ p.room or '-' }}</td>
+            <td>{{ p.last_access_at }}</td>
+            <td>
+              <form method="post" action="/dm/remove" class="inline">
+                <input type="hidden" name="csrf" value="{{ session.csrf }}">
+                <input type="hidden" name="username" value="{{ p.username }}">
+                <button type="submit" class="danger">Eliminar</button>
+              </form>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% endif %}
+  </section>
+{% endif %}
+</main>
+</html>

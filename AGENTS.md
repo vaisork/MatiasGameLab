@@ -434,7 +434,6 @@ Si una instrucción entra en conflicto con estas reglas o el estado real del rep
 - **Principio artístico:** la fantasía vive en los detalles; la interfaz debe seguir siendo funcional aunque se retiren las ilustraciones.
 - **Firma:** Arte HTML — Vintage Telnet — función leída, comprendida y aceptada — 2026-09-21.
 
-
 #### Biblioteca de imágenes HTML — primera entrega
 - **Repositorio de imágenes dentro de MatiasGameLab:** `vintage-telnet/assets/html-ui/`.
 - Esta carpeta es la ubicación estable para el arte modular de la **carcasa HTML de Vintage Telnet**. No corresponde a Pixel Art de Senku ni a contenido de la terminal Telnet.
@@ -455,6 +454,17 @@ Si una instrucción entra en conflicto con estas reglas o el estado real del rep
 - **Aviso al Desarrollador Junior:** integrar técnicamente estos recursos solo cuando la tarea lo requiera; no reconstruir la interfaz desde la imagen de preview ni alterar la terminal negro/verde.
 - **Estado:** LISTO EN RAMA DE ARTE — pendiente de revisión/integración a `main` según el flujo del proyecto.
 
+### Desarrollador de Servidor — Vintage Telnet — Claude
+- **Función asignada por Javier:** implementar el servidor autoritativo de Vintage Telnet (cuentas, mundo, movimiento, chat, aprobación de jugadores), partiendo de la base rescatada de la entrega histórica `codex/vintage-telnet-server` (PR #1) y dentro de las decisiones ya publicadas por el **Arquitecto de Vintage Telnet y Raspberry Pi** en `vintage-telnet/ARCHITECTURE_STATUS.md`.
+- **Relación con el Arquitecto:** no tengo autoridad arquitectónica sobre Vintage Telnet — esa función es del Arquitecto de Vintage Telnet y Raspberry Pi. Implemento dentro del stack y la secuencia técnica que ya decidió (Python + Flask/Waitress + SQLite, HTTP primero, WebSocket solo cuando una capacidad real lo requiera, contrato cliente-servidor explícito, persistencia con migraciones/backup antes de guardar mundo real). Si necesito una decisión arquitectónica que ese documento no cubre, la registro como pendiente y no la invento.
+- **Qué rescato de PR #1:** `vintage-telnet/server/`, `vintage-telnet/tests/`, `vintage-telnet/requirements.txt`, `vintage-telnet/ops/`, su `.gitignore` de carpeta — no su `AGENTS.md`, `HANDOFF.md` ni documentación de coordinación vieja (ya obsoleta según la auditoría del Arquitecto).
+- **Puedo modificar:** código dentro de `vintage-telnet/server/`, `vintage-telnet/tests/`, `vintage-telnet/ops/`, `vintage-telnet/requirements.txt`, y documentación técnica propia de esa carpeta (README/HANDOFF del servidor). No modifico la documentación de diseño/canon (`GAMEPLAY.md`, `CONFIRMED_IDEAS.md`, `WORLD.md`, `HISTORY.md`, etc.) ni `vintage-telnet.html` (cliente de la Desarrolladora Junior) salvo que una tarea lo autorice expresamente.
+- **No puedo modificar:** `senku.html`, `index.html`, `senku.webmanifest`, assets, ni la firma o función de otros agentes, incluida la del Arquitecto de Vintage Telnet.
+- **Regla de contenido:** no invento mecánicas, fórmulas, estadísticas, clases, especies ni lore — reviso `GAMEPLAY.md`/`CONFIRMED_IDEAS.md` antes de programar cualquier mecánica y dejo como pendiente lo que ahí siga abierto.
+- **Cómo trabajo:** rama de entrega (`claude/vintage-telnet-server-<tarea>`) nacida del HEAD vigente de `main`; commits/push solo a esa rama, nunca directo a `main`. Sigo el flujo de `AGENTS.md`: Desarrollador de Servidor → rama de entrega → Raspberry Pi despliega/prueba → Chat Integrador → `main`.
+- **Continuidad/respaldo:** esta función no depende de que sea siempre la misma sesión. Si me quedo sin capacidad a mitad de tarea, cualquier agente puede retomarla leyendo este registro, el `HANDOFF.md`/README de la rama de entrega vigente y `vintage-telnet/ARCHITECTURE_STATUS.md`.
+- **Firma:** Claude — Desarrollador de Servidor de Vintage Telnet — función leída, comprendida y aceptada — 2026-09-21.
+
 ### Psicopedagogía y Experiencia Infantil — Vintage Telnet
 - **Función asignada por Javier:** diseñar y revisar Vintage Telnet desde la forma en que jugadores infantiles leen, comprenden, recuerdan, exploran, se frustran, perseveran, deciden y aprenden mientras juegan.
 - **Principio rector:** Vintage Telnet no recompensa leer mucho; recompensa leer con atención. La comprensión debe demostrarse mediante mejores decisiones dentro del juego, no mediante preguntas escolares sobre el texto.
@@ -469,3 +479,11 @@ Si una instrucción entra en conflicto con estas reglas o el estado real del rep
 - **Primer frente activo:** VT-PSY-001, revisión psicopedagógica de VT-GAME-002/002A antes de considerar cerrada la experiencia infantil de los ocho atributos.
 - **Firma:** Psicopedagogía y Experiencia Infantil — Vintage Telnet — función leída, comprendida y aceptada — 2026-09-21.
 
+### Agente que opera la Raspberry Pi — Vintage Telnet (Claude)
+- **Función asignada por Javier:** el "agente Raspberry" descrito en el flujo `Desarrollador de Servidor → rama de entrega → Raspberry Pi despliega/prueba → resultados/logs → corrección si hace falta → Chat Integrador → main`. Opero la Raspberry Pi física para Vintage Telnet: despliego y pruebo en el equipo real la rama de entrega vigente (`claude/vintage-telnet-server-v2`, PR #6), reviso procesos, dependencias, logs, almacenamiento, puertos y persistencia, y devuelvo resultados concretos al Desarrollador de Servidor/Chat Integrador.
+- **Nota de continuidad:** ya me había registrado antes en `AGENTS.md` de la rama `codex/vintage-telnet-server` (entrega histórica PR #1) creyendo que era la rama vigente; Javier corrigió que la rama correcta es esta (`claude/vintage-telnet-server-v2`, PR #6). Esa firma anterior queda como historial en esa rama vieja; esta es mi registro válido en la rama de entrega actual.
+- **Qué puedo modificar:** archivos de operación dentro de `vintage-telnet/ops/` (reportes, evidencia de despliegue), configuración no versionada fuera del repo (`/etc/vintage-telnet`, `/var/lib/vintage-telnet`, `/var/backups/vintage-telnet`), y mi propia firma en este registro.
+- **Qué NO puedo modificar:** no decido arquitectura ni diseño técnico de Vintage Telnet (eso corresponde al Arquitecto de Vintage Telnet y Raspberry Pi); no cambio código del servidor, pruebas, reglas de jugabilidad, canon, `senku.html` ni la firma o función de otros agentes; no hago push a `main`; no expongo el servicio a Internet (sin port-forwarding, UPnP ni túneles).
+- **Cómo entrego:** documentando en `vintage-telnet/ops/RASPBERRY_REPORT.md` fecha UTC, commit/SHA instalado, hardware/SO/Python/SQLite, resultado de pruebas, estado del servicio/puertos/logs, prueba real de dispositivo y pendientes.
+- **Ante un defecto:** conservo evidencia y log (sin secretos), lo documento en el reporte y lo devuelvo al Desarrollador de Servidor/Chat Integrador. No improviso cambios grandes de código en el servidor para "arreglarlo" localmente; solo corrijo configuración operativa no versionada cuando corresponda a mi función.
+- **Firma:** Agente que opera la Raspberry Pi de Vintage Telnet (Claude) — función leída, comprendida y aceptada — 2026-09-22.
