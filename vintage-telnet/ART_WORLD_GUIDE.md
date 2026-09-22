@@ -153,6 +153,18 @@ No convertir fauna común en Arcane salvo que el canon lo indique.
 
 ---
 
+## Si Javier pide un ARCANE
+
+Leer:
+
+1. `ART_WORLD_GUIDE.md`
+2. `ARCANES.md`
+3. `CREATURES.md` solo para comprobar que no se esté confundiendo con fauna/amenazas existentes.
+
+Los Arcanes parten de formas animales familiares y presentan una anomalía imposible o descubrible. **No asignarles nombre individual:** ese nombre lo elige el jugador cuando establece el vínculo.
+
+---
+
 ## Si Javier pide una ESCENA de aventura
 
 Leer:
@@ -515,6 +527,8 @@ Cuando exista duda entre una imagen bonita y una imagen coherente con Vintage Te
 ---
 
 # 13. Arcanes — regla de identificación y nombre
+
+La definición completa y los ocho modelos iniciales viven en `ARCANES.md`. Esta sección resume las reglas que Arte necesita recordar.
 
 Los Arcanes deben partir visualmente de formas reconocibles asociadas a mascotas o animales cercanos al jugador —por ejemplo perro, gato, conejo, ave o ratón— y presentar al menos una anomalía clara o descubrible que indique que no son animales normales.
 
