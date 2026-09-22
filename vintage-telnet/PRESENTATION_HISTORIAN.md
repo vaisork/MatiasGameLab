@@ -1,228 +1,373 @@
-# Vintage Telnet — Texto del Historiador para presentación
+# Vintage Telnet — Presentación del mundo
 
-Este documento contiene material **público y seguro para presentación** preparado por el Historiador y Constructor del Mundo.
+Material público preparado por el **Historiador y Constructor del Mundo**.
 
-No incluye secretos del Dungeon Master, soluciones de misterios ni información que los jugadores deban descubrir dentro del juego.
+El objetivo de esta versión es mantener un tono **épico y evocador**, pero siempre explicando con claridad qué hace el jugador y por qué el mundo funciona de esta manera.
 
----
-
-# 1. Un mundo que se descubre leyendo
-
-## Texto para pantalla
-
-**Vintage Telnet es un RPG de fantasía donde el mundo se descubre principalmente a través del texto.**
-
-El jugador no recibe todas las respuestas en un mapa ni en una animación.
-
-Lee el lugar, observa pistas, recuerda información, toma decisiones y descubre poco a poco qué existe más allá de su pueblo.
-
-## Apoyo para quien presenta
-
-La lectura no es decoración alrededor del juego: es una de las maneras principales de jugar bien.
-
-Las descripciones pueden contener señales sobre criaturas, rutas, peligros, objetos, historia o lugares ocultos. El jugador que presta atención puede descubrir cosas que otro pasa por alto.
+No incluye secretos del Dungeon Master, soluciones de misterios ni información que deba descubrirse jugando.
 
 ---
 
-# 2. Vaisgard, la ciudad anterior a los pueblos
+# 1. El mundo no te entrega sus respuestas
 
 ## Texto para pantalla
 
-**En el centro del mundo conocido se encuentra Vaisgard.**
+**En Vintage Telnet, el mundo no se mira desde lejos: se lee.**
 
-Cuando Humanos, Felaryn, Dravak, Marevyn y Vesperi llegaron a la región, la ciudad ya existía.
+Un camino no es solamente una dirección.
+Una huella puede ser una advertencia.
+Un silencio puede significar que algo acaba de pasar.
+Una frase olvidada puede convertirse horas después en la clave de otro lugar.
 
-Nadie conserva una explicación segura de quién construyó sus partes más antiguas.
+Aquí, prestar atención también es una forma de poder.
 
-## Apoyo para quien presenta
+## Qué explica del juego
 
-Vaisgard es hogar, mercado y punto de encuentro entre culturas.
+Vintage Telnet es un RPG de fantasía en el que la exploración ocurre principalmente mediante texto.
 
-Su arquitectura tiene capas de distintas épocas: barrios habitados, talleres y mercados conviven con estructuras mucho más antiguas cuyo propósito original se ha perdido.
+El jugador lee descripciones, encuentra señales, recuerda información y decide qué hacer.
 
-Esto permite que una ciudad aparentemente segura también contenga historia y misterio.
+La interfaz puede ayudar con movimiento, inventario o combate, pero el mundo sigue hablando mediante palabras.
 
 ---
 
-# 3. Cinco pueblos, cinco formas de experimentar el mundo
+# 2. Vaisgard — una ciudad más antigua que sus habitantes
 
 ## Texto para pantalla
 
-Las cinco especies jugables comienzan en lugares diferentes:
+**En el centro del mundo conocido se levanta Vaisgard.**
 
-- **Humanos — Valdren**, en los Llanos de Edran.
-- **Felaryn — Khariel**, en la Sierra de Hoshai.
-- **Dravak — Brumak**, en los Pedrales de Korven.
-- **Marevyn — Narevia**, en las Aguas de Lethra.
-- **Vesperi — Velmora**, en el Bosque de Nhal.
+Cuando Humanos, Felaryn, Dravak, Marevyn y Vesperi llegaron a estas tierras, sus muros ya estaban allí.
 
-## Apoyo para quien presenta
+Nadie recuerda quién colocó las primeras piedras.
 
-Los pueblos nacieron mucho después de Vaisgard.
+Nadie puede demostrar para qué servían todas sus estructuras.
 
-Durante generaciones, distintos grupos buscaron lugares más apropiados para sus formas de vida.
+Y, bajo las calles que hoy están llenas de viajeros y comerciantes, todavía quedan lugares que ninguna historia explica por completo.
 
-Por eso cada origen enseña a leer el entorno de una manera distinta:
+## Qué explica del juego
 
-- en Valdren importan caminos, campos y rastros;
-- en Khariel, altura, distancia y observación;
-- en Brumak, grietas, vibraciones y pequeños espacios;
-- en Narevia, agua, barro y corrientes;
-- en Velmora, poca luz, silencio y cambios sutiles.
+Vaisgard es la gran ciudad común del mundo.
 
-Aunque todos jueguen dentro del mismo mundo, no todos empiezan viviendo la misma historia.
+Es mercado, punto de encuentro, lugar de regreso y conexión entre las distintas culturas.
+
+También es una ciudad construida por capas: partes nuevas conviven con estructuras mucho más antiguas.
+
+Esto permite que un lugar seguro y habitado también pueda guardar preguntas, ruinas y descubrimientos.
 
 ---
 
-# 4. Las especies cambian lo que el personaje puede percibir y hacer
+# 3. De una ciudad nacieron cinco caminos
 
 ## Texto para pantalla
 
-Las especies no son solamente una apariencia.
+Durante generaciones, las cinco poblaciones vivieron alrededor de Vaisgard.
 
-Cada una posee una relación física distinta con el mundo:
+Pero no todas necesitaban el mismo mundo.
 
-- los **Felaryn** destacan por su salto, visión a distancia y equilibrio;
-- los **Dravak** son muy pequeños y aprovechan espacios que otros cuerpos no pueden recorrer;
-- los **Marevyn** se desenvuelven especialmente bien en ambientes de agua;
-- los **Vesperi** perciben mejor en condiciones de poca luz;
-- los **Humanos** poseen una fisiología generalista y adaptable.
+Algunos buscaron altura.
+Otros agua.
+Otros piedra, oscuridad o tierras abiertas.
 
-## Apoyo para quien presenta
+Así nacieron cinco pueblos.
 
-La especie no obliga a escoger una clase.
+Y con ellos, cinco maneras distintas de comenzar una aventura.
 
-Un Felaryn puede ser Artífice, Arcano, Sombra o Juramentado igual que las demás especies.
+## Los cinco orígenes
 
-Los rasgos naturales definen posibilidades del cuerpo y los sentidos; la clase y los atributos definen cómo se desarrolla el personaje.
+- **Valdren — Humanos**, entre los Llanos de Edran.
+- **Khariel — Felaryn**, en la Sierra de Hoshai.
+- **Brumak — Dravak**, entre los Pedrales de Korven.
+- **Narevia — Marevyn**, en las Aguas de Lethra.
+- **Velmora — Vesperi**, dentro del Bosque de Nhal.
+
+## Qué explica del juego
+
+La especie que el jugador elige determina también su lugar de origen.
+
+Por eso dos jugadores pueden comenzar la misma partida en regiones completamente diferentes.
+
+Cada región enseña a leer el mundo de una forma distinta:
+
+- en Valdren importan los rastros visibles y los caminos;
+- en Khariel, la altura y la distancia;
+- en Brumak, las grietas y las vibraciones;
+- en Narevia, el agua, las corrientes y lo que puede esconderse bajo ellas;
+- en Velmora, la penumbra, el silencio y los cambios pequeños.
 
 ---
 
-# 5. El campo también cuenta historias
+# 4. No eliges solamente una apariencia
 
 ## Texto para pantalla
 
-**Salir del pueblo no significa solamente buscar enemigos.**
+**Cada especie habita el mismo mundo con un cuerpo diferente.**
 
-Una criatura puede dejar huellas.
-Un silencio puede advertir peligro.
-Una cerca rota puede contar que algo grande pasó por allí.
-Un camino abandonado puede conducir a una historia anterior.
+Los Felaryn dominan alturas que otros recorren con dificultad.
 
-## Apoyo para quien presenta
+Los Dravak encuentran caminos donde otros solo ven una grieta.
 
-La fauna inicial fue diseñada para que cada región tenga señales propias.
+Los Marevyn leen el movimiento del agua.
 
-Antes de ver una amenaza, el jugador puede descubrir que existe mediante rastros del entorno.
+Los Vesperi reconocen formas y sonidos donde la luz apenas alcanza.
 
-El objetivo es que combatir, explorar y leer no sean actividades separadas.
+Los Humanos avanzan sin una especialización extrema, adaptándose a muchos entornos.
 
-Un jugador puede regresar de una salida porque ganó experiencia, pero también porque encontró una pista, descubrió una ruta o aprendió que todavía no está preparado para lo que vive más adelante.
+## Qué explica del juego
+
+Las diferencias entre especies no son únicamente visuales.
+
+Cambian lo que el personaje puede percibir o hacer.
+
+Pero la especie no decide la clase.
+
+Un Felaryn, un Dravak o un Marevyn pueden convertirse en Arcano, Juramentado, Sombra o Artífice.
+
+**La especie define cómo existe tu personaje en el mundo.  
+La clase define el camino que decide aprender.**
 
 ---
 
-# 6. Los atributos deben sentirse en la redacción
+# 5. El peligro aparece antes que el enemigo
 
 ## Texto para pantalla
 
-Vintage Telnet utiliza atributos de personaje, pero los números no deben sustituir la historia.
+En los Llanos, una cerca aparece rota hacia afuera.
 
-Un personaje perceptivo puede recibir una pista adicional.
-Uno fuerte puede encontrar una forma distinta de superar un obstáculo.
-Uno diestro puede manipular un mecanismo con mayor precisión.
+En las montañas, los animales dejan de emitir sus llamadas.
 
-**El jugador sigue teniendo que leer y decidir.**
+Entre las piedras, algo hace vibrar el suelo.
 
-## Apoyo para quien presenta
+En un canal tranquilo, una onda avanza sin viento.
 
-La filosofía del mundo es:
+En el bosque, de pronto, no se escucha nada.
 
-**el canon determina qué es posible → los atributos influyen en la ejecución → el texto explica lo que ocurrió.**
+**Quizá todavía no has visto a la criatura.  
+Pero el mundo ya te habló de ella.**
 
-Por ejemplo, una Percepción elevada no debería decir automáticamente:
+## Qué explica del juego
 
-> “Hay un monstruo peligroso al norte.”
+Las criaturas no existen únicamente para combatir.
 
-Puede mostrar:
+Dejan huellas, alteran el entorno y provocan reacciones en otros animales.
 
-> “Los postes de la cerca están quebrados hacia afuera y en el barro hay marcas demasiado grandes para los animales que has visto hasta ahora.”
+El jugador puede descubrir un peligro antes de enfrentarlo.
 
-Después, el jugador decide qué significa y qué hacer.
+Puede decidir continuar, investigar, regresar o avisar a otro jugador.
 
-Esto permite que mejorar al personaje no elimine la necesidad de prestar atención.
+Por eso una salida al campo puede terminar con experiencia de combate, pero también con una ruta descubierta, una pista o la certeza de que existe algo demasiado peligroso más adelante.
 
 ---
 
-# 7. Un mundo común, historias diferentes
+# 6. Leer cambia lo que puedes hacer
 
 ## Texto para pantalla
+
+Un personaje fuerte puede mover aquello que otro no puede.
+
+Uno perceptivo puede notar una señal que otro pasó por alto.
+
+Uno diestro puede tocar un mecanismo sin destruirlo.
+
+Uno inteligente puede reconocer que dos pistas están relacionadas.
+
+Pero ninguno de esos atributos debe decidir por el jugador.
+
+**La capacidad pertenece al personaje.  
+La decisión pertenece a quien está leyendo.**
+
+## Qué explica del juego
+
+Los atributos modifican la manera en que el personaje actúa dentro del mundo.
+
+No deberían reducir la experiencia a mensajes como:
+
+> Fallaste. Percepción insuficiente.
+
+La idea es que el resultado llegue como parte de la narración.
+
+Por ejemplo:
+
+> La cerca parece dañada.
+
+Un personaje más perceptivo podría leer:
+
+> Dos postes están partidos hacia afuera. En el barro hay marcas demasiado profundas para las criaturas pequeñas que has visto cerca del pueblo.
+
+El juego entrega información.
+
+El jugador interpreta.
+
+Después decide.
+
+---
+
+# 7. El juego no quiere resolver los misterios por ti
+
+## Texto para pantalla
+
+**Descubrir una pista no es lo mismo que comprenderla.**
+
+Ver un símbolo no significa conocer su historia.
+
+Encontrar una puerta no significa saber cómo abrirla.
+
+Escuchar un rumor no significa que sea verdad.
+
+Vintage Telnet puede ayudarte a encontrar información.
+
+Pero quiere que tú hagas algo con ella.
+
+## Qué explica del juego
+
+Percepción, Intelecto y otros atributos pueden cambiar qué información recibe el personaje o qué acciones tiene disponibles.
+
+Pero no deben reemplazar lectura, memoria o deducción.
+
+Un personaje puede reconocer que dos inscripciones se parecen.
+
+El jugador sigue teniendo que recordar dónde vio la primera y decidir qué significa esa relación.
+
+Así, mejorar al personaje y mejorar como jugador son dos procesos distintos que se complementan.
+
+---
+
+# 8. Un mundo compartido no significa una historia idéntica
+
+## Texto para pantalla
+
+Un jugador puede encontrar una criatura.
+
+Otro puede descubrir una ruta.
+
+Otro puede escuchar una historia que los demás nunca oyeron.
+
+Cuando finalmente se encuentran, cada uno llega con algo que los otros no tienen:
+
+**conocimiento.**
+
+## Qué explica del juego
 
 Vintage Telnet es un mundo persistente y multijugador.
 
-Los jugadores pueden comenzar separados, recorrer caminos distintos, descubrir información diferente y después compartir lo que aprendieron.
+Los jugadores no necesitan completar las mismas escenas en el mismo orden.
 
-Vaisgard funciona como el gran punto de encuentro de esas historias.
+Pueden comenzar separados por especie, recorrer distintas regiones y compartir después lo aprendido.
 
-## Apoyo para quien presenta
-
-La intención del mundo no es que todos completen exactamente las mismas escenas en el mismo orden.
-
-Uno puede descubrir una amenaza.
-Otro puede conocer una ruta.
-Otro puede encontrar una pieza de historia.
-
-Cuando se encuentran, el conocimiento que cada jugador trae también forma parte del juego.
+Vaisgard funciona como uno de los grandes puntos donde esas historias pueden cruzarse.
 
 ---
 
-# 8. La promesa del mundo
+# 9. Crecer no significa solamente hacer más daño
 
 ## Texto para pantalla
 
-**Vaisgard y los cinco pueblos son solamente el comienzo.**
+Con el tiempo, el personaje se vuelve más capaz.
 
-Hay regiones que todavía no han sido recorridas, estructuras cuyo origen se desconoce, culturas por conocer y lugares que el mapa inicial no explica.
+Pero el mundo también aprende a exigir más de quien lo recorre.
 
-El mundo está diseñado para crecer sin revelar todo desde el primer día.
+Las primeras señales pueden ser evidentes.
 
-## Apoyo para quien presenta
+Después habrá que comparar.
 
-No conviene explicar los grandes misterios durante la presentación.
+Recordar.
 
-La presentación debe dejar clara una promesa:
+Dudar.
 
-> Si lees, exploras, recuerdas y preguntas, el mundo siempre puede mostrarte algo que antes no habías visto.
+Y quizá descubrir que aquello que parecía una respuesta era solamente otra pista.
 
----
+## Qué explica del juego
 
-# Versión breve — texto continuo para presentar el mundo
+La progresión no está pensada solamente como enemigos con más vida.
 
-Vintage Telnet ocurre en un mundo de fantasía construido alrededor de la exploración y la lectura. En el centro se encuentra Vaisgard, una ciudad tan antigua que las cinco poblaciones actuales llegaron cuando sus estructuras más viejas ya estaban allí. Con el paso de generaciones, distintos grupos abandonaron la ciudad para fundar pueblos adaptados a sus propias formas de vida: Valdren, Khariel, Brumak, Narevia y Velmora.
+El personaje obtiene niveles, atributos, poderes y equipo.
 
-Cada origen cambia la forma de experimentar el mundo. Los Felaryn aprovechan la altura y la distancia; los Dravak descubren espacios inaccesibles para cuerpos mayores; los Marevyn viven con naturalidad entre canales y corrientes; los Vesperi perciben señales en ambientes de poca luz; y los Humanos recorren el mundo desde una fisiología generalista.
+Al mismo tiempo, las situaciones pueden exigir una lectura más cuidadosa y decisiones más complejas.
 
-El juego utiliza texto para convertir el entorno en información. Una huella, un ruido, una marca sobre una piedra o la ausencia repentina de animales puede ser tan importante como un combate. Los atributos del personaje ayudan a percibir, comprender o ejecutar acciones, pero no juegan por el jugador: la información todavía debe leerse y las decisiones siguen siendo humanas.
-
-Los cinco pueblos y Vaisgard forman solamente la primera región conocida. Vintage Telnet está construido para que los jugadores descubran gradualmente un mundo mucho mayor, compartan lo que aprendieron y encuentren historias distintas dentro del mismo universo persistente.
+La dificultad puede crecer tanto por lo que enfrenta el personaje como por lo que el jugador necesita comprender.
 
 ---
 
-# Trabajo del Historiador pendiente después de la presentación
+# 10. Vaisgard es el comienzo, no el límite
 
-La presentación puede realizarse con el canon actual.
+## Texto para pantalla
 
-El trabajo histórico que continúa abierto incluye:
+Los cinco pueblos y Vaisgard forman apenas la primera parte del mundo conocido.
 
-- profundizar culturas e historia particular de las cinco especies;
-- desarrollar nuevas etapas de la historia antigua;
-- crear primeras mazmorras desde su razón histórica y geográfica;
-- ampliar monstruos y criaturas conforme avance el mundo;
-- desarrollar el origen narrativo de magias, objetos, armas y poderes;
-- definir necesidades históricas de NPCs para que el especialista correspondiente los construya;
-- crear pueblos secundarios únicamente cuando una ruta, recurso, conflicto o historia justifique su existencia;
-- continuar expandiendo regiones sin revelar anticipadamente secretos reservados.
+Más allá existen caminos que todavía no tienen nombre para los jugadores.
+
+Ruinas que nadie ha explicado.
+
+Culturas que todavía no han sido encontradas.
+
+Lugares que no aparecerán en un mapa hasta que alguien descubra que existen.
+
+**El mundo no está construido para enseñarse de una vez.  
+Está construido para ser descubierto.**
+
+## Qué explica del juego
+
+Vintage Telnet puede crecer con nuevas regiones, ciudades, criaturas, historias y secretos sin cambiar su principio central.
+
+El jugador empieza sabiendo poco.
+
+Explorar amplía no solamente el mapa, sino también su comprensión del mundo.
+
+---
+
+# Cierre de presentación
+
+## Texto para pantalla
+
+**Vintage Telnet es un RPG de fantasía en el que avanzar también significa comprender.**
+
+Leer.
+Explorar.
+Recordar.
+Preguntar.
+Equivocarse.
+Volver.
+Compartir.
+
+Y descubrir que una frase que parecía pequeña podía estar señalando algo mucho más grande.
+
+> **Si lees con atención, el mundo puede mostrarte cosas que siempre estuvieron allí.**
+
+---
+
+# Versión breve para presentar oralmente
+
+Vintage Telnet es un RPG de fantasía construido alrededor de una idea sencilla: **leer también es jugar**.
+
+En el centro del mundo conocido se encuentra Vaisgard, una ciudad tan antigua que las cinco poblaciones actuales llegaron cuando sus estructuras más viejas ya existían. Con el paso de las generaciones, esas poblaciones fundaron cinco pueblos distintos: Valdren, Khariel, Brumak, Narevia y Velmora. Cada uno existe en un entorno diferente y enseña al jugador a observar señales distintas.
+
+Las especies tampoco son solo una apariencia. Un Felaryn vive la altura de otra manera; un Dravak puede encontrar rutas que un cuerpo mayor no puede utilizar; un Marevyn entiende mejor los ambientes acuáticos; un Vesperi percibe mejor con poca luz. Al mismo tiempo, cualquiera de ellos puede elegir distintas clases y desarrollar sus propios atributos.
+
+El mundo se comunica mediante texto. Antes de encontrar una criatura, quizá veas una cerca rota, unas huellas, un cambio en el agua o un bosque que de pronto quedó en silencio. Los atributos pueden permitirte notar más, comprender mejor o ejecutar una acción con mayor capacidad, pero no deben resolver la aventura por ti. El jugador todavía tiene que leer, relacionar la información y decidir qué hacer.
+
+Además, el mundo es persistente y multijugador. Dos jugadores pueden comenzar en lugares distintos, descubrir cosas diferentes y compartir después lo que cada uno aprendió. El conocimiento también se convierte en parte de la aventura.
+
+Vaisgard y los cinco pueblos son solamente el comienzo. Vintage Telnet está pensado como un mundo que se revela poco a poco. No quiere contarte todos sus secretos. Quiere que los encuentres.
+
+---
+
+# Trabajo del Historiador después de la presentación
+
+La presentación pública puede realizarse con el canon actual.
+
+El trabajo del Historiador continúa en:
+
+- culturas e historia profunda de las cinco especies;
+- nuevas etapas de la historia antigua;
+- primeras mazmorras y su razón de existir;
+- nuevas criaturas y amenazas;
+- origen narrativo de magias, armas, objetos y poderes;
+- necesidades históricas de NPCs;
+- pueblos secundarios y nuevas regiones cuando la historia los justifique;
+- misterios y secretos que deben permanecer fuera de cualquier presentación pública.
 
 ---
 
 **Responsable:** Historiador y Constructor del Mundo de Vintage Telnet  
-**Uso:** presentación pública / material sin spoilers
+**Uso:** presentación pública / material sin spoilers  
+**Tono:** épico, evocador y explicativo
