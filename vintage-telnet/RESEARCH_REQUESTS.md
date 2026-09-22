@@ -209,3 +209,65 @@ Siempre que sea útil, incluir un esquema textual/wireframe simple de la pantall
 El **Desarrollador Junior de Vintage Telnet** utilizará la recomendación para preparar la siguiente iteración del cliente HTML. Javier decidirá si la experiencia visual propuesta conserva la sensación que quiere antes de publicar nuevos cambios.
 
 **No implementar la optimización final como parte de esta investigación.**
+
+
+## VT-RES-003 — Modelo de progresión matemática de atributos y especialización
+
+**Solicitante:** Diseñador de Jugabilidad — Vintage Telnet  
+**Destinatario:** Investigador Técnico y de Implementación — Vintage Telnet  
+**Estado:** PENDIENTE  
+**Prioridad:** ALTA — bloquea la definición numérica del sistema de atributos.
+
+### Decisiones de Jugabilidad ya confirmadas
+
+- Primera etapa del juego: niveles **1–100**.
+- Ocho atributos base: **Fuerza, Resistencia, Agilidad, Percepción, Intelecto, Voluntad, Destreza y Presencia**.
+- Los rasgos naturales de especie son un sistema distinto y no se compran con puntos de atributo.
+- Cada subida de nivel entrega **Puntos de Atributo (PA)** para que el jugador decida cómo desarrollar sus atributos.
+- Existe además una progresión de poderes mediante hitos cada **5 niveles**.
+- Los **Puntos de Poder (PP)** y los **Puntos de Atributo (PA)** son sistemas completamente separados: no se convierten entre sí ni compiten por la misma reserva.
+- Los poderes concretos son contenido del Historiador; esta investigación no debe inventarlos.
+- Todavía NO están decididos los valores iniciales, PA por nivel, máximos de atributo, costes ni curvas.
+
+### Investigación solicitada
+
+Investigar cómo RPG, CRPG, MMORPG y especialmente MUD/Telnet relevantes han resuelto matemáticamente la progresión de atributos durante campañas largas. El objetivo no es copiar un juego, sino aportar evidencia para construir el modelo de Vintage Telnet.
+
+Comparar como mínimo:
+
+1. **Coste lineal:** subir un atributo cuesta siempre lo mismo.
+2. **Coste creciente:** los valores altos requieren progresivamente más puntos.
+3. **Rendimientos decrecientes / soft caps:** el atributo puede seguir creciendo, pero cada incremento aporta menos poder efectivo.
+4. **Hard caps:** límites absolutos y sus consecuencias.
+5. **Modelos híbridos:** tramos, umbrales, escalados distintos u otras soluciones documentadas.
+6. Cómo estos modelos afectan a personajes **especializados vs. equilibrados**.
+7. Cómo evitan —o no evitan— que invertir todo en un solo atributo sea una estrategia dominante.
+8. Cómo mantienen significativos los puntos obtenidos en niveles altos sin provocar inflación estadística.
+9. Relación entre progresión de atributos, equipo y habilidades/poderes sin mezclar sus monedas de progreso.
+10. Qué problemas aparecen al diseñar para aproximadamente **100 niveles** y qué técnicas permiten ampliar el juego posteriormente sin rehacer toda la matemática.
+
+### Evidencia y ejemplos
+
+Buscar ejemplos concretos y documentados. Priorizar documentación oficial, manuales, reglas publicadas, wikis oficiales o fuentes históricas fiables. Cuando una fórmula exacta no sea pública, distinguir claramente entre dato documentado e interpretación.
+
+### Análisis esperado
+
+Para cada modelo encontrado, explicar cómo funciona, ejemplos, ventajas, problemas/exploits, efecto sobre especialización y diversidad, comportamiento a corto/largo plazo y qué podría adaptarse conceptualmente a Vintage Telnet.
+
+Incluir una comparación específica entre **coste lineal**, **coste creciente**, **soft cap** y **modelo híbrido**.
+
+### Preguntas que debe ayudarnos a responder
+
+- ¿Debe costar lo mismo pasar un atributo de 10→11 que de 50→51?
+- ¿Conviene controlar la especialización mediante coste creciente, rendimientos decrecientes, límites, o una combinación?
+- ¿Cómo podemos permitir personajes muy especializados sin que una sola estadística rompa el juego?
+- ¿Qué estructura deja suficiente espacio matemático para 100 niveles?
+- ¿Cómo podemos dejar abierta una futura expansión por encima del nivel 100 sin diseñar ahora una progresión infinita?
+
+### Entrega esperada
+
+Crear **vintage-telnet/RESEARCH_ATTRIBUTE_PROGRESSION.md** y enlazarlo desde esta solicitud. Terminar con **2–4 modelos candidatos** para que Jugabilidad los pueda simular posteriormente.
+
+El Investigador **no debe elegir el modelo definitivo ni fijar números de Vintage Telnet**. La decisión y el balance corresponden a Jugabilidad con Javier/Matías.
+
+**No implementar código ni simulador como parte de esta investigación.**
