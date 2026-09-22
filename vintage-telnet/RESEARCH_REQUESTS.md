@@ -469,3 +469,64 @@ No preguntar “¿qué acabas de leer?”. Observar si la información cambia un
 - **Historiador/Narrador:** sustituir el texto visible de la ruta que se use en el playtest y completar los textos comparables de selección de especie.
 
 
+
+
+## VT-NAR-ARC-001 — Diseñar los primeros vínculos con Arcanes
+
+**Solicitante:** Diseñador de Jugabilidad — Vintage Telnet  
+**Destinatario:** Narrador de Aventuras — Vintage Telnet  
+**Estado:** LISTO PARA NARRADOR  
+**Prioridad:** MEDIA/ALTA — ya no bloquea la implementación base, pero permite empezar a integrar Arcanes en aventuras futuras.
+
+### Fuentes obligatorias
+
+Antes de diseñar escenas:
+- leer `vintage-telnet/ARCANES.md` para identidad y canon;
+- leer la sección **21. Arcanes — vínculo, compañía y poder único** de `vintage-telnet/GAMEPLAY.md`.
+
+### Reglas mecánicas ya cerradas
+
+Narrativa puede asumir que:
+
+- el Arcane no se obtiene derrotándolo;
+- el vínculo sigue: **encontrar → observar → comprender → comprobar compatibilidad → generar confianza → vínculo → nombrar**;
+- la confianza no se muestra como barra numérica y no se farmea repitiendo una acción;
+- algunos Arcanes pueden ser incompatibles únicamente con **poderes concretos ya adquiridos** por el jugador;
+- la incompatibilidad es binaria, no probabilística;
+- adquirir después un poder incompatible no rompe automáticamente un vínculo existente;
+- el jugador pone el nombre después del vínculo;
+- cada jugador puede tener hasta **3 Arcanes**, guardarlos en casa y llevar **1 activo**;
+- cada Arcane tiene **un solo poder fijo** además de la compañía;
+- el Arcane no sube de nivel, no gana atributos, PA/PP ni nuevas habilidades;
+- solo el acompañante activo aporta su poder;
+- no existe muerte permanente ordinaria del Arcane vinculado.
+
+### Trabajo solicitado al Narrador
+
+Diseñar al menos un primer encuentro de vínculo que permita probar:
+
+1. reconocimiento inicial del Arcane sin nombre;
+2. señales de comportamiento que el jugador deba leer;
+3. una acción apropiada y una inapropiada;
+4. progreso de confianza visible por conducta, no por números;
+5. segunda oportunidad razonable ante un error;
+6. momento claro en que el Arcane decide aceptar el vínculo;
+7. transición inmediata a la elección de nombre;
+8. si aplica, una variante de rechazo por incompatibilidad con un poder concreto ya adquirido.
+
+El Narrador decide la ficción, lugar, ritmo y acciones concretas. No debe inventar estadísticas, progresión del Arcane ni nuevas reglas mecánicas.
+
+### Handoff posterior
+
+Si el encuentro requiere:
+- un nuevo tipo de condición de vínculo;
+- más de un Arcane activo;
+- evolución de poderes;
+- pérdida permanente;
+- reproducción/cría;
+- transferencia entre jugadores;
+- o cualquier otra mecánica nueva,
+
+debe devolver la necesidad a Jugabilidad antes de incorporarla como regla.
+
+**Javier no necesita actuar como mensajero entre Narrador y Jugabilidad.**
