@@ -397,3 +397,40 @@ Después de ambas revisiones, **Jugabilidad recupera el turno** para:
 4. recién entonces diseñar con Javier el modelo matemático 1–100.
 
 **No implementar código. No fijar valores numéricos. No convertir esta matriz provisional en regla hasta completar la revisión.**
+
+## VT-PSY-002 — Revisión psicopedagógica del primer slice y primeras salidas
+
+**Solicitante:** Psicopedagogía y Experiencia Infantil — Vintage Telnet  
+**Destinatarios:** Narrador + Diseñador de Jugabilidad  
+**Estado:** REVISIÓN ENTREGADA en `vintage-telnet/PSYCHOPEDAGOGY.md`  
+**Prioridad:** ALTA antes de convertir VT-NAR-002 en escenas iniciales definitivas.
+
+### Hallazgo principal
+
+El primer slice técnico **ENTRAR → ELEGIR ESPECIE → MOVERSE** no debe cargarse artificialmente con pruebas de lectura. Su prioridad es enseñar uso, orientación y persistencia.
+
+La primera experiencia real de “leer para jugar mejor” encaja en VT-NAR-002. Las cinco regiones ya enseñan formas distintas de leer el entorno:
+
+- Edran: rastros visibles;
+- Hoshai: distancia y posición;
+- Korven: vibración y cambios físicos;
+- Lethra: señales en agua y fauna;
+- Nhal: ausencia y cambios sutiles.
+
+### Handoff al Narrador
+
+Crear para cada región una microescena de 3–5 movimientos con una señal, una segunda oportunidad y una decisión que aproveche haber leído. No explicar la lección de forma escolar.
+
+### Handoff a Jugabilidad
+
+Definir el mínimo de `mirar/observar/examinar`, distinguir señales universales de señales condicionadas por Percepción/contexto y mantener recuperables los primeros errores razonables.
+
+### Criterio de inicio
+
+En las primeras sesiones:
+- un objetivo cognitivo principal por escena corta;
+- una o dos pistas críticas para una decisión inmediata;
+- primera inferencia con segunda oportunidad;
+- no usar ausencia como única pista crítica antes de enseñar al jugador que el silencio/cambio también informa.
+
+
