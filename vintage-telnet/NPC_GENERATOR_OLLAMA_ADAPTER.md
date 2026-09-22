@@ -75,3 +75,13 @@ El adaptador usa esa misma firma y no depende de nombres internos adicionales.
 
 Tras la revisión se hicieron explícitos `capabilities` y `limits`, porque Issue #19
 los reserva como datos autoritativos del Generador de NPCs.
+
+
+## Fixture sintético reproducible
+
+Para pruebas de integración existe:
+
+`vintage-telnet/tests/fixtures/npc-authoritative-synthetic.json`
+
+No representa ningún personaje del mundo. Puede reutilizarse en pruebas locales o físicas del
+puente para que todas las verificaciones partan de la misma ficha autoritativa.
