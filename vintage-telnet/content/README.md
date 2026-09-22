@@ -44,7 +44,7 @@ Archivo bajo `settlements/*.json`:
       "id": "test_room_a",
       "settlement": "test_settlement",
       "name": "Test Room A",
-      "description_id": "room.test_room_a.default",
+      "description": "Synthetic room description.",
       "exits": {"north": "test_room_b"},
       "tags": []
     }
@@ -102,6 +102,7 @@ El Narrador decide textos y necesidades narrativas. El servidor decidirá cómo 
 - campos obligatorios no vacíos;
 - IDs únicos entre entidades públicas cargadas;
 - salidas hacia salas existentes;
+- direcciones de salida limitadas a `north`, `south`, `east`, `west` en schema v1;
 - narrativa hacia salas existentes;
 - sala inicial de cada pueblo existente y perteneciente a ese pueblo;
 - pueblo/sala inicial de cada especie existente cuando `species.json` exista;
@@ -122,3 +123,14 @@ python scripts/validate-vintage-content.py --content-dir /ruta/al/content
 ```
 
 Código de salida `0` significa contenido válido; cualquier error devuelve un código distinto de cero.
+
+
+## Contrato v1 relevante
+
+Para `schema_version: 1`:
+
+- la descripción pública básica de una sala vive inline en `description`;
+- no se usa `description_id` en P0;
+- las únicas direcciones de `exits` válidas son `north`, `south`, `east`, `west`.
+
+Esto sigue la arquitectura vigente de PR #8.
