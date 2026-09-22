@@ -203,99 +203,116 @@ Referencia corporal base del mundo.
 
 Identidad visual obligatoria:
 
-- **pelo visible**;
-- **orejas claramente similares a las de un gato**, no orejas élficas;
-- **cola felina visible** como parte normal de la anatomía;
-- cuerpo ágil y preparado para salto/equilibrio;
-- postura dinámica;
-- ojos y expresión que puedan reforzar su gran capacidad visual;
+- altura aproximadamente humana, constitución atlética y piernas algo largas;
+- **pelaje corto y fino en la mayor parte del cuerpo**, más evidente en mejillas laterales, nuca, hombros, antebrazos, pantorrillas y espalda; además pueden tener cabello de cuero cabelludo más largo;
+- un solo par de **orejas felinas**, sin orejas humanas adicionales;
+- **cola felina funcional** que suele llegar de media pantorrilla a tobillo;
+- rostro humanoide-felino **sin hocico largo**, con nariz corta/ancha, pómulos altos, almohadillas de bigote discretas y vibrisas finas;
+- ojos amplios con pupila capaz de estrecharse verticalmente;
+- piernas **digitígradas**, talón elevado;
+- pies de cuatro dedos con almohadillas; manos de cinco dedos;
+- cuerpo preparado para salto/equilibrio;
 - cultura de Khariel con inspiración japonesa tradicional reinterpretada como propia.
 
-Khariel puede utilizar:
-- madera y piedra;
-- techos inclinados;
-- terrazas;
-- orden espacial;
-- disciplina estética;
-- tradición marcial propia.
-
 **Evitar:**
-- “elfo con orejas puntiagudas”;
-- humano al que solo se añadieron orejas;
+- “elfo con orejas de gato”;
+- humano al que solo se añadieron orejas y cola;
+- gato antropomórfico caricaturesco;
+- piernas humanas plantígradas;
+- hocico animal largo;
+- un segundo par de orejas humanas;
 - Japón literal contemporáneo;
-- samurái histórico copiado sin reinterpretación;
-- tratar “felino” como caricatura animal.
+- samurái histórico copiado sin reinterpretación.
+
+La anatomía completa y sus variaciones están cerradas en `SPECIES.md`.
 
 ---
 
 ## Dravak
 
-Canon físico confirmado:
+Canon físico obligatorio:
 
-- son **más pequeños y compactos que un Humano adulto**, pero no diminutos;
-- deben verse como adultos de una especie propia, nunca como niños;
-- poseen zonas corporales endurecidas de aspecto mineral o pétreo;
-- pueden mostrar vetas o fisuras sutiles que recuerden roca calentada bajo una corteza sólida;
-- cuerpo y postura adecuados a espacios compactos y terreno fragmentado;
-- su silueta debe comunicar dureza y estabilidad sin convertirlos en enanos o dragones.
+- altura adulta aproximada de **65–75 % de un Humano adulto comparable**;
+- proporciones inequívocamente adultas: cabeza cercana a 1/7 de la altura, tórax ancho, cuello corto, pelvis estable y extremidades robustas;
+- constitución compacta y centro de gravedad bajo;
+- piel base mate en gamas terrosas/minerales;
+- **placas dérmicas minerales/pétreas** frecuentes en hombros, parte alta de espalda, antebrazos, nudillos, rodillas, espinillas y talones;
+- pequeñas placas faciales pueden aparecer en sienes/pómulos, pero no forman cuernos;
+- vetas o fisuras minerales **comunes pero no obligatorias**, nunca grietas abiertas ni lava expuesta;
+- manos de cinco dedos cortos y fuertes;
+- pies plantígrados, anchos y de cinco dedos;
+- orejas pequeñas y redondeadas, no puntiagudas;
+- sin cola, alas, hocico, cuernos ni rasgos dracónicos.
 
 **Evitar:**
 - niño humano pequeño;
+- proporciones infantiles;
 - enano clásico;
 - gnomo genérico;
 - gran humanoide dracónico;
-- “raza de dragones fuertes”;
-- hacerlos grandes e imponentes solo porque Brumak es rocoso.
+- piel lisa sin ninguna mineralización visible;
+- lava expuesta o brillo mágico generalizado.
 
-Cuando una imagen requiera rasgos anatómicos Dravak todavía no definidos, consultar al Historiador.
+La anatomía completa y el patrón de variación de placas están cerrados en `SPECIES.md`.
 
 ---
 
 ## Marevyn
 
-Canon físico confirmado:
+Canon físico obligatorio:
 
-- altos;
-- estilizados;
-- anatomía elegante y fluida;
-- **escamas parciales visibles** integradas en la piel;
-- rasgos corporales de inspiración acuática/ictia;
-- especialmente adaptados a agua, lagos, ríos y humedales;
-- deben transmitir comodidad corporal alrededor del agua;
-- deben poder reconocerse como Marevyn sin depender de orejas élficas.
+- altura aproximada de **105–115 % de un Humano adulto comparable**;
+- cuerpo alto, estilizado, de torso estrecho, cuello algo largo y extremidades largas;
+- piel lisa con brillo satinado leve al mojarse, sin obligación de color azul/verde;
+- **escamas parciales siempre presentes**, pequeñas, flexibles y superpuestas;
+- zonas canónicas de escamas: sienes/pómulos laterales, lados del cuello, hombros, exterior de antebrazos, costados, exterior de muslos/pantorrillas y dorso de manos/pies;
+- orejas **cortas y pegadas al cráneo**, con una pequeña lámina cartilaginosa de aspecto de aleta; no orejas élficas;
+- rostro humanoide alargado, ojos algo separados, sin hocico ni branquias;
+- manos de cinco dedos largos con membrana interdigital corta;
+- pies plantígrados, alargados, de cinco dedos y membrana interdigital más visible;
+- sin cola de pez ni gran aleta dorsal;
+- respiran aire.
 
 **Evitar:**
 - elfo acuático genérico;
-- elfo de bosque con ropa azul;
-- especie marina que respira bajo el agua sin canon;
+- humano alto con unas pocas escamas decorativas;
+- orejas largas/puntiagudas;
+- branquias;
+- cola de pez;
+- especie marina que respira bajo el agua;
 - convertir Narevia en reino oceánico cuando su base son aguas interiores, canales y humedales.
 
-Cuando haga falta definir orejas, piel, manos, pies u otros rasgos aún no canonizados, consultar al Historiador.
+La anatomía completa y la distribución variable de escamas están cerradas en `SPECIES.md`.
 
 ---
 
 ## Vesperi
 
-Canon físico confirmado:
+Canon físico obligatorio:
 
-- **ojos notablemente grandes**, dominantes en el rostro;
-- **postura naturalmente algo encorvada o recogida**;
-- especie adaptada a poca luz;
-- visión eficaz en penumbra;
-- oído sensible;
-- cuerpo y postura compatibles con bosque denso y orientación por señales sutiles;
-- no vuelan;
-- la silueta debe sentirse nocturna y perceptiva, no élfica.
+- altura potencial cercana a la humana (**95–105 %**) cuando se enderezan;
+- cráneo algo más ancho en la zona ocular/superior y rostro que se estrecha hacia mandíbula y mentón;
+- **ojos muy grandes**, con iris amplios y poca esclerótica visible;
+- nariz pequeña y de poco relieve;
+- un solo par de orejas **cortas, redondeadas y de concha profunda**, orientadas algo hacia delante; no orejas élficas ni de murciélago;
+- piel mate, poco reflectante y de pigmentación apagada variada; **no son obligatoriamente pálidos**;
+- caja torácica estrecha, hombros adelantados, cuello proyectado suavemente hacia delante;
+- brazos/antebrazos proporcionalmente largos;
+- manos de cinco dedos largos y finos;
+- pies plantígrados, algo largos/estrechos, con cinco dedos flexibles;
+- postura relajada con inclinación natural de espalda/cuello de aproximadamente **10–15°**, aunque pueden enderezarse completamente;
+- sin alas, membranas, cola, nariz de murciélago, ecolocalización ni colmillos visibles como rasgo de especie.
 
 **Evitar:**
+- humano pálido con orejas largas;
 - elfo oscuro genérico;
 - “humano murciélago”;
-- alas;
-- ecolocalización sin canon;
-- enano/ingeniero de bosque;
-- resolver toda su cultura como “sabios del gran árbol”.
+- postura completamente humana/erguida en una hoja neutra;
+- ojos de tamaño humano;
+- alas o membranas;
+- resolver su identidad solo mediante ropa oscura.
 
-Cuando haga falta un rasgo anatómico aún no establecido, consultar al Historiador.
+La anatomía completa está cerrada en `SPECIES.md`.
 
 ---
 
