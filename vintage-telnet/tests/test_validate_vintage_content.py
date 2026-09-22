@@ -74,7 +74,7 @@ def valid_fixture(root: Path) -> ContentFixture:
                     "id": "test_room_a",
                     "settlement": "test_settlement",
                     "name": "Synthetic Room A",
-                    "description_id": "room.test_room_a.default",
+                    "description": "Synthetic room A description.",
                     "exits": {"north": "test_room_b"},
                     "tags": ["synthetic-test"],
                 },
@@ -82,7 +82,7 @@ def valid_fixture(root: Path) -> ContentFixture:
                     "id": "test_room_b",
                     "settlement": "test_settlement",
                     "name": "Synthetic Room B",
-                    "description_id": "room.test_room_b.default",
+                    "description": "Synthetic room B description.",
                     "exits": {"south": "test_room_a"},
                     "tags": ["synthetic-test"],
                 },
@@ -180,6 +180,21 @@ class ValidateVintageContentTests(unittest.TestCase):
         self.assertTrue(
             any(
                 "points to missing room 'test_missing_room'" in error
+                for error in errors
+            )
+        )
+
+    def test_unsupported_exit_direction_is_reported(self):
+        def mutate(fixture: ContentFixture):
+            settlement = fixture.files[
+                "settlements/test-settlement.json"
+            ]
+            settlement["rooms"][0]["exits"]["up"] = "test_room_b"
+
+        errors = self.run_fixture(mutate)
+        self.assertTrue(
+            any(
+                "exit direction 'up' is not allowed" in error
                 for error in errors
             )
         )
