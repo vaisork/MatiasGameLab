@@ -58,6 +58,7 @@ El Historiador no sustituye:
 
 ## Handoff a Arte
 
+- **Anatomía visual de especies:** Felaryn con orejas y cola felinas; Dravak más pequeños y compactos que humanos, con zonas corporales endurecidas de aspecto mineral; Marevyn altos con escamas parciales y rasgos acuáticos; Vesperi con ojos muy grandes y postura ligeramente encorvada/recogida. La fuente detallada es `SPECIES.md` y la traducción visual obligatoria vive en `ART_WORLD_GUIDE.md`.
 - **Canon visual del mundo:** creado `ART_WORLD_GUIDE.md` como puerta de entrada obligatoria para ilustraciones de Vintage Telnet. Establece qué documentos debe leer Arte según la tarea, qué puede interpretar y qué debe devolver al Historiador en vez de inventar.
 - **Arcanes:** creado `ARCANES.md` con su identidad visual/narrativa, separación de animales y criaturas, regla de nombre elegido por el jugador y ocho formas iniciales basadas en perro, gato, conejo, ave y ratón.
 
@@ -65,7 +66,7 @@ El Historiador no sustituye:
 
 Áreas importantes aún por desarrollar o repartir:
 - diseño completo de **Vaisgard** — **primera versión completada en `VAISGARD.md`; queda abierta a expansión**;
-- anatomía, cultura e historia final de cada especie — **rasgos naturales necesarios para Jugabilidad definidos en `SPECIES.md`; apariencia/cultura profunda siguen abiertas**;
+- cultura e historia final de cada especie — **la anatomía visual principal ya está definida en `SPECIES.md`; detalles secundarios y cultura profunda siguen abiertos**;
 - capacidades narrativas de Dravak, Marevyn y Vesperi — **primera definición completada en `SPECIES.md`; expansión posterior abierta**;
 - mapa regional y conexiones entre los cinco pueblos y Vaisgard — **primera arquitectura definida en `REGIONS.md`**;
 - historia antigua del mundo — **iniciada en `HISTORY.md`; faltan eras y causas anteriores/posteriores**;
