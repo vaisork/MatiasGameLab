@@ -674,3 +674,311 @@ Psicopedagógicamente, esto es mejor que cinco tutoriales idénticos con distint
 
 El primer slice técnico puede avanzar sin añadir dificultad lectora artificial. La primera prueba real de “leer para jugar mejor” debería empezar en las microzonas narrativas de VT-NAR-002, una vez que Narrador y Jugabilidad concreten la interacción mínima.
 
+## VT-PSY-003 — Auditoría pre-playtest de lectura y conversación
+
+**Fecha:** 2026-09-22  
+**Estado auditado:** `main` posterior a la aprobación de Jugabilidad v1 y a la solicitud VT-NPC-001.  
+**Ámbito:** texto visible del servidor actual, selección de especie, navegación, comandos, chat local, reglas de lectura de `GAMEPLAY.md` y diseño narrativo/NPC de `NARRATIVE.md`.
+
+## Veredicto de preparación
+
+### Prueba técnica del juego
+**LISTA PARA CONTINUAR.**
+
+La entrada, selección de especie, movimiento, persistencia y chat local pueden seguir probándose como infraestructura.
+
+### Prueba infantil de lectura y conversación narrativa
+**CASI LISTA, PERO NO DEBE CONSIDERARSE VALIDADA TODAVÍA.**
+
+Hay cuatro bloqueos antes de evaluar seriamente si los niños están leyendo, comprendiendo y conversando dentro del mundo:
+
+1. las salas visibles todavía usan texto `[PLACEHOLDER]`;
+2. no existen todavía NPCs iniciales implementados ni diálogos jugables;
+3. `observar`, `examinar`, `hablar` y otras acciones de lectura todavía no existen en el servidor actual;
+4. cualquier texto no reconocido como movimiento/`mirar` se publica automáticamente como chat local.
+
+Los cuatro puntos pueden coexistir durante una prueba técnica, pero invalidarían una prueba psicopedagógica de lectura/conversación porque el niño no sabría con claridad si está dando una orden, investigando o hablando.
+
+## A. Auditoría de lectura
+
+### A1. GAMEPLAY ya adoptó correctamente el principio central
+
+`GAMEPLAY.md` ya incorporó:
+
+**Información → Comprensión → Acción → Consecuencia**
+
+También fija correctamente que:
+- Percepción aporta señales;
+- Intelecto aporta contexto/conocimiento;
+- el jugador realiza la deducción;
+- los fallos relevantes deben poder comprenderse narrativamente;
+- mirar/observar/examinar son niveles diferentes;
+- una pista no debe aparecer mediante interfaz antes de ser legítimamente detectable.
+
+**Resultado:** sin observaciones críticas en esta parte. La regla está bien encaminada.
+
+### A2. Texto real actual de salas
+
+El servidor todavía presenta textos del tipo:
+
+> `[PLACEHOLDER] El punto central y comunitario de Valdren. (Descripcion pendiente del Historiador.)`
+
+Esto es correcto como advertencia técnica para desarrolladores, pero **no sirve para medir lectura infantil**.
+
+**Riesgo:** un niño aprende a ignorar el texto porque percibe rápidamente que no contiene información jugable.
+
+**Criterio antes de la prueba narrativa:** las primeras salas deben tener descripciones canónicas breves con al menos:
+- dónde estoy;
+- qué detalle merece atención;
+- qué puedo inferir o decidir aquí;
+- una identidad memorable del lugar.
+
+No hace falta una descripción larga.
+
+### A3. Selección de especie
+
+La pantalla actual mezcla descripciones de calidad desigual:
+- Humano: extremadamente genérico;
+- Felaryn: incluye capacidades concretas;
+- Dravak, Marevyn y Vesperi: muestran notas internas como “pendiente”.
+
+**Riesgo:** la elección parece incompleta y una especie puede resultar más atractiva solamente porque recibió más información.
+
+**Bloqueo de presentación infantil:** eliminar del texto visible todas las notas “pendiente” y ofrecer descripciones cortas comparables en estructura.
+
+**Formato recomendado por especie:**
+1. una frase de identidad;
+2. una característica concreta;
+3. una frase de sensación de juego/origen, sin prometer mecánicas aún no implementadas.
+
+No presentar lore largo antes de que el jugador haya empezado.
+
+### A4. Longitud inicial
+
+Mantengo la recomendación previa:
+- primera visita a una sala: 2–4 ideas relevantes;
+- una pista crítica inmediata no debe quedar enterrada sistemáticamente en un bloque largo;
+- texto adicional mediante `mirar/observar/examinar`;
+- relectura disponible cuando la información siga siendo válida.
+
+### A5. Error de movimiento
+
+El servidor responde actualmente:
+
+> “No puedes ir en esa dirección.”
+
+Es funcional, pero enseña poco.
+
+**Mejor criterio para jugadores nuevos:** cuando no revele un secreto, explicar qué bloquea o recordar salidas conocidas.
+
+Ejemplo conceptual:
+> Hacia el norte, las casas cierran el paso. Puedes continuar al este o regresar al sur.
+
+No debe revelarse una salida secreta no descubierta.
+
+### A6. Cruceta y secretos
+
+Los botones N/S/E/O se deshabilitan cuando no existe una salida en los datos de la sala.
+
+Esto es correcto en la microzona técnica actual.
+
+**Regla para contenido futuro:** una salida oculta no debe manifestarse como un botón deshabilitado que revele que “algo existe ahí”. Hasta descubrirla, la interfaz debe comportarse como si no fuera una salida disponible.
+
+## B. Auditoría de conversación
+
+### B1. Riesgo crítico: comando desconocido = hablar públicamente
+
+En el servidor actual, el cuadro único interpreta:
+- movimiento → movimiento;
+- `mirar` → mirar;
+- cualquier otro texto → chat local visible a jugadores de la sala.
+
+Esto genera un conflicto directo con el futuro vocabulario:
+- `examinar huellas`;
+- `observar cerca`;
+- `hablar herrero`;
+- `preguntar camino`;
+- `ayuda`.
+
+Un niño puede creer que está interactuando con el juego y en realidad publicar ese texto a otras personas.
+
+**Clasificación:** BLOQUEO antes de una prueba infantil multijugador de conversación.
+
+**Recomendación funcional:** un comando no reconocido no debe convertirse automáticamente en habla.
+
+Opciones válidas para Arquitectura/Jugabilidad:
+- conversación explícita mediante `decir <mensaje>`;
+- modo/chat separado;
+- o parser que primero intente acciones del juego y, si no reconoce la entrada, pregunte qué quiso hacer en vez de publicarla.
+
+Psicopedagogía no decide cuál arquitectura usar; sí fija que **la intención del niño debe ser inequívoca antes de publicar un mensaje a otros jugadores**.
+
+### B2. Chat local y conversación con NPC no son la misma acción cognitiva
+
+El juego necesitará distinguir claramente:
+- hablar con otra persona jugadora;
+- hablar a la sala;
+- hablar con un NPC;
+- ejecutar una orden.
+
+Si todo comparte la misma apariencia, aumenta la confusión de intención.
+
+No es obligatorio usar ventanas distintas, pero el resultado debe dejar claro quién recibió el mensaje.
+
+### B3. VT-NPC-001 va en la dirección correcta
+
+La solicitud del Narrador acierta al preferir **3–4 NPCs relevantes por pueblo** en lugar de poblar el mundo con personajes superficiales.
+
+Psicopedagogía añade una condición:
+
+> Tener 3–4 NPCs disponibles no significa presentar 3–4 nombres nuevos simultáneamente al jugador.
+
+En la primera sesión conviene introducirlos progresivamente y asociarlos a una función/rasgo memorable.
+
+Ejemplo estructural:
+- persona de hogar/comunidad;
+- persona conectada al exterior;
+- persona de rumor/memoria;
+- cuarto personaje solamente si añade una función diferente.
+
+### B4. Estructura recomendada de conversación inicial
+
+Una conversación temprana no debería empezar con un bloque enciclopédico.
+
+Cada intervención inicial de NPC debería intentar cumplir como máximo algunas de estas funciones:
+- responder a lo que el jugador preguntó;
+- aportar un dato concreto;
+- mostrar personalidad;
+- abrir una pregunta;
+- señalar una posible acción.
+
+El jugador debe poder profundizar voluntariamente.
+
+**Principio:** conversación por capas, no descarga de lore.
+
+### B5. Qué debe recordar un NPC
+
+La especificación VT-NPC-001 ya solicita:
+- qué sabe;
+- qué cree;
+- qué puede contar;
+- qué requiere descubrimiento previo;
+- qué no sabe.
+
+Psicopedagogía recomienda conservar esa separación en el motor de conversación.
+
+Esto permite enseñar lectura crítica:
+- un NPC puede saber algo;
+- otro puede haber oído un rumor;
+- dos versiones pueden contradecirse;
+- el jugador aprende que “lo dijo un personaje” no equivale siempre a “el mundo confirma que es verdad”.
+
+En las primeras conversaciones, sin embargo, conviene que exista al menos una referencia relativamente confiable para orientación básica. No introducir contradicción compleja antes de enseñar cómo funciona conversar.
+
+### B6. Presencia y conversación
+
+La regla actual de Jugabilidad es adecuada:
+
+> Presencia mejora la recepción de una propuesta plausible; no vuelve correcto un argumento absurdo.
+
+Para conversaciones infantiles esto debe sentirse de forma visible.
+
+Una Presencia alta puede:
+- obtener una respuesta más abierta;
+- reducir desconfianza;
+- conseguir una segunda oportunidad;
+- mejorar tono o cooperación.
+
+No debería:
+- inventar conocimiento en el NPC;
+- convertir una mentira evidente en hecho;
+- omitir toda necesidad de leer lo que preocupa al interlocutor.
+
+### B7. Fracaso conversacional
+
+En el inicio, una mala elección social razonable no debería cerrar permanentemente una línea importante.
+
+Preferir:
+- respuesta fría;
+- información parcial;
+- necesidad de volver con evidencia;
+- posibilidad de preguntar de otra forma;
+- otro NPC que aporte una perspectiva.
+
+Reservar cierres fuertes para decisiones claras y comprensibles.
+
+### B8. Regreso al NPC
+
+La idea de VT-NPC-001 de que un NPC reaccione después de explorar es especialmente valiosa.
+
+Esto crea una recompensa de memoria:
+1. escuché algo;
+2. salí;
+3. encontré una señal;
+4. regresé;
+5. la conversación cambió porque traigo nueva información.
+
+Es una de las mejores formas de comprobar comprensión sin hacer un examen.
+
+## C. Criterios mínimos antes del primer playtest narrativo infantil
+
+### BLOQUEANTES
+
+1. Reemplazar los `[PLACEHOLDER]` de la ruta concreta que se vaya a probar.
+2. No mostrar notas internas “pendiente” en selección de especie.
+3. Evitar que un comando no reconocido se publique automáticamente como chat.
+4. Implementar al menos `mirar` + una acción de inspección adicional (`observar` o `examinar`) si la prueba pretende medir lectura.
+5. Incorporar al menos un NPC conversable en la región utilizada para la primera prueba de conversación.
+
+### NO BLOQUEANTES PERO RECOMENDADOS
+
+- respuesta de movimiento más informativa;
+- identificación visual inequívoca de chat vs. comandos;
+- progresión de presentación de NPCs;
+- opción clara de volver a preguntar información básica;
+- historial suficiente para recuperar contexto reciente en teléfono.
+
+## D. Protocolo de observación para la primera prueba
+
+No preguntarle continuamente al niño “¿entendiste?”.
+
+Observar conductas:
+
+1. **Primera lectura:** ¿empieza a actuar antes de terminar?
+2. **Relectura:** ¿usa `mirar/observar` cuando algo no queda claro?
+3. **Orientación:** después de moverse 3–5 salas, ¿entiende aproximadamente dónde está?
+4. **Pista:** cuando aparece una señal, ¿cambia lo que intenta?
+5. **Conversación:** ¿pregunta algo relacionado con lo que acaba de observar?
+6. **Memoria:** al regresar a un NPC, ¿recuerda por qué volvió?
+7. **Comandos/chat:** ¿alguna vez envía accidentalmente como conversación algo que intentaba usar como orden?
+8. **Frustración:** ¿en qué momento deja de experimentar y empieza a pulsar/escribir al azar?
+9. **Recuperación:** tras una pista secundaria o un fallo, ¿entiende qué nueva cosa puede intentar?
+
+Registrar acciones, no diagnósticos.
+
+## E. Umbral de éxito de la primera prueba
+
+La prueba de lectura funciona si, sin preguntas escolares:
+- el jugador detecta al menos una información útil;
+- esa información cambia una acción;
+- puede recuperar una pista que no entendió a la primera;
+- un error razonable enseña algo;
+- conversar aporta una ventaja informativa real;
+- regresar con información cambia una interacción.
+
+La prueba de conversación funciona si:
+- el jugador distingue cuándo habla y cuándo da una orden;
+- entiende con quién está hablando;
+- las respuestas son suficientemente cortas para permitir interacción;
+- puede hacer al menos una pregunta relevante de seguimiento;
+- el NPC no resuelve automáticamente el misterio;
+- una conversación posterior reconoce algo que el jugador descubrió.
+
+## Estado final de auditoría
+
+**VT-PSY-003: AUDITORÍA ENTREGADA — CASI LISTO PARA PLAYTEST NARRATIVO.**
+
+La arquitectura conceptual de lectura está suficientemente madura para empezar a construir la prueba.
+
+Los principales pendientes ya no son filosóficos: son concretos y verificables —texto final mínimo, acciones de inspección, separación comando/chat y primer NPC conversable.
+
