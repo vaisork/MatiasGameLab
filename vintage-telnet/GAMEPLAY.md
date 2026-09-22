@@ -243,7 +243,7 @@ El diseño debe evitar una proliferación innecesaria de estados difíciles de r
 
 ### Pendiente antes de las matemáticas de combate
 
-Todavía no están definidos valores iniciales, PA por nivel, costes, fórmulas de precisión/potencia/defensa/daño, cantidad y progresión de HP, umbrales narrativos de condición, catálogo y efectos de heridas, fórmula y capacidad de fatiga, velocidad exacta de recuperación, relación numérica de armas/armadura, probabilidades/grados de éxito ni reglas concretas de poderes.
+Todavía no están definidos valores iniciales, fórmulas de precisión/potencia/defensa/daño, cantidad y progresión de HP, umbrales narrativos de condición, catálogo y efectos de heridas, fórmula y capacidad de fatiga, velocidad exacta de recuperación, relación numérica de armas/armadura, probabilidades/grados de éxito ni reglas concretas de poderes. **PA por nivel y la curva base de coste de atributos ya están confirmados en la sección 19.**
 
 ## 18. Progresión incremental de la dificultad
 
@@ -265,6 +265,60 @@ Por ello, antes de aprobar PA por nivel, costes de atributos o tramos definitivo
 - que la dificultad avanzada premie mejor lectura y decisión, no solamente cifras mayores.
 
 **Principio confirmado:** subir de nivel aumenta la capacidad del personaje, pero el aumento de dificultad debe ser incremental y no limitarse a aumentar estadísticas enemigas; también debe introducir gradualmente situaciones que exijan mejores decisiones y comprensión de la información.
+
+
+## 19. Crecimiento de atributos y competencia general — confirmado
+
+Después de comparar múltiples perfiles de jugador —especialista, doble especialista, equilibrado, irregular y casual/no optimizado— se confirma como base de crecimiento de la primera etapa de niveles 1–100:
+
+### Puntos de Atributo
+
+- Cada subida de nivel entrega **2 Puntos de Atributo (PA)**.
+- Los PA se gastan únicamente en atributos y continúan separados de los Puntos de Poder (PP).
+- El coste de aumentar un atributo es creciente y visible.
+
+| Valor actual del atributo | Coste del siguiente +1 |
+| --- | ---: |
+| 10–19 | 1 PA |
+| 20–34 | 2 PA |
+| 35–44 | 3 PA |
+| 45–59 | 4 PA |
+| 60+ | 5 PA |
+
+Esta curva busca conservar tres estilos viables:
+- un especialista puede alcanzar valores extraordinarios a cambio de sacrificar desarrollo general;
+- un doble especialista puede mantener dos fortalezas claras;
+- un personaje equilibrado o casual obtiene mayor versatilidad total y no queda inutilizado por una distribución imperfecta.
+
+El diseño no debe exigir una build matemáticamente perfecta para poder progresar.
+
+### Competencia general por nivel
+
+Además de los PA, el crecimiento de nivel aporta una **competencia general** que evita que un personaje de nivel alto siga comportándose como novato en todas las áreas que no especializó.
+
+Como referencia aprobada para la primera etapa, la competencia general acumulada equivale aproximadamente a **+8 unidades de capacidad base al nivel 100**. Su aplicación debe escalar gradualmente a lo largo de los niveles; no debe entregarse de golpe al final.
+
+Esta competencia general:
+- no sustituye los atributos;
+- no borra las diferencias entre builds;
+- no convierte a todos los personajes en iguales;
+- proporciona un piso de experiencia acumulada para que especialista, generalista y jugador casual sigan siendo funcionales.
+
+La implementación matemática exacta de cómo se distribuye ese +8 entre los niveles puede ser continua o por hitos, siempre que conserve el resultado de progresión aprobado y sea transparente para Jugabilidad.
+
+### Principio de balance
+
+**Nivel aporta competencia general; PA aportan identidad y especialización.**
+
+Ningún atributo debe convertirse por sí solo en una solución universal. Las fórmulas derivadas pueden combinar atributos y aplicar límites naturales cuando sea necesario, pero no deben aplicar rendimientos decrecientes de forma indiscriminada si el coste creciente ya controla la especialización.
+
+La dificultad incremental del mundo deberá calibrarse contra este modelo de crecimiento, de modo que:
+- todos los perfiles razonables puedan progresar;
+- especializarse otorgue ventajas reales en el área elegida;
+- un personaje equilibrado conserve valor por versatilidad;
+- una distribución casual o imperfecta no arruine permanentemente al personaje.
+
+Los valores iniciales exactos de los atributos y las fórmulas derivadas de combate, exploración, investigación y social siguen pendientes.
 
 ## Investigación disponible para Jugabilidad — capacidades HTML y comandos
 
