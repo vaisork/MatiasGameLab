@@ -26,6 +26,8 @@ Campos mínimos:
 - `conditional_knowledge`
 - `narrative_function`
 - `gameplay_function`
+- `capabilities`
+- `limits`
 - `memory_hooks`
 
 Se permiten campos adicionales del generador, pero siguen siendo autoritativos e
@@ -64,3 +66,12 @@ perezosa:
 `server.npc_personality.enrich_personality_once`
 
 No se duplica el cliente Ollama ni su validación.
+
+
+## Compatibilidad revisada con PR #20
+
+Se verificó la firma real de `enrich_personality_once(npc, client)` en PR #20.
+El adaptador usa esa misma firma y no depende de nombres internos adicionales.
+
+Tras la revisión se hicieron explícitos `capabilities` y `limits`, porque Issue #19
+los reserva como datos autoritativos del Generador de NPCs.
