@@ -78,6 +78,8 @@ Su experiencia puede sentirse menos condicionada por una especialización corpor
 
 ## Naturaleza
 
+Los Felaryn poseen una apariencia humanoide propia con **pelo visible y orejas similares a las de un gato**, integradas de forma natural en su anatomía. Estos rasgos son canónicos, pero la especie no debe presentarse al jugador como una simple mezcla o como “hombre gato”.
+
 Los Felaryn están adaptados a desplazarse y orientarse en terrenos montañosos con grandes diferencias de altura.
 
 Sus capacidades confirmadas son el **salto de gran distancia** y una **vista excepcional**.
