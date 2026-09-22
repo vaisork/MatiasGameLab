@@ -83,7 +83,7 @@ Resultado real:
 
 ```text
 Vintage Telnet content validation OK
-Ran 12 tests
+Ran 13 tests
 OK
 ```
 
@@ -100,7 +100,8 @@ Casos probados:
 9. JSON no listado en manifest;
 10. versión de manifest inválida;
 11. referencia a private-content;
-12. códigos de salida CLI válido/inválido.
+12. dirección de salida no permitida en schema v1;
+13. códigos de salida CLI válido/inválido.
 
 ## Límites respetados
 
@@ -129,3 +130,14 @@ La implementación sigue el contrato descrito en PR #8 / `CONTENT_RUNTIME_ARCHIT
 
 **LISTO PARA REVISIÓN DEL ARQUITECTO:** SÍ  
 **LISTO PARA POBLAR CON CONTENIDO REAL:** después de aprobación/merge; Historiador/Narrador son responsables de ese contenido.
+
+
+## Corrección tras revisión contra PR #8
+
+La revisión técnica detectó que PR #8 había evolucionado después del inicio de Issue #9.
+
+Se corrigió el contrato para que:
+
+- salas exijan `description` inline en lugar de `description_id`;
+- schema v1 acepte únicamente `north`, `south`, `east`, `west` como direcciones de salida;
+- exista una prueba sintética específica para rechazar una dirección fuera del conjunto permitido.
