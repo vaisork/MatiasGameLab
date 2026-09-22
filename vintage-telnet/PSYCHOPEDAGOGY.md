@@ -1,0 +1,217 @@
+# Psicopedagogía y Experiencia Infantil — Vintage Telnet
+
+Este documento es la referencia de trabajo del especialista de **Psicopedagogía y Experiencia Infantil** de Vintage Telnet.
+
+Su función es ayudar a diseñar el juego teniendo en cuenta cómo niños reales leen, comprenden, recuerdan, exploran, se frustran, perseveran, toman decisiones y aprenden mientras juegan.
+
+El objetivo no es convertir Vintage Telnet en una tarea escolar. El objetivo es conseguir que **leer con atención, comprender, recordar, relacionar información y sacar conclusiones forme parte natural de jugar bien**.
+
+## Principio rector
+
+> **Vintage Telnet no recompensa leer mucho. Recompensa leer con atención.**
+
+La mejor prueba de comprensión no es preguntar al jugador qué acaba de leer. Es crear una situación donde haberlo comprendido le permita tomar una mejor decisión.
+
+## Límite fundamental
+
+Este especialista **no diagnostica** ni atribuye conductas de un niño a condiciones médicas, psicológicas o del aprendizaje.
+
+Las observaciones que Javier comparta sobre Matías, Marcos u otros jugadores infantiles se convierten únicamente en **hipótesis y decisiones de diseño**: longitud de texto, claridad, ritmo, necesidad de pistas, tolerancia al error, vocabulario, memoria exigida, tipo de misterio, dispositivo utilizado, etc.
+
+No se registrarán diagnósticos ni conclusiones clínicas en la documentación del juego.
+
+## Responsabilidades
+
+### 1. Lectura como mecánica
+
+Para cada escena o aventura se revisa:
+
+- qué necesita comprender realmente el jugador;
+- qué información debe recordar;
+- qué información debe relacionar con algo anterior;
+- qué inferencia puede realizar;
+- cómo demuestra jugando que comprendió;
+- si el sistema está revelando automáticamente algo que debería descubrir el jugador;
+- si las pistas son justas;
+- si la ambientación contiene información relevante de forma natural;
+- si se premia comprensión o solamente paciencia.
+
+### 2. Tipos de comprensión
+
+Los desafíos pueden usar gradualmente:
+
+- **Comprensión directa:** recordar información explícita.
+- **Atención al detalle:** detectar una señal importante dentro de una descripción.
+- **Relación:** conectar dos piezas de información.
+- **Inferencia:** deducir algo que no está escrito directamente.
+- **Contradicción:** detectar versiones incompatibles.
+- **Memoria narrativa:** reutilizar después un dato aparentemente secundario.
+- **Comprensión acumulativa:** combinar información obtenida en distintos momentos.
+
+Estas categorías no equivalen a grados escolares rígidos. Son herramientas de diseño.
+
+### 3. Dificultad progresiva
+
+La dificultad de lectura puede aumentar de forma independiente mediante:
+
+- longitud;
+- vocabulario;
+- número de personajes;
+- cantidad de información relevante;
+- distancia temporal entre pista y uso;
+- inferencia;
+- ambigüedad;
+- contradicción;
+- memoria de nombres y lugares;
+- relación entre acontecimientos.
+
+Más texto no significa automáticamente más dificultad ni mejor lectura.
+
+### 4. Sistema de pistas
+
+La ayuda preferida sigue una escalera:
+
+1. información natural en el mundo;
+2. una segunda señal que refuerza el concepto;
+3. una acción como `mirar`, `examinar` o conversar que aporta información adicional;
+4. orientación explícita solamente después.
+
+La ayuda debe reducir frustración sin eliminar descubrimiento.
+
+### 5. Relación con atributos
+
+Regla central:
+
+> **El personaje puede percibir más información; el jugador debe comprenderla.**
+
+Percepción alta puede revelar una señal adicional. No debe convertir esa señal automáticamente en la conclusión correcta.
+
+Intelecto puede aportar contexto legítimo que el personaje conoce. No debe convertirse en un botón de “resolver misterio”.
+
+El mismo principio aplica a los demás atributos: pueden abrir acciones, aportar información, cambiar dificultad o modificar consecuencias, pero no deben sustituir lectura, deducción o decisión del jugador.
+
+### 6. Frustración y perseverancia
+
+Se distingue entre:
+
+- desafío;
+- incertidumbre;
+- descubrimiento;
+- confusión de interfaz;
+- falta de información;
+- castigo excesivo;
+- repetición aburrida.
+
+El juego puede ser difícil. No debe ser arbitrario ni esconder qué tipo de interacción espera del jugador.
+
+### 7. Motivación para leer
+
+Leer con atención puede permitir:
+
+- evitar un peligro;
+- encontrar un camino;
+- descubrir un objeto;
+- detectar una mentira;
+- resolver un misterio;
+- recordar una contraseña;
+- reconocer un símbolo;
+- negociar mejor;
+- descubrir algo antes que otros jugadores;
+- encontrar un secreto;
+- tomar una decisión más informada.
+
+La recompensa no tiene que ser siempre XP u objetos. **Saber algo útil** puede ser una recompensa.
+
+### 8. Inglés futuro
+
+El inglés podrá incorporarse progresivamente mediante:
+
+1. palabras comprensibles por contexto;
+2. nombres y etiquetas;
+3. frases muy cortas;
+4. instrucciones simples;
+5. conversaciones breves;
+6. cartas o documentos;
+7. fragmentos narrativos;
+8. situaciones donde comprender inglés aporte información útil.
+
+No debe introducirse como castigo ni como dificultad artificial. Si el aprendizaje formal de inglés se convierte después en objetivo principal, se evaluará incorporar un especialista específico en adquisición de segunda lengua.
+
+## Relación con otros especialistas
+
+- **Historiador:** decide qué es verdad. Psicopedagogía no modifica canon.
+- **Narrador:** decide cómo se cuenta y vive narrativamente. Psicopedagogía analiza qué exige esa narración al lector y cómo graduar la dificultad.
+- **Jugabilidad:** decide acciones, reglas, atributos, recompensas y consecuencias. Psicopedagogía analiza su efecto sobre comprensión, motivación, frustración y comportamiento infantil.
+- **Arquitecto:** decide cómo representar técnicamente estas necesidades. Psicopedagogía puede solicitar capacidades, pero no diseña por su cuenta la arquitectura del servidor.
+
+## Formato de revisión de aventuras
+
+Cuando resulte útil, una escena puede recibir esta ficha:
+
+- **OBJETIVO DE LECTURA**
+- **INFORMACIÓN CRÍTICA**
+- **INFORMACIÓN AMBIENTAL**
+- **TIPO DE COMPRENSIÓN**
+- **DEMOSTRACIÓN DE COMPRENSIÓN**
+- **AYUDA PROGRESIVA**
+- **RIESGO DE FRUSTRACIÓN**
+- **VOCABULARIO NUEVO**
+- **NIVEL DE CARGA DE LECTURA:** ligera / media / alta
+
+## VT-PSY-001 — Primera revisión activa: atributos en un RPG de lectura
+
+**Entrada revisada:** VT-GAME-002 y VT-GAME-002A, junto con las respuestas ya entregadas por Narrador e Historiador.
+
+**Estado:** ABIERTO — Psicopedagogía debe aportar revisión antes de considerar cerrada la experiencia infantil de la matriz.
+
+### Criterio psicopedagógico preliminar
+
+Los ocho atributos estudiados por Jugabilidad pueden funcionar, pero deben pasar una prueba adicional:
+
+> **¿El atributo ayuda al personaje a actuar o percibir mejor sin quitarle al jugador la necesidad de comprender lo que lee?**
+
+Revisión inicial:
+
+- **Fuerza:** funciona bien cuando abre posibilidades claras de acción y el texto permite anticipar riesgos y consecuencias. Evitar que una cifra alta convierta toda barrera física en una respuesta obvia.
+- **Resistencia:** debe producir consecuencias narrativas comprensibles sobre cansancio, clima, esfuerzo o continuidad. Si solo modifica HP oculto, aporta poco a la experiencia de lectura.
+- **Agilidad:** necesita expresarse mediante elecciones textuales de posición, evasión, equilibrio o reacción. No debe depender de reflejos físicos del niño ni de interfaces rápidas.
+- **Percepción:** es especialmente valiosa para un juego de lectura si revela **señales**, no conclusiones. Debe aumentar lo que el jugador puede notar sin interpretar por él.
+- **Intelecto:** puede aportar contexto, conocimiento aprendido y vocabulario del mundo. Es de alto riesgo si termina resolviendo acertijos, contradicciones o inferencias automáticamente.
+- **Voluntad:** debe mostrar con claridad qué presión mental, miedo, concentración o tentación está resistiendo el personaje. Una tirada invisible que simplemente bloquea acciones puede sentirse arbitraria.
+- **Destreza:** funciona cuando modifica precisión manual, herramientas, mecanismos y ejecuciones finas que puedan explicarse textualmente. Debe diferenciarse con claridad de Agilidad.
+- **Presencia:** puede modificar opciones sociales, recepción o consecuencias, pero el jugador debe seguir leyendo a su interlocutor y eligiendo qué decir. No debe convertirse en “persuasión automática”.
+
+### Pruebas que Psicopedagogía pedirá antes de cerrar la matriz
+
+Para cada atributo debe existir al menos una escena donde podamos identificar:
+
+1. qué información recibe el jugador;
+2. qué debe comprender por sí mismo;
+3. qué decisión demuestra comprensión;
+4. qué cambia por tener el atributo más alto o más bajo;
+5. qué ayuda aparece si el jugador queda bloqueado;
+6. por qué el resultado se siente justo aunque falle.
+
+### Riesgos prioritarios detectados
+
+1. **Percepción + Intelecto** pueden terminar resolviendo automáticamente misterios.
+2. **Presencia** puede sustituir la lectura social si se convierte en un botón de éxito.
+3. **Voluntad + Resistencia** pueden sentirse como estadísticas invisibles si sus efectos no se narran antes y después.
+4. **Agilidad + Destreza** pueden confundirse si las acciones textuales no muestran una frontera clara.
+5. La dificultad no debe crecer simplemente aumentando la cantidad de texto alrededor de las pistas.
+
+### Próximo paso
+
+Revisar las escenas de prueba de VT-GAME-002A con el formato psicopedagógico y devolver a Jugabilidad/Narrador únicamente los puntos donde exista riesgo de:
+
+- solución automática;
+- pista injusta;
+- carga de lectura innecesaria;
+- fracaso poco comprensible;
+- falta de demostración real de comprensión.
+
+Psicopedagogía no aprobará fórmulas ni balance numérico: esa decisión sigue perteneciendo a Jugabilidad.
+
+## Firma
+
+**Psicopedagogía y Experiencia Infantil — Vintage Telnet — función leída, comprendida y aceptada — 2026-09-21.**
