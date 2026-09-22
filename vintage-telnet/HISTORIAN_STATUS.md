@@ -56,6 +56,10 @@ El Historiador no sustituye:
 
 - **Presentación pública de Vintage Telnet:** texto del Historiador preparado en `PRESENTATION_HISTORIAN.md`, sin spoilers ni secretos del Dungeon Master. Incluye mundo, Vaisgard, cinco pueblos/especies, exploración mediante lectura, atributos narrados y promesa de expansión.
 
+## Handoff a Arte
+
+- **Canon visual del mundo:** creado `ART_WORLD_GUIDE.md` como puerta de entrada obligatoria para ilustraciones de Vintage Telnet. Establece qué documentos debe leer Arte según la tarea, qué puede interpretar y qué debe devolver al Historiador en vez de inventar.
+
 ## Trabajo narrativo todavía abierto
 
 Áreas importantes aún por desarrollar o repartir:
@@ -96,6 +100,7 @@ Estos especialistas no son necesarios automáticamente. El Arquitecto decidirá 
 - `SPECIES.md` — rasgos naturales de las cinco especies; entrega del Historiador para VT-GAME-001.
 - `SECRETS.md` — información reservada del Dungeon Master.
 - `PRESENTATION_HISTORIAN.md` — texto público del mundo para la presentación.
+- `ART_WORLD_GUIDE.md` — jerarquía y canon visual para Arte.
 - `GAMEPLAY.md` — fuente de verdad mecánica.
 
 ---
