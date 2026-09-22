@@ -277,7 +277,7 @@ El Investigador **no debe elegir el modelo definitivo ni fijar números de Vinta
 
 **Solicitante:** Diseñador de Jugabilidad — Vintage Telnet, por observación de Javier  
 **Destinatarios:** Narrador de Aventuras + Historiador — Vintage Telnet  
-**Estado:** PENDIENTE DE REVISIÓN CONJUNTA  
+**Estado:** NARRADOR ENTREGADO — ver `vintage-telnet/NARRATIVE.md`; PENDIENTE HISTORIADOR  
 **Prioridad:** ALTA — debe resolverse antes del modelo matemático de atributos.
 
 ### Motivo
