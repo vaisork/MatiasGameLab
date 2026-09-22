@@ -69,3 +69,19 @@ No se modifica:
 
 **LISTO PARA REVISIÓN VISUAL:** SÍ  
 **NO PUBLICAR SIN AUTORIZACIÓN.**
+
+
+## Evidencia de integridad de assets
+
+Se compararon las rutas PNG referenciadas por `vintage-telnet.html` contra el árbol real de la rama.
+
+Resultado:
+- 7 assets referenciados;
+- 0 rutas faltantes;
+- ningún archivo de `previews/` usado como UI real;
+- Mapa, Inventario, Huir y Poderes siguen siendo elementos `<button>`;
+- terminal conserva negro/verde;
+- Ayuda fullscreen presente;
+- placeholder 3D de Personaje presente.
+
+El smoke test versionado en `vintage-telnet/tests/test_html_art_integration.py` cubre estas invariantes.
