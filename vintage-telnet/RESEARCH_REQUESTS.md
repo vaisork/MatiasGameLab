@@ -215,7 +215,7 @@ El **Desarrollador Junior de Vintage Telnet** utilizará la recomendación para 
 
 **Solicitante:** Diseñador de Jugabilidad — Vintage Telnet  
 **Destinatario:** Investigador Técnico y de Implementación — Vintage Telnet  
-**Estado:** PENDIENTE  
+**Estado:** ENTREGADO — ver `vintage-telnet/RESEARCH_ATTRIBUTE_PROGRESSION.md`  
 **Prioridad:** ALTA — bloquea la definición numérica del sistema de atributos.
 
 ### Decisiones de Jugabilidad ya confirmadas
