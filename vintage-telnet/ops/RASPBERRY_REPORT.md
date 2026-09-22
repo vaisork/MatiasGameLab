@@ -1,8 +1,78 @@
 # Respuesta del operador Raspberry
 
-Estado actual: **PROBADO MANUALMENTE (sin systemd todavía)**. Ejecución real en la
-Raspberry Pi, servidor lanzado a mano (`python -m server`), probado desde un
-navegador real en la misma LAN. No se instaló como servicio; ver pendientes.
+Estado actual: **INSTALADO COMO SERVICIO SYSTEMD Y VERIFICADO**. El despliegue
+histórico de `codex/vintage-telnet-server` (PR #1) fue dado de baja y
+reemplazado por `claude/vintage-telnet-server-v2` (PR #6) en el mismo puerto
+(8080, loopback). Los apartados de abajo documentan primero la prueba manual
+previa (sin systemd) y luego la instalación systemd final.
+
+## Instalación systemd final — 2026-09-22T05:27:53Z
+
+- Ejecutado por Javier con `sudo` localmente (`ops/install_v2_authorized.py`,
+  script preparado por el operador; no ejecutado por el operador porque no
+  hay sudo no interactivo disponible en esta sesión).
+- SHA instalado: `8b1e13859fc02c636963d93c1533e482d1565dc9` (HEAD de
+  `claude/vintage-telnet-server-v2` en el momento de instalar; solo
+  `AGENTS.md`/`RASPBERRY_REPORT.md` cambiaron respecto a `db50026`, cero
+  cambios de código servidor).
+- Servicio viejo (Codex, PR #1) detenido y deshabilitado; su symlink de
+  `multi-user.target.wants` removido. Datos viejos (schema_version 1)
+  movidos a `/var/lib/vintage-telnet-codex-old-20260922T051927Z`, **no
+  borrados**. `server.env` viejo movido a
+  `/etc/vintage-telnet/server.env.codex-old-20260922T052753Z`. Unit anterior
+  respaldada en `/etc/systemd/system/vintage-telnet.service.codex-old-20260922T051927Z`.
+- Instalación nueva: venv + dependencias exactas de `requirements.txt`
+  instaladas; **28/28 pruebas OK** (7.9s) corridas como usuario `vintage-telnet`
+  antes de activar el servicio; `pip check` OK.
+- `VT_SECRET_KEY` generado en la Raspberry (32 bytes aleatorios, no
+  compartido); `VT_DM_PASSWORD` provisto por Javier en el momento de
+  instalar, escrito únicamente en `/etc/vintage-telnet/server.env`
+  (root:root, 0600), nunca en un archivo del repositorio ni mostrado en logs.
+- Verificación independiente del operador tras la instalación:
+  `systemctl status` → `active (running)`, `enabled` (sobrevive reinicio de
+  la Raspberry). `curl http://127.0.0.1:8080/healthz` →
+  `{"schema_version":2,"status":"ok"}`. `readlink -f /opt/vintage-telnet/current`
+  → apunta al release `8b1e138...` correcto.
+- **Primer intento de instalación falló** por dos bugs del script preparado
+  por el operador, ambos corregidos en el momento y documentados aquí para
+  quien reutilice `install_v2_authorized.py`:
+  1. El SHA autorizado quedó desactualizado en el script porque el operador
+     hizo push de un commit de documentación (firma en `AGENTS.md` + este
+     reporte) *después* de escribir el script pero *antes* de que Javier lo
+     corriera — el script exigía el HEAD viejo. Corregido apuntando al HEAD
+     real. Lección: generar el script leyendo el HEAD en el momento de
+     ejecutarlo, no fijarlo de antemano si puede haber commits de
+     documentación entre medio.
+  2. `server.env` se escribía con modo `"x"` (crear solo si no existe), que
+     falló porque el despliegue viejo de Codex ya tenía un `server.env` en
+     esa ruta. El primer intento alcanzó a apagar el servicio viejo, mover
+     sus datos y crear el release nuevo completo (venv, dependencias, 28
+     pruebas OK) pero se cortó ahí, dejando **el servicio completamente
+     caído unos minutos** (ni el viejo ni el nuevo respondían) hasta la
+     segunda corrida corregida. Ningún dato se perdió (todo movido, no
+     borrado), pero es un hueco de disponibilidad real a tener en cuenta
+     para el próximo cambio de release: idealmente no detener/deshabilitar
+     el servicio viejo hasta que el nuevo esté listo para activarse.
+- Accesos directos creados en el escritorio de la Raspberry a pedido de
+  Javier: `Vintage-Telnet-Juego.desktop` (`http://127.0.0.1:8080`) y
+  `Vintage-Telnet-DM.desktop` (`http://127.0.0.1:8080/dm`). Existía además un
+  `Vintage-Telnet.desktop` previo que apuntaba a la misma URL del juego
+  (antes servía Codex, ahora sirve esta entrega); queda duplicado, pendiente
+  de que Javier decida si lo borra.
+- **Prueba de navegador contra el servicio systemd (127.0.0.1:8080), 2026-09-22
+  ~05:32 UTC:** hecha desde el navegador de escritorio de la propia Raspberry
+  ("Browser 1", Linux — no la PC de Javier), usando los dos accesos directos
+  recién creados. Cuenta `vtprueba_systemd` registrada → jugador **#0001**
+  pendiente visible en `/dm` con la contraseña real de producción → aprobada
+  → especie **Humano** elegida → aparece en sala inicial "Valdren". Confirma
+  que la instalación systemd funciona igual que la prueba manual anterior
+  (puerto 8081) y que los dos accesos directos del escritorio apuntan a la
+  URL correcta.
+- **Pendiente:** reinicio físico de la Raspberry con el servicio activo,
+  todavía no probado; decidir si se borra el `Vintage-Telnet.desktop`
+  duplicado.
+
+## Prueba manual previa (sin systemd) — 2026-09-22
 
 - **Fecha UTC y operador:** 2026-09-22T04:47–05:02 UTC aprox.; Agente que opera
   la Raspberry Pi — Vintage Telnet (Claude).
