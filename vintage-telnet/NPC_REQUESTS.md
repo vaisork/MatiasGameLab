@@ -66,3 +66,44 @@ La especificación completa está en `NPCS.md` e incluye:
 **NECESIDAD DEL NARRADOR:** validar que el grado de información de la conversación encaje con VT-NAR-001/002B y elegir la escena concreta de introducción.
 
 **NECESIDAD TÉCNICA:** implementar después de cerrar la separación entre comando, NPC y chat local.
+
+
+---
+
+## VT-NPC-002 — Profundización de personalidad + segunda tanda
+
+**Solicitante:** Javier  
+**Estado:** ENTREGADO EN BORRADOR  
+**Objetivo:** hacer que los NPCs se sientan más humanos y preparar una segunda tanda sin llenar los pueblos artificialmente.
+
+### Mejoras aplicadas a los cinco ancla
+Cada uno recibe:
+- manías;
+- irritaciones;
+- humor;
+- contradicción personal;
+- error típico;
+- comportamiento al ganar confianza;
+- forma de enfadarse;
+- relaciones iniciales;
+- una regla de voz que no debe perderse.
+
+### Segunda tanda añadida
+Se añaden diez NPCs:
+- Valdren: Oren, Ilya;
+- Khariel: Vael, Isen;
+- Brumak: Tovo, Piri;
+- Narevia: Sela, Orin;
+- Velmora: Mirel, Dovar.
+
+Total inicial documentado: **15 NPCs**.
+
+### Diseño social
+Cada pueblo queda con tres perspectivas distintas y relaciones cruzadas para que:
+- un NPC pueda opinar sobre otro;
+- existan desacuerdos plausibles;
+- rumores y observaciones no sean una sola voz;
+- volver al pueblo pueda cambiar varias conversaciones.
+
+### Regla para generación dinámica
+La futura capa Ollama puede variar lenguaje, pero no identidad, memoria, conocimiento permitido ni relaciones.
