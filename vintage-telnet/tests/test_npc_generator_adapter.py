@@ -43,6 +43,8 @@ def synthetic_npc(npc_id="test_npc_001"):
         ],
         "narrative_function": "test_narrative_function",
         "gameplay_function": "test_gameplay_function",
+        "capabilities": ["test_capability"],
+        "limits": ["test_limit"],
         "memory_hooks": ["test_memory_hook"],
         "status": "synthetic-test-only",
     }
@@ -82,6 +84,18 @@ class NpcGeneratorAdapterTests(unittest.TestCase):
     def test_rejects_missing_authoritative_field(self):
         npc = synthetic_npc()
         del npc["knowledge_allowed"]
+        with self.assertRaises(adapter.NpcGeneratorContractError):
+            adapter.normalize_authoritative_npc(npc)
+
+    def test_rejects_missing_capabilities(self):
+        npc = synthetic_npc()
+        del npc["capabilities"]
+        with self.assertRaises(adapter.NpcGeneratorContractError):
+            adapter.normalize_authoritative_npc(npc)
+
+    def test_rejects_missing_limits(self):
+        npc = synthetic_npc()
+        del npc["limits"]
         with self.assertRaises(adapter.NpcGeneratorContractError):
             adapter.normalize_authoritative_npc(npc)
 
