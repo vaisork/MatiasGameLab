@@ -49,6 +49,8 @@ El Historiador no sustituye:
 
 ## Entregas a otros especialistas
 
+- **Director de Arte / Issue #31 — anatomía de especies:** completada. Las cuatro especies no humanas ya pueden representarse en vista frontal/lateral/trasera sin que Arte tenga que inventar tipo de pie, estructura facial, escala, orejas o distribución esencial de rasgos.
+
 - **Jugabilidad / VT-GAME-001 — Rasgos de especies:** aportación del Historiador entregada en `SPECIES.md`. La solicitud ya cuenta también con la aportación del Narrador.
 - **Jugabilidad / VT-GAME-002 — Matriz de 8 atributos para juego de lectura:** revisión canónica entregada en `ATTRIBUTES_CANON_REVIEW.md`. Los ocho atributos son compatibles si no sustituyen especie, clase, conocimiento, poder, equipo ni decisiones de lectura del jugador.
 
@@ -58,7 +60,7 @@ El Historiador no sustituye:
 
 ## Handoff a Arte
 
-- **Anatomía visual de especies:** Felaryn con orejas y cola felinas; Dravak más pequeños y compactos que humanos, con zonas corporales endurecidas de aspecto mineral; Marevyn altos con escamas parciales y rasgos acuáticos; Vesperi con ojos muy grandes y postura ligeramente encorvada/recogida. La fuente detallada es `SPECIES.md` y la traducción visual obligatoria vive en `ART_WORLD_GUIDE.md`.
+- **Anatomía visual de especies — Issue #31 del Director de Arte:** cerrada con detalle suficiente para hojas frontal/lateral/trasera. Felaryn: pelaje real, rostro humanoide-felino sin hocico largo, apoyo digitígrado, pies de cuatro dedos, cola y orejas felinas; Dravak: 65–75 % de altura humana comparable, proporciones adultas, placas dérmicas minerales con distribución definida, pies plantígrados; Marevyn: 105–115 % de altura humana comparable, escamas parciales con zonas definidas, oreja corta de aspecto de aleta, manos/pies parcialmente palmeados; Vesperi: ojos muy grandes, cabeza superior ancha, orejas cortas redondeadas, brazos largos, piel mate, pies plantígrados y postura natural inclinada 10–15°. Fuente de verdad: `SPECIES.md`; resumen obligatorio para Arte: `ART_WORLD_GUIDE.md`.
 - **Canon visual del mundo:** creado `ART_WORLD_GUIDE.md` como puerta de entrada obligatoria para ilustraciones de Vintage Telnet. Establece qué documentos debe leer Arte según la tarea, qué puede interpretar y qué debe devolver al Historiador en vez de inventar.
 - **Arcanes:** creado `ARCANES.md` con su identidad visual/narrativa, separación de animales y criaturas, regla de nombre elegido por el jugador y ocho formas iniciales basadas en perro, gato, conejo, ave y ratón.
 
@@ -66,7 +68,7 @@ El Historiador no sustituye:
 
 Áreas importantes aún por desarrollar o repartir:
 - diseño completo de **Vaisgard** — **primera versión completada en `VAISGARD.md`; queda abierta a expansión**;
-- cultura e historia final de cada especie — **la anatomía visual principal ya está definida en `SPECIES.md`; detalles secundarios y cultura profunda siguen abiertos**;
+- cultura e historia final de cada especie — **la anatomía necesaria para hojas anatómicas definitivas está cerrada en `SPECIES.md`; cultura e historia profunda siguen abiertas**;
 - capacidades narrativas de Dravak, Marevyn y Vesperi — **primera definición completada en `SPECIES.md`; expansión posterior abierta**;
 - mapa regional y conexiones entre los cinco pueblos y Vaisgard — **primera arquitectura definida en `REGIONS.md`**;
 - historia antigua del mundo — **iniciada en `HISTORY.md`; faltan eras y causas anteriores/posteriores**;
