@@ -125,3 +125,23 @@ Es una ficha explícitamente **NO CANÓNICA**, con IDs `test_*`, preparada para:
 - evitar inventar una ficha distinta en cada ejecución.
 
 La suite del adaptador incluye una prueba que carga y valida este fixture.
+
+
+## Evidencia final de pruebas actualizadas
+
+Después de añadir `capabilities`, `limits` y el fixture compartido se reejecutó la suite completa del adaptador:
+
+```text
+Ran 12 tests in 0.002s
+OK
+```
+
+Incluye:
+- capacidades obligatorias;
+- límites obligatorios;
+- fixture sintético compartido válido;
+- segunda pasada sin regeneración;
+- invariantes autoritativas;
+- lote e IDs duplicados.
+
+**ESTADO DE PRUEBAS DEL ADAPTADOR: 12/12 OK.**
