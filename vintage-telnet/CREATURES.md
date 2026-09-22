@@ -393,7 +393,9 @@ Las criaturas descritas en esta primera entrega se consideran **fauna común o c
 
 Esto permite que el descubrimiento de un verdadero Arcane siga teniendo una identidad distinta.
 
-El Historiador podrá introducir Arcanes específicos posteriormente cuando exista una razón narrativa para hacerlo.
+La definición específica de los Arcanes vive en `ARCANES.md`. Ese documento fija su identidad de compañero, sus anomalías visuales y las primeras formas disponibles para Arte/Narrador.
+
+Las criaturas de este archivo siguen siendo fauna o amenazas naturales y **no deben rediseñarse como Arcanes por similitud visual**.
 
 ---
 
