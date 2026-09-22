@@ -395,3 +395,66 @@ La opción que mejor preserva identidad de personaje y espacio hasta nivel 100 e
 Esto sigue siendo una **hipótesis a validar**, no una regla aprobada.
 
 El punto decisivo será la siguiente simulación: cuando Jugabilidad defina qué efectos produce Fuerza, Resistencia, Agilidad, Percepción, Intelecto, Voluntad, Destreza y Presencia, podremos medir poder marginal real y no solo números de atributo.
+
+
+## SIMULACIÓN DE POBLACIÓN — múltiples comportamientos de jugador
+
+**Estado:** exploratoria; no aprueba números definitivos.
+
+A petición de Javier, la simulación se amplió para no representar únicamente un jugador perfectamente optimizado. Se probaron poblaciones con variación individual alrededor de cinco comportamientos:
+
+1. **Especialista:** concentra aproximadamente 78% de su presupuesto en un atributo.
+2. **Doble especialista:** concentra aproximadamente 84% entre dos atributos principales.
+3. **Equilibrado:** reparte aproximadamente entre los ocho.
+4. **Irregular:** tiene varias prioridades de distinta intensidad.
+5. **Casual/no optimizado:** reparte de manera variable y puede dejar sin gastar aproximadamente 0–12% de PA temporalmente.
+
+Se compararon 1, 2 y 3 PA por nivel contra tres curvas experimentales de coste creciente: suave, media y fuerte. Todos los personajes parten de 10 en los ocho atributos. Los resultados son promedios de poblaciones simuladas y sirven para comparar comportamiento, no para fijar balance.
+
+### Nivel 100 — resumen del atributo más alto promedio
+
+| PA/nivel | Curva | Especialista | Doble | Equilibrado | Irregular | Casual |
+| ---: | --- | ---: | ---: | ---: | ---: | ---: |
+| 1 | suave | 48.5 | 37.5 | 24.2 | 30.7 | 29.0 |
+| 1 | media | 46.9 | 36.5 | 24.2 | 30.7 | 29.0 |
+| 1 | fuerte | 43.3 | 34.2 | 23.2 | 29.3 | 27.6 |
+| 2 | suave | 70.6 | 53.7 | 33.8 | 44.6 | 41.8 |
+| 2 | media | 67.0 | 51.3 | 33.7 | 42.9 | 40.3 |
+| 2 | fuerte | 58.8 | 46.3 | 31.9 | 40.1 | 37.8 |
+| 3 | suave | 89.9 | 66.7 | 42.2 | 55.1 | 51.6 |
+| 3 | media | 86.0 | 63.0 | 40.7 | 52.4 | 49.6 |
+| 3 | fuerte | 74.3 | 55.6 | 38.2 | 47.3 | 45.2 |
+
+### Seguimiento del candidato central de laboratorio: 2 PA + curva media
+
+| Nivel | Especialista | Doble | Equilibrado | Irregular | Casual |
+| ---: | ---: | ---: | ---: | ---: | ---: |
+| 10 | 21.5 | 17.9 | 13.1 | 15.4 | 14.8 |
+| 25 | 33.2 | 25.7 | 18.8 | 22.4 | 21.5 |
+| 50 | 46.7 | 36.4 | 24.1 | 30.5 | 28.8 |
+| 75 | 57.1 | 44.2 | 29.0 | 37.3 | 35.2 |
+| 100 | 66.9 | 51.3 | 33.8 | 42.7 | 40.4 |
+
+La tabla muestra el **atributo más alto promedio**, no poder total. Un equilibrado posee más suma de atributos y un especialista sacrifica gran parte de esa suma para alcanzar un pico mayor.
+
+### Hallazgos nuevos
+
+- Probar una población es esencial: la curva debe tolerar decisiones imperfectas, no solo builds óptimas.
+- En las tres velocidades, el coste creciente conserva diferencias visibles entre especialista, doble especialista, equilibrado e irregular.
+- 1 PA/nivel produce una progresión contenida; 3 PA/nivel abre extremos considerablemente mayores; 2 PA/nivel queda como un candidato central útil para la siguiente prueba, **no como regla aprobada**.
+- La curva media con 2 PA/nivel mantiene diferencias de identidad hasta nivel 100 sin un hard cap cercano.
+- El jugador casual conserva crecimiento significativo aunque no distribuya PA de forma óptima. Falta demostrar que ese crecimiento sea suficiente contra el mundo.
+- Comparar valores brutos todavía NO permite afirmar qué build es más poderosa. Para ello hacen falta las fórmulas mecánicas y la curva de dificultad.
+
+### Siguiente simulación necesaria: personajes contra dificultad incremental
+
+La siguiente ronda debe dejar de preguntar solamente “¿hasta cuánto sube el atributo?” y empezar a preguntar “¿puede este personaje afrontar el desafío de su etapa?”.
+
+Debe probar los cinco perfiles contra niveles de desafío 10/25/50/75/100 y medir al menos:
+- si el especialista domina únicamente los problemas de su especialidad o reemplaza demasiadas funciones;
+- si el generalista sigue siendo viable sin ser superior en todo;
+- si el jugador casual puede progresar sin necesitar una build matemáticamente óptima;
+- si las decisiones de lectura/contexto compensan parcialmente una estadística inferior;
+- si la dificultad crece demasiado rápido al mismo tiempo que aumenta el coste de especialización.
+
+**Conclusión provisional:** 2 PA/nivel + coste creciente medio merece funcionar como punto central de comparación en la próxima simulación, acompañado por alternativas más lenta y más rápida. No se aprueba todavía porque falta modelar dificultad y efectos reales de atributos.
