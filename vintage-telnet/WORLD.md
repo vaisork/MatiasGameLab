@@ -68,6 +68,12 @@ Es la puerta de entrada obligatoria para cualquier agente que represente visualm
 
 Define la jerarquía Historia → Narrativa → Arte, las fuentes que deben leerse según cada tipo de solicitud, los rasgos visuales confirmados y lo que Arte no puede inventar para completar una composición.
 
+### 13. Arcanes — `ARCANES.md`
+
+Define la identidad de los Arcanes como compañeros especiales basados en formas animales familiares con anomalías imposibles, la regla de que el jugador les asigna el nombre individual y un catálogo inicial de ocho formas para Narrador y Arte.
+
+No contiene estadísticas ni mecánicas de vínculo; esas decisiones corresponden a Jugabilidad y Narrativa dentro del canon.
+
 ## Relación con el Narrador
 
 El Historiador construye la **historia estructural y la arquitectura del mundo**: hechos pasados, lugares, culturas, causas, consecuencias, ruinas, conflictos, relaciones y secretos. El Narrador utiliza esa base para crear relatos, escenas, encuentros y experiencias concretas de los jugadores. El Historiador no debe asumir por defecto la función del Narrador.
@@ -95,4 +101,5 @@ El Historiador define qué necesita el mundo, por qué lo necesita y qué funci�
 **Especies jugables:** `vintage-telnet/SPECIES.md`  
 **Revisión canónica de atributos:** `vintage-telnet/ATTRIBUTES_CANON_REVIEW.md`  
 **Guía visual del mundo:** `vintage-telnet/ART_WORLD_GUIDE.md`  
+**Arcanes:** `vintage-telnet/ARCANES.md`  
 **Fuente mecánica:** `vintage-telnet/GAMEPLAY.md`
