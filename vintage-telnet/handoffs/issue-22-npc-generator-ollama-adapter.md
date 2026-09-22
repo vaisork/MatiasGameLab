@@ -97,3 +97,17 @@ No se tocó:
 La integración real queda pendiente de que Issue #21 marque **OLLAMA REAL VALIDADO** y de que PR #20 esté disponible para importar su `enrich_personality_once()`.
 
 **LISTO PARA REVISIÓN:** SÍ
+
+
+## Revisión cruzada posterior con PR #20 / Issue #19
+
+Se inspeccionó la implementación real de PR #20 y se confirmó compatibilidad con la firma
+`enrich_personality_once(npc, client)`.
+
+La revisión detectó un hueco en nuestro contrato: Issue #19 enumera **capacidades y límites**
+como autoridad explícita del generador. Se añadieron los campos obligatorios:
+
+- `capabilities`
+- `limits`
+
+También se añadieron pruebas específicas para rechazar fichas que omitan cualquiera de esos campos.
