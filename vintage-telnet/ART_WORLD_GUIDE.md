@@ -510,3 +510,32 @@ Cuando exista duda entre una imagen bonita y una imagen coherente con Vintage Te
 
 **Responsable del canon visual de mundo:** Historiador y Constructor del Mundo de Vintage Telnet  
 **Consumidores principales:** Arte HTML, Pixel Art, ilustración conceptual, Narrador y cualquier agente que genere imágenes del mundo
+
+
+---
+
+# 13. Arcanes — regla de identificación y nombre
+
+Los Arcanes deben partir visualmente de formas reconocibles asociadas a mascotas o animales cercanos al jugador —por ejemplo perro, gato, conejo, ave o ratón— y presentar al menos una anomalía clara o descubrible que indique que no son animales normales.
+
+Ejemplos de anomalía:
+- número inusual de orejas;
+- ojos de profundidad o color imposible;
+- dos colas;
+- aura tenue;
+- sombra anómala;
+- bigotes luminosos;
+- movimiento o sonido físicamente extraño.
+
+**No necesitan un nombre propio predefinido.**
+
+Antes de convertirse en compañero, Arte y Narrador deben tratarlos descriptivamente, por ejemplo:
+- “un perro de cuatro orejas”;
+- “una gata de ojos azules demasiado profundos”;
+- “un conejo que no hace ruido al caer”.
+
+**El jugador elige el nombre individual cuando establece el vínculo y el Arcane pasa a ser su mascota/compañero.**
+
+Arte no debe rotular una lámina de Arcane con un nombre individual canónico salvo que Javier haya pedido expresamente representar un Arcane ya nombrado por un jugador.
+
+La forma exacta de obtener, vincular o adoptar un Arcane pertenece a Narrativa/Jugabilidad; este documento fija únicamente su identidad visual y la regla de nombramiento.
