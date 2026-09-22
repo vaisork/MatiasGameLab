@@ -680,3 +680,229 @@ La prueba correcta no es “¿este atributo existe en otros RPG?”, sino:
 Si no podemos responder eso con ejemplos de juego, ese atributo todavía no está listo.
 
 **Estado Narrador VT-GAME-002: ENTREGADO.**
+
+
+## Prueba textual de atributos — VT-GAME-002A
+
+**Objetivo:** comprobar que los ocho atributos producen diferencias que el jugador pueda leer, decidir y experimentar en Vintage Telnet.
+
+Los comandos siguientes son **propuestas narrativas de prueba**, no vocabulario mecánico aprobado. Jugabilidad debe decidir qué acciones serán comandos, botones o acciones contextuales.
+
+### Fuerza — cambiar físicamente el entorno
+
+**Situación base:**
+> Una carreta volcada bloquea casi todo el sendero. Una de sus ruedas está hundida en el barro.
+
+**Acción propuesta:** \`empujar carreta\`
+
+**Respuesta cuando la capacidad no basta:**
+> Apoyas el hombro contra la madera y empujas. La carreta cruje, pero la rueda hundida apenas se mueve. Solo no parece suficiente.
+
+**Respuesta cuando la capacidad sí basta:**
+> Clavas los pies en el suelo y empujas. La rueda sale del barro con un golpe húmedo y la carreta se desplaza lo suficiente para dejar libre el sendero.
+
+**Decisión que permanece en manos del jugador:** intentar con ayuda, buscar una palanca, rodear el obstáculo o volver después.
+
+**Prueba superada:** Fuerza cambia una posibilidad física y su consecuencia es perfectamente narrable.
+
+---
+
+### Resistencia — sostener esfuerzo y soportar desgaste
+
+**Situación base:**
+> El ascenso continúa bajo una lluvia fría. El refugio que viste desde abajo todavía queda lejos.
+
+**Acción propuesta:** \`continuar\`
+
+**Respuesta con poca capacidad restante:**
+> Sigues subiendo, pero las piernas empiezan a pesarte y el frío se mete bajo la ropa. Podrías continuar, aunque hacerlo así tendrá un costo físico cada vez mayor.
+
+**Respuesta con buena capacidad para sostener el esfuerzo:**
+> Mantienes un paso constante pese a la pendiente y la lluvia. Respiras con fuerza, pero todavía puedes continuar sin que el cansancio domine tus movimientos.
+
+**Decisión que permanece en manos del jugador:** continuar, descansar, regresar o buscar otro refugio.
+
+**Prueba superada con condición:** funciona si Resistencia afecta esfuerzo, fatiga y condiciones; si solo aumenta una barra de vida, narrativamente pierde gran parte de su identidad.
+
+---
+
+### Agilidad — ejecutar movimiento corporal bajo presión
+
+**Situación base:**
+> El Espinajo baja la cabeza y carga por el sendero estrecho. A tu derecha hay una zanja; a la izquierda, una cerca baja.
+
+**Acciones propuestas:** \`esquivar\`, \`saltar cerca\`, \`retroceder\`
+
+**Respuesta ante una ejecución corporal insuficiente:**
+> Intentas apartarte en el último instante, pero tu pie resbala en la tierra suelta. Evitas el golpe de lleno, aunque el animal alcanza a rozarte al pasar.
+
+**Respuesta ante una buena ejecución corporal:**
+> Esperas hasta que la carga está cerca y te apartas con un movimiento rápido. El Espinajo pasa junto a ti y necesita espacio para girar.
+
+**Decisión que permanece en manos del jugador:** qué maniobra intentar y cuándo abandonar el enfrentamiento.
+
+**Prueba superada:** el jugador decide; Agilidad representa la capacidad del personaje para ejecutar el movimiento, no los reflejos físicos de quien sostiene el teléfono.
+
+---
+
+### Percepción — recibir señales adicionales, no soluciones
+
+**Situación base para todos:**
+> El camino atraviesa un campo aparentemente tranquilo. Más adelante se levanta una cerca de madera.
+
+**Acción propuesta:** \`mirar\` o \`observar camino\`
+
+**Descripción base:**
+> La hierba se mueve con el viento. No ves animales cerca.
+
+**Información adicional cuando Percepción/contexto lo permite:**
+> Junto a la cerca distingues dos postes quebrados hacia afuera. En el barro hay marcas profundas y demasiado anchas para las criaturas pequeñas que has visto cerca del pueblo.
+
+**Lo que NO debe decir automáticamente:**
+> Hay un Cornalomo peligroso adelante. No avances.
+
+El jugador debe interpretar las señales o buscar más información.
+
+**Prueba superada con especial fuerza:** Percepción puede modificar directamente el texto sin convertirlo en una respuesta automática.
+
+---
+
+### Intelecto — comprender información sin resolver la decisión
+
+**Situación base:**
+El jugador ya encontró las marcas junto a la cerca.
+
+**Acción propuesta:** \`examinar marcas\`
+
+**Respuesta sin conocimiento/comprensión suficiente:**
+> Las marcas son profundas y están separadas de forma irregular. Algo pesado pasó por aquí, pero no sabes determinar mucho más.
+
+**Respuesta cuando la capacidad y el conocimiento contextual permiten interpretar más:**
+> La profundidad no parece causada únicamente por peso: varias marcas están concentradas frente a los postes rotos. Lo que pasó por aquí probablemente empujó o golpeó la cerca antes de cruzarla.
+
+**Lo que NO debe resolver:**
+> Fue un Cornalomo y está exactamente dos habitaciones al norte.
+
+**Decisión que permanece en manos del jugador:** relacionar esta información con rumores, criaturas conocidas, rutas y riesgos.
+
+**Prueba superada:** Intelecto enriquece la interpretación; no juega el misterio por el jugador.
+
+---
+
+### Voluntad — mantener una decisión bajo presión mental
+
+**Situación base:**
+> Desde la galería oscura llega un sonido grave y repetitivo. Cada golpe parece acercarse. Una sensación de alarma difícil de explicar te empuja a abandonar el lugar.
+
+**Acciones propuestas:** \`mantener posición\`, \`concentrarse\`, \`retirarse\`
+
+**Respuesta cuando la presión supera al personaje:**
+> Intentas permanecer inmóvil, pero la tensión rompe tu concentración. Das varios pasos hacia la salida antes de conseguir detenerte.
+
+**Respuesta cuando logra sostenerse:**
+> El miedo no desaparece. Aun así, controlas la respiración y consigues mantenerte donde estás el tiempo suficiente para decidir tu siguiente acción.
+
+**Decisión que permanece en manos del jugador:** avanzar, observar, utilizar una capacidad o retirarse.
+
+**Prueba superada con condición:** Voluntad funciona si el mundo contiene presión mental, miedo, concentración u otras situaciones reales que la utilicen. No debe significar simplemente “ignoras la narración de miedo”.
+
+---
+
+### Destreza — ejecutar una acción fina con precisión
+
+**Situación base:**
+> Una pequeña caja de viaje tiene el cierre doblado. Entre la tapa y el marco apenas cabe la punta de una herramienta.
+
+**Acciones propuestas:** \`examinar cierre\`, \`manipular cierre\`, \`forzar caja\`
+
+**Respuesta ante poca precisión:**
+> Introduces la herramienta en el hueco, pero el cierre se mueve junto con toda la tapa. Si sigues haciendo fuerza de esta manera podrías dañar el mecanismo o lo que haya dentro.
+
+**Respuesta ante buena precisión:**
+> Mantienes la herramienta firme y haces presión justo bajo la pieza torcida. El cierre cede un poco sin deformarse más.
+
+**Decisión que permanece en manos del jugador:** continuar cuidadosamente, usar fuerza, buscar otra herramienta o dejarlo.
+
+**Prueba superada:** Destreza se siente distinta de Agilidad porque trabaja sobre precisión manual, herramienta y ejecución fina, no sobre desplazamiento corporal.
+
+---
+
+### Presencia — modificar la recepción social, no escribir la conversación por el jugador
+
+**Situación base:**
+> Un carretero enfadado bloquea el paso. “Nadie cruza hasta que encuentre lo que me robaron.”
+
+El jugador puede escribir o seleccionar una intención de diálogo.
+
+**Acciones posibles:** \`hablar carretero\`, \`persuadir carretero\`, \`intimidar carretero\` — nombres provisionales.
+
+**Ejemplo de intención del jugador:**
+> “Déjame pasar. Puedo buscar tu carga desde el otro lado y volver si encuentro alguna pista.”
+
+**Respuesta cuando el intento causa poca impresión:**
+> El carretero te mira con desconfianza. “Eso podría decirlo cualquiera. Si quieres ayudar, demuéstrame primero que no vienes con los ladrones.”
+
+**Respuesta cuando contexto y Presencia favorecen el intento:**
+> El carretero te observa unos segundos y finalmente se aparta. “Está bien. Si de verdad vas a buscarla, fíjate en las marcas de pintura azul de las cajas.”
+
+En ambos casos la conversación continúa; un resultado desfavorable puede abrir otra vía en lugar de cerrar el juego.
+
+**Reglas narrativas:**
+- Presencia no bloquea la conversación normal.
+- No convierte una mentira absurda en verdad.
+- NPCs conservan conocimientos, intereses y límites.
+- Contra otros jugadores humanos, Presencia no obliga a creer, obedecer ni aceptar una negociación.
+
+**Prueba superada:** es especialmente apropiada para un RPG textual si afecta reacción y oportunidad sin sustituir lo que el jugador comunica.
+
+---
+
+## Prueba combinada — una misma escena, varios atributos
+
+La utilidad real de los ocho aparece mejor cuando **una escena admite enfoques diferentes**.
+
+> Al norte del camino hay una caseta abandonada. La puerta está trabada. Cerca de la pared encuentras barro removido y dentro se escucha un golpeteo débil.
+
+Posibles aproximaciones:
+
+- **Fuerza:** intentar forzar la puerta.
+- **Resistencia:** llegar o continuar actuando tras una marcha/exposición que haya producido desgaste.
+- **Agilidad:** alcanzar una abertura alta o atravesar con seguridad una zona físicamente inestable, si el espacio lo permite.
+- **Percepción:** notar huellas, sonidos o detalles que no aparecen en la descripción básica.
+- **Intelecto:** interpretar las señales o comprender cómo funciona un cierre/mecanismo conocido.
+- **Voluntad:** mantener concentración o decisión si existe una presión mental real en la escena.
+- **Destreza:** manipular cuidadosamente el cierre.
+- **Presencia:** obtener información o cooperación de una persona relacionada con el lugar, si existe.
+
+**Importante:** no es necesario ni recomendable que toda escena utilice los ocho. El contenido debe usar solamente los atributos que tengan sentido.
+
+## Recomendación de interfaz narrativa
+
+No recomiendo ocho botones permanentes llamados Fuerza, Resistencia, Agilidad, etc.
+
+El jugador debe pensar en **acciones del mundo**, no en “usar una estadística”:
+
+- mirar;
+- examinar;
+- empujar;
+- saltar;
+- manipular;
+- hablar;
+- continuar;
+- retirarse.
+
+El sistema puede consultar internamente los atributos pertinentes. La narración devuelve el resultado en lenguaje del mundo.
+
+Esto mantiene el espíritu Telnet: **el jugador ordena una acción; el personaje la ejecuta según quién es y cómo se ha desarrollado.**
+
+## Criterio de aceptación propuesto para Jugabilidad
+
+Antes de fijar la matemática 1–100, cada atributo debería superar tres preguntas:
+
+1. ¿Podemos escribir al menos varias acciones/situaciones frecuentes donde importe?
+2. ¿El jugador puede entender por el texto por qué esa capacidad fue relevante?
+3. ¿Produce una experiencia suficientemente distinta de los otros siete?
+
+Si un atributo falla estas pruebas, debe revisarse antes de asignarle puntos, costes o curvas.
+
+**Estado VT-GAME-002A: PRUEBA NARRATIVA ENTREGADA A JUGABILIDAD.**
