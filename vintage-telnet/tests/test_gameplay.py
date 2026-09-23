@@ -224,10 +224,78 @@ class GameplayTests(unittest.TestCase):
         # "mirar" no mueve.
         self.post("/command", dict(text="mirar"))
         self.assertEqual(self.client.get("/api/room").json["room"]["id"], "khariel_centro")
-        # Cualquier otro texto sigue funcionando como chat local.
-        self.post("/command", dict(text="hola a todos"))
+        # El chat ahora requiere intención explícita.
+        unknown = self.post("/command", dict(text="hola a todos"))
+        self.assertEqual(unknown.status_code, 400)
+        self.post("/command", dict(text="decir hola a todos"))
         bodies = [m["body"] for m in self.client.get("/api/room").json["room"]["messages"]]
         self.assertIn("hola a todos", bodies)
+
+    @patch.dict(os.environ, {"VT_DM_PASSWORD": "dm-secret-value"})
+    def test_unknown_and_inspection_commands_never_become_chat(self):
+        self.register()
+        self.approve("matias")
+        self.post("/species", dict(species="felaryn"))
+
+        unknown = self.post("/command", dict(text="comando inventado"))
+        self.assertEqual(unknown.status_code, 400)
+        inspect = self.post("/command", dict(text="examinar huellas"))
+        self.assertEqual(inspect.status_code, 200)
+
+        messages = self.client.get("/api/room").json["room"]["messages"]
+        bodies = [m["body"] for m in messages]
+        self.assertNotIn("comando inventado", bodies)
+        self.assertNotIn("examinar huellas", bodies)
+
+    @patch.dict(os.environ, {"VT_DM_PASSWORD": "dm-secret-value"})
+    def test_chat_requires_explicit_say_intent(self):
+        self.register()
+        self.approve("matias")
+        self.post("/species", dict(species="felaryn"))
+
+        response = self.post("/command", dict(text="decir hola desde khariel"))
+        self.assertEqual(response.status_code, 303)
+        bodies = [m["body"] for m in self.client.get("/api/room").json["room"]["messages"]]
+        self.assertIn("hola desde khariel", bodies)
+
+    @patch.dict(os.environ, {"VT_DM_PASSWORD": "dm-secret-value"})
+    def test_structured_intents_do_not_confuse_move_inspect_chat_or_npc(self):
+        self.register()
+        self.approve("matias")
+        self.post("/species", dict(species="felaryn"))
+        csrf = self.client.get("/api/me").json["csrf"]
+
+        inspect = self.client.post(
+            "/api/intent", json={"text": "observar huellas", "csrf": csrf}
+        )
+        self.assertEqual(inspect.status_code, 200)
+        self.assertEqual(inspect.json["intent"], "inspect")
+        self.assertEqual(inspect.json["target"], "huellas")
+        self.assertIsNone(inspect.json["detail"])
+
+        talk = self.client.post(
+            "/api/intent", json={"text": "hablar taren", "csrf": csrf}
+        )
+        self.assertEqual(talk.status_code, 409)
+        self.assertEqual(talk.json["intent"], "talk_npc")
+        self.assertEqual(talk.json["npc"], "taren")
+
+        say = self.client.post(
+            "/api/intent", json={"text": "decir prueba explicita", "csrf": csrf}
+        )
+        self.assertEqual(say.status_code, 200)
+        self.assertEqual(say.json["intent"], "say")
+
+        move = self.client.post(
+            "/api/intent", json={"text": "norte", "csrf": csrf}
+        )
+        self.assertEqual(move.status_code, 200)
+        self.assertEqual(move.json["intent"], "move")
+        self.assertEqual(move.json["current_room"]["id"], "khariel_forja")
+
+        bodies = [m["body"] for m in self.client.get("/api/room").json["room"]["messages"]]
+        self.assertNotIn("observar huellas", bodies)
+        self.assertNotIn("hablar taren", bodies)
 
     @patch.dict(os.environ, {"VT_DM_PASSWORD": "dm-secret-value"})
     def test_structured_move_and_species_api_contract(self):

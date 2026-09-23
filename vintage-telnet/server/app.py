@@ -109,6 +109,34 @@ def create_app(config=None):
         "oeste": "west", "o": "west", "west": "west",
     }
     LOOK_ALIASES = {"mirar", "ver", "look"}
+    INSPECT_ALIASES = {"observar", "examinar"}
+    SAY_PREFIXES = ("decir ", "say ")
+    TALK_PREFIXES = ("hablar con ", "hablar ")
+
+    def parse_intent(raw):
+        """Clasifica texto del terminal sin convertir comandos desconocidos en chat."""
+        text = (raw or "").strip()
+        lowered = text.lower()
+        if lowered in DIRECTION_ALIASES:
+            return {"type": "move", "direction": DIRECTION_ALIASES[lowered]}
+        if lowered in LOOK_ALIASES:
+            return {"type": "look"}
+        for verb in INSPECT_ALIASES:
+            if lowered == verb:
+                return {"type": "inspect", "verb": verb, "target": ""}
+            prefix = verb + " "
+            if lowered.startswith(prefix):
+                return {"type": "inspect", "verb": verb, "target": text[len(prefix):].strip()}
+        for prefix in TALK_PREFIXES:
+            if lowered.startswith(prefix):
+                target = text[len(prefix):].strip()
+                return {"type": "talk_npc", "target": target} if target else {"type": "invalid"}
+        for prefix in SAY_PREFIXES:
+            if lowered.startswith(prefix):
+                body = text[len(prefix):].strip()
+                return {"type": "say", "body": body} if body else {"type": "invalid"}
+        return {"type": "unknown"}
+
 
     def attempt_move(player, direction):
         """Unica logica autoritativa de movimiento. Devuelve
@@ -227,26 +255,44 @@ def create_app(config=None):
 
     @app.post("/command")
     def command():
-        """Unico cuadro de texto de la terminal: si el texto es un comando de
-        movimiento/mirar canonico, ejecuta la misma accion autoritativa que los
-        botones de la cruceta; en cualquier otro caso, lo trata como chat local
-        (fuera del alcance P0, pero se conserva porque ya funciona)."""
+        """Cuadro de texto del terminal: cada texto se clasifica por intención.
+        El chat requiere 'decir <texto>'; un comando desconocido nunca se publica."""
         require_approved_player()
         if g.player["species"] is None:
             abort(403)
-        raw = request.form.get("text", "").strip().lower()
-        if raw in DIRECTION_ALIASES:
-            accepted, _previous, _new, reason = attempt_move(g.player, DIRECTION_ALIASES[raw])
+        raw = request.form.get("text", "")
+        if len(raw) > 500:
+            abort(400)
+        intent = parse_intent(raw)
+        if intent["type"] == "move":
+            accepted, _previous, _new, reason = attempt_move(g.player, intent["direction"])
             if not accepted:
                 room_data = room_view(g.player["room"], g.player["id"])
                 return render_template("entry.html", player=g.player, species_list=world.SPECIES,
                                        room=room_data, error=reason), 400
             return redirect(url_for("index"), code=303)
-        if raw in LOOK_ALIASES:
+        if intent["type"] == "look":
             return redirect(url_for("index"), code=303)
-        if raw and len(raw) <= 500:
-            store.add_message(path, g.player["room"], g.player["id"], request.form.get("text", "").strip())
-        return redirect(url_for("index"), code=303)
+        if intent["type"] == "say":
+            store.add_message(path, g.player["room"], g.player["id"], intent["body"])
+            return redirect(url_for("index"), code=303)
+
+        room_data = room_view(g.player["room"], g.player["id"])
+        if intent["type"] == "inspect":
+            target = intent["target"] or "el lugar"
+            return render_template(
+                "entry.html", player=g.player, species_list=world.SPECIES, room=room_data,
+                error=f"Inspección registrada para {target}. No hay detalle adicional autorizado todavía."
+            ), 200
+        if intent["type"] == "talk_npc":
+            return render_template(
+                "entry.html", player=g.player, species_list=world.SPECIES, room=room_data,
+                error="La conversación con NPC tiene contrato separado, pero todavía no hay NPC activo."
+            ), 200
+        return render_template(
+            "entry.html", player=g.player, species_list=world.SPECIES, room=room_data,
+            error="Comando no reconocido. Para chat usa: decir <texto>."
+        ), 400
 
     @app.get("/api/me")
     def me():
@@ -286,6 +332,63 @@ def create_app(config=None):
             room=room_view(room_id, g.player["id"]),
             player=dict(updated_player) if updated_player else None,
         )
+
+    @app.post("/api/intent")
+    def api_intent():
+        """Contrato estructurado para intención de terminal."""
+        error = api_player_state(g.player)
+        if error:
+            return error
+        if g.player["species"] is None:
+            return jsonify(error="species_required"), 409
+        payload = request.get_json(silent=True) or {}
+        raw = str(payload.get("text", ""))
+        if len(raw) > 500:
+            return jsonify(accepted=False, intent="invalid", reason="Texto demasiado largo."), 400
+        intent = parse_intent(raw)
+        kind = intent["type"]
+
+        if kind == "move":
+            accepted, previous_room, new_room, reason = attempt_move(g.player, intent["direction"])
+            current_room_id = new_room if accepted else previous_room
+            return jsonify(
+                accepted=accepted,
+                intent="move",
+                previous_room=previous_room,
+                current_room=room_view(current_room_id, g.player["id"]),
+                reason=reason,
+            ), (200 if accepted else 400)
+        if kind == "look":
+            return jsonify(
+                accepted=True,
+                intent="look",
+                current_room=room_view(g.player["room"], g.player["id"]),
+            )
+        if kind == "inspect":
+            return jsonify(
+                accepted=True,
+                intent="inspect",
+                verb=intent["verb"],
+                target=intent["target"],
+                detail=None,
+                message="No hay detalle adicional autorizado todavía.",
+                current_room=room_view(g.player["room"], g.player["id"]),
+            )
+        if kind == "say":
+            store.add_message(path, g.player["room"], g.player["id"], intent["body"])
+            return jsonify(accepted=True, intent="say")
+        if kind == "talk_npc":
+            return jsonify(
+                accepted=False,
+                intent="talk_npc",
+                npc=intent["target"],
+                reason="No hay NPC activo para conversación todavía.",
+            ), 409
+        return jsonify(
+            accepted=False,
+            intent=kind,
+            reason="Comando no reconocido. Para chat usa: decir <texto>.",
+        ), 400
 
     @app.post("/api/move")
     def api_move():
