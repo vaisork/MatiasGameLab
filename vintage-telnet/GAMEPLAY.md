@@ -1874,6 +1874,220 @@ Cuando un rasgo abre una posibilidad, se comunica naturalmente:
 
 **Las especies cambian qué posibilidades corporales y sensoriales existen; los atributos cambian qué tan bien actúa el personaje dentro de esas posibilidades.**
 
+
+## 30. Armaduras — protección, carga y límites v1
+
+**Estado:** APROBADO PARA IMPLEMENTACIÓN Y PARA CREACIÓN DE CONTENIDO.
+
+La armadura debe ofrecer una decisión real: **recibir menos daño a cambio de aumentar el desgaste físico**. La v1 evita introducir evasión, precisión, durabilidad, penetración y múltiples resistencias adicionales como sistemas paralelos.
+
+### 30.1 Función principal
+
+La armadura reduce daño físico que **ya conectó**.
+
+No:
+- reduce por sí sola la probabilidad de ser golpeado;
+- concede Esquivar;
+- concede Bloquear;
+- aumenta HP;
+- aumenta Resistencia;
+- modifica atributos de forma silenciosa.
+
+La reducción de armadura se aplica conforme al orden de §27:
+1. el ataque conecta;
+2. se resuelve defensa activa cuando corresponda;
+3. se aplica armadura;
+4. se calcula daño final y posibles heridas.
+
+Por tanto, la armadura también reduce indirectamente la probabilidad de una herida grave al disminuir el impacto final recibido.
+
+### 30.2 Reducción máxima
+
+La configuración total equipada tiene:
+
+`armor_reduction_total`
+
+Rango v1:
+
+`0% ≤ armor_reduction_total ≤ 35%`
+
+Bandas de referencia de balance:
+
+| Protección | Reducción física | Multiplicador de fatiga física |
+| --- | ---: | ---: |
+| Sin protección | 0% | ×1.00 |
+| Ligera | 10% | ×1.10 |
+| Media | 20% | ×1.20 |
+| Alta | 30% | ×1.30 |
+| Límite v1 / excepcional | 35% | ×1.35 |
+
+Estas bandas son categorías de Jugabilidad, **no nombres canónicos de armaduras**. El Historiador puede crear objetos distintos que ocupen cualquier valor permitido cuando exista una razón de contenido/balance.
+
+### 30.3 Carga de armadura
+
+Para evitar que la mayor reducción sea siempre la mejor opción, la misma reducción genera carga física.
+
+Regla v1:
+
+`MultiplicadorCarga = 1 + armor_reduction_total`
+
+donde la reducción se expresa como decimal.
+
+Ejemplos:
+- 10% → ×1.10;
+- 20% → ×1.20;
+- 30% → ×1.30;
+- 35% → ×1.35.
+
+La fatiga final de una acción física se calcula:
+
+`Fatiga = CosteBaseAcción × ModResistencia × MultiplicadorCarga`
+
+El orden matemático de los multiplicadores no cambia el resultado.
+
+La carga aplica a acciones físicas que generen fatiga, incluyendo cuando corresponda:
+- ataque básico;
+- esquivar;
+- bloquear/desviar;
+- resistir;
+- huir;
+- acciones físicas especiales que el poder/contenido marque como tales.
+
+No aplica a:
+- descansar;
+- conversar;
+- mirar/observar/examinar;
+- poderes no físicos salvo que su ficha indique lo contrario.
+
+### 30.4 Sin penalización directa universal a Agilidad o precisión
+
+La armadura pesada **no resta automáticamente puntos de Agilidad, Destreza o precisión**.
+
+Su coste se expresa mediante fatiga.
+
+Eso permite:
+- un personaje ágil con armadura alta siga siendo ágil al inicio del combate;
+- pero sostener durante muchas rondas esquivas, ataques y huidas sea más caro;
+- Resistencia tenga valor para personajes que quieran llevar protección alta durante enfrentamientos largos.
+
+Una pieza excepcional futura puede declarar otra penalización/ventaja, pero debe ser explícita y validada por Jugabilidad.
+
+### 30.5 Interacción con Esquivar, Bloquear y Resistir
+
+**Esquivar:** si evita completamente el impacto, la armadura no necesita reducir daño. La carga de la armadura sí aumenta el coste de fatiga de la acción.
+
+**Bloquear/desviar:** si el ataque conecta parcialmente, la reducción de bloqueo y la armadura se multiplican:
+
+`DañoFinal = Daño × (1 - ReducciónBloqueo) × (1 - ReducciónArmadura)`
+
+**Resistir:** igual:
+
+`DañoFinal = Daño × (1 - ReducciónResistencia) × (1 - ReducciónArmadura)`
+
+Las reducciones **no se suman**.
+
+Con valores normales esto evita invulnerabilidad. Ejemplo:
+- Resistir 30% + armadura 35% → reducción efectiva aproximada 54.5%, no 65%.
+
+Se conserva el mínimo de 1 HP para un impacto conectado, salvo inmunidad explícita futura.
+
+### 30.6 Varias piezas
+
+Jugabilidad no obliga todavía a una lista concreta de ranuras corporales.
+
+Si el sistema equipa varias piezas, cada pieza puede aportar una contribución de reducción.
+
+La configuración final usa:
+
+`armor_reduction_total = mínimo(35%, suma de contribuciones equipadas)`
+
+El mismo total determina el MultiplicadorCarga.
+
+Esto permite que Inventario/Forja definan posteriormente si existen una pieza principal, varias piezas parciales u otra organización **sin cambiar la matemática de combate**.
+
+No se puede superar 35% equipando más piezas.
+
+### 30.7 Qué daño protege
+
+Por defecto, la reducción v1 protege contra **daño físico ordinario**.
+
+No se asume automáticamente que reduzca:
+- magia;
+- miedo/efectos mentales;
+- asfixia;
+- veneno;
+- calor/frío;
+- otros daños especiales.
+
+Cada poder, criatura o efecto futuro debe declarar si usa armadura física, la ignora o utiliza otra regla aprobada.
+
+No crear por ahora una tabla universal de diez tipos de resistencia.
+
+### 30.8 Durabilidad y pérdida
+
+La v1 **no utiliza durabilidad de armadura**.
+
+La armadura:
+- no pierde puntos por cada golpe;
+- no necesita reparación rutinaria;
+- no se destruye por combate ordinario.
+
+La regla vigente de posible pérdida al morir (§11) está definida para **armas**. En v1 la armadura **no se pierde por muerte ordinaria, monstruo excepcional ni PvP**.
+
+Cualquier futuro sistema de daño, robo o pérdida de armadura necesitará aprobación explícita aparte.
+
+Esto evita añadir mantenimiento antes de comprobar que la protección/carga ya produce decisiones interesantes.
+
+### 30.9 Armadura y piezas físicas/Forja
+
+Una armadura concreta puede ser:
+- solo digital;
+- o una mejora que requiera pieza física.
+
+Eso lo define el contenido/proyecto de Forja.
+
+Cuando una armadura requiera pieza física, se conserva el ciclo confirmado de §13:
+
+**ganar → fabricar/recibir → colocar físicamente → enviar evidencia → validar → habilitar en juego.**
+
+La validación física no cambia su reducción ni su carga; únicamente habilita el derecho de uso.
+
+### 30.10 Información en interfaz
+
+El jugador puede conocer los números de su propio equipo.
+
+La interfaz de Inventario/Equipo puede mostrar, por ejemplo:
+- protección física: 20%;
+- carga física: +20% de fatiga;
+- si la pieza permite alguna propiedad especial aprobada.
+
+No mostrar:
+- porcentajes secretos de enemigos;
+- penetraciones ocultas;
+- resistencias que el personaje no conoce.
+
+Durante combate no es necesario mostrar de nuevo toda la ficha de armadura; basta con HP/fatiga/herida y el texto de consecuencia.
+
+### 30.11 Contrato mínimo para contenido
+
+Para una armadura ordinaria, el Historiador/Contenido solo necesita proponer:
+
+- identidad/nombre/canon;
+- forma de obtención;
+- si tiene representación física;
+- contribución propuesta a `armor_reduction`;
+- cualquier propiedad especial excepcional que requiera revisión.
+
+Jugabilidad valida el valor dentro del rango 0–35%.
+
+**No necesita inventar Agilidad negativa, defensa adicional, evasión, durabilidad ni cinco resistencias para que una armadura sea válida.**
+
+### 30.12 Principio
+
+**La armadura compra tiempo con fatiga: cuanto más daño evita, más esfuerzo cuesta sostener acciones físicas.**
+
+La elección entre menos protección/más libertad de esfuerzo y más protección/mayor desgaste debe seguir siendo útil durante todo el juego.
+
 ## Investigación disponible para Jugabilidad — capacidades HTML y comandos
 
 **ESTADO: INVESTIGACIÓN CONSUMIDA — la dirección híbrida HTML/Telnet, inspección, evaluación de peligro y mapa progresivo ya tienen criterios v1; las ampliaciones futuras se decidirán cuando aparezcan nuevas necesidades.**
@@ -1930,7 +2144,7 @@ Jugabilidad definirá con Javier el criterio general necesario. Después el Hist
 
 Quedan pendientes de contenido o fases posteriores:
 
-- valores concretos de armas y armaduras del catálogo real;
+- valores concretos de armas y **armaduras canónicas individuales** del catálogo real (la matemática y rangos de armadura ya están cerrados en §30);
 - balance de poderes concretos propuestos por el Historiador;
 - reglas exactas de transferencia o recuperación de armas perdidas;
 - frecuencia y rareza de recompensas físicas.
