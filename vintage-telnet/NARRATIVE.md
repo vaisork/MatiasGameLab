@@ -1037,3 +1037,146 @@ Para **qué parte de esa realidad conoce el personaje y cuándo puede verla en s
 
 **Estado VT-ART-001:** LIMPIADO / ALINEADO CON HISTORIADOR.  
 **Fuente visual autoritativa:** `ART_WORLD_GUIDE.md`.
+
+
+## VT-NAR-003 — Microaventura piloto: El lindero roto
+
+**Estado:** LISTA PARA HANDOFF DE IMPLEMENTACIÓN NARRATIVA.  
+**Inicio:** Humano · Valdren · Llanos de Edran.  
+**Propósito:** probar en una salida corta el bucle de leer → observar → decidir → combatir o evitar → descubrir → regresar, sin depender de NPC ni de arte nuevo.
+
+### Presupuesto visual — deliberadamente mínimo
+
+Esta microaventura **no solicita ilustraciones de lugares adicionales**.
+
+Puede funcionar completa con:
+- la ilustración general ya aprobada/producida de **Valdren**;
+- el **mapa principal** cuando Jugabilidad decida mostrar la parte descubierta;
+- arte de **Mordelinde**, **Espinajo de rastrojo** y, solo cuando corresponda al bestiario/producción general, **Cornalomo**.
+
+Cercas, senderos, parcelas, barro, montículos, tallos roídos y demás señales se comunican **por texto**. No pedir a Arte una imagen por habitación, pista o encuentro.
+
+### Premisa sin encargo artificial
+
+El personaje puede salir de Valdren porque quiere conocer el exterior y fortalecerse. No necesita que un NPC le entregue una misión. Cerca del pueblo encuentra actividad normal de fauna; al alejarse descubre señales de que algo mayor ha alterado un lindero rural.
+
+La microaventura no exige matar una cantidad fija de criaturas. Combatir es una posibilidad de progreso; observar y descubrir también lo son.
+
+### Estructura textual
+
+#### 1. Salida de Valdren — borde conocido
+
+**Entrada sugerida:**
+
+> Las últimas casas de Valdren quedan a tu espalda. Delante, el camino de tierra pasa entre parcelas y cercas bajas. El aire trae olor a tierra removida y vegetación cortada. Todavía se oyen voces y trabajo desde el pueblo.
+
+Acciones naturales: `mirar`, `norte`/dirección implementada, regresar a Valdren.
+
+Objetivo narrativo: que el jugador entienda que está abandonando seguridad sin convertir la salida en una pantalla de tutorial.
+
+#### 2. Parcela removida — primera lectura del entorno
+
+**Descripción base:**
+
+> Junto al sendero hay varios tallos mordidos casi a ras del suelo. Pequeños montículos de tierra rompen la línea de una parcela. Algo se mueve un instante entre las plantas y vuelve a desaparecer.
+
+`mirar` puede hacer visible lo ya perceptible. `examinar tallos` o `examinar montículos` puede reforzar que se trata de actividad de una criatura pequeña sin identificar automáticamente todo lo que el jugador no conoce.
+
+Puede aparecer un **Mordelinde**. Su comportamiento canónico permite que huya si tiene espacio y muerda si queda acorralado. El jugador puede observarlo, dejarlo ir o iniciar combate cuando la mecánica lo permita.
+
+**DESCUBRIMIENTO propuesto:** reconocer por primera vez señales de Mordelinde en Edran. Jugabilidad decide si merece categoría de XP de descubrimiento.
+
+#### 3. Cerca del rastrojo — segundo encuentro, otra conducta
+
+**Entrada sugerida:**
+
+> El camino se estrecha junto a una cerca. Entre restos secos de cultivo ves un surco corto y varias raíces expuestas. Una púa rígida yace en la tierra.
+
+`examinar púa`:
+
+> Es dura y termina en una punta gastada. No parece una herramienta ni una astilla de la cerca.
+
+Un **Espinajo de rastrojo** puede encontrarse cerca. A diferencia del Mordelinde, su postura debe comunicar territorialidad alrededor de alimento o crías. La escena enseña que “criatura apropiada para principiante” no significa “todo ataca igual”.
+
+El jugador puede combatir, evitarlo o retroceder según posición y mecánicas disponibles.
+
+#### 4. El lindero roto — descubrimiento principal
+
+No hace falta una criatura visible al entrar.
+
+**Descripción base:**
+
+> Más adelante, dos postes de una cerca están quebrados hacia afuera. El barro conserva depresiones profundas. En este tramo no ves los pequeños movimientos entre cultivos que acompañaban el camino hasta ahora.
+
+`examinar cerca`:
+
+> La madera no está podrida. Algo la forzó con suficiente violencia para partirla y seguir adelante.
+
+`examinar huellas` o una observación equivalente:
+
+> Las marcas son mucho más profundas y anchas que las de las criaturas pequeñas que has visto cerca de Valdren.
+
+Con Percepción/Intelecto/contexto apropiados pueden aparecer capas adicionales ya compatibles con VT-GAME-002A, pero **ninguna capa debe decir automáticamente “Cornalomo” si el personaje no dispone de conocimiento legítimo para identificarlo**.
+
+Aquí está el éxito narrativo de la salida: comprender que el paisaje cercano contiene una amenaza mayor aunque no haya que verla ni combatirla.
+
+**DESCUBRIMIENTO SIGNIFICATIVO propuesto:** lindero alterado por el paso de una criatura claramente mayor. Jugabilidad valida recompensa y persistencia.
+
+#### 5. Decisión de continuar o regresar
+
+La narración no ordena volver.
+
+Si el jugador insiste en avanzar, las señales pueden intensificarse usando únicamente canon de `CREATURES.md`: huellas profundas, árboles jóvenes raspados, ausencia de fauna menor y, si corresponde, resoplidos o golpes sordos perceptibles.
+
+Antes de cualquier encuentro visible con un **Cornalomo**, el jugador debe haber tenido oportunidad real de interpretar advertencias y usar `evaluar` si existe un objetivo perceptible. El Cornalomo no es el jefe obligatorio de esta microaventura.
+
+Regresar a Valdren con el descubrimiento cuenta como cierre satisfactorio.
+
+### Cierre al volver
+
+No hace falta una cinemática ni un NPC que felicite.
+
+**Texto sugerido al cruzar nuevamente el borde de Valdren tras el descubrimiento:**
+
+> Las primeras casas de Valdren vuelven a aparecer junto al camino. El campo parece igual que cuando saliste, pero ahora sabes leer algunas de sus señales: tierra removida, púas entre el rastrojo y una cerca que algo demasiado grande atravesó sin detenerse.
+
+> No has visto todo lo que hay más allá. Ya sabes que vale la pena volver.
+
+El texto debe adaptarse a lo realmente vivido: no mencionar una criatura combatida, señal examinada o conocimiento que el jugador no obtuvo.
+
+### Variación y repetición
+
+Esta salida no debe convertirse en una secuencia rígida de cinco pantallas. Las criaturas comunes pueden variar dentro de las reglas de spawn. El descubrimiento del lindero es persistente por personaje y no debe volver a otorgarse como nuevo cada vez.
+
+El antifarmeo y la primera victoria por familia ya definidos por Jugabilidad permiten que el jugador gane progreso combatiendo sin hacer de “matar Mordelindes indefinidamente” la ruta dominante.
+
+### Handoff a Jugabilidad / Desarrollo
+
+La microaventura necesita solamente capacidades ya previstas:
+- movimiento entre ubicaciones;
+- `mirar` y `examinar`;
+- criaturas comunes y combate;
+- `evaluar` cuando haya objetivo visible;
+- retirada/regreso;
+- estado persistente de descubrimiento;
+- XP de combate/primera familia/descubrimiento según `GAMEPLAY.md`.
+
+No necesita:
+- NPC de misión;
+- diálogo obligatorio;
+- nuevo sistema de objetos;
+- nueva mecánica racial;
+- ilustraciones de cada lugar;
+- mapa completo revelado;
+- Cornalomo obligatorio en combate.
+
+### Criterio de playtest
+
+La prueba es exitosa narrativamente si un jugador principiante:
+1. entiende que observar antes de combatir aporta información;
+2. nota que Mordelinde y Espinajo no se comportan igual;
+3. reconoce señales de un peligro mayor antes de necesitar perder contra él;
+4. puede decidir regresar sin sentir que “falló la misión”;
+5. termina con curiosidad por volver a internarse en Edran.
+
+**ARTE REQUERIDO PARA VT-NAR-003:** 0 escenarios nuevos. Reutilizar Valdren + mapa general/progresivo + criaturas dentro del plan general de bestiario.
