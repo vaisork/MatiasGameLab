@@ -1551,6 +1551,87 @@ El mínimo de 1 HP se conserva para impactos conectados, salvo una mecánica exp
 
 **El arma define la base del golpe; los atributos definen cómo se ejecuta; la defensa decide cómo responder; la armadura mitiga lo que finalmente conecta.**
 
+
+## 28. Vocabulario mínimo de acciones — v1
+
+**Estado:** APROBADO PARA PARSER, AYUDA E INTERFAZ.
+
+Los comandos canónicos en español son pocos y reutilizables. HTML puede ofrecer botones equivalentes, pero no crea acciones distintas.
+
+### 28.1 Movimiento
+- `norte`
+- `sur`
+- `este`
+- `oeste`
+
+Abreviaciones permitidas:
+- `n`
+- `s`
+- `e`
+- `o`
+
+Durante combate, movimiento normal no sustituye `huir` (§26.5).
+
+### 28.2 Lectura e inspección
+- `mirar`
+- `observar <objetivo>`
+- `examinar <objetivo>`
+- `evaluar <criatura>`
+
+Diferencias:
+- mirar = situación general;
+- observar = señales relevantes;
+- examinar = detalle concreto;
+- evaluar = peligro cualitativo de criatura visible.
+
+### 28.3 Combate y recuperación
+- `atacar <objetivo>`
+- `huir`
+- `esquivar`
+- `bloquear`
+- `resistir`
+- `descansar`
+
+Esquivar/Bloquear/Resistir solo son válidos cuando el servidor los habilita como intervención contextual. Escribirlos fuera de contexto devuelve explicación; no crea una tirada sin amenaza.
+
+Si hay un único objetivo hostil inequívoco, la interfaz puede permitir botón **Atacar** sin exigir escribir el nombre. Con varios objetivos, el jugador debe elegir uno.
+
+### 28.4 Comunicación
+- `decir <texto>` = chat local entre jugadores;
+- `hablar <npc>` = iniciar/focalizar conversación con NPC.
+
+Son intenciones diferentes.
+
+### 28.5 Paneles HTML
+
+Personaje, Inventario, Poderes, Mapa, Arcanes y Ayuda son principalmente accesos de interfaz.
+
+El servidor puede aceptar comandos equivalentes en el futuro por accesibilidad, pero no es requisito del parser P0 y no debe retrasar el primer bucle jugable.
+
+### 28.6 Objetivos y secretos
+
+La interfaz solo puede convertir en botón/objetivo tocable aquello que el servidor haya marcado como perceptible/accionable.
+
+No generar automáticamente botones para:
+- salidas secretas;
+- criaturas ocultas;
+- pistas no descubiertas;
+- NPCs que el personaje no percibe;
+- objetos desconocidos.
+
+Un comando escrito tampoco obliga al servidor a confirmar que un objetivo secreto existe. Ante un objetivo no conocido, la respuesta debe ser neutral y no filtrar información.
+
+### 28.7 Error de comando
+
+Una entrada no reconocida:
+- no se publica como chat;
+- no consume una acción de combate salvo que el servidor la haya aceptado como intervención;
+- devuelve ayuda breve o sugerencia contextual cuando sea razonable.
+
+### 28.8 Principio
+
+**Pocos verbos, reglas consistentes, botones como atajos; escribir algo incorrecto nunca debe revelar un secreto ni hablar públicamente por accidente.**
+
 ## Investigación disponible para Jugabilidad — capacidades HTML y comandos
 
 **ESTADO: INVESTIGACIÓN CONSUMIDA — la dirección híbrida HTML/Telnet, inspección, evaluación de peligro y mapa progresivo ya tienen criterios v1; las ampliaciones futuras se decidirán cuando aparezcan nuevas necesidades.**
