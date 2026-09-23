@@ -141,8 +141,11 @@ def create_app(config=None):
             view["encounter"] = {
                 "creature_id": encounter["creature_id"],
                 "name": creature["name"],
-                "hp_current": max(0, round(encounter["hp_current"])),
-                "hp_max": creature["hp"],
+                # GAMEPLAY.md 31: nunca HP numerico de un enemigo, solo
+                # condicion cualitativa; el comportamiento ayuda a distinguir
+                # Mordelinde de Espinajo antes de decidir (VT-PSY-004).
+                "condition": combat.enemy_condition(encounter["hp_current"], creature["hp"]),
+                "behavior": creature["behavior_text"],
             }
         else:
             view["encounter"] = None
@@ -242,17 +245,32 @@ def create_app(config=None):
         """Devuelve (texto, mensaje_de_descubrimiento_o_None) si hay un
         texto canonico de NARRATIVE.md para ese objetivo en esta sala, o
         None si no hay nada especifico definido (el llamador decide el
-        mensaje generico de respaldo)."""
+        mensaje generico de respaldo).
+
+        VT-PSY-004 (revision de Psicopedagogia en PR #49): ninguna senal
+        aislada y ambigua debe bastar para que el sistema concluya mas de
+        lo que esa senal realmente demuestra.
+        - `tallos` y `monticulos` por separado solo describen "algo
+          pequeno" comiendo/excavando -- ninguno nombra una especie. Solo
+          al examinar AMBAS senales hay evidencia suficiente para que el
+          personaje reconozca que son senales de Mordelinde.
+        - `examinar cerca` por si sola solo demuestra violencia, no tamano;
+          `examinar huellas` si compara tamano explicitamente contra las
+          criaturas pequenas ya vistas cerca de Valdren, asi que basta por
+          si misma para el descubrimiento mayor del lindero."""
         normalized = _normalize(target)
         if not normalized:
             return None
         text = world.get_examine_text(player["room"], normalized)
         if text is None:
             return None
+        store.mark_examined_signal(path, player["id"], player["room"], normalized)
         discovery_key = None
         if player["room"] == "valdren_camino_parcela" and normalized in ("tallos", "monticulos"):
-            discovery_key = "senales_mordelinde"
-        elif player["room"] == "valdren_camino_lindero" and normalized in ("cerca", "huellas"):
+            if (store.has_examined_signal(path, player["id"], player["room"], "tallos")
+                    and store.has_examined_signal(path, player["id"], player["room"], "monticulos")):
+                discovery_key = "senales_mordelinde"
+        elif player["room"] == "valdren_camino_lindero" and normalized == "huellas":
             discovery_key = "lindero_roto"
         awarded_message = None
         if discovery_key:
@@ -275,8 +293,7 @@ def create_app(config=None):
         cg_enemy = combat.competencia_general(creature["reference_level"])
         player_dps = combat.expected_dps(attrs["destreza"], attrs["percepcion"], attrs["fuerza"],
                                           cg_player, cg_enemy)
-        enemy_dps = combat.expected_dps(creature["destreza"], creature["percepcion"], creature["fuerza"],
-                                         cg_enemy, cg_player, base_arma=creature["base_ataque"])
+        enemy_dps = combat.fixed_expected_dps(creature["precision"], creature["damage"])
         category = combat.encounter_category(player_dps, player["hp_current"], enemy_dps, creature["hp"])
         return creature["name"], f"{creature['name']} {EVALUATE_TEXT[category]}."
 
@@ -317,8 +334,7 @@ def create_app(config=None):
             is_first, repeats = store.record_pve_victory(path, player["id"], creature["family"])
             player_dps = combat.expected_dps(attrs["destreza"], attrs["percepcion"], attrs["fuerza"],
                                               cg_player, cg_enemy)
-            enemy_dps = combat.expected_dps(creature["destreza"], creature["percepcion"], creature["fuerza"],
-                                             cg_enemy, cg_player, base_arma=creature["base_ataque"])
+            enemy_dps = combat.fixed_expected_dps(creature["precision"], creature["damage"])
             category = combat.encounter_category(player_dps, player["hp_current"], enemy_dps, creature["hp"])
             xp_amount = combat.combat_xp(creature["reference_level"], category, player["level"],
                                           is_first, repeats)
@@ -333,9 +349,8 @@ def create_app(config=None):
 
         store.update_encounter(path, player["id"], player["room"], hp_current=creature_hp)
 
-        enemy_hits, enemy_damage = combat.resolve_attack_roll(
-            creature["destreza"], creature["percepcion"], creature["fuerza"],
-            cg_enemy, cg_player, base_arma=creature["base_ataque"], rng=rng)
+        enemy_hits, enemy_damage = combat.resolve_fixed_attack_roll(
+            creature["precision"], creature["damage"], rng=rng)
         new_wound = wound
         if enemy_hits:
             messages.append(f"{creature['name']} te golpea por {round(enemy_damage)} de daño.")
@@ -390,10 +405,8 @@ def create_app(config=None):
 
         store.update_encounter(path, player["id"], player["room"],
                                 failed_flee_attempts=encounter["failed_flee_attempts"] + 1)
-        enemy_hits, enemy_damage = combat.resolve_attack_roll(
-            creature["destreza"], creature["percepcion"], creature["fuerza"],
-            combat.competencia_general(creature["reference_level"]), combat.competencia_general(player["level"]),
-            base_arma=creature["base_ataque"], rng=rng)
+        enemy_hits, enemy_damage = combat.resolve_fixed_attack_roll(
+            creature["precision"], creature["damage"], rng=rng)
         messages = [f"No logras huir de {creature['name']}."]
         if not enemy_hits:
             store.update_combat_state(path, player["id"], fatigue=round(fatigue))

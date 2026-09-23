@@ -181,9 +181,23 @@ class CreatureCalibrationTests(unittest.TestCase):
         cg_player = combat.competencia_general(1)
         cg_enemy = combat.competencia_general(creature["reference_level"])
         player_dps = combat.expected_dps(10, 10, 10, cg_player, cg_enemy)
-        enemy_dps = combat.expected_dps(creature["destreza"], creature["percepcion"], creature["fuerza"],
-                                         cg_enemy, cg_player, base_arma=creature["base_ataque"])
+        enemy_dps = combat.fixed_expected_dps(creature["precision"], creature["damage"])
         return combat.encounter_category(player_dps, 100, enemy_dps, creature["hp"])
+
+    def test_mordelinde_matches_approved_starter_balance_profile(self):
+        # STARTER_CREATURE_BALANCE.md fija el perfil visible tal cual, sin
+        # derivarlo de un modelo interno de atributos (revision de
+        # Arquitectura de PR #49).
+        mordelinde = creatures.get_creature("mordelinde")
+        self.assertEqual(mordelinde["hp"], 28)
+        self.assertEqual(mordelinde["precision"], 45)
+        self.assertEqual(mordelinde["damage"], 5)
+
+    def test_espinajo_matches_approved_starter_balance_profile(self):
+        espinajo = creatures.get_creature("espinajo_rastrojo")
+        self.assertEqual(espinajo["hp"], 40)
+        self.assertEqual(espinajo["precision"], 50)
+        self.assertEqual(espinajo["damage"], 8)
 
     def test_mordelinde_is_favorable_or_comparable_for_a_new_character(self):
         self.assertIn(self._category_for("mordelinde"), ("favorable", "comparable"))
@@ -302,15 +316,42 @@ class PilotIntegrationTests(unittest.TestCase):
 
     # --- Descubrimientos y XP -----------------------------------------------
 
-    def test_examining_signs_grants_discovery_xp_exactly_once(self):
+    def test_a_single_ambiguous_sign_does_not_name_mordelinde_yet(self):
+        # VT-PSY-004: "tallos" por si solo solo describe "algo pequeno" --
+        # no basta para que el sistema concluya la especie ni pague XP
+        # (aunque el nombre "Mordelinde" ya pueda verse en la caja de
+        # encuentro porque la criatura esta visible en la sala).
+        self.register_and_enter_world()
+        self.post("/move", dict(direction="west"))  # sendero
+        self.post("/move", dict(direction="west"))  # parcela
+        page = self.post("/command", dict(text="examinar tallos")).get_data(as_text=True)
+        self.assertNotIn("Reconoces las señales de un Mordelinde", page)
+        self.assertEqual(self.character()["xp"], 0)
+        self.assertEqual(self.character()["discoveries"], [])
+
+    def test_examining_both_signs_grants_discovery_xp_exactly_once(self):
         self.register_and_enter_world()
         self.post("/move", dict(direction="west"))  # sendero
         self.post("/move", dict(direction="west"))  # parcela
         self.post("/command", dict(text="examinar tallos"))
-        self.assertEqual(self.character()["xp"], 5)
-        # Repetir el mismo examen no debe volver a pagar (22.7: una sola vez).
+        self.assertEqual(self.character()["xp"], 0)
+        # Solo al examinar la segunda senal hay evidencia suficiente.
         self.post("/command", dict(text="examinar monticulos"))
         self.assertEqual(self.character()["xp"], 5)
+        # Repetir cualquiera de los dos examenes no debe volver a pagar
+        # (22.7: una sola vez).
+        self.post("/command", dict(text="examinar tallos"))
+        self.post("/command", dict(text="examinar monticulos"))
+        self.assertEqual(self.character()["xp"], 5)
+
+    def test_examining_cerca_alone_does_not_conclude_a_much_bigger_creature(self):
+        # VT-PSY-004: "examinar cerca" solo demuestra violencia, no tamano --
+        # no basta por si sola para el descubrimiento mayor del lindero.
+        self.register_and_enter_world()
+        self.walk_to_lindero()
+        page = self.post("/command", dict(text="examinar cerca")).get_data(as_text=True)
+        self.assertNotIn("Comprendes que una criatura mucho mayor", page)
+        self.assertEqual(self.character()["xp"], 0)
 
     def test_lindero_discovery_and_return_milestone_award_xp_once_each(self):
         self.register_and_enter_world()
@@ -351,6 +392,39 @@ class PilotIntegrationTests(unittest.TestCase):
         self.assertTrue(any(phrase in page for phrase in
                              ("favorable", "comparable a ti", "peligroso", "inferior a ti", "supera claramente")))
         self.assertNotRegex(page, r"\b\d+\s*(HP|hp|%|de daño)\b")
+
+    # --- GAMEPLAY.md 31: informacion visible de enemigos / VT-PSY-004 ------
+
+    def test_room_view_never_exposes_enemy_numeric_hp(self):
+        self.register_and_enter_world()
+        self.post("/move", dict(direction="west"))  # sendero
+        self.post("/move", dict(direction="west"))  # parcela: aparece Mordelinde
+        encounter = self.client.get("/api/room").json["room"]["encounter"]
+        self.assertNotIn("hp_current", encounter)
+        self.assertNotIn("hp_max", encounter)
+        self.assertEqual(encounter["condition"], "entero / apenas afectado")
+
+    @patch("server.combat.random.Random")
+    def test_enemy_condition_band_drops_as_it_takes_damage(self, mock_random):
+        mock_random.return_value = FixedRoll(0)  # el jugador siempre acierta
+        self.register_and_enter_world()
+        self.post("/move", dict(direction="west"))
+        self.post("/move", dict(direction="west"))  # parcela: Mordelinde (28 HP, ~10 de daño/golpe)
+        self.post("/command", dict(text="atacar"))
+        self.post("/command", dict(text="atacar"))
+        encounter = self.client.get("/api/room").json["room"]["encounter"]
+        self.assertIn(encounter["condition"], ("herido", "malherido", "al borde de caer"))
+
+    def test_mordelinde_and_espinajo_show_different_behavior_before_deciding(self):
+        self.register_and_enter_world()
+        self.post("/move", dict(direction="west"))  # sendero
+        self.post("/move", dict(direction="west"))  # parcela: Mordelinde
+        mordelinde_behavior = self.client.get("/api/room").json["room"]["encounter"]["behavior"]
+        self.post("/move", dict(direction="west"))  # cerca: Espinajo de rastrojo
+        espinajo_behavior = self.client.get("/api/room").json["room"]["encounter"]["behavior"]
+        self.assertNotEqual(mordelinde_behavior, espinajo_behavior)
+        self.assertIn("zigzag", mordelinde_behavior)
+        self.assertIn("puas", espinajo_behavior)
 
     # --- Combate ---------------------------------------------------------------
 

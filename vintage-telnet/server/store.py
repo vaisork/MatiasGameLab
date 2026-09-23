@@ -94,6 +94,17 @@ CREATURE_COOLDOWN_TABLE = """CREATE TABLE creature_cooldowns (
         available_at TEXT NOT NULL,
         UNIQUE(player_id, room_id))"""
 
+# v5: VT-PSY-004 (revision de Psicopedagogia en PR #49) -- registrar que
+# senal(es) examino legitimamente un jugador en una sala, para poder exigir
+# mas de una senal antes de conceder una identificacion/descubrimiento que
+# ninguna senal aislada justifica por si sola (ver resolve_inspect).
+EXAMINED_SIGNALS_TABLE = """CREATE TABLE examined_signals (
+        player_id TEXT NOT NULL REFERENCES players(id),
+        room_id TEXT NOT NULL,
+        target TEXT NOT NULL,
+        created_at TEXT NOT NULL,
+        UNIQUE(player_id, room_id, target))"""
+
 CHARACTER_PLAYER_COLUMNS = [
     "level INTEGER NOT NULL DEFAULT 1",
     "xp INTEGER NOT NULL DEFAULT 0",
@@ -111,9 +122,9 @@ def initialize(path):
         db.execute("PRAGMA journal_mode = WAL")
         db.execute("BEGIN IMMEDIATE")
         version = db.execute("PRAGMA user_version").fetchone()[0]
-        if version not in (0, 1, 2, 3, 4):
+        if version not in (0, 1, 2, 3, 4, 5):
             raise RuntimeError("Versión de base de datos no soportada; no iniciar ni degradar.")
-        if version == 4:
+        if version == 5:
             return
         if version == 0:
             statements = [
@@ -174,7 +185,9 @@ def initialize(path):
                 db.execute(statement)
         if version <= 3:
             db.execute(CREATURE_COOLDOWN_TABLE)
-        db.execute("PRAGMA user_version = 4")
+        if version <= 4:
+            db.execute(EXAMINED_SIGNALS_TABLE)
+        db.execute("PRAGMA user_version = 5")
 
 
 def allow_attempt(path, address):
@@ -365,6 +378,29 @@ def has_discovery(path, player_id, key):
     with connect(path) as db:
         row = db.execute(
             "SELECT 1 FROM discoveries WHERE player_id = ? AND key = ?", (player_id, key)
+        ).fetchone()
+        return row is not None
+
+
+# --- Senales examinadas (VT-PSY-004) ---------------------------------------
+
+def mark_examined_signal(path, player_id, room_id, target):
+    """Registra que el jugador examino legitimamente `target` en `room_id`.
+    Devuelve True la primera vez; una repeticion es un no-op silencioso."""
+    with connect(path) as db:
+        cursor = db.execute(
+            """INSERT OR IGNORE INTO examined_signals(player_id, room_id, target, created_at)
+               VALUES (?, ?, ?, ?)""",
+            (player_id, room_id, target, utcnow()),
+        )
+        return cursor.rowcount > 0
+
+
+def has_examined_signal(path, player_id, room_id, target):
+    with connect(path) as db:
+        row = db.execute(
+            "SELECT 1 FROM examined_signals WHERE player_id = ? AND room_id = ? AND target = ?",
+            (player_id, room_id, target),
         ).fetchone()
         return row is not None
 

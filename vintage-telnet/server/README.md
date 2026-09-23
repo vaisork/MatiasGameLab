@@ -53,18 +53,20 @@ cd vintage-telnet
 .venv/Scripts/python.exe -m unittest discover -s tests -v
 ```
 
-76 pruebas: 9 heredadas de la entrega original + 19 de especies/movimiento/API
+84 pruebas: 9 heredadas de la entrega original + 19 de especies/movimiento/API
 del primer slice jugable + 3 de enrutamiento de intención (Issue #25) +
-45 de la microaventura piloto (`test_pilot_lindero_roto.py`): fórmulas de
+53 de la microaventura piloto (`test_pilot_lindero_roto.py`): fórmulas de
 combate/XP/fatiga/heridas/recuperación puras contra la tabla de referencia
-de `GAMEPLAY.md` 20 y 24, calibración de Mordelinde/Espinajo de rastrojo en
-la banda de peligro que pidió Jugabilidad, contenido/conectividad del
-camino nuevo, y flujo completo por HTTP (examinar → descubrimiento → XP,
-evaluar sin revelar números, atacar hasta la victoria con antifarmeo/bono
-de primera familia con coste real de fatiga, huir, heridas por golpe
-recibido, `descansar` fuera de combate, muerte/reaparición al 60% de HP,
-respawn de criatura con cooldown en vez de reaparición llena instantánea,
-persistencia del mapa tras reiniciar el proceso).
+de `GAMEPLAY.md` 20 y 24, perfil fijo de Mordelinde/Espinajo de rastrojo
+igual al aprobado en `STARTER_CREATURE_BALANCE.md` y su banda de peligro
+resultante, contenido/conectividad del camino nuevo, y flujo completo por
+HTTP (examinar → descubrimiento solo con evidencia suficiente → XP,
+evaluar sin revelar números, condición cualitativa y comportamiento
+diferenciado del enemigo sin HP exacto (31), atacar hasta la victoria con
+antifarmeo/bono de primera familia con coste real de fatiga, huir, heridas
+por golpe recibido, `descansar` fuera de combate, muerte/reaparición al
+60% de HP, respawn de criatura con cooldown en vez de reaparición llena
+instantánea, persistencia del mapa tras reiniciar el proceso).
 
 ## Qué existe hoy
 
@@ -146,17 +148,32 @@ como los pidió Jugabilidad en el Issue #45 y cerró en el Issue #46/commit
   recibido y efectos reales, 24.5-24.6), PA sin gastar acumulados por
   nivel. `GET /api/character`.
 - **Combate real** (`atacar`/`huir`, botones o comando, misma acción
-  autoritativa): precisión/daño/HP exactos de GAMEPLAY.md 20.4/20.3, con
-  las penalizaciones de fatiga/herida de 24.4/24.6 aplicadas al propio
-  golpe; cada ataque/huida cuesta fatiga (24.3, modificada por Resistencia
-  vía 20.7); un golpe recibido puede dejar una herida (24.5, nunca más de
-  una a la vez); muerte y reaparición al 60% HP (20.9); huida con fórmula
-  20.10. Mordelinde y Espinajo de rastrojo (`server/creatures.py`) tienen
-  las estadísticas de calibración inicial que pidió el Issue #45 para caer
-  en la banda Favorable/Comparable y Comparable/Peligroso respectivamente
-  contra un personaje nuevo — **afinable de balance, no definitivo**
-  (GAMEPLAY.md 20.15). Cornalomo no tiene stats: se pide su tabla a
-  Jugabilidad cuando exista combate real contra él.
+  autoritativa): el jugador ataca con precisión/daño de GAMEPLAY.md
+  20.4/20.3, con las penalizaciones de fatiga/herida de 24.4/24.6
+  aplicadas al propio golpe; cada ataque/huida cuesta fatiga (24.3,
+  modificada por Resistencia vía 20.7); un golpe recibido puede dejar una
+  herida (24.5, nunca más de una a la vez); muerte y reaparición al 60% HP
+  (20.9); huida con fórmula 20.10. Mordelinde y Espinajo de rastrojo
+  (`server/creatures.py`) usan el perfil fijo de HP/precisión/daño **tal
+  cual aprobó Jugabilidad** en `../STARTER_CREATURE_BALANCE.md`
+  (`combat.resolve_fixed_attack_roll`/`fixed_expected_dps`, no el modelo
+  genérico de atributos de 20.4) — una revisión de Arquitectura de PR #49
+  detectó que una versión anterior derivaba esos números de un modelo de
+  atributos y divergía demasiado de la tabla aprobada. Los umbrales de
+  `combat.encounter_category` (22.3, explícitamente afinables sin cambiar
+  las 5 categorías) están calibrados para que ese perfil aprobado
+  reproduzca la banda Favorable/Comparable y Comparable/Peligroso que
+  describe el propio `STARTER_CREATURE_BALANCE.md` — **afinable de
+  balance, no definitivo** (GAMEPLAY.md 20.15). Cornalomo no tiene stats:
+  se pide su tabla a Jugabilidad cuando exista combate real contra él.
+- **Condición e identidad del enemigo** (GAMEPLAY.md 31, VT-PSY-004): la
+  interfaz nunca muestra el HP numérico de una criatura — solo una banda
+  cualitativa (`combat.enemy_condition`: entero/apenas afectado, herido,
+  malherido, al borde de caer) y una línea de comportamiento canónico
+  (`creatures.py`, `behavior_text`, tomado de `../CREATURES.md`) que deja
+  a Mordelinde (huye en zigzag) y Espinajo de rastrojo (eriza las púas,
+  territorial) leerse como criaturas distintas antes de decidir
+  atacar/huir. El HP propio del jugador sigue siendo exacto.
 - **`descansar`** (GAMEPLAY.md 24.8, solo fuera de combate): cura 10% del
   HP máximo (respetando el tope de 24.6 según herida) y reduce fatiga en
   25 + 0.2×(Resistencia-10). La versión superior de recuperación segura
@@ -172,9 +189,18 @@ como los pidió Jugabilidad en el Issue #45 y cerró en el Issue #46/commit
 - **XP y antifarmeo** (22.4-22.8): coeficiente por categoría, tope del 25%
   del siguiente nivel, bono de primera victoria por familia, reducción por
   repetición en las últimas 10 victorias PvE.
-- **Descubrimientos** (22.7): señales de Mordelinde (`examinar
-  tallos/monticulos`), el lindero roto (`examinar cerca/huellas`) y el
+- **Descubrimientos** (22.7): señales de Mordelinde, el lindero roto y el
   regreso a Valdren con el hallazgo — cada uno una sola vez por personaje.
+  VT-PSY-004 (revisión de Psicopedagogía en PR #49): ninguna señal
+  aislada y ambigua basta por sí sola para que el sistema concluya más de
+  lo que esa señal demuestra realmente. `examinar tallos`/`examinar
+  monticulos` describen por separado solo "algo pequeño"; el
+  descubrimiento nominal de Mordelinde solo se concede cuando el jugador
+  examinó **ambas** señales (`store.mark_examined_signal`/
+  `has_examined_signal`). En el lindero, `examinar cerca` por sí sola solo
+  demuestra violencia, no tamaño, así que ya no concede el descubrimiento;
+  `examinar huellas` sí compara tamaño explícitamente contra las
+  criaturas pequeñas ya vistas, así que basta por sí misma.
 - **Mapa progresivo** (23): `GET /api/map` devuelve solo las salas
   visitadas y rutas recorridas por ese personaje, persistente en SQLite.
 

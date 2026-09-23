@@ -290,7 +290,10 @@
             <div class="entry"><p class="system">También aquí: {{ room.others_present | join(', ') }}</p></div>
             {% endif %}
             {% if room.encounter %}
-            <div class="entry"><p class="system">{{ room.encounter.name }} está aquí. (HP {{ room.encounter.hp_current }}/{{ room.encounter.hp_max }})</p></div>
+            <div class="entry">
+              <p class="system">{{ room.encounter.name }} está aquí. Condición: {{ room.encounter.condition }}.</p>
+              <p class="system">{{ room.encounter.behavior }}</p>
+            </div>
             {% endif %}
             {% for m in room.messages %}
             <div class="entry">

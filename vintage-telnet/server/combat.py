@@ -112,6 +112,24 @@ def resolve_attack_roll(attacker_destreza, attacker_percepcion, attacker_fuerza,
     return hits, damage
 
 
+def fixed_expected_dps(precision_pct, damage):
+    """Dano esperado por ronda de una criatura con perfil de combate fijo
+    (precision%/dano de vintage-telnet/STARTER_CREATURE_BALANCE.md), en vez
+    del modelo generico de atributos de 20.4. Ver resolve_fixed_attack_roll."""
+    return precision_pct / 100.0 * damage
+
+
+def resolve_fixed_attack_roll(precision_pct, damage, rng=None):
+    """Tira un golpe de una criatura de perfil fijo aprobado en
+    STARTER_CREATURE_BALANCE.md: precision%/dano directos, sin derivarlos
+    del modelo generico de atributos de 20.4 (la revision de Arquitectura
+    de PR #49 senalo que ese modelo derivado divergia demasiado del balance
+    aprobado). Devuelve (impacta, dano), igual forma que resolve_attack_roll."""
+    rng = rng or random.Random()
+    hits = rng.uniform(0, 100) < precision_pct
+    return hits, float(damage) if hits else 0.0
+
+
 def encounter_category(player_dps, player_hp, enemy_dps, enemy_hp):
     """Clasifica el encuentro en las 5 categorias de GAMEPLAY.md 22.3 usando
     el margen esperado de tiempo hasta la muerte de cada lado (referencia
@@ -121,7 +139,13 @@ def encounter_category(player_dps, player_hp, enemy_dps, enemy_hp):
     R = (rondas para que el enemigo mate al jugador) / (rondas para que el
     jugador mate al enemigo). R alto = el jugador sobrevive mucho mas de lo
     que tarda en ganar (encuentro facil); R bajo = el jugador podria morir
-    antes de ganar (encuentro peligroso)."""
+    antes de ganar (encuentro peligroso).
+
+    Umbrales calibrados (revision de Arquitectura de PR #49) para que el
+    perfil fijo aprobado de vintage-telnet/STARTER_CREATURE_BALANCE.md
+    reproduzca la banda que ese mismo documento describe contra un
+    personaje nivel 1 de referencia: Mordelinde Favorable, Espinajo de
+    rastrojo Comparable."""
     if enemy_dps <= 0:
         rounds_to_kill_player = math.inf
     else:
@@ -134,11 +158,11 @@ def encounter_category(player_dps, player_hp, enemy_dps, enemy_hp):
         ratio = math.inf
     else:
         ratio = rounds_to_kill_player / rounds_to_kill_enemy
-    if ratio >= 3.5:
+    if ratio >= 10:
         return "trivial"
-    if ratio >= 1.8:
+    if ratio >= 5:
         return "favorable"
-    if ratio >= 0.85:
+    if ratio >= 1.8:
         return "comparable"
     if ratio >= 0.4:
         return "peligroso"
@@ -308,6 +332,31 @@ def rest_result(hp_current, hp_max_value, fatigue, resistencia, wound):
     fatigue_reduction = 25 + 0.2 * (resistencia - 10)
     new_fatigue = max(0, fatigue - fatigue_reduction)
     return {"hp_current": round(healed), "fatigue": round(new_fatigue)}
+
+
+# --- GAMEPLAY.md 31: informacion visible de enemigos -----------------------
+
+# 31.1: bandas cualitativas de condicion segun porcentaje de HP restante.
+# El limite inferior de cada banda es inclusive.
+ENEMY_CONDITION_BANDS = (
+    (76, "entero / apenas afectado"),
+    (51, "herido"),
+    (26, "malherido"),
+    (1, "al borde de caer"),
+)
+
+
+def enemy_condition(hp_current, hp_max_value):
+    """GAMEPLAY.md 31.1: condicion cualitativa de una criatura visible segun
+    HP restante, sin revelar nunca el HP numerico (31.3). El jugador sigue
+    viendo su propio HP exacto; esto es solo para enemigos."""
+    if hp_max_value <= 0 or hp_current <= 0:
+        return "derrotado"
+    fraction = hp_current / hp_max_value * 100
+    for threshold, label in ENEMY_CONDITION_BANDS:
+        if fraction >= threshold:
+            return label
+    return "derrotado"
 
 
 def safe_recovery_result(hp_max_value, wound):
