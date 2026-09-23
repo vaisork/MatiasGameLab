@@ -2,15 +2,34 @@ from datetime import timedelta
 import hmac
 import os
 from pathlib import Path
+import random
 import re
 import secrets
 import sqlite3
+import unicodedata
 
 from flask import (Flask, abort, g, jsonify, redirect, render_template, request, send_from_directory,
                     session, url_for)
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from . import dm_auth, store, world
+from . import combat, creatures, dm_auth, store, world
+
+# Categorias cualitativas de "evaluar" (GAMEPLAY.md 22.11) -- nunca exponen
+# numeros, solo la frase equivalente.
+EVALUATE_TEXT = {
+    "trivial": "parece muy inferior a ti",
+    "favorable": "parece favorable",
+    "comparable": "parece comparable a ti",
+    "peligroso": "parece peligroso",
+    "abrumador": "te supera claramente",
+}
+
+
+def _normalize(text):
+    """minusculas y sin acentos, para comparar objetivos de examinar/atacar
+    sin depender de que el jugador escriba tildes."""
+    folded = unicodedata.normalize("NFKD", (text or "").strip().lower())
+    return "".join(c for c in folded if not unicodedata.combining(c))
 
 # Biblioteca de arte HTML (vintage-telnet/assets/html-ui/), servida explícitamente en vez de
 # habilitar una carpeta estática general -- mantiene el resto del árbol del repo fuera de HTTP.
@@ -42,6 +61,7 @@ def create_app(config=None):
     store.initialize(path)
     app.config["DATABASE"] = path
     dummy_hash = generate_password_hash(secrets.token_urlsafe(32))
+    app.jinja_env.globals["xp_for_next_level"] = combat.xp_for_next_level
 
     @app.before_request
     def prepare_request():
@@ -98,6 +118,17 @@ def create_app(config=None):
         others = store.players_in_room(path, room_id, exclude_id=player_id)
         view = world.describe_room(room_id, [p["name"] for p in others])
         view["messages"] = store.recent_messages(path, room_id)
+        encounter = store.get_encounter(path, player_id, room_id)
+        if encounter:
+            creature = creatures.get_creature(encounter["creature_id"])
+            view["encounter"] = {
+                "creature_id": encounter["creature_id"],
+                "name": creature["name"],
+                "hp_current": max(0, round(encounter["hp_current"])),
+                "hp_max": creature["hp"],
+            }
+        else:
+            view["encounter"] = None
         return view
 
     # Intenciones canonicas: boton y comando escrito deben terminar en la misma
@@ -112,6 +143,9 @@ def create_app(config=None):
     INSPECT_ALIASES = {"observar", "examinar"}
     SAY_PREFIXES = ("decir ", "say ")
     TALK_PREFIXES = ("hablar con ", "hablar ")
+    FLEE_ALIASES = {"huir"}
+    ATTACK_ALIASES = {"atacar"}
+    EVALUATE_ALIASES = {"evaluar", "considerar"}
 
     def parse_intent(raw):
         """Clasifica texto del terminal sin convertir comandos desconocidos en chat."""
@@ -121,12 +155,26 @@ def create_app(config=None):
             return {"type": "move", "direction": DIRECTION_ALIASES[lowered]}
         if lowered in LOOK_ALIASES:
             return {"type": "look"}
+        if lowered in FLEE_ALIASES:
+            return {"type": "flee"}
         for verb in INSPECT_ALIASES:
             if lowered == verb:
                 return {"type": "inspect", "verb": verb, "target": ""}
             prefix = verb + " "
             if lowered.startswith(prefix):
                 return {"type": "inspect", "verb": verb, "target": text[len(prefix):].strip()}
+        for verb in ATTACK_ALIASES:
+            if lowered == verb:
+                return {"type": "attack", "target": ""}
+            prefix = verb + " "
+            if lowered.startswith(prefix):
+                return {"type": "attack", "target": text[len(prefix):].strip()}
+        for verb in EVALUATE_ALIASES:
+            if lowered == verb:
+                return {"type": "evaluate", "target": ""}
+            prefix = verb + " "
+            if lowered.startswith(prefix):
+                return {"type": "evaluate", "target": text[len(prefix):].strip()}
         for prefix in TALK_PREFIXES:
             if lowered.startswith(prefix):
                 target = text[len(prefix):].strip()
@@ -140,14 +188,185 @@ def create_app(config=None):
 
     def attempt_move(player, direction):
         """Unica logica autoritativa de movimiento. Devuelve
-        (accepted, previous_room_id, new_room_id_or_None, reason_or_None)."""
+        (accepted, previous_room_id, new_room_id_or_None, reason_or_None).
+
+        De paso actualiza el mapa progresivo (GAMEPLAY.md 23: la sala de
+        destino queda visitada y la ruta recorrida), coloca una criatura si
+        la sala de destino puede tenerla y todavia no hay ninguna activa
+        (VT-NAR-003), y otorga el hito de regreso si corresponde."""
         previous_room = player["room"]
         room = world.get_room(previous_room)
         destination = room["exits"].get(direction) if room else None
         if not destination:
             return False, previous_room, None, "No puedes ir en esa dirección."
         store.move_player(path, player["id"], destination)
+        store.mark_visited(path, player["id"], destination)
+        store.mark_route_traversed(path, player["id"], previous_room, destination)
+        encounter_creature = world.get_room_encounter(destination)
+        if encounter_creature and not store.get_encounter(path, player["id"], destination):
+            creature = creatures.get_creature(encounter_creature)
+            store.start_encounter(path, player["id"], destination, encounter_creature, creature["hp"])
+        if (destination == "valdren_centro"
+                and store.has_discovery(path, player["id"], "lindero_roto")
+                and not store.has_discovery(path, player["id"], "regreso_valdren_lindero")):
+            discovery = world.get_discovery("regreso_valdren_lindero")
+            store.award_discovery(path, player["id"], "regreso_valdren_lindero",
+                                   discovery["category"], discovery["reference_level"])
         return True, previous_room, destination, None
+
+    def _attributes(player):
+        return {name: player[f"attr_{name}"] for name in combat.ATTRIBUTES}
+
+    def resolve_inspect(player, target):
+        """Devuelve (texto, mensaje_de_descubrimiento_o_None) si hay un
+        texto canonico de NARRATIVE.md para ese objetivo en esta sala, o
+        None si no hay nada especifico definido (el llamador decide el
+        mensaje generico de respaldo)."""
+        normalized = _normalize(target)
+        if not normalized:
+            return None
+        text = world.get_examine_text(player["room"], normalized)
+        if text is None:
+            return None
+        discovery_key = None
+        if player["room"] == "valdren_camino_parcela" and normalized in ("tallos", "monticulos"):
+            discovery_key = "senales_mordelinde"
+        elif player["room"] == "valdren_camino_lindero" and normalized in ("cerca", "huellas"):
+            discovery_key = "lindero_roto"
+        awarded_message = None
+        if discovery_key:
+            discovery = world.get_discovery(discovery_key)
+            is_new, xp_amount = store.award_discovery(
+                path, player["id"], discovery_key, discovery["category"], discovery["reference_level"])
+            if is_new:
+                awarded_message = f"{discovery['message']} (+{xp_amount} XP)"
+        return text, awarded_message
+
+    def attempt_evaluate(player):
+        """GAMEPLAY.md 22.11: solo funciona sobre un objetivo visible (la
+        criatura activa de la sala) y nunca revela numeros."""
+        encounter = store.get_encounter(path, player["id"], player["room"])
+        if not encounter:
+            return None, "No hay ninguna criatura visible para evaluar."
+        creature = creatures.get_creature(encounter["creature_id"])
+        attrs = _attributes(player)
+        cg_player = combat.competencia_general(player["level"])
+        cg_enemy = combat.competencia_general(creature["reference_level"])
+        player_dps = combat.expected_dps(attrs["destreza"], attrs["percepcion"], attrs["fuerza"],
+                                          cg_player, cg_enemy)
+        enemy_dps = combat.expected_dps(creature["destreza"], creature["percepcion"], creature["fuerza"],
+                                         cg_enemy, cg_player, base_arma=creature["base_ataque"])
+        category = combat.encounter_category(player_dps, player["hp_current"], enemy_dps, creature["hp"])
+        return creature["name"], f"{creature['name']} {EVALUATE_TEXT[category]}."
+
+    def attempt_attack(player, rng=None):
+        """Una ronda de combate real (golpe del jugador y, si la criatura
+        sobrevive, contragolpe). Devuelve un dict con 'outcome'
+        ('no_target'|'victory'|'ongoing'|'defeat') y 'messages'."""
+        encounter = store.get_encounter(path, player["id"], player["room"])
+        if not encounter:
+            return {"outcome": "no_target", "messages": ["No hay ninguna criatura para atacar aquí."]}
+        creature = creatures.get_creature(encounter["creature_id"])
+        attrs = _attributes(player)
+        cg_player = combat.competencia_general(player["level"])
+        cg_enemy = combat.competencia_general(creature["reference_level"])
+
+        player_hits, player_damage = combat.resolve_attack_roll(
+            attrs["destreza"], attrs["percepcion"], attrs["fuerza"], cg_player, cg_enemy, rng=rng)
+        messages = []
+        if player_hits:
+            messages.append(f"Golpeas a {creature['name']} por {round(player_damage)} de daño.")
+        else:
+            messages.append(f"Fallas tu ataque contra {creature['name']}.")
+        creature_hp = encounter["hp_current"] - player_damage
+
+        if creature_hp <= 0:
+            store.clear_encounter(path, player["id"], player["room"])
+            is_first, repeats = store.record_pve_victory(path, player["id"], creature["family"])
+            player_dps = combat.expected_dps(attrs["destreza"], attrs["percepcion"], attrs["fuerza"],
+                                              cg_player, cg_enemy)
+            enemy_dps = combat.expected_dps(creature["destreza"], creature["percepcion"], creature["fuerza"],
+                                             cg_enemy, cg_player, base_arma=creature["base_ataque"])
+            category = combat.encounter_category(player_dps, player["hp_current"], enemy_dps, creature["hp"])
+            xp_amount = combat.combat_xp(creature["reference_level"], category, player["level"],
+                                          is_first, repeats)
+            xp_state = store.award_xp(path, player["id"], xp_amount)
+            messages.append(f"¡{creature['name']} cae derrotado! Ganas {xp_amount} XP.")
+            if is_first:
+                messages.append(f"Primera vez que superas a un {creature['name']}: bono de familia incluido.")
+            if xp_state["levels_gained"]:
+                messages.append(f"¡Subes a nivel {xp_state['level']}!")
+            return {"outcome": "victory", "messages": messages}
+
+        store.update_encounter(path, player["id"], player["room"], hp_current=creature_hp)
+
+        enemy_hits, enemy_damage = combat.resolve_attack_roll(
+            creature["destreza"], creature["percepcion"], creature["fuerza"],
+            cg_enemy, cg_player, base_arma=creature["base_ataque"], rng=rng)
+        if enemy_hits:
+            messages.append(f"{creature['name']} te golpea por {round(enemy_damage)} de daño.")
+        else:
+            messages.append(f"{creature['name']} falla su ataque.")
+        player_hp = player["hp_current"] - (enemy_damage if enemy_hits else 0)
+
+        if player_hp <= 0:
+            store.clear_encounter(path, player["id"], player["room"])
+            respawn = combat.respawn_state(player["hp_max"])
+            new_wound = combat.respawn_wound(player["wound"])
+            store.update_combat_state(path, player["id"], hp_current=respawn["hp_current"],
+                                       wound=new_wound, room="valdren_centro")
+            messages.append(f"{creature['name']} te derrota. Despiertas de vuelta en Valdren.")
+            return {"outcome": "defeat", "messages": messages}
+
+        store.update_combat_state(path, player["id"], hp_current=player_hp)
+        return {"outcome": "ongoing", "messages": messages}
+
+    def attempt_flee(player, rng=None):
+        """GAMEPLAY.md 20.10. Si tiene exito, retrocede por la salida que
+        lleva de vuelta hacia Valdren; si falla, la criatura tiene una
+        oportunidad de golpear."""
+        encounter = store.get_encounter(path, player["id"], player["room"])
+        if not encounter:
+            return {"outcome": "no_target", "messages": ["No hay ninguna criatura de la que huir."]}
+        creature = creatures.get_creature(encounter["creature_id"])
+        room = world.get_room(player["room"])
+        retreat_direction = "east" if "east" in room["exits"] else next(iter(room["exits"]), None)
+        chance = combat.flee_chance(
+            player["attr_agilidad"], player["attr_percepcion"],
+            creature["flee_agilidad"], creature["flee_percepcion"],
+            attacker_level_advantage=creature["reference_level"] - player["level"],
+            previous_failed_attempts=encounter["failed_flee_attempts"],
+            fatigue=player["fatigue"],
+        )
+        rng = rng or random.Random()
+        if rng.uniform(0, 100) < chance:
+            store.clear_encounter(path, player["id"], player["room"])
+            messages = [f"Consigues alejarte de {creature['name']}."]
+            if retreat_direction:
+                attempt_move(player, retreat_direction)
+            return {"outcome": "success", "messages": messages}
+
+        store.update_encounter(path, player["id"], player["room"],
+                                failed_flee_attempts=encounter["failed_flee_attempts"] + 1)
+        enemy_hits, enemy_damage = combat.resolve_attack_roll(
+            creature["destreza"], creature["percepcion"], creature["fuerza"],
+            combat.competencia_general(creature["reference_level"]), combat.competencia_general(player["level"]),
+            base_arma=creature["base_ataque"], rng=rng)
+        messages = [f"No logras huir de {creature['name']}."]
+        if not enemy_hits:
+            return {"outcome": "failed", "messages": messages}
+        messages.append(f"{creature['name']} te golpea por {round(enemy_damage)} de daño mientras intentas escapar.")
+        player_hp = player["hp_current"] - enemy_damage
+        if player_hp <= 0:
+            store.clear_encounter(path, player["id"], player["room"])
+            respawn = combat.respawn_state(player["hp_max"])
+            new_wound = combat.respawn_wound(player["wound"])
+            store.update_combat_state(path, player["id"], hp_current=respawn["hp_current"],
+                                       wound=new_wound, room="valdren_centro")
+            messages.append(f"{creature['name']} te derrota. Despiertas de vuelta en Valdren.")
+            return {"outcome": "defeat", "messages": messages}
+        store.update_combat_state(path, player["id"], hp_current=player_hp)
+        return {"outcome": "failed", "messages": messages}
 
     def attempt_choose_species(player, species_id):
         """Devuelve (accepted, species_or_None, room_or_None, reason_or_None).
@@ -160,6 +379,7 @@ def create_app(config=None):
         updated = store.set_species(path, player["id"], species_id, room_id)
         if not updated:
             return False, None, None, "Ya elegiste tu especie."
+        store.mark_visited(path, player["id"], room_id)
         return True, species_id, room_id, None
 
     def api_player_state(player):
@@ -277,18 +497,42 @@ def create_app(config=None):
             store.add_message(path, g.player["room"], g.player["id"], intent["body"])
             return redirect(url_for("index"), code=303)
 
-        room_data = room_view(g.player["room"], g.player["id"])
         if intent["type"] == "inspect":
             target = intent["target"] or "el lugar"
-            return render_template(
-                "entry.html", player=g.player, species_list=world.SPECIES, room=room_data,
-                error=f"Inspección registrada para {target}. No hay detalle adicional autorizado todavía."
-            ), 200
+            result = resolve_inspect(g.player, intent["target"])
+            if result:
+                text, awarded = result
+                message = f"{text} {awarded}" if awarded else text
+            else:
+                message = f"Inspección registrada para {target}. No hay detalle adicional autorizado todavía."
+            player_now = store.player_for_token(path, session.get("token"))
+            room_data = room_view(g.player["room"], g.player["id"])
+            return render_template("entry.html", player=player_now, species_list=world.SPECIES,
+                                   room=room_data, error=message), 200
+        if intent["type"] == "evaluate":
+            _name, message = attempt_evaluate(g.player)
+            room_data = room_view(g.player["room"], g.player["id"])
+            return render_template("entry.html", player=g.player, species_list=world.SPECIES,
+                                   room=room_data, error=message), 200
+        if intent["type"] == "attack":
+            result = attempt_attack(g.player)
+            player_now = store.player_for_token(path, session.get("token"))
+            room_data = room_view(player_now["room"], player_now["id"])
+            return render_template("entry.html", player=player_now, species_list=world.SPECIES,
+                                   room=room_data, error=" ".join(result["messages"])), 200
+        if intent["type"] == "flee":
+            result = attempt_flee(g.player)
+            player_now = store.player_for_token(path, session.get("token"))
+            room_data = room_view(player_now["room"], player_now["id"])
+            return render_template("entry.html", player=player_now, species_list=world.SPECIES,
+                                   room=room_data, error=" ".join(result["messages"])), 200
         if intent["type"] == "talk_npc":
+            room_data = room_view(g.player["room"], g.player["id"])
             return render_template(
                 "entry.html", player=g.player, species_list=world.SPECIES, room=room_data,
                 error="La conversación con NPC tiene contrato separado, pero todavía no hay NPC activo."
             ), 200
+        room_data = room_view(g.player["room"], g.player["id"])
         return render_template(
             "entry.html", player=g.player, species_list=world.SPECIES, room=room_data,
             error="Comando no reconocido. Para chat usa: decir <texto>."
@@ -364,19 +608,47 @@ def create_app(config=None):
                 intent="look",
                 current_room=room_view(g.player["room"], g.player["id"]),
             )
+        if kind == "say":
+            store.add_message(path, g.player["room"], g.player["id"], intent["body"])
+            return jsonify(accepted=True, intent="say")
         if kind == "inspect":
+            result = resolve_inspect(g.player, intent["target"])
+            text, awarded = result if result else (None, None)
             return jsonify(
                 accepted=True,
                 intent="inspect",
                 verb=intent["verb"],
                 target=intent["target"],
-                detail=None,
-                message="No hay detalle adicional autorizado todavía.",
+                detail=text,
+                message=(text or "No hay detalle adicional autorizado todavía."),
+                discovery=awarded,
                 current_room=room_view(g.player["room"], g.player["id"]),
             )
-        if kind == "say":
-            store.add_message(path, g.player["room"], g.player["id"], intent["body"])
-            return jsonify(accepted=True, intent="say")
+        if kind == "evaluate":
+            name, message = attempt_evaluate(g.player)
+            return jsonify(accepted=name is not None, intent="evaluate", target=name, message=message)
+        if kind == "attack":
+            result = attempt_attack(g.player)
+            player_now = store.player_for_token(path, session.get("token"))
+            return jsonify(
+                accepted=result["outcome"] != "no_target",
+                intent="attack",
+                outcome=result["outcome"],
+                messages=result["messages"],
+                player=dict(player_now) if player_now else None,
+                current_room=room_view(player_now["room"], player_now["id"]) if player_now else None,
+            )
+        if kind == "flee":
+            result = attempt_flee(g.player)
+            player_now = store.player_for_token(path, session.get("token"))
+            return jsonify(
+                accepted=result["outcome"] != "no_target",
+                intent="flee",
+                outcome=result["outcome"],
+                messages=result["messages"],
+                player=dict(player_now) if player_now else None,
+                current_room=room_view(player_now["room"], player_now["id"]) if player_now else None,
+            )
         if kind == "talk_npc":
             return jsonify(
                 accepted=False,
@@ -412,6 +684,65 @@ def create_app(config=None):
             reason=reason,
             current_room=room_view(current_room_id, g.player["id"]),
         ), (200 if accepted else 400)
+
+    @app.get("/api/character")
+    def api_character():
+        """Estado de personaje jugable (GAMEPLAY.md 20-22): nivel, XP, PA sin
+        gastar, HP, fatiga, herida, atributos y descubrimientos -- para el
+        panel Personaje que pide Issue #43 (P1)."""
+        error = api_player_state(g.player)
+        if error:
+            return error
+        return jsonify(
+            level=g.player["level"], xp=g.player["xp"],
+            xp_to_next=combat.xp_for_next_level(g.player["level"]),
+            pa_unspent=g.player["pa_unspent"],
+            hp_current=g.player["hp_current"], hp_max=g.player["hp_max"],
+            fatigue=g.player["fatigue"], wound=g.player["wound"],
+            attributes=_attributes(g.player),
+            discoveries=store.list_discoveries(path, g.player["id"]),
+        )
+
+    @app.get("/api/map")
+    def api_map():
+        """Mapa progresivo (GAMEPLAY.md 23): solo lo que este personaje
+        visito/recorrio de verdad, nunca el mundo completo de produccion."""
+        error = api_player_state(g.player)
+        if error:
+            return error
+        return jsonify(**store.get_map_state(path, g.player["id"]))
+
+    @app.post("/attack")
+    def attack():
+        require_approved_player()
+        if g.player["species"] is None:
+            abort(403)
+        result = attempt_attack(g.player)
+        player_now = store.player_for_token(path, session.get("token"))
+        room_data = room_view(player_now["room"], player_now["id"])
+        return render_template("entry.html", player=player_now, species_list=world.SPECIES,
+                               room=room_data, error=" ".join(result["messages"])), 200
+
+    @app.post("/flee")
+    def flee():
+        require_approved_player()
+        if g.player["species"] is None:
+            abort(403)
+        result = attempt_flee(g.player)
+        player_now = store.player_for_token(path, session.get("token"))
+        room_data = room_view(player_now["room"], player_now["id"])
+        return render_template("entry.html", player=player_now, species_list=world.SPECIES,
+                               room=room_data, error=" ".join(result["messages"])), 200
+
+    @app.post("/evaluate")
+    def evaluate():
+        require_approved_player()
+        if g.player["species"] is None:
+            abort(403)
+        _name, message = attempt_evaluate(g.player)
+        room_data = room_view(g.player["room"], g.player["id"])
+        return render_template("entry.html", player=g.player, species_list=world.SPECIES,
+                               room=room_data, error=message), 200
 
     @app.get("/healthz")
     def health():

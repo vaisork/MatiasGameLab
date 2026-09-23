@@ -1,9 +1,12 @@
 # Vintage Telnet — Servidor autoritativo
 
 Servidor Python (Flask + Waitress + SQLite) para Vintage Telnet: cuentas con
-aprobación del Dungeon Master, mundo con movimiento N/S/E/O y chat local por
-sala. No implementa combate, clases, progresión ni PvP: esas decisiones
-siguen abiertas en [`../GAMEPLAY.md`](../GAMEPLAY.md) y no se inventaron aquí.
+aprobación del Dungeon Master, mundo con movimiento N/S/E/O, chat local por
+sala, y ahora combate/XP/descubrimientos/mapa progresivo v1 según
+[`../GAMEPLAY.md`](../GAMEPLAY.md) (secciones 20-23) para la microaventura
+piloto VT-NAR-003 "El lindero roto". Lo que ese documento sigue dejando
+abierto (PvP, poderes/Arcanes, clases, tabla de Cornalomo) no se inventa
+aquí.
 
 Esta base nace de la entrega histórica `codex/vintage-telnet-server` (PR #1),
 rescatada sobre el `main` vigente según la decisión del Arquitecto de
@@ -49,12 +52,16 @@ cd vintage-telnet
 .venv/Scripts/python.exe -m unittest discover -s tests -v
 ```
 
-28 pruebas: 9 heredadas de la entrega original (cuentas, sesiones, CSRF,
-rate limit, concurrencia, backup/inspección, fail-closed, reinicio de
-proceso) + 19 nuevas (aprobación del DM y su propio rate-limit, especies
-—incluida elección concurrente atómica—, movimiento dentro del pueblo,
-paridad comando/botón, contrato API estructurado, CSP, errores JSON, chat
-sin exponer el username de otros jugadores).
+63 pruebas: 9 heredadas de la entrega original + 19 de especies/movimiento/API
+del primer slice jugable + 3 de enrutamiento de intención (Issue #25) +
+32 de la microaventura piloto (`test_pilot_lindero_roto.py`): fórmulas de
+combate/XP puras contra la tabla de referencia de `GAMEPLAY.md`,
+calibración de Mordelinde/Espinajo de rastrojo en la banda de peligro que
+pidió Jugabilidad, contenido/conectividad del camino nuevo, y flujo
+completo por HTTP (examinar → descubrimiento → XP, evaluar sin revelar
+números, atacar hasta la victoria con antifarmeo/bono de primera familia,
+huir, muerte/reaparición al 60% de HP, persistencia del mapa tras
+reiniciar el proceso).
 
 ## Qué existe hoy
 
@@ -122,11 +129,59 @@ P0 según `FIRST_PLAYABLE_SLICE.md`, pero se conserva porque ya funciona).
   demo local y hable con este servidor cuando el Arquitecto decida
   conectarlos; las rutas de formulario siguen funcionando como fallback.
 
+### Microaventura piloto "El lindero roto" (VT-NAR-003)
+
+Camino nuevo desde Valdren (`valdren_sendero` se extiende hacia el oeste con
+`valdren_camino_parcela` → `valdren_camino_cerca` → `valdren_camino_lindero`,
+textos citados de `../NARRATIVE.md`), implementando GAMEPLAY.md 20-22 tal
+como los pidió Jugabilidad en el Issue #45:
+
+- **Personaje real:** ocho atributos (base 10), nivel, XP, HP, fatiga
+  (campo listo, sin tabla de coste por acción todavía — ver Pendiente),
+  herida (campo listo, sin disparador de combate todavía — ver Pendiente),
+  PA sin gastar acumulados por nivel. `GET /api/character`.
+- **Combate real** (`atacar`/`huir`, botones o comando, misma acción
+  autoritativa): precisión/daño/HP exactos de GAMEPLAY.md 20.4/20.3, muerte
+  y reaparición al 60% HP en `valdren_centro` (20.9), huida con fórmula
+  20.10. Mordelinde y Espinajo de rastrojo (`server/creatures.py`) tienen
+  las estadísticas de calibración inicial que pidió el Issue #45 para caer
+  en la banda Favorable/Comparable y Comparable/Peligroso respectivamente
+  contra un personaje nuevo — **afinable de balance, no definitivo**
+  (GAMEPLAY.md 20.15). Cornalomo no tiene stats: se pide su tabla a
+  Jugabilidad cuando exista combate real contra él.
+- **`evaluar <criatura>`** (GAMEPLAY.md 22.11): categoría cualitativa
+  (Trivial/Favorable/Comparable/Peligroso/Abrumador) sin revelar HP, daño
+  ni porcentajes.
+- **XP y antifarmeo** (22.4-22.8): coeficiente por categoría, tope del 25%
+  del siguiente nivel, bono de primera victoria por familia, reducción por
+  repetición en las últimas 10 victorias PvE.
+- **Descubrimientos** (22.7): señales de Mordelinde (`examinar
+  tallos/monticulos`), el lindero roto (`examinar cerca/huellas`) y el
+  regreso a Valdren con el hallazgo — cada uno una sola vez por personaje.
+- **Mapa progresivo** (23): `GET /api/map` devuelve solo las salas
+  visitadas y rutas recorridas por ese personaje, persistente en SQLite.
+
+Contrato completo en `server/combat.py` (fórmulas puras, sin Flask/DB —
+cada función cita la sección de GAMEPLAY.md de la que sale).
+
+**NECESIDAD DE JUGABILIDAD pendiente** (no implementado a propósito, para
+no inventar mecánica que el documento deja abierta):
+- Tabla de coste de fatiga por acción (20.7 la deja explícitamente para
+  "la tabla de acciones/poderes", que todavía no existe).
+- Disparador de heridas en combate v1 (20.8 define los tres grados y el
+  downgrade al reaparecer, pero no cuándo se asigna una herida durante la
+  pelea).
+- Defensa contextual (Esquivar/Bloquear/Resistir): en este piloto el
+  combate es un intercambio simple sin elección activa de defensa; el
+  Issue #43 (P1) es quien pide ese panel contextual.
+
 ## Qué NO existe todavía (a propósito)
 
-- Combate, PvP, huida, protección ante diferencias de poder.
-- Clases, estadísticas, fórmulas de progresión.
-- Persistencia/reaparición de monstruos, pérdida de armas, forja física.
+- PvP, protección ante diferencias de poder, poderes/PP, Arcanes.
+- Clases y fórmulas de progresión más allá de lo ya implementado en 20-22.
+- Persistencia/reaparición de monstruos por temporizador (respawn de
+  criaturas comunes: referencia 20.14, no implementado — la criatura
+  reaparece llena la próxima vez que se visita la sala, sin cooldown).
 - Chat global (solo hay chat local por sala).
 - Geografía y descripciones **definitivas** del mundo: sigue siendo
   placeholder en `world.py`. El Arquitecto ya definió (ver PR #8,
@@ -149,18 +204,21 @@ vintage-telnet/
 ├── ops/                        systemd, env de ejemplo (incluye VT_DM_PASSWORD), plantilla de reporte de Raspberry
 ├── server/
 │   ├── __main__.py             arranque con waitress
-│   ├── app.py                  rutas Flask (cuentas, DM, mundo, movimiento, comando, chat, API JSON)
-│   ├── store.py                SQLite: esquema versionado, cuentas, sesiones, salas, mensajes
-│   ├── world.py                especies y microzonas de los 5 pueblos (placeholder de geografía)
+│   ├── app.py                  rutas Flask (cuentas, DM, mundo, movimiento, comando, combate, chat, API JSON)
+│   ├── store.py                SQLite: esquema versionado, cuentas, sesiones, salas, mensajes, personaje, mapa, encuentros
+│   ├── world.py                especies, microzonas de los 5 pueblos y la microaventura piloto (placeholder de geografía)
+│   ├── combat.py                fórmulas puras de combate/XP (GAMEPLAY.md 20-22), sin Flask ni DB
+│   ├── creatures.py             estadísticas de combate de Mordelinde/Espinajo de rastrojo
 │   ├── dm_auth.py               verificación del secreto del Dungeon Master
 │   ├── admin.py                 CLI de operación: listar, backup verificado, integrity check
 │   └── templates/
-│       ├── entry.html           login/registro/estado/especie/mundo/chat/comando
+│       ├── entry.html           login/registro/estado/especie/mundo/combate/chat/comando
 │       └── dm.html               panel del Dungeon Master
 └── tests/
     ├── test_entry.py            pruebas heredadas de cuentas/sesión/CSRF/etc.
     ├── test_http.py              prueba de proceso HTTP real con reinicio
-    └── test_gameplay.py          aprobación, especies, movimiento, comando/botón, API, CSP, privacidad
+    ├── test_gameplay.py          aprobación, especies, movimiento, comando/botón, API, CSP, privacidad
+    └── test_pilot_lindero_roto.py  combate/XP/descubrimientos/mapa de VT-NAR-003
 ```
 
 ## Despliegue en Raspberry Pi

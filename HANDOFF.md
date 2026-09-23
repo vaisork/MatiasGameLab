@@ -1,5 +1,40 @@
 # HANDOFF — Entrega técnica
 
+## ENTREGA — Microaventura piloto jugable "El lindero roto" (Issue #45)
+
+**Desarrollador:** Claude (Desarrollador de Servidor de Vintage Telnet)
+
+**Estado:** LISTO PARA REVISIÓN
+
+**Rama:** `claude/vintage-telnet-server-lindero-roto`
+
+### Objetivo
+Issue #45 pedía a "Arquitecto + Desarrollo de servidor/contenido + Integrador HTML" convertir VT-NAR-003 (`NARRATIVE.md`) en el primer tramo narrativo jugable real, con los bindings mecánicos que Jugabilidad ya aprobó en `GAMEPLAY.md` §20-23. Implementé la parte de servidor completa: nada de esto inventa mecánica nueva, cada fórmula/decisión cita la sección de `GAMEPLAY.md`, `NARRATIVE.md` o `CREATURES.md` de la que sale.
+
+### Qué se agregó
+- **`server/combat.py`** (nuevo, puro, sin Flask/DB): atributos, CG, HP máximo, precisión/daño, categorías de encuentro (Trivial…Abrumador), XP de combate con tope del 25%/antifarmeo/bono de primera familia, XP de descubrimiento, curva de nivel, huida, reaparición. Cada función documenta la sección exacta de GAMEPLAY.md.
+- **`server/creatures.py`** (nuevo): estadísticas de combate de Mordelinde y Espinajo de rastrojo, calibradas para caer en la banda Favorable/Comparable y Comparable/Peligroso que pidió el Issue #45 contra un personaje nivel 1 recién creado — marcadas explícitamente como calibración inicial afinable (GAMEPLAY.md 20.15), no balance definitivo. Cornalomo no tiene stats a propósito (NARRATIVE.md pide pedir su tabla a Jugabilidad antes de combate real; no aparece como encuentro en este piloto).
+- **`server/world.py`**: nuevo camino `valdren_sendero → valdren_camino_parcela → valdren_camino_cerca → valdren_camino_lindero`, con los textos de `NARRATIVE.md` citados literalmente, objetivos de `examinar`, encuentros de Mordelinde/Espinajo y las tres definiciones de descubrimiento. Ningún otro pueblo cambia.
+- **`server/store.py`**: esquema v3 (migración desde v2, fail-closed sobre versiones desconocidas): atributos/nivel/XP/HP/fatiga/herida/PA por jugador, y tablas de descubrimientos, salas visitadas, rutas recorridas, victorias PvE (para antifarmeo/primera familia) y encuentros activos por sala.
+- **`server/app.py`**: nuevos intents `evaluar`/`atacar`/`huir` (botón y comando escrito ejecutan la misma función autoritativa, como el resto del servidor); `examinar`/`observar` ahora devuelve texto real y otorga descubrimientos una sola vez; movimiento actualiza mapa progresivo y coloca encuentros; `GET /api/character`, `GET /api/map`.
+- **`server/templates/entry.html`**: corregido el bug P0 que señaló el Issue #43 (el modal de Ayuda decía que cualquier texto era chat; ahora explica el parser real). Panel Personaje con nivel/XP/HP/fatiga/herida/atributos reales. Botones Atacar/Huir/Evaluar habilitados solo cuando hay una criatura visible en la sala.
+
+### Pruebas (63 en total, 32 nuevas en `tests/test_pilot_lindero_roto.py`)
+Fórmulas puras contra la tabla de referencia de GAMEPLAY.md 22.1, calibración de las dos criaturas, conectividad/contenido del camino nuevo, y flujo HTTP completo: descubrimiento único por examinar, hito de regreso, `evaluar` sin revelar números, victoria con XP/bono de primera familia (verificado con RNG determinista via `unittest.mock.patch`), muerte/reaparición al 60% HP, huida exitosa, mapa persistente tras reiniciar el proceso. Verificado además a mano contra el servidor real corriendo en un navegador (registro → aprobación DM → especie → caminar → Mordelinde aparece → evaluar → examinar (+5 XP) → combate real con golpes/fallos → victoria (+12 XP, bono de familia) → estado confirmado en `/api/character`).
+
+### Hallazgo durante el trabajo: PR #28 quedó redundante
+Al preparar esta entrega encontré que mi PR #28 (fix del log de esquema + `backup.sh`, abierto antes de esta tarea) quedó completamente redundante: `main` ya tiene el mismo fix y una versión de `backup.sh` más madura, corregida dos veces para bugs reales que mi rama no tenía resueltos (`ff587d0`, `f21a01c`), aparentemente por el cierre del Issue #32 por otra vía. Cerré el PR #28 con una nota explicando por qué, para no reintroducir código más viejo.
+
+### Pendiente (documentado como NECESIDAD DE JUGABILIDAD, no soy quien decide)
+- Tabla de coste de fatiga por acción (20.7 la deja abierta a propósito).
+- Disparador de heridas durante combate v1 (20.8 define los grados pero no cuándo se asignan).
+- Defensa contextual (Esquivar/Bloquear/Resistir) y el resto del panel P1 que pide el Issue #43 — ese trabajo de interfaz corresponde a Arquitectura/Integrador, no a mí.
+- Respawn de criaturas con temporizador (20.14): por ahora la criatura reaparece llena en la próxima visita a la sala, sin cooldown.
+
+**LISTO PARA PUBLICAR:** NO — pendiente de revisión del Arquitecto/Jugabilidad antes de tocar `main`.
+
+---
+
 ## ENTREGA — Ajustes tras la instalación real en Raspberry Pi
 
 **Desarrollador:** Claude (Desarrollador de Servidor de Vintage Telnet)

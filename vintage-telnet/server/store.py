@@ -8,11 +8,20 @@ import sqlite3
 import time
 import uuid
 
+from . import combat
+
 STATUSES = ("pending", "approved", "rejected", "removed")
 
 PLAYER_COLUMNS = (
     "id, player_number, username, name, status, species, room, created_at, last_access_at"
 )
+
+ATTRIBUTE_COLUMNS = ", ".join(f"attr_{name}" for name in combat.ATTRIBUTES)
+
+# Estado de personaje (VT-NAR-003 / GAMEPLAY.md 20-22): se agrega a la
+# consulta del jugador autenticado para que g.player siempre traiga nivel,
+# XP, HP, fatiga, herida y los ocho atributos sin una segunda consulta.
+CHARACTER_COLUMNS = f"{PLAYER_COLUMNS}, level, xp, pa_unspent, hp_current, hp_max, fatigue, wound, {ATTRIBUTE_COLUMNS}"
 
 
 def utcnow():
@@ -35,15 +44,65 @@ def connect(path):
         db.close()
 
 
+CHARACTER_TABLES = [
+    """CREATE TABLE discoveries (
+            player_id TEXT NOT NULL REFERENCES players(id),
+            key TEXT NOT NULL,
+            xp_awarded INTEGER NOT NULL,
+            created_at TEXT NOT NULL,
+            UNIQUE(player_id, key))""",
+    """CREATE TABLE visited_rooms (
+            player_id TEXT NOT NULL REFERENCES players(id),
+            room_id TEXT NOT NULL,
+            created_at TEXT NOT NULL,
+            UNIQUE(player_id, room_id))""",
+    """CREATE TABLE traversed_routes (
+            player_id TEXT NOT NULL REFERENCES players(id),
+            room_a TEXT NOT NULL,
+            room_b TEXT NOT NULL,
+            created_at TEXT NOT NULL,
+            UNIQUE(player_id, room_a, room_b))""",
+    """CREATE TABLE pve_victories (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            player_id TEXT NOT NULL REFERENCES players(id),
+            family TEXT NOT NULL,
+            created_at TEXT NOT NULL)""",
+    "CREATE INDEX pve_victories_player_time ON pve_victories(player_id, id)",
+    """CREATE TABLE family_first_victory (
+            player_id TEXT NOT NULL REFERENCES players(id),
+            family TEXT NOT NULL,
+            created_at TEXT NOT NULL,
+            UNIQUE(player_id, family))""",
+    """CREATE TABLE room_encounters (
+            player_id TEXT NOT NULL REFERENCES players(id),
+            room_id TEXT NOT NULL,
+            creature_id TEXT NOT NULL,
+            hp_current REAL NOT NULL,
+            failed_flee_attempts INTEGER NOT NULL DEFAULT 0,
+            created_at TEXT NOT NULL,
+            UNIQUE(player_id, room_id))""",
+]
+
+CHARACTER_PLAYER_COLUMNS = [
+    "level INTEGER NOT NULL DEFAULT 1",
+    "xp INTEGER NOT NULL DEFAULT 0",
+    "pa_unspent INTEGER NOT NULL DEFAULT 0",
+    "hp_current REAL",
+    "hp_max REAL",
+    "fatigue INTEGER NOT NULL DEFAULT 0",
+    "wound TEXT NOT NULL DEFAULT 'ninguna' CHECK(wound IN ('ninguna', 'leve', 'moderada', 'grave'))",
+] + [f"attr_{name} INTEGER NOT NULL DEFAULT 10" for name in combat.ATTRIBUTES]
+
+
 def initialize(path):
     Path(path).parent.mkdir(parents=True, exist_ok=True)
     with connect(path) as db:
         db.execute("PRAGMA journal_mode = WAL")
         db.execute("BEGIN IMMEDIATE")
         version = db.execute("PRAGMA user_version").fetchone()[0]
-        if version not in (0, 1, 2):
+        if version not in (0, 1, 2, 3):
             raise RuntimeError("Versión de base de datos no soportada; no iniciar ni degradar.")
-        if version == 2:
+        if version == 3:
             return
         if version == 0:
             statements = [
@@ -82,7 +141,7 @@ def initialize(path):
             ]
             for statement in statements:
                 db.execute(statement)
-        else:  # version == 1: upgrade an existing deployment in place
+        elif version == 1:  # upgrade an existing deployment in place
             db.execute("""ALTER TABLE players ADD COLUMN status TEXT NOT NULL DEFAULT 'pending'
                           CHECK(status IN ('pending', 'approved', 'rejected', 'removed'))""")
             db.execute("ALTER TABLE players ADD COLUMN species TEXT")
@@ -94,7 +153,15 @@ def initialize(path):
                     body TEXT NOT NULL,
                     created_at TEXT NOT NULL)""")
             db.execute("CREATE INDEX room_messages_room_time ON room_messages(room, created_at)")
-        db.execute("PRAGMA user_version = 2")
+        if version <= 2:
+            # v3: estado de personaje jugable (VT-NAR-003) -- atributos, nivel,
+            # XP, HP, fatiga, herida, descubrimientos, mapa progresivo y
+            # combate. Ver GAMEPLAY.md 20-23 y server/combat.py.
+            for column in CHARACTER_PLAYER_COLUMNS:
+                db.execute(f"ALTER TABLE players ADD COLUMN {column}")
+            for statement in CHARACTER_TABLES:
+                db.execute(statement)
+        db.execute("PRAGMA user_version = 3")
 
 
 def allow_attempt(path, address):
@@ -141,8 +208,7 @@ def player_for_token(path, token):
         return None
     with connect(path) as db:
         return db.execute(
-            """SELECT p.id, p.player_number, p.username, p.name, p.status, p.species, p.room,
-                      p.created_at, p.last_access_at
+            f"""SELECT {CHARACTER_COLUMNS}
                FROM players p
                JOIN sessions s ON s.player_id = p.id
                WHERE s.token_hash = ? AND s.expires_at > ?""",
@@ -152,6 +218,12 @@ def player_for_token(path, token):
 
 def player_by_username(db, username):
     return db.execute(f"SELECT {PLAYER_COLUMNS} FROM players WHERE username = ?", (username,)).fetchone()
+
+
+def character_by_id(db, player_id):
+    return db.execute(
+        f"SELECT {CHARACTER_COLUMNS} FROM players WHERE id = ?", (player_id,)
+    ).fetchone()
 
 
 def list_by_status(path, status):
@@ -180,11 +252,17 @@ def set_species(path, player_id, species, room):
 
     Atomico de verdad: usa rowcount para saber si ESTA llamada fue la que
     escribio, en vez de asumirlo por el estado leido antes del UPDATE. Dos
-    POST concurrentes solo pueden hacer que una de las dos devuelva True."""
+    POST concurrentes solo pueden hacer que una de las dos devuelva True.
+
+    De paso inicializa el estado de personaje jugable (GAMEPLAY.md 20.1/20.3):
+    ocho atributos en 10, nivel 1, HP al maximo de nivel 1 con atributos
+    base."""
+    hp = combat.hp_max(level=1, resistencia=10, voluntad=10)
     with connect(path) as db:
         cursor = db.execute(
-            "UPDATE players SET species = ?, room = ? WHERE id = ? AND species IS NULL",
-            (species, room, player_id),
+            """UPDATE players SET species = ?, room = ?, hp_current = ?, hp_max = ?
+               WHERE id = ? AND species IS NULL""",
+            (species, room, hp, hp, player_id),
         )
         return cursor.rowcount > 0
 
@@ -222,3 +300,177 @@ def recent_messages(path, room, limit=30):
             (room, limit),
         ).fetchall()
         return [dict(row) for row in reversed(rows)]
+
+
+# --- Progresion de personaje (VT-NAR-003 / GAMEPLAY.md 20-22) -------------
+
+def award_xp(path, player_id, amount):
+    """Aplica XP y sube de nivel (GAMEPLAY.md 22.1), recalculando HP maximo
+    (20.3) y curando al nuevo maximo en cada nivel ganado, mas 2 PA por
+    nivel (19). Devuelve el estado resultante."""
+    with connect(path) as db:
+        row = character_by_id(db, player_id)
+        new_level, new_xp, levels_gained = combat.apply_xp(row["level"], row["xp"], amount)
+        hp_max_value, hp_current, pa_unspent = row["hp_max"], row["hp_current"], row["pa_unspent"]
+        if levels_gained:
+            hp_max_value = combat.hp_max(new_level, row["attr_resistencia"], row["attr_voluntad"])
+            hp_current = hp_max_value
+            pa_unspent += 2 * levels_gained
+        db.execute(
+            "UPDATE players SET level=?, xp=?, hp_max=?, hp_current=?, pa_unspent=? WHERE id=?",
+            (new_level, new_xp, hp_max_value, hp_current, pa_unspent, player_id),
+        )
+        return {"level": new_level, "xp": new_xp, "levels_gained": levels_gained,
+                "hp_current": hp_current, "hp_max": hp_max_value}
+
+
+def award_discovery(path, player_id, key, category, reference_level):
+    """Otorga un descubrimiento/hito una sola vez por personaje (22.7).
+    Devuelve (is_new, xp_awarded)."""
+    xp_amount = combat.discovery_xp(reference_level, category)
+    with connect(path) as db:
+        cursor = db.execute(
+            "INSERT OR IGNORE INTO discoveries(player_id, key, xp_awarded, created_at) VALUES (?, ?, ?, ?)",
+            (player_id, key, xp_amount, utcnow()),
+        )
+        is_new = cursor.rowcount > 0
+    if is_new:
+        award_xp(path, player_id, xp_amount)
+    return is_new, xp_amount
+
+
+def list_discoveries(path, player_id):
+    with connect(path) as db:
+        rows = db.execute(
+            "SELECT key, xp_awarded, created_at FROM discoveries WHERE player_id = ? ORDER BY created_at",
+            (player_id,),
+        ).fetchall()
+        return [dict(row) for row in rows]
+
+
+def has_discovery(path, player_id, key):
+    with connect(path) as db:
+        row = db.execute(
+            "SELECT 1 FROM discoveries WHERE player_id = ? AND key = ?", (player_id, key)
+        ).fetchone()
+        return row is not None
+
+
+# --- Mapa progresivo (GAMEPLAY.md 23) -------------------------------------
+
+def mark_visited(path, player_id, room_id):
+    with connect(path) as db:
+        cursor = db.execute(
+            "INSERT OR IGNORE INTO visited_rooms(player_id, room_id, created_at) VALUES (?, ?, ?)",
+            (player_id, room_id, utcnow()),
+        )
+        return cursor.rowcount > 0
+
+
+def mark_route_traversed(path, player_id, room_a, room_b):
+    # Ruta no dirigida (23.2): el par se guarda ordenado para no duplicar
+    # ida/vuelta como dos rutas distintas.
+    ordered = tuple(sorted((room_a, room_b)))
+    with connect(path) as db:
+        db.execute(
+            """INSERT OR IGNORE INTO traversed_routes(player_id, room_a, room_b, created_at)
+               VALUES (?, ?, ?, ?)""",
+            (player_id, ordered[0], ordered[1], utcnow()),
+        )
+
+
+def get_map_state(path, player_id):
+    with connect(path) as db:
+        visited = [r["room_id"] for r in db.execute(
+            "SELECT room_id FROM visited_rooms WHERE player_id = ? ORDER BY created_at", (player_id,)
+        ).fetchall()]
+        routes = [[r["room_a"], r["room_b"]] for r in db.execute(
+            "SELECT room_a, room_b FROM traversed_routes WHERE player_id = ? ORDER BY created_at", (player_id,)
+        ).fetchall()]
+        return {"visited_rooms": visited, "traversed_routes": routes}
+
+
+# --- Combate y encuentros --------------------------------------------------
+
+def get_encounter(path, player_id, room_id):
+    with connect(path) as db:
+        row = db.execute(
+            "SELECT * FROM room_encounters WHERE player_id = ? AND room_id = ?", (player_id, room_id)
+        ).fetchone()
+        return dict(row) if row else None
+
+
+def start_encounter(path, player_id, room_id, creature_id, hp):
+    """No-op si ya hay un encuentro activo en esa sala para ese jugador
+    (persistente: si se aleja y vuelve sin resolverlo, sigue con la misma
+    vida que tenia)."""
+    with connect(path) as db:
+        db.execute(
+            """INSERT OR IGNORE INTO room_encounters
+               (player_id, room_id, creature_id, hp_current, failed_flee_attempts, created_at)
+               VALUES (?, ?, ?, ?, 0, ?)""",
+            (player_id, room_id, creature_id, hp, utcnow()),
+        )
+
+
+def update_encounter(path, player_id, room_id, hp_current=None, failed_flee_attempts=None):
+    fields, params = [], []
+    if hp_current is not None:
+        fields.append("hp_current = ?")
+        params.append(hp_current)
+    if failed_flee_attempts is not None:
+        fields.append("failed_flee_attempts = ?")
+        params.append(failed_flee_attempts)
+    if not fields:
+        return
+    params += [player_id, room_id]
+    with connect(path) as db:
+        db.execute(
+            f"UPDATE room_encounters SET {', '.join(fields)} WHERE player_id = ? AND room_id = ?", params
+        )
+
+
+def clear_encounter(path, player_id, room_id):
+    with connect(path) as db:
+        db.execute("DELETE FROM room_encounters WHERE player_id = ? AND room_id = ?", (player_id, room_id))
+
+
+def record_pve_victory(path, player_id, family):
+    """Registra la victoria, calcula si es la primera de esta familia
+    (22.5) y cuenta repeticiones de la misma familia en las ultimas 10
+    victorias para el antifarmeo (22.6, incluyendo esta victoria). Devuelve
+    (is_first_family_victory, repeats_in_last_10)."""
+    with connect(path) as db:
+        db.execute(
+            "INSERT INTO pve_victories(player_id, family, created_at) VALUES (?, ?, ?)",
+            (player_id, family, utcnow()),
+        )
+        first_cursor = db.execute(
+            "INSERT OR IGNORE INTO family_first_victory(player_id, family, created_at) VALUES (?, ?, ?)",
+            (player_id, family, utcnow()),
+        )
+        is_first = first_cursor.rowcount > 0
+        last_ten = db.execute(
+            "SELECT family FROM pve_victories WHERE player_id = ? ORDER BY id DESC LIMIT 10",
+            (player_id,),
+        ).fetchall()
+        repeats = sum(1 for row in last_ten if row["family"] == family)
+        return is_first, repeats
+
+
+def update_combat_state(path, player_id, hp_current=None, wound=None, room=None):
+    fields, params = [], []
+    if hp_current is not None:
+        fields.append("hp_current = ?")
+        params.append(hp_current)
+    if wound is not None:
+        fields.append("wound = ?")
+        params.append(wound)
+    if room is not None:
+        fields.append("room = ?")
+        params.append(room)
+    if not fields:
+        return
+    params.append(player_id)
+    with connect(path) as db:
+        db.execute(f"UPDATE players SET {', '.join(fields)} WHERE id = ?", params)
