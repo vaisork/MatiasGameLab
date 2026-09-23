@@ -1,0 +1,27 @@
+name: Validate Vintage Telnet assets
+
+on:
+  pull_request:
+    paths:
+      - "assets/**"
+      - "tools/publish-assets.py"
+      - "tests/asset_publisher/**"
+      - ".github/workflows/asset-validation.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  validate-assets:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout pull request
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Validate asset batch
+        run: python tools/publish-assets.py --validate-pr "origin/${{ github.base_ref }}"
+
+      - name: Run publisher tests
+        run: python -m unittest discover -s tests/asset_publisher -p "test_*.py" -v
