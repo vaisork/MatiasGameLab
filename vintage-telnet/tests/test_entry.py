@@ -108,6 +108,49 @@ class EntryTests(unittest.TestCase):
         self.assertEqual(response.json, dict(status="ok", schema_version=5))
         self.assertNotIn("Set-Cookie", response.headers)
 
+    def test_ui_foundation_map_rest_help_and_no_dead_combat_controls(self):
+        self.assertEqual(self.register().status_code, 303)
+        store.set_status(self.path, "matias", "approved")
+        self.assertEqual(self.post("/species", {"species": "humano"}).status_code, 303)
+
+        html = self.client.get("/").get_data(as_text=True)
+        self.assertIn('data-open="mapDialog"', html)
+        self.assertIn('id="mapDialog"', html)
+        self.assertIn('fetch("/api/map"', html)
+        self.assertIn('name="text" value="descansar"', html)
+
+        for heading in (
+            "1. Muévete",
+            "2. Investiga",
+            "3. Combate",
+            "4. Recupérate y consulta",
+            "5. Habla",
+        ):
+            self.assertIn(heading, html)
+
+        # En Valdren no hay encuentro: no se revelan controles de combate muertos.
+        self.assertNotIn(">Atacar</button>", html)
+        self.assertNotIn('aria-label="Huir"', html)
+
+        map_response = self.client.get("/api/map")
+        self.assertEqual(map_response.status_code, 200)
+        self.assertIn("visited_rooms", map_response.json)
+        self.assertIn("traversed_routes", map_response.json)
+        self.assertIn("valdren_centro", map_response.json["visited_rooms"])
+
+    def test_rest_button_uses_authoritative_command_intent(self):
+        self.assertEqual(self.register().status_code, 303)
+        store.set_status(self.path, "matias", "approved")
+        self.assertEqual(self.post("/species", {"species": "humano"}).status_code, 303)
+
+        with store.connect(self.path) as db:
+            db.execute("UPDATE players SET fatigue = 20 WHERE username = ?", ("matias",))
+
+        response = self.post("/command", {"text": "descansar"})
+        self.assertEqual(response.status_code, 200)
+        player = self.client.get("/api/character").json
+        self.assertEqual(player["fatigue"], 0)
+
     def test_rate_limit_survives_restart(self):
         for _ in range(20):
             self.assertTrue(store.allow_attempt(self.path, "local-test"))
