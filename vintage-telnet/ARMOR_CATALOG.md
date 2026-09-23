@@ -200,6 +200,6 @@ Esos elementos pertenecen a Jugabilidad, Inventario/Forja o contenido futuro cua
 
 **EXPANSIÓN DEL HISTORIADOR:** identidades, procedencias, forma general, contexto cultural, obtención narrativa y qué propuestas usan Forja física.
 
-**PENDIENTE DE VALIDACIÓN DE JUGABILIDAD:** porcentajes concretos de reducción (10/20/30/35 %) y cualquier futura propiedad mecánica.
+**VALIDADO POR JUGABILIDAD:** los porcentajes 10/20/30/35 % del catálogo inicial quedan aprobados para v1. No se aprueban propiedades mecánicas adicionales fuera de GAMEPLAY §30.
 
-Una vez que Jugabilidad valide los porcentajes, este documento puede tratarse como el catálogo v1 listo para contenido e implementación.
+**Estado final:** CATÁLOGO V1 VALIDADO PARA CONTENIDO E IMPLEMENTACIÓN. Los objetos con Forja física siguen exactamente el mismo balance; la validación física habilita el derecho de uso y no añade protección adicional.
