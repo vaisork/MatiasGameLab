@@ -51,6 +51,7 @@ def _normalize(text):
 # Biblioteca de arte HTML (vintage-telnet/assets/html-ui/), servida explícitamente en vez de
 # habilitar una carpeta estática general -- mantiene el resto del árbol del repo fuera de HTTP.
 HTML_UI_ASSETS_DIR = Path(__file__).resolve().parent.parent / "assets" / "html-ui"
+LOCATION_ASSETS_DIR = Path(__file__).resolve().parent.parent.parent / "assets" / "vintage-telnet" / "locations"
 
 
 def create_app(config=None):
@@ -91,7 +92,7 @@ def create_app(config=None):
             if not expected or not hmac.compare_digest(expected.encode(), str(supplied).encode()):
                 abort(400, "Formulario vencido. Recarga la página.")
         g.csp_nonce = secrets.token_urlsafe(16)
-        if request.endpoint in ("health", "html_ui_assets"):
+        if request.endpoint in ("health", "html_ui_assets", "location_assets"):
             return
         session.setdefault("csrf", secrets.token_urlsafe(32))
         g.player = store.player_for_token(path, session.get("token"))
@@ -856,6 +857,10 @@ def create_app(config=None):
     @app.get("/assets/html-ui/<path:filename>")
     def html_ui_assets(filename):
         return send_from_directory(HTML_UI_ASSETS_DIR, filename)
+
+    @app.get("/assets/locations/<path:filename>")
+    def location_assets(filename):
+        return send_from_directory(LOCATION_ASSETS_DIR, filename)
 
     # --- Dungeon Master ---------------------------------------------------
 
