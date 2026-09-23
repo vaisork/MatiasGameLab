@@ -521,3 +521,80 @@ inventé ni simulé resultados de hardware que no pude tocar. `PR #49`
 (bloqueado por balance de criaturas y un punto de Psicopedagogía pendiente
 de decisión de Jugabilidad) — todavía no llega a la etapa de despliegue en
 Raspberry, no requiere acción del operador todavía.
+
+## Revisión periódica — 2026-09-23T19:xx UTC — actualización: PR #49 ya se mergeó a `main`, brecha de despliegue creció — sin acceso a la Raspberry física en esta sesión
+
+**Contexto:** siguiente ronda automática (Issue #47, VT-AUTO) del Agente
+que opera la Raspberry Pi, misma sesión en la nube, **sin SSH/sudo a la
+Raspberry física de Javier**. La nota anterior (de esta misma rama/PR #65)
+quedó desactualizada en un punto concreto: decía que `PR #49` "todavía no
+llega a la etapa de despliegue" — eso era correcto en el momento en que se
+escribió (`PR #49` seguía abierta), pero `PR #49` se mergeó a `main` poco
+después, el **2026-09-23T18:31:42Z** (commit de merge
+`7de889ac7c3940d83e0f0b844532054f00b06bae`). Confirmado leyendo el PR en
+GitHub (estado `merged`) y el propio `git log` de `main`.
+
+**Divergencia actualizada entre `main` y lo instalado en producción:**
+- Última instalación real confirmada en la Raspberry (sin cambios desde el
+  cierre de Issue #32, ver arriba): SHA `a530ae0c82270941b38c74c0d29ad84426dfd31b`.
+- HEAD actual de `main` en esta revisión: `7de889ac7c3940d83e0f0b844532054f00b06bae`.
+- Además de los cambios de Issue #25 ya registrados en la nota anterior,
+  `main` ahora también trae el contenido completo de **Issue #45 / PR #49
+  ("El lindero roto")**, con cambios reales de código de servidor:
+  - `vintage-telnet/server/combat.py` (nuevo) y `vintage-telnet/server/creatures.py`
+    (nuevo) — sistema de combate y perfiles fijos de criaturas iniciales
+    (Mordelinde, Espinajo de rastrojo) calibrados contra
+    `STARTER_CREATURE_BALANCE.md`.
+  - `vintage-telnet/server/world.py` (nuevo) — contenido del primer sendero
+    jugable (Valdren → lindero roto).
+  - `vintage-telnet/server/app.py` y `vintage-telnet/server/store.py` —
+    ampliados; el esquema de base de datos avanzó de **v4 a v5** (tabla
+    nueva `examined_signals`, según `vintage-telnet/server/HANDOFF.md` de
+    esa PR).
+  - `vintage-telnet/server/templates/entry.html` — nueva caja de encuentro
+    con condición cualitativa del enemigo (sin HP numérico) y línea de
+    comportamiento.
+- El resto de commits nuevos en `main` desde la nota anterior (catálogos de
+  armas/armaduras, canon, Drive, arte) no tocan `vintage-telnet/server/` ni
+  `vintage-telnet/ops/`.
+
+**Verificación que sí pude hacer desde este sandbox (no sustituye prueba en
+la Raspberry real):** repetí el mismo procedimiento que en la nota
+anterior — venv aislado nuevo, `pip install -r requirements.txt` exacto, y
+`python -m unittest discover -s tests -v` sobre el HEAD actual de `main`
+(`7de889a`): **84/84 pruebas OK** (~19.6s), `pip check` sin problemas.
+Coincide exactamente con los "84/84 OK" que reporta
+`vintage-telnet/server/HANDOFF.md` de PR #49 para esa misma suite —
+verificación independiente del operador, no solo la palabra del
+desarrollador. Entorno del sandbox: Python 3.11.15, Ubuntu 24.04 LTS,
+x86_64 — sigue sin ser el hardware/SO real de la Raspberry (Debian 13,
+Python 3.13.5, aarch64), así que esto no confirma nada sobre systemd,
+puertos, persistencia SQLite real, la migración de esquema v4→v5 sobre la
+base de datos viva, ni comportamiento real en el equipo.
+
+**Pendiente para una sesión con acceso real a la Raspberry (reemplaza y
+amplía la lista de la nota anterior):**
+1. Actualizar la instalación productiva de `SHA a530ae0c...` al HEAD actual
+   de `main` (`7de889a...` o el commit vigente al momento de esa sesión),
+   con el mismo patrón que las actualizaciones anteriores
+   (`update_vX_authorized.py`, corrido por Javier con `sudo`, backup previo
+   obligatorio antes de tocar la base viva, servicio principal reiniciado,
+   verificación independiente del operador).
+2. Prestar atención especial a la migración de esquema **v4 → v5** durante
+   esa actualización (tabla `examined_signals`) — confirmar que corre
+   limpia sobre la base de datos real con jugadores existentes, igual que
+   se verificó la migración anterior en el cierre de Issue #32.
+3. Correr la suite completa (84 pruebas) en el propio equipo, como se hizo
+   en instalaciones anteriores.
+4. Probar manualmente desde un navegador real el flujo de "El lindero
+   roto": examinar señales por separado (no debe nombrar Mordelinde con una
+   sola señal), examinar huellas vs. examinar cerca, combate contra
+   Mordelinde/Espinajo con la condición cualitativa (sin HP numérico
+   visible) y el texto de comportamiento diferenciado, tal como documenta
+   `vintage-telnet/server/HANDOFF.md` de PR #49, pero en el entorno real.
+5. Seguir pendientes los puntos 2-3 de la nota anterior (login/logout,
+   segunda especie/jugador) que ya estaban cubiertos por la suite pero no
+   probados a mano.
+
+**No desplegué ni reinicié nada en la Raspberry real en esta sesión.** No
+inventé ni simulé resultados de hardware que no pude tocar.
