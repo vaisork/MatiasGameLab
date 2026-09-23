@@ -428,7 +428,9 @@ class PilotIntegrationTests(unittest.TestCase):
         self.assertIn(self.character()["wound"], ("leve", "moderada", "grave"))
 
     def test_resting_outside_combat_heals_and_reduces_fatigue(self):
+        # Fuera de la sala segura (24.8: descanso de campo v1).
         self.register_and_enter_world()
+        self.post("/move", dict(direction="west"))  # valdren_sendero: no es SAFE_ROOM_ID
         player_id = self.client.get("/api/me").json["player"]["id"]
         with store.connect(self.path) as db:
             db.execute("UPDATE players SET hp_current = 50, fatigue = 80 WHERE id = ?", (player_id,))
@@ -437,6 +439,22 @@ class PilotIntegrationTests(unittest.TestCase):
         character = self.character()
         self.assertEqual(character["hp_current"], 60)  # +10% de 100 de HP máximo.
         self.assertEqual(character["fatigue"], 55)  # 80 - (25 + 0.2*(10-10)).
+
+    def test_resting_in_valdren_centro_uses_full_safe_recovery(self):
+        # Issue #46: valdren_centro es el punto de recuperación segura
+        # (GAMEPLAY.md 24.9) — descansar ahí cura HP al 100%, fatiga a 0 y
+        # mejora la herida un grado, en vez del descanso de campo v1.
+        self.register_and_enter_world()  # humano arranca en valdren_centro
+        player_id = self.client.get("/api/me").json["player"]["id"]
+        with store.connect(self.path) as db:
+            db.execute("UPDATE players SET hp_current = 50, fatigue = 80, wound = 'moderada' WHERE id = ?",
+                       (player_id,))
+        page = self.post("/command", dict(text="descansar")).get_data(as_text=True)
+        self.assertIn("plaza de Valdren", page)
+        character = self.character()
+        self.assertEqual(character["hp_current"], round(character["hp_max"]))
+        self.assertEqual(character["fatigue"], 0)
+        self.assertEqual(character["wound"], "leve")
 
     def test_resting_is_blocked_while_a_creature_is_present(self):
         self.register_and_enter_world()

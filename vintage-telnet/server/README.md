@@ -181,14 +181,13 @@ como los pidió Jugabilidad en el Issue #45 y cerró en el Issue #46/commit
 Contrato completo en `server/combat.py` (fórmulas puras, sin Flask/DB —
 cada función cita la sección de GAMEPLAY.md de la que sale).
 
-**NECESIDAD NARRATIVA pendiente** (Issue #46, todavía abierto): el punto
-concreto de Valdren para reaparición al morir (20.9) y recuperación segura
-(24.9) no lo ha confirmado el Narrador. Mientras tanto se usa el centro del
-pueblo (`app.PENDING_SAFE_ROOM_ID`, ya existente como punto de entrada de
-especie) como marcador técnico operativo — no es una decisión narrativa de
-Desarrollo, y la recuperación segura de 24.9 no está atada a ninguna sala
-todavía para no inventar esa decisión. Cuando el Issue #46 entregue el ID,
-solo hay que actualizar esa constante.
+**Issue #46 resuelto:** el Narrador fijó la plaza central de Valdren
+(`app.SAFE_ROOM_ID = "valdren_centro"`, ya existente como punto de entrada
+de especie) como punto de reaparición al morir (20.9) y de recuperación
+segura (24.9) para VT-NAR-003, confirmado compatible con el canon por el
+Historiador. `descansar` en esa sala aplica ahora la recuperación segura
+completa de 24.9 (`combat.safe_recovery_result`) en vez del descanso de
+campo v1.
 
 **Diferido a propósito al Issue #43** (decisión del Arquitecto, no
 NECESIDAD DE JUGABILIDAD — GAMEPLAY.md ya cerró estas reglas en 24.1-24.2,

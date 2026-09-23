@@ -14,14 +14,22 @@ from werkzeug.security import check_password_hash, generate_password_hash
 
 from . import combat, creatures, dm_auth, store, world
 
-# NECESIDAD NARRATIVA pendiente (Issue #46): el Narrador todavia no confirmo
-# el punto concreto de Valdren que funciona como reaparicion tras morir
-# (GAMEPLAY.md 20.9) ni como recuperacion segura (24.9) para VT-NAR-003. Se
-# usa el centro del pueblo -- ya existente como punto de entrada de especie,
-# no inventado para esta tarea -- como marcador tecnico operativo mientras
-# tanto. Esto NO es una decision narrativa de Desarrollo: en cuanto Issue
-# #46 entregue el ID, solo hay que cambiar esta constante.
-PENDING_SAFE_ROOM_ID = "valdren_centro"
+# Issue #46 resuelto: el Narrador fijo la plaza central de Valdren como
+# punto de reaparicion tras morir (GAMEPLAY.md 20.9) y de recuperacion
+# segura (24.9) para VT-NAR-003 (comentario del 2026-09-23), confirmado
+# compatible con el canon por el Historiador y con conformidad de
+# Jugabilidad. Es una decision narrativa ya tomada, no un marcador
+# provisional de Desarrollo.
+SAFE_ROOM_ID = "valdren_centro"
+
+# Texto propuesto por el Narrador en Issue #46 para respawn y recuperacion
+# segura en `SAFE_ROOM_ID` -- no es redaccion inventada por Desarrollo.
+RESPAWN_MESSAGE = ("Vuelves en ti en la plaza central de Valdren. A tu alrededor regresan los "
+                    "sonidos conocidos del pueblo: voces, pasos y trabajo cotidiano. El camino "
+                    "hacia los campos sigue ahí, pero aquí estás fuera del peligro inmediato.")
+SAFE_RECOVERY_MESSAGE = ("En la plaza de Valdren puedes detenerte sin vigilar cada ruido del "
+                          "campo. Entre el movimiento cotidiano del pueblo recuperas fuerzas "
+                          "antes de volver al camino.")
 
 # Categorias cualitativas de "evaluar" (GAMEPLAY.md 22.11) -- nunca exponen
 # numeros, solo la frase equivalente.
@@ -344,8 +352,8 @@ def create_app(config=None):
             respawn_wound_value = combat.respawn_wound(new_wound)
             store.update_combat_state(path, player["id"], hp_current=respawn["hp_current"],
                                        fatigue=respawn["fatigue"], wound=respawn_wound_value,
-                                       room=PENDING_SAFE_ROOM_ID)
-            messages.append(f"{creature['name']} te derrota. Despiertas de vuelta en Valdren.")
+                                       room=SAFE_ROOM_ID)
+            messages.append(f"{creature['name']} te derrota. {RESPAWN_MESSAGE}")
             return {"outcome": "defeat", "messages": messages}
 
         store.update_combat_state(path, player["id"], hp_current=player_hp,
@@ -401,8 +409,8 @@ def create_app(config=None):
             respawn_wound_value = combat.respawn_wound(new_wound)
             store.update_combat_state(path, player["id"], hp_current=respawn["hp_current"],
                                        fatigue=respawn["fatigue"], wound=respawn_wound_value,
-                                       room=PENDING_SAFE_ROOM_ID)
-            messages.append(f"{creature['name']} te derrota. Despiertas de vuelta en Valdren.")
+                                       room=SAFE_ROOM_ID)
+            messages.append(f"{creature['name']} te derrota. {RESPAWN_MESSAGE}")
             return {"outcome": "defeat", "messages": messages}
         store.update_combat_state(path, player["id"], hp_current=player_hp,
                                    fatigue=round(fatigue), wound=new_wound)
@@ -410,14 +418,22 @@ def create_app(config=None):
 
     def attempt_rest(player):
         """GAMEPLAY.md 24.8: accion explicita `descansar`, solo fuera de
-        combate. Si la sala esta marcada como recuperacion segura (24.9),
-        usa esa version superior en vez del descanso de campo basico --
-        hoy ninguna sala lo esta todavia (NECESIDAD NARRATIVA pendiente,
-        Issue #46), asi que siempre cae en el descanso de campo v1."""
+        combate. En `SAFE_ROOM_ID` (Issue #46) usa la recuperacion segura
+        completa de 24.9 en vez del descanso de campo basico."""
         if store.get_encounter(path, player["id"], player["room"]):
             return {"outcome": "blocked", "messages": ["No puedes descansar con una criatura cerca."]}
-        if player["hp_current"] >= player["hp_max"] and player["fatigue"] <= 0:
+        in_safe_room = player["room"] == SAFE_ROOM_ID
+        already_recovered = (player["hp_current"] >= player["hp_max"] and player["fatigue"] <= 0
+                              and (not in_safe_room or player["wound"] == "ninguna"))
+        if already_recovered:
             return {"outcome": "no_op", "messages": ["Ya estás descansado."]}
+        if in_safe_room:
+            result = combat.safe_recovery_result(player["hp_max"], player["wound"])
+            store.update_combat_state(path, player["id"], hp_current=result["hp_current"],
+                                       fatigue=result["fatigue"], wound=result["wound"])
+            return {"outcome": "rested", "messages": [
+                f"{SAFE_RECOVERY_MESSAGE} (HP {result['hp_current']}/{round(player['hp_max'])}, "
+                f"fatiga {result['fatigue']})."]}
         result = combat.rest_result(player["hp_current"], player["hp_max"], player["fatigue"],
                                      player["attr_resistencia"], player["wound"])
         store.update_combat_state(path, player["id"], hp_current=result["hp_current"], fatigue=result["fatigue"])

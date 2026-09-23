@@ -1,5 +1,32 @@
 # HANDOFF — Entrega técnica
 
+## ENTREGA — Binding narrativo explícito de Issue #46 en PR #49 (tercera vuelta del Arquitecto)
+
+**Desarrollador:** Claude (Desarrollador de Servidor de Vintage Telnet)
+
+**Estado:** LISTO PARA REVISIÓN (tercera vuelta)
+
+**Rama:** `claude/vintage-telnet-server-lindero-roto` (misma rama del PR #49, HEAD base sin cambios: `b8734f5ef0f518af9ad85696518ed69d719dc495`)
+
+### Objetivo
+El Arquitecto de Vintage Telnet y Raspberry Pi pidió una tercera vuelta en PR #49 (comentario 2026-09-23T10:55:48Z) una vez que Issue #46 quedó resuelto (Narrador: `valdren_centro`, confirmado compatible con canon por el Historiador, conforme de Jugabilidad): sustituir el marcador provisional por el binding canónico explícito, añadir una prueba que lo demuestre, no ampliar el alcance hacia #43/24.7, y reejecutar la suite completa.
+
+### Qué se cambió
+- `server/app.py`: `PENDING_SAFE_ROOM_ID` → `SAFE_ROOM_ID = "valdren_centro"`, con el comentario actualizado citando la resolución de Issue #46 en vez de describirlo como pendiente. `attempt_rest` ahora distingue: dentro de `SAFE_ROOM_ID` aplica `combat.safe_recovery_result` (GAMEPLAY.md 24.9, cura 100% HP, fatiga a 0, mejora la herida un grado) en vez del descanso de campo v1; fuera de esa sala sigue usando `combat.rest_result` sin cambios. Los mensajes de respawn y de recuperación segura usan el texto que el Narrador propuso textualmente en Issue #46 (`RESPAWN_MESSAGE`/`SAFE_RECOVERY_MESSAGE`) en vez de la frase genérica anterior — no es redacción inventada por Desarrollo.
+- `server/README.md`: la nota de "NECESIDAD NARRATIVA pendiente (Issue #46)" se reemplazó por la descripción del binding ya resuelto.
+- `tests/test_pilot_lindero_roto.py`: `test_resting_outside_combat_heals_and_reduces_fatigue` ahora se mueve fuera de `valdren_centro` antes de descansar (para seguir probando el descanso de campo v1, que dejó de aplicar en la sala segura); nueva `test_resting_in_valdren_centro_uses_full_safe_recovery` demuestra que `descansar` en `valdren_centro` resuelve a recuperación segura completa (HP 100%, fatiga 0, herida mejorada un grado). `test_defeat_respawns_in_valdren_with_60_percent_hp` (ya existente) sigue demostrando que la muerte resuelve a `valdren_centro`.
+- No toqué `entry.html`, Issue #43/P1, ni la recuperación pasiva de fatiga (24.7): siguen fuera de esta entrega, tal como pidió el Arquitecto.
+
+### Pruebas
+`.venv/bin/python -m unittest discover -s tests -v` → **77/77 OK** (76 previas + 1 nueva).
+
+### Pendiente (sin cambios respecto a la vuelta anterior, no bloqueante)
+- Recuperación pasiva de fatiga fuera de combate (24.7, ~1 fatiga/10s): sigue sin implementar, documentado en `server/README.md`.
+
+**LISTO PARA PUBLICAR: NO** — pendiente de que el Arquitecto confirme esta tercera vuelta antes de tocar `main`.
+
+---
+
 ## ENTREGA — Respuesta a revisión arquitectónica de PR #49 (fatiga/heridas/recuperación §24, cooldown de monstruos)
 
 **Desarrollador:** Claude (Desarrollador de Servidor de Vintage Telnet)
