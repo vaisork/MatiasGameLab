@@ -92,6 +92,16 @@ class EntryTests(unittest.TestCase):
         self.assertEqual(response.json, dict(status="ok", schema_version=2))
         self.assertNotIn("Set-Cookie", response.headers)
 
+    def test_help_matches_command_parser(self):
+        self.register()
+        store.set_status(self.path, "matias", "approved")
+        self.assertEqual(self.post("/species", {"species": "humano"}).status_code, 303)
+        html = self.client.get("/").get_data(as_text=True)
+        self.assertIn("decir &lt;texto&gt;", html)
+        self.assertIn("hablar &lt;npc&gt;", html)
+        self.assertIn("Un comando desconocido no se publica como chat.", html)
+        self.assertNotIn("Escribe algo en el cuadro de texto y presiona Enviar para hablar", html)
+
     def test_rate_limit_survives_restart(self):
         for _ in range(20):
             self.assertTrue(store.allow_attempt(self.path, "local-test"))
