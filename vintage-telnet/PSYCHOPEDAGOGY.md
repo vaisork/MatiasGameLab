@@ -1194,3 +1194,48 @@ No solicito rediseño narrativo de VT-NAR-003.
 
 Mi siguiente trabajo es revisar el build/PR que implemente “El lindero roto” y, después de una prueba infantil real, comparar lo observado contra el protocolo anterior.
 
+## VT-PSY-004B — Revisión de implementación PR #49
+
+**PR revisada:** #49 — implementación de VT-NAR-003 “El lindero roto”.  
+**Estado:** CAMBIOS SOLICITADOS ANTES DEL PLAYTEST DE LECTURA.
+
+La implementación técnica cubre correctamente varios bloqueos anteriores:
+- comando desconocido ya no se convierte en chat;
+- `decir <texto>` es explícito;
+- `observar/examinar` existe como intención separada;
+- Ayuda se corrige dentro de la PR;
+- la ruta de Valdren usa texto narrativo real;
+- XP por descubrimiento y persistencia existen.
+
+Sin embargo, la revisión de código detecta cuatro riesgos de comprensión:
+
+### 1. Identificación prematura de Mordelinde
+Examinar tallos o montículos otorga inmediatamente un descubrimiento que nombra a Mordelinde, aunque los textos disponibles solo prueban actividad de una criatura pequeña/madriguera.
+
+**Riesgo:** el sistema aporta conocimiento que el jugador/personaje aún no ganó.
+
+### 2. Inferencia automática del lindero
+Examinar la cerca por sí sola concede el descubrimiento “criatura mucho mayor atravesó el lindero”, aunque el texto de la cerca solo establece fuerza/violencia.
+
+**Riesgo:** se salta la relación entre señales.
+
+### 3. Conducta de criaturas no diferenciada narrativamente
+La prueba narrativa quiere que el jugador aprenda que Mordelinde y Espinajo no reaccionan igual. La implementación actual los diferencia principalmente mediante estadísticas/encuentro, no mediante una señal de conducta previa legible.
+
+**Riesgo:** el criterio narrativo puede pasar técnicamente sin que el niño haya leído conducta.
+
+### 4. HP exacto del enemigo visible
+La interfaz de la PR muestra HP actual/máximo del enemigo al entrar.
+
+**Riesgo:** los números pueden sustituir parte de la lectura de peligro y volver menos útil `evaluar`, que fue diseñado como valoración cualitativa.
+
+Se solicitó confirmación de Jugabilidad/Arquitectura sobre visibilidad de HP enemigo y, desde Psicopedagogía, se recomienda no mostrar el máximo exacto en este primer piloto salvo decisión explícita.
+
+### Estado
+
+**PR #49 no está aprobada todavía por Psicopedagogía para playtest infantil de lectura.**
+
+Los cambios pedidos son acotados y no requieren rediseñar VT-NAR-003 ni la arquitectura general.
+
+Comentario de revisión dejado directamente en PR #49.
+
