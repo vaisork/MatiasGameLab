@@ -1686,14 +1686,37 @@ Jugabilidad definirá con Javier el criterio general necesario. Después el Hist
 
 ## Decisiones mecánicas todavía abiertas
 
-Siguen sin fijarse, entre otras:
+Quedan pendientes de contenido o fases posteriores:
 
-- valores concretos de armas y armaduras;
+- valores concretos de armas y armaduras del catálogo real;
 - balance de poderes concretos propuestos por el Historiador;
 - reglas exactas de transferencia o recuperación de armas perdidas;
 - frecuencia y rareza de recompensas físicas.
 
-Que algo esté abierto significa que **no debe inventarse como regla definitiva para poder implementar**.
+**Ninguno de estos puntos bloquea VT-NAR-003 — El lindero roto ni el primer playtest jugable.**
+
+Para ese piloto ya existen:
+- crecimiento;
+- XP;
+- PA/PP;
+- combate;
+- daño;
+- defensa;
+- huida;
+- fatiga;
+- heridas;
+- descanso;
+- recuperación;
+- muerte/respawn general;
+- criaturas iniciales balanceadas;
+- evaluación de peligro;
+- descubrimientos;
+- mapa progresivo;
+- cooperación espontánea;
+- chat local;
+- comandos canónicos.
+
+Que algo permanezca abierto significa que no debe inventarse como regla definitiva fuera del alcance que ya está cerrado.
 
 ## Regla para otros agentes
 
