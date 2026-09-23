@@ -6,6 +6,7 @@ from pathlib import Path
 import subprocess
 import tempfile
 import unittest
+import sys
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -13,6 +14,7 @@ MODULE_PATH = ROOT / "tools" / "publish-assets.py"
 spec = importlib.util.spec_from_file_location("publish_assets", MODULE_PATH)
 pub = importlib.util.module_from_spec(spec)
 assert spec and spec.loader
+sys.modules[spec.name] = pub
 spec.loader.exec_module(pub)
 
 
