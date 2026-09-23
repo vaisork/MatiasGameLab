@@ -53,6 +53,7 @@ El Historiador no sustituye:
 
 - **Jugabilidad / VT-GAME-001 — Rasgos de especies:** aportación del Historiador entregada en `SPECIES.md`. La solicitud ya cuenta también con la aportación del Narrador.
 - **Jugabilidad / VT-GAME-002 — Matriz de 8 atributos para juego de lectura:** revisión canónica entregada en `ATTRIBUTES_CANON_REVIEW.md`. Los ocho atributos son compatibles si no sustituyen especie, clase, conocimiento, poder, equipo ni decisiones de lectura del jugador.
+- **Jugabilidad / Issue #55 — catálogo inicial de armaduras:** entregado en `ARMOR_CATALOG.md`. El Historiador fijó ocho identidades de equipo, procedencia cultural, obtención y uso de Forja física. Los valores 10/20/30/35 % quedan explícitamente como propuestas pendientes de validación de Jugabilidad; no se añadieron fórmulas, bonos de atributos, durabilidad ni resistencias nuevas.
 
 ## Entrega para presentación
 
@@ -75,7 +76,7 @@ El Historiador no sustituye:
 - nombres y funciones de regiones;
 - primeras mazmorras;
 - monstruos y criaturas — **primera fauna regional y amenazas iniciales completadas en `CREATURES.md`; expansión posterior abierta**;
-- clases, magias, objetos y armas desde su función narrativa;
+- clases, magias, objetos y armas desde su función narrativa — **armaduras: primer catálogo entregado en `ARMOR_CATALOG.md`; porcentajes pendientes de validación de Jugabilidad**;
 - necesidades de NPCs;
 - estructura de secretos y descubrimientos;
 - expansión posterior con pueblos secundarios.
@@ -105,6 +106,7 @@ Estos especialistas no son necesarios automáticamente. El Arquitecto decidirá 
 - `SECRETS.md` — información reservada del Dungeon Master.
 - `PRESENTATION_HISTORIAN.md` — texto público del mundo para la presentación.
 - `ART_WORLD_GUIDE.md` — jerarquía y canon visual para Arte.
+- `ARMOR_CATALOG.md` — primer catálogo canónico de armaduras; identidad/obtención/Forja definidas por Historia y porcentajes propuestos para revisión de Jugabilidad.
 - `GAMEPLAY.md` — fuente de verdad mecánica.
 
 ---

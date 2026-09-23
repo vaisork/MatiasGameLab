@@ -313,3 +313,152 @@ Un elemento desconocido no debe renderizarse ni dejar una pista visual de que ex
 El mapa no ejecuta viaje rápido en la v1.
 
 Chat de otro jugador no cambia por sí mismo el estado del mapa.
+
+
+## 18. Actualización después del cierre §§24–28
+
+Jugabilidad ya cerró dependencias que la interfaz no debe improvisar:
+
+### Combate
+- ronda objetivo ~4 s;
+- ataque básico automático;
+- una intervención sustituye el ataque básico de la siguiente ronda;
+- defensas contextuales;
+- Atacar/Huir/Esquivar/Bloquear/Resistir usan estado autoritativo de servidor.
+
+### Estado
+La interfaz ya puede prever campos reales para:
+- nivel;
+- XP actual / siguiente nivel;
+- PA disponibles;
+- PP disponibles;
+- HP actual/máximo;
+- fatiga 0–100;
+- estado operativo/cansado/agotado;
+- herida principal;
+- cooldowns cuando existan.
+
+### Subida de nivel
+- XP sobrante se conserva;
+- +2 PA por nivel;
+- +1 PP cada 5 niveles;
+- PA se gastan fuera de combate;
+- el jugador confirma atributo/coste;
+- subir nivel no cura por completo.
+
+### Recuperación
+Acción canónica:
+- `descansar`
+
+Debe ser contextual y usar resultado del servidor. No calcular curación/fatiga en cliente.
+
+### Vocabulario canónico P0/P1
+- movimiento: norte/sur/este/oeste;
+- mirar;
+- observar <objetivo>;
+- examinar <objetivo>;
+- evaluar <criatura>;
+- atacar <objetivo>;
+- huir;
+- esquivar;
+- bloquear;
+- resistir;
+- descansar;
+- decir <texto>;
+- hablar <npc>.
+
+La Ayuda y los botones deben usar este vocabulario y no crear sinónimos con reglas propias.
+
+
+## 19. Especies — presentación mecánica después de GAMEPLAY §29
+
+La interfaz no debe representar las especies como paquetes de bonificaciones numéricas generales.
+
+No mostrar por defecto etiquetas como:
+- +Agilidad;
+- +Percepción;
+- +Daño;
+- +XP;
+- “mejor para X clase”.
+
+Los rasgos naturales aparecen cuando cambian una posibilidad real:
+
+- **Felaryn:** puede aparecer una ruta/salto extendido legítimo o una señal visual distante.
+- **Dravak:** puede aparecer una ruta estrecha, acceso pequeño o señal de vibración.
+- **Marevyn:** puede aparecer una ruta de agua profunda, estado de aire bajo inmersión o señal de corriente.
+- **Vesperi:** la terminal puede entregar mayor detalle en baja luz o señales auditivas sutiles.
+- **Humano:** no necesita un icono/bono compensatorio artificial.
+
+La interfaz solo presenta estas oportunidades si el servidor las autoriza para el personaje y contexto actual.
+
+No dejar botones deshabilitados que revelen “aquí habría una ruta Felaryn/Dravak” a quien no la ha percibido.
+
+Para Marevyn sumergido sí puede mostrarse la reserva de acciones/aire autorizada por servidor porque es estado corporal inmediato y útil para decidir.
+
+
+## 18. Armadura y equipo — contrato UI v1
+
+GAMEPLAY §30 ya cerró la matemática de armadura.
+
+La interfaz puede mostrar al jugador los números de su propio equipo, por ejemplo:
+- protección física total: 20%;
+- carga física: +20% de fatiga en acciones físicas;
+- propiedades especiales explícitamente aprobadas.
+
+No debe:
+- convertir armadura en evasión;
+- mostrar Agilidad reducida si el objeto no la modifica explícitamente;
+- inventar durabilidad o reparación;
+- mostrar resistencias elementales inexistentes;
+- permitir superar 35% de reducción total;
+- asumir que una pieza permite Bloquear si no existe escudo/objeto apropiado.
+
+Si hay varias piezas, UI puede listar cada contribución y mostrar el total calculado por servidor. El navegador no calcula el cap ni las fórmulas autoritativas.
+
+
+## 18. Estado de enemigo — no HP exacto
+
+Con GAMEPLAY §31:
+- mostrar HP exacto únicamente del personaje;
+- no mostrar `actual/máximo` de criaturas;
+- mostrar condición cualitativa autorizada por servidor: entero/apenas afectado, herido, malherido, al borde de caer;
+- mantener `evaluar` como valoración cualitativa de peligro personal;
+- no confundir condición actual con dificultad del encuentro.
+
+La interfaz no calcula estas bandas leyendo HP por su cuenta si el servidor puede entregar el estado ya resuelto.
+
+## 19. Inventario y equipo mínimo
+
+Con GAMEPLAY §32, el panel debe distinguir claramente:
+
+### Poseído
+Objetos que el personaje tiene.
+
+### Equipado
+Como máximo en v1:
+- 1 arma activa;
+- 1 configuración de armadura activa;
+- 1 objeto de bloqueo activo cuando corresponda.
+
+Debe ofrecer, cuando el servidor lo autorice:
+- **Equipar**;
+- **Desequipar**.
+
+Para armadura mostrar:
+- protección física conocida;
+- carga/fatiga adicional;
+- estado de Forja cuando aplique.
+
+Un objeto de Forja no validado puede aparecer como poseído pero debe quedar claramente **no activado/no equipable**, con explicación.
+
+No mostrar:
+- peso total de mochila;
+- cuadrícula de casillas;
+- durabilidad;
+- reparación;
+- comercio/venta;
+- botones de soltar/intercambiar;
+
+porque esos sistemas no forman parte de v1.
+
+Equipar/desequipar debe quedar deshabilitado durante combate por decisión del servidor, no solo por JavaScript.

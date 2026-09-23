@@ -55,7 +55,7 @@ El mundo debe conservar evidencia de que ese monstruo existió y fue derrotado �
 ### 7. Mundo multijugador e interacción
 Los jugadores pueden coincidir en el mismo mundo y comunicarse mediante texto.
 
-Se contempla comunicación contextual cuando jugadores se encuentran. También puede existir un chat general; su forma exacta permanece pendiente.
+La primera versión utiliza comunicación local explícita en la sala mediante `decir <texto>`; el detalle queda fijado en §26. Chat global u otros canales pueden añadirse posteriormente.
 
 El PvP está permitido. Un jugador puede iniciar un ataque directo contra otro sin que sea obligatorio aceptar previamente un duelo o mantener una conversación.
 
@@ -229,7 +229,7 @@ Se mantienen separados tres conceptos:
 - **Heridas:** consecuencias concretas del daño que pueden llegar a afectar temporalmente determinadas capacidades. Su catálogo y efectos exactos siguen pendientes.
 - **Fatiga:** desgaste producido por esfuerzo; no es equivalente al daño ni constituye una segunda barra de vida.
 
-La fatiga tendrá una **barra/valor visible** y también estados o señales narrativas comprensibles. Resistencia influirá en la relación del personaje con la fatiga, pero la fórmula exacta permanece pendiente.
+La fatiga tendrá una **barra/valor visible** y también estados o señales narrativas comprensibles. Resistencia influye según §20.7 y los efectos/costes operativos quedan cerrados en §24.
 
 Una fatiga elevada no provoca automáticamente derrota. Debe afectar de manera comprensible la capacidad de mantener determinadas acciones, su coste o eficacia, favoreciendo cambios de estrategia.
 
@@ -237,7 +237,7 @@ La recuperación de fatiga será **combinada**:
 1. existe recuperación gradual cuando cesa el esfuerzo que la genera;
 2. una acción explícita de descanso permite una recuperación más rápida o eficaz.
 
-Los ritmos, condiciones, interrupciones y cantidades exactas de recuperación todavía no están definidos.
+Los ritmos, condiciones, interrupciones y cantidades v1 de recuperación quedan definidos en §24.
 
 El diseño debe evitar una proliferación innecesaria de estados difíciles de recordar. Las condiciones importantes deben ser pocas, significativas y comunicadas con claridad.
 
@@ -1031,6 +1031,1063 @@ La ilustración contextual de una ciudad o región es independiente del mapa y n
 
 **El mapa recuerda lo que el personaje ha aprendido del mundo; no le enseña el mundo por adelantado.**
 
+
+## 24. Ritmo de combate, fatiga, heridas y recuperación — v1
+
+**Estado:** APROBADO PARA PRIMER COMBATE REAL / AFINABLE POR PLAYTEST.
+
+Esta sección cierra los parámetros operativos que faltaban para que Desarrollo pueda implementar el bucle de combate de §20 sin inventar comportamiento.
+
+### 24.1 Rondas semi-automáticas
+
+El combate se resuelve por **rondas autoritativas del servidor**.
+
+Referencia de cadencia v1:
+- objetivo inicial: **1 ronda cada ~4 segundos**;
+- el valor puede afinarse aproximadamente entre 3–5 segundos después de probar lectura y respuesta en teléfono;
+- cambiar la duración de la ronda no cambia las fórmulas de combate.
+
+Al comenzar un combate:
+- el personaje queda con **ataque básico automático** como acción por defecto;
+- si el jugador no hace nada, los ataques básicos continúan ronda tras ronda;
+- antes de resolver la siguiente ronda, el jugador puede enviar **una intervención**;
+- esa intervención sustituye la acción básica de esa ronda.
+
+Intervenciones posibles cuando el contexto/servidor las habilita:
+- usar un poder;
+- huir;
+- adoptar una defensa contextual;
+- utilizar un objeto cuando el sistema de objetos exista.
+
+Esto permite que un combate rutinario avance con poca intervención, pero hace que una decisión estratégica tenga coste de oportunidad: defenderse, huir o usar una capacidad sustituye el ataque básico de esa ronda.
+
+### 24.2 Defensa contextual dentro de la ronda
+
+Cuando el jugador elige:
+- **Esquivar**;
+- **Bloquear/desviar**;
+- **Resistir**;
+
+esa respuesta se aplica contra el ataque enemigo correspondiente de la siguiente resolución y **sustituye el ataque básico del personaje en esa ronda**.
+
+La interfaz solo presenta defensas que tengan sentido según:
+- ataque visible/telegráfico;
+- posición;
+- equipo;
+- estado;
+- información que el personaje realmente percibió.
+
+No existe un botón universal de “mejor defensa” y el cliente no calcula cuál conviene.
+
+### 24.3 Costes base de fatiga
+
+Costes v1 antes del modificador por Resistencia de §20.7:
+
+| Acción | Fatiga base |
+| --- | ---: |
+| Ataque básico físico | 4 |
+| Resistir | 3 |
+| Bloquear/desviar | 5 |
+| Esquivar | 6 |
+| Huir | 8 |
+
+Los poderes reciben coste concreto cuando Jugabilidad valide cada poder. Como guía:
+- poder rápido: normalmente **6–10**;
+- poder fuerte: normalmente **10–15**;
+- poder mayor: normalmente **15–25** o una restricción equivalente.
+
+No existe un coste mágico universal.
+
+### 24.4 Efectos exactos de cansancio y agotamiento
+
+**0–69 — operativo**
+- sin penalización general por fatiga.
+
+**70–89 — cansado**
+- -5 puntos porcentuales a precisión física, esquiva, bloqueo y huida;
+- potencia/daño físico final × **0.90**;
+- reducción de Resistir disminuye 5 puntos porcentuales, nunca por debajo de 0.
+
+**90–100 — agotado**
+- -10 puntos porcentuales a precisión física, esquiva, bloqueo y huida;
+- potencia/daño físico final × **0.80**;
+- reducción de Resistir disminuye 10 puntos porcentuales, nunca por debajo de 0.
+
+La fatiga no impide por sí sola actuar ni mata al personaje.
+
+Un poder no recibe automáticamente estas penalizaciones si su ejecución no es física. Su regla concreta decide qué estado le afecta.
+
+### 24.5 Heridas — disparador simple
+
+Para la v1 se evita una tabla compleja de críticos.
+
+Después de mitigación, comparar el daño de **un solo impacto** con el HP máximo del objetivo:
+
+| Daño de un solo impacto | Herida mínima provocada |
+| --- | --- |
+| menos de 20% HPmax | ninguna por daño bruto solamente |
+| 20%–34% HPmax | leve |
+| 35%–49% HPmax | moderada |
+| 50%+ HPmax | grave |
+
+Contenido especial puede declarar una herida explícita solamente cuando Jugabilidad la valide.
+
+Un personaje mantiene como máximo **una herida mecánica principal**. Una herida mayor reemplaza a una menor; heridas iguales no se acumulan indefinidamente.
+
+### 24.6 Efectos de heridas
+
+**Leve**
+- fatiga generada × **1.10**.
+
+**Moderada**
+- fatiga generada × **1.20**;
+- -5 puntos porcentuales a precisión física, esquiva, bloqueo y huida;
+- el descanso de campo no puede recuperar HP por encima de **85% del HP máximo**.
+
+**Grave**
+- fatiga generada × **1.35**;
+- -10 puntos porcentuales a precisión física, esquiva, bloqueo y huida;
+- daño/potencia física final × **0.90**;
+- el descanso de campo no puede recuperar HP por encima de **65% del HP máximo**.
+
+Las penalizaciones de herida y fatiga pueden coexistir, pero deben mostrarse narrativamente con claridad para que el jugador comprenda por qué su rendimiento empeoró.
+
+### 24.7 Recuperación gradual fuera de combate
+
+Se conserva el principio combinado ya aprobado.
+
+Cuando el personaje está fuera de combate y no realiza esfuerzo intenso:
+- recupera aproximadamente **1 punto de fatiga cada 10 segundos**;
+- esta recuperación puede calcularse por tiempo transcurrido en servidor;
+- no recupera heridas;
+- HP no se regenera pasivamente por esta regla.
+
+La recuperación pasiva evita que una pausa breve sea inútil sin convertir esperar en la estrategia principal.
+
+### 24.8 Acción explícita `descansar`
+
+Fuera de combate y cuando el contexto sea seguro, el jugador puede usar:
+
+**`descansar`**
+
+Una acción de descanso v1:
+- recupera **10% del HP máximo**;
+- reduce fatiga en **25 puntos + 0.2 × (Resistencia - 10)**;
+- respeta el límite de recuperación de HP impuesto por una herida moderada/grave;
+- puede ser rechazada/interrumpida si existe peligro inmediato.
+
+La interfaz puede ofrecer **Descansar** como acción contextual; botón y comando son la misma intención.
+
+### 24.9 Recuperación segura
+
+Un lugar que Narrativa/Historia marque como punto válido de recuperación segura puede ofrecer una recuperación superior.
+
+Una recuperación segura completa:
+- restaura HP al 100%;
+- reduce fatiga a 0;
+- mejora una herida en **un grado**:
+  - grave → moderada;
+  - moderada → leve;
+  - leve → ninguna.
+
+El contenido decide qué lugares ofrecen esta recuperación; Jugabilidad fija el efecto.
+
+Para evitar spam, una nueva mejora de herida requiere **un nuevo ciclo legítimo de recuperación** definido por el servidor/contenido, no pulsar el mismo botón repetidamente en el mismo instante.
+
+### 24.10 Ataque básico antes del equipamiento definitivo
+
+Mientras el sistema real de armas iniciales todavía no esté integrado, el primer piloto puede usar internamente:
+
+`BaseArma = 10`
+
+como **perfil técnico de ataque básico**.
+
+Esto:
+- no inventa un arma canónica;
+- no muestra al jugador un objeto inexistente;
+- permite probar combate real;
+- debe ser sustituido por el valor del equipo real cuando Historiador/Forja/Desarrollo integren armas iniciales.
+
+### 24.11 Validación del piloto de Edran
+
+Con personaje nivel 1, atributos 10 y BaseArma 10, la simulación de referencia produce aproximadamente:
+
+| Criatura | Rondas esperadas para derrotarla | Daño esperado recibido |
+| --- | ---: | ---: |
+| Mordelinde | ~6 | ~14 HP |
+| Espinajo | ~8 | ~32 HP |
+| Cornalomo | ~27 | >300 HP |
+
+Interpretación:
+- Mordelinde enseña el sistema con riesgo bajo;
+- Espinajo obliga a prestar más atención y hace que descansar/huir tengan valor;
+- Cornalomo mata claramente al principiante en combate prolongado y por eso sus señales + `evaluar` importan.
+
+Estos son valores medios antes de decisiones defensivas, huida, poderes y variación aleatoria. Se usan para detectar desbalance, no como resultado garantizado.
+
+### 24.12 Principio
+
+**El combate básico avanza solo; intervenir debe ser una decisión real. El desgaste obliga a leer el estado y decidir si continuar, descansar, defenderse o regresar.**
+
+
+## 25. Resolución de subida de nivel y gasto de progreso — v1
+
+**Estado:** APROBADO PARA IMPLEMENTACIÓN.
+
+Esta sección convierte las reglas de §§19 y 22 en un flujo persistente concreto.
+
+### 25.1 XP acumulada y subida
+
+La XP se acumula de forma persistente.
+
+Cuando la XP acumulada alcanza el requisito del siguiente nivel:
+1. se descuenta el requisito correspondiente;
+2. el personaje sube un nivel;
+3. la XP sobrante **se conserva** hacia el siguiente nivel;
+4. se conceden **2 PA**;
+5. si el nuevo nivel es múltiplo de 5, se concede **1 PP**;
+6. se recalculan competencia general y HP máximo.
+
+Si una sola recompensa alcanza para más de un nivel, el servidor repite el proceso hasta que la XP restante ya no alcance el siguiente requisito o el personaje llegue al nivel 100.
+
+### 25.2 Nivel máximo inicial
+
+La primera etapa tiene tope en **nivel 100**.
+
+Al llegar a 100:
+- no se generan niveles 101+;
+- la implementación v1 puede dejar de acumular XP de nivel o registrarla únicamente como dato no utilizable si Arquitectura lo necesita;
+- no se conceden PA/PP adicionales por XP después del nivel 100.
+
+Una futura expansión de nivel debe aprobarse antes de utilizar XP acumulada más allá del tope.
+
+### 25.3 PA no se distribuyen automáticamente
+
+Los **Puntos de Atributo (PA)** quedan en una reserva del personaje hasta que el jugador decida gastarlos.
+
+- no caducan;
+- pueden acumularse durante muchos niveles;
+- el juego no elige atributos por el jugador;
+- no existe conversión PA ↔ PP.
+
+### 25.4 Gasto de PA
+
+Para aumentar un atributo en +1:
+1. consultar su valor actual;
+2. consultar el coste de §19;
+3. comprobar que existe PA suficiente;
+4. mostrar al jugador atributo, valor actual, nuevo valor y coste;
+5. confirmar el gasto;
+6. descontar PA y aplicar +1 de forma atómica.
+
+El gasto de PA:
+- solo puede hacerse **fuera de combate**;
+- no requiere regresar obligatoriamente a la ciudad;
+- no puede dejar PA negativos;
+- no puede ejecutarse dos veces sobre el mismo saldo por solicitudes concurrentes.
+
+### 25.5 Confirmación y errores de niños
+
+La interfaz debe exigir una confirmación clara antes de gastar PA, especialmente en móvil.
+
+La v1 no incluye un botón libre de “deshacer” después de confirmar.
+
+Sin embargo, una distribución imperfecta no debe arruinar el personaje porque:
+- existe competencia general por nivel;
+- la curva de coste favorece diversificación;
+- el contenido común debe admitir perfiles razonables/casuales.
+
+Un sistema futuro de reespecialización puede existir, pero deberá definirse aparte; no debe inventarse ahora.
+
+### 25.6 Efecto inmediato del nivel sobre HP
+
+Al subir de nivel se recalcula `HPmax`.
+
+El personaje **no se cura completamente por subir de nivel**.
+
+Si el HP máximo aumenta, el HP actual aumenta únicamente por la misma diferencia positiva:
+
+`HP_actual_nuevo = HP_actual_anterior + (HPmax_nuevo - HPmax_anterior)`
+
+sin superar el nuevo HP máximo.
+
+Ejemplo: si pasa de 100/100 a un máximo de 102, queda aproximadamente 102/102 si estaba sano, o 62/102 si estaba en 60/100.
+
+Esto evita usar una subida de nivel como curación completa artificial.
+
+### 25.7 Gasto de PA y HP derivado
+
+Si aumentar Resistencia o Voluntad incrementa HP máximo mediante §20.3, se aplica la misma regla:
+- aumenta HP actual por la diferencia positiva del máximo;
+- no produce curación completa adicional.
+
+### 25.8 PP
+
+Los **Puntos de Poder (PP)**:
+- se conceden en niveles 5, 10, 15... 100;
+- pueden acumularse;
+- no caducan;
+- no se convierten en PA.
+
+Comprar/desbloquear un poder solo será posible cuando exista contenido de poder validado. La interfaz puede mostrar PP disponibles antes, pero no debe ofrecer poderes ficticios.
+
+### 25.9 Notificación de progreso
+
+Al subir de nivel, el jugador debe recibir una notificación breve y persistente en la sesión que indique:
+- nuevo nivel;
+- PA obtenidos;
+- PP obtenido cuando corresponda.
+
+No mostrar automáticamente una ventana obligatoria de distribución en medio de combate o lectura. El jugador decide cuándo abrir Personaje y gastar sus PA.
+
+### 25.10 Principio
+
+**Subir de nivel entrega posibilidades; no toma decisiones por el jugador ni funciona como curación total.**
+
+
+## 26. Cooperación y comunicación local — v1
+
+**Estado:** APROBADO PARA PRIMER MULTIJUGADOR.
+
+La primera versión no necesita un sistema complejo de guilds/parties para permitir que varios jugadores exploren y peleen juntos.
+
+### 26.1 Chat local como canal inicial
+
+La comunicación v1 entre jugadores es **local a la sala/ubicación actual**.
+
+Comando explícito:
+
+`decir <texto>`
+
+Reglas:
+- solo jugadores presentes en la misma sala reciben el mensaje;
+- un comando desconocido nunca se convierte automáticamente en chat;
+- `hablar <npc>` pertenece a conversación con NPC y es una intención diferente;
+- la interfaz debe distinguir visualmente acción/comando de chat.
+
+El chat global, susurros, grupos permanentes y otros canales pueden añadirse más adelante; no son requisito del primer bucle jugable.
+
+### 26.2 Cooperar sin party formal
+
+Para la v1, dos o más jugadores en la misma sala pueden cooperar contra una criatura **sin crear previamente un grupo formal**.
+
+Un jugador entra como participante del encuentro cuando realiza una contribución significativa aprobada por §22.8, por ejemplo:
+- atacar al mismo objetivo;
+- defender/proteger de forma relevante;
+- curar;
+- controlar;
+- usar un poder de apoyo.
+
+Estar mirando o simplemente compartir sala no da XP.
+
+### 26.3 Unirse a un combate existente
+
+Si una criatura ya está combatiendo:
+- otro jugador de la misma sala puede usar **Atacar <objetivo>**;
+- pasa a formar parte del mismo encuentro;
+- no se crea una copia privada de la criatura;
+- HP/estado de la criatura son autoritativos y compartidos por quienes participan.
+
+Esto conserva el mundo compartido y permite cooperación espontánea.
+
+### 26.4 Objetivo del enemigo
+
+Como comportamiento base para criaturas comunes:
+- la criatura mantiene como objetivo principal al jugador que inició/agredió el encuentro;
+- puede cambiar de objetivo si ese jugador huye, muere, deja de ser válido o una capacidad/conducta concreta lo justifica;
+- el contenido especial puede definir conducta distinta.
+
+No se introduce todavía una barra compleja de amenaza/aggro.
+
+### 26.5 Movimiento durante combate
+
+Un personaje involucrado en combate **no puede usar movimiento cardinal normal para escapar gratis**.
+
+Si intenta salir mientras sigue comprometido:
+- el servidor debe exigir la acción **Huir**;
+- Huir usa §20.10 y §24;
+- tras una huida exitosa, el personaje puede quedar en la salida/destino que el servidor determine válidamente;
+- una huida fallida consume la intervención de esa ronda.
+
+Esto evita que escribir `norte` sustituya el sistema de huida.
+
+### 26.6 Fin del encuentro
+
+El encuentro termina para un jugador cuando:
+- la criatura es derrotada;
+- el jugador muere;
+- logra huir;
+- otra regla explícita del contenido termina el combate.
+
+La derrota de la criatura distribuye XP individualmente según §22:
+- categoría personal;
+- participación;
+- repetición;
+- número de participantes.
+
+No existe una bolsa de XP que el primer jugador pueda apropiarse completa.
+
+### 26.7 Jugador fuerte ayudando a principiante
+
+La cooperación no iguala automáticamente recompensas.
+
+Cada participante calcula su categoría personal:
+- un veterano contra criatura pequeña puede recibir recompensa Trivial;
+- un principiante contra la misma criatura puede recibir Comparable/Favorable;
+- ambos deben haber participado significativamente.
+
+Por tanto, ayudar es posible sin convertir matar criaturas débiles para otro jugador en el método dominante de power-leveling.
+
+### 26.8 Principio
+
+**Compartir sala permite colaborar; compartir sala no entrega progreso. Cooperar requiere actuar.**
+
+
+## 27. Resolución final de daño y contrato de equipo — v1
+
+**Estado:** APROBADO COMO MARCO; los objetos concretos siguen perteneciendo al contenido.
+
+Jugabilidad define cómo entra el equipo en las fórmulas sin inventar todavía el catálogo de armas y armaduras.
+
+### 27.1 Orden de resolución de un ataque físico
+
+Para un ataque físico normal:
+
+1. calcular precisión base de §20.4;
+2. aplicar modificadores de estado (fatiga/herida);
+3. aplicar la defensa elegida si corresponde;
+4. resolver si el ataque conecta;
+5. calcular daño bruto del arma + atributos;
+6. aplicar modificadores de potencia por estado;
+7. aplicar reducción de la defensa elegida si esa defensa reduce daño;
+8. aplicar reducción de armadura;
+9. redondear daño final;
+10. si el ataque conectó, el daño final mínimo es **1 HP**.
+
+La interfaz no ejecuta esta lógica; solo muestra el resultado autorizado por servidor.
+
+### 27.2 Una defensa activa por ronda
+
+En una ronda el jugador puede elegir solo una defensa activa:
+- Esquivar;
+- Bloquear/desviar;
+- Resistir.
+
+No se suman Bloquear + Resistir como dos acciones activas simultáneas.
+
+La **armadura equipada sí es pasiva** y puede reducir daño después de una defensa activa.
+
+### 27.3 Fórmula de daño final
+
+Para una defensa que reduzca daño:
+
+`DañoFinal = máximo(1, redondear(DañoAjustado × (1 - ReducciónDefensa) × (1 - ReducciónArmadura)))`
+
+Si se eligió Esquivar:
+- primero se modifica la probabilidad de impacto;
+- si aun así conecta, no añade reducción de daño por la esquiva;
+- la armadura sigue aplicando.
+
+Las reducciones se multiplican, no se suman, para evitar acumulaciones demasiado fuertes.
+
+### 27.4 Contrato mínimo de arma física
+
+Un arma física puede definir, cuando el Historiador/equipo la cree:
+- `base_damage` / BaseArma;
+- categoría o etiquetas de uso;
+- si permite bloquear/desviar;
+- un modificador pequeño de precisión si Jugabilidad lo aprueba;
+- requisitos de poder/clase/equipo cuando existan.
+
+La v1 **no necesita estadísticas largas por arma**.
+
+Para el piloto sin inventario real:
+- BaseArma = 10;
+- modificador de precisión de equipo = 0;
+- el perfil es técnico y no representa un objeto canónico visible.
+
+### 27.5 Contrato mínimo de armadura
+
+La armadura aporta principalmente **reducción de daño**, no evasión automática.
+
+Cada configuración equipada puede tener:
+- `armor_reduction` entre 0 y un máximo v1 de **35%**;
+- etiquetas/requisitos definidos por contenido;
+- efectos especiales solo si Jugabilidad los valida.
+
+Armadura pesada no vuelve automáticamente más difícil golpear al personaje. Si una pieza modifica Agilidad/fatiga u otra capacidad, debe declararlo explícitamente como propiedad del objeto.
+
+### 27.6 Escudos y objetos de bloqueo
+
+Un escudo u objeto apropiado puede:
+- habilitar Bloquear/desviar cuando de otro modo no tendría sentido;
+- modificar la reducción de bloqueo dentro de límites definidos por el objeto.
+
+No concede bloqueo automático permanente; el jugador sigue decidiendo usar esa defensa cuando corresponda.
+
+### 27.7 Sin crítico aleatorio universal en v1
+
+La v1 **no utiliza una probabilidad universal de golpe crítico aleatorio**.
+
+Un resultado extraordinario puede provenir de:
+- un poder;
+- una apertura descrita;
+- atacar desde una condición favorable;
+- equipo especial;
+- comportamiento específico de criatura;
+- contenido validado.
+
+Esto mantiene la relación:
+**leer → decidir → ejecutar → consecuencia**
+y evita añadir un multiplicador aleatorio global que opaque por qué ocurrió un golpe enorme.
+
+### 27.8 Límite de reducción
+
+La reducción total efectiva de un impacto conectado no debe convertir daño normal en cero.
+
+El mínimo de 1 HP se conserva para impactos conectados, salvo una mecánica explícita de inmunidad/negación total aprobada en contenido futuro.
+
+### 27.9 Principio
+
+**El arma define la base del golpe; los atributos definen cómo se ejecuta; la defensa decide cómo responder; la armadura mitiga lo que finalmente conecta.**
+
+
+## 28. Vocabulario mínimo de acciones — v1
+
+**Estado:** APROBADO PARA PARSER, AYUDA E INTERFAZ.
+
+Los comandos canónicos en español son pocos y reutilizables. HTML puede ofrecer botones equivalentes, pero no crea acciones distintas.
+
+### 28.1 Movimiento
+- `norte`
+- `sur`
+- `este`
+- `oeste`
+
+Abreviaciones permitidas:
+- `n`
+- `s`
+- `e`
+- `o`
+
+Durante combate, movimiento normal no sustituye `huir` (§26.5).
+
+### 28.2 Lectura e inspección
+- `mirar`
+- `observar <objetivo>`
+- `examinar <objetivo>`
+- `evaluar <criatura>`
+
+Diferencias:
+- mirar = situación general;
+- observar = señales relevantes;
+- examinar = detalle concreto;
+- evaluar = peligro cualitativo de criatura visible.
+
+### 28.3 Combate y recuperación
+- `atacar <objetivo>`
+- `huir`
+- `esquivar`
+- `bloquear`
+- `resistir`
+- `descansar`
+
+Esquivar/Bloquear/Resistir solo son válidos cuando el servidor los habilita como intervención contextual. Escribirlos fuera de contexto devuelve explicación; no crea una tirada sin amenaza.
+
+Si hay un único objetivo hostil inequívoco, la interfaz puede permitir botón **Atacar** sin exigir escribir el nombre. Con varios objetivos, el jugador debe elegir uno.
+
+### 28.4 Comunicación
+- `decir <texto>` = chat local entre jugadores;
+- `hablar <npc>` = iniciar/focalizar conversación con NPC.
+
+Son intenciones diferentes.
+
+### 28.5 Paneles HTML
+
+Personaje, Inventario, Poderes, Mapa, Arcanes y Ayuda son principalmente accesos de interfaz.
+
+El servidor puede aceptar comandos equivalentes en el futuro por accesibilidad, pero no es requisito del parser P0 y no debe retrasar el primer bucle jugable.
+
+### 28.6 Objetivos y secretos
+
+La interfaz solo puede convertir en botón/objetivo tocable aquello que el servidor haya marcado como perceptible/accionable.
+
+No generar automáticamente botones para:
+- salidas secretas;
+- criaturas ocultas;
+- pistas no descubiertas;
+- NPCs que el personaje no percibe;
+- objetos desconocidos.
+
+Un comando escrito tampoco obliga al servidor a confirmar que un objetivo secreto existe. Ante un objetivo no conocido, la respuesta debe ser neutral y no filtrar información.
+
+### 28.7 Error de comando
+
+Una entrada no reconocida:
+- no se publica como chat;
+- no consume una acción de combate salvo que el servidor la haya aceptado como intervención;
+- devuelve ayuda breve o sugerencia contextual cuando sea razonable.
+
+### 28.8 Principio
+
+**Pocos verbos, reglas consistentes, botones como atajos; escribir algo incorrecto nunca debe revelar un secreto ni hablar públicamente por accidente.**
+
+
+## 29. Rasgos naturales de especies — reglas mecánicas v1
+
+**Estado:** APROBADO PARA IMPLEMENTACIÓN Y CONTENIDO.  
+**Canon:** `SPECIES.md`.
+
+Las diferencias de especie son una capa separada de los ocho atributos.
+
+### 29.1 Regla general
+
+Todas las especies:
+- comienzan con los mismos valores base de atributos: 10;
+- reciben la misma cantidad de PA;
+- usan la misma curva de costes;
+- pueden acceder a cualquier clase permitida por el contenido;
+- no reciben superioridad natural general de Intelecto, magia, daño o progresión.
+
+Los rasgos de especie funcionan principalmente como:
+- **posibilidades físicas/sensoriales**;
+- acceso a rutas o información que el cuerpo permite;
+- modificación del contexto de una acción.
+
+Después, los atributos determinan la calidad de ejecución cuando exista incertidumbre.
+
+**Canon habilita; atributo ejecuta; jugador interpreta.**
+
+### 29.2 Humanos — generalistas sin bonificación artificial
+
+Los Humanos no reciben un bono universal compensatorio.
+
+V1:
+- movilidad terrestre estándar;
+- sentidos estándar;
+- escala corporal de referencia para objetos/arquitectura;
+- ninguna ruta o señal especial por especie.
+
+No reciben PA extra, XP extra ni descuentos de clase.
+
+Su ventaja práctica es no estar definidos por una adaptación extrema, pero esto no se convierte en una estadística adicional.
+
+### 29.3 Felaryn — salto, distancia y equilibrio
+
+#### Salto
+El mundo puede marcar conexiones como:
+- `jump_normal`;
+- `jump_extended`;
+- `jump_impossible`.
+
+Un Felaryn puede intentar de forma natural una conexión `jump_extended` sin herramienta especial.
+
+Otras especies necesitan:
+- otra ruta;
+- herramienta/poder;
+- o una condición explícita del contenido.
+
+`jump_impossible` no se supera solo por ser Felaryn.
+
+Cuando una conexión `jump_extended` tenga peligro real, **Agilidad** modifica la ejecución. Ser Felaryn habilita el intento; no garantiza éxito bajo heridas, agotamiento o condiciones extremas.
+
+No se fija distancia en metros porque una habitación Telnet no representa una escala física uniforme. El contenido clasifica el salto según la geometría real de la escena.
+
+#### Visión a distancia
+El contenido puede marcar una señal como `distant_visual`.
+
+Un Felaryn puede recibir esa señal desde un punto de observación legítimo donde otra especie solo obtendría una descripción más general o necesitaría acercarse.
+
+**Percepción** decide cuánto detalle obtiene dentro de lo visible.
+
+No atraviesa obstáculos ni oscuridad total.
+
+#### Equilibrio
+En superficies estrechas/altas propias de su adaptación:
+- el Felaryn no recibe una penalización específica por especie;
+- una escena realmente peligrosa todavía puede exigir Agilidad;
+- el rasgo no sustituye una técnica de clase.
+
+### 29.4 Dravak — escala, espacios compactos y vibraciones
+
+#### Escala corporal
+El contenido puede marcar rutas/interacciones como:
+- `tight_space`;
+- `large_reach`.
+
+Un Dravak puede recorrer naturalmente `tight_space` cuando su anatomía cabe.
+
+Una especie mayor necesita otra ruta, herramienta o poder.
+
+En una interacción `large_reach`, el Dravak puede necesitar:
+- apoyo;
+- herramienta;
+- otra posición;
+- o una solución distinta.
+
+Esto se comunica mediante texto; no se aplica una penalización general a todas sus acciones.
+
+#### Manipulación de espacios pequeños
+Un mecanismo puede tener la propiedad `small_access`.
+
+Dravak puede intentar manipularlo físicamente cuando manos/cuerpo mayores no caben. **Destreza** sigue determinando ejecución fina.
+
+No recibe conocimiento Artífice automáticamente.
+
+#### Vibraciones
+Cuando un Dravak está en contacto cercano con suelo, roca u otra superficie sólida, una escena puede ofrecer señales `solid_vibration`.
+
+`observar` puede revelar:
+- que existe vibración;
+- ritmo/intensidad cuando el contenido lo permita.
+
+Percepción puede mejorar detalle.
+
+No revela automáticamente:
+- identidad;
+- distancia exacta;
+- mapa detrás de paredes;
+- solución del misterio.
+
+#### Placas dérmicas
+Las placas Dravak **no conceden reducción de armadura universal en v1**.
+
+Si Historia desea que una situación concreta interactúe con ellas, debe proponerlo como contenido; no convertirlas silenciosamente en armadura gratuita.
+
+### 29.5 Marevyn — agua, respiración y corrientes
+
+#### Natación y agua profunda
+El contenido puede marcar rutas como `deep_water`.
+
+Un Marevyn puede atravesar naturalmente agua profunda nadando, siempre que el contenido no establezca una condición extraordinaria.
+
+Otras especies pueden requerir:
+- prueba/contexto de natación;
+- herramienta;
+- embarcación;
+- ruta alternativa.
+
+Ser Marevyn no concede inmunidad a corrientes extremas, frío, heridas ni agotamiento.
+
+#### Inmersión y respiración
+Se usa una reserva simple de **acciones bajo el agua**.
+
+Para especies sin adaptación especial:
+
+`Aire = 6 + piso((Resistencia - 10) / 10)`
+
+Para Marevyn:
+
+`Aire = 2 × [6 + piso((Resistencia - 10) / 10)]`
+
+Cada acción significativa mientras permanece completamente sumergido consume 1.
+
+Al agotarse:
+- el personaje debe intentar salir a respirar;
+- permanecer sumergido genera consecuencias de asfixia que Desarrollo debe resolver mediante HP/estado sin crear una nueva barra de vida.
+
+La v1 no permite respirar bajo el agua.
+
+#### Superficies húmedas
+En superficies mojadas/flotantes compatibles con su adaptación:
+- Marevyn no recibe penalización específica por especie;
+- situaciones peligrosas todavía pueden usar Agilidad.
+
+#### Corrientes
+Escenas acuáticas pueden incluir señal `water_current`.
+
+Marevyn puede percibir cambios cercanos de corriente/movimiento que otros no reciben automáticamente. Percepción mejora detalle, no identifica mágicamente la causa.
+
+### 29.6 Vesperi — iluminación, oído y orientación
+
+La iluminación visual usa cuatro estados de contenido:
+1. `normal`;
+2. `dim`;
+3. `dark`;
+4. `total_darkness`.
+
+#### Especies estándar
+- normal: visión ordinaria;
+- dim: detalle visual reducido;
+- dark: formas/movimiento generales cuando exista luz residual;
+- total_darkness: sin información visual.
+
+#### Vesperi
+- normal: visión ordinaria;
+- dim: conserva detalle funcional;
+- dark: recibe aproximadamente la información que otra especie obtendría en `dim`;
+- total_darkness: tampoco ve.
+
+Esto no produce penalización automática bajo luz normal y no crea visión en oscuridad absoluta.
+
+#### Oído
+El contenido puede marcar una señal `subtle_sound`.
+
+Vesperi puede recibirla en situaciones donde otros personajes necesitarían una condición más favorable o Percepción especialmente alta.
+
+Percepción mejora la interpretación/detalle.
+
+No posee ecolocalización.
+
+#### Orientación
+En espacios densos y de baja luz, Vesperi no recibe una penalización de orientación únicamente por penumbra cuando dispone de señales sensoriales legítimas.
+
+No revela salidas ocultas ni mapa secreto.
+
+### 29.7 Equipo y especie
+
+La v1 no aplica penalizaciones globales de combate por tamaño de especie.
+
+El equipo personal normal se considera **ajustado al cuerpo del personaje** cuando es un objeto utilizable por esa especie.
+
+Un objeto/estructura del mundo puede declarar incompatibilidad física concreta por:
+- escala;
+- alcance;
+- forma;
+- anatomía.
+
+Eso es una propiedad del objeto/escena, no una reducción universal de atributos.
+
+### 29.8 Atributos no borran especie
+
+Ejemplos:
+- Humano con Agilidad 60 no obtiene salto Felaryn;
+- Humano con Percepción 60 no obtiene vibración Dravak;
+- Felaryn con Percepción alta no obtiene visión Vesperi en oscuridad;
+- Vesperi con Resistencia alta no obtiene adaptación Marevyn al agua;
+- Destreza alta no reduce el cuerpo para entrar en `tight_space`.
+
+### 29.9 Interfaz y narrativa
+
+La interfaz no debe mostrar:
+- “+20% racial” genérico;
+- números ocultos de sentidos;
+- botones que revelen rutas especiales antes de percibirlas.
+
+Cuando un rasgo abre una posibilidad, se comunica naturalmente:
+- una salida que ahora puede intentarse;
+- una señal adicional;
+- una descripción distinta;
+- una acción contextual legítima.
+
+### 29.10 Principio
+
+**Las especies cambian qué posibilidades corporales y sensoriales existen; los atributos cambian qué tan bien actúa el personaje dentro de esas posibilidades.**
+
+
+## 30. Armaduras — protección, carga y límites v1
+
+**Estado:** APROBADO PARA IMPLEMENTACIÓN Y PARA CREACIÓN DE CONTENIDO.
+
+La armadura debe ofrecer una decisión real: **recibir menos daño a cambio de aumentar el desgaste físico**. La v1 evita introducir evasión, precisión, durabilidad, penetración y múltiples resistencias adicionales como sistemas paralelos.
+
+### 30.1 Función principal
+
+La armadura reduce daño físico que **ya conectó**.
+
+No:
+- reduce por sí sola la probabilidad de ser golpeado;
+- concede Esquivar;
+- concede Bloquear;
+- aumenta HP;
+- aumenta Resistencia;
+- modifica atributos de forma silenciosa.
+
+La reducción de armadura se aplica conforme al orden de §27:
+1. el ataque conecta;
+2. se resuelve defensa activa cuando corresponda;
+3. se aplica armadura;
+4. se calcula daño final y posibles heridas.
+
+Por tanto, la armadura también reduce indirectamente la probabilidad de una herida grave al disminuir el impacto final recibido.
+
+### 30.2 Reducción máxima
+
+La configuración total equipada tiene:
+
+`armor_reduction_total`
+
+Rango v1:
+
+`0% ≤ armor_reduction_total ≤ 35%`
+
+Bandas de referencia de balance:
+
+| Protección | Reducción física | Multiplicador de fatiga física |
+| --- | ---: | ---: |
+| Sin protección | 0% | ×1.00 |
+| Ligera | 10% | ×1.10 |
+| Media | 20% | ×1.20 |
+| Alta | 30% | ×1.30 |
+| Límite v1 / excepcional | 35% | ×1.35 |
+
+Estas bandas son categorías de Jugabilidad, **no nombres canónicos de armaduras**. El Historiador puede crear objetos distintos que ocupen cualquier valor permitido cuando exista una razón de contenido/balance.
+
+### 30.3 Carga de armadura
+
+Para evitar que la mayor reducción sea siempre la mejor opción, la misma reducción genera carga física.
+
+Regla v1:
+
+`MultiplicadorCarga = 1 + armor_reduction_total`
+
+donde la reducción se expresa como decimal.
+
+Ejemplos:
+- 10% → ×1.10;
+- 20% → ×1.20;
+- 30% → ×1.30;
+- 35% → ×1.35.
+
+La fatiga final de una acción física se calcula:
+
+`Fatiga = CosteBaseAcción × ModResistencia × MultiplicadorCarga`
+
+El orden matemático de los multiplicadores no cambia el resultado.
+
+La carga aplica a acciones físicas que generen fatiga, incluyendo cuando corresponda:
+- ataque básico;
+- esquivar;
+- bloquear/desviar;
+- resistir;
+- huir;
+- acciones físicas especiales que el poder/contenido marque como tales.
+
+No aplica a:
+- descansar;
+- conversar;
+- mirar/observar/examinar;
+- poderes no físicos salvo que su ficha indique lo contrario.
+
+### 30.4 Sin penalización directa universal a Agilidad o precisión
+
+La armadura pesada **no resta automáticamente puntos de Agilidad, Destreza o precisión**.
+
+Su coste se expresa mediante fatiga.
+
+Eso permite:
+- un personaje ágil con armadura alta siga siendo ágil al inicio del combate;
+- pero sostener durante muchas rondas esquivas, ataques y huidas sea más caro;
+- Resistencia tenga valor para personajes que quieran llevar protección alta durante enfrentamientos largos.
+
+Una pieza excepcional futura puede declarar otra penalización/ventaja, pero debe ser explícita y validada por Jugabilidad.
+
+### 30.5 Interacción con Esquivar, Bloquear y Resistir
+
+**Esquivar:** si evita completamente el impacto, la armadura no necesita reducir daño. La carga de la armadura sí aumenta el coste de fatiga de la acción.
+
+**Bloquear/desviar:** si el ataque conecta parcialmente, la reducción de bloqueo y la armadura se multiplican:
+
+`DañoFinal = Daño × (1 - ReducciónBloqueo) × (1 - ReducciónArmadura)`
+
+**Resistir:** igual:
+
+`DañoFinal = Daño × (1 - ReducciónResistencia) × (1 - ReducciónArmadura)`
+
+Las reducciones **no se suman**.
+
+Con valores normales esto evita invulnerabilidad. Ejemplo:
+- Resistir 30% + armadura 35% → reducción efectiva aproximada 54.5%, no 65%.
+
+Se conserva el mínimo de 1 HP para un impacto conectado, salvo inmunidad explícita futura.
+
+### 30.6 Varias piezas
+
+Jugabilidad no obliga todavía a una lista concreta de ranuras corporales.
+
+Si el sistema equipa varias piezas, cada pieza puede aportar una contribución de reducción.
+
+La configuración final usa:
+
+`armor_reduction_total = mínimo(35%, suma de contribuciones equipadas)`
+
+El mismo total determina el MultiplicadorCarga.
+
+Esto permite que Inventario/Forja definan posteriormente si existen una pieza principal, varias piezas parciales u otra organización **sin cambiar la matemática de combate**.
+
+No se puede superar 35% equipando más piezas.
+
+### 30.7 Qué daño protege
+
+Por defecto, la reducción v1 protege contra **daño físico ordinario**.
+
+No se asume automáticamente que reduzca:
+- magia;
+- miedo/efectos mentales;
+- asfixia;
+- veneno;
+- calor/frío;
+- otros daños especiales.
+
+Cada poder, criatura o efecto futuro debe declarar si usa armadura física, la ignora o utiliza otra regla aprobada.
+
+No crear por ahora una tabla universal de diez tipos de resistencia.
+
+### 30.8 Durabilidad y pérdida
+
+La v1 **no utiliza durabilidad de armadura**.
+
+La armadura:
+- no pierde puntos por cada golpe;
+- no necesita reparación rutinaria;
+- no se destruye por combate ordinario.
+
+La regla vigente de posible pérdida al morir (§11) está definida para **armas**. En v1 la armadura **no se pierde por muerte ordinaria, monstruo excepcional ni PvP**.
+
+Cualquier futuro sistema de daño, robo o pérdida de armadura necesitará aprobación explícita aparte.
+
+Esto evita añadir mantenimiento antes de comprobar que la protección/carga ya produce decisiones interesantes.
+
+### 30.9 Armadura y piezas físicas/Forja
+
+Una armadura concreta puede ser:
+- solo digital;
+- o una mejora que requiera pieza física.
+
+Eso lo define el contenido/proyecto de Forja.
+
+Cuando una armadura requiera pieza física, se conserva el ciclo confirmado de §13:
+
+**ganar → fabricar/recibir → colocar físicamente → enviar evidencia → validar → habilitar en juego.**
+
+La validación física no cambia su reducción ni su carga; únicamente habilita el derecho de uso.
+
+### 30.10 Información en interfaz
+
+El jugador puede conocer los números de su propio equipo.
+
+La interfaz de Inventario/Equipo puede mostrar, por ejemplo:
+- protección física: 20%;
+- carga física: +20% de fatiga;
+- si la pieza permite alguna propiedad especial aprobada.
+
+No mostrar:
+- porcentajes secretos de enemigos;
+- penetraciones ocultas;
+- resistencias que el personaje no conoce.
+
+Durante combate no es necesario mostrar de nuevo toda la ficha de armadura; basta con HP/fatiga/herida y el texto de consecuencia.
+
+### 30.11 Contrato mínimo para contenido
+
+Para una armadura ordinaria, el Historiador/Contenido solo necesita proponer:
+
+- identidad/nombre/canon;
+- forma de obtención;
+- si tiene representación física;
+- contribución propuesta a `armor_reduction`;
+- cualquier propiedad especial excepcional que requiera revisión.
+
+Jugabilidad valida el valor dentro del rango 0–35%.
+
+**No necesita inventar Agilidad negativa, defensa adicional, evasión, durabilidad ni cinco resistencias para que una armadura sea válida.**
+
+### 30.12 Principio
+
+**La armadura compra tiempo con fatiga: cuanto más daño evita, más esfuerzo cuesta sostener acciones físicas.**
+
+La elección entre menos protección/más libertad de esfuerzo y más protección/mayor desgaste debe seguir siendo útil durante todo el juego.
+
 ## Investigación disponible para Jugabilidad — capacidades HTML y comandos
 
 **ESTADO: INVESTIGACIÓN CONSUMIDA — la dirección híbrida HTML/Telnet, inspección, evaluación de peligro y mapa progresivo ya tienen criterios v1; las ampliaciones futuras se decidirán cuando aparezcan nuevas necesidades.**
@@ -1085,17 +2142,37 @@ Jugabilidad definirá con Javier el criterio general necesario. Después el Hist
 
 ## Decisiones mecánicas todavía abiertas
 
-Siguen sin fijarse, entre otras:
+Quedan pendientes de contenido o fases posteriores:
 
-- valores concretos de armas y armaduras;
-- críticos y otros efectos avanzados de combate;
+- valores concretos de armas y **armaduras canónicas individuales** del catálogo real (la matemática y rangos de armadura ya están cerrados en §30);
 - balance de poderes concretos propuestos por el Historiador;
-- efectos exactos de cada herida y de los estados de fatiga tras pruebas reales;
-- funcionamiento técnico y reglas finales de los canales de chat;
 - reglas exactas de transferencia o recuperación de armas perdidas;
 - frecuencia y rareza de recompensas físicas.
 
-Que algo esté abierto significa que **no debe inventarse como regla definitiva para poder implementar**.
+**Ninguno de estos puntos bloquea VT-NAR-003 — El lindero roto ni el primer playtest jugable.**
+
+Para ese piloto ya existen:
+- crecimiento;
+- XP;
+- PA/PP;
+- combate;
+- daño;
+- defensa;
+- huida;
+- fatiga;
+- heridas;
+- descanso;
+- recuperación;
+- muerte/respawn general;
+- criaturas iniciales balanceadas;
+- evaluación de peligro;
+- descubrimientos;
+- mapa progresivo;
+- cooperación espontánea;
+- chat local;
+- comandos canónicos.
+
+Que algo permanezca abierto significa que no debe inventarse como regla definitiva fuera del alcance que ya está cerrado.
 
 ## Regla para otros agentes
 
@@ -1123,3 +2200,160 @@ Narrativa recomienda separar dos objetos que cumplen funciones distintas:
 El mapa jugable puede crecer conforme el personaje explora, recibe información legítima o utiliza futuros objetos/capacidades que Jugabilidad apruebe. Que otro jugador mencione un lugar por chat no debería convertir automáticamente esa información en una ubicación exacta del mapa.
 
 **RESUELTO POR JUGABILIDAD:** la sección 23 define estados de lugares/rutas, persistencia y qué eventos actualizan el mapa sin destruir la exploración.
+
+
+## 31. Información visible de enemigos — v1
+
+**Estado:** APROBADO PARA IMPLEMENTACIÓN Y PLAYTEST.
+
+El jugador conoce con precisión sus propios HP, pero **no ve automáticamente el HP numérico exacto ni el HP máximo de una criatura/enemigo**.
+
+### 31.1 Estado cualitativo
+
+Una criatura visible puede comunicar su condición actual mediante bandas narrativas basadas en el porcentaje de HP restante:
+
+- **76–100%:** entero / apenas afectado;
+- **51–75%:** herido;
+- **26–50%:** malherido;
+- **1–25%:** al borde de caer;
+- **0%:** derrotado.
+
+La redacción concreta puede adaptarse a la criatura. La interfaz no necesita mostrar el porcentaje.
+
+### 31.2 Diferencia entre condición y peligro
+
+El estado de salud actual y `evaluar <criatura>` responden preguntas distintas:
+
+- condición = cómo está ahora;
+- evaluar = qué tan peligroso resulta para este personaje.
+
+Una criatura malherida puede seguir siendo Abrumadora. Una criatura entera puede ser Trivial.
+
+### 31.3 Información no revelada por defecto
+
+No mostrar automáticamente:
+- HP actual exacto;
+- HP máximo;
+- daño exacto;
+- precisión;
+- reducción;
+- poderes ocultos;
+- resistencias secretas;
+- probabilidad matemática de victoria.
+
+Contenido futuro puede revelar información adicional únicamente mediante una capacidad/poder/objeto aprobado explícitamente.
+
+### 31.4 Principio
+
+**El jugador ve números exactos de su personaje; de los enemigos lee condición, comportamiento y peligro.**
+
+Esto conserva el valor de `evaluar`, de las señales narrativas y de observar cómo cambia el enemigo durante el combate.
+
+
+## 32. Inventario y equipamiento mínimo — v1
+
+**Estado:** APROBADO COMO CONTRATO MÍNIMO PARA HACER UTILIZABLE EL EQUIPO REAL.
+
+La v1 evita peso de mochila, cuadrículas, durabilidad y docenas de ranuras. Su objetivo es que adquirir una pieza tenga una consecuencia jugable clara y persistente.
+
+### 32.1 Inventario persistente
+
+El inventario registra objetos que el personaje posee legítimamente.
+
+En v1:
+- es persistente por personaje;
+- no tiene límite universal de peso/capacidad;
+- cargar un objeto guardado **no aumenta fatiga** por sí mismo;
+- la carga mecánica de armadura solo aparece cuando está equipada;
+- no existen pérdida aleatoria, deterioro ni caducidad del inventario.
+
+La capacidad física de transportar objetos extraordinarios puede definirse por contenido cuando aparezca una necesidad real; no se crea ahora una simulación de mochila.
+
+### 32.2 Equipamiento activo mínimo
+
+El personaje puede tener simultáneamente:
+
+1. **un arma activa**;
+2. **una configuración de armadura activa**;
+3. **un objeto de bloqueo activo**, si el contenido lo permite (por ejemplo un escudo).
+
+Una configuración de armadura puede estar compuesta visual/físicamente por varias piezas, pero para la v1 se equipa como una sola configuración autoritativa. Su reducción total sigue §30 y nunca supera 35%.
+
+Esto evita definir prematuramente casco/torso/brazos/piernas y evita apilar varios conjuntos completos.
+
+### 32.3 Equipar y desequipar
+
+Equipar:
+- solo puede hacerse fuera de combate;
+- requiere que el personaje posea el objeto;
+- requiere que cualquier validación de Forja necesaria esté completa;
+- reemplaza el objeto activo de la misma categoría;
+- no destruye ni consume el objeto reemplazado.
+
+Desequipar:
+- solo fuera de combate;
+- devuelve el objeto a estado poseído/no activo;
+- no tiene coste de XP/PA/PP.
+
+La operación debe ser atómica para impedir dos objetos activos incompatibles por solicitudes concurrentes.
+
+### 32.4 Objetos de Forja
+
+Un objeto sujeto a validación física puede existir en inventario con estado **no activado**.
+
+Mientras no se complete el ciclo de Forja:
+- se puede consultar;
+- no puede equiparse;
+- no aporta estadísticas;
+- conservar físicamente la pieza no sustituye la autorización persistente del servidor.
+
+Una vez validado, usa exactamente sus estadísticas normales; la validación no añade un bono extra.
+
+### 32.5 Adquisición
+
+La v1 no necesita todavía tiendas, moneda o botín aleatorio.
+
+Un objeto entra al inventario únicamente mediante una fuente autoritativa:
+- recompensa de contenido;
+- entrega/encargo válido;
+- sistema de Forja;
+- acción administrativa legítima;
+- otros sistemas futuros aprobados.
+
+El servidor registra una identidad de objeto/instancia suficiente para impedir duplicación accidental.
+
+### 32.6 Transferencia y descarte
+
+En la v1 inicial:
+- no hay intercambio libre entre jugadores;
+- no hay soltar objetos al suelo;
+- no hay vender;
+- no hay destrucción voluntaria.
+
+Esos sistemas se definirán cuando exista economía/comercio y no bloquean el primer RPG jugable.
+
+### 32.7 Muerte
+
+La armadura y objetos ordinarios permanecen en inventario al morir.
+
+Las reglas especiales de pérdida de arma de §11 siguen siendo una excepción independiente y todavía requieren su flujo concreto antes de aplicarse.
+
+### 32.8 Interfaz y comandos
+
+El panel Inventario/Equipo debe mostrar:
+- objetos poseídos;
+- cuál está activo;
+- protección/carga conocida de armadura;
+- estado de activación de Forja cuando aplique.
+
+Acciones canónicas adicionales:
+- `equipar <objeto>`;
+- `desequipar <objeto>`.
+
+La interfaz puede ofrecer botones equivalentes.
+
+No permitir equipar mediante un botón si el servidor lo considera incompatible/no activado; mostrar el motivo sin revelar secretos.
+
+### 32.9 Principio
+
+**Inventario responde “qué poseo”; equipo responde “qué estoy usando”. La v1 prioriza decisiones claras de carga y protección sobre administrar peso, casillas o mantenimiento.**
