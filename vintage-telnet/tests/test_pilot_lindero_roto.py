@@ -105,6 +105,68 @@ class CombatMathTests(unittest.TestCase):
         after_failures = combat.flee_chance(10, 10, 10, 10, 0, 3, 0)
         self.assertGreater(after_failures, base)
 
+    # --- GAMEPLAY.md 24: fatiga, heridas y recuperacion --------------------
+
+    def test_fatigue_state_thresholds(self):
+        # GAMEPLAY.md 20.7/24.4: 0-69 operativo, 70-89 cansado, 90-100 agotado.
+        self.assertEqual(combat.fatigue_state(0), "operativo")
+        self.assertEqual(combat.fatigue_state(69), "operativo")
+        self.assertEqual(combat.fatigue_state(70), "cansado")
+        self.assertEqual(combat.fatigue_state(89), "cansado")
+        self.assertEqual(combat.fatigue_state(90), "agotado")
+        self.assertEqual(combat.fatigue_state(100), "agotado")
+
+    def test_fatigue_gained_applies_resistencia_modifier_and_wound_multiplier(self):
+        # GAMEPLAY.md 20.7 ModFatiga=1 con Resistencia 10; 24.3 coste base 4
+        # para ataque basico; 24.6 x1.20 con herida moderada.
+        self.assertEqual(combat.fatigue_gained("ataque_basico", 10, "ninguna"), 4)
+        self.assertAlmostEqual(combat.fatigue_gained("ataque_basico", 10, "moderada"), 4.8)
+        # Mas Resistencia reduce la fatiga generada (piso 0.55).
+        self.assertLess(combat.fatigue_gained("ataque_basico", 100, "ninguna"), 4)
+
+    def test_combined_penalties_stack_fatigue_and_wound(self):
+        # Cansado (-5) + herida moderada (-5) = -10 de precision;
+        # 0.90 (cansado) x 1.0 (moderada no reduce dano) = 0.90 de dano.
+        self.assertEqual(combat.combined_accuracy_penalty(75, "moderada"), 10)
+        self.assertAlmostEqual(combat.combined_damage_multiplier(75, "moderada"), 0.90)
+        self.assertEqual(combat.combined_accuracy_penalty(0, "ninguna"), 0)
+        self.assertEqual(combat.combined_damage_multiplier(0, "ninguna"), 1.0)
+
+    def test_wound_from_hit_matches_gameplay_reference_table(self):
+        # GAMEPLAY.md 24.5, HP maximo de referencia 100.
+        self.assertEqual(combat.wound_from_hit(19, 100), "ninguna")
+        self.assertEqual(combat.wound_from_hit(20, 100), "leve")
+        self.assertEqual(combat.wound_from_hit(34, 100), "leve")
+        self.assertEqual(combat.wound_from_hit(35, 100), "moderada")
+        self.assertEqual(combat.wound_from_hit(49, 100), "moderada")
+        self.assertEqual(combat.wound_from_hit(50, 100), "grave")
+
+    def test_worse_wound_never_downgrades(self):
+        # GAMEPLAY.md 24.5: una herida mayor reemplaza a una menor; nunca se
+        # acumulan dos heridas ni una nueva mas leve reemplaza a la actual.
+        self.assertEqual(combat.worse_wound("leve", "grave"), "grave")
+        self.assertEqual(combat.worse_wound("grave", "leve"), "grave")
+        self.assertEqual(combat.worse_wound("ninguna", "moderada"), "moderada")
+
+    def test_rest_result_heals_10_percent_and_reduces_fatigue(self):
+        # GAMEPLAY.md 24.8, sin herida: sin tope de HP, -25 de fatiga con
+        # Resistencia 10.
+        result = combat.rest_result(hp_current=50, hp_max_value=100, fatigue=80,
+                                     resistencia=10, wound="ninguna")
+        self.assertEqual(result, {"hp_current": 60, "fatigue": 55})
+
+    def test_rest_result_respects_wound_hp_cap(self):
+        # GAMEPLAY.md 24.6: herida grave no deja curar el descanso de campo
+        # por encima del 65% del HP maximo.
+        result = combat.rest_result(hp_current=64, hp_max_value=100, fatigue=0,
+                                     resistencia=10, wound="grave")
+        self.assertEqual(result["hp_current"], 65)
+
+    def test_safe_recovery_result_fully_heals_and_upgrades_wound_one_grade(self):
+        # GAMEPLAY.md 24.9.
+        result = combat.safe_recovery_result(100, "grave")
+        self.assertEqual(result, {"hp_current": 100, "fatigue": 0, "wound": "moderada"})
+
 
 # --- Calibracion de criaturas (Issue #45: bandas exigidas por Jugabilidad) --
 
@@ -337,6 +399,79 @@ class PilotIntegrationTests(unittest.TestCase):
         self.register_and_enter_world()
         page = self.post("/command", dict(text="atacar")).get_data(as_text=True)
         self.assertIn("No hay ninguna criatura para atacar aquí", page)
+
+    # --- GAMEPLAY.md 24: fatiga, heridas, descanso y respawn de monstruos --
+
+    @patch("server.combat.random.Random")
+    def test_attacking_costs_fatigue(self, mock_random):
+        mock_random.return_value = FixedRoll(100)  # nunca acierta: solo interesa el coste de intentar
+        self.register_and_enter_world()
+        self.post("/move", dict(direction="west"))
+        self.post("/move", dict(direction="west"))  # parcela: Mordelinde
+        self.assertEqual(self.character()["fatigue"], 0)
+        self.post("/command", dict(text="atacar"))
+        self.assertEqual(self.character()["fatigue"], 4)  # 24.3: ataque básico = 4, Resistencia 10.
+
+    @patch("server.combat.random.Random")
+    def test_a_heavy_hit_inflicts_a_wound(self, mock_random):
+        mock_random.return_value = FixedRoll(0)  # ambos golpes aciertan siempre
+        self.register_and_enter_world()
+        self.post("/move", dict(direction="west"))
+        self.post("/move", dict(direction="west"))  # parcela: Mordelinde
+        player_id = self.client.get("/api/me").json["player"]["id"]
+        # Bajamos el HP maximo del personaje para que el golpe de Mordelinde
+        # (~6-7 de daño bruto) cruce el 20% de 24.5 y dispare una herida leve
+        # sin inventar estadisticas de la criatura.
+        with store.connect(self.path) as db:
+            db.execute("UPDATE players SET hp_max = 20, hp_current = 20 WHERE id = ?", (player_id,))
+        self.post("/command", dict(text="atacar"))
+        self.assertIn(self.character()["wound"], ("leve", "moderada", "grave"))
+
+    def test_resting_outside_combat_heals_and_reduces_fatigue(self):
+        self.register_and_enter_world()
+        player_id = self.client.get("/api/me").json["player"]["id"]
+        with store.connect(self.path) as db:
+            db.execute("UPDATE players SET hp_current = 50, fatigue = 80 WHERE id = ?", (player_id,))
+        page = self.post("/command", dict(text="descansar")).get_data(as_text=True)
+        self.assertIn("Descansas un momento", page)
+        character = self.character()
+        self.assertEqual(character["hp_current"], 60)  # +10% de 100 de HP máximo.
+        self.assertEqual(character["fatigue"], 55)  # 80 - (25 + 0.2*(10-10)).
+
+    def test_resting_is_blocked_while_a_creature_is_present(self):
+        self.register_and_enter_world()
+        self.post("/move", dict(direction="west"))
+        self.post("/move", dict(direction="west"))  # parcela: Mordelinde
+        page = self.post("/command", dict(text="descansar")).get_data(as_text=True)
+        self.assertIn("No puedes descansar", page)
+
+    @patch("server.combat.random.Random")
+    def test_defeated_creature_does_not_respawn_immediately_but_does_after_cooldown(self, mock_random):
+        mock_random.return_value = FixedRoll(0)
+        self.register_and_enter_world()
+        self.post("/move", dict(direction="west"))
+        self.post("/move", dict(direction="west"))  # parcela: Mordelinde (45 HP)
+        for _ in range(10):
+            room = self.client.get("/api/room").json["room"]
+            if room["encounter"] is None:
+                break
+            self.post("/command", dict(text="atacar"))
+        # Salir y volver a entrar de inmediato no debe regenerar la criatura
+        # (GAMEPLAY.md 20.14: ~5 minutos de referencia, no reaparición llena
+        # instantánea).
+        self.post("/move", dict(direction="east"))
+        self.post("/move", dict(direction="west"))
+        room = self.client.get("/api/room").json["room"]
+        self.assertIsNone(room["encounter"])
+        # Una vez cumplido el cooldown, la criatura vuelve a aparecer.
+        player_id = self.client.get("/api/me").json["player"]["id"]
+        with store.connect(self.path) as db:
+            db.execute("UPDATE creature_cooldowns SET available_at = '2000-01-01T00:00:00.000000+00:00' "
+                       "WHERE player_id = ?", (player_id,))
+        self.post("/move", dict(direction="east"))
+        self.post("/move", dict(direction="west"))
+        room = self.client.get("/api/room").json["room"]
+        self.assertIsNotNone(room["encounter"])
 
 
 if __name__ == "__main__":

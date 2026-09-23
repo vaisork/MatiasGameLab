@@ -1,6 +1,6 @@
 """SQLite storage. Every operation owns its connection; writes are transactional."""
 from contextlib import contextmanager
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 import hashlib
 from pathlib import Path
 import secrets
@@ -83,6 +83,17 @@ CHARACTER_TABLES = [
             UNIQUE(player_id, room_id))""",
 ]
 
+# v4: GAMEPLAY.md 20.14 -- respawn de monstruos comunes con temporizador en
+# vez de reaparicion llena instantanea. Por jugador/sala: mientras
+# available_at no haya pasado, esa sala no vuelve a generar un encuentro
+# nuevo para ese jugador.
+CREATURE_COOLDOWN_TABLE = """CREATE TABLE creature_cooldowns (
+        player_id TEXT NOT NULL REFERENCES players(id),
+        room_id TEXT NOT NULL,
+        creature_id TEXT NOT NULL,
+        available_at TEXT NOT NULL,
+        UNIQUE(player_id, room_id))"""
+
 CHARACTER_PLAYER_COLUMNS = [
     "level INTEGER NOT NULL DEFAULT 1",
     "xp INTEGER NOT NULL DEFAULT 0",
@@ -100,9 +111,9 @@ def initialize(path):
         db.execute("PRAGMA journal_mode = WAL")
         db.execute("BEGIN IMMEDIATE")
         version = db.execute("PRAGMA user_version").fetchone()[0]
-        if version not in (0, 1, 2, 3):
+        if version not in (0, 1, 2, 3, 4):
             raise RuntimeError("Versión de base de datos no soportada; no iniciar ni degradar.")
-        if version == 3:
+        if version == 4:
             return
         if version == 0:
             statements = [
@@ -161,7 +172,9 @@ def initialize(path):
                 db.execute(f"ALTER TABLE players ADD COLUMN {column}")
             for statement in CHARACTER_TABLES:
                 db.execute(statement)
-        db.execute("PRAGMA user_version = 3")
+        if version <= 3:
+            db.execute(CREATURE_COOLDOWN_TABLE)
+        db.execute("PRAGMA user_version = 4")
 
 
 def allow_attempt(path, address):
@@ -458,7 +471,7 @@ def record_pve_victory(path, player_id, family):
         return is_first, repeats
 
 
-def update_combat_state(path, player_id, hp_current=None, wound=None, room=None):
+def update_combat_state(path, player_id, hp_current=None, wound=None, room=None, fatigue=None):
     fields, params = [], []
     if hp_current is not None:
         fields.append("hp_current = ?")
@@ -469,8 +482,43 @@ def update_combat_state(path, player_id, hp_current=None, wound=None, room=None)
     if room is not None:
         fields.append("room = ?")
         params.append(room)
+    if fatigue is not None:
+        fields.append("fatigue = ?")
+        params.append(fatigue)
     if not fields:
         return
     params.append(player_id)
     with connect(path) as db:
         db.execute(f"UPDATE players SET {', '.join(fields)} WHERE id = ?", params)
+
+
+# --- GAMEPLAY.md 20.14: respawn de monstruos comunes con temporizador -----
+
+CREATURE_RESPAWN_COOLDOWN_SECONDS = 5 * 60  # referencia v1: "alrededor de 5 minutos".
+
+
+def creature_available(path, player_id, room_id):
+    """False si ese jugador derroto a la criatura de esa sala hace menos de
+    CREATURE_RESPAWN_COOLDOWN_SECONDS: evita reaparicion llena instantanea
+    y farmeo por entrar/salir de la sala."""
+    with connect(path) as db:
+        row = db.execute(
+            "SELECT available_at FROM creature_cooldowns WHERE player_id = ? AND room_id = ?",
+            (player_id, room_id),
+        ).fetchone()
+        if row is None:
+            return True
+        return utcnow() >= row["available_at"]
+
+
+def start_creature_cooldown(path, player_id, room_id, creature_id,
+                             seconds=CREATURE_RESPAWN_COOLDOWN_SECONDS):
+    available_at = (datetime.now(timezone.utc) + timedelta(seconds=seconds)).isoformat(timespec="microseconds")
+    with connect(path) as db:
+        db.execute(
+            """INSERT INTO creature_cooldowns(player_id, room_id, creature_id, available_at)
+               VALUES (?, ?, ?, ?)
+               ON CONFLICT(player_id, room_id) DO UPDATE SET
+                   creature_id = excluded.creature_id, available_at = excluded.available_at""",
+            (player_id, room_id, creature_id, available_at),
+        )

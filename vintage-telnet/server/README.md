@@ -2,11 +2,12 @@
 
 Servidor Python (Flask + Waitress + SQLite) para Vintage Telnet: cuentas con
 aprobación del Dungeon Master, mundo con movimiento N/S/E/O, chat local por
-sala, y ahora combate/XP/descubrimientos/mapa progresivo v1 según
-[`../GAMEPLAY.md`](../GAMEPLAY.md) (secciones 20-23) para la microaventura
-piloto VT-NAR-003 "El lindero roto". Lo que ese documento sigue dejando
-abierto (PvP, poderes/Arcanes, clases, tabla de Cornalomo) no se inventa
-aquí.
+sala, y ahora combate/fatiga/heridas/recuperación/XP/descubrimientos/mapa
+progresivo v1 según [`../GAMEPLAY.md`](../GAMEPLAY.md) (secciones 20-24)
+para la microaventura piloto VT-NAR-003 "El lindero roto". Lo que ese
+documento sigue dejando abierto (PvP, poderes/Arcanes, clases, tabla de
+Cornalomo, rondas semi-automáticas y defensa contextual de 24.1-24.2 —
+diferidas al Issue #43 por decisión del Arquitecto) no se inventa aquí.
 
 Esta base nace de la entrega histórica `codex/vintage-telnet-server` (PR #1),
 rescatada sobre el `main` vigente según la decisión del Arquitecto de
@@ -52,16 +53,18 @@ cd vintage-telnet
 .venv/Scripts/python.exe -m unittest discover -s tests -v
 ```
 
-63 pruebas: 9 heredadas de la entrega original + 19 de especies/movimiento/API
+76 pruebas: 9 heredadas de la entrega original + 19 de especies/movimiento/API
 del primer slice jugable + 3 de enrutamiento de intención (Issue #25) +
-32 de la microaventura piloto (`test_pilot_lindero_roto.py`): fórmulas de
-combate/XP puras contra la tabla de referencia de `GAMEPLAY.md`,
-calibración de Mordelinde/Espinajo de rastrojo en la banda de peligro que
-pidió Jugabilidad, contenido/conectividad del camino nuevo, y flujo
-completo por HTTP (examinar → descubrimiento → XP, evaluar sin revelar
-números, atacar hasta la victoria con antifarmeo/bono de primera familia,
-huir, muerte/reaparición al 60% de HP, persistencia del mapa tras
-reiniciar el proceso).
+45 de la microaventura piloto (`test_pilot_lindero_roto.py`): fórmulas de
+combate/XP/fatiga/heridas/recuperación puras contra la tabla de referencia
+de `GAMEPLAY.md` 20 y 24, calibración de Mordelinde/Espinajo de rastrojo en
+la banda de peligro que pidió Jugabilidad, contenido/conectividad del
+camino nuevo, y flujo completo por HTTP (examinar → descubrimiento → XP,
+evaluar sin revelar números, atacar hasta la victoria con antifarmeo/bono
+de primera familia con coste real de fatiga, huir, heridas por golpe
+recibido, `descansar` fuera de combate, muerte/reaparición al 60% de HP,
+respawn de criatura con cooldown en vez de reaparición llena instantánea,
+persistencia del mapa tras reiniciar el proceso).
 
 ## Qué existe hoy
 
@@ -133,22 +136,36 @@ P0 según `FIRST_PLAYABLE_SLICE.md`, pero se conserva porque ya funciona).
 
 Camino nuevo desde Valdren (`valdren_sendero` se extiende hacia el oeste con
 `valdren_camino_parcela` → `valdren_camino_cerca` → `valdren_camino_lindero`,
-textos citados de `../NARRATIVE.md`), implementando GAMEPLAY.md 20-22 tal
-como los pidió Jugabilidad en el Issue #45:
+textos citados de `../NARRATIVE.md`), implementando GAMEPLAY.md 20-24 tal
+como los pidió Jugabilidad en el Issue #45 y cerró en el Issue #46/commit
+`6c764442206d7aeb31ac9daf6e7a084c27ee80c6`:
 
 - **Personaje real:** ocho atributos (base 10), nivel, XP, HP, fatiga
-  (campo listo, sin tabla de coste por acción todavía — ver Pendiente),
-  herida (campo listo, sin disparador de combate todavía — ver Pendiente),
-  PA sin gastar acumulados por nivel. `GET /api/character`.
+  (0-100, con coste real por acción y penalizaciones cansado/agotado,
+  24.3-24.4), herida (leve/moderada/grave, con disparador por golpe
+  recibido y efectos reales, 24.5-24.6), PA sin gastar acumulados por
+  nivel. `GET /api/character`.
 - **Combate real** (`atacar`/`huir`, botones o comando, misma acción
-  autoritativa): precisión/daño/HP exactos de GAMEPLAY.md 20.4/20.3, muerte
-  y reaparición al 60% HP en `valdren_centro` (20.9), huida con fórmula
+  autoritativa): precisión/daño/HP exactos de GAMEPLAY.md 20.4/20.3, con
+  las penalizaciones de fatiga/herida de 24.4/24.6 aplicadas al propio
+  golpe; cada ataque/huida cuesta fatiga (24.3, modificada por Resistencia
+  vía 20.7); un golpe recibido puede dejar una herida (24.5, nunca más de
+  una a la vez); muerte y reaparición al 60% HP (20.9); huida con fórmula
   20.10. Mordelinde y Espinajo de rastrojo (`server/creatures.py`) tienen
   las estadísticas de calibración inicial que pidió el Issue #45 para caer
   en la banda Favorable/Comparable y Comparable/Peligroso respectivamente
   contra un personaje nuevo — **afinable de balance, no definitivo**
   (GAMEPLAY.md 20.15). Cornalomo no tiene stats: se pide su tabla a
   Jugabilidad cuando exista combate real contra él.
+- **`descansar`** (GAMEPLAY.md 24.8, solo fuera de combate): cura 10% del
+  HP máximo (respetando el tope de 24.6 según herida) y reduce fatiga en
+  25 + 0.2×(Resistencia-10). La versión superior de recuperación segura
+  (24.9, `combat.safe_recovery_result`) ya está implementada y probada,
+  pero no está atada a ninguna sala todavía — ver NECESIDAD NARRATIVA.
+- **Respawn de monstruos comunes** (20.14): tras derrotar una criatura,
+  esa sala no vuelve a generarle una nueva a ese jugador hasta pasado un
+  cooldown (`store.creature_available`/`start_creature_cooldown`,
+  referencia v1 ~5 minutos, configurable por llamada).
 - **`evaluar <criatura>`** (GAMEPLAY.md 22.11): categoría cualitativa
   (Trivial/Favorable/Comparable/Peligroso/Abrumador) sin revelar HP, daño
   ni porcentajes.
@@ -164,24 +181,34 @@ como los pidió Jugabilidad en el Issue #45:
 Contrato completo en `server/combat.py` (fórmulas puras, sin Flask/DB —
 cada función cita la sección de GAMEPLAY.md de la que sale).
 
-**NECESIDAD DE JUGABILIDAD pendiente** (no implementado a propósito, para
-no inventar mecánica que el documento deja abierta):
-- Tabla de coste de fatiga por acción (20.7 la deja explícitamente para
-  "la tabla de acciones/poderes", que todavía no existe).
-- Disparador de heridas en combate v1 (20.8 define los tres grados y el
-  downgrade al reaparecer, pero no cuándo se asigna una herida durante la
-  pelea).
-- Defensa contextual (Esquivar/Bloquear/Resistir): en este piloto el
-  combate es un intercambio simple sin elección activa de defensa; el
-  Issue #43 (P1) es quien pide ese panel contextual.
+**NECESIDAD NARRATIVA pendiente** (Issue #46, todavía abierto): el punto
+concreto de Valdren para reaparición al morir (20.9) y recuperación segura
+(24.9) no lo ha confirmado el Narrador. Mientras tanto se usa el centro del
+pueblo (`app.PENDING_SAFE_ROOM_ID`, ya existente como punto de entrada de
+especie) como marcador técnico operativo — no es una decisión narrativa de
+Desarrollo, y la recuperación segura de 24.9 no está atada a ninguna sala
+todavía para no inventar esa decisión. Cuando el Issue #46 entregue el ID,
+solo hay que actualizar esa constante.
+
+**Diferido a propósito al Issue #43** (decisión del Arquitecto, no
+NECESIDAD DE JUGABILIDAD — GAMEPLAY.md ya cerró estas reglas en 24.1-24.2,
+simplemente no se amplía el alcance de UI de este PR): rondas
+semi-automáticas con ataque básico continuo y defensa contextual
+(Esquivar/Bloquear/Resistir); en este piloto el combate es un intercambio
+simple por comando/botón sin esas dos capas.
+
+**Pendiente técnico, no bloqueante para el Issue #45** (recuperación
+pasiva de fatiga fuera de combate, GAMEPLAY.md 24.7 — ~1 fatiga cada 10
+segundos): no implementado todavía; el criterio de aceptación del piloto no
+depende de fatiga residual entre sesiones, pero queda registrado para una
+entrega siguiente en vez de darlo por cerrado silenciosamente.
 
 ## Qué NO existe todavía (a propósito)
 
 - PvP, protección ante diferencias de poder, poderes/PP, Arcanes.
-- Clases y fórmulas de progresión más allá de lo ya implementado en 20-22.
-- Persistencia/reaparición de monstruos por temporizador (respawn de
-  criaturas comunes: referencia 20.14, no implementado — la criatura
-  reaparece llena la próxima vez que se visita la sala, sin cooldown).
+- Clases y fórmulas de progresión más allá de lo ya implementado en 20-24.
+- Recuperación pasiva de fatiga por tiempo fuera de combate (24.7 — ver
+  Pendiente técnico arriba).
 - Chat global (solo hay chat local por sala).
 - Geografía y descripciones **definitivas** del mundo: sigue siendo
   placeholder en `world.py`. El Arquitecto ya definió (ver PR #8,

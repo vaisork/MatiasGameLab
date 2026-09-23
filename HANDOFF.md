@@ -1,5 +1,40 @@
 # HANDOFF — Entrega técnica
 
+## ENTREGA — Respuesta a revisión arquitectónica de PR #49 (fatiga/heridas/recuperación §24, cooldown de monstruos)
+
+**Desarrollador:** Claude (Desarrollador de Servidor de Vintage Telnet)
+
+**Estado:** LISTO PARA REVISIÓN (segunda vuelta)
+
+**Rama:** `claude/vintage-telnet-server-lindero-roto` (misma rama del PR #49, HEAD base sin cambios: `b8734f5ef0f518af9ad85696518ed69d719dc495`)
+
+### Objetivo
+El Arquitecto de Vintage Telnet y Raspberry Pi revisó PR #49 y pidió cuatro cambios antes de integrar (comentario en el PR, 2026-09-23). Esta entrega responde a los cuatro:
+
+1. **Respawn/recuperación segura no debe fijarse por implementación** (Issue #46 sigue abierto). No inventé el punto narrativo: extraje el literal `"valdren_centro"` a `app.PENDING_SAFE_ROOM_ID`, documentado como marcador técnico operativo pendiente de Issue #46 — sustituir esa única constante cuando el Narrador entregue el ID real. La recuperación segura completa de GAMEPLAY.md 24.9 (`combat.safe_recovery_result`, probada) está implementada pero **no atada a ninguna sala todavía**, para no decidir por Narrativa.
+2. **Sincronizar con GAMEPLAY.md vigente** (commit `6c764442206d7aeb31ac9daf6e7a084c27ee80c6`, sección 24, ya en el HEAD base de PR #49): implementé costes de fatiga por acción (24.3), penalizaciones de fatiga cansado/agotado (24.4), disparador de heridas por golpe recibido (24.5), efectos de herida sobre precisión/daño/tope de descanso (24.6), acción `descansar` (24.8) y la función pura de recuperación segura (24.9, ver punto 1). Actualicé `server/combat.py`, `server/app.py`, `server/README.md` y las pruebas para dejar de declarar estas reglas como "pendiente de Jugabilidad" — ya no lo están.
+3. **Respawn de monstruos con cooldown** (20.14): agregué tabla `creature_cooldowns` (esquema v4) y `store.creature_available`/`start_creature_cooldown`; al derrotar una criatura queda un cooldown de referencia ~5 minutos antes de que esa sala vuelva a generarle una nueva a ese jugador, en vez de reaparición llena instantánea.
+4. **No ampliar P1 de UI en este PR**: no toqué `entry.html` ni agregué botones nuevos. `descansar` solo se agregó como intención de texto (`parse_intent`/`/command`/`/api/intent`), igual que otros comandos existentes; rondas semi-automáticas y defensa contextual (24.1-24.2) siguen explícitamente diferidas al Issue #43, ahora documentado así en `server/README.md` en vez de listarlas como huecos de Jugabilidad.
+
+### Qué se agregó/cambió
+- `server/combat.py`: `FATIGUE_BASE_COST`, `fatigue_state`, `fatigue_modifier`, `fatigue_gained`, `combined_accuracy_penalty`, `combined_damage_multiplier`, `wound_from_hit`, `worse_wound`, `rest_result`, `safe_recovery_result`; `resolve_attack_roll` acepta `accuracy_penalty`/`damage_multiplier` opcionales.
+- `server/store.py`: esquema v4 (tabla `creature_cooldowns`), `update_combat_state` acepta `fatigue`, `creature_available`/`start_creature_cooldown`.
+- `server/app.py`: `PENDING_SAFE_ROOM_ID`; `attempt_attack`/`attempt_flee` aplican coste de fatiga y disparan heridas reales; `attempt_move` respeta el cooldown de criaturas; nueva `attempt_rest` + intención `descansar` en `/command` y `/api/intent`.
+- `server/README.md`: reescrito el bloque de la microaventura piloto para reflejar 20-24 cerrado, con las tres notas explícitas (NECESIDAD NARRATIVA #46, diferido a #43, pendiente técnico no bloqueante de recuperación pasiva 24.7).
+- `tests/test_entry.py`: dos pruebas ajustadas al nuevo `schema_version=4` (la prueba de esquema no soportado ahora usa `5` en vez de `4`, que ya es válido).
+- `tests/test_pilot_lindero_roto.py`: 13 pruebas nuevas (fórmulas puras de fatiga/heridas/descanso/recuperación segura, coste de fatiga real por HTTP, herida por golpe recibido, `descansar` dentro y fuera de combate, cooldown de criatura tras derrota y su expiración).
+
+### Pruebas
+`.venv/bin/python -m unittest discover -s tests -v` → **76/76 OK** (63 previas + 13 nuevas; 2 ajustadas por el cambio de versión de esquema, sin cambiar lo que verifican).
+
+### Pendiente (no bloqueante, documentado explícitamente en `server/README.md` para no darlo por cerrado en silencio)
+- Recuperación pasiva de fatiga fuera de combate (24.7, ~1 fatiga/10s): no implementada. El criterio de aceptación del Issue #45 no depende de ella.
+- Recuperación segura (24.9) sigue sin sala asignada — depende de Issue #46.
+
+**LISTO PARA PUBLICAR: NO** — pendiente de una nueva revisión del Arquitecto sobre estos cuatro puntos antes de tocar `main`.
+
+---
+
 ## ENTREGA — Microaventura piloto jugable "El lindero roto" (Issue #45)
 
 **Desarrollador:** Claude (Desarrollador de Servidor de Vintage Telnet)

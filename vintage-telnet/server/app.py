@@ -14,6 +14,15 @@ from werkzeug.security import check_password_hash, generate_password_hash
 
 from . import combat, creatures, dm_auth, store, world
 
+# NECESIDAD NARRATIVA pendiente (Issue #46): el Narrador todavia no confirmo
+# el punto concreto de Valdren que funciona como reaparicion tras morir
+# (GAMEPLAY.md 20.9) ni como recuperacion segura (24.9) para VT-NAR-003. Se
+# usa el centro del pueblo -- ya existente como punto de entrada de especie,
+# no inventado para esta tarea -- como marcador tecnico operativo mientras
+# tanto. Esto NO es una decision narrativa de Desarrollo: en cuanto Issue
+# #46 entregue el ID, solo hay que cambiar esta constante.
+PENDING_SAFE_ROOM_ID = "valdren_centro"
+
 # Categorias cualitativas de "evaluar" (GAMEPLAY.md 22.11) -- nunca exponen
 # numeros, solo la frase equivalente.
 EVALUATE_TEXT = {
@@ -146,6 +155,7 @@ def create_app(config=None):
     FLEE_ALIASES = {"huir"}
     ATTACK_ALIASES = {"atacar"}
     EVALUATE_ALIASES = {"evaluar", "considerar"}
+    REST_ALIASES = {"descansar"}
 
     def parse_intent(raw):
         """Clasifica texto del terminal sin convertir comandos desconocidos en chat."""
@@ -157,6 +167,8 @@ def create_app(config=None):
             return {"type": "look"}
         if lowered in FLEE_ALIASES:
             return {"type": "flee"}
+        if lowered in REST_ALIASES:
+            return {"type": "rest"}
         for verb in INSPECT_ALIASES:
             if lowered == verb:
                 return {"type": "inspect", "verb": verb, "target": ""}
@@ -203,7 +215,8 @@ def create_app(config=None):
         store.mark_visited(path, player["id"], destination)
         store.mark_route_traversed(path, player["id"], previous_room, destination)
         encounter_creature = world.get_room_encounter(destination)
-        if encounter_creature and not store.get_encounter(path, player["id"], destination):
+        if (encounter_creature and not store.get_encounter(path, player["id"], destination)
+                and store.creature_available(path, player["id"], destination)):
             creature = creatures.get_creature(encounter_creature)
             store.start_encounter(path, player["id"], destination, encounter_creature, creature["hp"])
         if (destination == "valdren_centro"
@@ -261,7 +274,10 @@ def create_app(config=None):
 
     def attempt_attack(player, rng=None):
         """Una ronda de combate real (golpe del jugador y, si la criatura
-        sobrevive, contragolpe). Devuelve un dict con 'outcome'
+        sobrevive, contragolpe). Aplica fatiga/heridas segun GAMEPLAY.md 24
+        (coste de fatiga del ataque, penalizaciones de fatiga/herida sobre
+        el propio golpe, disparador de herida por el golpe recibido).
+        Devuelve un dict con 'outcome'
         ('no_target'|'victory'|'ongoing'|'defeat') y 'messages'."""
         encounter = store.get_encounter(path, player["id"], player["room"])
         if not encounter:
@@ -271,8 +287,15 @@ def create_app(config=None):
         cg_player = combat.competencia_general(player["level"])
         cg_enemy = combat.competencia_general(creature["reference_level"])
 
+        wound = player["wound"]
+        fatigue = min(100, player["fatigue"]
+                      + combat.fatigue_gained("ataque_basico", attrs["resistencia"], wound))
+        accuracy_penalty = combat.combined_accuracy_penalty(player["fatigue"], wound)
+        damage_multiplier = combat.combined_damage_multiplier(player["fatigue"], wound)
+
         player_hits, player_damage = combat.resolve_attack_roll(
-            attrs["destreza"], attrs["percepcion"], attrs["fuerza"], cg_player, cg_enemy, rng=rng)
+            attrs["destreza"], attrs["percepcion"], attrs["fuerza"], cg_player, cg_enemy, rng=rng,
+            accuracy_penalty=accuracy_penalty, damage_multiplier=damage_multiplier)
         messages = []
         if player_hits:
             messages.append(f"Golpeas a {creature['name']} por {round(player_damage)} de daño.")
@@ -282,6 +305,7 @@ def create_app(config=None):
 
         if creature_hp <= 0:
             store.clear_encounter(path, player["id"], player["room"])
+            store.start_creature_cooldown(path, player["id"], player["room"], encounter["creature_id"])
             is_first, repeats = store.record_pve_victory(path, player["id"], creature["family"])
             player_dps = combat.expected_dps(attrs["destreza"], attrs["percepcion"], attrs["fuerza"],
                                               cg_player, cg_enemy)
@@ -291,6 +315,7 @@ def create_app(config=None):
             xp_amount = combat.combat_xp(creature["reference_level"], category, player["level"],
                                           is_first, repeats)
             xp_state = store.award_xp(path, player["id"], xp_amount)
+            store.update_combat_state(path, player["id"], fatigue=round(fatigue))
             messages.append(f"¡{creature['name']} cae derrotado! Ganas {xp_amount} XP.")
             if is_first:
                 messages.append(f"Primera vez que superas a un {creature['name']}: bono de familia incluido.")
@@ -303,8 +328,12 @@ def create_app(config=None):
         enemy_hits, enemy_damage = combat.resolve_attack_roll(
             creature["destreza"], creature["percepcion"], creature["fuerza"],
             cg_enemy, cg_player, base_arma=creature["base_ataque"], rng=rng)
+        new_wound = wound
         if enemy_hits:
             messages.append(f"{creature['name']} te golpea por {round(enemy_damage)} de daño.")
+            new_wound = combat.worse_wound(wound, combat.wound_from_hit(enemy_damage, player["hp_max"]))
+            if new_wound != wound:
+                messages.append(f"Sufres una herida {new_wound}.")
         else:
             messages.append(f"{creature['name']} falla su ataque.")
         player_hp = player["hp_current"] - (enemy_damage if enemy_hits else 0)
@@ -312,25 +341,29 @@ def create_app(config=None):
         if player_hp <= 0:
             store.clear_encounter(path, player["id"], player["room"])
             respawn = combat.respawn_state(player["hp_max"])
-            new_wound = combat.respawn_wound(player["wound"])
+            respawn_wound_value = combat.respawn_wound(new_wound)
             store.update_combat_state(path, player["id"], hp_current=respawn["hp_current"],
-                                       wound=new_wound, room="valdren_centro")
+                                       fatigue=respawn["fatigue"], wound=respawn_wound_value,
+                                       room=PENDING_SAFE_ROOM_ID)
             messages.append(f"{creature['name']} te derrota. Despiertas de vuelta en Valdren.")
             return {"outcome": "defeat", "messages": messages}
 
-        store.update_combat_state(path, player["id"], hp_current=player_hp)
+        store.update_combat_state(path, player["id"], hp_current=player_hp,
+                                   fatigue=round(fatigue), wound=new_wound)
         return {"outcome": "ongoing", "messages": messages}
 
     def attempt_flee(player, rng=None):
-        """GAMEPLAY.md 20.10. Si tiene exito, retrocede por la salida que
-        lleva de vuelta hacia Valdren; si falla, la criatura tiene una
-        oportunidad de golpear."""
+        """GAMEPLAY.md 20.10 y 24.3 (coste de fatiga del intento). Si tiene
+        exito, retrocede por la salida que lleva de vuelta hacia Valdren; si
+        falla, la criatura tiene una oportunidad de golpear."""
         encounter = store.get_encounter(path, player["id"], player["room"])
         if not encounter:
             return {"outcome": "no_target", "messages": ["No hay ninguna criatura de la que huir."]}
         creature = creatures.get_creature(encounter["creature_id"])
         room = world.get_room(player["room"])
         retreat_direction = "east" if "east" in room["exits"] else next(iter(room["exits"]), None)
+        wound = player["wound"]
+        fatigue = min(100, player["fatigue"] + combat.fatigue_gained("huir", player["attr_resistencia"], wound))
         chance = combat.flee_chance(
             player["attr_agilidad"], player["attr_percepcion"],
             creature["flee_agilidad"], creature["flee_percepcion"],
@@ -341,6 +374,7 @@ def create_app(config=None):
         rng = rng or random.Random()
         if rng.uniform(0, 100) < chance:
             store.clear_encounter(path, player["id"], player["room"])
+            store.update_combat_state(path, player["id"], fatigue=round(fatigue))
             messages = [f"Consigues alejarte de {creature['name']}."]
             if retreat_direction:
                 attempt_move(player, retreat_direction)
@@ -354,19 +388,42 @@ def create_app(config=None):
             base_arma=creature["base_ataque"], rng=rng)
         messages = [f"No logras huir de {creature['name']}."]
         if not enemy_hits:
+            store.update_combat_state(path, player["id"], fatigue=round(fatigue))
             return {"outcome": "failed", "messages": messages}
         messages.append(f"{creature['name']} te golpea por {round(enemy_damage)} de daño mientras intentas escapar.")
+        new_wound = combat.worse_wound(wound, combat.wound_from_hit(enemy_damage, player["hp_max"]))
+        if new_wound != wound:
+            messages.append(f"Sufres una herida {new_wound}.")
         player_hp = player["hp_current"] - enemy_damage
         if player_hp <= 0:
             store.clear_encounter(path, player["id"], player["room"])
             respawn = combat.respawn_state(player["hp_max"])
-            new_wound = combat.respawn_wound(player["wound"])
+            respawn_wound_value = combat.respawn_wound(new_wound)
             store.update_combat_state(path, player["id"], hp_current=respawn["hp_current"],
-                                       wound=new_wound, room="valdren_centro")
+                                       fatigue=respawn["fatigue"], wound=respawn_wound_value,
+                                       room=PENDING_SAFE_ROOM_ID)
             messages.append(f"{creature['name']} te derrota. Despiertas de vuelta en Valdren.")
             return {"outcome": "defeat", "messages": messages}
-        store.update_combat_state(path, player["id"], hp_current=player_hp)
+        store.update_combat_state(path, player["id"], hp_current=player_hp,
+                                   fatigue=round(fatigue), wound=new_wound)
         return {"outcome": "failed", "messages": messages}
+
+    def attempt_rest(player):
+        """GAMEPLAY.md 24.8: accion explicita `descansar`, solo fuera de
+        combate. Si la sala esta marcada como recuperacion segura (24.9),
+        usa esa version superior en vez del descanso de campo basico --
+        hoy ninguna sala lo esta todavia (NECESIDAD NARRATIVA pendiente,
+        Issue #46), asi que siempre cae en el descanso de campo v1."""
+        if store.get_encounter(path, player["id"], player["room"]):
+            return {"outcome": "blocked", "messages": ["No puedes descansar con una criatura cerca."]}
+        if player["hp_current"] >= player["hp_max"] and player["fatigue"] <= 0:
+            return {"outcome": "no_op", "messages": ["Ya estás descansado."]}
+        result = combat.rest_result(player["hp_current"], player["hp_max"], player["fatigue"],
+                                     player["attr_resistencia"], player["wound"])
+        store.update_combat_state(path, player["id"], hp_current=result["hp_current"], fatigue=result["fatigue"])
+        return {"outcome": "rested", "messages": [
+            f"Descansas un momento y recuperas fuerzas (HP {result['hp_current']}/{round(player['hp_max'])}, "
+            f"fatiga {result['fatigue']})."]}
 
     def attempt_choose_species(player, species_id):
         """Devuelve (accepted, species_or_None, room_or_None, reason_or_None).
@@ -526,6 +583,12 @@ def create_app(config=None):
             room_data = room_view(player_now["room"], player_now["id"])
             return render_template("entry.html", player=player_now, species_list=world.SPECIES,
                                    room=room_data, error=" ".join(result["messages"])), 200
+        if intent["type"] == "rest":
+            result = attempt_rest(g.player)
+            player_now = store.player_for_token(path, session.get("token"))
+            room_data = room_view(player_now["room"], player_now["id"])
+            return render_template("entry.html", player=player_now, species_list=world.SPECIES,
+                                   room=room_data, error=" ".join(result["messages"])), 200
         if intent["type"] == "talk_npc":
             room_data = room_view(g.player["room"], g.player["id"])
             return render_template(
@@ -648,6 +711,16 @@ def create_app(config=None):
                 messages=result["messages"],
                 player=dict(player_now) if player_now else None,
                 current_room=room_view(player_now["room"], player_now["id"]) if player_now else None,
+            )
+        if kind == "rest":
+            result = attempt_rest(g.player)
+            player_now = store.player_for_token(path, session.get("token"))
+            return jsonify(
+                accepted=result["outcome"] != "blocked",
+                intent="rest",
+                outcome=result["outcome"],
+                messages=result["messages"],
+                player=dict(player_now) if player_now else None,
             )
         if kind == "talk_npc":
             return jsonify(
