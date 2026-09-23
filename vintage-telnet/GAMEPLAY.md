@@ -1442,6 +1442,115 @@ Por tanto, ayudar es posible sin convertir matar criaturas débiles para otro ju
 
 **Compartir sala permite colaborar; compartir sala no entrega progreso. Cooperar requiere actuar.**
 
+
+## 27. Resolución final de daño y contrato de equipo — v1
+
+**Estado:** APROBADO COMO MARCO; los objetos concretos siguen perteneciendo al contenido.
+
+Jugabilidad define cómo entra el equipo en las fórmulas sin inventar todavía el catálogo de armas y armaduras.
+
+### 27.1 Orden de resolución de un ataque físico
+
+Para un ataque físico normal:
+
+1. calcular precisión base de §20.4;
+2. aplicar modificadores de estado (fatiga/herida);
+3. aplicar la defensa elegida si corresponde;
+4. resolver si el ataque conecta;
+5. calcular daño bruto del arma + atributos;
+6. aplicar modificadores de potencia por estado;
+7. aplicar reducción de la defensa elegida si esa defensa reduce daño;
+8. aplicar reducción de armadura;
+9. redondear daño final;
+10. si el ataque conectó, el daño final mínimo es **1 HP**.
+
+La interfaz no ejecuta esta lógica; solo muestra el resultado autorizado por servidor.
+
+### 27.2 Una defensa activa por ronda
+
+En una ronda el jugador puede elegir solo una defensa activa:
+- Esquivar;
+- Bloquear/desviar;
+- Resistir.
+
+No se suman Bloquear + Resistir como dos acciones activas simultáneas.
+
+La **armadura equipada sí es pasiva** y puede reducir daño después de una defensa activa.
+
+### 27.3 Fórmula de daño final
+
+Para una defensa que reduzca daño:
+
+`DañoFinal = máximo(1, redondear(DañoAjustado × (1 - ReducciónDefensa) × (1 - ReducciónArmadura)))`
+
+Si se eligió Esquivar:
+- primero se modifica la probabilidad de impacto;
+- si aun así conecta, no añade reducción de daño por la esquiva;
+- la armadura sigue aplicando.
+
+Las reducciones se multiplican, no se suman, para evitar acumulaciones demasiado fuertes.
+
+### 27.4 Contrato mínimo de arma física
+
+Un arma física puede definir, cuando el Historiador/equipo la cree:
+- `base_damage` / BaseArma;
+- categoría o etiquetas de uso;
+- si permite bloquear/desviar;
+- un modificador pequeño de precisión si Jugabilidad lo aprueba;
+- requisitos de poder/clase/equipo cuando existan.
+
+La v1 **no necesita estadísticas largas por arma**.
+
+Para el piloto sin inventario real:
+- BaseArma = 10;
+- modificador de precisión de equipo = 0;
+- el perfil es técnico y no representa un objeto canónico visible.
+
+### 27.5 Contrato mínimo de armadura
+
+La armadura aporta principalmente **reducción de daño**, no evasión automática.
+
+Cada configuración equipada puede tener:
+- `armor_reduction` entre 0 y un máximo v1 de **35%**;
+- etiquetas/requisitos definidos por contenido;
+- efectos especiales solo si Jugabilidad los valida.
+
+Armadura pesada no vuelve automáticamente más difícil golpear al personaje. Si una pieza modifica Agilidad/fatiga u otra capacidad, debe declararlo explícitamente como propiedad del objeto.
+
+### 27.6 Escudos y objetos de bloqueo
+
+Un escudo u objeto apropiado puede:
+- habilitar Bloquear/desviar cuando de otro modo no tendría sentido;
+- modificar la reducción de bloqueo dentro de límites definidos por el objeto.
+
+No concede bloqueo automático permanente; el jugador sigue decidiendo usar esa defensa cuando corresponda.
+
+### 27.7 Sin crítico aleatorio universal en v1
+
+La v1 **no utiliza una probabilidad universal de golpe crítico aleatorio**.
+
+Un resultado extraordinario puede provenir de:
+- un poder;
+- una apertura descrita;
+- atacar desde una condición favorable;
+- equipo especial;
+- comportamiento específico de criatura;
+- contenido validado.
+
+Esto mantiene la relación:
+**leer → decidir → ejecutar → consecuencia**
+y evita añadir un multiplicador aleatorio global que opaque por qué ocurrió un golpe enorme.
+
+### 27.8 Límite de reducción
+
+La reducción total efectiva de un impacto conectado no debe convertir daño normal en cero.
+
+El mínimo de 1 HP se conserva para impactos conectados, salvo una mecánica explícita de inmunidad/negación total aprobada en contenido futuro.
+
+### 27.9 Principio
+
+**El arma define la base del golpe; los atributos definen cómo se ejecuta; la defensa decide cómo responder; la armadura mitiga lo que finalmente conecta.**
+
 ## Investigación disponible para Jugabilidad — capacidades HTML y comandos
 
 **ESTADO: INVESTIGACIÓN CONSUMIDA — la dirección híbrida HTML/Telnet, inspección, evaluación de peligro y mapa progresivo ya tienen criterios v1; las ampliaciones futuras se decidirán cuando aparezcan nuevas necesidades.**
@@ -1499,7 +1608,6 @@ Jugabilidad definirá con Javier el criterio general necesario. Después el Hist
 Siguen sin fijarse, entre otras:
 
 - valores concretos de armas y armaduras;
-- críticos y otros efectos avanzados de combate;
 - balance de poderes concretos propuestos por el Historiador;
 - reglas exactas de transferencia o recuperación de armas perdidas;
 - frecuencia y rareza de recompensas físicas.
