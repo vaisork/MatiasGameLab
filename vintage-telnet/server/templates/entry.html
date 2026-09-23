@@ -289,6 +289,12 @@
             {% if room.others_present %}
             <div class="entry"><p class="system">También aquí: {{ room.others_present | join(', ') }}</p></div>
             {% endif %}
+            {% if room.encounter %}
+            <div class="entry">
+              <p class="system">{{ room.encounter.name }} está aquí. Condición: {{ room.encounter.condition }}.</p>
+              <p class="system">{{ room.encounter.behavior }}</p>
+            </div>
+            {% endif %}
             {% for m in room.messages %}
             <div class="entry">
               <div class="cmd">&gt; {{ m.name }}</div>
@@ -323,9 +329,21 @@
             </form>
           </div>
           <div class="combat-actions">
-            <button class="btn primary" type="button" disabled title="Combate todavía no implementado">Atacar</button>
-            <button class="btn-art btn-flee" type="button" disabled title="Combate todavía no implementado" aria-label="Huir"><span class="sr-only" aria-hidden="true">Huir</span></button>
+            <form method="post" action="/attack">
+              <input type="hidden" name="csrf" value="{{ session.csrf }}">
+              <button class="btn primary" type="submit" {{ 'disabled' if not room.encounter }} title="{{ 'Atacar' if room.encounter else 'No hay ninguna criatura aquí' }}">Atacar</button>
+            </form>
+            <form method="post" action="/flee">
+              <input type="hidden" name="csrf" value="{{ session.csrf }}">
+              <button class="btn-art btn-flee" type="submit" {{ 'disabled' if not room.encounter }} title="{{ 'Huir' if room.encounter else 'No hay ninguna criatura aquí' }}" aria-label="Huir"><span class="sr-only" aria-hidden="true">Huir</span></button>
+            </form>
           </div>
+          {% if room.encounter %}
+          <form method="post" action="/evaluate" style="margin-top:6px">
+            <input type="hidden" name="csrf" value="{{ session.csrf }}">
+            <button class="btn" type="submit">Evaluar a {{ room.encounter.name }}</button>
+          </form>
+          {% endif %}
         </section>
 
         <div class="divider" role="presentation"></div>
@@ -333,10 +351,10 @@
         <section>
           <form class="commandbar" method="post" action="/command">
             <input type="hidden" name="csrf" value="{{ session.csrf }}">
-            <input name="text" aria-label="Escribe un comando" autocomplete="off" autocapitalize="none" spellcheck="false" enterkeyhint="send" maxlength="500" placeholder="> norte, mirar, examinar..., decir..., hablar...">
+            <input name="text" aria-label="Escribe un comando" autocomplete="off" autocapitalize="none" spellcheck="false" enterkeyhint="send" maxlength="500" placeholder="> norte, mirar, examinar..., atacar, huir, decir..., hablar...">
             <button class="btn primary" type="submit">Enviar</button>
           </form>
-          <p style="color:var(--muted);font-size:.72rem;margin:4px 0 0">Norte/sur/este/oeste mueven; "mirar" refresca; "observar/examinar" inspecciona; para chat usa "decir <texto>"; "hablar <npc>" queda separado del chat.</p>
+          <p style="color:var(--muted);font-size:.72rem;margin:4px 0 0">Norte/sur/este/oeste mueven; "mirar" refresca; "observar/examinar &lt;objetivo&gt;" inspecciona; "evaluar &lt;criatura&gt;" valora un peligro visible; "atacar"/"huir" combaten; "hablar &lt;npc&gt;" es una conversación aparte; para chat con otros jugadores usa "decir &lt;texto&gt;" -- ningún comando desconocido se publica como chat.</p>
           <div class="tool-row" aria-label="Herramientas">
             <button class="btn" type="button" data-open="characterDialog">Personaje</button>
             <button class="btn" type="button" data-open="inventoryDialog">Inventario</button>
@@ -353,7 +371,9 @@
             <div class="fact"><b>Jugador</b><span>#{{ '%04d' | format(player.player_number) }}</span></div>
             <div class="fact"><b>Especie</b><span>{{ player.species }}</span></div>
             <div class="fact"><b>Sala</b><span>{{ room.name }}</span></div>
-            <div class="fact"><b>Combate</b><span>No implementado</span></div>
+            <div class="fact"><b>Nivel</b><span>{{ player.level }} ({{ player.xp }} XP)</span></div>
+            <div class="fact"><b>HP</b><span>{{ player.hp_current | round | int }}/{{ player.hp_max | round | int }}</span></div>
+            {% if player.wound != 'ninguna' %}<div class="fact"><b>Herida</b><span>{{ player.wound }}</span></div>{% endif %}
           </div>
         </section>
       </aside>
@@ -367,7 +387,19 @@
 
 <dialog id="characterDialog">
   <div class="modal-head"><strong>Personaje</strong><button class="close" data-close aria-label="Cerrar">×</button></div>
-  <div class="modal-body"><h3>Panel preparado</h3><p>Las estadísticas de personaje todavía no existen: eso corresponde a Jugabilidad. No se inventan aquí.</p></div>
+  <div class="modal-body">
+    {% if player and player.hp_current is not none %}
+    <h3>{{ player.name }} — Nivel {{ player.level }}</h3>
+    <p>XP: {{ player.xp }}/{{ xp_for_next_level(player.level) }} · PA sin gastar: {{ player.pa_unspent }}</p>
+    <p>HP: {{ player.hp_current | round | int }}/{{ player.hp_max | round | int }} · Fatiga: {{ player.fatigue }} · Herida: {{ player.wound }}</p>
+    <p>Fuerza {{ player.attr_fuerza }} · Resistencia {{ player.attr_resistencia }} · Agilidad {{ player.attr_agilidad }} · Percepción {{ player.attr_percepcion }}<br>
+       Intelecto {{ player.attr_intelecto }} · Voluntad {{ player.attr_voluntad }} · Destreza {{ player.attr_destreza }} · Presencia {{ player.attr_presencia }}</p>
+    <p style="color:var(--muted);font-size:.78rem">La asignación de PA todavía no tiene pantalla propia; los puntos quedan guardados.</p>
+    {% else %}
+    <h3>Panel preparado</h3>
+    <p>Las estadísticas de personaje aparecen aquí después de elegir especie.</p>
+    {% endif %}
+  </div>
 </dialog>
 <dialog id="inventoryDialog">
   <div class="modal-head"><strong>Inventario</strong><button class="close" data-close aria-label="Cerrar">×</button></div>
@@ -379,7 +411,14 @@
 </dialog>
 <dialog id="helpDialog">
   <div class="modal-head"><strong>Ayuda</strong><button class="close" data-close aria-label="Cerrar">×</button></div>
-  <div class="modal-body"><h3>Cómo jugar</h3><p>Usa los botones N/S/E/O para moverte (los que no tienen salida real aparecen apagados). Escribe algo en el cuadro de texto y presiona Enviar para hablar con quien esté en tu misma sala. Personaje, Inventario, Poderes y Ayuda son paneles informativos; combate todavía no existe.</p></div>
+  <div class="modal-body">
+    <h3>Cómo jugar</h3>
+    <p>Usa los botones N/S/E/O para moverte (los que no tienen salida real aparecen apagados), o escribe <b>norte/sur/este/oeste</b>.</p>
+    <p><b>mirar</b> vuelve a describir la situación general. <b>observar &lt;algo&gt;</b> o <b>examinar &lt;algo&gt;</b> inspecciona un detalle concreto de la sala.</p>
+    <p><b>evaluar &lt;criatura&gt;</b> valora el peligro de algo que puedas ver, sin revelar números. <b>atacar</b> y <b>huir</b> combaten cuando hay una criatura presente.</p>
+    <p><b>hablar &lt;npc&gt;</b> inicia una conversación con un personaje, cuando exista uno activo.</p>
+    <p>El texto libre <b>no</b> se publica como chat: para hablar con otros jugadores en tu sala usa <b>decir &lt;texto&gt;</b>. Cualquier otra cosa que escribas y no reconozca el juego no se envía a nadie.</p>
+  </div>
 </dialog>
 
 <script nonce="{{ csp_nonce }}">

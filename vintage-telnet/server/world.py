@@ -109,6 +109,107 @@ ROOMS.update(_build_town("brumak", "Brumak", {"north": "vaisgard"}))
 ROOMS.update(_build_town("narevia", "Narevia", {"east": "vaisgard", "west": "road_west"}))
 ROOMS.update(_build_town("velmora", "Velmora", {"east": "road_west"}))
 
+# --- VT-NAR-003 "El lindero roto" -- microaventura piloto (NARRATIVE.md) ---
+# El "sendero" placeholder de Valdren ya representaba el camino de salida
+# del pueblo; se reemplaza su descripcion generica por el texto real de
+# apertura de la microaventura y se extiende hacia el oeste con las tres
+# ubicaciones nuevas que pide NARRATIVE.md. Ningun otro pueblo/sala cambia.
+ROOMS["valdren_sendero"] = {
+    "name": "Sendero de Valdren",
+    "description": (
+        "Las ultimas casas de Valdren quedan a tu espalda. Delante, el camino de "
+        "tierra pasa entre parcelas y cercas bajas. El aire trae olor a tierra "
+        "removida y vegetacion cortada. Todavia se oyen voces y trabajo desde el "
+        "pueblo."
+    ),
+    "exits": {"east": "valdren_centro", "west": "valdren_camino_parcela"},
+}
+ROOMS["valdren_camino_parcela"] = {
+    "name": "Parcela removida",
+    "description": (
+        "Junto al sendero hay varios tallos mordidos casi a ras del suelo. "
+        "Pequenos monticulos de tierra rompen la linea de una parcela. Algo se "
+        "mueve un instante entre las plantas y vuelve a desaparecer."
+    ),
+    "exits": {"east": "valdren_sendero", "west": "valdren_camino_cerca"},
+}
+ROOMS["valdren_camino_cerca"] = {
+    "name": "Cerca del rastrojo",
+    "description": (
+        "El camino se estrecha junto a una cerca. Entre restos secos de cultivo "
+        "ves un surco corto y varias raices expuestas. Una pua rigida yace en la "
+        "tierra."
+    ),
+    "exits": {"east": "valdren_camino_parcela", "west": "valdren_camino_lindero"},
+}
+ROOMS["valdren_camino_lindero"] = {
+    "name": "El lindero roto",
+    "description": (
+        "Mas adelante, dos postes de una cerca estan quebrados hacia afuera. El "
+        "barro conserva depresiones profundas. En este tramo no ves los pequenos "
+        "movimientos entre cultivos que acompanaban el camino hasta ahora."
+    ),
+    "exits": {"east": "valdren_camino_cerca"},
+}
+
+# examinar <objetivo> por sala -- las claves se comparan normalizadas
+# (minusculas, sin acentos; ver app.py _normalize).
+ROOM_EXAMINE_TARGETS = {}
+ROOM_EXAMINE_TARGETS["valdren_camino_parcela"] = {
+    "tallos": (
+        "Los tallos estan mordidos casi a ras del suelo, en un angulo limpio. No "
+        "es viento ni una herramienta: algo pequeno ha estado comiendo aqui."
+    ),
+    "monticulos": (
+        "Los monticulos de tierra son recientes y estan huecos por dentro: la "
+        "entrada de una madriguera poco profunda."
+    ),
+}
+ROOM_EXAMINE_TARGETS["valdren_camino_cerca"] = {
+    "pua": (
+        "Es dura y termina en una punta gastada. No parece una herramienta ni "
+        "una astilla de la cerca."
+    ),
+}
+ROOM_EXAMINE_TARGETS["valdren_camino_lindero"] = {
+    "cerca": (
+        "La madera no esta podrida. Algo la forzo con suficiente violencia para "
+        "partirla y seguir adelante."
+    ),
+    "huellas": (
+        "Las marcas son mucho mas profundas y anchas que las de las criaturas "
+        "pequenas que has visto cerca de Valdren."
+    ),
+}
+
+# Encuentro posible por sala (id de vintage-telnet/server/creatures.py). El
+# jugador decide si combate, evalua o sigue de largo -- la criatura nunca
+# ataca primero (ver creatures.py, docstring).
+ROOM_ENCOUNTER = {
+    "valdren_camino_parcela": "mordelinde",
+    "valdren_camino_cerca": "espinajo_rastrojo",
+}
+
+# Descubrimientos de la microaventura (GAMEPLAY.md 22.7). nivel_referencia
+# se usa solo para calcular la XP, no se muestra al jugador.
+DISCOVERIES = {
+    "senales_mordelinde": {
+        "category": "descubrimiento_significativo",
+        "reference_level": 1,
+        "message": "Reconoces las senales de un Mordelinde en los alrededores de Valdren.",
+    },
+    "lindero_roto": {
+        "category": "descubrimiento_mayor",
+        "reference_level": 1,
+        "message": "Comprendes que una criatura mucho mayor que las que conoces atraveso este lindero.",
+    },
+    "regreso_valdren_lindero": {
+        "category": "hito_narrativo_menor",
+        "reference_level": 1,
+        "message": "Vuelves a Valdren sabiendo leer las senales del camino que dejaste atras.",
+    },
+}
+
 DIRECTION_LABEL_ES = {"north": "norte", "south": "sur", "east": "este", "west": "oeste"}
 
 # Especie -> sala central del pueblo de inicio. Confirmado en
@@ -164,6 +265,18 @@ def get_room(room_id):
 
 def get_starting_room_for_species(species_id):
     return STARTING_ROOM_BY_SPECIES.get(species_id, "vaisgard")
+
+
+def get_examine_text(room_id, normalized_target):
+    return ROOM_EXAMINE_TARGETS.get(room_id, {}).get(normalized_target)
+
+
+def get_room_encounter(room_id):
+    return ROOM_ENCOUNTER.get(room_id)
+
+
+def get_discovery(key):
+    return DISCOVERIES.get(key)
 
 
 def describe_room(room_id, others_present):

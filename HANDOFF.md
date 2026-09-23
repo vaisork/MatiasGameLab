@@ -1,5 +1,102 @@
 # HANDOFF — Entrega técnica
 
+## ENTREGA — Binding narrativo explícito de Issue #46 en PR #49 (tercera vuelta del Arquitecto)
+
+**Desarrollador:** Claude (Desarrollador de Servidor de Vintage Telnet)
+
+**Estado:** LISTO PARA REVISIÓN (tercera vuelta)
+
+**Rama:** `claude/vintage-telnet-server-lindero-roto` (misma rama del PR #49, HEAD base sin cambios: `b8734f5ef0f518af9ad85696518ed69d719dc495`)
+
+### Objetivo
+El Arquitecto de Vintage Telnet y Raspberry Pi pidió una tercera vuelta en PR #49 (comentario 2026-09-23T10:55:48Z) una vez que Issue #46 quedó resuelto (Narrador: `valdren_centro`, confirmado compatible con canon por el Historiador, conforme de Jugabilidad): sustituir el marcador provisional por el binding canónico explícito, añadir una prueba que lo demuestre, no ampliar el alcance hacia #43/24.7, y reejecutar la suite completa.
+
+### Qué se cambió
+- `server/app.py`: `PENDING_SAFE_ROOM_ID` → `SAFE_ROOM_ID = "valdren_centro"`, con el comentario actualizado citando la resolución de Issue #46 en vez de describirlo como pendiente. `attempt_rest` ahora distingue: dentro de `SAFE_ROOM_ID` aplica `combat.safe_recovery_result` (GAMEPLAY.md 24.9, cura 100% HP, fatiga a 0, mejora la herida un grado) en vez del descanso de campo v1; fuera de esa sala sigue usando `combat.rest_result` sin cambios. Los mensajes de respawn y de recuperación segura usan el texto que el Narrador propuso textualmente en Issue #46 (`RESPAWN_MESSAGE`/`SAFE_RECOVERY_MESSAGE`) en vez de la frase genérica anterior — no es redacción inventada por Desarrollo.
+- `server/README.md`: la nota de "NECESIDAD NARRATIVA pendiente (Issue #46)" se reemplazó por la descripción del binding ya resuelto.
+- `tests/test_pilot_lindero_roto.py`: `test_resting_outside_combat_heals_and_reduces_fatigue` ahora se mueve fuera de `valdren_centro` antes de descansar (para seguir probando el descanso de campo v1, que dejó de aplicar en la sala segura); nueva `test_resting_in_valdren_centro_uses_full_safe_recovery` demuestra que `descansar` en `valdren_centro` resuelve a recuperación segura completa (HP 100%, fatiga 0, herida mejorada un grado). `test_defeat_respawns_in_valdren_with_60_percent_hp` (ya existente) sigue demostrando que la muerte resuelve a `valdren_centro`.
+- No toqué `entry.html`, Issue #43/P1, ni la recuperación pasiva de fatiga (24.7): siguen fuera de esta entrega, tal como pidió el Arquitecto.
+
+### Pruebas
+`.venv/bin/python -m unittest discover -s tests -v` → **77/77 OK** (76 previas + 1 nueva).
+
+### Pendiente (sin cambios respecto a la vuelta anterior, no bloqueante)
+- Recuperación pasiva de fatiga fuera de combate (24.7, ~1 fatiga/10s): sigue sin implementar, documentado en `server/README.md`.
+
+**LISTO PARA PUBLICAR: NO** — pendiente de que el Arquitecto confirme esta tercera vuelta antes de tocar `main`.
+
+---
+
+## ENTREGA — Respuesta a revisión arquitectónica de PR #49 (fatiga/heridas/recuperación §24, cooldown de monstruos)
+
+**Desarrollador:** Claude (Desarrollador de Servidor de Vintage Telnet)
+
+**Estado:** LISTO PARA REVISIÓN (segunda vuelta)
+
+**Rama:** `claude/vintage-telnet-server-lindero-roto` (misma rama del PR #49, HEAD base sin cambios: `b8734f5ef0f518af9ad85696518ed69d719dc495`)
+
+### Objetivo
+El Arquitecto de Vintage Telnet y Raspberry Pi revisó PR #49 y pidió cuatro cambios antes de integrar (comentario en el PR, 2026-09-23). Esta entrega responde a los cuatro:
+
+1. **Respawn/recuperación segura no debe fijarse por implementación** (Issue #46 sigue abierto). No inventé el punto narrativo: extraje el literal `"valdren_centro"` a `app.PENDING_SAFE_ROOM_ID`, documentado como marcador técnico operativo pendiente de Issue #46 — sustituir esa única constante cuando el Narrador entregue el ID real. La recuperación segura completa de GAMEPLAY.md 24.9 (`combat.safe_recovery_result`, probada) está implementada pero **no atada a ninguna sala todavía**, para no decidir por Narrativa.
+2. **Sincronizar con GAMEPLAY.md vigente** (commit `6c764442206d7aeb31ac9daf6e7a084c27ee80c6`, sección 24, ya en el HEAD base de PR #49): implementé costes de fatiga por acción (24.3), penalizaciones de fatiga cansado/agotado (24.4), disparador de heridas por golpe recibido (24.5), efectos de herida sobre precisión/daño/tope de descanso (24.6), acción `descansar` (24.8) y la función pura de recuperación segura (24.9, ver punto 1). Actualicé `server/combat.py`, `server/app.py`, `server/README.md` y las pruebas para dejar de declarar estas reglas como "pendiente de Jugabilidad" — ya no lo están.
+3. **Respawn de monstruos con cooldown** (20.14): agregué tabla `creature_cooldowns` (esquema v4) y `store.creature_available`/`start_creature_cooldown`; al derrotar una criatura queda un cooldown de referencia ~5 minutos antes de que esa sala vuelva a generarle una nueva a ese jugador, en vez de reaparición llena instantánea.
+4. **No ampliar P1 de UI en este PR**: no toqué `entry.html` ni agregué botones nuevos. `descansar` solo se agregó como intención de texto (`parse_intent`/`/command`/`/api/intent`), igual que otros comandos existentes; rondas semi-automáticas y defensa contextual (24.1-24.2) siguen explícitamente diferidas al Issue #43, ahora documentado así en `server/README.md` en vez de listarlas como huecos de Jugabilidad.
+
+### Qué se agregó/cambió
+- `server/combat.py`: `FATIGUE_BASE_COST`, `fatigue_state`, `fatigue_modifier`, `fatigue_gained`, `combined_accuracy_penalty`, `combined_damage_multiplier`, `wound_from_hit`, `worse_wound`, `rest_result`, `safe_recovery_result`; `resolve_attack_roll` acepta `accuracy_penalty`/`damage_multiplier` opcionales.
+- `server/store.py`: esquema v4 (tabla `creature_cooldowns`), `update_combat_state` acepta `fatigue`, `creature_available`/`start_creature_cooldown`.
+- `server/app.py`: `PENDING_SAFE_ROOM_ID`; `attempt_attack`/`attempt_flee` aplican coste de fatiga y disparan heridas reales; `attempt_move` respeta el cooldown de criaturas; nueva `attempt_rest` + intención `descansar` en `/command` y `/api/intent`.
+- `server/README.md`: reescrito el bloque de la microaventura piloto para reflejar 20-24 cerrado, con las tres notas explícitas (NECESIDAD NARRATIVA #46, diferido a #43, pendiente técnico no bloqueante de recuperación pasiva 24.7).
+- `tests/test_entry.py`: dos pruebas ajustadas al nuevo `schema_version=4` (la prueba de esquema no soportado ahora usa `5` en vez de `4`, que ya es válido).
+- `tests/test_pilot_lindero_roto.py`: 13 pruebas nuevas (fórmulas puras de fatiga/heridas/descanso/recuperación segura, coste de fatiga real por HTTP, herida por golpe recibido, `descansar` dentro y fuera de combate, cooldown de criatura tras derrota y su expiración).
+
+### Pruebas
+`.venv/bin/python -m unittest discover -s tests -v` → **76/76 OK** (63 previas + 13 nuevas; 2 ajustadas por el cambio de versión de esquema, sin cambiar lo que verifican).
+
+### Pendiente (no bloqueante, documentado explícitamente en `server/README.md` para no darlo por cerrado en silencio)
+- Recuperación pasiva de fatiga fuera de combate (24.7, ~1 fatiga/10s): no implementada. El criterio de aceptación del Issue #45 no depende de ella.
+- Recuperación segura (24.9) sigue sin sala asignada — depende de Issue #46.
+
+**LISTO PARA PUBLICAR: NO** — pendiente de una nueva revisión del Arquitecto sobre estos cuatro puntos antes de tocar `main`.
+
+---
+
+## ENTREGA — Microaventura piloto jugable "El lindero roto" (Issue #45)
+
+**Desarrollador:** Claude (Desarrollador de Servidor de Vintage Telnet)
+
+**Estado:** LISTO PARA REVISIÓN
+
+**Rama:** `claude/vintage-telnet-server-lindero-roto`
+
+### Objetivo
+Issue #45 pedía a "Arquitecto + Desarrollo de servidor/contenido + Integrador HTML" convertir VT-NAR-003 (`NARRATIVE.md`) en el primer tramo narrativo jugable real, con los bindings mecánicos que Jugabilidad ya aprobó en `GAMEPLAY.md` §20-23. Implementé la parte de servidor completa: nada de esto inventa mecánica nueva, cada fórmula/decisión cita la sección de `GAMEPLAY.md`, `NARRATIVE.md` o `CREATURES.md` de la que sale.
+
+### Qué se agregó
+- **`server/combat.py`** (nuevo, puro, sin Flask/DB): atributos, CG, HP máximo, precisión/daño, categorías de encuentro (Trivial…Abrumador), XP de combate con tope del 25%/antifarmeo/bono de primera familia, XP de descubrimiento, curva de nivel, huida, reaparición. Cada función documenta la sección exacta de GAMEPLAY.md.
+- **`server/creatures.py`** (nuevo): estadísticas de combate de Mordelinde y Espinajo de rastrojo, calibradas para caer en la banda Favorable/Comparable y Comparable/Peligroso que pidió el Issue #45 contra un personaje nivel 1 recién creado — marcadas explícitamente como calibración inicial afinable (GAMEPLAY.md 20.15), no balance definitivo. Cornalomo no tiene stats a propósito (NARRATIVE.md pide pedir su tabla a Jugabilidad antes de combate real; no aparece como encuentro en este piloto).
+- **`server/world.py`**: nuevo camino `valdren_sendero → valdren_camino_parcela → valdren_camino_cerca → valdren_camino_lindero`, con los textos de `NARRATIVE.md` citados literalmente, objetivos de `examinar`, encuentros de Mordelinde/Espinajo y las tres definiciones de descubrimiento. Ningún otro pueblo cambia.
+- **`server/store.py`**: esquema v3 (migración desde v2, fail-closed sobre versiones desconocidas): atributos/nivel/XP/HP/fatiga/herida/PA por jugador, y tablas de descubrimientos, salas visitadas, rutas recorridas, victorias PvE (para antifarmeo/primera familia) y encuentros activos por sala.
+- **`server/app.py`**: nuevos intents `evaluar`/`atacar`/`huir` (botón y comando escrito ejecutan la misma función autoritativa, como el resto del servidor); `examinar`/`observar` ahora devuelve texto real y otorga descubrimientos una sola vez; movimiento actualiza mapa progresivo y coloca encuentros; `GET /api/character`, `GET /api/map`.
+- **`server/templates/entry.html`**: corregido el bug P0 que señaló el Issue #43 (el modal de Ayuda decía que cualquier texto era chat; ahora explica el parser real). Panel Personaje con nivel/XP/HP/fatiga/herida/atributos reales. Botones Atacar/Huir/Evaluar habilitados solo cuando hay una criatura visible en la sala.
+
+### Pruebas (63 en total, 32 nuevas en `tests/test_pilot_lindero_roto.py`)
+Fórmulas puras contra la tabla de referencia de GAMEPLAY.md 22.1, calibración de las dos criaturas, conectividad/contenido del camino nuevo, y flujo HTTP completo: descubrimiento único por examinar, hito de regreso, `evaluar` sin revelar números, victoria con XP/bono de primera familia (verificado con RNG determinista via `unittest.mock.patch`), muerte/reaparición al 60% HP, huida exitosa, mapa persistente tras reiniciar el proceso. Verificado además a mano contra el servidor real corriendo en un navegador (registro → aprobación DM → especie → caminar → Mordelinde aparece → evaluar → examinar (+5 XP) → combate real con golpes/fallos → victoria (+12 XP, bono de familia) → estado confirmado en `/api/character`).
+
+### Hallazgo durante el trabajo: PR #28 quedó redundante
+Al preparar esta entrega encontré que mi PR #28 (fix del log de esquema + `backup.sh`, abierto antes de esta tarea) quedó completamente redundante: `main` ya tiene el mismo fix y una versión de `backup.sh` más madura, corregida dos veces para bugs reales que mi rama no tenía resueltos (`ff587d0`, `f21a01c`), aparentemente por el cierre del Issue #32 por otra vía. Cerré el PR #28 con una nota explicando por qué, para no reintroducir código más viejo.
+
+### Pendiente (documentado como NECESIDAD DE JUGABILIDAD, no soy quien decide)
+- Tabla de coste de fatiga por acción (20.7 la deja abierta a propósito).
+- Disparador de heridas durante combate v1 (20.8 define los grados pero no cuándo se asignan).
+- Defensa contextual (Esquivar/Bloquear/Resistir) y el resto del panel P1 que pide el Issue #43 — ese trabajo de interfaz corresponde a Arquitectura/Integrador, no a mí.
+- Respawn de criaturas con temporizador (20.14): por ahora la criatura reaparece llena en la próxima visita a la sala, sin cooldown.
+
+**LISTO PARA PUBLICAR:** NO — pendiente de revisión del Arquitecto/Jugabilidad antes de tocar `main`.
+
+---
+
 ## ENTREGA — Ajustes tras la instalación real en Raspberry Pi
 
 **Desarrollador:** Claude (Desarrollador de Servidor de Vintage Telnet)
