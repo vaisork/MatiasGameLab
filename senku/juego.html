@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#efbd58">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Senku">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icon/senku-icon-192.png?v=050">
+<link rel="apple-touch-icon" sizes="192x192" href="../assets/icon/senku-icon-192.png?v=050">
+<link rel="manifest" href="../senku.webmanifest?v=060">
+<title>Senku — México · v0.5.9 | arranque resistente</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#151311;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;touch-action:none;user-select:none}
+canvas{position:fixed;inset:0;margin:auto;width:min(100vw,1100px);height:auto;max-height:100vh;aspect-ratio:16/9;background:#ddd;image-rendering:pixelated}
+.hud{position:fixed;inset:0;pointer-events:none}.top{position:absolute;top:max(10px,env(safe-area-inset-top));left:50%;transform:translateX(-50%);display:flex;gap:8px}.pill{background:#251d19d9;color:#fff;padding:8px 11px;border-radius:999px;font-size:13px;font-weight:900;white-space:nowrap}.home{position:absolute;top:max(58px,calc(env(safe-area-inset-top) + 54px));left:14px;pointer-events:auto;text-decoration:none;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:#fffdf2eb;color:#2e251f;font-size:20px;box-shadow:0 6px 18px #0003}.controls{position:absolute;left:0;right:0;bottom:max(18px,env(safe-area-inset-bottom));display:flex;justify-content:space-between;padding:0 18px;pointer-events:none}.cluster{display:flex;gap:10px;pointer-events:auto}.btn{border:0;border-radius:50%;width:68px;height:68px;background:#ffffffe8;color:#2e251f;font-size:26px;font-weight:1000;box-shadow:0 6px 18px #0003}.jump{width:76px;height:76px;background:#efb84ff2}.action{width:76px;height:76px;background:#75a96eef;font-size:22px;display:none}.overlay{position:fixed;inset:0;z-index:20;display:grid;place-items:center;padding:20px;background:linear-gradient(#2d211952,#2d2119ae)}.card{width:min(92vw,580px);background:#fff6e3f7;color:#29211d;border-radius:26px;padding:28px 24px;text-align:center;box-shadow:0 24px 80px #0006}.logo{font-size:clamp(42px,9vw,72px);line-height:.92;font-weight:1000;margin:0}.sub{font-weight:900;color:#98512f;font-size:clamp(18px,4vw,24px);margin:9px 0 18px}.copy{line-height:1.45;color:#5d4a40;margin:0 auto 20px}.primary{border:0;border-radius:999px;background:#d96d38;color:#fff;padding:14px 26px;font-size:18px;font-weight:1000}.hidden{display:none!important}#toast{position:fixed;z-index:18;top:17%;left:50%;transform:translate(-50%,-8px);background:#2c231fd9;color:#fff;padding:11px 16px;border-radius:18px;font-weight:900;opacity:0;transition:.25s;pointer-events:none;max-width:88vw;text-align:center}#toast.show{opacity:1;transform:translate(-50%,0)}@media(pointer:fine){.controls{opacity:.3}.btn{width:58px;height:58px}.jump,.action{width:65px;height:65px}}
+
+/* v0.4 · arte de menús + trajes + sprites de Matías */
+.wardrobe{position:absolute;top:max(58px,calc(env(safe-area-inset-top) + 54px));right:14px;pointer-events:auto;border:0;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:#fffdf2eb;color:#2e251f;font-size:21px;box-shadow:0 6px 18px #0003}
+.version{position:fixed;z-index:30;right:8px;bottom:max(4px,env(safe-area-inset-bottom));font-size:9px;letter-spacing:.05em;color:#ffffff8f;background:#0006;padding:3px 6px;border-radius:999px;pointer-events:none}
+.menuCard{width:min(94vw,900px);background:linear-gradient(180deg,#373033fa,#211c1efa);color:#fff;border:1px solid #ffffff18;border-radius:30px;padding:22px;box-shadow:0 28px 90px #0009}
+.brand{font-family:"Arial Rounded MT Bold","Trebuchet MS",system-ui,sans-serif;font-size:clamp(58px,11vw,118px);font-weight:1000;line-height:.78;letter-spacing:-.07em;color:#fff;text-shadow:0 7px 0 #0002;margin:0}
+.brandPaw{display:inline-grid;place-items:center;width:.62em;height:.62em;margin-left:.05em;border-radius:50%;background:#19161a;font-size:.36em;vertical-align:.16em;letter-spacing:0}
+.menuSubtitle{font-size:clamp(26px,5vw,54px);font-weight:500;line-height:1;margin:12px 0 8px}
+.menuLead{color:#ded2c7;line-height:1.5;max-width:560px;margin:10px auto 18px}
+.introGrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(220px,.72fr);align-items:center;gap:10px;text-align:left}
+.introArt{width:min(100%,330px);justify-self:center;filter:drop-shadow(0 20px 26px #0007);border-radius:22px}
+.menuButtons{display:flex;gap:10px;flex-wrap:wrap}
+.menuPrimary{border:0;border-radius:18px;background:#efbd58;color:#2b2118;padding:13px 20px;font-size:17px;font-weight:1000}
+.menuGhost{border:0;border-radius:18px;background:#fff;color:#2b2118;padding:13px 20px;font-size:17px;font-weight:1000}
+#skins{z-index:35;background:linear-gradient(#181416e6,#181416fa);overflow:auto;align-items:start}
+#skins .menuCard{margin:clamp(12px,4vh,34px) auto}
+.skinHeader{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;text-align:left}
+.skinHeader .brand{font-size:clamp(50px,9vw,94px)}
+.skinHeader .menuSubtitle{font-size:clamp(25px,4vw,43px)}
+.closeSkins{border:0;border-radius:50%;width:48px;height:48px;background:#ffffff14;color:#fff;font-size:24px;font-weight:900}
+.skinLayout{display:grid;grid-template-columns:280px 1fr;gap:16px;margin-top:18px}
+.skinPreview{background:linear-gradient(180deg,#4a4143,#282124);border:1px solid #ffffff18;border-radius:24px;padding:14px;display:grid;place-items:center;min-height:330px;position:relative;overflow:hidden}
+.skinPreview img{width:min(100%,260px);filter:drop-shadow(0 14px 20px #0006);transition:.2s}
+.skinPreview.gold img{filter:sepia(1) saturate(2.2) hue-rotate(355deg) brightness(1.15) drop-shadow(0 14px 20px #0006)}
+.skinPreview.secret::after{content:"";display:none}
+.previewBadge{position:absolute;left:12px;bottom:12px;background:#171315db;border:1px solid #ffffff18;border-radius:999px;padding:7px 11px;font-size:12px;font-weight:900}
+.skinGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.skinCard{border:1px solid #ffffff18;background:#ffffff0b;color:#fff;border-radius:18px;padding:12px;text-align:left;min-height:118px;cursor:pointer}
+.skinCard.selected{outline:3px solid #efbd5878;background:#ffffff12}
+.skinCard.locked{opacity:.48;cursor:default}
+.skinIcon{font-size:28px}.skinName{font-weight:1000;font-size:16px;margin-top:4px}.skinMeta{color:#d3c5bb;font-size:12px;line-height:1.35;margin-top:4px}
+@media(max-width:760px){.introGrid,.skinLayout{grid-template-columns:1fr}.introGrid{text-align:center}.menuButtons{justify-content:center}.introArt{max-height:250px;width:auto}.skinGrid{grid-template-columns:repeat(2,minmax(0,1fr))}.skinPreview{min-height:250px}}
+@media(max-width:430px){.skinGrid{grid-template-columns:1fr 1fr}.skinCard{min-height:104px;padding:10px}.skinName{font-size:14px}.skinMeta{font-size:11px}}
+
+</style>
+</head>
+<body>
+<canvas id="game" width="1100" height="619"></canvas>
+<div class="hud">
+  <div class="top">
+    <div class="pill">🐾 <span id="zone">Casa</span></div>
+    <div class="pill" id="objective">Encuentra una salida</div>
+    <div class="pill">🧃 <span id="count">0</span></div>
+  </div>
+  <a class="home" href="./" aria-label="Volver a la portada de Senku">⌂</a>
+  <button class="wardrobe" id="wardrobe" aria-label="Abrir trajes">👕</button>
+  <div class="controls">
+    <div class="cluster"><button class="btn" id="left">←</button><button class="btn" id="right">→</button></div>
+    <div class="cluster"><button class="btn action" id="action">💬</button><button class="btn jump" id="jump">↑</button></div>
+  </div>
+</div>
+<div id="intro" class="overlay">
+  <div class="menuCard">
+    <div class="introGrid">
+      <div>
+        <h1 class="brand">Senku <span class="brandPaw">🐾</span></h1>
+        <div class="menuSubtitle">Aventura por México</div>
+        <p class="menuLead">Senku quiere salir de casa. Explora, encuentra Churus, descubre secretos y desbloquea trajes.</p>
+        <div class="menuButtons">
+          <button id="start" class="menuPrimary">DESPERTAR</button>
+          <button id="introWardrobe" class="menuGhost">VER TRAJES</button>
+        </div>
+      </div>
+      <img class="introArt" alt="Arte detallado de Senku" src="../assets/senku/menu-base.jpg?v=050">
+    </div>
+  </div>
+</div>
+<div id="modal" class="overlay hidden">
+  <div class="card">
+    <h1 class="logo" id="mt">SENKU</h1>
+    <div class="sub" id="ms"></div>
+    <p class="copy" id="mc"></p>
+    <button id="mb" class="primary">CONTINUAR</button>
+  </div>
+</div>
+
+<div id="skins" class="overlay hidden">
+  <div class="menuCard">
+    <div class="skinHeader">
+      <div>
+        <h1 class="brand">Senku <span class="brandPaw">🐾</span></h1>
+        <div class="menuSubtitle">Trajes desbloqueables</div>
+      </div>
+      <button id="closeSkins" class="closeSkins" aria-label="Cerrar">×</button>
+    </div>
+    <div class="skinLayout">
+      <div class="skinPreview" id="skinPreview">
+        <img src="../assets/senku/menu-base.jpg?v=050" alt="Senku">
+        <div class="previewBadge" id="previewBadge">Traje inicial</div>
+      </div>
+      <div class="skinGrid" id="skinGrid">
+        <button class="skinCard" data-skin="normal"><div class="skinIcon">🐱</div><div class="skinName">Traje inicial</div><div class="skinMeta">Disponible desde el principio.</div></button>
+        <button class="skinCard" data-skin="secret"><div class="skinIcon">🐀</div><div class="skinName">Secreto de la rata</div><div class="skinMeta">Encuentra a la rata escondida en la taquería.</div></button>
+        <button class="skinCard" data-skin="gold"><div class="skinIcon">✨</div><div class="skinName">Gato dorado</div><div class="skinMeta">300 Churus.</div></button>
+        <button class="skinCard locked" data-cost="10"><div class="skinIcon">🧭</div><div class="skinName">Explorador</div><div class="skinMeta">10 Churus · arte futuro</div></button>
+        <button class="skinCard locked" data-cost="25"><div class="skinIcon">🤠</div><div class="skinName">Vaquero</div><div class="skinMeta">25 Churus · arte futuro</div></button>
+        <button class="skinCard locked" data-cost="50"><div class="skinIcon">🥷</div><div class="skinName">Ninja</div><div class="skinMeta">50 Churus · arte futuro</div></button>
+        <button class="skinCard locked" data-cost="120"><div class="skinIcon">👨‍🍳</div><div class="skinName">Chef</div><div class="skinMeta">120 Churus · arte futuro</div></button>
+        <button class="skinCard locked" data-cost="150"><div class="skinIcon">🇲🇽</div><div class="skinName">Mexicano</div><div class="skinMeta">150 Churus · arte futuro</div></button>
+        <button class="skinCard locked" data-cost="180"><div class="skinIcon">🚀</div><div class="skinName">Espacial</div><div class="skinMeta">180 Churus · arte futuro</div></button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="version">v0.5.9 · 23/09/26 · arranque resistente</div>
+
+<div id="toast"></div>
+<script>
+(()=> {
+const c=document.getElementById('game'),x=c.getContext('2d');x.imageSmoothingEnabled=false;
+const W=c.width,H=c.height;
+const zone=document.getElementById('zone'),objective=document.getElementById('objective'),count=document.getElementById('count'),action=document.getElementById('action'),toast=document.getElementById('toast');
+const intro=document.getElementById('intro'),modal=document.getElementById('modal'),mt=document.getElementById('mt'),ms=document.getElementById('ms'),mc=document.getElementById('mc'),mb=document.getElementById('mb');
+const skins=document.getElementById('skins'),wardrobe=document.getElementById('wardrobe'),closeSkins=document.getElementById('closeSkins'),introWardrobe=document.getElementById('introWardrobe'),skinPreview=document.getElementById('skinPreview'),previewBadge=document.getElementById('previewBadge');
+const previewImg=skinPreview.querySelector('img'),basePreviewSrc='../assets/senku/menu-base.jpg?v=050',secretPreviewSrc='../assets/trajes/rata/menu.webp?v=050';
+let scene='house',running=false,last=performance.now(),time=0,modalAction=null,busTimer=null,near=null,wardrobeWasRunning=false;
+let churus=0,secret=false,ratPeekShown=false;
+let storageAvailable=true;
+function storageGet(key){
+ if(!storageAvailable)return null;
+ try{return window.localStorage.getItem(key)}catch(err){storageAvailable=false;console.warn('Senku: almacenamiento local no disponible; la partida continuará sin persistencia.',err);return null}
+}
+function storageSet(key,value){
+ if(!storageAvailable)return false;
+ try{window.localStorage.setItem(key,value);return true}catch(err){storageAvailable=false;console.warn('Senku: no se pudo guardar la partida; se continuará sin persistencia.',err);return false}
+}
+let selectedSkin=storageGet('senku_skin')||'normal';
+let collected=new Set();
+const senkuSheet=new Image();senkuSheet.src='../assets/senku/senku-sprites.png?v=050';
+const secretRatSheet=new Image();secretRatSheet.src='../assets/trajes/rata/walk-sheet.png?v=050';
+const ratSheet=new Image();ratSheet.src='../assets/rata/white-rat-sprite-v2.png?v=051';
+const dogStand=new Image();dogStand.src='../assets/perro/dog-standing.png?v=052';
+const dogCrouch=new Image();dogCrouch.src='../assets/perro/dog-crouched.png?v=052';
+const spriteBuffer=document.createElement('canvas');spriteBuffer.width=72;spriteBuffer.height=72;const sx=spriteBuffer.getContext('2d');sx.imageSmoothingEnabled=false;
+const keys={l:false,r:false,j:false,a:false};let jl=false,al=false;
+const p={x:85,y:430,w:54,h:44,vx:0,vy:0,ground:false,face:1,anim:0,speed:330,jump:575};
+let items=[];
+let cupX=465,cupY=384,cupVy=0,cupKnocked=false;
+const info={house:['Casa','Encuentra una salida'],street:['Calle','Explora la calle'],bus:['Autobús','Viaja de polizón'],taco:['Taquería','Investiga el lugar']};
+
+function hud(){zone.textContent=info[scene][0];objective.textContent=info[scene][1];count.textContent=churus;renderWardrobe()}
+function save(){storageSet('senku_churus',churus);storageSet('senku_skin',selectedSkin);if(secret)storageSet('senku_secret','1');storageSet('senku_collected',JSON.stringify([...collected]))}
+function renderWardrobe(){
+ if(selectedSkin==='secret'&&!secret)selectedSkin='normal';
+ if(selectedSkin==='gold'&&churus<300)selectedSkin='normal';
+ document.querySelectorAll('.skinCard[data-skin]').forEach(b=>{
+   const k=b.dataset.skin,locked=(k==='secret'&&!secret)||(k==='gold'&&churus<300);
+   b.classList.toggle('locked',locked);b.classList.toggle('selected',k===selectedSkin);
+ });
+ skinPreview.classList.toggle('secret',selectedSkin==='secret');
+ skinPreview.classList.toggle('gold',selectedSkin==='gold');
+ previewImg.src=selectedSkin==='secret'?secretPreviewSrc:basePreviewSrc;
+ previewBadge.textContent=selectedSkin==='secret'?'Traje secreto de la rata':selectedSkin==='gold'?'Gato dorado · 300 Churus':'Traje inicial';
+}
+function openWardrobe(){wardrobeWasRunning=running;running=false;renderWardrobe();skins.classList.remove('hidden')}
+function closeWardrobe(){skins.classList.add('hidden');running=wardrobeWasRunning}
+wardrobe.onclick=openWardrobe;introWardrobe.onclick=openWardrobe;closeSkins.onclick=closeWardrobe;
+document.querySelectorAll('.skinCard[data-skin]').forEach(b=>b.onclick=()=>{
+ const k=b.dataset.skin;if(k==='secret'&&!secret){say('Encuentra a la rata escondida en la taquería 🐀',1700);return}
+ if(k==='gold'&&churus<300){say('Necesitas 300 Churus para el gato dorado ✨',1700);return}
+ selectedSkin=k;save();renderWardrobe();say('Traje seleccionado',700)
+});
+function say(m,ms=1500){toast.textContent=m;toast.classList.add('show');clearTimeout(say.t);say.t=setTimeout(()=>toast.classList.remove('show'),ms)}
+function show(a,b,d,button='CONTINUAR',fn=null){running=false;mt.textContent=a;ms.textContent=b;mc.textContent=d;mb.textContent=button;modalAction=fn;modal.classList.remove('hidden')}
+mb.onclick=()=>{modal.classList.add('hidden');const f=modalAction;modalAction=null;if(f)f();running=true};
+
+function setScene(s){
+ scene=s;near=null;action.style.display='none';if(busTimer){clearTimeout(busTimer);busTimer=null}
+ if(s==='house'){p.x=85;p.y=430;items=[];cupX=465;cupY=384;cupVy=0;cupKnocked=false}
+ if(s==='street'){p.x=50;p.y=430;items=[{id:'street-0',x:190,y:430},{id:'street-1',x:330,y:360},{id:'street-2',x:520,y:430},{id:'street-3',x:720,y:374}].map(q=>({...q,t:collected.has(q.id)?1:0}))}
+ if(s==='bus'){p.x=170;p.y=430;items=[{id:'bus-0',x:110,y:430},{id:'bus-1',x:154,y:430},{id:'bus-2',x:198,y:430},{id:'bus-3',x:242,y:430},{id:'bus-4',x:286,y:430},{id:'bus-5',x:330,y:430},{id:'bus-6',x:374,y:430},{id:'bus-7',x:418,y:430},{id:'bus-8',x:462,y:430},{id:'bus-9',x:506,y:430},{id:'bus-10',x:550,y:430},{id:'bus-11',x:594,y:430},{id:'bus-12',x:638,y:430},{id:'bus-13',x:682,y:430},{id:'bus-14',x:726,y:430},{id:'bus-15',x:770,y:430},{id:'bus-16',x:814,y:430},{id:'bus-17',x:858,y:430},{id:'bus-18',x:902,y:430},{id:'bus-19',x:946,y:430}].map(q=>({...q,t:collected.has(q.id)?1:0}))}
+ if(s==='taco'){p.x=60;p.y=430;items=[{id:'taco-0',x:230,y:430},{id:'taco-1',x:580,y:430},{id:'taco-2',x:744,y:355}].map(q=>({...q,t:collected.has(q.id)?1:0}))}
+ p.vx=p.vy=0;hud()
+}
+function hold(id,k){const e=document.getElementById(id),on=q=>{q.preventDefault();keys[k]=true},off=q=>{q.preventDefault();keys[k]=false};e.addEventListener('pointerdown',on);e.addEventListener('pointerup',off);e.addEventListener('pointercancel',off);e.addEventListener('pointerleave',off)}
+hold('left','l');hold('right','r');hold('jump','j');hold('action','a');
+addEventListener('keydown',e=>{if(e.code==='ArrowLeft'||e.code==='KeyA')keys.l=true;if(e.code==='ArrowRight'||e.code==='KeyD')keys.r=true;if(e.code==='ArrowUp'||e.code==='Space'||e.code==='KeyW'){keys.j=true;e.preventDefault()}if(e.code==='KeyE'||e.code==='Enter')keys.a=true});
+addEventListener('keyup',e=>{if(e.code==='ArrowLeft'||e.code==='KeyA')keys.l=false;if(e.code==='ArrowRight'||e.code==='KeyD')keys.r=false;if(e.code==='ArrowUp'||e.code==='Space'||e.code==='KeyW')keys.j=false;if(e.code==='KeyE'||e.code==='Enter')keys.a=false});
+document.getElementById('start').onclick=()=>{intro.classList.add('hidden');setScene('house');running=true;say('Senku v0.5.9 · arranque resistente 🐾',1800)};
+
+function platforms(){
+ if(scene==='house')return[{x:0,y:504,w:W,h:115},{x:100,y:430,w:190,h:74},{x:380,y:400,w:170,h:20},{x:680,y:345,w:135,h:159},{x:878,y:278,w:88,h:20}];
+ if(scene==='street')return[{x:0,y:505,w:W,h:114},{x:280,y:420,w:125,h:85},{x:475,y:455,w:100,h:50},{x:685,y:408,w:105,h:97}];
+ if(scene==='bus')return[{x:0,y:505,w:W,h:114},{x:250,y:440,w:150,h:65},{x:585,y:440,w:150,h:65}];
+ return[{x:0,y:505,w:W,h:114},{x:645,y:422,w:120,h:83}]
+}
+function physics(dt){
+ const dir=(keys.r?1:0)-(keys.l?1:0),target=dir*p.speed;p.vx+=(target-p.vx)*Math.min(1,dt*10);if(dir)p.face=dir;
+ if(keys.j&&!jl&&p.ground){p.vy=-p.jump;p.ground=false}jl=keys.j;p.vy+=1500*dt;p.x+=p.vx*dt;p.x=Math.max(3,Math.min(W-p.w-3,p.x));
+ const old=p.y;p.y+=p.vy*dt;p.ground=false;
+ for(const q of platforms())if(p.x+p.w>q.x&&p.x<q.x+q.w&&old+p.h<=q.y+7&&p.y+p.h>=q.y&&p.vy>=0){p.y=q.y-p.h;p.vy=0;p.ground=true}
+ if(p.y>H+80){p.x=50;p.y=380;p.vy=0}p.anim+=dt
+}
+function collect(){for(const q of items)if(!q.t&&Math.hypot(p.x+27-q.x,p.y+18-q.y)<35){q.t=1;collected.add(q.id);churus++;save();hud();say('+1 Churu 🧃',700)}}
+function ratOut(){return secret||(time%5)<2}
+function interaction(){
+ near=null;action.style.display='none';const px=p.x+27,py=p.y+18;
+ if(scene==='house'&&Math.hypot(px-918,py-250)<95)near='window';
+ if(scene==='street'){if(Math.hypot(px-530,py-430)<80)near='box';else if(Math.hypot(px-820,py-420)<90)near='dog';else if(px>990)near='bus'}
+ if(scene==='taco'){
+   const out=ratOut();
+   if(out&&!ratPeekShown&&!secret){ratPeekShown=true;say('¡Psst, ahí está! 🐀',1100)}
+   if(!out)ratPeekShown=false;
+   if(out&&Math.hypot(px-875,py-440)<100)near='rat';
+ }
+ if(near){action.style.display='block';action.textContent=near==='bus'?'🚌':near==='window'?'⬆️':near==='box'?'🔎':'💬'}
+ if(keys.a&&!al&&near)act();al=keys.a
+}
+function act(){
+ if(near==='window')show('CAPÍTULO 1','México','Senku logra salir de casa. Ahora toca investigar la calle.','SALIR',()=>setScene('street'));
+ if(near==='box'){if(!collected.has('street-box')){collected.add('street-box');churus+=3;save();hud();say('+3 Churus secretos 🧃🧃🧃',1800)}else say('La caja ya está vacía.',1200);p.x=620}
+ if(near==='dog')show('PERRO DE LA BANQUETA','Una pista','“Ese autobús huele a comida, pero el conductor no parece amar a los animales.”','ENTENDIDO');
+ if(near==='bus')show('AUTOBÚS','Viaje gratis','Senku sube sin boleto. ¡Alguien tiró una bolsa de Churus adentro!','SUBIR',()=>{setScene('bus');say('¡Junta los que puedas antes de que te bajen! 🧃',1600);busTimer=setTimeout(()=>{if(scene!=='bus')return;show('¡FUERA, GATO!','2 segundos después…','El conductor descubre a Senku y lo baja en la siguiente parada.','CAER DE PIE',()=>setScene('taco'))},2000)});
+ if(near==='rat'){if(!secret){secret=true;save();hud();show('RATA ESCONDIDA','Traje exclusivo','“Psst… toma este traje. Te ayudará a pasar desapercibido.”','RECIBIR',()=>say('¡Traje secreto desbloqueado! 🧣',1800))}else say('La rata ya te dio su traje.')}
+}
+function update(dt){if(!running)return;physics(dt);collect();interaction();bumpCup();fallCup(dt)}
+function bumpCup(){if(scene!=='house'||cupKnocked)return;if(Math.hypot(p.x+27-cupX,p.y+18-cupY)<48){cupKnocked=true;cupX=566}}
+function fallCup(dt){if(scene!=='house'||!cupKnocked||cupY>=488)return;cupVy+=1500*dt;cupY=Math.min(488,cupY+cupVy*dt);if(cupY>=488)cupVy=0}
+
+function rr(a,b,w,h,r){x.beginPath();x.roundRect(a,b,w,h,r)}
+function drawChuru(q){if(q.t)return;x.save();x.translate(q.x,q.y+Math.sin(time*4+q.x)*4);x.fillStyle='#edc45a';rr(-9,-19,18,33,5);x.fill();x.fillStyle='#9d5938';x.fillRect(-6,-13,12,12);x.restore()}
+function pix(gx,gy,s,col){x.fillStyle=col;x.fillRect(gx*s,gy*s,s,s)}
+function fillPix(grid,x0,y0,w,h,code){
+ for(let yy=0;yy<h;yy++)for(let xx=0;xx<w;xx++){
+  const gx=x0+xx,gy=y0+yy;
+  if(gy>=0&&gy<grid.length&&gx>=0&&gx<grid[0].length)grid[gy][gx]=code
+ }
+}
+function putPix(grid,pts,code){for(const [gx,gy] of pts)if(gy>=0&&gy<grid.length&&gx>=0&&gx<grid[0].length)grid[gy][gx]=code}
+function senku(){
+ const moving=Math.abs(p.vx)>18&&p.ground;
+ const bob=moving?Math.sin(p.anim*18)*2:Math.sin(p.anim*3)*.8;
+ if(selectedSkin==='secret'&&secretRatSheet.complete&&secretRatSheet.naturalWidth){
+   let frame=0;
+   if(!p.ground)frame=p.vy<-180?2:p.vy<120?3:4;
+   else if(moving)frame=Math.floor(p.anim*10)%7;
+   const sw=96,sh=72,dw=132,dh=99,dx=Math.round(p.x+p.w/2-dw/2),dy=Math.round(p.y+p.h-dh+12+bob);
+   x.save();x.imageSmoothingEnabled=false;
+   if(p.face<0){x.translate(dx+dw,0);x.scale(-1,1);x.drawImage(secretRatSheet,frame*sw,0,sw,sh,0,dy,dw,dh)}
+   else x.drawImage(secretRatSheet,frame*sw,0,sw,sh,dx,dy,dw,dh);
+   x.restore();return;
+ }
+ let frame=0,row=0;
+ if(!p.ground){row=1;frame=p.vy<-220?0:p.vy<-40?1:p.vy<220?2:3}
+ else if(moving){frame=Math.floor(p.anim*9)%4}
+ const dw=118,dh=118,dx=Math.round(p.x+p.w/2-dw/2),dy=Math.round(p.y+p.h-dh+13+bob);
+ if(!senkuSheet.complete||!senkuSheet.naturalWidth){x.fillStyle='#d8bb91';x.fillRect(p.x,p.y,p.w,p.h);return}
+ sx.clearRect(0,0,72,72);sx.globalCompositeOperation='source-over';sx.globalAlpha=1;
+ sx.drawImage(senkuSheet,frame*72,row*72,72,72,0,0,72,72);
+ if(selectedSkin==='gold'){sx.globalCompositeOperation='source-atop';sx.globalAlpha=.58;sx.fillStyle='#f3bf3f';sx.fillRect(0,0,72,72);sx.globalCompositeOperation='source-over';sx.globalAlpha=1}
+ x.save();x.imageSmoothingEnabled=false;
+ if(p.face<0){x.translate(dx+dw,0);x.scale(-1,1);x.drawImage(spriteBuffer,0,0,72,72,0,dy,dw,dh)}
+ else x.drawImage(spriteBuffer,0,0,72,72,dx,dy,dw,dh);
+ x.restore();
+}
+function house(){
+ let g=x.createLinearGradient(0,0,0,H);g.addColorStop(0,'#f5deb2');g.addColorStop(.79,'#edcd95');g.addColorStop(.8,'#b8754d');g.addColorStop(1,'#8d573b');x.fillStyle=g;x.fillRect(0,0,W,H);
+ x.fillStyle='#638568';x.fillRect(100,374,190,130);x.fillStyle='#83553c';x.fillRect(380,400,170,20);x.fillRect(400,420,16,84);x.fillRect(515,420,16,84);x.fillStyle='#6f4932';x.fillRect(680,345,135,159);x.fillStyle='#704f3a';x.fillRect(878,278,88,20);
+ x.fillStyle='#6d4934';x.fillRect(900,137,145,155);x.fillStyle='#92d6eb';x.fillRect(910,147,125,135);x.fillStyle='#efc55a';x.beginPath();x.arc(cupX,cupY,16,0,Math.PI*2);x.fill()
+}
+function street(){
+ x.fillStyle='#9ed9ec';x.fillRect(0,0,W,335);
+ x.fillStyle='#fff8e0';x.beginPath();x.arc(970,80,46,0,Math.PI*2);x.fill();
+ x.globalAlpha=.85;x.fillStyle='#fff';
+ [[120,70,55],[260,50,42],[620,95,50]].forEach(([cx,cy,r])=>{x.beginPath();x.ellipse(cx,cy,r,r*.55,0,0,Math.PI*2);x.fill();x.beginPath();x.ellipse(cx+r*.7,cy+6,r*.7,r*.4,0,0,Math.PI*2);x.fill()});
+ x.globalAlpha=1;
+ x.fillStyle='#f0d8a4';x.fillRect(0,335,W,170);
+ const cs=['#da7658','#e7b55d','#6da7a0','#cf7b83','#8ca66e','#d28a50'];
+ [0,178,360,545,730,910].forEach((a,i)=>{
+   x.fillStyle=cs[i];x.fillRect(a,230,160,190);
+   x.fillStyle='#00000022';x.fillRect(a,230,160,8);
+   x.fillStyle='#fdf3d8';x.fillRect(a+18,270,28,28);x.fillRect(a+114,270,28,28);
+   x.fillStyle='#59483c';x.fillRect(a+58,325,45,95);
+ });
+ x.fillStyle='#d5c3aa';x.fillRect(0,420,W,85);
+ x.fillStyle='#6a6a68';x.fillRect(0,505,W,114);
+ x.fillStyle='#f4e6b8';for(let a=40;a<W;a+=90)x.fillRect(a,558,46,8);
+ x.fillStyle='#b36b42';x.fillRect(280,420,125,85);x.fillRect(685,408,105,97);
+ x.fillStyle='#00000022';x.fillRect(280,420,125,10);x.fillRect(685,408,105,10);
+ x.fillStyle='#9f7655';x.fillRect(475,455,100,50);
+ const dogNear=Math.hypot((p.x+27)-820,(p.y+18)-420)<120;
+ const dogImg=dogNear?dogStand:dogCrouch;
+ if(dogImg.complete&&dogImg.naturalWidth){
+   const maxW=150,maxH=105,sc=Math.min(maxW/dogImg.naturalWidth,maxH/dogImg.naturalHeight);
+   const dw=dogImg.naturalWidth*sc,dh=dogImg.naturalHeight*sc;
+   x.save();x.imageSmoothingEnabled=false;x.drawImage(dogImg,850-dw/2,505-dh,dw,dh);x.restore();
+ }
+ x.fillStyle='#d5b139';x.fillRect(974,364,160,118);x.fillStyle='#4c7078';x.fillRect(993,381,96,40)
+}
+function bus(){x.fillStyle='#d6b23c';x.fillRect(0,0,W,H);x.fillStyle='#79b7cb';for(let a=60;a<1080;a+=220)x.fillRect(a,70,170,160);x.fillStyle='#5c493d';x.fillRect(0,505,W,114);for(const a of [90,330,590,840]){x.fillStyle='#884f3d';x.fillRect(a,330,135,175)}}
+function drawRat(){
+ if(!ratOut()||!ratSheet.complete||!ratSheet.naturalWidth)return;
+ const close=near==='rat',seq=close?[0,1,2,1]:[0,0,0,1,2,1,0,0],fps=close?7:4.2;
+ const frame=seq[Math.floor(time*fps)%seq.length],bob=Math.sin(time*2.2)*1.5;
+ x.save();x.imageSmoothingEnabled=false;
+ x.drawImage(ratSheet,frame*160,0,160,136,804,350+bob,126,107);
+ x.restore()
+}
+function taco(){
+ x.fillStyle='#f0d08d';x.fillRect(0,0,W,505);
+ x.fillStyle='#e0b877';x.fillRect(0,300,W,205);
+ x.fillStyle='#d1a463';for(let ty=312;ty<500;ty+=30)for(let tx=0;tx<W;tx+=60)x.fillRect(tx,ty,54,24);
+ x.strokeStyle='#3a2a22';x.lineWidth=2;x.beginPath();x.moveTo(60,108);x.quadraticCurveTo(550,155,1040,108);x.stroke();
+ const lightColors=['#f3d24a','#f08a4b','#e8563c'];for(let i=0;i<15;i++){const t=i/14,lx=60+t*980,ly=108+Math.sin(t*Math.PI)*47;x.fillStyle=lightColors[i%3];x.beginPath();x.arc(lx,ly,6,0,Math.PI*2);x.fill()}
+ x.fillStyle='#231a16';x.fillRect(90,150,150,98);x.fillStyle='#d9b25a';x.font='900 15px system-ui';x.fillText('MENÚ',108,172);x.fillStyle='#e8dcc4';[190,210,228].forEach(ly=>x.fillRect(108,ly,110,6));
+ x.fillStyle='#9c4d36';x.fillRect(0,0,W,92);x.fillStyle='#fff5dc';x.font='900 36px system-ui';x.fillText('TAQUERÍA EL BIGOTE',356,59);
+ const stripeColors=['#c94f3c','#f3efe1'];for(let i=0;i<12;i++){x.fillStyle=stripeColors[i%2];x.fillRect(258+i*32,252,32,26)}
+ for(let i=0;i<12;i++){x.fillStyle=stripeColors[i%2];x.beginPath();x.moveTo(258+i*32,278);x.lineTo(258+i*32+16,292);x.lineTo(258+i*32+32,278);x.fill()}
+ x.fillStyle='#86533d';x.fillRect(258,320,380,185);
+ x.fillStyle='#9c6a4c';x.fillRect(258,320,380,16);
+ x.fillStyle='#4b4b4b';x.fillRect(300,300,150,22);
+ const foodColors=['#d98a3d','#c9542f','#e8c15a'];[320,345,370,395,420].forEach((fx,i)=>{x.fillStyle=foodColors[i%3];x.beginPath();x.ellipse(fx,309,9,5,0,0,Math.PI*2);x.fill()});
+ drawRat();
+ x.fillStyle='#9b6940';x.fillRect(835,432,105,73);
+ x.fillStyle='#c9542f';x.beginPath();x.arc(860,442,8,0,Math.PI*2);x.fill();
+ x.fillStyle='#7fae5c';x.beginPath();x.arc(886,442,8,0,Math.PI*2);x.fill();
+ x.fillStyle='#695149';x.fillRect(0,505,W,114)
+}
+function draw(){time+=1/60;x.clearRect(0,0,W,H);if(scene==='house')house();if(scene==='street')street();if(scene==='bus')bus();if(scene==='taco')taco();items.forEach(drawChuru);senku()}
+function loop(now){const dt=Math.min((now-last)/1000,.033);last=now;update(dt);draw();requestAnimationFrame(loop)}
+hud();requestAnimationFrame(loop)
+})();
+</script>
+</body>
+</html>
