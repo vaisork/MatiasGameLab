@@ -201,6 +201,37 @@ Estados estándar de una solicitud:
 
 `PIXEL_ART_REQUESTS.md` coordina trabajo; no sustituye los archivos de arte ni es una fuente de canon, jugabilidad o historia.
 
+## Bandeja de intercambio de arte — Google Drive
+
+Para evitar que Javier/Matías actúen como transportistas manuales cuando un chat de arte no pueda publicar binarios eficientemente en GitHub, queda habilitada una bandeja compartida de transferencia en Google Drive:
+
+- Carpeta raíz: `MatiasGameLab - Arte`
+- Drive: `https://drive.google.com/drive/folders/1JMa-YCJiNjD8KKW18wqQbahWYOt7v68i`
+- `01_ENTREGAS/Senku/`
+- `01_ENTREGAS/Vintage-Telnet/`
+- `02_APROBADO/Senku/`
+- `02_APROBADO/Vintage-Telnet/`
+- `03_RECHAZADO/Senku/`
+- `03_RECHAZADO/Vintage-Telnet/`
+
+Reglas operativas:
+
+1. **El Artista/Pixel Art puebla `01_ENTREGAS`** en la subcarpeta del juego correspondiente. Javier/Matías no deben subir por él los archivos terminados.
+2. **Dirección de Arte revisa exactamente el archivo entregado.** Si lo aprueba, lo mueve a `02_APROBADO`; si requiere corrección, lo mueve a `03_RECHAZADO` y registra qué debe corregirse.
+3. **El Artista no se autoaprueba** ni coloca directamente candidatos en `02_APROBADO`.
+4. **Google Drive es una bandeja de transferencia/revisión, no la fuente de verdad del juego.** Un archivo en Drive no se considera publicado ni consumible por desarrollo.
+5. **GitHub sigue siendo la fuente de verdad.** Solo los assets que posteriormente sean publicados en la ruta estable del repositorio cuentan como assets disponibles para el juego.
+6. **El Publicador de Assets/operador técnico consume únicamente `02_APROBADO`** y realiza el paso técnico hacia GitHub según el flujo vigente. No publica `01_ENTREGAS` ni `03_RECHAZADO`.
+7. Para Vintage Telnet, las ilustraciones web pueden entregarse como **WebP** optimizado; cuando exista un maestro PNG útil para conservación/edición, puede acompañar la entrega. Para Pixel Art/Senku, PNG continúa siendo válido según el uso.
+8. Cada entrega debe conservar nombres estables e informar como mínimo: juego, tarea/issue, nombre del archivo, dimensiones, formato, transparencia cuando aplique y uso previsto.
+9. Esta bandeja sustituye el transporte manual por Javier cuando el conector de GitHub del agente no pueda manejar el binario de forma fiable. Si un flujo de publicación binaria directa a GitHub queda probado y aprobado posteriormente, podrá preferirse sin cambiar que GitHub es la fuente de verdad.
+
+Flujo provisional:
+
+`Artista/Pixel Art → Drive 01_ENTREGAS → Director de Arte → Drive 02_APROBADO o 03_RECHAZADO → Publicador de Assets → GitHub → Integrador`
+
+**Regla de oro:** Javier/Matías dirigen y aprueban creativamente cuando corresponda; no deben convertirse en el mecanismo de transporte de PNG/WebP entre agentes.
+
 ## Contrato de entrega de assets
 
 Cada entrega de arte debe comunicar:
