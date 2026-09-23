@@ -63,11 +63,11 @@ El panel consume `/api/map`; solo renderiza nodos/rutas devueltos por servidor. 
 - escritorio: máximo terminal + lateral contextual/estado;
 - no usar ancho extra para agregar widgets no autorizados.
 
-## Dependencias todavía abiertas
+## Dependencias
 
-- #76: `context_id → texto visible aprobado`; no reemplazar textos canónicos antes de recibirlo.
-- #77: matriz de acciones y estructura final de Ayuda; no inventar botones.
-- #73: `available_actions` y defensas contextuales; consumir cuando esté disponible.
+- #76: **consumida desde main** mediante `UI_CANON_COPY.md`; microcopy público de Ayuda ya usa esa fuente.
+- #77: **consumida** desde `gameplay/issue-77-ui-actions-contract`; Ayuda queda en 5 bloques y no se muestran controles muertos.
+- #73: pendiente de `available_actions` y defensas contextuales; consumir cuando esté disponible. Hasta entonces no renderizar Esquivar/Bloquear/Resistir.
 - #57: inventario/equipamiento; no mostrar slot activo antes de backend real.
 
 ## Criterio de pruebas para la implementación
