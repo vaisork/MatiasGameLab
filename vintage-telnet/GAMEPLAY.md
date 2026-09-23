@@ -925,9 +925,115 @@ Con la v1:
 La estrategia óptima no debe ser permanecer inmóvil esperando el mismo respawn.
 
 
+
+## 23. Mapa progresivo y conocimiento cartográfico — v1
+
+**Estado:** APROBADO PARA IMPLEMENTACIÓN.
+
+El mapa del jugador representa **lo que ese personaje conoce legítimamente**, no el mapa completo de producción del mundo.
+
+### 23.1 Estados de un lugar
+
+Cada localización relevante puede estar para un personaje en uno de tres estados:
+
+1. **desconocido**
+   - no aparece en el mapa del jugador;
+   - no debe dejar huecos, iconos apagados ni pistas visuales que revelen su existencia.
+
+2. **conocido**
+   - el personaje recibió información legítima de que el lugar existe;
+   - puede mostrarse su nombre o una referencia aproximada cuando el contenido lo permita;
+   - conocer un lugar **no significa conocer automáticamente cómo llegar**.
+
+3. **visitado**
+   - el personaje estuvo físicamente allí;
+   - el lugar puede mostrarse con posición/ruta conforme al conocimiento adquirido.
+
+Entrar legítimamente en una localización la marca como **visitada**.
+
+### 23.2 Estados de una ruta
+
+Las conexiones/rutas se registran por separado:
+
+- **desconocida:** no se muestra;
+- **conocida:** el personaje sabe que existe una conexión o dirección general;
+- **recorrida:** el personaje atravesó esa ruta y el mapa puede representarla con precisión autorizada.
+
+Atravesar una salida normal marca esa conexión como recorrida.
+
+### 23.3 Rutas y lugares secretos
+
+Una salida oculta, puerta secreta, palabra especial, túnel o ruta condicionada:
+- no aparece como botón deshabilitado;
+- no aparece como línea vacía en el mapa;
+- no se registra hasta que el personaje la descubre legítimamente.
+
+Una vez descubierta, puede pasar a conocida o recorrida según lo que realmente haya ocurrido.
+
+### 23.4 Información recibida de NPCs, objetos o eventos
+
+El Narrador/Historiador pueden marcar contenido que otorgue conocimiento cartográfico.
+
+Ejemplos mecánicos posibles:
+- un NPC menciona que existe un lugar → puede pasar de desconocido a conocido;
+- un mapa físico legítimo revela una ruta → la ruta puede pasar a conocida;
+- el personaje atraviesa la ruta → pasa a recorrida.
+
+El contenido define **qué información se entrega**; Jugabilidad define estos estados.
+
+### 23.5 Chat entre jugadores
+
+Que otro jugador escriba por chat el nombre o ubicación de un lugar **no actualiza automáticamente el mapa**.
+
+El jugador humano puede recordar la conversación y actuar con ella, pero el estado cartográfico persistente solo cambia mediante eventos autorizados por el servidor.
+
+Esto preserva la diferencia entre información social y descubrimiento formal.
+
+### 23.6 Reaparición y desplazamientos especiales
+
+Si el sistema coloca legítimamente al personaje en una localización mediante reaparición u otro traslado autorizado, esa localización pasa a **visitada**, porque el personaje realmente está allí.
+
+Esto no revela automáticamente rutas que no recorrió.
+
+### 23.7 Mapa no es viaje rápido
+
+Tocar una localización del mapa sirve para consultar información conocida.
+
+La v1 **no convierte el mapa en teletransporte o viaje rápido**.
+
+Cualquier sistema futuro de viaje rápido debe aprobarse aparte.
+
+### 23.8 XP y mapa
+
+Descubrir una habitación cualquiera no entrega XP automáticamente.
+
+Solo los lugares/eventos marcados como **descubrimiento significativo o mayor** según la sección 22 conceden XP una vez por personaje.
+
+### 23.9 Persistencia
+
+Los estados de lugares y rutas son persistentes por personaje.
+
+Cerrar sesión, cambiar de dispositivo o reiniciar el servidor no borra el mapa descubierto.
+
+### 23.10 Interfaz
+
+La interfaz puede representar visualmente:
+- lugares conocidos;
+- lugares visitados;
+- rutas conocidas;
+- rutas recorridas.
+
+Debe evitar una presentación que permita deducir secretos por ausencia, espacios reservados, numeración, conexiones fantasma o controles deshabilitados.
+
+La ilustración contextual de una ciudad o región es independiente del mapa y no cambia por sí sola el estado cartográfico.
+
+### 23.11 Principio
+
+**El mapa recuerda lo que el personaje ha aprendido del mundo; no le enseña el mundo por adelantado.**
+
 ## Investigación disponible para Jugabilidad — capacidades HTML y comandos
 
-**ESTADO: INVESTIGACIÓN CONSUMIDA PARCIALMENTE — la dirección híbrida HTML/Telnet ya está confirmada; quedan decisiones específicas por cerrar.**
+**ESTADO: INVESTIGACIÓN CONSUMIDA — la dirección híbrida HTML/Telnet, inspección, evaluación de peligro y mapa progresivo ya tienen criterios v1; las ampliaciones futuras se decidirán cuando aparezcan nuevas necesidades.**
 
 El Investigador Técnico completó `vintage-telnet/RESEARCH_SPANISH_COMMANDS_WEB_UI.md`. El Diseñador de Jugabilidad debe leerla antes de cerrar las reglas de exploración, interacción, combate, inventario, mapa y controles.
 
@@ -1016,4 +1122,4 @@ Narrativa recomienda separar dos objetos que cumplen funciones distintas:
 
 El mapa jugable puede crecer conforme el personaje explora, recibe información legítima o utiliza futuros objetos/capacidades que Jugabilidad apruebe. Que otro jugador mencione un lugar por chat no debería convertir automáticamente esa información en una ubicación exacta del mapa.
 
-**NECESIDAD DE JUGABILIDAD:** definir más adelante qué estados de conocimiento cartográfico existen, qué acciones actualizan el mapa y qué información puede mostrarse sin destruir la exploración. Esta decisión no bloquea la implementación del bucle jugable inicial.
+**RESUELTO POR JUGABILIDAD:** la sección 23 define estados de lugares/rutas, persistencia y qué eventos actualizan el mapa sin destruir la exploración.
