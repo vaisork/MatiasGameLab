@@ -333,6 +333,63 @@ def create_app(config=None):
             player=dict(updated_player) if updated_player else None,
         )
 
+    @app.post("/api/intent")
+    def api_intent():
+        """Contrato estructurado para intención de terminal."""
+        error = api_player_state(g.player)
+        if error:
+            return error
+        if g.player["species"] is None:
+            return jsonify(error="species_required"), 409
+        payload = request.get_json(silent=True) or {}
+        raw = str(payload.get("text", ""))
+        if len(raw) > 500:
+            return jsonify(accepted=False, intent="invalid", reason="Texto demasiado largo."), 400
+        intent = parse_intent(raw)
+        kind = intent["type"]
+
+        if kind == "move":
+            accepted, previous_room, new_room, reason = attempt_move(g.player, intent["direction"])
+            current_room_id = new_room if accepted else previous_room
+            return jsonify(
+                accepted=accepted,
+                intent="move",
+                previous_room=previous_room,
+                current_room=room_view(current_room_id, g.player["id"]),
+                reason=reason,
+            ), (200 if accepted else 400)
+        if kind == "look":
+            return jsonify(
+                accepted=True,
+                intent="look",
+                current_room=room_view(g.player["room"], g.player["id"]),
+            )
+        if kind == "inspect":
+            return jsonify(
+                accepted=True,
+                intent="inspect",
+                verb=intent["verb"],
+                target=intent["target"],
+                detail=None,
+                message="No hay detalle adicional autorizado todavía.",
+                current_room=room_view(g.player["room"], g.player["id"]),
+            )
+        if kind == "say":
+            store.add_message(path, g.player["room"], g.player["id"], intent["body"])
+            return jsonify(accepted=True, intent="say")
+        if kind == "talk_npc":
+            return jsonify(
+                accepted=False,
+                intent="talk_npc",
+                npc=intent["target"],
+                reason="No hay NPC activo para conversación todavía.",
+            ), 409
+        return jsonify(
+            accepted=False,
+            intent=kind,
+            reason="Comando no reconocido. Para chat usa: decir <texto>.",
+        ), 400
+
     @app.post("/api/move")
     def api_move():
         """Contrato estructurado (FIRST_PLAYABLE_SLICE.md): responde con
