@@ -74,6 +74,14 @@ Define la identidad de los Arcanes como compañeros especiales basados en formas
 
 No contiene estadísticas ni mecánicas de vínculo; esas decisiones corresponden a Jugabilidad y Narrativa dentro del canon.
 
+### 14. Catálogo inicial de armaduras — `ARMOR_CATALOG.md`
+
+Define la identidad, procedencia cultural, obtención narrativa y uso de Forja física del primer catálogo de armaduras de Vintage Telnet.
+
+Las identidades y contexto son expansión canónica del Historiador. Los porcentajes de reducción incluidos son propuestas dentro del marco de `GAMEPLAY.md` §30 y quedan pendientes de validación final de Jugabilidad.
+
+No crea ranuras, fórmulas, bonos de atributos, durabilidad ni resistencias nuevas.
+
 ## Relación con el Narrador
 
 El Historiador construye la **historia estructural y la arquitectura del mundo**: hechos pasados, lugares, culturas, causas, consecuencias, ruinas, conflictos, relaciones y secretos. El Narrador utiliza esa base para crear relatos, escenas, encuentros y experiencias concretas de los jugadores. El Historiador no debe asumir por defecto la función del Narrador.
@@ -102,4 +110,5 @@ El Historiador define qué necesita el mundo, por qué lo necesita y qué funci�
 **Revisión canónica de atributos:** `vintage-telnet/ATTRIBUTES_CANON_REVIEW.md`  
 **Guía visual del mundo:** `vintage-telnet/ART_WORLD_GUIDE.md`  
 **Arcanes:** `vintage-telnet/ARCANES.md`  
+**Armaduras:** `vintage-telnet/ARMOR_CATALOG.md`  
 **Fuente mecánica:** `vintage-telnet/GAMEPLAY.md`
