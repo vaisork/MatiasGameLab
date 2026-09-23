@@ -462,5 +462,54 @@ un reinicio *físico* completo de la Raspberry con Funnel activo, para
 confirmar si el propio Funnel necesita reactivarse manualmente tras un
 reboot o si sobrevive solo.
 
+## Issue #45 — "El lindero roto" desplegado y jugado en la Raspberry real — 2026-09-23
+
+- SHA `7de889ac7c3940d83e0f0b844532054f00b06bae` (PR #49, mergeada a `main`
+  con autorización "sube" de Javier) desplegado vía
+  `ops/update_v4_authorized.py`. **84/84 pruebas OK** en aislado antes de
+  tocar producción (incluye 25 nuevas de `test_pilot_lindero_roto.py`).
+- **Migración de esquema 2→5 confirmada segura**: aditiva únicamente
+  (`ALTER TABLE ADD COLUMN` + `CREATE TABLE` para combate/mapa/cooldowns/
+  señales examinadas), sin `DROP`/`DELETE`. Verificado antes y después de
+  migrar: los 4 jugadores existentes (`vtprueba_systemd`, `visor`,
+  `vtprueba_funnel`, `jdiaz`) conservan exactamente el mismo `id`; el
+  script aborta solo si algún id desaparece (no pasó).
+- `healthz` → `{"schema_version":5,"status":"ok"}` local y externo (vía
+  Funnel).
+- **Recorrido jugable real completo**, navegador real vía
+  `https://raspberrypi.tail3d212e.ts.net/` (cuenta `vtprueba_lindero`,
+  jugador #0006, no cuenta de prueba previa):
+  1. Registro → pendiente → aprobación real por `/dm` → especie Humano →
+     aparece en Valdren con **Nivel 1 (0 XP), HP 100/100** (HUD de
+     personaje nuevo, no existía en el esquema anterior).
+  2. Sendero de Valdren → Parcela removida: encuentro con **Mordelinde**.
+     `Evaluar` → "Mordelinde parece favorable." (sin números, como pide
+     Psicopedagogía). Combate por botón: mensajes de acierto/fallo
+     explícitos, condición cualitativa del enemigo (entero → herido →
+     malherido → derrotado), **nunca HP numérico del enemigo visible**.
+     Victoria → "Ganas 12 XP. Primera vez que superas a un Mordelinde:
+     bono de familia incluido."
+  3. Cerca del rastrojo: encuentro con **Espinajo de rastrojo**, más
+     resistente (HP propio bajó de 100 a 61 durante el combate). Victoria
+     → "Ganas 20 XP. Primera vez..." → Nivel 1 (32 XP).
+  4. El lindero roto: `examinar cerca` y `examinar huellas` (probado por
+     el cuadro de comando de texto, no solo botones — confirma paridad
+     comando/botón). Solo al examinar **ambas** señales se dispara el
+     descubrimiento: "Comprendes que una criatura mucho mayor... atravesó
+     este lindero. (+10 XP)" → Nivel 1 (42 XP). Confirma que una sola
+     señal no alcanza (punto explícito de la revisión de Arquitectura).
+  5. **Persistencia confirmada**: navegación completa nueva (no solo
+     refresh) a la URL raíz → sigue en "El lindero roto", mismo jugador.
+- No se probó combate hasta derrota/respawn en esta pasada (ambos
+  encuentros se ganaron); la suite automatizada sí cubre
+  `test_defeat_respawns_in_valdren_with_60_percent_hp`.
+- Timer de backup (#32) y servicio principal siguen sanos después del
+  despliegue; no se tocó su configuración en esta entrega.
+- **Cuenta de prueba `vtprueba_lindero` (#0006) queda en la base**, igual
+  que las anteriores — no se eliminó.
+
+**Estado para Issue #45: recorrido jugable de "El lindero roto" confirmado
+end-to-end en la Raspberry real.**
+
 No adjuntar contraseñas, claves, cookies, hashes ni bases. No afirmar resultados
 de pruebas que no se ejecutaron. Acceso desde fuera de casa: fuera de esta entrega.
