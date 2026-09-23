@@ -464,3 +464,21 @@ reboot o si sobrevive solo.
 
 No adjuntar contraseñas, claves, cookies, hashes ni bases. No afirmar resultados
 de pruebas que no se ejecutaron. Acceso desde fuera de casa: fuera de esta entrega.
+
+## Issue #21 — BLOCKER NPC contra Ollama real — sesión en la nube sin hardware — 2026-09-23
+
+Esta ejecución del operador Raspberry corrió en un contenedor en la nube,
+**sin acceso SSH/sudo a la Raspberry Pi física de Javier**. Los pasos que
+pide la Issue #21 (`ollama list` real, checkout de PR #20 en la Raspberry,
+correr `test_npc_personality.py` contra el binario real, generar un NPC
+sintético con `npc_personality_cli`, confirmar bloqueo/`personality_locked`,
+segunda ejecución sin regeneración, apagar Ollama y confirmar que el
+servidor no se ve afectado) requieren todos el equipo físico real.
+
+No se simuló ni se inventó ningún resultado de Ollama/Raspberry. La Issue
+#21 queda **PENDIENTE — requiere una sesión local con acceso real a la
+Raspberry Pi** para ejecutarse. Se dejó el mismo aviso como comentario en
+la Issue #21 para que quede visible en la cola de trabajo.
+
+No adjuntar contraseñas, claves, cookies, hashes ni bases. No afirmar resultados
+de pruebas que no se ejecutaron.
