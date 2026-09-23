@@ -462,5 +462,68 @@ un reinicio *físico* completo de la Raspberry con Funnel activo, para
 confirmar si el propio Funnel necesita reactivarse manualmente tras un
 reboot o si sobrevive solo.
 
+## Issue #71 — VT-P0 pública: desplegar HEAD público y validar portal real — 2026-09-23
+
+**Autorización:** Javier autorizó expresamente la P0 pública (issue + confirmación
+directa en el chat).
+
+- SHA desplegado: `f594565e5d6a8a3e18526248799f83972785c120` (HEAD de `main` al
+  momento del despliegue; incluye como ancestro el `44e89d9c` pedido por el
+  issue — `main` avanzó más, pero sin ningún cambio adicional de
+  `vintage-telnet/server`, `tests` ni `requirements.txt` entre ambos commits,
+  confirmado con `git diff --stat`).
+- Desplegado vía `ops/update_v5_authorized.py`, corrido por Javier con sudo
+  **por SSH desde su celular** (Termux + Tailscale SSH). **86/86 pruebas OK**
+  antes de tocar producción. Backup previo (`pre-p0-...sqlite3`). Jugadores
+  existentes verificados idénticos antes/después (mismo conjunto de `id`).
+- `healthz` → `{"schema_version":5,"status":"ok"}` tanto local
+  (`127.0.0.1:8080`) como externo (`https://raspberrypi.tail3d212e.ts.net/healthz`).
+- **Verificación de criterios P0:**
+  - sin `[PLACEHOLDER]` en `server/world.py`; las únicas menciones de
+    "pendiente" en la plantilla son copy legítimo sobre aprobación de cuenta,
+    no notas editoriales de contenido faltante;
+  - **Inventario y Poderes ya no aparecen como opciones disponibles** en la
+    interfaz jugable (confirmado visualmente: antes del P0 esos botones
+    existían, ahora no);
+  - arte contextual con **fallback no bloqueante** confirmado en el código
+    (`server/templates/entry.html`): `<img data-location-art>` con
+    `addEventListener("error", ...)` que oculta la imagen rota y muestra
+    "La ilustración contextual no está disponible. El juego continúa
+    normalmente." — el juego no depende del arte para funcionar;
+  - `index.html` (portal público, ya en `main`, servido por GitHub Pages)
+    apunta la tarjeta de Vintage Telnet a
+    `https://raspberrypi.tail3d212e.ts.net/`, badge **"En pruebas"** visible;
+  - confirmado desde el navegador real que "Entrar al juego" en el portal
+    (`https://vaisork.github.io/MatiasGameLab/index.html`) abre el servidor
+    real (Funnel), no la demo local `vintage-telnet.html`;
+  - **sin ningún link a `/dm`** en el portal público (`grep` sobre
+    `index.html`, sin resultados);
+  - puerto `8080` confirmado **solo en loopback** (`ss -ltnp` →
+    `127.0.0.1:8080`, no `0.0.0.0`), nada expuesto directo a la WAN.
+- **Smoke test jugable tras el despliegue** (mismo navegador real, cuenta
+  `vtprueba_lindero` #0006 que ya tenía progreso previo): al recargar la
+  URL después de desplegar, **persistencia perfecta** — misma sala
+  ("El lindero roto"), mismo nivel/XP (1, 42 XP) y HP (61/100) que antes del
+  despliegue. Confirma que la actualización no afectó el estado vivo.
+- **Multi-dispositivo:**
+  - **Computadora**: probado directamente por el operador (navegador real
+    vía extensión, portal + juego + persistencia). OK.
+  - **Celular**: Javier se conectó y desplegó desde su propio celular por
+    SSH (Termux + Tailscale SSH) — confirma acceso funcional desde ese
+    dispositivo a la Raspberry, aunque no fue una prueba del *juego* en sí
+    desde el celular en este momento puntual (ya se había validado antes,
+    ver sección de Issue #15).
+  - **Tablet/iPad**: **pendiente**, no se probó en esta sesión.
+- **No se tocó** `index.html` ni ningún archivo fuera de `vintage-telnet/` —
+  ya estaba correcto en `main` (trabajo de otro especialista, Integrador
+  HTML), el operador solo lo verificó.
+
+**Estado para Issue #71:** despliegue P0 completado y verificado en el
+equipo real; todos los criterios técnicos de la lista de verificación
+cumplidos salvo la prueba explícita en tablet/iPad (pendiente, no
+bloqueante — celular y computadora ya cubiertos). Recomendación: si Javier
+confirma que no hay tablet/iPad disponible para probar, se puede considerar
+el criterio multi-dispositivo satisfecho con celular + computadora.
+
 No adjuntar contraseñas, claves, cookies, hashes ni bases. No afirmar resultados
 de pruebas que no se ejecutaron. Acceso desde fuera de casa: fuera de esta entrega.
