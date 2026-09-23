@@ -394,3 +394,23 @@ La interfaz solo presenta estas oportunidades si el servidor las autoriza para e
 No dejar botones deshabilitados que revelen “aquí habría una ruta Felaryn/Dravak” a quien no la ha percibido.
 
 Para Marevyn sumergido sí puede mostrarse la reserva de acciones/aire autorizada por servidor porque es estado corporal inmediato y útil para decidir.
+
+
+## 18. Armadura y equipo — contrato UI v1
+
+GAMEPLAY §30 ya cerró la matemática de armadura.
+
+La interfaz puede mostrar al jugador los números de su propio equipo, por ejemplo:
+- protección física total: 20%;
+- carga física: +20% de fatiga en acciones físicas;
+- propiedades especiales explícitamente aprobadas.
+
+No debe:
+- convertir armadura en evasión;
+- mostrar Agilidad reducida si el objeto no la modifica explícitamente;
+- inventar durabilidad o reparación;
+- mostrar resistencias elementales inexistentes;
+- permitir superar 35% de reducción total;
+- asumir que una pieza permite Bloquear si no existe escudo/objeto apropiado.
+
+Si hay varias piezas, UI puede listar cada contribución y mostrar el total calculado por servidor. El navegador no calcula el cap ni las fórmulas autoritativas.
