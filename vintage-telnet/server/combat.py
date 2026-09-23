@@ -7,9 +7,12 @@ de probar y de auditar contra el documento.
 
 No inventa mecanicas: cada formula cita la seccion de GAMEPLAY.md de la que
 sale. Lo que GAMEPLAY.md sigue dejando abierto (estadisticas de Cornalomo,
-rondas semi-automaticas/defensa contextual de 24.1-24.2 -- diferidas al
-Issue #43 por decision del Arquitecto) NO se implementa aqui -- ver
-NECESIDAD DE JUGABILIDAD en server/README.md.
+rondas semi-automaticas de 24.1 -- diferidas al Issue #43 por decision del
+Arquitecto) NO se implementa aqui -- ver NECESIDAD DE JUGABILIDAD en
+server/README.md. La defensa contextual de 24.2 (Esquivar/Bloquear/Resistir,
+20.5) si esta implementada desde el Issue #73, dentro del mismo modelo de
+intercambio simple por comando/boton que ya usan atacar/huir (sin rondas
+automaticas todavia).
 """
 import math
 import random
@@ -110,6 +113,47 @@ def resolve_attack_roll(attacker_destreza, attacker_percepcion, attacker_fuerza,
     damage = (raw_damage(attacker_fuerza, attacker_destreza, attacker_cg, base_arma) * damage_multiplier
               if hits else 0.0)
     return hits, damage
+
+
+def resolve_dodged_attack_roll(precision_pct, damage, agilidad, percepcion, accuracy_penalty=0, rng=None):
+    """GAMEPLAY.md 20.5: Esquivar reduce el % de impacto del golpe entrante
+    segun Agilidad/Percepcion del defensor:
+    ImpactoTrasEsquiva = limitar(Impacto - 0.48x(Agilidad-10) - 0.12x(Percepcion-10), 20, 90).
+    No reduce el dano si el golpe conecta de todas formas. `accuracy_penalty`
+    es la penalizacion combinada de fatiga/herida del propio defensor
+    (24.4/24.6) sobre su intento de esquivar (combined_accuracy_penalty ya
+    documenta que tambien afecta a la esquiva, igual que al golpe propio)."""
+    rng = rng or random.Random()
+    reduced = clamp(precision_pct - 0.48 * (agilidad - 10) - 0.12 * (percepcion - 10) + accuracy_penalty, 20, 90)
+    hits = rng.uniform(0, 100) < reduced
+    return hits, float(damage) if hits else 0.0
+
+
+def resolve_resisted_attack_roll(precision_pct, damage, resistencia, rng=None):
+    """GAMEPLAY.md 20.5: Resistir no cambia la probabilidad de impacto; si
+    el golpe conecta, reduce el dano segun la Resistencia del defensor:
+    ReduccionResistencia = minimo(38%, 0.55%x(Resistencia-10))."""
+    rng = rng or random.Random()
+    hits = rng.uniform(0, 100) < precision_pct
+    if not hits:
+        return hits, 0.0
+    reduction = min(0.38, 0.0055 * (resistencia - 10))
+    return hits, float(damage) * (1 - reduction)
+
+
+def resolve_blocked_attack_roll(precision_pct, damage, destreza, rng=None):
+    """GAMEPLAY.md 20.5: Bloquear/desviar no cambia la probabilidad de
+    impacto; si el golpe conecta, reduce el dano segun la Destreza del
+    defensor: ReduccionBloqueo = minimo(32%, 10% + 0.35%x(Destreza-10)).
+    Requiere equipo adecuado -- ver `_can_block` en server/app.py; esta
+    funcion solo resuelve el golpe asumiendo que la disponibilidad ya fue
+    autorizada."""
+    rng = rng or random.Random()
+    hits = rng.uniform(0, 100) < precision_pct
+    if not hits:
+        return hits, 0.0
+    reduction = min(0.32, 0.10 + 0.0035 * (destreza - 10))
+    return hits, float(damage) * (1 - reduction)
 
 
 def fixed_expected_dps(precision_pct, damage):
@@ -245,11 +289,13 @@ def respawn_state(hp_max_value):
 # --- GAMEPLAY.md 24: fatiga, heridas y recuperacion (cerrado 2026-09-23) --
 
 # 24.3: costes base de fatiga por accion, antes del modificador de
-# Resistencia de 20.7. Solo las acciones que este piloto puede ejecutar
-# (ataque basico, huir); defensa contextual/poderes quedan para el Issue #43
-# y para cuando Jugabilidad valide cada poder.
+# Resistencia de 20.7. Los poderes quedan para cuando Jugabilidad valide
+# cada uno.
 FATIGUE_BASE_COST = {
     "ataque_basico": 4,
+    "resistir": 3,
+    "bloquear": 5,
+    "esquivar": 6,
     "huir": 8,
 }
 

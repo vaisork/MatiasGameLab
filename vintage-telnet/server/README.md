@@ -4,10 +4,11 @@ Servidor Python (Flask + Waitress + SQLite) para Vintage Telnet: cuentas con
 aprobación del Dungeon Master, mundo con movimiento N/S/E/O, chat local por
 sala, y ahora combate/fatiga/heridas/recuperación/XP/descubrimientos/mapa
 progresivo v1 según [`../GAMEPLAY.md`](../GAMEPLAY.md) (secciones 20-24)
-para la microaventura piloto VT-NAR-003 "El lindero roto". Lo que ese
-documento sigue dejando abierto (PvP, poderes/Arcanes, clases, tabla de
-Cornalomo, rondas semi-automáticas y defensa contextual de 24.1-24.2 —
-diferidas al Issue #43 por decisión del Arquitecto) no se inventa aquí.
+para la microaventura piloto VT-NAR-003 "El lindero roto", incluyendo desde
+el Issue #73 las defensas contextuales Esquivar/Bloquear/Resistir de 24.2.
+Lo que ese documento sigue dejando abierto (PvP, poderes/Arcanes, clases,
+tabla de Cornalomo, rondas semi-automáticas de 24.1 — diferidas al Issue
+#43 por decisión del Arquitecto) no se inventa aquí.
 
 Esta base nace de la entrega histórica `codex/vintage-telnet-server` (PR #1),
 rescatada sobre el `main` vigente según la decisión del Arquitecto de
@@ -215,12 +216,26 @@ Historiador. `descansar` en esa sala aplica ahora la recuperación segura
 completa de 24.9 (`combat.safe_recovery_result`) en vez del descanso de
 campo v1.
 
-**Diferido a propósito al Issue #43** (decisión del Arquitecto, no
-NECESIDAD DE JUGABILIDAD — GAMEPLAY.md ya cerró estas reglas en 24.1-24.2,
-simplemente no se amplía el alcance de UI de este PR): rondas
-semi-automáticas con ataque básico continuo y defensa contextual
-(Esquivar/Bloquear/Resistir); en este piloto el combate es un intercambio
-simple por comando/botón sin esas dos capas.
+**Diferido a propósito al Issue #43** (decisión del Arquitecto, GAMEPLAY.md
+24.1): rondas semi-automáticas con ataque básico continuo sin intervención
+del jugador; en este piloto el combate sigue siendo un intercambio simple
+por comando/botón, una acción del jugador por vez.
+
+**Issue #73 — Esquivar/Bloquear/Resistir (implementado):** las tres
+defensas contextuales de 20.5/24.2 sustituyen el ataque básico de esa
+ronda, con el mismo modelo de intercambio simple de arriba (no hay ventana
+de tiempo real, la intervención es la siguiente acción del jugador).
+Esquivar reduce la probabilidad de que el golpe entrante conecte
+(Agilidad/Percepción); Resistir y Bloquear no cambian esa probabilidad pero
+reducen el daño si conecta (Resistencia / Destreza). `room_view()` expone
+`available_actions` (forma mínima de `UI_ACTIONS_CONTRACT.md`) con las
+acciones de combate/descanso autorizadas ahora mismo. **Bloquear exige
+equipo (arma/escudo/objeto adecuado, `app._can_block`) que todavía no
+existe** — el Issue #57 (inventario/equipo) sigue sin integrarse, así que
+`bloquear` nunca aparece en `available_actions` y la intención se rechaza
+con un mensaje honesto en vez de simular equipo inventado. La resolución
+de golpe/daño/fatiga de Bloquear ya está lista (`combat.resolve_blocked_attack_roll`)
+para conectarse a `_can_block` en cuanto #57 exista.
 
 **Pendiente técnico, no bloqueante para el Issue #45** (recuperación
 pasiva de fatiga fuera de combate, GAMEPLAY.md 24.7 — ~1 fatiga cada 10
