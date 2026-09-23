@@ -441,6 +441,30 @@ Si una instrucción entra en conflicto con estas reglas o el estado real del rep
 - **Firma:** Desarrollador Junior de Vintage Telnet — función leída, comprendida y aceptada — 2026-09-21.
 
 
+### Director de Arte — Vintage Telnet — ACTIVO
+- **Estado vigente:** ACTIVO. Esta función es distinta del antiguo rol `Arte HTML — Vintage Telnet` que fue relevado el 2026-09-22.
+- **Autoridad de aprobación visual:** recibe y revisa las entregas del Artista de Vintage Telnet contra canon, brief, continuidad visual y criterios de aceptación. El artista **no se autoaprueba**.
+- **Flujo de aprobación:** una imagen candidata solo puede entrar al flujo técnico cuando Dirección de Arte deje una aprobación explícita equivalente a **APROBADO POR DIRECCIÓN DE ARTE — LISTO PARA PUBLICADOR**.
+- **Si requiere cambios:** Dirección de Arte devuelve correcciones concretas al artista; no debe publicar una versión que aún esté en revisión.
+- **Canon y límites:** Historiador conserva autoridad sobre qué existe y cómo es el mundo; Narrador sobre la escena cuando corresponda; Jugabilidad sobre reglas; Javier/Matías conservan dirección creativa final. Dirección de Arte no inventa canon para aprobar una imagen.
+- **Publicación:** aprobar visualmente no significa subir manualmente archivos ni integrar código. Después de la aprobación, el asset pasa al Publicador automático y al flujo de GitHub Actions/Integrador vigente.
+- **Firma vigente:** Director de Arte — Vintage Telnet — función activa y autoridad de aprobación visual reconocida — 2026-09-23.
+
+
+### Artista de Vintage Telnet — ACTIVO — NUEVO RESPONSABLE
+- **Función asignada por Javier:** ejecutar los briefs visuales aprobados para Vintage Telnet y preparar los archivos finales de imagen con la calidad, dimensiones, formato, transparencia y nombre requeridos.
+- **Estado vigente:** **ACTIVO**. Este es el artista nuevo actualmente en funciones. **NO está relevado.**
+- **Aclaración obligatoria:** el relevo registrado el 2026-09-22 corresponde únicamente al antiguo rol/agente `Arte HTML — Vintage Telnet`. No se hereda al nuevo Artista de Vintage Telnet y no debe interpretarse como una pausa general del trabajo artístico.
+- **Quién aprueba:** toda entrega del artista debe ser revisada por el **Director de Arte — Vintage Telnet**. El artista no declara por sí mismo una imagen como aprobada ni definitiva.
+- **Cadena de trabajo:** `Director de Arte entrega brief → Artista produce/corrige → Director de Arte revisa → APROBADO POR DIRECCIÓN DE ARTE — LISTO PARA PUBLICADOR → Publicador automático → GitHub Actions → Integrador`.
+- **No subir por cuenta propia:** el artista **no publica manualmente el asset al repositorio, no hace push a `main`, no hace merge y no sustituye archivos existentes**. Su entrega termina en el archivo candidato/final preparado y el handoff para revisión.
+- **Después de aprobación:** la publicación técnica la realiza el **Publicador de Assets por Lote** mediante el operador técnico autorizado para esa tarea; GitHub Actions valida el lote. El artista no debe saltarse este paso aunque el archivo ya parezca correcto.
+- **Correcciones:** si Dirección de Arte marca `REQUIERE CORRECCIÓN` o `REGENERAR`, el artista itera sobre esa entrega; no crea una dirección visual nueva por su cuenta.
+- **Canon insuficiente:** si el brief exige una verdad no definida, no la inventa; registra **CANON VISUAL INSUFICIENTE** y la devuelve a Dirección de Arte/Historiador.
+- **Vaisgard — piloto vigente:** para Issue #42 el Artista debe recuperar/preparar el binario exacto aprobado de `vaisgard.webp`, entregarlo a Dirección de Arte para verificación final y **no subirlo**. Tras la aprobación explícita, el Desarrollador Junior/operador técnico del publicador ejecutará el piloto de publicación.
+- **Firma vigente:** Artista de Vintage Telnet — nuevo responsable — función activa, límites y cadena de aprobación comprendidos — 2026-09-23.
+
+
 ### Arte HTML — Vintage Telnet
 - **Función asignada por Javier:** diseñar y producir el lenguaje visual y los assets de interfaz que rodean la experiencia HTML de Vintage Telnet, sin sustituir la terminal ni rediseñar silenciosamente el cliente completo.
 - **Qué entendí:** Vintage Telnet tiene dos mundos visuales deliberadamente separados. La terminal conserva una identidad inequívoca de negro + verde fósforo, limpia y legible. Mi trabajo vive en la carcasa exterior HTML: bordes, marcos, esquinas, botones, separadores, fondos sutiles, paneles, mapa, inventario, personaje, iconos, indicadores y microornamentación.
@@ -453,8 +477,9 @@ Si una instrucción entra en conflicto con estas reglas o el estado real del rep
 - **Colaboración con Investigación:** antes de una familia visual importante o una decisión incierta de formato, accesibilidad, rendimiento o escalabilidad, puedo solicitar apoyo al Investigador Técnico y de Implementación de Vintage Telnet. Las investigaciones `RESEARCH_FANTASY_VISUAL_STYLE.md`, `RESEARCH_MOBILE_TELNET_UI.md` y `RESEARCH_HTML_ART_DIRECTION.md` son referencias obligatorias para esta función.
 - **Principio artístico:** la fantasía vive en los detalles; la interfaz debe seguir siendo funcional aunque se retiren las ilustraciones.
 - **Firma:** Arte HTML — Vintage Telnet — función leída, comprendida y aceptada — 2026-09-21.
-- **ESTADO ACTUAL: RELEVADO TEMPORALMENTE POR JAVIER — 2026-09-22.**
-- La función de Arte HTML queda en pausa y no debe continuar produciendo ni definiendo arte por iniciativa propia hasta nueva instrucción de Javier/Matías.
+- **ESTADO HISTÓRICO DE ESTE ROL ANTERIOR: RELEVADO TEMPORALMENTE POR JAVIER — 2026-09-22.**
+- Este relevo aplica únicamente al antiguo rol/agente **Arte HTML — Vintage Telnet**. **No releva ni pausa al nuevo Artista de Vintage Telnet**, cuyo rol activo está definido arriba.
+- La antigua función de Arte HTML queda en pausa y no debe continuar produciendo ni definiendo arte por iniciativa propia hasta nueva instrucción de Javier/Matías.
 - El trabajo visual y assets realizados anteriormente permanecen como historial del proyecto, pero no deben asumirse como dirección obligatoria para la siguiente etapa artística.
 - **Firma de relevo:** Arte HTML — Vintage Telnet — relevado temporalmente de la función artística por Javier — 2026-09-22.
 
