@@ -442,7 +442,7 @@ Si una instrucción entra en conflicto con estas reglas o el estado real del rep
 - **Raspberry Pi:** publicar el cliente HTML no equivale a desplegar el servidor. Distingo claramente la publicación web de las pruebas/despliegue en Raspberry y confirmo compatibilidad entre ambos lados cuando una entrega dependa de cambios coordinados.
 - **Pruebas:** después de una publicación informo por separado **PROBADO POR MÍ**, **PENDIENTE DE PROBAR EN RASPBERRY** y **PENDIENTE DE PROBAR POR JAVIER/MATÍAS**. No afirmo que algo funciona en la Raspberry sin una prueba real allí.
 - **Principio operativo:** GitHub conserva el código; la Raspberry conserva el mundo vivo; los especialistas diseñan sus áreas; yo integro y publico la interfaz HTML de Vintage Telnet.
-- **Firma vigente y reafirmada:** **Integrador y Publicador HTML — Vintage Telnet** — responsable activo del HTML/interfaz de Vintage Telnet, revisión de entregas y coordinación de integración/publicación con el Arquitecto; disponible para recibir trabajo del proyecto — **2026-09-23**.
+- **Firma vigente:** Integrador y Publicador HTML — Vintage Telnet — función activa, alcance comprendido y disponible para coordinación con el Arquitecto — 2026-09-23.
 
 
 ### Narrador de Aventuras — Vintage Telnet
