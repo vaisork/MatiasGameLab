@@ -1229,6 +1229,121 @@ Estos son valores medios antes de decisiones defensivas, huida, poderes y variac
 
 **El combate básico avanza solo; intervenir debe ser una decisión real. El desgaste obliga a leer el estado y decidir si continuar, descansar, defenderse o regresar.**
 
+
+## 25. Resolución de subida de nivel y gasto de progreso — v1
+
+**Estado:** APROBADO PARA IMPLEMENTACIÓN.
+
+Esta sección convierte las reglas de §§19 y 22 en un flujo persistente concreto.
+
+### 25.1 XP acumulada y subida
+
+La XP se acumula de forma persistente.
+
+Cuando la XP acumulada alcanza el requisito del siguiente nivel:
+1. se descuenta el requisito correspondiente;
+2. el personaje sube un nivel;
+3. la XP sobrante **se conserva** hacia el siguiente nivel;
+4. se conceden **2 PA**;
+5. si el nuevo nivel es múltiplo de 5, se concede **1 PP**;
+6. se recalculan competencia general y HP máximo.
+
+Si una sola recompensa alcanza para más de un nivel, el servidor repite el proceso hasta que la XP restante ya no alcance el siguiente requisito o el personaje llegue al nivel 100.
+
+### 25.2 Nivel máximo inicial
+
+La primera etapa tiene tope en **nivel 100**.
+
+Al llegar a 100:
+- no se generan niveles 101+;
+- la implementación v1 puede dejar de acumular XP de nivel o registrarla únicamente como dato no utilizable si Arquitectura lo necesita;
+- no se conceden PA/PP adicionales por XP después del nivel 100.
+
+Una futura expansión de nivel debe aprobarse antes de utilizar XP acumulada más allá del tope.
+
+### 25.3 PA no se distribuyen automáticamente
+
+Los **Puntos de Atributo (PA)** quedan en una reserva del personaje hasta que el jugador decida gastarlos.
+
+- no caducan;
+- pueden acumularse durante muchos niveles;
+- el juego no elige atributos por el jugador;
+- no existe conversión PA ↔ PP.
+
+### 25.4 Gasto de PA
+
+Para aumentar un atributo en +1:
+1. consultar su valor actual;
+2. consultar el coste de §19;
+3. comprobar que existe PA suficiente;
+4. mostrar al jugador atributo, valor actual, nuevo valor y coste;
+5. confirmar el gasto;
+6. descontar PA y aplicar +1 de forma atómica.
+
+El gasto de PA:
+- solo puede hacerse **fuera de combate**;
+- no requiere regresar obligatoriamente a la ciudad;
+- no puede dejar PA negativos;
+- no puede ejecutarse dos veces sobre el mismo saldo por solicitudes concurrentes.
+
+### 25.5 Confirmación y errores de niños
+
+La interfaz debe exigir una confirmación clara antes de gastar PA, especialmente en móvil.
+
+La v1 no incluye un botón libre de “deshacer” después de confirmar.
+
+Sin embargo, una distribución imperfecta no debe arruinar el personaje porque:
+- existe competencia general por nivel;
+- la curva de coste favorece diversificación;
+- el contenido común debe admitir perfiles razonables/casuales.
+
+Un sistema futuro de reespecialización puede existir, pero deberá definirse aparte; no debe inventarse ahora.
+
+### 25.6 Efecto inmediato del nivel sobre HP
+
+Al subir de nivel se recalcula `HPmax`.
+
+El personaje **no se cura completamente por subir de nivel**.
+
+Si el HP máximo aumenta, el HP actual aumenta únicamente por la misma diferencia positiva:
+
+`HP_actual_nuevo = HP_actual_anterior + (HPmax_nuevo - HPmax_anterior)`
+
+sin superar el nuevo HP máximo.
+
+Ejemplo: si pasa de 100/100 a un máximo de 102, queda aproximadamente 102/102 si estaba sano, o 62/102 si estaba en 60/100.
+
+Esto evita usar una subida de nivel como curación completa artificial.
+
+### 25.7 Gasto de PA y HP derivado
+
+Si aumentar Resistencia o Voluntad incrementa HP máximo mediante §20.3, se aplica la misma regla:
+- aumenta HP actual por la diferencia positiva del máximo;
+- no produce curación completa adicional.
+
+### 25.8 PP
+
+Los **Puntos de Poder (PP)**:
+- se conceden en niveles 5, 10, 15... 100;
+- pueden acumularse;
+- no caducan;
+- no se convierten en PA.
+
+Comprar/desbloquear un poder solo será posible cuando exista contenido de poder validado. La interfaz puede mostrar PP disponibles antes, pero no debe ofrecer poderes ficticios.
+
+### 25.9 Notificación de progreso
+
+Al subir de nivel, el jugador debe recibir una notificación breve y persistente en la sesión que indique:
+- nuevo nivel;
+- PA obtenidos;
+- PP obtenido cuando corresponda.
+
+No mostrar automáticamente una ventana obligatoria de distribución en medio de combate o lectura. El jugador decide cuándo abrir Personaje y gastar sus PA.
+
+### 25.10 Principio
+
+**Subir de nivel entrega posibilidades; no toma decisiones por el jugador ni funciona como curación total.**
+
 ## Investigación disponible para Jugabilidad — capacidades HTML y comandos
 
 **ESTADO: INVESTIGACIÓN CONSUMIDA — la dirección híbrida HTML/Telnet, inspección, evaluación de peligro y mapa progresivo ya tienen criterios v1; las ampliaciones futuras se decidirán cuando aparezcan nuevas necesidades.**
