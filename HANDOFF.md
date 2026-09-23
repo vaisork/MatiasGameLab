@@ -1,5 +1,49 @@
 # HANDOFF — Entrega técnica
 
+## ENTREGA — Senku Issue #81: DESPERTAR resistente a almacenamiento bloqueado
+
+**DESARROLLADOR:** Desarrollador Junior de Senku — segundo desarrollador
+
+**HEAD BASE:** `8faeab8618113806489b77c6769bb853d50d28c1`
+
+**TAREA ASIGNADA:** Issue #81 — corregir la versión pública de Senku cuando la portada carga pero el botón **DESPERTAR** no inicia el juego.
+
+**RAMA:** `junior/senku-fix-despertar-81`
+
+### PROBLEMA ENCONTRADO
+`senku.html` ejecutaba `localStorage.getItem('senku_skin')` durante la inicialización global y antes de registrar `#start.onclick`. En navegadores donde el almacenamiento está bloqueado y ese acceso lanza `SecurityError`, el script se aborta: la portada permanece visible, pero DESPERTAR queda sin handler.
+
+### CORRECCIÓN REALIZADA
+- Se añadieron `storageGet()` y `storageSet()` con `try/catch`.
+- Si el almacenamiento falla, Senku continúa sin persistencia durante esa sesión en vez de abortar el juego.
+- `save()` usa el wrapper seguro, de modo que una falla posterior al guardar tampoco detiene el juego.
+- Se actualizó la identificación visible a **v0.5.9 · arranque resistente**.
+- No se modificó `index.html`.
+
+### PRUEBAS
+Prueba automatizada del JavaScript exacto de la rama con DOM mínimo simulado y `requestAnimationFrame` controlado:
+- Parseo JavaScript: **OK**.
+- Almacenamiento normal: `#start.onclick` registrado, pulsar DESPERTAR oculta portada y deja zona **Casa**.
+- `localStorage` bloqueado lanzando `SecurityError`: inicialización completa sin excepción no controlada, `#start.onclick` registrado, pulsar DESPERTAR oculta portada y deja zona **Casa**.
+- En el escenario bloqueado se registra una advertencia controlada y la ejecución continúa.
+
+La URL pública no pudo abrirse desde el navegador de verificación disponible en esta sesión, por lo que la comprobación final física en teléfono/iPad queda para después de integración/publicación.
+
+### TRABAJO PREVIO AFECTADO
+Solo la inicialización/persistencia de `senku.html`. No se cambiaron escenas, controles, arte, portal ni Vintage Telnet.
+
+### PENDIENTES
+- Integrador: comparar la rama contra el `main` vigente, integrar únicamente con autorización de Javier y verificar GitHub Pages.
+- Javier/Matías: prueba física final **Portal → Senku → DESPERTAR → Casa → controles** en el dispositivo donde se reprodujo el fallo.
+
+### AVISO PARA EL OTRO DESARROLLADOR
+El acceso directo a Web Storage debe mantenerse detrás de los wrappers seguros; no reintroducir lecturas/escrituras directas de `localStorage` durante bootstrap.
+
+**LISTO PARA REVISIÓN:** SÍ  
+**LISTO PARA PUBLICAR:** NO — requiere flujo de integración vigente.
+
+---
+
 ## ENTREGA — Binding narrativo explícito de Issue #46 en PR #49 (tercera vuelta del Arquitecto)
 
 **Desarrollador:** Claude (Desarrollador de Servidor de Vintage Telnet)

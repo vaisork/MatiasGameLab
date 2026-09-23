@@ -11,7 +11,7 @@
 <link rel="icon" type="image/png" sizes="192x192" href="assets/icon/senku-icon-192.png?v=050">
 <link rel="apple-touch-icon" sizes="192x192" href="assets/icon/senku-icon-192.png?v=050">
 <link rel="manifest" href="senku.webmanifest?v=050">
-<title>Senku — México · v0.5.8 | calle mejorada</title>
+<title>Senku — México · v0.5.9 | arranque resistente</title>
 <style>
 *{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#151311;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;touch-action:none;user-select:none}
 canvas{position:fixed;inset:0;margin:auto;width:min(100vw,1100px);height:auto;max-height:100vh;aspect-ratio:16/9;background:#ddd;image-rendering:pixelated}
@@ -120,7 +120,7 @@ canvas{position:fixed;inset:0;margin:auto;width:min(100vw,1100px);height:auto;ma
     </div>
   </div>
 </div>
-<div class="version">v0.5.8 · 21/09/26 · calle mejorada</div>
+<div class="version">v0.5.9 · 23/09/26 · arranque resistente</div>
 
 <div id="toast"></div>
 <script>
@@ -133,7 +133,16 @@ const skins=document.getElementById('skins'),wardrobe=document.getElementById('w
 const previewImg=skinPreview.querySelector('img'),basePreviewSrc='assets/senku/menu-base.jpg?v=050',secretPreviewSrc='assets/trajes/rata/menu.webp?v=050';
 let scene='house',running=false,last=performance.now(),time=0,modalAction=null,busTimer=null,near=null,wardrobeWasRunning=false;
 let churus=0,secret=false,ratPeekShown=false;
-let selectedSkin=localStorage.getItem('senku_skin')||'normal';
+let storageAvailable=true;
+function storageGet(key){
+ if(!storageAvailable)return null;
+ try{return window.localStorage.getItem(key)}catch(err){storageAvailable=false;console.warn('Senku: almacenamiento local no disponible; la partida continuará sin persistencia.',err);return null}
+}
+function storageSet(key,value){
+ if(!storageAvailable)return false;
+ try{window.localStorage.setItem(key,value);return true}catch(err){storageAvailable=false;console.warn('Senku: no se pudo guardar la partida; se continuará sin persistencia.',err);return false}
+}
+let selectedSkin=storageGet('senku_skin')||'normal';
 let collected=new Set();
 const senkuSheet=new Image();senkuSheet.src='assets/senku/senku-sprites.png?v=050';
 const secretRatSheet=new Image();secretRatSheet.src='assets/trajes/rata/walk-sheet.png?v=050';
@@ -148,7 +157,7 @@ let cupX=465,cupY=384,cupVy=0,cupKnocked=false;
 const info={house:['Casa','Encuentra una salida'],street:['Calle','Explora la calle'],bus:['Autobús','Viaja de polizón'],taco:['Taquería','Investiga el lugar']};
 
 function hud(){zone.textContent=info[scene][0];objective.textContent=info[scene][1];count.textContent=churus;renderWardrobe()}
-function save(){localStorage.setItem('senku_churus',churus);localStorage.setItem('senku_skin',selectedSkin);if(secret)localStorage.setItem('senku_secret','1');localStorage.setItem('senku_collected',JSON.stringify([...collected]))}
+function save(){storageSet('senku_churus',churus);storageSet('senku_skin',selectedSkin);if(secret)storageSet('senku_secret','1');storageSet('senku_collected',JSON.stringify([...collected]))}
 function renderWardrobe(){
  if(selectedSkin==='secret'&&!secret)selectedSkin='normal';
  if(selectedSkin==='gold'&&churus<300)selectedSkin='normal';
@@ -185,7 +194,7 @@ function hold(id,k){const e=document.getElementById(id),on=q=>{q.preventDefault(
 hold('left','l');hold('right','r');hold('jump','j');hold('action','a');
 addEventListener('keydown',e=>{if(e.code==='ArrowLeft'||e.code==='KeyA')keys.l=true;if(e.code==='ArrowRight'||e.code==='KeyD')keys.r=true;if(e.code==='ArrowUp'||e.code==='Space'||e.code==='KeyW'){keys.j=true;e.preventDefault()}if(e.code==='KeyE'||e.code==='Enter')keys.a=true});
 addEventListener('keyup',e=>{if(e.code==='ArrowLeft'||e.code==='KeyA')keys.l=false;if(e.code==='ArrowRight'||e.code==='KeyD')keys.r=false;if(e.code==='ArrowUp'||e.code==='Space'||e.code==='KeyW')keys.j=false;if(e.code==='KeyE'||e.code==='Enter')keys.a=false});
-document.getElementById('start').onclick=()=>{intro.classList.add('hidden');setScene('house');running=true;say('Senku v0.5.0 · estructura ligera · arte externo 🐾',1800)};
+document.getElementById('start').onclick=()=>{intro.classList.add('hidden');setScene('house');running=true;say('Senku v0.5.9 · arranque resistente 🐾',1800)};
 
 function platforms(){
  if(scene==='house')return[{x:0,y:504,w:W,h:115},{x:100,y:430,w:190,h:74},{x:380,y:400,w:170,h:20},{x:680,y:345,w:135,h:159},{x:878,y:278,w:88,h:20}];
