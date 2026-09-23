@@ -368,3 +368,29 @@ Debe ser contextual y usar resultado del servidor. No calcular curación/fatiga 
 - hablar <npc>.
 
 La Ayuda y los botones deben usar este vocabulario y no crear sinónimos con reglas propias.
+
+
+## 19. Especies — presentación mecánica después de GAMEPLAY §29
+
+La interfaz no debe representar las especies como paquetes de bonificaciones numéricas generales.
+
+No mostrar por defecto etiquetas como:
+- +Agilidad;
+- +Percepción;
+- +Daño;
+- +XP;
+- “mejor para X clase”.
+
+Los rasgos naturales aparecen cuando cambian una posibilidad real:
+
+- **Felaryn:** puede aparecer una ruta/salto extendido legítimo o una señal visual distante.
+- **Dravak:** puede aparecer una ruta estrecha, acceso pequeño o señal de vibración.
+- **Marevyn:** puede aparecer una ruta de agua profunda, estado de aire bajo inmersión o señal de corriente.
+- **Vesperi:** la terminal puede entregar mayor detalle en baja luz o señales auditivas sutiles.
+- **Humano:** no necesita un icono/bono compensatorio artificial.
+
+La interfaz solo presenta estas oportunidades si el servidor las autoriza para el personaje y contexto actual.
+
+No dejar botones deshabilitados que revelen “aquí habría una ruta Felaryn/Dravak” a quien no la ha percibido.
+
+Para Marevyn sumergido sí puede mostrarse la reserva de acciones/aire autorizada por servidor porque es estado corporal inmediato y útil para decidir.
