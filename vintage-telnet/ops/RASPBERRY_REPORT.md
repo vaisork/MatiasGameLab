@@ -421,13 +421,46 @@ expuesto por estos fixes.
 - **No enlazado en ningún lado público** (ni `index.html`, ni menús, ni
   documentación promocional), tal como pide el issue. La URL queda
   documentada acá y se la entrego directamente a Javier.
-- **Pendiente:** decidir con Javier cuánto tiempo queda Funnel activo (¿se
-  apaga después de cada sesión de prueba, o queda disponible hasta que se
-  decida publicar/discontinuar?). No hay reinicio físico de la Raspberry
+- **Pendiente (al momento de la nota anterior):** decidir con Javier cuánto
+  tiempo queda Funnel activo. No hay reinicio físico de la Raspberry
   probado con Funnel activo todavía (si la Raspberry reinicia,
   `tailscaled`/`vintage-telnet.service` vuelven solos por sus units, pero
   `tailscale funnel` no persiste automáticamente entre reinicios salvo que
-  se confirme lo contrario — pendiente de verificar).
+  se confirme lo contrario — sigue sin verificarse el caso específico de
+  reinicio *físico*, ver más abajo el reinicio del *componente*).
+
+## Issue #15 — cierre real: revisión del Arquitecto y pendientes cerrados — 2026-09-23
+
+El Arquitecto revisó la PR #36 (comentario en la PR, 2026-09-22T23:38:35Z)
+y confirmó que la implementación HTTPS es correcta para staging, pero pidió
+dos evidencias más antes de considerar la entrega lista:
+
+1. **Confirmar desde celular con datos móviles, fuera de la LAN.** Javier
+   probó la URL pública (`https://raspberrypi.tail3d212e.ts.net/`) con el
+   WiFi de casa apagado, confirmando el flujo real completo. Confirmado
+   directamente por Javier en el chat ("Confirmado").
+2. **Reiniciar el componente de Funnel y confirmar que no se pierde
+   estado.** Hecho por el operador:
+   - Estado antes (`/dm`, vía API real): jugadores #0001, #0003, #0004,
+     #0005 con sus especies/salas.
+   - `tailscale funnel --https=443 off` → confirmado que la URL deja de
+     responder (`curl` a `https://raspberrypi.tail3d212e.ts.net/healthz`
+     falla con "Could not connect to server").
+   - `tailscale funnel --bg 8080` → URL vuelve a responder,
+     `{"schema_version":2,"status":"ok"}` tanto local como externo.
+   - Estado después (`/dm`, misma consulta): los mismos cuatro jugadores,
+     mismas especies; la única diferencia es la sala de `#0005` (Javier
+     siguió jugando entre las dos consultas — cambio esperado de actividad
+     real, no pérdida de datos). Confirma que reiniciar el proxy de Funnel
+     no afecta en absoluto el estado de la aplicación (Funnel opera
+     puramente como proxy de red, desacoplado del proceso/base de datos).
+
+**Estado de cierre: STAGING WEB HTTPS LISTO — PROBADO DESDE CELULAR FUERA
+DE LAN.** Cumple el criterio de salida exacto que pidió el Arquitecto en
+el Issue #15. Pendiente aparte (no bloqueante para este cierre): probar
+un reinicio *físico* completo de la Raspberry con Funnel activo, para
+confirmar si el propio Funnel necesita reactivarse manualmente tras un
+reboot o si sobrevive solo.
 
 No adjuntar contraseñas, claves, cookies, hashes ni bases. No afirmar resultados
 de pruebas que no se ejecutaron. Acceso desde fuera de casa: fuera de esta entrega.
