@@ -313,3 +313,58 @@ Un elemento desconocido no debe renderizarse ni dejar una pista visual de que ex
 El mapa no ejecuta viaje rápido en la v1.
 
 Chat de otro jugador no cambia por sí mismo el estado del mapa.
+
+
+## 18. Actualización después del cierre §§24–28
+
+Jugabilidad ya cerró dependencias que la interfaz no debe improvisar:
+
+### Combate
+- ronda objetivo ~4 s;
+- ataque básico automático;
+- una intervención sustituye el ataque básico de la siguiente ronda;
+- defensas contextuales;
+- Atacar/Huir/Esquivar/Bloquear/Resistir usan estado autoritativo de servidor.
+
+### Estado
+La interfaz ya puede prever campos reales para:
+- nivel;
+- XP actual / siguiente nivel;
+- PA disponibles;
+- PP disponibles;
+- HP actual/máximo;
+- fatiga 0–100;
+- estado operativo/cansado/agotado;
+- herida principal;
+- cooldowns cuando existan.
+
+### Subida de nivel
+- XP sobrante se conserva;
+- +2 PA por nivel;
+- +1 PP cada 5 niveles;
+- PA se gastan fuera de combate;
+- el jugador confirma atributo/coste;
+- subir nivel no cura por completo.
+
+### Recuperación
+Acción canónica:
+- `descansar`
+
+Debe ser contextual y usar resultado del servidor. No calcular curación/fatiga en cliente.
+
+### Vocabulario canónico P0/P1
+- movimiento: norte/sur/este/oeste;
+- mirar;
+- observar <objetivo>;
+- examinar <objetivo>;
+- evaluar <criatura>;
+- atacar <objetivo>;
+- huir;
+- esquivar;
+- bloquear;
+- resistir;
+- descansar;
+- decir <texto>;
+- hablar <npc>.
+
+La Ayuda y los botones deben usar este vocabulario y no crear sinónimos con reglas propias.
