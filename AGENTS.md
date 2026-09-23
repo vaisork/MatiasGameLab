@@ -203,7 +203,7 @@ Estados estándar de una solicitud:
 
 ## Bandeja de intercambio de arte — Google Drive
 
-Para evitar que Javier/Matías actúen como transportistas manuales cuando un chat de arte no pueda publicar binarios eficientemente en GitHub, queda habilitada una bandeja compartida de transferencia en Google Drive:
+Para evitar que Javier/Matías actúen como transportistas manuales y reducir fallos al mover PNG/WebP entre agentes, la bandeja compartida de Google Drive es el **carril principal de transferencia y revisión de binarios de arte**. GitHub continúa siendo la fuente de verdad del juego:
 
 - Carpeta raíz: `MatiasGameLab - Arte`
 - Drive: `https://drive.google.com/drive/folders/1JMa-YCJiNjD8KKW18wqQbahWYOt7v68i`
@@ -224,9 +224,12 @@ Reglas operativas:
 6. **El Publicador de Assets/operador técnico consume únicamente `02_APROBADO`** y realiza el paso técnico hacia GitHub según el flujo vigente. No publica `01_ENTREGAS` ni `03_RECHAZADO`.
 7. Para Vintage Telnet, las ilustraciones web pueden entregarse como **WebP** optimizado; cuando exista un maestro PNG útil para conservación/edición, puede acompañar la entrega. Para Pixel Art/Senku, PNG continúa siendo válido según el uso.
 8. Cada entrega debe conservar nombres estables e informar como mínimo: juego, tarea/issue, nombre del archivo, dimensiones, formato, transparencia cuando aplique y uso previsto.
-9. Esta bandeja sustituye el transporte manual por Javier cuando el conector de GitHub del agente no pueda manejar el binario de forma fiable. Si un flujo de publicación binaria directa a GitHub queda probado y aprobado posteriormente, podrá preferirse sin cambiar que GitHub es la fuente de verdad.
+9. El carril directo por rama GitHub puede usarse como **ruta rápida opcional** cuando el agente pueda subir el binario de forma fiable y Dirección de Arte pueda revisar exactamente ese mismo archivo. No es obligatorio y no debe usarse si vuelve a introducir fricción.
+10. Para una imagen entregada directamente por Javier/Matías a Dirección de Arte, el Director puede colocar el binario ya validado directamente en `02_APROBADO/<juego>/`; no se devuelve artificialmente al Artista.
+11. El operador técnico descarga/copia el archivo aprobado desde `02_APROBADO` a un workspace temporal, verifica nombre/dimensiones/peso/hash y ejecuta el Publicador de Assets. Drive no sustituye `publish-assets.py` ni GitHub Actions.
+12. El archivo publicado en GitHub debe conservar trazabilidad hacia la entrega aprobada: issue/tarea, nombre, dimensiones y hash. Después de la publicación, GitHub es la referencia consumible por Desarrollo.
 
-Flujo provisional:
+Flujo principal:
 
 `Artista/Pixel Art → Drive 01_ENTREGAS → Director de Arte → Drive 02_APROBADO o 03_RECHAZADO → Publicador de Assets → GitHub → Integrador`
 
@@ -489,10 +492,9 @@ Si una instrucción entra en conflicto con estas reglas o el estado real del rep
 - **Estado vigente:** **ACTIVO**. Este es el artista nuevo actualmente en funciones. **NO está relevado**.
 - **Aclaración obligatoria:** el relevo registrado el 2026-09-22 corresponde únicamente al antiguo rol/agente `Arte HTML — Vintage Telnet`. No se hereda al nuevo Artista de Vintage Telnet y no debe interpretarse como una pausa general del trabajo artístico.
 - **Quién aprueba:** toda entrega del artista debe ser revisada por el **Director de Arte — Vintage Telnet**. El artista no declara por sí mismo una imagen como aprobada ni definitiva.
-- **Subida para revisión:** el Artista **sí debe subir el archivo candidato a una rama de revisión de arte accesible en GitHub** para que Dirección de Arte pueda comprobar el mismo binario. Esta subida de candidato **no equivale a publicación final**.
-- **Convención de rama:** preferir `artist/vintage-<issue>-review` o una rama equivalente claramente asociada a la tarea.
-- **Ruta temporal de revisión:** preferir `assets/vintage-telnet/review/<issue>/`. Esta ruta es de staging/revisión y **no debe ser consumida por el juego ni integrarse como biblioteca final**.
-- **Cadena de trabajo:** `Director de Arte entrega brief → Artista produce/corrige → Artista sube candidato a rama de revisión → Director de Arte valida → APROBADO POR DIRECCIÓN DE ARTE — LISTO PARA PUBLICADOR → operador técnico ejecuta publish-assets.py → GitHub Actions valida → Integrador`.
+- **Entrega para revisión:** el Artista sube el candidato a `MatiasGameLab - Arte/01_ENTREGAS/Vintage-Telnet/` y registra nombre, issue/tarea, dimensiones, formato y uso previsto. Dirección de Arte revisa exactamente ese binario. Esta entrega **no equivale a publicación final**.
+- **Ruta rápida opcional:** si la subida binaria directa a GitHub funciona de forma fiable, puede usarse una rama de revisión (`artist/vintage-<issue>-review`) y una ruta temporal `assets/vintage-telnet/review/<issue>/`; no es requisito y el juego no consume esa ruta.
+- **Cadena de trabajo principal:** `Director de Arte entrega brief → Artista produce/corrige → Drive 01_ENTREGAS → Director de Arte valida → Drive 02_APROBADO o 03_RECHAZADO → operador técnico ejecuta publish-assets.py → GitHub Actions valida → Integrador`.
 - **Lo que NO hace el Artista:** no hace push directo a `main`, no hace merge, no publica por sí mismo en las rutas estables finales del juego y no sustituye assets vigentes sin el flujo de aprobación/publicación.
 - **Después de aprobación:** la publicación técnica la realiza el **Publicador de Assets por Lote** mediante el operador técnico autorizado. El artista no debe saltarse este paso aunque el candidato ya parezca correcto.
 - **Correcciones:** si Dirección de Arte marca `REQUIERE CORRECCIÓN` o `REGENERAR`, el artista itera sobre esa entrega y actualiza la rama de revisión; no crea una dirección visual nueva por su cuenta.
@@ -505,14 +507,14 @@ Si una instrucción entra en conflicto con estas reglas o el estado real del rep
 | Etapa | Artista | Director de Arte | Operador del Publicador | GitHub Actions | Integrador |
 |---|---|---|---|---|---|
 | Producir/corregir imagen | **Responsable** | Da brief/correcciones | No | No | No |
-| Subir candidato para revisión | **Responsable**, a rama de revisión | Verifica acceso | No | No | No |
-| Aprobar calidad/canon visual | No se autoaprueba | **Responsable** | No | No | No |
-| Registrar binario exacto | Informa ruta/dimensiones | **Responsable de dejar rama + ruta + hash aprobados** | Consume esa referencia | No | No |
+| Entregar candidato para revisión | **Responsable**, Drive `01_ENTREGAS` (GitHub directo opcional) | Verifica acceso | No | No | No |
+| Aprobar calidad/canon visual | No se autoaprueba | **Responsable**; mueve a `02_APROBADO` o `03_RECHAZADO` | No | No | No |
+| Registrar binario exacto | Informa nombre/dimensiones | **Responsable de dejar ubicación Drive + hash aprobados** | Consume esa referencia | No | No |
 | Publicar en ruta final de assets | No | Autoriza mediante aprobación | **Responsable mediante `publish-assets.py`** | Valida | No |
 | Validación técnica automática | No | No | Dispara el flujo | **Responsable** | Revisa resultado |
 | Integrar a `main` / publicación final | No | No | No hace merge por defecto | No hace merge | **Responsable según autorización de Javier** |
 
-**Regla de oro:** Javier/Matías no deben actuar como transportistas manuales entre agentes. El repositorio y las ramas de revisión son el carril de intercambio.
+**Regla de oro:** Javier/Matías no deben actuar como transportistas manuales entre agentes. **Drive transporta/revisa binarios; GitHub conserva los assets publicados que consume el juego.**
 
 ### Arte HTML — Vintage Telnet
 - **Función asignada por Javier:** diseñar y producir el lenguaje visual y los assets de interfaz que rodean la experiencia HTML de Vintage Telnet, sin sustituir la terminal ni rediseñar silenciosamente el cliente completo.
