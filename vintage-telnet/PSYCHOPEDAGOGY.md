@@ -982,3 +982,215 @@ La arquitectura conceptual de lectura está suficientemente madura para empezar 
 
 Los principales pendientes ya no son filosóficos: son concretos y verificables —texto final mínimo, acciones de inspección, separación comando/chat y primer NPC conversable.
 
+## VT-PSY-004 — Auditoría de microaventura piloto: El lindero roto
+
+**Fuente:** VT-NAR-003 en `NARRATIVE.md` + Issue #45 + Jugabilidad v1.  
+**Estado:** REVISIÓN PSICOPEDAGÓGICA ENTREGADA.  
+**Objeto:** comprobar si la primera microaventura permite medir lectura real mediante decisiones, sin convertir la experiencia en examen.
+
+## Resultado general
+
+**APTA COMO PRIMER PILOTO DE LECTURA, con condiciones de implementación.**
+
+VT-NAR-003 es la primera pieza del proyecto que permite probar directamente el principio:
+
+**Información → Comprensión → Acción → Consecuencia.**
+
+La aventura no depende de un NPC que explique qué hacer, no obliga a matar criaturas y permite cerrar satisfactoriamente regresando con conocimiento. Esto reduce el riesgo de que el niño confunda “progresar” con “obedecer una misión”.
+
+## 1. Carga de lectura
+
+La estructura de cinco momentos es adecuada para una primera prueba:
+1. borde conocido;
+2. parcela removida;
+3. rastrojo;
+4. lindero roto;
+5. decidir continuar o regresar.
+
+Las descripciones propuestas son cortas y contienen pocas señales críticas por bloque.
+
+**Condición:** implementación no debe añadir párrafos explicativos, tutoriales o lore encima de estos textos. El piloto debe conservar carga ligera.
+
+## 2. Parcela removida
+
+Se presentan varias señales concretas:
+- tallos mordidos;
+- montículos;
+- movimiento breve entre plantas.
+
+Esto es bueno porque un niño puede pasar por alto una señal y todavía disponer de otra.
+
+**Riesgo:** otorgar “reconocimiento de Mordelinde” solamente porque el jugador entró a la sala o porque el sistema conoce el contenido.
+
+**Criterio:** la recompensa de descubrimiento debe requerir una acción real de atención/inspección o una observación legítima del animal. No hace falta preguntar al jugador “¿qué criatura fue?”.
+
+La comprensión puede demostrarse por conducta:
+- examinar;
+- observar al animal;
+- evitar acorralarlo;
+- relacionar después las señales con un encuentro.
+
+## 3. Mordelinde
+
+Su comportamiento de huir si dispone de espacio es útil para enseñar que una criatura no equivale automáticamente a combate.
+
+**Criterio de justicia:** antes de que muerda por estar acorralado, el texto debe permitir percibir que busca salida, retrocede o muestra una conducta equivalente.
+
+El niño puede equivocarse, pero debe existir algo que aprender de la consecuencia.
+
+## 4. Espinajo de rastrojo
+
+La púa es una pista simple y memorable.
+
+La diferencia con Mordelinde es pedagógicamente valiosa si se comunica mediante comportamiento observable, no mediante una etiqueta como “territorial”.
+
+**Criterio:** el jugador debe poder notar postura, posición respecto a alimento/crías u otra señal antes de recibir una consecuencia fuerte.
+
+El objetivo de comprensión es:
+> dos criaturas de dificultad inicial pueden requerir decisiones diferentes.
+
+No:
+> memorizar qué botón corresponde a cada criatura.
+
+## 5. Lindero roto — mejor escena de lectura del piloto
+
+La escena contiene dos señales complementarias:
+- cerca quebrada hacia afuera;
+- depresiones profundas y anchas.
+
+Además añade ausencia de movimientos de fauna menor.
+
+Esto crea una progresión correcta:
+- detalle visible;
+- inspección;
+- relación entre señales;
+- inferencia de amenaza mayor.
+
+**Muy importante:** no hace falta que el jugador escriba “hay una criatura grande”. La comprensión puede demostrarse si:
+- examina más;
+- decide regresar;
+- evita avanzar;
+- usa `evaluar` cuando luego exista un objetivo visible;
+- cambia su conducta por las señales.
+
+## 6. Registro del descubrimiento
+
+Issue #45 define XP por comprender legítimamente el lindero.
+
+Psicopedagogía recomienda no convertir esto en pregunta de examen.
+
+Una regla de implementación posible es registrar evidencia de interacción suficiente, por ejemplo:
+- observar la zona + inspeccionar una señal crítica; o
+- examinar cerca + examinar huellas; o
+- una combinación equivalente definida por Jugabilidad.
+
+Después, una decisión coherente puede reforzar que hubo comprensión.
+
+**No otorgar el descubrimiento por entrar a la habitación.**
+
+**No exigir una frase exacta escrita por el niño.**
+
+## 7. Continuar o regresar
+
+Este es uno de los puntos más fuertes.
+
+Regresar cuenta como cierre satisfactorio y no como fracaso. Esto favorece decisiones prudentes y reduce el patrón infantil de “si el juego me deja avanzar, debo avanzar”.
+
+Si el jugador continúa, las advertencias deben intensificarse gradualmente.
+
+**Condición:** un primer encuentro con Cornalomo no debe funcionar como castigo sorpresa por no haber interpretado una única señal.
+
+## 8. Texto de regreso
+
+El cierre actual tiene buena intención, pero existe un riesgo: explicar demasiado la lección al jugador mediante la frase “ahora sabes leer algunas de sus señales”.
+
+Para el piloto conviene que el cierre reconozca lo ocurrido sin decirle explícitamente cuál era la enseñanza.
+
+Además, la propia Narrativa ya fija una condición correcta: solo mencionar señales realmente obtenidas.
+
+**Recomendación:** generar el cierre a partir del estado persistente de descubrimientos, no de una versión fija que enumere todo.
+
+## 9. XP y motivación
+
+La decisión de conceder XP por descubrimiento además de combate es psicopedagógicamente importante.
+
+Le comunica al jugador mediante el sistema:
+> prestar atención también hace avanzar.
+
+Para la primera sesión conviene que esta recompensa sea visible y comprensible, pero no acompañada de una explicación escolar larga.
+
+Ejemplo funcional esperado:
+- aparece XP;
+- queda registrado el descubrimiento;
+- el jugador puede continuar.
+
+## 10. Comandos e inspección
+
+Desde VT-PSY-003 se resolvió un bloqueo importante:
+- comando desconocido ya no se publica automáticamente como chat;
+- `decir <texto>` es explícito;
+- `observar/examinar` tienen intención separada;
+- `hablar <npc>` tiene contrato separado.
+
+**Estado:** bloqueo comando/chat CERRADO en `main`.
+
+La inspección actual todavía devuelve texto técnico genérico cuando no existe contenido autorizado. Para VT-NAR-003 eso debe sustituirse por respuestas concretas de las pistas definidas en Narrativa antes de usar el piloto para medir comprensión.
+
+## 11. Conversación
+
+VT-NAR-003 deliberadamente no necesita NPC.
+
+Esto es correcto para aislar la primera prueba de lectura.
+
+**Consecuencia:** completar VT-NAR-003 permite validar lectura/exploración, pero NO valida todavía conversación infantil con NPCs.
+
+La auditoría de conversación seguirá pendiente hasta que exista al menos un NPC jugable con diálogo inicial, seguimiento y reacción a estado previo.
+
+## 12. Bloqueos actuales observados en main
+
+A fecha de esta revisión:
+
+1. `server/world.py` todavía contiene descripciones de especie visibles con notas internas “pendiente” para Dravak, Marevyn y Vesperi.
+2. La ruta general de mundo en `main` conserva placeholders fuera de la implementación específica del piloto.
+3. El modal Ayuda visible en `main` todavía conserva una instrucción antigua que dice que escribir cualquier texto sirve para hablar, aunque el parser real ya exige `decir <texto>`.
+4. Issue #43 registra que el P0 de Ayuda está siendo trabajado y que PR #49 parece solapar/cubrir esa corrección junto con implementación del piloto.
+
+Estos puntos no invalidan el diseño de VT-NAR-003, pero deben comprobarse sobre el HEAD que efectivamente se entregue al playtest.
+
+## 13. Protocolo mínimo de observación para El lindero roto
+
+Durante la primera prueba observar, sin interrogar al jugador:
+
+1. ¿lee la descripción completa antes de su primera acción?
+2. ¿usa `mirar`, `observar` o `examinar` espontáneamente?
+3. ¿qué palabra utiliza primero al intentar inspeccionar?
+4. ¿nota diferencia entre Mordelinde y Espinajo?
+5. al llegar al lindero, ¿qué señal provoca una acción distinta?
+6. ¿continúa, investiga o regresa?
+7. si falla una interpretación, ¿entiende qué puede probar después?
+8. ¿percibe que obtuvo progreso por descubrir y no solo por combatir?
+9. ¿regresar se siente como decisión válida o como derrota?
+10. al terminar, ¿quiere volver a explorar?
+
+No preguntar “¿qué aprendiste?” salvo que después se quiera conversar informalmente sobre la experiencia; no usar esa respuesta como medida principal.
+
+## 14. Criterio de aprobación del piloto de lectura
+
+El piloto está psicopedagógicamente listo para prueba cerrada cuando el build usado por el jugador cumpla:
+
+- texto real de VT-NAR-003 en la ruta;
+- respuestas reales a las inspecciones críticas;
+- comando/chat inequívocos;
+- cierre adaptable a descubrimientos realizados;
+- descubrimiento no otorgado por mera entrada;
+- señales previas suficientes antes de una amenaza claramente superior;
+- interfaz de ayuda coherente con los comandos reales.
+
+## Estado
+
+**VT-PSY-004: DISEÑO APROBADO PARA PLAYTEST DE LECTURA CON CONDICIONES DE BUILD.**
+
+No solicito rediseño narrativo de VT-NAR-003.
+
+Mi siguiente trabajo es revisar el build/PR que implemente “El lindero roto” y, después de una prueba infantil real, comparar lo observado contra el protocolo anterior.
+
