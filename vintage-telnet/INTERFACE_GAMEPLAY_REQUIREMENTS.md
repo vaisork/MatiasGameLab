@@ -414,3 +414,51 @@ No debe:
 - asumir que una pieza permite Bloquear si no existe escudo/objeto apropiado.
 
 Si hay varias piezas, UI puede listar cada contribución y mostrar el total calculado por servidor. El navegador no calcula el cap ni las fórmulas autoritativas.
+
+
+## 18. Estado de enemigo — no HP exacto
+
+Con GAMEPLAY §31:
+- mostrar HP exacto únicamente del personaje;
+- no mostrar `actual/máximo` de criaturas;
+- mostrar condición cualitativa autorizada por servidor: entero/apenas afectado, herido, malherido, al borde de caer;
+- mantener `evaluar` como valoración cualitativa de peligro personal;
+- no confundir condición actual con dificultad del encuentro.
+
+La interfaz no calcula estas bandas leyendo HP por su cuenta si el servidor puede entregar el estado ya resuelto.
+
+## 19. Inventario y equipo mínimo
+
+Con GAMEPLAY §32, el panel debe distinguir claramente:
+
+### Poseído
+Objetos que el personaje tiene.
+
+### Equipado
+Como máximo en v1:
+- 1 arma activa;
+- 1 configuración de armadura activa;
+- 1 objeto de bloqueo activo cuando corresponda.
+
+Debe ofrecer, cuando el servidor lo autorice:
+- **Equipar**;
+- **Desequipar**.
+
+Para armadura mostrar:
+- protección física conocida;
+- carga/fatiga adicional;
+- estado de Forja cuando aplique.
+
+Un objeto de Forja no validado puede aparecer como poseído pero debe quedar claramente **no activado/no equipable**, con explicación.
+
+No mostrar:
+- peso total de mochila;
+- cuadrícula de casillas;
+- durabilidad;
+- reparación;
+- comercio/venta;
+- botones de soltar/intercambiar;
+
+porque esos sistemas no forman parte de v1.
+
+Equipar/desequipar debe quedar deshabilitado durante combate por decisión del servidor, no solo por JavaScript.
