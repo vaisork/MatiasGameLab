@@ -1,5 +1,41 @@
 # HANDOFF — Entrega técnica
 
+## ENTREGA — Senku: portada narrativa antes del juego
+
+**DESARROLLADOR:** Desarrollador Junior de Senku — segundo desarrollador  
+**HEAD BASE:** `a38a2125ff1a250a030934edb77548f07663bd5a`  
+**TAREA ASIGNADA:** crear una portada propia de Senku con una explicación breve de la aventura y mover el juego un nivel abajo para que MatiasGameLab no entre directamente a DESPERTAR.  
+**RAMA:** `junior/senku-portada-intro`
+
+### CAMBIOS
+- Nueva portada: `senku/index.html`.
+- Juego movido a: `senku/juego.html`.
+- `index.html` del portal ahora entra a `senku/`.
+- El antiguo `senku.html` redirige a la nueva portada para conservar enlaces guardados.
+- `senku.webmanifest` abre la portada de Senku al iniciar como app.
+- El botón de casa dentro del juego vuelve a la portada de Senku.
+- Se ajustaron rutas de assets del juego a `../assets/`.
+
+### PRUEBAS
+- JavaScript de `senku/juego.html`: parseo OK.
+- DESPERTAR: handler presente; entra a Casa con almacenamiento normal.
+- DESPERTAR: handler presente; entra a Casa con `localStorage` bloqueado.
+- Rutas verificadas: portal → portada Senku → juego; portada → MatiasGameLab; juego → portada.
+- No quedan referencias de assets con ruta raíz incorrecta dentro del juego movido.
+
+### TRABAJO PREVIO AFECTADO
+Se conserva íntegra la lógica de Senku v0.5.9. La tarea reorganiza únicamente su entrada/navegación y rutas relativas.
+
+### PENDIENTES
+Prueba visual final en teléfono/iPad/escritorio después de publicar.
+
+### AVISO PARA EL OTRO DESARROLLADOR
+La entrada canónica de Senku pasa a ser `senku/`; la experiencia jugable vive en `senku/juego.html`. No volver a enlazar el portal directamente al HTML jugable salvo instrucción explícita.
+
+**LISTO PARA REVISIÓN:** SÍ
+
+---
+
 ## ENTREGA — Senku Issue #81: DESPERTAR resistente a almacenamiento bloqueado
 
 **DESARROLLADOR:** Desarrollador Junior de Senku — segundo desarrollador
