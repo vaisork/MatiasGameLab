@@ -107,7 +107,23 @@
     .dpad form{margin:0}
     .dpad button{width:100%;height:100%}
     .combat-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .context-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:stretch}
+    .context-actions form{margin:0;flex:1 1 140px}
+    .context-actions .btn,.context-actions .btn-art{min-height:46px}
     .tool-row{display:flex;flex-wrap:wrap;gap:7px}
+    .help-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+    .help-card{border:1px solid #4f5c6f;border-radius:10px;background:#111925;padding:10px}
+    .help-card h3{margin:0 0 6px;color:var(--gold);font:800 .9rem ui-sans-serif,system-ui,sans-serif}
+    .help-card p{margin:0;color:var(--ink);font:500 .82rem/1.45 ui-sans-serif,system-ui,sans-serif}
+    .help-card code{color:var(--green3);font-family:ui-monospace,monospace}
+    .map-state{display:grid;gap:10px}
+    .map-status{margin:0;color:var(--muted);font:600 .8rem/1.4 ui-sans-serif,system-ui,sans-serif}
+    .map-list{display:grid;gap:6px;margin:0;padding:0;list-style:none}
+    .map-list li{border:1px solid #3d4a5d;border-radius:9px;background:#101722;padding:8px 10px;
+      font:700 .8rem/1.35 ui-sans-serif,system-ui,sans-serif}
+    .map-route{color:var(--green3)}
+    .map-empty{border:1px dashed #4b586a;border-radius:9px;padding:12px;color:var(--muted);
+      font:600 .8rem/1.45 ui-sans-serif,system-ui,sans-serif}
     .tool-row .btn{flex:1 1 90px}
     .btn{
       min-height:46px;border:1px solid #6d5434;border-radius:10px;background:linear-gradient(var(--shell2),var(--panel));
@@ -177,7 +193,8 @@
       .side{display:none}
       .auth{grid-template-columns:1fr}
     }
-    @media(max-width:640px){
+    @media(max-width:700px){.help-grid{grid-template-columns:1fr}}
+        @media(max-width:640px){
       .app{
         height:100dvh;overflow:auto;padding:max(6px,env(safe-area-inset-top)) 6px max(6px,env(safe-area-inset-bottom));
         grid-template-rows:auto auto minmax(0,1fr);gap:6px
@@ -347,22 +364,28 @@
               <button class="btn term" type="submit" aria-label="Ir al sur" {{ 'disabled' if 'south' not in exit_dirs }}>S</button>
             </form>
           </div>
-          <div class="combat-actions">
+          <div class="context-actions" aria-label="Acciones del contexto">
+            {% if room.encounter %}
             <form method="post" action="/attack">
               <input type="hidden" name="csrf" value="{{ session.csrf }}">
-              <button class="btn primary" type="submit" {{ 'disabled' if not room.encounter }} title="{{ 'Atacar' if room.encounter else 'No hay ninguna criatura aquí' }}">Atacar</button>
+              <button class="btn primary" type="submit">Atacar</button>
             </form>
             <form method="post" action="/flee">
               <input type="hidden" name="csrf" value="{{ session.csrf }}">
-              <button class="btn-art btn-flee" type="submit" {{ 'disabled' if not room.encounter }} title="{{ 'Huir' if room.encounter else 'No hay ninguna criatura aquí' }}" aria-label="Huir"><span class="sr-only" aria-hidden="true">Huir</span></button>
+              <button class="btn-art btn-flee" type="submit" title="Huir" aria-label="Huir"><span class="sr-only" aria-hidden="true">Huir</span></button>
             </form>
+            <form method="post" action="/evaluate">
+              <input type="hidden" name="csrf" value="{{ session.csrf }}">
+              <button class="btn" type="submit">Evaluar a {{ room.encounter.name }}</button>
+            </form>
+            {% else %}
+            <form method="post" action="/command">
+              <input type="hidden" name="csrf" value="{{ session.csrf }}">
+              <input type="hidden" name="text" value="descansar">
+              <button class="btn" type="submit">Descansar</button>
+            </form>
+            {% endif %}
           </div>
-          {% if room.encounter %}
-          <form method="post" action="/evaluate" style="margin-top:6px">
-            <input type="hidden" name="csrf" value="{{ session.csrf }}">
-            <button class="btn" type="submit">Evaluar a {{ room.encounter.name }}</button>
-          </form>
-          {% endif %}
         </section>
 
         <div class="divider" role="presentation"></div>
@@ -370,12 +393,13 @@
         <section>
           <form class="commandbar" method="post" action="/command">
             <input type="hidden" name="csrf" value="{{ session.csrf }}">
-            <input name="text" aria-label="Escribe un comando" autocomplete="off" autocapitalize="none" spellcheck="false" enterkeyhint="send" maxlength="500" placeholder="> norte, mirar, examinar..., atacar, huir, decir..., hablar...">
+            <input name="text" aria-label="Escribe un comando" autocomplete="off" autocapitalize="none" spellcheck="false" enterkeyhint="send" maxlength="500" placeholder="> norte, mirar, examinar..., descansar, decir..., hablar...">
             <button class="btn primary" type="submit">Enviar</button>
           </form>
-          <p style="color:var(--muted);font-size:.72rem;margin:4px 0 0">Norte/sur/este/oeste mueven; "mirar" refresca; "observar/examinar &lt;objetivo&gt;" inspecciona; "evaluar &lt;criatura&gt;" valora un peligro visible; "atacar"/"huir" combaten; "hablar &lt;npc&gt;" es una conversación aparte; para chat con otros jugadores usa "decir &lt;texto&gt;" -- ningún comando desconocido se publica como chat.</p>
+          <p style="color:var(--muted);font-size:.72rem;margin:4px 0 0">Norte/sur/este/oeste mueven; "mirar" refresca; "observar/examinar &lt;objetivo&gt;" inspecciona; "evaluar &lt;criatura&gt;" valora un peligro visible; "descansar" recupera fuerzas cuando el contexto lo permite; "atacar"/"huir" aparecen en combate; "hablar &lt;npc&gt;" es una conversación aparte; para chat con otros jugadores usa "decir &lt;texto&gt;" -- ningún comando desconocido se publica como chat.</p>
           <div class="tool-row" aria-label="Herramientas">
             <button class="btn" type="button" data-open="characterDialog">Personaje</button>
+            <button class="btn" type="button" data-open="mapDialog" data-map-open>Mapa</button>
             <button class="btn" type="button" data-open="helpDialog">Ayuda</button>
           </div>
         </section>
@@ -418,15 +442,25 @@
     {% endif %}
   </div>
 </dialog>
-<dialog id="helpDialog">
-  <div class="modal-head"><strong>Ayuda</strong><button class="close" data-close aria-label="Cerrar">×</button></div>
+<dialog id="mapDialog" aria-labelledby="mapDialogTitle">
+  <div class="modal-head"><strong id="mapDialogTitle">Mapa conocido</strong><button class="close" data-close aria-label="Cerrar mapa">×</button></div>
   <div class="modal-body">
-    <h3>Cómo jugar</h3>
-    <p>Usa los botones N/S/E/O para moverte (los que no tienen salida real aparecen apagados), o escribe <b>norte/sur/este/oeste</b>.</p>
-    <p><b>mirar</b> vuelve a describir la situación general. <b>observar &lt;algo&gt;</b> o <b>examinar &lt;algo&gt;</b> inspecciona un detalle concreto de la sala.</p>
-    <p><b>evaluar &lt;criatura&gt;</b> valora el peligro de algo que puedas ver, sin revelar números. <b>atacar</b> y <b>huir</b> combaten cuando hay una criatura presente.</p>
-    <p><b>hablar &lt;npc&gt;</b> inicia una conversación con un personaje, cuando exista uno activo.</p>
-    <p>El texto libre <b>no</b> se publica como chat: para hablar con otros jugadores en tu sala usa <b>decir &lt;texto&gt;</b>. Cualquier otra cosa que escribas y no reconozca el juego no se envía a nadie.</p>
+    <div class="map-state">
+      <p class="map-status" id="mapStatus" aria-live="polite">Consulta únicamente lugares y rutas que tu personaje conoce.</p>
+      <div id="mapContent" class="map-empty">El mapa todavía no se ha cargado.</div>
+    </div>
+  </div>
+</dialog>
+<dialog id="helpDialog" aria-labelledby="helpDialogTitle">
+  <div class="modal-head"><strong id="helpDialogTitle">Ayuda</strong><button class="close" data-close aria-label="Cerrar ayuda">×</button></div>
+  <div class="modal-body">
+    <div class="help-grid">
+      <section class="help-card"><h3>1. Muévete</h3><p><strong>N / S / E / O</strong> recorre salidas disponibles. <strong>Mirar</strong> vuelve a leer dónde estás.</p></section>
+      <section class="help-card"><h3>2. Investiga</h3><p><strong>Explora:</strong> mira el lugar y examina aquello que llame tu atención. <strong>Observar</strong> busca señales; <strong>Evaluar</strong> estima cualitativamente el peligro de una criatura visible.</p></section>
+      <section class="help-card"><h3>3. Combate</h3><p>El ataque básico continúa una vez iniciado el combate. <strong>Huir</strong> o una defensa disponible sustituye tu ataque de esa ronda. Esquivar, Bloquear y Resistir solo aparecerán cuando el servidor los autorice.</p></section>
+      <section class="help-card"><h3>4. Recupérate y consulta</h3><p><strong>Descansar</strong> es una acción cuando el juego la permita; no todos los momentos ofrecen las mismas opciones. <strong>Personaje</strong> muestra tu estado y <strong>Mapa</strong> recuerda solo lugares y rutas conocidos.</p></section>
+      <section class="help-card"><h3>5. Habla</h3><p><strong>Hablar</strong> conversa con un NPC disponible. Para chat local usa <code>decir &lt;texto&gt;</code>. Un comando desconocido no se convierte en chat.</p></section>
+    </div>
   </div>
 </dialog>
 
@@ -442,6 +476,68 @@
     const fallback = img.nextElementSibling;
     if (fallback) fallback.hidden = false;
   }));
+
+  const mapButton = document.querySelector("[data-map-open]");
+  const mapStatus = document.getElementById("mapStatus");
+  const mapContent = document.getElementById("mapContent");
+  const readableId = id => String(id).replaceAll("_", " ");
+  const renderMap = data => {
+    const rooms = Array.isArray(data.visited_rooms) ? data.visited_rooms : [];
+    const routes = Array.isArray(data.traversed_routes) ? data.traversed_routes : [];
+    if (!rooms.length && !routes.length) {
+      mapContent.className = "map-empty";
+      mapContent.textContent = "Todavía no has registrado lugares o rutas en tu mapa.";
+      return;
+    }
+    const wrapper = document.createElement("div");
+    wrapper.className = "map-state";
+    if (rooms.length) {
+      const title = document.createElement("strong");
+      title.textContent = "Lugares visitados";
+      wrapper.appendChild(title);
+      const list = document.createElement("ul");
+      list.className = "map-list";
+      rooms.forEach(id => {
+        const item = document.createElement("li");
+        item.textContent = readableId(id);
+        list.appendChild(item);
+      });
+      wrapper.appendChild(list);
+    }
+    if (routes.length) {
+      const title = document.createElement("strong");
+      title.textContent = "Rutas recorridas";
+      wrapper.appendChild(title);
+      const list = document.createElement("ul");
+      list.className = "map-list";
+      routes.forEach(route => {
+        if (!Array.isArray(route) || route.length !== 2) return;
+        const item = document.createElement("li");
+        item.className = "map-route";
+        item.textContent = readableId(route[0]) + " → " + readableId(route[1]);
+        list.appendChild(item);
+      });
+      wrapper.appendChild(list);
+    }
+    mapContent.className = "";
+    mapContent.replaceChildren(wrapper);
+  };
+  if (mapButton) mapButton.addEventListener("click", async () => {
+    mapStatus.textContent = "Consultando tu mapa…";
+    mapContent.className = "map-empty";
+    mapContent.textContent = "Cargando lugares conocidos…";
+    try {
+      const response = await fetch("/api/map", {headers: {"Accept": "application/json"}});
+      if (!response.ok) throw new Error("map unavailable");
+      renderMap(await response.json());
+      mapStatus.textContent = "Solo se muestran lugares visitados y rutas recorridas que devuelve el servidor.";
+    } catch (_error) {
+      mapContent.className = "map-empty";
+      mapContent.textContent = "No se pudo cargar el mapa. Puedes seguir jugando normalmente.";
+      mapStatus.textContent = "Mapa no disponible en este momento.";
+    }
+  });
+
   document.querySelectorAll("dialog").forEach(d => d.addEventListener("click", e => { if (e.target === d) d.close(); }));
 })();
 </script>
