@@ -418,3 +418,44 @@ Se creó `vintage-telnet/FIRST_PLAYABLE_SLICE.md` con el alcance completo, contr
 Por decisión de alcance, quedan fuera de este primer slice: chat, combate, PvP, clases, estadísticas, inventario, Arcanes, poderes, economía, monstruos, secretos y mapa completo.
 
 El objetivo es llegar antes a una versión realmente persistente y jugable en teléfono.
+
+
+---
+
+## ENTREGA — Integrador/Publicador HTML — Issue #43 P0 Ayuda
+
+**Estado:** LISTO PARA REVISIÓN  
+**Rama:** `integrator/issue-43-help-alignment`  
+**HEAD base:** `ddbe145b1f3c3668bd13b56534deadf91fd253a7`
+
+### Objetivo
+Corregir el P0 de interfaz de Issue #43 que seguía presente en `main`: el modal Ayuda afirmaba que cualquier texto escrito se enviaba como chat, contradiciendo el parser real.
+
+### Cambios
+- `vintage-telnet/server/templates/entry.html`
+  - Ayuda ahora distingue:
+    - movimiento N/S/E/O;
+    - `mirar`;
+    - `observar <objetivo>` / `examinar <objetivo>`;
+    - `hablar <npc>`;
+    - `decir <texto>` para chat;
+    - comando desconocido no se publica como chat.
+  - No inventa NPCs, objetivos visibles ni acciones que el servidor no entregue.
+- `vintage-telnet/tests/test_entry.py`
+  - nueva prueba de regresión que verifica el texto correcto de Ayuda y que la instrucción antigua no reaparezca.
+
+### Fuera de alcance
+- No se implementó NPC conversable.
+- No se añadió geografía/narrativa.
+- No se modificó combate ni PR #49.
+- No se añadieron botones que revelen objetivos no autorizados por el servidor.
+- No se modificó Senku.
+
+### Pendientes de Issue #43
+Los demás P0 requieren contenido/servidor o validación de dispositivo:
+- inspección real completa según contenido disponible;
+- primer NPC conversable;
+- textos canónicos en la ruta de playtest;
+- prueba real teléfono/iPad/computadora.
+
+**LISTO PARA PUBLICAR:** NO — entrega preparada para revisión e integración según flujo del Integrador.
