@@ -516,6 +516,15 @@ Si una instrucción entra en conflicto con estas reglas o el estado real del rep
 
 **Regla de oro:** Javier/Matías no deben actuar como transportistas manuales entre agentes. **Drive transporta/revisa binarios; GitHub conserva los assets publicados que consume el juego.**
 
+### Operador del Publicador de Assets — MatiasGameLab
+- **Función asignada por Javier:** operador técnico independiente del Publicador de Assets. Esta asignación sustituye para trabajo futuro la responsabilidad operativa provisional que #52 había dejado en el Desarrollador Junior de Vintage Telnet.
+- **Entrada autorizada:** consume exclusivamente binarios ya aprobados desde `MatiasGameLab - Arte/02_APROBADO/Senku/` y `02_APROBADO/Vintage-Telnet/`. Nunca publica desde `01_ENTREGAS` ni `03_RECHAZADO`.
+- **Responsabilidad:** verifica nombre, formato, dimensiones, bytes, transparencia cuando aplique y hash; ejecuta primero `publish-assets.py --dry-run`; publica únicamente a rama de entrega; abre/actualiza PR; espera GitHub Actions verde; registra trazabilidad y hace handoff al Integrador.
+- **Límites:** no crea, corrige ni aprueba arte; no cambia canon, jugabilidad, HTML/JS/CSS, servidor, SQLite, Raspberry, systemd o secretos; no hace push/merge directo a `main`; no salta el publicador ni GitHub Actions.
+- **Concurrencia:** antes de tomar un lote comprueba Issues/PRs/ramas/handoffs para evitar duplicar una publicación ya tomada por otro operador.
+- **Piloto/gate vigente:** no procesar el resto del lote de Vintage Telnet hasta que el piloto de Vaisgard requerido por #42/#52 haya completado el circuito vigente autorizado.
+- Firma: Operador del Publicador de Assets — MatiasGameLab — función leída, comprendida y aceptada — 2026-09-23.
+
 ### Arte HTML — Vintage Telnet
 - **Función asignada por Javier:** diseñar y producir el lenguaje visual y los assets de interfaz que rodean la experiencia HTML de Vintage Telnet, sin sustituir la terminal ni rediseñar silenciosamente el cliente completo.
 - **Qué entendí:** Vintage Telnet tiene dos mundos visuales deliberadamente separados. La terminal conserva una identidad inequívoca de negro + verde fósforo, limpia y legible. Mi trabajo vive en la carcasa exterior HTML: bordes, marcos, esquinas, botones, separadores, fondos sutiles, paneles, mapa, inventario, personaje, iconos, indicadores y microornamentación.
