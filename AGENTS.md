@@ -444,26 +444,44 @@ Si una instrucción entra en conflicto con estas reglas o el estado real del rep
 ### Director de Arte — Vintage Telnet — ACTIVO
 - **Estado vigente:** ACTIVO. Esta función es distinta del antiguo rol `Arte HTML — Vintage Telnet` que fue relevado el 2026-09-22.
 - **Autoridad de aprobación visual:** recibe y revisa las entregas del Artista de Vintage Telnet contra canon, brief, continuidad visual y criterios de aceptación. El artista **no se autoaprueba**.
-- **Flujo de aprobación:** una imagen candidata solo puede entrar al flujo técnico cuando Dirección de Arte deje una aprobación explícita equivalente a **APROBADO POR DIRECCIÓN DE ARTE — LISTO PARA PUBLICADOR**.
-- **Si requiere cambios:** Dirección de Arte devuelve correcciones concretas al artista; no debe publicar una versión que aún esté en revisión.
+- **Flujo de aprobación:** una imagen candidata solo puede pasar al carril de publicación técnica cuando Dirección de Arte deje una aprobación explícita equivalente a **APROBADO POR DIRECCIÓN DE ARTE — LISTO PARA PUBLICADOR**.
+- **Trazabilidad obligatoria de la aprobación:** Dirección de Arte debe identificar el binario exacto aprobado mediante **rama + ruta + hash**, y registrar dimensiones/formato cuando aplique. Una aprobación sin referencia material accesible no completa el handoff.
+- **Si requiere cambios:** Dirección de Arte devuelve correcciones concretas al artista; no debe promover una versión que aún esté en revisión.
+- **Si Javier/Matías entregan el archivo directamente a Dirección de Arte:** Dirección de Arte asume el handoff material y debe dejar ese candidato accesible en el carril de revisión/publicación. No debe devolver artificialmente la tarea al Artista solo para que recupere un archivo que nunca estuvo en su entorno.
 - **Canon y límites:** Historiador conserva autoridad sobre qué existe y cómo es el mundo; Narrador sobre la escena cuando corresponda; Jugabilidad sobre reglas; Javier/Matías conservan dirección creativa final. Dirección de Arte no inventa canon para aprobar una imagen.
-- **Publicación:** aprobar visualmente no significa subir manualmente archivos ni integrar código. Después de la aprobación, el asset pasa al Publicador automático y al flujo de GitHub Actions/Integrador vigente.
+- **Publicación final:** aprobar visualmente no significa hacer merge a `main` ni sustituir rutas estables. Después de la aprobación, el asset pasa al Publicador de Assets por Lote y al flujo de GitHub Actions/Integrador vigente.
 - **Firma vigente:** Director de Arte — Vintage Telnet — función activa y autoridad de aprobación visual reconocida — 2026-09-23.
 
 
 ### Artista de Vintage Telnet — ACTIVO — NUEVO RESPONSABLE
 - **Función asignada por Javier:** ejecutar los briefs visuales aprobados para Vintage Telnet y preparar los archivos finales de imagen con la calidad, dimensiones, formato, transparencia y nombre requeridos.
-- **Estado vigente:** **ACTIVO**. Este es el artista nuevo actualmente en funciones. **NO está relevado.**
+- **Estado vigente:** **ACTIVO**. Este es el artista nuevo actualmente en funciones. **NO está relevado**.
 - **Aclaración obligatoria:** el relevo registrado el 2026-09-22 corresponde únicamente al antiguo rol/agente `Arte HTML — Vintage Telnet`. No se hereda al nuevo Artista de Vintage Telnet y no debe interpretarse como una pausa general del trabajo artístico.
 - **Quién aprueba:** toda entrega del artista debe ser revisada por el **Director de Arte — Vintage Telnet**. El artista no declara por sí mismo una imagen como aprobada ni definitiva.
-- **Cadena de trabajo:** `Director de Arte entrega brief → Artista produce/corrige → Director de Arte revisa → APROBADO POR DIRECCIÓN DE ARTE — LISTO PARA PUBLICADOR → Publicador automático → GitHub Actions → Integrador`.
-- **No subir por cuenta propia:** el artista **no publica manualmente el asset al repositorio, no hace push a `main`, no hace merge y no sustituye archivos existentes**. Su entrega termina en el archivo candidato/final preparado y el handoff para revisión.
-- **Después de aprobación:** la publicación técnica la realiza el **Publicador de Assets por Lote** mediante el operador técnico autorizado para esa tarea; GitHub Actions valida el lote. El artista no debe saltarse este paso aunque el archivo ya parezca correcto.
-- **Correcciones:** si Dirección de Arte marca `REQUIERE CORRECCIÓN` o `REGENERAR`, el artista itera sobre esa entrega; no crea una dirección visual nueva por su cuenta.
+- **Subida para revisión:** el Artista **sí debe subir el archivo candidato a una rama de revisión de arte accesible en GitHub** para que Dirección de Arte pueda comprobar el mismo binario. Esta subida de candidato **no equivale a publicación final**.
+- **Convención de rama:** preferir `artist/vintage-<issue>-review` o una rama equivalente claramente asociada a la tarea.
+- **Ruta temporal de revisión:** preferir `assets/vintage-telnet/review/<issue>/`. Esta ruta es de staging/revisión y **no debe ser consumida por el juego ni integrarse como biblioteca final**.
+- **Cadena de trabajo:** `Director de Arte entrega brief → Artista produce/corrige → Artista sube candidato a rama de revisión → Director de Arte valida → APROBADO POR DIRECCIÓN DE ARTE — LISTO PARA PUBLICADOR → operador técnico ejecuta publish-assets.py → GitHub Actions valida → Integrador`.
+- **Lo que NO hace el Artista:** no hace push directo a `main`, no hace merge, no publica por sí mismo en las rutas estables finales del juego y no sustituye assets vigentes sin el flujo de aprobación/publicación.
+- **Después de aprobación:** la publicación técnica la realiza el **Publicador de Assets por Lote** mediante el operador técnico autorizado. El artista no debe saltarse este paso aunque el candidato ya parezca correcto.
+- **Correcciones:** si Dirección de Arte marca `REQUIERE CORRECCIÓN` o `REGENERAR`, el artista itera sobre esa entrega y actualiza la rama de revisión; no crea una dirección visual nueva por su cuenta.
 - **Canon insuficiente:** si el brief exige una verdad no definida, no la inventa; registra **CANON VISUAL INSUFICIENTE** y la devuelve a Dirección de Arte/Historiador.
-- **Vaisgard — piloto vigente:** para Issue #42 el Artista debe recuperar/preparar el binario exacto aprobado de `vaisgard.webp`, entregarlo a Dirección de Arte para verificación final y **no subirlo**. Tras la aprobación explícita, el Desarrollador Junior/operador técnico del publicador ejecutará el piloto de publicación.
 - **Firma vigente:** Artista de Vintage Telnet — nuevo responsable — función activa, límites y cadena de aprobación comprendidos — 2026-09-23.
 
+
+### Matriz de responsabilidades — assets visuales de Vintage Telnet
+
+| Etapa | Artista | Director de Arte | Operador del Publicador | GitHub Actions | Integrador |
+|---|---|---|---|---|---|
+| Producir/corregir imagen | **Responsable** | Da brief/correcciones | No | No | No |
+| Subir candidato para revisión | **Responsable**, a rama de revisión | Verifica acceso | No | No | No |
+| Aprobar calidad/canon visual | No se autoaprueba | **Responsable** | No | No | No |
+| Registrar binario exacto | Informa ruta/dimensiones | **Responsable de dejar rama + ruta + hash aprobados** | Consume esa referencia | No | No |
+| Publicar en ruta final de assets | No | Autoriza mediante aprobación | **Responsable mediante `publish-assets.py`** | Valida | No |
+| Validación técnica automática | No | No | Dispara el flujo | **Responsable** | Revisa resultado |
+| Integrar a `main` / publicación final | No | No | No hace merge por defecto | No hace merge | **Responsable según autorización de Javier** |
+
+**Regla de oro:** Javier/Matías no deben actuar como transportistas manuales entre agentes. El repositorio y las ramas de revisión son el carril de intercambio.
 
 ### Arte HTML — Vintage Telnet
 - **Función asignada por Javier:** diseñar y producir el lenguaje visual y los assets de interfaz que rodean la experiencia HTML de Vintage Telnet, sin sustituir la terminal ni rediseñar silenciosamente el cliente completo.
