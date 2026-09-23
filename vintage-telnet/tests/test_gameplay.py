@@ -224,8 +224,10 @@ class GameplayTests(unittest.TestCase):
         # "mirar" no mueve.
         self.post("/command", dict(text="mirar"))
         self.assertEqual(self.client.get("/api/room").json["room"]["id"], "khariel_centro")
-        # Cualquier otro texto sigue funcionando como chat local.
-        self.post("/command", dict(text="hola a todos"))
+        # El chat ahora requiere intención explícita.
+        unknown = self.post("/command", dict(text="hola a todos"))
+        self.assertEqual(unknown.status_code, 400)
+        self.post("/command", dict(text="decir hola a todos"))
         bodies = [m["body"] for m in self.client.get("/api/room").json["room"]["messages"]]
         self.assertIn("hola a todos", bodies)
 
