@@ -15,6 +15,5 @@ NoNewPrivileges=true
 PrivateTmp=true
 ProtectSystem=strict
 ProtectHome=true
-ReadWritePaths=/var/backups/vintage-telnet
-ReadOnlyPaths=/var/lib/vintage-telnet
+ReadWritePaths=/var/backups/vintage-telnet /var/lib/vintage-telnet
 UMask=0077
