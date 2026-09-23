@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0d67b5">
+<meta name="description" content="Conoce la aventura de Senku por Latinoamérica antes de comenzar a jugar.">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Senku">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icon/senku-icon-192.png?v=060">
+<link rel="apple-touch-icon" sizes="192x192" href="../assets/icon/senku-icon-192.png?v=060">
+<link rel="manifest" href="../senku.webmanifest?v=060">
+<title>Senku por Latinoamérica — La aventura comienza aquí</title>
+<style>
+:root{
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  color:#172235;
+  background:#eaf6ff;
+  --blue:#0d67b5;
+  --blue-dark:#084879;
+  --sky:#bfe8ff;
+  --cream:#fff7e5;
+  --orange:#e76f36;
+  --ink:#172235;
+  --muted:#52657a;
+  --line:#0d67b522;
+  --shadow:0 22px 60px #0b4d7c25;
+}
+*{box-sizing:border-box}
+html{background:#eaf6ff}
+body{
+  margin:0;
+  min-height:100vh;
+  background:
+    radial-gradient(circle at 8% 8%,#fff9 0,transparent 24%),
+    radial-gradient(circle at 92% 0%,#ffd77c66 0,transparent 26%),
+    linear-gradient(180deg,#bfe8ff 0,#eaf6ff 44%,#fff7e5 100%);
+}
+a{color:inherit}
+a:focus-visible{outline:4px solid #172235;outline-offset:4px}
+.shell{width:min(1080px,92%);margin:auto}
+header{
+  min-height:74px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+}
+.back{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  text-decoration:none;
+  font-weight:900;
+  color:var(--blue-dark);
+}
+.brand{font-weight:1000;letter-spacing:.02em;color:var(--blue-dark)}
+.hero{
+  display:grid;
+  grid-template-columns:minmax(0,1.1fr) minmax(280px,.9fr);
+  gap:28px;
+  align-items:center;
+  padding:32px 0 28px;
+}
+.eyebrow{
+  display:inline-flex;
+  padding:8px 12px;
+  border-radius:999px;
+  background:#ffffffaa;
+  border:1px solid var(--line);
+  color:var(--blue-dark);
+  font-size:.78rem;
+  font-weight:950;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+}
+h1{
+  margin:14px 0 0;
+  font-size:clamp(3.2rem,9vw,7rem);
+  line-height:.86;
+  letter-spacing:-.07em;
+  color:var(--blue-dark);
+}
+h1 span{display:block;color:var(--orange);font-size:.46em;letter-spacing:-.035em;margin-top:14px}
+.lead{
+  max-width:650px;
+  margin:22px 0 0;
+  color:var(--muted);
+  font-size:clamp(1rem,2.2vw,1.2rem);
+  line-height:1.7;
+}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.play,.secondary{
+  min-height:52px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:14px 20px;
+  border-radius:16px;
+  text-decoration:none;
+  font-weight:1000;
+}
+.play{background:var(--orange);color:#fff;box-shadow:0 12px 28px #bd4e2538}
+.secondary{background:#fff9;color:var(--blue-dark);border:1px solid var(--line)}
+.art{
+  position:relative;
+  min-height:440px;
+  display:grid;
+  place-items:center;
+}
+.art::before{
+  content:"";
+  position:absolute;
+  inset:7% 2%;
+  border-radius:50%;
+  background:#ffffff85;
+  filter:blur(1px);
+  box-shadow:0 28px 80px #0b4d7c22;
+}
+.art img{
+  position:relative;
+  z-index:1;
+  width:min(100%,430px);
+  max-height:480px;
+  object-fit:cover;
+  border-radius:32px;
+  box-shadow:var(--shadow);
+  transform:rotate(1.2deg);
+}
+.story{
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  gap:22px;
+  padding:24px 0 56px;
+}
+.panel{
+  background:#ffffffc9;
+  border:1px solid var(--line);
+  border-radius:26px;
+  padding:clamp(22px,4vw,34px);
+  box-shadow:var(--shadow);
+}
+.panel h2{margin:0;color:var(--blue-dark);font-size:clamp(1.5rem,4vw,2.2rem)}
+.panel p{color:var(--muted);line-height:1.7;margin:12px 0 0}
+.steps{display:grid;gap:12px;margin-top:18px}
+.step{
+  display:grid;
+  grid-template-columns:42px 1fr;
+  gap:12px;
+  align-items:start;
+}
+.num{
+  width:42px;height:42px;border-radius:14px;
+  display:grid;place-items:center;
+  background:#0d67b512;color:var(--blue-dark);
+  font-weight:1000;
+}
+.step strong{display:block;margin-top:2px;color:var(--ink)}
+.step span{display:block;color:var(--muted);font-size:.93rem;line-height:1.45;margin-top:3px}
+footer{padding:0 0 34px;color:#617386;font-size:.86rem;text-align:center}
+@media(max-width:800px){
+  .hero,.story{grid-template-columns:1fr}
+  .hero{padding-top:16px}
+  .art{min-height:300px;order:-1}
+  .art img{max-height:330px;width:min(100%,360px)}
+}
+@media(max-width:520px){
+  header{min-height:64px}
+  .brand{font-size:.9rem}
+  .hero{gap:14px}
+  h1{font-size:clamp(3rem,19vw,5.2rem)}
+  .lead{line-height:1.55}
+  .actions{display:grid}
+  .play,.secondary{width:100%}
+  .panel{border-radius:22px}
+}
+</style>
+</head>
+<body>
+<div class="shell">
+  <header>
+    <a class="back" href="../">← MatiasGameLab</a>
+    <div class="brand">SENKU · AVENTURA</div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <span class="eyebrow">🐾 Una aventura que empieza en México</span>
+        <h1>Senku<span>por Latinoamérica</span></h1>
+        <p class="lead">
+          Senku es un gato curioso que un día decide que su casa ya no es suficiente.
+          Su primera misión parece sencilla: encontrar una salida. Pero al cruzar la ventana,
+          la calle se convierte en el comienzo de un viaje lleno de lugares nuevos, personajes,
+          secretos y caminos que poco a poco lo llevarán por Latinoamérica.
+        </p>
+        <div class="actions">
+          <a class="play" href="juego.html">COMENZAR AVENTURA →</a>
+          <a class="secondary" href="#historia">Conocer la historia</a>
+        </div>
+      </div>
+      <div class="art" aria-label="Senku listo para comenzar su aventura">
+        <img src="../assets/senku/menu-base.jpg?v=050" alt="Senku, protagonista de la aventura">
+      </div>
+    </section>
+
+    <section class="story" id="historia">
+      <article class="panel">
+        <h2>¿De qué trata?</h2>
+        <p>
+          Exploras el mundo controlando a Senku. Puedes saltar, buscar salidas, hablar con personajes,
+          descubrir pistas, reunir Churus y encontrar secretos que desbloquean nuevos trajes.
+          Cada lugar forma parte de una aventura más grande que irá creciendo con nuevas zonas y países.
+        </p>
+        <p>
+          El viaje comienza en México, dentro de la casa de Senku. Para conocer lo que hay afuera,
+          primero tendrás que ayudarlo a escapar y empezar a explorar.
+        </p>
+      </article>
+
+      <article class="panel">
+        <h2>Tu primera aventura</h2>
+        <div class="steps">
+          <div class="step"><div class="num">1</div><div><strong>Despierta</strong><span>Entra al juego y comienza dentro de casa.</span></div></div>
+          <div class="step"><div class="num">2</div><div><strong>Encuentra una salida</strong><span>Observa el escenario, muévete y descubre cómo escapar.</span></div></div>
+          <div class="step"><div class="num">3</div><div><strong>Explora México</strong><span>Busca Churus, personajes, pistas y secretos.</span></div></div>
+          <div class="step"><div class="num">4</div><div><strong>Sigue viajando</strong><span>La aventura crecerá hacia nuevos lugares de Latinoamérica.</span></div></div>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer>Senku es parte de MatiasGameLab · creado por Matías y Javier.</footer>
+</div>
+</body>
+</html>
