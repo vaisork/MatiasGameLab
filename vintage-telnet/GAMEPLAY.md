@@ -229,7 +229,7 @@ Se mantienen separados tres conceptos:
 - **Heridas:** consecuencias concretas del daño que pueden llegar a afectar temporalmente determinadas capacidades. Su catálogo y efectos exactos siguen pendientes.
 - **Fatiga:** desgaste producido por esfuerzo; no es equivalente al daño ni constituye una segunda barra de vida.
 
-La fatiga tendrá una **barra/valor visible** y también estados o señales narrativas comprensibles. Resistencia influirá en la relación del personaje con la fatiga, pero la fórmula exacta permanece pendiente.
+La fatiga tendrá una **barra/valor visible** y también estados o señales narrativas comprensibles. Resistencia influye según §20.7 y los efectos/costes operativos quedan cerrados en §24.
 
 Una fatiga elevada no provoca automáticamente derrota. Debe afectar de manera comprensible la capacidad de mantener determinadas acciones, su coste o eficacia, favoreciendo cambios de estrategia.
 
@@ -237,7 +237,7 @@ La recuperación de fatiga será **combinada**:
 1. existe recuperación gradual cuando cesa el esfuerzo que la genera;
 2. una acción explícita de descanso permite una recuperación más rápida o eficaz.
 
-Los ritmos, condiciones, interrupciones y cantidades exactas de recuperación todavía no están definidos.
+Los ritmos, condiciones, interrupciones y cantidades v1 de recuperación quedan definidos en §24.
 
 El diseño debe evitar una proliferación innecesaria de estados difíciles de recordar. Las condiciones importantes deben ser pocas, significativas y comunicadas con claridad.
 
@@ -1031,6 +1031,204 @@ La ilustración contextual de una ciudad o región es independiente del mapa y n
 
 **El mapa recuerda lo que el personaje ha aprendido del mundo; no le enseña el mundo por adelantado.**
 
+
+## 24. Ritmo de combate, fatiga, heridas y recuperación — v1
+
+**Estado:** APROBADO PARA PRIMER COMBATE REAL / AFINABLE POR PLAYTEST.
+
+Esta sección cierra los parámetros operativos que faltaban para que Desarrollo pueda implementar el bucle de combate de §20 sin inventar comportamiento.
+
+### 24.1 Rondas semi-automáticas
+
+El combate se resuelve por **rondas autoritativas del servidor**.
+
+Referencia de cadencia v1:
+- objetivo inicial: **1 ronda cada ~4 segundos**;
+- el valor puede afinarse aproximadamente entre 3–5 segundos después de probar lectura y respuesta en teléfono;
+- cambiar la duración de la ronda no cambia las fórmulas de combate.
+
+Al comenzar un combate:
+- el personaje queda con **ataque básico automático** como acción por defecto;
+- si el jugador no hace nada, los ataques básicos continúan ronda tras ronda;
+- antes de resolver la siguiente ronda, el jugador puede enviar **una intervención**;
+- esa intervención sustituye la acción básica de esa ronda.
+
+Intervenciones posibles cuando el contexto/servidor las habilita:
+- usar un poder;
+- huir;
+- adoptar una defensa contextual;
+- utilizar un objeto cuando el sistema de objetos exista.
+
+Esto permite que un combate rutinario avance con poca intervención, pero hace que una decisión estratégica tenga coste de oportunidad: defenderse, huir o usar una capacidad sustituye el ataque básico de esa ronda.
+
+### 24.2 Defensa contextual dentro de la ronda
+
+Cuando el jugador elige:
+- **Esquivar**;
+- **Bloquear/desviar**;
+- **Resistir**;
+
+esa respuesta se aplica contra el ataque enemigo correspondiente de la siguiente resolución y **sustituye el ataque básico del personaje en esa ronda**.
+
+La interfaz solo presenta defensas que tengan sentido según:
+- ataque visible/telegráfico;
+- posición;
+- equipo;
+- estado;
+- información que el personaje realmente percibió.
+
+No existe un botón universal de “mejor defensa” y el cliente no calcula cuál conviene.
+
+### 24.3 Costes base de fatiga
+
+Costes v1 antes del modificador por Resistencia de §20.7:
+
+| Acción | Fatiga base |
+| --- | ---: |
+| Ataque básico físico | 4 |
+| Resistir | 3 |
+| Bloquear/desviar | 5 |
+| Esquivar | 6 |
+| Huir | 8 |
+
+Los poderes reciben coste concreto cuando Jugabilidad valide cada poder. Como guía:
+- poder rápido: normalmente **6–10**;
+- poder fuerte: normalmente **10–15**;
+- poder mayor: normalmente **15–25** o una restricción equivalente.
+
+No existe un coste mágico universal.
+
+### 24.4 Efectos exactos de cansancio y agotamiento
+
+**0–69 — operativo**
+- sin penalización general por fatiga.
+
+**70–89 — cansado**
+- -5 puntos porcentuales a precisión física, esquiva, bloqueo y huida;
+- potencia/daño físico final × **0.90**;
+- reducción de Resistir disminuye 5 puntos porcentuales, nunca por debajo de 0.
+
+**90–100 — agotado**
+- -10 puntos porcentuales a precisión física, esquiva, bloqueo y huida;
+- potencia/daño físico final × **0.80**;
+- reducción de Resistir disminuye 10 puntos porcentuales, nunca por debajo de 0.
+
+La fatiga no impide por sí sola actuar ni mata al personaje.
+
+Un poder no recibe automáticamente estas penalizaciones si su ejecución no es física. Su regla concreta decide qué estado le afecta.
+
+### 24.5 Heridas — disparador simple
+
+Para la v1 se evita una tabla compleja de críticos.
+
+Después de mitigación, comparar el daño de **un solo impacto** con el HP máximo del objetivo:
+
+| Daño de un solo impacto | Herida mínima provocada |
+| --- | --- |
+| menos de 20% HPmax | ninguna por daño bruto solamente |
+| 20%–34% HPmax | leve |
+| 35%–49% HPmax | moderada |
+| 50%+ HPmax | grave |
+
+Contenido especial puede declarar una herida explícita solamente cuando Jugabilidad la valide.
+
+Un personaje mantiene como máximo **una herida mecánica principal**. Una herida mayor reemplaza a una menor; heridas iguales no se acumulan indefinidamente.
+
+### 24.6 Efectos de heridas
+
+**Leve**
+- fatiga generada × **1.10**.
+
+**Moderada**
+- fatiga generada × **1.20**;
+- -5 puntos porcentuales a precisión física, esquiva, bloqueo y huida;
+- el descanso de campo no puede recuperar HP por encima de **85% del HP máximo**.
+
+**Grave**
+- fatiga generada × **1.35**;
+- -10 puntos porcentuales a precisión física, esquiva, bloqueo y huida;
+- daño/potencia física final × **0.90**;
+- el descanso de campo no puede recuperar HP por encima de **65% del HP máximo**.
+
+Las penalizaciones de herida y fatiga pueden coexistir, pero deben mostrarse narrativamente con claridad para que el jugador comprenda por qué su rendimiento empeoró.
+
+### 24.7 Recuperación gradual fuera de combate
+
+Se conserva el principio combinado ya aprobado.
+
+Cuando el personaje está fuera de combate y no realiza esfuerzo intenso:
+- recupera aproximadamente **1 punto de fatiga cada 10 segundos**;
+- esta recuperación puede calcularse por tiempo transcurrido en servidor;
+- no recupera heridas;
+- HP no se regenera pasivamente por esta regla.
+
+La recuperación pasiva evita que una pausa breve sea inútil sin convertir esperar en la estrategia principal.
+
+### 24.8 Acción explícita `descansar`
+
+Fuera de combate y cuando el contexto sea seguro, el jugador puede usar:
+
+**`descansar`**
+
+Una acción de descanso v1:
+- recupera **10% del HP máximo**;
+- reduce fatiga en **25 puntos + 0.2 × (Resistencia - 10)**;
+- respeta el límite de recuperación de HP impuesto por una herida moderada/grave;
+- puede ser rechazada/interrumpida si existe peligro inmediato.
+
+La interfaz puede ofrecer **Descansar** como acción contextual; botón y comando son la misma intención.
+
+### 24.9 Recuperación segura
+
+Un lugar que Narrativa/Historia marque como punto válido de recuperación segura puede ofrecer una recuperación superior.
+
+Una recuperación segura completa:
+- restaura HP al 100%;
+- reduce fatiga a 0;
+- mejora una herida en **un grado**:
+  - grave → moderada;
+  - moderada → leve;
+  - leve → ninguna.
+
+El contenido decide qué lugares ofrecen esta recuperación; Jugabilidad fija el efecto.
+
+Para evitar spam, una nueva mejora de herida requiere **un nuevo ciclo legítimo de recuperación** definido por el servidor/contenido, no pulsar el mismo botón repetidamente en el mismo instante.
+
+### 24.10 Ataque básico antes del equipamiento definitivo
+
+Mientras el sistema real de armas iniciales todavía no esté integrado, el primer piloto puede usar internamente:
+
+`BaseArma = 10`
+
+como **perfil técnico de ataque básico**.
+
+Esto:
+- no inventa un arma canónica;
+- no muestra al jugador un objeto inexistente;
+- permite probar combate real;
+- debe ser sustituido por el valor del equipo real cuando Historiador/Forja/Desarrollo integren armas iniciales.
+
+### 24.11 Validación del piloto de Edran
+
+Con personaje nivel 1, atributos 10 y BaseArma 10, la simulación de referencia produce aproximadamente:
+
+| Criatura | Rondas esperadas para derrotarla | Daño esperado recibido |
+| --- | ---: | ---: |
+| Mordelinde | ~6 | ~14 HP |
+| Espinajo | ~8 | ~32 HP |
+| Cornalomo | ~27 | >300 HP |
+
+Interpretación:
+- Mordelinde enseña el sistema con riesgo bajo;
+- Espinajo obliga a prestar más atención y hace que descansar/huir tengan valor;
+- Cornalomo mata claramente al principiante en combate prolongado y por eso sus señales + `evaluar` importan.
+
+Estos son valores medios antes de decisiones defensivas, huida, poderes y variación aleatoria. Se usan para detectar desbalance, no como resultado garantizado.
+
+### 24.12 Principio
+
+**El combate básico avanza solo; intervenir debe ser una decisión real. El desgaste obliga a leer el estado y decidir si continuar, descansar, defenderse o regresar.**
+
 ## Investigación disponible para Jugabilidad — capacidades HTML y comandos
 
 **ESTADO: INVESTIGACIÓN CONSUMIDA — la dirección híbrida HTML/Telnet, inspección, evaluación de peligro y mapa progresivo ya tienen criterios v1; las ampliaciones futuras se decidirán cuando aparezcan nuevas necesidades.**
@@ -1090,7 +1288,6 @@ Siguen sin fijarse, entre otras:
 - valores concretos de armas y armaduras;
 - críticos y otros efectos avanzados de combate;
 - balance de poderes concretos propuestos por el Historiador;
-- efectos exactos de cada herida y de los estados de fatiga tras pruebas reales;
 - funcionamiento técnico y reglas finales de los canales de chat;
 - reglas exactas de transferencia o recuperación de armas perdidas;
 - frecuencia y rareza de recompensas físicas.
