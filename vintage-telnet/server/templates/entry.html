@@ -296,7 +296,7 @@
             </div>
             {% endfor %}
           </div>
-          <div class="terminal-alert">Chat local: solo lo ve quien esté en esta sala.</div>
+          <div class="terminal-alert">Chat local explícito: usa “decir &lt;texto&gt;”. Los comandos desconocidos no se publican.</div>
         </section>
 
         <section class="controls-row" aria-label="Controles principales">
@@ -333,10 +333,10 @@
         <section>
           <form class="commandbar" method="post" action="/command">
             <input type="hidden" name="csrf" value="{{ session.csrf }}">
-            <input name="text" aria-label="Escribe un comando" autocomplete="off" autocapitalize="none" spellcheck="false" enterkeyhint="send" maxlength="500" placeholder="> norte, mirar, decir algo...">
+            <input name="text" aria-label="Escribe un comando" autocomplete="off" autocapitalize="none" spellcheck="false" enterkeyhint="send" maxlength="500" placeholder="> norte, mirar, examinar..., decir..., hablar...">
             <button class="btn primary" type="submit">Enviar</button>
           </form>
-          <p style="color:var(--muted);font-size:.72rem;margin:4px 0 0">Norte/sur/este/oeste (o n/s/e/o) mueven igual que los botones; "mirar" refresca; cualquier otro texto se dice en voz alta en esta sala.</p>
+          <p style="color:var(--muted);font-size:.72rem;margin:4px 0 0">Norte/sur/este/oeste mueven; "mirar" refresca; "observar/examinar" inspecciona; para chat usa "decir <texto>"; "hablar <npc>" queda separado del chat.</p>
           <div class="tool-row" aria-label="Herramientas">
             <button class="btn" type="button" data-open="characterDialog">Personaje</button>
             <button class="btn" type="button" data-open="inventoryDialog">Inventario</button>
