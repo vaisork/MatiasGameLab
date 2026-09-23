@@ -77,6 +77,70 @@ Ya existe una salida piloto preparada desde el máster aprobado:
 
 Este archivo sirve para validar el circuito del Publicador de Assets y no fija todavía el perfil final de toda la biblioteca.
 
+## Orden oficial de publicación
+
+### Lote 1 — piloto obligatorio
+
+Publicar **un solo archivo**:
+
+- `assets/vintage-telnet/locations/vaisgard.webp`
+
+Debe ser exactamente el WebP piloto aprobado:
+
+- 1536 × 1024 px
+- 440,406 bytes
+- SHA-256: `4a60f67d065cf47c58a75baa82b1768914cd3bbccb9f5ad41cec26242768fda3`
+
+No añadir ninguna otra imagen en este lote.
+
+Objetivo: validar de punta a punta el flujo real
+
+`Arte → Publicador de Assets → rama/PR → validación → repo → interfaz`
+
+Si este lote falla, no avanzar con la biblioteca completa hasta corregir el problema.
+
+### Lote 2 — biblioteca aprobada restante
+
+Solo después de que el piloto de Vaisgard quede validado, publicar estos **12 archivos**:
+
+#### Localizaciones
+
+- `assets/vintage-telnet/locations/valdren.webp`
+- `assets/vintage-telnet/locations/khariel.webp`
+- `assets/vintage-telnet/locations/brumak.webp`
+- `assets/vintage-telnet/locations/narevia.webp`
+- `assets/vintage-telnet/locations/velmora.webp`
+
+#### Especies
+
+- `assets/vintage-telnet/species/humano.webp`
+- `assets/vintage-telnet/species/felaryn.webp`
+- `assets/vintage-telnet/species/dravak.webp`
+- `assets/vintage-telnet/species/marevyn.webp`
+- `assets/vintage-telnet/species/vesperi.webp`
+- `assets/vintage-telnet/species/comparativa-especies.webp`
+
+#### Mapa
+
+- `assets/vintage-telnet/maps/region-inicial.webp`
+
+No incluir:
+- iteraciones anteriores;
+- bocetos;
+- versiones descartadas de Khariel o Vaisgard;
+- primeras filminas sustituidas por las corregidas;
+- ZIPs como formato final;
+- imágenes Base64 embebidas.
+
+## Másters artísticos
+
+Los másters originales no forman parte automáticamente del lote jugable.
+
+Para esta fase:
+- el juego consume derivados WebP optimizados;
+- conservar PNG/otros másters en GitHub será una política separada si Arquitectura la considera necesaria;
+- no duplicar archivos pesados sin una decisión explícita.
+
 ## Regla de publicación
 
 No publicar versiones descartadas o intermedias.
