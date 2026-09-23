@@ -464,3 +464,29 @@ reboot o si sobrevive solo.
 
 No adjuntar contraseñas, claves, cookies, hashes ni bases. No afirmar resultados
 de pruebas que no se ejecutaron. Acceso desde fuera de casa: fuera de esta entrega.
+
+## Producción actualizada por Javier — SHA `7de889ac` (Issue #45) — 2026-09-23
+
+Revisión periódica (Issue #47, VT-AUTO) desde una sesión en la nube sin
+SSH/sudo a la Raspberry física detectó que `main` había avanzado (Issue #25 —
+PR #41, luego Issue #45 — PR #49, "El lindero roto") más allá de la última
+instalación real confirmada (`a530ae0c...`). Se abrió PR #65 documentando el
+pendiente y corriendo la suite en un sandbox aislado como verificación de
+código (31/31 y luego 84/84 pruebas OK sobre el HEAD de `main` en cada
+ronda) — sin desplegar ni tocar nada real.
+
+Javier confirmó directamente en PR #65 que el pendiente ya estaba resuelto:
+desplegó **SHA `7de889ac`** en producción para el Issue #45, que incluye
+como ancestro el merge completo de PR #41/Issue #25 (`a0adc08` y sus
+commits). La prueba jugable real que hizo para #45 (`examinar`, `evaluar`,
+`decir <texto>`, comandos desconocidos ya no publicados como chat) cubrió en
+producción real el mismo comportamiento de Issue #25, no solo la suite
+automatizada. PR #65 quedó cerrado sin mergear (documentación redundante
+frente a lo ya desplegado).
+
+**Estado de producción tras esta actualización:** SHA `7de889ac` instalado y
+probado en vivo por Javier. Este reporte no repite aquí el detalle operativo
+completo (systemd, backups, puertos) de esa instalación porque la ejecutó
+Javier directamente, no el operador de esta sesión; queda pendiente para una
+sesión con acceso real al hardware dejar la verificación independiente
+habitual del operador (systemctl, healthz, logs) si todavía no se hizo.
