@@ -379,7 +379,13 @@
 </dialog>
 <dialog id="helpDialog">
   <div class="modal-head"><strong>Ayuda</strong><button class="close" data-close aria-label="Cerrar">×</button></div>
-  <div class="modal-body"><h3>Cómo jugar</h3><p>Usa los botones N/S/E/O para moverte (los que no tienen salida real aparecen apagados). Escribe algo en el cuadro de texto y presiona Enviar para hablar con quien esté en tu misma sala. Personaje, Inventario, Poderes y Ayuda son paneles informativos; combate todavía no existe.</p></div>
+  <div class="modal-body">
+    <h3>Cómo jugar</h3>
+    <p>Usa los botones N/S/E/O para moverte; los que no tienen una salida real aparecen apagados.</p>
+    <p><strong>mirar</strong> vuelve a mostrar la situación general. <strong>observar &lt;objetivo&gt;</strong> y <strong>examinar &lt;objetivo&gt;</strong> sirven para inspeccionar algo concreto cuando el servidor lo permite.</p>
+    <p><strong>hablar &lt;npc&gt;</strong> inicia conversación con un NPC cuando exista uno disponible. Para hablar con otros jugadores usa <strong>decir &lt;texto&gt;</strong>.</p>
+    <p>Un comando desconocido no se publica como chat. Personaje, Inventario, Poderes y Ayuda son paneles informativos; las acciones que todavía no estén implementadas permanecerán deshabilitadas.</p>
+  </div>
 </dialog>
 
 <script nonce="{{ csp_nonce }}">
