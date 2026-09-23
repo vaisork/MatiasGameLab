@@ -486,3 +486,159 @@ Javier pide arte
 ```
 
 **Javier sale completamente del transporte de archivos.**
+
+
+---
+
+## DECISIÓN DE ARQUITECTURA — EJECUCIÓN DEL PUBLICADOR + GITHUB ACTIONS
+
+**Estado:** APROBADO PARA IMPLEMENTAR  
+**Decisión:** el Publicador de Assets no depende de la Raspberry Pi.
+
+### Dónde corre cada parte
+
+El flujo se divide en dos capas:
+
+1. **Publicación del lote — entorno del agente/artista**
+   - El script `tools/publish-assets.py` (nombre final propuesto) vive en el repositorio.
+   - Se ejecuta en el entorno de trabajo que tenga los archivos de imagen y acceso autorizado a GitHub: checkout local, entorno cloud de Claude/Codex/ChatGPT u otro agente compatible.
+   - Valida primero en local, ejecuta `--dry-run` y después crea/actualiza una **rama de entrega de assets**.
+   - No necesita acceso a Raspberry, SQLite viva, systemd, Ollama ni secretos del servidor.
+   - No publica directamente a `main`.
+
+2. **Validación automática — GitHub Actions**
+   - Cada Pull Request que modifique rutas de assets autorizadas dispara un workflow de validación.
+   - El workflow vuelve a ejecutar validaciones deterministas sobre los archivos ya presentes en la rama.
+   - Si falla una validación, el PR queda rojo y no debe integrarse hasta corregir el lote.
+   - GitHub Actions **no genera arte**, no decide canon, no selecciona qué imagen es mejor y no reemplaza al Director de Arte.
+   - GitHub Actions no despliega automáticamente a Raspberry en esta fase.
+
+### Flujo completo
+
+```
+Artista / Director de Arte
+    ↓
+prepara uno o varios assets
+    ↓
+entorno del agente ejecuta publish-assets.py --dry-run
+    ↓
+publish-assets.py publica el lote en rama de assets
+    ↓
+Pull Request
+    ↓
+GitHub Actions valida automáticamente
+    ↓
+revisión de Arte / Arquitectura / Integrador según corresponda
+    ↓
+merge autorizado a main
+    ↓
+despliegue normal del juego
+    ↓
+Raspberry recibe la versión integrada cuando toque desplegar
+```
+
+### Qué debe validar GitHub Actions
+
+Como mínimo:
+
+- rutas permitidas;
+- extensiones/formato permitidos;
+- archivo no vacío y legible;
+- dimensiones de raster;
+- límites de peso;
+- nombres seguros;
+- duplicados dentro del lote;
+- ausencia de sobrescritura no autorizada;
+- consistencia de frames cuando exista manifiesto de animación;
+- manifiesto válido cuando se use;
+- hash/checksum verificable;
+- que no se hayan añadido accidentalmente ZIP/base64 como assets finales;
+- que los archivos estén únicamente en áreas autorizadas por el rol.
+
+Para Vintage Telnet, la primera familia de rutas autorizadas será:
+
+```
+assets/vintage-telnet/locations/
+assets/vintage-telnet/species/
+assets/vintage-telnet/maps/
+```
+
+La ampliación de rutas debe ser explícita; no usar un permiso genérico que permita escribir en cualquier parte del repositorio.
+
+### Evento inicial de GitHub Actions
+
+Primera implementación recomendada:
+
+```yaml
+on:
+  pull_request:
+    paths:
+      - 'assets/**'
+      - 'tools/publish-assets.py'
+      - 'assets/**/manifest*.json'
+```
+
+El workflow debe ser de **validación**, no de publicación autónoma a `main`.
+
+Más adelante puede añadirse `workflow_dispatch` para pruebas manuales, pero no es necesario para el piloto.
+
+### Seguridad
+
+- Usar `GITHUB_TOKEN` del workflow solo con los permisos mínimos necesarios.
+- El workflow de validación debería operar con lectura del contenido y checks; no necesita permisos para hacer merge.
+- No almacenar PAT/tokens de artistas en el repositorio.
+- No compartir secretos de Raspberry con el workflow.
+- No permitir que un PR de assets modifique al mismo tiempo código sensible y use el publicador como vía para saltarse revisión.
+- El script debe rechazar rutas con `..`, rutas absolutas y destinos fuera de las allowlists.
+
+### Política de ramas
+
+Nombre sugerido para entregas:
+
+```
+art/<proyecto>-<lote>
+assets/<proyecto>-<lote>
+```
+
+Una entrega de arte puede contener uno o muchos archivos, pero debe intentar producir **un solo commit lógico por lote** cuando sea razonable.
+
+Reemplazar un archivo existente requiere autorización explícita y debe quedar visible en el PR. Añadir un archivo nuevo no autoriza a reemplazar otro silenciosamente.
+
+### Papel de Raspberry
+
+La Raspberry **no es el lugar normal donde se publica arte**.
+
+Su responsabilidad empieza después de que una versión aprobada llegue a `main` y toque desplegar el juego. El mismo despliegue normal trae los assets junto con el código correspondiente.
+
+Esto evita:
+- dar acceso de producción a agentes de arte;
+- mezclar secretos del juego con credenciales de GitHub;
+- bloquear producción artística cuando la Raspberry esté apagada o inaccesible;
+- convertir el servidor del juego en estación de trabajo.
+
+### Primer piloto obligatorio — Vaisgard
+
+Antes de procesar toda la biblioteca de Vintage Telnet:
+
+1. publicar `vaisgard.webp` desde el entorno del agente usando el publicador;
+2. ejecutar dry-run;
+3. crear rama/PR;
+4. GitHub Actions valida automáticamente;
+5. Integrador consume la ruta estable;
+6. probar carga/fallback en teléfono, tablet y escritorio;
+7. medir peso/carga real;
+8. solo después usar el mismo circuito para el lote restante aprobado.
+
+El piloto no fija todavía parámetros definitivos para todas las imágenes; los límites podrán ajustarse con evidencia del primer uso real.
+
+### Criterio de cierre de esta arquitectura
+
+Se considera implementado correctamente cuando:
+
+- un artista puede publicar un lote sin que Javier transporte archivos manualmente;
+- el lote entra en una rama, no en `main`;
+- GitHub Actions valida de forma automática y reproducible;
+- un fallo invalida el PR sin publicar parcialmente;
+- un lote válido deja rutas individuales consumibles por Desarrollo;
+- la Raspberry no participa en la publicación;
+- el despliegue posterior incluye los assets ya integrados sin un segundo proceso manual.
