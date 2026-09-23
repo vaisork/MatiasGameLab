@@ -109,6 +109,34 @@ def create_app(config=None):
         "oeste": "west", "o": "west", "west": "west",
     }
     LOOK_ALIASES = {"mirar", "ver", "look"}
+    INSPECT_ALIASES = {"observar", "examinar"}
+    SAY_PREFIXES = ("decir ", "say ")
+    TALK_PREFIXES = ("hablar con ", "hablar ")
+
+    def parse_intent(raw):
+        """Clasifica texto del terminal sin convertir comandos desconocidos en chat."""
+        text = (raw or "").strip()
+        lowered = text.lower()
+        if lowered in DIRECTION_ALIASES:
+            return {"type": "move", "direction": DIRECTION_ALIASES[lowered]}
+        if lowered in LOOK_ALIASES:
+            return {"type": "look"}
+        for verb in INSPECT_ALIASES:
+            if lowered == verb:
+                return {"type": "inspect", "verb": verb, "target": ""}
+            prefix = verb + " "
+            if lowered.startswith(prefix):
+                return {"type": "inspect", "verb": verb, "target": text[len(prefix):].strip()}
+        for prefix in TALK_PREFIXES:
+            if lowered.startswith(prefix):
+                target = text[len(prefix):].strip()
+                return {"type": "talk_npc", "target": target} if target else {"type": "invalid"}
+        for prefix in SAY_PREFIXES:
+            if lowered.startswith(prefix):
+                body = text[len(prefix):].strip()
+                return {"type": "say", "body": body} if body else {"type": "invalid"}
+        return {"type": "unknown"}
+
 
     def attempt_move(player, direction):
         """Unica logica autoritativa de movimiento. Devuelve
