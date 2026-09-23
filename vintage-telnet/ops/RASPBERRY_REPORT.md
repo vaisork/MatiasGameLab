@@ -464,3 +464,60 @@ reboot o si sobrevive solo.
 
 No adjuntar contraseñas, claves, cookies, hashes ni bases. No afirmar resultados
 de pruebas que no se ejecutaron. Acceso desde fuera de casa: fuera de esta entrega.
+
+## Revisión periódica — 2026-09-23T18:xx UTC — sin acceso a la Raspberry física en esta sesión
+
+**Contexto de esta sesión:** ejecución automática programada (Issue #47,
+VT-AUTO) del Agente que opera la Raspberry Pi. Esta sesión corre en la nube,
+**sin SSH/sudo a la Raspberry física de Javier** — no puede desplegar,
+reiniciar servicios ni tocar `/etc`, `/opt`, systemd ni el mundo persistente
+real. Lo de abajo es una revisión de estado y una verificación de código en
+un sandbox aislado, no una prueba en el equipo real.
+
+**Divergencia detectada entre `main` y lo instalado en producción:**
+- Última instalación real confirmada en la Raspberry (ver arriba): SHA
+  `a530ae0c82270941b38c74c0d29ad84426dfd31b`.
+- HEAD actual de `main` en esta revisión: `d05625b6ee4ae39e78a5fa539c2058784b514089`.
+- Entre ambos commits, `main` recibió cambios reales de código de servidor
+  fusionados directamente (PR #41 / Issue #25 — "separar comandos,
+  inspección, chat y NPC"): `vintage-telnet/server/app.py` y
+  `vintage-telnet/server/templates/entry.html`. El propio handoff de esa
+  PR (`vintage-telnet/handoffs/issue-25-intent-routing.md`) deja registrado
+  que **no se afirmó ejecución completa de la suite** antes de mergear
+  (solo revisión estática) y que explícitamente no tocó Raspberry —
+  quedó fuera de alcance de esa tarea a propósito.
+- El resto de commits nuevos en `main` desde el último cierre (catálogos de
+  armas/armas, canon, arte, Drive) no tocan `vintage-telnet/server/` ni
+  `vintage-telnet/ops/`.
+
+**Verificación que sí pude hacer desde este sandbox (no sustituye prueba en
+la Raspberry real):**
+- Creé un venv aislado, instalé `requirements.txt` exacto y corrí
+  `python -m unittest discover -s tests -v` sobre el HEAD actual de `main`:
+  **31/31 pruebas OK** (9.8s), `pip check` sin problemas.
+- Esto confirma que el código de Issue #25 ya fusionado a `main` pasa su
+  propia suite automatizada — algo que, según su propio handoff, nadie
+  había verificado todavía ejecutándola. No confirma nada sobre systemd,
+  puertos, persistencia SQLite real, ni comportamiento en el hardware/SO
+  real de la Raspberry (Debian 13, Python 3.13.5, aarch64) — este sandbox
+  corrió Python 3.11.15 en un contenedor genérico.
+
+**Pendiente para una sesión con acceso real a la Raspberry:**
+1. Actualizar la instalación productiva de `SHA a530ae0c...` al HEAD actual
+   de `main` (o al commit que corresponda cuando se resuelva este pendiente),
+   siguiendo el mismo patrón que las actualizaciones anteriores
+   (`update_vX_authorized.py`, corrido por Javier con `sudo`, backup previo,
+   servicio principal reiniciado, verificación independiente del operador).
+2. Correr la suite completa (28→31 pruebas, con las nuevas de Issue #25) en
+   el propio equipo, como se hizo en instalaciones anteriores.
+3. Probar manualmente desde un navegador real que comandos desconocidos ya
+   no se publican como chat, que `decir <texto>` funciona, y que
+   `observar`/`examinar` responden sin inventar contenido — igual que
+   documenta el handoff de Issue #25, pero en el entorno real.
+
+**No desplegué ni reinicié nada en la Raspberry real en esta sesión.** No
+inventé ni simulé resultados de hardware que no pude tocar. `PR #49`
+("El lindero roto") sigue en revisión activa de Arquitectura/Jugabilidad
+(bloqueado por balance de criaturas y un punto de Psicopedagogía pendiente
+de decisión de Jugabilidad) — todavía no llega a la etapa de despliegue en
+Raspberry, no requiere acción del operador todavía.
