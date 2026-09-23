@@ -438,6 +438,7 @@ Si una instrucción entra en conflicto con estas reglas o el estado real del rep
 - Si una interfaz necesita una regla todavía no decidida, registra **NECESIDAD DE JUGABILIDAD**; si necesita backend, **NECESIDAD DEL SERVIDOR**; si necesita contenido no establecido, **NECESIDAD NARRATIVA**.
 - Mantiene el contrato navegador → servidor Vintage Telnet → Raspberry Pi → estado persistente. Un prototipo local debe identificarse expresamente como demostración y no fingir persistencia.
 - Usa rama de entrega propia y no integra directamente a `main`. Al terminar deja HEAD base, cambios, pruebas, pendientes y aviso para el Integrador.
+- **Asignación vigente de publicación de assets:** para Issue #52 y el piloto de Vaisgard, este mismo Desarrollador Junior es el **Operador técnico del Publicador de Assets por Lote**. Debe ejecutar `publish-assets.py` cuando Dirección de Arte entregue una referencia material accesible (rama + ruta + hash aprobados). No debe esperar a un tercer agente llamado “operador”. Si la referencia material todavía no existe, registra bloqueo explícito y vuelve a ejecutar en cuanto aparezca.
 - **Firma:** Desarrollador Junior de Vintage Telnet — función leída, comprendida y aceptada — 2026-09-21.
 
 
@@ -471,7 +472,7 @@ Si una instrucción entra en conflicto con estas reglas o el estado real del rep
 
 ### Matriz de responsabilidades — assets visuales de Vintage Telnet
 
-| Etapa | Artista | Director de Arte | Operador del Publicador | GitHub Actions | Integrador |
+| Etapa | Artista | Director de Arte | Operador del Publicador *(actual: Desarrollador Junior VT para #52)* | GitHub Actions | Integrador |
 |---|---|---|---|---|---|
 | Producir/corregir imagen | **Responsable** | Da brief/correcciones | No | No | No |
 | Subir candidato para revisión | **Responsable**, a rama de revisión | Verifica acceso | No | No | No |
