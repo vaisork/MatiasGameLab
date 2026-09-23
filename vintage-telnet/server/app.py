@@ -255,26 +255,44 @@ def create_app(config=None):
 
     @app.post("/command")
     def command():
-        """Unico cuadro de texto de la terminal: si el texto es un comando de
-        movimiento/mirar canonico, ejecuta la misma accion autoritativa que los
-        botones de la cruceta; en cualquier otro caso, lo trata como chat local
-        (fuera del alcance P0, pero se conserva porque ya funciona)."""
+        """Cuadro de texto del terminal: cada texto se clasifica por intención.
+        El chat requiere 'decir <texto>'; un comando desconocido nunca se publica."""
         require_approved_player()
         if g.player["species"] is None:
             abort(403)
-        raw = request.form.get("text", "").strip().lower()
-        if raw in DIRECTION_ALIASES:
-            accepted, _previous, _new, reason = attempt_move(g.player, DIRECTION_ALIASES[raw])
+        raw = request.form.get("text", "")
+        if len(raw) > 500:
+            abort(400)
+        intent = parse_intent(raw)
+        if intent["type"] == "move":
+            accepted, _previous, _new, reason = attempt_move(g.player, intent["direction"])
             if not accepted:
                 room_data = room_view(g.player["room"], g.player["id"])
                 return render_template("entry.html", player=g.player, species_list=world.SPECIES,
                                        room=room_data, error=reason), 400
             return redirect(url_for("index"), code=303)
-        if raw in LOOK_ALIASES:
+        if intent["type"] == "look":
             return redirect(url_for("index"), code=303)
-        if raw and len(raw) <= 500:
-            store.add_message(path, g.player["room"], g.player["id"], request.form.get("text", "").strip())
-        return redirect(url_for("index"), code=303)
+        if intent["type"] == "say":
+            store.add_message(path, g.player["room"], g.player["id"], intent["body"])
+            return redirect(url_for("index"), code=303)
+
+        room_data = room_view(g.player["room"], g.player["id"])
+        if intent["type"] == "inspect":
+            target = intent["target"] or "el lugar"
+            return render_template(
+                "entry.html", player=g.player, species_list=world.SPECIES, room=room_data,
+                error=f"Inspección registrada para {target}. No hay detalle adicional autorizado todavía."
+            ), 200
+        if intent["type"] == "talk_npc":
+            return render_template(
+                "entry.html", player=g.player, species_list=world.SPECIES, room=room_data,
+                error="La conversación con NPC tiene contrato separado, pero todavía no hay NPC activo."
+            ), 200
+        return render_template(
+            "entry.html", player=g.player, species_list=world.SPECIES, room=room_data,
+            error="Comando no reconocido. Para chat usa: decir <texto>."
+        ), 400
 
     @app.get("/api/me")
     def me():
