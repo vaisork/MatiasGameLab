@@ -9,7 +9,7 @@ import time
 import unittest
 
 from server.app import create_app
-from server import store
+from server import store, world
 
 
 class EntryTests(unittest.TestCase):
@@ -32,6 +32,22 @@ class EntryTests(unittest.TestCase):
 
     def register(self, username="matias", client=None, name="Matías"):
         return self.post("/register", dict(username=username, name=name, password="una clave de prueba"), client)
+
+    def test_public_p0_has_no_editorial_placeholders(self):
+        for room in world.ROOMS.values():
+            visible = (room["name"] + " " + room["description"]).lower()
+            self.assertNotIn("[placeholder]", visible)
+            self.assertNotIn("pendiente", visible)
+        for species in world.SPECIES:
+            self.assertNotIn("pendiente", species["blurb"].lower())
+
+    def test_location_art_is_structured_and_served_without_session_cookie(self):
+        room = world.describe_room("valdren_centro", [])
+        self.assertEqual(room["art"]["src"], "/assets/locations/valdren.webp")
+        response = self.client.get(room["art"]["src"])
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.mimetype, "image/webp")
+        self.assertNotIn("Set-Cookie", response.headers)
 
     def test_persists_after_new_app_and_new_device(self):
         self.assertEqual(self.register().status_code, 303)
