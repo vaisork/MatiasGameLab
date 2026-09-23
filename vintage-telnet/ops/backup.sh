@@ -26,6 +26,11 @@ mkdir -p "$BACKUP_DIR"
 timestamp="$(date -u +%Y%m%dT%H%M%SZ)"
 destination="$BACKUP_DIR/vintage-$timestamp.sqlite3"
 
+# cd explicito: `python -m server.admin` resuelve el paquete `server` via el
+# directorio actual (agregado a sys.path por -m). No depender solo del
+# WorkingDirectory= del unit -- asi el script tambien funciona si se corre
+# a mano o desde otro cwd.
+cd "$RELEASE_DIR"
 "$RELEASE_DIR/.venv/bin/python" -m server.admin --data-dir "$VT_DATA_DIR" backup "$destination"
 
 # Poda de backups viejos; no falla el respaldo de hoy si la poda no encuentra nada.
