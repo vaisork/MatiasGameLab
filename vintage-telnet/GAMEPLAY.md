@@ -2200,3 +2200,160 @@ Narrativa recomienda separar dos objetos que cumplen funciones distintas:
 El mapa jugable puede crecer conforme el personaje explora, recibe información legítima o utiliza futuros objetos/capacidades que Jugabilidad apruebe. Que otro jugador mencione un lugar por chat no debería convertir automáticamente esa información en una ubicación exacta del mapa.
 
 **RESUELTO POR JUGABILIDAD:** la sección 23 define estados de lugares/rutas, persistencia y qué eventos actualizan el mapa sin destruir la exploración.
+
+
+## 31. Información visible de enemigos — v1
+
+**Estado:** APROBADO PARA IMPLEMENTACIÓN Y PLAYTEST.
+
+El jugador conoce con precisión sus propios HP, pero **no ve automáticamente el HP numérico exacto ni el HP máximo de una criatura/enemigo**.
+
+### 31.1 Estado cualitativo
+
+Una criatura visible puede comunicar su condición actual mediante bandas narrativas basadas en el porcentaje de HP restante:
+
+- **76–100%:** entero / apenas afectado;
+- **51–75%:** herido;
+- **26–50%:** malherido;
+- **1–25%:** al borde de caer;
+- **0%:** derrotado.
+
+La redacción concreta puede adaptarse a la criatura. La interfaz no necesita mostrar el porcentaje.
+
+### 31.2 Diferencia entre condición y peligro
+
+El estado de salud actual y `evaluar <criatura>` responden preguntas distintas:
+
+- condición = cómo está ahora;
+- evaluar = qué tan peligroso resulta para este personaje.
+
+Una criatura malherida puede seguir siendo Abrumadora. Una criatura entera puede ser Trivial.
+
+### 31.3 Información no revelada por defecto
+
+No mostrar automáticamente:
+- HP actual exacto;
+- HP máximo;
+- daño exacto;
+- precisión;
+- reducción;
+- poderes ocultos;
+- resistencias secretas;
+- probabilidad matemática de victoria.
+
+Contenido futuro puede revelar información adicional únicamente mediante una capacidad/poder/objeto aprobado explícitamente.
+
+### 31.4 Principio
+
+**El jugador ve números exactos de su personaje; de los enemigos lee condición, comportamiento y peligro.**
+
+Esto conserva el valor de `evaluar`, de las señales narrativas y de observar cómo cambia el enemigo durante el combate.
+
+
+## 32. Inventario y equipamiento mínimo — v1
+
+**Estado:** APROBADO COMO CONTRATO MÍNIMO PARA HACER UTILIZABLE EL EQUIPO REAL.
+
+La v1 evita peso de mochila, cuadrículas, durabilidad y docenas de ranuras. Su objetivo es que adquirir una pieza tenga una consecuencia jugable clara y persistente.
+
+### 32.1 Inventario persistente
+
+El inventario registra objetos que el personaje posee legítimamente.
+
+En v1:
+- es persistente por personaje;
+- no tiene límite universal de peso/capacidad;
+- cargar un objeto guardado **no aumenta fatiga** por sí mismo;
+- la carga mecánica de armadura solo aparece cuando está equipada;
+- no existen pérdida aleatoria, deterioro ni caducidad del inventario.
+
+La capacidad física de transportar objetos extraordinarios puede definirse por contenido cuando aparezca una necesidad real; no se crea ahora una simulación de mochila.
+
+### 32.2 Equipamiento activo mínimo
+
+El personaje puede tener simultáneamente:
+
+1. **un arma activa**;
+2. **una configuración de armadura activa**;
+3. **un objeto de bloqueo activo**, si el contenido lo permite (por ejemplo un escudo).
+
+Una configuración de armadura puede estar compuesta visual/físicamente por varias piezas, pero para la v1 se equipa como una sola configuración autoritativa. Su reducción total sigue §30 y nunca supera 35%.
+
+Esto evita definir prematuramente casco/torso/brazos/piernas y evita apilar varios conjuntos completos.
+
+### 32.3 Equipar y desequipar
+
+Equipar:
+- solo puede hacerse fuera de combate;
+- requiere que el personaje posea el objeto;
+- requiere que cualquier validación de Forja necesaria esté completa;
+- reemplaza el objeto activo de la misma categoría;
+- no destruye ni consume el objeto reemplazado.
+
+Desequipar:
+- solo fuera de combate;
+- devuelve el objeto a estado poseído/no activo;
+- no tiene coste de XP/PA/PP.
+
+La operación debe ser atómica para impedir dos objetos activos incompatibles por solicitudes concurrentes.
+
+### 32.4 Objetos de Forja
+
+Un objeto sujeto a validación física puede existir en inventario con estado **no activado**.
+
+Mientras no se complete el ciclo de Forja:
+- se puede consultar;
+- no puede equiparse;
+- no aporta estadísticas;
+- conservar físicamente la pieza no sustituye la autorización persistente del servidor.
+
+Una vez validado, usa exactamente sus estadísticas normales; la validación no añade un bono extra.
+
+### 32.5 Adquisición
+
+La v1 no necesita todavía tiendas, moneda o botín aleatorio.
+
+Un objeto entra al inventario únicamente mediante una fuente autoritativa:
+- recompensa de contenido;
+- entrega/encargo válido;
+- sistema de Forja;
+- acción administrativa legítima;
+- otros sistemas futuros aprobados.
+
+El servidor registra una identidad de objeto/instancia suficiente para impedir duplicación accidental.
+
+### 32.6 Transferencia y descarte
+
+En la v1 inicial:
+- no hay intercambio libre entre jugadores;
+- no hay soltar objetos al suelo;
+- no hay vender;
+- no hay destrucción voluntaria.
+
+Esos sistemas se definirán cuando exista economía/comercio y no bloquean el primer RPG jugable.
+
+### 32.7 Muerte
+
+La armadura y objetos ordinarios permanecen en inventario al morir.
+
+Las reglas especiales de pérdida de arma de §11 siguen siendo una excepción independiente y todavía requieren su flujo concreto antes de aplicarse.
+
+### 32.8 Interfaz y comandos
+
+El panel Inventario/Equipo debe mostrar:
+- objetos poseídos;
+- cuál está activo;
+- protección/carga conocida de armadura;
+- estado de activación de Forja cuando aplique.
+
+Acciones canónicas adicionales:
+- `equipar <objeto>`;
+- `desequipar <objeto>`.
+
+La interfaz puede ofrecer botones equivalentes.
+
+No permitir equipar mediante un botón si el servidor lo considera incompatible/no activado; mostrar el motivo sin revelar secretos.
+
+### 32.9 Principio
+
+**Inventario responde “qué poseo”; equipo responde “qué estoy usando”. La v1 prioriza decisiones claras de carga y protección sobre administrar peso, casillas o mantenimiento.**
