@@ -55,7 +55,7 @@ El mundo debe conservar evidencia de que ese monstruo existió y fue derrotado �
 ### 7. Mundo multijugador e interacción
 Los jugadores pueden coincidir en el mismo mundo y comunicarse mediante texto.
 
-Se contempla comunicación contextual cuando jugadores se encuentran. También puede existir un chat general; su forma exacta permanece pendiente.
+La primera versión utiliza comunicación local explícita en la sala mediante `decir <texto>`; el detalle queda fijado en §26. Chat global u otros canales pueden añadirse posteriormente.
 
 El PvP está permitido. Un jugador puede iniciar un ataque directo contra otro sin que sea obligatorio aceptar previamente un duelo o mantener una conversación.
 
@@ -1344,6 +1344,104 @@ No mostrar automáticamente una ventana obligatoria de distribución en medio de
 
 **Subir de nivel entrega posibilidades; no toma decisiones por el jugador ni funciona como curación total.**
 
+
+## 26. Cooperación y comunicación local — v1
+
+**Estado:** APROBADO PARA PRIMER MULTIJUGADOR.
+
+La primera versión no necesita un sistema complejo de guilds/parties para permitir que varios jugadores exploren y peleen juntos.
+
+### 26.1 Chat local como canal inicial
+
+La comunicación v1 entre jugadores es **local a la sala/ubicación actual**.
+
+Comando explícito:
+
+`decir <texto>`
+
+Reglas:
+- solo jugadores presentes en la misma sala reciben el mensaje;
+- un comando desconocido nunca se convierte automáticamente en chat;
+- `hablar <npc>` pertenece a conversación con NPC y es una intención diferente;
+- la interfaz debe distinguir visualmente acción/comando de chat.
+
+El chat global, susurros, grupos permanentes y otros canales pueden añadirse más adelante; no son requisito del primer bucle jugable.
+
+### 26.2 Cooperar sin party formal
+
+Para la v1, dos o más jugadores en la misma sala pueden cooperar contra una criatura **sin crear previamente un grupo formal**.
+
+Un jugador entra como participante del encuentro cuando realiza una contribución significativa aprobada por §22.8, por ejemplo:
+- atacar al mismo objetivo;
+- defender/proteger de forma relevante;
+- curar;
+- controlar;
+- usar un poder de apoyo.
+
+Estar mirando o simplemente compartir sala no da XP.
+
+### 26.3 Unirse a un combate existente
+
+Si una criatura ya está combatiendo:
+- otro jugador de la misma sala puede usar **Atacar <objetivo>**;
+- pasa a formar parte del mismo encuentro;
+- no se crea una copia privada de la criatura;
+- HP/estado de la criatura son autoritativos y compartidos por quienes participan.
+
+Esto conserva el mundo compartido y permite cooperación espontánea.
+
+### 26.4 Objetivo del enemigo
+
+Como comportamiento base para criaturas comunes:
+- la criatura mantiene como objetivo principal al jugador que inició/agredió el encuentro;
+- puede cambiar de objetivo si ese jugador huye, muere, deja de ser válido o una capacidad/conducta concreta lo justifica;
+- el contenido especial puede definir conducta distinta.
+
+No se introduce todavía una barra compleja de amenaza/aggro.
+
+### 26.5 Movimiento durante combate
+
+Un personaje involucrado en combate **no puede usar movimiento cardinal normal para escapar gratis**.
+
+Si intenta salir mientras sigue comprometido:
+- el servidor debe exigir la acción **Huir**;
+- Huir usa §20.10 y §24;
+- tras una huida exitosa, el personaje puede quedar en la salida/destino que el servidor determine válidamente;
+- una huida fallida consume la intervención de esa ronda.
+
+Esto evita que escribir `norte` sustituya el sistema de huida.
+
+### 26.6 Fin del encuentro
+
+El encuentro termina para un jugador cuando:
+- la criatura es derrotada;
+- el jugador muere;
+- logra huir;
+- otra regla explícita del contenido termina el combate.
+
+La derrota de la criatura distribuye XP individualmente según §22:
+- categoría personal;
+- participación;
+- repetición;
+- número de participantes.
+
+No existe una bolsa de XP que el primer jugador pueda apropiarse completa.
+
+### 26.7 Jugador fuerte ayudando a principiante
+
+La cooperación no iguala automáticamente recompensas.
+
+Cada participante calcula su categoría personal:
+- un veterano contra criatura pequeña puede recibir recompensa Trivial;
+- un principiante contra la misma criatura puede recibir Comparable/Favorable;
+- ambos deben haber participado significativamente.
+
+Por tanto, ayudar es posible sin convertir matar criaturas débiles para otro jugador en el método dominante de power-leveling.
+
+### 26.8 Principio
+
+**Compartir sala permite colaborar; compartir sala no entrega progreso. Cooperar requiere actuar.**
+
 ## Investigación disponible para Jugabilidad — capacidades HTML y comandos
 
 **ESTADO: INVESTIGACIÓN CONSUMIDA — la dirección híbrida HTML/Telnet, inspección, evaluación de peligro y mapa progresivo ya tienen criterios v1; las ampliaciones futuras se decidirán cuando aparezcan nuevas necesidades.**
@@ -1403,7 +1501,6 @@ Siguen sin fijarse, entre otras:
 - valores concretos de armas y armaduras;
 - críticos y otros efectos avanzados de combate;
 - balance de poderes concretos propuestos por el Historiador;
-- funcionamiento técnico y reglas finales de los canales de chat;
 - reglas exactas de transferencia o recuperación de armas perdidas;
 - frecuencia y rareza de recompensas físicas.
 
