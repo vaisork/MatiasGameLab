@@ -1,5 +1,128 @@
 # HANDOFF — Entrega técnica
 
+## ENTREGA — Vintage Telnet Issue #73: Esquivar/Bloquear/Resistir + `available_actions`
+
+**DESARROLLADOR:** Claude — Desarrollador de Servidor de Vintage Telnet
+**HEAD BASE:** `f594565e5d6a8a3e18526248799f83972785c120` (origin/main)
+**TAREA ASIGNADA:** Issue #73 — implementar las intenciones de combate que
+faltaban (`esquivar`, `bloquear`, `resistir`) conforme a `GAMEPLAY.md` 20.5/
+24.2/24.3 y al contrato normativo que Jugabilidad cerró en el comentario del
+Issue y en `vintage-telnet/UI_ACTIONS_CONTRACT.md` (rama
+`gameplay/issue-77-ui-actions-contract`, aún no mergeada a `main` — la leí
+directamente de esa rama porque es la fuente normativa citada en el Issue).
+**RAMA:** `claude/vintage-telnet-server-issue-73`
+
+### CAMBIOS
+- `vintage-telnet/server/combat.py`: `FATIGUE_BASE_COST` ahora incluye
+  `resistir` (3), `bloquear` (5) y `esquivar` (6), tal como cerró
+  Jugabilidad en 24.3. Tres funciones puras nuevas, sin Flask/DB:
+  `resolve_dodged_attack_roll` (reduce % de impacto según
+  Agilidad/Percepción, nunca reduce daño), `resolve_resisted_attack_roll`
+  (no cambia % de impacto, reduce daño según Resistencia, tope 38%) y
+  `resolve_blocked_attack_roll` (no cambia % de impacto, reduce daño según
+  Destreza, tope 32%) — las tres fórmulas literales de GAMEPLAY.md 20.5.
+- `vintage-telnet/server/app.py`:
+  - `_can_block()` (nivel de módulo, no closure, para poder parchearla en
+    pruebas): **siempre devuelve `False`** porque Bloquear exige equipo
+    (arma/escudo/objeto) y el Issue #57 (inventario/equipo) todavía no está
+    integrado. Issue #73 pide explícitamente no inventar inventario aquí,
+    así que en vez de simular equipo, `bloquear` nunca aparece en
+    `available_actions` y la intención se rechaza con un mensaje honesto
+    ("Todavía no tienes equipo adecuado para bloquear."). El resto de la
+    resolución de Bloquear (daño/fatiga) ya está implementado y probado
+    (parcheando `_can_block` a `True`), lista para conectarse a equipo real
+    en cuanto #57 exista — no hay que tocar nada más.
+  - `attempt_dodge`, `attempt_resist`, `attempt_block`: mismo patrón que
+    `attempt_flee` ya existente (sustituyen el ataque básico del jugador de
+    esa ronda por la intervención elegida; aplican coste de fatiga de 24.3,
+    penalización de fatiga/herida del propio defensor sobre su esquiva
+    —24.4/24.6, `combined_accuracy_penalty` ya documentaba que aplica a
+    "esquiva"—, y el mismo flujo de derrota/reaparición que atacar/huir).
+  - Nuevas intenciones `esquivar`/`bloquear`/`resistir` reconocidas por
+    `parse_intent` y despachadas tanto en `/command` (HTML) como en
+    `/api/intent` (JSON), igual que `huir`/`descansar`.
+  - Rutas dedicadas `POST /dodge`, `POST /resist`, `POST /block` (mismo
+    patrón que `/attack`, `/flee`, `/evaluate` ya existentes) para que un
+    botón de interfaz llegue a la misma intención autoritativa que el
+    comando escrito.
+  - `room_view()` ahora expone `available_actions`: con criatura presente,
+    `[atacar, evaluar, huir, esquivar, resistir]` (+ `bloquear` solo si
+    `_can_block()` autoriza); sin criatura, `[descansar]`. Es la "forma
+    mínima recomendada" de `UI_ACTIONS_CONTRACT.md`. **Alcance explícito de
+    esta entrega:** solo acciones de combate/descanso, que es lo que pide
+    el Issue #73 ("esto desbloquea los botones de combate correctos para
+    #43"); movimiento, mirar, observar/examinar y hablar ya tienen su
+    propia autorización por otras vías (salidas de sala, texto de
+    examinar, NPC activo) y quedan fuera de `available_actions` por ahora
+    — no es una omisión, es alcance del Issue.
+- `vintage-telnet/server/README.md`: actualizado para reflejar que
+  Esquivar/Bloquear/Resistir ya están implementados (ya no aparecen como
+  "diferidos al Issue #43" — eso sigue aplicando solo a las rondas
+  semi-automáticas de 24.1) y documentado el bloqueo de Bloquear por falta
+  de equipo (#57).
+- `vintage-telnet/server/combat.py` (docstring del módulo): actualizado en
+  el mismo sentido.
+- `vintage-telnet/tests/test_combat_actions.py` (nuevo): 24 pruebas nuevas
+  — 9 puras sobre las fórmulas de `combat.py` (sin Flask/DB) y 15 de
+  integración contra el servidor real (Flask + SQLite), cubriendo: no-op
+  honesto sin criatura, esquivar evitando un golpe que conectaría con
+  Agilidad alta, resistir reduciendo daño con Resistencia alta, coste de
+  fatiga de las tres acciones, bloquear rechazado sin equipo y resuelto
+  correctamente una vez autorizado (equipo simulado vía parche de
+  `_can_block` para la prueba, no en el código de producción), paridad
+  botón/comando para las tres acciones nuevas, y la forma de
+  `available_actions` dentro/fuera de combate.
+
+### PRUEBAS
+- Suite completa: **110/110 pruebas pasan**
+  (`.venv/bin/python -m unittest discover -s tests -v`), incluidas las 86
+  heredadas sin cambios de comportamiento y las 24 nuevas de este archivo.
+- No se modificó ningún test existente.
+
+### TRABAJO PREVIO AFECTADO
+Solo se tocó `vintage-telnet/server/combat.py`, `app.py` y `README.md`
+(server), más el nuevo archivo de pruebas. No se tocó
+`vintage-telnet/server/store.py`, `world.py`, `creatures.py`,
+`vintage-telnet.html` ni ningún archivo de Senku. `atacar`/`huir`/
+`evaluar`/`descansar` se conservan exactamente como estaban (ninguna de sus
+funciones ni rutas fue modificada), conforme pedía el Issue.
+
+### PENDIENTES
+- **NECESIDAD DEL SERVIDOR (autogenerada, no bloqueante):** en cuanto el
+  Issue #57 (inventario/equipo) esté integrado, cambiar `_can_block()` en
+  `server/app.py` para que consulte equipo real en vez de devolver `False`
+  siempre. Es el único cambio necesario; la resolución de golpe/daño/fatiga
+  de Bloquear ya existe y está probada.
+- Integración de botones reales en la interfaz (`/dodge`, `/resist`,
+  `/block`, y renderizar `available_actions`) corresponde al Desarrollador
+  Junior en el Issue #72/#43, no a esta entrega — el Issue #73 así lo
+  delimita explícitamente ("esto desbloquea los botones de combate
+  correctos para #43"). No toqué `entry.html`.
+- Rondas semi-automáticas con ataque básico continuo (GAMEPLAY.md 24.1)
+  siguen diferidas al Issue #43 por decisión del Arquitecto; esta entrega
+  no las implementa, sigue siendo un intercambio simple por comando/botón.
+
+### AVISO PARA EL ARQUITECTO DE VINTAGE TELNET Y RASPBERRY PI
+Esta entrega implementa exactamente lo que pidió el Issue #73 y el
+contrato normativo de Jugabilidad, dentro del modelo de combate síncrono
+por request que ya existía (sin rondas automáticas). Si algo de esto no
+encaja con una decisión arquitectónica que yo no haya visto, avisame y lo
+ajusto.
+
+### AVISO PARA EL INTEGRADOR/PUBLICADOR
+No publicar hasta autorización expresa de Javier. Comparar esta rama
+contra el HEAD vigente de `main` antes de integrar — solo toca
+`vintage-telnet/server/{app.py,combat.py,README.md}` y agrega
+`vintage-telnet/tests/test_combat_actions.py`, así que no debería haber
+conflicto con otras entregas de Vintage Telnet en curso (UI, arte, NPCs),
+pero conviene confirmarlo contra el `main` real al momento de integrar.
+
+**LISTO PARA REVISIÓN:** SÍ
+**LISTO PARA PUBLICAR:** NO — falta revisión del Arquitecto de Vintage
+Telnet/Jugabilidad y autorización de Javier ("sube").
+
+---
+
 ## ENTREGA — Senku: portada narrativa antes del juego
 
 **DESARROLLADOR:** Desarrollador Junior de Senku — segundo desarrollador  
