@@ -89,7 +89,7 @@ class EntryTests(unittest.TestCase):
         for path in ("/SECRETS.md", "/vintage.sqlite3", "/static/SECRETS.md", "/players"):
             self.assertEqual(self.client.get(path).status_code, 404)
         response = self.client.get("/healthz")
-        self.assertEqual(response.json, dict(status="ok", schema_version=2))
+        self.assertEqual(response.json, dict(status="ok", schema_version=5))
         self.assertNotIn("Set-Cookie", response.headers)
 
     def test_rate_limit_survives_restart(self):
@@ -134,7 +134,7 @@ class EntryTests(unittest.TestCase):
         with self.assertRaises(RuntimeError):
             create_app({**self.config, "DATA_DIR": "relative"})
         with store.connect(self.path) as db:
-            db.execute("PRAGMA user_version = 3")
+            db.execute("PRAGMA user_version = 6")
         with self.assertRaises(RuntimeError):
             create_app(self.config)
 
