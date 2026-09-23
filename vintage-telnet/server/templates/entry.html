@@ -84,6 +84,17 @@
       border-top:1px solid #174426;background:#020604;padding:8px 12px;color:#79d88d;
       font-size:.77rem;line-height:1.35
     }
+    .location-art{
+      position:relative;margin:0;border:1px solid #4d402b;border-radius:11px;overflow:hidden;
+      background:#101722;min-height:120px
+    }
+    .location-art img{
+      display:block;width:100%;height:clamp(120px,20vw,240px);object-fit:cover
+    }
+    .location-art-fallback{
+      min-height:120px;display:grid;place-items:center;padding:16px;color:var(--muted);
+      font:700 .8rem/1.4 ui-sans-serif,system-ui,sans-serif;text-align:center
+    }
     .controls-row{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:center}
     .dpad{
       display:grid;grid-template-columns:repeat(3,50px);grid-template-rows:repeat(3,46px);gap:5px;justify-content:center
@@ -305,6 +316,14 @@
           <div class="terminal-alert">Chat local explícito: usa “decir &lt;texto&gt;”. Los comandos desconocidos no se publican.</div>
         </section>
 
+        {% if room.art %}
+        <figure class="location-art">
+          <img data-location-art src="{{ room.art.src }}" alt="{{ room.art.alt }}"
+               width="{{ room.art.width }}" height="{{ room.art.height }}" loading="lazy" decoding="async">
+          <div class="location-art-fallback" hidden>La ilustración contextual no está disponible. El juego continúa normalmente.</div>
+        </figure>
+        {% endif %}
+
         <section class="controls-row" aria-label="Controles principales">
           <div class="dpad" aria-label="Movimiento cardinal">
             {% set exit_dirs = room.exits | map(attribute='direction') | list %}
@@ -357,8 +376,6 @@
           <p style="color:var(--muted);font-size:.72rem;margin:4px 0 0">Norte/sur/este/oeste mueven; "mirar" refresca; "observar/examinar &lt;objetivo&gt;" inspecciona; "evaluar &lt;criatura&gt;" valora un peligro visible; "atacar"/"huir" combaten; "hablar &lt;npc&gt;" es una conversación aparte; para chat con otros jugadores usa "decir &lt;texto&gt;" -- ningún comando desconocido se publica como chat.</p>
           <div class="tool-row" aria-label="Herramientas">
             <button class="btn" type="button" data-open="characterDialog">Personaje</button>
-            <button class="btn" type="button" data-open="inventoryDialog">Inventario</button>
-            <button class="btn-art btn-powers" type="button" data-open="powersDialog" aria-label="Poderes"><span class="sr-only" aria-hidden="true">Poderes</span></button>
             <button class="btn" type="button" data-open="helpDialog">Ayuda</button>
           </div>
         </section>
@@ -401,14 +418,6 @@
     {% endif %}
   </div>
 </dialog>
-<dialog id="inventoryDialog">
-  <div class="modal-head"><strong>Inventario</strong><button class="close" data-close aria-label="Cerrar">×</button></div>
-  <div class="modal-body"><h3>Sin objetos todavía</h3><p>El inventario real llegará cuando existan objetos definidos por el contenido del juego.</p></div>
-</dialog>
-<dialog id="powersDialog">
-  <div class="modal-head"><strong>Poderes</strong><button class="close" data-close aria-label="Cerrar">×</button></div>
-  <div class="modal-body"><h3>Categoría visual preparada</h3><p>Este acceso queda listo para magias, habilidades y poderes futuros. No define aún qué poderes existen ni cómo funcionan: eso corresponde a Jugabilidad y al servidor.</p></div>
-</dialog>
 <dialog id="helpDialog">
   <div class="modal-head"><strong>Ayuda</strong><button class="close" data-close aria-label="Cerrar">×</button></div>
   <div class="modal-body">
@@ -428,6 +437,11 @@
     if (d && !d.open) d.showModal();
   }));
   document.querySelectorAll("[data-close]").forEach(b => b.addEventListener("click", () => b.closest("dialog").close()));
+  document.querySelectorAll("[data-location-art]").forEach(img => img.addEventListener("error", () => {
+    img.hidden = true;
+    const fallback = img.nextElementSibling;
+    if (fallback) fallback.hidden = false;
+  }));
   document.querySelectorAll("dialog").forEach(d => d.addEventListener("click", e => { if (e.target === d) d.close(); }));
 })();
 </script>

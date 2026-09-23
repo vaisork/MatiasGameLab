@@ -1,21 +1,50 @@
 """Static world data: rooms and species. No persistent state lives here.
 
-PLACEHOLDER DE GEOGRAFIA -- NO ES CANON.
-
-Esta conectividad (quien esta al norte/sur/este/oeste de quien, y la
-microzona interna de cada pueblo) es un andamiaje minimo para poder probar
-movimiento y persistencia, siguiendo el alcance minimo de
-`vintage-telnet/FIRST_PLAYABLE_SLICE.md` (punto central, forja/taller,
-mercado/alimentos, y caminos suficientes para N/S/E/O). Los nombres de
-lugares y la asignacion especie -> pueblo de inicio SI son canon confirmado
-(vintage-telnet/CONFIRMED_IDEAS.md), pero la geometria exacta y los textos
-definitivos corresponden al Historiador y deben reemplazar este
-placeholder cuando existan. La interfaz marca cada descripcion como
-[PLACEHOLDER] para no presentar esta geografia provisional como canon.
+La topologia cardinal v1 sigue siendo un contrato tecnico del primer slice y
+no debe interpretarse como mapa canonico completo. Los textos visibles usan
+solo hechos ya establecidos en SETTLEMENTS.md, SPECIES.md y NARRATIVE.md.
 """
 
 OPPOSITE_DIRECTION = {"north": "south", "south": "north", "east": "west", "west": "east"}
 ALL_DIRECTIONS = ("north", "south", "east", "west")
+
+TOWN_DESCRIPTIONS = {
+    "valdren": (
+        "Valdren es un pueblo abierto de caminos de tierra, construcciones de madera y piedra "
+        "y pequeñas parcelas de cultivo en los Llanos de Edran."
+    ),
+    "khariel": (
+        "Khariel está construido entre las montañas, aprovechando terrazas naturales, "
+        "salientes de roca y distintos niveles de altura."
+    ),
+    "brumak": (
+        "Brumak es un asentamiento compacto en una región rocosa protegida del viento, "
+        "con espacios y pasajes adaptados a la escala de los Dravak."
+    ),
+    "narevia": (
+        "Narevia se levanta alrededor de un gran cuerpo de agua dulce, con canales, "
+        "vegetación abundante y pequeñas islas integradas en el pueblo."
+    ),
+    "velmora": (
+        "Velmora se encuentra en un bosque muy denso donde la luz se reduce incluso durante "
+        "el día, unido por senderos y señales discretas."
+    ),
+}
+
+LOCATION_ART = {
+    "valdren_centro": {
+        "src": "/assets/locations/valdren.webp",
+        "alt": "Vista contextual de Valdren",
+        "width": 1536,
+        "height": 1024,
+    },
+    "vaisgard": {
+        "src": "/assets/locations/vaisgard.webp",
+        "alt": "Vista contextual de Vaisgard",
+        "width": 1536,
+        "height": 1024,
+    },
+}
 
 
 def _build_town(prefix, display_name, outward_exits):
@@ -36,20 +65,20 @@ def _build_town(prefix, display_name, outward_exits):
         if kind == "forja":
             name = f"Forja de {display_name}"
             description = (
-                f"[PLACEHOLDER] La forja o taller de {display_name}. "
-                "(Descripcion pendiente del Historiador.)"
+                f"La forja o taller de {display_name} es un espacio de trabajo dedicado "
+                "a fabricar y reparar armas y herramientas."
             )
         elif kind == "mercado":
             name = f"Mercado de {display_name}"
             description = (
-                f"[PLACEHOLDER] El mercado o zona de alimentos de {display_name}. "
-                "(Descripcion pendiente del Historiador.)"
+                f"La zona de alimentos y comercio de {display_name} sirve al abastecimiento "
+                "cotidiano del pueblo."
             )
         else:
             name = f"Sendero de {display_name}"
             description = (
-                f"[PLACEHOLDER] Un sendero interno de {display_name}, usado para probar "
-                "el movimiento. (Descripcion pendiente del Historiador.)"
+                f"Un sendero de {display_name} conecta el punto central con los caminos "
+                "del asentamiento."
             )
         rooms[room_id] = {
             "name": name,
@@ -59,10 +88,7 @@ def _build_town(prefix, display_name, outward_exits):
 
     rooms[centro_id] = {
         "name": display_name,
-        "description": (
-            f"[PLACEHOLDER] El punto central y comunitario de {display_name}. "
-            "(Descripcion pendiente del Historiador.)"
-        ),
+        "description": TOWN_DESCRIPTIONS[prefix],
         "exits": centro_exits,
     }
     return rooms
@@ -72,8 +98,8 @@ ROOMS = {
     "vaisgard": {
         "name": "Vaisgard",
         "description": (
-            "[PLACEHOLDER] La ciudad principal de Vintage Telnet. Aqui confluyen los "
-            "caminos hacia los cinco pueblos de inicio. (Descripcion pendiente del Historiador.)"
+            "Vaisgard es la ciudad principal del mundo conocido y no pertenece "
+            "exclusivamente a ninguna de las cinco especies."
         ),
         "exits": {
             "north": "road_north",
@@ -84,18 +110,12 @@ ROOMS = {
     },
     "road_north": {
         "name": "Camino del Norte",
-        "description": (
-            "[PLACEHOLDER] Un camino que conecta Vaisgard con Valdren. "
-            "(Descripcion pendiente del Historiador.)"
-        ),
+        "description": "Un camino transitado entre asentamientos del mundo conocido.",
         "exits": {"south": "vaisgard", "north": "valdren_centro"},
     },
     "road_west": {
         "name": "Camino del Oeste",
-        "description": (
-            "[PLACEHOLDER] Un camino que conecta Narevia con Velmora. "
-            "(Descripcion pendiente del Historiador.)"
-        ),
+        "description": "Un camino transitado entre asentamientos del mundo conocido.",
         "exits": {"east": "narevia_centro", "west": "velmora_centro"},
     },
 }
@@ -110,7 +130,7 @@ ROOMS.update(_build_town("narevia", "Narevia", {"east": "vaisgard", "west": "roa
 ROOMS.update(_build_town("velmora", "Velmora", {"east": "road_west"}))
 
 # --- VT-NAR-003 "El lindero roto" -- microaventura piloto (NARRATIVE.md) ---
-# El "sendero" placeholder de Valdren ya representaba el camino de salida
+# El sendero tecnico de Valdren representa el camino de salida
 # del pueblo; se reemplaza su descripcion generica por el texto real de
 # apertura de la microaventura y se extiende hacia el oeste con las tres
 # ubicaciones nuevas que pide NARRATIVE.md. Ningun otro pueblo/sala cambia.
@@ -239,20 +259,26 @@ SPECIES = [
     {
         "id": "dravak",
         "name": "Dravak",
-        "blurb": "Muy pequenos en comparacion con los humanos. (Cultura y capacidades pendientes.)",
+        "blurb": (
+            "Más pequeños y compactos que un Humano adulto, con zonas de piel endurecida de "
+            "aspecto mineral; se desenvuelven especialmente bien en espacios compactos."
+        ),
     },
     {
         "id": "marevyn",
         "name": "Marevyn",
         "blurb": (
-            "Altos, estilizados y muy integrados con la naturaleza; afines a lagos, rios "
-            "y humedales. (Detalles pendientes.)"
+            "Altos y estilizados, con escamas parciales y adaptación natural al agua dulce "
+            "y los humedales; nadan y controlan la respiración mejor que un Humano."
         ),
     },
     {
         "id": "vesperi",
         "name": "Vesperi",
-        "blurb": "Asociados a zonas nocturnas, bosques profundos y cavernas. (Apariencia pendiente.)",
+        "blurb": (
+            "Adaptados a la baja luz, con ojos muy grandes, postura ligeramente recogida, "
+            "oído sensible y orientación mediante señales sutiles."
+        ),
     },
 ]
 
@@ -298,4 +324,5 @@ def describe_room(room_id, others_present):
             for direction in room["exits"]
         ],
         "others_present": others_present,
+        "art": LOCATION_ART.get(room_id),
     }
