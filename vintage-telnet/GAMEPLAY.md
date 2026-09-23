@@ -697,6 +697,234 @@ Con estas reglas cerradas, el Narrador ya puede diseñar encuentros concretos do
 
 El Narrador puede proponer para cada Arcane qué conductas permiten ganar confianza y qué señales muestran rechazo. Si necesita una nueva regla mecánica, debe devolverla a Jugabilidad antes de convertirla en norma.
 
+
+## 22. XP, recompensas, cooperación y antifarmeo — v1
+
+**Estado:** APROBADO PARA IMPLEMENTACIÓN.  
+**Objetivo:** cerrar el bucle `explorar → combatir/descubrir → ganar progreso → subir de nivel → repartir PA → seguir explorando` sin convertir el juego en una rutina de matar siempre la misma criatura.
+
+### 22.1 Curva de XP 1–100
+
+La XP necesaria para pasar del nivel `L` al siguiente nivel usa:
+
+`XP_siguiente(L) = redondear(100 + 18×(L-1) + 0.25×(L-1)^2)`
+
+Referencias:
+
+| Nivel actual | XP para subir |
+| ---: | ---: |
+| 1 | 100 |
+| 5 | 176 |
+| 10 | 282 |
+| 25 | 676 |
+| 50 | 1,582 |
+| 75 | 2,801 |
+| 99 | 4,265 |
+
+La XP acumulada aproximada para alcanzar nivel 100 desde nivel 1 es **176,843**.
+
+Reglas:
+- la XP es una economía separada de PA y PP;
+- subir de nivel entrega los PA/PP ya definidos en las secciones anteriores;
+- el exceso de XP se conserva al cruzar un nivel;
+- en nivel 100 no se acumula progreso hacia un nivel 101 durante la v1.
+
+### 22.2 Nivel de referencia del contenido
+
+Cada criatura, descubrimiento o hito que otorgue XP debe tener un **nivel de referencia de progresión** asignado por Jugabilidad al integrarse.
+
+Ese nivel:
+- no cambia el canon del Historiador;
+- no necesita mostrarse al jugador;
+- sirve únicamente para calcular una recompensa razonable;
+- evita que contenido de nivel inicial entregue grandes cantidades de XP a un personaje veterano.
+
+La recompensa usa como base la curva de XP del **nivel de referencia del contenido**, no solamente el nivel actual del jugador.
+
+### 22.3 Categorías personales de peligro
+
+Una misma criatura puede ser un reto distinto para personajes diferentes.
+
+El servidor clasifica el encuentro para cada jugador, usando la matemática real disponible de HP, daño esperado, defensa, equipo, estado y poderes conocidos por el sistema.
+
+Categorías v1:
+- **Trivial**
+- **Favorable**
+- **Comparable**
+- **Peligroso**
+- **Abrumador**
+
+La interfaz y el texto muestran únicamente la categoría cualitativa o una frase equivalente. No muestran porcentaje exacto de victoria ni estadísticas ocultas.
+
+Como referencia técnica inicial, puede usarse el margen esperado de supervivencia/derrota del modelo de combate para establecer bandas aproximadas. Los umbrales concretos son afinables de balance sin cambiar estas cinco categorías.
+
+### 22.4 XP de combate
+
+Coeficiente base según la categoría personal del encuentro:
+
+| Categoría | Coeficiente XP |
+| --- | ---: |
+| Trivial | 2% |
+| Favorable | 7% |
+| Comparable | 12% |
+| Peligroso | 20% |
+| Abrumador | 25% |
+
+Referencia:
+
+`XP_combate_bruta = XP_siguiente(nivel_referencia_enemigo) × coeficiente_categoria`
+
+Para impedir saltos extremos de nivel:
+
+`XP_combate = mínimo(XP_combate_bruta, 25% de XP_siguiente(nivel_jugador))`
+
+Después se aplican multiplicadores de cooperación y repetición cuando correspondan.
+
+Consecuencias buscadas:
+- un enemigo apropiado suele aportar alrededor de 8–9 victorias comparables por nivel si el jugador solo progresa combatiendo;
+- un enemigo muy por debajo del jugador aporta muy poco;
+- un enemigo muchísimo más fuerte no puede regalar más de un cuarto de nivel por una sola victoria;
+- una build muy poderosa contra cierto enemigo puede verlo como Favorable y recibir menos XP que una build para la que el mismo encuentro sea Comparable.
+
+### 22.5 Primera victoria y variedad de criaturas
+
+La primera victoria significativa de un personaje contra una **familia de criatura** en una región puede otorgar una bonificación única equivalente a **5% de la XP de referencia** de ese contenido.
+
+Esto recompensa descubrir y aprender criaturas nuevas sin convertir cada individuo en una recompensa única.
+
+El Historiador define las familias de criaturas; Jugabilidad asigna su nivel de referencia y balance.
+
+### 22.6 Antifarmeo por repetición
+
+La repetición no deja de dar XP, pero deja de ser la forma óptima de progresar.
+
+Para cada jugador, el servidor observa las **últimas 10 victorias PvE** y cuenta cuántas pertenecen a la misma familia de criatura que acaba de derrotar.
+
+Multiplicador v1:
+
+| Repeticiones de esa familia dentro de las últimas 10 victorias | Multiplicador |
+| ---: | ---: |
+| 1–3 | 100% |
+| 4–5 | 60% |
+| 6 o más | 25% |
+
+Esto permite seguir cazando una criatura si el jugador quiere, pero premia variar enemigos, cambiar de zona y explorar.
+
+Cuando la reducción sea relevante, el juego debe comunicarla de forma comprensible, por ejemplo indicando que **esa presa ya enseña poco y explorar otros peligros hará progresar más**. No ocultar completamente el motivo de una caída grande de XP.
+
+### 22.7 XP por exploración y descubrimiento
+
+La progresión no depende exclusivamente de matar.
+
+Un contenido marcado explícitamente puede otorgar XP una sola vez por personaje:
+
+- **descubrimiento significativo:** 5% de la XP de su nivel de referencia;
+- **descubrimiento mayor:** 10%;
+- **hito narrativo menor:** 10%;
+- **hito narrativo importante:** 15%;
+- **hito narrativo excepcional:** hasta 25%.
+
+No toda habitación, conversación o uso de `mirar` entrega XP.
+
+La recompensa requiere un estado persistente de descubrimiento/hito para evitar repetirla.
+
+Un Narrador o Historiador puede proponer que un evento sea descubrimiento o hito, pero Jugabilidad valida la categoría de recompensa.
+
+### 22.8 Cooperación y reparto de XP
+
+Jugar acompañado debe ser útil sin duplicar íntegramente la recompensa para todos.
+
+Solo recibe XP de combate quien haya realizado una **participación significativa** durante el encuentro. Estar simplemente presente en la sala no basta.
+
+La participación puede incluir, según las mecánicas disponibles:
+- ataque;
+- defensa relevante;
+- curación;
+- protección;
+- control;
+- apoyo mediante poderes;
+- otras acciones que el servidor marque como contribución real.
+
+Multiplicador individual por número de participantes elegibles:
+
+| Participantes | Multiplicador por jugador |
+| ---: | ---: |
+| 1 | 100% |
+| 2 | 80% |
+| 3 | 70% |
+| 4 o más | 60% |
+
+Cada jugador calcula primero la categoría del encuentro **respecto de su propio personaje**. Por eso un veterano que ayuda contra una criatura débil puede recibir XP Trivial mientras un principiante recibe XP Comparable.
+
+La recompensa individual sigue limitada al **25% de la XP necesaria para el siguiente nivel** antes de aplicar el multiplicador de grupo.
+
+### 22.9 Protección contra power-leveling
+
+La combinación de:
+- nivel de referencia del enemigo;
+- categoría personal del reto;
+- tope del 25% del nivel;
+- participación significativa;
+- multiplicador de grupo;
+
+debe impedir que acompañar pasivamente a un personaje muy poderoso sea la forma dominante de subir niveles.
+
+Una criatura de nivel bajo derrotada por un veterano conserva su bajo nivel de referencia y por tanto entrega XP mínima al veterano.
+
+Un principiante presente en una pelea muy por encima de su capacidad no puede recibir más del tope individual por una sola victoria.
+
+Si las pruebas reales muestran abuso todavía significativo, Jugabilidad puede añadir un límite adicional de mentoría sin rehacer esta estructura.
+
+### 22.10 PvP y XP
+
+**Derrotar jugadores no entrega XP de progresión en la v1.**
+
+PvP conserva sus propias consecuencias de riesgo, huida, armas y mundo persistente, pero no debe convertirse en una fuente fácilmente explotable de niveles mediante muertes pactadas o repetidas.
+
+### 22.11 Acción `evaluar`
+
+Se aprueba una acción equivalente al clásico `consider/considerar`:
+
+- comando principal: **`evaluar <objetivo>`**;
+- la interfaz puede ofrecer **Evaluar** sobre una criatura visible;
+- botón y comando representan la misma intención del servidor.
+
+`evaluar` solo funciona sobre un objetivo que el personaje pueda percibir legítimamente.
+
+Devuelve una valoración cualitativa como:
+- parece muy inferior a ti;
+- parece favorable;
+- parece comparable a ti;
+- parece peligroso;
+- te supera claramente.
+
+Percepción, conocimiento legítimo, equipo visible y observación previa pueden enriquecer la explicación de **por qué** parece peligroso, pero nunca revelan automáticamente:
+- HP exacto;
+- daño exacto;
+- porcentaje de victoria;
+- poderes ocultos;
+- resistencias secretas;
+- información que el personaje no puede conocer.
+
+El Narrador puede reforzar la misma evaluación mediante señales del mundo. `evaluar` organiza la información disponible; no reemplaza leer.
+
+### 22.12 Ejemplos de comportamiento esperado
+
+Con la v1:
+- un nivel 10 contra un enemigo Comparable de referencia 10 recibe aproximadamente **34 XP**, alrededor de 12% de su nivel;
+- un nivel 50 contra referencia 50 Comparable recibe alrededor de **190 XP**, también cerca de 12%;
+- un nivel 99 matando un enemigo trivial de referencia 1 recibe alrededor de **2 XP**;
+- dos principiantes contra un encuentro Comparable reciben alrededor de **9.6% de su nivel cada uno** antes de otras bonificaciones;
+- tres principiantes reciben alrededor de **8.4% cada uno**;
+- repetir veinte victorias seguidas contra la misma familia ronda aproximadamente un nivel completo o menos, mientras una ruta que mezcla combates, descubrimientos e hitos puede alcanzar el nivel con muchas menos repeticiones.
+
+### 22.13 Principio de progresión
+
+**Combatir fortalece al personaje, pero explorar, comprender y variar el riesgo debe ser una ruta competitiva de progreso.**
+
+La estrategia óptima no debe ser permanecer inmóvil esperando el mismo respawn.
+
+
 ## Investigación disponible para Jugabilidad — capacidades HTML y comandos
 
 **ESTADO: INVESTIGACIÓN CONSUMIDA PARCIALMENTE — la dirección híbrida HTML/Telnet ya está confirmada; quedan decisiones específicas por cerrar.**
