@@ -6,6 +6,7 @@ After=vintage-telnet.service
 Type=oneshot
 User=vintage-telnet
 Group=vintage-telnet
+WorkingDirectory=/opt/vintage-telnet/current/vintage-telnet
 ExecStart=/opt/vintage-telnet/current/vintage-telnet/ops/backup.sh
 Environment=PYTHONUNBUFFERED=1
 Environment=PYTHONDONTWRITEBYTECODE=1
