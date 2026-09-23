@@ -134,12 +134,27 @@ No incluir:
 
 ## Másters artísticos
 
-Los másters originales no forman parte automáticamente del lote jugable.
+Dirección de Arte fija como ubicación oficial para originales aprobados:
 
-Para esta fase:
-- el juego consume derivados WebP optimizados;
-- conservar PNG/otros másters en GitHub será una política separada si Arquitectura la considera necesaria;
-- no duplicar archivos pesados sin una decisión explícita.
+- `assets/vintage-telnet/masters/locations/`
+- `assets/vintage-telnet/masters/species/`
+- `assets/vintage-telnet/masters/maps/`
+
+Convención de nombres:
+- usar el mismo nombre base estable del asset jugable;
+- ejemplo: `masters/locations/vaisgard.png` → `locations/vaisgard.webp`;
+- no usar sufijos como `final2`, `nuevo-final` o similares.
+
+Reglas:
+- solo guardar aquí másters **aprobados**, no bocetos ni iteraciones descartadas;
+- estos archivos son fuente artística, no recursos que el HTML deba cargar;
+- el juego consume derivados WebP optimizados fuera de `masters/`;
+- PNG es el formato maestro preferido para ilustración raster cuando no exista una razón para conservar otro formato;
+- PSD, TIFF u otros fuentes muy pesados no entran automáticamente al repo; requieren decisión explícita de Arquitectura;
+- reemplazar un máster existente requiere autorización explícita, igual que cualquier asset estable;
+- el Publicador de Assets puede tomar un máster como input, pero debe publicar el derivado jugable en `locations/`, `species/` o `maps/`.
+
+No crear subcarpetas vacías: se crean cuando exista el primer máster real de esa categoría.
 
 ## Regla de publicación
 
