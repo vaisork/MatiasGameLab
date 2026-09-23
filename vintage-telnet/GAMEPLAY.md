@@ -1632,6 +1632,248 @@ Una entrada no reconocida:
 
 **Pocos verbos, reglas consistentes, botones como atajos; escribir algo incorrecto nunca debe revelar un secreto ni hablar públicamente por accidente.**
 
+
+## 29. Rasgos naturales de especies — reglas mecánicas v1
+
+**Estado:** APROBADO PARA IMPLEMENTACIÓN Y CONTENIDO.  
+**Canon:** `SPECIES.md`.
+
+Las diferencias de especie son una capa separada de los ocho atributos.
+
+### 29.1 Regla general
+
+Todas las especies:
+- comienzan con los mismos valores base de atributos: 10;
+- reciben la misma cantidad de PA;
+- usan la misma curva de costes;
+- pueden acceder a cualquier clase permitida por el contenido;
+- no reciben superioridad natural general de Intelecto, magia, daño o progresión.
+
+Los rasgos de especie funcionan principalmente como:
+- **posibilidades físicas/sensoriales**;
+- acceso a rutas o información que el cuerpo permite;
+- modificación del contexto de una acción.
+
+Después, los atributos determinan la calidad de ejecución cuando exista incertidumbre.
+
+**Canon habilita; atributo ejecuta; jugador interpreta.**
+
+### 29.2 Humanos — generalistas sin bonificación artificial
+
+Los Humanos no reciben un bono universal compensatorio.
+
+V1:
+- movilidad terrestre estándar;
+- sentidos estándar;
+- escala corporal de referencia para objetos/arquitectura;
+- ninguna ruta o señal especial por especie.
+
+No reciben PA extra, XP extra ni descuentos de clase.
+
+Su ventaja práctica es no estar definidos por una adaptación extrema, pero esto no se convierte en una estadística adicional.
+
+### 29.3 Felaryn — salto, distancia y equilibrio
+
+#### Salto
+El mundo puede marcar conexiones como:
+- `jump_normal`;
+- `jump_extended`;
+- `jump_impossible`.
+
+Un Felaryn puede intentar de forma natural una conexión `jump_extended` sin herramienta especial.
+
+Otras especies necesitan:
+- otra ruta;
+- herramienta/poder;
+- o una condición explícita del contenido.
+
+`jump_impossible` no se supera solo por ser Felaryn.
+
+Cuando una conexión `jump_extended` tenga peligro real, **Agilidad** modifica la ejecución. Ser Felaryn habilita el intento; no garantiza éxito bajo heridas, agotamiento o condiciones extremas.
+
+No se fija distancia en metros porque una habitación Telnet no representa una escala física uniforme. El contenido clasifica el salto según la geometría real de la escena.
+
+#### Visión a distancia
+El contenido puede marcar una señal como `distant_visual`.
+
+Un Felaryn puede recibir esa señal desde un punto de observación legítimo donde otra especie solo obtendría una descripción más general o necesitaría acercarse.
+
+**Percepción** decide cuánto detalle obtiene dentro de lo visible.
+
+No atraviesa obstáculos ni oscuridad total.
+
+#### Equilibrio
+En superficies estrechas/altas propias de su adaptación:
+- el Felaryn no recibe una penalización específica por especie;
+- una escena realmente peligrosa todavía puede exigir Agilidad;
+- el rasgo no sustituye una técnica de clase.
+
+### 29.4 Dravak — escala, espacios compactos y vibraciones
+
+#### Escala corporal
+El contenido puede marcar rutas/interacciones como:
+- `tight_space`;
+- `large_reach`.
+
+Un Dravak puede recorrer naturalmente `tight_space` cuando su anatomía cabe.
+
+Una especie mayor necesita otra ruta, herramienta o poder.
+
+En una interacción `large_reach`, el Dravak puede necesitar:
+- apoyo;
+- herramienta;
+- otra posición;
+- o una solución distinta.
+
+Esto se comunica mediante texto; no se aplica una penalización general a todas sus acciones.
+
+#### Manipulación de espacios pequeños
+Un mecanismo puede tener la propiedad `small_access`.
+
+Dravak puede intentar manipularlo físicamente cuando manos/cuerpo mayores no caben. **Destreza** sigue determinando ejecución fina.
+
+No recibe conocimiento Artífice automáticamente.
+
+#### Vibraciones
+Cuando un Dravak está en contacto cercano con suelo, roca u otra superficie sólida, una escena puede ofrecer señales `solid_vibration`.
+
+`observar` puede revelar:
+- que existe vibración;
+- ritmo/intensidad cuando el contenido lo permita.
+
+Percepción puede mejorar detalle.
+
+No revela automáticamente:
+- identidad;
+- distancia exacta;
+- mapa detrás de paredes;
+- solución del misterio.
+
+#### Placas dérmicas
+Las placas Dravak **no conceden reducción de armadura universal en v1**.
+
+Si Historia desea que una situación concreta interactúe con ellas, debe proponerlo como contenido; no convertirlas silenciosamente en armadura gratuita.
+
+### 29.5 Marevyn — agua, respiración y corrientes
+
+#### Natación y agua profunda
+El contenido puede marcar rutas como `deep_water`.
+
+Un Marevyn puede atravesar naturalmente agua profunda nadando, siempre que el contenido no establezca una condición extraordinaria.
+
+Otras especies pueden requerir:
+- prueba/contexto de natación;
+- herramienta;
+- embarcación;
+- ruta alternativa.
+
+Ser Marevyn no concede inmunidad a corrientes extremas, frío, heridas ni agotamiento.
+
+#### Inmersión y respiración
+Se usa una reserva simple de **acciones bajo el agua**.
+
+Para especies sin adaptación especial:
+
+`Aire = 6 + piso((Resistencia - 10) / 10)`
+
+Para Marevyn:
+
+`Aire = 2 × [6 + piso((Resistencia - 10) / 10)]`
+
+Cada acción significativa mientras permanece completamente sumergido consume 1.
+
+Al agotarse:
+- el personaje debe intentar salir a respirar;
+- permanecer sumergido genera consecuencias de asfixia que Desarrollo debe resolver mediante HP/estado sin crear una nueva barra de vida.
+
+La v1 no permite respirar bajo el agua.
+
+#### Superficies húmedas
+En superficies mojadas/flotantes compatibles con su adaptación:
+- Marevyn no recibe penalización específica por especie;
+- situaciones peligrosas todavía pueden usar Agilidad.
+
+#### Corrientes
+Escenas acuáticas pueden incluir señal `water_current`.
+
+Marevyn puede percibir cambios cercanos de corriente/movimiento que otros no reciben automáticamente. Percepción mejora detalle, no identifica mágicamente la causa.
+
+### 29.6 Vesperi — iluminación, oído y orientación
+
+La iluminación visual usa cuatro estados de contenido:
+1. `normal`;
+2. `dim`;
+3. `dark`;
+4. `total_darkness`.
+
+#### Especies estándar
+- normal: visión ordinaria;
+- dim: detalle visual reducido;
+- dark: formas/movimiento generales cuando exista luz residual;
+- total_darkness: sin información visual.
+
+#### Vesperi
+- normal: visión ordinaria;
+- dim: conserva detalle funcional;
+- dark: recibe aproximadamente la información que otra especie obtendría en `dim`;
+- total_darkness: tampoco ve.
+
+Esto no produce penalización automática bajo luz normal y no crea visión en oscuridad absoluta.
+
+#### Oído
+El contenido puede marcar una señal `subtle_sound`.
+
+Vesperi puede recibirla en situaciones donde otros personajes necesitarían una condición más favorable o Percepción especialmente alta.
+
+Percepción mejora la interpretación/detalle.
+
+No posee ecolocalización.
+
+#### Orientación
+En espacios densos y de baja luz, Vesperi no recibe una penalización de orientación únicamente por penumbra cuando dispone de señales sensoriales legítimas.
+
+No revela salidas ocultas ni mapa secreto.
+
+### 29.7 Equipo y especie
+
+La v1 no aplica penalizaciones globales de combate por tamaño de especie.
+
+El equipo personal normal se considera **ajustado al cuerpo del personaje** cuando es un objeto utilizable por esa especie.
+
+Un objeto/estructura del mundo puede declarar incompatibilidad física concreta por:
+- escala;
+- alcance;
+- forma;
+- anatomía.
+
+Eso es una propiedad del objeto/escena, no una reducción universal de atributos.
+
+### 29.8 Atributos no borran especie
+
+Ejemplos:
+- Humano con Agilidad 60 no obtiene salto Felaryn;
+- Humano con Percepción 60 no obtiene vibración Dravak;
+- Felaryn con Percepción alta no obtiene visión Vesperi en oscuridad;
+- Vesperi con Resistencia alta no obtiene adaptación Marevyn al agua;
+- Destreza alta no reduce el cuerpo para entrar en `tight_space`.
+
+### 29.9 Interfaz y narrativa
+
+La interfaz no debe mostrar:
+- “+20% racial” genérico;
+- números ocultos de sentidos;
+- botones que revelen rutas especiales antes de percibirlas.
+
+Cuando un rasgo abre una posibilidad, se comunica naturalmente:
+- una salida que ahora puede intentarse;
+- una señal adicional;
+- una descripción distinta;
+- una acción contextual legítima.
+
+### 29.10 Principio
+
+**Las especies cambian qué posibilidades corporales y sensoriales existen; los atributos cambian qué tan bien actúa el personaje dentro de esas posibilidades.**
+
 ## Investigación disponible para Jugabilidad — capacidades HTML y comandos
 
 **ESTADO: INVESTIGACIÓN CONSUMIDA — la dirección híbrida HTML/Telnet, inspección, evaluación de peligro y mapa progresivo ya tienen criterios v1; las ampliaciones futuras se decidirán cuando aparezcan nuevas necesidades.**
