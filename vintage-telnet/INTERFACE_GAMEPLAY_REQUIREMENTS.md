@@ -280,3 +280,36 @@ Si falta un dato:
 - **NECESIDAD NARRATIVA/HISTÓRICA** si falta contenido.
 
 La interfaz debe poder crecer sin obligar a rehacer el flujo principal de terminal.
+
+
+## 18. Actualización tras cierre de XP y mapa
+
+Jugabilidad ya cerró las secciones 22 y 23 de `GAMEPLAY.md`.
+
+La interfaz/backend deberá poder incorporar, cuando se implementen:
+
+### Progreso
+- nivel actual;
+- XP actual;
+- XP necesaria para el siguiente nivel;
+- XP obtenida por una acción cuando sea relevante;
+- aviso comprensible cuando la repetición de una misma familia de criatura reduzca la recompensa.
+
+No mostrar al jugador el nivel de referencia interno del contenido si no existe razón de diseño para hacerlo.
+
+### Evaluar
+Para una criatura legítimamente visible:
+- acción `evaluar <objetivo>` y equivalente táctil;
+- resultado cualitativo: Trivial/Favorable/Comparable/Peligroso/Abrumador o texto narrativo equivalente;
+- no mostrar porcentaje de victoria, HP exacto enemigo ni estadísticas ocultas.
+
+### Mapa progresivo
+El cliente necesita estados estructurados por personaje:
+- lugar desconocido/conocido/visitado;
+- ruta desconocida/conocida/recorrida.
+
+Un elemento desconocido no debe renderizarse ni dejar una pista visual de que existe.
+
+El mapa no ejecuta viaje rápido en la v1.
+
+Chat de otro jugador no cambia por sí mismo el estado del mapa.
