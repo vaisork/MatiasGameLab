@@ -78,9 +78,17 @@ No contiene estadísticas ni mecánicas de vínculo; esas decisiones corresponde
 
 Define la identidad, procedencia cultural, obtención narrativa y uso de Forja física del primer catálogo de armaduras de Vintage Telnet.
 
-Las identidades y contexto son expansión canónica del Historiador. Los porcentajes de reducción incluidos son propuestas dentro del marco de `GAMEPLAY.md` §30 y quedan pendientes de validación final de Jugabilidad.
+Las identidades y contexto son expansión canónica del Historiador. Los porcentajes 10/20/30/35 % ya fueron **validados por Jugabilidad para v1** dentro del marco de `GAMEPLAY.md` §30.
 
 No crea ranuras, fórmulas, bonos de atributos, durabilidad ni resistencias nuevas.
+
+### 15. Catálogo inicial de armas — `WEAPON_CATALOG.md`
+
+Define la identidad, procedencia cultural, obtención narrativa y uso de Forja física del primer catálogo pequeño de armas de Vintage Telnet.
+
+La identidad y contexto son expansión canónica del Historiador. Jugabilidad ya validó para v1 los valores `base_damage` 7/8/9/10/11/12, las armas que permiten Bloquear/desviar, precisión universal 0 y el arco sin contabilidad individual de flechas.
+
+No crea críticos, durabilidad, economía, requisitos numéricos universales, efectos mágicos ni sistemas nuevos.
 
 ## Relación con el Narrador
 
@@ -111,4 +119,5 @@ El Historiador define qué necesita el mundo, por qué lo necesita y qué funci�
 **Guía visual del mundo:** `vintage-telnet/ART_WORLD_GUIDE.md`  
 **Arcanes:** `vintage-telnet/ARCANES.md`  
 **Armaduras:** `vintage-telnet/ARMOR_CATALOG.md`  
+**Armas:** `vintage-telnet/WEAPON_CATALOG.md`  
 **Fuente mecánica:** `vintage-telnet/GAMEPLAY.md`
