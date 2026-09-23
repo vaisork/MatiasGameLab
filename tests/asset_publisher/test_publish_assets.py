@@ -33,7 +33,7 @@ def png_bytes(width=2, height=3):
 def webp_vp8x_bytes(width=4, height=5):
     w = (width - 1).to_bytes(3, "little")
     h = (height - 1).to_bytes(3, "little")
-    payload = b"\x00\x00\x00\x00" + b"\x00\x00\x00" + w + h
+    payload = b"\x00\x00\x00\x00" + w + h
     size = (4 + 8 + len(payload)).to_bytes(4, "little")
     return b"RIFF" + size + b"WEBP" + b"VP8X" + len(payload).to_bytes(4, "little") + payload
 
