@@ -31,20 +31,56 @@ TOWN_DESCRIPTIONS = {
     ),
 }
 
-LOCATION_ART = {
-    "valdren_centro": {
+# Arte por visual_context_id, no por room_id: varias salas de un mismo
+# pueblo/zona comparten la misma ilustracion mientras el jugador no cambie
+# de contexto (VISUAL_CONTEXT_CANON.md). Los contextos sin fila aqui todavia
+# no tienen asset aprobado y describe_room() debe devolver "art": None
+# (fallback sobrio) para ellos.
+VISUAL_CONTEXT_ART = {
+    "zone.valdren": {
         "src": "/assets/locations/valdren.webp",
         "alt": "Vista contextual de Valdren",
         "width": 1536,
         "height": 1024,
     },
-    "vaisgard": {
+    "zone.vaisgard": {
         "src": "/assets/locations/vaisgard.webp",
         "alt": "Vista contextual de Vaisgard",
         "width": 1536,
         "height": 1024,
     },
 }
+
+# Excepciones explicitas de VISUAL_CONTEXT_CANON.md ("Mapeo de las salas
+# actuales"): salas que NO comparten el contexto de su propio prefijo de
+# pueblo, o que no pertenecen a ningun pueblo. Cualquier sala de pueblo que
+# no aparezca aqui hereda "zone.<pueblo>" (ver get_visual_context_id), tal
+# como el canon autoriza para micro-salas internas futuras.
+ROOM_VISUAL_CONTEXT_OVERRIDES = {
+    "vaisgard": "zone.vaisgard",
+    "road_north": "zone.veyra.road",
+    "road_west": "zone.veyra.road",
+    "valdren_sendero": "zone.edran.valdren_outskirts",
+    "valdren_camino_parcela": "zone.edran.valdren_outskirts",
+    "valdren_camino_cerca": "zone.edran.valdren_outskirts",
+    "valdren_camino_lindero": "zone.edran.valdren_outskirts",
+}
+
+_TOWN_VISUAL_CONTEXT_PREFIXES = ("valdren", "khariel", "brumak", "narevia", "velmora")
+
+
+def get_visual_context_id(room_id):
+    """Resuelve el visual_context_id autoritativo de una sala segun
+    VISUAL_CONTEXT_CANON.md. No infiere nada a partir de nombres o
+    descripcion; solo usa room_id como clave estructurada, igual que el
+    resto de los datos de mundo en este archivo."""
+    override = ROOM_VISUAL_CONTEXT_OVERRIDES.get(room_id)
+    if override:
+        return override
+    for prefix in _TOWN_VISUAL_CONTEXT_PREFIXES:
+        if room_id == prefix or room_id.startswith(f"{prefix}_"):
+            return f"zone.{prefix}"
+    return None
 
 
 def _build_town(prefix, display_name, outward_exits):
@@ -315,6 +351,7 @@ def describe_room(room_id, others_present):
             "exits": [],
             "others_present": [],
         }
+    visual_context_id = get_visual_context_id(room_id)
     return {
         "id": room_id,
         "name": room["name"],
@@ -324,5 +361,6 @@ def describe_room(room_id, others_present):
             for direction in room["exits"]
         ],
         "others_present": others_present,
-        "art": LOCATION_ART.get(room_id),
+        "visual_context_id": visual_context_id,
+        "art": VISUAL_CONTEXT_ART.get(visual_context_id),
     }
