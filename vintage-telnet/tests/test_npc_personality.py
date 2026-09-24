@@ -78,7 +78,7 @@ class NpcPersonalityTests(unittest.TestCase):
         )
         self.assertEqual(
             enriched["personality_provenance"]["personality_prompt_version"],
-            "vt-npc-personality-v1",
+            "vt-npc-personality-v2",
         )
         self.assertNotIn("personality", original)
 
