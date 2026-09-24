@@ -1097,7 +1097,13 @@ def create_app(config=None):
 
     @app.get("/assets/locations/<path:filename>")
     def location_assets(filename):
-        return send_from_directory(LOCATION_ASSETS_DIR, filename)
+        # mimetype explicito: el pipeline de Arte (#42) solo publica WebP aqui,
+        # y el modulo mimetypes del sistema no siempre lo conoce (falla en
+        # Windows y en algunas imagenes minimas de Linux/Raspberry Pi OS),
+        # lo que hacia que el navegador recibiera application/octet-stream y
+        # nunca renderizara la imagen -- se veia como "ilustracion no
+        # disponible" aunque el archivo si existiera y se sirviera con 200.
+        return send_from_directory(LOCATION_ASSETS_DIR, filename, mimetype="image/webp")
 
     # --- Dungeon Master ---------------------------------------------------
 
