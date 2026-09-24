@@ -340,7 +340,7 @@ class EntryTests(unittest.TestCase):
         self.assertIn("Armadura activa", html)
         self.assertIn("Protección total", html)
         self.assertIn("Carga física", html)
-        self.assertIn('"equipar " : "desequipar "', html.replace("item.equipped ? ", ""))
+        self.assertIn('(item.equipped ? "desequipar " : "equipar ") + item.name', html)
         self.assertNotIn("vender", html.lower())
         self.assertNotIn("soltar", html.lower())
         self.assertNotIn("durabilidad", html.lower())
