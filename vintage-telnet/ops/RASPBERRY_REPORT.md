@@ -525,5 +525,45 @@ bloqueante — celular y computadora ya cubiertos). Recomendación: si Javier
 confirma que no hay tablet/iPad disponible para probar, se puede considerar
 el criterio multi-dispositivo satisfecho con celular + computadora.
 
+## Issue #89 — refinamiento móvil (fix CSS commandbar) + Esquivar/Bloquear/Resistir + fix MIME art — 2026-09-23
+
+- **Origen:** Javier reportó jugando desde el celular que "el juego es
+  pequeño" — feedback real capturado en Issue #89. Otra sesión (revisión
+  frontend/CSS) encontró y corrigió el bug real: el campo de comando
+  (`.commandbar`) quedaba reducido a ~26px en vez de su tamaño normal.
+- SHA desplegado: `1a92420f7b1195e09999b5567a20a351471f4814`. **112/112
+  pruebas OK** en aislado antes de desplegar (nuevas: `test_combat_actions.py`,
+  más casos en `test_entry.py`/`test_gameplay.py`).
+- Desplegado vía `ops/update_v6_authorized.py` (variante del v5), corrido
+  por Javier con sudo por SSH desde su celular. Backup previo, jugadores
+  preservados (mismo patrón de verificación que despliegues anteriores).
+- `healthz` OK local y externo tras el despliegue.
+- **Verificado explícitamente por el operador:**
+  - **Fix de MIME type real**: `curl -I .../assets/locations/valdren.webp`
+    → `content-type: image/webp` (antes sospechado como
+    `application/octet-stream`, lo cual habría hecho que navegadores no
+    renderizaran la imagen inline correctamente en algunos casos).
+  - Campo de comando (`commandbar`) con tamaño visualmente normal en el
+    navegador real (no el squeeze de ~26px reportado).
+  - Texto progresivo tipo teletipo funcionando (confirmado con capturas en
+    tres momentos: texto apareciendo gradualmente hasta completarse).
+  - Botón "Descansar" contextual visible correctamente.
+- **No verificado en viewport móvil real dentro de esta sesión**: se
+  intentó `resize_window` a 390×844 vía la extensión del navegador, pero
+  la captura de pantalla no reflejó el cambio de tamaño (limitación de la
+  herramienta, no del juego). La validación de layout específicamente
+  móvil queda pendiente de una prueba directa desde un dispositivo real
+  (Javier ya lo hizo antes de este fix, con el resultado "el juego es
+  pequeño"; falta la confirmación posterior al fix).
+- Persistencia confirmada: mismo jugador #0006, estado (nivel/XP/HP)
+  correcto y avanzado respecto al despliegue anterior (Javier siguió
+  jugando esa cuenta entre despliegues).
+
+**Pendiente:** que Javier confirme desde el celular real si el commandbar
+y el tamaño general ya se sienten bien tras este fix, o si sigue habiendo
+problemas de escala/legibilidad — el trabajo de refinamiento visual de
+Issue #89 sigue activo para Junior VT/Integrador HTML más allá de este fix
+puntual de servidor.
+
 No adjuntar contraseñas, claves, cookies, hashes ni bases. No afirmar resultados
 de pruebas que no se ejecutaron. Acceso desde fuera de casa: fuera de esta entrega.
