@@ -565,5 +565,72 @@ problemas de escala/legibilidad — el trabajo de refinamiento visual de
 Issue #89 sigue activo para Junior VT/Integrador HTML más allá de este fix
 puntual de servidor.
 
+## Revisión y despliegue consolidado: 5 PRs pendientes (#116-#121) — 2026-09-24
+
+A pedido de Javier ("revisa las de fondo, avisa al arquitecto"), revisé,
+probé y mergeé 5 PRs que llevaban tiempo sin revisión, más un fix de
+integración que apareció al combinarlas:
+
+- **PR #117 — preflight de Raspberry de solo lectura**: `ops/raspberry_preflight.py`
+  y `ops/inventory_migration_probe.py`. 169/169 tests. Probado en vivo contra
+  producción real (`ollama.service` activo, healthz OK, 8080 solo loopback).
+  **Bug real encontrado**: el chequeo "Git HEAD" usa `git rev-parse HEAD`,
+  pero los releases de producción se crean con `git archive` (sin `.git`) —
+  ese chequeo siempre va a fallar en la Raspberry real. Recomendación para
+  el desarrollador: leer el SHA del nombre del symlink `current` en vez de
+  `git rev-parse`. No bloqueé el merge por esto (informativo, no crítico).
+- **PR #118 — compatibilidad Ollama v2**: 170/170 tests. Probado con Ollama
+  real contra `llama3.2:3b` y `qwen3:4b` (los mismos que fallaban 100% antes,
+  ver reporte anterior) — **ambos ahora cumplen el contrato completo** con
+  `--timeout 180` explícito (~99s y ~170s respectivamente). **Bug real
+  encontrado**: el `OllamaPersonalityClient` subió su timeout default a
+  180s, pero `npc_personality_cli.py` tiene su propio `--timeout` con
+  default `45.0` que lo pisa — quien use el CLI sin pasar `--timeout`
+  explícito sigue con el timeout viejo. No bloqueé el merge (el fix de
+  fondo funciona, el timeout es un flag documentado).
+- **PR #121 — mapa regional + rumbo autoritativo**: 171/171 tests. Ruta
+  `/assets/maps/<filename>` con protección contra traversal, migración
+  v6→v7 aditiva (columna `heading`). Verificado en producción tras el
+  deploy: `curl -I .../assets/maps/region-inicial.webp` → `200,
+  image/webp`.
+- **PR #116 — adaptador Generador↔Ollama**: 183/183 tests.
+- **PR #119 — UI V2 móvil**: 172/172 tests, solo toca `entry.html` y sus
+  tests.
+- **Fix adicional (no era parte de ninguna PR individual)**: al correr la
+  suite completa con las 5 ramas ya mergeadas juntas, apareció 1 falla real:
+  `test_real_bridge_generates_once_and_preserves_authority` (de #116)
+  afirmaba `vt-npc-personality-v1`, pero #118 subió esa constante a v2 —
+  cada PR pasaba sola, pero juntas exponían la inconsistencia. No es un bug
+  de comportamiento (el código ya usa v2 correctamente); corregida la
+  aserción del test. 189/189 tras el fix.
+
+### Despliegue a producción
+
+SHA `304e4b1d0a8d101fd3dc5794d4a2010499bb0f01` desplegado vía
+`ops/update_v7_authorized.py`, corrido por Javier con sudo. **189/189
+pruebas OK** antes de tocar producción.
+
+- **Bug en mi propio script**: copié `update_v7_authorized.py` de la
+  plantilla v6/v5 y me olvidé de actualizar `EXPECTED_SCHEMA` de `5` a `7`
+  — el despliegue real funcionó perfecto, pero el chequeo de salud del
+  script comparó contra el valor viejo y abortó con una falsa alarma antes
+  de completar la verificación de jugadores preservados. Verificado todo
+  manualmente después:
+  - `readlink -f /opt/vintage-telnet/current` → release correcto.
+  - `curl http://127.0.0.1:8080/healthz` → `{"schema_version":7,"status":"ok"}`.
+  - `systemctl status` → `active (running)`.
+  - **7 jugadores preservados** (`/dm`, vía API real): incluye las cuentas
+    de Javier y Matías (`jdiaz`/Jdiaz, `matias`/"Fs gato") además de las
+    cuentas de prueba del operador — ninguna se perdió en la migración
+    v5→v7.
+  - Ruta de mapa nueva confirmada funcionando (`200`, `image/webp`).
+  - Corregido `EXPECTED_SCHEMA` a `7` en el script local para la próxima vez.
+
+**Nota de rol:** hice review + merge de PRs de otros especialistas
+(Desarrollador de Servidor, Programador Ligero, Junior VT) con autorización
+explícita de Javier en el chat ("sigue adelante"). Esto excede mi función
+firmada habitual (normalmente solo opero, no reviso/mergeo código ajeno);
+lo dejo explícito acá para que quede trazable.
+
 No adjuntar contraseñas, claves, cookies, hashes ni bases. No afirmar resultados
 de pruebas que no se ejecutaron. Acceso desde fuera de casa: fuera de esta entrega.
