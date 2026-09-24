@@ -802,3 +802,79 @@ reinicié el servicio real, no asumí resultado de producción.
 
 No adjunto contraseñas, claves, cookies, hashes ni bases en este reporte.
 No afirmo ningún resultado de despliegue que no se ejecutó realmente.
+
+## Actualización de la revisión periódica — comando `vt-deploy` (Issue #141) ya está en `main` — 2026-09-24
+
+Misma sesión automatizada en la nube (sin SSH/sudo a la Raspberry real).
+Desde la nota anterior, `main` avanzó con el trabajo que esa nota daba como
+posible pendiente (punto 4 de la lista de arriba): el deploy reusable de la
+Issue #141 **ya existe y ya está mergeado**, pero todavía no está instalado
+ni probado en la Raspberry física — el propio comentario de cierre de la
+implementación en la Issue #141 lo deja explícito: "falta únicamente
+validación física de instalación/deploy y prueba controlada de rollback
+antes de cerrarla".
+
+**Qué se agregó a `main` (PR #142, commit de merge `ca101d40e25d...`):**
+- `vintage-telnet/ops/vt_deploy.py` — reemplaza el patrón
+  `update_vN_authorized.py` por un único comando parametrizado por SHA.
+  Resuelve `latest`/`main` contra `origin/main` (con `fetch --prune`
+  primero), exige que el SHA solicitado sea ancestro de `origin/main`,
+  ejecuta git como el dueño real del checkout (`runuser`), usa un lock de
+  despliegue (`/run/lock/vintage-telnet-deploy.lock`) y sigue el mismo
+  patrón ya validado de releases inmutables (`/opt/vintage-telnet/releases/`
+  + symlink `current`), backup previo, suite completa antes del switch,
+  `/healthz` local y por Funnel, y (según su propio diseño, no verificado
+  por mí) rollback automático si algo falla después del switch.
+- `vintage-telnet/ops/install_vt_deploy_command.sh` — instalador de una sola
+  vez: copia `vt_deploy.py` a `/usr/local/lib/vintage-telnet/` e instala
+  `/usr/local/sbin/vt-deploy` como wrapper. Requiere `sudo`.
+- Validado únicamente en CI (228/228 tests + `py_compile` + `sh -n`, según
+  el comentario de cierre en la Issue #141), **no contra hardware real**.
+
+**Comando final esperado, según la propia Issue #141 y su comentario de
+cierre:**
+```
+cd ~/MatiasGameLab && git pull --ff-only origin main
+sudo sh vintage-telnet/ops/install_vt_deploy_command.sh   # una sola vez
+sudo vt-deploy latest                                      # despliegue normal
+sudo vt-deploy <SHA>                                        # versión exacta
+```
+Después de esto, ya no correspondería generar más `update_v10_authorized.py`
+ni equivalentes a mano.
+
+**No hice en esta corrida** (mismas limitaciones que las notas anteriores):
+no instalé `vt-deploy` en la Raspberry, no lo ejecuté, no probé el rollback
+automático que describe su propio código, no desplegué el esquema v9
+pendiente (sigue exactamente donde lo dejó la nota anterior: HEAD de `main`
+en esta revisión es `ca101d40e25dadb594807184b004ee0ea652ee2e`, sin cambios
+de esquema desde `f925f59` — solo se agregó tooling de despliegue).
+
+**Pendiente actualizado para la próxima sesión con acceso real a la
+Raspberry (reemplaza el punto 4 de la lista anterior, el resto sigue
+vigente):**
+1. Antes de instalar nada, confirmar que `main` no avanzó de nuevo con otra
+   entrega sin revisar.
+2. Instalar `vt-deploy` con el instalador de una sola vez (arriba).
+3. **No usar `vt-deploy` a ciegas para el despliegue real de esquema v9**
+   todavía: primero probarlo con una prueba controlada de actualización y
+   rollback según pide explícitamente la Issue #141 ("no activar en
+   producción hasta probar una actualización y un rollback reales"), y
+   revisar con una lectura del código (`vt_deploy.py`) o con Javier si el
+   rollback automático descrito es seguro para el primer uso real. Si esa
+   prueba controlada no es posible antes del despliegue de v9, considerar
+   seguir el patrón anterior (`update_v10_authorized.py`, como en v5–v9)
+   para no mezclar "primera vez que se usa una herramienta nueva" con "hay
+   jugadores reales esperando la migración de clase inicial".
+4. Cuando `vt-deploy` quede validado, cerrar la Issue #141 documentando la
+   prueba de rollback real (no solo la instalación).
+5. Seguir cubriendo en la misma visita física: el despliegue de esquema v9
+   (puntos 5–7 de la lista anterior), la prueba de Android de la Issue #83
+   (instalar/agregar a pantalla principal, nombre e icono propios, vuelve a
+   `/`) y el probe de Ollama real de la Issue #19
+   (`.venv/bin/python -m server.npc_ollama_probe` sobre el release
+   desplegado) — las tres están documentadas como listas en `main` y solo
+   bloqueadas por la misma visita a hardware real.
+
+No adjunto contraseñas, claves, cookies, hashes ni bases en este reporte.
+No afirmo ningún resultado de instalación, despliegue o rollback que no se
+ejecutó realmente.
