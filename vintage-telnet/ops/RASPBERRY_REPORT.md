@@ -632,5 +632,20 @@ explícita de Javier en el chat ("sigue adelante"). Esto excede mi función
 firmada habitual (normalmente solo opero, no reviso/mergeo código ajeno);
 lo dejo explícito acá para que quede trazable.
 
+## Despliegue: inventario UI + arte por contexto visual + cierre de UI V2 — 2026-09-24
+
+Otros especialistas mergearon directo a `main` (PR #123, #126, #127: cierre
+de UI V2 con mapa/heading real, panel de inventario/equipo autoritativo
+Issue #57, resolución de arte de sala por `visual_context_id` Issue #125)
+sin pasar por revisión del operador — se detectó al sincronizar para la
+siguiente corrida.
+
+- SHA `d1d6433dec959a02e8cf5245930a3bb5a509a7ec`. **196/196 pruebas OK** en
+  aislado antes de desplegar. Mismo esquema (v7, sin migración nueva).
+- Desplegado vía `ops/update_v8_authorized.py` (con `EXPECTED_SCHEMA`
+  correcto esta vez), corrido por Javier con sudo. Sin errores.
+- Verificado: `healthz` → `schema_version:7` local y por Funnel, servicio
+  `active`, **7 jugadores preservados** (conteo vía `/dm`).
+
 No adjuntar contraseñas, claves, cookies, hashes ni bases. No afirmar resultados
 de pruebas que no se ejecutaron. Acceso desde fuera de casa: fuera de esta entrega.
