@@ -320,6 +320,23 @@ SPECIES = [
 
 SPECIES_IDS = tuple(s["id"] for s in SPECIES)
 
+# Clases base confirmadas (Issue #112). Nombres y orientacion copiados de
+# vintage-telnet/CONFIRMED_IDEAS.md; GAMEPLAY.md 2: la clase inicial orienta
+# el desarrollo pero no encierra permanentemente al personaje. No se listan
+# poderes ni ventajas numericas: todavia no estan definidos.
+CLASSES = [
+    {"id": "arcano", "name": "Arcano",
+     "blurb": "Camino de la magia. Comienza con una varita que más adelante podrá dar paso a instrumentos mayores."},
+    {"id": "juramentado", "name": "Juramentado",
+     "blurb": "Combate directo con espadas medianas o pesadas."},
+    {"id": "sombra", "name": "Sombra",
+     "blurb": "Sigilo, movimiento discreto, ataques sorpresivos y armas ligeras como cuchillos o puñales."},
+    {"id": "artifice", "name": "Artífice",
+     "blurb": "Arco, herramientas, construcción, reparación y fabricación."},
+]
+
+CLASS_IDS = tuple(c["id"] for c in CLASSES)
+
 
 def get_room(room_id):
     return ROOMS.get(room_id)
@@ -339,6 +356,24 @@ def get_room_encounter(room_id):
 
 def get_discovery(key):
     return DISCOVERIES.get(key)
+
+
+# Hora del día y clima (Issue #138, petición directa de Javier). La pantalla
+# ya tiene su espacio en la barra de lugar; QUÉ horas y climas existen, cómo
+# cambian (reloj real, reloj de juego, por zona, al azar...) y si afectan al
+# juego lo deciden Jugabilidad y Narrador. Mientras no lo definan, no hay
+# ambiente y la barra no muestra nada: no se inventa ningún estado.
+#
+# Contrato: cada campo es None o {"label": texto visible, "icon": clave}. Las
+# claves de icono disponibles en la interfaz son AMBIENT_ICONS; un icono
+# desconocido se muestra solo como texto.
+AMBIENT_ICONS = ("sol", "luna", "amanecer", "atardecer", "nube", "lluvia", "niebla", "nieve", "tormenta", "viento")
+
+
+def get_ambient(room_id):
+    """Ambiente visible de una sala: {"time_of_day": ..., "weather": ...}.
+    Punto único que Jugabilidad/Narrador llenarán; hoy siempre vacío."""
+    return {"time_of_day": None, "weather": None}
 
 
 def describe_room(room_id, others_present):
@@ -363,4 +398,5 @@ def describe_room(room_id, others_present):
         "others_present": others_present,
         "visual_context_id": visual_context_id,
         "art": VISUAL_CONTEXT_ART.get(visual_context_id),
+        "ambient": get_ambient(room_id),
     }

@@ -1,5 +1,112 @@
 # HANDOFF — Entrega técnica
 
+## ENTREGA — Vintage Telnet Issue #112: elección de clase inicial + arma inicial por clase
+
+**DESARROLLADOR:** Claude — Desarrollador de Servidor de Vintage Telnet
+**HEAD BASE:** `0ffcc36` (origin/main)
+**TAREA ASIGNADA:** Issue #112. Javier la asignó en sesión directa (2026-09-24) al pedirme que revisara el trabajo pendiente y lo resolviera según sus peticiones. Era la única entrada abierta que se podía programar sin inventar decisiones: #83 y #19 solo esperan prueba física, y #114/#115 dependen de decisiones abiertas de Arquitectura, Narrativa y Jugabilidad.
+**RAMA:** `claude/vintage-telnet-server-issue-112-class`
+
+### CAMBIOS
+- **Flujo:** crear/entrar → elegir especie → **elegir clase** → mundo. Mientras falte la clase, el mundo no avanza. Las rutas HTML devuelven 403 y las API `/api/room`, `/api/intent` y `/api/move` devuelven `409 class_required`, igual que ya pasaba con `species_required`. Las consultas de solo lectura (`/api/character`, `/api/inventory`, `/api/map`) siguen abiertas.
+- **Clases:** Arcano, Juramentado, Sombra y Artífice (`world.CLASSES`), con la orientación copiada de `CONFIRMED_IDEAS.md`. No incluyen poderes, bonos ni números nuevos. El texto de la pantalla repite `GAMEPLAY.md` §2: la clase orienta, pero no encierra.
+- **Arma inicial:** `items.STARTER_WEAPON_BY_CLASS` asigna Varita de aprendiz, Espada de juramento, Puñal de camino y Arco de ruta. Sale de la "Obtención narrativa" de `WEAPON_CATALOG.md` y reemplaza el perfil técnico `BaseArma=10` de §24.10. Se entrega como entrega autoritativa (§32.5), en la **misma transacción** en que se guarda la clase, y queda equipada solo si el personaje no tenía otra arma activa.
+- **Persistencia:** migración de esquema **v8 → v9** (originalmente v7→v8; ver reconciliación), que agrega la columna `players.player_class` con un `CHECK` de las 4 clases. `store.set_player_class` solo tiene efecto una vez y exige especie previa. Usa `BEGIN IMMEDIATE` y `rowcount`, así que si llegan dos elecciones al mismo tiempo gana una y se entrega una sola arma.
+- **Rutas:** `POST /class` (formulario) y `POST /api/class` (JSON, responde con `player_class`, `starter_weapon` y `player`). `/api/character` ahora también expone `species` y `player_class`.
+- **`entry.html`:** agregué el paso de clase, que reutiliza las tarjetas de especie: 2 columnas en tableta y 1 en celular. La clase también aparece en "Estado visible" y en el panel Personaje.
+
+### PRUEBAS
+- Suite completa: **206/206 OK**, con 10 pruebas nuevas en `tests/test_class_choice.py`:
+  - el paso de clase aparece después de la especie y bloquea el mundo;
+  - no se puede elegir clase sin especie;
+  - cada clase recibe su arma del catálogo, equipada;
+  - se elige una sola vez y una clase desconocida se rechaza;
+  - contrato de `/api/class`;
+  - concurrencia: una sola clase y una sola arma;
+  - el arma inicial no reemplaza un arma ya equipada;
+  - un personaje v7 con progreso migra a v8 conservando especie, sala y XP, y elige clase al volver.
+- En las pruebas existentes de combate, inventario y piloto, la clase se asigna **sin arma inicial** para conservar el perfil base con el que fueron escritas. Las de gameplay y entrada usan el flujo real `/class`. Además actualicé `schema_version` 7→8 y el inventario esperado de una prueba de UI (ahora incluye el puñal de Sombra).
+- Probé a mano contra el servidor real (waitress) con Chromium a 390 px y 1280 px: la pantalla de clase se lee bien. Elegir Juramentado entra a Valdren con la Espada de juramento equipada (`/api/inventory`) y la página no tiene scroll horizontal.
+
+### TRABAJO PREVIO AFECTADO
+- Los personajes que ya existen en la Raspberry verán la pantalla de clase la próxima vez que entren, **sin perder** especie, sala, XP ni inventario.
+- `combat.py`, `creatures.py`, las criaturas, la narrativa y el canon no cambiaron.
+- No hay otro cliente que consuma `species_required` (revisé con grep), así que ningún cliente externo se rompe con `class_required`.
+
+### RECONCILIACIÓN CON #132/#134 (2026-09-24)
+- #132 (PP y fatiga) entró a `main` junto con #134 y ocupó el esquema **v8**. La migración de clase pasa a **v8 → v9** (`store.SCHEMA_VERSION = 9`).
+- `POST /api/character/attributes` (#132) también exige clase (`409 class_required`), igual que el resto de rutas de juego.
+- `tests/test_progression.py`:
+  - su base v7 simulada ahora tampoco tiene `player_class`;
+  - sus personajes eligen clase sin arma inicial, para no alterar las pruebas de progresión.
+- Suite completa tras el merge: **226/226 OK**. En navegador a 390 px: especie → pantalla de clase → Arcano → gasto de PA desde Personaje, sin errores de JS.
+
+### PENDIENTES / DECISIONES PARA OTROS ROLES
+- **NECESIDAD DE JUGABILIDAD:** confirmar que el arma inicial se entrega y queda equipada al elegir la clase, y con qué arma por clase. Si cambia, solo cambia `STARTER_WEAPON_BY_CLASS`.
+- Siguen fuera de alcance: poderes por clase, sobrecoste fuera de clase (§20.12), cambio de clase y arte de las clases.
+- **Raspberry:** el despliegue aplica la migración a v9 (desde v7 o v8). Conviene hacer respaldo antes, como en migraciones anteriores.
+- **Observación para Frontend (no es de esta entrega):** a 390 px, el marco del terminal y los botones se ven cortados unos px en el borde derecho. Pasa igual en `main`, aunque la página no hace scroll horizontal.
+
+**LISTO PARA PUBLICAR:** NO. Queda para revisión del Arquitecto de Vintage Telnet / Integrador y autorización de Javier ("sube").
+## ENTREGA — Vintage Telnet Issue #135: pantalla principal según la maqueta del Director de Arte
+
+**DESARROLLADOR:** Claude — Desarrollador de Servidor de Vintage Telnet
+**HEAD BASE:** `fdc726b` (origin/main)
+**TAREA ASIGNADA:** Issue #135. Javier (2026-09-24) aprobó la maqueta de 3 pantallas del Director de Arte y la asignó con prioridad ALTA. Las decisiones de contenido (hora del día, HP del enemigo) quedan para Jugabilidad/Narrador.
+**RAMA:** `claude/vintage-telnet-ui-main-screen`
+
+### CAMBIOS (solo `server/templates/entry.html` + pruebas)
+- **Barra de lugar** con ícono de ubicación y nombre de la sala. En combate se pone roja, con espadas y la etiqueta **¡COMBATE!**.
+- **Ilustración enmarcada** (`room.art`) arriba del terminal; se conserva el fallback si falta la imagen.
+- **Terminal verde:** conserva el revelado progresivo, la pista y el chat.
+- **Exploración:**
+  - cruz N/O/●/E/S en verde con flechas; las salidas que no existen se ven apagadas;
+  - a la derecha, Mirar, Examinar y Descansar con ícono. Descansar solo aparece si `available_actions` lo autoriza;
+  - **Examinar** solo escribe "examinar " en el cuadro de comando y lo enfoca: no ejecuta nada ni aplica reglas.
+- **Combate:**
+  - **Atacar** grande y rojo; debajo Huir (azul) y Evaluar (dorado), y luego Esquivar/Resistir/Bloquear según `available_actions`;
+  - banda de **condición cualitativa** del enemigo: 4 segmentos que salen de la etiqueta de `enemy_condition` (entero/herido/malherido/al borde). **Nunca muestra HP numérico** (GAMEPLAY §31);
+  - la cruz de movimiento no se muestra en combate, igual que en la maqueta. Moverse escribiendo el comando sigue funcionando igual que antes.
+- **Barra inferior:** Personaje, Inventario, Mapa y Ayuda. En teléfono el ícono va arriba del texto.
+- **Mapa:** debajo del mapa regional se muestran "Estás en: <sala>" y una tarjeta "Dirección actual" con brújula y "Caminando hacia: <rumbo>" (`current_heading`). La pestaña "Dirección actual" se conserva.
+- **Corrección de desborde en teléfonos (ya existía en `main`):** la columna implícita de `.app` y la de `.layout` crecían hasta el ancho de la pista de una sola línea, y el marco se cortaba unos px a la derecha. Ahora son `minmax(0,1fr)`.
+- Todo con HTML/CSS/SVG (frontera #109). Agregué 4 íconos SVG: ubicación, lupa, cama y correr.
+
+### PRUEBAS
+- Suite completa: **217/217 OK**.
+  - Nueva prueba del estado de exploración y de combate: barra de lugar, controles, banda de condición y que no aparece "HP n/n".
+  - El placeholder del comando cambió a "> norte, mirar, examinar…", como en la maqueta; ajusté la prueba que lo fijaba.
+- Chromium a 390 px contra el servidor real (waitress), en exploración en Valdren, combate con Mordelinde y el panel Mapa:
+  - `scrollWidth == innerWidth` y **ningún elemento pasa del borde derecho**;
+  - sin errores de JS;
+  - Examinar rellena el cuadro.
+- Revisé también a 1280 px: el panel lateral "Estado visible" se conserva.
+
+### SEGUNDA RONDA (petición de Javier, 2026-09-24)
+- **Espacio para hora del día y clima.** El servidor expone `ambient: {time_of_day, weather}` en cada sala mediante `world.get_ambient(room_id)`, que hoy siempre devuelve vacío.
+  - La barra de lugar muestra hasta 2 etiquetas con ícono. Íconos SVG disponibles: sol, luna, amanecer, atardecer, nube, lluvia, niebla, nieve, tormenta, viento.
+  - Qué estados existen y cómo cambian lo definen **Jugabilidad y Narrador en la Issue #138**, por petición expresa de Javier. No se inventó ningún estado; sin datos no se muestra nada.
+- **Letra un poco más pequeña** para que quepa mejor:
+  - terminal a 15 px en teléfono (antes 17) y clamp(.95–1.02rem) en escritorio;
+  - botones de acción a .8rem;
+  - Atacar a 56 px de alto.
+  - El cuadro de comando se queda en **16 px** a propósito: con menos, iPhone hace zoom al escribir.
+- Pruebas: **218/218 OK**, con una nueva que comprueba que el ambiente está vacío por defecto y se muestra con datos. Un ícono desconocido aparece solo como texto.
+- Captura a 390 px con un ambiente de ejemplo inyectado solo en la prueba: la barra muestra "☀ Mañana · ☁ Despejado" sin desbordar.
+
+### NO IMPLEMENTADO (lo decide Jugabilidad/Narrador; registrado en #135 y #138)
+- Estados concretos de hora del día y clima (#138).
+- Barra de HP numérica del enemigo; se usa la banda de condición.
+- El contenido de ejemplo de la maqueta (jabalí salvaje, etc.) no se copió.
+- Marcadores o leyenda sobre la imagen del mapa: la imagen es estática y no dibujamos marcadores.
+
+### AVISO DE INTEGRACIÓN
+- #133 (clase) también toca `entry.html`, pero en zonas distintas: pantalla de clase y panel Personaje. `git merge-tree` confirma que el código se combina sin conflicto. El único conflicto es de texto en `HANDOFF.md`, porque ambas entregas agregan su entrada arriba: se conservan las dos.
+
+**LISTO PARA PUBLICAR:** NO. Queda para revisión del Integrador/Director de Arte y autorización de Javier ("sube").
+
+---
+
 ## ENTREGA — Vintage Telnet: pantalla para gastar PA en el panel Personaje
 
 **DESARROLLADOR:** Claude — Desarrollador de Servidor de Vintage Telnet

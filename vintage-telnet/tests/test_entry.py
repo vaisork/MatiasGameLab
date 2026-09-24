@@ -133,13 +133,14 @@ class EntryTests(unittest.TestCase):
         for path in ("/SECRETS.md", "/vintage.sqlite3", "/static/SECRETS.md", "/players"):
             self.assertEqual(self.client.get(path).status_code, 404)
         response = self.client.get("/healthz")
-        self.assertEqual(response.json, dict(status="ok", schema_version=8))
+        self.assertEqual(response.json, dict(status="ok", schema_version=9))
         self.assertNotIn("Set-Cookie", response.headers)
 
     def test_ui_foundation_map_rest_help_and_no_dead_combat_controls(self):
         self.assertEqual(self.register().status_code, 303)
         store.set_status(self.path, "matias", "approved")
         self.assertEqual(self.post("/species", {"species": "humano"}).status_code, 303)
+        self.assertEqual(self.post("/class", {"player_class": "sombra"}).status_code, 303)
 
         html = self.client.get("/").get_data(as_text=True)
         self.assertIn('data-open="mapDialog"', html)
@@ -177,6 +178,7 @@ class EntryTests(unittest.TestCase):
         self.assertEqual(self.register().status_code, 303)
         store.set_status(self.path, "matias", "approved")
         self.assertEqual(self.post("/species", {"species": "humano"}).status_code, 303)
+        self.assertEqual(self.post("/class", {"player_class": "sombra"}).status_code, 303)
 
         with store.connect(self.path) as db:
             db.execute("UPDATE players SET fatigue = 20 WHERE username = ?", ("matias",))
@@ -277,6 +279,7 @@ class EntryTests(unittest.TestCase):
         self.assertEqual(self.register().status_code, 303)
         store.set_status(self.path, "matias", "approved")
         self.assertEqual(self.post("/species", {"species": "humano"}).status_code, 303)
+        self.assertEqual(self.post("/class", {"player_class": "sombra"}).status_code, 303)
         html = self.client.get("/").get_data(as_text=True)
 
         self.assertIn("Mapa y orientación", html)
@@ -292,7 +295,7 @@ class EntryTests(unittest.TestCase):
         self.assertNotIn("btn-art btn-flee", html)
         self.assertNotIn("button-huir-danger.png", html)
         self.assertIn(".action-danger{", html)
-        self.assertIn('placeholder="> escribe un comando…"', html)
+        self.assertIn('placeholder="> norte, mirar, examinar…"', html)
 
         self.assertIn('sessionStorage.getItem("vt:last-room-text")', html)
         self.assertIn("}, 26);", html)
@@ -302,6 +305,7 @@ class EntryTests(unittest.TestCase):
         self.assertEqual(self.register().status_code, 303)
         store.set_status(self.path, "matias", "approved")
         self.assertEqual(self.post("/species", {"species": "humano"}).status_code, 303)
+        self.assertEqual(self.post("/class", {"player_class": "sombra"}).status_code, 303)
         html = self.client.get("/").get_data(as_text=True)
 
         # Sin encuentro, el servidor solo autoriza descanso.
@@ -310,10 +314,71 @@ class EntryTests(unittest.TestCase):
         self.assertNotIn('action="/resist"', html)
         self.assertNotIn('action="/block"', html)
 
+    def test_main_screen_mockup_exploration_and_combat_states(self):
+        """Issue #135: barra de lugar, ilustración, terminal y controles del
+        contexto; en combate, barra roja, Atacar/Huir/Evaluar y banda de
+        condición cualitativa, nunca HP numérico del enemigo (GAMEPLAY 31)."""
+        self.assertEqual(self.register().status_code, 303)
+        store.set_status(self.path, "matias", "approved")
+        self.assertEqual(self.post("/species", {"species": "humano"}).status_code, 303)
+        self.assertEqual(self.post("/class", {"player_class": "sombra"}).status_code, 303)
+        html = self.client.get("/").get_data(as_text=True)
+        self.assertIn('class="place-bar"', html)
+        self.assertIn('<strong id="placeTitle">VALDREN', html)
+        self.assertIn('href="#icon-pin"', html)
+        self.assertIn('class="dpad"', html)
+        self.assertIn('>Mirar</button>', html)
+        self.assertIn('data-prefill="examinar "', html)
+        self.assertIn('>Descansar</button>', html)
+        self.assertIn('id="headingCardLabel"', html)
+        self.assertIn('<b>Estás en:</b>', html)
+        self.assertNotIn("¡COMBATE!", html)
+        self.assertNotIn('action="/attack"', html)
+
+        # Entra al encuentro con Mordelinde (sendero -> parcela).
+        self.post("/move", {"direction": "west"})
+        self.post("/move", {"direction": "west"})
+        html = self.client.get("/").get_data(as_text=True)
+        self.assertIn('class="place-bar combat"', html)
+        self.assertIn("¡COMBATE!", html)
+        self.assertIn('class="action action-attack"', html)
+        self.assertIn('action="/flee"', html)
+        self.assertIn('action="/evaluate"', html)
+        self.assertIn('class="condition-bar"', html)
+        self.assertEqual(html.count('<i class="on"></i>'), 4)  # criatura entera
+        self.assertIn("entero / apenas afectado", html)
+        self.assertNotIn('class="dpad"', html)
+        self.assertNotIn(">Descansar</button>", html)
+        self.assertNotRegex(html, r"HP:\s*\d+/\d+")
+
+    def test_ambient_slot_is_empty_until_gameplay_and_narrative_define_it(self):
+        """Issue #138 (petición de Javier): el servidor expone `ambient` y la
+        barra de lugar tiene su espacio, pero ningún estado está inventado:
+        hasta que Jugabilidad/Narrador lo definan, no se muestra nada."""
+        self.assertEqual(self.register().status_code, 303)
+        store.set_status(self.path, "matias", "approved")
+        self.assertEqual(self.post("/species", {"species": "humano"}).status_code, 303)
+        self.assertEqual(self.post("/class", {"player_class": "sombra"}).status_code, 303)
+        room = self.client.get("/api/room").json["room"]
+        self.assertEqual(room["ambient"], {"time_of_day": None, "weather": None})
+        self.assertNotIn('class="ambient-chip"', self.client.get("/").get_data(as_text=True))
+
+        from unittest.mock import patch
+        ambient = {"time_of_day": {"label": "Mañana", "icon": "sol"},
+                   "weather": {"label": "Niebla", "icon": "icono-que-no-existe"}}
+        with patch.object(world, "get_ambient", return_value=ambient):
+            html = self.client.get("/").get_data(as_text=True)
+        self.assertEqual(html.count('class="ambient-chip"'), 2)
+        self.assertIn('href="#icon-amb-sol"/></svg>Mañana</span>', html)
+        self.assertIn('<span class="ambient-chip">Niebla</span>', html)  # icono desconocido: solo texto
+        for icon in world.AMBIENT_ICONS:
+            self.assertIn(f'id="icon-amb-{icon}"', html)
+
     def test_ui_v2_consumes_served_regional_map_and_authoritative_heading(self):
         self.assertEqual(self.register().status_code, 303)
         store.set_status(self.path, "matias", "approved")
         self.assertEqual(self.post("/species", {"species": "humano"}).status_code, 303)
+        self.assertEqual(self.post("/class", {"player_class": "sombra"}).status_code, 303)
         html = self.client.get("/").get_data(as_text=True)
 
         self.assertIn('src="/assets/maps/region-inicial.webp"', html)
@@ -334,6 +399,7 @@ class EntryTests(unittest.TestCase):
         self.assertEqual(self.register().status_code, 303)
         store.set_status(self.path, "matias", "approved")
         self.assertEqual(self.post("/species", {"species": "humano"}).status_code, 303)
+        self.assertEqual(self.post("/class", {"player_class": "sombra"}).status_code, 303)
         html = self.client.get("/").get_data(as_text=True)
 
         for symbol in (
@@ -358,6 +424,7 @@ class EntryTests(unittest.TestCase):
         self.assertEqual(self.register().status_code, 303)
         store.set_status(self.path, "matias", "approved")
         self.assertEqual(self.post("/species", {"species": "humano"}).status_code, 303)
+        self.assertEqual(self.post("/class", {"player_class": "sombra"}).status_code, 303)
 
         html = self.client.get("/").get_data(as_text=True)
         self.assertIn('data-open="inventoryDialog"', html)
@@ -399,6 +466,7 @@ class EntryTests(unittest.TestCase):
         self.assertEqual(self.register().status_code, 303)
         store.set_status(self.path, "matias", "approved")
         self.assertEqual(self.post("/species", {"species": "humano"}).status_code, 303)
+        self.assertEqual(self.post("/class", {"player_class": "sombra"}).status_code, 303)
         player_id = self.client.get("/api/me").json["player"]["id"]
         store.grant_item(self.path, player_id, "espada_juramento")
         store.grant_item(self.path, player_id, "cota_cinco_rutas")
@@ -409,7 +477,7 @@ class EntryTests(unittest.TestCase):
         self.assertIn("armor_reduction_total", data)
         self.assertIn("carga_multiplier", data)
         self.assertEqual({row["name"] for row in data["items"]},
-                         {"Espada de juramento", "Cota de las Cinco Rutas"})
+                         {"Puñal de camino", "Espada de juramento", "Cota de las Cinco Rutas"})
         for row in data["items"]:
             for key in ("name", "category", "forge_required", "forge_validated", "equipped"):
                 self.assertIn(key, row)
@@ -456,7 +524,7 @@ class EntryTests(unittest.TestCase):
         with self.assertRaises(RuntimeError):
             create_app({**self.config, "DATA_DIR": "relative"})
         with store.connect(self.path) as db:
-            db.execute("PRAGMA user_version = 9")
+            db.execute("PRAGMA user_version = 10")
         with self.assertRaises(RuntimeError):
             create_app(self.config)
 

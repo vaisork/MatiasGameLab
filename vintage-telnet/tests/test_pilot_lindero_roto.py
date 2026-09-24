@@ -271,12 +271,20 @@ class PilotIntegrationTests(unittest.TestCase):
         client = client or self.client
         return client.post(route, data={**(data or {}), "csrf": self.csrf(csrf_path, client)})
 
+    def choose_class_without_starter_weapon(self):
+        """Clase elegida sin arma inicial (Issue #112): estas pruebas miden el
+        perfil tecnico sin arma de GAMEPLAY.md 24.10 y equipan a mano lo que
+        necesitan. El flujo real /class con arma inicial se prueba aparte."""
+        player_id = self.client.get("/api/me").json["player"]["id"]
+        store.set_player_class(self.app.config["DATABASE"], player_id, "juramentado")
+
     def register_and_enter_world(self, username="matias", name="Matías"):
         self.post("/register", dict(username=username, name=name, password="una clave de prueba"))
         dm = self.app.test_client()
         self.post("/dm/login", dict(dm_password="dm-secret-value"), dm, csrf_path="/dm")
         self.post("/dm/approve", dict(username=username), dm, csrf_path="/dm")
         self.post("/species", dict(species="humano"))  # arranca en valdren_centro
+        self.choose_class_without_starter_weapon()
 
     def walk_to_lindero(self):
         self.post("/move", dict(direction="west"))  # sendero
