@@ -124,6 +124,93 @@ El mismo principio: repo/canon → Director de Arte → prompt autosuficiente + 
 
 Para Pixel Art o Arte HTML, el Director adapta el canon a restricciones de producción como resolución, transparencia, tiles, sprites, frames, legibilidad, escalado y uso real en interfaz, sin invadir la implementación técnica del especialista.
 
+
+## Frontera visual: arte del mundo vs. interfaz
+
+Vintage Telnet separa de forma explícita **arte del juego** e **interfaz funcional**.
+
+### Arte del juego
+
+Sí pertenece al flujo de Dirección de Arte / Artista:
+
+- pueblos, ciudades y regiones;
+- criaturas y NPCs cuando corresponda;
+- especies y retratos canónicos;
+- mapas del mundo aprobados;
+- escenas narrativas;
+- ilustraciones contextuales del lugar o zona;
+- cualquier imagen cuya función principal sea representar el mundo de Vintage Telnet.
+
+Estos recursos siguen el flujo normal de canon, aprobación y publicación.
+
+### Interfaz funcional
+
+No debe depender de arte raster específico para funcionar ni para verse terminada.
+
+Botones, navegación, tabs, estados, commandbar, modales, indicadores y señalética deben resolverse preferentemente mediante:
+
+- HTML semántico;
+- CSS;
+- tipografía;
+- color;
+- bordes;
+- espaciado;
+- estados visuales;
+- SVG estándar ligeros cuando un icono ayude a la comprensión.
+
+**No crear PNG/WebP específicos de botones o controles como requisito normal de UI.**
+
+La interfaz no debe quedar bloqueada esperando que un artista produzca:
+
+- botón de Atacar;
+- botón de Huir;
+- botón de Mapa;
+- botón de Ayuda;
+- botón de Personaje;
+- botón de Enviar;
+- flechas de navegación;
+- iconos de cerrar;
+- controles equivalentes.
+
+### Iconografía
+
+Para señalética funcional se recomienda utilizar un subconjunto pequeño y consistente de un set estándar de iconos SVG, actualmente **Lucide** como referencia preferida.
+
+Reglas:
+
+- integrar únicamente los iconos usados;
+- preferir SVG inline/sprite local;
+- usar `currentColor` para que los estados dependan de CSS;
+- no cargar una librería externa completa en runtime;
+- no depender de CDN;
+- conservar texto visible en acciones importantes;
+- no introducir escudos, runas, animales heráldicos ni símbolos culturales inventados como iconografía de sistema;
+- documentar la licencia correspondiente si se copian SVG de un proyecto externo al repositorio.
+
+### Regla de peso visual
+
+La identidad de Vintage Telnet debe venir principalmente de:
+
+- terminal;
+- tipografía;
+- color;
+- composición;
+- bordes y superficies;
+- ritmo visual;
+- ilustraciones reales del mundo.
+
+No de botones pintados como imágenes.
+
+Por tanto, dos acciones equivalentes deben compartir el mismo componente HTML/CSS y diferenciarse por jerarquía, color, texto e icono; no porque una use un PNG ilustrado y otra un botón HTML distinto.
+
+### Migración de assets UI existentes
+
+Los assets raster antiguos de interfaz pueden dejar de consumirse progresivamente.
+
+No borrarlos en la misma tarea en la que se retiran de una pantalla sin comprobar antes que ninguna otra vista los use. La limpieza física de archivos debe hacerse después de verificar referencias.
+
+**Principio aprobado por Javier:** el esfuerzo de Arte debe concentrarse en el mundo del juego. La UI debe ser ligera, mantenible y no convertirse en un segundo pipeline de producción artística.
+
 ## Qué NO hace el Director
 
 No crea canon, no inventa anatomía, no cambia historia, no define mecánicas, no asigna clases, no genera imágenes finales como parte de su función, no integra assets, no programa y no transforma una imagen previa defectuosa en fuente de verdad.
