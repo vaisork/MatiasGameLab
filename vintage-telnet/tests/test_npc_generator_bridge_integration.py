@@ -88,7 +88,7 @@ class NpcGeneratorBridgeIntegrationTests(unittest.TestCase):
         )
         self.assertEqual(
             first["personality_provenance"]["personality_prompt_version"],
-            "vt-npc-personality-v1",
+            "vt-npc-personality-v2",
         )
         for key, value in original.items():
             self.assertEqual(first[key], value)
