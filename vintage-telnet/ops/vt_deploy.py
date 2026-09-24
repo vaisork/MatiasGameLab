@@ -90,13 +90,13 @@ def read_expected_schema(project: Path) -> int:
     except (ValueError, IndexError) as exc:
         raise DeployError('No se pudo leer SCHEMA_VERSION del release.') from exc
 
-def database_player_ids(db_path: Path) -> list[int]:
+def database_player_ids(db_path: Path) -> list[str]:
     if not db_path.exists():
         raise DeployError(f'No existe la base viva: {db_path}')
     uri = db_path.resolve().as_uri() + '?mode=ro'
     db = sqlite3.connect(uri, uri=True)
     try:
-        return [int(row[0]) for row in db.execute('SELECT id FROM players ORDER BY id')]
+        return [str(row[0]) for row in db.execute('SELECT id FROM players ORDER BY id')]
     finally:
         db.close()
 
