@@ -56,9 +56,9 @@ Antes de desplegar un HEAD con esquema v6, validar la base viva **sin modificarl
 
 ```bash
 cd /opt/vintage-telnet/current/vintage-telnet
-.venv/bin/python ops/inventory_migration_probe.py /var/lib/vintage-telnet/vintage-telnet.sqlite3
+.venv/bin/python ops/inventory_migration_probe.py /var/lib/vintage-telnet/vintage.sqlite3
 ```
 
 El script abre el origen en modo read-only, usa `sqlite3.backup()` hacia un temporal y ejecuta la migración solamente sobre esa copia. Comprueba versión v6, IDs/números/usernames preservados, tabla de inventario, columnas de equipo, `foreign_key_check` y `quick_check`.
 
-Si la ruta real de SQLite difiere, usar la ruta de `VT_DB_PATH`/configuración vigente. No adivinar ni mover la base.
+La ruta corresponde a `VT_DATA_DIR=/var/lib/vintage-telnet` + `vintage.sqlite3`, según `server/app.py`. Si la configuración productiva cambia `VT_DATA_DIR`, usar ese valor real + `/vintage.sqlite3`. No adivinar ni mover la base.
