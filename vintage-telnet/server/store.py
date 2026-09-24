@@ -13,7 +13,7 @@ from . import combat, items
 STATUSES = ("pending", "approved", "rejected", "removed")
 
 PLAYER_COLUMNS = (
-    "id, player_number, username, name, status, species, room, created_at, last_access_at"
+    "id, player_number, username, name, status, species, room, heading, created_at, last_access_at"
 )
 
 ATTRIBUTE_COLUMNS = ", ".join(f"attr_{name}" for name in combat.ATTRIBUTES)
@@ -137,9 +137,9 @@ def initialize(path):
         db.execute("PRAGMA journal_mode = WAL")
         db.execute("BEGIN IMMEDIATE")
         version = db.execute("PRAGMA user_version").fetchone()[0]
-        if version not in (0, 1, 2, 3, 4, 5, 6):
+        if version not in (0, 1, 2, 3, 4, 5, 6, 7):
             raise RuntimeError("Versión de base de datos no soportada; no iniciar ni degradar.")
-        if version == 6:
+        if version == 7:
             return
         if version == 0:
             statements = [
@@ -207,7 +207,13 @@ def initialize(path):
             db.execute("CREATE INDEX inventory_items_player ON inventory_items(player_id)")
             db.execute("ALTER TABLE players ADD COLUMN equipped_weapon_id TEXT REFERENCES inventory_items(id)")
             db.execute("ALTER TABLE players ADD COLUMN equipped_armor_id TEXT REFERENCES inventory_items(id)")
-        db.execute("PRAGMA user_version = 6")
+        if version <= 6:
+            # v7: rumbo autoritativo (Issue #120) -- direccion cardinal del ultimo
+            # movimiento aceptado, para que /api/map deje de depender de que el
+            # cliente infiera "hacia donde mira" desde narrativa o imagen.
+            db.execute("ALTER TABLE players ADD COLUMN heading TEXT "
+                       "CHECK(heading IN ('north', 'south', 'east', 'west'))")
+        db.execute("PRAGMA user_version = 7")
 
 
 def allow_attempt(path, address):
@@ -313,9 +319,15 @@ def set_species(path, player_id, species, room):
         return cursor.rowcount > 0
 
 
-def move_player(path, player_id, room):
+def move_player(path, player_id, room, heading=None):
+    """`heading` es la direccion cardinal del movimiento que produjo este
+    cambio de sala (Issue #120): el servidor la decide al aceptar el
+    movimiento, nunca se infiere despues desde narrativa o nombre de sala."""
     with connect(path) as db:
-        db.execute("UPDATE players SET room = ? WHERE id = ?", (room, player_id))
+        if heading is None:
+            db.execute("UPDATE players SET room = ? WHERE id = ?", (room, player_id))
+        else:
+            db.execute("UPDATE players SET room = ?, heading = ? WHERE id = ?", (room, heading, player_id))
 
 
 def players_in_room(path, room, exclude_id=None):

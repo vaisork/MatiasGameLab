@@ -67,6 +67,9 @@ def _can_block(path, player_id):
 # habilitar una carpeta estática general -- mantiene el resto del árbol del repo fuera de HTTP.
 HTML_UI_ASSETS_DIR = Path(__file__).resolve().parent.parent / "assets" / "html-ui"
 LOCATION_ASSETS_DIR = Path(__file__).resolve().parent.parent.parent / "assets" / "vintage-telnet" / "locations"
+# Mapa regional aprobado (Issue #120 / PR #99): carpeta propia y acotada, nunca
+# el arbol completo de assets/.
+MAPS_ASSETS_DIR = Path(__file__).resolve().parent.parent.parent / "assets" / "vintage-telnet" / "maps"
 APP_ICON_PATH = Path(__file__).resolve().parent.parent.parent / "assets" / "icon" / "vintage-telnet-portal.webp"
 
 
@@ -108,7 +111,7 @@ def create_app(config=None):
             if not expected or not hmac.compare_digest(expected.encode(), str(supplied).encode()):
                 abort(400, "Formulario vencido. Recarga la página.")
         g.csp_nonce = secrets.token_urlsafe(16)
-        if request.endpoint in ("health", "html_ui_assets", "location_assets"):
+        if request.endpoint in ("health", "html_ui_assets", "location_assets", "map_assets"):
             return
         session.setdefault("csrf", secrets.token_urlsafe(32))
         g.player = store.player_for_token(path, session.get("token"))
@@ -276,7 +279,7 @@ def create_app(config=None):
         destination = room["exits"].get(direction) if room else None
         if not destination:
             return False, previous_room, None, "No puedes ir en esa dirección."
-        store.move_player(path, player["id"], destination)
+        store.move_player(path, player["id"], destination, direction)
         store.mark_visited(path, player["id"], destination)
         store.mark_route_traversed(path, player["id"], previous_room, destination)
         encounter_creature = world.get_room_encounter(destination)
@@ -1167,7 +1170,11 @@ def create_app(config=None):
         error = api_player_state(g.player)
         if error:
             return error
-        return jsonify(**store.get_map_state(path, g.player["id"]))
+        # current_heading (Issue #120): rumbo del ultimo movimiento aceptado
+        # por el servidor, o null si el personaje todavia no se movio. El
+        # frontend no debe inferirlo de narrativa, nombre de sala ni imagen.
+        return jsonify(current_heading=g.player["heading"],
+                       **store.get_map_state(path, g.player["id"]))
 
     @app.post("/attack")
     def attack():
@@ -1282,6 +1289,15 @@ def create_app(config=None):
         # nunca renderizara la imagen -- se veia como "ilustracion no
         # disponible" aunque el archivo si existiera y se sirviera con 200.
         return send_from_directory(LOCATION_ASSETS_DIR, filename, mimetype="image/webp")
+
+    @app.get("/assets/maps/<path:filename>")
+    def map_assets(filename):
+        # Mismo motivo que location_assets: MIME explicito porque el pipeline
+        # de Arte solo publica WebP aqui y algunos entornos (Windows,
+        # Raspberry Pi OS minimo) no lo reconocen por extension.
+        # send_from_directory ya rechaza cualquier `filename` que intente
+        # escapar de MAPS_ASSETS_DIR (traversal) con 404.
+        return send_from_directory(MAPS_ASSETS_DIR, filename, mimetype="image/webp")
 
     # --- Dungeon Master ---------------------------------------------------
 
