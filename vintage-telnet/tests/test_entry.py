@@ -326,6 +326,44 @@ class EntryTests(unittest.TestCase):
         self.assertNotIn("button-huir-danger.png", html)
         self.assertNotIn("btn-art btn-flee", html)
 
+    def test_inventory_ui_consumes_authoritative_api_without_local_rules(self):
+        self.assertEqual(self.register().status_code, 303)
+        store.set_status(self.path, "matias", "approved")
+        self.assertEqual(self.post("/species", {"species": "humano"}).status_code, 303)
+
+        html = self.client.get("/").get_data(as_text=True)
+        self.assertIn('data-open="inventoryDialog"', html)
+        self.assertIn('id="inventoryDialog"', html)
+        self.assertIn('fetch("/api/inventory"', html)
+        self.assertIn("Inventario y equipo", html)
+        self.assertIn("Arma activa", html)
+        self.assertIn("Armadura activa", html)
+        self.assertIn("Protección total", html)
+        self.assertIn("Carga física", html)
+        self.assertIn('(item.equipped ? "desequipar " : "equipar ") + item.name', html)
+        self.assertNotIn("vender", html.lower())
+        self.assertNotIn("soltar", html.lower())
+        self.assertNotIn("durabilidad", html.lower())
+
+    def test_inventory_api_fields_renderable_by_ui(self):
+        self.assertEqual(self.register().status_code, 303)
+        store.set_status(self.path, "matias", "approved")
+        self.assertEqual(self.post("/species", {"species": "humano"}).status_code, 303)
+        player_id = self.client.get("/api/me").json["player"]["id"]
+        store.grant_item(self.path, player_id, "espada_juramento")
+        store.grant_item(self.path, player_id, "cota_cinco_rutas")
+
+        data = self.client.get("/api/inventory").json
+        self.assertIn("items", data)
+        self.assertIn("equipped", data)
+        self.assertIn("armor_reduction_total", data)
+        self.assertIn("carga_multiplier", data)
+        self.assertEqual({row["name"] for row in data["items"]},
+                         {"Espada de juramento", "Cota de las Cinco Rutas"})
+        for row in data["items"]:
+            for key in ("name", "category", "forge_required", "forge_validated", "equipped"):
+                self.assertIn(key, row)
+
     def test_rate_limit_survives_restart(self):
         for _ in range(20):
             self.assertTrue(store.allow_attempt(self.path, "local-test"))
