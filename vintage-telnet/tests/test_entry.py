@@ -180,6 +180,48 @@ class EntryTests(unittest.TestCase):
         self.assertEqual(icon.mimetype, "image/webp")
         self.assertGreater(len(icon.data), 1000)
 
+    def test_guest_onboarding_guides_login_and_registration_without_two_visible_forms(self):
+        html = self.client.get("/").get_data(as_text=True)
+        self.assertIn('data-onboarding', html)
+        self.assertIn('data-onboarding-view="welcome"', html)
+        self.assertIn('data-onboarding-view="login" hidden', html)
+        self.assertIn('data-onboarding-view="register" hidden', html)
+        self.assertIn("Un mundo de fantasía que se descubre leyendo, explorando y tomando decisiones.", html)
+        self.assertIn("Cómo empezar", html)
+        self.assertIn("Ya tengo una cuenta y quiero continuar mi viaje.", html)
+        self.assertIn("Soy nuevo y quiero preparar mi entrada al mundo.", html)
+        self.assertEqual(html.count('action="/login"'), 1)
+        self.assertEqual(html.count('action="/register"'), 1)
+        self.assertIn('min-height:44px', html)
+        self.assertNotIn('grid-template-columns:1fr 1fr;gap:14px;align-items:start', html)
+
+    def test_pending_player_gets_process_state_copy(self):
+        self.assertEqual(self.register().status_code, 303)
+        html = self.client.get("/").get_data(as_text=True)
+        self.assertIn("Tu entrada está siendo preparada", html)
+        self.assertIn("Tu cuenta fue recibida.", html)
+        self.assertIn("Cuando tu entrada esté habilitada, podrás continuar con la elección de especie.", html)
+        self.assertNotIn('data-onboarding-view="login"', html)
+
+    def test_approved_player_species_screen_uses_canonical_compact_cards(self):
+        self.assertEqual(self.register().status_code, 303)
+        store.set_status(self.path, "matias", "approved")
+        html = self.client.get("/").get_data(as_text=True)
+        self.assertIn("Tu viaje puede comenzar", html)
+        self.assertIn("ninguna decide por ti qué camino seguirás", html)
+        self.assertEqual(html.count('class="species-card"'), 5)
+        self.assertEqual(html.count("Retrato pendiente de asset aprobado"), 5)
+        for text in (
+            "Fisiología generalista",
+            "pelaje fino, orejas y cola felinas",
+            "zonas dérmicas de aspecto mineral",
+            "escamas parciales",
+            "ambientes de poca luz",
+        ):
+            self.assertIn(text, html)
+        self.assertNotIn("/assets/locations/valdren.webp", html)
+        self.assertNotIn("/assets/locations/vaisgard.webp", html)
+
     def test_rate_limit_survives_restart(self):
         for _ in range(20):
             self.assertTrue(store.allow_attempt(self.path, "local-test"))
