@@ -105,7 +105,7 @@ class EntryTests(unittest.TestCase):
         for path in ("/SECRETS.md", "/vintage.sqlite3", "/static/SECRETS.md", "/players"):
             self.assertEqual(self.client.get(path).status_code, 404)
         response = self.client.get("/healthz")
-        self.assertEqual(response.json, dict(status="ok", schema_version=6))
+        self.assertEqual(response.json, dict(status="ok", schema_version=7))
         self.assertNotIn("Set-Cookie", response.headers)
 
     def test_ui_foundation_map_rest_help_and_no_dead_combat_controls(self):
@@ -137,6 +137,13 @@ class EntryTests(unittest.TestCase):
         self.assertIn("visited_rooms", map_response.json)
         self.assertIn("traversed_routes", map_response.json)
         self.assertIn("valdren_centro", map_response.json["visited_rooms"])
+
+        # Issue #120: rumbo autoritativo -- null hasta el primer movimiento
+        # aceptado, luego la direccion cardinal exacta que el servidor uso.
+        self.assertIsNone(map_response.json["current_heading"])
+        self.assertEqual(self.post("/move", {"direction": "west"}).status_code, 303)
+        state_after_move = self.client.get("/api/map").json
+        self.assertEqual(state_after_move["current_heading"], "west")
 
     def test_rest_button_uses_authoritative_command_intent(self):
         self.assertEqual(self.register().status_code, 303)
@@ -179,6 +186,23 @@ class EntryTests(unittest.TestCase):
         self.assertEqual(icon.status_code, 200)
         self.assertEqual(icon.mimetype, "image/webp")
         self.assertGreater(len(icon.data), 1000)
+
+    def test_regional_map_asset_is_served_same_origin_with_correct_mime(self):
+        # Issue #120: el mapa regional aprobado (assets/vintage-telnet/maps/)
+        # debe poder pedirse desde el mismo origen del servidor, con MIME
+        # WebP correcto, sin abrir el resto del arbol de assets/.
+        response = self.client.get("/assets/maps/region-inicial.webp")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.mimetype, "image/webp")
+        self.assertGreater(len(response.data), 1000)
+
+    def test_regional_map_route_rejects_paths_outside_its_own_folder(self):
+        for attempt in (
+            "/assets/maps/../server/app.py",
+            "/assets/maps/..%2Fserver%2Fapp.py",
+            "/assets/maps/no-existe.webp",
+        ):
+            self.assertEqual(self.client.get(attempt).status_code, 404)
 
     def test_guest_onboarding_guides_login_and_registration_without_two_visible_forms(self):
         html = self.client.get("/").get_data(as_text=True)
@@ -263,7 +287,7 @@ class EntryTests(unittest.TestCase):
         with self.assertRaises(RuntimeError):
             create_app({**self.config, "DATA_DIR": "relative"})
         with store.connect(self.path) as db:
-            db.execute("PRAGMA user_version = 7")
+            db.execute("PRAGMA user_version = 8")
         with self.assertRaises(RuntimeError):
             create_app(self.config)
 

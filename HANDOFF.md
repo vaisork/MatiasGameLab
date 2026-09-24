@@ -750,3 +750,46 @@ Se creó `vintage-telnet/FIRST_PLAYABLE_SLICE.md` con el alcance completo, contr
 Por decisión de alcance, quedan fuera de este primer slice: chat, combate, PvP, clases, estadísticas, inventario, Arcanes, poderes, economía, monstruos, secretos y mapa completo.
 
 El objetivo es llegar antes a una versión realmente persistente y jugable en teléfono.
+
+
+## VT-SERVER: mapa regional servido + rumbo autoritativo (Issue #120)
+
+**Desarrollador:** Claude — Desarrollador de Servidor de Vintage Telnet
+**Estado:** LISTO PARA REVISIÓN
+**HEAD base:** `9c5af20d132c09914c3d73e0b7c574438691ce0f` (`origin/main`)
+**Rama/commit de entrega:** `claude/vintage-telnet-server-map-heading`
+**Tarea asignada:** Issue #120 (`VT-SERVER: exponer mapa regional y rumbo autoritativo para Mapa y orientación`), dependencia no bloqueante detectada por Frontend en PR #119/#106.
+
+### Cambios
+- Nueva ruta `GET /assets/maps/<filename>` que sirve únicamente
+  `assets/vintage-telnet/maps/` (donde ya vive `region-inicial.webp`,
+  publicado por PR #99), con `mimetype="image/webp"` explícito igual que
+  `/assets/locations/`. `send_from_directory` rechaza cualquier intento de
+  salir de esa carpeta (traversal) con 404; no se expone el árbol completo
+  de `assets/`.
+- `/api/map` ahora incluye `current_heading` (`"north" | "south" | "east" |
+  "west" | null`) además de `visited_rooms`/`traversed_routes`, que se
+  conservan sin cambios.
+- Nueva columna persistente `players.heading` (migración de esquema v6→v7
+  en `store.py`, `ALTER TABLE` + `CHECK` de las cuatro direcciones
+  cardinales). El servidor la fija en `store.move_player()` cada vez que
+  `attempt_move()` acepta un movimiento, usando la misma dirección
+  canónica ya resuelta por `DIRECTION_ALIASES` (nunca inferida de
+  narrativa, nombre de sala ni imagen). Antes del primer movimiento queda
+  `NULL` → `current_heading: null`, tal como permite la Issue.
+- No se tocó `available_actions` (#73), narrativa, canon ni
+  `vintage-telnet.html`.
+
+### Pruebas
+`cd vintage-telnet && .venv/bin/python -m unittest discover -s tests -v` → **171 tests, OK** (incluye 4 pruebas nuevas/actualizadas en `test_entry.py`: mapa servido con MIME correcto, ruta de mapas rechaza traversal/archivo inexistente, `current_heading` null→`"west"` tras moverse; y `schema_version`/`PRAGMA user_version` actualizados de 6→7 en `test_entry.py` y `test_inventory.py`, con el test de "esquema futuro desconocido falla cerrado" reapuntado a la versión 8).
+
+### Trabajo previo afectado
+Ninguna lógica de movimiento, combate, inventario ni mapa progresivo existente cambió de comportamiento; solo se agrega una columna y una clave nueva en la respuesta JSON. Los tests que fijaban `schema_version`/`user_version` en 6 se actualizaron a 7 porque ahora reflejan el esquema real tras la migración.
+
+### Pendiente
+- Ninguno dentro del alcance de esta Issue. Los criterios de aceptación 1–4 quedan cubiertos por el servidor; el criterio 5 ("Frontend #106 puede sustituir sus estados neutrales sin lógica inferida") depende de que Frontend consuma esta rama.
+
+### Aviso para el otro desarrollador / Integrador
+- No se hizo push a `main`; solo commits en `claude/vintage-telnet-server-map-heading`.
+- No se desplegó ni tocó la Raspberry Pi.
+- Cuando esta rama se integre, Frontend (#106/PR #119) puede reemplazar sus estados neutrales de mapa/rumbo consumiendo `/assets/maps/region-inicial.webp` y `current_heading` de `/api/map` directamente.
