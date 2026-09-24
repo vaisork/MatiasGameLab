@@ -191,6 +191,18 @@ def restore_database(backup: Path, original_stat: os.stat_result) -> None:
     finally:
         tmp.unlink(missing_ok=True)
 
+def quarantine_failed_release(release: Path) -> Path | None:
+    """Aparta un release que falló (nunca lo borra) para que un reintento del
+    mismo SHA no quede bloqueado por "ya existe pero no es current". Queda
+    como evidencia en releases/.failed-<sha>-<UTC>."""
+    if not release.exists() or (CURRENT_LINK.exists() and CURRENT_LINK.resolve() == release.resolve()):
+        return None
+    stamp = time.strftime('%Y%m%dT%H%M%SZ', time.gmtime())
+    target = release.parent / f'.failed-{release.name}-{stamp}'
+    os.replace(release, target)
+    log(f'Release fallido apartado como evidencia: {target}')
+    return target
+
 def rollback(previous_target: Path | None, backup: Path, original_stat: os.stat_result) -> None:
     log('FALLO POST-SWITCH: iniciando rollback automático.')
     run(['systemctl', 'stop', SERVICE], check=False, timeout=60)
@@ -299,7 +311,10 @@ def main() -> int:
                     '-v',
                 ],
                 cwd=project,
-                timeout=300,
+                # En este equipo de nube la suite tarda ~50 s; en una Raspberry
+                # puede tardar varias veces más. Margen amplio para no abortar
+                # un deploy sano por lentitud del hardware.
+                timeout=1200,
             )
             expected_schema = read_expected_schema(project)
             log(f'Schema esperado leído del release: {expected_schema}')
@@ -360,6 +375,13 @@ def main() -> int:
         except Exception:
             if switched and backup is not None and original_stat is not None:
                 rollback(current_target, backup, original_stat)
+            # Tanto tras un rollback como si falló entre crear el release y
+            # activarlo, el release queda fuera de current: apartarlo permite
+            # reintentar `vt-deploy latest` sin limpieza manual con sudo.
+            try:
+                quarantine_failed_release(final_release)
+            except OSError as exc:
+                log(f'AVISO: no se pudo apartar el release fallido {final_release}: {exc}')
             raise
         finally:
             if stage.exists():
