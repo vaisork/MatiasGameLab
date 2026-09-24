@@ -5,10 +5,12 @@ aprobación del Dungeon Master, mundo con movimiento N/S/E/O, chat local por
 sala, y ahora combate/fatiga/heridas/recuperación/XP/descubrimientos/mapa
 progresivo v1 según [`../GAMEPLAY.md`](../GAMEPLAY.md) (secciones 20-24)
 para la microaventura piloto VT-NAR-003 "El lindero roto", incluyendo desde
-el Issue #73 las defensas contextuales Esquivar/Bloquear/Resistir de 24.2.
-Lo que ese documento sigue dejando abierto (PvP, poderes/Arcanes, clases,
-tabla de Cornalomo, rondas semi-automáticas de 24.1 — diferidas al Issue
-#43 por decisión del Arquitecto) no se inventa aquí.
+el Issue #73 las defensas contextuales Esquivar/Bloquear/Resistir de 24.2 y
+desde el Issue #57 inventario/equipamiento mínimo v1 (32) con armadura real
+conectada a la fórmula de reducción/fatiga de 30. Lo que ese documento
+sigue dejando abierto (PvP, poderes/Arcanes, clases, tabla de Cornalomo,
+rondas semi-automáticas de 24.1 — diferidas al Issue #43 por decisión del
+Arquitecto) no se inventa aquí.
 
 Esta base nace de la entrega histórica `codex/vintage-telnet-server` (PR #1),
 rescatada sobre el `main` vigente según la decisión del Arquitecto de
@@ -54,7 +56,7 @@ cd vintage-telnet
 .venv/Scripts/python.exe -m unittest discover -s tests -v
 ```
 
-84 pruebas: 9 heredadas de la entrega original + 19 de especies/movimiento/API
+144 pruebas: 9 heredadas de la entrega original + 19 de especies/movimiento/API
 del primer slice jugable + 3 de enrutamiento de intención (Issue #25) +
 53 de la microaventura piloto (`test_pilot_lindero_roto.py`): fórmulas de
 combate/XP/fatiga/heridas/recuperación puras contra la tabla de referencia
@@ -67,7 +69,13 @@ diferenciado del enemigo sin HP exacto (31), atacar hasta la victoria con
 antifarmeo/bono de primera familia con coste real de fatiga, huir, heridas
 por golpe recibido, `descansar` fuera de combate, muerte/reaparición al
 60% de HP, respawn de criatura con cooldown en vez de reaparición llena
-instantánea, persistencia del mapa tras reiniciar el proceso).
+instantánea, persistencia del mapa tras reiniciar el proceso) + 24 de
+Esquivar/Bloquear/Resistir/`available_actions` (Issue #73,
+`test_combat_actions.py`) + 32 de inventario/equipamiento (Issue #57,
+`test_inventory.py`): catálogo puro, fórmulas de armadura (30), y los 8
+casos de aceptación (entrega → inventario → equipar fuera de combate →
+`armor_reduction`/fatiga real → rechazo en combate → desequipar →
+persistencia entre sesiones → Forja no validada rechazada).
 
 ## Qué existe hoy
 
