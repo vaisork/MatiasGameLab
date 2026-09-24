@@ -30,4 +30,4 @@ chown root:root "$COMMAND"
 python3 "$LIB_DIR/vt_deploy.py" --help >/dev/null
 
 echo "Instalado: $COMMAND"
-echo "Uso: sudo vt-deploy <SHA-o-ref-de-main>"
+echo "Uso normal: sudo vt-deploy latest"\necho "También acepta: sudo vt-deploy <SHA-integrado-a-main>"
