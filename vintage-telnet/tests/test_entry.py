@@ -255,7 +255,7 @@ class EntryTests(unittest.TestCase):
         self.assertIn('data-map-tab="general"', html)
         self.assertIn('data-map-tab="heading"', html)
         self.assertIn("Dirección actual no registrada", html)
-        self.assertIn("El cliente no deduce rumbo", html)
+        self.assertIn("El rumbo se muestra únicamente cuando lo confirma el servidor.", html)
         self.assertIn('data-help-tab="kids"', html)
         self.assertIn("Explícamelo fácil", html)
         self.assertIn("Los atributos ayudan, no juegan por ti", html)
@@ -282,13 +282,49 @@ class EntryTests(unittest.TestCase):
         self.assertNotIn('action="/resist"', html)
         self.assertNotIn('action="/block"', html)
 
-    def test_ui_v2_regional_map_does_not_publish_unserved_asset_url(self):
+    def test_ui_v2_consumes_served_regional_map_and_authoritative_heading(self):
         self.assertEqual(self.register().status_code, 303)
         store.set_status(self.path, "matias", "approved")
         self.assertEqual(self.post("/species", {"species": "humano"}).status_code, 303)
         html = self.client.get("/").get_data(as_text=True)
-        self.assertIn("Mapa regional aprobado disponible en repositorio", html)
-        self.assertNotIn('/assets/maps/region-inicial.webp', html)
+
+        self.assertIn('src="/assets/maps/region-inicial.webp"', html)
+        self.assertIn('id="headingStatus"', html)
+        self.assertIn('data-heading="north"', html)
+        self.assertIn('data-heading="south"', html)
+        self.assertIn('data-heading="east"', html)
+        self.assertIn('data-heading="west"', html)
+        self.assertIn("renderHeading(data.current_heading)", html)
+        self.assertIn('"Caminando hacia: " + headingLabels[heading]', html)
+        self.assertIn("Dirección actual no registrada.", html)
+
+        response = self.client.get("/assets/maps/region-inicial.webp")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.mimetype, "image/webp")
+
+    def test_ui_v2_standard_svg_signage_keeps_visible_labels(self):
+        self.assertEqual(self.register().status_code, 303)
+        store.set_status(self.path, "matias", "approved")
+        self.assertEqual(self.post("/species", {"species": "humano"}).status_code, 303)
+        html = self.client.get("/").get_data(as_text=True)
+
+        for symbol in (
+            "icon-user",
+            "icon-map",
+            "icon-help",
+            "icon-swords",
+            "icon-exit",
+            "icon-eye",
+            "icon-compass",
+            "icon-send",
+        ):
+            self.assertIn(f'id="{symbol}"', html)
+
+        for label in ("Personaje", "Mapa", "Ayuda", "Enviar"):
+            self.assertIn(f">{label}</button>", html)
+
+        self.assertNotIn("button-huir-danger.png", html)
+        self.assertNotIn("btn-art btn-flee", html)
 
     def test_rate_limit_survives_restart(self):
         for _ in range(20):
