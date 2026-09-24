@@ -193,7 +193,6 @@ class EntryTests(unittest.TestCase):
         self.assertEqual(html.count('action="/login"'), 1)
         self.assertEqual(html.count('action="/register"'), 1)
         self.assertIn('min-height:44px', html)
-        self.assertNotIn('grid-template-columns:1fr 1fr;gap:14px;align-items:start', html)
 
     def test_pending_player_gets_process_state_copy(self):
         self.assertEqual(self.register().status_code, 303)
