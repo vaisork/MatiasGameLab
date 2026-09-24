@@ -1,0 +1,56 @@
+<section class="onboarding" data-onboarding data-view="welcome" aria-labelledby="welcome-title">
+  <div class="onboarding-panel onboarding-welcome" data-onboarding-view="welcome">
+    <p class="onboarding-kicker">Matías Game Lab</p>
+    <h1 id="welcome-title">Vintage Telnet</h1>
+    <p class="onboarding-subtitle">Un mundo de fantasía que se descubre leyendo, explorando y tomando decisiones.</p>
+    <p class="onboarding-about">Vintage Telnet es un mundo persistente de fantasía compartido con otros jugadores. Tu viaje comienza en uno de cinco pueblos y crece mientras observas el entorno, recorres caminos y descubres criaturas, lugares e historias.</p>
+
+    <div class="onboarding-actions" aria-label="Elige cómo continuar">
+      <button class="btn primary" type="button" data-onboarding-go="login" aria-controls="onboarding-login">Entrar</button>
+      <p>Ya tengo una cuenta y quiero continuar mi viaje.</p>
+      <button class="btn" type="button" data-onboarding-go="register" aria-controls="onboarding-register">Crear cuenta</button>
+      <p>Soy nuevo y quiero preparar mi entrada al mundo.</p>
+    </div>
+
+    <section class="how-start" aria-labelledby="how-start-title">
+      <h2 id="how-start-title">Cómo empezar</h2>
+      <ol>
+        <li>Crea tu cuenta o entra con una que ya tengas.</li>
+        <li>Si eres nuevo, espera la aprobación del Dungeon Master.</li>
+        <li>Elige una de las cinco especies cuando tu entrada esté habilitada.</li>
+        <li>Entra al mundo, observa tu entorno y comienza a explorar.</li>
+      </ol>
+    </section>
+  </div>
+
+  <section class="card onboarding-panel" id="onboarding-login" data-onboarding-view="login" hidden aria-labelledby="login-title">
+    <div class="card-head"><b id="login-title">Entrar</b><span>Ya tengo una cuenta y quiero continuar mi viaje.</span></div>
+    <div class="card-body">
+      <form method="post" action="/login">
+        <input type="hidden" name="csrf" value="{{ session.csrf }}">
+        <label>Usuario<input type="text" name="username" autocomplete="username" required maxlength="32" autocapitalize="none" spellcheck="false"></label>
+        <label>Contraseña<input type="password" name="password" autocomplete="current-password" required maxlength="128"></label>
+        <button class="btn primary" type="submit">Entrar</button>
+      </form>
+      <div class="onboarding-nav"><button class="btn" type="button" data-onboarding-go="welcome">Volver a bienvenida</button><button class="btn" type="button" data-onboarding-go="register">Crear cuenta</button></div>
+    </div>
+  </section>
+
+  <section class="card onboarding-panel" id="onboarding-register" data-onboarding-view="register" hidden aria-labelledby="register-title">
+    <div class="card-head"><b id="register-title">Crear cuenta</b><span>Soy nuevo y quiero preparar mi entrada al mundo.</span></div>
+    <div class="card-body">
+      <form method="post" action="/register">
+        <input type="hidden" name="csrf" value="{{ session.csrf }}">
+        <label>Nombre para mostrar<input type="text" name="name" required maxlength="60" autocomplete="nickname"></label>
+        <small>Puede ser un apodo.</small>
+        <label>Usuario<input type="text" name="username" required minlength="3" maxlength="32" pattern="[a-zA-Z0-9_]{3,32}" autocomplete="username" autocapitalize="none" spellcheck="false"></label>
+        <small>3-32 letras/números sin acentos, o guion bajo.</small>
+        <label>Contraseña<input type="password" name="password" required minlength="8" maxlength="128" autocomplete="new-password"></label>
+        <small>Mínimo 8 caracteres. Guarda tu usuario y contraseña.</small>
+        <button class="btn primary" type="submit">Crear cuenta</button>
+      </form>
+      <p class="onboarding-note">Tu cuenta queda pendiente de aprobación del Dungeon Master antes de poder jugar.</p>
+      <div class="onboarding-nav"><button class="btn" type="button" data-onboarding-go="welcome">Volver a bienvenida</button><button class="btn" type="button" data-onboarding-go="login">Entrar</button></div>
+    </div>
+  </section>
+</section>
