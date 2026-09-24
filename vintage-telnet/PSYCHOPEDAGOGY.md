@@ -1239,3 +1239,99 @@ Los cambios pedidos son acotados y no requieren rediseñar VT-NAR-003 ni la arqu
 
 Comentario de revisión dejado directamente en PR #49.
 
+## VT-PSY-004C — Reauditoría de El lindero roto en main
+
+**Estado:** CONFORME PARA PLAYTEST CERRADO DE LECTURA.
+
+Después de las correcciones e integración de PR #49, los cuatro bloqueos de VT-PSY-004B quedaron resueltos:
+
+1. Mordelinde requiere señales acumuladas antes de identificación nominal.
+2. El descubrimiento mayor del lindero ya no se obtiene solo por examinar la cerca; las huellas aportan la evidencia de tamaño.
+3. Mordelinde y Espinajo muestran conducta narrativa diferenciada antes de la decisión.
+4. Los enemigos muestran condición cualitativa en lugar de HP exacto por defecto.
+
+También permanecen correctos la separación comando/chat, inspección real, XP por descubrimiento y regreso como cierre válido.
+
+La escena ya fue desplegada y recorrida técnicamente en Raspberry. Eso valida el build y persistencia, no todavía el efecto psicopedagógico con un niño real.
+
+**Siguiente evidencia necesaria:** observación de playtest: qué leyó, qué inspeccionó, qué ignoró, qué señal modificó una decisión y cuándo necesitó ayuda.
+
+## VT-PSY-005 — Auditoría de conversación: Taren
+
+**Fuente:** PR #53, `NPCS.md`, VT-NPC-PLAYTEST-001.  
+**Estado:** DISEÑO APROBADO PARA IMPLEMENTACIÓN; implementación pendiente de auditoría.
+
+### Fortalezas
+
+Taren:
+- conversa por capas;
+- pide observaciones antes de aceptar conclusiones;
+- puede decir “no sé”;
+- no confirma amenaza con una señal aislada;
+- cambia al regreso;
+- usa Presencia para apertura/paciencia, no para alterar hechos;
+- ofrece segunda oportunidad sin castigo;
+- no funciona como dador de misión ni tutorial omnisciente.
+
+### Regla crítica: estado observado no equivale a afirmación escrita
+
+Estados como:
+- `vio_marca_profunda`;
+- `noto_silencio_terraza`;
+- `vio_restos_altura`;
+
+deben venir del estado autoritativo de exploración/inspección cuando corresponda.
+
+Que el jugador escriba “vi marcas profundas” no debe crear retroactivamente ese hecho.
+
+El diálogo puede responder a la afirmación, pero conocimiento especial, desbloqueos o cambios persistentes deben depender de lo que el personaje haya observado legítimamente.
+
+Esto preserva:
+
+**explorar → observar → recordar → conversar**
+
+y evita:
+
+**adivinar una frase → desbloquear respuesta**.
+
+### Lenguaje natural
+
+La implementación no debe exigir palabras exactas. Debe aceptar formas infantiles equivalentes o utilizar opciones neutrales que no revelen visualmente la respuesta correcta.
+
+### Carga inicial
+
+No mostrar todas las preguntas posibles de T0 simultáneamente. Presentar pocas rutas de conversación y permitir profundizar.
+
+### Criterio de playtest conversacional
+
+Taren estará validado cuando observemos que el niño:
+1. distingue observación de conclusión;
+2. vuelve voluntariamente;
+3. puede expresarse con lenguaje propio;
+4. no obtiene descubrimientos inventando que vio algo;
+5. percibe memoria sin sentir al NPC omnisciente.
+
+## VT-PSY-006 — Nota sobre revelado progresivo del texto
+
+**Estado:** AJUSTE RECOMENDADO, NO BLOQUEANTE.
+
+El texto de sala en `entry.html` ahora se revela progresivamente.
+
+### Riesgo 1 — repetición
+
+En el flujo server-rendered, la animación puede repetirse después de acciones que recargan la misma sala.
+
+**Recomendación:** animar texto narrativo nuevo o cambio de sala; permitir relectura inmediata en acciones posteriores y en `mirar`.
+
+### Riesgo 2 — accesibilidad
+
+El párrafo está dentro de una zona viva y se modifica muchas veces por segundo. `prefers-reduced-motion` resuelve movimiento, pero no garantiza una experiencia limpia con lectores de pantalla.
+
+**Recomendación:** no emitir cada fragmento incremental a `aria-live`; mantener una representación accesible completa.
+
+### Velocidad
+
+La velocidad fija del efecto es estética, no una medida de velocidad de lectura infantil. Debe seguir siendo saltable y no usarse para inferir atención o comprensión.
+
+Comentario correspondiente dejado en Issue #72.
+
