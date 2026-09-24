@@ -49,6 +49,45 @@ class EntryTests(unittest.TestCase):
         self.assertEqual(response.mimetype, "image/webp")
         self.assertNotIn("Set-Cookie", response.headers)
 
+    def test_rooms_sharing_a_visual_context_keep_the_same_art(self):
+        # Issue #125: la forja y el mercado de Valdren comparten
+        # visual_context_id con el centro y deben mostrar la misma
+        # ilustracion, aunque room_id sea distinto.
+        centro = world.describe_room("valdren_centro", [])
+        forja = world.describe_room("valdren_forja", [])
+        mercado = world.describe_room("valdren_mercado", [])
+        self.assertEqual(centro["visual_context_id"], "zone.valdren")
+        self.assertEqual(forja["visual_context_id"], "zone.valdren")
+        self.assertEqual(mercado["visual_context_id"], "zone.valdren")
+        self.assertEqual(forja["art"], centro["art"])
+        self.assertEqual(mercado["art"], centro["art"])
+
+    def test_visual_context_changes_at_the_town_boundary(self):
+        # VISUAL_CONTEXT_CANON.md: el sendero de Valdren ya es "Alrededores
+        # de Valdren", no el pueblo, aunque comparta el prefijo room_id.
+        sendero = world.describe_room("valdren_sendero", [])
+        lindero = world.describe_room("valdren_camino_lindero", [])
+        self.assertEqual(sendero["visual_context_id"], "zone.edran.valdren_outskirts")
+        self.assertEqual(sendero["visual_context_id"], lindero["visual_context_id"])
+        self.assertNotEqual(sendero["visual_context_id"], "zone.valdren")
+
+    def test_context_without_an_approved_asset_falls_back_to_no_art(self):
+        # Khariel/Brumak/Narevia/Velmora tienen visual_context_id definido
+        # por VISUAL_CONTEXT_CANON.md pero todavia ningun asset aprobado en
+        # runtime: el fallback debe ser sobrio (None), nunca inventar arte.
+        room = world.describe_room("khariel_centro", [])
+        self.assertEqual(room["visual_context_id"], "zone.khariel")
+        self.assertIsNone(room["art"])
+
+    def test_every_room_resolves_a_visual_context_id_without_parsing_prose(self):
+        # get_visual_context_id() debe devolver algo (dato estructurado) o
+        # None explicito para cada sala real del mundo; nunca debe fallar
+        # ni requerir que quien lo consuma parsee nombre/descripcion.
+        for room_id in world.ROOMS:
+            room = world.describe_room(room_id, [])
+            self.assertIn("visual_context_id", room)
+            self.assertEqual(room["visual_context_id"], world.get_visual_context_id(room_id))
+
     def test_persists_after_new_app_and_new_device(self):
         self.assertEqual(self.register().status_code, 303)
         first = self.client.get("/api/me").json["player"]
