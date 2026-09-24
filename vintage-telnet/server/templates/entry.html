@@ -84,7 +84,7 @@
     .entry{margin:0 0 14px}
     .entry:last-child{margin-bottom:0}
     .entry .cmd{color:var(--green3);font-weight:800;font-size:.84rem;margin-bottom:5px}
-    .entry p{margin:0;color:var(--green);font-size:clamp(1.02rem,2.2vw,1.1rem);line-height:1.58;max-width:78ch}
+    .entry p{margin:0;color:var(--green);font-size:clamp(.95rem,2vw,1.02rem);line-height:1.55;max-width:78ch}
     .entry p.system{color:#70c985}
     .terminal.in-combat .room-description-entry{opacity:.72}
     .terminal.in-combat .room-description-entry p{font-size:.94em}
@@ -277,8 +277,74 @@
     .species-option{display:block;margin-top:10px;font-size:.88rem}
     .species-option input{display:inline;width:auto;margin-right:6px}
 
+    /* Pantalla principal según la maqueta del Director de Arte (Issue #135):
+       barra de lugar, ilustración enmarcada, terminal, controles del
+       contexto y barra de herramientas. Solo HTML/CSS/SVG (frontera #109). */
+    /* Sin esto la columna implícita de .app (y la de .layout en móvil) crecía
+       hasta el ancho de la pista de una sola línea y el marco se cortaba a
+       la derecha en teléfonos. */
+    .app{grid-template-columns:minmax(0,1fr)}
+    .game-shell{display:flex;flex-direction:column;gap:9px;min-width:0}
+    .place-bar{
+      display:flex;align-items:center;gap:9px;min-height:42px;padding:7px 12px;border:1px solid var(--line);
+      border-radius:10px;background:linear-gradient(180deg,#141b27,#0d131c);color:var(--gold);
+      font:700 .88rem ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.08em
+    }
+    .place-bar strong{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#f2dca4}
+    .place-bar.combat{border-color:#b0402f;background:linear-gradient(90deg,#43120c,#1f0a08);color:#ffb3a6}
+    .place-bar.combat strong{color:#ffe1da}
+    .ambient-chip{display:inline-flex;align-items:center;gap:5px;color:#e9d6a4;white-space:nowrap;
+      font:600 .74rem ui-sans-serif,system-ui,sans-serif;letter-spacing:0}
+    .ambient-chip .ui-icon{width:17px;height:17px;flex-basis:17px;color:#f0c75e}
+    .place-bar .combat-flag{
+      border:1px solid #e0594a;border-radius:6px;background:#8a1d14;color:#fff0ec;padding:3px 8px;
+      font:800 .72rem ui-monospace,monospace;letter-spacing:.05em;white-space:nowrap
+    }
+    .location-art{border:2px solid #9a7a3e;border-radius:12px;box-shadow:0 0 0 1px #000,inset 0 0 0 1px #d7b56a33}
+    .location-art img{height:clamp(150px,34vw,260px)}
+    .terminal{grid-template-rows:minmax(0,1fr) auto;min-height:140px}
+    .game-shell .log{max-height:clamp(150px,34dvh,380px)}
+    .enemy-name{margin:0;color:#ff7565!important;font-weight:800}
+    .condition{display:flex;align-items:center;gap:10px;margin:6px 0 8px}
+    .condition-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;flex:1 1 auto;max-width:240px}
+    .condition-bar i{height:9px;border-radius:5px;background:#3a1512}
+    .condition-bar i.on{background:#e0392b;box-shadow:0 0 6px #e0392b88}
+    .condition-label{color:#ff9d90;font-size:.82rem;white-space:nowrap}
+    .controls-row{grid-template-columns:auto minmax(0,1fr);gap:12px}
+    .dpad .btn.term{
+      display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;padding:2px;
+      background:#06140b;border:1px solid #2f7a45;color:#8dff9f;font:800 .95rem ui-monospace,monospace
+    }
+    .dpad .btn.term:not(:disabled){box-shadow:0 0 0 1px #0b2a15,inset 0 0 12px #2dff6b14}
+    .dpad .btn.term:disabled{background:#0b1119;border-color:#2b3442;color:#5d6878}
+    .dpad .btn.term.center{color:#5fd97a}
+    .dpad .arrow{font-size:.55rem;line-height:1}
+    .context-actions{display:grid;gap:8px;align-content:center}
+    .context-actions form{margin:0}
+    .context-actions .action{justify-content:flex-start;padding-left:14px}
+    .combat-panel{display:grid;gap:8px}
+    .combat-panel form{margin:0}
+    .combat-row{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:8px}
+    .action-attack{
+      min-height:62px;font-size:1.2rem;letter-spacing:.02em;color:#fff4e0;border:2px solid #e0b25e;
+      background:linear-gradient(180deg,#b8291d,#7a130c);box-shadow:0 8px 22px #6e0f0a55,inset 0 1px 0 #ff8a7a55
+    }
+    .action-attack .ui-icon{width:26px;height:26px;flex-basis:26px}
+    .combat-panel .action-danger{background:#12233a;border-color:#4a78ad;color:#dbe9ff}
+    .action-gold{background:#1a150d;border-color:var(--gold);color:#f1d8a0}
+    .combat-row.defenses .action{min-height:42px;font-size:.8rem}
+    .commandbar input{text-overflow:ellipsis}
+    .commandbar input::placeholder{color:#4f8a5d}
+    .heading-card{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:center;margin-top:12px;
+      border:1px solid var(--line);border-radius:12px;background:#101722;padding:10px 12px}
+    .heading-card h4{grid-column:1/-1;margin:0;color:var(--ink);font:700 .95rem Georgia,serif}
+    .heading-card .compass{margin:0}
+    .heading-card small{margin:0;color:var(--muted)}
+    .heading-card strong{display:block;color:var(--gold);font:700 1.35rem Georgia,serif}
+    .map-here{margin:8px 0 0;color:var(--ink);font:700 .85rem ui-sans-serif,system-ui,sans-serif}
+    .map-here b{color:var(--gold)}
     @media(max-width:959px){
-      .layout{grid-template-columns:1fr}
+      .layout{grid-template-columns:minmax(0,1fr)}
       .side{display:none}
       .auth{grid-template-columns:1fr}
       .species-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -307,7 +373,11 @@
       .terminal-head span{font-size:.62rem}
       .log{padding:10px 11px}
       .entry{margin-bottom:11px}
-      .entry p{font-size:17px;line-height:1.5}
+      .entry p{font-size:15px;line-height:1.45}
+      .entry .cmd{font-size:.78rem}
+      .action{font-size:.8rem;min-height:44px}
+      .action-attack{min-height:56px;font-size:1.08rem}
+      .context-actions .action{min-height:42px}
       .location-art{min-height:120px}
       .location-art img{height:clamp(120px,38vw,170px)}
       .terminal-alert{padding:6px 9px;font-size:.69rem}
@@ -315,7 +385,15 @@
       .tool-row{display:grid;grid-template-columns:repeat(4,1fr);position:sticky;bottom:max(0px,env(safe-area-inset-bottom));z-index:2;background:#141c28;padding-top:4px}
       .tool-row .btn{min-height:46px}
       .controls-row{grid-template-columns:auto 1fr;gap:7px}
-      .dpad{grid-template-columns:repeat(3,46px);grid-template-rows:repeat(3,44px);gap:4px}
+      .dpad{grid-template-columns:repeat(3,48px);grid-template-rows:repeat(3,46px);gap:4px}
+      .game-shell{gap:7px}
+      .place-bar{min-height:38px;padding:6px 10px;font-size:.8rem}
+      .location-art img{height:clamp(140px,42vw,190px)}
+      .game-shell .log{max-height:30dvh}
+      .game-shell.in-combat .log{max-height:42dvh}
+      .combat-row.defenses .action{min-height:40px}
+      .tool-row{grid-template-columns:repeat(4,minmax(0,1fr))}
+      .tool-row .btn{flex-direction:column;gap:3px;min-height:54px;padding:5px 2px;font-size:.7rem}
       .btn{min-height:44px;padding:6px;font-size:.76rem;border-radius:9px}
       .combat-actions{grid-template-columns:1fr;gap:5px}
       .tool-row{gap:5px}
@@ -341,6 +419,20 @@
   <symbol id="icon-exit" viewBox="0 0 24 24"><path d="M10 5H5v14h5"/><path d="M13 8l4 4-4 4M8 12h9"/></symbol>
   <symbol id="icon-eye" viewBox="0 0 24 24"><path d="M2 12s4-6 10-6 10 6 10 6-4 6-10 6S2 12 2 12z"/><circle cx="12" cy="12" r="2.5"/></symbol>
   <symbol id="icon-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15 9l-2 5-5 2 2-5z"/></symbol>
+  <symbol id="icon-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0119 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
+  <symbol id="icon-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l5 5"/></symbol>
+  <symbol id="icon-bed" viewBox="0 0 24 24"><path d="M3 7v12M3 15h18v4M21 15v-3a3 3 0 00-3-3h-8v6"/><circle cx="6.5" cy="11" r="1.8"/></symbol>
+  <symbol id="icon-run" viewBox="0 0 24 24"><circle cx="14" cy="4.5" r="2"/><path d="M7 21l3-6 3 2v5M10 15l1-6 4 3h4M11 9L7 10l-2 4"/></symbol>
+  <symbol id="icon-amb-sol" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+  <symbol id="icon-amb-luna" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 019.5 4 8 8 0 1020 14.5z"/></symbol>
+  <symbol id="icon-amb-amanecer" viewBox="0 0 24 24"><path d="M3 18h18M7 18a5 5 0 0110 0M12 3v4M5 9l1.5 1.5M19 9l-1.5 1.5"/></symbol>
+  <symbol id="icon-amb-atardecer" viewBox="0 0 24 24"><path d="M3 18h18M7 18a5 5 0 0110 0M12 7V3M10 5l2 2 2-2"/></symbol>
+  <symbol id="icon-amb-nube" viewBox="0 0 24 24"><path d="M7 18h10a4 4 0 00.5-8A6 6 0 006 11a3.5 3.5 0 001 7z"/></symbol>
+  <symbol id="icon-amb-lluvia" viewBox="0 0 24 24"><path d="M7 14h10a4 4 0 00.5-8A6 6 0 006 7a3.5 3.5 0 001 7z"/><path d="M8 17l-1 3M12 17l-1 3M16 17l-1 3"/></symbol>
+  <symbol id="icon-amb-niebla" viewBox="0 0 24 24"><path d="M4 9h16M3 13h18M5 17h14"/></symbol>
+  <symbol id="icon-amb-nieve" viewBox="0 0 24 24"><path d="M12 3v18M4.2 7.5l15.6 9M4.2 16.5l15.6-9"/></symbol>
+  <symbol id="icon-amb-tormenta" viewBox="0 0 24 24"><path d="M7 14h10a4 4 0 00.5-8A6 6 0 006 7a3.5 3.5 0 001 7z"/><path d="M12 14l-2 4h4l-2 4"/></symbol>
+  <symbol id="icon-amb-viento" viewBox="0 0 24 24"><path d="M3 9h11a3 3 0 10-3-3M3 15h15a3 3 0 11-3 3"/></symbol>
   <symbol id="icon-send" viewBox="0 0 24 24"><path d="M3 11.5L21 3l-8.5 18-2-7z"/><path d="M10.5 14L21 3"/></symbol>
 </svg>
 <div class="app">
@@ -429,12 +521,27 @@
 
   {% else %}
     <div class="layout">
-      <main class="game-shell">
+      <main class="game-shell{% if room.encounter %} in-combat{% endif %}">
+        <header class="place-bar{% if room.encounter %} combat{% endif %}">
+          <svg class="ui-icon" aria-hidden="true"><use href="{{ '#icon-swords' if room.encounter else '#icon-pin' }}"/></svg>
+          <strong id="placeTitle">{{ room.name.upper() }}</strong>
+          {% if room.encounter %}<span class="combat-flag">¡COMBATE!</span>
+          {% elif room.ambient %}
+            {% for item in [room.ambient.time_of_day, room.ambient.weather] if item %}
+            <span class="ambient-chip">{% if item.icon in ambient_icons %}<svg class="ui-icon" aria-hidden="true"><use href="#icon-amb-{{ item.icon }}"/></svg>{% endif %}{{ item.label }}</span>
+            {% endfor %}
+          {% endif %}
+        </header>
+
+        {% if room.art %}
+        <figure class="location-art">
+          <img data-location-art src="{{ room.art.src }}" alt="{{ room.art.alt }}"
+               width="{{ room.art.width }}" height="{{ room.art.height }}" loading="lazy" decoding="async">
+          <div class="location-art-fallback" hidden>La ilustración contextual no está disponible. El juego continúa normalmente.</div>
+        </figure>
+        {% endif %}
+
         <section class="terminal{% if room.encounter %} in-combat{% endif %}" aria-labelledby="placeTitle">
-          <div class="terminal-head">
-            <strong id="placeTitle">{{ room.name.upper() }}</strong>
-            {% if room.encounter %}<span class="combat-flag">● COMBATE</span>{% else %}<span>TELNET SESSION</span>{% endif %}
-          </div>
           <p class="sr-only" id="roomDescriptionAccessible">{{ room.description }}</p>
           <div class="log" aria-describedby="roomDescriptionAccessible">
             <div class="entry room-description-entry">
@@ -445,8 +552,13 @@
             <div class="entry"><p class="system">También aquí: {{ room.others_present | join(', ') }}</p></div>
             {% endif %}
             {% if room.encounter %}
+            {% set bands = {'entero / apenas afectado': 4, 'herido': 3, 'malherido': 2, 'al borde de caer': 1} %}
             <div class="entry encounter-entry">
-              <p class="system">{{ room.encounter.name }} está aquí. Condición: {{ room.encounter.condition }}.</p>
+              <p class="enemy-name">{{ room.encounter.name }}</p>
+              <div class="condition" role="img" aria-label="Condición de {{ room.encounter.name }}: {{ room.encounter.condition }}">
+                <span class="condition-bar">{% for i in range(4) %}<i class="{{ 'on' if i < bands.get(room.encounter.condition, 0) }}"></i>{% endfor %}</span>
+                <span class="condition-label">{{ room.encounter.condition }}</span>
+              </div>
               <p class="system">{{ room.encounter.behavior }}</p>
             </div>
             {% endif %}
@@ -460,48 +572,21 @@
           <div class="terminal-alert terminal-hint">Pista: usa Ayuda para comandos y ejemplos. Para chat local escribe “decir &lt;texto&gt;”.</div>
         </section>
 
-        {% if room.art %}
-        <figure class="location-art">
-          <img data-location-art src="{{ room.art.src }}" alt="{{ room.art.alt }}"
-               width="{{ room.art.width }}" height="{{ room.art.height }}" loading="lazy" decoding="async">
-          <div class="location-art-fallback" hidden>La ilustración contextual no está disponible. El juego continúa normalmente.</div>
-        </figure>
-        {% endif %}
-
-        <section class="controls-row" aria-label="Controles principales">
-          <div class="dpad" aria-label="Movimiento cardinal">
-            {% set exit_dirs = room.exits | map(attribute='direction') | list %}
-            <form method="post" action="/move">
-              <input type="hidden" name="csrf" value="{{ session.csrf }}"><input type="hidden" name="direction" value="north">
-              <button class="btn term" type="submit" aria-label="Ir al norte" {{ 'disabled' if 'north' not in exit_dirs }}>N</button>
-            </form>
-            <form method="post" action="/move">
-              <input type="hidden" name="csrf" value="{{ session.csrf }}"><input type="hidden" name="direction" value="west">
-              <button class="btn term" type="submit" aria-label="Ir al oeste" {{ 'disabled' if 'west' not in exit_dirs }}>O</button>
-            </form>
-            <form method="get" action="/">
-              <button class="btn term" type="submit" aria-label="Mirar">◎</button>
-            </form>
-            <form method="post" action="/move">
-              <input type="hidden" name="csrf" value="{{ session.csrf }}"><input type="hidden" name="direction" value="east">
-              <button class="btn term" type="submit" aria-label="Ir al este" {{ 'disabled' if 'east' not in exit_dirs }}>E</button>
-            </form>
-            <form method="post" action="/move">
-              <input type="hidden" name="csrf" value="{{ session.csrf }}"><input type="hidden" name="direction" value="south">
-              <button class="btn term" type="submit" aria-label="Ir al sur" {{ 'disabled' if 'south' not in exit_dirs }}>S</button>
-            </form>
-          </div>
-          <div class="context-actions" aria-label="Acciones del contexto">
-            {% set action_names = room.available_actions | map(attribute='action') | list %}
-            {% if 'atacar' in action_names %}
-            <form method="post" action="/attack"><input type="hidden" name="csrf" value="{{ session.csrf }}"><button class="action action-primary" type="submit"><svg class="ui-icon" aria-hidden="true"><use href="#icon-swords"/></svg>Atacar</button></form>
-            {% endif %}
+        {% set action_names = room.available_actions | map(attribute='action') | list %}
+        {% if room.encounter %}
+        <section class="combat-panel" aria-label="Acciones de combate">
+          {% if 'atacar' in action_names %}
+          <form method="post" action="/attack"><input type="hidden" name="csrf" value="{{ session.csrf }}"><button class="action action-attack" type="submit"><svg class="ui-icon" aria-hidden="true"><use href="#icon-swords"/></svg>Atacar</button></form>
+          {% endif %}
+          <div class="combat-row">
             {% if 'huir' in action_names %}
-            <form method="post" action="/flee"><input type="hidden" name="csrf" value="{{ session.csrf }}"><button class="action action-danger" type="submit"><svg class="ui-icon" aria-hidden="true"><use href="#icon-exit"/></svg>Huir</button></form>
+            <form method="post" action="/flee"><input type="hidden" name="csrf" value="{{ session.csrf }}"><button class="action action-danger" type="submit"><svg class="ui-icon" aria-hidden="true"><use href="#icon-run"/></svg>Huir</button></form>
             {% endif %}
             {% if 'evaluar' in action_names %}
-            <form method="post" action="/evaluate"><input type="hidden" name="csrf" value="{{ session.csrf }}"><button class="action" type="submit"><svg class="ui-icon" aria-hidden="true"><use href="#icon-eye"/></svg>Evaluar</button></form>
+            <form method="post" action="/evaluate"><input type="hidden" name="csrf" value="{{ session.csrf }}"><button class="action action-gold" type="submit"><svg class="ui-icon" aria-hidden="true"><use href="#icon-eye"/></svg>Evaluar</button></form>
             {% endif %}
+          </div>
+          <div class="combat-row defenses">
             {% if 'esquivar' in action_names %}
             <form method="post" action="/dodge"><input type="hidden" name="csrf" value="{{ session.csrf }}"><button class="action" type="submit">Esquivar</button></form>
             {% endif %}
@@ -511,18 +596,46 @@
             {% if 'bloquear' in action_names %}
             <form method="post" action="/block"><input type="hidden" name="csrf" value="{{ session.csrf }}"><button class="action" type="submit">Bloquear</button></form>
             {% endif %}
+          </div>
+        </section>
+        {% else %}
+        <section class="controls-row" aria-label="Controles principales">
+          <div class="dpad" aria-label="Movimiento cardinal">
+            {% set exit_dirs = room.exits | map(attribute='direction') | list %}
+            <form method="post" action="/move">
+              <input type="hidden" name="csrf" value="{{ session.csrf }}"><input type="hidden" name="direction" value="north">
+              <button class="btn term" type="submit" aria-label="Ir al norte" {{ 'disabled' if 'north' not in exit_dirs }}><span class="arrow">▲</span>N</button>
+            </form>
+            <form method="post" action="/move">
+              <input type="hidden" name="csrf" value="{{ session.csrf }}"><input type="hidden" name="direction" value="west">
+              <button class="btn term" type="submit" aria-label="Ir al oeste" {{ 'disabled' if 'west' not in exit_dirs }}><span class="arrow">◀</span>O</button>
+            </form>
+            <form method="get" action="/">
+              <button class="btn term center" type="submit" aria-label="Mirar">●</button>
+            </form>
+            <form method="post" action="/move">
+              <input type="hidden" name="csrf" value="{{ session.csrf }}"><input type="hidden" name="direction" value="east">
+              <button class="btn term" type="submit" aria-label="Ir al este" {{ 'disabled' if 'east' not in exit_dirs }}>E<span class="arrow">▶</span></button>
+            </form>
+            <form method="post" action="/move">
+              <input type="hidden" name="csrf" value="{{ session.csrf }}"><input type="hidden" name="direction" value="south">
+              <button class="btn term" type="submit" aria-label="Ir al sur" {{ 'disabled' if 'south' not in exit_dirs }}>S<span class="arrow">▼</span></button>
+            </form>
+          </div>
+          <div class="context-actions" aria-label="Acciones del contexto">
+            <form method="get" action="/"><button class="action" type="submit"><svg class="ui-icon" aria-hidden="true"><use href="#icon-eye"/></svg>Mirar</button></form>
+            <button class="action" type="button" data-prefill="examinar "><svg class="ui-icon" aria-hidden="true"><use href="#icon-search"/></svg>Examinar</button>
             {% if 'descansar' in action_names %}
-            <form method="post" action="/command"><input type="hidden" name="csrf" value="{{ session.csrf }}"><input type="hidden" name="text" value="descansar"><button class="action" type="submit">Descansar</button></form>
+            <form method="post" action="/command"><input type="hidden" name="csrf" value="{{ session.csrf }}"><input type="hidden" name="text" value="descansar"><button class="action" type="submit"><svg class="ui-icon" aria-hidden="true"><use href="#icon-bed"/></svg>Descansar</button></form>
             {% endif %}
           </div>
         </section>
+        {% endif %}
 
-        <div class="divider" role="presentation"></div>
-
-        <section>
+        <section class="command-zone">
           <form class="commandbar" method="post" action="/command">
             <input type="hidden" name="csrf" value="{{ session.csrf }}">
-            <input name="text" aria-label="Escribe un comando" autocomplete="off" autocapitalize="none" spellcheck="false" enterkeyhint="send" maxlength="500" placeholder="> escribe un comando…">
+            <input name="text" id="commandInput" aria-label="Escribe un comando" autocomplete="off" autocapitalize="none" spellcheck="false" enterkeyhint="send" maxlength="500" placeholder="> norte, mirar, examinar…">
             <button class="btn primary" type="submit"><svg class="ui-icon" aria-hidden="true"><use href="#icon-send"/></svg>Enviar</button>
           </form>
           <div class="tool-row" aria-label="Herramientas">
@@ -605,6 +718,12 @@
     </div>
     <section class="map-panel" data-map-panel="general">
       <img class="regional-map" src="/assets/maps/region-inicial.webp" alt="Mapa regional conocido" loading="lazy" decoding="async">
+      {% if room %}<p class="map-here"><b>Estás en:</b> {{ room.name }}</p>{% endif %}
+      <section class="heading-card" aria-label="Dirección actual">
+        <h4>Dirección actual</h4>
+        <div class="compass" aria-hidden="true"><span class="north" data-heading="north">N</span><span class="west" data-heading="west">O</span><span class="center">•</span><span class="east" data-heading="east">E</span><span class="south" data-heading="south">S</span></div>
+        <div><small>Caminando hacia:</small><strong id="headingCardLabel">—</strong></div>
+      </section>
       <div class="map-state" style="margin-top:10px">
         <p class="map-status" id="mapStatus" aria-live="polite">Consulta únicamente lugares y rutas que tu personaje conoce.</p>
         <div id="mapContent" class="map-empty">El mapa todavía no se ha cargado.</div>
@@ -809,6 +928,13 @@
     if (needsReload) window.location.reload();
   });
 
+  const commandInput = document.getElementById("commandInput");
+  document.querySelectorAll("[data-prefill]").forEach(button => button.addEventListener("click", () => {
+    if (!commandInput) return;
+    commandInput.value = button.dataset.prefill;
+    commandInput.focus();
+  }));
+
   const inventoryButton = document.querySelector("[data-inventory-open]");
   const inventoryStatus = document.getElementById("inventoryStatus");
   const inventoryContent = document.getElementById("inventoryContent");
@@ -913,6 +1039,8 @@
   const headingLabels = {north: "Norte", south: "Sur", east: "Este", west: "Oeste"};
   const renderHeading = heading => {
     document.querySelectorAll("[data-heading]").forEach(item => item.classList.toggle("active", item.dataset.heading === heading));
+    const cardLabel = document.getElementById("headingCardLabel");
+    if (cardLabel) cardLabel.textContent = headingLabels[heading] || "Sin registrar";
     if (!headingStatus) return;
     headingStatus.textContent = headingLabels[heading] ? "Caminando hacia: " + headingLabels[heading] : "Dirección actual no registrada.";
   };

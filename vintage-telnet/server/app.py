@@ -101,6 +101,7 @@ def create_app(config=None):
     app.jinja_env.globals["xp_for_next_level"] = combat.xp_for_next_level
     app.jinja_env.globals["class_list"] = world.CLASSES
     app.jinja_env.globals["class_names"] = {c["id"]: c["name"] for c in world.CLASSES}
+    app.jinja_env.globals["ambient_icons"] = world.AMBIENT_ICONS
 
     @app.before_request
     def prepare_request():
