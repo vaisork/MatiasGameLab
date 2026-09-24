@@ -133,7 +133,7 @@ class EntryTests(unittest.TestCase):
         for path in ("/SECRETS.md", "/vintage.sqlite3", "/static/SECRETS.md", "/players"):
             self.assertEqual(self.client.get(path).status_code, 404)
         response = self.client.get("/healthz")
-        self.assertEqual(response.json, dict(status="ok", schema_version=8))
+        self.assertEqual(response.json, dict(status="ok", schema_version=9))
         self.assertNotIn("Set-Cookie", response.headers)
 
     def test_ui_foundation_map_rest_help_and_no_dead_combat_controls(self):
@@ -380,6 +380,28 @@ class EntryTests(unittest.TestCase):
         self.assertNotIn("soltar", html.lower())
         self.assertNotIn("durabilidad", html.lower())
 
+    def test_character_panel_spends_pa_only_through_server_with_confirmation(self):
+        """GAMEPLAY.md 25.4/25.5: el panel Personaje lee costes del servidor,
+        pide confirmación explícita y envía el valor visto como
+        `current_value`; no calcula costes ni aplica el +1 por su cuenta."""
+        self.assertEqual(self.register().status_code, 303)
+        store.set_status(self.path, "matias", "approved")
+        self.assertEqual(self.post("/species", {"species": "humano"}).status_code, 303)
+        html = self.client.get("/").get_data(as_text=True)
+        self.assertIn('id="paPanel"', html)
+        self.assertIn("Mejorar atributos", html)
+        self.assertIn('fetch("/api/character"', html)
+        self.assertIn('fetch("/api/character/attributes"', html)
+        self.assertIn("current_value: request.current_value", html)
+        self.assertIn("data.attribute_costs", html)
+        self.assertIn("data.in_combat", html)
+        self.assertIn('id="paConfirm"', html)
+        self.assertIn("Después de confirmar no se puede deshacer.", html)
+        self.assertNotIn("todavía no tiene pantalla propia", html)
+        # El cliente nunca fija costes propios de §19.
+        self.assertNotIn("attribute_cost(", html)
+        self.assertNotIn("deshacer gasto", html.lower())
+
     def test_inventory_api_fields_renderable_by_ui(self):
         self.assertEqual(self.register().status_code, 303)
         store.set_status(self.path, "matias", "approved")
@@ -442,7 +464,7 @@ class EntryTests(unittest.TestCase):
         with self.assertRaises(RuntimeError):
             create_app({**self.config, "DATA_DIR": "relative"})
         with store.connect(self.path) as db:
-            db.execute("PRAGMA user_version = 9")
+            db.execute("PRAGMA user_version = 10")
         with self.assertRaises(RuntimeError):
             create_app(self.config)
 

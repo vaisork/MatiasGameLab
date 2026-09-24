@@ -172,6 +172,18 @@
     .character-block{border:1px solid #3d4a5d;border-radius:10px;background:#101722;padding:10px}
     .character-block h3{margin:0 0 6px}
     .character-block p{margin:0}
+    .pa-summary{display:flex;flex-wrap:wrap;gap:8px 16px;margin:0 0 8px;font:700 .82rem ui-sans-serif,system-ui,sans-serif}
+    .pa-summary b{color:var(--gold)}
+    .attr-list{display:grid;gap:6px}
+    .attr-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;border:1px solid #3d4a5d;border-radius:9px;background:#0c121b;padding:6px 8px}
+    .attr-row strong{display:block;color:var(--ink);font:750 .86rem ui-sans-serif,system-ui,sans-serif}
+    .attr-row span{color:var(--muted);font:600 .74rem ui-sans-serif,system-ui,sans-serif}
+    .attr-row .action{width:auto;min-width:112px;min-height:44px}
+    .attr-row .action:disabled{opacity:.45;cursor:not-allowed}
+    .attr-confirm{border:1px solid var(--gold);border-radius:10px;background:#1d1a13;padding:12px;display:grid;gap:10px}
+    .attr-confirm[hidden]{display:none}
+    .attr-confirm p{margin:0;font:600 .88rem/1.45 ui-sans-serif,system-ui,sans-serif}
+    .attr-confirm .confirm-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
     .help-tabs{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px}
     .help-panel[hidden]{display:none!important}
     .tool-row .btn{flex:1 1 90px}
@@ -550,12 +562,24 @@
     {% if player and player.hp_current is not none %}
     <div class="character-stack">
       <section class="character-block"><h3>{{ player.name }} — Nivel {{ player.level }}</h3><p>{{ player.species }}{% if player.player_class %} · {{ class_names.get(player.player_class) }}{% endif %}</p></section>
-      <section class="character-block"><h3>Estado</h3><p>HP {{ player.hp_current | round | int }}/{{ player.hp_max | round | int }} · Fatiga {{ player.fatigue }} · Herida {{ player.wound }}</p></section>
-      <section class="character-block"><h3>Progreso</h3><p>XP {{ player.xp }}/{{ xp_for_next_level(player.level) }} · PA sin gastar {{ player.pa_unspent }}</p></section>
-      <section class="character-block"><h3>Atributos</h3><p>Fuerza {{ player.attr_fuerza }} · Resistencia {{ player.attr_resistencia }} · Agilidad {{ player.attr_agilidad }} · Percepción {{ player.attr_percepcion }}<br>
+      <section class="character-block"><h3>Estado</h3><p id="charStateLine">HP {{ player.hp_current | round | int }}/{{ player.hp_max | round | int }} · Fatiga {{ player.fatigue }} · Herida {{ player.wound }}</p></section>
+      <section class="character-block"><h3>Progreso</h3><p id="charProgressLine">XP {{ player.xp }}/{{ xp_for_next_level(player.level) }} · PA sin gastar {{ player.pa_unspent }}</p></section>
+      <section class="character-block"><h3>Atributos</h3><p id="charAttributesLine">Fuerza {{ player.attr_fuerza }} · Resistencia {{ player.attr_resistencia }} · Agilidad {{ player.attr_agilidad }} · Percepción {{ player.attr_percepcion }}<br>
       Intelecto {{ player.attr_intelecto }} · Voluntad {{ player.attr_voluntad }} · Destreza {{ player.attr_destreza }} · Presencia {{ player.attr_presencia }}</p></section>
     </div>
-    <p style="color:var(--muted);font-size:.78rem">La asignación de PA todavía no tiene pantalla propia; los puntos quedan guardados.</p>
+    <section class="character-block" id="paPanel" aria-labelledby="paPanelTitle">
+      <h3 id="paPanelTitle">Mejorar atributos</h3>
+      <p class="map-status" id="paStatus" aria-live="polite">Tus PA quedan guardados hasta que decidas gastarlos.</p>
+      <div class="pa-summary" id="paSummary"></div>
+      <div class="attr-confirm" id="paConfirm" role="alertdialog" aria-labelledby="paConfirmText" hidden>
+        <p id="paConfirmText"></p>
+        <div class="confirm-actions">
+          <button class="action" type="button" id="paCancel">Cancelar</button>
+          <button class="action action-primary" type="button" id="paAccept">Confirmar</button>
+        </div>
+      </div>
+      <div class="attr-list" id="paList"></div>
+    </section>
     {% else %}
     <h3>Panel preparado</h3>
     <p>Las estadísticas de personaje aparecen aquí después de elegir especie.</p>
@@ -658,6 +682,132 @@
   };
   activateTabs("[data-map-tab]", "[data-map-panel]", "mapPanel");
   activateTabs("[data-help-tab]", "[data-help-panel]", "helpPanel");
+
+  // Gasto de PA (GAMEPLAY.md 19/25.4/25.5). El servidor calcula costes,
+  // decide si se puede gastar y aplica el +1; aquí solo se muestra el
+  // estado y se pide una confirmación explícita antes de enviar.
+  const attributeLabels = {
+    fuerza: "Fuerza", resistencia: "Resistencia", agilidad: "Agilidad", percepcion: "Percepción",
+    intelecto: "Intelecto", voluntad: "Voluntad", destreza: "Destreza", presencia: "Presencia",
+  };
+  const paPanel = document.getElementById("paPanel");
+  const paStatus = document.getElementById("paStatus");
+  const paSummary = document.getElementById("paSummary");
+  const paList = document.getElementById("paList");
+  const paConfirm = document.getElementById("paConfirm");
+  const paConfirmText = document.getElementById("paConfirmText");
+  const paAccept = document.getElementById("paAccept");
+  const paCancel = document.getElementById("paCancel");
+  const paCsrf = document.querySelector('input[name="csrf"]')?.value || "";
+  let paPending = null;
+  let needsReload = false;
+
+  const closePaConfirm = () => { paPending = null; if (paConfirm) paConfirm.hidden = true; };
+  const renderPa = data => {
+    const pa = Number(data.pa_unspent || 0);
+    paSummary.replaceChildren();
+    [["PA sin gastar", pa], ["PP sin gastar", Number(data.pp_unspent || 0)]].forEach(([label, value]) => {
+      const item = document.createElement("span");
+      const b = document.createElement("b");
+      b.textContent = value;
+      item.append(label + ": ", b);
+      paSummary.appendChild(item);
+    });
+    paList.replaceChildren();
+    Object.keys(attributeLabels).forEach(name => {
+      if (!data.attributes || data.attributes[name] == null) return;
+      const value = data.attributes[name];
+      const cost = data.attribute_costs ? data.attribute_costs[name] : null;
+      const row = document.createElement("div");
+      row.className = "attr-row";
+      const info = document.createElement("div");
+      const title = document.createElement("strong");
+      title.textContent = attributeLabels[name] + " " + value;
+      const meta = document.createElement("span");
+      meta.textContent = cost != null ? "Siguiente +1 cuesta " + cost + " PA" : "Coste no disponible";
+      info.append(title, meta);
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "action";
+      button.textContent = "+1 " + attributeLabels[name];
+      button.dataset.attribute = name;
+      if (data.in_combat || cost == null || pa < cost) {
+        button.disabled = true;
+        button.title = data.in_combat ? "No puedes mejorar atributos en combate" : "No tienes PA suficientes";
+      }
+      button.addEventListener("click", () => {
+        paPending = {attribute: name, current_value: value, cost};
+        paConfirmText.textContent = attributeLabels[name] + ": " + value + " → " + (value + 1) +
+          ". Cuesta " + cost + " PA y te quedarán " + (pa - cost) + " PA. Después de confirmar no se puede deshacer.";
+        paConfirm.hidden = false;
+        paConfirm.scrollIntoView({block: "nearest"});
+        paAccept.focus();
+      });
+      row.append(info, button);
+      paList.appendChild(row);
+    });
+    // Mantiene al día los bloques dibujados por el servidor con los datos
+    // recién confirmados, sin esperar a recargar la página.
+    const stateLine = document.getElementById("charStateLine");
+    if (stateLine && data.hp_max != null) stateLine.textContent = "HP " + Math.round(data.hp_current) + "/" +
+      Math.round(data.hp_max) + " · Fatiga " + data.fatigue + " · Herida " + data.wound;
+    const progressLine = document.getElementById("charProgressLine");
+    if (progressLine && data.xp_to_next != null) progressLine.textContent = "XP " + data.xp + "/" + data.xp_to_next + " · PA sin gastar " + pa;
+    const attributesLine = document.getElementById("charAttributesLine");
+    if (attributesLine && data.attributes) attributesLine.textContent = Object.keys(attributeLabels)
+      .filter(name => data.attributes[name] != null)
+      .map(name => attributeLabels[name] + " " + data.attributes[name]).join(" · ");
+    if (data.in_combat) paStatus.textContent = "Estás en combate: podrás mejorar atributos cuando termine.";
+    else if (!pa) paStatus.textContent = "No tienes PA sin gastar. Ganas PA al subir de nivel.";
+    else paStatus.textContent = "Elige un atributo. Antes de gastar te pediremos confirmar.";
+  };
+  const loadPa = async () => {
+    if (!paPanel) return;
+    closePaConfirm();
+    paStatus.textContent = "Consultando tu personaje…";
+    try {
+      const response = await fetch("/api/character", {headers: {"Accept": "application/json"}});
+      if (!response.ok) throw new Error("character unavailable");
+      renderPa(await response.json());
+    } catch (_error) {
+      paList.replaceChildren();
+      paSummary.replaceChildren();
+      paStatus.textContent = "No se pudo cargar la mejora de atributos. Tus PA siguen guardados.";
+    }
+  };
+  if (paCancel) paCancel.addEventListener("click", () => {
+    closePaConfirm();
+    paStatus.textContent = "Mejora cancelada. No se gastó ningún PA.";
+  });
+  if (paAccept) paAccept.addEventListener("click", async () => {
+    if (!paPending) return;
+    const request = paPending;
+    paAccept.disabled = true;
+    try {
+      const response = await fetch("/api/character/attributes", {
+        method: "POST",
+        headers: {"Content-Type": "application/json", "Accept": "application/json"},
+        body: JSON.stringify({attribute: request.attribute, current_value: request.current_value, csrf: paCsrf}),
+      });
+      const body = await response.json().catch(() => ({}));
+      await loadPa();
+      paStatus.textContent = body.message || (response.ok ? "Atributo mejorado." : "No se pudo gastar el PA.");
+      if (response.ok) needsReload = true;
+    } catch (_error) {
+      closePaConfirm();
+      paStatus.textContent = "No se pudo contactar al servidor. No se gastó ningún PA.";
+    } finally {
+      paAccept.disabled = false;
+    }
+  });
+  document.querySelectorAll('[data-open="characterDialog"]').forEach(button => button.addEventListener("click", loadPa));
+  const characterDialog = document.getElementById("characterDialog");
+  if (characterDialog) characterDialog.addEventListener("close", () => {
+    closePaConfirm();
+    // Los bloques de Estado/Atributos del panel se dibujan en el servidor;
+    // al cerrar tras un gasto se recarga para que todo muestre lo nuevo.
+    if (needsReload) window.location.reload();
+  });
 
   const inventoryButton = document.querySelector("[data-inventory-open]");
   const inventoryStatus = document.getElementById("inventoryStatus");

@@ -12,6 +12,10 @@ from . import combat, items
 
 STATUSES = ("pending", "approved", "rejected", "removed")
 
+# Version de esquema que deja initialize(); ops/inventory_migration_probe.py
+# la usa para validar una migracion de prueba contra la copia de la base viva.
+SCHEMA_VERSION = 9
+
 PLAYER_COLUMNS = (
     "id, player_number, username, name, status, species, player_class, room, heading, created_at, last_access_at"
 )
@@ -23,7 +27,10 @@ ATTRIBUTE_COLUMNS = ", ".join(f"attr_{name}" for name in combat.ATTRIBUTES)
 # XP, HP, fatiga, herida y los ocho atributos sin una segunda consulta.
 # equipped_weapon_id/equipped_armor_id (Issue #57, GAMEPLAY.md 32.2) viajan
 # igual: el arma/armadura activa del personaje es parte de su estado.
-CHARACTER_COLUMNS = (f"{PLAYER_COLUMNS}, level, xp, pa_unspent, hp_current, hp_max, fatigue, wound, "
+# pp_unspent (GAMEPLAY.md 25.8) y fatigue_updated_at (24.7, recuperacion
+# pasiva calculada por tiempo en servidor) se agregan en el esquema v8.
+CHARACTER_COLUMNS = (f"{PLAYER_COLUMNS}, level, xp, pa_unspent, pp_unspent, hp_current, hp_max, "
+                     f"fatigue, fatigue_updated_at, wound, "
                      f"{ATTRIBUTE_COLUMNS}, equipped_weapon_id, equipped_armor_id")
 
 
@@ -137,9 +144,9 @@ def initialize(path):
         db.execute("PRAGMA journal_mode = WAL")
         db.execute("BEGIN IMMEDIATE")
         version = db.execute("PRAGMA user_version").fetchone()[0]
-        if version not in (0, 1, 2, 3, 4, 5, 6, 7, 8):
+        if version not in range(0, SCHEMA_VERSION + 1):
             raise RuntimeError("Versión de base de datos no soportada; no iniciar ni degradar.")
-        if version == 8:
+        if version == SCHEMA_VERSION:
             return
         if version == 0:
             statements = [
@@ -214,11 +221,18 @@ def initialize(path):
             db.execute("ALTER TABLE players ADD COLUMN heading TEXT "
                        "CHECK(heading IN ('north', 'south', 'east', 'west'))")
         if version <= 7:
-            # v8: clase inicial (Issue #112, GAMEPLAY.md 2). NULL hasta que el
+            # v8: PP (GAMEPLAY.md 25.8) y reloj de fatiga (24.7). Los
+            # personajes existentes reciben los PP de los niveles multiplo de
+            # 5 que ya alcanzaron y que la v7 nunca registro.
+            db.execute("ALTER TABLE players ADD COLUMN pp_unspent INTEGER NOT NULL DEFAULT 0")
+            db.execute("ALTER TABLE players ADD COLUMN fatigue_updated_at REAL")
+            db.execute("UPDATE players SET pp_unspent = level / 5 WHERE level IS NOT NULL")
+        if version <= 8:
+            # v9: clase inicial (Issue #112, GAMEPLAY.md 2). NULL hasta que el
             # jugador la elige; personajes existentes la eligen al volver.
             db.execute("ALTER TABLE players ADD COLUMN player_class TEXT "
                        "CHECK(player_class IN ('arcano', 'juramentado', 'sombra', 'artifice'))")
-        db.execute("PRAGMA user_version = 8")
+        db.execute(f"PRAGMA user_version = {SCHEMA_VERSION}")
 
 
 def allow_attempt(path, address):
@@ -264,13 +278,47 @@ def player_for_token(path, token):
     if not token:
         return None
     with connect(path) as db:
-        return db.execute(
-            f"""SELECT {CHARACTER_COLUMNS}
+        query = f"""SELECT {CHARACTER_COLUMNS}
                FROM players p
                JOIN sessions s ON s.player_id = p.id
-               WHERE s.token_hash = ? AND s.expires_at > ?""",
-            (digest(token), int(time.time())),
-        ).fetchone()
+               WHERE s.token_hash = ? AND s.expires_at > ?"""
+        params = (digest(token), int(time.time()))
+        row = db.execute(query, params).fetchone()
+        if row is not None and _settle_passive_fatigue(db, row):
+            row = db.execute(query, params).fetchone()
+        return row
+
+
+def _settle_passive_fatigue(db, row, now=None):
+    """GAMEPLAY.md 24.7: fuera de combate se recupera 1 punto de fatiga cada
+    FATIGUE_RECOVERY_SECONDS_PER_POINT segundos, calculado por tiempo
+    transcurrido en servidor al leer el personaje (no hay proceso de fondo).
+    En combate el reloj se reinicia sin recuperar. No toca HP ni heridas.
+    El UPDATE condicionado a la fatiga leida evita aplicar dos veces el
+    mismo tramo si dos solicitudes llegan juntas. Devuelve True si escribio."""
+    fatigue = row["fatigue"]
+    if not fatigue or fatigue <= 0 or row["room"] is None:
+        return False
+    now = time.time() if now is None else now
+    since = row["fatigue_updated_at"]
+    in_combat = db.execute("SELECT 1 FROM room_encounters WHERE player_id = ? AND room_id = ?",
+                           (row["id"], row["room"])).fetchone() is not None
+    step = combat.FATIGUE_RECOVERY_SECONDS_PER_POINT
+    recovered = 0 if since is None else int(max(0.0, now - since) // step)
+    if since is not None and recovered <= 0:
+        return False
+    if since is None or in_combat:
+        # Sin reloj previo, o en combate: solo se (re)inicia el reloj.
+        new_fatigue, new_since = fatigue, now
+    else:
+        new_fatigue = max(0, fatigue - recovered)
+        # Conserva la fraccion de intervalo ya transcurrida hacia el siguiente punto.
+        new_since = since + recovered * step
+    cursor = db.execute(
+        "UPDATE players SET fatigue = ?, fatigue_updated_at = ? WHERE id = ? AND fatigue = ?",
+        (new_fatigue, new_since, row["id"], fatigue),
+    )
+    return cursor.rowcount > 0
 
 
 def player_by_username(db, username):
@@ -400,28 +448,72 @@ def recent_messages(path, room, limit=30):
 # --- Progresion de personaje (VT-NAR-003 / GAMEPLAY.md 20-22) -------------
 
 def award_xp(path, player_id, amount):
-    """Aplica XP y sube de nivel (GAMEPLAY.md 22.1), recalculando HP maximo
-    (20.3) y curando al nuevo maximo en cada nivel ganado, mas 2 PA por
-    nivel (19). Devuelve el estado resultante."""
+    """Aplica XP y sube de nivel (GAMEPLAY.md 22.1/25.1), recalculando HP
+    maximo (20.3) sin curacion completa (25.6), 2 PA por nivel (19) y 1 PP
+    por cada nivel multiplo de 5 (25.8). Devuelve el estado resultante."""
     with connect(path) as db:
         row = character_by_id(db, player_id)
         new_level, new_xp, levels_gained = combat.apply_xp(row["level"], row["xp"], amount)
         hp_max_value, hp_current, pa_unspent = row["hp_max"], row["hp_current"], row["pa_unspent"]
+        pp_gained = combat.pp_gained(row["level"], new_level)
         if levels_gained:
             hp_max_value = combat.hp_max(new_level, row["attr_resistencia"], row["attr_voluntad"])
-            hp_current = hp_max_value
+            hp_current = combat.hp_after_max_change(row["hp_current"], row["hp_max"], hp_max_value)
             pa_unspent += 2 * levels_gained
         db.execute(
-            "UPDATE players SET level=?, xp=?, hp_max=?, hp_current=?, pa_unspent=? WHERE id=?",
-            (new_level, new_xp, hp_max_value, hp_current, pa_unspent, player_id),
+            "UPDATE players SET level=?, xp=?, hp_max=?, hp_current=?, pa_unspent=?, "
+            "pp_unspent = pp_unspent + ? WHERE id=?",
+            (new_level, new_xp, hp_max_value, hp_current, pa_unspent, pp_gained, player_id),
         )
         return {"level": new_level, "xp": new_xp, "levels_gained": levels_gained,
+                "pa_gained": 2 * levels_gained, "pp_gained": pp_gained,
                 "hp_current": hp_current, "hp_max": hp_max_value}
+
+
+def spend_attribute_point(path, player_id, attribute, expected_value):
+    """GAMEPLAY.md 25.4: +1 a un atributo pagando el coste de 19, fuera de
+    combate, de forma atomica. `expected_value` es el valor que el jugador
+    vio al confirmar (25.5): si ya no coincide, la confirmacion quedo
+    vieja y no se gasta nada. El UPDATE condicionado sobre atributo y PA
+    impide que dos solicitudes concurrentes gasten el mismo saldo.
+    Devuelve (ok, reason_or_None, estado_or_None)."""
+    if attribute not in combat.ATTRIBUTES:
+        return False, "unknown_attribute", None
+    column = f"attr_{attribute}"
+    with connect(path) as db:
+        row = character_by_id(db, player_id)
+        if row is None or row["level"] is None or row["species"] is None:
+            return False, "no_character", None
+        if db.execute("SELECT 1 FROM room_encounters WHERE player_id = ? AND room_id = ?",
+                      (player_id, row["room"])).fetchone():
+            return False, "in_combat", None
+        current = row[column]
+        if expected_value is not None and expected_value != current:
+            return False, "stale_confirmation", None
+        cost = combat.attribute_cost(current)
+        if row["pa_unspent"] < cost:
+            return False, "not_enough_pa", None
+        resistencia = row["attr_resistencia"] + (1 if attribute == "resistencia" else 0)
+        voluntad = row["attr_voluntad"] + (1 if attribute == "voluntad" else 0)
+        new_max = combat.hp_max(row["level"], resistencia, voluntad)
+        new_hp = combat.hp_after_max_change(row["hp_current"], row["hp_max"], new_max)
+        cursor = db.execute(
+            f"""UPDATE players SET {column} = {column} + 1, pa_unspent = pa_unspent - ?,
+                   hp_max = ?, hp_current = ?
+               WHERE id = ? AND {column} = ? AND pa_unspent >= ?""",
+            (cost, new_max, new_hp, player_id, current, cost),
+        )
+        if cursor.rowcount == 0:
+            return False, "stale_confirmation", None
+        return True, None, {"attribute": attribute, "previous_value": current, "value": current + 1,
+                            "cost": cost, "pa_unspent": row["pa_unspent"] - cost,
+                            "hp_current": new_hp, "hp_max": new_max}
 
 
 def award_discovery(path, player_id, key, category, reference_level):
     """Otorga un descubrimiento/hito una sola vez por personaje (22.7).
-    Devuelve (is_new, xp_awarded)."""
+    Devuelve (is_new, xp_awarded, xp_state_or_None) -- xp_state es el
+    resultado de award_xp, para notificar una subida de nivel (25.9)."""
     xp_amount = combat.discovery_xp(reference_level, category)
     with connect(path) as db:
         cursor = db.execute(
@@ -429,9 +521,8 @@ def award_discovery(path, player_id, key, category, reference_level):
             (player_id, key, xp_amount, utcnow()),
         )
         is_new = cursor.rowcount > 0
-    if is_new:
-        award_xp(path, player_id, xp_amount)
-    return is_new, xp_amount
+    xp_state = award_xp(path, player_id, xp_amount) if is_new else None
+    return is_new, xp_amount, xp_state
 
 
 def list_discoveries(path, player_id):
@@ -588,8 +679,13 @@ def update_combat_state(path, player_id, hp_current=None, wound=None, room=None,
         fields.append("room = ?")
         params.append(room)
     if fatigue is not None:
+        # Cualquier cambio explicito de fatiga reinicia el reloj de la
+        # recuperacion pasiva (24.7): el esfuerzo de esta accion no se
+        # "descuenta" con tiempo anterior a ella.
         fields.append("fatigue = ?")
         params.append(fatigue)
+        fields.append("fatigue_updated_at = ?")
+        params.append(time.time())
     if not fields:
         return
     params.append(player_id)

@@ -2,7 +2,7 @@
 
 Cubre: el paso de clase aparece después de la especie, se elige una sola vez,
 bloquea el mundo mientras falta, entrega el arma inicial del catálogo y
-personajes existentes (esquema v7) la eligen al volver sin perder nada.
+personajes existentes (esquema v8) la eligen al volver sin perder nada.
 """
 from concurrent.futures import ThreadPoolExecutor
 import re
@@ -140,8 +140,8 @@ class ClassChoiceTests(unittest.TestCase):
         self.assertEqual({row["item_key"] for row in inventory["items"]},
                          {"espada_juramento", "varita_aprendiz"})
 
-    def test_existing_v7_character_keeps_progress_and_chooses_class_on_return(self):
-        # Simula un personaje ya jugado en esquema v7 (antes de #112).
+    def test_existing_v8_character_keeps_progress_and_chooses_class_on_return(self):
+        # Simula un personaje ya jugado en esquema v8 (antes de #112).
         with store.connect(self.path) as db:
             db.execute("UPDATE players SET player_class = NULL")
         self.enter_with_species("dravak")
@@ -149,10 +149,10 @@ class ClassChoiceTests(unittest.TestCase):
         store.award_xp(self.path, player_id, 40)
         with sqlite3.connect(self.path) as db:
             db.execute("ALTER TABLE players DROP COLUMN player_class")
-            db.execute("PRAGMA user_version = 7")
+            db.execute("PRAGMA user_version = 8")
         app = create_app(self.config)
         with store.connect(self.path) as db:
-            self.assertEqual(db.execute("PRAGMA user_version").fetchone()[0], 8)
+            self.assertEqual(db.execute("PRAGMA user_version").fetchone()[0], 9)
             row = db.execute("SELECT species, room, xp, player_class FROM players WHERE id = ?",
                              (player_id,)).fetchone()
         self.assertEqual((row["species"], row["room"], row["xp"], row["player_class"]),

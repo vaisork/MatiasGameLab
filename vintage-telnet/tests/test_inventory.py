@@ -124,7 +124,7 @@ class InventoryIntegrationTests(unittest.TestCase):
     def test_schema_creates_inventory_table_and_equip_columns(self):
         self.register_and_enter_world()
         with store.connect(self.path) as db:
-            self.assertEqual(db.execute("PRAGMA user_version").fetchone()[0], 8)
+            self.assertEqual(db.execute("PRAGMA user_version").fetchone()[0], store.SCHEMA_VERSION)
             db.execute("SELECT equipped_weapon_id, equipped_armor_id FROM players LIMIT 1")
             db.execute("SELECT id, player_id, item_key, category, forge_validated, acquired_at "
                        "FROM inventory_items")

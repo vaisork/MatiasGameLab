@@ -305,6 +305,17 @@ def create_app(config=None):
     def _attributes(player):
         return {name: player[f"attr_{name}"] for name in combat.ATTRIBUTES}
 
+    def _level_up_message(xp_state):
+        """GAMEPLAY.md 25.9: aviso breve de nuevo nivel, PA y PP obtenidos.
+        No abre ninguna distribucion obligatoria; el jugador decide cuando
+        gastar sus PA desde Personaje."""
+        if not xp_state or not xp_state["levels_gained"]:
+            return None
+        message = f"¡Subes a nivel {xp_state['level']}! +{xp_state['pa_gained']} PA"
+        if xp_state["pp_gained"]:
+            message += f", +{xp_state['pp_gained']} PP"
+        return message + "."
+
     def _equipment(player):
         """GAMEPLAY.md 32: arma/armadura activas resueltas a sus valores de
         catálogo (Issue #57). Sin arma equipada usa `combat.BASE_ARMA` (10),
@@ -354,10 +365,13 @@ def create_app(config=None):
         awarded_message = None
         if discovery_key:
             discovery = world.get_discovery(discovery_key)
-            is_new, xp_amount = store.award_discovery(
+            is_new, xp_amount, xp_state = store.award_discovery(
                 path, player["id"], discovery_key, discovery["category"], discovery["reference_level"])
             if is_new:
                 awarded_message = f"{discovery['message']} (+{xp_amount} XP)"
+                level_message = _level_up_message(xp_state)
+                if level_message:
+                    awarded_message = f"{awarded_message} {level_message}"
         return text, awarded_message
 
     def attempt_evaluate(player):
@@ -426,8 +440,9 @@ def create_app(config=None):
             messages.append(f"¡{creature['name']} cae derrotado! Ganas {xp_amount} XP.")
             if is_first:
                 messages.append(f"Primera vez que superas a un {creature['name']}: bono de familia incluido.")
-            if xp_state["levels_gained"]:
-                messages.append(f"¡Subes a nivel {xp_state['level']}!")
+            level_message = _level_up_message(xp_state)
+            if level_message:
+                messages.append(level_message)
             return {"outcome": "victory", "messages": messages}
 
         store.update_encounter(path, player["id"], player["room"], hp_current=creature_hp)
@@ -1178,11 +1193,55 @@ def create_app(config=None):
             species=g.player["species"], player_class=g.player["player_class"],
             level=g.player["level"], xp=g.player["xp"],
             xp_to_next=combat.xp_for_next_level(g.player["level"]),
-            pa_unspent=g.player["pa_unspent"],
+            pa_unspent=g.player["pa_unspent"], pp_unspent=g.player["pp_unspent"],
             hp_current=g.player["hp_current"], hp_max=g.player["hp_max"],
             fatigue=g.player["fatigue"], wound=g.player["wound"],
             attributes=_attributes(g.player),
+            # GAMEPLAY.md 19/25.4: coste visible del siguiente +1 de cada
+            # atributo, para que el panel muestre valor actual, nuevo valor y
+            # coste antes de confirmar. El cliente no calcula costes.
+            attribute_costs={name: combat.attribute_cost(value)
+                             for name, value in _attributes(g.player).items()},
+            in_combat=bool(g.player["room"] and store.get_encounter(path, g.player["id"], g.player["room"])),
             discoveries=store.list_discoveries(path, g.player["id"]),
+        )
+
+    @app.post("/api/character/attributes")
+    def api_spend_attribute_point():
+        """GAMEPLAY.md 25.4/25.5: gastar PA en +1 de un atributo. El cliente
+        envía el atributo y el valor que el jugador vio al confirmar
+        (`current_value`); si ya cambió, se rechaza como confirmación vieja
+        en vez de gastar sobre un estado distinto. Solo fuera de combate, sin
+        PA negativos y atómico frente a solicitudes concurrentes. Sin
+        deshacer en v1."""
+        error = api_player_state(g.player)
+        if error:
+            return error
+        if g.player["species"] is None:
+            return jsonify(error="species_required"), 409
+        if g.player["player_class"] is None:
+            return jsonify(error="class_required"), 409
+        payload = request.get_json(silent=True) or {}
+        attribute = str(payload.get("attribute", ""))
+        expected = payload.get("current_value")
+        if not isinstance(expected, int) or isinstance(expected, bool):
+            return jsonify(accepted=False, reason="confirmation_required",
+                           message="Confirma el valor actual del atributo antes de gastar PA."), 400
+        ok, reason, result = store.spend_attribute_point(path, g.player["id"], attribute, expected)
+        if not ok:
+            messages = {
+                "unknown_attribute": "Ese atributo no existe.",
+                "no_character": "Tu personaje todavía no está listo.",
+                "in_combat": "No puedes mejorar atributos con una criatura cerca.",
+                "stale_confirmation": "Tu personaje cambió; revisa los valores y vuelve a confirmar.",
+                "not_enough_pa": "No tienes PA suficientes para esa mejora.",
+            }
+            status = 400 if reason == "unknown_attribute" else 409
+            return jsonify(accepted=False, reason=reason, message=messages[reason]), status
+        return jsonify(
+            accepted=True, **result,
+            next_cost=combat.attribute_cost(result["value"]),
+            message=f"{result['attribute'].capitalize()} sube a {result['value']} (−{result['cost']} PA).",
         )
 
     @app.get("/api/inventory")
