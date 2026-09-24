@@ -1,0 +1,19 @@
+name: Review Raspberry follow-up fixes
+on:
+  push:
+    branches:
+      - programador-ligero-2/review-raspberry-followup-fixes
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: vintage-telnet
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install -r requirements.txt
+      - run: python -m py_compile ops/raspberry_preflight.py server/npc_personality_cli.py
+      - run: python -m unittest discover -s tests -v
