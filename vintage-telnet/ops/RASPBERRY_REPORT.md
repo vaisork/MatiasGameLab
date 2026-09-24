@@ -649,3 +649,54 @@ siguiente corrida.
 
 No adjuntar contraseñas, claves, cookies, hashes ni bases. No afirmar resultados
 de pruebas que no se ejecutaron. Acceso desde fuera de casa: fuera de esta entrega.
+
+## Despliegue: fix de preflight (release HEAD) + timeout CLI Ollama (PR #129) — 2026-09-24
+
+Javier pidió revisar si había trabajo pendiente y "repararlo, correrlo y
+terminarlo". Encontré PR #129, abierto por otro especialista, con dos fixes:
+
+1. `ops/raspberry_preflight.py`: `deployed_revision()` ahora también detecta
+   el SHA a partir del nombre del directorio de release cuando no hay
+   checkout de git en la ruta desplegada (antes solo miraba `git rev-parse
+   HEAD`, lo cual siempre falla en un despliegue por `git archive` sin
+   `.git`). Esto corrige un falso negativo permanente del check "Release
+   HEAD" del preflight en producción.
+2. `server/npc_personality_cli.py`: `--timeout` default subido de `45.0` a
+   `180.0`, para que coincida con el default ya corregido de
+   `OllamaPersonalityClient` (PR #118). Sin este fix, invocar el CLI
+   directamente seguía usando un timeout demasiado corto para generación
+   real de personalidad NPC.
+
+Pasos:
+
+- **Pruebas aisladas antes de desplegar**: venv limpio en `/tmp/verify_v9`,
+  `pip install -r requirements.txt`, `python -m unittest discover -s tests
+  -v` → **196/196 pruebas OK**, `pip check` limpio.
+- Revisé el PR (`gh pr diff 129`), diff acotado a `ops/` y
+  `server/npc_personality_cli.py`, sin cambios de esquema. Confirmé con
+  Javier ("Si has el merge") antes de mergear, porque el clasificador de
+  auto-modo bloqueó el merge inicial citando autorización insuficiente.
+  Mergeado como `0ffcc36b5aff71a3c4f419d476736bd6deea0fad`.
+- Generé `ops/update_v9_authorized.py` (mismo patrón que v5–v8), SHA fijado
+  al commit de merge, `EXPECTED_SCHEMA = 7` (sin migración en este
+  despliegue). Javier lo corrió con sudo.
+- **Verificación post-despliegue**:
+  - `readlink -f /opt/vintage-telnet/current` → apunta al release
+    `0ffcc36b...` correcto.
+  - `healthz` local y por Funnel (`https://raspberrypi.tail3d212e.ts.net/`)
+    → `{"status":"ok","schema_version":7}` en ambos.
+  - `systemctl status vintage-telnet.service` → `active (running)`.
+  - **8 jugadores preservados** (conteo real vía `server.admin players`
+    corrido como el usuario `vintage-telnet`, comparado contra el
+    snapshot previo al despliegue que el propio script tomó).
+  - **Validé el fix #1 en su ubicación real** (no en una copia a `/tmp`,
+    que había dado un falso negativo la vez anterior por romper la
+    resolución de rutas basada en `Path(__file__)` del script): corrí
+    `python3 ops/raspberry_preflight.py --expected-head 0ffcc36b...` desde
+    `/opt/vintage-telnet/current/vintage-telnet` → **9/9 checks críticos
+    OK**, incluyendo `[OK] Release HEAD: 0ffcc36b...` (antes fallaba). El
+    "bug" que reporté la sesión anterior fue enteramente un artefacto de mi
+    propia prueba, no del código; el fix real de PR #129 es correcto.
+
+Sin incidentes. Servicio no reiniciado por mí manualmente fuera del
+despliegue; el operador (Javier) ejecutó el script con sudo en ambos pasos.
