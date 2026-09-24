@@ -798,6 +798,7 @@ reinicié el servicio real, no asumí resultado de producción.
 4. Generar el script de despliegue con `EXPECTED_SCHEMA = 9` (no 8) y el SHA correcto — mismo patrón que v5–v9, o el deploy reusable de Issue #141 si ya existe y está probado para entonces.
 5. Javier ejecuta con `sudo` (esta sesión no tiene sudo interactivo).
 6. Verificar `healthz` (`schema_version: 9`), `systemctl status`, conteo de jugadores preservado (hoy 8) y probar en el navegador real: especie → clase → arma inicial equipada, y el flujo de gasto de PA (#132) que ya dependía de clase.
+7. Issue #135 (pantalla principal, PR #137 ya integrada a `main`) queda explícitamente pendiente de "prueba en teléfono real después del próximo despliegue del Operador de Raspberry" según su propio hilo: exploración en Valdren, combate con Mordelinde y panel Mapa a 390 px. Conviene cubrirlo en la misma sesión de despliegue en vez de abrir una visita aparte a la Raspberry.
 
 No adjunto contraseñas, claves, cookies, hashes ni bases en este reporte.
 No afirmo ningún resultado de despliegue que no se ejecutó realmente.
