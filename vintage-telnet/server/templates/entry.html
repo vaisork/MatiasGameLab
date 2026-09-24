@@ -199,6 +199,41 @@
 
     .auth{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}
     .auth .card-body{padding:14px}
+    .onboarding{width:min(100%,34rem);margin:0 auto;align-self:start}
+    .onboarding-panel{width:100%}
+    .onboarding-welcome{
+      border:1px solid var(--line);border-radius:16px;background:linear-gradient(180deg,var(--shell2),var(--panel));
+      box-shadow:0 18px 55px #0008;padding:clamp(18px,4vw,28px)
+    }
+    .onboarding-kicker{margin:0 0 8px;color:var(--gold);font:800 .72rem ui-monospace,monospace;letter-spacing:.12em;text-transform:uppercase}
+    .onboarding h1{margin:0;color:var(--green3);font:800 clamp(1.6rem,7vw,2.4rem)/1.05 ui-monospace,monospace;letter-spacing:.06em;text-transform:uppercase}
+    .onboarding-subtitle{margin:12px 0 0;color:var(--ink);font:700 1rem/1.45 ui-sans-serif,system-ui,sans-serif}
+    .onboarding-about{margin:10px 0 0;color:#d9ccb1;font:.9rem/1.55 ui-sans-serif,system-ui,sans-serif}
+    .onboarding-actions{display:grid;grid-template-columns:1fr;gap:6px;margin-top:18px}
+    .onboarding-actions p{margin:0 0 8px;color:var(--muted);font:.78rem/1.35 ui-sans-serif,system-ui,sans-serif}
+    .how-start{margin-top:18px;border-top:1px solid #4b3a25;padding-top:14px}
+    .how-start h2{margin:0 0 8px;color:var(--gold);font:800 .95rem ui-sans-serif,system-ui,sans-serif}
+    .how-start ol{margin:0;padding-left:1.2rem;color:#d9ccb1;font:.84rem/1.55 ui-sans-serif,system-ui,sans-serif}
+    .onboarding .card-body{padding:16px}
+    .onboarding .card-head span{font-size:.82rem;color:var(--muted)}
+    .onboarding form .btn.primary{margin-top:16px}
+    .onboarding-nav{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+    .onboarding-note{margin:12px 0 0;color:var(--muted);font:.78rem/1.45 ui-sans-serif,system-ui,sans-serif}
+    .state-panel{width:min(100%,34rem);margin:0 auto}
+    .state-panel .card-body{padding:20px}
+    .state-panel h2{margin:0 0 8px;color:var(--gold);font:800 1.15rem/1.2 ui-sans-serif,system-ui,sans-serif}
+    .state-panel p{margin:0 0 10px;color:#d9ccb1;line-height:1.55}
+    .species-shell{width:min(100%,960px);margin:0 auto}
+    .species-intro{margin-bottom:12px;padding:16px;border:1px solid var(--line);border-radius:14px;background:linear-gradient(180deg,var(--shell2),var(--panel))}
+    .species-intro h2{margin:0 0 6px;color:var(--gold)}
+    .species-intro p{margin:0;color:#d9ccb1;line-height:1.5}
+    .species-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+    .species-card{display:block;position:relative;border:1px solid #4c5a6d;border-radius:12px;background:#101722;padding:12px;cursor:pointer}
+    .species-card:has(input:checked){border-color:var(--gold);box-shadow:0 0 0 2px #d7b56a33}
+    .species-card input{position:absolute;top:12px;right:12px}
+    .species-art-placeholder{display:grid;place-items:center;aspect-ratio:4/3;margin-bottom:10px;border:1px dashed #465366;border-radius:9px;color:var(--muted);font:700 .75rem ui-sans-serif,system-ui,sans-serif}
+    .species-card strong{display:block;color:var(--green3);margin-bottom:5px;font:.95rem ui-sans-serif,system-ui,sans-serif}
+    .species-card span{display:block;color:#d9ccb1;font:.78rem/1.45 ui-sans-serif,system-ui,sans-serif}
     label{display:block;margin-top:12px;font-size:.85rem;color:var(--muted)}
     input[type=text],input[type=password],input[type=email]{
       display:block;width:100%;margin-top:4px;min-height:44px;border-radius:8px;border:1px solid var(--line);
@@ -212,8 +247,13 @@
       .layout{grid-template-columns:1fr}
       .side{display:none}
       .auth{grid-template-columns:1fr}
+      .species-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
     }
-    @media(max-width:700px){.help-grid{grid-template-columns:1fr}}
+    @media(max-width:700px){
+      .help-grid{grid-template-columns:1fr}
+      .species-grid{grid-template-columns:1fr}
+      .onboarding-nav{grid-template-columns:1fr}
+    }
         @media(max-width:640px){
       .app{
         height:100dvh;overflow:auto;padding:max(6px,env(safe-area-inset-top)) 6px max(6px,env(safe-area-inset-bottom));
@@ -266,39 +306,13 @@
   {% if error %}<div class="alert-note" role="alert">{{ error }}</div>{% endif %}
 
   {% if not player %}
-    <div class="layout auth">
-      <section class="card">
-        <div class="card-head"><b>Entrar</b><span>Ya tengo cuenta</span></div>
-        <div class="card-body">
-          <form method="post" action="/login">
-            <input type="hidden" name="csrf" value="{{ session.csrf }}">
-            <label>Usuario<input type="text" name="username" autocomplete="username" required maxlength="32" autocapitalize="none" spellcheck="false"></label>
-            <label>Contraseña<input type="password" name="password" autocomplete="current-password" required maxlength="128"></label>
-            <button class="btn primary" type="submit" style="margin-top:16px">Entrar</button>
-          </form>
-        </div>
-      </section>
-      <section class="card">
-        <div class="card-head"><b>Crear cuenta</b><span>Soy nuevo</span></div>
-        <div class="card-body">
-          <form method="post" action="/register">
-            <input type="hidden" name="csrf" value="{{ session.csrf }}">
-            <label>Nombre para mostrar<input type="text" name="name" required maxlength="60" autocomplete="nickname"></label>
-            <small>Puede ser un apodo.</small>
-            <label>Usuario<input type="text" name="username" required minlength="3" maxlength="32" pattern="[a-zA-Z0-9_]{3,32}" autocomplete="username" autocapitalize="none" spellcheck="false"></label>
-            <small>3-32 letras/números sin acentos, o guion bajo.</small>
-            <label>Contraseña<input type="password" name="password" required minlength="8" maxlength="128" autocomplete="new-password"></label>
-            <small>Mínimo 8 caracteres. Guarda tu usuario y contraseña.</small>
-            <button class="btn primary" type="submit" style="margin-top:16px">Registrarme</button>
-          </form>
-          <small style="margin-top:14px">Tu cuenta queda pendiente de aprobación del Dungeon Master antes de poder jugar.</small>
-        </div>
-      </section>
-    </div>
+    {% include "_onboarding_guest.html" %}
 
   {% elif player.status == 'pending' %}
-    <section class="card"><div class="card-body" style="padding:16px">
-      <p>Tu cuenta todavía está pendiente de aprobación del Dungeon Master.</p>
+    <section class="card state-panel"><div class="card-body">
+      <h2>Tu entrada está siendo preparada</h2>
+      <p>Tu cuenta fue recibida. El Dungeon Master debe aprobar a los personajes nuevos antes de que comiencen su viaje.</p>
+      <p class="onboarding-note">Cuando tu entrada esté habilitada, podrás continuar con la elección de especie.</p>
       <form method="post" action="/logout"><input type="hidden" name="csrf" value="{{ session.csrf }}"><button class="btn" type="submit">Cerrar sesión</button></form>
     </div></section>
 
@@ -309,17 +323,38 @@
     </div></section>
 
   {% elif player.species is none %}
-    <section class="card"><div class="card-body" style="padding:16px">
-      <h3 style="color:var(--gold);margin-top:0">Elige tu especie</h3>
+    <section class="species-shell">
+      <div class="species-intro">
+        <h2>Tu viaje puede comenzar</h2>
+        <p>Elige la especie de tu personaje. Cada una tiene un cuerpo y una forma natural distinta de relacionarse con el mundo; ninguna decide por ti qué camino seguirás.</p>
+      </div>
       <form method="post" action="/species">
         <input type="hidden" name="csrf" value="{{ session.csrf }}">
-        {% for s in species_list %}
-          <label class="species-option"><input type="radio" name="species" value="{{ s.id }}" required>
-            <strong>{{ s.name }}</strong> — {{ s.blurb }}</label>
-        {% endfor %}
-        <button class="btn primary" type="submit" style="margin-top:16px">Confirmar especie</button>
+        <div class="species-grid">
+          {% for s in species_list %}
+          <label class="species-card">
+            <input type="radio" name="species" value="{{ s.id }}" required>
+            <span class="species-art-placeholder" aria-hidden="true">Retrato pendiente de asset aprobado</span>
+            <strong>{{ s.name }}</strong>
+            {% if s.id == 'humano' %}
+              <span>Fisiología generalista, capaz de adaptarse a entornos muy distintos mediante experiencia, herramientas y conocimiento.</span>
+            {% elif s.id == 'felaryn' %}
+              <span>Humanoides de pelaje fino, orejas y cola felinas, con gran visión, equilibrio preciso y adaptación al terreno montañoso.</span>
+            {% elif s.id == 'dravak' %}
+              <span>Adultos compactos y robustos, con zonas dérmicas de aspecto mineral y un cuerpo adaptado a roca y espacios reducidos.</span>
+            {% elif s.id == 'marevyn' %}
+              <span>Altos y estilizados, con escamas parciales y un cuerpo adaptado a vivir y desplazarse alrededor del agua.</span>
+            {% elif s.id == 'vesperi' %}
+              <span>Humanoides adaptados a ambientes de poca luz, especialmente atentos a detalles que pueden perderse en la penumbra.</span>
+            {% else %}
+              <span>{{ s.blurb }}</span>
+            {% endif %}
+          </label>
+          {% endfor %}
+        </div>
+        <button class="btn primary" type="submit" style="margin-top:14px">Confirmar especie</button>
       </form>
-    </div></section>
+    </section>
 
   {% else %}
     <div class="layout">
@@ -486,6 +521,21 @@
 
 <script nonce="{{ csp_nonce }}">
 (() => {
+  const onboarding = document.querySelector("[data-onboarding]");
+  if (onboarding) {
+    const views = [...onboarding.querySelectorAll("[data-onboarding-view]")];
+    const showOnboarding = name => {
+      views.forEach(view => { view.hidden = view.dataset.onboardingView !== name; });
+      onboarding.dataset.view = name;
+      const target = views.find(view => view.dataset.onboardingView === name);
+      const focusTarget = target && target.querySelector("h1,[id$='-title'],input,button");
+      if (focusTarget) focusTarget.focus({preventScroll:true});
+    };
+    onboarding.querySelectorAll("[data-onboarding-go]").forEach(button => {
+      button.addEventListener("click", () => showOnboarding(button.dataset.onboardingGo));
+    });
+  }
+
   document.querySelectorAll("[data-open]").forEach(b => b.addEventListener("click", () => {
     const d = document.getElementById(b.dataset.open);
     if (d && !d.open) d.showModal();
