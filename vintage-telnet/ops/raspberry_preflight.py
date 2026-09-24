@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 from pathlib import Path
 import subprocess
 import sys
@@ -18,6 +19,25 @@ import urllib.request
 ROOT = Path(__file__).resolve().parents[1]
 REPO_ROOT = ROOT.parent
 DEFAULT_EXTERNAL = "https://raspberrypi.tail3d212e.ts.net"
+_SHA_RE = re.compile(r"^[0-9a-f]{7,40}$")
+
+
+def deployed_revision() -> tuple[bool, str]:
+    """Return deployed revision from Git checkout or archived release path."""
+    code, head = run(["git", "rev-parse", "HEAD"], cwd=REPO_ROOT)
+    if code == 0 and _SHA_RE.fullmatch(head):
+        return True, head
+
+    # Production releases are created with git archive, so there is no .git.
+    # Path.resolve() follows /opt/vintage-telnet/current into releases/<sha>/...
+    for parent in (ROOT, *ROOT.parents):
+        candidate = parent.name.lower()
+        if _SHA_RE.fullmatch(candidate):
+            return True, candidate
+
+    return False, "no se pudo determinar SHA (sin .git ni directorio de release con SHA)"
+
+
 
 
 def run(cmd: list[str], *, cwd: Path | None = None, timeout: int = 30) -> tuple[int, str]:
@@ -104,11 +124,10 @@ def main() -> int:
 
     checks: list[bool] = []
 
-    code, head = run(["git", "rev-parse", "HEAD"], cwd=REPO_ROOT)
-    head_ok = code == 0 and bool(head)
+    head_ok, head = deployed_revision()
     if args.expected_head and head_ok:
         head_ok = head.startswith(args.expected_head) or args.expected_head.startswith(head)
-    checks.append(item("Git HEAD", head_ok, head or f"error {code}"))
+    checks.append(item("Release HEAD", head_ok, head))
 
     code, service = run(["systemctl", "is-active", "vintage-telnet.service"])
     checks.append(item("vintage-telnet.service", code == 0 and service == "active", service or f"error {code}"))
