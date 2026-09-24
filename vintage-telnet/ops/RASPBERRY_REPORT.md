@@ -878,3 +878,61 @@ vigente):**
 No adjunto contraseñas, claves, cookies, hashes ni bases en este reporte.
 No afirmo ningún resultado de instalación, despliegue o rollback que no se
 ejecutó realmente.
+
+## Actualización de la revisión periódica — Javier autorizó la primera instalación real, sigue bloqueada por hardware — 2026-09-24
+
+Misma sesión automatizada en la nube (sin SSH/sudo a la Raspberry real).
+Desde la nota anterior, `main` avanzó a `7384d05e61e3bb09b942ef2b3b29a7e5ce80113c`
+(merge de PR #146, `2d25225`/`ab61e88`), y en la Issue #141 quedaron dos
+novedades que no estaban cuando escribí la nota anterior:
+
+- **PR #146 corrigió el bug que yo había reportado** (el `\n` literal entre
+  los dos `echo` finales de `install_vt_deploy_command.sh`) y además arregla
+  que reintentar el mismo SHA tras un rollback quedaba bloqueado, corrige el
+  manejo de IDs de jugador tipo UUID, y sube el timeout de la suite a 1200 s.
+  Según el propio hilo, `Claude — Desarrollador de Servidor` corrió
+  `vt-deploy` completo en una **Raspberry simulada** (no la física de
+  Javier) y confirma que el deploy normal (7→9, 3 jugadores preservados) y
+  el rollback automático funcionan ahí.
+- Javier autorizó integrar PR #146 y el hilo de la Issue #141 ahora contiene
+  instrucciones explícitas dirigidas a "quien opere la Raspberry (Claude u
+  otro programador)" para hacer la **primera instalación real** de
+  `vt-deploy` y desplegar `latest` (esquema 9) en el equipo físico.
+
+**No ejecuté esas instrucciones en esta corrida** — siguen siendo, por
+diseño de esta tarea periódica (punto 3: sin SSH/sudo al equipo físico),
+exactamente el tipo de trabajo que debo dejar documentado en vez de
+simular. La prueba en la Raspberry simulada de PR #146 no reemplaza la
+prueba en la Raspberry física de Javier que la propia Issue #141 exige
+antes de cerrarla ("no activar en producción hasta probar una actualización
+y un rollback reales").
+
+**Pendiente para la próxima sesión con acceso físico real** (reemplaza el
+punto 3 de la nota anterior; los puntos 1, 4 y 5 siguen vigentes tal cual):
+
+1. `cd ~/MatiasGameLab && git pull --ff-only origin main` y confirmar que
+   `main` sigue en `7384d05` o más nuevo antes de instalar nada.
+2. `sudo sh vintage-telnet/ops/install_vt_deploy_command.sh` — verificar que
+   el mensaje final ahora sale en dos líneas separadas ("Uso normal…" /
+   "También acepta…"), confirmando que el fix de PR #146 también funciona
+   en el equipo real.
+3. `sudo vt-deploy latest` — este es el despliegue real de esquema v9
+   (7→9) que sigue pendiente desde hace varias notas. Verificar que la
+   salida termine en `DESPLIEGUE OK: <sha> · schema 9 · N jugadores
+   preservados.`; si falla después del switch, confirmar que el rollback
+   automático deja el servicio corriendo en la versión anterior.
+4. `curl -s http://127.0.0.1:8080/healthz` → `schema_version: 9`;
+   `systemctl status vintage-telnet` → `active (running)`; probar en
+   navegador real que un jugador existente vea primero la elección de clase
+   y luego el juego con la pantalla nueva (comportamiento esperado, no
+   error).
+5. Con `vt-deploy` ya validado en producción, cerrar la Issue #141
+   documentando la prueba real de despliegue y rollback (no solo la de la
+   Raspberry simulada de PR #146).
+6. Aprovechar la misma visita física para la prueba de Android pendiente de
+   la Issue #83 y el probe de Ollama real de la Issue #19 — ambas listas en
+   `main`, bloqueadas únicamente por esta misma limitación de hardware.
+
+No adjunto contraseñas, claves, cookies, hashes ni bases en este reporte.
+No afirmo ningún resultado de instalación, despliegue o rollback que no se
+ejecutó realmente en el hardware físico.
