@@ -1,6 +1,11 @@
 import unittest
 
-from server.npc_personality import PersonalityError, enrich_personality_once, validate_personality
+from server.npc_personality import (
+    OllamaPersonalityClient,
+    PersonalityError,
+    enrich_personality_once,
+    validate_personality,
+)
 
 
 GOOD_PERSONALITY = {
@@ -35,6 +40,16 @@ class FakeClient:
         return validate_personality(self.payload)
 
 
+class CaptureOllamaClient(OllamaPersonalityClient):
+    def __init__(self):
+        super().__init__(model="modelo-prueba:3b")
+        self.captured = None
+
+    def _json_request(self, path, *, method="GET", payload=None):
+        self.captured = {"path": path, "method": method, "payload": payload}
+        return {"response": __import__("json").dumps(GOOD_PERSONALITY, ensure_ascii=False)}
+
+
 class NpcPersonalityTests(unittest.TestCase):
     def npc(self):
         return {
@@ -63,7 +78,7 @@ class NpcPersonalityTests(unittest.TestCase):
         )
         self.assertEqual(
             enriched["personality_provenance"]["personality_prompt_version"],
-            "vt-npc-personality-v1",
+            "vt-npc-personality-v2",
         )
         self.assertNotIn("personality", original)
 
@@ -104,6 +119,23 @@ class NpcPersonalityTests(unittest.TestCase):
         bad["example_phrases"] = []
         with self.assertRaises(PersonalityError):
             validate_personality(bad)
+
+    def test_real_client_uses_schema_no_thinking_and_long_timeout(self):
+        client = CaptureOllamaClient()
+        personality = client.generate_personality(self.npc())
+
+        self.assertEqual(personality, GOOD_PERSONALITY)
+        self.assertEqual(client.timeout, 180.0)
+        payload = client.captured["payload"]
+        self.assertEqual(client.captured["path"], "/api/generate")
+        self.assertEqual(client.captured["method"], "POST")
+        self.assertIs(payload["think"], False)
+        self.assertEqual(payload["options"]["temperature"], 0)
+        self.assertIsInstance(payload["format"], dict)
+        self.assertEqual(payload["format"]["type"], "object")
+        self.assertFalse(payload["format"]["additionalProperties"])
+        self.assertIn("expressive_reactions", payload["format"]["required"])
+        self.assertEqual(payload["format"]["properties"]["expressive_reactions"]["minItems"], 1)
 
 
 if __name__ == "__main__":
