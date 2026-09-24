@@ -86,6 +86,10 @@
     .entry .cmd{color:var(--green3);font-weight:800;font-size:.84rem;margin-bottom:5px}
     .entry p{margin:0;color:var(--green);font-size:clamp(1.02rem,2.2vw,1.1rem);line-height:1.58;max-width:78ch}
     .entry p.system{color:#70c985}
+    .terminal.in-combat .room-description-entry{opacity:.72}
+    .terminal.in-combat .room-description-entry p{font-size:.94em}
+    .encounter-entry{border-left:3px solid #7d4b41;padding-left:10px}
+    .terminal.in-combat .encounter-entry{background:#240d0a66;border-radius:0 8px 8px 0;padding-block:8px;padding-right:8px}
     .terminal-alert{
       border-top:1px solid #174426;background:#020604;padding:8px 12px;color:#79d88d;
       font-size:.77rem;line-height:1.35
@@ -368,14 +372,14 @@
   {% else %}
     <div class="layout">
       <main class="game-shell">
-        <section class="terminal" aria-labelledby="placeTitle">
+        <section class="terminal{% if room.encounter %} in-combat{% endif %}" aria-labelledby="placeTitle">
           <div class="terminal-head">
             <strong id="placeTitle">{{ room.name.upper() }}</strong>
             {% if room.encounter %}<span class="combat-flag">● COMBATE</span>{% else %}<span>TELNET SESSION</span>{% endif %}
           </div>
           <p class="sr-only" id="roomDescriptionAccessible">{{ room.description }}</p>
           <div class="log" aria-describedby="roomDescriptionAccessible">
-            <div class="entry">
+            <div class="entry room-description-entry">
               <div class="cmd">&gt; mirar</div>
               <p data-room-description data-room-key="{{ room.id if room.id is defined else room.name }}">{{ room.description }}</p>
             </div>
@@ -383,7 +387,7 @@
             <div class="entry"><p class="system">También aquí: {{ room.others_present | join(', ') }}</p></div>
             {% endif %}
             {% if room.encounter %}
-            <div class="entry">
+            <div class="entry encounter-entry">
               <p class="system">{{ room.encounter.name }} está aquí. Condición: {{ room.encounter.condition }}.</p>
               <p class="system">{{ room.encounter.behavior }}</p>
             </div>
