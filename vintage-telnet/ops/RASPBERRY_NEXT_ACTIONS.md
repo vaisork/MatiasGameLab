@@ -48,3 +48,17 @@ Antes de pedir una sesión de Cloud/Raspberry:
 6. registrar resultado, sin programar fixes allí.
 
 Si algo falla, devolver el error exacto a GitHub. El arreglo se desarrolla fuera de la Raspberry y después se repite la validación.
+
+
+## Probe seguro de migración de inventario
+
+Antes de desplegar un HEAD con esquema v6, validar la base viva **sin modificarla**:
+
+```bash
+cd /opt/vintage-telnet/current/vintage-telnet
+.venv/bin/python ops/inventory_migration_probe.py /var/lib/vintage-telnet/vintage-telnet.sqlite3
+```
+
+El script abre el origen en modo read-only, usa `sqlite3.backup()` hacia un temporal y ejecuta la migración solamente sobre esa copia. Comprueba versión v6, IDs/números/usernames preservados, tabla de inventario, columnas de equipo, `foreign_key_check` y `quick_check`.
+
+Si la ruta real de SQLite difiere, usar la ruta de `VT_DB_PATH`/configuración vigente. No adivinar ni mover la base.
