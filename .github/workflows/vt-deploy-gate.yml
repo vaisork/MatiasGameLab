@@ -1,0 +1,26 @@
+name: VT deploy command gate
+
+on:
+  pull_request:
+    paths:
+      - "vintage-telnet/ops/vt_deploy.py"
+      - "vintage-telnet/ops/install_vt_deploy_command.sh"
+      - ".github/workflows/vt-deploy-gate.yml"
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Install Vintage Telnet dependencies
+        run: python -m pip install -r vintage-telnet/requirements.txt
+      - name: Static syntax checks
+        run: |
+          python -m py_compile vintage-telnet/ops/vt_deploy.py
+          sh -n vintage-telnet/ops/install_vt_deploy_command.sh
+      - name: Full Vintage Telnet test suite
+        working-directory: vintage-telnet
+        run: python -m unittest discover -s tests -v
