@@ -8,7 +8,7 @@ import sqlite3
 import time
 import uuid
 
-from . import combat
+from . import combat, items
 
 STATUSES = ("pending", "approved", "rejected", "removed")
 
@@ -21,7 +21,10 @@ ATTRIBUTE_COLUMNS = ", ".join(f"attr_{name}" for name in combat.ATTRIBUTES)
 # Estado de personaje (VT-NAR-003 / GAMEPLAY.md 20-22): se agrega a la
 # consulta del jugador autenticado para que g.player siempre traiga nivel,
 # XP, HP, fatiga, herida y los ocho atributos sin una segunda consulta.
-CHARACTER_COLUMNS = f"{PLAYER_COLUMNS}, level, xp, pa_unspent, hp_current, hp_max, fatigue, wound, {ATTRIBUTE_COLUMNS}"
+# equipped_weapon_id/equipped_armor_id (Issue #57, GAMEPLAY.md 32.2) viajan
+# igual: el arma/armadura activa del personaje es parte de su estado.
+CHARACTER_COLUMNS = (f"{PLAYER_COLUMNS}, level, xp, pa_unspent, hp_current, hp_max, fatigue, wound, "
+                     f"{ATTRIBUTE_COLUMNS}, equipped_weapon_id, equipped_armor_id")
 
 
 def utcnow():
@@ -105,6 +108,18 @@ EXAMINED_SIGNALS_TABLE = """CREATE TABLE examined_signals (
         created_at TEXT NOT NULL,
         UNIQUE(player_id, room_id, target))"""
 
+# v6: Issue #57 (GAMEPLAY.md 32) -- inventario/equipamiento mínimo v1. Cada
+# fila es una instancia propia del objeto (32.5: "identidad de
+# objeto/instancia suficiente para impedir duplicación accidental"), nunca
+# un contador; dos espadas de juramento del mismo jugador son dos filas.
+INVENTORY_ITEMS_TABLE = """CREATE TABLE inventory_items (
+        id TEXT PRIMARY KEY,
+        player_id TEXT NOT NULL REFERENCES players(id),
+        item_key TEXT NOT NULL,
+        category TEXT NOT NULL CHECK(category IN ('weapon', 'armor')),
+        forge_validated INTEGER NOT NULL DEFAULT 0,
+        acquired_at TEXT NOT NULL)"""
+
 CHARACTER_PLAYER_COLUMNS = [
     "level INTEGER NOT NULL DEFAULT 1",
     "xp INTEGER NOT NULL DEFAULT 0",
@@ -122,9 +137,9 @@ def initialize(path):
         db.execute("PRAGMA journal_mode = WAL")
         db.execute("BEGIN IMMEDIATE")
         version = db.execute("PRAGMA user_version").fetchone()[0]
-        if version not in (0, 1, 2, 3, 4, 5):
+        if version not in (0, 1, 2, 3, 4, 5, 6):
             raise RuntimeError("Versión de base de datos no soportada; no iniciar ni degradar.")
-        if version == 5:
+        if version == 6:
             return
         if version == 0:
             statements = [
@@ -187,7 +202,12 @@ def initialize(path):
             db.execute(CREATURE_COOLDOWN_TABLE)
         if version <= 4:
             db.execute(EXAMINED_SIGNALS_TABLE)
-        db.execute("PRAGMA user_version = 5")
+        if version <= 5:
+            db.execute(INVENTORY_ITEMS_TABLE)
+            db.execute("CREATE INDEX inventory_items_player ON inventory_items(player_id)")
+            db.execute("ALTER TABLE players ADD COLUMN equipped_weapon_id TEXT REFERENCES inventory_items(id)")
+            db.execute("ALTER TABLE players ADD COLUMN equipped_armor_id TEXT REFERENCES inventory_items(id)")
+        db.execute("PRAGMA user_version = 6")
 
 
 def allow_attempt(path, address):
@@ -558,3 +578,89 @@ def start_creature_cooldown(path, player_id, room_id, creature_id,
                    creature_id = excluded.creature_id, available_at = excluded.available_at""",
             (player_id, room_id, creature_id, available_at),
         )
+
+
+# --- Inventario y equipamiento v1 (Issue #57, GAMEPLAY.md 32) -------------
+
+def character_by_player_id(path, player_id):
+    with connect(path) as db:
+        return character_by_id(db, player_id)
+
+
+def grant_item(path, player_id, item_key, forge_validated=False):
+    """Entrega autoritativa de un objeto del catálogo (32.5): recompensa,
+    encargo válido, Forja o acción administrativa -- nunca compra directa
+    del jugador en v1. Cada llamada crea una instancia propia (id nueva),
+    aunque el jugador ya tenga otra copia del mismo `item_key`."""
+    category = items.category_of(item_key)
+    if category is None:
+        raise ValueError(f"Objeto desconocido en el catálogo: {item_key}")
+    item_id = str(uuid.uuid4())
+    with connect(path) as db:
+        db.execute(
+            """INSERT INTO inventory_items(id, player_id, item_key, category, forge_validated, acquired_at)
+               VALUES (?, ?, ?, ?, ?, ?)""",
+            (item_id, player_id, item_key, category, int(bool(forge_validated)), utcnow()),
+        )
+    return item_id
+
+
+def list_inventory(path, player_id):
+    """Objetos que el personaje posee legítimamente (32.1), sin importar si
+    están activos."""
+    with connect(path) as db:
+        rows = db.execute(
+            """SELECT id, item_key, category, forge_validated, acquired_at FROM inventory_items
+               WHERE player_id = ? ORDER BY acquired_at""",
+            (player_id,),
+        ).fetchall()
+        return [dict(row) for row in rows]
+
+
+def equipped_item_keys(path, weapon_item_id, armor_item_id):
+    """Resuelve en una sola consulta las claves de catálogo de lo
+    actualmente equipado, a partir de los ids guardados en `players`.
+    Devuelve (weapon_item_key_or_None, armor_item_key_or_None)."""
+    ids = [item_id for item_id in (weapon_item_id, armor_item_id) if item_id]
+    if not ids:
+        return None, None
+    with connect(path) as db:
+        placeholders = ",".join("?" * len(ids))
+        rows = db.execute(
+            f"SELECT id, item_key FROM inventory_items WHERE id IN ({placeholders})", ids
+        ).fetchall()
+    by_id = {row["id"]: row["item_key"] for row in rows}
+    return by_id.get(weapon_item_id), by_id.get(armor_item_id)
+
+
+def equip_item(path, player_id, item_id):
+    """GAMEPLAY.md 32.3: equipar reemplaza atómicamente el objeto activo de
+    la misma categoría; requiere poseer el objeto y, si el catálogo lo
+    exige, tener la validación de Forja completa (32.4). `BEGIN IMMEDIATE`
+    hace la operación atómica de verdad frente a dos solicitudes
+    concurrentes, igual que `set_species`. Devuelve (ok, category_or_None,
+    reason_or_None); el llamador decide si "fuera de combate" se cumple."""
+    with connect(path) as db:
+        db.execute("BEGIN IMMEDIATE")
+        item = db.execute(
+            "SELECT id, item_key, category, forge_validated FROM inventory_items WHERE id = ? AND player_id = ?",
+            (item_id, player_id),
+        ).fetchone()
+        if item is None:
+            return False, None, "No posees ese objeto."
+        catalog = items.get_item(item["item_key"])
+        if catalog["forge_required"] and not item["forge_validated"]:
+            return False, None, "Ese objeto todavía no tiene su validación de Forja completa."
+        column = "equipped_weapon_id" if item["category"] == "weapon" else "equipped_armor_id"
+        db.execute(f"UPDATE players SET {column} = ? WHERE id = ?", (item_id, player_id))
+        return True, item["category"], None
+
+
+def unequip_item(path, player_id, category):
+    """GAMEPLAY.md 32.3: desequipar devuelve el objeto a poseído/no activo;
+    no destruye nada ni tiene coste."""
+    if category not in ("weapon", "armor"):
+        raise ValueError(f"Categoría desconocida: {category}")
+    column = "equipped_weapon_id" if category == "weapon" else "equipped_armor_id"
+    with connect(path) as db:
+        db.execute(f"UPDATE players SET {column} = NULL WHERE id = ?", (player_id,))

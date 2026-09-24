@@ -14,8 +14,32 @@ def main():
     sub.add_parser("check")
     backup = sub.add_parser("backup")
     backup.add_argument("destination", type=Path)
+    grant_item = sub.add_parser(
+        "grant-item",
+        help="Entrega autoritativa de un objeto del catálogo a un jugador (GAMEPLAY.md 32.5).")
+    grant_item.add_argument("username")
+    grant_item.add_argument("item_key")
+    grant_item.add_argument("--forge-validated", action="store_true",
+                             help="Marca la validación de Forja como completa (GAMEPLAY.md 32.4).")
     args = parser.parse_args()
     source = args.data_dir / "vintage.sqlite3"
+
+    if args.command == "grant-item":
+        # Import diferido: solo esta rama necesita escritura real, el resto
+        # de comandos de este archivo son deliberadamente de solo lectura.
+        from . import items, store
+        if items.get_item(args.item_key) is None:
+            raise SystemExit(f"Objeto desconocido en el catálogo: {args.item_key}")
+        with store.connect(str(source)) as db_write:
+            player = store.player_by_username(db_write, args.username)
+            if player is None:
+                raise SystemExit(f"Jugador desconocido: {args.username}")
+            player_id = player["id"]
+        item_id = store.grant_item(str(source), player_id, args.item_key,
+                                    forge_validated=args.forge_validated)
+        print(json.dumps({"granted": args.item_key, "item_id": item_id, "player": args.username}))
+        return
+
     # Read-only URI prevents accidental creation of an empty database on a typo.
     db = sqlite3.connect(source.resolve().as_uri() + "?mode=ro", uri=True)
     db.row_factory = sqlite3.Row

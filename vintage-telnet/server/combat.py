@@ -330,11 +330,30 @@ def fatigue_modifier(resistencia):
     return max(0.55, 1 - 0.007 * (resistencia - 10))
 
 
-def fatigue_gained(action, resistencia, wound):
+def fatigue_gained(action, resistencia, wound, armor_reduction=0.0):
     """GAMEPLAY.md 20.7 (ModFatiga) x 24.3 (coste base) x 24.6 (multiplicador
-    de herida). `action` es una clave de FATIGUE_BASE_COST."""
+    de herida) x 30.3 (MultiplicadorCarga de la armadura equipada, Issue
+    #57). `action` es una clave de FATIGUE_BASE_COST; las cinco acciones que
+    contiene son exactamente las físicas que 30.3 marca con carga -- que el
+    parámetro por defecto sea 0.0 conserva el comportamiento previo cuando
+    no hay armadura equipada."""
     base = FATIGUE_BASE_COST[action]
-    return base * fatigue_modifier(resistencia) * WOUND_FATIGUE_MULTIPLIER[wound]
+    return (base * fatigue_modifier(resistencia) * WOUND_FATIGUE_MULTIPLIER[wound]
+            * armor_load_multiplier(armor_reduction))
+
+
+def armor_load_multiplier(armor_reduction):
+    """GAMEPLAY.md 30.3: MultiplicadorCarga = 1 + reducción (decimal)."""
+    return 1 + armor_reduction
+
+
+def apply_armor_reduction(damage, armor_reduction):
+    """GAMEPLAY.md 30.1/30.5: la armadura reduce el daño que ya conectó,
+    después de cualquier defensa activa (Bloquear/Resistir ya aplicaron su
+    propia reducción sobre `damage`; un golpe sin defensa activa llega aquí
+    directo). Las reducciones no se suman entre sí (30.5); esta función solo
+    aplica el factor de armadura sobre el daño que el llamador ya resolvió."""
+    return damage * (1 - armor_reduction)
 
 
 def combined_accuracy_penalty(fatigue, wound):

@@ -12,7 +12,7 @@ from flask import (Flask, abort, g, jsonify, redirect, render_template, request,
                     session, url_for)
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from . import combat, creatures, dm_auth, store, world
+from . import combat, creatures, dm_auth, items, store, world
 
 # Issue #46 resuelto: el Narrador fijo la plaza central de Valdren como
 # punto de reaparicion tras morir (GAMEPLAY.md 20.9) y de recuperacion
@@ -49,16 +49,19 @@ def _normalize(text):
     return "".join(c for c in folded if not unicodedata.combining(c))
 
 
-def _can_block():
-    """GAMEPLAY.md 20.5: Bloquear/desviar requiere arma, escudo u objeto
-    adecuado. El inventario/equipo real es el Issue #57 (todavia no
-    integrado); Issue #73 pide explicitamente no inventar inventario aqui.
-    Hasta que #57 exista, ningun jugador tiene equipo valido de bloqueo, asi
-    que esta funcion siempre devuelve False -- 'bloquear' nunca aparece en
-    `available_actions` y la intencion se rechaza de forma honesta en vez
-    de simular equipo que no existe. Cuando #57 este disponible, esta es la
-    unica funcion que hay que cambiar para consultar equipo real."""
-    return False
+def _can_block(path, player_id):
+    """GAMEPLAY.md 20.5 + WEAPON_CATALOG.md: Bloquear/desviar depende de si
+    el arma actualmente equipada lo permite (Issue #57 conecta equipo real
+    a la ranura de arma; ver `items.WEAPONS` para qué armas lo permiten).
+    Sin arma equipada, o con una que no lo permite, devuelve False -- por
+    eso 'bloquear' sigue sin aparecer en `available_actions` para un
+    personaje desarmado, en vez de simular equipo que no existe."""
+    character = store.character_by_player_id(path, player_id)
+    if not character or not character["equipped_weapon_id"]:
+        return False
+    weapon_key, _armor_key = store.equipped_item_keys(path, character["equipped_weapon_id"], None)
+    weapon = items.get_item(weapon_key) if weapon_key else None
+    return bool(weapon and weapon["can_block"])
 
 # Biblioteca de arte HTML (vintage-telnet/assets/html-ui/), servida explícitamente en vez de
 # habilitar una carpeta estática general -- mantiene el resto del árbol del repo fuera de HTTP.
@@ -175,7 +178,7 @@ def create_app(config=None):
                 {"action": "esquivar"},
                 {"action": "resistir"},
             ]
-            if _can_block():
+            if _can_block(path, player_id):
                 view["available_actions"].append({"action": "bloquear"})
         else:
             view["encounter"] = None
@@ -201,6 +204,9 @@ def create_app(config=None):
     DODGE_ALIASES = {"esquivar"}
     BLOCK_ALIASES = {"bloquear"}
     RESIST_ALIASES = {"resistir"}
+    # GAMEPLAY.md 32.8: comandos canónicos de inventario/equipo (Issue #57).
+    EQUIP_PREFIXES = ("equipar ",)
+    UNEQUIP_PREFIXES = ("desequipar ",)
 
     def parse_intent(raw):
         """Clasifica texto del terminal sin convertir comandos desconocidos en chat."""
@@ -242,6 +248,14 @@ def create_app(config=None):
             if lowered.startswith(prefix):
                 target = text[len(prefix):].strip()
                 return {"type": "talk_npc", "target": target} if target else {"type": "invalid"}
+        for prefix in EQUIP_PREFIXES:
+            if lowered.startswith(prefix):
+                target = text[len(prefix):].strip()
+                return {"type": "equip", "target": target} if target else {"type": "invalid"}
+        for prefix in UNEQUIP_PREFIXES:
+            if lowered.startswith(prefix):
+                target = text[len(prefix):].strip()
+                return {"type": "unequip", "target": target} if target else {"type": "invalid"}
         for prefix in SAY_PREFIXES:
             if lowered.startswith(prefix):
                 body = text[len(prefix):].strip()
@@ -280,6 +294,21 @@ def create_app(config=None):
 
     def _attributes(player):
         return {name: player[f"attr_{name}"] for name in combat.ATTRIBUTES}
+
+    def _equipment(player):
+        """GAMEPLAY.md 32: arma/armadura activas resueltas a sus valores de
+        catálogo (Issue #57). Sin arma equipada usa `combat.BASE_ARMA` (10),
+        el mismo valor que ya usaban las fórmulas antes de que el equipo
+        real existiera -- un personaje desarmado no cambia de golpe."""
+        weapon_key, armor_key = store.equipped_item_keys(
+            path, player["equipped_weapon_id"], player["equipped_armor_id"])
+        weapon = items.get_item(weapon_key) if weapon_key else None
+        armor = items.get_item(armor_key) if armor_key else None
+        return {
+            "weapon_base_damage": weapon["base_damage"] if weapon else combat.BASE_ARMA,
+            "can_block": bool(weapon and weapon["can_block"]),
+            "armor_reduction": armor["armor_reduction"] if armor else 0.0,
+        }
 
     def resolve_inspect(player, target):
         """Devuelve (texto, mensaje_de_descubrimiento_o_None) si hay un
@@ -329,10 +358,11 @@ def create_app(config=None):
             return None, "No hay ninguna criatura visible para evaluar."
         creature = creatures.get_creature(encounter["creature_id"])
         attrs = _attributes(player)
+        equipment = _equipment(player)
         cg_player = combat.competencia_general(player["level"])
         cg_enemy = combat.competencia_general(creature["reference_level"])
         player_dps = combat.expected_dps(attrs["destreza"], attrs["percepcion"], attrs["fuerza"],
-                                          cg_player, cg_enemy)
+                                          cg_player, cg_enemy, base_arma=equipment["weapon_base_damage"])
         enemy_dps = combat.fixed_expected_dps(creature["precision"], creature["damage"])
         category = combat.encounter_category(player_dps, player["hp_current"], enemy_dps, creature["hp"])
         return creature["name"], f"{creature['name']} {EVALUATE_TEXT[category]}."
@@ -349,17 +379,20 @@ def create_app(config=None):
             return {"outcome": "no_target", "messages": ["No hay ninguna criatura para atacar aquí."]}
         creature = creatures.get_creature(encounter["creature_id"])
         attrs = _attributes(player)
+        equipment = _equipment(player)
         cg_player = combat.competencia_general(player["level"])
         cg_enemy = combat.competencia_general(creature["reference_level"])
 
         wound = player["wound"]
         fatigue = min(100, player["fatigue"]
-                      + combat.fatigue_gained("ataque_basico", attrs["resistencia"], wound))
+                      + combat.fatigue_gained("ataque_basico", attrs["resistencia"], wound,
+                                               armor_reduction=equipment["armor_reduction"]))
         accuracy_penalty = combat.combined_accuracy_penalty(player["fatigue"], wound)
         damage_multiplier = combat.combined_damage_multiplier(player["fatigue"], wound)
 
         player_hits, player_damage = combat.resolve_attack_roll(
             attrs["destreza"], attrs["percepcion"], attrs["fuerza"], cg_player, cg_enemy, rng=rng,
+            base_arma=equipment["weapon_base_damage"],
             accuracy_penalty=accuracy_penalty, damage_multiplier=damage_multiplier)
         messages = []
         if player_hits:
@@ -373,7 +406,7 @@ def create_app(config=None):
             store.start_creature_cooldown(path, player["id"], player["room"], encounter["creature_id"])
             is_first, repeats = store.record_pve_victory(path, player["id"], creature["family"])
             player_dps = combat.expected_dps(attrs["destreza"], attrs["percepcion"], attrs["fuerza"],
-                                              cg_player, cg_enemy)
+                                              cg_player, cg_enemy, base_arma=equipment["weapon_base_damage"])
             enemy_dps = combat.fixed_expected_dps(creature["precision"], creature["damage"])
             category = combat.encounter_category(player_dps, player["hp_current"], enemy_dps, creature["hp"])
             xp_amount = combat.combat_xp(creature["reference_level"], category, player["level"],
@@ -393,6 +426,7 @@ def create_app(config=None):
             creature["precision"], creature["damage"], rng=rng)
         new_wound = wound
         if enemy_hits:
+            enemy_damage = combat.apply_armor_reduction(enemy_damage, equipment["armor_reduction"])
             messages.append(f"{creature['name']} te golpea por {round(enemy_damage)} de daño.")
             new_wound = combat.worse_wound(wound, combat.wound_from_hit(enemy_damage, player["hp_max"]))
             if new_wound != wound:
@@ -426,7 +460,9 @@ def create_app(config=None):
         room = world.get_room(player["room"])
         retreat_direction = "east" if "east" in room["exits"] else next(iter(room["exits"]), None)
         wound = player["wound"]
-        fatigue = min(100, player["fatigue"] + combat.fatigue_gained("huir", player["attr_resistencia"], wound))
+        equipment = _equipment(player)
+        fatigue = min(100, player["fatigue"] + combat.fatigue_gained(
+            "huir", player["attr_resistencia"], wound, armor_reduction=equipment["armor_reduction"]))
         chance = combat.flee_chance(
             player["attr_agilidad"], player["attr_percepcion"],
             creature["flee_agilidad"], creature["flee_percepcion"],
@@ -451,6 +487,7 @@ def create_app(config=None):
         if not enemy_hits:
             store.update_combat_state(path, player["id"], fatigue=round(fatigue))
             return {"outcome": "failed", "messages": messages}
+        enemy_damage = combat.apply_armor_reduction(enemy_damage, equipment["armor_reduction"])
         messages.append(f"{creature['name']} te golpea por {round(enemy_damage)} de daño mientras intentas escapar.")
         new_wound = combat.worse_wound(wound, combat.wound_from_hit(enemy_damage, player["hp_max"]))
         if new_wound != wound:
@@ -479,8 +516,10 @@ def create_app(config=None):
             return {"outcome": "no_target", "messages": ["No hay ningún ataque que esquivar aquí."]}
         creature = creatures.get_creature(encounter["creature_id"])
         attrs = _attributes(player)
+        equipment = _equipment(player)
         wound = player["wound"]
-        fatigue = min(100, player["fatigue"] + combat.fatigue_gained("esquivar", attrs["resistencia"], wound))
+        fatigue = min(100, player["fatigue"] + combat.fatigue_gained(
+            "esquivar", attrs["resistencia"], wound, armor_reduction=equipment["armor_reduction"]))
         accuracy_penalty = combat.combined_accuracy_penalty(player["fatigue"], wound)
         rng = rng or random.Random()
         enemy_hits, enemy_damage = combat.resolve_dodged_attack_roll(
@@ -489,6 +528,7 @@ def create_app(config=None):
         if not enemy_hits:
             store.update_combat_state(path, player["id"], fatigue=round(fatigue))
             return {"outcome": "success", "messages": [f"Esquivas el ataque de {creature['name']}."]}
+        enemy_damage = combat.apply_armor_reduction(enemy_damage, equipment["armor_reduction"])
         messages = [f"No logras esquivar y {creature['name']} te golpea por {round(enemy_damage)} de daño."]
         new_wound = combat.worse_wound(wound, combat.wound_from_hit(enemy_damage, player["hp_max"]))
         if new_wound != wound:
@@ -516,14 +556,17 @@ def create_app(config=None):
             return {"outcome": "no_target", "messages": ["No hay ningún golpe que resistir aquí."]}
         creature = creatures.get_creature(encounter["creature_id"])
         attrs = _attributes(player)
+        equipment = _equipment(player)
         wound = player["wound"]
-        fatigue = min(100, player["fatigue"] + combat.fatigue_gained("resistir", attrs["resistencia"], wound))
+        fatigue = min(100, player["fatigue"] + combat.fatigue_gained(
+            "resistir", attrs["resistencia"], wound, armor_reduction=equipment["armor_reduction"]))
         rng = rng or random.Random()
         enemy_hits, enemy_damage = combat.resolve_resisted_attack_roll(
             creature["precision"], creature["damage"], attrs["resistencia"], rng=rng)
         if not enemy_hits:
             store.update_combat_state(path, player["id"], fatigue=round(fatigue))
             return {"outcome": "success", "messages": [f"Te preparas y {creature['name']} falla su ataque."]}
+        enemy_damage = combat.apply_armor_reduction(enemy_damage, equipment["armor_reduction"])
         messages = [f"Resistes el golpe de {creature['name']}, que aun así te hace "
                     f"{round(enemy_damage)} de daño."]
         new_wound = combat.worse_wound(wound, combat.wound_from_hit(enemy_damage, player["hp_max"]))
@@ -545,26 +588,27 @@ def create_app(config=None):
 
     def attempt_block(player, rng=None):
         """GAMEPLAY.md 20.5: requiere arma/escudo/objeto adecuado -- ver
-        `_can_block`. Hasta que el inventario real (#57) exista, esta
-        acción siempre se rechaza de forma honesta en lugar de simular
-        equipo inventado; el resto de la resolución queda lista para
-        cuando `_can_block` empiece a consultar equipo real."""
+        `_can_block`, que desde el Issue #57 consulta el arma equipada
+        real."""
         encounter = store.get_encounter(path, player["id"], player["room"])
         if not encounter:
             return {"outcome": "no_target", "messages": ["No hay ningún golpe que bloquear aquí."]}
-        if not _can_block():
+        if not _can_block(path, player["id"]):
             return {"outcome": "unavailable",
                     "messages": ["Todavía no tienes equipo adecuado para bloquear."]}
         creature = creatures.get_creature(encounter["creature_id"])
         attrs = _attributes(player)
+        equipment = _equipment(player)
         wound = player["wound"]
-        fatigue = min(100, player["fatigue"] + combat.fatigue_gained("bloquear", attrs["resistencia"], wound))
+        fatigue = min(100, player["fatigue"] + combat.fatigue_gained(
+            "bloquear", attrs["resistencia"], wound, armor_reduction=equipment["armor_reduction"]))
         rng = rng or random.Random()
         enemy_hits, enemy_damage = combat.resolve_blocked_attack_roll(
             creature["precision"], creature["damage"], attrs["destreza"], rng=rng)
         if not enemy_hits:
             store.update_combat_state(path, player["id"], fatigue=round(fatigue))
             return {"outcome": "success", "messages": [f"Bloqueas el ataque de {creature['name']}."]}
+        enemy_damage = combat.apply_armor_reduction(enemy_damage, equipment["armor_reduction"])
         messages = [f"Bloqueas parcialmente a {creature['name']}, que aun así te hace "
                     f"{round(enemy_damage)} de daño."]
         new_wound = combat.worse_wound(wound, combat.wound_from_hit(enemy_damage, player["hp_max"]))
@@ -608,6 +652,40 @@ def create_app(config=None):
         return {"outcome": "rested", "messages": [
             f"Descansas un momento y recuperas fuerzas (HP {result['hp_current']}/{round(player['hp_max'])}, "
             f"fatiga {result['fatigue']})."]}
+
+    def attempt_equip(player, target_text):
+        """GAMEPLAY.md 32.3: `equipar <objeto>`. Solo fuera de combate,
+        requiere poseer el objeto y, si el catálogo lo exige, tener la
+        validación de Forja completa (32.4)."""
+        if store.get_encounter(path, player["id"], player["room"]):
+            return {"outcome": "blocked", "messages": ["No puedes equipar nada con una criatura cerca."]}
+        item_key = items.find_key_by_name(target_text)
+        if item_key is None:
+            return {"outcome": "not_found", "messages": ["No reconoces ese objeto."]}
+        owned = next((row for row in store.list_inventory(path, player["id"]) if row["item_key"] == item_key), None)
+        if owned is None:
+            return {"outcome": "not_owned", "messages": ["No posees ese objeto."]}
+        ok, _category, reason = store.equip_item(path, player["id"], owned["id"])
+        if not ok:
+            return {"outcome": "rejected", "messages": [reason]}
+        return {"outcome": "equipped", "messages": [f"Equipas {items.get_item(item_key)['name']}."]}
+
+    def attempt_unequip(player, target_text):
+        """GAMEPLAY.md 32.3: `desequipar <objeto>`. Solo fuera de combate;
+        devuelve el objeto a poseído/no activo, sin coste."""
+        if store.get_encounter(path, player["id"], player["room"]):
+            return {"outcome": "blocked", "messages": ["No puedes desequipar nada con una criatura cerca."]}
+        item_key = items.find_key_by_name(target_text)
+        if item_key is None:
+            return {"outcome": "not_found", "messages": ["No reconoces ese objeto."]}
+        category = items.category_of(item_key)
+        weapon_key, armor_key = store.equipped_item_keys(
+            path, player["equipped_weapon_id"], player["equipped_armor_id"])
+        equipped_key = weapon_key if category == "weapon" else armor_key
+        if equipped_key != item_key:
+            return {"outcome": "not_equipped", "messages": ["No tienes eso equipado."]}
+        store.unequip_item(path, player["id"], category)
+        return {"outcome": "unequipped", "messages": [f"Guardas {items.get_item(item_key)['name']}."]}
 
     def attempt_choose_species(player, species_id):
         """Devuelve (accepted, species_or_None, room_or_None, reason_or_None).
@@ -791,6 +869,18 @@ def create_app(config=None):
             room_data = room_view(player_now["room"], player_now["id"])
             return render_template("entry.html", player=player_now, species_list=world.SPECIES,
                                    room=room_data, error=" ".join(result["messages"])), 200
+        if intent["type"] == "equip":
+            result = attempt_equip(g.player, intent["target"])
+            player_now = store.player_for_token(path, session.get("token"))
+            room_data = room_view(player_now["room"], player_now["id"])
+            return render_template("entry.html", player=player_now, species_list=world.SPECIES,
+                                   room=room_data, error=" ".join(result["messages"])), 200
+        if intent["type"] == "unequip":
+            result = attempt_unequip(g.player, intent["target"])
+            player_now = store.player_for_token(path, session.get("token"))
+            room_data = room_view(player_now["room"], player_now["id"])
+            return render_template("entry.html", player=player_now, species_list=world.SPECIES,
+                                   room=room_data, error=" ".join(result["messages"])), 200
         if intent["type"] == "talk_npc":
             room_data = room_view(g.player["room"], g.player["id"])
             return render_template(
@@ -957,6 +1047,26 @@ def create_app(config=None):
                 player=dict(player_now) if player_now else None,
                 current_room=room_view(player_now["room"], player_now["id"]) if player_now else None,
             )
+        if kind == "equip":
+            result = attempt_equip(g.player, intent["target"])
+            player_now = store.player_for_token(path, session.get("token"))
+            return jsonify(
+                accepted=result["outcome"] == "equipped",
+                intent="equip",
+                outcome=result["outcome"],
+                messages=result["messages"],
+                player=dict(player_now) if player_now else None,
+            )
+        if kind == "unequip":
+            result = attempt_unequip(g.player, intent["target"])
+            player_now = store.player_for_token(path, session.get("token"))
+            return jsonify(
+                accepted=result["outcome"] == "unequipped",
+                intent="unequip",
+                outcome=result["outcome"],
+                messages=result["messages"],
+                player=dict(player_now) if player_now else None,
+            )
         if kind == "talk_npc":
             return jsonify(
                 accepted=False,
@@ -1009,6 +1119,45 @@ def create_app(config=None):
             fatigue=g.player["fatigue"], wound=g.player["wound"],
             attributes=_attributes(g.player),
             discoveries=store.list_discoveries(path, g.player["id"]),
+        )
+
+    @app.get("/api/inventory")
+    def api_inventory():
+        """GAMEPLAY.md 32.8: estado estructurado de inventario/equipo para
+        el panel Inventario/Equipo -- objetos poseídos, cuál está activo,
+        protección/carga conocida y estado de validación de Forja. El
+        servidor entrega el estado ya resuelto; el cliente no calcula nada
+        autoritativo (Issue #57)."""
+        error = api_player_state(g.player)
+        if error:
+            return error
+        weapon_id, armor_id = g.player["equipped_weapon_id"], g.player["equipped_armor_id"]
+
+        def decorate(row):
+            catalog = items.get_item(row["item_key"])
+            return {
+                "id": row["id"],
+                "item_key": row["item_key"],
+                "name": catalog["name"],
+                "category": row["category"],
+                "forge_required": catalog["forge_required"],
+                "forge_validated": bool(row["forge_validated"]),
+                "equipped": row["id"] in (weapon_id, armor_id),
+                "base_damage": catalog.get("base_damage"),
+                "can_block": catalog.get("can_block"),
+                "armor_reduction": catalog.get("armor_reduction"),
+            }
+
+        inventory = [decorate(row) for row in store.list_inventory(path, g.player["id"])]
+        equipment = _equipment(g.player)
+        return jsonify(
+            items=inventory,
+            equipped={
+                "weapon": next((row for row in inventory if row["id"] == weapon_id), None),
+                "armor": next((row for row in inventory if row["id"] == armor_id), None),
+            },
+            armor_reduction_total=equipment["armor_reduction"],
+            carga_multiplier=combat.armor_load_multiplier(equipment["armor_reduction"]),
         )
 
     @app.get("/api/map")
