@@ -41,7 +41,7 @@
 - Marcadores o leyenda sobre la imagen del mapa: la imagen es estática y no dibujamos marcadores.
 
 ### AVISO DE INTEGRACIÓN
-- #133 (clase) también toca `entry.html`, pero en zonas distintas: pantalla de clase y panel Personaje. Comprobé con `git merge-tree` que se combinan sin conflicto.
+- #133 (clase) también toca `entry.html`, pero en zonas distintas: pantalla de clase y panel Personaje. `git merge-tree` confirma que el código se combina sin conflicto. El único conflicto es de texto en `HANDOFF.md`, porque ambas entregas agregan su entrada arriba: se conservan las dos.
 
 **LISTO PARA PUBLICAR:** NO. Queda para revisión del Integrador/Director de Arte y autorización de Javier ("sube").
 
