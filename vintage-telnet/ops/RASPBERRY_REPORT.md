@@ -751,3 +751,53 @@ desplegar todavía:
 
 No adjunto contraseñas, claves, cookies, hashes ni bases en este reporte.
 No afirmo ningún resultado de despliegue que no se ejecutó realmente.
+
+## Actualización de la revisión periódica — el pendiente ya no es v8, es v9 — 2026-09-24
+
+Misma sesión automatizada en la nube (sin SSH/sudo a la Raspberry real) que
+dejó la nota anterior. Entre esa corrida y esta, `main` avanzó más antes de
+que la nota de v8 llegara a desplegarse, así que **corrijo el pendiente en
+vez de dejar dos notas contradictorias**:
+
+- Commit `2bfe710` (merge de #132 "PP y fatiga" + #134 "pantalla de gasto de
+  PA" a la entrega de clase inicial) **reconcilió el esquema**: PP/fatiga
+  pasó a ocupar la v8 (no v9 como decía mi nota anterior) y la migración de
+  clase inicial (Issue #112, commit `6d1ce95`) pasó a **v8 → v9**. El propio
+  `HANDOFF.md` documenta esta reconciliación explícitamente.
+- Commit `6d1ce95` — "VT-SERVER: elección de clase inicial y arma inicial
+  por clase (Issue #112)" — agrega la columna `players.player_class` (con
+  `CHECK` de las 4 clases: Arcano, Juramentado, Sombra, Artífice) y entrega
+  el arma inicial de catálogo en la misma transacción. `store.SCHEMA_VERSION`
+  ahora es **9** (confirmado leyendo `server/store.py` en el HEAD actual).
+- Commits posteriores (`cf75d7d` espacio para hora/clima en la barra de
+  lugar, `30b3fba`/#135 pantalla principal, `baeaf85`/PR #140 preview
+  estático) son solo cliente/HTML o un archivo standalone
+  (`vintage-telnet-preview.html`) — no tocan `store.py` ni `app.py` de forma
+  que afecte el esquema.
+- HEAD actual de `main` en esta revisión: `f925f59de29e8c5f4c94875a78140a50061a0148`.
+- Según `HANDOFF.md` (entrega de Issue #112, sección "RECONCILIACIÓN CON
+  #132/#134"): suite completa **228/228 OK** tras integrar #137 sobre esa
+  entrega.
+
+**Esto significa que el plan de la nota anterior (generar
+`update_v10_authorized.py` con `EXPECTED_SCHEMA = 8`) queda obsoleto.** No
+hace falta un despliegue intermedio a v8: como todavía no se desplegó nada
+desde el v9 real documentado arriba (esquema 7, commit `0ffcc36b...`), el
+próximo despliegue real puede ir directo de esquema 7 a **9** en un solo
+paso, migrando ambas columnas nuevas (`pp_unspent`, `fatigue_updated_at`,
+`player_class`) de una vez.
+
+**No hice en esta corrida** (mismas limitaciones que la nota anterior): no
+generé ni corrí ningún script de despliegue, no toqué la base viva, no
+reinicié el servicio real, no asumí resultado de producción.
+
+**Pendiente actualizado para la próxima sesión con acceso real:**
+1. Confirmar que no haya una entrega aún más nueva sin mergear antes de fijar el SHA a desplegar (revisar `HANDOFF.md`/PRs abiertos en el momento).
+2. Aislado primero: suite completa sobre el SHA elegido de `main` (228/228 esperado sobre `f925f59`, puede haber más si hay commits posteriores).
+3. Preflight de solo lectura (`ops/raspberry_preflight.py`) y `ops/inventory_migration_probe.py` contra la base viva real antes de tocar producción.
+4. Generar el script de despliegue con `EXPECTED_SCHEMA = 9` (no 8) y el SHA correcto — mismo patrón que v5–v9, o el deploy reusable de Issue #141 si ya existe y está probado para entonces.
+5. Javier ejecuta con `sudo` (esta sesión no tiene sudo interactivo).
+6. Verificar `healthz` (`schema_version: 9`), `systemctl status`, conteo de jugadores preservado (hoy 8) y probar en el navegador real: especie → clase → arma inicial equipada, y el flujo de gasto de PA (#132) que ya dependía de clase.
+
+No adjunto contraseñas, claves, cookies, hashes ni bases en este reporte.
+No afirmo ningún resultado de despliegue que no se ejecutó realmente.
