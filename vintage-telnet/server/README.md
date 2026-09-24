@@ -212,6 +212,31 @@ como los pidió Jugabilidad en el Issue #45 y cerró en el Issue #46/commit
   criaturas pequeñas ya vistas, así que basta por sí misma.
 - **Mapa progresivo** (23): `GET /api/map` devuelve solo las salas
   visitadas y rutas recorridas por ese personaje, persistente en SQLite.
+- **Subida de nivel** (25.1/25.6/25.8/25.9): cada nivel da 2 PA y cada
+  nivel múltiplo de 5 da 1 PP (`pp_unspent`). **No cura por completo**: el
+  HP actual solo sube por la diferencia del nuevo máximo. El mensaje de
+  victoria/descubrimiento avisa nivel, PA y PP obtenidos; no se abre
+  ninguna distribución obligatoria.
+- **Gasto de PA** (19/25.4/25.5/25.7): `GET /api/character` expone
+  `attribute_costs` (coste del siguiente +1 de cada atributo),
+  `pp_unspent` e `in_combat`. `POST /api/character/attributes` con JSON
+  `{"attribute": "fuerza", "current_value": 19, "csrf": "..."}` sube el
+  atributo en +1. `current_value` es obligatorio: es el valor que el
+  jugador vio al confirmar. Si ya no coincide, la respuesta es `409
+  stale_confirmation` y no se gasta nada. Otros rechazos: `not_enough_pa`
+  e `in_combat` (409), `unknown_attribute` y `confirmation_required`
+  (400). Es atómico (UPDATE condicionado), no permite PA negativos y la
+  misma confirmación no gasta dos veces. Subir Resistencia/Voluntad
+  recalcula HP máximo con la misma regla de diferencia. No hay deshacer
+  en v1 ni comando de texto: GAMEPLAY no define un verbo, así que el
+  gasto sale del panel Personaje.
+- **Recuperación pasiva de fatiga** (24.7): fuera de combate se recupera
+  1 punto cada 10 s, calculado por tiempo en servidor al leer el
+  personaje (`store._settle_passive_fatigue`, sin proceso de fondo).
+  Cualquier acción que cambia la fatiga reinicia el reloj; en combate no
+  se recupera; no toca HP ni heridas. Esquema v8: `players.pp_unspent` y
+  `players.fatigue_updated_at` (los personajes existentes reciben los PP de
+  los niveles múltiplo de 5 que ya alcanzaron).
 
 Contrato completo en `server/combat.py` (fórmulas puras, sin Flask/DB —
 cada función cita la sección de GAMEPLAY.md de la que sale).

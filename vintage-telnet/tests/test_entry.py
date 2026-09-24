@@ -133,7 +133,7 @@ class EntryTests(unittest.TestCase):
         for path in ("/SECRETS.md", "/vintage.sqlite3", "/static/SECRETS.md", "/players"):
             self.assertEqual(self.client.get(path).status_code, 404)
         response = self.client.get("/healthz")
-        self.assertEqual(response.json, dict(status="ok", schema_version=7))
+        self.assertEqual(response.json, dict(status="ok", schema_version=8))
         self.assertNotIn("Set-Cookie", response.headers)
 
     def test_ui_foundation_map_rest_help_and_no_dead_combat_controls(self):
@@ -434,7 +434,7 @@ class EntryTests(unittest.TestCase):
         with self.assertRaises(RuntimeError):
             create_app({**self.config, "DATA_DIR": "relative"})
         with store.connect(self.path) as db:
-            db.execute("PRAGMA user_version = 8")
+            db.execute("PRAGMA user_version = 9")
         with self.assertRaises(RuntimeError):
             create_app(self.config)
 

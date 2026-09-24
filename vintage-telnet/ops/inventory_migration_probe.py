@@ -7,6 +7,7 @@ Only the temporary copy is passed to server.store.initialize().
 from __future__ import annotations
 
 import argparse
+from contextlib import closing
 from pathlib import Path
 import sqlite3
 import sys
@@ -37,7 +38,7 @@ def main() -> int:
         return 2
 
     source_uri = f"file:{source_path}?mode=ro"
-    with sqlite3.connect(source_uri, uri=True, timeout=10) as src:
+    with closing(sqlite3.connect(source_uri, uri=True, timeout=10)) as src:
         before_version = src.execute("PRAGMA user_version").fetchone()[0]
         before_players = snapshot_players(src)
         integrity = src.execute("PRAGMA quick_check").fetchone()[0]
@@ -47,13 +48,13 @@ def main() -> int:
 
         with tempfile.TemporaryDirectory(prefix="vt-migration-probe-") as tmp:
             copy_path = Path(tmp) / "probe.sqlite3"
-            with sqlite3.connect(copy_path) as dst:
+            with closing(sqlite3.connect(copy_path)) as dst:
                 src.backup(dst)
 
             # Migration happens ONLY on the temporary backup.
             store.initialize(copy_path)
 
-            with sqlite3.connect(copy_path) as migrated:
+            with closing(sqlite3.connect(copy_path)) as migrated:
                 after_version = migrated.execute("PRAGMA user_version").fetchone()[0]
                 after_players = snapshot_players(migrated)
                 tables = {
@@ -70,12 +71,15 @@ def main() -> int:
                 quick = migrated.execute("PRAGMA quick_check").fetchone()[0]
 
     checks = {
-        "source_version_supported": before_version in (0, 1, 2, 3, 4, 5, 6),
-        "migrated_to_v6": after_version == 6,
+        "source_version_supported": before_version in range(0, store.SCHEMA_VERSION + 1),
+        f"migrated_to_v{store.SCHEMA_VERSION}": after_version == store.SCHEMA_VERSION,
         "players_preserved": before_players == after_players,
         "inventory_table": "inventory_items" in tables,
         "equipped_weapon_column": "equipped_weapon_id" in columns,
         "equipped_armor_column": "equipped_armor_id" in columns,
+        "heading_column": "heading" in columns,
+        "pp_unspent_column": "pp_unspent" in columns,
+        "fatigue_clock_column": "fatigue_updated_at" in columns,
         "foreign_keys": not fk_errors,
         "quick_check": quick == "ok",
     }
