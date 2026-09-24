@@ -151,6 +151,35 @@ class EntryTests(unittest.TestCase):
         player = self.client.get("/api/character").json
         self.assertEqual(player["fatigue"], 0)
 
+    def test_android_install_manifest_and_icon_are_same_origin(self):
+        page = self.client.get("/")
+        html = page.get_data(as_text=True)
+        self.assertIn('rel="manifest" href="/vintage-telnet.webmanifest"', html)
+        self.assertIn('rel="icon" type="image/webp" href="/assets/app-icon/vintage-telnet.webp"', html)
+
+        manifest = self.client.get("/vintage-telnet.webmanifest")
+        self.assertEqual(manifest.status_code, 200)
+        self.assertEqual(manifest.mimetype, "application/manifest+json")
+        data = manifest.json
+        self.assertEqual(data["name"], "Vintage Telnet")
+        self.assertEqual(data["short_name"], "Vintage Telnet")
+        self.assertEqual(data["start_url"], "/")
+        self.assertEqual(data["scope"], "/")
+        self.assertEqual(data["display"], "standalone")
+        self.assertEqual(data["theme_color"], "#141c28")
+        self.assertEqual(data["background_color"], "#0a0e15")
+        self.assertEqual(data["icons"], [{
+            "src": "/assets/app-icon/vintage-telnet.webp",
+            "sizes": "192x192",
+            "type": "image/webp",
+            "purpose": "any",
+        }])
+
+        icon = self.client.get("/assets/app-icon/vintage-telnet.webp")
+        self.assertEqual(icon.status_code, 200)
+        self.assertEqual(icon.mimetype, "image/webp")
+        self.assertGreater(len(icon.data), 1000)
+
     def test_rate_limit_survives_restart(self):
         for _ in range(20):
             self.assertTrue(store.allow_attempt(self.path, "local-test"))
