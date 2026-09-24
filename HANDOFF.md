@@ -35,6 +35,37 @@
 
 ### NO CAMBIA
 Movimiento, reglas, combate, persistencia, esquema (sigue en v9) y canon. La rejilla es una representación esquemática derivada de las salidas existentes; no inventa geografía.
+## ENTREGA — vt-deploy: prueba completa en Raspberry simulada + reintento después de rollback
+
+**DESARROLLADOR:** Claude — Desarrollador de Servidor de Vintage Telnet
+**HEAD BASE:** `ab61e88` (rama `vt-ops/fix-vt-deploy-uuid-ids`, corrección de IDs UUID del Operador de Raspberry) sobre `main` @ `ca101d4`
+**TAREA ASIGNADA:** Javier (2026-09-24) pidió revisar si el programa de despliegue del Arquitecto (`vt-deploy`, PR #142, Issue #141) realmente sirve.
+**RAMA:** `claude/vt-deploy-retry-after-rollback`. Incluye el commit de la corrección UUID.
+
+### PRUEBA REAL (Raspberry simulada en la nube)
+- Monté las mismas rutas en una carpeta aislada:
+  - release anterior `0ffcc36` (esquema 7) como `current`;
+  - base con 3 jugadores creada con esa versión (uno en combate, uno con espada equipada, un Vesperi);
+  - `systemctl` y `ss` de prueba que arrancan y detienen el servidor real y corren el `backup.sh` real.
+- Usé una copia de `vt_deploy.py` con solo las rutas cambiadas; la lógica es idéntica.
+- **Deploy normal:** `vt-deploy latest` pasó de 7 a **9** en ~1 min. Tests OK, backup verificado, migración ensayada en copia, `healthz` OK, **3 jugadores preservados** y preflight 6/6. ✅
+- **Rollback:** forcé una falla después del cambio (preflight ve el puerto 8080 expuesto). El rollback regresó `current` al release anterior, restauró la base y el servicio siguió sano. ✅
+- **Bug encontrado:** tras ese rollback, el siguiente `vt-deploy latest` del mismo SHA se negaba a correr ("El release … ya existe pero no es current"). Había que borrar a mano con sudo en la Raspberry. ❌
+
+### CAMBIOS
+- `ops/vt_deploy.py`:
+  - `quarantine_failed_release()`: tras un rollback, o si falla entre crear el release y activarlo, el release fallido se **aparta** a `releases/.failed-<sha>-<UTC>`. Nunca se borra; queda como evidencia. Nunca aparta el release `current`.
+  - Timeout de la suite en el deploy: 300 s → **1200 s**. En la nube tarda ~50 s y en una Raspberry puede tardar varias veces más; así no se aborta un deploy sano por lentitud.
+- `ops/install_vt_deploy_command.sh`: corrige el `\n` literal en el mensaje final que reportó el Operador en #141. Es solo cosmético.
+- `tests/test_vt_deploy.py`: 3 pruebas del apartado.
+- **Verificado de nuevo en la simulación:** falla → rollback → release apartado → corregir → `vt-deploy latest` del mismo SHA → **DESPLIEGUE OK**.
+
+### PRUEBAS
+- Suite completa **231/231 OK**. `sh -n` y `py_compile` OK.
+
+### PENDIENTE
+- Primera instalación y deploy **en la Raspberry física**, que es el criterio de cierre de #141.
+- Nota para quien instale: si hay una copia vieja de `vt_deploy.py` ya instalada en `/usr/local/lib/vintage-telnet/`, hay que volver a correr el instalador después de integrar esta rama.
 
 **LISTO PARA PUBLICAR:** falta la autorización de Javier ("sube").
 
