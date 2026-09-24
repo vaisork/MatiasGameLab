@@ -1,5 +1,64 @@
 # HANDOFF — Entrega técnica
 
+## ENTREGA — Vintage Telnet Issue #135: pantalla principal según la maqueta del Director de Arte
+
+**DESARROLLADOR:** Claude — Desarrollador de Servidor de Vintage Telnet
+**HEAD BASE:** `fdc726b` (origin/main)
+**TAREA ASIGNADA:** Issue #135. Javier (2026-09-24) aprobó la maqueta de 3 pantallas del Director de Arte y la asignó con prioridad ALTA. Las decisiones de contenido (hora del día, HP del enemigo) quedan para Jugabilidad/Narrador.
+**RAMA:** `claude/vintage-telnet-ui-main-screen`
+
+### CAMBIOS (solo `server/templates/entry.html` + pruebas)
+- **Barra de lugar** con ícono de ubicación y nombre de la sala. En combate se pone roja, con espadas y la etiqueta **¡COMBATE!**.
+- **Ilustración enmarcada** (`room.art`) arriba del terminal; se conserva el fallback si falta la imagen.
+- **Terminal verde:** conserva el revelado progresivo, la pista y el chat.
+- **Exploración:**
+  - cruz N/O/●/E/S en verde con flechas; las salidas que no existen se ven apagadas;
+  - a la derecha, Mirar, Examinar y Descansar con ícono. Descansar solo aparece si `available_actions` lo autoriza;
+  - **Examinar** solo escribe "examinar " en el cuadro de comando y lo enfoca: no ejecuta nada ni aplica reglas.
+- **Combate:**
+  - **Atacar** grande y rojo; debajo Huir (azul) y Evaluar (dorado), y luego Esquivar/Resistir/Bloquear según `available_actions`;
+  - banda de **condición cualitativa** del enemigo: 4 segmentos que salen de la etiqueta de `enemy_condition` (entero/herido/malherido/al borde). **Nunca muestra HP numérico** (GAMEPLAY §31);
+  - la cruz de movimiento no se muestra en combate, igual que en la maqueta. Moverse escribiendo el comando sigue funcionando igual que antes.
+- **Barra inferior:** Personaje, Inventario, Mapa y Ayuda. En teléfono el ícono va arriba del texto.
+- **Mapa:** debajo del mapa regional se muestran "Estás en: <sala>" y una tarjeta "Dirección actual" con brújula y "Caminando hacia: <rumbo>" (`current_heading`). La pestaña "Dirección actual" se conserva.
+- **Corrección de desborde en teléfonos (ya existía en `main`):** la columna implícita de `.app` y la de `.layout` crecían hasta el ancho de la pista de una sola línea, y el marco se cortaba unos px a la derecha. Ahora son `minmax(0,1fr)`.
+- Todo con HTML/CSS/SVG (frontera #109). Agregué 4 íconos SVG: ubicación, lupa, cama y correr.
+
+### PRUEBAS
+- Suite completa: **217/217 OK**.
+  - Nueva prueba del estado de exploración y de combate: barra de lugar, controles, banda de condición y que no aparece "HP n/n".
+  - El placeholder del comando cambió a "> norte, mirar, examinar…", como en la maqueta; ajusté la prueba que lo fijaba.
+- Chromium a 390 px contra el servidor real (waitress), en exploración en Valdren, combate con Mordelinde y el panel Mapa:
+  - `scrollWidth == innerWidth` y **ningún elemento pasa del borde derecho**;
+  - sin errores de JS;
+  - Examinar rellena el cuadro.
+- Revisé también a 1280 px: el panel lateral "Estado visible" se conserva.
+
+### SEGUNDA RONDA (petición de Javier, 2026-09-24)
+- **Espacio para hora del día y clima.** El servidor expone `ambient: {time_of_day, weather}` en cada sala mediante `world.get_ambient(room_id)`, que hoy siempre devuelve vacío.
+  - La barra de lugar muestra hasta 2 etiquetas con ícono. Íconos SVG disponibles: sol, luna, amanecer, atardecer, nube, lluvia, niebla, nieve, tormenta, viento.
+  - Qué estados existen y cómo cambian lo definen **Jugabilidad y Narrador en la Issue #138**, por petición expresa de Javier. No se inventó ningún estado; sin datos no se muestra nada.
+- **Letra un poco más pequeña** para que quepa mejor:
+  - terminal a 15 px en teléfono (antes 17) y clamp(.95–1.02rem) en escritorio;
+  - botones de acción a .8rem;
+  - Atacar a 56 px de alto.
+  - El cuadro de comando se queda en **16 px** a propósito: con menos, iPhone hace zoom al escribir.
+- Pruebas: **218/218 OK**, con una nueva que comprueba que el ambiente está vacío por defecto y se muestra con datos. Un ícono desconocido aparece solo como texto.
+- Captura a 390 px con un ambiente de ejemplo inyectado solo en la prueba: la barra muestra "☀ Mañana · ☁ Despejado" sin desbordar.
+
+### NO IMPLEMENTADO (lo decide Jugabilidad/Narrador; registrado en #135 y #138)
+- Estados concretos de hora del día y clima (#138).
+- Barra de HP numérica del enemigo; se usa la banda de condición.
+- El contenido de ejemplo de la maqueta (jabalí salvaje, etc.) no se copió.
+- Marcadores o leyenda sobre la imagen del mapa: la imagen es estática y no dibujamos marcadores.
+
+### AVISO DE INTEGRACIÓN
+- #133 (clase) también toca `entry.html`, pero en zonas distintas: pantalla de clase y panel Personaje. `git merge-tree` confirma que el código se combina sin conflicto. El único conflicto es de texto en `HANDOFF.md`, porque ambas entregas agregan su entrada arriba: se conservan las dos.
+
+**LISTO PARA PUBLICAR:** NO. Queda para revisión del Integrador/Director de Arte y autorización de Javier ("sube").
+
+---
+
 ## ENTREGA — Vintage Telnet: pantalla para gastar PA en el panel Personaje
 
 **DESARROLLADOR:** Claude — Desarrollador de Servidor de Vintage Telnet
