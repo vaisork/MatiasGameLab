@@ -158,6 +158,16 @@
     .compass span{display:grid;place-items:center;border:1px solid #405066;border-radius:50%;font:800 .8rem ui-monospace,monospace;color:var(--muted)}
     .compass span[data-heading].active{border-color:var(--gold);color:#20160b;background:var(--gold);box-shadow:0 0 0 2px #d7b56a26}
     .compass .north{grid-column:2}.compass .west{grid-column:1;grid-row:2}.compass .center{grid-column:2;grid-row:2;color:var(--gold)}.compass .east{grid-column:3;grid-row:2}.compass .south{grid-column:2;grid-row:3}
+    .inventory-state{display:grid;gap:10px}
+    .equipment-summary{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+    .equipment-slot,.inventory-item{border:1px solid #3d4a5d;border-radius:10px;background:#101722;padding:10px}
+    .equipment-slot strong,.inventory-item strong{display:block;color:var(--gold);margin-bottom:4px}
+    .inventory-list{display:grid;gap:8px}
+    .inventory-item{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center}
+    .inventory-meta{color:var(--muted);font:600 .76rem/1.4 ui-sans-serif,system-ui,sans-serif}
+    .inventory-item .action{width:auto;min-width:112px}
+    .inventory-empty{border:1px dashed #4b586a;border-radius:9px;padding:12px;color:var(--muted);font:600 .8rem/1.45 ui-sans-serif,system-ui,sans-serif}
+    .forge-ok{color:#85d99a}.forge-blocked{color:#e3ad9f}
     .character-stack{display:grid;gap:10px}
     .character-block{border:1px solid #3d4a5d;border-radius:10px;background:#101722;padding:10px}
     .character-block h3{margin:0 0 6px}
@@ -289,7 +299,7 @@
       .location-art img{height:clamp(120px,38vw,170px)}
       .terminal-alert{padding:6px 9px;font-size:.69rem}
       .terminal-hint{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-      .tool-row{display:grid;grid-template-columns:repeat(3,1fr);position:sticky;bottom:max(0px,env(safe-area-inset-bottom));z-index:2;background:#141c28;padding-top:4px}
+      .tool-row{display:grid;grid-template-columns:repeat(4,1fr);position:sticky;bottom:max(0px,env(safe-area-inset-bottom));z-index:2;background:#141c28;padding-top:4px}
       .tool-row .btn{min-height:46px}
       .controls-row{grid-template-columns:auto 1fr;gap:7px}
       .dpad{grid-template-columns:repeat(3,46px);grid-template-rows:repeat(3,44px);gap:4px}
@@ -311,6 +321,7 @@
 <body>
 <svg class="sr-only" aria-hidden="true" focusable="false">
   <symbol id="icon-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-5 4-7 8-7s7 2 8 7"/></symbol>
+  <symbol id="icon-bag" viewBox="0 0 24 24"><path d="M6 8h12l1 13H5L6 8z"/><path d="M9 8a3 3 0 016 0"/></symbol>
   <symbol id="icon-map" viewBox="0 0 24 24"><path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3z"/><path d="M9 3v15M15 6v15"/></symbol>
   <symbol id="icon-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.8 9a2.4 2.4 0 114.5 1.2c-.7 1.1-2.3 1.3-2.3 3"/><path d="M12 17h.01"/></symbol>
   <symbol id="icon-swords" viewBox="0 0 24 24"><path d="M4 3l7 7-3 3-7-7zM20 3l-7 7 3 3 7-7z"/><path d="M7 14l3 3M17 14l-3 3M8 19l-3 2 2-3M16 19l3 2-2-3"/></symbol>
@@ -482,6 +493,7 @@
           </form>
           <div class="tool-row" aria-label="Herramientas">
             <button class="btn" type="button" data-open="characterDialog"><svg class="ui-icon" aria-hidden="true"><use href="#icon-user"/></svg>Personaje</button>
+            <button class="btn" type="button" data-open="inventoryDialog" data-inventory-open><svg class="ui-icon" aria-hidden="true"><use href="#icon-bag"/></svg>Inventario</button>
             <button class="btn" type="button" data-open="mapDialog" data-map-open><svg class="ui-icon" aria-hidden="true"><use href="#icon-map"/></svg>Mapa</button>
             <button class="btn" type="button" data-open="helpDialog"><svg class="ui-icon" aria-hidden="true"><use href="#icon-help"/></svg>Ayuda</button>
           </div>
@@ -525,6 +537,16 @@
     <h3>Panel preparado</h3>
     <p>Las estadísticas de personaje aparecen aquí después de elegir especie.</p>
     {% endif %}
+  </div>
+</dialog>
+<dialog id="inventoryDialog" aria-labelledby="inventoryDialogTitle">
+  <div class="modal-head"><strong id="inventoryDialogTitle">Inventario y equipo</strong><button class="close" data-close aria-label="Cerrar inventario">×</button></div>
+  <div class="modal-body">
+    <div class="inventory-state">
+      <p class="map-status" id="inventoryStatus" aria-live="polite">Abre Inventario para consultar el estado autoritativo del servidor.</p>
+      <div id="equipmentSummary" class="equipment-summary"></div>
+      <div id="inventoryContent" class="inventory-empty">El inventario todavía no se ha cargado.</div>
+    </div>
   </div>
 </dialog>
 <dialog id="mapDialog" aria-labelledby="mapDialogTitle">
@@ -614,7 +636,104 @@
   activateTabs("[data-map-tab]", "[data-map-panel]", "mapPanel");
   activateTabs("[data-help-tab]", "[data-help-panel]", "helpPanel");
 
-  const mapButton = document.querySelector("[data-map-open]");
+  const inventoryButton = document.querySelector("[data-inventory-open]");
+  const inventoryStatus = document.getElementById("inventoryStatus");
+  const inventoryContent = document.getElementById("inventoryContent");
+  const equipmentSummary = document.getElementById("equipmentSummary");
+  const csrfValue = document.querySelector('input[name="csrf"]')?.value || "";
+
+  const itemDetails = item => {
+    const parts = [item.category === "weapon" ? "Arma" : "Armadura"];
+    if (item.base_damage != null) parts.push("Daño base " + item.base_damage);
+    if (item.armor_reduction != null) parts.push("Protección " + Math.round(item.armor_reduction * 100) + "%");
+    if (item.can_block) parts.push("Permite bloquear");
+    if (item.forge_required) parts.push(item.forge_validated ? "Forja validada" : "Forja pendiente");
+    return parts.join(" · ");
+  };
+  const commandFormFor = item => {
+    const form = document.createElement("form");
+    form.method = "post";
+    form.action = "/command";
+    const csrf = document.createElement("input");
+    csrf.type = "hidden"; csrf.name = "csrf"; csrf.value = csrfValue;
+    const text = document.createElement("input");
+    text.type = "hidden"; text.name = "text";
+    text.value = (item.equipped ? "desequipar " : "equipar ") + item.name;
+    const button = document.createElement("button");
+    button.className = "action";
+    button.type = "submit";
+    button.textContent = item.equipped ? "Desequipar" : "Equipar";
+    if (item.forge_required && !item.forge_validated && !item.equipped) {
+      button.disabled = true;
+      button.title = "Requiere validación de Forja";
+    }
+    form.append(csrf, text, button);
+    return form;
+  };
+  const renderInventory = data => {
+    const equipped = data.equipped || {};
+    const weapon = equipped.weapon;
+    const armor = equipped.armor;
+    equipmentSummary.replaceChildren();
+    [
+      ["Arma activa", weapon ? weapon.name : "Ninguna"],
+      ["Armadura activa", armor ? armor.name : "Ninguna"],
+      ["Protección total", Math.round((data.armor_reduction_total || 0) * 100) + "%"],
+      ["Carga física", "×" + Number(data.carga_multiplier || 1).toFixed(2)],
+    ].forEach(([label, value]) => {
+      const slot = document.createElement("div");
+      slot.className = "equipment-slot";
+      const strong = document.createElement("strong");
+      strong.textContent = label;
+      const span = document.createElement("span");
+      span.textContent = value;
+      slot.append(strong, span);
+      equipmentSummary.appendChild(slot);
+    });
+
+    const items = Array.isArray(data.items) ? data.items : [];
+    if (!items.length) {
+      inventoryContent.className = "inventory-empty";
+      inventoryContent.textContent = "Todavía no posees objetos de inventario.";
+      return;
+    }
+    const list = document.createElement("div");
+    list.className = "inventory-list";
+    items.forEach(item => {
+      const row = document.createElement("div");
+      row.className = "inventory-item";
+      const info = document.createElement("div");
+      const name = document.createElement("strong");
+      name.textContent = item.name + (item.equipped ? " · Equipado" : "");
+      const meta = document.createElement("div");
+      meta.className = "inventory-meta";
+      meta.textContent = itemDetails(item);
+      if (item.forge_required) meta.classList.add(item.forge_validated ? "forge-ok" : "forge-blocked");
+      info.append(name, meta);
+      row.append(info, commandFormFor(item));
+      list.appendChild(row);
+    });
+    inventoryContent.className = "";
+    inventoryContent.replaceChildren(list);
+  };
+  if (inventoryButton) inventoryButton.addEventListener("click", async () => {
+    inventoryStatus.textContent = "Consultando inventario…";
+    inventoryContent.className = "inventory-empty";
+    inventoryContent.textContent = "Cargando objetos…";
+    try {
+      const response = await fetch("/api/inventory", {headers: {"Accept": "application/json"}});
+      if (!response.ok) throw new Error("inventory unavailable");
+      renderInventory(await response.json());
+      inventoryStatus.textContent = "Estado de inventario y equipo confirmado por el servidor.";
+    } catch (_error) {
+      equipmentSummary.replaceChildren();
+      inventoryContent.className = "inventory-empty";
+      inventoryContent.textContent = "No se pudo cargar el inventario. Puedes seguir jugando normalmente.";
+      inventoryStatus.textContent = "Inventario no disponible en este momento.";
+    }
+  });
+
+    const mapButton = document.querySelector("[data-map-open]");
   const mapStatus = document.getElementById("mapStatus");
   const mapContent = document.getElementById("mapContent");
   const headingStatus = document.getElementById("headingStatus");
