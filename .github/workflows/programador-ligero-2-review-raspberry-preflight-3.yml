@@ -1,0 +1,21 @@
+name: Review Raspberry preflight final rerun
+on:
+  push:
+    branches:
+      - programador-ligero-2/review-raspberry-preflight-3
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: vintage-telnet
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install -r requirements.txt
+      - run: python -m py_compile ops/raspberry_preflight.py ops/inventory_migration_probe.py
+      - run: python ops/raspberry_preflight.py --help
+      - run: python ops/inventory_migration_probe.py --help
+      - run: python -m unittest tests.test_inventory -v
