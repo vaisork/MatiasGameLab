@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Vintage Telnet · Preview UI</title>
+<style>
+:root{color-scheme:dark;--bg:#090d13;--shell:#141c28;--panel:#171f2c;--line:#8a6a35;--ink:#ece5d3;--muted:#9ca9bc;--gold:#d7b56a;--green:#8dff9f;--green2:#5abf70;--green3:#c5ffcc;--red:#e05a4a}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:radial-gradient(circle at 18% 0,#22314a 0,transparent 30%),linear-gradient(#10161f,#080b10);color:var(--ink);font-family:Georgia,"Times New Roman",serif}
+button,input{font:inherit}button{touch-action:manipulation}
+.wrap{width:min(980px,100%);margin:auto;padding:max(10px,env(safe-area-inset-top)) 10px max(18px,env(safe-area-inset-bottom))}
+.preview-note{position:sticky;top:6px;z-index:10;margin-bottom:10px;padding:9px 12px;border:1px solid #866d3d;border-radius:10px;background:#211b10e8;color:#f2dca4;font:700 .76rem/1.35 ui-sans-serif,system-ui,sans-serif;backdrop-filter:blur(8px)}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 12px;border:1px solid var(--line);border-radius:12px;background:linear-gradient(180deg,#1c2636,#171f2c);box-shadow:0 12px 34px #0008}
+.brand strong{letter-spacing:.08em}.brand small{display:block;color:var(--muted);font:600 .7rem ui-sans-serif,system-ui,sans-serif}
+.player{color:#e8c981;font:700 .72rem ui-monospace,monospace}
+.tabs{display:flex;gap:6px;overflow:auto;padding:9px 0;scrollbar-width:none}.tabs::-webkit-scrollbar{display:none}
+.tab{flex:0 0 auto;min-height:42px;border:1px solid #445066;border-radius:10px;background:#111925;color:#d6dceb;padding:7px 11px;font:750 .78rem ui-sans-serif,system-ui,sans-serif}.tab.active{border-color:var(--gold);background:#211b10;color:#f3d998}
+.screen{display:none}.screen.active{display:block}
+.shell{border:1px solid var(--line);border-radius:16px;background:linear-gradient(180deg,#1c2636,#141c28);box-shadow:0 18px 55px #0008;padding:9px;display:flex;flex-direction:column;gap:9px;min-width:0}
+.place{display:flex;align-items:center;gap:9px;min-height:42px;padding:7px 11px;border:1px solid var(--line);border-radius:10px;background:linear-gradient(180deg,#141b27,#0d131c);color:var(--gold);font:700 .85rem ui-monospace,monospace;letter-spacing:.06em}
+.place strong{flex:1;color:#f2dca4;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.place .ambient{font:600 .72rem ui-sans-serif,system-ui,sans-serif;letter-spacing:0;color:#e9d6a4;white-space:nowrap}
+.place.combat{border-color:#b0402f;background:linear-gradient(90deg,#43120c,#1f0a08)}.flag{border:1px solid #e0594a;border-radius:6px;background:#8a1d14;color:white;padding:3px 7px;font:800 .7rem ui-monospace,monospace}
+.art{margin:0;border:2px solid #9a7a3e;border-radius:12px;overflow:hidden;background:#101722;box-shadow:0 0 0 1px #000}.art img{display:block;width:100%;height:clamp(150px,43vw,280px);object-fit:cover}
+.terminal{border:1px solid #285d37;border-radius:12px;background:radial-gradient(circle at 50% 0,#0c1a11 0,transparent 30%),linear-gradient(#06110b,#030806);box-shadow:inset 0 0 28px #2dff6b0b;color:var(--green);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;overflow:hidden}
+.log{padding:12px 13px;min-height:145px;max-height:290px;overflow:auto}.cmd{color:var(--green3);font-weight:800;font-size:.82rem;margin-bottom:5px}.log p{margin:0 0 11px;font-size:clamp(.92rem,3.8vw,1rem);line-height:1.5}.hint{padding:7px 11px;border-top:1px solid #174426;background:#020604;color:#79d88d;font-size:.72rem}
+.controls{display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px;align-items:center}.dpad{display:grid;grid-template-columns:repeat(3,47px);grid-template-rows:repeat(3,44px);gap:4px}.dpad button{border:1px solid #2f7a45;border-radius:9px;background:#06140b;color:#8dff9f;font-weight:800}.dpad .n{grid-column:2}.dpad .o{grid-column:1;grid-row:2}.dpad .c{grid-column:2;grid-row:2}.dpad .e{grid-column:3;grid-row:2}.dpad .s{grid-column:2;grid-row:3}.dpad .off{opacity:.28}
+.actions{display:grid;gap:7px}.action{min-height:44px;border:1px solid #6d5434;border-radius:10px;background:#171f2c;color:var(--ink);font:750 .82rem ui-sans-serif,system-ui,sans-serif;padding:8px 11px;text-align:left}.attack{min-height:60px;border:2px solid #e0b25e;background:linear-gradient(#b8291d,#7a130c);font-size:1.05rem;color:#fff4e0;text-align:center}.danger{background:#12233a;border-color:#4a78ad;color:#dbe9ff}.gold{background:#1a150d;border-color:var(--gold);color:#f1d8a0}
+.command{display:flex;gap:7px}.command input{min-width:0;flex:1;min-height:47px;border:1px solid #2a673c;border-radius:10px;background:#020604;color:var(--green3);padding:0 11px;font-family:ui-monospace,monospace}.send{min-width:88px;border:1px solid #f1d28f;border-radius:10px;background:#d8b56a;color:#20160b;font-weight:800}
+.tools{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}.tools button{min-height:48px;border:1px solid #56647b;border-radius:10px;background:#111925;color:#e0e5ef;font:700 .7rem ui-sans-serif,system-ui,sans-serif}
+.condition{display:flex;align-items:center;gap:9px;margin:5px 0 10px}.bars{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;flex:1;max-width:230px}.bars i{height:9px;border-radius:5px;background:#3a1512}.bars i.on{background:#e0392b;box-shadow:0 0 6px #e0392b88}.cond{color:#ff9d90;font-size:.8rem}
+.panel{border:1px solid var(--line);border-radius:14px;background:#121925;padding:12px}.panel h2,.panel h3{margin:0 0 8px;color:var(--gold)}.muted{color:var(--muted);font:600 .8rem/1.45 ui-sans-serif,system-ui,sans-serif}.mapimg{display:block;width:100%;border:1px solid #4b586a;border-radius:10px}.heading{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:center;margin-top:10px}.compass{display:grid;grid-template-columns:repeat(3,38px);grid-template-rows:repeat(3,38px);gap:4px}.compass span{display:grid;place-items:center;border:1px solid #405066;border-radius:50%;font:800 .75rem ui-monospace,monospace;color:#8997aa}.compass .n{grid-column:2}.compass .o{grid-column:1;grid-row:2}.compass .c{grid-column:2;grid-row:2;color:var(--gold)}.compass .e{grid-column:3;grid-row:2;background:var(--gold);color:#20160b}.compass .s{grid-column:2;grid-row:3}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.card{border:1px solid #445166;border-radius:12px;background:#101722;padding:10px}.card strong{display:block;color:var(--green3);margin-bottom:4px}.species img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:8px;margin-bottom:8px}.classgrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.stat{display:grid;grid-template-columns:1fr auto;gap:8px;padding:8px;border:1px solid #3d4a5d;border-radius:9px;background:#0c121b;margin-top:6px}.stat b{color:var(--ink)}.stat span{color:var(--muted);font-size:.78rem}
+.inv{display:grid;gap:8px}.invrow{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;border:1px solid #3d4a5d;border-radius:10px;background:#101722;padding:10px}.equip{color:#85d99a;font-size:.76rem}
+footer{padding:12px 2px;color:#7e8999;font:600 .7rem ui-sans-serif,system-ui,sans-serif;text-align:center}
+@media(max-width:640px){.wrap{padding-inline:6px}.topbar{padding:7px 9px}.player{font-size:.64rem}.controls{grid-template-columns:auto 1fr}.tools{position:sticky;bottom:0;background:#141c28;padding-top:4px}.cards,.classgrid{grid-template-columns:1fr}.art img{height:clamp(150px,45vw,190px)}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="preview-note">PREVIEW VISUAL · Datos simulados. Sirve para revisar diseño y responsive sin Raspberry; no prueba persistencia, combate, inventario ni APIs reales.</div>
+  <header class="topbar"><div class="brand"><strong>VINTAGE TELNET</strong><small>Matías Game Lab · preview de la interfaz actual</small></div><div class="player">JUGADOR #0001 · JAVIER</div></header>
+
+  <nav class="tabs" aria-label="Pantallas de preview">
+    <button class="tab active" data-show="explora">Exploración</button>
+    <button class="tab" data-show="combate">Combate</button>
+    <button class="tab" data-show="mapa">Mapa</button>
+    <button class="tab" data-show="clase">Clase</button>
+    <button class="tab" data-show="personaje">Personaje</button>
+    <button class="tab" data-show="inventario">Inventario</button>
+  </nav>
+
+  <section id="explora" class="screen active">
+    <div class="shell">
+      <div class="place"><span>⌖</span><strong>VALDREN</strong><span class="ambient">☀ Mañana · clima pendiente</span></div>
+      <figure class="art"><img src="assets/vintage-telnet/locations/valdren.webp" alt="Valdren"></figure>
+      <div class="terminal"><div class="log"><div class="cmd">&gt; mirar</div><p>Valdren se abre ante ti entre casas de piedra, talleres y caminos que salen hacia las afueras. El movimiento del pueblo continúa mientras decides a dónde ir.</p><p style="color:#70c985">También aquí: un herrero, dos viajeros y un puesto de mercado.</p></div><div class="hint">Pista: usa Ayuda para comandos y ejemplos.</div></div>
+      <div class="controls"><div class="dpad"><button class="n">↑<br>N</button><button class="o">←<br>O</button><button class="c">◎</button><button class="e">E<br>→</button><button class="s">S<br>↓</button></div><div class="actions"><button class="action">◉ Mirar</button><button class="action">⌕ Examinar</button><button class="action">⌂ Descansar</button></div></div>
+      <div class="command"><input placeholder="> norte, mirar, examinar…"><button class="send">Enviar</button></div>
+      <div class="tools"><button>Personaje</button><button>Inventario</button><button>Mapa</button><button>Ayuda</button></div>
+    </div>
+  </section>
+
+  <section id="combate" class="screen">
+    <div class="shell">
+      <div class="place combat"><span>⚔</span><strong>EL LINDERO ROTO</strong><span class="flag">¡COMBATE!</span></div>
+      <figure class="art"><img src="assets/vintage-telnet/locations/valdren.webp" alt="Alrededores de Valdren"></figure>
+      <div class="terminal"><div class="log"><p style="color:#ff7565;font-weight:800">Mordelinde está aquí.</p><div class="condition"><div class="bars"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div><span class="cond">Herido</span></div><p>La criatura bloquea el paso junto a la cerca rota. Se mantiene baja y tensa, esperando tu movimiento.</p></div><div class="hint">Las acciones visibles son las autorizadas por el servidor.</div></div>
+      <div class="actions"><button class="action attack">⚔ Atacar</button><div style="display:grid;grid-template-columns:1fr 1fr;gap:7px"><button class="action danger">↗ Huir</button><button class="action gold">◉ Evaluar</button></div><button class="action">Esquivar</button></div>
+      <div class="command"><input placeholder="> escribe un comando…"><button class="send">Enviar</button></div>
+      <div class="tools"><button>Personaje</button><button>Inventario</button><button>Mapa</button><button>Ayuda</button></div>
+    </div>
+  </section>
+
+  <section id="mapa" class="screen">
+    <div class="panel">
+      <h2>Mapa y orientación</h2>
+      <p class="muted">Estás en: <b style="color:var(--gold)">Valdren</b></p>
+      <img class="mapimg" src="assets/vintage-telnet/maps/region-inicial.webp" alt="Mapa general de la región inicial">
+      <div class="heading">
+        <div class="compass"><span class="n">N</span><span class="o">O</span><span class="c">•</span><span class="e">E</span><span class="s">S</span></div>
+        <div><small class="muted">Dirección actual</small><strong style="display:block;color:var(--gold);font-size:1.3rem">Este</strong><p class="muted" style="margin:3px 0 0">Caminando hacia el centro de Valdren.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="clase" class="screen">
+    <div class="panel">
+      <h2>Elige tu clase inicial</h2><p class="muted">Esta es la pantalla añadida por Klaus. La elección real se guarda en servidor; aquí solo ves el diseño.</p>
+      <div class="cards classgrid">
+        <div class="card"><strong>Juramentado</strong><span class="muted">Combate frontal, resistencia y disciplina.</span><p>Arma inicial: Espada de juramento</p></div>
+        <div class="card"><strong>Arcano</strong><span class="muted">Poderes arcanos y control a distancia.</span><p>Arma inicial: Varita de aprendiz</p></div>
+        <div class="card"><strong>Sombra</strong><span class="muted">Agilidad, sigilo y decisiones oportunistas.</span><p>Arma inicial: Puñal de camino</p></div>
+        <div class="card"><strong>Artífice</strong><span class="muted">Herramientas, precisión y soluciones técnicas.</span><p>Arma inicial: Arco de ruta</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="personaje" class="screen">
+    <div class="panel">
+      <h2>Personaje</h2>
+      <div class="card"><strong>Javier — Nivel 2</strong><span class="muted">Humano · Juramentado</span></div>
+      <div class="stat"><b>Estado</b><span>HP 84/100 · Fatiga baja · Sin herida</span></div>
+      <div class="stat"><b>Progreso</b><span>XP 118/200 · 3 PA sin gastar</span></div>
+      <h3 style="margin-top:14px">Mejorar atributos</h3>
+      <div class="stat"><b>Fuerza 10</b><button class="action" style="width:auto;min-height:36px">+1 · cuesta 1 PA</button></div>
+      <div class="stat"><b>Resistencia 10</b><button class="action" style="width:auto;min-height:36px">+1 · cuesta 1 PA</button></div>
+      <div class="stat"><b>Agilidad 9</b><button class="action" style="width:auto;min-height:36px">+1 · cuesta 1 PA</button></div>
+    </div>
+  </section>
+
+  <section id="inventario" class="screen">
+    <div class="panel">
+      <h2>Inventario y equipo</h2>
+      <div class="cards">
+        <div class="card"><strong>Arma activa</strong><span>Espada de juramento</span></div>
+        <div class="card"><strong>Armadura activa</strong><span>Sin armadura</span></div>
+      </div>
+      <p class="muted">Protección total: 0 · Multiplicador de carga: 1.00 · Forja: disponible</p>
+      <div class="inv">
+        <div class="invrow"><div><strong>Espada de juramento</strong><div class="equip">EQUIPADA</div></div><button class="action">Desequipar</button></div>
+        <div class="invrow"><div><strong>Arco de práctica</strong><div class="muted">Poseído</div></div><button class="action">Equipar</button></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>Preview estático publicado desde GitHub Pages · No toca la Raspberry ni los datos vivos.</footer>
+</div>
+<script>
+document.querySelectorAll('[data-show]').forEach(btn=>btn.addEventListener('click',()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(btn.dataset.show).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}));
+</script>
+</body>
+</html>
