@@ -376,6 +376,42 @@ def get_ambient(room_id):
     return {"time_of_day": None, "weather": None}
 
 
+# Minimapa (navegación, Issue #135): coordenadas de rejilla para cada sala,
+# derivadas solo de las salidas reales (norte = y-1, este = x+1...). Se calculan
+# una vez sobre el mundo completo para que la posición de una sala no cambie
+# según lo que el jugador haya descubierto; la API solo entrega las visitadas.
+_GRID_STEP = {"north": (0, -1), "south": (0, 1), "east": (1, 0), "west": (-1, 0)}
+_MAP_LAYOUT = None
+
+
+def map_layout():
+    """{room_id: (x, y)} por recorrido en anchura desde Vaisgard. Si dos salas
+    caen en la misma celda (mundo no perfectamente cuadriculado) la segunda
+    se desplaza a la celda libre más cercana en esa misma dirección."""
+    global _MAP_LAYOUT
+    if _MAP_LAYOUT is not None:
+        return _MAP_LAYOUT
+    start = "vaisgard" if "vaisgard" in ROOMS else next(iter(ROOMS))
+    layout = {start: (0, 0)}
+    taken = {(0, 0)}
+    queue = [start]
+    while queue:
+        room_id = queue.pop(0)
+        x, y = layout[room_id]
+        for direction, destination in ROOMS[room_id]["exits"].items():
+            if destination in layout or destination not in ROOMS or direction not in _GRID_STEP:
+                continue
+            dx, dy = _GRID_STEP[direction]
+            cell = (x + dx, y + dy)
+            while cell in taken:
+                cell = (cell[0] + dx, cell[1] + dy)
+            layout[destination] = cell
+            taken.add(cell)
+            queue.append(destination)
+    _MAP_LAYOUT = layout
+    return layout
+
+
 def describe_room(room_id, others_present):
     room = get_room(room_id)
     if room is None:
