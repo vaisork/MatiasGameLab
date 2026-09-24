@@ -245,6 +245,51 @@ class EntryTests(unittest.TestCase):
         self.assertNotIn("/assets/locations/valdren.webp", html)
         self.assertNotIn("/assets/locations/vaisgard.webp", html)
 
+    def test_ui_v2_mobile_map_help_and_clean_controls(self):
+        self.assertEqual(self.register().status_code, 303)
+        store.set_status(self.path, "matias", "approved")
+        self.assertEqual(self.post("/species", {"species": "humano"}).status_code, 303)
+        html = self.client.get("/").get_data(as_text=True)
+
+        self.assertIn("Mapa y orientación", html)
+        self.assertIn('data-map-tab="general"', html)
+        self.assertIn('data-map-tab="heading"', html)
+        self.assertIn("Dirección actual no registrada", html)
+        self.assertIn("El cliente no deduce rumbo", html)
+        self.assertIn('data-help-tab="kids"', html)
+        self.assertIn("Explícamelo fácil", html)
+        self.assertIn("Los atributos ayudan, no juegan por ti", html)
+
+        self.assertIn(".location-art-fallback[hidden]{display:none!important}", html)
+        self.assertNotIn("btn-art btn-flee", html)
+        self.assertNotIn("button-huir-danger.png", html)
+        self.assertIn(".action-danger{", html)
+        self.assertIn('placeholder="> escribe un comando…"', html)
+
+        self.assertIn('sessionStorage.getItem("vt:last-room-text")', html)
+        self.assertIn("}, 26);", html)
+        self.assertNotIn('class="log" aria-live="polite"', html)
+
+    def test_ui_v2_renders_server_authorized_actions_only(self):
+        self.assertEqual(self.register().status_code, 303)
+        store.set_status(self.path, "matias", "approved")
+        self.assertEqual(self.post("/species", {"species": "humano"}).status_code, 303)
+        html = self.client.get("/").get_data(as_text=True)
+
+        # Sin encuentro, el servidor solo autoriza descanso.
+        self.assertIn('name="text" value="descansar"', html)
+        self.assertNotIn('action="/dodge"', html)
+        self.assertNotIn('action="/resist"', html)
+        self.assertNotIn('action="/block"', html)
+
+    def test_ui_v2_regional_map_does_not_publish_unserved_asset_url(self):
+        self.assertEqual(self.register().status_code, 303)
+        store.set_status(self.path, "matias", "approved")
+        self.assertEqual(self.post("/species", {"species": "humano"}).status_code, 303)
+        html = self.client.get("/").get_data(as_text=True)
+        self.assertIn("Mapa regional aprobado disponible en repositorio", html)
+        self.assertNotIn('/assets/maps/region-inicial.webp', html)
+
     def test_rate_limit_survives_restart(self):
         for _ in range(20):
             self.assertTrue(store.allow_attempt(self.path, "local-test"))

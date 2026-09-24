@@ -86,6 +86,10 @@
     .entry .cmd{color:var(--green3);font-weight:800;font-size:.84rem;margin-bottom:5px}
     .entry p{margin:0;color:var(--green);font-size:clamp(1.02rem,2.2vw,1.1rem);line-height:1.58;max-width:78ch}
     .entry p.system{color:#70c985}
+    .terminal.in-combat .room-description-entry{opacity:.72}
+    .terminal.in-combat .room-description-entry p{font-size:.94em}
+    .encounter-entry{border-left:3px solid #7d4b41;padding-left:10px}
+    .terminal.in-combat .encounter-entry{background:#240d0a66;border-radius:0 8px 8px 0;padding-block:8px;padding-right:8px}
     .terminal-alert{
       border-top:1px solid #174426;background:#020604;padding:8px 12px;color:#79d88d;
       font-size:.77rem;line-height:1.35
@@ -101,6 +105,7 @@
       min-height:120px;display:grid;place-items:center;padding:16px;color:var(--muted);
       font:700 .8rem/1.4 ui-sans-serif,system-ui,sans-serif;text-align:center
     }
+    .location-art-fallback[hidden]{display:none!important}
     .controls-row{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:center}
     .dpad{
       display:grid;grid-template-columns:repeat(3,50px);grid-template-rows:repeat(3,46px);gap:5px;justify-content:center
@@ -115,7 +120,19 @@
     .combat-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
     .context-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:stretch}
     .context-actions form{margin:0;flex:1 1 140px}
-    .context-actions .btn,.context-actions .btn-art{min-height:46px}
+    .context-actions .btn{min-height:46px}
+    .action{
+      display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:46px;
+      border:1px solid #6d5434;border-radius:10px;background:#171f2c;color:var(--ink);
+      font:750 .84rem ui-sans-serif,system-ui,sans-serif;padding:8px 12px;cursor:pointer;width:100%
+    }
+    .action:hover{border-color:var(--gold)}
+    .action:active{transform:translateY(1px)}
+    .action:focus-visible{outline:3px solid #f0d18c;outline-offset:2px}
+    .action-primary{background:#d8b56a;color:#20160b;border-color:#f1d28f}
+    .action-danger{background:#2d1714;color:#f2c3b9;border-color:#7d4b41}
+    .action-terminal{background:#061009;color:var(--green3);border-color:#28623a;font-family:ui-monospace,monospace}
+    .combat-flag{display:inline-flex;align-items:center;gap:6px;color:#f2c3b9;font:800 .7rem ui-sans-serif,system-ui,sans-serif;letter-spacing:.1em}
     .tool-row{display:flex;flex-wrap:wrap;gap:7px}
     .help-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
     .help-card{border:1px solid #4f5c6f;border-radius:10px;background:#111925;padding:10px}
@@ -130,6 +147,20 @@
     .map-route{color:var(--green3)}
     .map-empty{border:1px dashed #4b586a;border-radius:9px;padding:12px;color:var(--muted);
       font:600 .8rem/1.45 ui-sans-serif,system-ui,sans-serif}
+    .segmented{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:12px}
+    .segment{min-height:44px;border:1px solid #4b586a;border-radius:9px;background:#101722;color:var(--ink);font-weight:750}
+    .segment[aria-selected="true"]{border-color:var(--gold);color:var(--gold);background:#1d1a13}
+    .map-panel[hidden]{display:none!important}
+    .regional-map-placeholder{min-height:150px;display:grid;place-items:center;border:1px dashed #4b586a;border-radius:10px;background:#0c121b;color:var(--muted);text-align:center;padding:16px}
+    .compass{display:grid;grid-template-columns:repeat(3,44px);grid-template-rows:repeat(3,44px);gap:5px;justify-content:center;margin:10px auto}
+    .compass span{display:grid;place-items:center;border:1px solid #405066;border-radius:50%;font:800 .8rem ui-monospace,monospace;color:var(--muted)}
+    .compass .north{grid-column:2}.compass .west{grid-column:1;grid-row:2}.compass .center{grid-column:2;grid-row:2;color:var(--gold)}.compass .east{grid-column:3;grid-row:2}.compass .south{grid-column:2;grid-row:3}
+    .character-stack{display:grid;gap:10px}
+    .character-block{border:1px solid #3d4a5d;border-radius:10px;background:#101722;padding:10px}
+    .character-block h3{margin:0 0 6px}
+    .character-block p{margin:0}
+    .help-tabs{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px}
+    .help-panel[hidden]{display:none!important}
     .tool-row .btn{flex:1 1 90px}
     .btn{
       min-height:46px;border:1px solid #6d5434;border-radius:10px;background:linear-gradient(var(--shell2),var(--panel));
@@ -141,29 +172,6 @@
     .btn:focus-visible,input:focus-visible,.close:focus-visible{outline:3px solid #f0d18c;outline-offset:2px}
     .btn.primary{background:#d8b56a;color:#20160b;border-color:#f1d28f}
     .btn.danger{border-color:#7d4b41;color:#f2c3b9}
-    /* Atacar todavia no tiene arte propio (#75); en vez de un boton generico
-       le damos peso visual de combate equivalente al de Huir -- mismo alto,
-       mismo ancho, tono de peligro -- para no verse fuera de lugar al lado
-       de un boton con arte real. Sustituir por .btn-art cuando exista icono
-       de Atacar. */
-    .btn.combat-attack{
-      background:linear-gradient(180deg,#3a1f18,#241109);border-color:#7d4b41;color:#f2c3b9;
-      font-size:.95rem;letter-spacing:.02em
-    }
-    .btn.combat-attack:hover{border-color:#e2a99c}
-    .btn.term{
-      background:#061009;color:var(--green3);border-color:#28623a;font-family:ui-monospace,monospace
-    }
-    .btn-art{
-      flex:1 1 150px;min-height:0;aspect-ratio:3/1;border:0;border-radius:10px;padding:0;cursor:pointer;
-      background-color:var(--panel);background-repeat:no-repeat;background-position:center;background-size:contain;width:100%
-    }
-    .btn-art:hover{filter:brightness(1.12)}
-    .btn-art:active{transform:translateY(1px)}
-    .btn-art:disabled{opacity:.35;cursor:not-allowed;filter:grayscale(.6)}
-    .btn-art:focus-visible{outline:3px solid #f0d18c;outline-offset:2px}
-    .btn-art.btn-flee{background-image:url("/assets/html-ui/buttons/button-huir-danger.png")}
-    .btn-art.btn-powers{background-image:url("/assets/html-ui/buttons/button-poderes-special.png")}
     .commandbar{display:flex;gap:8px}
     .commandbar input{
       min-width:0;flex:1 1 auto;min-height:48px;border-radius:10px;border:1px solid #2a673c;background:#020604;color:var(--green3);
@@ -274,7 +282,12 @@
       .log{padding:10px 11px}
       .entry{margin-bottom:11px}
       .entry p{font-size:17px;line-height:1.5}
+      .location-art{min-height:120px}
+      .location-art img{height:clamp(120px,38vw,170px)}
       .terminal-alert{padding:6px 9px;font-size:.69rem}
+      .terminal-hint{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+      .tool-row{display:grid;grid-template-columns:repeat(3,1fr);position:sticky;bottom:max(0px,env(safe-area-inset-bottom));z-index:2;background:#141c28;padding-top:4px}
+      .tool-row .btn{min-height:46px}
       .controls-row{grid-template-columns:auto 1fr;gap:7px}
       .dpad{grid-template-columns:repeat(3,46px);grid-template-rows:repeat(3,44px);gap:4px}
       .btn{min-height:44px;padding:6px;font-size:.76rem;border-radius:9px}
@@ -359,21 +372,22 @@
   {% else %}
     <div class="layout">
       <main class="game-shell">
-        <section class="terminal" aria-labelledby="placeTitle">
+        <section class="terminal{% if room.encounter %} in-combat{% endif %}" aria-labelledby="placeTitle">
           <div class="terminal-head">
             <strong id="placeTitle">{{ room.name.upper() }}</strong>
-            <span>TELNET SESSION</span>
+            {% if room.encounter %}<span class="combat-flag">● COMBATE</span>{% else %}<span>TELNET SESSION</span>{% endif %}
           </div>
-          <div class="log" aria-live="polite">
-            <div class="entry">
+          <p class="sr-only" id="roomDescriptionAccessible">{{ room.description }}</p>
+          <div class="log" aria-describedby="roomDescriptionAccessible">
+            <div class="entry room-description-entry">
               <div class="cmd">&gt; mirar</div>
-              <p>{{ room.description }}</p>
+              <p data-room-description data-room-key="{{ room.id if room.id is defined else room.name }}">{{ room.description }}</p>
             </div>
             {% if room.others_present %}
             <div class="entry"><p class="system">También aquí: {{ room.others_present | join(', ') }}</p></div>
             {% endif %}
             {% if room.encounter %}
-            <div class="entry">
+            <div class="entry encounter-entry">
               <p class="system">{{ room.encounter.name }} está aquí. Condición: {{ room.encounter.condition }}.</p>
               <p class="system">{{ room.encounter.behavior }}</p>
             </div>
@@ -385,7 +399,7 @@
             </div>
             {% endfor %}
           </div>
-          <div class="terminal-alert">Chat local explícito: usa “decir &lt;texto&gt;”. Los comandos desconocidos no se publican.</div>
+          <div class="terminal-alert terminal-hint">Pista: usa Ayuda para comandos y ejemplos. Para chat local escribe “decir &lt;texto&gt;”.</div>
         </section>
 
         {% if room.art %}
@@ -420,25 +434,27 @@
             </form>
           </div>
           <div class="context-actions" aria-label="Acciones del contexto">
-            {% if room.encounter %}
-            <form method="post" action="/attack">
-              <input type="hidden" name="csrf" value="{{ session.csrf }}">
-              <button class="btn combat-attack" type="submit">⚔ Atacar</button>
-            </form>
-            <form method="post" action="/flee">
-              <input type="hidden" name="csrf" value="{{ session.csrf }}">
-              <button class="btn-art btn-flee" type="submit" title="Huir" aria-label="Huir"><span class="sr-only" aria-hidden="true">Huir</span></button>
-            </form>
-            <form method="post" action="/evaluate">
-              <input type="hidden" name="csrf" value="{{ session.csrf }}">
-              <button class="btn" type="submit">Evaluar a {{ room.encounter.name }}</button>
-            </form>
-            {% else %}
-            <form method="post" action="/command">
-              <input type="hidden" name="csrf" value="{{ session.csrf }}">
-              <input type="hidden" name="text" value="descansar">
-              <button class="btn" type="submit">Descansar</button>
-            </form>
+            {% set action_names = room.available_actions | map(attribute='action') | list %}
+            {% if 'atacar' in action_names %}
+            <form method="post" action="/attack"><input type="hidden" name="csrf" value="{{ session.csrf }}"><button class="action action-primary" type="submit">Atacar</button></form>
+            {% endif %}
+            {% if 'huir' in action_names %}
+            <form method="post" action="/flee"><input type="hidden" name="csrf" value="{{ session.csrf }}"><button class="action action-danger" type="submit">Huir</button></form>
+            {% endif %}
+            {% if 'evaluar' in action_names %}
+            <form method="post" action="/evaluate"><input type="hidden" name="csrf" value="{{ session.csrf }}"><button class="action" type="submit">Evaluar</button></form>
+            {% endif %}
+            {% if 'esquivar' in action_names %}
+            <form method="post" action="/dodge"><input type="hidden" name="csrf" value="{{ session.csrf }}"><button class="action" type="submit">Esquivar</button></form>
+            {% endif %}
+            {% if 'resistir' in action_names %}
+            <form method="post" action="/resist"><input type="hidden" name="csrf" value="{{ session.csrf }}"><button class="action" type="submit">Resistir</button></form>
+            {% endif %}
+            {% if 'bloquear' in action_names %}
+            <form method="post" action="/block"><input type="hidden" name="csrf" value="{{ session.csrf }}"><button class="action" type="submit">Bloquear</button></form>
+            {% endif %}
+            {% if 'descansar' in action_names %}
+            <form method="post" action="/command"><input type="hidden" name="csrf" value="{{ session.csrf }}"><input type="hidden" name="text" value="descansar"><button class="action" type="submit">Descansar</button></form>
             {% endif %}
           </div>
         </section>
@@ -448,10 +464,9 @@
         <section>
           <form class="commandbar" method="post" action="/command">
             <input type="hidden" name="csrf" value="{{ session.csrf }}">
-            <input name="text" aria-label="Escribe un comando" autocomplete="off" autocapitalize="none" spellcheck="false" enterkeyhint="send" maxlength="500" placeholder="> norte, mirar, examinar..., descansar, decir..., hablar...">
+            <input name="text" aria-label="Escribe un comando" autocomplete="off" autocapitalize="none" spellcheck="false" enterkeyhint="send" maxlength="500" placeholder="> escribe un comando…">
             <button class="btn primary" type="submit">Enviar</button>
           </form>
-          <p style="color:var(--muted);font-size:.72rem;margin:4px 0 0">Norte/sur/este/oeste mueven; "mirar" refresca; "observar/examinar &lt;objetivo&gt;" inspecciona; "evaluar &lt;criatura&gt;" valora un peligro visible; "descansar" recupera fuerzas cuando el contexto lo permite; "atacar"/"huir" aparecen en combate; "hablar &lt;npc&gt;" es una conversación aparte; para chat con otros jugadores usa "decir &lt;texto&gt;" -- ningún comando desconocido se publica como chat.</p>
           <div class="tool-row" aria-label="Herramientas">
             <button class="btn" type="button" data-open="characterDialog">Personaje</button>
             <button class="btn" type="button" data-open="mapDialog" data-map-open>Mapa</button>
@@ -485,11 +500,13 @@
   <div class="modal-head"><strong>Personaje</strong><button class="close" data-close aria-label="Cerrar">×</button></div>
   <div class="modal-body">
     {% if player and player.hp_current is not none %}
-    <h3>{{ player.name }} — Nivel {{ player.level }}</h3>
-    <p>XP: {{ player.xp }}/{{ xp_for_next_level(player.level) }} · PA sin gastar: {{ player.pa_unspent }}</p>
-    <p>HP: {{ player.hp_current | round | int }}/{{ player.hp_max | round | int }} · Fatiga: {{ player.fatigue }} · Herida: {{ player.wound }}</p>
-    <p>Fuerza {{ player.attr_fuerza }} · Resistencia {{ player.attr_resistencia }} · Agilidad {{ player.attr_agilidad }} · Percepción {{ player.attr_percepcion }}<br>
-       Intelecto {{ player.attr_intelecto }} · Voluntad {{ player.attr_voluntad }} · Destreza {{ player.attr_destreza }} · Presencia {{ player.attr_presencia }}</p>
+    <div class="character-stack">
+      <section class="character-block"><h3>{{ player.name }} — Nivel {{ player.level }}</h3><p>{{ player.species }}</p></section>
+      <section class="character-block"><h3>Estado</h3><p>HP {{ player.hp_current | round | int }}/{{ player.hp_max | round | int }} · Fatiga {{ player.fatigue }} · Herida {{ player.wound }}</p></section>
+      <section class="character-block"><h3>Progreso</h3><p>XP {{ player.xp }}/{{ xp_for_next_level(player.level) }} · PA sin gastar {{ player.pa_unspent }}</p></section>
+      <section class="character-block"><h3>Atributos</h3><p>Fuerza {{ player.attr_fuerza }} · Resistencia {{ player.attr_resistencia }} · Agilidad {{ player.attr_agilidad }} · Percepción {{ player.attr_percepcion }}<br>
+      Intelecto {{ player.attr_intelecto }} · Voluntad {{ player.attr_voluntad }} · Destreza {{ player.attr_destreza }} · Presencia {{ player.attr_presencia }}</p></section>
+    </div>
     <p style="color:var(--muted);font-size:.78rem">La asignación de PA todavía no tiene pantalla propia; los puntos quedan guardados.</p>
     {% else %}
     <h3>Panel preparado</h3>
@@ -498,24 +515,50 @@
   </div>
 </dialog>
 <dialog id="mapDialog" aria-labelledby="mapDialogTitle">
-  <div class="modal-head"><strong id="mapDialogTitle">Mapa conocido</strong><button class="close" data-close aria-label="Cerrar mapa">×</button></div>
+  <div class="modal-head"><strong id="mapDialogTitle">Mapa y orientación</strong><button class="close" data-close aria-label="Cerrar mapa">×</button></div>
   <div class="modal-body">
-    <div class="map-state">
-      <p class="map-status" id="mapStatus" aria-live="polite">Consulta únicamente lugares y rutas que tu personaje conoce.</p>
-      <div id="mapContent" class="map-empty">El mapa todavía no se ha cargado.</div>
+    <div class="segmented" role="tablist" aria-label="Vista del mapa">
+      <button class="segment" type="button" role="tab" aria-selected="true" data-map-tab="general">Mapa general</button>
+      <button class="segment" type="button" role="tab" aria-selected="false" data-map-tab="heading">Dirección actual</button>
     </div>
+    <section class="map-panel" data-map-panel="general">
+      <div class="regional-map-placeholder">Mapa regional aprobado disponible en repositorio; pendiente una ruta HTTP autorizada del servidor para mostrarlo aquí sin enlace roto.</div>
+      <div class="map-state" style="margin-top:10px">
+        <p class="map-status" id="mapStatus" aria-live="polite">Consulta únicamente lugares y rutas que tu personaje conoce.</p>
+        <div id="mapContent" class="map-empty">El mapa todavía no se ha cargado.</div>
+      </div>
+    </section>
+    <section class="map-panel" data-map-panel="heading" hidden>
+      <div class="compass" aria-label="Brújula sin rumbo registrado"><span class="north">N</span><span class="west">O</span><span class="center">•</span><span class="east">E</span><span class="south">S</span></div>
+      <p class="map-status">Dirección actual no registrada.</p>
+      <p class="map-status">El cliente no deduce rumbo desde la narración ni desde el mapa.</p>
+    </section>
   </div>
 </dialog>
 <dialog id="helpDialog" aria-labelledby="helpDialogTitle">
   <div class="modal-head"><strong id="helpDialogTitle">Ayuda</strong><button class="close" data-close aria-label="Cerrar ayuda">×</button></div>
   <div class="modal-body">
-    <div class="help-grid">
-      <section class="help-card"><h3>1. Muévete</h3><p><strong>N / S / E / O</strong> recorre salidas disponibles. <strong>Mirar</strong> vuelve a leer dónde estás.</p></section>
-      <section class="help-card"><h3>2. Investiga</h3><p><strong>Explora:</strong> mira el lugar y examina aquello que llame tu atención. <strong>Observar</strong> busca señales; <strong>Evaluar</strong> estima cualitativamente el peligro de una criatura visible.</p></section>
-      <section class="help-card"><h3>3. Combate</h3><p>El ataque básico continúa una vez iniciado el combate. <strong>Huir</strong> o una defensa disponible sustituye tu ataque de esa ronda. Esquivar, Bloquear y Resistir solo aparecerán cuando el servidor los autorice.</p></section>
-      <section class="help-card"><h3>4. Recupérate y consulta</h3><p><strong>Descansar</strong> es una acción cuando el juego la permita; no todos los momentos ofrecen las mismas opciones. <strong>Personaje</strong> muestra tu estado y <strong>Mapa</strong> recuerda solo lugares y rutas conocidos.</p></section>
-      <section class="help-card"><h3>5. Habla</h3><p><strong>Hablar</strong> conversa con un NPC disponible. Para chat local usa <code>decir &lt;texto&gt;</code>. Un comando desconocido no se convierte en chat.</p></section>
+    <div class="help-tabs" role="tablist" aria-label="Tipo de ayuda">
+      <button class="segment" type="button" role="tab" aria-selected="true" data-help-tab="quick">Guía rápida</button>
+      <button class="segment" type="button" role="tab" aria-selected="false" data-help-tab="kids">Explícamelo fácil</button>
     </div>
+    <section class="help-panel" data-help-panel="quick">
+      <div class="help-grid">
+        <section class="help-card"><h3>1. Muévete</h3><p><strong>N / S / E / O</strong> recorre salidas disponibles. <strong>Mirar</strong> vuelve a leer dónde estás.</p></section>
+        <section class="help-card"><h3>2. Investiga</h3><p><strong>Explora:</strong> mira el lugar y examina aquello que llame tu atención. <strong>Observar</strong> busca señales; <strong>Evaluar</strong> estima cualitativamente el peligro de una criatura visible.</p></section>
+        <section class="help-card"><h3>3. Combate</h3><p>Las acciones aparecen solo cuando el servidor las permite. Huir o una defensa sustituye tu ataque de esa ronda.</p></section>
+        <section class="help-card"><h3>4. Recupérate y consulta</h3><p><strong>Descansar</strong> aparece cuando está permitido. Personaje muestra tu estado y Mapa recuerda lugares/rutas conocidos.</p></section>
+        <section class="help-card"><h3>5. Habla</h3><p><strong>Hablar</strong> conversa con un NPC. Para chat local usa <code>decir &lt;texto&gt;</code>. Un comando desconocido no se publica.</p></section>
+      </div>
+    </section>
+    <section class="help-panel" data-help-panel="kids" hidden>
+      <div class="help-grid">
+        <section class="help-card"><h3>Lee antes de elegir</h3><p>El texto te da pistas. No necesitas memorizar todo: busca lo que cambia tu decisión.</p></section>
+        <section class="help-card"><h3>Si no sabes qué hacer</h3><p>Prueba <strong>mirar</strong>. Después observa o examina algo que te llame la atención. Una segunda pista puede aclarar la primera.</p></section>
+        <section class="help-card"><h3>Equivocarte está permitido</h3><p>Una acción puede fallar por cansancio, capacidad, herramienta o riesgo. Lee el resultado para entender qué cambió.</p></section>
+        <section class="help-card"><h3>Los atributos ayudan, no juegan por ti</h3><p>Tu personaje puede notar más cosas o hacerlas mejor, pero tú decides qué significan las pistas y qué hacer con ellas.</p></section>
+      </div>
+    </section>
   </div>
 </dialog>
 
@@ -546,6 +589,17 @@
     const fallback = img.nextElementSibling;
     if (fallback) fallback.hidden = false;
   }));
+
+  const activateTabs = (buttonSelector, panelSelector, dataKey) => {
+    const buttons = [...document.querySelectorAll(buttonSelector)];
+    const panels = [...document.querySelectorAll(panelSelector)];
+    buttons.forEach(button => button.addEventListener("click", () => {
+      buttons.forEach(other => other.setAttribute("aria-selected", String(other === button)));
+      panels.forEach(panel => { panel.hidden = panel.dataset[dataKey] !== button.dataset[dataKey]; });
+    }));
+  };
+  activateTabs("[data-map-tab]", "[data-map-panel]", "mapPanel");
+  activateTabs("[data-help-tab]", "[data-help-panel]", "helpPanel");
 
   const mapButton = document.querySelector("[data-map-open]");
   const mapStatus = document.getElementById("mapStatus");
@@ -615,25 +669,30 @@
   // demas mensajes (presentes, encuentro, chat) se quedan como estan.
   // Respeta prefers-reduced-motion y es interrumpible con un toque/clic.
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const mainParagraph = document.querySelector(".log .entry p");
+  const mainParagraph = document.querySelector("[data-room-description]");
   if (mainParagraph && !reduceMotion) {
     const fullText = mainParagraph.textContent;
-    mainParagraph.textContent = "";
-    let shown = 0;
-    let timer = null;
-    const revealAll = () => {
-      if (timer === null) return;
-      clearInterval(timer);
-      timer = null;
-      mainParagraph.textContent = fullText;
-    };
-    timer = setInterval(() => {
-      shown += 2;
-      if (shown >= fullText.length) { revealAll(); return; }
-      mainParagraph.textContent = fullText.slice(0, shown);
-    }, 18);
-    const log = document.querySelector(".log");
-    if (log) log.addEventListener("click", revealAll, {once: true});
+    const roomKey = mainParagraph.dataset.roomKey + ":" + fullText;
+    let alreadyRead = false;
+    try { alreadyRead = sessionStorage.getItem("vt:last-room-text") === roomKey; } catch (_error) {}
+    if (!alreadyRead) {
+      mainParagraph.textContent = "";
+      let shown = 0;
+      let timer = null;
+      const revealAll = () => {
+        if (timer !== null) clearInterval(timer);
+        timer = null;
+        mainParagraph.textContent = fullText;
+        try { sessionStorage.setItem("vt:last-room-text", roomKey); } catch (_error) {}
+      };
+      timer = setInterval(() => {
+        shown += 2;
+        if (shown >= fullText.length) { revealAll(); return; }
+        mainParagraph.textContent = fullText.slice(0, shown);
+      }, 26);
+      const log = document.querySelector(".log");
+      if (log) log.addEventListener("click", revealAll, {once: true});
+    }
   }
 })();
 </script>
