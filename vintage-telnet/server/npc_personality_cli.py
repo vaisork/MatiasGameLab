@@ -45,7 +45,7 @@ def main(argv=None) -> int:
     destination.add_argument("--output", type=Path, help="Escribe el NPC enriquecido en otro archivo.")
     parser.add_argument("--ollama-url", default=None, help="Por defecto VT_OLLAMA_URL o http://127.0.0.1:11434.")
     parser.add_argument("--model", default=None, help="Por defecto VT_OLLAMA_NPC_MODEL; si hay un solo modelo instalado se autodetecta.")
-    parser.add_argument("--timeout", type=float, default=45.0)
+    parser.add_argument("--timeout", type=float, default=180.0)
     args = parser.parse_args(argv)
 
     try:
