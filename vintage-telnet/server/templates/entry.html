@@ -133,7 +133,9 @@
     .action-danger{background:#2d1714;color:#f2c3b9;border-color:#7d4b41}
     .action-terminal{background:#061009;color:var(--green3);border-color:#28623a;font-family:ui-monospace,monospace}
     .combat-flag{display:inline-flex;align-items:center;gap:6px;color:#f2c3b9;font:800 .7rem ui-sans-serif,system-ui,sans-serif;letter-spacing:.1em}
+    .ui-icon{width:19px;height:19px;flex:0 0 19px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
     .tool-row{display:flex;flex-wrap:wrap;gap:7px}
+    .tool-row .btn,.commandbar .btn,.segment{display:inline-flex;align-items:center;justify-content:center;gap:7px}
     .help-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
     .help-card{border:1px solid #4f5c6f;border-radius:10px;background:#111925;padding:10px}
     .help-card h3{margin:0 0 6px;color:var(--gold);font:800 .9rem ui-sans-serif,system-ui,sans-serif}
@@ -151,9 +153,10 @@
     .segment{min-height:44px;border:1px solid #4b586a;border-radius:9px;background:#101722;color:var(--ink);font-weight:750}
     .segment[aria-selected="true"]{border-color:var(--gold);color:var(--gold);background:#1d1a13}
     .map-panel[hidden]{display:none!important}
-    .regional-map-placeholder{min-height:150px;display:grid;place-items:center;border:1px dashed #4b586a;border-radius:10px;background:#0c121b;color:var(--muted);text-align:center;padding:16px}
+    .regional-map{display:block;width:100%;height:auto;max-height:360px;object-fit:contain;border:1px solid #4b586a;border-radius:10px;background:#0c121b}
     .compass{display:grid;grid-template-columns:repeat(3,44px);grid-template-rows:repeat(3,44px);gap:5px;justify-content:center;margin:10px auto}
     .compass span{display:grid;place-items:center;border:1px solid #405066;border-radius:50%;font:800 .8rem ui-monospace,monospace;color:var(--muted)}
+    .compass span[data-heading].active{border-color:var(--gold);color:#20160b;background:var(--gold);box-shadow:0 0 0 2px #d7b56a26}
     .compass .north{grid-column:2}.compass .west{grid-column:1;grid-row:2}.compass .center{grid-column:2;grid-row:2;color:var(--gold)}.compass .east{grid-column:3;grid-row:2}.compass .south{grid-column:2;grid-row:3}
     .character-stack{display:grid;gap:10px}
     .character-block{border:1px solid #3d4a5d;border-radius:10px;background:#101722;padding:10px}
@@ -306,6 +309,16 @@
   </style>
 </head>
 <body>
+<svg class="sr-only" aria-hidden="true" focusable="false">
+  <symbol id="icon-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-5 4-7 8-7s7 2 8 7"/></symbol>
+  <symbol id="icon-map" viewBox="0 0 24 24"><path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3z"/><path d="M9 3v15M15 6v15"/></symbol>
+  <symbol id="icon-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.8 9a2.4 2.4 0 114.5 1.2c-.7 1.1-2.3 1.3-2.3 3"/><path d="M12 17h.01"/></symbol>
+  <symbol id="icon-swords" viewBox="0 0 24 24"><path d="M4 3l7 7-3 3-7-7zM20 3l-7 7 3 3 7-7z"/><path d="M7 14l3 3M17 14l-3 3M8 19l-3 2 2-3M16 19l3 2-2-3"/></symbol>
+  <symbol id="icon-exit" viewBox="0 0 24 24"><path d="M10 5H5v14h5"/><path d="M13 8l4 4-4 4M8 12h9"/></symbol>
+  <symbol id="icon-eye" viewBox="0 0 24 24"><path d="M2 12s4-6 10-6 10 6 10 6-4 6-10 6S2 12 2 12z"/><circle cx="12" cy="12" r="2.5"/></symbol>
+  <symbol id="icon-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15 9l-2 5-5 2 2-5z"/></symbol>
+  <symbol id="icon-send" viewBox="0 0 24 24"><path d="M3 11.5L21 3l-8.5 18-2-7z"/><path d="M10.5 14L21 3"/></symbol>
+</svg>
 <div class="app">
   <header class="topbar">
     <div class="brand"><strong>VINTAGE TELNET</strong><small>Matías Game Lab</small></div>
@@ -436,13 +449,13 @@
           <div class="context-actions" aria-label="Acciones del contexto">
             {% set action_names = room.available_actions | map(attribute='action') | list %}
             {% if 'atacar' in action_names %}
-            <form method="post" action="/attack"><input type="hidden" name="csrf" value="{{ session.csrf }}"><button class="action action-primary" type="submit">Atacar</button></form>
+            <form method="post" action="/attack"><input type="hidden" name="csrf" value="{{ session.csrf }}"><button class="action action-primary" type="submit"><svg class="ui-icon" aria-hidden="true"><use href="#icon-swords"/></svg>Atacar</button></form>
             {% endif %}
             {% if 'huir' in action_names %}
-            <form method="post" action="/flee"><input type="hidden" name="csrf" value="{{ session.csrf }}"><button class="action action-danger" type="submit">Huir</button></form>
+            <form method="post" action="/flee"><input type="hidden" name="csrf" value="{{ session.csrf }}"><button class="action action-danger" type="submit"><svg class="ui-icon" aria-hidden="true"><use href="#icon-exit"/></svg>Huir</button></form>
             {% endif %}
             {% if 'evaluar' in action_names %}
-            <form method="post" action="/evaluate"><input type="hidden" name="csrf" value="{{ session.csrf }}"><button class="action" type="submit">Evaluar</button></form>
+            <form method="post" action="/evaluate"><input type="hidden" name="csrf" value="{{ session.csrf }}"><button class="action" type="submit"><svg class="ui-icon" aria-hidden="true"><use href="#icon-eye"/></svg>Evaluar</button></form>
             {% endif %}
             {% if 'esquivar' in action_names %}
             <form method="post" action="/dodge"><input type="hidden" name="csrf" value="{{ session.csrf }}"><button class="action" type="submit">Esquivar</button></form>
@@ -465,12 +478,12 @@
           <form class="commandbar" method="post" action="/command">
             <input type="hidden" name="csrf" value="{{ session.csrf }}">
             <input name="text" aria-label="Escribe un comando" autocomplete="off" autocapitalize="none" spellcheck="false" enterkeyhint="send" maxlength="500" placeholder="> escribe un comando…">
-            <button class="btn primary" type="submit">Enviar</button>
+            <button class="btn primary" type="submit"><svg class="ui-icon" aria-hidden="true"><use href="#icon-send"/></svg>Enviar</button>
           </form>
           <div class="tool-row" aria-label="Herramientas">
-            <button class="btn" type="button" data-open="characterDialog">Personaje</button>
-            <button class="btn" type="button" data-open="mapDialog" data-map-open>Mapa</button>
-            <button class="btn" type="button" data-open="helpDialog">Ayuda</button>
+            <button class="btn" type="button" data-open="characterDialog"><svg class="ui-icon" aria-hidden="true"><use href="#icon-user"/></svg>Personaje</button>
+            <button class="btn" type="button" data-open="mapDialog" data-map-open><svg class="ui-icon" aria-hidden="true"><use href="#icon-map"/></svg>Mapa</button>
+            <button class="btn" type="button" data-open="helpDialog"><svg class="ui-icon" aria-hidden="true"><use href="#icon-help"/></svg>Ayuda</button>
           </div>
         </section>
       </main>
@@ -518,20 +531,20 @@
   <div class="modal-head"><strong id="mapDialogTitle">Mapa y orientación</strong><button class="close" data-close aria-label="Cerrar mapa">×</button></div>
   <div class="modal-body">
     <div class="segmented" role="tablist" aria-label="Vista del mapa">
-      <button class="segment" type="button" role="tab" aria-selected="true" data-map-tab="general">Mapa general</button>
-      <button class="segment" type="button" role="tab" aria-selected="false" data-map-tab="heading">Dirección actual</button>
+      <button class="segment" type="button" role="tab" aria-selected="true" data-map-tab="general"><svg class="ui-icon" aria-hidden="true"><use href="#icon-map"/></svg>Mapa general</button>
+      <button class="segment" type="button" role="tab" aria-selected="false" data-map-tab="heading"><svg class="ui-icon" aria-hidden="true"><use href="#icon-compass"/></svg>Dirección actual</button>
     </div>
     <section class="map-panel" data-map-panel="general">
-      <div class="regional-map-placeholder">Mapa regional aprobado disponible en repositorio; pendiente una ruta HTTP autorizada del servidor para mostrarlo aquí sin enlace roto.</div>
+      <img class="regional-map" src="/assets/maps/region-inicial.webp" alt="Mapa regional conocido" loading="lazy" decoding="async">
       <div class="map-state" style="margin-top:10px">
         <p class="map-status" id="mapStatus" aria-live="polite">Consulta únicamente lugares y rutas que tu personaje conoce.</p>
         <div id="mapContent" class="map-empty">El mapa todavía no se ha cargado.</div>
       </div>
     </section>
     <section class="map-panel" data-map-panel="heading" hidden>
-      <div class="compass" aria-label="Brújula sin rumbo registrado"><span class="north">N</span><span class="west">O</span><span class="center">•</span><span class="east">E</span><span class="south">S</span></div>
-      <p class="map-status">Dirección actual no registrada.</p>
-      <p class="map-status">El cliente no deduce rumbo desde la narración ni desde el mapa.</p>
+      <div class="compass" id="headingCompass" aria-label="Brújula"><span class="north" data-heading="north">N</span><span class="west" data-heading="west">O</span><span class="center">•</span><span class="east" data-heading="east">E</span><span class="south" data-heading="south">S</span></div>
+      <p class="map-status" id="headingStatus">Dirección actual no registrada.</p>
+      <p class="map-status">El rumbo se muestra únicamente cuando lo confirma el servidor.</p>
     </section>
   </div>
 </dialog>
@@ -604,6 +617,13 @@
   const mapButton = document.querySelector("[data-map-open]");
   const mapStatus = document.getElementById("mapStatus");
   const mapContent = document.getElementById("mapContent");
+  const headingStatus = document.getElementById("headingStatus");
+  const headingLabels = {north: "Norte", south: "Sur", east: "Este", west: "Oeste"};
+  const renderHeading = heading => {
+    document.querySelectorAll("[data-heading]").forEach(item => item.classList.toggle("active", item.dataset.heading === heading));
+    if (!headingStatus) return;
+    headingStatus.textContent = headingLabels[heading] ? "Caminando hacia: " + headingLabels[heading] : "Dirección actual no registrada.";
+  };
   const readableId = id => String(id).replaceAll("_", " ");
   const renderMap = data => {
     const rooms = Array.isArray(data.visited_rooms) ? data.visited_rooms : [];
@@ -653,7 +673,9 @@
     try {
       const response = await fetch("/api/map", {headers: {"Accept": "application/json"}});
       if (!response.ok) throw new Error("map unavailable");
-      renderMap(await response.json());
+      const data = await response.json();
+      renderMap(data);
+      renderHeading(data.current_heading);
       mapStatus.textContent = "Solo se muestran lugares visitados y rutas recorridas que devuelve el servidor.";
     } catch (_error) {
       mapContent.className = "map-empty";
