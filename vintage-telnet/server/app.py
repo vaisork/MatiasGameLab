@@ -64,6 +64,7 @@ def _can_block():
 # habilitar una carpeta estática general -- mantiene el resto del árbol del repo fuera de HTTP.
 HTML_UI_ASSETS_DIR = Path(__file__).resolve().parent.parent / "assets" / "html-ui"
 LOCATION_ASSETS_DIR = Path(__file__).resolve().parent.parent.parent / "assets" / "vintage-telnet" / "locations"
+APP_ICON_PATH = Path(__file__).resolve().parent.parent.parent / "assets" / "icon" / "vintage-telnet-portal.webp"
 
 
 def create_app(config=None):
@@ -1090,6 +1091,34 @@ def create_app(config=None):
             db.execute("SELECT id FROM players LIMIT 1").fetchone()
             version = db.execute("PRAGMA user_version").fetchone()[0]
         return jsonify(status="ok", schema_version=version)
+
+    @app.get("/vintage-telnet.webmanifest")
+    def webmanifest():
+        response = jsonify(
+            name="Vintage Telnet",
+            short_name="Vintage Telnet",
+            start_url="/",
+            scope="/",
+            display="standalone",
+            background_color="#0a0e15",
+            theme_color="#141c28",
+            icons=[{
+                "src": "/assets/app-icon/vintage-telnet.webp",
+                "sizes": "192x192",
+                "type": "image/webp",
+                "purpose": "any",
+            }],
+        )
+        response.mimetype = "application/manifest+json"
+        return response
+
+    @app.get("/assets/app-icon/vintage-telnet.webp")
+    def app_icon():
+        return send_from_directory(
+            APP_ICON_PATH.parent,
+            APP_ICON_PATH.name,
+            mimetype="image/webp",
+        )
 
     @app.get("/assets/html-ui/<path:filename>")
     def html_ui_assets(filename):
