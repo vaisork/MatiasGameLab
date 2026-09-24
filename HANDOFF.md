@@ -34,8 +34,20 @@
   - Examinar rellena el cuadro.
 - Revisé también a 1280 px: el panel lateral "Estado visible" se conserva.
 
-### NO IMPLEMENTADO (lo decide Jugabilidad/Narrador; registrado en #135)
-- Hora del día ("Día claro ☀️").
+### SEGUNDA RONDA (petición de Javier, 2026-09-24)
+- **Espacio para hora del día y clima.** El servidor expone `ambient: {time_of_day, weather}` en cada sala mediante `world.get_ambient(room_id)`, que hoy siempre devuelve vacío.
+  - La barra de lugar muestra hasta 2 etiquetas con ícono. Íconos SVG disponibles: sol, luna, amanecer, atardecer, nube, lluvia, niebla, nieve, tormenta, viento.
+  - Qué estados existen y cómo cambian lo definen **Jugabilidad y Narrador en la Issue #138**, por petición expresa de Javier. No se inventó ningún estado; sin datos no se muestra nada.
+- **Letra un poco más pequeña** para que quepa mejor:
+  - terminal a 15 px en teléfono (antes 17) y clamp(.95–1.02rem) en escritorio;
+  - botones de acción a .8rem;
+  - Atacar a 56 px de alto.
+  - El cuadro de comando se queda en **16 px** a propósito: con menos, iPhone hace zoom al escribir.
+- Pruebas: **218/218 OK**, con una nueva que comprueba que el ambiente está vacío por defecto y se muestra con datos. Un ícono desconocido aparece solo como texto.
+- Captura a 390 px con un ambiente de ejemplo inyectado solo en la prueba: la barra muestra "☀ Mañana · ☁ Despejado" sin desbordar.
+
+### NO IMPLEMENTADO (lo decide Jugabilidad/Narrador; registrado en #135 y #138)
+- Estados concretos de hora del día y clima (#138).
 - Barra de HP numérica del enemigo; se usa la banda de condición.
 - El contenido de ejemplo de la maqueta (jabalí salvaje, etc.) no se copió.
 - Marcadores o leyenda sobre la imagen del mapa: la imagen es estática y no dibujamos marcadores.

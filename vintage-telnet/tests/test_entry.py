@@ -346,6 +346,28 @@ class EntryTests(unittest.TestCase):
         self.assertNotIn(">Descansar</button>", html)
         self.assertNotRegex(html, r"HP:\s*\d+/\d+")
 
+    def test_ambient_slot_is_empty_until_gameplay_and_narrative_define_it(self):
+        """Issue #138 (petición de Javier): el servidor expone `ambient` y la
+        barra de lugar tiene su espacio, pero ningún estado está inventado:
+        hasta que Jugabilidad/Narrador lo definan, no se muestra nada."""
+        self.assertEqual(self.register().status_code, 303)
+        store.set_status(self.path, "matias", "approved")
+        self.assertEqual(self.post("/species", {"species": "humano"}).status_code, 303)
+        room = self.client.get("/api/room").json["room"]
+        self.assertEqual(room["ambient"], {"time_of_day": None, "weather": None})
+        self.assertNotIn('class="ambient-chip"', self.client.get("/").get_data(as_text=True))
+
+        from unittest.mock import patch
+        ambient = {"time_of_day": {"label": "Mañana", "icon": "sol"},
+                   "weather": {"label": "Niebla", "icon": "icono-que-no-existe"}}
+        with patch.object(world, "get_ambient", return_value=ambient):
+            html = self.client.get("/").get_data(as_text=True)
+        self.assertEqual(html.count('class="ambient-chip"'), 2)
+        self.assertIn('href="#icon-amb-sol"/></svg>Mañana</span>', html)
+        self.assertIn('<span class="ambient-chip">Niebla</span>', html)  # icono desconocido: solo texto
+        for icon in world.AMBIENT_ICONS:
+            self.assertIn(f'id="icon-amb-{icon}"', html)
+
     def test_ui_v2_consumes_served_regional_map_and_authoritative_heading(self):
         self.assertEqual(self.register().status_code, 303)
         store.set_status(self.path, "matias", "approved")

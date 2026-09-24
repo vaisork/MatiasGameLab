@@ -84,7 +84,7 @@
     .entry{margin:0 0 14px}
     .entry:last-child{margin-bottom:0}
     .entry .cmd{color:var(--green3);font-weight:800;font-size:.84rem;margin-bottom:5px}
-    .entry p{margin:0;color:var(--green);font-size:clamp(1.02rem,2.2vw,1.1rem);line-height:1.58;max-width:78ch}
+    .entry p{margin:0;color:var(--green);font-size:clamp(.95rem,2vw,1.02rem);line-height:1.55;max-width:78ch}
     .entry p.system{color:#70c985}
     .terminal.in-combat .room-description-entry{opacity:.72}
     .terminal.in-combat .room-description-entry p{font-size:.94em}
@@ -292,6 +292,9 @@
     .place-bar strong{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#f2dca4}
     .place-bar.combat{border-color:#b0402f;background:linear-gradient(90deg,#43120c,#1f0a08);color:#ffb3a6}
     .place-bar.combat strong{color:#ffe1da}
+    .ambient-chip{display:inline-flex;align-items:center;gap:5px;color:#e9d6a4;white-space:nowrap;
+      font:600 .74rem ui-sans-serif,system-ui,sans-serif;letter-spacing:0}
+    .ambient-chip .ui-icon{width:17px;height:17px;flex-basis:17px;color:#f0c75e}
     .place-bar .combat-flag{
       border:1px solid #e0594a;border-radius:6px;background:#8a1d14;color:#fff0ec;padding:3px 8px;
       font:800 .72rem ui-monospace,monospace;letter-spacing:.05em;white-space:nowrap
@@ -369,7 +372,11 @@
       .terminal-head span{font-size:.62rem}
       .log{padding:10px 11px}
       .entry{margin-bottom:11px}
-      .entry p{font-size:17px;line-height:1.5}
+      .entry p{font-size:15px;line-height:1.45}
+      .entry .cmd{font-size:.78rem}
+      .action{font-size:.8rem;min-height:44px}
+      .action-attack{min-height:56px;font-size:1.08rem}
+      .context-actions .action{min-height:42px}
       .location-art{min-height:120px}
       .location-art img{height:clamp(120px,38vw,170px)}
       .terminal-alert{padding:6px 9px;font-size:.69rem}
@@ -415,6 +422,16 @@
   <symbol id="icon-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l5 5"/></symbol>
   <symbol id="icon-bed" viewBox="0 0 24 24"><path d="M3 7v12M3 15h18v4M21 15v-3a3 3 0 00-3-3h-8v6"/><circle cx="6.5" cy="11" r="1.8"/></symbol>
   <symbol id="icon-run" viewBox="0 0 24 24"><circle cx="14" cy="4.5" r="2"/><path d="M7 21l3-6 3 2v5M10 15l1-6 4 3h4M11 9L7 10l-2 4"/></symbol>
+  <symbol id="icon-amb-sol" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+  <symbol id="icon-amb-luna" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 019.5 4 8 8 0 1020 14.5z"/></symbol>
+  <symbol id="icon-amb-amanecer" viewBox="0 0 24 24"><path d="M3 18h18M7 18a5 5 0 0110 0M12 3v4M5 9l1.5 1.5M19 9l-1.5 1.5"/></symbol>
+  <symbol id="icon-amb-atardecer" viewBox="0 0 24 24"><path d="M3 18h18M7 18a5 5 0 0110 0M12 7V3M10 5l2 2 2-2"/></symbol>
+  <symbol id="icon-amb-nube" viewBox="0 0 24 24"><path d="M7 18h10a4 4 0 00.5-8A6 6 0 006 11a3.5 3.5 0 001 7z"/></symbol>
+  <symbol id="icon-amb-lluvia" viewBox="0 0 24 24"><path d="M7 14h10a4 4 0 00.5-8A6 6 0 006 7a3.5 3.5 0 001 7z"/><path d="M8 17l-1 3M12 17l-1 3M16 17l-1 3"/></symbol>
+  <symbol id="icon-amb-niebla" viewBox="0 0 24 24"><path d="M4 9h16M3 13h18M5 17h14"/></symbol>
+  <symbol id="icon-amb-nieve" viewBox="0 0 24 24"><path d="M12 3v18M4.2 7.5l15.6 9M4.2 16.5l15.6-9"/></symbol>
+  <symbol id="icon-amb-tormenta" viewBox="0 0 24 24"><path d="M7 14h10a4 4 0 00.5-8A6 6 0 006 7a3.5 3.5 0 001 7z"/><path d="M12 14l-2 4h4l-2 4"/></symbol>
+  <symbol id="icon-amb-viento" viewBox="0 0 24 24"><path d="M3 9h11a3 3 0 10-3-3M3 15h15a3 3 0 11-3 3"/></symbol>
   <symbol id="icon-send" viewBox="0 0 24 24"><path d="M3 11.5L21 3l-8.5 18-2-7z"/><path d="M10.5 14L21 3"/></symbol>
 </svg>
 <div class="app">
@@ -486,7 +503,12 @@
         <header class="place-bar{% if room.encounter %} combat{% endif %}">
           <svg class="ui-icon" aria-hidden="true"><use href="{{ '#icon-swords' if room.encounter else '#icon-pin' }}"/></svg>
           <strong id="placeTitle">{{ room.name.upper() }}</strong>
-          {% if room.encounter %}<span class="combat-flag">¡COMBATE!</span>{% endif %}
+          {% if room.encounter %}<span class="combat-flag">¡COMBATE!</span>
+          {% elif room.ambient %}
+            {% for item in [room.ambient.time_of_day, room.ambient.weather] if item %}
+            <span class="ambient-chip">{% if item.icon in ambient_icons %}<svg class="ui-icon" aria-hidden="true"><use href="#icon-amb-{{ item.icon }}"/></svg>{% endif %}{{ item.label }}</span>
+            {% endfor %}
+          {% endif %}
         </header>
 
         {% if room.art %}

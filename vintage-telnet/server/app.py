@@ -99,6 +99,7 @@ def create_app(config=None):
     app.config["DATABASE"] = path
     dummy_hash = generate_password_hash(secrets.token_urlsafe(32))
     app.jinja_env.globals["xp_for_next_level"] = combat.xp_for_next_level
+    app.jinja_env.globals["ambient_icons"] = world.AMBIENT_ICONS
 
     @app.before_request
     def prepare_request():
