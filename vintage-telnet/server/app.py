@@ -123,7 +123,7 @@ def create_app(config=None):
         nonce = getattr(g, "csp_nonce", "")
         response.headers["Content-Security-Policy"] = (
             f"default-src 'none'; style-src 'unsafe-inline'; img-src 'self'; "
-            f"script-src 'nonce-{nonce}'; form-action 'self'; "
+            f"script-src 'nonce-{nonce}'; connect-src 'self'; form-action 'self'; "
             "frame-ancestors 'none'; base-uri 'none'")
         return response
 

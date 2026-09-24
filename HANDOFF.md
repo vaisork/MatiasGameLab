@@ -1,5 +1,37 @@
 # HANDOFF — Entrega técnica
 
+## ENTREGA — Fixes puntuales de `entry.html` reportados por Javier jugando en celular real
+
+**Desarrollador:** Claude — Desarrollador de Servidor de Vintage Telnet
+
+**Estado:** LISTO PARA REVISIÓN
+
+**Rama:** `claude/vintage-telnet-server-entry-ui-fixes`
+
+### Origen
+Javier probó "El lindero roto" en su celular contra la Raspberry real (después de fusionar PR #79 + #85) y reportó: caja de comando ilegible/diminuta, botón Enviar desproporcionado, Atacar sin arte junto a un Huir muy vistoso, y texto de sala apareciendo todo de golpe. Antes de tocar nada confirmé que no había ninguna PR abierta modificando `entry.html` en paralelo (PR #79 ya se había fusionado y reconciliado).
+
+### Bug real encontrado (no solo preferencia visual)
+`.btn{width:100%}` dentro del `.commandbar` (flex row) le robaba casi todo el ancho al input de texto: medía **26px de ancho real** en el navegador (prácticamente inusable para escribir), mientras el botón Enviar ocupaba 318px. Verificado con `getBoundingClientRect()` contra el servidor real corriendo localmente, no solo leyendo CSS.
+
+### Cambios (solo `entry.html` + 1 línea de `app.py`)
+- `.commandbar .btn{width:auto;flex:0 0 auto;min-width:96px}` — el input ahora mide ~248px (usable), el botón Enviar ~96px (proporcionado a su contenido).
+- Atacar ya no usa `.btn.primary` genérico: nueva clase `.btn.combat-attack` (tono de peligro, ícono ⚔ de texto) para no verse "sin arte" al lado de Huir. Mismo ancho que Huir ahora (196px vs 196px, antes muy distintos). La altura difiere ~19px porque `.btn-art` fija `aspect-ratio:3/1` para no deformar el arte de Huir — aceptable hasta que exista ícono real de Atacar (Issue #75).
+- Texto de sala (`> mirar`) ahora se revela progresivamente (~2 caracteres/18ms) en vez de aparecer todo de golpe; respeta `prefers-reduced-motion`; un toque/clic en el log revela todo de inmediato (no bloquea si alguien quiere leer rápido).
+- Tamaño de fuente del texto de sala subido ligeramente (16px→17px en móvil, clamp ajustado en escritorio) para legibilidad.
+- `app.py`: agregado `connect-src 'self'` al CSP — sin esto, el panel **Mapa** que agregó PR #79 (usa `fetch("/api/map")`) queda bloqueado silenciosamente por `default-src 'none'` y nunca carga. Bug real, no relacionado con el reporte de Javier pero encontrado en la misma verificación.
+
+### Pruebas
+112/112 (`python -m unittest discover -s tests -v`), incluyendo una prueba nueva que verifica `connect-src 'self'` en el CSP. Verificado además a mano contra el servidor real corriendo (login, encuentro con Mordelinde, medidas reales de los botones vía `getBoundingClientRect()`).
+
+### Pendiente para otros roles (no lo hago yo)
+- Ícono real de Atacar y arte de Huir/Atacar equivalente — Issue #75 (Arte + Integrador).
+- Javier reportó que las tarjetas de arte de las 5 especies ya existen ("subidas a la repo") pero no las encontré en `main` ni en las ramas abiertas de Arte — dejé pregunta en Issue #75 para que confirme ubicación (¿Drive vs. repo?) antes de que alguien las conecte a la pantalla de selección de especie.
+
+**LISTO PARA PUBLICAR:** NO — pendiente de revisión como el resto de mis entregas. Cambio de bajo riesgo (solo `entry.html` + 1 línea de CSP), sin tocar lógica de combate/servidor ya revisada en PRs anteriores.
+
+---
+
 ## ENTREGA — Vintage Telnet Issue #73: Esquivar/Bloquear/Resistir + `available_actions`
 
 **DESARROLLADOR:** Claude — Desarrollador de Servidor de Vintage Telnet

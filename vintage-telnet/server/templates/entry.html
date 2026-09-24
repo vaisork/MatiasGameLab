@@ -78,7 +78,7 @@
     .entry{margin:0 0 14px}
     .entry:last-child{margin-bottom:0}
     .entry .cmd{color:var(--green3);font-weight:800;font-size:.84rem;margin-bottom:5px}
-    .entry p{margin:0;color:var(--green);font-size:clamp(.98rem,2vw,1.06rem);line-height:1.52;max-width:78ch}
+    .entry p{margin:0;color:var(--green);font-size:clamp(1.02rem,2.2vw,1.1rem);line-height:1.58;max-width:78ch}
     .entry p.system{color:#70c985}
     .terminal-alert{
       border-top:1px solid #174426;background:#020604;padding:8px 12px;color:#79d88d;
@@ -135,6 +135,16 @@
     .btn:focus-visible,input:focus-visible,.close:focus-visible{outline:3px solid #f0d18c;outline-offset:2px}
     .btn.primary{background:#d8b56a;color:#20160b;border-color:#f1d28f}
     .btn.danger{border-color:#7d4b41;color:#f2c3b9}
+    /* Atacar todavia no tiene arte propio (#75); en vez de un boton generico
+       le damos peso visual de combate equivalente al de Huir -- mismo alto,
+       mismo ancho, tono de peligro -- para no verse fuera de lugar al lado
+       de un boton con arte real. Sustituir por .btn-art cuando exista icono
+       de Atacar. */
+    .btn.combat-attack{
+      background:linear-gradient(180deg,#3a1f18,#241109);border-color:#7d4b41;color:#f2c3b9;
+      font-size:.95rem;letter-spacing:.02em
+    }
+    .btn.combat-attack:hover{border-color:#e2a99c}
     .btn.term{
       background:#061009;color:var(--green3);border-color:#28623a;font-family:ui-monospace,monospace
     }
@@ -150,9 +160,13 @@
     .btn-art.btn-powers{background-image:url("/assets/html-ui/buttons/button-poderes-special.png")}
     .commandbar{display:flex;gap:8px}
     .commandbar input{
-      min-width:0;flex:1;min-height:48px;border-radius:10px;border:1px solid #2a673c;background:#020604;color:var(--green3);
+      min-width:0;flex:1 1 auto;min-height:48px;border-radius:10px;border:1px solid #2a673c;background:#020604;color:var(--green3);
       padding:0 12px;font:16px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace
     }
+    /* .btn trae width:100%, que dentro de este flex le robaba casi todo el
+       ancho al input de texto (quedaba en ~26px, inusable). El botón de
+       enviar debe medirse por su contenido, no por 100% del renglón. */
+    .commandbar .btn{width:auto;flex:0 0 auto;min-width:96px;padding-inline:18px}
     .side{display:grid;grid-template-rows:auto;gap:12px}
     .card{
       min-height:0;border:1px solid var(--line);border-radius:14px;background:linear-gradient(180deg,var(--shell2),var(--panel));
@@ -213,7 +227,7 @@
       .terminal-head span{font-size:.62rem}
       .log{padding:10px 11px}
       .entry{margin-bottom:11px}
-      .entry p{font-size:16px;line-height:1.48}
+      .entry p{font-size:17px;line-height:1.5}
       .terminal-alert{padding:6px 9px;font-size:.69rem}
       .controls-row{grid-template-columns:auto 1fr;gap:7px}
       .dpad{grid-template-columns:repeat(3,46px);grid-template-rows:repeat(3,44px);gap:4px}
@@ -368,7 +382,7 @@
             {% if room.encounter %}
             <form method="post" action="/attack">
               <input type="hidden" name="csrf" value="{{ session.csrf }}">
-              <button class="btn primary" type="submit">Atacar</button>
+              <button class="btn combat-attack" type="submit">⚔ Atacar</button>
             </form>
             <form method="post" action="/flee">
               <input type="hidden" name="csrf" value="{{ session.csrf }}">
@@ -539,6 +553,32 @@
   });
 
   document.querySelectorAll("dialog").forEach(d => d.addEventListener("click", e => { if (e.target === d) d.close(); }));
+
+  // Revelado progresivo del texto de "mirar" (velocidad de lectura), para que
+  // no aparezca todo de golpe. Solo el parrafo principal de la sala -- los
+  // demas mensajes (presentes, encuentro, chat) se quedan como estan.
+  // Respeta prefers-reduced-motion y es interrumpible con un toque/clic.
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const mainParagraph = document.querySelector(".log .entry p");
+  if (mainParagraph && !reduceMotion) {
+    const fullText = mainParagraph.textContent;
+    mainParagraph.textContent = "";
+    let shown = 0;
+    let timer = null;
+    const revealAll = () => {
+      if (timer === null) return;
+      clearInterval(timer);
+      timer = null;
+      mainParagraph.textContent = fullText;
+    };
+    timer = setInterval(() => {
+      shown += 2;
+      if (shown >= fullText.length) { revealAll(); return; }
+      mainParagraph.textContent = fullText.slice(0, shown);
+    }, 18);
+    const log = document.querySelector(".log");
+    if (log) log.addEventListener("click", revealAll, {once: true});
+  }
 })();
 </script>
 </body>

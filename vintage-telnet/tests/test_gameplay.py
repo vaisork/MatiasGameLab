@@ -182,6 +182,10 @@ class GameplayTests(unittest.TestCase):
         csp = page.headers["Content-Security-Policy"]
         self.assertIn("img-src 'self'", csp)
         self.assertIn("script-src 'nonce-", csp)
+        # El panel Mapa (#72) usa fetch("/api/map") desde el propio origen; sin
+        # connect-src 'self' el CSP por defecto ("default-src 'none'") bloquea
+        # esa llamada en silencio y el mapa nunca carga.
+        self.assertIn("connect-src 'self'", csp)
         html = page.get_data(as_text=True)
         match = re.search(r"script-src 'nonce-([^']+)'", csp)
         self.assertIn(f'nonce="{match[1]}"', html)
