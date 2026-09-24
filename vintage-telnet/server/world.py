@@ -320,6 +320,23 @@ SPECIES = [
 
 SPECIES_IDS = tuple(s["id"] for s in SPECIES)
 
+# Clases base confirmadas (Issue #112). Nombres y orientacion copiados de
+# vintage-telnet/CONFIRMED_IDEAS.md; GAMEPLAY.md 2: la clase inicial orienta
+# el desarrollo pero no encierra permanentemente al personaje. No se listan
+# poderes ni ventajas numericas: todavia no estan definidos.
+CLASSES = [
+    {"id": "arcano", "name": "Arcano",
+     "blurb": "Camino de la magia. Comienza con una varita que más adelante podrá dar paso a instrumentos mayores."},
+    {"id": "juramentado", "name": "Juramentado",
+     "blurb": "Combate directo con espadas medianas o pesadas."},
+    {"id": "sombra", "name": "Sombra",
+     "blurb": "Sigilo, movimiento discreto, ataques sorpresivos y armas ligeras como cuchillos o puñales."},
+    {"id": "artifice", "name": "Artífice",
+     "blurb": "Arco, herramientas, construcción, reparación y fabricación."},
+]
+
+CLASS_IDS = tuple(c["id"] for c in CLASSES)
+
 
 def get_room(room_id):
     return ROOMS.get(room_id)

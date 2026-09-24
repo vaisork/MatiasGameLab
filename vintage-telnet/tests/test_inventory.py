@@ -87,6 +87,13 @@ class InventoryIntegrationTests(unittest.TestCase):
         client = client or self.client
         return client.post(route, data={**(data or {}), "csrf": self.csrf(csrf_path, client)})
 
+    def choose_class_without_starter_weapon(self):
+        """Clase elegida sin arma inicial (Issue #112): estas pruebas miden el
+        perfil tecnico sin arma de GAMEPLAY.md 24.10 y equipan a mano lo que
+        necesitan. El flujo real /class con arma inicial se prueba aparte."""
+        player_id = self.client.get("/api/me").json["player"]["id"]
+        store.set_player_class(self.app.config["DATABASE"], player_id, "juramentado")
+
     def register_and_enter_world(self, username="matias", name="Matías"):
         self.post("/register", dict(username=username, name=name, password="una clave de prueba"))
         dm = self.app.test_client()
@@ -94,6 +101,7 @@ class InventoryIntegrationTests(unittest.TestCase):
             self.post("/dm/login", dict(dm_password="dm-secret-value"), dm, csrf_path="/dm")
             self.post("/dm/approve", dict(username=username), dm, csrf_path="/dm")
         self.post("/species", dict(species="humano"))  # arranca en valdren_centro
+        self.choose_class_without_starter_weapon()
 
     def enter_combat_with_mordelinde(self):
         self.post("/move", dict(direction="west"))  # sendero
@@ -116,7 +124,7 @@ class InventoryIntegrationTests(unittest.TestCase):
     def test_schema_creates_inventory_table_and_equip_columns(self):
         self.register_and_enter_world()
         with store.connect(self.path) as db:
-            self.assertEqual(db.execute("PRAGMA user_version").fetchone()[0], 7)
+            self.assertEqual(db.execute("PRAGMA user_version").fetchone()[0], 8)
             db.execute("SELECT equipped_weapon_id, equipped_armor_id FROM players LIMIT 1")
             db.execute("SELECT id, player_id, item_key, category, forge_validated, acquired_at "
                        "FROM inventory_items")

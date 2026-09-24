@@ -32,6 +32,19 @@ WEAPONS = {
                          "can_block": True, "forge_required": True},
 }
 
+# Arma inicial por clase (Issue #112). Sale de la "Obtención narrativa" de
+# WEAPON_CATALOG.md: la varita es "equipo inicial" del camino Arcano, el arco
+# "equipo inicial del Artífice", la espada el "arma de formación del
+# Juramentado" y el puñal el arma "característica compatible con Sombra".
+# Sustituye el perfil técnico BaseArma=10 de GAMEPLAY.md 24.10. Pendiente de
+# confirmación de Jugabilidad: si cambia, solo cambia esta tabla.
+STARTER_WEAPON_BY_CLASS = {
+    "arcano": "varita_aprendiz",
+    "juramentado": "espada_juramento",
+    "sombra": "punal_camino",
+    "artifice": "arco_ruta",
+}
+
 # ARMOR_CATALOG.md, tabla "Resumen para Jugabilidad". `armor_reduction` es
 # la fracción decimal ya validada por Jugabilidad (0-0.35, GAMEPLAY.md 30.2).
 ARMORS = {

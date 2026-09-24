@@ -99,6 +99,8 @@ def create_app(config=None):
     app.config["DATABASE"] = path
     dummy_hash = generate_password_hash(secrets.token_urlsafe(32))
     app.jinja_env.globals["xp_for_next_level"] = combat.xp_for_next_level
+    app.jinja_env.globals["class_list"] = world.CLASSES
+    app.jinja_env.globals["class_names"] = {c["id"]: c["name"] for c in world.CLASSES}
 
     @app.before_request
     def prepare_request():
@@ -140,6 +142,11 @@ def create_app(config=None):
         session["csrf"] = secrets.token_urlsafe(32)
         session["token"] = token
         return redirect(url_for("index"), code=303)
+
+    def character_ready(player):
+        """Especie y clase inicial elegidas (GAMEPLAY.md 2, Issue #112): hasta
+        entonces el personaje no entra al mundo."""
+        return player["species"] is not None and player["player_class"] is not None
 
     def require_approved_player():
         if g.player is None:
@@ -704,6 +711,19 @@ def create_app(config=None):
         store.mark_visited(path, player["id"], room_id)
         return True, species_id, room_id, None
 
+    def attempt_choose_class(player, class_id):
+        """Devuelve (accepted, class_or_None, reason_or_None). Mismo patron
+        que attempt_choose_species: la atomicidad la da store.set_player_class."""
+        if player["species"] is None:
+            return False, None, "Primero elige tu especie."
+        if class_id not in world.CLASS_IDS:
+            return False, None, "Elige una clase de la lista."
+        updated = store.set_player_class(path, player["id"], class_id,
+                                         items.STARTER_WEAPON_BY_CLASS.get(class_id))
+        if not updated:
+            return False, None, "Ya elegiste tu clase."
+        return True, class_id, None
+
     def api_player_state(player):
         """Errores JSON estables para rutas /api/*: unauthenticated /
         not_approved. Devuelve None si puede continuar."""
@@ -772,10 +792,23 @@ def create_app(config=None):
                                    error=reason), 400
         return redirect(url_for("index"), code=303)
 
+    @app.post("/class")
+    def choose_class():
+        require_approved_player()
+        if g.player["species"] is None:
+            return redirect(url_for("index"), code=303)
+        if g.player["player_class"] is not None:
+            return redirect(url_for("index"), code=303)
+        accepted, _class, reason = attempt_choose_class(g.player, request.form.get("player_class", ""))
+        if not accepted:
+            return render_template("entry.html", player=g.player, species_list=world.SPECIES,
+                                   error=reason), 400
+        return redirect(url_for("index"), code=303)
+
     @app.post("/move")
     def move():
         require_approved_player()
-        if g.player["species"] is None:
+        if not character_ready(g.player):
             abort(403)
         accepted, _previous, _new, reason = attempt_move(g.player, request.form.get("direction", ""))
         if not accepted:
@@ -787,7 +820,7 @@ def create_app(config=None):
     @app.post("/room/say")
     def say():
         require_approved_player()
-        if g.player["species"] is None:
+        if not character_ready(g.player):
             abort(403)
         body = request.form.get("body", "").strip()
         if not body or len(body) > 500:
@@ -800,7 +833,7 @@ def create_app(config=None):
         """Cuadro de texto del terminal: cada texto se clasifica por intención.
         El chat requiere 'decir <texto>'; un comando desconocido nunca se publica."""
         require_approved_player()
-        if g.player["species"] is None:
+        if not character_ready(g.player):
             abort(403)
         raw = request.form.get("text", "")
         if len(raw) > 500:
@@ -911,6 +944,8 @@ def create_app(config=None):
             return error
         if g.player["species"] is None:
             return jsonify(error="species_required"), 409
+        if g.player["player_class"] is None:
+            return jsonify(error="class_required"), 409
         return jsonify(room=room_view(g.player["room"], g.player["id"]))
 
     @app.post("/api/species")
@@ -935,6 +970,27 @@ def create_app(config=None):
             player=dict(updated_player) if updated_player else None,
         )
 
+    @app.post("/api/class")
+    def api_choose_class():
+        """Contrato estructurado de la clase inicial (Issue #112): clase
+        confirmada, arma inicial entregada y estado actualizado del jugador."""
+        error = api_player_state(g.player)
+        if error:
+            return error
+        payload = request.get_json(silent=True) or {}
+        accepted, class_id, reason = attempt_choose_class(g.player, str(payload.get("player_class", "")))
+        if not accepted:
+            return jsonify(accepted=False, reason=reason), 400
+        updated_player = store.player_for_token(path, session.get("token"))
+        weapon_key = items.STARTER_WEAPON_BY_CLASS.get(class_id)
+        return jsonify(
+            accepted=True,
+            player_class=class_id,
+            starter_weapon=({"item_key": weapon_key, "name": items.get_item(weapon_key)["name"]}
+                            if weapon_key else None),
+            player=dict(updated_player) if updated_player else None,
+        )
+
     @app.post("/api/intent")
     def api_intent():
         """Contrato estructurado para intención de terminal."""
@@ -943,6 +999,8 @@ def create_app(config=None):
             return error
         if g.player["species"] is None:
             return jsonify(error="species_required"), 409
+        if g.player["player_class"] is None:
+            return jsonify(error="class_required"), 409
         payload = request.get_json(silent=True) or {}
         raw = str(payload.get("text", ""))
         if len(raw) > 500:
@@ -1093,6 +1151,8 @@ def create_app(config=None):
             return error
         if g.player["species"] is None:
             return jsonify(error="species_required"), 409
+        if g.player["player_class"] is None:
+            return jsonify(error="class_required"), 409
         payload = request.get_json(silent=True) or {}
         direction = DIRECTION_ALIASES.get(str(payload.get("direction", "")).strip().lower())
         if direction is None:
@@ -1115,6 +1175,7 @@ def create_app(config=None):
         if error:
             return error
         return jsonify(
+            species=g.player["species"], player_class=g.player["player_class"],
             level=g.player["level"], xp=g.player["xp"],
             xp_to_next=combat.xp_for_next_level(g.player["level"]),
             pa_unspent=g.player["pa_unspent"],
@@ -1179,7 +1240,7 @@ def create_app(config=None):
     @app.post("/attack")
     def attack():
         require_approved_player()
-        if g.player["species"] is None:
+        if not character_ready(g.player):
             abort(403)
         result = attempt_attack(g.player)
         player_now = store.player_for_token(path, session.get("token"))
@@ -1190,7 +1251,7 @@ def create_app(config=None):
     @app.post("/flee")
     def flee():
         require_approved_player()
-        if g.player["species"] is None:
+        if not character_ready(g.player):
             abort(403)
         result = attempt_flee(g.player)
         player_now = store.player_for_token(path, session.get("token"))
@@ -1201,7 +1262,7 @@ def create_app(config=None):
     @app.post("/dodge")
     def dodge():
         require_approved_player()
-        if g.player["species"] is None:
+        if not character_ready(g.player):
             abort(403)
         result = attempt_dodge(g.player)
         player_now = store.player_for_token(path, session.get("token"))
@@ -1212,7 +1273,7 @@ def create_app(config=None):
     @app.post("/resist")
     def resist():
         require_approved_player()
-        if g.player["species"] is None:
+        if not character_ready(g.player):
             abort(403)
         result = attempt_resist(g.player)
         player_now = store.player_for_token(path, session.get("token"))
@@ -1223,7 +1284,7 @@ def create_app(config=None):
     @app.post("/block")
     def block():
         require_approved_player()
-        if g.player["species"] is None:
+        if not character_ready(g.player):
             abort(403)
         result = attempt_block(g.player)
         player_now = store.player_for_token(path, session.get("token"))
@@ -1234,7 +1295,7 @@ def create_app(config=None):
     @app.post("/evaluate")
     def evaluate():
         require_approved_player()
-        if g.player["species"] is None:
+        if not character_ready(g.player):
             abort(403)
         _name, message = attempt_evaluate(g.player)
         room_data = room_view(g.player["room"], g.player["id"])

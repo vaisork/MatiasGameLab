@@ -13,7 +13,7 @@ from . import combat, items
 STATUSES = ("pending", "approved", "rejected", "removed")
 
 PLAYER_COLUMNS = (
-    "id, player_number, username, name, status, species, room, heading, created_at, last_access_at"
+    "id, player_number, username, name, status, species, player_class, room, heading, created_at, last_access_at"
 )
 
 ATTRIBUTE_COLUMNS = ", ".join(f"attr_{name}" for name in combat.ATTRIBUTES)
@@ -137,9 +137,9 @@ def initialize(path):
         db.execute("PRAGMA journal_mode = WAL")
         db.execute("BEGIN IMMEDIATE")
         version = db.execute("PRAGMA user_version").fetchone()[0]
-        if version not in (0, 1, 2, 3, 4, 5, 6, 7):
+        if version not in (0, 1, 2, 3, 4, 5, 6, 7, 8):
             raise RuntimeError("Versión de base de datos no soportada; no iniciar ni degradar.")
-        if version == 7:
+        if version == 8:
             return
         if version == 0:
             statements = [
@@ -213,7 +213,12 @@ def initialize(path):
             # cliente infiera "hacia donde mira" desde narrativa o imagen.
             db.execute("ALTER TABLE players ADD COLUMN heading TEXT "
                        "CHECK(heading IN ('north', 'south', 'east', 'west'))")
-        db.execute("PRAGMA user_version = 7")
+        if version <= 7:
+            # v8: clase inicial (Issue #112, GAMEPLAY.md 2). NULL hasta que el
+            # jugador la elige; personajes existentes la eligen al volver.
+            db.execute("ALTER TABLE players ADD COLUMN player_class TEXT "
+                       "CHECK(player_class IN ('arcano', 'juramentado', 'sombra', 'artifice'))")
+        db.execute("PRAGMA user_version = 8")
 
 
 def allow_attempt(path, address):
@@ -317,6 +322,38 @@ def set_species(path, player_id, species, room):
             (species, room, hp, hp, player_id),
         )
         return cursor.rowcount > 0
+
+
+def set_player_class(path, player_id, class_id, starter_weapon_key=None):
+    """Clase inicial (Issue #112). Igual que `set_species`: solo toma efecto
+    la primera vez y exige que la especie ya este elegida; rowcount decide
+    que llamada gano frente a dos POST concurrentes.
+
+    En la misma transaccion entrega el arma inicial de la clase (entrega
+    autoritativa, GAMEPLAY.md 32.5) y la deja activa si el personaje no tenia
+    ya un arma equipada, para que nunca quede clase sin arma ni arma sin
+    clase."""
+    if starter_weapon_key is not None and items.category_of(starter_weapon_key) != "weapon":
+        raise ValueError(f"Arma inicial desconocida: {starter_weapon_key}")
+    with connect(path) as db:
+        db.execute("BEGIN IMMEDIATE")
+        cursor = db.execute(
+            """UPDATE players SET player_class = ?
+               WHERE id = ? AND player_class IS NULL AND species IS NOT NULL""",
+            (class_id, player_id),
+        )
+        if cursor.rowcount == 0:
+            return False
+        if starter_weapon_key is not None:
+            item_id = str(uuid.uuid4())
+            db.execute(
+                """INSERT INTO inventory_items(id, player_id, item_key, category, forge_validated, acquired_at)
+                   VALUES (?, ?, ?, 'weapon', 0, ?)""",
+                (item_id, player_id, starter_weapon_key, utcnow()),
+            )
+            db.execute("UPDATE players SET equipped_weapon_id = ? WHERE id = ? AND equipped_weapon_id IS NULL",
+                       (item_id, player_id))
+        return True
 
 
 def move_player(path, player_id, room, heading=None):
