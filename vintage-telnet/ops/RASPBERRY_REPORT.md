@@ -700,3 +700,54 @@ Pasos:
 
 Sin incidentes. Servicio no reiniciado por mí manualmente fuera del
 despliegue; el operador (Javier) ejecutó el script con sudo en ambos pasos.
+
+## Revisión periódica (nube, sin acceso a hardware real) — pendiente detectado: esquema v8 sin desplegar — 2026-09-24
+
+Esta corrida del operador de Raspberry se ejecutó en la nube (sesión
+automatizada cada 4 horas), **sin SSH/sudo a la Raspberry Pi física de
+Javier**. Por diseño de esta sesión no toco `/etc`, `/opt`, `systemd` ni el
+mundo persistente real; dejo documentado el hallazgo para que una sesión
+local con acceso real al equipo lo resuelva.
+
+**Hallazgo:** desde el despliegue v9 documentado arriba (esquema 7, commit
+`0ffcc36b...`), `main` avanzó con al menos un cambio de esquema aditivo sin
+desplegar todavía:
+
+- Commit `e122c56` — "VT-SERVER: gasto de PA, PP, subida sin curación total
+  y fatiga pasiva" — sube `store.SCHEMA_VERSION` de 7 a **8** (dos `ALTER
+  TABLE ADD COLUMN`: `players.pp_unspent`, `players.fatigue_updated_at`, con
+  backfill de PP). Migración aditiva, no destructiva, según su propia
+  documentación en `HANDOFF.md` (sección "VT-SERVER: gasto de PA, PP, subida
+  de nivel sin curación total y fatiga pasiva").
+- Commit `baa926d` — "VT-UI: pantalla para gastar PA en el panel Personaje"
+  — solo cliente (`entry.html`), no toca esquema.
+- HEAD actual de `main` en esta revisión: `fdc726b8d62af47a333c6a14d05ff473841cff75`.
+- `HANDOFF.md` ya deja constancia explícita: "No se hizo push a `main`. No
+  se tocó la Raspberry" al cierre de esa entrega — es decir, el propio
+  desarrollador ya señaló este pendiente; no estaba perdido, solo sin
+  ejecutar todavía.
+
+**No hice en esta corrida** (no puedo, sin hardware real):
+- no generé ni corrí ningún `ops/update_v10_authorized.py` ni equivalente;
+- no corrí `ops/inventory_migration_probe.py` contra la base viva;
+- no reinicié ni toqué el servicio `systemd` real;
+- no simulé ni asumí resultado alguno de esta migración en producción.
+
+**Pendiente para la próxima sesión con acceso real a la Raspberry:**
+1. Confirmar que no hay una entrega más nueva aún sin mergear que ya cubra
+   esto (revisar `HANDOFF.md`/PRs abiertos antes de generar el script).
+2. Aislado primero: `python -m unittest discover -s tests -v` sobre el SHA
+   de `main` a desplegar (215 tests esperados según `HANDOFF.md`).
+3. Preflight de solo lectura (`ops/raspberry_preflight.py`) y
+   `ops/inventory_migration_probe.py` contra la base viva real antes de
+   tocar producción, siguiendo el mismo patrón que v5–v9.
+4. Generar `ops/update_v10_authorized.py` (mismo patrón que versiones
+   anteriores) con `EXPECTED_SCHEMA = 8` y el SHA correcto fijado.
+5. Javier ejecuta el script con `sudo` (esta sesión no tiene sudo
+   interactivo, igual que en despliegues anteriores).
+6. Verificar `healthz` (`schema_version: 8`), `systemctl status`, conteo de
+   jugadores preservado (hoy 8) y el flujo real de gasto de PA desde
+   `/api/character` y `/api/character/attributes` contra la Raspberry real.
+
+No adjunto contraseñas, claves, cookies, hashes ni bases en este reporte.
+No afirmo ningún resultado de despliegue que no se ejecutó realmente.
