@@ -1,5 +1,38 @@
 # HANDOFF — Entrega técnica
 
+## ENTREGA — Vintage Telnet: pantalla para gastar PA en el panel Personaje
+
+**DESARROLLADOR:** Claude — Desarrollador de Servidor de Vintage Telnet
+**HEAD BASE:** `e122c56`, rama `claude/vintage-telnet-server-progression-fatigue` (PR #132, otra sesión), sobre `main` @ `8ba4d1d`
+**TAREA ASIGNADA:** Javier autorizó en sesión directa (2026-09-24) que yo hiciera el frontend pendiente de la PR #132. Lo avisé en la PR #132.
+**RAMA:** `claude/vintage-telnet-server-pa-screen`. **Depende de #132**: se integra después de ella o junto con ella.
+
+### CAMBIOS (solo `server/templates/entry.html` + una prueba)
+- El panel **Personaje** tiene ahora la sección "Mejorar atributos". Al abrirse:
+  - lee `GET /api/character` (`attributes`, `attribute_costs`, `pa_unspent`, `pp_unspent`, `in_combat`);
+  - muestra cada atributo con su valor, el coste del siguiente +1 y un botón "+1 <atributo>".
+- **Confirmación explícita (§25.5):** antes de gastar aparece "Fuerza: 10 → 11. Cuesta 1 PA y te quedarán 5 PA. Después de confirmar no se puede deshacer.", con los botones Cancelar y Confirmar. Cancelar no gasta nada.
+- Al confirmar se envía `POST /api/character/attributes` con `current_value` = el valor que el jugador vio. Si cambió, el servidor responde `stale_confirmation`, el panel recarga los datos y muestra el mensaje del servidor.
+- Los botones quedan deshabilitados sin PA suficientes o en combate (`in_combat`). **El cliente no calcula costes ni reglas**: todo sale del servidor.
+- Después de un gasto, los bloques Estado, Progreso y Atributos se actualizan al instante. Al cerrar el panel, la página se recarga para refrescar también "Estado visible".
+- Sin JavaScript, el panel queda informativo y los PA siguen guardados.
+
+### PRUEBAS
+- Suite completa sobre la rama: **216/216 OK**, incluida una prueba nueva en `test_entry.py` sobre el cableado del panel: contrato, confirmación, `current_value` y que el cliente no calcula costes.
+- Probé de punta a punta contra el servidor real (waitress) con Chromium a 390 px:
+  - con 6 PA, "+1 Fuerza" → Confirmar deja Fuerza en 11 y 5 PA (verificado con `/api/character`);
+  - Cancelar no gasta nada;
+  - la confirmación de un atributo de abajo aparece a la vista;
+  - no hay scroll horizontal ni errores de JS en consola.
+
+### PENDIENTES
+- PP: se muestra el saldo, pero no hay gasto porque los poderes no existen todavía (§25.8).
+- Integración: depende de #132. Con #133 (clase) no hay conflicto de código en `entry.html`: tocan zonas distintas del mismo archivo, pero conviene integrarlas en orden, #132 → esta → #133 (reconciliada a esquema v9).
+
+**LISTO PARA PUBLICAR:** NO. Queda para revisión del Integrador y autorización de Javier ("sube").
+
+---
+
 ## ENTREGA — Vintage Telnet Issue #125: `visual_context_id` server-side, arte por contexto no por `room_id`
 
 **DESARROLLADOR:** Claude — Desarrollador de Servidor de Vintage Telnet
@@ -875,3 +908,49 @@ Ninguna lógica de movimiento, combate, inventario ni mapa progresivo existente 
 - No se hizo push a `main`; solo commits en `claude/vintage-telnet-server-map-heading`.
 - No se desplegó ni tocó la Raspberry Pi.
 - Cuando esta rama se integre, Frontend (#106/PR #119) puede reemplazar sus estados neutrales de mapa/rumbo consumiendo `/assets/maps/region-inicial.webp` y `current_heading` de `/api/map` directamente.
+
+
+## VT-SERVER: gasto de PA, PP, subida de nivel sin curación total y fatiga pasiva (PLAYABILITY_READINESS P1 #5/#6)
+
+**Desarrollador:** Claude — Desarrollador de Servidor de Vintage Telnet
+**Estado:** LISTO PARA REVISIÓN
+**HEAD base:** `8ba4d1d08d0474e0fdd402b6ae26c32b48e48831` (`origin/main`)
+**Rama de entrega:** `claude/vintage-telnet-server-progression-fatigue`
+**Origen:** encargo directo de Javier (2026-09-24): revisar el juego y adelantar lo más atrasado. `PLAYABILITY_READINESS.md` marca como P1 pendientes el gasto de PA (§25.4) y la recuperación pasiva de fatiga (§24.7). Las reglas ya estaban **APROBADAS PARA IMPLEMENTACIÓN** en `GAMEPLAY.md` y solo faltaba el servidor. No se inventó ninguna mecánica.
+
+### Cambios
+- **Bug corregido (§25.6):** `store.award_xp` curaba al 100% en cada subida de nivel. Ahora el HP actual sube solo por la diferencia del nuevo máximo (`combat.hp_after_max_change`).
+- **PP (§25.1/§25.8):** nueva columna `players.pp_unspent`. Se da 1 PP por cada nivel múltiplo de 5. Antes no se registraban.
+- **Aviso de subida (§25.9):** el mensaje de victoria o descubrimiento dice ahora nivel, PA y PP obtenidos. Antes, subir de nivel por un descubrimiento no avisaba nada.
+- **Gasto de PA (§19/§25.4/§25.5/§25.7):**
+  - `GET /api/character` agrega `attribute_costs`, `pp_unspent` e `in_combat`.
+  - Nuevo `POST /api/character/attributes` con `{attribute, current_value, csrf}`. `current_value` es la confirmación: si ya no coincide con el valor real, responde `409 stale_confirmation` y no gasta nada.
+  - Solo fuera de combate, sin PA negativos, atómico y sin deshacer. Subir Resistencia o Voluntad recalcula el HP máximo con la regla de diferencia.
+- **Fatiga pasiva (§24.7):**
+  - Se recupera 1 punto cada 10 s fuera de combate, calculado por tiempo en servidor al leer el personaje. No hay proceso de fondo.
+  - Cualquier cambio explícito de fatiga reinicia el reloj. En combate no se recupera. No toca HP ni heridas.
+- **Esquema v7→v8:** columnas `pp_unspent` y `fatigue_updated_at`. Los personajes existentes reciben los PP de los niveles múltiplo de 5 que ya alcanzaron. Se agregó la constante `store.SCHEMA_VERSION`.
+- **`ops/inventory_migration_probe.py`:** seguía esperando el esquema v6 (ya estaba desfasado frente a la v7). Ahora valida contra `store.SCHEMA_VERSION` y las columnas de v7/v8, y cierra sus conexiones SQLite (antes fallaba en Windows al borrar el temporal).
+
+### Pruebas
+- `cd vintage-telnet && .venv/bin/python -m unittest discover -s tests -v` → **215 tests, OK**.
+  - 19 son nuevas, en `tests/test_progression.py`.
+  - En `test_entry.py`/`test_inventory.py` se actualizaron las aserciones de esquema 7→8. El caso de "esquema futuro desconocido" ahora apunta a la versión 9.
+- `ops/inventory_migration_probe.py` sobre una base v7 simulada con un jugador: 7→8, jugadores preservados, 11/11 OK.
+
+### NECESIDAD DE FRONTEND (no la hice: `vintage-telnet.html` no es de mi área)
+El panel Personaje debe:
+- mostrar los PA y PP disponibles y el coste del siguiente +1;
+- pedir confirmación (atributo, valor actual → nuevo valor, coste);
+- enviar `POST /api/character/attributes` con el `current_value` que vio el jugador;
+- deshabilitar el gasto cuando `in_combat` sea verdadero.
+
+No debe ofrecer poderes con PP (§25.8: todavía no hay contenido de poder validado).
+
+### Riesgos
+- **Migración:** es aditiva (dos `ALTER TABLE ADD COLUMN` y un backfill de PP). No borra ni reescribe estado vivo. Antes de desplegar, el Operador de Raspberry puede correr `ops/inventory_migration_probe.py` sobre la base viva, en solo lectura.
+- **Cambio de comportamiento:** subir de nivel ya no cura por completo. Es lo que exige §25.6, pero los jugadores lo notarán.
+
+### Aviso para el Integrador / Operador de Raspberry
+- No se hizo push a `main`.
+- No se tocó la Raspberry.

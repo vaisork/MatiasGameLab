@@ -71,6 +71,35 @@ def xp_for_next_level(level):
     return round(100 + 18 * (level - 1) + 0.25 * (level - 1) ** 2)
 
 
+def attribute_cost(current_value):
+    """GAMEPLAY.md 19: coste en PA del siguiente +1 segun el valor actual."""
+    if current_value >= 60:
+        return 5
+    if current_value >= 45:
+        return 4
+    if current_value >= 35:
+        return 3
+    if current_value >= 20:
+        return 2
+    return 1
+
+
+def pp_gained(old_level, new_level):
+    """GAMEPLAY.md 25.1/25.8: 1 PP por cada nivel multiplo de 5 alcanzado
+    en (old_level, new_level]."""
+    return new_level // 5 - old_level // 5
+
+
+def hp_after_max_change(hp_current, old_max, new_max):
+    """GAMEPLAY.md 25.6/25.7: sin curacion completa; el HP actual sube solo
+    por la diferencia positiva del maximo y nunca lo supera."""
+    return min(new_max, hp_current + max(0, new_max - old_max))
+
+
+# GAMEPLAY.md 24.7: ~1 punto de fatiga cada 10 s fuera de combate.
+FATIGUE_RECOVERY_SECONDS_PER_POINT = 10
+
+
 def hp_max(level, resistencia, voluntad):
     """GAMEPLAY.md 20.3."""
     return 100 + 1.25 * (level - 1) + 2.5 * (resistencia - 10) + 0.5 * (voluntad - 10)
