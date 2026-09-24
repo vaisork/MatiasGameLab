@@ -60,7 +60,8 @@ def git_output(repo: Path, repo_owner: str, repo_owner_home: str, *args: str) ->
 def resolve_authorized_sha(repo: Path, repo_owner: str, repo_owner_home: str, revision: str, *, skip_fetch: bool) -> str:
     if not skip_fetch:
         run(git_command(repo_owner, repo_owner_home, 'fetch', '--prune', 'origin'), cwd=repo, timeout=180)
-    sha = git_output(repo, repo_owner, repo_owner_home, 'rev-parse', '--verify', f'{revision}^{{commit}}')
+    requested = 'origin/main' if revision in ('main', 'latest') else revision
+    sha = git_output(repo, repo_owner, repo_owner_home, 'rev-parse', '--verify', f'{requested}^{{commit}}')
     if len(sha) != 40:
         raise DeployError(f'No se pudo resolver un SHA completo para {revision!r}.')
     proc = run(git_command(repo_owner, repo_owner_home, 'merge-base', '--is-ancestor', sha, 'origin/main'),
