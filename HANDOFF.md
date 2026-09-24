@@ -1,5 +1,45 @@
 # HANDOFF — Entrega técnica
 
+## ENTREGA — Vintage Telnet: navegación (minimapa, salidas con nombre, flechas del teclado)
+
+**DESARROLLADOR:** Claude — Desarrollador de Servidor de Vintage Telnet
+**HEAD BASE:** `ca101d4` (origin/main)
+**TAREA ASIGNADA:** Javier (sesión directa, 2026-09-24): seguir mejorando la navegación y las pantallas en la línea de la maqueta que aprobó (#135, panel "Mapa y orientación").
+**RAMA:** `claude/vintage-telnet-ui-navigation`
+
+### CAMBIOS
+- **Minimapa real en Mapa general.**
+  - Dibuja en SVG solo lo que el personaje conoce: lugares visitados con su nombre, tu ubicación (dorada), rutas recorridas y las salidas sin explorar de cada lugar visitado (línea punteada, sin nombre ni destino).
+  - La leyenda es la de la maqueta: Tu ubicación / Lugar conocido / Ruta recorrida / Salida sin explorar.
+  - Si el mapa es poco más ancho que la pantalla se reduce para verse completo; si es mucho más grande se desplaza con el dedo, centrado en tu ubicación.
+  - El mapa regional ilustrado queda debajo, como "Región inicial".
+- **Servidor, `world.map_layout()`:** coordenadas de rejilla calculadas solo con las salidas reales (norte = arriba, etc.), una vez para todo el mundo, así la posición de una sala no cambia según lo descubierto. Si dos salas caen en la misma celda, la segunda se desplaza a la siguiente celda libre en su dirección; hoy no hay colisiones en las 25 salas.
+- **`/api/map`** agrega `current_room`, `places` [{id, name, x, y, current}] y `unexplored_exits` [{from, direction}]. Las claves anteriores (`visited_rooms`, `traversed_routes`, `current_heading`) siguen igual.
+- **La lista de lugares y rutas** usa nombres reales ("Mercado de Valdren") en vez de ids ("valdren mercado") y marca "estás aquí".
+- **Línea "Salidas"** en el terminal fuera de combate, por ejemplo: `Salidas: sur (Camino del Norte) · norte · este`.
+  - El nombre del destino aparece **solo si ya lo visitaste**, porque el mapa es progresivo (GAMEPLAY §23); una salida nueva muestra solo la dirección.
+  - Lo mismo en el título y la etiqueta accesible de los botones de la cruz.
+  - `room.exits[].known_name` también sale en `/api/room`.
+- **Flechas del teclado** (↑↓←→) para moverse en computadora. Pulsan el mismo botón de la cruz, así que aplican las mismas reglas del servidor. No actúan mientras se escribe ni con un panel abierto.
+
+### PRUEBAS
+- Suite completa: **232/232 OK**, con 4 pruebas nuevas en `tests/test_navigation.py`:
+  - la rejilla cubre todas las salas sin colisiones y es estable;
+  - el minimapa solo expone lo conocido;
+  - los nombres de salida aparecen solo después de visitar;
+  - el panel y el teclado están cableados.
+- En Chromium a 390 px contra el servidor real, caminando por Valdren y luego Valdren → Vaisgard → Khariel/Narevia:
+  - la flecha → mueve igual que el botón;
+  - el minimapa se lee con halo oscuro bajo los nombres;
+  - no hay scroll horizontal de página ni errores de JS.
+
+### NO CAMBIA
+Movimiento, reglas, combate, persistencia, esquema (sigue en v9) y canon. La rejilla es una representación esquemática derivada de las salidas existentes; no inventa geografía.
+
+**LISTO PARA PUBLICAR:** falta la autorización de Javier ("sube").
+
+---
+
 ## ENTREGA — Vintage Telnet Issue #112: elección de clase inicial + arma inicial por clase
 
 **DESARROLLADOR:** Claude — Desarrollador de Servidor de Vintage Telnet

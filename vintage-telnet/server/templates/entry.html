@@ -341,7 +341,22 @@
     .heading-card .compass{margin:0}
     .heading-card small{margin:0;color:var(--muted)}
     .heading-card strong{display:block;color:var(--gold);font:700 1.35rem Georgia,serif}
-    .map-here{margin:8px 0 0;color:var(--ink);font:700 .85rem ui-sans-serif,system-ui,sans-serif}
+    .exits-entry p{font-size:.86em!important;color:#79d88d!important}
+    .exits-entry b{color:var(--green3)}
+    .minimap-frame{border:1px solid var(--line);border-radius:12px;background:#0c1219;overflow:hidden}
+    .minimap-scroll{overflow:auto;max-height:340px;padding:4px}
+    .minimap-scroll svg{display:block;margin:0 auto}
+    .minimap-scroll .map-empty{margin:8px}
+    .minimap-legend{display:flex;flex-wrap:wrap;gap:6px 14px;margin:0;padding:8px 12px;border-top:1px solid #3a2e1c;
+      list-style:none;color:var(--muted);font:600 .72rem ui-sans-serif,system-ui,sans-serif}
+    .minimap-legend li{display:flex;align-items:center;gap:6px}
+    .minimap-legend i{display:inline-block;width:12px;height:12px;border-radius:50%}
+    .lg-here{background:#f0c75e;box-shadow:0 0 6px #f0c75e}
+    .lg-known{border:2px solid #e8e1cd}
+    .lg-route{width:18px!important;height:0!important;border-radius:0!important;border-top:3px solid #b8914a}
+    .lg-unexplored{width:18px!important;height:0!important;border-radius:0!important;border-top:2px dashed #6f7f94}
+    .map-subtitle{margin:14px 0 6px;color:var(--gold);font:700 .9rem Georgia,serif}
+    .map-here{margin:0 0 8px;color:var(--ink);font:700 .85rem ui-sans-serif,system-ui,sans-serif}
     .map-here b{color:var(--gold)}
     @media(max-width:959px){
       .layout{grid-template-columns:minmax(0,1fr)}
@@ -548,6 +563,9 @@
               <div class="cmd">&gt; mirar</div>
               <p data-room-description data-room-key="{{ room.id if room.id is defined else room.name }}">{{ room.description }}</p>
             </div>
+            {% if room.exits and not room.encounter %}
+            <div class="entry exits-entry"><p class="system">Salidas: {% for e in room.exits %}<b>{{ e.label }}</b>{% if e.known_name %} ({{ e.known_name }}){% endif %}{{ ' · ' if not loop.last }}{% endfor %}</p></div>
+            {% endif %}
             {% if room.others_present %}
             <div class="entry"><p class="system">También aquí: {{ room.others_present | join(', ') }}</p></div>
             {% endif %}
@@ -602,24 +620,25 @@
         <section class="controls-row" aria-label="Controles principales">
           <div class="dpad" aria-label="Movimiento cardinal">
             {% set exit_dirs = room.exits | map(attribute='direction') | list %}
+            {% set exit_names = {} %}{% for e in room.exits if e.known_name %}{% set _ = exit_names.update({e.direction: e.known_name}) %}{% endfor %}
             <form method="post" action="/move">
               <input type="hidden" name="csrf" value="{{ session.csrf }}"><input type="hidden" name="direction" value="north">
-              <button class="btn term" type="submit" aria-label="Ir al norte" {{ 'disabled' if 'north' not in exit_dirs }}><span class="arrow">▲</span>N</button>
+              <button class="btn term" type="submit" aria-label="Ir al norte{{ ' — ' ~ exit_names['north'] if exit_names.get('north') }}" title="{{ exit_names.get('north') or '' }}" {{ 'disabled' if 'north' not in exit_dirs }}><span class="arrow">▲</span>N</button>
             </form>
             <form method="post" action="/move">
               <input type="hidden" name="csrf" value="{{ session.csrf }}"><input type="hidden" name="direction" value="west">
-              <button class="btn term" type="submit" aria-label="Ir al oeste" {{ 'disabled' if 'west' not in exit_dirs }}><span class="arrow">◀</span>O</button>
+              <button class="btn term" type="submit" aria-label="Ir al oeste{{ ' — ' ~ exit_names['west'] if exit_names.get('west') }}" title="{{ exit_names.get('west') or '' }}" {{ 'disabled' if 'west' not in exit_dirs }}><span class="arrow">◀</span>O</button>
             </form>
             <form method="get" action="/">
               <button class="btn term center" type="submit" aria-label="Mirar">●</button>
             </form>
             <form method="post" action="/move">
               <input type="hidden" name="csrf" value="{{ session.csrf }}"><input type="hidden" name="direction" value="east">
-              <button class="btn term" type="submit" aria-label="Ir al este" {{ 'disabled' if 'east' not in exit_dirs }}>E<span class="arrow">▶</span></button>
+              <button class="btn term" type="submit" aria-label="Ir al este{{ ' — ' ~ exit_names['east'] if exit_names.get('east') }}" title="{{ exit_names.get('east') or '' }}" {{ 'disabled' if 'east' not in exit_dirs }}>E<span class="arrow">▶</span></button>
             </form>
             <form method="post" action="/move">
               <input type="hidden" name="csrf" value="{{ session.csrf }}"><input type="hidden" name="direction" value="south">
-              <button class="btn term" type="submit" aria-label="Ir al sur" {{ 'disabled' if 'south' not in exit_dirs }}>S<span class="arrow">▼</span></button>
+              <button class="btn term" type="submit" aria-label="Ir al sur{{ ' — ' ~ exit_names['south'] if exit_names.get('south') }}" title="{{ exit_names.get('south') or '' }}" {{ 'disabled' if 'south' not in exit_dirs }}>S<span class="arrow">▼</span></button>
             </form>
           </div>
           <div class="context-actions" aria-label="Acciones del contexto">
@@ -717,8 +736,18 @@
       <button class="segment" type="button" role="tab" aria-selected="false" data-map-tab="heading"><svg class="ui-icon" aria-hidden="true"><use href="#icon-compass"/></svg>Dirección actual</button>
     </div>
     <section class="map-panel" data-map-panel="general">
-      <img class="regional-map" src="/assets/maps/region-inicial.webp" alt="Mapa regional conocido" loading="lazy" decoding="async">
       {% if room %}<p class="map-here"><b>Estás en:</b> {{ room.name }}</p>{% endif %}
+      <div class="minimap-frame">
+        <div class="minimap-scroll" id="minimapScroll"><p class="map-empty">El mapa todavía no se ha cargado.</p></div>
+        <ul class="minimap-legend" aria-label="Leyenda del mapa">
+          <li><i class="lg-here"></i>Tu ubicación</li>
+          <li><i class="lg-known"></i>Lugar conocido</li>
+          <li><i class="lg-route"></i>Ruta recorrida</li>
+          <li><i class="lg-unexplored"></i>Salida sin explorar</li>
+        </ul>
+      </div>
+      <h4 class="map-subtitle">Región inicial</h4>
+      <img class="regional-map" src="/assets/maps/region-inicial.webp" alt="Mapa regional conocido" loading="lazy" decoding="async">
       <section class="heading-card" aria-label="Dirección actual">
         <h4>Dirección actual</h4>
         <div class="compass" aria-hidden="true"><span class="north" data-heading="north">N</span><span class="west" data-heading="west">O</span><span class="center">•</span><span class="east" data-heading="east">E</span><span class="south" data-heading="south">S</span></div>
@@ -928,6 +957,23 @@
     if (needsReload) window.location.reload();
   });
 
+  // Flechas del teclado para moverse en computadora: pulsan el mismo botón
+  // de la cruz (mismas reglas del servidor), nunca mientras se escribe o hay
+  // un panel abierto.
+  const arrowDirections = {ArrowUp: "north", ArrowDown: "south", ArrowLeft: "west", ArrowRight: "east"};
+  document.addEventListener("keydown", event => {
+    const direction = arrowDirections[event.key];
+    if (!direction || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
+    const active = document.activeElement;
+    if (active && (active.tagName === "INPUT" || active.tagName === "TEXTAREA" || active.isContentEditable)) return;
+    if (document.querySelector("dialog[open]")) return;
+    const field = document.querySelector(`.dpad input[name="direction"][value="${direction}"]`);
+    const button = field && field.form.querySelector("button");
+    if (!button || button.disabled) return;
+    event.preventDefault();
+    button.click();
+  });
+
   const commandInput = document.getElementById("commandInput");
   document.querySelectorAll("[data-prefill]").forEach(button => button.addEventListener("click", () => {
     if (!commandInput) return;
@@ -1045,6 +1091,77 @@
     headingStatus.textContent = headingLabels[heading] ? "Caminando hacia: " + headingLabels[heading] : "Dirección actual no registrada.";
   };
   const readableId = id => String(id).replaceAll("_", " ");
+  let placeNames = {};
+  const placeName = id => placeNames[id] || readableId(id);
+  const SVG_NS = "http://www.w3.org/2000/svg";
+  const svgEl = (name, attrs) => {
+    const el = document.createElementNS(SVG_NS, name);
+    Object.entries(attrs).forEach(([key, value]) => el.setAttribute(key, value));
+    return el;
+  };
+  const minimapScroll = document.getElementById("minimapScroll");
+  // Minimapa: solo dibuja lo que el servidor confirma como conocido
+  // (places, traversed_routes, unexplored_exits); las coordenadas también
+  // vienen del servidor, el cliente no deduce geografía.
+  const renderMinimap = data => {
+    const places = Array.isArray(data.places) ? data.places : [];
+    if (!minimapScroll) return;
+    if (!places.length) {
+      minimapScroll.innerHTML = '<p class="map-empty">Todavía no has registrado lugares en tu mapa.</p>';
+      return;
+    }
+    const CELL_X = 124, CELL_Y = 76, PAD = 74;
+    const xs = places.map(p => p.x), ys = places.map(p => p.y);
+    const minX = Math.min(...xs), minY = Math.min(...ys);
+    const width = (Math.max(...xs) - minX) * CELL_X + PAD * 2;
+    const height = (Math.max(...ys) - minY) * CELL_Y + PAD * 2;
+    const pos = {};
+    places.forEach(p => { pos[p.id] = [(p.x - minX) * CELL_X + PAD, (p.y - minY) * CELL_Y + PAD]; });
+    const svg = svgEl("svg", {width, height, viewBox: `0 0 ${width} ${height}`, role: "img",
+      "aria-label": "Minimapa de lugares conocidos"});
+    const step = {north: [0, -1], south: [0, 1], east: [1, 0], west: [-1, 0]};
+    (Array.isArray(data.unexplored_exits) ? data.unexplored_exits : []).forEach(stub => {
+      const from = pos[stub.from], dir = step[stub.direction];
+      if (!from || !dir) return;
+      svg.appendChild(svgEl("line", {x1: from[0], y1: from[1], x2: from[0] + dir[0] * 34, y2: from[1] + dir[1] * 26,
+        stroke: "#6f7f94", "stroke-width": 2, "stroke-dasharray": "4 4"}));
+    });
+    (Array.isArray(data.traversed_routes) ? data.traversed_routes : []).forEach(route => {
+      const a = pos[route[0]], b = pos[route[1]];
+      if (!a || !b) return;
+      svg.appendChild(svgEl("line", {x1: a[0], y1: a[1], x2: b[0], y2: b[1], stroke: "#b8914a", "stroke-width": 3,
+        "stroke-linecap": "round"}));
+    });
+    let currentPoint = null;
+    places.forEach(p => {
+      const [cx, cy] = pos[p.id];
+      if (p.current) {
+        currentPoint = [cx, cy];
+        svg.appendChild(svgEl("circle", {cx, cy, r: 15, fill: "#f0c75e33"}));
+        svg.appendChild(svgEl("circle", {cx, cy, r: 9, fill: "#f0c75e", stroke: "#fff3cf", "stroke-width": 2}));
+      } else {
+        svg.appendChild(svgEl("circle", {cx, cy, r: 7, fill: "#0c1219", stroke: "#e8e1cd", "stroke-width": 2}));
+      }
+      const label = svgEl("text", {x: cx, y: cy + 25, "text-anchor": "middle", "font-size": 12,
+        stroke: "#0c1219", "stroke-width": 4, "stroke-linejoin": "round", "paint-order": "stroke",
+        "font-family": "ui-sans-serif,system-ui,sans-serif", "font-weight": p.current ? 800 : 600,
+        fill: p.current ? "#f0c75e" : "#d9ccb1"});
+      label.textContent = p.name.length > 18 ? p.name.slice(0, 17) + "…" : p.name;
+      svg.appendChild(label);
+    });
+    // Si el mapa es solo un poco más ancho que la pantalla, se reduce para
+    // verlo completo; si es mucho más grande, se desplaza con el dedo.
+    const available = minimapScroll.clientWidth - 8;
+    if (available > 0 && width > available && width <= available * 1.6) {
+      svg.setAttribute("width", available);
+      svg.setAttribute("height", Math.round(height * available / width));
+    }
+    minimapScroll.replaceChildren(svg);
+    if (currentPoint && Number(svg.getAttribute("width")) === width) {
+      minimapScroll.scrollLeft = Math.max(0, currentPoint[0] - minimapScroll.clientWidth / 2);
+      minimapScroll.scrollTop = Math.max(0, currentPoint[1] - minimapScroll.clientHeight / 2);
+    }
+  };
   const renderMap = data => {
     const rooms = Array.isArray(data.visited_rooms) ? data.visited_rooms : [];
     const routes = Array.isArray(data.traversed_routes) ? data.traversed_routes : [];
@@ -1063,7 +1180,7 @@
       list.className = "map-list";
       rooms.forEach(id => {
         const item = document.createElement("li");
-        item.textContent = readableId(id);
+        item.textContent = placeName(id) + (id === data.current_room ? " · estás aquí" : "");
         list.appendChild(item);
       });
       wrapper.appendChild(list);
@@ -1078,7 +1195,7 @@
         if (!Array.isArray(route) || route.length !== 2) return;
         const item = document.createElement("li");
         item.className = "map-route";
-        item.textContent = readableId(route[0]) + " → " + readableId(route[1]);
+        item.textContent = placeName(route[0]) + " → " + placeName(route[1]);
         list.appendChild(item);
       });
       wrapper.appendChild(list);
@@ -1094,6 +1211,8 @@
       const response = await fetch("/api/map", {headers: {"Accept": "application/json"}});
       if (!response.ok) throw new Error("map unavailable");
       const data = await response.json();
+      placeNames = Object.fromEntries((Array.isArray(data.places) ? data.places : []).map(p => [p.id, p.name]));
+      renderMinimap(data);
       renderMap(data);
       renderHeading(data.current_heading);
       mapStatus.textContent = "Solo se muestran lugares visitados y rutas recorridas que devuelve el servidor.";
