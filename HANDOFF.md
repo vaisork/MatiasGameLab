@@ -1,5 +1,87 @@
 # HANDOFF — Entrega técnica
 
+## ENTREGA — Vintage Telnet Issue #125: `visual_context_id` server-side, arte por contexto no por `room_id`
+
+**DESARROLLADOR:** Claude — Desarrollador de Servidor de Vintage Telnet
+**HEAD BASE:** `200e24c543cba1699821022d594f5d955916df62` (origin/main)
+**TAREA ASIGNADA:** Issue #125 — "VT-SERVER/UI: contexto visual persistente
+por zona sin inferir narrativa" (Historiador, P1, `ROLE: developer-vt`).
+**RAMA:** `claude/vintage-telnet-server-visual-context`
+
+### ORIGEN
+`describe_room()` en `world.py` resolvía `room.art` por `LOCATION_ART.get(room_id)`
+exacto: solo `valdren_centro` y `vaisgard` tenían imagen, así que la
+ilustración desaparecía al entrar a la forja/mercado de Valdren aunque
+seguían siendo el mismo pueblo — justo el bug que reportó Javier y que
+`vintage-telnet/VISUAL_CONTEXT_CANON.md` (Historiador, issues #87/#92)
+documenta como contrato pendiente de implementar en servidor.
+
+### CAMBIOS (solo `vintage-telnet/server/world.py`)
+- `LOCATION_ART` (por `room_id`) → `VISUAL_CONTEXT_ART` (por
+  `visual_context_id`), mismo contenido de los dos assets ya aprobados
+  (`zone.valdren`, `zone.vaisgard`), ningún asset nuevo inventado.
+- `ROOM_VISUAL_CONTEXT_OVERRIDES`: excepciones explícitas del canon —
+  `vaisgard`, `road_north`/`road_west` (`zone.veyra.road`) y las 4 salas de
+  "Alrededores de Valdren" (`zone.edran.valdren_outskirts`).
+- `get_visual_context_id(room_id)`: nueva función pública. Devuelve la
+  excepción si existe; si no, cualquier sala cuyo `room_id` empiece con el
+  prefijo de uno de los 5 pueblos hereda `zone.<pueblo>` — exactamente lo
+  que el canon autoriza para "cualquier nueva micro-sala claramente interna"
+  sin que yo tenga que tocar este archivo de nuevo cuando aparezcan más.
+  Sin asset aprobado → `None` (fallback sobrio, ninguna imagen inventada).
+- `describe_room()` ahora expone `visual_context_id` (dato estructurado,
+  como pide el canon para que el frontend no tenga que inferir nada) y
+  resuelve `art` desde `VISUAL_CONTEXT_ART.get(visual_context_id)` en vez
+  de por `room_id`.
+- No toqué `entry.html`: ya consume `room.art.src/alt/width/height` tal
+  cual, así que el fix es transparente para el cliente actual. No cambié
+  gameplay, persistencia, salidas ni texto narrativo de ninguna sala.
+
+### PRUEBAS
+- Suite completa: **194/194** (`.venv/bin/python -m unittest discover -s
+  tests -v`), incluida la prueba preexistente de arte de Valdren sin
+  modificar.
+- 4 pruebas nuevas en `vintage-telnet/tests/test_entry.py`:
+  - forja/mercado de Valdren comparten `visual_context_id` y `art` con el
+    centro (el bug reportado, ahora corregido);
+  - el sendero/lindero de Valdren cambian de contexto a "Alrededores de
+    Valdren" aunque compartan prefijo `room_id` (frontera del canon);
+  - un contexto sin asset aprobado (ej. Khariel) devuelve `art: None`, no
+    inventa imagen;
+  - las ~25 salas reales de `world.ROOMS` resuelven `visual_context_id` de
+    forma consistente entre `describe_room()` y `get_visual_context_id()`.
+- Verificado a mano con un script que imprime `visual_context_id`/`art`
+  para cada sala de `world.ROOMS` y lo comparé fila por fila contra la
+  tabla "Mapeo de las salas actuales" de `VISUAL_CONTEXT_CANON.md`: coincide
+  exactamente.
+
+### TRABAJO PREVIO AFECTADO
+Solo `vintage-telnet/server/world.py` (dato de mundo) y el archivo de
+pruebas. No toqué `combat.py`, `app.py`, `store.py`, `creatures.py`,
+`entry.html`/`vintage-telnet.html` ni ningún archivo de Senku. No hay
+`LOCATION_ART` residual: era interno a `world.py`, sin otras referencias en
+el repo (confirmado por grep antes de renombrar).
+
+### PENDIENTES (fuera de esta entrega)
+- Los 5 contextos que aún no tienen asset aprobado en runtime
+  (`zone.khariel`, `zone.brumak`, `zone.narevia`, `zone.velmora`,
+  `zone.edran.valdren_outskirts`, `zone.veyra.road`) siguen mostrando sin
+  imagen — correcto según el canon ("ninguno aprobado todavía"), no es un
+  defecto de esta entrega. En cuanto Arte/Dirección de Arte aprueben esos
+  assets y el Publicador los suba a `assets/vintage-telnet/locations/`,
+  agregar la fila correspondiente a `VISUAL_CONTEXT_ART` es el único cambio
+  necesario — no requiere tocar `describe_room()` de nuevo.
+- El Issue #125 también menciona el cierre visual de #106/PR #123 (mapa +
+  heading); esta entrega es solo la parte de servidor que #125 pide
+  explícitamente, no reabre ni modifica esa PR ya mergeada.
+
+**LISTO PARA PUBLICAR:** NO — pendiente de revisión del Arquitecto de
+Vintage Telnet y Raspberry Pi / Integrador según el flujo normal de
+`AGENTS.md`. Cambio de bajo riesgo y acotado a un solo archivo de datos de
+mundo más pruebas.
+
+---
+
 ## ENTREGA — Fixes puntuales de `entry.html` reportados por Javier jugando en celular real
 
 **Desarrollador:** Claude — Desarrollador de Servidor de Vintage Telnet
