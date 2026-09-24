@@ -15,7 +15,7 @@ from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
 
-PROMPT_VERSION = "vt-npc-personality-v1"
+PROMPT_VERSION = "vt-npc-personality-v2"
 DEFAULT_OLLAMA_URL = "http://127.0.0.1:11434"
 
 _RESERVED_KEYS = {
@@ -41,6 +41,45 @@ _REQUIRED_PERSONALITY_KEYS = set(_ALLOWED_PERSONALITY_KEYS)
 _ENUMS = {
     "formality": {"muy_informal", "informal", "neutral", "formal", "muy_formal"},
     "response_length": {"breve", "media", "amplia"},
+}
+
+
+_PERSONALITY_SCHEMA = {
+    "type": "object",
+    "additionalProperties": False,
+    "properties": {
+        "temperament": {"type": "string"},
+        "speech_style": {"type": "string"},
+        "formality": {
+            "type": "string",
+            "enum": ["muy_informal", "informal", "neutral", "formal", "muy_formal"],
+        },
+        "humor": {"type": "string"},
+        "sociability": {"type": "string"},
+        "response_length": {
+            "type": "string",
+            "enum": ["breve", "media", "amplia"],
+        },
+        "expressive_reactions": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 6,
+            "items": {"type": "string"},
+        },
+        "traits": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 6,
+            "items": {"type": "string"},
+        },
+        "example_phrases": {
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 6,
+            "items": {"type": "string"},
+        },
+    },
+    "required": sorted(_ALLOWED_PERSONALITY_KEYS),
 }
 
 
@@ -158,7 +197,7 @@ class OllamaPersonalityClient:
         self,
         base_url: str | None = None,
         model: str | None = None,
-        timeout: float = 45.0,
+        timeout: float = 180.0,
     ):
         self.base_url = (base_url or os.environ.get("VT_OLLAMA_URL") or DEFAULT_OLLAMA_URL).rstrip("/")
         self.model = model or os.environ.get("VT_OLLAMA_NPC_MODEL") or None
@@ -226,12 +265,18 @@ class OllamaPersonalityClient:
             "response_length, expressive_reactions, traits, example_phrases. "
             "formality debe ser uno de muy_informal, informal, neutral, formal, muy_formal. "
             "response_length debe ser breve, media o amplia. "
-            "example_phrases contiene entre 3 y 6 frases de muestra coherentes con la ficha; "
-            "las frases no pueden añadir hechos nuevos."
+            "expressive_reactions debe contener entre 1 y 6 reacciones; "
+            "traits entre 2 y 6 rasgos; example_phrases entre 3 y 6 frases. "
+            "Las frases no pueden añadir hechos nuevos. "
+            "Debes incluir TODOS los campos solicitados, incluso si una reacción es sencilla."
         )
+        schema_text = json.dumps(_PERSONALITY_SCHEMA, ensure_ascii=False, sort_keys=True)
         prompt = (
             "Genera una personalidad estable para este NPC. "
-            "No repitas ni reescribas la ficha autoritativa.\n\n"
+            "No repitas ni reescribas la ficha autoritativa. "
+            "Devuelve exclusivamente un objeto que cumpla exactamente este JSON Schema:\n"
+            + schema_text
+            + "\n\nFicha autoritativa:\n"
             + json.dumps(authoritative_npc, ensure_ascii=False, sort_keys=True)
         )
         raw = self._json_request(
@@ -242,8 +287,9 @@ class OllamaPersonalityClient:
                 "system": system,
                 "prompt": prompt,
                 "stream": False,
-                "format": "json",
-                "options": {"temperature": 0.65},
+                "think": False,
+                "format": _PERSONALITY_SCHEMA,
+                "options": {"temperature": 0},
             },
         )
         response_text = raw.get("response")
