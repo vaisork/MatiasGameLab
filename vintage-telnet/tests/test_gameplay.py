@@ -98,6 +98,7 @@ class GameplayTests(unittest.TestCase):
         self.register()
         self.approve("matias")
         self.post("/species", dict(species="humano"))
+        self.post("/class", dict(player_class="sombra"))
         dm = self.dm_client()
         self.post("/dm/remove", dict(username="matias"), dm, csrf_path="/dm")
         self.assertEqual(self.client.get("/api/me").status_code, 401)
@@ -113,6 +114,7 @@ class GameplayTests(unittest.TestCase):
         self.register()
         self.approve("matias")
         self.post("/species", dict(species="felaryn"))
+        self.post("/class", dict(player_class="sombra"))
         me = self.client.get("/api/me").json["player"]
         self.assertEqual(me["species"], "felaryn")
         self.assertEqual(me["room"], "khariel_centro")
@@ -135,6 +137,7 @@ class GameplayTests(unittest.TestCase):
         self.register()
         self.approve("matias")
         self.post("/species", dict(species="felaryn"))  # starts in khariel_centro
+        self.post("/class", dict(player_class="sombra"))
         self.assertEqual(self.client.get("/api/room").json["room"]["id"], "khariel_centro")
 
         # Moverse dentro del pueblo, a la microzona interna (forja).
@@ -159,11 +162,13 @@ class GameplayTests(unittest.TestCase):
         self.register("matias", name="Matías")
         self.approve("matias")
         self.post("/species", dict(species="felaryn"))  # khariel
+        self.post("/class", dict(player_class="sombra"))
 
         other = self.app.test_client()
         self.post("/register", dict(username="javier", name="Javier", password="otra clave de prueba"), other)
         self.approve("javier")
         self.post("/species", dict(species="felaryn"), other)  # también khariel
+        self.post("/class", dict(player_class="sombra"), other)
 
         self.post("/room/say", dict(body="Hola desde Khariel"))
         room = other.get("/api/room").json["room"]
@@ -196,6 +201,7 @@ class GameplayTests(unittest.TestCase):
         self.register("javier", name="Javier")
         self.approve("javier")
         self.post("/species", dict(species="marevyn"))
+        self.post("/class", dict(player_class="sombra"))
         me = self.client.get("/api/me").json["player"]
         self.assertEqual(me["species"], "marevyn")
         self.assertEqual(me["room"], "narevia_centro")
@@ -205,6 +211,7 @@ class GameplayTests(unittest.TestCase):
         self.register()
         self.approve("matias")
         self.post("/species", dict(species="felaryn"))
+        self.post("/class", dict(player_class="sombra"))
         self.post("/move", dict(direction="north"))  # khariel_centro -> khariel_forja
         cookie = self.client.get_cookie("vt_session").value
 
@@ -220,6 +227,7 @@ class GameplayTests(unittest.TestCase):
         self.register()
         self.approve("matias")
         self.post("/species", dict(species="felaryn"))  # khariel_centro
+        self.post("/class", dict(player_class="sombra"))
         response = self.post("/command", dict(text="norte"))
         self.assertEqual(response.status_code, 303)
         self.assertEqual(self.client.get("/api/room").json["room"]["id"], "khariel_forja")
@@ -241,6 +249,7 @@ class GameplayTests(unittest.TestCase):
         self.register()
         self.approve("matias")
         self.post("/species", dict(species="felaryn"))
+        self.post("/class", dict(player_class="sombra"))
 
         unknown = self.post("/command", dict(text="comando inventado"))
         self.assertEqual(unknown.status_code, 400)
@@ -257,6 +266,7 @@ class GameplayTests(unittest.TestCase):
         self.register()
         self.approve("matias")
         self.post("/species", dict(species="felaryn"))
+        self.post("/class", dict(player_class="sombra"))
 
         response = self.post("/command", dict(text="decir hola desde khariel"))
         self.assertEqual(response.status_code, 303)
@@ -268,6 +278,7 @@ class GameplayTests(unittest.TestCase):
         self.register()
         self.approve("matias")
         self.post("/species", dict(species="felaryn"))
+        self.post("/class", dict(player_class="sombra"))
         csrf = self.client.get("/api/me").json["csrf"]
 
         inspect = self.client.post(
@@ -320,6 +331,12 @@ class GameplayTests(unittest.TestCase):
         self.assertEqual(species_body["town"], "Khariel")
         self.assertEqual(species_body["player"]["species"], "felaryn")
         self.assertEqual(species_body["player"]["room"], "khariel_centro")
+
+        class_response = self.client.post(
+            "/api/class", json={"player_class": "artifice", "csrf": csrf_token}
+        )
+        self.assertEqual(class_response.status_code, 200)
+        self.assertTrue(class_response.json["accepted"])
 
         accepted_move = self.client.post(
             "/api/move", json={"direction": "norte", "csrf": csrf_token}
@@ -380,12 +397,14 @@ class GameplayTests(unittest.TestCase):
         self.register("secretlogin", name="Alguien")
         self.approve("secretlogin")
         self.post("/species", dict(species="felaryn"))
+        self.post("/class", dict(player_class="sombra"))
         self.post("/room/say", dict(body="hola"))
 
         other = self.app.test_client()
         self.post("/register", dict(username="observador", name="Observador", password="otra clave larga"), other)
         self.approve("observador", self.dm_client())
         self.post("/species", dict(species="felaryn"), other)
+        self.post("/class", dict(player_class="sombra"), other)
 
         room = other.get("/api/room").json["room"]
         serialized = str(room)

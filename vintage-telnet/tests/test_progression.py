@@ -61,6 +61,12 @@ class ProgressionIntegrationTests(unittest.TestCase):
         client = client or self.client
         return client.post(route, data={**(data or {}), "csrf": self.csrf(csrf_path, client)})
 
+    def choose_class_without_starter_weapon(self):
+        """Clase elegida sin arma inicial (Issue #112): estas pruebas miden
+        progresion, no equipo. El flujo real /class se prueba aparte."""
+        player_id = self.client.get("/api/me").json["player"]["id"]
+        store.set_player_class(self.app.config["DATABASE"], player_id, "juramentado")
+
     def register_and_enter_world(self, username="matias", name="Matías"):
         self.post("/register", dict(username=username, name=name, password="una clave de prueba"))
         dm = self.app.test_client()
@@ -68,6 +74,7 @@ class ProgressionIntegrationTests(unittest.TestCase):
             self.post("/dm/login", dict(dm_password="dm-secret-value"), dm, csrf_path="/dm")
             self.post("/dm/approve", dict(username=username), dm, csrf_path="/dm")
         self.post("/species", dict(species="humano"))  # arranca en valdren_centro
+        self.choose_class_without_starter_weapon()
 
     def player_id(self):
         return self.client.get("/api/me").json["player"]["id"]
@@ -237,6 +244,7 @@ class SchemaV8MigrationTests(unittest.TestCase):
             raw = sqlite3.connect(path)
             raw.execute("ALTER TABLE players DROP COLUMN pp_unspent")
             raw.execute("ALTER TABLE players DROP COLUMN fatigue_updated_at")
+            raw.execute("ALTER TABLE players DROP COLUMN player_class")  # llega en v9
             raw.execute("PRAGMA user_version = 7")
             raw.commit()
             raw.close()

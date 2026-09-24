@@ -1,5 +1,53 @@
 # HANDOFF — Entrega técnica
 
+## ENTREGA — Vintage Telnet Issue #112: elección de clase inicial + arma inicial por clase
+
+**DESARROLLADOR:** Claude — Desarrollador de Servidor de Vintage Telnet
+**HEAD BASE:** `0ffcc36` (origin/main)
+**TAREA ASIGNADA:** Issue #112. Javier la asignó en sesión directa (2026-09-24) al pedirme que revisara el trabajo pendiente y lo resolviera según sus peticiones. Era la única entrada abierta que se podía programar sin inventar decisiones: #83 y #19 solo esperan prueba física, y #114/#115 dependen de decisiones abiertas de Arquitectura, Narrativa y Jugabilidad.
+**RAMA:** `claude/vintage-telnet-server-issue-112-class`
+
+### CAMBIOS
+- **Flujo:** crear/entrar → elegir especie → **elegir clase** → mundo. Mientras falte la clase, el mundo no avanza. Las rutas HTML devuelven 403 y las API `/api/room`, `/api/intent` y `/api/move` devuelven `409 class_required`, igual que ya pasaba con `species_required`. Las consultas de solo lectura (`/api/character`, `/api/inventory`, `/api/map`) siguen abiertas.
+- **Clases:** Arcano, Juramentado, Sombra y Artífice (`world.CLASSES`), con la orientación copiada de `CONFIRMED_IDEAS.md`. No incluyen poderes, bonos ni números nuevos. El texto de la pantalla repite `GAMEPLAY.md` §2: la clase orienta, pero no encierra.
+- **Arma inicial:** `items.STARTER_WEAPON_BY_CLASS` asigna Varita de aprendiz, Espada de juramento, Puñal de camino y Arco de ruta. Sale de la "Obtención narrativa" de `WEAPON_CATALOG.md` y reemplaza el perfil técnico `BaseArma=10` de §24.10. Se entrega como entrega autoritativa (§32.5), en la **misma transacción** en que se guarda la clase, y queda equipada solo si el personaje no tenía otra arma activa.
+- **Persistencia:** migración de esquema **v8 → v9** (originalmente v7→v8; ver reconciliación), que agrega la columna `players.player_class` con un `CHECK` de las 4 clases. `store.set_player_class` solo tiene efecto una vez y exige especie previa. Usa `BEGIN IMMEDIATE` y `rowcount`, así que si llegan dos elecciones al mismo tiempo gana una y se entrega una sola arma.
+- **Rutas:** `POST /class` (formulario) y `POST /api/class` (JSON, responde con `player_class`, `starter_weapon` y `player`). `/api/character` ahora también expone `species` y `player_class`.
+- **`entry.html`:** agregué el paso de clase, que reutiliza las tarjetas de especie: 2 columnas en tableta y 1 en celular. La clase también aparece en "Estado visible" y en el panel Personaje.
+
+### PRUEBAS
+- Suite completa: **206/206 OK**, con 10 pruebas nuevas en `tests/test_class_choice.py`:
+  - el paso de clase aparece después de la especie y bloquea el mundo;
+  - no se puede elegir clase sin especie;
+  - cada clase recibe su arma del catálogo, equipada;
+  - se elige una sola vez y una clase desconocida se rechaza;
+  - contrato de `/api/class`;
+  - concurrencia: una sola clase y una sola arma;
+  - el arma inicial no reemplaza un arma ya equipada;
+  - un personaje v7 con progreso migra a v8 conservando especie, sala y XP, y elige clase al volver.
+- En las pruebas existentes de combate, inventario y piloto, la clase se asigna **sin arma inicial** para conservar el perfil base con el que fueron escritas. Las de gameplay y entrada usan el flujo real `/class`. Además actualicé `schema_version` 7→8 y el inventario esperado de una prueba de UI (ahora incluye el puñal de Sombra).
+- Probé a mano contra el servidor real (waitress) con Chromium a 390 px y 1280 px: la pantalla de clase se lee bien. Elegir Juramentado entra a Valdren con la Espada de juramento equipada (`/api/inventory`) y la página no tiene scroll horizontal.
+
+### TRABAJO PREVIO AFECTADO
+- Los personajes que ya existen en la Raspberry verán la pantalla de clase la próxima vez que entren, **sin perder** especie, sala, XP ni inventario.
+- `combat.py`, `creatures.py`, las criaturas, la narrativa y el canon no cambiaron.
+- No hay otro cliente que consuma `species_required` (revisé con grep), así que ningún cliente externo se rompe con `class_required`.
+
+### RECONCILIACIÓN CON #132/#134 (2026-09-24)
+- #132 (PP y fatiga) entró a `main` junto con #134 y ocupó el esquema **v8**. La migración de clase pasa a **v8 → v9** (`store.SCHEMA_VERSION = 9`).
+- `POST /api/character/attributes` (#132) también exige clase (`409 class_required`), igual que el resto de rutas de juego.
+- `tests/test_progression.py`:
+  - su base v7 simulada ahora tampoco tiene `player_class`;
+  - sus personajes eligen clase sin arma inicial, para no alterar las pruebas de progresión.
+- Suite completa tras el merge: **226/226 OK**. En navegador a 390 px: especie → pantalla de clase → Arcano → gasto de PA desde Personaje, sin errores de JS.
+
+### PENDIENTES / DECISIONES PARA OTROS ROLES
+- **NECESIDAD DE JUGABILIDAD:** confirmar que el arma inicial se entrega y queda equipada al elegir la clase, y con qué arma por clase. Si cambia, solo cambia `STARTER_WEAPON_BY_CLASS`.
+- Siguen fuera de alcance: poderes por clase, sobrecoste fuera de clase (§20.12), cambio de clase y arte de las clases.
+- **Raspberry:** el despliegue aplica la migración a v9 (desde v7 o v8). Conviene hacer respaldo antes, como en migraciones anteriores.
+- **Observación para Frontend (no es de esta entrega):** a 390 px, el marco del terminal y los botones se ven cortados unos px en el borde derecho. Pasa igual en `main`, aunque la página no hace scroll horizontal.
+
+**LISTO PARA PUBLICAR:** NO. Queda para revisión del Arquitecto de Vintage Telnet / Integrador y autorización de Javier ("sube").
 ## ENTREGA — Vintage Telnet Issue #135: pantalla principal según la maqueta del Director de Arte
 
 **DESARROLLADOR:** Claude — Desarrollador de Servidor de Vintage Telnet

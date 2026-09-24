@@ -261,6 +261,7 @@
     .species-intro h2{margin:0 0 6px;color:var(--gold)}
     .species-intro p{margin:0;color:#d9ccb1;line-height:1.5}
     .species-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+    .class-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
     .species-card{display:block;position:relative;border:1px solid #4c5a6d;border-radius:12px;background:#101722;padding:12px;cursor:pointer}
     .species-card:has(input:checked){border-color:var(--gold);box-shadow:0 0 0 2px #d7b56a33}
     .species-card input{position:absolute;top:12px;right:12px}
@@ -497,6 +498,27 @@
       </form>
     </section>
 
+  {% elif player.player_class is none %}
+    <section class="species-shell">
+      <div class="species-intro">
+        <h2>¿Qué camino empiezas a recorrer?</h2>
+        <p>Elige la clase inicial de tu personaje. Orienta cómo empiezas a pelear y a crecer, pero no te encierra para siempre: más adelante podrás aprender de otros caminos.</p>
+      </div>
+      <form method="post" action="/class">
+        <input type="hidden" name="csrf" value="{{ session.csrf }}">
+        <div class="species-grid class-grid">
+          {% for c in class_list %}
+          <label class="species-card">
+            <input type="radio" name="player_class" value="{{ c.id }}" required>
+            <strong>{{ c.name }}</strong>
+            <span>{{ c.blurb }}</span>
+          </label>
+          {% endfor %}
+        </div>
+        <button class="btn primary" type="submit" style="margin-top:14px">Confirmar clase</button>
+      </form>
+    </section>
+
   {% else %}
     <div class="layout">
       <main class="game-shell{% if room.encounter %} in-combat{% endif %}">
@@ -631,6 +653,7 @@
           <div class="facts">
             <div class="fact"><b>Jugador</b><span>#{{ '%04d' | format(player.player_number) }}</span></div>
             <div class="fact"><b>Especie</b><span>{{ player.species }}</span></div>
+            <div class="fact"><b>Clase</b><span>{{ class_names.get(player.player_class, '—') }}</span></div>
             <div class="fact"><b>Sala</b><span>{{ room.name }}</span></div>
             <div class="fact"><b>Nivel</b><span>{{ player.level }} ({{ player.xp }} XP)</span></div>
             <div class="fact"><b>HP</b><span>{{ player.hp_current | round | int }}/{{ player.hp_max | round | int }}</span></div>
@@ -651,7 +674,7 @@
   <div class="modal-body">
     {% if player and player.hp_current is not none %}
     <div class="character-stack">
-      <section class="character-block"><h3>{{ player.name }} — Nivel {{ player.level }}</h3><p>{{ player.species }}</p></section>
+      <section class="character-block"><h3>{{ player.name }} — Nivel {{ player.level }}</h3><p>{{ player.species }}{% if player.player_class %} · {{ class_names.get(player.player_class) }}{% endif %}</p></section>
       <section class="character-block"><h3>Estado</h3><p id="charStateLine">HP {{ player.hp_current | round | int }}/{{ player.hp_max | round | int }} · Fatiga {{ player.fatigue }} · Herida {{ player.wound }}</p></section>
       <section class="character-block"><h3>Progreso</h3><p id="charProgressLine">XP {{ player.xp }}/{{ xp_for_next_level(player.level) }} · PA sin gastar {{ player.pa_unspent }}</p></section>
       <section class="character-block"><h3>Atributos</h3><p id="charAttributesLine">Fuerza {{ player.attr_fuerza }} · Resistencia {{ player.attr_resistencia }} · Agilidad {{ player.attr_agilidad }} · Percepción {{ player.attr_percepcion }}<br>
