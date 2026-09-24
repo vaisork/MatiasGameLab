@@ -373,6 +373,28 @@ class EntryTests(unittest.TestCase):
         self.assertNotIn("soltar", html.lower())
         self.assertNotIn("durabilidad", html.lower())
 
+    def test_character_panel_spends_pa_only_through_server_with_confirmation(self):
+        """GAMEPLAY.md 25.4/25.5: el panel Personaje lee costes del servidor,
+        pide confirmación explícita y envía el valor visto como
+        `current_value`; no calcula costes ni aplica el +1 por su cuenta."""
+        self.assertEqual(self.register().status_code, 303)
+        store.set_status(self.path, "matias", "approved")
+        self.assertEqual(self.post("/species", {"species": "humano"}).status_code, 303)
+        html = self.client.get("/").get_data(as_text=True)
+        self.assertIn('id="paPanel"', html)
+        self.assertIn("Mejorar atributos", html)
+        self.assertIn('fetch("/api/character"', html)
+        self.assertIn('fetch("/api/character/attributes"', html)
+        self.assertIn("current_value: request.current_value", html)
+        self.assertIn("data.attribute_costs", html)
+        self.assertIn("data.in_combat", html)
+        self.assertIn('id="paConfirm"', html)
+        self.assertIn("Después de confirmar no se puede deshacer.", html)
+        self.assertNotIn("todavía no tiene pantalla propia", html)
+        # El cliente nunca fija costes propios de §19.
+        self.assertNotIn("attribute_cost(", html)
+        self.assertNotIn("deshacer gasto", html.lower())
+
     def test_inventory_api_fields_renderable_by_ui(self):
         self.assertEqual(self.register().status_code, 303)
         store.set_status(self.path, "matias", "approved")

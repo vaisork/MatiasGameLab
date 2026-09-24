@@ -1,5 +1,38 @@
 # HANDOFF — Entrega técnica
 
+## ENTREGA — Vintage Telnet: pantalla para gastar PA en el panel Personaje
+
+**DESARROLLADOR:** Claude — Desarrollador de Servidor de Vintage Telnet
+**HEAD BASE:** `e122c56`, rama `claude/vintage-telnet-server-progression-fatigue` (PR #132, otra sesión), sobre `main` @ `8ba4d1d`
+**TAREA ASIGNADA:** Javier autorizó en sesión directa (2026-09-24) que yo hiciera el frontend pendiente de la PR #132. Lo avisé en la PR #132.
+**RAMA:** `claude/vintage-telnet-server-pa-screen`. **Depende de #132**: se integra después de ella o junto con ella.
+
+### CAMBIOS (solo `server/templates/entry.html` + una prueba)
+- El panel **Personaje** tiene ahora la sección "Mejorar atributos". Al abrirse:
+  - lee `GET /api/character` (`attributes`, `attribute_costs`, `pa_unspent`, `pp_unspent`, `in_combat`);
+  - muestra cada atributo con su valor, el coste del siguiente +1 y un botón "+1 <atributo>".
+- **Confirmación explícita (§25.5):** antes de gastar aparece "Fuerza: 10 → 11. Cuesta 1 PA y te quedarán 5 PA. Después de confirmar no se puede deshacer.", con los botones Cancelar y Confirmar. Cancelar no gasta nada.
+- Al confirmar se envía `POST /api/character/attributes` con `current_value` = el valor que el jugador vio. Si cambió, el servidor responde `stale_confirmation`, el panel recarga los datos y muestra el mensaje del servidor.
+- Los botones quedan deshabilitados sin PA suficientes o en combate (`in_combat`). **El cliente no calcula costes ni reglas**: todo sale del servidor.
+- Después de un gasto, los bloques Estado, Progreso y Atributos se actualizan al instante. Al cerrar el panel, la página se recarga para refrescar también "Estado visible".
+- Sin JavaScript, el panel queda informativo y los PA siguen guardados.
+
+### PRUEBAS
+- Suite completa sobre la rama: **216/216 OK**, incluida una prueba nueva en `test_entry.py` sobre el cableado del panel: contrato, confirmación, `current_value` y que el cliente no calcula costes.
+- Probé de punta a punta contra el servidor real (waitress) con Chromium a 390 px:
+  - con 6 PA, "+1 Fuerza" → Confirmar deja Fuerza en 11 y 5 PA (verificado con `/api/character`);
+  - Cancelar no gasta nada;
+  - la confirmación de un atributo de abajo aparece a la vista;
+  - no hay scroll horizontal ni errores de JS en consola.
+
+### PENDIENTES
+- PP: se muestra el saldo, pero no hay gasto porque los poderes no existen todavía (§25.8).
+- Integración: depende de #132. Con #133 (clase) no hay conflicto de código en `entry.html`: tocan zonas distintas del mismo archivo, pero conviene integrarlas en orden, #132 → esta → #133 (reconciliada a esquema v9).
+
+**LISTO PARA PUBLICAR:** NO. Queda para revisión del Integrador y autorización de Javier ("sube").
+
+---
+
 ## ENTREGA — Vintage Telnet Issue #125: `visual_context_id` server-side, arte por contexto no por `room_id`
 
 **DESARROLLADOR:** Claude — Desarrollador de Servidor de Vintage Telnet
