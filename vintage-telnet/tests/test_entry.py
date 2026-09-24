@@ -239,7 +239,7 @@ class EntryTests(unittest.TestCase):
         self.assertIn(".location-art-fallback[hidden]{display:none!important}", html)
         self.assertNotIn("btn-art btn-flee", html)
         self.assertNotIn("button-huir-danger.png", html)
-        self.assertIn("action action-danger", html)
+        self.assertIn(".action-danger{", html)
         self.assertIn('placeholder="&gt; escribe un comando…"', html)
 
         self.assertIn('sessionStorage.getItem("vt:last-room-text")', html)
