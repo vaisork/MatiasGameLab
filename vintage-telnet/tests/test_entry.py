@@ -240,7 +240,7 @@ class EntryTests(unittest.TestCase):
         self.assertNotIn("btn-art btn-flee", html)
         self.assertNotIn("button-huir-danger.png", html)
         self.assertIn(".action-danger{", html)
-        self.assertIn('placeholder="&gt; escribe un comando…"', html)
+        self.assertIn('placeholder="> escribe un comando…"', html)
 
         self.assertIn('sessionStorage.getItem("vt:last-room-text")', html)
         self.assertIn("}, 26);", html)
