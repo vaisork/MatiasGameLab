@@ -393,10 +393,10 @@ class PilotIntegrationTests(unittest.TestCase):
         self.register_and_enter_world()
         self.walk_to_lindero()
         self.post("/command", dict(text="examinar huellas"))
-        self.post("/move", dict(direction="east"))
-        self.post("/move", dict(direction="east"))
-        self.post("/move", dict(direction="east"))
-        self.post("/move", dict(direction="east"))  # entra a valdren_centro
+        self.post("/move", dict(direction="south"))
+        self.post("/move", dict(direction="south"))
+        self.post("/move", dict(direction="south"))
+        self.post("/move", dict(direction="south"))  # entra a valdren_centro
         inventory = self.client.get("/api/inventory").json["items"]
         acolchados = [item for item in inventory if item["item_key"] == "acolchado_camino"]
         self.assertEqual(len(acolchados), 1)
@@ -405,8 +405,8 @@ class PilotIntegrationTests(unittest.TestCase):
         self.assertFalse(acolchados[0]["forge_validated"])
         # Salir y volver a entrar a Valdren no debe duplicar el objeto
         # (mismo hito de una sola vez que ya protege la XP del regreso).
-        self.post("/move", dict(direction="west"))
-        self.post("/move", dict(direction="east"))
+        self.post("/move", dict(direction="north"))
+        self.post("/move", dict(direction="south"))
         inventory_again = self.client.get("/api/inventory").json["items"]
         self.assertEqual(
             len([item for item in inventory_again if item["item_key"] == "acolchado_camino"]), 1)
@@ -419,16 +419,16 @@ class PilotIntegrationTests(unittest.TestCase):
         self.post("/command", dict(text="examinar huellas"))
         csrf = self.csrf()
         for _ in range(3):  # sendero, parcela, cerca: todavia no cruza el hito
-            response = self.client.post("/api/move", json={"direction": "east", "csrf": csrf})
+            response = self.client.post("/api/move", json={"direction": "south", "csrf": csrf})
             self.assertTrue(response.json["accepted"])
             self.assertIsNone(response.json["reward_message"])
-        response = self.client.post("/api/move", json={"direction": "east", "csrf": csrf})  # valdren_centro
+        response = self.client.post("/api/move", json={"direction": "south", "csrf": csrf})  # valdren_centro
         reward_message = response.json["reward_message"]
         self.assertIn("Has obtenido: Acolchado de Camino.", reward_message)
         self.assertIn("(+10 XP)", reward_message)
         # Salir y volver a entrar no repite el texto de recompensa.
-        self.client.post("/api/move", json={"direction": "west", "csrf": csrf})
-        response = self.client.post("/api/move", json={"direction": "east", "csrf": csrf})
+        self.client.post("/api/move", json={"direction": "north", "csrf": csrf})
+        response = self.client.post("/api/move", json={"direction": "south", "csrf": csrf})
         self.assertIsNone(response.json["reward_message"])
 
     def test_examining_unknown_target_falls_back_to_generic_message(self):
