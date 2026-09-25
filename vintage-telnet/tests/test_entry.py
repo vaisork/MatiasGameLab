@@ -67,10 +67,10 @@ class EntryTests(unittest.TestCase):
         self.assertNotEqual(sendero["visual_context_id"], "zone.valdren")
 
     def test_context_without_an_approved_asset_falls_back_to_no_art(self):
-        # Los pueblos tienen arte publicado; las afueras de Valdren (pieza 4/4
-        # de #151) todavía no.
-        room = world.describe_room("valdren_sendero", [])
-        self.assertEqual(room["visual_context_id"], "zone.edran.valdren_outskirts")
+        # Los tramos profundos de Korven todavía no tienen paisaje aprobado ni
+        # contexto visual: el marco queda vacío, nunca con una imagen ajena.
+        room = world.describe_room("piedra_pared_partida", [])
+        self.assertIsNone(room["visual_context_id"])
         self.assertIsNone(room["art"])
         for town in ("valdren_centro", "khariel_centro", "brumak_centro", "narevia_centro",
                      "velmora_centro", "vaisgard"):
