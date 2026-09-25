@@ -26,7 +26,7 @@ La matemática general no pertenece al Historiador. Los porcentajes indicados aq
 
 **Contexto cultural:** muy común entre viajeros de la Cuenca de Veyra, Valdren y las rutas hacia Vaisgard. No pertenece exclusivamente a una especie ni a una clase.
 
-**Obtención:** compra o encargo sencillo en talleres y mercados donde exista equipo de viaje.
+**Obtención:** compra o encargo sencillo en talleres y mercados donde exista equipo de viaje. En Valdren también puede entregarse un Acolchado de Camino como **reconocimiento comunitario puntual** a un viajero que haya realizado un servicio útil para el pueblo o sus alrededores. Esta vía no implica salario, tienda, moneda ni recompensa repetible por defecto; el momento concreto pertenece a Narrativa/Jugabilidad.
 
 **Pieza física / Forja:** **NO** en la versión inicial.
 
