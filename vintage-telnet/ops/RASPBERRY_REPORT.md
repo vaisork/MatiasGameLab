@@ -802,3 +802,238 @@ reinicié el servicio real, no asumí resultado de producción.
 
 No adjunto contraseñas, claves, cookies, hashes ni bases en este reporte.
 No afirmo ningún resultado de despliegue que no se ejecutó realmente.
+
+## Actualización de la revisión periódica — comando `vt-deploy` (Issue #141) ya está en `main` — 2026-09-24
+
+Misma sesión automatizada en la nube (sin SSH/sudo a la Raspberry real).
+Desde la nota anterior, `main` avanzó con el trabajo que esa nota daba como
+posible pendiente (punto 4 de la lista de arriba): el deploy reusable de la
+Issue #141 **ya existe y ya está mergeado**, pero todavía no está instalado
+ni probado en la Raspberry física — el propio comentario de cierre de la
+implementación en la Issue #141 lo deja explícito: "falta únicamente
+validación física de instalación/deploy y prueba controlada de rollback
+antes de cerrarla".
+
+**Qué se agregó a `main` (PR #142, commit de merge `ca101d40e25d...`):**
+- `vintage-telnet/ops/vt_deploy.py` — reemplaza el patrón
+  `update_vN_authorized.py` por un único comando parametrizado por SHA.
+  Resuelve `latest`/`main` contra `origin/main` (con `fetch --prune`
+  primero), exige que el SHA solicitado sea ancestro de `origin/main`,
+  ejecuta git como el dueño real del checkout (`runuser`), usa un lock de
+  despliegue (`/run/lock/vintage-telnet-deploy.lock`) y sigue el mismo
+  patrón ya validado de releases inmutables (`/opt/vintage-telnet/releases/`
+  + symlink `current`), backup previo, suite completa antes del switch,
+  `/healthz` local y por Funnel, y (según su propio diseño, no verificado
+  por mí) rollback automático si algo falla después del switch.
+- `vintage-telnet/ops/install_vt_deploy_command.sh` — instalador de una sola
+  vez: copia `vt_deploy.py` a `/usr/local/lib/vintage-telnet/` e instala
+  `/usr/local/sbin/vt-deploy` como wrapper. Requiere `sudo`.
+- Validado únicamente en CI (228/228 tests + `py_compile` + `sh -n`, según
+  el comentario de cierre en la Issue #141), **no contra hardware real**.
+
+**Comando final esperado, según la propia Issue #141 y su comentario de
+cierre:**
+```
+cd ~/MatiasGameLab && git pull --ff-only origin main
+sudo sh vintage-telnet/ops/install_vt_deploy_command.sh   # una sola vez
+sudo vt-deploy latest                                      # despliegue normal
+sudo vt-deploy <SHA>                                        # versión exacta
+```
+Después de esto, ya no correspondería generar más `update_v10_authorized.py`
+ni equivalentes a mano.
+
+**No hice en esta corrida** (mismas limitaciones que las notas anteriores):
+no instalé `vt-deploy` en la Raspberry, no lo ejecuté, no probé el rollback
+automático que describe su propio código, no desplegué el esquema v9
+pendiente (sigue exactamente donde lo dejó la nota anterior: HEAD de `main`
+en esta revisión es `ca101d40e25dadb594807184b004ee0ea652ee2e`, sin cambios
+de esquema desde `f925f59` — solo se agregó tooling de despliegue).
+
+**Pendiente actualizado para la próxima sesión con acceso real a la
+Raspberry (reemplaza el punto 4 de la lista anterior, el resto sigue
+vigente):**
+1. Antes de instalar nada, confirmar que `main` no avanzó de nuevo con otra
+   entrega sin revisar.
+2. Instalar `vt-deploy` con el instalador de una sola vez (arriba).
+3. **No usar `vt-deploy` a ciegas para el despliegue real de esquema v9**
+   todavía: primero probarlo con una prueba controlada de actualización y
+   rollback según pide explícitamente la Issue #141 ("no activar en
+   producción hasta probar una actualización y un rollback reales"), y
+   revisar con una lectura del código (`vt_deploy.py`) o con Javier si el
+   rollback automático descrito es seguro para el primer uso real. Si esa
+   prueba controlada no es posible antes del despliegue de v9, considerar
+   seguir el patrón anterior (`update_v10_authorized.py`, como en v5–v9)
+   para no mezclar "primera vez que se usa una herramienta nueva" con "hay
+   jugadores reales esperando la migración de clase inicial".
+4. Cuando `vt-deploy` quede validado, cerrar la Issue #141 documentando la
+   prueba de rollback real (no solo la instalación).
+5. Seguir cubriendo en la misma visita física: el despliegue de esquema v9
+   (puntos 5–7 de la lista anterior), la prueba de Android de la Issue #83
+   (instalar/agregar a pantalla principal, nombre e icono propios, vuelve a
+   `/`) y el probe de Ollama real de la Issue #19
+   (`.venv/bin/python -m server.npc_ollama_probe` sobre el release
+   desplegado) — las tres están documentadas como listas en `main` y solo
+   bloqueadas por la misma visita a hardware real.
+
+No adjunto contraseñas, claves, cookies, hashes ni bases en este reporte.
+No afirmo ningún resultado de instalación, despliegue o rollback que no se
+ejecutó realmente.
+
+## Actualización de la revisión periódica — Javier autorizó la primera instalación real, sigue bloqueada por hardware — 2026-09-24
+
+Misma sesión automatizada en la nube (sin SSH/sudo a la Raspberry real).
+Desde la nota anterior, `main` avanzó a `7384d05e61e3bb09b942ef2b3b29a7e5ce80113c`
+(merge de PR #146, `2d25225`/`ab61e88`), y en la Issue #141 quedaron dos
+novedades que no estaban cuando escribí la nota anterior:
+
+- **PR #146 corrigió el bug que yo había reportado** (el `\n` literal entre
+  los dos `echo` finales de `install_vt_deploy_command.sh`) y además arregla
+  que reintentar el mismo SHA tras un rollback quedaba bloqueado, corrige el
+  manejo de IDs de jugador tipo UUID, y sube el timeout de la suite a 1200 s.
+  Según el propio hilo, `Claude — Desarrollador de Servidor` corrió
+  `vt-deploy` completo en una **Raspberry simulada** (no la física de
+  Javier) y confirma que el deploy normal (7→9, 3 jugadores preservados) y
+  el rollback automático funcionan ahí.
+- Javier autorizó integrar PR #146 y el hilo de la Issue #141 ahora contiene
+  instrucciones explícitas dirigidas a "quien opere la Raspberry (Claude u
+  otro programador)" para hacer la **primera instalación real** de
+  `vt-deploy` y desplegar `latest` (esquema 9) en el equipo físico.
+
+**No ejecuté esas instrucciones en esta corrida** — siguen siendo, por
+diseño de esta tarea periódica (punto 3: sin SSH/sudo al equipo físico),
+exactamente el tipo de trabajo que debo dejar documentado en vez de
+simular. La prueba en la Raspberry simulada de PR #146 no reemplaza la
+prueba en la Raspberry física de Javier que la propia Issue #141 exige
+antes de cerrarla ("no activar en producción hasta probar una actualización
+y un rollback reales").
+
+**Pendiente para la próxima sesión con acceso físico real** (reemplaza el
+punto 3 de la nota anterior; los puntos 1, 4 y 5 siguen vigentes tal cual):
+
+1. `cd ~/MatiasGameLab && git pull --ff-only origin main` y confirmar que
+   `main` sigue en `7384d05` o más nuevo antes de instalar nada.
+2. `sudo sh vintage-telnet/ops/install_vt_deploy_command.sh` — verificar que
+   el mensaje final ahora sale en dos líneas separadas ("Uso normal…" /
+   "También acepta…"), confirmando que el fix de PR #146 también funciona
+   en el equipo real.
+3. `sudo vt-deploy latest` — este es el despliegue real de esquema v9
+   (7→9) que sigue pendiente desde hace varias notas. Verificar que la
+   salida termine en `DESPLIEGUE OK: <sha> · schema 9 · N jugadores
+   preservados.`; si falla después del switch, confirmar que el rollback
+   automático deja el servicio corriendo en la versión anterior.
+4. `curl -s http://127.0.0.1:8080/healthz` → `schema_version: 9`;
+   `systemctl status vintage-telnet` → `active (running)`; probar en
+   navegador real que un jugador existente vea primero la elección de clase
+   y luego el juego con la pantalla nueva (comportamiento esperado, no
+   error).
+5. Con `vt-deploy` ya validado en producción, cerrar la Issue #141
+   documentando la prueba real de despliegue y rollback (no solo la de la
+   Raspberry simulada de PR #146).
+6. Aprovechar la misma visita física para la prueba de Android pendiente de
+   la Issue #83 y el probe de Ollama real de la Issue #19 — ambas listas en
+   `main`, bloqueadas únicamente por esta misma limitación de hardware.
+
+No adjunto contraseñas, claves, cookies, hashes ni bases en este reporte.
+No afirmo ningún resultado de instalación, despliegue o rollback que no se
+ejecutó realmente en el hardware físico.
+
+## Actualización de la revisión periódica — primer despliegue real de vt-deploy confirmado, queda un solo pendiente de red — 2026-09-25
+
+Misma sesión automatizada en la nube (sin SSH/sudo ni acceso a la red
+Tailscale del equipo físico). `main` avanzó a
+`b8b749b1fad0a3d0762f23afe28f729e508aaa41` (merge de PR #149) desde la nota
+anterior.
+
+Según los comentarios de la Issue #141 (no ejecutado ni verificado por mí,
+solo leído del hilo):
+
+- Javier instaló `vt-deploy` en la Raspberry física y corrió
+  `sudo vt-deploy latest` con éxito — **primer despliegue real de esquema
+  v9** en producción, resolviendo el pendiente que arrastraban varias notas
+  anteriores de este reporte.
+- Otra sesión verificó desde internet (Tailscale Funnel) que `/healthz`
+  responde `{"schema_version": 9, "status": "ok"}`, que la pantalla
+  principal nueva (#137), la elección de clase (#133), el panel de PA
+  (#134) y la navegación con minimapa/"Salidas" (#143) están presentes, y
+  que `/dm` responde **404 desde internet** (confirma que PR #149 cerró el
+  acceso público al panel del DM).
+
+**Pendiente real restante, con la misma limitación de acceso que motiva
+esta nota:** confirmar que `/dm` sigue respondiendo **200** desde dentro de
+la red Tailscale o desde `http://127.0.0.1:8080/dm` en la propia Raspberry
+(para asegurar que PR #149 solo bloqueó el acceso público, no rompió el uso
+legítimo del panel del DM), y registrar en este reporte la salida completa
+del `vt-deploy` real (no solo la confirmación verbal de Javier). Ninguna de
+las dos cosas es alcanzable desde esta sesión en la nube: la primera
+requiere estar en la red Tailscale o en el propio equipo; la segunda
+requiere haber presenciado la corrida real, que no ocurrió en esta sesión.
+
+Con esto, la Issue #141 ya tiene su despliegue real y su prueba de
+rollback (Raspberry simulada, PR #146); solo falta la confirmación de
+`/dm` en red interna y el registro de la salida del comando para poder
+cerrarla con evidencia completa. La prueba de Android (#83) y el probe de
+Ollama real (#19) siguen igual de pendientes, sin novedad.
+
+No adjunto contraseñas, claves, cookies, hashes ni bases en este reporte.
+No afirmo ningún resultado que no haya leído textualmente del propio hilo
+de la Issue #141 o verificado yo misma.
+
+## Actualización de la revisión periódica — dos despliegues reales más con `vt-deploy`, uno con migración de esquema — 2026-09-25
+
+Misma sesión automatizada en la nube (sin SSH/sudo ni acceso a la red
+Tailscale del equipo físico). Desde la nota anterior, `main` avanzó a
+`5cc9e6fbfad59b9812660cf0aafa859b196888d4` (merges de PR #150, #152 y #154,
+más un commit de canon del Historiador en `CREATURES.md` que no toca
+código ni Raspberry).
+
+Según los comentarios de la Issue #141 (no ejecutado ni verificado por mí en
+hardware real, solo leído del hilo y de los healthchecks públicos que otra
+sesión ya corrió):
+
+- **PR #150** (pantalla estable, imágenes por contexto de pueblo/camino/
+  combate, fichas de especie completas, UI más compacta) se desplegó con
+  `sudo vt-deploy latest` sin migración de esquema (seguía en 9). Verificado
+  desde internet: imágenes de Khariel/Brumak/Narevia/Velmora en `image/webp`
+  con `Cache-Control` de un día, fichas de especie presentes.
+- **PR #152** (relato de la pelea turno por turno, cuadro de lectura que ya
+  no se recorta en el teléfono) sí trajo migración: `store.SCHEMA_VERSION`
+  pasó de **9 a 10** (confirmado leyendo `server/store.py` en el HEAD
+  actual: agrega la tabla `combat_log`, migración aditiva). El despliegue
+  con `vt-deploy` aplicó la migración y el `/healthz` externo confirmó
+  `schema_version: 10`.
+- **PR #154** (acciones del juego sin recargar la página, barra del enemigo
+  fija abajo) se desplegó sin migración (esquema se mantuvo en 10). Javier
+  lo lanzó esta vez desde el celular por SSH/Tailscale, dentro de `tmux`
+  según recomendación del propio hilo.
+- Las tres verificaciones externas (vía Tailscale Funnel) confirman
+  `/healthz` en el esquema esperado en cada paso y que `/dm` sigue en
+  **404 desde internet** después de cada despliegue — es decir, PR #149
+  (cierre del panel del DM al público) sigue vigente tras tres despliegues
+  posteriores.
+
+**Con esto, `vt-deploy` ya lleva cuatro despliegues reales exitosos en la
+Raspberry física de Javier** (esquema v9 inicial, PR #150, PR #152 con
+migración 9→10, y PR #154), sin ningún rollback real necesario en
+producción. Esto es evidencia de uso normal, pero **no es lo mismo que la
+prueba controlada de rollback en hardware físico** que la Issue #141 exige
+explícitamente antes de cerrarla ("no activar en producción hasta probar
+una actualización y un rollback reales"); el único rollback probado hasta
+ahora sigue siendo el de la Raspberry simulada de la PR #146. No me
+corresponde decidir si cuatro despliegues reales sin fallos son evidencia
+suficiente para que Javier dé por cerrada esa condición — lo dejo señalado
+para que él o el Desarrollador de Servidor lo decidan explícitamente en la
+Issue #141.
+
+**Pendiente real restante, sin cambios respecto a la nota anterior** (misma
+limitación de acceso): confirmar que `/dm` sigue respondiendo **200** desde
+dentro de la red Tailscale o desde `http://127.0.0.1:8080/dm` en la propia
+Raspberry, y registrar en este reporte la salida completa de al menos uno
+de los `vt-deploy` reales (no solo la confirmación verbal/externa). Ninguna
+de las dos es alcanzable desde esta sesión en la nube. La prueba de Android
+(#83) y el probe de Ollama real (#19) siguen igual de pendientes, sin
+novedad.
+
+No adjunto contraseñas, claves, cookies, hashes ni bases en este reporte.
+No afirmo ningún resultado que no haya leído textualmente del propio hilo
+de la Issue #141 o de los healthchecks públicos ya corridos por otra
+sesión.
