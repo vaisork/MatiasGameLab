@@ -103,6 +103,22 @@ def create_app(config=None):
     app.jinja_env.globals["class_names"] = {c["id"]: c["name"] for c in world.CLASSES}
     app.jinja_env.globals["ambient_icons"] = world.AMBIENT_ICONS
 
+    def from_public_internet():
+        """Tailscale Funnel marca cada petición que llega desde internet con
+        `Tailscale-Funnel-Request`; las de la red Tailscale privada o de la
+        propia Raspberry no la traen. Un visitante no puede quitarla: la
+        agrega el proxy de Funnel."""
+        return bool(request.headers.get("Tailscale-Funnel-Request"))
+
+    @app.before_request
+    def dm_panel_is_private():
+        """Petición de Javier (2026-09-25): el panel del Dungeon Master solo
+        existe desde la red privada (Tailscale) o la propia Raspberry, nunca
+        desde internet. Para Funnel responde 404, como si no existiera, y
+        corre antes de cualquier otra lógica (incluido CSRF y login)."""
+        if (request.path == "/dm" or request.path.startswith("/dm/")) and from_public_internet():
+            abort(404)
+
     @app.before_request
     def prepare_request():
         # Even the anonymous form has a signed, random anti-CSRF token.
@@ -118,7 +134,9 @@ def create_app(config=None):
             return
         session.setdefault("csrf", secrets.token_urlsafe(32))
         g.player = store.player_for_token(path, session.get("token"))
-        g.dm = bool(session.get("dm"))
+        # Aunque haya una sesión de DM abierta desde la red privada, esa
+        # sesión no da poderes de DM si la petición llega por internet.
+        g.dm = bool(session.get("dm")) and not from_public_internet()
 
     @app.context_processor
     def inject_csp_nonce():
