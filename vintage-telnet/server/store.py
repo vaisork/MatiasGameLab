@@ -321,6 +321,28 @@ def _migrate_to_accounts(db):
     db.execute("ALTER TABLE sessions_v11 RENAME TO sessions")
 
 
+def relocate_players_outside_world(path, valid_rooms, fallback_room_for):
+    """Personajes parados en una sala que ya no existe (p. ej. `road_north` y
+    `road_west`, reemplazados por las Cinco Rutas) vuelven al pueblo de su
+    especie. Se ejecuta en cada arranque y no hace nada si no hay nadie
+    afuera del mundo. Devuelve cuántos personajes movió."""
+    with connect(path) as db:
+        db.execute("BEGIN IMMEDIATE")
+        rows = db.execute("SELECT id, species, room FROM players WHERE room IS NOT NULL").fetchall()
+        moved = 0
+        for row in rows:
+            if row["room"] in valid_rooms:
+                continue
+            db.execute("DELETE FROM room_encounters WHERE player_id = ? AND room_id = ?",
+                       (row["id"], row["room"]))
+            db.execute("DELETE FROM combat_log WHERE player_id = ? AND room_id = ?",
+                       (row["id"], row["room"]))
+            db.execute("UPDATE players SET room = ?, heading = NULL WHERE id = ?",
+                       (fallback_room_for(row["species"]), row["id"]))
+            moved += 1
+        return moved
+
+
 def allow_attempt(path, address):
     """Shared durable fixed window: 20 auth submissions per source IP per minute."""
     now = int(time.time())
