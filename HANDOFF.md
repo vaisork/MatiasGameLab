@@ -1,5 +1,26 @@
 # HANDOFF — Entrega técnica
 
+## ENTREGA — Arte aprobado en el juego: Mordelinde, Espinajo de rastrojo y camino de Veyra (#151)
+
+**DESARROLLADOR:** Claude — Desarrollador de Servidor de Vintage Telnet
+**HEAD BASE:** `552cc93` (origin/main)
+**TAREA ASIGNADA:** Javier: "ponte a programar todo lo que puedas". Conectar los assets que Dirección de Arte aprobó en #151 y el Publicador subió en las PR #161, #169 y #170.
+**RAMA:** `claude/vt-art-roads-creatures`. Incluye los commits de las ramas `assets/vt-mordelinde-151`, `assets/vt-espinajo-151` y `assets/vt-road-veyra-151` sin modificarlos; al integrar esta PR, GitHub marca esas tres como integradas.
+
+### CAMBIOS
+- `creatures.CREATURE_ART`: `mordelinde` y `espinajo_rastrojo` → `/assets/creatures/<id>.webp`. En combate, el marco de imagen muestra la criatura.
+- `world.VISUAL_CONTEXT_ART["zone.veyra.road"]` → `/assets/locations/road-veyra.webp` (Camino del Norte y Camino del Oeste).
+- Las afueras de Valdren (`zone.edran.valdren_outskirts`, pieza 4/4) siguen sin imagen: el marco queda vacío y quieto, como hasta ahora.
+- Nuevo `tests/test_published_art.py`: cada imagen referenciada existe en disco, se sirve como WebP con caché, y el combate contra Mordelinde muestra su imagen.
+
+### PRUEBAS
+- Suite **283/283 OK**.
+- Chromium a 390 px: combate en Parcela removida con la ilustración de Mordelinde en el marco, sin desbordes.
+
+**LISTO PARA PUBLICAR:** falta la autorización de Javier ("sube"). Sin migración.
+
+---
+
 ## ENTREGA — Cuentas con varios personajes (hasta 5) + nombres de personaje únicos + registro más claro
 
 **DESARROLLADOR:** Claude — Desarrollador de Servidor de Vintage Telnet

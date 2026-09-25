@@ -75,9 +75,17 @@ VISUAL_CONTEXT_ART = {
         "width": 1536,
         "height": 1024,
     },
-    # Caminos ("zone.veyra.road", "zone.edran.valdren_outskirts"): cuando Arte
-    # publique su ilustración, basta con agregar aquí la fila; hasta entonces
-    # el marco queda vacío y quieto (petición de Javier, 2026-09-25).
+    # Caminos de la Cuenca de Veyra (Issue #151, aprobado por Dirección de
+    # Arte; publicado en la PR #169, SHA-256 dd086367...).
+    "zone.veyra.road": {
+        "src": "/assets/locations/road-veyra.webp",
+        "alt": "Camino de la Cuenca de Veyra",
+        "width": 1536,
+        "height": 1024,
+    },
+    # "zone.edran.valdren_outskirts": pieza 4/4 de #151, todavía en Arte.
+    # Hasta que se publique, el marco queda vacío y quieto (petición de
+    # Javier, 2026-09-25).
 }
 
 # Excepciones explicitas de VISUAL_CONTEXT_CANON.md ("Mapeo de las salas
