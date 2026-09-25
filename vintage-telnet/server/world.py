@@ -99,6 +99,10 @@ ROOM_VISUAL_CONTEXT_OVERRIDES = {
     "valdren_cruce_cercas": "zone.edran.valdren_outskirts",
     "valdren_campo_rastrojo": "zone.edran.valdren_outskirts",
     "valdren_zanja_vieja": "zone.edran.valdren_outskirts",
+    "valdren_parcelas_exteriores": "zone.edran.valdren_outskirts",
+    "valdren_arbol_descanso": "zone.edran.valdren_outskirts",
+    "valdren_campos_sin_cerca": "zone.edran.valdren_outskirts",
+    "valdren_vado_menor": "zone.edran.valdren_outskirts",
 }
 
 _TOWN_VISUAL_CONTEXT_PREFIXES = ("valdren", "khariel", "brumak", "narevia", "velmora")
@@ -208,9 +212,9 @@ ROOMS.update(_build_town("velmora", "Velmora", {"east": "road_west"}))
 ROOMS["valdren_sendero"] = {
     "name": "Sendero de Valdren",
     "description": (
-        "Las ultimas casas de Valdren quedan a tu espalda. Delante, el camino de "
+        "Las últimas casas de Valdren quedan a tu espalda. Delante, el camino de "
         "tierra pasa entre parcelas y cercas bajas. El aire trae olor a tierra "
-        "removida y vegetacion cortada. Todavia se oyen voces y trabajo desde el "
+        "removida y vegetación cortada. Todavía se oyen voces y trabajo desde el "
         "pueblo."
     ),
     "exits": {"east": "valdren_centro", "west": "valdren_camino_parcela"},
@@ -219,7 +223,7 @@ ROOMS["valdren_camino_parcela"] = {
     "name": "Parcela removida",
     "description": (
         "Junto al sendero hay varios tallos mordidos casi a ras del suelo. "
-        "Pequenos monticulos de tierra rompen la linea de una parcela. Algo se "
+        "Pequeños montículos de tierra rompen la línea de una parcela. Algo se "
         "mueve un instante entre las plantas y vuelve a desaparecer."
     ),
     "exits": {"east": "valdren_sendero", "west": "valdren_camino_cerca"},
@@ -228,7 +232,7 @@ ROOMS["valdren_camino_cerca"] = {
     "name": "Cerca del rastrojo",
     "description": (
         "El camino se estrecha junto a una cerca. Entre restos secos de cultivo "
-        "ves un surco corto y varias raices expuestas. Una pua rigida yace en la "
+        "ves un surco corto y varias raíces expuestas. Una púa rígida yace en la "
         "tierra."
     ),
     "exits": {"east": "valdren_camino_parcela", "west": "valdren_camino_lindero"},
@@ -236,84 +240,140 @@ ROOMS["valdren_camino_cerca"] = {
 ROOMS["valdren_camino_lindero"] = {
     "name": "El lindero roto",
     "description": (
-        "Mas adelante, dos postes de una cerca estan quebrados hacia afuera. El "
-        "barro conserva depresiones profundas. En este tramo no ves los pequenos "
+        "Más adelante, dos postes de una cerca están quebrados hacia afuera. El "
+        "barro conserva depresiones profundas. En este tramo no ves los pequeños "
         "movimientos entre cultivos que acompanaban el camino hasta ahora."
     ),
     "exits": {"east": "valdren_camino_cerca", "west": "valdren_lindero_tres_piedras"},
 }
 
-# Expansion del recorrido inicial de Valdren. Conserva intacta la
-# microaventura El lindero roto y, despues de su hito final, permite seguir
-# caminando por Edran. Son salas de transito/exploracion: no agregan encuentros
-# scripted, recompensas, balance ni reglas nuevas.
-ROOMS["valdren_lindero_tres_piedras"] = {
-    "name": "Lindero de las tres piedras",
-    "description": (
-        "Tres piedras grandes marcan una division mas antigua que las cercas "
-        "cercanas. El camino sigue entre parcelas menos juntas y las voces de "
-        "Valdren ya llegan debiles desde el este."
-    ),
-    "exits": {"east": "valdren_camino_lindero", "west": "valdren_camino_hundido"},
+# Camino de los Campos -- bloque 1 (A1-A10) de vintage-telnet/NARRATIVE_ROUTES.md
+# (Narrador, #163/#164). El lindero roto funciona como A1 "Parcelas interiores"
+# y queda intacto con sus dos encuentros fijos. Las descripciones siguen solo
+# lo que dice el documento para cada estación; son salas de tránsito: no
+# agregan encuentros fijos, recompensas, balance ni reglas. Iniciado por el
+# Junior en la PR #171 y completado aquí. A11-A18 (hasta Vaisgard) es el
+# bloque 2 del handoff.
+ROUTE_A_BLOCK_1 = {
+    "valdren_lindero_tres_piedras": {
+        "name": "Lindero de las tres piedras",
+        "description": (
+            "Tres piedras grandes, gastadas y reutilizadas, marcan una división más "
+            "antigua que las cercas de alrededor. El camino sigue entre parcelas menos "
+            "juntas y las voces de Valdren ya llegan débiles desde el este."
+        ),
+        "exits": {"east": "valdren_camino_lindero", "west": "valdren_camino_hundido"},
+    },
+    "valdren_camino_hundido": {
+        "name": "Camino hundido",
+        "description": (
+            "Generaciones de paso han dejado esta franja de tierra endurecida un poco "
+            "más baja que los campos de ambos lados. Hay hierba, surcos viejos y "
+            "reparaciones hechas en épocas distintas."
+        ),
+        "exits": {"east": "valdren_lindero_tres_piedras", "west": "valdren_cobertizos_viejos"},
+    },
+    "valdren_cobertizos_viejos": {
+        "name": "Cobertizos viejos",
+        "description": (
+            "Varios cobertizos bajos se levantan junto al camino. Algunos siguen en "
+            "uso; otros conservan tablas y apoyos reemplazados muchas veces. Es un "
+            "buen lugar para detenerse un momento antes del campo abierto."
+        ),
+        "exits": {"east": "valdren_camino_hundido", "west": "valdren_cruce_cercas"},
+    },
+    "valdren_cruce_cercas": {
+        "name": "Cruce de las cercas",
+        "description": (
+            "Dos cercas se separan y dejan un cruce ancho de tierra. Al norte, un "
+            "sendero menor sirve a las parcelas exteriores; hacia el oeste, el camino "
+            "principal conserva su dirección."
+        ),
+        "exits": {"east": "valdren_cobertizos_viejos", "west": "valdren_campo_rastrojo",
+                  "north": "valdren_parcelas_exteriores"},
+    },
+    "valdren_parcelas_exteriores": {
+        "name": "Parcelas exteriores",
+        "description": (
+            "El sendero menor termina entre parcelas alejadas del pueblo. No lleva a "
+            "ningún otro lugar: sirve a quienes trabajan estas tierras. El camino "
+            "principal queda al sur."
+        ),
+        "exits": {"south": "valdren_cruce_cercas"},
+    },
+    "valdren_campo_rastrojo": {
+        "name": "Campo de rastrojo",
+        "description": (
+            "Los cultivos continuos quedan atrás. Rastrojo, hierba y tierras en "
+            "descanso se alternan junto a un camino todavía claro. Ya casi no hay "
+            "construcciones y el horizonte sigue abierto."
+        ),
+        "exits": {"east": "valdren_cruce_cercas", "west": "valdren_zanja_vieja"},
+    },
+    "valdren_zanja_vieja": {
+        "name": "La zanja vieja",
+        "description": (
+            "Una zanja de drenaje acompaña el camino durante un tramo. No es una "
+            "defensa: sus bordes muestran arreglos de piedra, tierra y madera hechos "
+            "en momentos distintos."
+        ),
+        "exits": {"east": "valdren_campo_rastrojo", "west": "valdren_arbol_descanso"},
+    },
+    "valdren_arbol_descanso": {
+        "name": "Árbol del descanso",
+        "description": (
+            "Un árbol solitario da sombra a un ensanche de tierra apisonada donde los "
+            "viajeros suelen detenerse. No es un santuario, solo un lugar práctico que "
+            "todos conocen. Valdren ya quedó atrás."
+        ),
+        "exits": {"east": "valdren_zanja_vieja", "west": "valdren_campos_sin_cerca"},
+    },
+    "valdren_campos_sin_cerca": {
+        "name": "Campos sin cerca",
+        "description": (
+            "Siguen los Llanos de Edran, pero ya no hay cercas continuas. Hierba alta, "
+            "parcelas abandonadas o en descanso y huellas de tránsito cruzan el campo."
+        ),
+        "exits": {"east": "valdren_arbol_descanso", "west": "valdren_vado_menor"},
+    },
+    "valdren_vado_menor": {
+        "name": "Vado menor",
+        "description": (
+            "Un arroyo pequeño obliga al camino a estrecharse. Piedras colocadas a mano "
+            "y reparaciones sencillas muestran que esta ruta importa a quienes la usan."
+        ),
+        "exits": {"east": "valdren_campos_sin_cerca"},
+    },
 }
-ROOMS["valdren_camino_hundido"] = {
-    "name": "Camino hundido",
-    "description": (
-        "Generaciones de paso han dejado la franja de tierra ligeramente hundida "
-        "entre los campos. A ambos lados hay hierba, surcos viejos y reparaciones "
-        "hechas en epocas distintas."
-    ),
-    "exits": {"east": "valdren_lindero_tres_piedras", "west": "valdren_cobertizos_viejos"},
-}
-ROOMS["valdren_cobertizos_viejos"] = {
-    "name": "Cobertizos viejos",
-    "description": (
-        "Varios cobertizos bajos se levantan junto al camino. Algunos siguen en "
-        "uso; otros conservan tablas y apoyos reemplazados muchas veces. El campo "
-        "abierto empieza a ocupar mas espacio que las construcciones."
-    ),
-    "exits": {"east": "valdren_camino_hundido", "west": "valdren_cruce_cercas"},
-}
-ROOMS["valdren_cruce_cercas"] = {
-    "name": "Cruce de las cercas",
-    "description": (
-        "Dos cercas se separan y dejan un cruce ancho de tierra. Un sendero menor "
-        "se pierde entre parcelas exteriores, mientras el camino principal "
-        "continua alejandose de Valdren."
-    ),
-    "exits": {"east": "valdren_cobertizos_viejos", "west": "valdren_campo_rastrojo"},
-}
-ROOMS["valdren_campo_rastrojo"] = {
-    "name": "Campo de rastrojo",
-    "description": (
-        "Los cultivos continuos quedan atras. Rastrojo, hierba y terrenos en "
-        "descanso se alternan junto a un camino todavia claro. Ya no se distingue "
-        "ninguna casa individual de Valdren."
-    ),
-    "exits": {"east": "valdren_cruce_cercas", "west": "valdren_zanja_vieja"},
-}
-ROOMS["valdren_zanja_vieja"] = {
-    "name": "La zanja vieja",
-    "description": (
-        "Una zanja de drenaje acompana el camino durante un tramo. Sus bordes "
-        "muestran arreglos de piedra, tierra y madera hechos en momentos distintos. "
-        "Hacia el oeste el terreno sigue abierto."
-    ),
-    "exits": {"east": "valdren_campo_rastrojo"},
+ROOMS.update(ROUTE_A_BLOCK_1)
+
+# Salas marcadas como "hábitat dinámico" en NARRATIVE_ROUTES.md. Solo dicen
+# DÓNDE puede aparecer fauna aleatoria (encounters.py, Issue #160); QUÉ
+# criatura vive en cada hábitat lo define Historia/Narrativa en #166. Nada
+# aparece hasta que exista un pool aprobado.
+DYNAMIC_HABITAT_ROOMS = {
+    "valdren_camino_hundido": "edran_campos",       # A3
+    "valdren_parcelas_exteriores": "edran_campos",  # A5, ramal exterior
+    "valdren_campo_rastrojo": "edran_campos",       # A6
+    "valdren_campos_sin_cerca": "edran_campos",     # A9
 }
 
-# Estas salas comparten el contexto visual de las afueras de Valdren.
+
+def habitat_rooms(habitat):
+    """Salas de un hábitat dinámico, para armar pools de encounters.py."""
+    return {room_id for room_id, value in DYNAMIC_HABITAT_ROOMS.items() if value == habitat}
+
 
 # examinar <objetivo> por sala -- las claves se comparan normalizadas
 # (minusculas, sin acentos; ver app.py _normalize).
 ROOM_EXAMINE_TARGETS = {}
 ROOM_EXAMINE_TARGETS["valdren_camino_parcela"] = {
     "tallos": (
-        "Los tallos estan mordidos casi a ras del suelo, en un angulo limpio. No "
-        "es viento ni una herramienta: algo pequeno ha estado comiendo aqui."
+        "Los tallos están mordidos casi a ras del suelo, en un ángulo limpio. No "
+        "es viento ni una herramienta: algo pequeño ha estado comiendo aquí."
     ),
     "monticulos": (
-        "Los monticulos de tierra son recientes y estan huecos por dentro: la "
+        "Los montículos de tierra son recientes y están huecos por dentro: la "
         "entrada de una madriguera poco profunda."
     ),
 }
@@ -325,13 +385,24 @@ ROOM_EXAMINE_TARGETS["valdren_camino_cerca"] = {
 }
 ROOM_EXAMINE_TARGETS["valdren_camino_lindero"] = {
     "cerca": (
-        "La madera no esta podrida. Algo la forzo con suficiente violencia para "
+        "La madera no está podrida. Algo la forzó con suficiente violencia para "
         "partirla y seguir adelante."
     ),
     "huellas": (
-        "Las marcas son mucho mas profundas y anchas que las de las criaturas "
-        "pequenas que has visto cerca de Valdren."
+        "Las marcas son mucho más profundas y anchas que las de las criaturas "
+        "pequeñas que has visto cerca de Valdren."
     ),
+}
+
+# Camino de los Campos: huellas históricas públicas (NARRATIVE_ROUTES.md A2 y A7,
+# capa "examinar"). No son secretos ni dan recompensa.
+ROOM_EXAMINE_TARGETS["valdren_lindero_tres_piedras"] = {
+    "piedras": 'Las piedras están gastadas y fueron movidas y reutilizadas. No coinciden del todo con las cercas de ahora: marcan una división más antigua. Valdren creció así, surco por surco.',
+    "piedra": 'Las piedras están gastadas y fueron movidas y reutilizadas. No coinciden del todo con las cercas de ahora: marcan una división más antigua. Valdren creció así, surco por surco.',
+}
+ROOM_EXAMINE_TARGETS["valdren_zanja_vieja"] = {
+    "zanja": 'Comparas los arreglos de la zanja: piedra en un tramo, tierra apisonada en otro, madera más adelante. Este camino se ha cuidado en épocas distintas.',
+    "arreglos": 'Comparas los arreglos de la zanja: piedra en un tramo, tierra apisonada en otro, madera más adelante. Este camino se ha cuidado en épocas distintas.',
 }
 
 # Encuentro posible por sala (id de vintage-telnet/server/creatures.py). El

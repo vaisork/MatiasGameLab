@@ -1,5 +1,34 @@
 # HANDOFF — Entrega técnica
 
+## ENTREGA — Camino de los Campos, bloque 1 (A1–A10) + minimapa sin nombres encimados
+
+**DESARROLLADOR:** Claude — Desarrollador de Servidor de Vintage Telnet (Javier: "ponte a programar todo lo que puedas; si ya hay caminos por hacer, mejóramelos". Javier apagó al Junior y me pidió continuar su trabajo).
+**HEAD BASE:** `552cc93` (origin/main)
+**TAREA ASIGNADA:** bloque 1 del handoff técnico de `NARRATIVE_ROUTES.md` (Narrador, #163/PR #164), rescatando la PR #171 del Junior.
+**RAMA:** `claude/vt-valdren-route` (incluye los 2 commits de `junior/expand-valdren-initial-route`)
+
+### CAMBIOS
+- **Ruta A1–A10 completa**, saliendo de Valdren hacia el oeste después de *El lindero roto* (A1, intacto con sus dos encuentros fijos):
+  - A2 Lindero de las tres piedras, A3 Camino hundido, A4 Cobertizos viejos, A5 Cruce de las cercas, A6 Campo de rastrojo y A7 La zanja vieja. Ya venían de la PR #171; aquí se corrigieron los acentos y los textos se ajustaron a lo que dice el documento;
+  - nuevas: **A5 ramal Parcelas exteriores** (al norte del cruce, sin salida), **A8 Árbol del descanso**, **A9 Campos sin cerca** y **A10 Vado menor**.
+- **Examinar** (capa pública de las huellas históricas): `examinar piedras` en A2 ("Valdren creció así, surco por surco") y `examinar zanja` en A7 (arreglos de épocas distintas). No dan recompensa ni descubrimiento.
+- **`world.DYNAMIC_HABITAT_ROOMS` + `habitat_rooms()`**: las salas que el documento marca como hábitat dinámico (A3, el ramal A5, A6 y A9 → `edran_campos`). Solo dicen dónde puede haber fauna; qué criatura vive ahí lo define #166. No aparece nada nuevo.
+- **Acentos** en los textos de *El lindero roto* (descripciones y pistas de examinar): "últimas", "Pequeños montículos", "púa rígida", "Más adelante"...
+- **Minimapa:** en una misma fila las etiquetas se alternan abajo/arriba. Con el camino largo, "Campos sin cerca" y "Árbol del descanso" se encimaban.
+
+### PRUEBAS
+- Suite **288/288 OK**. `tests/test_valdren_route_expansion.py` del Junior, ampliado: cadena A1–A10 bidireccional, ramal, salas de hábitat sin encuentros fijos, pistas de examinar y acentos.
+- En Chromium a 390 px: se caminó de Valdren al Vado menor (14 salas, con el ramal de ida y vuelta). Mapa sin nombres encimados.
+
+### PENDIENTES / AVISOS
+- **Bloque 2 (A11–A18 hasta Vaisgard) necesita decisión de geografía.** `REGIONS.md` y el mapa regional aprobado ponen Khariel al N de Vaisgard, Brumak al O, Valdren al SO, Narevia al SE y Velmora al E. El código pone Valdren al N, Khariel al E, Brumak al S, Narevia al O y Velmora al O de Narevia. Conectar las rutas con Vaisgard sin corregir esto dejaría al jugador caminando en la dirección contraria al mapa que ve.
+- Los textos de las salas nuevas siguen solo lo que dice `NARRATIVE_ROUTES.md`; el Narrador puede reescribirlos.
+- `NARRATIVE_ROUTES.md` vive en la PR #164 (Narrador), que depende de la #162 (Historiador), y ninguna está en `main`.
+
+**LISTO PARA PUBLICAR:** falta la autorización de Javier ("sube"). Sin migración.
+
+---
+
 ## ENTREGA — Cuentas con varios personajes (hasta 5) + nombres de personaje únicos + registro más claro
 
 **DESARROLLADOR:** Claude — Desarrollador de Servidor de Vintage Telnet
