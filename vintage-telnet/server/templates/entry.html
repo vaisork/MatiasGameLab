@@ -1290,7 +1290,10 @@
       } else {
         svg.appendChild(svgEl("circle", {cx, cy, r: 7, fill: "#0c1219", stroke: "#e8e1cd", "stroke-width": 2}));
       }
-      const label = svgEl("text", {x: cx, y: cy + 25, "text-anchor": "middle", "font-size": 12,
+      // En una fila, las etiquetas se alternan abajo/arriba (por columna par o
+      // impar) para que dos lugares vecinos con nombres largos no se encimen.
+      const above = ((p.x % 2) + 2) % 2 === 1;
+      const label = svgEl("text", {x: cx, y: above ? cy - 17 : cy + 25, "text-anchor": "middle", "font-size": 12,
         stroke: "#0c1219", "stroke-width": 4, "stroke-linejoin": "round", "paint-order": "stroke",
         "font-family": "ui-sans-serif,system-ui,sans-serif", "font-weight": p.current ? 800 : 600,
         fill: p.current ? "#f0c75e" : "#d9ccb1"});

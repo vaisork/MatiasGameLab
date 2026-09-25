@@ -33,8 +33,22 @@ class NavigationTests(unittest.TestCase):
         self.assertEqual(set(layout), set(world.ROOMS))
         self.assertEqual(len(set(layout.values())), len(layout))
         self.assertIs(world.map_layout(), layout)
-        # Las salidas reales se respetan: Valdren queda al norte del Camino del Norte.
-        self.assertEqual(layout["road_north"][1] - layout["valdren_centro"][1], 1)
+        # Geometría coherente: cada salida lleva exactamente a la celda vecina.
+        step = {"north": (0, -1), "south": (0, 1), "east": (1, 0), "west": (-1, 0)}
+        for room_id, room in world.ROOMS.items():
+            for direction, destination in room["exits"].items():
+                dx, dy = step[direction]
+                self.assertEqual(layout[destination], (layout[room_id][0] + dx, layout[room_id][1] + dy),
+                                 (room_id, direction, destination))
+        # REGIONS.md: Khariel al norte, Brumak al oeste, Velmora al este,
+        # Valdren al suroeste y Narevia al sureste de Vaisgard.
+        x = lambda r: layout[r][0]
+        y = lambda r: layout[r][1]
+        self.assertLess(y("khariel_centro"), y("vaisgard"))
+        self.assertLess(x("brumak_centro"), x("vaisgard"))
+        self.assertGreater(x("velmora_centro"), x("vaisgard"))
+        self.assertTrue(x("valdren_centro") < 0 < y("valdren_centro"))
+        self.assertTrue(x("narevia_centro") > 0 and y("narevia_centro") > 0)
 
     def test_minimap_only_exposes_known_places(self):
         data = self.client.get("/api/map").json
@@ -44,7 +58,7 @@ class NavigationTests(unittest.TestCase):
         self.assertEqual(data["places"][0]["name"], "Valdren")
         # Salidas sin explorar: solo dirección, nunca destino ni nombre.
         stubs = data["unexplored_exits"]
-        self.assertEqual({s["direction"] for s in stubs}, {"north", "south", "east", "west"})
+        self.assertEqual({s["direction"] for s in stubs}, {"north", "east", "west"})
         for stub in stubs:
             self.assertEqual(set(stub), {"from", "direction"})
         self.assertNotIn("Mercado de Valdren", str(data))
@@ -61,7 +75,7 @@ class NavigationTests(unittest.TestCase):
 
     def test_exit_names_appear_only_after_visiting(self):
         html = self.client.get("/").get_data(as_text=True)
-        self.assertIn("Salidas: <b>sur</b>", html.replace("\n", ""))
+        self.assertIn("Salidas: <b>norte</b>", html.replace("\n", ""))
         self.assertNotIn("(Mercado de Valdren)", html)
         self.post("/move", dict(direction="east"))
         self.post("/move", dict(direction="west"))

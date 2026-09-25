@@ -174,8 +174,8 @@ class ProgressionIntegrationTests(unittest.TestCase):
 
     def test_spend_pa_blocked_in_combat(self):
         self.set_columns(pa_unspent=2)
-        self.post("/move", dict(direction="west"))  # sendero
-        self.post("/move", dict(direction="west"))  # parcela: aparece Mordelinde
+        self.post("/move", dict(direction="north"))  # sendero
+        self.post("/move", dict(direction="north"))  # parcela: aparece Mordelinde
         self.assertTrue(self.character()["in_combat"])
         response = self.spend("fuerza", 10)
         self.assertEqual(response.status_code, 409)
@@ -215,8 +215,8 @@ class ProgressionIntegrationTests(unittest.TestCase):
         self.assertEqual(character["wound"], "leve")
 
     def test_fatigue_does_not_recover_during_combat(self):
-        self.post("/move", dict(direction="west"))
-        self.post("/move", dict(direction="west"))  # combate activo con Mordelinde
+        self.post("/move", dict(direction="north"))
+        self.post("/move", dict(direction="north"))  # combate activo con Mordelinde
         self.set_columns(fatigue=40, fatigue_updated_at=time.time() - 300)
         self.assertEqual(self.character()["fatigue"], 40)
 

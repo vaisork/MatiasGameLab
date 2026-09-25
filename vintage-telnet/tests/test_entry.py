@@ -67,9 +67,10 @@ class EntryTests(unittest.TestCase):
         self.assertNotEqual(sendero["visual_context_id"], "zone.valdren")
 
     def test_context_without_an_approved_asset_falls_back_to_no_art(self):
-        # Khariel ya tiene arte publicado; los caminos todavía no.
-        room = world.describe_room("road_north", [])
-        self.assertEqual(room["visual_context_id"], "zone.veyra.road")
+        # Los pueblos tienen arte publicado; las afueras de Valdren (pieza 4/4
+        # de #151) todavía no.
+        room = world.describe_room("valdren_sendero", [])
+        self.assertEqual(room["visual_context_id"], "zone.edran.valdren_outskirts")
         self.assertIsNone(room["art"])
         for town in ("valdren_centro", "khariel_centro", "brumak_centro", "narevia_centro",
                      "velmora_centro", "vaisgard"):
@@ -176,9 +177,9 @@ class EntryTests(unittest.TestCase):
         # Issue #120: rumbo autoritativo -- null hasta el primer movimiento
         # aceptado, luego la direccion cardinal exacta que el servidor uso.
         self.assertIsNone(map_response.json["current_heading"])
-        self.assertEqual(self.post("/move", {"direction": "west"}).status_code, 303)
+        self.assertEqual(self.post("/move", {"direction": "north"}).status_code, 303)
         state_after_move = self.client.get("/api/map").json
-        self.assertEqual(state_after_move["current_heading"], "west")
+        self.assertEqual(state_after_move["current_heading"], "north")
 
     def test_rest_button_uses_authoritative_command_intent(self):
         self.assertEqual(self.register().status_code, 303)
@@ -350,8 +351,8 @@ class EntryTests(unittest.TestCase):
         self.assertNotIn('action="/attack"', html)
 
         # Entra al encuentro con Mordelinde (sendero -> parcela).
-        self.post("/move", {"direction": "west"})
-        self.post("/move", {"direction": "west"})
+        self.post("/move", {"direction": "north"})
+        self.post("/move", {"direction": "north"})
         html = self.client.get("/").get_data(as_text=True)
         self.assertIn('class="place-bar combat"', html)
         self.assertIn("¡COMBATE!", html)
