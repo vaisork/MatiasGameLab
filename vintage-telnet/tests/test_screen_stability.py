@@ -53,3 +53,22 @@ class ScreenStabilityTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class CombatReadingTests(ScreenStabilityTests):
+    def test_combat_shows_only_the_fight_and_results_go_inside_the_log(self):
+        self.post("/move", dict(direction="west"))
+        self.post("/move", dict(direction="west"))  # Parcela removida: Mordelinde
+        html = self.client.get("/").get_data(as_text=True)
+        self.assertIn("¡COMBATE!", html)
+        self.assertNotIn("<p data-room-description", html)  # no se repite cómo es el lugar
+        self.assertNotIn('class="entry exits-entry"', html)
+        html = self.post("/attack", {}).get_data(as_text=True)
+        self.assertIn("data-result-entry>", html)
+        self.assertNotIn('<div class="alert-note"', html)  # nada empuja la pantalla desde arriba
+
+    def test_exploration_results_also_go_inside_the_log(self):
+        html = self.post("/command", dict(text="examinar huellas")).get_data(as_text=True)
+        self.assertIn("data-result-entry>", html)
+        self.assertNotIn('<div class="alert-note"', html)
+        self.assertIn("<p data-room-description", html)

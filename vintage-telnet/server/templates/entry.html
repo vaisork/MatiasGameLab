@@ -352,6 +352,10 @@
     .heading-card .compass{margin:0}
     .heading-card small{margin:0;color:var(--muted)}
     .heading-card strong{display:block;color:var(--gold);font:700 1.35rem Georgia,serif}
+    .result-entry{border-left:3px solid #2f7a45;padding-left:10px}
+    .result-entry p{color:var(--green3)!important}
+    .in-combat .result-entry{border-left-color:#b0402f;background:#240d0a66;border-radius:0 8px 8px 0;padding:6px 8px}
+    .in-combat .result-entry p{color:#ffd9d1!important}
     .exits-entry p{font-size:.86em!important;color:#79d88d!important}
     .exits-entry b{color:var(--green3)}
     .minimap-frame{border:1px solid var(--line);border-radius:12px;background:#0c1219;overflow:hidden}
@@ -496,7 +500,13 @@
     </div>
   </header>
 
-  {% if error %}<div class="alert-note" role="alert">{{ error }}</div>{% endif %}
+  {# Dentro del juego, el resultado de cada acción se escribe en el cuadro de
+     lectura (más abajo), no en un aviso aquí arriba que empujaría toda la
+     pantalla (Javier, 2026-09-25). Fuera del juego (login, especie, clase) el
+     aviso sigue aquí. #}
+  {% set in_game = player and player.status == 'approved' and player.species is not none
+                   and player.player_class is not none and room %}
+  {% if error and not in_game %}<div class="alert-note" role="alert">{{ error }}</div>{% endif %}
 
   {% if not player %}
     {% include "_onboarding_guest.html" %}
@@ -604,10 +614,13 @@
         <section class="terminal{% if room.encounter %} in-combat{% endif %}" aria-labelledby="placeTitle">
           <p class="sr-only" id="roomDescriptionAccessible">{{ room.description }}</p>
           <div class="log" aria-describedby="roomDescriptionAccessible">
+            {# En combate solo importa leer la pelea: no se repite cómo es el lugar. #}
+            {% if not room.encounter %}
             <div class="entry room-description-entry">
               <div class="cmd">&gt; mirar</div>
               <p data-room-description data-room-key="{{ room.id if room.id is defined else room.name }}">{{ room.description }}</p>
             </div>
+            {% endif %}
             {% if room.exits and not room.encounter %}
             <div class="entry exits-entry"><p class="system">Salidas: {% for e in room.exits %}<b>{{ e.label }}</b>{% if e.known_name %} ({{ e.known_name }}){% endif %}{{ ' · ' if not loop.last }}{% endfor %}</p></div>
             {% endif %}
@@ -623,6 +636,11 @@
                 <span class="condition-label">{{ room.encounter.condition }}</span>
               </div>
               <p class="system">{{ room.encounter.behavior }}</p>
+            </div>
+            {% endif %}
+            {% if error %}
+            <div class="entry result-entry" role="status" data-result-entry>
+              <p>{{ error }}</p>
             </div>
             {% endif %}
             {% for m in room.messages %}
@@ -1274,6 +1292,11 @@
   // no aparezca todo de golpe. Solo el parrafo principal de la sala -- los
   // demas mensajes (presentes, encuentro, chat) se quedan como estan.
   // Respeta prefers-reduced-motion y es interrumpible con un toque/clic.
+  const resultEntry = document.querySelector("[data-result-entry]");
+  if (resultEntry) {
+    const log = resultEntry.closest(".log");
+    if (log) log.scrollTop = Math.max(0, resultEntry.offsetTop - log.offsetTop - 8);
+  }
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const mainParagraph = document.querySelector("[data-room-description]");
   if (mainParagraph && !reduceMotion) {

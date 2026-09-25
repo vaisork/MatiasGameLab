@@ -34,6 +34,13 @@ Pidió que el marco de imagen siga esta regla: pueblo → su imagen fija; camino
 - **Tamaños:** bloque "Compacto" al final del CSS. Botones ~20 % más bajos (acción 46→37 px; en teléfono 44→36, cruz 40×37, barra inferior 54→44) y letra del terminal ~10 % menor (15→13.5 px en teléfono). Terminal más alto: 36svh exploración / 46svh combate / hasta 40svh en escritorio. El cuadro de comando conserva 16 px de letra por el zoom de iOS.
 - **Pruebas:** 242/242 OK. En Chromium a 390 px, Khariel → Sendero → Khariel → Vaisgard → Camino del Norte: arte, terminal, cruz, comando y barra en la **misma posición** al cargar y a los 3 s. También revisado a 820×1180 (iPad).
 
+### TERCERA RONDA (Javier, 2026-09-25): "cuando hay pelea no es necesario saber cómo se ve el lugar, solo leer cómo sucede la pelea"
+- En combate, el cuadro de lectura **no muestra la descripción del lugar ni las salidas**: solo la criatura, su banda de condición, su comportamiento y el resultado de cada acción.
+- **Dentro del juego, el resultado de cada acción** (combate, examinar, descansar, equipar…) se escribe **en el cuadro de lectura** (`.result-entry`, rojizo en combate) y ya no en el aviso de arriba (`alert-note`), que empujaba toda la pantalla. El aviso de arriba queda solo fuera del juego: login, especie y clase.
+- El cuadro de lectura se desplaza solo para que el último resultado quede a la vista.
+- Pruebas: **247/247 OK**, con 2 nuevas en `test_screen_stability.py`. En Chromium a 390 px, las posiciones antes y después de atacar son **idénticas**.
+- Pendiente sugerido, fuera de esta entrega: hoy solo se ve el resultado de la **última** acción. Un historial de la pelea (varios turnos seguidos) requeriría guardar el registro de combate en el servidor.
+
 **LISTO PARA PUBLICAR:** falta la autorización de Javier ("sube"). Luego se despliega con `sudo vt-deploy latest`.
 
 ---
