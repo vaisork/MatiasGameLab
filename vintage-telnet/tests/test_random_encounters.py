@@ -14,6 +14,7 @@ ROAD_POOL = {
     "prueba_camino": {
         "rooms": {"road_north", "valdren_camino_parcela"},
         "chance": 0.5,
+        "gameplay_override": True,  # solo pruebas: fuera de la banda 10–35 %
         "creatures": [("mordelinde", 3), ("espinajo_rastrojo", 1)],
     },
 }
@@ -69,7 +70,7 @@ class EngineTests(unittest.TestCase):
 
     def test_weights_are_respected(self):
         rng = random.Random(1)
-        pools = {"p": {**ROAD_POOL["prueba_camino"], "chance": 1}}
+        pools = {"p": {**ROAD_POOL["prueba_camino"], "chance": 1.0}}
         results = [encounters.get_encounter_for_room("road_north", rng, pools) for _ in range(2000)]
         share = results.count("mordelinde") / len(results)
         self.assertAlmostEqual(share, 0.75, delta=0.05)
@@ -93,6 +94,18 @@ class EngineTests(unittest.TestCase):
                 encounters.validate_pools({"roto": pool})
         with self.assertRaises(encounters.InvalidPoolConfig):
             encounters.validate_pools({"a": base, "b": {**base, "rooms": {"road_north"}}})
+
+    def test_density_profiles_follow_gameplay_band(self):
+        # RANDOM_ENCOUNTER_GAMEPLAY.md §2 y GAMEPLAY.md §33.3.
+        self.assertEqual(encounters.DENSITY["camino"], 0.20)
+        plain = {"rooms": {"road_north"}, "creatures": [("mordelinde", 70), ("espinajo_rastrojo", 30)]}
+        for profile, chance in encounters.DENSITY.items():
+            with self.subTest(profile=profile):
+                encounters.validate_pools({"p": {**plain, "chance": chance}})
+        for chance in (0.05, 0.5):
+            with self.subTest(chance=chance), self.assertRaises(encounters.InvalidPoolConfig):
+                encounters.validate_pools({"p": {**plain, "chance": chance}})
+        encounters.validate_pools({"p": {**plain, "chance": 0.5, "gameplay_override": True}})
 
 
 class MoveIntegrationTests(unittest.TestCase):
@@ -120,7 +133,7 @@ class MoveIntegrationTests(unittest.TestCase):
         return store.get_encounter(self.path, self.player_id, room_id)
 
     def test_entering_eligible_room_starts_random_encounter(self):
-        pools = {"p": {**ROAD_POOL["prueba_camino"], "chance": 1}}
+        pools = {"p": {**ROAD_POOL["prueba_camino"], "chance": 1.0}}
         with patch.object(encounters, "RANDOM_ENCOUNTER_POOLS", pools), \
                 patch.object(encounters, "_rng", AlwaysRoll(0.0, pick=1)):
             self.post("/move", dict(direction="south"))

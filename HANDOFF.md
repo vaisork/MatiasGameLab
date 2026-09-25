@@ -26,9 +26,15 @@
   - las configuraciones rotas se rechazan;
   - integración con `/move`: aparece, falla la tirada, sin pools todo sigue igual y con enfriamiento no se tira el dado.
 
+### ALINEADO CON JUGABILIDAD (GAMEPLAY.md §33 + RANDOM_ENCOUNTER_GAMEPLAY.md, ya en `main`)
+- La tirada ocurre solo al entrar a una sala elegible y se reutiliza el enfriamiento de 5 min: ya era así.
+- Nuevo `encounters.DENSITY` con los perfiles de §2: borde habitado 10 %, camino 20 %, silvestre 30 % y riesgo alto 35 %.
+- `validate_pools` rechaza probabilidades fuera de la banda 10–35 % salvo que el pool tenga `"gameplay_override": True`.
+- Suite **270/270 OK**.
+
 ### PENDIENTES (no inventados)
-- **Jugabilidad:** probabilidad por pool; si la tirada es al entrar (hoy) o por tiempo; si hace falta un enfriamiento distinto para fauna aleatoria (hoy se reutiliza el de 5 min por sala tras vencer).
-- **Historiador / Narrador:** qué salas son elegibles y qué criaturas viven en cada zona. CREATURES.md todavía no define hábitats por sala.
+- **Historiador / Narrador:** el mapeo de qué salas son elegibles y qué criaturas viven en cada una (§8 y §10 de la estrategia). Hasta entonces `RANDOM_ENCOUNTER_POOLS` sigue vacío, como pide Jugabilidad.
+- **Jugabilidad / Narrador (§4 de la estrategia):** hoy, cuando hay una criatura, la pantalla entra en modo combate y oculta las salidas, y para irse hay que huir. §4 dice que la presencia de una criatura no obliga a pelear. Falta definir si la fauna evasiva o que ignora al jugador debe dejarlo pasar.
 
 **LISTO PARA PUBLICAR:** falta la autorización de Javier ("sube") y la revisión de Arquitectura que pide #160.
 

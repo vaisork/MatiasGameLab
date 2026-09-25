@@ -9,32 +9,40 @@ Orden al resolver el encuentro de una sala (regla arquitectónica de #160):
   2. si no, y la sala pertenece a un pool aleatorio, se tira el dado del pool;
   3. si no, no hay criatura.
 
-Este módulo es solo el motor. **No decide balance, hábitat ni canon.** Qué
-salas son elegibles, qué criaturas viven ahí, con qué peso y con qué
-probabilidad aparecen corresponde a Jugabilidad (tasas) y a
-Historiador/Narrador (qué criatura vive dónde). Por eso
-`RANDOM_ENCOUNTER_POOLS` empieza vacío: el juego se comporta exactamente
-como antes hasta que esas funciones lo llenen.
+Este módulo es solo el motor. **No decide balance, hábitat ni canon.**
+Reglas aprobadas: `GAMEPLAY.md` §33 y `RANDOM_ENCOUNTER_GAMEPLAY.md`.
+  - La tirada ocurre **solo al entrar con éxito** a una sala elegible (§33.2);
+    nunca por esperar, mirar ni durante un combate activo.
+  - Se reutiliza el enfriamiento de ~5 min por sala tras vencer (§33.4).
+  - La probabilidad sale de un perfil de densidad (`DENSITY`, §2 del
+    documento de estrategia). La banda ordinaria es 10–35 %; fuera de ella
+    el pool debe declarar `"gameplay_override": True` (aprobación explícita
+    de Jugabilidad).
+  - Qué salas son elegibles y qué criaturas viven ahí lo entregan
+    Historia/Narrativa (§8). Hasta recibir ese mapeo, `RANDOM_ENCOUNTER_POOLS`
+    **sigue vacío** y el juego se comporta exactamente como antes (§10).
 
 Formato de un pool:
 
     "nombre_del_pool": {
         "rooms": {"sala_a", "sala_b"},          # salas elegibles
-        "chance": 0.25,                          # probabilidad por tirada, 0 < chance <= 1
-        "creatures": [("mordelinde", 3),         # (creature_id, peso > 0)
-                      ("espinajo_rastrojo", 1)],
+        "chance": DENSITY["camino"],             # probabilidad por entrada
+        "creatures": [("mordelinde", 70),        # (creature_id, peso relativo > 0)
+                      ("espinajo_rastrojo", 30)],
     }
-
-PENDIENTE DE JUGABILIDAD (no inventado aquí):
-  - probabilidad de aparición por pool;
-  - cuándo se tira el dado: hoy, al **entrar** a la sala elegible, igual
-    que los encuentros fijos (no por tiempo ni por turno);
-  - repetición: se reutiliza el enfriamiento por sala que ya existe tras
-    vencer a una criatura (`store.CREATURE_RESPAWN_COOLDOWN_SECONDS`).
 """
 import random
 
 from . import creatures, world
+
+# Perfiles de densidad de Jugabilidad (RANDOM_ENCOUNTER_GAMEPLAY.md §2).
+DENSITY = {
+    "borde_habitado": 0.10,
+    "camino": 0.20,        # referencia v1 (GAMEPLAY.md §33.3)
+    "silvestre": 0.30,
+    "riesgo_alto": 0.35,
+}
+ORDINARY_BAND = (0.10, 0.35)
 
 RANDOM_ENCOUNTER_POOLS = {}
 
@@ -61,6 +69,11 @@ def validate_pools(pools):
         if (isinstance(chance, bool) or not isinstance(chance, (int, float))
                 or not 0 < chance <= 1):
             raise InvalidPoolConfig(f"{pool_id}: chance debe estar entre 0 (sin incluir) y 1")
+        low, high = ORDINARY_BAND
+        if not low <= chance <= high and not pool.get("gameplay_override"):
+            raise InvalidPoolConfig(
+                f"{pool_id}: chance {chance} fuera de la banda 10–35 %; necesita "
+                "\"gameplay_override\": True con aprobación de Jugabilidad (GAMEPLAY.md §33.3)")
         for room_id in rooms:
             if world.get_room(room_id) is None:
                 raise InvalidPoolConfig(f"{pool_id}: sala inexistente {room_id!r}")
