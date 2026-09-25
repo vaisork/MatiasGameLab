@@ -352,6 +352,12 @@
     .heading-card .compass{margin:0}
     .heading-card small{margin:0;color:var(--muted)}
     .heading-card strong{display:block;color:var(--gold);font:700 1.35rem Georgia,serif}
+    .terminal.in-combat{grid-template-rows:minmax(0,1fr) auto auto}
+    .enemy-status{display:flex;align-items:center;gap:10px;padding:7px 12px;border-top:1px solid #5a2019;
+      background:linear-gradient(90deg,#2a0e0b,#130807);font-family:ui-monospace,monospace}
+    .enemy-status .enemy-name{flex:0 0 auto}
+    .enemy-status .condition{flex:1 1 auto;margin:0;min-width:0}
+    .enemy-status .condition-label{overflow:hidden;text-overflow:ellipsis}
     .combat-line{margin-bottom:8px}
     .combat-line p{color:#e8c2b8!important;font-size:.92em!important}
     .combat-line .cmd{color:#c98b7f!important}
@@ -600,7 +606,7 @@
   {% else %}
     <div class="layout">
       <main class="game-shell{% if room.encounter %} in-combat{% endif %}">
-        <header class="place-bar{% if room.encounter %} combat{% endif %}">
+        <header class="place-bar{% if room.encounter %} combat{% endif %}" data-swap="place">
           <svg class="ui-icon" aria-hidden="true"><use href="{{ '#icon-swords' if room.encounter else '#icon-pin' }}"/></svg>
           <strong id="placeTitle">{{ room.name.upper() }}</strong>
           {% if room.encounter %}<span class="combat-flag">¡COMBATE!</span>
@@ -616,7 +622,7 @@
            salte al moverse (petición de Javier). Pueblo: su ilustración;
            camino: la del camino; combate: la criatura. Si no hay imagen
            aprobada, el marco queda vacío y quieto; no se inventa ninguna. #}
-        <figure class="location-art{{ '' if room.art else ' no-art' }}">
+        <figure class="location-art{{ '' if room.art else ' no-art' }}" data-swap="art" data-art-src="{{ room.art.src if room.art else '' }}">
           {% if room.art %}
           <img data-location-art src="{{ room.art.src }}" alt="{{ room.art.alt }}"
                width="{{ room.art.width }}" height="{{ room.art.height }}" fetchpriority="high" decoding="async">
@@ -626,7 +632,7 @@
           {% endif %}
         </figure>
 
-        <section class="terminal{% if room.encounter %} in-combat{% endif %}" aria-labelledby="placeTitle">
+        <section class="terminal{% if room.encounter %} in-combat{% endif %}" aria-labelledby="placeTitle" data-swap="terminal">
           <p class="sr-only" id="roomDescriptionAccessible">{{ room.description }}</p>
           <div class="log" aria-describedby="roomDescriptionAccessible">
             {# En combate solo importa leer la pelea: no se repite cómo es el lugar. #}
@@ -643,13 +649,7 @@
             <div class="entry"><p class="system">También aquí: {{ room.others_present | join(', ') }}</p></div>
             {% endif %}
             {% if room.encounter %}
-            {% set bands = {'entero / apenas afectado': 4, 'herido': 3, 'malherido': 2, 'al borde de caer': 1} %}
             <div class="entry encounter-entry">
-              <p class="enemy-name">{{ room.encounter.name }}</p>
-              <div class="condition" role="img" aria-label="Condición de {{ room.encounter.name }}: {{ room.encounter.condition }}">
-                <span class="condition-bar">{% for i in range(4) %}<i class="{{ 'on' if i < bands.get(room.encounter.condition, 0) }}"></i>{% endfor %}</span>
-                <span class="condition-label">{{ room.encounter.condition }}</span>
-              </div>
               <p class="system">{{ room.encounter.behavior }}</p>
             </div>
             {% endif %}
@@ -674,12 +674,24 @@
             </div>
             {% endfor %}
           </div>
+          {% if room.encounter %}
+          {# Estado del enemigo fijo al pie: la narración crece por encima
+             (petición de Javier, 2026-09-25). #}
+          {% set bands = {'entero / apenas afectado': 4, 'herido': 3, 'malherido': 2, 'al borde de caer': 1} %}
+          <div class="enemy-status">
+            <p class="enemy-name">{{ room.encounter.name }}</p>
+            <div class="condition" role="img" aria-label="Condición de {{ room.encounter.name }}: {{ room.encounter.condition }}">
+              <span class="condition-bar">{% for i in range(4) %}<i class="{{ 'on' if i < bands.get(room.encounter.condition, 0) }}"></i>{% endfor %}</span>
+              <span class="condition-label">{{ room.encounter.condition }}</span>
+            </div>
+          </div>
+          {% endif %}
           <div class="terminal-alert terminal-hint">Pista: usa Ayuda para comandos y ejemplos. Para chat local escribe “decir &lt;texto&gt;”.</div>
         </section>
 
         {% set action_names = room.available_actions | map(attribute='action') | list %}
         {% if room.encounter %}
-        <section class="combat-panel" aria-label="Acciones de combate">
+        <section class="combat-panel" aria-label="Acciones de combate" data-swap="controls">
           {% if 'atacar' in action_names %}
           <form method="post" action="/attack"><input type="hidden" name="csrf" value="{{ session.csrf }}"><button class="action action-attack" type="submit"><svg class="ui-icon" aria-hidden="true"><use href="#icon-swords"/></svg>Atacar</button></form>
           {% endif %}
@@ -704,7 +716,7 @@
           </div>
         </section>
         {% else %}
-        <section class="controls-row" aria-label="Controles principales">
+        <section class="controls-row" aria-label="Controles principales" data-swap="controls">
           <div class="dpad" aria-label="Movimiento cardinal">
             {% set exit_dirs = room.exits | map(attribute='direction') | list %}
             {% set exit_names = {} %}{% for e in room.exits if e.known_name %}{% set _ = exit_names.update({e.direction: e.known_name}) %}{% endfor %}
@@ -753,7 +765,7 @@
         </section>
       </main>
 
-      <aside class="side">
+      <aside class="side" data-swap="side">
         <section class="card">
           <div class="card-head"><b>Estado visible</b><span>Datos reales</span></div>
           <div class="facts">
@@ -901,11 +913,12 @@
     if (d && !d.open) d.showModal();
   }));
   document.querySelectorAll("[data-close]").forEach(b => b.addEventListener("click", () => b.closest("dialog").close()));
-  document.querySelectorAll("[data-location-art]").forEach(img => img.addEventListener("error", () => {
+  const wireArt = root => root.querySelectorAll("[data-location-art]").forEach(img => img.addEventListener("error", () => {
     img.hidden = true;
     const fallback = img.nextElementSibling;
     if (fallback) fallback.hidden = false;
   }));
+  wireArt(document);
 
   const activateTabs = (buttonSelector, panelSelector, dataKey) => {
     const buttons = [...document.querySelectorAll(buttonSelector)];
@@ -1062,11 +1075,12 @@
   });
 
   const commandInput = document.getElementById("commandInput");
-  document.querySelectorAll("[data-prefill]").forEach(button => button.addEventListener("click", () => {
-    if (!commandInput) return;
+  document.addEventListener("click", event => {
+    const button = event.target.closest("[data-prefill]");
+    if (!button || !commandInput) return;
     commandInput.value = button.dataset.prefill;
     commandInput.focus();
-  }));
+  });
 
   const inventoryButton = document.querySelector("[data-inventory-open]");
   const inventoryStatus = document.getElementById("inventoryStatus");
@@ -1316,51 +1330,109 @@
   // no aparezca todo de golpe. Solo el parrafo principal de la sala -- los
   // demas mensajes (presentes, encuentro, chat) se quedan como estan.
   // Respeta prefers-reduced-motion y es interrumpible con un toque/clic.
-  const resultEntries = document.querySelectorAll("[data-result-entry]");
-  const resultEntry = resultEntries[resultEntries.length - 1];
-  if (resultEntry) {
-    const log = resultEntry.closest(".log");
-    if (log && log.closest(".in-combat")) {
-      // En combate, siempre lo más reciente del relato a la vista.
-      log.scrollTop = log.scrollHeight;
-    } else if (log) {
-      log.scrollTop += resultEntry.getBoundingClientRect().top - log.getBoundingClientRect().top - 8;
+  const afterRender = () => {
+    const resultEntries = document.querySelectorAll("[data-result-entry]");
+    const resultEntry = resultEntries[resultEntries.length - 1];
+    if (resultEntry) {
+      const log = resultEntry.closest(".log");
+      if (log && log.closest(".in-combat")) {
+        // En combate, siempre lo más reciente del relato a la vista.
+        log.scrollTop = log.scrollHeight;
+      } else if (log) {
+        log.scrollTop += resultEntry.getBoundingClientRect().top - log.getBoundingClientRect().top - 8;
+      }
     }
-  }
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const mainParagraph = document.querySelector("[data-room-description]");
-  if (mainParagraph && !reduceMotion) {
-    const fullText = mainParagraph.textContent;
-    const roomKey = mainParagraph.dataset.roomKey + ":" + fullText;
-    let alreadyRead = false;
-    try { alreadyRead = sessionStorage.getItem("vt:last-room-text") === roomKey; } catch (_error) {}
-    if (!alreadyRead) {
-      // El texto completo ocupa su espacio desde el primer momento: la parte
-      // aún no revelada es invisible (visibility:hidden), así el terminal y
-      // los botones de abajo no se mueven mientras aparecen las letras.
-      const visiblePart = document.createElement("span");
-      const hiddenPart = document.createElement("span");
-      hiddenPart.style.visibility = "hidden";
-      hiddenPart.textContent = fullText;
-      mainParagraph.replaceChildren(visiblePart, hiddenPart);
-      let shown = 0;
-      let timer = null;
-      const revealAll = () => {
-        if (timer !== null) clearInterval(timer);
-        timer = null;
-        mainParagraph.textContent = fullText;
-        try { sessionStorage.setItem("vt:last-room-text", roomKey); } catch (_error) {}
-      };
-      timer = setInterval(() => {
-        shown += 2;
-        if (shown >= fullText.length) { revealAll(); return; }
-        visiblePart.textContent = fullText.slice(0, shown);
-        hiddenPart.textContent = fullText.slice(shown);
-      }, 26);
-      const log = document.querySelector(".log");
-      if (log) log.addEventListener("click", revealAll, {once: true});
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const mainParagraph = document.querySelector("[data-room-description]");
+    if (mainParagraph && !reduceMotion) {
+      const fullText = mainParagraph.textContent;
+      const roomKey = mainParagraph.dataset.roomKey + ":" + fullText;
+      let alreadyRead = false;
+      try { alreadyRead = sessionStorage.getItem("vt:last-room-text") === roomKey; } catch (_error) {}
+      if (!alreadyRead) {
+        // El texto completo ocupa su espacio desde el primer momento: la parte
+        // aún no revelada es invisible (visibility:hidden), así el terminal y
+        // los botones de abajo no se mueven mientras aparecen las letras.
+        const visiblePart = document.createElement("span");
+        const hiddenPart = document.createElement("span");
+        hiddenPart.style.visibility = "hidden";
+        hiddenPart.textContent = fullText;
+        mainParagraph.replaceChildren(visiblePart, hiddenPart);
+        let shown = 0;
+        let timer = null;
+        const revealAll = () => {
+          if (timer !== null) clearInterval(timer);
+          timer = null;
+          mainParagraph.textContent = fullText;
+          try { sessionStorage.setItem("vt:last-room-text", roomKey); } catch (_error) {}
+        };
+        timer = setInterval(() => {
+          shown += 2;
+          if (shown >= fullText.length) { revealAll(); return; }
+          visiblePart.textContent = fullText.slice(0, shown);
+          hiddenPart.textContent = fullText.slice(shown);
+        }, 26);
+        const revealLog = document.querySelector(".log");
+        if (revealLog) revealLog.addEventListener("click", revealAll, {once: true});
+      }
     }
-  }
+  };
+  afterRender();
+
+  // Acciones del juego sin recargar la página (petición de Javier,
+  // 2026-09-25: "durante la pelea flashea la página"). El formulario se envía
+  // igual que siempre (mismas rutas, mismo CSRF, mismas reglas del servidor)
+  // y solo se reemplazan las regiones [data-swap] con la respuesta. Si la
+  // respuesta no es una pantalla de juego, se recarga normal.
+  let actionInFlight = false;
+  const swapFrom = html => {
+    const next = new DOMParser().parseFromString(html, "text/html");
+    const nextShell = next.querySelector(".game-shell");
+    const shell = document.querySelector(".game-shell");
+    if (!nextShell || !shell) return false;
+    for (const key of ["place", "art", "terminal", "controls", "side"]) {
+      const current = document.querySelector(`[data-swap="${key}"]`);
+      const incoming = next.querySelector(`[data-swap="${key}"]`);
+      if (!current || !incoming) continue;
+      // La imagen no se toca si sigue siendo la misma: así no parpadea.
+      if (key === "art" && current.dataset.artSrc === incoming.dataset.artSrc
+          && current.className === incoming.className) continue;
+      const imported = document.importNode(incoming, true);
+      current.replaceWith(imported);
+      if (key === "art") wireArt(imported);
+    }
+    shell.className = nextShell.className;
+    return true;
+  };
+  document.addEventListener("submit", async event => {
+    const form = event.target;
+    if (!(form instanceof HTMLFormElement) || !form.closest(".game-shell")) return;
+    event.preventDefault();
+    if (actionInFlight) return;
+    actionInFlight = true;
+    try {
+      const method = (form.getAttribute("method") || "get").toUpperCase();
+      const data = new URLSearchParams(new FormData(form));
+      const response = method === "POST"
+        ? await fetch(form.action, {method: "POST", body: data, credentials: "same-origin",
+                                    headers: {"Accept": "text/html"}})
+        : await fetch(form.action, {credentials: "same-origin", headers: {"Accept": "text/html"}});
+      const html = await response.text();
+      if ((!response.ok && response.status !== 400) || !swapFrom(html)) {
+        window.location.assign("/");
+        return;
+      }
+      if (form.classList.contains("commandbar")) {
+        const input = form.querySelector('input[name="text"]');
+        if (input) input.value = "";
+      }
+      afterRender();
+    } catch (_error) {
+      window.location.assign("/");
+    } finally {
+      actionInFlight = false;
+    }
+  });
 })();
 </script>
 </body>
