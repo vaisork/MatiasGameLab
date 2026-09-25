@@ -1,5 +1,103 @@
 # HANDOFF — Entrega técnica
 
+## ENTREGA — Sin parpadeo: las acciones del juego ya no recargan la página + barra del enemigo abajo
+
+**DESARROLLADOR:** Claude — Desarrollador de Servidor de Vintage Telnet
+**HEAD BASE:** `2eb110b` (origin/main)
+**TAREA ASIGNADA:** Javier (2026-09-25): "durante la pelea flashea la página; la barra de daño del enemigo se queda arriba, debería verse abajo para que parezca que solo crece la narración".
+**RAMA:** `claude/vt-no-flash`
+
+### CAMBIOS (solo `server/templates/entry.html` + pruebas; el servidor no cambia)
+- **Sin recarga.** Un listener `submit` delegado intercepta **solo los formularios dentro de `.game-shell`**: cruz, acciones de combate y exploración, cuadro de comando y "mirar". Login, logout, especie, clase y DM siguen normales. Hace el mismo POST/GET (mismas rutas, mismo CSRF, mismas reglas) con `fetch`, parsea la respuesta y **reemplaza solo las regiones `[data-swap]`**: place, art, terminal, controls y side. También actualiza la clase del `.game-shell`.
+  - La imagen **no se reemplaza** si su `src` es el mismo; así no parpadea al caminar dentro de un pueblo.
+  - Si la respuesta no es una pantalla de juego (sesión vencida, 403, etc.) o falla la red, hace una navegación normal a `/`.
+  - Evita dobles envíos mientras hay una acción en curso. El cuadro de comando se limpia después de enviar.
+  - `afterRender()` (scroll al último resultado y revelado del texto) corre al cargar y después de cada acción. "Examinar" y el fallback de la imagen usan delegación para seguir funcionando tras el reemplazo.
+- **Barra del enemigo abajo.** Nombre y banda de condición en `.enemy-status`, una franja fija entre el relato y la pista. El comportamiento de la criatura queda como primera línea del relato.
+
+### PRUEBAS
+- Suite **258/258 OK**, con 2 nuevas en `NoFlashTests` (la clase también hereda las 3 de estabilidad).
+- En Chromium a 390 px, con una marca en `window` y un contador de navegaciones: se caminó con botón, flecha ← y comando escrito, y se peleó con Mordelinde 4 turnos hasta la victoria. **0 recargas** (la marca sobrevivió), posiciones de imagen, terminal, botones, comando y barra del enemigo **idénticas** turno a turno, sin errores de JS.
+
+**LISTO PARA PUBLICAR:** falta la autorización de Javier ("sube"). Sin migración: el esquema sigue en 10.
+
+---
+
+## ENTREGA — Relato de la pelea (historial de combate) + la pantalla siempre cabe en el celular
+
+**DESARROLLADOR:** Claude — Desarrollador de Servidor de Vintage Telnet
+**HEAD BASE:** `5d4a31d` (origin/main)
+**TAREA ASIGNADA:** Javier (2026-09-25): "sí, hazlo" — guardar el historial de la pelea para leerla turno por turno.
+**RAMA:** `claude/vt-combat-log`
+
+### CAMBIOS
+- **Esquema v9 → v10.** Nueva tabla `combat_log` (id, player_id, room_id, action, text, created_at) con índice. Es aditiva: no toca datos existentes.
+- `store.append_combat_log` / `get_combat_log` (últimas 20 líneas) con **poda a 30 líneas** por encuentro. `start_encounter` borra el relato viejo si el encuentro es nuevo y `clear_encounter` lo borra al terminar la pelea: victoria, huida o derrota. **Nunca crece.** Una pelea ocupa unos 2 KB.
+- `app.py`: `_record_combat` envuelve atacar, huir, esquivar, resistir y bloquear, y hay un envoltorio para evaluar. Registra la acción venga de un botón, de un comando escrito o de `/api/intent`. No registra nada si no hay criatura (`no_target`) ni si la pelea ya terminó.
+- `room_view` expone `combat_log` en combate. `entry.html` lo muestra como relato (`> acción` + texto), con la última línea destacada. En combate, el cuadro de lectura siempre se desplaza hasta lo más reciente.
+- **Layout en teléfono** (arregla un recorte real): `.app` y `.layout` pasan a columna flex, y el terminal toma **exactamente el espacio que sobra**. Antes el cuadro se aplastaba y la última línea quedaba oculta, y además sobraban ~220 px abajo. En pantallas bajas (≤720 px de alto, como el iPhone SE) la imagen mide 120 px.
+
+### PRUEBAS
+- Suite **253/253 OK**, con 3 nuevas en `CombatLogTests`: relato por turnos también por comando, poda a 30, sin criatura no se registra y se borra al terminar. Las simulaciones de bases v7/v8 ahora tampoco tienen `combat_log`.
+- Migración real de una base **v9 con 3 jugadores** → v10: jugadores intactos y `integrity_check ok`.
+- En Chromium a 390×844, 375×667 y 820×1180, en exploración y en combate de 4 turnos:
+  - las posiciones de imagen, terminal, comando y barra son **idénticas** turno a turno;
+  - el terminal nunca queda bajo los controles;
+  - la última línea siempre está a la vista;
+  - la página no desborda.
+
+### DEPLOY
+`sudo vt-deploy latest` aplica la migración v9 → v10 con respaldo y ensayo previo, como hizo con la v9.
+
+**LISTO PARA PUBLICAR:** falta la autorización de Javier ("sube").
+
+---
+
+## ENTREGA — Pantalla estable: la imagen y los controles ya no se mueven
+
+**DESARROLLADOR:** Claude — Desarrollador de Servidor de Vintage Telnet
+**HEAD BASE:** `b8b749b` (origin/main)
+**TAREA ASIGNADA:** Javier (2026-09-25), después de probar en su celular: "la zona de imágenes se va y regresa, debe quedarse quieta" y "la pantalla se ajusta a cada rato".
+**RAMA:** `claude/vt-art-stable`
+
+### CAUSAS ENCONTRADAS
+1. Todo se servía con `Cache-Control: no-store`, **incluida la ilustración** (~425 KB). En cada acción el celular volvía a descargarla y el marco quedaba vacío hasta que llegaba.
+2. **21 de 25 salas no tienen arte aprobado**: el marco desaparecía y todo saltaba hacia arriba.
+3. El texto de la sala aparecía letra por letra **haciendo crecer el terminal**, y la cruz y los botones bajaban mientras tanto.
+4. El terminal cambiaba de alto según el largo del texto de cada sala, y en el teléfono usaba `dvh`, que cambia cuando el navegador muestra u oculta su barra.
+
+### CAMBIOS
+- `server/app.py`: iconos, arte, mapas y UI (`app_icon`, `html_ui_assets`, `location_assets`, `map_assets`) → `Cache-Control: public, max-age=86400`. Páginas y API siguen con `no-store`.
+- `entry.html`:
+  - El marco de arte **siempre existe** con alto fijo. Sin arte aprobado muestra un marco sobrio con ícono y nombre del lugar (rojizo en combate); no se inventa ninguna imagen. La imagen ya no usa `loading="lazy"` sino `fetchpriority="high"`.
+  - El texto completo **ocupa su lugar desde el inicio**; la parte no revelada es invisible (`visibility:hidden`).
+  - Terminal de **alto fijo** (`30svh` exploración / `42svh` combate, con `dvh` de respaldo) que se desplaza por dentro, y `.app` en `100svh`.
+
+### PRUEBAS
+- Suite **242/242 OK**, con 3 nuevas en `tests/test_screen_stability.py`.
+- Medición en Chromium a 390 px: posición vertical de arte, terminal, cruz, comando y barra al cargar, a los 0.4 s y a los 3 s, en Valdren (con arte) → Sendero (sin arte) → Valdren → Mercado (con arte). **Idéntica al píxel en los 12 puntos.**
+
+### SEGUNDA RONDA (Javier, 2026-09-25)
+Pidió que el marco de imagen siga esta regla: pueblo → su imagen fija; camino → imagen de camino; pelea → el animal; sin nada que mostrar → vacío y quieto. También pidió botones ~20 % más chicos, letra ~10 % más chica, más espacio de lectura, y las imágenes de las especies en la pantalla de elegir especie.
+- **Pueblos:** Khariel, Brumak, Narevia y Velmora ya tenían arte **aprobado y publicado desde el 2026-09-23** (commits `6de5885`, `0f07a28`, `81ed307`, `c5af42b`), pero nunca se había conectado. Ya están en `VISUAL_CONTEXT_ART`, así que los 6 asentamientos muestran su imagen.
+- **Caminos** (`zone.veyra.road`, `zone.edran.valdren_outskirts`): el marco queda vacío hasta que Arte publique la imagen; después basta agregar la fila en `VISUAL_CONTEXT_ART`.
+- **Combate:** `creatures.CREATURE_ART` (vacío por ahora) y la ruta `/assets/creatures/<archivo>` (cacheable). En combate el marco muestra la criatura o queda vacío; nunca el paisaje. Solicitud de arte registrada en una issue para el Director de Arte.
+- **Marco vacío:** sin texto ni ícono, solo el marco, como pidió Javier.
+- **Especies:** la ruta `/assets/species/<archivo>` sirve las 5 fichas aprobadas (`assets/vintage-telnet/species/`). Cada tarjeta muestra la ficha **completa** (Javier: "me gusta cómo se ve") y el enlace "Ver ficha completa" para abrirla grande. Se quitó "Retrato pendiente de asset aprobado".
+- **Tamaños:** bloque "Compacto" al final del CSS. Botones ~20 % más bajos (acción 46→37 px; en teléfono 44→36, cruz 40×37, barra inferior 54→44) y letra del terminal ~10 % menor (15→13.5 px en teléfono). Terminal más alto: 36svh exploración / 46svh combate / hasta 40svh en escritorio. El cuadro de comando conserva 16 px de letra por el zoom de iOS.
+- **Pruebas:** 242/242 OK. En Chromium a 390 px, Khariel → Sendero → Khariel → Vaisgard → Camino del Norte: arte, terminal, cruz, comando y barra en la **misma posición** al cargar y a los 3 s. También revisado a 820×1180 (iPad).
+
+### TERCERA RONDA (Javier, 2026-09-25): "cuando hay pelea no es necesario saber cómo se ve el lugar, solo leer cómo sucede la pelea"
+- En combate, el cuadro de lectura **no muestra la descripción del lugar ni las salidas**: solo la criatura, su banda de condición, su comportamiento y el resultado de cada acción.
+- **Dentro del juego, el resultado de cada acción** (combate, examinar, descansar, equipar…) se escribe **en el cuadro de lectura** (`.result-entry`, rojizo en combate) y ya no en el aviso de arriba (`alert-note`), que empujaba toda la pantalla. El aviso de arriba queda solo fuera del juego: login, especie y clase.
+- El cuadro de lectura se desplaza solo para que el último resultado quede a la vista.
+- Pruebas: **247/247 OK**, con 2 nuevas en `test_screen_stability.py`. En Chromium a 390 px, las posiciones antes y después de atacar son **idénticas**.
+- Pendiente sugerido, fuera de esta entrega: hoy solo se ve el resultado de la **última** acción. Un historial de la pelea (varios turnos seguidos) requeriría guardar el registro de combate en el servidor.
+
+**LISTO PARA PUBLICAR:** falta la autorización de Javier ("sube"). Luego se despliega con `sudo vt-deploy latest`.
+
+---
+
 ## ENTREGA — Seguridad: panel del DM solo desde la red privada (no desde internet)
 
 **DESARROLLADOR:** Claude — Desarrollador de Servidor de Vintage Telnet

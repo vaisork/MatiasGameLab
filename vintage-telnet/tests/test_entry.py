@@ -67,9 +67,13 @@ class EntryTests(unittest.TestCase):
         self.assertNotEqual(sendero["visual_context_id"], "zone.valdren")
 
     def test_context_without_an_approved_asset_falls_back_to_no_art(self):
-        room = world.describe_room("khariel_centro", [])
-        self.assertEqual(room["visual_context_id"], "zone.khariel")
+        # Khariel ya tiene arte publicado; los caminos todavía no.
+        room = world.describe_room("road_north", [])
+        self.assertEqual(room["visual_context_id"], "zone.veyra.road")
         self.assertIsNone(room["art"])
+        for town in ("valdren_centro", "khariel_centro", "brumak_centro", "narevia_centro",
+                     "velmora_centro", "vaisgard"):
+            self.assertIsNotNone(world.describe_room(town, [])["art"], town)
 
     def test_every_room_resolves_a_visual_context_id_without_parsing_prose(self):
         for room_id in world.ROOMS:
@@ -133,7 +137,7 @@ class EntryTests(unittest.TestCase):
         for path in ("/SECRETS.md", "/vintage.sqlite3", "/static/SECRETS.md", "/players"):
             self.assertEqual(self.client.get(path).status_code, 404)
         response = self.client.get("/healthz")
-        self.assertEqual(response.json, dict(status="ok", schema_version=9))
+        self.assertEqual(response.json, dict(status="ok", schema_version=10))
         self.assertNotIn("Set-Cookie", response.headers)
 
     def test_ui_foundation_map_rest_help_and_no_dead_combat_controls(self):
@@ -263,7 +267,15 @@ class EntryTests(unittest.TestCase):
         self.assertIn("Tu viaje puede comenzar", html)
         self.assertIn("ninguna decide por ti qué camino seguirás", html)
         self.assertEqual(html.count('class="species-card"'), 5)
-        self.assertEqual(html.count("Retrato pendiente de asset aprobado"), 5)
+        # Fichas aprobadas publicadas en assets/vintage-telnet/species/.
+        self.assertNotIn("Retrato pendiente de asset aprobado", html)
+        self.assertEqual(html.count('class="species-art"'), 5)
+        for species_id in world.SPECIES_IDS:
+            self.assertIn(f'src="/assets/species/{species_id}.webp"', html)
+            response = self.client.get(f"/assets/species/{species_id}.webp")
+            self.assertEqual(response.status_code, 200)
+            self.assertEqual(response.mimetype, "image/webp")
+            self.assertEqual(response.headers["Cache-Control"], "public, max-age=86400")
         for text in (
             "Fisiología generalista",
             "pelaje fino, orejas y cola felinas",
@@ -524,7 +536,7 @@ class EntryTests(unittest.TestCase):
         with self.assertRaises(RuntimeError):
             create_app({**self.config, "DATA_DIR": "relative"})
         with store.connect(self.path) as db:
-            db.execute("PRAGMA user_version = 10")
+            db.execute("PRAGMA user_version = 11")
         with self.assertRaises(RuntimeError):
             create_app(self.config)
 

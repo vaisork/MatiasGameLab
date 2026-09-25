@@ -61,45 +61,229 @@ Los Llanos de Edran son abiertos, cultivables y recorridos por viajeros. Las cri
 
 ## Mordelinde
 
-**Clasificación narrativa:** criatura menor común.
+**Clasificación narrativa:** criatura menor común.  
+**Estado visual:** **CANON SUFICIENTE PARA ARTE**.
 
 Pequeño mamífero excavador de pelaje terroso que vive en los límites entre campos cultivados y hierba silvestre.
 
 No persigue a personas. Suele huir hacia madrigueras poco profundas, pero muerde con fuerza si queda acorralado.
 
-**Comportamiento visible:**
+### Anatomía y escala canónicas
+
+Un adulto común mide aproximadamente:
+- **18–24 cm de altura al hombro**;
+- **35–45 cm del hocico a la base de la cola**;
+- **12–18 cm de cola**;
+- alrededor de **2–4 kg**.
+
+No tiene proporciones de cría ni cabeza exageradamente grande.
+
+La silueta es **baja, alargada y pegada al suelo**. El torso es flexible, con hombros compactos y cuartos traseros ligeramente más altos. Esa diferencia pequeña entre delante y atrás ayuda a que cambie de dirección con rapidez cuando huye.
+
+La cabeza forma una **cuña corta y ancha**:
+- frente baja;
+- hocico corto y móvil;
+- nariz oscura y húmeda;
+- ojos pequeños, oscuros, colocados algo hacia los lados;
+- orejas **cortas, redondeadas y cercanas al cráneo**;
+- vibrisas visibles alrededor del hocico.
+
+Posee incisivos fuertes para roer raíces y semillas. **No deben sobresalir permanentemente como colmillos gigantes**: se hacen evidentes sobre todo cuando abre la boca para defenderse.
+
+Las patas delanteras son cortas y fuertes, con **manos anchas de cinco dedos y uñas oscuras de excavación**. Las patas traseras son algo más largas y estrechas, preparadas para impulsarlo durante sus cambios bruscos de dirección. No salta como un conejo: su movimiento normal sigue siendo una carrera baja y rápida.
+
+La cola es **corta, gruesa en la base y completamente cubierta de pelo**. Nunca debe verse como una cola desnuda de roedor.
+
+### Pelaje y color
+
+El pelaje es corto a medio, denso y algo áspero. Su gama natural incluye:
+- marrón tierra;
+- ocre apagado;
+- gris pardo;
+- beige sucio.
+
+El lomo suele ser más oscuro que el vientre. Hocico, orejas y patas delanteras pueden oscurecerse hacia marrón profundo o carbón. El vientre y la zona inferior del cuello tienden a ser algo más claros.
+
+Puede haber variación entre individuos, pero **no colores saturados, brillo mágico ni patrones ornamentales llamativos**.
+
+### Lectura por vista
+
+**De frente:** cabeza baja, orejas pequeñas, hocico ancho y manos excavadoras muy visibles.  
+**De perfil:** cuerpo alargado, barriga baja, grupa apenas elevada y cola corta peluda.  
+**Desde atrás:** cuartos traseros compactos y cola gruesa; no posee púas, placas ni rasgos defensivos externos.
+
+### Posturas características
+
+**Tranquilo / alimentándose:** nariz cerca del suelo, espalda baja, patas delanteras trabajando entre tierra o tallos.
+
+**Al detectar peligro:** detiene el hocico, aplana ligeramente el cuerpo y orienta la cabeza hacia una salida antes de correr.
+
+**En huida:** carrera rápida **en zigzag**, con el cuerpo muy cerca del suelo, buscando maleza, un agujero o el borde de una parcela.
+
+**Acorralado:** se recoge sobre las cuatro patas, eleva un poco la cabeza, muestra incisivos y lanza mordidas cortas. No adopta una pose de depredador ni persigue después de abrirse una ruta de escape.
+
+### Comportamiento visible
+
 - roba semillas y raíces;
 - sale sobre todo cerca de parcelas y caminos poco transitados;
 - corre en zigzag hacia agujeros o maleza;
 - varios ejemplares pueden vivir cerca sin formar una manada organizada.
 
-**Señales:**
+### Señales
+
 - tallos roídos cerca del suelo;
 - pequeños montículos de tierra;
 - huellas diminutas alrededor de sacos o cultivos;
 - fibras de nido mezcladas con paja.
 
+### Variación individual permitida
+
+- tonos dentro de la gama terrosa;
+- densidad y aspereza del pelaje;
+- pequeñas diferencias de tamaño;
+- cicatrices o suciedad compatibles con vida silvestre.
+
+La diferencia sexual no necesita ser legible a simple vista.
+
+### No representar
+
+- orejas largas de conejo;
+- cola desnuda de rata;
+- púas;
+- cuernos;
+- placas de armadura;
+- ojos luminosos;
+- dientes gigantes siempre expuestos;
+- anatomía bípeda;
+- rasgos de Arcane o magia.
+
 **Valor narrativo:** enseña que incluso un campo aparentemente tranquilo tiene actividad y permite introducir rastreo sencillo sin necesidad de una misión.
 
 ## Espinajo de rastrojo
 
-**Clasificación narrativa:** criatura menor territorial.
+**Clasificación narrativa:** criatura menor territorial.  
+**Estado visual:** **CANON SUFICIENTE PARA ARTE**.
 
 Cuadrúpedo bajo y robusto, de hocico corto y una línea de púas duras sobre el lomo. Busca tubérculos, insectos y frutos caídos.
 
 Normalmente evita a los viajeros, pero embiste cuando alguien se acerca demasiado a su alimento o a sus crías.
 
-**Comportamiento visible:**
+### Anatomía y escala canónicas
+
+Un adulto común mide aproximadamente:
+- **35–45 cm de altura al hombro**;
+- **70–90 cm del hocico a la grupa**;
+- alrededor de **15–25 kg**.
+
+Debe verse claramente mayor y más pesado que un Mordelinde, pero sigue siendo una criatura de campo que un aventurero principiante puede encontrar cerca de Valdren.
+
+Su silueta es **baja, compacta y pesada**:
+- torso ancho, casi de barril;
+- cuello corto;
+- hombros fuertes;
+- patas cortas y musculosas;
+- centro de gravedad bajo.
+
+La cabeza es ancha y termina en un **hocico corto en forma de cuña**, con una almohadilla nasal resistente para remover tierra. Los ojos son pequeños, oscuros o ámbar profundo y están protegidos por una ceja ósea suave, no por placas. Las orejas son pequeñas, redondeadas y quedan algo retrasadas respecto de los ojos.
+
+**No posee colmillos, trompa, cuernos ni grandes caninos exteriores.**
+
+Las cuatro patas terminan en **cuatro dedos robustos con uñas cortas y fuertes para escarbar**. Las delanteras son algo más anchas que las traseras.
+
+La cola es muy corta, de aspecto grueso y discreto; normalmente no domina la silueta.
+
+### Púas dorsales
+
+La característica principal de la especie es una **única cresta dorsal de púas duras**, no una cobertura completa tipo puercoespín.
+
+Un adulto suele presentar aproximadamente:
+- **10–14 púas principales**;
+- desde la parte posterior de los hombros hasta antes de la base de la cola;
+- más largas en la zona central del lomo y más cortas hacia ambos extremos.
+
+Las púas centrales suelen medir aproximadamente **18–25 cm**. Nacen de una franja de piel engrosada y están rodeadas por cerdas rígidas más cortas.
+
+En reposo:
+- se inclinan hacia atrás;
+- siguen la línea del cuerpo;
+- la silueta sigue viéndose compacta.
+
+Cuando el animal se alarma o defiende territorio:
+- la musculatura de la franja dorsal las levanta;
+- forman un perfil dentado muy evidente;
+- las púas centrales quedan casi verticales.
+
+Las púas **no se disparan ni se lanzan**. Pueden desprenderse por desgaste natural, muda o forcejeos, lo que explica las púas encontradas en el terreno.
+
+### Piel, pelo y color
+
+El cuerpo está cubierto por pelo corto, grueso y resistente, con mayor densidad alrededor del cuello y los costados.
+
+Gama habitual:
+- pardo seco;
+- ocre;
+- marrón rojizo apagado;
+- gris tierra.
+
+Hocico, patas y parte baja del cuerpo pueden ser más oscuros. Las púas van de **marfil envejecido o color paja** a gris hueso, normalmente con punta más oscura.
+
+No tiene brillo metálico ni aspecto de armadura mineral.
+
+### Lectura por vista
+
+**De frente:** cabeza ancha y baja, hocico corto, orejas pequeñas y hombros fuertes; las puntas superiores de la cresta pueden asomar detrás de la cabeza.
+
+**De perfil:** torso compacto, patas cortas y una cresta dorsal claramente serrada. Esta es su silueta más reconocible.
+
+**Desde atrás:** grupa ancha, cola corta y las púas disminuyendo de tamaño hacia la parte posterior.
+
+### Posturas características
+
+**Tranquilo / buscando alimento:** cabeza baja, hocico removiendo tierra, púas inclinadas hacia atrás.
+
+**Alerta:** detiene la búsqueda, abre ligeramente la postura de las patas y empieza a elevar la cresta.
+
+**Territorial:** se planta de frente o tres cuartos, baja la cabeza, eriza completamente las púas y sostiene la posición antes de cargar.
+
+**Embiste:** realiza una aceleración corta y pesada. Su defensa depende de masa, impulso y territorialidad; **no es un depredador que persigue a larga distancia**.
+
+Si detecta un depredador claramente superior, prefiere abandonar el área.
+
+### Comportamiento visible
+
 - remueve tierra con el hocico;
 - se refugia entre matorrales o montones de rastrojo;
 - eriza las púas antes de atacar;
 - abandona una zona si detecta un depredador grande.
 
-**Señales:**
+### Señales
+
 - surcos cortos en tierra blanda;
 - raíces desenterradas;
 - púas desprendidas;
 - zonas de cultivo removidas durante la noche.
+
+### Variación individual permitida
+
+- tonos dentro de la gama de rastrojo/tierra;
+- cantidad de cerdas cortas alrededor de la cresta;
+- tamaño de las púas dentro de un rango adulto razonable;
+- pequeñas cicatrices y puntas de púas gastadas.
+
+Los jóvenes poseen púas más cortas y menos rígidas. La diferencia sexual adulta no necesita ser visible desde lejos.
+
+### No representar
+
+- cuerpo cubierto completamente de púas;
+- púas que se disparan;
+- cuernos o colmillos exteriores;
+- placas minerales;
+- armadura;
+- brillo mágico;
+- anatomía de jabalí literal;
+- tamaño de montura o bestia gigante;
+- comportamiento depredador;
+- rasgos de Arcane.
 
 ## Amenaza superior: Cornalomo
 

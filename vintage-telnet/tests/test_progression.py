@@ -245,6 +245,7 @@ class SchemaV8MigrationTests(unittest.TestCase):
             raw.execute("ALTER TABLE players DROP COLUMN pp_unspent")
             raw.execute("ALTER TABLE players DROP COLUMN fatigue_updated_at")
             raw.execute("ALTER TABLE players DROP COLUMN player_class")  # llega en v9
+            raw.execute("DROP TABLE combat_log")  # llega en v10
             raw.execute("PRAGMA user_version = 7")
             raw.commit()
             raw.close()

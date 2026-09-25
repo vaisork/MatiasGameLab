@@ -266,6 +266,9 @@
     .species-card:has(input:checked){border-color:var(--gold);box-shadow:0 0 0 2px #d7b56a33}
     .species-card input{position:absolute;top:12px;right:12px}
     .species-art-placeholder{display:grid;place-items:center;aspect-ratio:4/3;margin-bottom:10px;border:1px dashed #465366;border-radius:9px;color:var(--muted);font:700 .75rem ui-sans-serif,system-ui,sans-serif}
+    .species-art{display:block;width:100%;height:auto;aspect-ratio:1222/1287;object-fit:contain;
+      margin-bottom:10px;border:1px solid #465366;border-radius:9px;background:#d9d6cf}
+    .species-card .species-sheet{display:inline-block;margin-top:8px;color:var(--gold);font:700 .74rem ui-sans-serif,system-ui,sans-serif}
     .species-card strong{display:block;color:var(--green3);margin-bottom:5px;font:.95rem ui-sans-serif,system-ui,sans-serif}
     .species-card span{display:block;color:#d9ccb1;font:.78rem/1.45 ui-sans-serif,system-ui,sans-serif}
     label{display:block;margin-top:12px;font-size:.85rem;color:var(--muted)}
@@ -302,8 +305,16 @@
     }
     .location-art{border:2px solid #9a7a3e;border-radius:12px;box-shadow:0 0 0 1px #000,inset 0 0 0 1px #d7b56a33}
     .location-art img{height:clamp(150px,34vw,260px)}
+    .location-art{height:clamp(150px,34vw,260px);min-height:0}
+    .location-art img{height:100%!important}
+    .art-placeholder{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+      background:radial-gradient(ellipse at 50% 40%,#1c2636 0,#0d131c 70%);color:#8a7a58;
+      font:700 .82rem Georgia,serif;letter-spacing:.12em;text-transform:uppercase;text-align:center;padding:12px}
+    .art-placeholder .ui-icon{width:30px;height:30px;flex-basis:30px;color:#6d5a37}
+    .in-combat .art-placeholder{background:radial-gradient(ellipse at 50% 40%,#2a1210 0,#120a09 70%);color:#b0685c}
+    .in-combat .art-placeholder .ui-icon{color:#8a3a2e}
     .terminal{grid-template-rows:minmax(0,1fr) auto;min-height:140px}
-    .game-shell .log{max-height:clamp(150px,34dvh,380px)}
+    .game-shell .log{height:clamp(150px,34dvh,380px);height:clamp(150px,34svh,380px)}
     .enemy-name{margin:0;color:#ff7565!important;font-weight:800}
     .condition{display:flex;align-items:center;gap:10px;margin:6px 0 8px}
     .condition-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;flex:1 1 auto;max-width:240px}
@@ -341,6 +352,19 @@
     .heading-card .compass{margin:0}
     .heading-card small{margin:0;color:var(--muted)}
     .heading-card strong{display:block;color:var(--gold);font:700 1.35rem Georgia,serif}
+    .terminal.in-combat{grid-template-rows:minmax(0,1fr) auto auto}
+    .enemy-status{display:flex;align-items:center;gap:10px;padding:7px 12px;border-top:1px solid #5a2019;
+      background:linear-gradient(90deg,#2a0e0b,#130807);font-family:ui-monospace,monospace}
+    .enemy-status .enemy-name{flex:0 0 auto}
+    .enemy-status .condition{flex:1 1 auto;margin:0;min-width:0}
+    .enemy-status .condition-label{overflow:hidden;text-overflow:ellipsis}
+    .combat-line{margin-bottom:8px}
+    .combat-line p{color:#e8c2b8!important;font-size:.92em!important}
+    .combat-line .cmd{color:#c98b7f!important}
+    .result-entry{border-left:3px solid #2f7a45;padding-left:10px}
+    .result-entry p{color:var(--green3)!important}
+    .in-combat .result-entry{border-left-color:#b0402f;background:#240d0a66;border-radius:0 8px 8px 0;padding:6px 8px}
+    .in-combat .result-entry p{color:#ffd9d1!important}
     .exits-entry p{font-size:.86em!important;color:#79d88d!important}
     .exits-entry b{color:var(--green3)}
     .minimap-frame{border:1px solid var(--line);border-radius:12px;background:#0c1219;overflow:hidden}
@@ -371,7 +395,7 @@
     }
         @media(max-width:640px){
       .app{
-        height:100dvh;overflow:auto;padding:max(6px,env(safe-area-inset-top)) 6px max(6px,env(safe-area-inset-bottom));
+        height:100dvh;height:100svh;overflow:auto;padding:max(6px,env(safe-area-inset-top)) 6px max(6px,env(safe-area-inset-bottom));
         grid-template-rows:auto auto minmax(0,1fr);gap:6px
       }
       .topbar{min-height:44px;padding:6px 9px;border-radius:10px}
@@ -403,9 +427,9 @@
       .dpad{grid-template-columns:repeat(3,48px);grid-template-rows:repeat(3,46px);gap:4px}
       .game-shell{gap:7px}
       .place-bar{min-height:38px;padding:6px 10px;font-size:.8rem}
-      .location-art img{height:clamp(140px,42vw,190px)}
-      .game-shell .log{max-height:30dvh}
-      .game-shell.in-combat .log{max-height:42dvh}
+      .location-art,.location-art img{height:clamp(140px,42vw,190px)!important}
+      .game-shell .log{height:30dvh;height:30svh}
+      .game-shell.in-combat .log{height:42dvh;height:42svh}
       .combat-row.defenses .action{min-height:40px}
       .tool-row{grid-template-columns:repeat(4,minmax(0,1fr))}
       .tool-row .btn{flex-direction:column;gap:3px;min-height:54px;padding:5px 2px;font-size:.7rem}
@@ -421,6 +445,43 @@
     }
     @media(prefers-reduced-motion:reduce){
       *,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}
+    }
+    /* Compacto (Javier, 2026-09-25): botones ~20 % más chicos y letra ~10 %
+       más chica, para dejar más espacio al cuadro de lectura. El cuadro de
+       comando se queda en 16 px de letra: con menos, iPhone hace zoom. */
+    .action{min-height:37px}
+    .btn{min-height:37px}
+    .dpad{grid-template-columns:repeat(3,40px);grid-template-rows:repeat(3,37px)}
+    .action-attack{min-height:50px;font-size:1.05rem}
+    .commandbar input{min-height:40px}
+    .combat-row.defenses .action{min-height:34px}
+    .entry p{font-size:clamp(.86rem,1.8vw,.92rem)}
+    .game-shell .log{height:clamp(170px,40dvh,440px);height:clamp(170px,40svh,440px)}
+    @media(max-width:640px){
+      .action{min-height:36px;font-size:.72rem}
+      .context-actions .action{min-height:34px}
+      .action-attack{min-height:46px;font-size:.98rem}
+      .btn{min-height:36px}
+      .dpad{grid-template-columns:repeat(3,40px);grid-template-rows:repeat(3,37px)}
+      .tool-row .btn{min-height:44px;font-size:.64rem}
+      .commandbar input{min-height:38px}
+      .combat-row.defenses .action{min-height:32px}
+      .entry p{font-size:13.5px}
+      .entry .cmd{font-size:.7rem}
+      .game-shell .log{height:36dvh;height:36svh}
+      .game-shell.in-combat .log{height:46dvh;height:46svh}
+      /* En teléfono el cuadro de lectura ocupa exactamente el espacio que
+         dejan la imagen y los botones: así todo cabe en la pantalla, nada se
+         aplasta ni se corta, y el tamaño no cambia al caminar o pelear. */
+      .app{display:flex;flex-direction:column}
+      .app > .layout{flex:1 1 auto;min-height:0;display:flex;flex-direction:column}
+      .layout > .game-shell{flex:1 1 auto;min-height:0}
+      .game-shell > *{flex-shrink:0}
+      .game-shell > .terminal{flex:1 1 0;min-height:120px}
+      .game-shell .log,.game-shell.in-combat .log{height:auto}
+    }
+    @media(max-width:640px) and (max-height:720px){
+      .location-art,.location-art img{height:120px!important}
     }
   </style>
 </head>
@@ -460,7 +521,13 @@
     </div>
   </header>
 
-  {% if error %}<div class="alert-note" role="alert">{{ error }}</div>{% endif %}
+  {# Dentro del juego, el resultado de cada acción se escribe en el cuadro de
+     lectura (más abajo), no en un aviso aquí arriba que empujaría toda la
+     pantalla (Javier, 2026-09-25). Fuera del juego (login, especie, clase) el
+     aviso sigue aquí. #}
+  {% set in_game = player and player.status == 'approved' and player.species is not none
+                   and player.player_class is not none and room %}
+  {% if error and not in_game %}<div class="alert-note" role="alert">{{ error }}</div>{% endif %}
 
   {% if not player %}
     {% include "_onboarding_guest.html" %}
@@ -491,7 +558,8 @@
           {% for s in species_list %}
           <label class="species-card">
             <input type="radio" name="species" value="{{ s.id }}" required>
-            <span class="species-art-placeholder" aria-hidden="true">Retrato pendiente de asset aprobado</span>
+            <img class="species-art" src="/assets/species/{{ s.id }}.webp" alt="Ilustración de la especie {{ s.name }}"
+                 width="1222" height="1287" loading="lazy" decoding="async">
             <strong>{{ s.name }}</strong>
             {% if s.id == 'humano' %}
               <span>Fisiología generalista, capaz de adaptarse a entornos muy distintos mediante experiencia, herramientas y conocimiento.</span>
@@ -506,6 +574,7 @@
             {% else %}
               <span>{{ s.blurb }}</span>
             {% endif %}
+            <a class="species-sheet" href="/assets/species/{{ s.id }}.webp" target="_blank" rel="noopener">Ver ficha completa</a>
           </label>
           {% endfor %}
         </div>
@@ -537,7 +606,7 @@
   {% else %}
     <div class="layout">
       <main class="game-shell{% if room.encounter %} in-combat{% endif %}">
-        <header class="place-bar{% if room.encounter %} combat{% endif %}">
+        <header class="place-bar{% if room.encounter %} combat{% endif %}" data-swap="place">
           <svg class="ui-icon" aria-hidden="true"><use href="{{ '#icon-swords' if room.encounter else '#icon-pin' }}"/></svg>
           <strong id="placeTitle">{{ room.name.upper() }}</strong>
           {% if room.encounter %}<span class="combat-flag">¡COMBATE!</span>
@@ -548,21 +617,31 @@
           {% endif %}
         </header>
 
-        {% if room.art %}
-        <figure class="location-art">
+        {# El marco de la ilustración siempre ocupa el mismo lugar y tamaño,
+           haya o no arte aprobado para esta sala, para que la pantalla no
+           salte al moverse (petición de Javier). Pueblo: su ilustración;
+           camino: la del camino; combate: la criatura. Si no hay imagen
+           aprobada, el marco queda vacío y quieto; no se inventa ninguna. #}
+        <figure class="location-art{{ '' if room.art else ' no-art' }}" data-swap="art" data-art-src="{{ room.art.src if room.art else '' }}">
+          {% if room.art %}
           <img data-location-art src="{{ room.art.src }}" alt="{{ room.art.alt }}"
-               width="{{ room.art.width }}" height="{{ room.art.height }}" loading="lazy" decoding="async">
+               width="{{ room.art.width }}" height="{{ room.art.height }}" fetchpriority="high" decoding="async">
           <div class="location-art-fallback" hidden>La ilustración contextual no está disponible. El juego continúa normalmente.</div>
+          {% else %}
+          <div class="art-placeholder" aria-hidden="true"></div>
+          {% endif %}
         </figure>
-        {% endif %}
 
-        <section class="terminal{% if room.encounter %} in-combat{% endif %}" aria-labelledby="placeTitle">
+        <section class="terminal{% if room.encounter %} in-combat{% endif %}" aria-labelledby="placeTitle" data-swap="terminal">
           <p class="sr-only" id="roomDescriptionAccessible">{{ room.description }}</p>
           <div class="log" aria-describedby="roomDescriptionAccessible">
+            {# En combate solo importa leer la pelea: no se repite cómo es el lugar. #}
+            {% if not room.encounter %}
             <div class="entry room-description-entry">
               <div class="cmd">&gt; mirar</div>
               <p data-room-description data-room-key="{{ room.id if room.id is defined else room.name }}">{{ room.description }}</p>
             </div>
+            {% endif %}
             {% if room.exits and not room.encounter %}
             <div class="entry exits-entry"><p class="system">Salidas: {% for e in room.exits %}<b>{{ e.label }}</b>{% if e.known_name %} ({{ e.known_name }}){% endif %}{{ ' · ' if not loop.last }}{% endfor %}</p></div>
             {% endif %}
@@ -570,14 +649,22 @@
             <div class="entry"><p class="system">También aquí: {{ room.others_present | join(', ') }}</p></div>
             {% endif %}
             {% if room.encounter %}
-            {% set bands = {'entero / apenas afectado': 4, 'herido': 3, 'malherido': 2, 'al borde de caer': 1} %}
             <div class="entry encounter-entry">
-              <p class="enemy-name">{{ room.encounter.name }}</p>
-              <div class="condition" role="img" aria-label="Condición de {{ room.encounter.name }}: {{ room.encounter.condition }}">
-                <span class="condition-bar">{% for i in range(4) %}<i class="{{ 'on' if i < bands.get(room.encounter.condition, 0) }}"></i>{% endfor %}</span>
-                <span class="condition-label">{{ room.encounter.condition }}</span>
-              </div>
               <p class="system">{{ room.encounter.behavior }}</p>
+            </div>
+            {% endif %}
+            {# Relato de la pelea en curso: turno por turno, la última línea
+               destacada y a la vista (petición de Javier, 2026-09-25). #}
+            {% set combat_log = room.combat_log if room.encounter and room.combat_log else [] %}
+            {% for line in combat_log %}
+            <div class="entry combat-line{{ ' result-entry' if loop.last }}"{% if loop.last %} role="status" data-result-entry{% endif %}>
+              <div class="cmd">&gt; {{ line.action }}</div>
+              <p>{{ line.text }}</p>
+            </div>
+            {% endfor %}
+            {% if error and not (combat_log and combat_log[-1].text == error) %}
+            <div class="entry result-entry" role="status" data-result-entry>
+              <p>{{ error }}</p>
             </div>
             {% endif %}
             {% for m in room.messages %}
@@ -587,12 +674,24 @@
             </div>
             {% endfor %}
           </div>
+          {% if room.encounter %}
+          {# Estado del enemigo fijo al pie: la narración crece por encima
+             (petición de Javier, 2026-09-25). #}
+          {% set bands = {'entero / apenas afectado': 4, 'herido': 3, 'malherido': 2, 'al borde de caer': 1} %}
+          <div class="enemy-status">
+            <p class="enemy-name">{{ room.encounter.name }}</p>
+            <div class="condition" role="img" aria-label="Condición de {{ room.encounter.name }}: {{ room.encounter.condition }}">
+              <span class="condition-bar">{% for i in range(4) %}<i class="{{ 'on' if i < bands.get(room.encounter.condition, 0) }}"></i>{% endfor %}</span>
+              <span class="condition-label">{{ room.encounter.condition }}</span>
+            </div>
+          </div>
+          {% endif %}
           <div class="terminal-alert terminal-hint">Pista: usa Ayuda para comandos y ejemplos. Para chat local escribe “decir &lt;texto&gt;”.</div>
         </section>
 
         {% set action_names = room.available_actions | map(attribute='action') | list %}
         {% if room.encounter %}
-        <section class="combat-panel" aria-label="Acciones de combate">
+        <section class="combat-panel" aria-label="Acciones de combate" data-swap="controls">
           {% if 'atacar' in action_names %}
           <form method="post" action="/attack"><input type="hidden" name="csrf" value="{{ session.csrf }}"><button class="action action-attack" type="submit"><svg class="ui-icon" aria-hidden="true"><use href="#icon-swords"/></svg>Atacar</button></form>
           {% endif %}
@@ -617,7 +716,7 @@
           </div>
         </section>
         {% else %}
-        <section class="controls-row" aria-label="Controles principales">
+        <section class="controls-row" aria-label="Controles principales" data-swap="controls">
           <div class="dpad" aria-label="Movimiento cardinal">
             {% set exit_dirs = room.exits | map(attribute='direction') | list %}
             {% set exit_names = {} %}{% for e in room.exits if e.known_name %}{% set _ = exit_names.update({e.direction: e.known_name}) %}{% endfor %}
@@ -666,7 +765,7 @@
         </section>
       </main>
 
-      <aside class="side">
+      <aside class="side" data-swap="side">
         <section class="card">
           <div class="card-head"><b>Estado visible</b><span>Datos reales</span></div>
           <div class="facts">
@@ -814,11 +913,12 @@
     if (d && !d.open) d.showModal();
   }));
   document.querySelectorAll("[data-close]").forEach(b => b.addEventListener("click", () => b.closest("dialog").close()));
-  document.querySelectorAll("[data-location-art]").forEach(img => img.addEventListener("error", () => {
+  const wireArt = root => root.querySelectorAll("[data-location-art]").forEach(img => img.addEventListener("error", () => {
     img.hidden = true;
     const fallback = img.nextElementSibling;
     if (fallback) fallback.hidden = false;
   }));
+  wireArt(document);
 
   const activateTabs = (buttonSelector, panelSelector, dataKey) => {
     const buttons = [...document.querySelectorAll(buttonSelector)];
@@ -975,11 +1075,12 @@
   });
 
   const commandInput = document.getElementById("commandInput");
-  document.querySelectorAll("[data-prefill]").forEach(button => button.addEventListener("click", () => {
-    if (!commandInput) return;
+  document.addEventListener("click", event => {
+    const button = event.target.closest("[data-prefill]");
+    if (!button || !commandInput) return;
     commandInput.value = button.dataset.prefill;
     commandInput.focus();
-  }));
+  });
 
   const inventoryButton = document.querySelector("[data-inventory-open]");
   const inventoryStatus = document.getElementById("inventoryStatus");
@@ -1229,32 +1330,109 @@
   // no aparezca todo de golpe. Solo el parrafo principal de la sala -- los
   // demas mensajes (presentes, encuentro, chat) se quedan como estan.
   // Respeta prefers-reduced-motion y es interrumpible con un toque/clic.
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const mainParagraph = document.querySelector("[data-room-description]");
-  if (mainParagraph && !reduceMotion) {
-    const fullText = mainParagraph.textContent;
-    const roomKey = mainParagraph.dataset.roomKey + ":" + fullText;
-    let alreadyRead = false;
-    try { alreadyRead = sessionStorage.getItem("vt:last-room-text") === roomKey; } catch (_error) {}
-    if (!alreadyRead) {
-      mainParagraph.textContent = "";
-      let shown = 0;
-      let timer = null;
-      const revealAll = () => {
-        if (timer !== null) clearInterval(timer);
-        timer = null;
-        mainParagraph.textContent = fullText;
-        try { sessionStorage.setItem("vt:last-room-text", roomKey); } catch (_error) {}
-      };
-      timer = setInterval(() => {
-        shown += 2;
-        if (shown >= fullText.length) { revealAll(); return; }
-        mainParagraph.textContent = fullText.slice(0, shown);
-      }, 26);
-      const log = document.querySelector(".log");
-      if (log) log.addEventListener("click", revealAll, {once: true});
+  const afterRender = () => {
+    const resultEntries = document.querySelectorAll("[data-result-entry]");
+    const resultEntry = resultEntries[resultEntries.length - 1];
+    if (resultEntry) {
+      const log = resultEntry.closest(".log");
+      if (log && log.closest(".in-combat")) {
+        // En combate, siempre lo más reciente del relato a la vista.
+        log.scrollTop = log.scrollHeight;
+      } else if (log) {
+        log.scrollTop += resultEntry.getBoundingClientRect().top - log.getBoundingClientRect().top - 8;
+      }
     }
-  }
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const mainParagraph = document.querySelector("[data-room-description]");
+    if (mainParagraph && !reduceMotion) {
+      const fullText = mainParagraph.textContent;
+      const roomKey = mainParagraph.dataset.roomKey + ":" + fullText;
+      let alreadyRead = false;
+      try { alreadyRead = sessionStorage.getItem("vt:last-room-text") === roomKey; } catch (_error) {}
+      if (!alreadyRead) {
+        // El texto completo ocupa su espacio desde el primer momento: la parte
+        // aún no revelada es invisible (visibility:hidden), así el terminal y
+        // los botones de abajo no se mueven mientras aparecen las letras.
+        const visiblePart = document.createElement("span");
+        const hiddenPart = document.createElement("span");
+        hiddenPart.style.visibility = "hidden";
+        hiddenPart.textContent = fullText;
+        mainParagraph.replaceChildren(visiblePart, hiddenPart);
+        let shown = 0;
+        let timer = null;
+        const revealAll = () => {
+          if (timer !== null) clearInterval(timer);
+          timer = null;
+          mainParagraph.textContent = fullText;
+          try { sessionStorage.setItem("vt:last-room-text", roomKey); } catch (_error) {}
+        };
+        timer = setInterval(() => {
+          shown += 2;
+          if (shown >= fullText.length) { revealAll(); return; }
+          visiblePart.textContent = fullText.slice(0, shown);
+          hiddenPart.textContent = fullText.slice(shown);
+        }, 26);
+        const revealLog = document.querySelector(".log");
+        if (revealLog) revealLog.addEventListener("click", revealAll, {once: true});
+      }
+    }
+  };
+  afterRender();
+
+  // Acciones del juego sin recargar la página (petición de Javier,
+  // 2026-09-25: "durante la pelea flashea la página"). El formulario se envía
+  // igual que siempre (mismas rutas, mismo CSRF, mismas reglas del servidor)
+  // y solo se reemplazan las regiones [data-swap] con la respuesta. Si la
+  // respuesta no es una pantalla de juego, se recarga normal.
+  let actionInFlight = false;
+  const swapFrom = html => {
+    const next = new DOMParser().parseFromString(html, "text/html");
+    const nextShell = next.querySelector(".game-shell");
+    const shell = document.querySelector(".game-shell");
+    if (!nextShell || !shell) return false;
+    for (const key of ["place", "art", "terminal", "controls", "side"]) {
+      const current = document.querySelector(`[data-swap="${key}"]`);
+      const incoming = next.querySelector(`[data-swap="${key}"]`);
+      if (!current || !incoming) continue;
+      // La imagen no se toca si sigue siendo la misma: así no parpadea.
+      if (key === "art" && current.dataset.artSrc === incoming.dataset.artSrc
+          && current.className === incoming.className) continue;
+      const imported = document.importNode(incoming, true);
+      current.replaceWith(imported);
+      if (key === "art") wireArt(imported);
+    }
+    shell.className = nextShell.className;
+    return true;
+  };
+  document.addEventListener("submit", async event => {
+    const form = event.target;
+    if (!(form instanceof HTMLFormElement) || !form.closest(".game-shell")) return;
+    event.preventDefault();
+    if (actionInFlight) return;
+    actionInFlight = true;
+    try {
+      const method = (form.getAttribute("method") || "get").toUpperCase();
+      const data = new URLSearchParams(new FormData(form));
+      const response = method === "POST"
+        ? await fetch(form.action, {method: "POST", body: data, credentials: "same-origin",
+                                    headers: {"Accept": "text/html"}})
+        : await fetch(form.action, {credentials: "same-origin", headers: {"Accept": "text/html"}});
+      const html = await response.text();
+      if ((!response.ok && response.status !== 400) || !swapFrom(html)) {
+        window.location.assign("/");
+        return;
+      }
+      if (form.classList.contains("commandbar")) {
+        const input = form.querySelector('input[name="text"]');
+        if (input) input.value = "";
+      }
+      afterRender();
+    } catch (_error) {
+      window.location.assign("/");
+    } finally {
+      actionInFlight = false;
+    }
+  });
 })();
 </script>
 </body>
