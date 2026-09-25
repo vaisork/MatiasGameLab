@@ -1,5 +1,71 @@
 # HANDOFF — Entrega técnica
 
+## ENTREGA — Seguridad: panel del DM solo desde la red privada (no desde internet)
+
+**DESARROLLADOR:** Claude — Desarrollador de Servidor de Vintage Telnet
+**HEAD BASE:** `bbc5b1c` (origin/main)
+**TAREA ASIGNADA:** Javier (2026-09-25): entendía que el panel del DM solo funcionaba desde la Raspberry. Verifiqué que **no era así**: `https://raspberrypi.tail3d212e.ts.net/dm` respondía 200 desde internet y mostraba el formulario de contraseña.
+**RAMA:** `claude/vt-dm-private`
+
+### CAMBIOS (`server/app.py` + pruebas)
+- Nuevo `before_request` `dm_panel_is_private`, que corre **antes** que CSRF y el login. Si la petición trae `Tailscale-Funnel-Request` (lo agrega Tailscale Funnel a todo lo que llega desde internet), `/dm` y `/dm/*` responden **404**, como si no existieran.
+- Una sesión de DM abierta desde la red privada **no da poderes de DM** si la petición llega por internet: `g.dm` es falso en ese caso.
+- Los jugadores no cambian nada: `/`, `/healthz` y todo el juego siguen públicos por Funnel.
+- El DM entra igual que antes desde la red Tailscale (celular o compu con Tailscale) o en la Raspberry misma (`http://127.0.0.1:8080/dm`).
+
+### PRUEBAS
+- Suite completa **239/239 OK**, con 4 pruebas nuevas en `tests/test_dm_private.py`:
+  - desde Funnel todas las rutas del DM dan 404;
+  - desde la red privada funciona;
+  - una sesión de DM no sirve por Funnel;
+  - los jugadores no se ven afectados.
+
+### VERIFICACIÓN PENDIENTE EN PRODUCCIÓN (la puede hacer cualquiera desde fuera)
+- Después de `sudo vt-deploy latest`: `curl -s -o /dev/null -w "%{http_code}" https://raspberrypi.tail3d212e.ts.net/dm` debe dar **404**. Desde la red Tailscale debe seguir dando 200.
+- Si diera 200, Funnel no está enviando la marca en esa versión de Tailscale. No se rompe nada, pero el panel seguiría público: reportarlo y usar la alternativa de apagar Funnel para `/dm`.
+
+### RECOMENDACIÓN
+- Usar una contraseña del DM (`VT_DM_PASSWORD` en `/etc/vintage-telnet/server.env`) larga, de 16 caracteres o más.
+
+**LISTO PARA PUBLICAR:** falta la autorización de Javier ("sube"). Lo ideal es que el Arquitecto de Vintage Telnet lo revise, por ser un cambio de seguridad.
+
+---
+
+## ENTREGA — Vintage Telnet: navegación (minimapa, salidas con nombre, flechas del teclado)
+
+**DESARROLLADOR:** Claude — Desarrollador de Servidor de Vintage Telnet
+**HEAD BASE:** `ca101d4` (origin/main)
+**TAREA ASIGNADA:** Javier (sesión directa, 2026-09-24): seguir mejorando la navegación y las pantallas en la línea de la maqueta que aprobó (#135, panel "Mapa y orientación").
+**RAMA:** `claude/vintage-telnet-ui-navigation`
+
+### CAMBIOS
+- **Minimapa real en Mapa general.**
+  - Dibuja en SVG solo lo que el personaje conoce: lugares visitados con su nombre, tu ubicación (dorada), rutas recorridas y las salidas sin explorar de cada lugar visitado (línea punteada, sin nombre ni destino).
+  - La leyenda es la de la maqueta: Tu ubicación / Lugar conocido / Ruta recorrida / Salida sin explorar.
+  - Si el mapa es poco más ancho que la pantalla se reduce para verse completo; si es mucho más grande se desplaza con el dedo, centrado en tu ubicación.
+  - El mapa regional ilustrado queda debajo, como "Región inicial".
+- **Servidor, `world.map_layout()`:** coordenadas de rejilla calculadas solo con las salidas reales (norte = arriba, etc.), una vez para todo el mundo, así la posición de una sala no cambia según lo descubierto. Si dos salas caen en la misma celda, la segunda se desplaza a la siguiente celda libre en su dirección; hoy no hay colisiones en las 25 salas.
+- **`/api/map`** agrega `current_room`, `places` [{id, name, x, y, current}] y `unexplored_exits` [{from, direction}]. Las claves anteriores (`visited_rooms`, `traversed_routes`, `current_heading`) siguen igual.
+- **La lista de lugares y rutas** usa nombres reales ("Mercado de Valdren") en vez de ids ("valdren mercado") y marca "estás aquí".
+- **Línea "Salidas"** en el terminal fuera de combate, por ejemplo: `Salidas: sur (Camino del Norte) · norte · este`.
+  - El nombre del destino aparece **solo si ya lo visitaste**, porque el mapa es progresivo (GAMEPLAY §23); una salida nueva muestra solo la dirección.
+  - Lo mismo en el título y la etiqueta accesible de los botones de la cruz.
+  - `room.exits[].known_name` también sale en `/api/room`.
+- **Flechas del teclado** (↑↓←→) para moverse en computadora. Pulsan el mismo botón de la cruz, así que aplican las mismas reglas del servidor. No actúan mientras se escribe ni con un panel abierto.
+
+### PRUEBAS
+- Suite completa: **232/232 OK**, con 4 pruebas nuevas en `tests/test_navigation.py`:
+  - la rejilla cubre todas las salas sin colisiones y es estable;
+  - el minimapa solo expone lo conocido;
+  - los nombres de salida aparecen solo después de visitar;
+  - el panel y el teclado están cableados.
+- En Chromium a 390 px contra el servidor real, caminando por Valdren y luego Valdren → Vaisgard → Khariel/Narevia:
+  - la flecha → mueve igual que el botón;
+  - el minimapa se lee con halo oscuro bajo los nombres;
+  - no hay scroll horizontal de página ni errores de JS.
+
+### NO CAMBIA
+Movimiento, reglas, combate, persistencia, esquema (sigue en v9) y canon. La rejilla es una representación esquemática derivada de las salidas existentes; no inventa geografía.
 ## ENTREGA — vt-deploy: prueba completa en Raspberry simulada + reintento después de rollback
 
 **DESARROLLADOR:** Claude — Desarrollador de Servidor de Vintage Telnet

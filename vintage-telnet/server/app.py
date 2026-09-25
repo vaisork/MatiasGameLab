@@ -103,6 +103,22 @@ def create_app(config=None):
     app.jinja_env.globals["class_names"] = {c["id"]: c["name"] for c in world.CLASSES}
     app.jinja_env.globals["ambient_icons"] = world.AMBIENT_ICONS
 
+    def from_public_internet():
+        """Tailscale Funnel marca cada petición que llega desde internet con
+        `Tailscale-Funnel-Request`; las de la red Tailscale privada o de la
+        propia Raspberry no la traen. Un visitante no puede quitarla: la
+        agrega el proxy de Funnel."""
+        return bool(request.headers.get("Tailscale-Funnel-Request"))
+
+    @app.before_request
+    def dm_panel_is_private():
+        """Petición de Javier (2026-09-25): el panel del Dungeon Master solo
+        existe desde la red privada (Tailscale) o la propia Raspberry, nunca
+        desde internet. Para Funnel responde 404, como si no existiera, y
+        corre antes de cualquier otra lógica (incluido CSRF y login)."""
+        if (request.path == "/dm" or request.path.startswith("/dm/")) and from_public_internet():
+            abort(404)
+
     @app.before_request
     def prepare_request():
         # Even the anonymous form has a signed, random anti-CSRF token.
@@ -118,7 +134,9 @@ def create_app(config=None):
             return
         session.setdefault("csrf", secrets.token_urlsafe(32))
         g.player = store.player_for_token(path, session.get("token"))
-        g.dm = bool(session.get("dm"))
+        # Aunque haya una sesión de DM abierta desde la red privada, esa
+        # sesión no da poderes de DM si la petición llega por internet.
+        g.dm = bool(session.get("dm")) and not from_public_internet()
 
     @app.context_processor
     def inject_csp_nonce():
@@ -159,10 +177,40 @@ def create_app(config=None):
         if not g.dm:
             abort(403)
 
+    def _minimap(state, current_room):
+        """Datos del minimapa (navegación, Issue #135), solo de lo conocido:
+        salas visitadas con nombre y coordenadas de rejilla (world.map_layout),
+        rutas recorridas y, por cada sala visitada, las direcciones de salida
+        que llevan a una sala todavía no visitada (sin nombre ni destino)."""
+        layout = world.map_layout()
+        visited = [room_id for room_id in state["visited_rooms"] if room_id in layout]
+        visited_set = set(visited)
+        places = []
+        unexplored = []
+        for room_id in visited:
+            room = world.get_room(room_id)
+            x, y = layout[room_id]
+            places.append({"id": room_id, "name": room["name"], "x": x, "y": y,
+                           "current": room_id == current_room})
+            for direction, destination in room["exits"].items():
+                if destination not in visited_set:
+                    unexplored.append({"from": room_id, "direction": direction})
+        return {"current_room": current_room, "places": places, "unexplored_exits": unexplored}
+
     def room_view(room_id, player_id):
         others = store.players_in_room(path, room_id, exclude_id=player_id)
         view = world.describe_room(room_id, [p["name"] for p in others])
         view["messages"] = store.recent_messages(path, room_id)
+        # Navegación: el nombre del destino de cada salida solo se muestra si
+        # el personaje ya estuvo ahí (GAMEPLAY.md 23: el mapa es progresivo);
+        # una salida nueva se ve como dirección sin nombre.
+        room_data = world.get_room(room_id)
+        if room_data and view.get("exits"):
+            visited = set(store.get_map_state(path, player_id)["visited_rooms"])
+            for exit_info in view["exits"]:
+                destination = room_data["exits"].get(exit_info["direction"])
+                target = world.get_room(destination) if destination in visited else None
+                exit_info["known_name"] = target["name"] if target else None
         encounter = store.get_encounter(path, player_id, room_id)
         if encounter:
             creature = creatures.get_creature(encounter["creature_id"])
@@ -1294,8 +1342,9 @@ def create_app(config=None):
         # current_heading (Issue #120): rumbo del ultimo movimiento aceptado
         # por el servidor, o null si el personaje todavia no se movio. El
         # frontend no debe inferirlo de narrativa, nombre de sala ni imagen.
-        return jsonify(current_heading=g.player["heading"],
-                       **store.get_map_state(path, g.player["id"]))
+        state = store.get_map_state(path, g.player["id"])
+        return jsonify(current_heading=g.player["heading"], **state,
+                       **_minimap(state, g.player["room"]))
 
     @app.post("/attack")
     def attack():
