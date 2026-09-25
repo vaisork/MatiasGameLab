@@ -164,6 +164,84 @@ Cuando los nuevos asentamientos comenzaron a producir bienes, conocimientos y ma
 
 La ciudad dejó de ser únicamente el lugar donde todos vivían y pasó a ser el lugar donde **todos podían volver a encontrarse**.
 
+
+### La generación nacida fuera de Vaisgard
+
+Con el paso del tiempo apareció una diferencia histórica importante: comenzaron a llegar a la ciudad personas que **ya no la recordaban como su hogar de origen**.
+
+Habían nacido en Valdren, Khariel, Brumak, Narevia o Velmora.
+
+Para esas generaciones, viajar a Vaisgard no significaba regresar a la casa de sus antepasados de forma literal. Significaba entrar en una ciudad compartida que formaba parte de su historia aunque su vida cotidiana perteneciera a otro lugar.
+
+Ese cambio consolidó dos identidades compatibles:
+- pertenecer a un pueblo;
+- reconocer Vaisgard como centro común.
+
+La ciudad dejó de depender de la memoria de quienes habían vivido allí antes de la fundación de los pueblos. Su importancia sobrevivió por función, intercambio y tradición.
+
+### La forma actual de las Cinco Rutas
+
+Los caminos hacia los pueblos existieron primero como trayectos de exploración, retorno y abastecimiento.
+
+Solo después de varias generaciones se volvieron rutas reconocibles y mantenidas de manera suficientemente constante como para que la ciudad empezara a organizarse alrededor de ellas.
+
+La **Plaza de las Cinco Rutas** pertenece a esta etapa de consolidación.
+
+No fue el lugar desde donde se “fundaron” mágicamente los pueblos. Es la consecuencia urbana de un proceso posterior: cinco comunidades ya estables seguían necesitando un punto donde encontrarse.
+
+La plaza actual contiene por ello capas distintas:
+- accesos más antiguos que no fueron diseñados para el tráfico presente;
+- ampliaciones realizadas cuando aumentó el intercambio;
+- reparaciones con materiales procedentes de varias regiones;
+- espacios cuya función cambió conforme cambió la ciudad.
+
+### La memoria visible en la ciudad
+
+La historia de Vaisgard puede leerse sin conocer ningún secreto.
+
+Un visitante atento puede encontrar:
+- muros donde una piedra antiquísima sostiene una ampliación mucho más reciente;
+- arcos cegados porque el nivel de una calle cambió;
+- escaleras que bajan solo unos pasos antes de desaparecer bajo obras posteriores;
+- canales de agua todavía útiles junto a conductos cuyo destino ya no se conoce;
+- patios demasiado grandes o demasiado estrechos para el uso que tienen actualmente;
+- edificios donde varias técnicas de construcción conviven en una misma fachada.
+
+Estas huellas no revelan por sí solas quién construyó Vaisgard. Solo demuestran que la ciudad **ha cambiado muchas veces sin dejar de ser habitada**.
+
+### Lugares históricos públicos disponibles para Narrativa
+
+Sin entrar en niveles reservados ni secretos del Dungeon Master, Narrativa puede utilizar:
+
+- **patios antiguos reutilizados**, hoy convertidos en espacios de paso, comercio o reunión;
+- **tramos de muro del Núcleo Antiguo** donde sean visibles reparaciones de épocas distintas;
+- **antiguas entradas selladas** conocidas públicamente como inaccesibles, sin explicar qué hay detrás;
+- **conductos y cisternas en uso** que muestran la ingeniería previa a los pueblos;
+- **esquinas de los Barrios de Llegada** donde todavía sobreviven adaptaciones pensadas para distintas anatomías;
+- **viejos almacenes de ruta** absorbidos por el Mercado o el Cinturón de Talleres;
+- **marcas de ampliación de la Plaza** que permitan contar cómo creció la ciudad tras la consolidación de los pueblos.
+
+Estos lugares pueden sostener recuerdos, investigaciones, rumores y escenas históricas sin convertir automáticamente cada estructura antigua en un misterio secreto.
+
+---
+
+## Qué significa Vaisgard para cada generación
+
+La ciudad no representa exactamente lo mismo para todos.
+
+Para algunos habitantes es hogar permanente. Para otros es mercado, lugar de aprendizaje, punto de paso o destino de una primera gran travesía.
+
+Las familias con raíces antiguas en los Barrios de Llegada pueden conservar historias de la época anterior a los pueblos. En Valdren, Khariel, Brumak, Narevia y Velmora existen relatos familiares sobre antepasados que todavía viajaban de ida y vuelta mientras los asentamientos exteriores se consolidaban.
+
+Es normal que dos versiones de un mismo recuerdo discrepen en detalles menores. Esa variación forma parte de una historia transmitida durante generaciones y **no significa que cualquier versión sea igualmente verdadera**.
+
+Lo que permanece firme en todas las tradiciones serias es:
+- Vaisgard precede a los pueblos;
+- las cinco poblaciones compartieron la ciudad;
+- la salida fue gradual;
+- los pueblos se volvieron hogares propios;
+- las rutas mantuvieron la relación con la ciudad.
+
 ---
 
 ## Vaisgard en el presente
