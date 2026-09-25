@@ -149,10 +149,11 @@ class ClassChoiceTests(unittest.TestCase):
         store.award_xp(self.path, player_id, 40)
         with sqlite3.connect(self.path) as db:
             db.execute("ALTER TABLE players DROP COLUMN player_class")
+            db.execute("DROP TABLE combat_log")  # llega en v10
             db.execute("PRAGMA user_version = 8")
         app = create_app(self.config)
         with store.connect(self.path) as db:
-            self.assertEqual(db.execute("PRAGMA user_version").fetchone()[0], 9)
+            self.assertEqual(db.execute("PRAGMA user_version").fetchone()[0], store.SCHEMA_VERSION)
             row = db.execute("SELECT species, room, xp, player_class FROM players WHERE id = ?",
                              (player_id,)).fetchone()
         self.assertEqual((row["species"], row["room"], row["xp"], row["player_class"]),

@@ -352,6 +352,9 @@
     .heading-card .compass{margin:0}
     .heading-card small{margin:0;color:var(--muted)}
     .heading-card strong{display:block;color:var(--gold);font:700 1.35rem Georgia,serif}
+    .combat-line{margin-bottom:8px}
+    .combat-line p{color:#e8c2b8!important;font-size:.92em!important}
+    .combat-line .cmd{color:#c98b7f!important}
     .result-entry{border-left:3px solid #2f7a45;padding-left:10px}
     .result-entry p{color:var(--green3)!important}
     .in-combat .result-entry{border-left-color:#b0402f;background:#240d0a66;border-radius:0 8px 8px 0;padding:6px 8px}
@@ -461,6 +464,18 @@
       .entry .cmd{font-size:.7rem}
       .game-shell .log{height:36dvh;height:36svh}
       .game-shell.in-combat .log{height:46dvh;height:46svh}
+      /* En teléfono el cuadro de lectura ocupa exactamente el espacio que
+         dejan la imagen y los botones: así todo cabe en la pantalla, nada se
+         aplasta ni se corta, y el tamaño no cambia al caminar o pelear. */
+      .app{display:flex;flex-direction:column}
+      .app > .layout{flex:1 1 auto;min-height:0;display:flex;flex-direction:column}
+      .layout > .game-shell{flex:1 1 auto;min-height:0}
+      .game-shell > *{flex-shrink:0}
+      .game-shell > .terminal{flex:1 1 0;min-height:120px}
+      .game-shell .log,.game-shell.in-combat .log{height:auto}
+    }
+    @media(max-width:640px) and (max-height:720px){
+      .location-art,.location-art img{height:120px!important}
     }
   </style>
 </head>
@@ -638,7 +653,16 @@
               <p class="system">{{ room.encounter.behavior }}</p>
             </div>
             {% endif %}
-            {% if error %}
+            {# Relato de la pelea en curso: turno por turno, la última línea
+               destacada y a la vista (petición de Javier, 2026-09-25). #}
+            {% set combat_log = room.combat_log if room.encounter and room.combat_log else [] %}
+            {% for line in combat_log %}
+            <div class="entry combat-line{{ ' result-entry' if loop.last }}"{% if loop.last %} role="status" data-result-entry{% endif %}>
+              <div class="cmd">&gt; {{ line.action }}</div>
+              <p>{{ line.text }}</p>
+            </div>
+            {% endfor %}
+            {% if error and not (combat_log and combat_log[-1].text == error) %}
             <div class="entry result-entry" role="status" data-result-entry>
               <p>{{ error }}</p>
             </div>
@@ -1292,10 +1316,16 @@
   // no aparezca todo de golpe. Solo el parrafo principal de la sala -- los
   // demas mensajes (presentes, encuentro, chat) se quedan como estan.
   // Respeta prefers-reduced-motion y es interrumpible con un toque/clic.
-  const resultEntry = document.querySelector("[data-result-entry]");
+  const resultEntries = document.querySelectorAll("[data-result-entry]");
+  const resultEntry = resultEntries[resultEntries.length - 1];
   if (resultEntry) {
     const log = resultEntry.closest(".log");
-    if (log) log.scrollTop = Math.max(0, resultEntry.offsetTop - log.offsetTop - 8);
+    if (log && log.closest(".in-combat")) {
+      // En combate, siempre lo más reciente del relato a la vista.
+      log.scrollTop = log.scrollHeight;
+    } else if (log) {
+      log.scrollTop += resultEntry.getBoundingClientRect().top - log.getBoundingClientRect().top - 8;
+    }
   }
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const mainParagraph = document.querySelector("[data-room-description]");
