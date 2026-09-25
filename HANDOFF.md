@@ -1,5 +1,39 @@
 # HANDOFF — Entrega técnica
 
+## ENTREGA — Motor de encuentros aleatorios (Issue #160)
+
+**DESARROLLADOR:** Claude — Desarrollador de Servidor de Vintage Telnet (Javier reasignó #160, pensada para el Junior)
+**HEAD BASE:** `5cc9e6f` (origin/main)
+**TAREA ASIGNADA:** Issue #160: que la fauna común pueda aparecer al azar en caminos y campo sin asignar cada criatura sala por sala, sin romper los encuentros narrativos.
+**RAMA:** `claude/vt-random-encounters`
+
+### CAMBIOS
+- **Nuevo `server/encounters.py`:**
+  - `get_encounter_for_room(room_id, rng=None, pools=None)` aplica el orden de #160: **1)** el encuentro fijo de `world.ROOM_ENCOUNTER`, **2)** el pool aleatorio de la sala, **3)** ninguno;
+  - `RANDOM_ENCOUNTER_POOLS = {pool: {"rooms", "chance", "creatures": [(id, peso)]}}` **empieza vacío**, así que el juego no cambia hasta que se llene;
+  - `validate_pools` se ejecuta al importar y rechaza con error criaturas o salas inexistentes, pesos o probabilidades inválidos, pools vacíos y salas repetidas en dos pools;
+  - el RNG es inyectable (`rng` o `encounters._rng`) para pruebas reproducibles.
+- **`app.attempt_move`:** usa el motor. Solo tira el dado si en esa sala no hay una pelea activa ni enfriamiento. Lo demás del combate no cambia.
+- Sin cambios de esquema, UI, arte, canon ni balance.
+
+### PRUEBAS
+- Suite **269/269 OK**, con 11 nuevas en `tests/test_random_encounters.py`:
+  - el encuentro fijo manda sobre el pool;
+  - una sala elegible puede dar criaturas distintas;
+  - una sala no elegible nunca da criatura;
+  - con la misma semilla sale la misma secuencia;
+  - se respetan los pesos (75/25);
+  - las configuraciones rotas se rechazan;
+  - integración con `/move`: aparece, falla la tirada, sin pools todo sigue igual y con enfriamiento no se tira el dado.
+
+### PENDIENTES (no inventados)
+- **Jugabilidad:** probabilidad por pool; si la tirada es al entrar (hoy) o por tiempo; si hace falta un enfriamiento distinto para fauna aleatoria (hoy se reutiliza el de 5 min por sala tras vencer).
+- **Historiador / Narrador:** qué salas son elegibles y qué criaturas viven en cada zona. CREATURES.md todavía no define hábitats por sala.
+
+**LISTO PARA PUBLICAR:** falta la autorización de Javier ("sube") y la revisión de Arquitectura que pide #160.
+
+---
+
 ## ENTREGA — Sin parpadeo: las acciones del juego ya no recargan la página + barra del enemigo abajo
 
 **DESARROLLADOR:** Claude — Desarrollador de Servidor de Vintage Telnet
