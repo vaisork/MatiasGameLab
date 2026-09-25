@@ -882,7 +882,11 @@ def create_app(config=None):
         room = None
         if g.player is not None and g.player["status"] == "approved" and g.player["room"]:
             room = room_view(g.player["room"], g.player["id"])
-        return render_template("entry.html", player=g.player, species_list=world.SPECIES, room=room)
+        # Aviso de un solo uso (p. ej. la primera recompensa, Issue #147): lo
+        # deja un POST antes de redirigir y se muestra en el cuadro de lectura.
+        notice = session.pop("notice", None)
+        return render_template("entry.html", player=g.player, species_list=world.SPECIES, room=room,
+                               notice=notice)
 
     @app.post("/register")
     def register():
@@ -999,12 +1003,14 @@ def create_app(config=None):
         require_approved_player()
         if not character_ready(g.player):
             abort(403)
-        accepted, _previous, _new, reason, _reward_message = attempt_move(
+        accepted, _previous, _new, reason, reward_message = attempt_move(
             g.player, request.form.get("direction", ""))
         if not accepted:
             room_data = room_view(g.player["room"], g.player["id"])
             return render_template("entry.html", player=g.player, species_list=world.SPECIES,
                                    room=room_data, error=reason), 400
+        if reward_message:
+            session["notice"] = reward_message
         return redirect(url_for("index"), code=303)
 
     @app.post("/room/say")
@@ -1030,7 +1036,9 @@ def create_app(config=None):
             abort(400)
         intent = parse_intent(raw)
         if intent["type"] == "move":
-            accepted, _previous, _new, reason, _reward_message = attempt_move(g.player, intent["direction"])
+            accepted, _previous, _new, reason, reward_message = attempt_move(g.player, intent["direction"])
+            if accepted and reward_message:
+                session["notice"] = reward_message
             if not accepted:
                 room_data = room_view(g.player["room"], g.player["id"])
                 return render_template("entry.html", player=g.player, species_list=world.SPECIES,

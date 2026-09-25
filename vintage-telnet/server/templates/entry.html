@@ -253,6 +253,7 @@
     .onboarding-nav{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
     .onboarding-note{margin:12px 0 0;color:var(--muted);font:.78rem/1.45 ui-sans-serif,system-ui,sans-serif}
     .state-panel{width:min(100%,34rem);margin:0 auto}
+    .terminal .reward-entry p{color:var(--gold);font-weight:700}
     .form-error{margin:0 0 12px;padding:10px 12px;border:1px solid #8a4b3a;border-radius:10px;background:#2a1510;color:#ffd0b0;font:.88rem/1.45 ui-sans-serif,system-ui,sans-serif}
     .account-actions{display:flex;flex-wrap:wrap;gap:8px}
     .character-list{list-style:none;margin:12px 0;padding:0;display:grid;gap:8px}
@@ -712,6 +713,10 @@
             {% if error and not (combat_log and combat_log[-1].text == error) %}
             <div class="entry result-entry" role="status" data-result-entry>
               <p>{{ error }}</p>
+            </div>
+            {% elif notice %}
+            <div class="entry result-entry reward-entry" role="status" data-result-entry>
+              <p>{{ notice }}</p>
             </div>
             {% endif %}
             {% for m in room.messages %}

@@ -411,6 +411,21 @@ class PilotIntegrationTests(unittest.TestCase):
         self.assertEqual(
             len([item for item in inventory_again if item["item_key"] == "acolchado_camino"]), 1)
 
+    def test_reward_text_is_shown_on_screen_once(self):
+        # La pantalla de juego usa los formularios (/move): el texto de la
+        # recompensa debe verse en el cuadro de lectura justo al llegar, y
+        # desaparecer después.
+        self.register_and_enter_world()
+        self.walk_to_lindero()
+        self.post("/command", dict(text="examinar huellas"))
+        for _ in range(4):
+            self.post("/move", dict(direction="south"))  # ... entra a valdren_centro
+        html = self.client.get("/").get_data(as_text=True)
+        self.assertIn("reward-entry", html)
+        self.assertIn("Has obtenido: Acolchado de Camino.", html)
+        html_again = self.client.get("/").get_data(as_text=True)
+        self.assertNotIn("Has obtenido: Acolchado de Camino.", html_again)
+
     def test_reward_text_is_returned_once_via_api_move(self):
         # Texto de Narrador (#147, comentario del 2026-09-25) expuesto por la
         # via estructurada para que un cliente lo muestre sin inferirlo.
