@@ -977,3 +977,63 @@ Ollama real (#19) siguen igual de pendientes, sin novedad.
 No adjunto contraseñas, claves, cookies, hashes ni bases en este reporte.
 No afirmo ningún resultado que no haya leído textualmente del propio hilo
 de la Issue #141 o verificado yo misma.
+
+## Actualización de la revisión periódica — dos despliegues reales más con `vt-deploy`, uno con migración de esquema — 2026-09-25
+
+Misma sesión automatizada en la nube (sin SSH/sudo ni acceso a la red
+Tailscale del equipo físico). Desde la nota anterior, `main` avanzó a
+`5cc9e6fbfad59b9812660cf0aafa859b196888d4` (merges de PR #150, #152 y #154,
+más un commit de canon del Historiador en `CREATURES.md` que no toca
+código ni Raspberry).
+
+Según los comentarios de la Issue #141 (no ejecutado ni verificado por mí en
+hardware real, solo leído del hilo y de los healthchecks públicos que otra
+sesión ya corrió):
+
+- **PR #150** (pantalla estable, imágenes por contexto de pueblo/camino/
+  combate, fichas de especie completas, UI más compacta) se desplegó con
+  `sudo vt-deploy latest` sin migración de esquema (seguía en 9). Verificado
+  desde internet: imágenes de Khariel/Brumak/Narevia/Velmora en `image/webp`
+  con `Cache-Control` de un día, fichas de especie presentes.
+- **PR #152** (relato de la pelea turno por turno, cuadro de lectura que ya
+  no se recorta en el teléfono) sí trajo migración: `store.SCHEMA_VERSION`
+  pasó de **9 a 10** (confirmado leyendo `server/store.py` en el HEAD
+  actual: agrega la tabla `combat_log`, migración aditiva). El despliegue
+  con `vt-deploy` aplicó la migración y el `/healthz` externo confirmó
+  `schema_version: 10`.
+- **PR #154** (acciones del juego sin recargar la página, barra del enemigo
+  fija abajo) se desplegó sin migración (esquema se mantuvo en 10). Javier
+  lo lanzó esta vez desde el celular por SSH/Tailscale, dentro de `tmux`
+  según recomendación del propio hilo.
+- Las tres verificaciones externas (vía Tailscale Funnel) confirman
+  `/healthz` en el esquema esperado en cada paso y que `/dm` sigue en
+  **404 desde internet** después de cada despliegue — es decir, PR #149
+  (cierre del panel del DM al público) sigue vigente tras tres despliegues
+  posteriores.
+
+**Con esto, `vt-deploy` ya lleva cuatro despliegues reales exitosos en la
+Raspberry física de Javier** (esquema v9 inicial, PR #150, PR #152 con
+migración 9→10, y PR #154), sin ningún rollback real necesario en
+producción. Esto es evidencia de uso normal, pero **no es lo mismo que la
+prueba controlada de rollback en hardware físico** que la Issue #141 exige
+explícitamente antes de cerrarla ("no activar en producción hasta probar
+una actualización y un rollback reales"); el único rollback probado hasta
+ahora sigue siendo el de la Raspberry simulada de la PR #146. No me
+corresponde decidir si cuatro despliegues reales sin fallos son evidencia
+suficiente para que Javier dé por cerrada esa condición — lo dejo señalado
+para que él o el Desarrollador de Servidor lo decidan explícitamente en la
+Issue #141.
+
+**Pendiente real restante, sin cambios respecto a la nota anterior** (misma
+limitación de acceso): confirmar que `/dm` sigue respondiendo **200** desde
+dentro de la red Tailscale o desde `http://127.0.0.1:8080/dm` en la propia
+Raspberry, y registrar en este reporte la salida completa de al menos uno
+de los `vt-deploy` reales (no solo la confirmación verbal/externa). Ninguna
+de las dos es alcanzable desde esta sesión en la nube. La prueba de Android
+(#83) y el probe de Ollama real (#19) siguen igual de pendientes, sin
+novedad.
+
+No adjunto contraseñas, claves, cookies, hashes ni bases en este reporte.
+No afirmo ningún resultado que no haya leído textualmente del propio hilo
+de la Issue #141 o de los healthchecks públicos ya corridos por otra
+sesión.
