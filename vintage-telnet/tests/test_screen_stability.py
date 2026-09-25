@@ -37,12 +37,12 @@ class ScreenStabilityTests(unittest.TestCase):
 
     def test_art_frame_is_always_present(self):
         html = self.client.get("/").get_data(as_text=True)
-        self.assertIn('<figure class="location-art">', html)
+        self.assertIn('<figure class="location-art" data-swap="art"', html)
         self.assertIn('fetchpriority="high"', html)
         self.assertNotIn('loading="lazy" decoding="async">\n          <div class="location-art-fallback"', html)
         self.post("/move", dict(direction="west"))  # sendero: sin arte aprobado
         html = self.client.get("/").get_data(as_text=True)
-        self.assertIn('<figure class="location-art no-art">', html)
+        self.assertIn('<figure class="location-art no-art" data-swap="art"', html)
         self.assertIn('<div class="art-placeholder" aria-hidden="true"></div>', html)
 
     def test_text_reveal_reserves_full_height(self):
@@ -111,3 +111,22 @@ class CombatLogTests(ScreenStabilityTests):
         self.post("/attack", {})
         with store.connect(self.path) as db:
             self.assertEqual(db.execute("SELECT COUNT(*) FROM combat_log").fetchone()[0], 0)
+
+
+class NoFlashTests(ScreenStabilityTests):
+    def test_enemy_status_is_pinned_below_the_story(self):
+        self.post("/move", dict(direction="west"))
+        self.post("/move", dict(direction="west"))
+        html = self.client.get("/").get_data(as_text=True)
+        log_end = html.index('<div class="enemy-status">')
+        self.assertLess(html.index('class="log"'), log_end)          # debajo del relato…
+        self.assertLess(log_end, html.index('terminal-alert terminal-hint'))  # …y encima de la pista
+        self.assertEqual(html.count('class="condition-bar"'), 1)
+
+    def test_game_regions_can_be_swapped_without_reloading(self):
+        html = self.client.get("/").get_data(as_text=True)
+        for key in ("place", "art", "terminal", "controls", "side"):
+            self.assertIn(f'data-swap="{key}"', html)
+        self.assertIn('document.addEventListener("submit"', html)
+        self.assertIn('form.closest(".game-shell")', html)  # solo acciones del juego, no login/logout
+        self.assertIn("afterRender();", html)

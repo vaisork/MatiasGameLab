@@ -1,5 +1,28 @@
 # HANDOFF — Entrega técnica
 
+## ENTREGA — Sin parpadeo: las acciones del juego ya no recargan la página + barra del enemigo abajo
+
+**DESARROLLADOR:** Claude — Desarrollador de Servidor de Vintage Telnet
+**HEAD BASE:** `2eb110b` (origin/main)
+**TAREA ASIGNADA:** Javier (2026-09-25): "durante la pelea flashea la página; la barra de daño del enemigo se queda arriba, debería verse abajo para que parezca que solo crece la narración".
+**RAMA:** `claude/vt-no-flash`
+
+### CAMBIOS (solo `server/templates/entry.html` + pruebas; el servidor no cambia)
+- **Sin recarga.** Un listener `submit` delegado intercepta **solo los formularios dentro de `.game-shell`**: cruz, acciones de combate y exploración, cuadro de comando y "mirar". Login, logout, especie, clase y DM siguen normales. Hace el mismo POST/GET (mismas rutas, mismo CSRF, mismas reglas) con `fetch`, parsea la respuesta y **reemplaza solo las regiones `[data-swap]`**: place, art, terminal, controls y side. También actualiza la clase del `.game-shell`.
+  - La imagen **no se reemplaza** si su `src` es el mismo; así no parpadea al caminar dentro de un pueblo.
+  - Si la respuesta no es una pantalla de juego (sesión vencida, 403, etc.) o falla la red, hace una navegación normal a `/`.
+  - Evita dobles envíos mientras hay una acción en curso. El cuadro de comando se limpia después de enviar.
+  - `afterRender()` (scroll al último resultado y revelado del texto) corre al cargar y después de cada acción. "Examinar" y el fallback de la imagen usan delegación para seguir funcionando tras el reemplazo.
+- **Barra del enemigo abajo.** Nombre y banda de condición en `.enemy-status`, una franja fija entre el relato y la pista. El comportamiento de la criatura queda como primera línea del relato.
+
+### PRUEBAS
+- Suite **258/258 OK**, con 2 nuevas en `NoFlashTests` (la clase también hereda las 3 de estabilidad).
+- En Chromium a 390 px, con una marca en `window` y un contador de navegaciones: se caminó con botón, flecha ← y comando escrito, y se peleó con Mordelinde 4 turnos hasta la victoria. **0 recargas** (la marca sobrevivió), posiciones de imagen, terminal, botones, comando y barra del enemigo **idénticas** turno a turno, sin errores de JS.
+
+**LISTO PARA PUBLICAR:** falta la autorización de Javier ("sube"). Sin migración: el esquema sigue en 10.
+
+---
+
 ## ENTREGA — Relato de la pelea (historial de combate) + la pantalla siempre cabe en el celular
 
 **DESARROLLADOR:** Claude — Desarrollador de Servidor de Vintage Telnet
