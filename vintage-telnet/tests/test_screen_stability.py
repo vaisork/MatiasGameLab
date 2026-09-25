@@ -40,7 +40,7 @@ class ScreenStabilityTests(unittest.TestCase):
         self.assertIn('<figure class="location-art" data-swap="art"', html)
         self.assertIn('fetchpriority="high"', html)
         self.assertNotIn('loading="lazy" decoding="async">\n          <div class="location-art-fallback"', html)
-        self.post("/move", dict(direction="west"))  # sendero: sin arte aprobado
+        self.post("/move", dict(direction="north"))  # sendero: sin arte aprobado
         html = self.client.get("/").get_data(as_text=True)
         self.assertIn('<figure class="location-art no-art" data-swap="art"', html)
         self.assertIn('<div class="art-placeholder" aria-hidden="true"></div>', html)
@@ -57,8 +57,8 @@ if __name__ == "__main__":
 
 class CombatReadingTests(ScreenStabilityTests):
     def test_combat_shows_only_the_fight_and_results_go_inside_the_log(self):
-        self.post("/move", dict(direction="west"))
-        self.post("/move", dict(direction="west"))  # Parcela removida: Mordelinde
+        self.post("/move", dict(direction="north"))
+        self.post("/move", dict(direction="north"))  # Parcela removida: Mordelinde
         html = self.client.get("/").get_data(as_text=True)
         self.assertIn("¡COMBATE!", html)
         self.assertNotIn("<p data-room-description", html)  # no se repite cómo es el lugar
@@ -76,8 +76,8 @@ class CombatReadingTests(ScreenStabilityTests):
 
 class CombatLogTests(ScreenStabilityTests):
     def enter_combat(self):
-        self.post("/move", dict(direction="west"))
-        self.post("/move", dict(direction="west"))  # Parcela removida: Mordelinde
+        self.post("/move", dict(direction="north"))
+        self.post("/move", dict(direction="north"))  # Parcela removida: Mordelinde
         self.player_id = self.client.get("/api/me").json["player"]["id"]
         self.path = self.app.config["DATABASE"]
 
@@ -115,8 +115,8 @@ class CombatLogTests(ScreenStabilityTests):
 
 class NoFlashTests(ScreenStabilityTests):
     def test_enemy_status_is_pinned_below_the_story(self):
-        self.post("/move", dict(direction="west"))
-        self.post("/move", dict(direction="west"))
+        self.post("/move", dict(direction="north"))
+        self.post("/move", dict(direction="north"))
         html = self.client.get("/").get_data(as_text=True)
         log_end = html.index('<div class="enemy-status">')
         self.assertLess(html.index('class="log"'), log_end)          # debajo del relato…

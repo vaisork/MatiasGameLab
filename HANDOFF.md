@@ -1,5 +1,58 @@
 # HANDOFF — Entrega técnica
 
+## ENTREGA — Las Cinco Rutas completas con la geografía de REGIONS.md
+
+**DESARROLLADOR:** Claude — Desarrollador de Servidor de Vintage Telnet
+**HEAD BASE:** `552cc93` (origin/main), encima del bloque 1 (entrada siguiente)
+**TAREA ASIGNADA:** Javier (2026-09-25): "Adelante, haz el cambio". Corregir la orientación del mundo según `REGIONS.md` y el mapa regional aprobado, y completar los bloques 2–4 del handoff de `NARRATIVE_ROUTES.md`.
+**RAMA:** `claude/vt-valdren-route` (PR #172)
+
+### CAMBIOS
+- **Geografía canónica.** Vaisgard queda en el centro:
+
+  | Pueblo | Dónde queda | Camino hacia Vaisgard |
+  |---|---|---|
+  | Khariel | norte | Camino Alto, B1–B17 |
+  | Brumak | oeste | Camino de Piedra, C1–C17 |
+  | Velmora | este | Camino de la Sombra Verde, E1–E17 |
+  | Valdren | suroeste | Camino de los Campos, A1–A18. Sale al norte por *El lindero roto*, intacto, y serpentea al noreste |
+  | Narevia | sureste | Camino de los Juncos, D1–D17. Serpentea al noroeste |
+
+  Campos y Juncos se juntan en la **Aproximación sur de Vaisgard** (el anillo de aproximación del documento). Ninguna ruta desemboca de golpe en la ciudad.
+- **Salas:** 111 en total, 74 nuevas. Los textos siguen solo lo que dice `NARRATIVE_ROUTES.md` de cada estación; el Narrador puede reescribirlos sin tocar la estructura. Las rutas se declaran como cadenas (`world.ROUTE_CHAINS`) y `link()` las enlaza en ambos sentidos.
+- **Se quitan `road_north` y `road_west`**, los saltos técnicos.
+  - Nuevo `store.relocate_players_outside_world()`: se ejecuta en cada arranque, manda al pueblo de su especie a quien esté en una sala que ya no existe, y no hace nada si no hay nadie. **Sin migración de esquema.**
+- **Pueblos:** cada uno sale por el lado que mira a Vaisgard. `_build_town` acepta un reparto interno explícito; en Valdren la forja queda al oeste y el mercado al este. Las demás forjas, mercados y senderos cambian de lado; sus ids no cambian.
+- **Contextos visuales:**
+  - el primer tramo de B–E usa el de su pueblo;
+  - los tramos dentro de la Cuenca (A14–A18, B15–B17, C15–C17, D15–D17, E14–E17 y la aproximación sur) usan `zone.veyra.road`;
+  - A1–A7 siguen en las afueras de Valdren;
+  - los tramos profundos no tienen canon visual todavía, así que el marco queda vacío y quieto.
+- **Hábitat dinámico:** se agregan A14 (`veyra_transicion`), B6 (`hoshai_alto`), C6 (`korven_piedra`), D5 (`lethra_juncos`) y E6 (`nhal_bosque`). No aparece ninguna criatura hasta que #166 defina los pools.
+- **Pruebas actualizadas a la nueva orientación.** Hacia *El lindero roto* ahora se va al norte. `test_navigation` verifica la geometría: cada salida lleva a la celda vecina exacta y los pueblos quedan donde dice `REGIONS.md`.
+
+### PRUEBAS
+- Suite **297/297 OK**, con 9 nuevas en `tests/test_cinco_rutas.py`:
+  - cada pueblo se une con Vaisgard por su cadena;
+  - ningún pueblo queda a menos de 17 estaciones;
+  - las salas viejas desaparecen y todas las salas son alcanzables;
+  - no hay encuentros fijos fuera de *El lindero roto*;
+  - los textos llevan acentos;
+  - contextos visuales y hábitats correctos;
+  - una Felaryn camina de Khariel a Vaisgard (18 pasos al sur);
+  - un jugador parado en `road_west` vuelve a Narevia al arrancar.
+- Chromium a 390 px: caminata Khariel → Vaisgard y mapa revisado.
+
+### PENDIENTES / AVISOS
+- **Narrador:** reescribir los textos si lo desea. Faltan los ramales laterales y los dos trazados de B7, C6 y E5; hoy son un solo camino.
+- **Historiador / Arte:** contextos visuales de los tramos profundos (Edran abierto, Hoshai, Korven, Lethra, Nhal).
+- **Aviso:** el recorrido Valdren → Vaisgard ahora son 22 pasos. Quien tenga guardado "sur desde Valdren" para llegar a Vaisgard verá que ya no existe ese atajo.
+- La PR #173 (arte) toca la misma prueba de `test_entry.py`. Se resuelve con el mismo cambio en ambas.
+
+**LISTO PARA PUBLICAR:** falta la autorización de Javier ("sube"). Sin migración de esquema.
+
+---
+
 ## ENTREGA — Camino de los Campos, bloque 1 (A1–A10) + minimapa sin nombres encimados
 
 **DESARROLLADOR:** Claude — Desarrollador de Servidor de Vintage Telnet (Javier: "ponte a programar todo lo que puedas; si ya hay caminos por hacer, mejóramelos". Javier apagó al Junior y me pidió continuar su trabajo).
@@ -21,7 +74,7 @@
 - En Chromium a 390 px: se caminó de Valdren al Vado menor (14 salas, con el ramal de ida y vuelta). Mapa sin nombres encimados.
 
 ### PENDIENTES / AVISOS
-- **Bloque 2 (A11–A18 hasta Vaisgard) necesita decisión de geografía.** `REGIONS.md` y el mapa regional aprobado ponen Khariel al N de Vaisgard, Brumak al O, Valdren al SO, Narevia al SE y Velmora al E. El código pone Valdren al N, Khariel al E, Brumak al S, Narevia al O y Velmora al O de Narevia. Conectar las rutas con Vaisgard sin corregir esto dejaría al jugador caminando en la dirección contraria al mapa que ve.
+- ~~Bloque 2 necesita decisión de geografía~~ → **resuelto**: Javier autorizó corregirla (ver la entrega de las Cinco Rutas, arriba). `REGIONS.md` y el mapa regional aprobado ponen Khariel al N de Vaisgard, Brumak al O, Valdren al SO, Narevia al SE y Velmora al E. El código pone Valdren al N, Khariel al E, Brumak al S, Narevia al O y Velmora al O de Narevia. Conectar las rutas con Vaisgard sin corregir esto dejaría al jugador caminando en la dirección contraria al mapa que ve.
 - Los textos de las salas nuevas siguen solo lo que dice `NARRATIVE_ROUTES.md`; el Narrador puede reescribirlos.
 - `NARRATIVE_ROUTES.md` vive en la PR #164 (Narrador), que depende de la #162 (Historiador), y ninguna está en `main`.
 

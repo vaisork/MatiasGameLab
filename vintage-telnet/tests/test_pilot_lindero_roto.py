@@ -216,18 +216,18 @@ class CreatureCalibrationTests(unittest.TestCase):
 class WorldContentTests(unittest.TestCase):
     def test_camino_chain_is_reachable_from_valdren_centro(self):
         room = world.get_room("valdren_centro")
-        self.assertEqual(room["exits"]["west"], "valdren_sendero")
+        self.assertEqual(room["exits"]["north"], "valdren_sendero")
         chain = ["valdren_sendero", "valdren_camino_parcela", "valdren_camino_cerca", "valdren_camino_lindero"]
         for previous, current in zip(chain, chain[1:]):
-            self.assertEqual(world.get_room(previous)["exits"]["west"], current)
-            self.assertEqual(world.get_room(current)["exits"]["east"], previous)
+            self.assertEqual(world.get_room(previous)["exits"]["north"], current)
+            self.assertEqual(world.get_room(current)["exits"]["south"], previous)
 
     def test_other_towns_keep_their_original_dead_end_sendero(self):
         # Solo el sendero de Valdren se extiende hacia la microaventura; los
         # demas pueblos conservan su sendero original de una sola salida
         # (de vuelta al centro).
         khariel_sendero = world.get_room("khariel_sendero")
-        self.assertEqual(khariel_sendero["exits"], {"west": "khariel_centro"})
+        self.assertEqual(khariel_sendero["exits"], {"east": "khariel_centro"})
 
     def test_examine_targets_exist_for_the_three_narrative_beats(self):
         self.assertIsNotNone(world.get_examine_text("valdren_camino_parcela", "tallos"))
@@ -287,10 +287,10 @@ class PilotIntegrationTests(unittest.TestCase):
         self.choose_class_without_starter_weapon()
 
     def walk_to_lindero(self):
-        self.post("/move", dict(direction="west"))  # sendero
-        self.post("/move", dict(direction="west"))  # parcela (Mordelinde)
-        self.post("/move", dict(direction="west"))  # cerca (Espinajo)
-        self.post("/move", dict(direction="west"))  # lindero roto
+        self.post("/move", dict(direction="north"))  # sendero
+        self.post("/move", dict(direction="north"))  # parcela (Mordelinde)
+        self.post("/move", dict(direction="north"))  # cerca (Espinajo)
+        self.post("/move", dict(direction="north"))  # lindero roto
 
     def character(self):
         return self.client.get("/api/character").json
@@ -330,8 +330,8 @@ class PilotIntegrationTests(unittest.TestCase):
         # (aunque el nombre "Mordelinde" ya pueda verse en la caja de
         # encuentro porque la criatura esta visible en la sala).
         self.register_and_enter_world()
-        self.post("/move", dict(direction="west"))  # sendero
-        self.post("/move", dict(direction="west"))  # parcela
+        self.post("/move", dict(direction="north"))  # sendero
+        self.post("/move", dict(direction="north"))  # parcela
         page = self.post("/command", dict(text="examinar tallos")).get_data(as_text=True)
         self.assertNotIn("Reconoces las señales de un Mordelinde", page)
         self.assertEqual(self.character()["xp"], 0)
@@ -339,8 +339,8 @@ class PilotIntegrationTests(unittest.TestCase):
 
     def test_examining_both_signs_grants_discovery_xp_exactly_once(self):
         self.register_and_enter_world()
-        self.post("/move", dict(direction="west"))  # sendero
-        self.post("/move", dict(direction="west"))  # parcela
+        self.post("/move", dict(direction="north"))  # sendero
+        self.post("/move", dict(direction="north"))  # parcela
         self.post("/command", dict(text="examinar tallos"))
         self.assertEqual(self.character()["xp"], 0)
         # Solo al examinar la segunda senal hay evidencia suficiente.
@@ -367,16 +367,16 @@ class PilotIntegrationTests(unittest.TestCase):
         self.post("/command", dict(text="examinar huellas"))
         self.assertEqual(self.character()["xp"], 10)
         # Volver a Valdren con el descubrimiento otorga el hito de regreso.
-        self.post("/move", dict(direction="east"))
-        self.post("/move", dict(direction="east"))
-        self.post("/move", dict(direction="east"))
-        self.post("/move", dict(direction="east"))  # entra a valdren_centro
+        self.post("/move", dict(direction="south"))
+        self.post("/move", dict(direction="south"))
+        self.post("/move", dict(direction="south"))
+        self.post("/move", dict(direction="south"))  # entra a valdren_centro
         self.assertEqual(self.character()["xp"], 20)
         discovery_keys = {d["key"] for d in self.character()["discoveries"]}
         self.assertEqual(discovery_keys, {"lindero_roto", "regreso_valdren_lindero"})
         # Salir y volver a entrar a Valdren de nuevo no debe repetir el hito.
-        self.post("/move", dict(direction="west"))
-        self.post("/move", dict(direction="east"))
+        self.post("/move", dict(direction="north"))
+        self.post("/move", dict(direction="south"))
         self.assertEqual(self.character()["xp"], 20)
 
     def test_examining_unknown_target_falls_back_to_generic_message(self):
@@ -393,8 +393,8 @@ class PilotIntegrationTests(unittest.TestCase):
 
     def test_evaluate_a_visible_mordelinde_never_reveals_numbers(self):
         self.register_and_enter_world()
-        self.post("/move", dict(direction="west"))  # sendero
-        self.post("/move", dict(direction="west"))  # parcela: aparece Mordelinde
+        self.post("/move", dict(direction="north"))  # sendero
+        self.post("/move", dict(direction="north"))  # parcela: aparece Mordelinde
         page = self.post("/command", dict(text="evaluar mordelinde")).get_data(as_text=True)
         self.assertIn("Mordelinde", page)
         self.assertTrue(any(phrase in page for phrase in
@@ -405,8 +405,8 @@ class PilotIntegrationTests(unittest.TestCase):
 
     def test_room_view_never_exposes_enemy_numeric_hp(self):
         self.register_and_enter_world()
-        self.post("/move", dict(direction="west"))  # sendero
-        self.post("/move", dict(direction="west"))  # parcela: aparece Mordelinde
+        self.post("/move", dict(direction="north"))  # sendero
+        self.post("/move", dict(direction="north"))  # parcela: aparece Mordelinde
         encounter = self.client.get("/api/room").json["room"]["encounter"]
         self.assertNotIn("hp_current", encounter)
         self.assertNotIn("hp_max", encounter)
@@ -416,8 +416,8 @@ class PilotIntegrationTests(unittest.TestCase):
     def test_enemy_condition_band_drops_as_it_takes_damage(self, mock_random):
         mock_random.return_value = FixedRoll(0)  # el jugador siempre acierta
         self.register_and_enter_world()
-        self.post("/move", dict(direction="west"))
-        self.post("/move", dict(direction="west"))  # parcela: Mordelinde (28 HP, ~10 de daño/golpe)
+        self.post("/move", dict(direction="north"))
+        self.post("/move", dict(direction="north"))  # parcela: Mordelinde (28 HP, ~10 de daño/golpe)
         self.post("/command", dict(text="atacar"))
         self.post("/command", dict(text="atacar"))
         encounter = self.client.get("/api/room").json["room"]["encounter"]
@@ -425,10 +425,10 @@ class PilotIntegrationTests(unittest.TestCase):
 
     def test_mordelinde_and_espinajo_show_different_behavior_before_deciding(self):
         self.register_and_enter_world()
-        self.post("/move", dict(direction="west"))  # sendero
-        self.post("/move", dict(direction="west"))  # parcela: Mordelinde
+        self.post("/move", dict(direction="north"))  # sendero
+        self.post("/move", dict(direction="north"))  # parcela: Mordelinde
         mordelinde_behavior = self.client.get("/api/room").json["room"]["encounter"]["behavior"]
-        self.post("/move", dict(direction="west"))  # cerca: Espinajo de rastrojo
+        self.post("/move", dict(direction="north"))  # cerca: Espinajo de rastrojo
         espinajo_behavior = self.client.get("/api/room").json["room"]["encounter"]["behavior"]
         self.assertNotEqual(mordelinde_behavior, espinajo_behavior)
         self.assertIn("zigzag", mordelinde_behavior)
@@ -440,8 +440,8 @@ class PilotIntegrationTests(unittest.TestCase):
     def test_attacking_until_victory_awards_xp_and_clears_the_encounter(self, mock_random):
         mock_random.return_value = FixedRoll(0)  # 0 < cualquier % de impacto real: siempre acierta
         self.register_and_enter_world()
-        self.post("/move", dict(direction="west"))
-        self.post("/move", dict(direction="west"))  # parcela: Mordelinde (45 HP)
+        self.post("/move", dict(direction="north"))
+        self.post("/move", dict(direction="north"))  # parcela: Mordelinde (45 HP)
         for _ in range(10):  # de sobra para derrotarlo con golpes garantizados
             room = self.client.get("/api/room").json["room"]
             if room["encounter"] is None:
@@ -456,8 +456,8 @@ class PilotIntegrationTests(unittest.TestCase):
     def test_defeat_respawns_in_valdren_with_60_percent_hp(self, mock_random):
         mock_random.return_value = FixedRoll(0)  # el jugador tambien acierta, pero bajamos su HP a 1 antes
         self.register_and_enter_world()
-        self.post("/move", dict(direction="west"))
-        self.post("/move", dict(direction="west"))  # parcela: Mordelinde
+        self.post("/move", dict(direction="north"))
+        self.post("/move", dict(direction="north"))  # parcela: Mordelinde
         store.update_combat_state(self.path, self.client.get("/api/me").json["player"]["id"], hp_current=1)
         self.post("/command", dict(text="atacar"))
         me = self.client.get("/api/me").json["player"]
@@ -469,8 +469,8 @@ class PilotIntegrationTests(unittest.TestCase):
     def test_fleeing_successfully_returns_toward_valdren_and_clears_encounter(self, mock_random):
         mock_random.return_value = FixedRoll(0)  # 0 < cualquier probabilidad de huida real: siempre escapa
         self.register_and_enter_world()
-        self.post("/move", dict(direction="west"))
-        self.post("/move", dict(direction="west"))  # parcela: Mordelinde
+        self.post("/move", dict(direction="north"))
+        self.post("/move", dict(direction="north"))  # parcela: Mordelinde
         self.post("/command", dict(text="huir"))
         me = self.client.get("/api/me").json["player"]
         self.assertEqual(me["room"], "valdren_sendero")
@@ -488,8 +488,8 @@ class PilotIntegrationTests(unittest.TestCase):
     def test_attacking_costs_fatigue(self, mock_random):
         mock_random.return_value = FixedRoll(100)  # nunca acierta: solo interesa el coste de intentar
         self.register_and_enter_world()
-        self.post("/move", dict(direction="west"))
-        self.post("/move", dict(direction="west"))  # parcela: Mordelinde
+        self.post("/move", dict(direction="north"))
+        self.post("/move", dict(direction="north"))  # parcela: Mordelinde
         self.assertEqual(self.character()["fatigue"], 0)
         self.post("/command", dict(text="atacar"))
         self.assertEqual(self.character()["fatigue"], 4)  # 24.3: ataque básico = 4, Resistencia 10.
@@ -498,8 +498,8 @@ class PilotIntegrationTests(unittest.TestCase):
     def test_a_heavy_hit_inflicts_a_wound(self, mock_random):
         mock_random.return_value = FixedRoll(0)  # ambos golpes aciertan siempre
         self.register_and_enter_world()
-        self.post("/move", dict(direction="west"))
-        self.post("/move", dict(direction="west"))  # parcela: Mordelinde
+        self.post("/move", dict(direction="north"))
+        self.post("/move", dict(direction="north"))  # parcela: Mordelinde
         player_id = self.client.get("/api/me").json["player"]["id"]
         # Bajamos el HP maximo del personaje para que el golpe de Mordelinde
         # (~6-7 de daño bruto) cruce el 20% de 24.5 y dispare una herida leve
@@ -512,7 +512,7 @@ class PilotIntegrationTests(unittest.TestCase):
     def test_resting_outside_combat_heals_and_reduces_fatigue(self):
         # Fuera de la sala segura (24.8: descanso de campo v1).
         self.register_and_enter_world()
-        self.post("/move", dict(direction="west"))  # valdren_sendero: no es SAFE_ROOM_ID
+        self.post("/move", dict(direction="north"))  # valdren_sendero: no es SAFE_ROOM_ID
         player_id = self.client.get("/api/me").json["player"]["id"]
         with store.connect(self.path) as db:
             db.execute("UPDATE players SET hp_current = 50, fatigue = 80 WHERE id = ?", (player_id,))
@@ -540,8 +540,8 @@ class PilotIntegrationTests(unittest.TestCase):
 
     def test_resting_is_blocked_while_a_creature_is_present(self):
         self.register_and_enter_world()
-        self.post("/move", dict(direction="west"))
-        self.post("/move", dict(direction="west"))  # parcela: Mordelinde
+        self.post("/move", dict(direction="north"))
+        self.post("/move", dict(direction="north"))  # parcela: Mordelinde
         page = self.post("/command", dict(text="descansar")).get_data(as_text=True)
         self.assertIn("No puedes descansar", page)
 
@@ -549,8 +549,8 @@ class PilotIntegrationTests(unittest.TestCase):
     def test_defeated_creature_does_not_respawn_immediately_but_does_after_cooldown(self, mock_random):
         mock_random.return_value = FixedRoll(0)
         self.register_and_enter_world()
-        self.post("/move", dict(direction="west"))
-        self.post("/move", dict(direction="west"))  # parcela: Mordelinde (45 HP)
+        self.post("/move", dict(direction="north"))
+        self.post("/move", dict(direction="north"))  # parcela: Mordelinde (45 HP)
         for _ in range(10):
             room = self.client.get("/api/room").json["room"]
             if room["encounter"] is None:
@@ -559,8 +559,8 @@ class PilotIntegrationTests(unittest.TestCase):
         # Salir y volver a entrar de inmediato no debe regenerar la criatura
         # (GAMEPLAY.md 20.14: ~5 minutos de referencia, no reaparición llena
         # instantánea).
-        self.post("/move", dict(direction="east"))
-        self.post("/move", dict(direction="west"))
+        self.post("/move", dict(direction="south"))
+        self.post("/move", dict(direction="north"))
         room = self.client.get("/api/room").json["room"]
         self.assertIsNone(room["encounter"])
         # Una vez cumplido el cooldown, la criatura vuelve a aparecer.
@@ -568,8 +568,8 @@ class PilotIntegrationTests(unittest.TestCase):
         with store.connect(self.path) as db:
             db.execute("UPDATE creature_cooldowns SET available_at = '2000-01-01T00:00:00.000000+00:00' "
                        "WHERE player_id = ?", (player_id,))
-        self.post("/move", dict(direction="east"))
-        self.post("/move", dict(direction="west"))
+        self.post("/move", dict(direction="south"))
+        self.post("/move", dict(direction="north"))
         room = self.client.get("/api/room").json["room"]
         self.assertIsNotNone(room["encounter"])
 

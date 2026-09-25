@@ -7,16 +7,22 @@ from server import world
 
 
 class ValdrenRouteExpansionTests(unittest.TestCase):
+    def linked(self, room_a, room_b):
+        exits_a = world.ROOMS[room_a]["exits"]
+        direction = next((d for d, dest in exits_a.items() if dest == room_b), None)
+        self.assertIsNotNone(direction, (room_a, room_b))
+        self.assertEqual(world.ROOMS[room_b]["exits"][world.OPPOSITE_DIRECTION[direction]], room_a)
+
     def test_lindero_roto_keeps_scripted_microadventure_and_opens_route(self):
-        self.assertEqual(
-            world.ROOMS["valdren_camino_lindero"]["exits"],
-            {"east": "valdren_camino_cerca", "west": "valdren_lindero_tres_piedras"},
-        )
+        self.assertEqual(set(world.ROOMS["valdren_camino_lindero"]["exits"].values()),
+                         {"valdren_camino_cerca", "valdren_lindero_tres_piedras"})
         self.assertEqual(world.ROOM_ENCOUNTER["valdren_camino_parcela"], "mordelinde")
         self.assertEqual(world.ROOM_ENCOUNTER["valdren_camino_cerca"], "espinajo_rastrojo")
 
     def test_expanded_route_is_bidirectional_and_reaches_vado(self):
-        chain = [
+        chain = world.ROUTE_A_CHAIN
+        start = chain.index("valdren_camino_lindero")
+        self.assertEqual(chain[start:start + 10], [
             "valdren_camino_lindero",
             "valdren_lindero_tres_piedras",
             "valdren_camino_hundido",
@@ -27,10 +33,9 @@ class ValdrenRouteExpansionTests(unittest.TestCase):
             "valdren_arbol_descanso",
             "valdren_campos_sin_cerca",
             "valdren_vado_menor",
-        ]
+        ])
         for current, following in zip(chain, chain[1:]):
-            self.assertEqual(world.ROOMS[current]["exits"]["west"], following)
-            self.assertEqual(world.ROOMS[following]["exits"]["east"], current)
+            self.linked(current, following)
 
     def test_new_rooms_do_not_add_scripted_encounters(self):
         new_rooms = {
@@ -63,8 +68,9 @@ class ValdrenRouteExpansionTests(unittest.TestCase):
         self.assertEqual(len(layout), len(set(layout.values())))
 
     def test_side_branch_at_cruce_de_las_cercas_returns_to_route(self):
-        self.assertEqual(world.ROOMS["valdren_cruce_cercas"]["exits"]["north"], "valdren_parcelas_exteriores")
-        self.assertEqual(world.ROOMS["valdren_parcelas_exteriores"]["exits"], {"south": "valdren_cruce_cercas"})
+        self.linked("valdren_cruce_cercas", "valdren_parcelas_exteriores")
+        self.assertEqual(list(world.ROOMS["valdren_parcelas_exteriores"]["exits"].values()),
+                         ["valdren_cruce_cercas"])
 
     def test_dynamic_habitat_rooms_exist_and_have_no_fixed_encounter(self):
         rooms = world.habitat_rooms("edran_campos")
