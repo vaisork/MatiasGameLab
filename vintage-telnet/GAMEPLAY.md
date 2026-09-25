@@ -2357,3 +2357,103 @@ No permitir equipar mediante un botón si el servidor lo considera incompatible/
 ### 32.9 Principio
 
 **Inventario responde “qué poseo”; equipo responde “qué estoy usando”. La v1 prioriza decisiones claras de carga y protección sobre administrar peso, casillas o mantenimiento.**
+
+
+## 33. Encuentros aleatorios de fauna — v1
+
+**Estado:** APROBADO PARA ACTIVAR EL MOTOR DE #160 / PR #165.
+
+El objetivo es poblar caminos y campo sin colocar manualmente cada criatura en una sala y sin romper encuentros narrativos.
+
+### 33.1 Prioridad
+
+Orden obligatorio:
+
+1. encuentro narrativo/scripted explícito;
+2. encuentro aleatorio solo si no existe uno scripted y la sala pertenece a un pool elegible;
+3. ningún encuentro si la sala no es elegible o falla la tirada.
+
+Un encuentro aleatorio nunca sustituye, retrasa ni altera uno narrativo.
+
+### 33.2 Momento de la tirada
+
+La v1 hace la tirada **únicamente al entrar con éxito a una sala elegible**.
+
+No se generan encuentros:
+- por permanecer quieto;
+- por `mirar`, observar o examinar;
+- por abrir paneles;
+- por paso del tiempo mientras el jugador está leyendo;
+- durante un combate ya activo.
+
+Esto evita que una criatura aparezca simplemente porque el jugador tardó en leer.
+
+### 33.3 Probabilidad base
+
+Probabilidad de referencia v1 por entrada a una sala elegible:
+
+**20%**
+
+Interpretación aproximada: un encuentro aleatorio cada cinco transiciones elegibles a largo plazo.
+
+Los pools pueden ajustar su tasa dentro de una banda ordinaria de **10% a 35%** cuando el contenido necesite una zona más tranquila o más poblada.
+
+Fuera de esa banda se requiere validación explícita de Jugabilidad.
+
+No existe garantía/pity de encuentro en v1.
+
+### 33.4 Cooldown y repetición
+
+La v1 reutiliza el cooldown ya existente de aproximadamente **5 minutos por sala después de derrotar una criatura**.
+
+No se añade un segundo cooldown persistente solo para la tirada aleatoria en esta etapa.
+
+Motivos:
+- el 20% base ya limita frecuencia;
+- el cooldown posterior a victoria evita repetir inmediatamente la misma sala;
+- el antifarmeo de §22.6 reduce la rentabilidad de repetir familia;
+- añadir otra capa temporal antes del playtest complica sin evidencia de necesidad.
+
+Si el playtest muestra que entrar/salir entre puertas fuerza encuentros de manera óptima, Jugabilidad añadirá un bloqueo de reroll específico.
+
+### 33.5 Pools y pesos
+
+Historia/Narrativa determinan:
+- qué salas o contextos pueden contener fauna aleatoria;
+- qué criaturas son coherentes con cada zona.
+
+Jugabilidad valida:
+- la tasa del pool;
+- los pesos relativos si afectan de manera importante la dificultad/progresión.
+
+Los pesos son relativos, no porcentajes visibles al jugador.
+
+No introducir una criatura en un pool si:
+- no existe canónicamente allí;
+- su dificultad hace que la ruta inicial deje de ser razonablemente transitable;
+- su aparición contradice una escena narrativa reservada.
+
+### 33.6 Zonas seguras
+
+Por defecto no son elegibles para fauna aleatoria:
+- hogar del jugador;
+- puntos de recuperación segura;
+- interiores civiles;
+- plazas/centros de pueblo;
+- espacios que Narrativa/Historia marquen como seguros.
+
+Una excepción futura debe ser explícita en contenido.
+
+### 33.7 Información al jugador
+
+La interfaz no muestra:
+- “20% de encuentro”;
+- pesos del pool;
+- contador de tiradas;
+- probabilidades internas.
+
+El jugador descubre que una ruta tiene más o menos fauna mediante experiencia, señales y contenido.
+
+### 33.8 Principio
+
+**La fauna aleatoria añade incertidumbre al desplazamiento; no interrumpe la lectura, no reemplaza encuentros escritos y no convierte caminar entre dos salas en una máquina de farmear.**
