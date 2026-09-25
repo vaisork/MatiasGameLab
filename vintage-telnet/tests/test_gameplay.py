@@ -153,12 +153,13 @@ class GameplayTests(unittest.TestCase):
         self.assertEqual(invalid.status_code, 400)
         self.assertEqual(self.client.get("/api/room").json["room"]["id"], "khariel_forja")
 
-        # Volver al centro y salir del pueblo hacia Vaisgard.
+        # Volver al centro y salir del pueblo por el Camino Alto (Khariel está
+        # al norte de Vaisgard, así que el camino sale hacia el sur).
         self.post("/move", dict(direction="south"))
         self.assertEqual(self.client.get("/api/room").json["room"]["id"], "khariel_centro")
-        moved = self.post("/move", dict(direction="west"))
+        moved = self.post("/move", dict(direction="south"))
         self.assertEqual(moved.status_code, 303)
-        self.assertEqual(self.client.get("/api/room").json["room"]["id"], "vaisgard")
+        self.assertEqual(self.client.get("/api/room").json["room"]["id"], "alto_terrazas")
 
     @patch.dict(os.environ, {"VT_DM_PASSWORD": "dm-secret-value"})
     def test_chat_is_local_to_room_and_visible_to_others(self):

@@ -1,5 +1,137 @@
 # HANDOFF — Entrega técnica
 
+## ENTREGA — Reloj global de hora del día conectado a `world.get_ambient()` (Issue #138)
+
+**DESARROLLADOR:** Claude — Desarrollador de Servidor de Vintage Telnet
+**HEAD BASE:** `8336f915cb7d0e48425916d517a1ca7f84643e6a` (origin/main)
+**TAREA ASIGNADA:** revisión automática recurrente (Issue #47) sobre el Issue #138. Jugabilidad ya dejó el contrato v1 como comentario en el issue (2026-09-25T02:07): reloj de juego **global y compartido**, amanecer → día → atardecer → noche, ciclo de 4h reales/60 min reales por estado, sin efecto mecánico en v1, y cerró con "Handoff a Servidor: conectar `world.get_ambient()` con este reloj compartido". El Narrador entregó las etiquetas visibles el mismo día.
+**RAMA:** `claude/vintage-telnet-server-ambient-clock`
+
+### CAMBIOS (solo `server/world.py` + pruebas; sin esquema, UI nueva, arte ni canon)
+- `world._current_time_of_day(now=None)`: función pura de `time.time()` (inyectable) que da amanecer/día/atardecer/noche según el ciclo de 4h/60 min por estado que definió Jugabilidad. Al ser función del tiempo real y no un contador persistente, reiniciar el servidor no reinicia el día de forma arbitraria (lo que pedía el criterio de aceptación del issue).
+- `world.get_ambient(room_id, now=None)`: ahora devuelve `time_of_day` con ese reloj; `weather` **sigue en `None`** — el Narrador dejó explícito en el mismo issue que no puede asignar distribución regional de clima sin el canon del Historiador, que todavía no llegó. No se inventa.
+- Iconos usados (ya existían en `AMBIENT_ICONS`): amanecer→`amanecer`, día→`sol`, atardecer→`atardecer`, noche→`luna`.
+
+### PENDIENTE, NO INVENTADO
+- **NECESIDAD DE HISTORIADOR** (ya registrada por Narrador en el propio Issue #138): canon de clima plausible por región (Edran, Hoshai, Korven, Lethra, Nhal, Vaisgard) antes de que `weather` deje de ser `None`.
+- **Registro formal en `GAMEPLAY.md`:** al momento de esta entrega, el contrato de Jugabilidad para #138 solo existe como comentario del issue — la rama `gameplay/issue-138-time-weather-contract` no lo contiene (confirmado con `git diff` contra `main`, sigue igual que cuando Javier lo señaló el 2026-09-24). No me corresponde escribir `GAMEPLAY.md`; lo dejo señalado para Jugabilidad, que ya autorizó explícitamente implementar el reloj sin esperar ese paso ("Desarrollo puede implementar ya el reloj compartido").
+- Efectos mecánicos de hora/clima (Percepción con niebla, criaturas nocturnas, Vesperi en baja luz, etc.) siguen fuera de alcance: Jugabilidad dijo expresamente que v1 es solo ambiental/presentacional.
+
+### PRUEBAS
+- Suite completa **263/263 OK** (`.venv/bin/python -m unittest discover -s tests`).
+- `tests/test_entry.py`: reescribí `test_ambient_slot_is_empty_until_gameplay_and_narrative_define_it` → `test_ambient_shows_shared_time_of_day_but_no_weather_yet` (ya no puede esperar `ambient == {None, None}`; ahora comprueba que `time_of_day` viene poblado, `weather` sigue `None`, y que la barra muestra el chip). Añadí `AmbientClockTests` (5 pruebas nuevas): límites del ciclo/orden, reproducibilidad con la misma `now`, que no depende de un contador (equivalente a sobrevivir un reinicio), `get_ambient` usa el reloj y dejando `weather` sin definir, y que cada estado usa un icono conocido de `AMBIENT_ICONS`.
+- `py_compile` limpio en los dos archivos tocados.
+
+- Revisado por Claude (sesión interactiva): cumple el contrato de Jugabilidad y Narrador en #138. Combinado con las PR #172 y #173: **305/305 OK**.
+
+**PUBLICADO:** Javier autorizó ("súbelas tú"); se integra con la PR #168. Sin migración: el esquema sigue igual.
+
+---
+
+## ENTREGA — Arte aprobado en el juego: Mordelinde, Espinajo de rastrojo y camino de Veyra (#151)
+
+**DESARROLLADOR:** Claude — Desarrollador de Servidor de Vintage Telnet
+**HEAD BASE:** `552cc93` (origin/main)
+**TAREA ASIGNADA:** Javier: "ponte a programar todo lo que puedas". Conectar los assets que Dirección de Arte aprobó en #151 y el Publicador subió en las PR #161, #169 y #170.
+**RAMA:** `claude/vt-art-roads-creatures`. Incluye los commits de las ramas `assets/vt-mordelinde-151`, `assets/vt-espinajo-151` y `assets/vt-road-veyra-151` sin modificarlos; al integrar esta PR, GitHub marca esas tres como integradas.
+
+### CAMBIOS
+- `creatures.CREATURE_ART`: `mordelinde` y `espinajo_rastrojo` → `/assets/creatures/<id>.webp`. En combate, el marco de imagen muestra la criatura.
+- `world.VISUAL_CONTEXT_ART["zone.veyra.road"]` → `/assets/locations/road-veyra.webp` (Camino del Norte y Camino del Oeste).
+- Las afueras de Valdren (`zone.edran.valdren_outskirts`, pieza 4/4) siguen sin imagen: el marco queda vacío y quieto, como hasta ahora.
+- Nuevo `tests/test_published_art.py`: cada imagen referenciada existe en disco, se sirve como WebP con caché, y el combate contra Mordelinde muestra su imagen.
+
+### PRUEBAS
+- Suite **283/283 OK**.
+- Chromium a 390 px: combate en Parcela removida con la ilustración de Mordelinde en el marco, sin desbordes.
+- Combinado con la PR #172 (Cinco Rutas) y la #168 (reloj): **300/300 OK**. `test_published_art` no depende de la geografía.
+
+**PUBLICADO:** Javier autorizó ("súbelas tú"); se integra con la PR #173.
+
+---
+
+## ENTREGA — Las Cinco Rutas completas con la geografía de REGIONS.md
+
+**DESARROLLADOR:** Claude — Desarrollador de Servidor de Vintage Telnet
+**HEAD BASE:** `552cc93` (origin/main), encima del bloque 1 (entrada siguiente)
+**TAREA ASIGNADA:** Javier (2026-09-25): "Adelante, haz el cambio". Corregir la orientación del mundo según `REGIONS.md` y el mapa regional aprobado, y completar los bloques 2–4 del handoff de `NARRATIVE_ROUTES.md`.
+**RAMA:** `claude/vt-valdren-route` (PR #172)
+
+### CAMBIOS
+- **Geografía canónica.** Vaisgard queda en el centro:
+
+  | Pueblo | Dónde queda | Camino hacia Vaisgard |
+  |---|---|---|
+  | Khariel | norte | Camino Alto, B1–B17 |
+  | Brumak | oeste | Camino de Piedra, C1–C17 |
+  | Velmora | este | Camino de la Sombra Verde, E1–E17 |
+  | Valdren | suroeste | Camino de los Campos, A1–A18. Sale al norte por *El lindero roto*, intacto, y serpentea al noreste |
+  | Narevia | sureste | Camino de los Juncos, D1–D17. Serpentea al noroeste |
+
+  Campos y Juncos se juntan en la **Aproximación sur de Vaisgard** (el anillo de aproximación del documento). Ninguna ruta desemboca de golpe en la ciudad.
+- **Salas:** 111 en total, 74 nuevas. Los textos siguen solo lo que dice `NARRATIVE_ROUTES.md` de cada estación; el Narrador puede reescribirlos sin tocar la estructura. Las rutas se declaran como cadenas (`world.ROUTE_CHAINS`) y `link()` las enlaza en ambos sentidos.
+- **Se quitan `road_north` y `road_west`**, los saltos técnicos.
+  - Nuevo `store.relocate_players_outside_world()`: se ejecuta en cada arranque, manda al pueblo de su especie a quien esté en una sala que ya no existe, y no hace nada si no hay nadie. **Sin migración de esquema.**
+- **Pueblos:** cada uno sale por el lado que mira a Vaisgard. `_build_town` acepta un reparto interno explícito; en Valdren la forja queda al oeste y el mercado al este. Las demás forjas, mercados y senderos cambian de lado; sus ids no cambian.
+- **Contextos visuales:**
+  - el primer tramo de B–E usa el de su pueblo;
+  - los tramos dentro de la Cuenca (A14–A18, B15–B17, C15–C17, D15–D17, E14–E17 y la aproximación sur) usan `zone.veyra.road`;
+  - A1–A7 siguen en las afueras de Valdren;
+  - los tramos profundos no tienen canon visual todavía, así que el marco queda vacío y quieto.
+- **Hábitat dinámico:** se agregan A14 (`veyra_transicion`), B6 (`hoshai_alto`), C6 (`korven_piedra`), D5 (`lethra_juncos`) y E6 (`nhal_bosque`). No aparece ninguna criatura hasta que #166 defina los pools.
+- **Pruebas actualizadas a la nueva orientación.** Hacia *El lindero roto* ahora se va al norte. `test_navigation` verifica la geometría: cada salida lleva a la celda vecina exacta y los pueblos quedan donde dice `REGIONS.md`.
+
+### PRUEBAS
+- Suite **297/297 OK**, con 9 nuevas en `tests/test_cinco_rutas.py`:
+  - cada pueblo se une con Vaisgard por su cadena;
+  - ningún pueblo queda a menos de 17 estaciones;
+  - las salas viejas desaparecen y todas las salas son alcanzables;
+  - no hay encuentros fijos fuera de *El lindero roto*;
+  - los textos llevan acentos;
+  - contextos visuales y hábitats correctos;
+  - una Felaryn camina de Khariel a Vaisgard (18 pasos al sur);
+  - un jugador parado en `road_west` vuelve a Narevia al arrancar.
+- Chromium a 390 px: caminata Khariel → Vaisgard y mapa revisado.
+
+### PENDIENTES / AVISOS
+- **Narrador:** reescribir los textos si lo desea. Faltan los ramales laterales y los dos trazados de B7, C6 y E5; hoy son un solo camino.
+- **Historiador / Arte:** contextos visuales de los tramos profundos (Edran abierto, Hoshai, Korven, Lethra, Nhal).
+- **Aviso:** el recorrido Valdren → Vaisgard ahora son 22 pasos. Quien tenga guardado "sur desde Valdren" para llegar a Vaisgard verá que ya no existe ese atajo.
+- La PR #173 (arte) toca la misma prueba de `test_entry.py`. Se resuelve con el mismo cambio en ambas.
+
+**PUBLICADO:** Javier autorizó ("súbelas tú"); integrado con la PR #172 (`bbb58ca`).
+
+---
+
+## ENTREGA — Camino de los Campos, bloque 1 (A1–A10) + minimapa sin nombres encimados
+
+**DESARROLLADOR:** Claude — Desarrollador de Servidor de Vintage Telnet (Javier: "ponte a programar todo lo que puedas; si ya hay caminos por hacer, mejóramelos". Javier apagó al Junior y me pidió continuar su trabajo).
+**HEAD BASE:** `552cc93` (origin/main)
+**TAREA ASIGNADA:** bloque 1 del handoff técnico de `NARRATIVE_ROUTES.md` (Narrador, #163/PR #164), rescatando la PR #171 del Junior.
+**RAMA:** `claude/vt-valdren-route` (incluye los 2 commits de `junior/expand-valdren-initial-route`)
+
+### CAMBIOS
+- **Ruta A1–A10 completa**, saliendo de Valdren hacia el oeste después de *El lindero roto* (A1, intacto con sus dos encuentros fijos):
+  - A2 Lindero de las tres piedras, A3 Camino hundido, A4 Cobertizos viejos, A5 Cruce de las cercas, A6 Campo de rastrojo y A7 La zanja vieja. Ya venían de la PR #171; aquí se corrigieron los acentos y los textos se ajustaron a lo que dice el documento;
+  - nuevas: **A5 ramal Parcelas exteriores** (al norte del cruce, sin salida), **A8 Árbol del descanso**, **A9 Campos sin cerca** y **A10 Vado menor**.
+- **Examinar** (capa pública de las huellas históricas): `examinar piedras` en A2 ("Valdren creció así, surco por surco") y `examinar zanja` en A7 (arreglos de épocas distintas). No dan recompensa ni descubrimiento.
+- **`world.DYNAMIC_HABITAT_ROOMS` + `habitat_rooms()`**: las salas que el documento marca como hábitat dinámico (A3, el ramal A5, A6 y A9 → `edran_campos`). Solo dicen dónde puede haber fauna; qué criatura vive ahí lo define #166. No aparece nada nuevo.
+- **Acentos** en los textos de *El lindero roto* (descripciones y pistas de examinar): "últimas", "Pequeños montículos", "púa rígida", "Más adelante"...
+- **Minimapa:** en una misma fila las etiquetas se alternan abajo/arriba. Con el camino largo, "Campos sin cerca" y "Árbol del descanso" se encimaban.
+
+### PRUEBAS
+- Suite **288/288 OK**. `tests/test_valdren_route_expansion.py` del Junior, ampliado: cadena A1–A10 bidireccional, ramal, salas de hábitat sin encuentros fijos, pistas de examinar y acentos.
+- En Chromium a 390 px: se caminó de Valdren al Vado menor (14 salas, con el ramal de ida y vuelta). Mapa sin nombres encimados.
+
+### PENDIENTES / AVISOS
+- ~~Bloque 2 necesita decisión de geografía~~ → **resuelto**: Javier autorizó corregirla (ver la entrega de las Cinco Rutas, arriba). `REGIONS.md` y el mapa regional aprobado ponen Khariel al N de Vaisgard, Brumak al O, Valdren al SO, Narevia al SE y Velmora al E. El código pone Valdren al N, Khariel al E, Brumak al S, Narevia al O y Velmora al O de Narevia. Conectar las rutas con Vaisgard sin corregir esto dejaría al jugador caminando en la dirección contraria al mapa que ve.
+- Los textos de las salas nuevas siguen solo lo que dice `NARRATIVE_ROUTES.md`; el Narrador puede reescribirlos.
+- `NARRATIVE_ROUTES.md` vive en la PR #164 (Narrador), que depende de la #162 (Historiador), y ninguna está en `main`.
+
+**PUBLICADO:** integrado con la PR #172 (`bbb58ca`), con autorización de Javier.
+
+---
+
 ## ENTREGA — Cuentas con varios personajes (hasta 5) + nombres de personaje únicos + registro más claro
 
 **DESARROLLADOR:** Claude — Desarrollador de Servidor de Vintage Telnet

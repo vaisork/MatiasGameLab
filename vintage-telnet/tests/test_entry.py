@@ -67,9 +67,10 @@ class EntryTests(unittest.TestCase):
         self.assertNotEqual(sendero["visual_context_id"], "zone.valdren")
 
     def test_context_without_an_approved_asset_falls_back_to_no_art(self):
-        # Khariel ya tiene arte publicado; los caminos todavía no.
-        room = world.describe_room("road_north", [])
-        self.assertEqual(room["visual_context_id"], "zone.veyra.road")
+        # Los pueblos tienen arte publicado; las afueras de Valdren (pieza 4/4
+        # de #151) todavía no.
+        room = world.describe_room("valdren_sendero", [])
+        self.assertEqual(room["visual_context_id"], "zone.edran.valdren_outskirts")
         self.assertIsNone(room["art"])
         for town in ("valdren_centro", "khariel_centro", "brumak_centro", "narevia_centro",
                      "velmora_centro", "vaisgard"):
@@ -176,9 +177,9 @@ class EntryTests(unittest.TestCase):
         # Issue #120: rumbo autoritativo -- null hasta el primer movimiento
         # aceptado, luego la direccion cardinal exacta que el servidor uso.
         self.assertIsNone(map_response.json["current_heading"])
-        self.assertEqual(self.post("/move", {"direction": "west"}).status_code, 303)
+        self.assertEqual(self.post("/move", {"direction": "north"}).status_code, 303)
         state_after_move = self.client.get("/api/map").json
-        self.assertEqual(state_after_move["current_heading"], "west")
+        self.assertEqual(state_after_move["current_heading"], "north")
 
     def test_rest_button_uses_authoritative_command_intent(self):
         self.assertEqual(self.register().status_code, 303)
@@ -350,8 +351,8 @@ class EntryTests(unittest.TestCase):
         self.assertNotIn('action="/attack"', html)
 
         # Entra al encuentro con Mordelinde (sendero -> parcela).
-        self.post("/move", {"direction": "west"})
-        self.post("/move", {"direction": "west"})
+        self.post("/move", {"direction": "north"})
+        self.post("/move", {"direction": "north"})
         html = self.client.get("/").get_data(as_text=True)
         self.assertIn('class="place-bar combat"', html)
         self.assertIn("¡COMBATE!", html)
@@ -365,17 +366,20 @@ class EntryTests(unittest.TestCase):
         self.assertNotIn(">Descansar</button>", html)
         self.assertNotRegex(html, r"HP:\s*\d+/\d+")
 
-    def test_ambient_slot_is_empty_until_gameplay_and_narrative_define_it(self):
+    def test_ambient_shows_shared_time_of_day_but_no_weather_yet(self):
         """Issue #138 (petición de Javier): el servidor expone `ambient` y la
-        barra de lugar tiene su espacio, pero ningún estado está inventado:
-        hasta que Jugabilidad/Narrador lo definan, no se muestra nada."""
+        barra de lugar tiene su espacio. Jugabilidad ya definió el reloj
+        global de hora del día (handoff en el issue), así que ese campo se
+        muestra; weather sigue None porque el Narrador todavía espera el
+        canon regional de clima del Historiador — no se inventa."""
         self.assertEqual(self.register().status_code, 303)
         store.set_status(self.path, "matias", "approved")
         self.assertEqual(self.post("/species", {"species": "humano"}).status_code, 303)
         self.assertEqual(self.post("/class", {"player_class": "sombra"}).status_code, 303)
         room = self.client.get("/api/room").json["room"]
-        self.assertEqual(room["ambient"], {"time_of_day": None, "weather": None})
-        self.assertNotIn('class="ambient-chip"', self.client.get("/").get_data(as_text=True))
+        self.assertIsNone(room["ambient"]["weather"])
+        self.assertIn(room["ambient"]["time_of_day"]["label"], ("Amanecer", "Día", "Atardecer", "Noche"))
+        self.assertIn('class="ambient-chip"', self.client.get("/").get_data(as_text=True))
 
         from unittest.mock import patch
         ambient = {"time_of_day": {"label": "Mañana", "icon": "sol"},
@@ -541,6 +545,37 @@ class EntryTests(unittest.TestCase):
             db.execute(f"PRAGMA user_version = {store.SCHEMA_VERSION + 1}")
         with self.assertRaises(RuntimeError):
             create_app(self.config)
+
+
+class AmbientClockTests(unittest.TestCase):
+    """Reloj global de hora del día (Issue #138, handoff de Jugabilidad):
+    amanecer -> día -> atardecer -> noche, ciclo de 4h reales/60 min por
+    estado, función pura del tiempo real inyectable para pruebas."""
+
+    def test_cycle_boundaries_and_order(self):
+        hour = 60 * 60
+        self.assertEqual(world._current_time_of_day(0)["label"], "Amanecer")
+        self.assertEqual(world._current_time_of_day(hour - 1)["label"], "Amanecer")
+        self.assertEqual(world._current_time_of_day(hour)["label"], "Día")
+        self.assertEqual(world._current_time_of_day(2 * hour)["label"], "Atardecer")
+        self.assertEqual(world._current_time_of_day(3 * hour)["label"], "Noche")
+        self.assertEqual(world._current_time_of_day(4 * hour)["label"], "Amanecer")  # el ciclo se repite
+
+    def test_same_now_gives_same_state_reproducible(self):
+        self.assertEqual(world._current_time_of_day(12345), world._current_time_of_day(12345))
+
+    def test_restart_does_not_reset_the_day_arbitrarily(self):
+        # Es función pura de `now`: sin `now`, dos llamadas casi simultáneas
+        # (equivalente a un reinicio del servidor) devuelven el mismo estado.
+        self.assertEqual(world.get_ambient("cualquier-sala"), world.get_ambient("cualquier-sala"))
+
+    def test_get_ambient_uses_the_shared_clock_and_leaves_weather_unset(self):
+        ambient = world.get_ambient("cualquier-sala", now=0)
+        self.assertEqual(ambient, {"time_of_day": {"label": "Amanecer", "icon": "amanecer"}, "weather": None})
+
+    def test_every_state_uses_a_known_icon(self):
+        for state in world._TIME_OF_DAY_STATES:
+            self.assertIn(state["icon"], world.AMBIENT_ICONS)
 
 
 if __name__ == "__main__":

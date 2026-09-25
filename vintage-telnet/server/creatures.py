@@ -55,12 +55,21 @@ CREATURES = {
 
 
 # Ilustración de cada criatura para el marco de arte durante el combate
-# (petición de Javier, 2026-09-25). Vacío hasta que Arte publique las
-# imágenes aprobadas en assets/vintage-telnet/creatures/; mientras tanto el
-# marco se queda vacío y quieto en combate, nunca muestra una imagen ajena.
+# (petición de Javier, 2026-09-25). Solo criaturas con imagen aprobada y
+# publicada en assets/vintage-telnet/creatures/; una criatura sin fila deja
+# el marco vacío y quieto en combate, nunca muestra una imagen ajena.
 # Formato de cada fila: {"src": "/assets/creatures/<id>.webp", "alt": ...,
 # "width": ..., "height": ...}.
-CREATURE_ART = {}
+CREATURE_ART = {
+    # Issue #151, aprobados por Dirección de Arte y publicados en las PR #161
+    # (SHA-256 036ab079...) y #170 (SHA-256 abd4187d...).
+    "mordelinde": {"src": "/assets/creatures/mordelinde.webp",
+                   "alt": "Mordelinde acorralado en una parcela removida",
+                   "width": 1536, "height": 1024},
+    "espinajo_rastrojo": {"src": "/assets/creatures/espinajo_rastrojo.webp",
+                          "alt": "Espinajo de rastrojo con la cresta de púas erizada",
+                          "width": 1536, "height": 1024},
+}
 
 
 def get_creature(creature_id):

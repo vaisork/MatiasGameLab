@@ -98,6 +98,7 @@ def create_app(config=None):
         raise RuntimeError("VT_DATA_DIR debe ser una ruta absoluta persistente.")
     path = str(Path(app.config["DATA_DIR"]) / "vintage.sqlite3")
     store.initialize(path)
+    store.relocate_players_outside_world(path, set(world.ROOMS), world.get_starting_room_for_species)
     app.config["DATABASE"] = path
     dummy_hash = generate_password_hash(secrets.token_urlsafe(32))
     app.jinja_env.globals["xp_for_next_level"] = combat.xp_for_next_level
