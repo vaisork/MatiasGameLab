@@ -54,5 +54,14 @@ CREATURES = {
 }
 
 
+# Ilustración de cada criatura para el marco de arte durante el combate
+# (petición de Javier, 2026-09-25). Vacío hasta que Arte publique las
+# imágenes aprobadas en assets/vintage-telnet/creatures/; mientras tanto el
+# marco se queda vacío y quieto en combate, nunca muestra una imagen ajena.
+# Formato de cada fila: {"src": "/assets/creatures/<id>.webp", "alt": ...,
+# "width": ..., "height": ...}.
+CREATURE_ART = {}
+
+
 def get_creature(creature_id):
     return CREATURES.get(creature_id)

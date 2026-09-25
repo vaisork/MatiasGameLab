@@ -49,6 +49,35 @@ VISUAL_CONTEXT_ART = {
         "width": 1536,
         "height": 1024,
     },
+    # Publicados como "approved runtime asset" el 2026-09-23 (commits 6de5885,
+    # 0f07a28, 81ed307, c5af42b) en assets/vintage-telnet/locations/.
+    "zone.khariel": {
+        "src": "/assets/locations/khariel.webp",
+        "alt": "Vista contextual de Khariel",
+        "width": 1536,
+        "height": 1024,
+    },
+    "zone.brumak": {
+        "src": "/assets/locations/brumak.webp",
+        "alt": "Vista contextual de Brumak",
+        "width": 1536,
+        "height": 1024,
+    },
+    "zone.narevia": {
+        "src": "/assets/locations/narevia.webp",
+        "alt": "Vista contextual de Narevia",
+        "width": 1536,
+        "height": 1024,
+    },
+    "zone.velmora": {
+        "src": "/assets/locations/velmora.webp",
+        "alt": "Vista contextual de Velmora",
+        "width": 1536,
+        "height": 1024,
+    },
+    # Caminos ("zone.veyra.road", "zone.edran.valdren_outskirts"): cuando Arte
+    # publique su ilustración, basta con agregar aquí la fila; hasta entonces
+    # el marco queda vacío y quieto (petición de Javier, 2026-09-25).
 }
 
 # Excepciones explicitas de VISUAL_CONTEXT_CANON.md ("Mapeo de las salas
