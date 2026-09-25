@@ -348,23 +348,385 @@ La vida en Hoshai está adaptada a roca, desnivel, viento y refugios pequeños e
 
 ## Uñapiedra
 
-**Clasificación narrativa:** criatura menor común.
+**Clasificación narrativa:** criatura menor común.  
+**Región:** Sierra de Hoshai — alrededores de Khariel.  
+**Estado visual:** **CANON SUFICIENTE PARA ARTE**.
 
-Reptil montañés de cuerpo corto, patas fuertes y uñas capaces de sujetarse a superficies rocosas inclinadas.
+Uñapiedra es un reptil montañés de roca expuesta. Vive en laderas, terrazas naturales y grietas donde puede calentarse al sol y desaparecer rápidamente entre desniveles.
 
-Busca insectos, huevos pequeños y sales minerales que lame directamente de ciertas piedras.
+No debe leerse como dragón pequeño, lagarto tropical ni animal doméstico. Su cuerpo está especializado para **pegarse a superficies inclinadas, avanzar por salientes estrechas y detenerse casi inmóvil sobre piedra**.
 
-**Comportamiento visible:**
+### Principio de identidad visual
+
+La silueta de Uñapiedra debe sentirse:
+
+> **baja, ancha, aplastada y adherida a la roca.**
+
+Su identidad no viene de cuernos, magia o colores exóticos. Viene de:
+- cuerpo muy próximo al suelo;
+- pecho ancho;
+- patas abiertas hacia los lados;
+- pies grandes;
+- dedos separados con uñas curvas;
+- cabeza corta;
+- cola larga, gruesa en la base y usada como contrapeso.
+
+A distancia debe parecer una criatura construida para no desprenderse de la montaña.
+
+### Anatomía y escala canónicas
+
+Un adulto común mide aproximadamente:
+- **16–22 cm de altura máxima del cuerpo** cuando está apoyado;
+- **45–60 cm del hocico a la base de la cola**;
+- **35–50 cm de cola**;
+- alrededor de **4–7 kg**.
+
+La altura al hombro no es la mejor lectura porque las patas salen hacia los lados. El cuerpo se mantiene muy bajo.
+
+El torso es:
+- corto;
+- ancho;
+- aplanado dorsoventralmente;
+- musculoso;
+- flexible solo lo necesario para girar entre rocas.
+
+No tiene torso serpentiforme.
+
+### Cabeza
+
+La cabeza es ancha y corta, ligeramente triangular vista desde arriba.
+
+Rasgos:
+- hocico romo;
+- mandíbula fuerte;
+- ojos medianos colocados lateralmente;
+- párpados marcados;
+- abertura auditiva pequeña detrás del ojo;
+- sin orejas externas;
+- sin cuernos;
+- sin crestas grandes.
+
+El borde del cráneo puede presentar pequeñas escamas más gruesas, pero nunca placas de armadura.
+
+### Boca y lengua
+
+Posee dientes pequeños y numerosos, útiles para sujetar:
+- insectos;
+- larvas;
+- pequeños huevos;
+- presas blandas.
+
+No tiene colmillos prominentes.
+
+La lengua es corta y carnosa. Puede usarla para recoger partículas minerales o humedad de superficies, pero **no es una lengua larga de camaleón**.
+
+### Ojos
+
+Los ojos están adaptados a vigilar alrededor sin levantar mucho la cabeza.
+
+Colores habituales:
+- ámbar seco;
+- marrón oscuro;
+- verde oliva apagado.
+
+La pupila es redonda u ovalada, no una rendija fantástica obligatoria.
+
+No brillan.
+
+### Cuello
+
+El cuello es corto y ancho.
+
+La cabeza parece salir directamente del torso, reforzando la impresión de un animal compacto y bajo.
+
+### Patas
+
+Las cuatro patas son fuertes y se proyectan hacia los lados.
+
+Los codos y rodillas permanecen bajos, cerca de la roca.
+
+Las delanteras:
+- son algo más robustas;
+- ayudan a sujetar y frenar;
+- absorben peso al descender.
+
+Las traseras:
+- proporcionan impulso;
+- permiten subir pequeños escalones o cambiar de nivel rápidamente.
+
+No corre con las patas debajo del cuerpo como un mamífero.
+
+### Pies y uñas
+
+Cada pie posee **cinco dedos claramente distinguibles**.
+
+Los dedos son:
+- anchos en la base;
+- separados;
+- flexibles;
+- capaces de adaptarse a irregularidades de piedra.
+
+Cada dedo termina en una **uña corta, gruesa y muy curva**.
+
+Las uñas no son armas de combate principales. Sirven para:
+- agarrar grietas;
+- frenar;
+- trepar;
+- estabilizar el cuerpo.
+
+La planta de los dedos presenta escamas rugosas, no almohadillas felinas.
+
+### Cola
+
+La cola es larga y pesada.
+
+Características:
+- gruesa en la base;
+- se estrecha gradualmente;
+- conserva movilidad lateral;
+- no termina en maza, aguijón ni espina.
+
+Funciona como contrapeso al cambiar de saliente.
+
+Cuando el animal está inmóvil, la cola suele descansar siguiendo la forma de la roca o parcialmente curvada alrededor del cuerpo.
+
+No se desprende voluntariamente como mecanismo habitual de defensa.
+
+### Piel y escamas
+
+Todo el cuerpo está cubierto por **escamas pequeñas, secas y mates**.
+
+Las escamas:
+- son más finas en costados y cuello;
+- algo más gruesas sobre cabeza, hombros, espalda y parte superior de la cola;
+- nunca forman placas de armadura independientes.
+
+La textura debe sentirse áspera y mineral por adaptación visual al entorno, pero **el animal no está hecho de piedra**.
+
+### Coloración
+
+Su camuflaje imita roca seca y líquenes apagados.
+
+Gama permitida:
+- gris piedra;
+- marrón ceniza;
+- ocre mineral;
+- beige seco;
+- oliva grisáceo;
+- manchas carbón discretas.
+
+Puede presentar:
+- bandas irregulares;
+- moteado;
+- zonas de color ligeramente distinto alrededor de hombros y cola.
+
+No debe tener:
+- azul brillante;
+- rojo vivo;
+- púrpura;
+- neón;
+- brillo mágico;
+- vetas de lava;
+- cristalización.
+
+### Perfil dorsal
+
+El dorso es relativamente plano.
+
+Puede existir una hilera de **pequeñas escamas levantadas** desde nuca a mitad del lomo, pero:
+- son bajas;
+- no son púas;
+- no dominan la silueta;
+- no convierten al animal en un dragón.
+
+### Silueta frontal
+
+De frente se ve:
+- cabeza ancha;
+- pecho bajo;
+- patas delanteras extendidas;
+- dedos abiertos;
+- vientre casi tocando la superficie.
+
+Debe parecer difícil de despegar de la roca.
+
+### Silueta lateral
+
+De perfil:
+- cuerpo plano y pesado;
+- cuello corto;
+- patas muy abiertas;
+- cola larga usada como contrapeso;
+- vientre cercano a la piedra.
+
+La línea dorsal es baja y continua.
+
+### Silueta superior
+
+Vista desde arriba es especialmente característica:
+- cabeza triangular ancha;
+- torso ovalado;
+- cuatro extremidades extendidas;
+- dedos muy visibles;
+- cola larga.
+
+Esta vista debe recordar una forma que “abraza” la superficie.
+
+### Locomoción
+
+Uñapiedra puede moverse de dos maneras muy distintas.
+
+**Desplazamiento normal:**
+- lento;
+- deliberado;
+- pegado a la piedra;
+- pausa frecuentemente.
+
+**Huida:**
+- explosiones cortas de velocidad;
+- cambios rápidos de nivel;
+- uso de pequeñas salientes;
+- entrada inmediata a una grieta.
+
+No mantiene carreras largas.
+
+### Comportamiento térmico
+
+Con clima adecuado puede permanecer mucho tiempo inmóvil sobre superficies calentadas por el sol.
+
+Busca:
+- roca expuesta;
+- repisas protegidas del viento;
+- entradas de grietas donde pueda retirarse con rapidez.
+
+En periodos fríos reduce actividad y permanece más cerca de refugios.
+
+Esto es comportamiento natural, no una mecánica de temperatura para el jugador.
+
+### Alimentación
+
+Come principalmente:
+- insectos;
+- larvas;
+- pequeños artrópodos;
+- huevos de criaturas muy pequeñas;
+- materia orgánica atrapada entre piedras.
+
+También lame ciertos depósitos minerales.
+
+El lamido de minerales no significa que se alimente de piedra. Obtiene pequeñas sales y compuestos presentes en la superficie.
+
+### Territorialidad
+
+Normalmente evita conflicto.
+
+Puede defender:
+- una grieta usada como refugio;
+- una puesta;
+- un punto de calentamiento muy favorable.
+
+Su defensa consiste en:
+- aplanar más el cuerpo;
+- abrir patas;
+- inflar ligeramente garganta y costados;
+- emitir un siseo corto;
+- morder si algo intenta extraerlo de la grieta.
+
+No persigue a quien se aleja.
+
+### Reproducción
+
+Deposita pequeñas puestas en:
+- grietas secas;
+- cavidades protegidas;
+- espacios entre piedras calentados indirectamente.
+
+Los huevos tienen cáscara coriácea, no dura como la de un ave.
+
+No hace nidos elaborados.
+
+### Señales en el entorno
+
+La presencia de Uñapiedra puede reconocerse por:
+- arañazos finos y paralelos en piedra blanda;
+- pequeñas mudas de piel atrapadas en grietas;
+- excrementos secos cerca de repisas soleadas;
+- piedras con pequeñas zonas pulidas por lamido repetido;
+- marcas de arrastre ligero de cola en polvo mineral;
+- insectos acumulados cerca de una entrada de grieta.
+
+### Variación individual permitida
+
+Puede variar:
+- color;
+- patrón de manchas;
+- longitud relativa de cola;
+- tamaño adulto;
+- grosor de uñas;
+- pequeñas cicatrices;
+- desgaste de escamas.
+
+No cambia:
+- cuerpo aplanado;
+- patas laterales;
+- cinco dedos por pie;
+- uñas curvas;
+- cola larga;
+- ausencia de cuernos, alas y magia.
+
+### Diferencia visual respecto de fauna ya cerrada
+
+**Mordelinde** se lee como mamífero excavador alargado y nervioso.  
+**Espinajo** se lee como masa compacta, barrilada y espinosa.  
+**Uñapiedra** debe leerse como reptil **aplastado contra la montaña**, ancho y adherente, con patas laterales y cola de contrapeso.
+
+No debe compartir la arquitectura corporal de ninguno de los dos.
+
+### No representar
+
+- dragón pequeño;
+- alas;
+- cuernos;
+- grandes crestas;
+- escamas metálicas;
+- placas minerales;
+- cuerpo hecho de piedra;
+- lava;
+- magia visible;
+- patas de mamífero colocadas bajo el cuerpo;
+- cola con maza;
+- aguijón;
+- lengua de camaleón;
+- ojos enormes;
+- colores tropicales brillantes;
+- postura bípeda;
+- rasgos de Arcane.
+
+### Frase rectora para Arte
+
+> **Uñapiedra es un reptil montañés bajo, ancho y aplanado que parece abrazar la roca con cuatro patas abiertas y dedos de uñas curvas; su cola larga equilibra el cuerpo mientras cambia de saliente.**
+
+### Comportamiento visible
+
 - permanece inmóvil sobre roca calentada por el sol;
 - escapa hacia grietas cuando detecta movimiento;
 - puede defender con mordiscos una grieta usada como refugio;
-- cambia rápidamente de nivel aprovechando pequeñas salientes.
+- cambia rápidamente de nivel aprovechando pequeñas salientes;
+- lame depósitos minerales de ciertas piedras.
 
-**Señales:**
+### Valor narrativo
+
+Uñapiedra introduce una fauna que no depende de campos, madrigueras blandas ni defensa espinosa.
+
+En Hoshai, el jugador aprende que **el terreno vertical también está habitado** y que una criatura aparentemente inmóvil puede desaparecer en pocos segundos si conoce mejor la roca que el viajero.
+
+### Señales
+
 - arañazos finos en piedra blanda;
 - pequeñas mudas de piel;
 - excrementos secos cerca de puntos soleados;
-- piedras con superficies pulidas donde lamen minerales.
+- piedras con superficies pulidas donde lamen minerales;
+- rastros de cola en polvo de roca.
 
 ## Saltacresta
 
