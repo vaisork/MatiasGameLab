@@ -1,5 +1,27 @@
 # HANDOFF — Entrega técnica
 
+## ENTREGA — Arte aprobado en el juego: Mordelinde, Espinajo de rastrojo y camino de Veyra (#151)
+
+**DESARROLLADOR:** Claude — Desarrollador de Servidor de Vintage Telnet
+**HEAD BASE:** `552cc93` (origin/main)
+**TAREA ASIGNADA:** Javier: "ponte a programar todo lo que puedas". Conectar los assets que Dirección de Arte aprobó en #151 y el Publicador subió en las PR #161, #169 y #170.
+**RAMA:** `claude/vt-art-roads-creatures`. Incluye los commits de las ramas `assets/vt-mordelinde-151`, `assets/vt-espinajo-151` y `assets/vt-road-veyra-151` sin modificarlos; al integrar esta PR, GitHub marca esas tres como integradas.
+
+### CAMBIOS
+- `creatures.CREATURE_ART`: `mordelinde` y `espinajo_rastrojo` → `/assets/creatures/<id>.webp`. En combate, el marco de imagen muestra la criatura.
+- `world.VISUAL_CONTEXT_ART["zone.veyra.road"]` → `/assets/locations/road-veyra.webp` (Camino del Norte y Camino del Oeste).
+- Las afueras de Valdren (`zone.edran.valdren_outskirts`, pieza 4/4) siguen sin imagen: el marco queda vacío y quieto, como hasta ahora.
+- Nuevo `tests/test_published_art.py`: cada imagen referenciada existe en disco, se sirve como WebP con caché, y el combate contra Mordelinde muestra su imagen.
+
+### PRUEBAS
+- Suite **283/283 OK**.
+- Chromium a 390 px: combate en Parcela removida con la ilustración de Mordelinde en el marco, sin desbordes.
+- Combinado con la PR #172 (Cinco Rutas) y la #168 (reloj): **300/300 OK**. `test_published_art` no depende de la geografía.
+
+**PUBLICADO:** Javier autorizó ("súbelas tú"); se integra con la PR #173.
+
+---
+
 ## ENTREGA — Las Cinco Rutas completas con la geografía de REGIONS.md
 
 **DESARROLLADOR:** Claude — Desarrollador de Servidor de Vintage Telnet
@@ -49,7 +71,7 @@
 - **Aviso:** el recorrido Valdren → Vaisgard ahora son 22 pasos. Quien tenga guardado "sur desde Valdren" para llegar a Vaisgard verá que ya no existe ese atajo.
 - La PR #173 (arte) toca la misma prueba de `test_entry.py`. Se resuelve con el mismo cambio en ambas.
 
-**LISTO PARA PUBLICAR:** falta la autorización de Javier ("sube"). Sin migración de esquema.
+**PUBLICADO:** Javier autorizó ("súbelas tú"); integrado con la PR #172 (`bbb58ca`).
 
 ---
 
@@ -78,7 +100,7 @@
 - Los textos de las salas nuevas siguen solo lo que dice `NARRATIVE_ROUTES.md`; el Narrador puede reescribirlos.
 - `NARRATIVE_ROUTES.md` vive en la PR #164 (Narrador), que depende de la #162 (Historiador), y ninguna está en `main`.
 
-**LISTO PARA PUBLICAR:** falta la autorización de Javier ("sube"). Sin migración.
+**PUBLICADO:** integrado con la PR #172 (`bbb58ca`), con autorización de Javier.
 
 ---
 
