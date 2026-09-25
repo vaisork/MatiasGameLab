@@ -166,7 +166,7 @@
 ### DEPLOY
 `sudo vt-deploy latest` aplica la migración v9 → v10 con respaldo y ensayo previo, como hizo con la v9.
 
-**PUBLICADO:** Javier autorizó ("súbela tú"); se integra a `main` con la PR #155.
+**LISTO PARA PUBLICAR:** falta la autorización de Javier ("sube").
 
 ---
 
@@ -313,7 +313,7 @@ Movimiento, reglas, combate, persistencia, esquema (sigue en v9) y canon. La rej
 - Primera instalación y deploy **en la Raspberry física**, que es el criterio de cierre de #141.
 - Nota para quien instale: si hay una copia vieja de `vt_deploy.py` ya instalada en `/usr/local/lib/vintage-telnet/`, hay que volver a correr el instalador después de integrar esta rama.
 
-**PUBLICADO:** Javier autorizó ("súbela tú"); se integra a `main` con la PR #155.
+**LISTO PARA PUBLICAR:** falta la autorización de Javier ("sube").
 
 ---
 
