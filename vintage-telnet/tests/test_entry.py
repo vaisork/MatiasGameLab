@@ -350,9 +350,20 @@ class EntryTests(unittest.TestCase):
         self.assertNotIn("¡COMBATE!", html)
         self.assertNotIn('action="/attack"', html)
 
-        # Entra al encuentro con Mordelinde (sendero -> parcela).
+        # Entra al encuentro con Mordelinde (sendero -> parcela). Solo está a
+        # la vista: la cruz sigue ahí y se puede atacar, evaluar o seguir.
         self.post("/move", {"direction": "north"})
         self.post("/move", {"direction": "north"})
+        html = self.client.get("/").get_data(as_text=True)
+        self.assertIn("Criatura a la vista", html)
+        self.assertNotIn("¡COMBATE!", html)
+        self.assertIn('class="dpad"', html)
+        self.assertIn('class="action action-attack"', html)
+        self.assertIn('action="/evaluate"', html)
+        self.assertNotIn('action="/flee"', html)
+        self.assertNotIn(">Descansar</button>", html)
+        # Al atacar, empieza la pelea (GAMEPLAY.md §26.5).
+        self.post("/attack", {})
         html = self.client.get("/").get_data(as_text=True)
         self.assertIn('class="place-bar combat"', html)
         self.assertIn("¡COMBATE!", html)

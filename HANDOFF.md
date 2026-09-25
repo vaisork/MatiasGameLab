@@ -1,5 +1,40 @@
 # HANDOFF — Entrega técnica
 
+## ENTREGA — Criatura a la vista vs. pelea: se puede seguir de largo, pero ya peleando hay que huir (§26.5)
+
+**DESARROLLADOR:** Claude — Desarrollador de Servidor de Vintage Telnet
+**HEAD BASE:** rama de la PR #177 (`claude/vintage-telnet-server-lindero-reward`, al día con `main`). Esta PR depende de #177 porque ambas tocan `attempt_move`.
+**TAREA ASIGNADA:** Javier (2026-09-25): "haz una revisión más y avanza lo que puedas".
+**RAMA:** `claude/vt-seguir-de-largo`
+
+### PROBLEMA ENCONTRADO
+1. **Bug §26.5:** estando en pelea, escribir `norte` en el cuadro de comando (o usar `/api/move`) sacaba al personaje **gratis**, sin Huir. `GAMEPLAY.md` §26.5 lo prohíbe: "Esto evita que escribir `norte` sustituya el sistema de huida".
+2. **Contradicción con el diseño:** `world.py` dice "el jugador decide si combate, evalúa o sigue de largo — la criatura nunca ataca primero", y `RANDOM_ENCOUNTER_GAMEPLAY.md` §4 dice "encuentro no significa combate obligatorio". Pero la pantalla entraba en modo combate apenas aparecía la criatura y escondía las salidas. Con la fauna aleatoria en los caminos, eso habría convertido cada encuentro en una pelea o una huida forzada.
+
+### CAMBIO REALIZADO
+- `store.combat_engaged()`: un personaje está **comprometido** si ya atacó, esquivó, resistió, bloqueó o intentó huir contra esa criatura. **Evaluar no cuenta.**
+- `attempt_move` (botón, comando escrito y API):
+  - **comprometido** → rechaza con "Estás peleando con X: para irte tienes que huir.";
+  - **solo a la vista** → puede irse; la criatura se queda atrás y al volver reaparece entera, igual que antes.
+- `room_view` expone `encounter.engaged`.
+- **Pantalla:**
+  - con la criatura a la vista: chip "Criatura a la vista", descripción del lugar, salidas, cruz de dirección y botones **Atacar / Evaluar / Mirar**; el comportamiento de la criatura aparece primero en el cuadro;
+  - al atacar: "¡COMBATE!" y el panel de pelea de siempre (Atacar, Huir, Evaluar, Esquivar, Resistir).
+
+### PRUEBAS
+- Suite **312/312 OK**, con 3 nuevas en `tests/test_seguir_de_largo.py`:
+  - seguir de largo y reaparición al volver;
+  - evaluar no compromete;
+  - ya peleando, ni el botón, ni `sur` escrito, ni `/api/move` sacan al personaje.
+- Chromium a 390 px: los dos estados en la Parcela removida con Mordelinde.
+
+### AVISO
+- Cambia la experiencia de *El lindero roto*: ahora se puede pasar junto a Mordelinde y Espinajo sin pelear. Es lo que dicen el comentario del mundo y §4, pero **Jugabilidad y Narrador deben confirmarlo** en el playtest.
+
+**LISTO PARA PUBLICAR:** falta la autorización de Javier ("sube"). Integrar después de #177. Sin migración.
+
+---
+
 ## ENTREGA — Primera recompensa ganada jugando — Acolchado de Camino (Issue #147)
 
 **Desarrollador:** Claude — Desarrollador de Servidor de Vintage Telnet

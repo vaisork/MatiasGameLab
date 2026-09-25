@@ -235,6 +235,9 @@ def create_app(config=None):
                 # Mordelinde de Espinajo antes de decidir (VT-PSY-004).
                 "condition": combat.enemy_condition(encounter["hp_current"], creature["hp"]),
                 "behavior": creature["behavior_text"],
+                # Ya peleaste con ella (§26.5): modo combate completo. Si no,
+                # solo está a la vista y puedes seguir de largo.
+                "engaged": store.combat_engaged(path, player_id, room_id),
             }
             # En combate el marco muestra a la criatura, o nada si todavía no
             # hay arte aprobado de ella (nunca el paisaje de fondo).
@@ -353,6 +356,17 @@ def create_app(config=None):
         destination = room["exits"].get(direction) if room else None
         if not destination:
             return False, previous_room, None, "No puedes ir en esa dirección.", None
+        present = store.get_encounter(path, player["id"], previous_room)
+        if present:
+            # GAMEPLAY.md §26.5: ya comprometido en la pelea, caminar no
+            # sustituye a Huir. Si solo la tenías a la vista, puedes seguir de
+            # largo (la criatura nunca ataca primero; RANDOM_ENCOUNTER §4) y
+            # se queda atrás.
+            if store.combat_engaged(path, player["id"], previous_room):
+                name = creatures.get_creature(present["creature_id"])["name"]
+                return (False, previous_room, None,
+                        f"Estás peleando con {name}: para irte tienes que huir.", None)
+            store.clear_encounter(path, player["id"], previous_room)
         store.move_player(path, player["id"], destination, direction)
         store.mark_visited(path, player["id"], destination)
         store.mark_route_traversed(path, player["id"], previous_room, destination)

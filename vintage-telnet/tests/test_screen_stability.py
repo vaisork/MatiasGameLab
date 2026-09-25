@@ -59,11 +59,10 @@ class CombatReadingTests(ScreenStabilityTests):
     def test_combat_shows_only_the_fight_and_results_go_inside_the_log(self):
         self.post("/move", dict(direction="north"))
         self.post("/move", dict(direction="north"))  # Parcela removida: Mordelinde
-        html = self.client.get("/").get_data(as_text=True)
+        html = self.post("/attack", {}).get_data(as_text=True)  # empieza la pelea
         self.assertIn("¡COMBATE!", html)
         self.assertNotIn("<p data-room-description", html)  # no se repite cómo es el lugar
         self.assertNotIn('class="entry exits-entry"', html)
-        html = self.post("/attack", {}).get_data(as_text=True)
         self.assertIn("data-result-entry>", html)
         self.assertNotIn('<div class="alert-note"', html)  # nada empuja la pantalla desde arriba
 
