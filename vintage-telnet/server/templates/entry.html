@@ -253,6 +253,13 @@
     .onboarding-nav{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
     .onboarding-note{margin:12px 0 0;color:var(--muted);font:.78rem/1.45 ui-sans-serif,system-ui,sans-serif}
     .state-panel{width:min(100%,34rem);margin:0 auto}
+    .form-error{margin:0 0 12px;padding:10px 12px;border:1px solid #8a4b3a;border-radius:10px;background:#2a1510;color:#ffd0b0;font:.88rem/1.45 ui-sans-serif,system-ui,sans-serif}
+    .account-actions{display:flex;flex-wrap:wrap;gap:8px}
+    .character-list{list-style:none;margin:12px 0;padding:0;display:grid;gap:8px}
+    .character-pick{width:100%;display:flex;flex-direction:column;align-items:flex-start;gap:2px;text-align:left}
+    .character-pick span{font-size:.8rem;color:var(--muted);font-weight:400}
+    .new-character{margin-top:14px;border-top:1px solid #4b3a25;padding-top:12px}
+    .new-character label{display:block}
     .state-panel .card-body{padding:20px}
     .state-panel h2{margin:0 0 8px;color:var(--gold);font:800 1.15rem/1.2 ui-sans-serif,system-ui,sans-serif}
     .state-panel p{margin:0 0 10px;color:#d9ccb1;line-height:1.55}
@@ -517,6 +524,7 @@
     <div class="status">
       <i></i>
       {% if player %}<span>Jugador #{{ '%04d' | format(player.player_number) }} · {{ player.name }}</span>
+      {% elif account %}<span>{{ account.username }} · elige personaje</span>
       {% else %}<span>Invitado</span>{% endif %}
     </div>
   </header>
@@ -527,23 +535,62 @@
      aviso sigue aquí. #}
   {% set in_game = player and player.status == 'approved' and player.species is not none
                    and player.player_class is not none and room %}
-  {% if error and not in_game %}<div class="alert-note" role="alert">{{ error }}</div>{% endif %}
+  {# En la entrada y la lista de personajes el error va dentro del formulario,
+     junto a lo que hay que corregir. #}
+  {% if error and not in_game and player %}<div class="alert-note" role="alert">{{ error }}</div>{% endif %}
 
-  {% if not player %}
+  {% if not player and account %}
+    <section class="card state-panel characters-panel" aria-labelledby="characters-title"><div class="card-body">
+      <h2 id="characters-title">Tus personajes</h2>
+      <p>Usuario <b>{{ account.username }}</b>. Elige con quién jugar o crea un personaje nuevo.</p>
+      {% if error %}<p class="form-error" role="alert">{{ error }}</p>{% endif %}
+      {% if characters %}
+      <ul class="character-list">
+        {% for c in characters %}
+        <li>
+          <form method="post" action="/characters/select">
+            <input type="hidden" name="csrf" value="{{ session.csrf }}">
+            <input type="hidden" name="player_id" value="{{ c.id }}">
+            <button class="btn character-pick" type="submit">
+              <b>{{ c.name }}</b>
+              <span>{% if c.status == 'pending' %}Esperando aprobación del Dungeon Master
+                {% elif c.status in ('rejected', 'removed') %}No habilitado
+                {% elif c.species is none %}Aprobado · falta elegir especie
+                {% else %}Nivel {{ c.level or 1 }} · {{ c.species }}{% if c.player_class %} · {{ class_names.get(c.player_class) }}{% endif %}{% endif %}</span>
+            </button>
+          </form>
+        </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      {% if characters|length < max_characters %}
+      <form method="post" action="/characters/new" class="new-character">
+        <input type="hidden" name="csrf" value="{{ session.csrf }}">
+        <label>Nombre del personaje nuevo (así te verán los demás)<input type="text" name="name" value="{{ new_name or '' }}" required maxlength="60" autocomplete="off"></label>
+        <small>Puedes tener hasta {{ max_characters }} personajes. Cada uno necesita la aprobación del Dungeon Master.</small>
+        <button class="btn primary" type="submit">Crear personaje</button>
+      </form>
+      {% else %}
+      <p class="onboarding-note">Ya tienes {{ max_characters }} personajes, el máximo por cuenta.</p>
+      {% endif %}
+      <form method="post" action="/logout" style="margin-top:12px"><input type="hidden" name="csrf" value="{{ session.csrf }}"><button class="btn" type="submit">Cerrar sesión</button></form>
+    </div></section>
+
+  {% elif not player %}
     {% include "_onboarding_guest.html" %}
 
   {% elif player.status == 'pending' %}
     <section class="card state-panel"><div class="card-body">
       <h2>Tu entrada está siendo preparada</h2>
-      <p>Tu cuenta fue recibida. El Dungeon Master debe aprobar a los personajes nuevos antes de que comiencen su viaje.</p>
+      <p>{{ player.name }} fue recibido. El Dungeon Master debe aprobar a cada personaje nuevo antes de que comience su viaje.</p>
       <p class="onboarding-note">Cuando tu entrada esté habilitada, podrás continuar con la elección de especie.</p>
-      <form method="post" action="/logout"><input type="hidden" name="csrf" value="{{ session.csrf }}"><button class="btn" type="submit">Cerrar sesión</button></form>
+      <div class="account-actions"><form method="post" action="/characters/switch"><input type="hidden" name="csrf" value="{{ session.csrf }}"><button class="btn" type="submit">Cambiar de personaje</button></form><form method="post" action="/logout"><input type="hidden" name="csrf" value="{{ session.csrf }}"><button class="btn" type="submit">Cerrar sesión</button></form></div>
     </div></section>
 
   {% elif player.status in ('rejected', 'removed') %}
     <section class="card"><div class="card-body" style="padding:16px">
-      <p>Tu cuenta no está habilitada para entrar al mundo.</p>
-      <form method="post" action="/logout"><input type="hidden" name="csrf" value="{{ session.csrf }}"><button class="btn" type="submit">Cerrar sesión</button></form>
+      <p>{{ player.name }} no está habilitado para entrar al mundo.</p>
+      <div class="account-actions"><form method="post" action="/characters/switch"><input type="hidden" name="csrf" value="{{ session.csrf }}"><button class="btn" type="submit">Cambiar de personaje</button></form><form method="post" action="/logout"><input type="hidden" name="csrf" value="{{ session.csrf }}"><button class="btn" type="submit">Cerrar sesión</button></form></div>
     </div></section>
 
   {% elif player.species is none %}
@@ -781,7 +828,7 @@
       </aside>
     </div>
 
-    <form method="post" action="/logout" style="margin-top:8px"><input type="hidden" name="csrf" value="{{ session.csrf }}"><button class="btn" type="submit">Cerrar sesión</button></form>
+    <div class="account-actions" style="margin-top:8px"><form method="post" action="/characters/switch"><input type="hidden" name="csrf" value="{{ session.csrf }}"><button class="btn" type="submit">Cambiar de personaje</button></form><form method="post" action="/logout"><input type="hidden" name="csrf" value="{{ session.csrf }}"><button class="btn" type="submit">Cerrar sesión</button></form></div>
   {% endif %}
 
   <div class="footer">Vintage Telnet · servidor real · texto primero, HTML como herramienta</div>

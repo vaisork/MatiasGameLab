@@ -6,6 +6,7 @@ from pathlib import Path
 import secrets
 import sqlite3
 import time
+import unicodedata
 import uuid
 
 from . import combat, items
@@ -14,7 +15,33 @@ STATUSES = ("pending", "approved", "rejected", "removed")
 
 # Version de esquema que deja initialize(); ops/inventory_migration_probe.py
 # la usa para validar una migracion de prueba contra la copia de la base viva.
-SCHEMA_VERSION = 10
+SCHEMA_VERSION = 11
+
+# Cuentas con varios personajes (petición de Javier, 2026-09-25): un usuario
+# para entrar puede tener hasta 5 personajes; el nombre de cada personaje es
+# único en todo el mundo y el Dungeon Master aprueba cada uno.
+MAX_CHARACTERS_PER_ACCOUNT = 5
+
+
+class UsernameTaken(Exception):
+    pass
+
+
+class NameTaken(Exception):
+    pass
+
+
+class TooManyCharacters(Exception):
+    pass
+
+
+def name_key(name):
+    """Forma comparable del nombre de personaje: sin acentos, sin
+    mayúsculas y con espacios normalizados, para que "Matías" y "matias"
+    cuenten como el mismo nombre."""
+    decomposed = unicodedata.normalize("NFKD", name)
+    plain = "".join(c for c in decomposed if not unicodedata.combining(c))
+    return " ".join(plain.casefold().split())
 
 PLAYER_COLUMNS = (
     "id, player_number, username, name, status, species, player_class, room, heading, created_at, last_access_at"
@@ -238,7 +265,60 @@ def initialize(path):
             # terminarlo y se poda a COMBAT_LOG_KEEP líneas, así nunca crece.
             db.execute(COMBAT_LOG_TABLE)
             db.execute("CREATE INDEX combat_log_player_room ON combat_log(player_id, room_id, id)")
+        if version <= 10:
+            _migrate_to_accounts(db)
         db.execute(f"PRAGMA user_version = {SCHEMA_VERSION}")
+
+
+ACCOUNTS_TABLE = """CREATE TABLE accounts (
+    id TEXT PRIMARY KEY,
+    username TEXT NOT NULL UNIQUE,
+    password_hash TEXT NOT NULL,
+    created_at TEXT NOT NULL)"""
+
+
+def _migrate_to_accounts(db):
+    """v11: la fila de `players` pasa a ser un personaje y el usuario con su
+    contraseña se mueve a `accounts`. Cada jugador existente se vuelve una
+    cuenta con un solo personaje, así nadie pierde nada ni cambia cómo entra.
+    `players.username` se conserva como identificador interno del personaje
+    (el panel del DM y admin.py lo usan); para personajes nuevos es
+    `<usuario>.<n>`, que nunca choca con un usuario real porque el punto no
+    está permitido al registrarse."""
+    db.execute(ACCOUNTS_TABLE)
+    db.execute("ALTER TABLE players ADD COLUMN account_id TEXT REFERENCES accounts(id)")
+    db.execute("ALTER TABLE players ADD COLUMN name_key TEXT")
+    used = set()
+    rows = db.execute(
+        "SELECT id, username, name, password_hash, created_at FROM players ORDER BY player_number").fetchall()
+    for row in rows:
+        account_id = str(uuid.uuid4())
+        db.execute("INSERT INTO accounts(id, username, password_hash, created_at) VALUES (?, ?, ?, ?)",
+                   (account_id, row["username"], row["password_hash"], row["created_at"]))
+        # Si dos jugadores ya compartían nombre, el más antiguo lo conserva y
+        # el otro recibe un número al final (" 2", " 3"...).
+        name, suffix = row["name"], 2
+        while name_key(name) in used:
+            name = f"{row['name'][:56]} {suffix}"
+            suffix += 1
+        used.add(name_key(name))
+        db.execute("UPDATE players SET account_id = ?, name = ?, name_key = ?, password_hash = '' WHERE id = ?",
+                   (account_id, name, name_key(name), row["id"]))
+    db.execute("CREATE UNIQUE INDEX players_name_key ON players(name_key)")
+    db.execute("CREATE INDEX players_account ON players(account_id)")
+    # La sesión ahora pertenece a la cuenta; el personaje activo puede quedar
+    # vacío mientras el jugador elige con cuál jugar. Las sesiones abiertas
+    # se conservan con su personaje actual.
+    db.execute("""CREATE TABLE sessions_v11 (
+        token_hash TEXT PRIMARY KEY,
+        account_id TEXT NOT NULL REFERENCES accounts(id),
+        player_id TEXT REFERENCES players(id),
+        expires_at INTEGER NOT NULL)""")
+    db.execute("""INSERT INTO sessions_v11(token_hash, account_id, player_id, expires_at)
+                  SELECT s.token_hash, p.account_id, s.player_id, s.expires_at
+                  FROM sessions s JOIN players p ON p.id = s.player_id""")
+    db.execute("DROP TABLE sessions")
+    db.execute("ALTER TABLE sessions_v11 RENAME TO sessions")
 
 
 def allow_attempt(path, address):
@@ -256,28 +336,128 @@ def allow_attempt(path, address):
     return True
 
 
-def record_access(db, player_id, kind, old_token=None):
-    now = utcnow()
+def _touch_character(db, player_id, kind, now=None):
+    now = now or utcnow()
+    db.execute("UPDATE players SET last_access_at = ? WHERE id = ?", (now, player_id))
+    db.execute("INSERT INTO access_events(player_id, kind, occurred_at) VALUES (?, ?, ?)",
+               (player_id, kind, now))
+
+
+def record_access(db, account_id, player_id, kind, old_token=None):
+    """Abre una sesión de la cuenta. player_id puede ser None: la cuenta
+    entra y elige personaje después."""
     token = secrets.token_urlsafe(32)
     db.execute("DELETE FROM sessions WHERE expires_at <= ?", (int(time.time()),))
     if old_token:
         db.execute("DELETE FROM sessions WHERE token_hash = ?", (digest(old_token),))
-    db.execute("INSERT INTO sessions VALUES (?, ?, ?)",
-               (digest(token), player_id, int(time.time()) + 12 * 3600))
-    db.execute("UPDATE players SET last_access_at = ? WHERE id = ?", (now, player_id))
-    db.execute("INSERT INTO access_events(player_id, kind, occurred_at) VALUES (?, ?, ?)",
-               (player_id, kind, now))
+    db.execute("INSERT INTO sessions(token_hash, account_id, player_id, expires_at) VALUES (?, ?, ?, ?)",
+               (digest(token), account_id, player_id, int(time.time()) + 12 * 3600))
+    if player_id is not None:
+        _touch_character(db, player_id, kind)
     return token
 
 
+def _check_name_free(db, name):
+    if db.execute("SELECT 1 FROM players WHERE name_key = ?", (name_key(name),)).fetchone():
+        raise NameTaken()
+
+
+def _insert_character(db, account_id, handle, name, now):
+    player_id = str(uuid.uuid4())
+    db.execute("""INSERT INTO players(id, username, name, name_key, password_hash, account_id,
+                                      created_at, last_access_at)
+                  VALUES (?, ?, ?, ?, '', ?, ?, ?)""",
+               (player_id, handle, name, name_key(name), account_id, now, now))
+    return player_id
+
+
 def register(path, username, name, password_hash, old_token=None):
+    """Crea la cuenta y su primer personaje (pendiente de aprobación).
+    Lanza UsernameTaken o NameTaken sin crear nada."""
     with connect(path) as db:
-        player_id = str(uuid.uuid4())
+        db.execute("BEGIN IMMEDIATE")
+        if (db.execute("SELECT 1 FROM accounts WHERE username = ?", (username,)).fetchone()
+                or db.execute("SELECT 1 FROM players WHERE username = ?", (username,)).fetchone()):
+            raise UsernameTaken()
+        _check_name_free(db, name)
+        account_id = str(uuid.uuid4())
         now = utcnow()
-        db.execute("""INSERT INTO players(id, username, name, password_hash, created_at, last_access_at)
-                      VALUES (?, ?, ?, ?, ?, ?)""",
-                   (player_id, username, name, password_hash, now, now))
-        return record_access(db, player_id, "register", old_token)
+        db.execute("INSERT INTO accounts(id, username, password_hash, created_at) VALUES (?, ?, ?, ?)",
+                   (account_id, username, password_hash, now))
+        player_id = _insert_character(db, account_id, username, name, now)
+        return record_access(db, account_id, player_id, "register", old_token)
+
+
+def create_character(path, account_id, name):
+    """Personaje nuevo de una cuenta existente; queda pendiente de que el DM
+    lo apruebe. Lanza TooManyCharacters o NameTaken."""
+    with connect(path) as db:
+        db.execute("BEGIN IMMEDIATE")
+        account = db.execute("SELECT username FROM accounts WHERE id = ?", (account_id,)).fetchone()
+        if account is None:
+            raise LookupError(account_id)
+        count = db.execute("SELECT count(*) FROM players WHERE account_id = ?", (account_id,)).fetchone()[0]
+        if count >= MAX_CHARACTERS_PER_ACCOUNT:
+            raise TooManyCharacters()
+        _check_name_free(db, name)
+        number = count + 1
+        while db.execute("SELECT 1 FROM players WHERE username = ?",
+                         (f"{account['username']}.{number}",)).fetchone():
+            number += 1
+        now = utcnow()
+        player_id = _insert_character(db, account_id, f"{account['username']}.{number}", name, now)
+        _touch_character(db, player_id, "register", now)
+        return player_id
+
+
+def account_for_token(path, token):
+    """Cuenta de la sesión y personaje activo (player_id puede ser None)."""
+    if not token:
+        return None
+    with connect(path) as db:
+        return db.execute(
+            """SELECT a.id, a.username, s.player_id FROM accounts a
+               JOIN sessions s ON s.account_id = a.id
+               WHERE s.token_hash = ? AND s.expires_at > ?""",
+            (digest(token), int(time.time()))).fetchone()
+
+
+def account_by_username(db, username):
+    return db.execute("SELECT id, username, password_hash FROM accounts WHERE username = ?",
+                      (username,)).fetchone()
+
+
+def list_characters(path, account_id):
+    with connect(path) as db:
+        return db.execute(
+            """SELECT id, player_number, name, status, species, player_class, level, room, last_access_at
+               FROM players WHERE account_id = ? ORDER BY player_number""", (account_id,)).fetchall()
+
+
+def only_character_id(db, account_id):
+    """El personaje de la cuenta si tiene exactamente uno; si no, None."""
+    rows = db.execute("SELECT id FROM players WHERE account_id = ? LIMIT 2", (account_id,)).fetchall()
+    return rows[0]["id"] if len(rows) == 1 else None
+
+
+def select_character(path, token, account_id, player_id):
+    """Activa un personaje de la propia cuenta en la sesión. False si el
+    personaje no existe o es de otra cuenta."""
+    with connect(path) as db:
+        owned = db.execute("SELECT 1 FROM players WHERE id = ? AND account_id = ?",
+                           (player_id, account_id)).fetchone()
+        if owned is None:
+            return False
+        db.execute("UPDATE sessions SET player_id = ? WHERE token_hash = ? AND account_id = ?",
+                   (player_id, digest(token), account_id))
+        _touch_character(db, player_id, "login")
+        return True
+
+
+def release_character(path, token):
+    """Vuelve a la lista de personajes sin cerrar la sesión de la cuenta."""
+    with connect(path) as db:
+        db.execute("UPDATE sessions SET player_id = NULL WHERE token_hash = ?", (digest(token or ""),))
 
 
 def player_for_token(path, token):
@@ -340,7 +520,10 @@ def character_by_id(db, player_id):
 def list_by_status(path, status):
     with connect(path) as db:
         return db.execute(
-            f"SELECT {PLAYER_COLUMNS} FROM players WHERE status = ? ORDER BY player_number", (status,)
+            f"""SELECT {", ".join("p." + c.strip() for c in PLAYER_COLUMNS.split(","))},
+                       a.username AS account_username
+                FROM players p LEFT JOIN accounts a ON a.id = p.account_id
+                WHERE p.status = ? ORDER BY p.player_number""", (status,)
         ).fetchall()
 
 
@@ -354,7 +537,9 @@ def set_status(path, username, status, revoke_sessions=False):
             return None
         db.execute("UPDATE players SET status = ? WHERE id = ?", (status, player["id"]))
         if revoke_sessions:
-            db.execute("DELETE FROM sessions WHERE player_id = ?", (player["id"],))
+            # Solo saca a ese personaje: la cuenta vuelve a su lista y puede
+            # seguir jugando con sus otros personajes.
+            db.execute("UPDATE sessions SET player_id = NULL WHERE player_id = ?", (player["id"],))
         return player_by_username(db, username)
 
 

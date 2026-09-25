@@ -100,7 +100,7 @@ class EntryTests(unittest.TestCase):
         with store.connect(self.path) as db:
             self.assertEqual(db.execute("SELECT count(*) FROM players").fetchone()[0], 1)
             self.assertEqual(db.execute("SELECT count(*) FROM access_events").fetchone()[0], 2)
-            hashed = db.execute("SELECT password_hash FROM players").fetchone()[0]
+            hashed = db.execute("SELECT password_hash FROM accounts").fetchone()[0]
             self.assertTrue(hashed.startswith("scrypt:"))
             self.assertNotIn("una clave de prueba", hashed)
 
@@ -110,7 +110,9 @@ class EntryTests(unittest.TestCase):
         self.assertEqual(self.register("MATIAS").status_code, 409)
         self.assertEqual(self.post("/login", dict(username="matias", password="wrong")).status_code, 401)
         self.assertEqual(self.client.get("/api/me").json["player"]["last_access_at"], before)
-        self.register("javier")
+        # El nombre de personaje es único en todo el mundo (sin importar acentos).
+        self.assertEqual(self.register("javier", name="matias").status_code, 409)
+        self.register("javier", name="Javier")
         self.assertEqual(self.client.get("/api/me").json["player"]["player_number"], 2)
         with store.connect(self.path) as db:
             self.assertEqual(db.execute("SELECT count(*) FROM access_events").fetchone()[0], 2)
@@ -137,7 +139,7 @@ class EntryTests(unittest.TestCase):
         for path in ("/SECRETS.md", "/vintage.sqlite3", "/static/SECRETS.md", "/players"):
             self.assertEqual(self.client.get(path).status_code, 404)
         response = self.client.get("/healthz")
-        self.assertEqual(response.json, dict(status="ok", schema_version=10))
+        self.assertEqual(response.json, dict(status="ok", schema_version=store.SCHEMA_VERSION))
         self.assertNotIn("Set-Cookie", response.headers)
 
     def test_ui_foundation_map_rest_help_and_no_dead_combat_controls(self):
@@ -256,7 +258,7 @@ class EntryTests(unittest.TestCase):
         self.assertEqual(self.register().status_code, 303)
         html = self.client.get("/").get_data(as_text=True)
         self.assertIn("Tu entrada está siendo preparada", html)
-        self.assertIn("Tu cuenta fue recibida.", html)
+        self.assertIn("fue recibido. El Dungeon Master debe aprobar a cada personaje", html)
         self.assertIn("Cuando tu entrada esté habilitada, podrás continuar con la elección de especie.", html)
         self.assertNotIn('data-onboarding-view="login"', html)
 
@@ -507,7 +509,7 @@ class EntryTests(unittest.TestCase):
         def attempt(_):
             try:
                 return store.register(self.path, "same_user", "Nombre", "test-only-hash")
-            except sqlite3.IntegrityError:
+            except (sqlite3.IntegrityError, store.UsernameTaken):
                 return None
         with ThreadPoolExecutor(max_workers=4) as pool:
             results = list(pool.map(attempt, range(4)))
@@ -536,7 +538,7 @@ class EntryTests(unittest.TestCase):
         with self.assertRaises(RuntimeError):
             create_app({**self.config, "DATA_DIR": "relative"})
         with store.connect(self.path) as db:
-            db.execute("PRAGMA user_version = 11")
+            db.execute(f"PRAGMA user_version = {store.SCHEMA_VERSION + 1}")
         with self.assertRaises(RuntimeError):
             create_app(self.config)
 

@@ -11,6 +11,7 @@ import tempfile
 import unittest
 
 from server.app import create_app
+from legacy_schema import undo_v11
 from server import items, store, world
 
 
@@ -148,6 +149,7 @@ class ClassChoiceTests(unittest.TestCase):
         player_id = self.me()["id"]
         store.award_xp(self.path, player_id, 40)
         with sqlite3.connect(self.path) as db:
+            undo_v11(db)
             db.execute("ALTER TABLE players DROP COLUMN player_class")
             db.execute("DROP TABLE combat_log")  # llega en v10
             db.execute("PRAGMA user_version = 8")

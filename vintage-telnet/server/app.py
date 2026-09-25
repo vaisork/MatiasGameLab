@@ -135,14 +135,15 @@ def create_app(config=None):
         if request.endpoint in ("health", "html_ui_assets", "location_assets", "map_assets"):
             return
         session.setdefault("csrf", secrets.token_urlsafe(32))
-        g.player = store.player_for_token(path, session.get("token"))
+        g.account = store.account_for_token(path, session.get("token"))
+        g.player = store.player_for_token(path, session.get("token")) if g.account else None
         # Aunque haya una sesión de DM abierta desde la red privada, esa
         # sesión no da poderes de DM si la petición llega por internet.
         g.dm = bool(session.get("dm")) and not from_public_internet()
 
     @app.context_processor
     def inject_csp_nonce():
-        return {"csp_nonce": getattr(g, "csp_nonce", "")}
+        return {"csp_nonce": getattr(g, "csp_nonce", ""), "account": getattr(g, "account", None)}
 
     # Imágenes/iconos públicos del juego: el celular los guarda un día para
     # que la ilustración no se vuelva a descargar (y parpadee) en cada acción.
@@ -845,8 +846,26 @@ def create_app(config=None):
             return jsonify(error="not_approved", status=player["status"]), 403
         return None
 
+    def valid_character_name(name):
+        return (1 <= len(name) <= 60 and not any(ord(c) < 32 for c in name)
+                and store.name_key(name) != "")
+
+    def character_list_page(error=None, status=200, new_name=""):
+        characters = store.list_characters(path, g.account["id"])
+        return render_template("entry.html", player=None, characters=characters,
+                               max_characters=store.MAX_CHARACTERS_PER_ACCOUNT,
+                               new_name=new_name, error=error), status
+
+    def guest_page(error, status, view, values=None):
+        """Formulario de entrada con el error y los datos que el jugador ya
+        escribió (nunca la contraseña), en la misma vista donde estaba."""
+        return render_template("entry.html", error=error, onboarding_view=view, account=None,
+                               form_values=values or {}), status
+
     @app.get("/")
     def index():
+        if g.account is not None and g.player is None:
+            return character_list_page()
         room = None
         if g.player is not None and g.player["status"] == "approved" and g.player["room"]:
             room = room_view(g.player["room"], g.player["id"])
@@ -855,35 +874,80 @@ def create_app(config=None):
     @app.post("/register")
     def register():
         if not store.allow_attempt(path, request.remote_addr or "unknown"):
-            return render_template("entry.html", error="Demasiados intentos. Espera un minuto."), 429
+            return guest_page("Demasiados intentos. Espera un minuto.", 429, "register")
         username = request.form.get("username", "").strip().lower()
         name = request.form.get("name", "").strip()
         password = request.form.get("password", "")
-        if (not re.fullmatch(r"[a-z0-9_]{3,32}", username)
-                or not 1 <= len(name) <= 60 or any(ord(c) < 32 for c in name)
-                or not 8 <= len(password) <= 128):
-            return render_template("entry.html", error="Revisa el nombre, usuario y contraseña según las indicaciones."), 400
+        values = {"username": username[:32], "name": name[:60]}
+        if not re.fullmatch(r"[a-z0-9_]{3,32}", username):
+            return guest_page("El usuario debe tener de 3 a 32 letras o números, sin acentos ni espacios "
+                              "(puedes usar guion bajo _).", 400, "register", values)
+        if not valid_character_name(name):
+            return guest_page("Escribe el nombre de tu personaje (hasta 60 letras).", 400, "register", values)
+        if not 8 <= len(password) <= 128:
+            return guest_page("La contraseña debe tener al menos 8 caracteres.", 400, "register", values)
         try:
             token = store.register(path, username, name, generate_password_hash(password), session.get("token"))
-        except sqlite3.IntegrityError:
-            return render_template("entry.html", error="Ese usuario no está disponible."), 409
+        except store.UsernameTaken:
+            return guest_page(f"El usuario «{username}» ya existe. Si es tuyo, usa Entrar; "
+                              "si no, elige otro usuario.", 409, "register", values)
+        except (store.NameTaken, sqlite3.IntegrityError):
+            return guest_page(f"Ya hay un personaje llamado «{name}» en el mundo. "
+                              "Elige otro nombre para tu personaje.", 409, "register", values)
         return establish_session(token)
 
     @app.post("/login")
     def login():
         if not store.allow_attempt(path, request.remote_addr or "unknown"):
-            return render_template("entry.html", error="Demasiados intentos. Espera un minuto."), 429
+            return guest_page("Demasiados intentos. Espera un minuto.", 429, "login")
         username = request.form.get("username", "").strip().lower()
         password = request.form.get("password", "")
         if len(password) > 128 or len(username) > 32:
             abort(400)
         with store.connect(path) as db:
-            player = db.execute("SELECT id, password_hash FROM players WHERE username = ?", (username,)).fetchone()
-            valid = check_password_hash(player["password_hash"] if player else dummy_hash, password)
-            if not valid or player is None:
-                return render_template("entry.html", error="Usuario o contraseña incorrectos."), 401
-            token = store.record_access(db, player["id"], "login", session.get("token"))
+            account = store.account_by_username(db, username)
+            valid = check_password_hash(account["password_hash"] if account else dummy_hash, password)
+            if not valid or account is None:
+                return guest_page("Usuario o contraseña incorrectos.", 401, "login", {"username": username})
+            # Con un solo personaje se entra directo, como siempre; con varios
+            # (o ninguno) se muestra la lista para elegir.
+            player_id = store.only_character_id(db, account["id"])
+            token = store.record_access(db, account["id"], player_id, "login", session.get("token"))
         return establish_session(token)
+
+    def require_account():
+        if g.account is None:
+            abort(401)
+
+    @app.post("/characters/select")
+    def select_character():
+        require_account()
+        if not store.select_character(path, session.get("token"), g.account["id"],
+                                      request.form.get("player_id", "")):
+            return character_list_page("Ese personaje no está en tu cuenta.", 404)
+        return redirect(url_for("index"), code=303)
+
+    @app.post("/characters/new")
+    def new_character():
+        require_account()
+        name = request.form.get("name", "").strip()
+        if not valid_character_name(name):
+            return character_list_page("Escribe el nombre de tu personaje (hasta 60 letras).", 400, name[:60])
+        try:
+            store.create_character(path, g.account["id"], name)
+        except store.TooManyCharacters:
+            return character_list_page(
+                f"Ya tienes {store.MAX_CHARACTERS_PER_ACCOUNT} personajes, el máximo por cuenta.", 409)
+        except (store.NameTaken, sqlite3.IntegrityError):
+            return character_list_page(f"Ya hay un personaje llamado «{name}» en el mundo. "
+                                       "Elige otro nombre.", 409, name[:60])
+        return redirect(url_for("index"), code=303)
+
+    @app.post("/characters/switch")
+    def switch_character():
+        require_account()
+        store.release_character(path, session.get("token"))
+        return redirect(url_for("index"), code=303)
 
     @app.post("/logout")
     def logout():
@@ -1045,6 +1109,9 @@ def create_app(config=None):
     def me():
         # csrf va incluido para que un cliente JSON (fetch) pueda reusarlo en
         # los POST estructurados (/api/species, /api/move) sin parsear HTML.
+        if g.account is not None and g.player is None:
+            # Cuenta abierta sin personaje activo: toca elegir uno en "/".
+            return jsonify(player=None, error="character_required", csrf=session.get("csrf")), 409
         if g.player is None:
             return jsonify(player=None, csrf=session.get("csrf")), 401
         return jsonify(player=dict(g.player), world_status="under_construction", csrf=session.get("csrf"))
