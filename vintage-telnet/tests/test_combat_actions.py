@@ -139,8 +139,8 @@ class CombatActionsIntegrationTests(unittest.TestCase):
         self.choose_class_without_starter_weapon()
 
     def enter_combat_with_mordelinde(self):
-        self.post("/move", dict(direction="west"))  # sendero
-        self.post("/move", dict(direction="west"))  # parcela: aparece Mordelinde
+        self.post("/move", dict(direction="north"))  # sendero
+        self.post("/move", dict(direction="north"))  # parcela: aparece Mordelinde
 
     def player_id(self):
         return self.client.get("/api/me").json["player"]["id"]

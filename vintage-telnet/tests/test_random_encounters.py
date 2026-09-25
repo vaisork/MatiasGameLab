@@ -12,7 +12,7 @@ from server import encounters, store, world
 
 ROAD_POOL = {
     "prueba_camino": {
-        "rooms": {"road_north", "valdren_camino_parcela"},
+        "rooms": {"valdren_sendero", "valdren_camino_parcela"},
         "chance": 0.5,
         "gameplay_override": True,  # solo pruebas: fuera de la banda 10–35 %
         "creatures": [("mordelinde", 3), ("espinajo_rastrojo", 1)],
@@ -47,31 +47,31 @@ class EngineTests(unittest.TestCase):
                          "espinajo_rastrojo")
 
     def test_eligible_room_can_return_different_creatures(self):
-        self.assertEqual(encounters.get_encounter_for_room("road_north", AlwaysRoll(0.1, 0), ROAD_POOL),
+        self.assertEqual(encounters.get_encounter_for_room("valdren_sendero", AlwaysRoll(0.1, 0), ROAD_POOL),
                          "mordelinde")
-        self.assertEqual(encounters.get_encounter_for_room("road_north", AlwaysRoll(0.1, 1), ROAD_POOL),
+        self.assertEqual(encounters.get_encounter_for_room("valdren_sendero", AlwaysRoll(0.1, 1), ROAD_POOL),
                          "espinajo_rastrojo")
         # Por encima de chance no aparece nada.
-        self.assertIsNone(encounters.get_encounter_for_room("road_north", AlwaysRoll(0.5), ROAD_POOL))
-        seen = {encounters.get_encounter_for_room("road_north", random.Random(seed), ROAD_POOL)
+        self.assertIsNone(encounters.get_encounter_for_room("valdren_sendero", AlwaysRoll(0.5), ROAD_POOL))
+        seen = {encounters.get_encounter_for_room("valdren_sendero", random.Random(seed), ROAD_POOL)
                 for seed in range(200)}
         self.assertEqual(seen, {None, "mordelinde", "espinajo_rastrojo"})
 
     def test_ineligible_room_never_spawns(self):
-        for room_id in ("valdren_centro", "road_west", "valdren_camino_lindero"):
+        for room_id in ("valdren_centro", "valdren_forja", "valdren_camino_lindero"):
             for seed in range(50):
                 self.assertIsNone(encounters.get_encounter_for_room(room_id, random.Random(seed), ROAD_POOL))
 
     def test_same_seed_gives_same_sequence(self):
         def run(seed):
             rng = random.Random(seed)
-            return [encounters.get_encounter_for_room("road_north", rng, ROAD_POOL) for _ in range(30)]
+            return [encounters.get_encounter_for_room("valdren_sendero", rng, ROAD_POOL) for _ in range(30)]
         self.assertEqual(run(7), run(7))
 
     def test_weights_are_respected(self):
         rng = random.Random(1)
         pools = {"p": {**ROAD_POOL["prueba_camino"], "chance": 1.0}}
-        results = [encounters.get_encounter_for_room("road_north", rng, pools) for _ in range(2000)]
+        results = [encounters.get_encounter_for_room("valdren_sendero", rng, pools) for _ in range(2000)]
         share = results.count("mordelinde") / len(results)
         self.assertAlmostEqual(share, 0.75, delta=0.05)
 
@@ -93,12 +93,12 @@ class EngineTests(unittest.TestCase):
             with self.subTest(pool=pool), self.assertRaises(encounters.InvalidPoolConfig):
                 encounters.validate_pools({"roto": pool})
         with self.assertRaises(encounters.InvalidPoolConfig):
-            encounters.validate_pools({"a": base, "b": {**base, "rooms": {"road_north"}}})
+            encounters.validate_pools({"a": base, "b": {**base, "rooms": {"valdren_sendero"}}})
 
     def test_density_profiles_follow_gameplay_band(self):
         # RANDOM_ENCOUNTER_GAMEPLAY.md §2 y GAMEPLAY.md §33.3.
         self.assertEqual(encounters.DENSITY["camino"], 0.20)
-        plain = {"rooms": {"road_north"}, "creatures": [("mordelinde", 70), ("espinajo_rastrojo", 30)]}
+        plain = {"rooms": {"valdren_sendero"}, "creatures": [("mordelinde", 70), ("espinajo_rastrojo", 30)]}
         for profile, chance in encounters.DENSITY.items():
             with self.subTest(profile=profile):
                 encounters.validate_pools({"p": {**plain, "chance": chance}})
@@ -136,35 +136,33 @@ class MoveIntegrationTests(unittest.TestCase):
         pools = {"p": {**ROAD_POOL["prueba_camino"], "chance": 1.0}}
         with patch.object(encounters, "RANDOM_ENCOUNTER_POOLS", pools), \
                 patch.object(encounters, "_rng", AlwaysRoll(0.0, pick=1)):
-            self.post("/move", dict(direction="south"))
-        self.assertEqual(self.client.get("/api/me").json["player"]["room"], "road_north")
-        self.assertEqual(self.encounter("road_north")["creature_id"], "espinajo_rastrojo")
+            self.post("/move", dict(direction="north"))
+        self.assertEqual(self.client.get("/api/me").json["player"]["room"], "valdren_sendero")
+        self.assertEqual(self.encounter("valdren_sendero")["creature_id"], "espinajo_rastrojo")
         self.assertIn("Espinajo de rastrojo", self.client.get("/").get_data(as_text=True))
 
     def test_failed_roll_leaves_room_empty(self):
         with patch.object(encounters, "RANDOM_ENCOUNTER_POOLS", ROAD_POOL), \
                 patch.object(encounters, "_rng", AlwaysRoll(0.9)):
-            self.post("/move", dict(direction="south"))
-        self.assertIsNone(self.encounter("road_north"))
+            self.post("/move", dict(direction="north"))
+        self.assertIsNone(self.encounter("valdren_sendero"))
 
     def test_no_pools_means_behavior_unchanged(self):
-        self.post("/move", dict(direction="south"))
-        self.assertIsNone(self.encounter("road_north"))
-        self.post("/move", dict(direction="north"))
-        self.post("/move", dict(direction="west"))  # sendero
-        self.post("/move", dict(direction="west"))  # parcela: Mordelinde fija
+        self.post("/move", dict(direction="north"))  # sendero
+        self.assertIsNone(self.encounter("valdren_sendero"))
+        self.post("/move", dict(direction="north"))  # parcela: Mordelinde fija
         self.assertEqual(self.encounter("valdren_camino_parcela")["creature_id"], "mordelinde")
 
     def test_cooldown_blocks_random_respawn_without_rolling(self):
-        store.start_creature_cooldown(self.path, self.player_id, "road_north", "mordelinde")
+        store.start_creature_cooldown(self.path, self.player_id, "valdren_sendero", "mordelinde")
 
         class Boom:
             def random(self):
                 raise AssertionError("no debe tirar el dado con enfriamiento activo")
         with patch.object(encounters, "RANDOM_ENCOUNTER_POOLS", ROAD_POOL), \
                 patch.object(encounters, "_rng", Boom()):
-            self.post("/move", dict(direction="south"))
-        self.assertIsNone(self.encounter("road_north"))
+            self.post("/move", dict(direction="north"))
+        self.assertIsNone(self.encounter("valdren_sendero"))
 
 
 if __name__ == "__main__":

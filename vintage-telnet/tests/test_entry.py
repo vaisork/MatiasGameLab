@@ -177,9 +177,9 @@ class EntryTests(unittest.TestCase):
         # Issue #120: rumbo autoritativo -- null hasta el primer movimiento
         # aceptado, luego la direccion cardinal exacta que el servidor uso.
         self.assertIsNone(map_response.json["current_heading"])
-        self.assertEqual(self.post("/move", {"direction": "west"}).status_code, 303)
+        self.assertEqual(self.post("/move", {"direction": "north"}).status_code, 303)
         state_after_move = self.client.get("/api/map").json
-        self.assertEqual(state_after_move["current_heading"], "west")
+        self.assertEqual(state_after_move["current_heading"], "north")
 
     def test_rest_button_uses_authoritative_command_intent(self):
         self.assertEqual(self.register().status_code, 303)
@@ -351,8 +351,8 @@ class EntryTests(unittest.TestCase):
         self.assertNotIn('action="/attack"', html)
 
         # Entra al encuentro con Mordelinde (sendero -> parcela).
-        self.post("/move", {"direction": "west"})
-        self.post("/move", {"direction": "west"})
+        self.post("/move", {"direction": "north"})
+        self.post("/move", {"direction": "north"})
         html = self.client.get("/").get_data(as_text=True)
         self.assertIn('class="place-bar combat"', html)
         self.assertIn("¡COMBATE!", html)
