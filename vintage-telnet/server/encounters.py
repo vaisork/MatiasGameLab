@@ -25,12 +25,23 @@ Formato de un pool:
                       ("espinajo_rastrojo", 1)],
     }
 
-PENDIENTE DE JUGABILIDAD (no inventado aquí):
-  - probabilidad de aparición por pool;
-  - cuándo se tira el dado: hoy, al **entrar** a la sala elegible, igual
-    que los encuentros fijos (no por tiempo ni por turno);
+Parámetros v1 ya definidos por Jugabilidad (`GAMEPLAY.md` §33, aprobado tras
+la revisión de la PR #165):
+  - la tirada ocurre únicamente **al entrar con éxito** a una sala elegible;
+    nunca por tiempo, por `mirar`/examinar ni durante un combate ya activo;
+  - probabilidad de referencia **20%** por entrada elegible; los pools
+    ordinarios pueden ajustarla en la banda **10%–35%** (perfiles de zona en
+    `RANDOM_ENCOUNTER_GAMEPLAY.md` §2). Fuera de esa banda hace falta
+    validación explícita de Jugabilidad;
   - repetición: se reutiliza el enfriamiento por sala que ya existe tras
-    vencer a una criatura (`store.CREATURE_RESPAWN_COOLDOWN_SECONDS`).
+    vencer a una criatura, ~5 min
+    (`store.CREATURE_RESPAWN_COOLDOWN_SECONDS`). No se añade un segundo
+    cooldown propio de la tirada aleatoria en esta etapa (§33.4).
+
+Sigue pendiente de Historiador/Narrador (Issue #166): qué salas son
+elegibles y qué criaturas canónicas viven en cada zona. Por eso
+`RANDOM_ENCOUNTER_POOLS` sigue vacío aquí: el juego se comporta exactamente
+como antes hasta que esa ecología regional se entregue y se cargue.
 """
 import random
 
