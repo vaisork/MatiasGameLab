@@ -90,6 +90,12 @@ La identidad y contexto son expansión canónica del Historiador. Jugabilidad ya
 
 No crea críticos, durabilidad, economía, requisitos numéricos universales, efectos mágicos ni sistemas nuevos.
 
+### 16. Historia pública de entrada — `ENTRY_HISTORY_CANON.md`
+
+Define qué historia puede conocer un personaje nuevo sin haber descubierto secretos: antigüedad de Vaisgard, convivencia de las cinco poblaciones, fundación gradual de los cinco pueblos, consolidación de las Cinco Rutas y límites de lo que NO debe revelarse al entrar.
+
+Sirve como fuente para onboarding y Narrativa. No es una cinemática ni sustituye `HISTORY.md`.
+
 ## Relación con el Narrador
 
 El Historiador construye la **historia estructural y la arquitectura del mundo**: hechos pasados, lugares, culturas, causas, consecuencias, ruinas, conflictos, relaciones y secretos. El Narrador utiliza esa base para crear relatos, escenas, encuentros y experiencias concretas de los jugadores. El Historiador no debe asumir por defecto la función del Narrador.
@@ -120,4 +126,5 @@ El Historiador define qué necesita el mundo, por qué lo necesita y qué funci�
 **Arcanes:** `vintage-telnet/ARCANES.md`  
 **Armaduras:** `vintage-telnet/ARMOR_CATALOG.md`  
 **Armas:** `vintage-telnet/WEAPON_CATALOG.md`  
+**Historia pública de entrada:** `vintage-telnet/ENTRY_HISTORY_CANON.md`  
 **Fuente mecánica:** `vintage-telnet/GAMEPLAY.md`
