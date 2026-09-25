@@ -16,7 +16,7 @@
 - **Barra del enemigo abajo.** Nombre y banda de condición en `.enemy-status`, una franja fija entre el relato y la pista. El comportamiento de la criatura queda como primera línea del relato.
 
 ### PRUEBAS
-- Suite **255/255 OK**, con 2 nuevas en `NoFlashTests`.
+- Suite **258/258 OK**, con 2 nuevas en `NoFlashTests` (la clase también hereda las 3 de estabilidad).
 - En Chromium a 390 px, con una marca en `window` y un contador de navegaciones: se caminó con botón, flecha ← y comando escrito, y se peleó con Mordelinde 4 turnos hasta la victoria. **0 recargas** (la marca sobrevivió), posiciones de imagen, terminal, botones, comando y barra del enemigo **idénticas** turno a turno, sin errores de JS.
 
 **LISTO PARA PUBLICAR:** falta la autorización de Javier ("sube"). Sin migración: el esquema sigue en 10.
