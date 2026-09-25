@@ -37,17 +37,18 @@
     <button type="submit">Cerrar sesión de Dungeon Master</button>
   </form>
 
-  <section><h2>Cuentas pendientes de aprobación</h2>
+  <section><h2>Personajes pendientes de aprobación</h2>
+    <p>Cada personaje se aprueba por separado, aunque su cuenta ya tenga otros aprobados.</p>
     {% if not pending %}
-      <p>No hay cuentas pendientes.</p>
+      <p>No hay personajes pendientes.</p>
     {% else %}
       <table>
-        <thead><tr><th>Jugador</th><th>Usuario</th><th>Nombre</th><th>Creada</th><th></th></tr></thead>
+        <thead><tr><th>Jugador</th><th>Cuenta</th><th>Personaje</th><th>Creada</th><th></th></tr></thead>
         <tbody>
           {% for p in pending %}
           <tr>
             <td>#{{ '%04d' | format(p.player_number) }}</td>
-            <td>{{ p.username }}</td>
+            <td>{{ p.account_username or p.username }}</td>
             <td>{{ p.name }}</td>
             <td>{{ p.created_at }}</td>
             <td>
@@ -69,17 +70,17 @@
     {% endif %}
   </section>
 
-  <section><h2>Jugadores aprobados</h2>
+  <section><h2>Personajes aprobados</h2>
     {% if not approved %}
-      <p>No hay jugadores aprobados todavía.</p>
+      <p>No hay personajes aprobados todavía.</p>
     {% else %}
       <table>
-        <thead><tr><th>Jugador</th><th>Usuario</th><th>Nombre</th><th>Especie</th><th>Sala</th><th>Último acceso</th><th></th></tr></thead>
+        <thead><tr><th>Jugador</th><th>Cuenta</th><th>Personaje</th><th>Especie</th><th>Sala</th><th>Último acceso</th><th></th></tr></thead>
         <tbody>
           {% for p in approved %}
           <tr>
             <td>#{{ '%04d' | format(p.player_number) }}</td>
-            <td>{{ p.username }}</td>
+            <td>{{ p.account_username or p.username }}</td>
             <td>{{ p.name }}</td>
             <td>{{ p.species or '-' }}</td>
             <td>{{ p.room or '-' }}</td>

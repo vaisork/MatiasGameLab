@@ -11,6 +11,7 @@ from unittest.mock import patch
 
 from server.app import create_app
 from server import combat, store
+from legacy_schema import undo_v11
 
 
 # --- combat.py: reglas puras -------------------------------------------------
@@ -242,6 +243,7 @@ class SchemaV8MigrationTests(unittest.TestCase):
                                'valdren_centro', 'now', 'now', 12)""")
             # Simula una base v7 real: sin las columnas de v8.
             raw = sqlite3.connect(path)
+            undo_v11(raw)
             raw.execute("ALTER TABLE players DROP COLUMN pp_unspent")
             raw.execute("ALTER TABLE players DROP COLUMN fatigue_updated_at")
             raw.execute("ALTER TABLE players DROP COLUMN player_class")  # llega en v9

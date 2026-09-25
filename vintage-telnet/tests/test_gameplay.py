@@ -52,7 +52,7 @@ class GameplayTests(unittest.TestCase):
         self.assertIsNone(me["species"])
         page = self.client.get("/").get_data(as_text=True)
         self.assertIn("Tu entrada está siendo preparada", page)
-        self.assertIn("Tu cuenta fue recibida.", page)
+        self.assertIn("fue recibido. El Dungeon Master debe aprobar a cada personaje", page)
         self.assertEqual(self.post("/species", dict(species="humano")).status_code, 403)
         self.assertEqual(self.post("/move", dict(direction="north")).status_code, 403)
         self.assertEqual(self.client.get("/api/room").status_code, 403)
@@ -91,7 +91,7 @@ class GameplayTests(unittest.TestCase):
         self.assertEqual(me.status_code, 200)
         self.assertEqual(me.json["player"]["status"], "rejected")
         page = self.client.get("/").get_data(as_text=True)
-        self.assertIn("no está habilitada", page)
+        self.assertIn("no está habilitado para entrar al mundo", page)
 
     @patch.dict(os.environ, {"VT_DM_PASSWORD": "dm-secret-value"})
     def test_dm_remove_revokes_session_immediately(self):
@@ -101,7 +101,10 @@ class GameplayTests(unittest.TestCase):
         self.post("/class", dict(player_class="sombra"))
         dm = self.dm_client()
         self.post("/dm/remove", dict(username="matias"), dm, csrf_path="/dm")
-        self.assertEqual(self.client.get("/api/me").status_code, 401)
+        # El personaje sale del juego al instante; la cuenta queda en su lista
+        # de personajes (v11: una cuenta puede tener varios).
+        self.assertEqual(self.client.get("/api/me").json["error"], "character_required")
+        self.assertEqual(self.client.get("/api/room").status_code, 401)
         # Y no puede volver a entrar con las mismas credenciales.
         login = self.post("/login", dict(username="matias", password="una clave de prueba"))
         self.assertEqual(login.status_code, 303)

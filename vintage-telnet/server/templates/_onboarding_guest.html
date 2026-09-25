@@ -1,5 +1,6 @@
-<section class="onboarding" data-onboarding data-view="welcome" aria-labelledby="welcome-title">
-  <div class="onboarding-panel onboarding-welcome" data-onboarding-view="welcome">
+{% set view = onboarding_view or 'welcome' %}{% set fv = form_values or {} %}
+<section class="onboarding" data-onboarding data-view="{{ view }}" aria-labelledby="welcome-title">
+  <div class="onboarding-panel onboarding-welcome" data-onboarding-view="welcome"{% if view != 'welcome' %} hidden{% endif %}>
     <p class="onboarding-kicker">Matías Game Lab</p>
     <h1 id="welcome-title">Vintage Telnet</h1>
     <p class="onboarding-subtitle">Un mundo de fantasía que se descubre leyendo, explorando y tomando decisiones.</p>
@@ -16,19 +17,21 @@
       <h2 id="how-start-title">Cómo empezar</h2>
       <ol>
         <li>Crea tu cuenta o entra con una que ya tengas.</li>
-        <li>Si eres nuevo, espera la aprobación del Dungeon Master.</li>
+        <li>Si eres nuevo, espera a que el Dungeon Master apruebe a tu personaje.</li>
         <li>Elige una de las cinco especies cuando tu entrada esté habilitada.</li>
         <li>Entra al mundo, observa tu entorno y comienza a explorar.</li>
       </ol>
     </section>
   </div>
 
-  <section class="card onboarding-panel" id="onboarding-login" data-onboarding-view="login" hidden aria-labelledby="login-title">
+  <section class="card onboarding-panel" id="onboarding-login" data-onboarding-view="login"{% if view != 'login' %} hidden{% endif %} aria-labelledby="login-title">
     <div class="card-head"><b id="login-title">Entrar</b><span>Ya tengo una cuenta y quiero continuar mi viaje.</span></div>
     <div class="card-body">
+      {% if error and view == 'login' %}<p class="form-error" role="alert">{{ error }}</p>{% endif %}
       <form method="post" action="/login">
         <input type="hidden" name="csrf" value="{{ session.csrf }}">
-        <label>Usuario<input type="text" name="username" autocomplete="username" required maxlength="32" autocapitalize="none" spellcheck="false"></label>
+        <label>Usuario<input type="text" name="username" value="{{ fv.username or '' }}" autocomplete="username" required maxlength="32" autocapitalize="none" spellcheck="false"></label>
+        <small>El usuario con el que creaste tu cuenta, no el nombre de tu personaje.</small>
         <label>Contraseña<input type="password" name="password" autocomplete="current-password" required maxlength="128"></label>
         <button class="btn primary" type="submit">Entrar</button>
       </form>
@@ -36,20 +39,21 @@
     </div>
   </section>
 
-  <section class="card onboarding-panel" id="onboarding-register" data-onboarding-view="register" hidden aria-labelledby="register-title">
+  <section class="card onboarding-panel" id="onboarding-register" data-onboarding-view="register"{% if view != 'register' %} hidden{% endif %} aria-labelledby="register-title">
     <div class="card-head"><b id="register-title">Crear cuenta</b><span>Soy nuevo y quiero preparar mi entrada al mundo.</span></div>
     <div class="card-body">
+      {% if error and view == 'register' %}<p class="form-error" role="alert">{{ error }}</p>{% endif %}
       <form method="post" action="/register">
         <input type="hidden" name="csrf" value="{{ session.csrf }}">
-        <label>Nombre para mostrar<input type="text" name="name" required maxlength="60" autocomplete="nickname"></label>
-        <small>Puede ser un apodo.</small>
-        <label>Usuario<input type="text" name="username" required minlength="3" maxlength="32" pattern="[a-zA-Z0-9_]{3,32}" autocomplete="username" autocapitalize="none" spellcheck="false"></label>
-        <small>3-32 letras/números sin acentos, o guion bajo.</small>
+        <label>Usuario (para entrar; nadie más lo ve)<input type="text" name="username" value="{{ fv.username or '' }}" required minlength="3" maxlength="32" pattern="[a-zA-Z0-9_]{3,32}" autocomplete="username" autocapitalize="none" spellcheck="false"></label>
+        <small>3-32 letras/números sin acentos, o guion bajo. Con este usuario podrás tener hasta 5 personajes.</small>
+        <label>Nombre de tu personaje (así te verán los demás)<input type="text" name="name" value="{{ fv.name or '' }}" required maxlength="60" autocomplete="nickname"></label>
+        <small>Cada personaje del mundo tiene un nombre distinto.</small>
         <label>Contraseña<input type="password" name="password" required minlength="8" maxlength="128" autocomplete="new-password"></label>
         <small>Mínimo 8 caracteres. Guarda tu usuario y contraseña.</small>
         <button class="btn primary" type="submit">Crear cuenta</button>
       </form>
-      <p class="onboarding-note">Tu cuenta queda pendiente de aprobación del Dungeon Master antes de poder jugar.</p>
+      <p class="onboarding-note">Tu personaje queda pendiente de aprobación del Dungeon Master antes de poder jugar.</p>
       <div class="onboarding-nav"><button class="btn" type="button" data-onboarding-go="welcome">Volver a bienvenida</button><button class="btn" type="button" data-onboarding-go="login">Entrar</button></div>
     </div>
   </section>
