@@ -162,128 +162,544 @@ La diferencia sexual no necesita ser legible a simple vista.
 ## Espinajo de rastrojo
 
 **Clasificación narrativa:** criatura menor territorial.  
-**Estado visual:** **CANON SUFICIENTE PARA ARTE**.
+**Estado visual:** **CANON REVISADO — SUFICIENTE PARA ARTE**.  
+**Motivo de revisión:** la versión anterior se acercaba demasiado a la lectura corporal del Mordelinde. Este diseño sustituye la anatomía visual anterior de Espinajo.
 
-Cuadrúpedo bajo y robusto, de hocico corto y una línea de púas duras sobre el lomo. Busca tubérculos, insectos y frutos caídos.
+Espinajo de rastrojo es una bestia terrestre compacta y pesada de los Llanos de Edran. Busca tubérculos, insectos, bulbos, raíces gruesas y frutos caídos, y defiende con intensidad los lugares donde encuentra alimento o mantiene crías.
 
-Normalmente evita a los viajeros, pero embiste cuando alguien se acerca demasiado a su alimento o a sus crías.
+Normalmente evita conflictos innecesarios, pero a diferencia del Mordelinde **no basa su supervivencia en escapar con velocidad**. Su estrategia es plantarse, aumentar visualmente su volumen, presentar el lomo espinoso y realizar embestidas cortas cuando algo invade demasiado su espacio.
+
+### Principio de identidad visual
+
+La primera regla para representar a Espinajo es:
+
+> **No es un Mordelinde al que le crecieron púas.**
+
+Aunque ambas criaturas habitan los alrededores de Valdren y ambas pueden remover tierra, su arquitectura corporal debe ser claramente diferente incluso en silueta negra.
+
+**Mordelinde:** alargado, flexible, nervioso, corredor bajo, excavador ligero.  
+**Espinajo:** corto, ancho, denso, barrilado, espinoso, estable y territorial.
+
+Si una ilustración de Espinajo pierde las púas y entonces parece un Mordelinde grande, **la anatomía está mal resuelta**.
 
 ### Anatomía y escala canónicas
 
 Un adulto común mide aproximadamente:
-- **35–45 cm de altura al hombro**;
-- **70–90 cm del hocico a la grupa**;
-- alrededor de **15–25 kg**.
+- **38–48 cm de altura al hombro**;
+- **65–80 cm del hocico a la grupa**;
+- alrededor de **18–28 kg**.
 
-Debe verse claramente mayor y más pesado que un Mordelinde, pero sigue siendo una criatura de campo que un aventurero principiante puede encontrar cerca de Valdren.
+Su largo corporal no debe superar visualmente mucho más de **1.8–2 veces su altura al hombro**. Esa relación es importante: Espinajo debe leerse **corto y macizo**, no alargado.
 
-Su silueta es **baja, compacta y pesada**:
-- torso ancho, casi de barril;
-- cuello corto;
-- hombros fuertes;
-- patas cortas y musculosas;
-- centro de gravedad bajo.
+El cuerpo forma un volumen casi de **barril inclinado**:
+- tórax muy ancho;
+- costados redondeados;
+- vientre relativamente alto para no arrastrarse;
+- grupa amplia;
+- espalda arqueada;
+- cuello extremadamente corto;
+- cabeza parcialmente integrada entre hombros y masa dorsal;
+- centro de gravedad muy bajo.
 
-La cabeza es ancha y termina en un **hocico corto en forma de cuña**, con una almohadilla nasal resistente para remover tierra. Los ojos son pequeños, oscuros o ámbar profundo y están protegidos por una ceja ósea suave, no por placas. Las orejas son pequeñas, redondeadas y quedan algo retrasadas respecto de los ojos.
+La parte más alta de la silueta no es la cabeza: es el **arco del lomo y su masa de púas**.
 
-**No posee colmillos, trompa, cuernos ni grandes caninos exteriores.**
+### Estructura del esqueleto y postura
 
-Las cuatro patas terminan en **cuatro dedos robustos con uñas cortas y fuertes para escarbar**. Las delanteras son algo más anchas que las traseras.
+Espinajo está construido para sostener peso y empujar.
 
-La cola es muy corta, de aspecto grueso y discreto; normalmente no domina la silueta.
+Su postura normal presenta:
+- patas separadas;
+- codos y rodillas ligeramente abiertos;
+- hombros muy anchos;
+- columna corta y arqueada;
+- cuello retraído;
+- cabeza proyectada hacia delante solo lo necesario para olfatear o remover tierra.
 
-### Púas dorsales
+No posee la flexibilidad longitudinal del Mordelinde.
 
-La característica principal de la especie es una **única cresta dorsal de púas duras**, no una cobertura completa tipo puercoespín.
+Cuando cambia de dirección, gira buena parte del cuerpo en lugar de doblarse con facilidad. Su movimiento transmite **inercia y peso**.
 
-Un adulto suele presentar aproximadamente:
-- **10–14 púas principales**;
-- desde la parte posterior de los hombros hasta antes de la base de la cola;
-- más largas en la zona central del lomo y más cortas hacia ambos extremos.
+### Cabeza
 
-Las púas centrales suelen medir aproximadamente **18–25 cm**. Nacen de una franja de piel engrosada y están rodeadas por cerdas rígidas más cortas.
+La cabeza es **corta, ancha y triangular vista desde arriba**, pero roma de perfil.
 
-En reposo:
-- se inclinan hacia atrás;
-- siguen la línea del cuerpo;
-- la silueta sigue viéndose compacta.
+Rasgos obligatorios:
+- frente baja y ancha;
+- cráneo robusto;
+- hocico muy corto;
+- almohadilla nasal ancha, dura y oscura;
+- mandíbula profunda;
+- ojos pequeños y protegidos por un reborde óseo suave;
+- orejas diminutas, redondeadas y parcialmente ocultas entre pelo rígido y base de las púas delanteras.
 
-Cuando el animal se alarma o defiende territorio:
-- la musculatura de la franja dorsal las levanta;
-- forman un perfil dentado muy evidente;
-- las púas centrales quedan casi verticales.
+La transición cabeza-cuello debe ser mínima. No debe existir un cuello largo claramente visible.
 
-Las púas **no se disparan ni se lanzan**. Pueden desprenderse por desgaste natural, muda o forcejeos, lo que explica las púas encontradas en el terreno.
+El hocico funciona como una **cuña de excavación**: empuja rastrojo, tierra blanda y raíces superficiales antes de que las patas delanteras terminen de abrir el suelo.
 
-### Piel, pelo y color
+### Boca y dentición
 
-El cuerpo está cubierto por pelo corto, grueso y resistente, con mayor densidad alrededor del cuello y los costados.
+La boca es relativamente ancha.
 
-Gama habitual:
-- pardo seco;
-- ocre;
-- marrón rojizo apagado;
-- gris tierra.
+Posee:
+- incisivos cortos y fuertes;
+- molares aptos para raíces y materia vegetal resistente;
+- pequeños dientes de defensa que solo resultan evidentes con la boca abierta.
 
-Hocico, patas y parte baja del cuerpo pueden ser más oscuros. Las púas van de **marfil envejecido o color paja** a gris hueso, normalmente con punta más oscura.
+**No tiene grandes colmillos externos.**
 
-No tiene brillo metálico ni aspecto de armadura mineral.
+Con la boca cerrada no debe parecer un jabalí, un roedor ni un depredador de grandes dientes.
 
-### Lectura por vista
+### Ojos, orejas y expresión
 
-**De frente:** cabeza ancha y baja, hocico corto, orejas pequeñas y hombros fuertes; las puntas superiores de la cresta pueden asomar detrás de la cabeza.
+Los ojos son pequeños en proporción al cráneo y se sitúan algo altos y laterales.
 
-**De perfil:** torso compacto, patas cortas y una cresta dorsal claramente serrada. Esta es su silueta más reconocible.
+Colores habituales:
+- marrón muy oscuro;
+- ámbar apagado;
+- negro cálido.
 
-**Desde atrás:** grupa ancha, cola corta y las púas disminuyendo de tamaño hacia la parte posterior.
+Su mirada debe sentirse vigilante y tensa, no curiosa.
 
-### Posturas características
+Las orejas son:
+- cortas;
+- redondeadas;
+- gruesas;
+- pegadas al cráneo;
+- visualmente secundarias.
 
-**Tranquilo / buscando alimento:** cabeza baja, hocico removiendo tierra, púas inclinadas hacia atrás.
+En una silueta lateral pueden quedar parcialmente escondidas.
 
-**Alerta:** detiene la búsqueda, abre ligeramente la postura de las patas y empieza a elevar la cresta.
+### Patas delanteras
 
-**Territorial:** se planta de frente o tres cuartos, baja la cabeza, eriza completamente las púas y sostiene la posición antes de cargar.
+Las patas delanteras son uno de sus rasgos estructurales principales.
 
-**Embiste:** realiza una aceleración corta y pesada. Su defensa depende de masa, impulso y territorialidad; **no es un depredador que persigue a larga distancia**.
+Tienen:
+- hombros muy desarrollados;
+- antebrazos cortos y gruesos;
+- muñecas fuertes;
+- cuatro dedos robustos;
+- uñas cortas, anchas y curvas.
 
-Si detecta un depredador claramente superior, prefiere abandonar el área.
+No son garras de depredador. Son herramientas para:
+- abrir tierra;
+- mover raíces;
+- estabilizar el cuerpo;
+- absorber el impacto de una embestida.
 
-### Comportamiento visible
+Vistas de frente, las patas delanteras deben dar una base notablemente más ancha que la del Mordelinde.
 
-- remueve tierra con el hocico;
-- se refugia entre matorrales o montones de rastrojo;
-- eriza las púas antes de atacar;
-- abandona una zona si detecta un depredador grande.
+### Patas traseras
 
-### Señales
+Las patas traseras son:
+- compactas;
+- musculosas;
+- menos altas visualmente que las de un corredor;
+- preparadas para empuje breve.
 
-- surcos cortos en tierra blanda;
-- raíces desenterradas;
+No producen grandes saltos.
+
+Su función es impulsar una carga corta y mantener la masa corporal estable cuando el animal se planta.
+
+### Pies
+
+Los cuatro pies apoyan completamente.
+
+Cada uno presenta:
+- cuatro dedos principales;
+- almohadillas gruesas;
+- uñas cortas resistentes al desgaste.
+
+La huella es más ancha y profunda que la de Mordelinde.
+
+### Cola
+
+La cola es **vestigial en lectura visual**:
+- muy corta;
+- gruesa;
+- pegada a la grupa;
+- apenas sobresale entre pelo rígido y púas posteriores.
+
+No debe usarse para equilibrio ni expresión.
+
+En muchas vistas laterales puede ser casi invisible.
+
+### Sistema de púas — rasgo dominante
+
+La defensa dorsal deja de ser una simple fila ornamental.
+
+Espinajo posee una **zona espinosa dorsal amplia y estratificada** que cubre desde la nuca posterior hasta buena parte de la grupa.
+
+Se organiza en tres niveles:
+
+#### A. Púas maestras
+
+Entre **14 y 20 púas principales** forman el perfil más alto.
+
+- nacen cerca de la línea central del lomo;
+- son gruesas en la base;
+- ligeramente curvas;
+- más largas en hombros posteriores y centro del dorso;
+- disminuyen hacia grupa y nuca.
+
+Las más grandes pueden medir aproximadamente **22–32 cm** en un adulto grande.
+
+#### B. Púas secundarias
+
+A ambos lados de la línea central aparecen **numerosas púas medianas**, más cortas y densas.
+
+No forman una segunda “cresta” independiente: crean una masa defensiva que ensancha visualmente el lomo.
+
+#### C. Cerdas rígidas
+
+La transición entre piel normal y zona espinosa incluye cerdas duras y cortas en:
+- hombros;
+- parte alta de los costados;
+- grupa.
+
+Estas cerdas no deben cubrir vientre, cara ni patas.
+
+### Forma de las púas
+
+Las púas:
+- son orgánicas, no minerales;
+- poseen base gruesa;
+- terminan en punta;
+- pueden tener pequeñas irregularidades;
+- muestran desgaste real en ejemplares adultos.
+
+Colores habituales:
+- marfil envejecido;
+- paja clara;
+- gris hueso;
+- beige ceniza;
+- punta marrón oscura o carbón.
+
+No brillan.
+
+No son translúcidas.
+
+No parecen metal.
+
+### Púas en reposo
+
+Cuando está tranquilo:
+- las púas maestras se inclinan hacia atrás;
+- las secundarias permanecen parcialmente elevadas;
+- el animal **sigue pareciendo claramente espinoso**.
+
+Éste es un cambio importante frente a la versión anterior: incluso en reposo la masa de púas debe dominar la silueta dorsal.
+
+### Púas en alerta
+
+Cuando percibe una amenaza:
+- arquea más el lomo;
+- contrae el cuello;
+- separa las patas;
+- levanta las púas maestras;
+- abre las secundarias hacia afuera;
+- endurece las cerdas laterales.
+
+El volumen aparente del animal aumenta.
+
+Desde tres cuartos, la espalda debe transformarse visualmente en una **masa irregular de puntas**.
+
+### Púas en defensa territorial
+
+En defensa completa:
+- varias púas centrales quedan casi verticales;
+- las púas laterales se abren;
+- cabeza y hocico bajan;
+- hombros avanzan;
+- grupa permanece estable.
+
+La intención visual es que atacar desde arriba o abalanzarse sobre él parezca una mala idea.
+
+### Las púas NO son proyectiles
+
+Espinajo **no dispara púas**.
+
+Las púas encontradas en el terreno proceden de:
+- desgaste;
+- muda;
+- forcejeos;
+- roce contra matorrales;
+- defensa contra otras criaturas.
+
+Una púa suelta puede estar astillada, desgastada o manchada de tierra.
+
+### Piel y pelaje
+
+Fuera de la zona espinosa, el cuerpo tiene **pelo corto, áspero y rígido**.
+
+No debe parecer suave.
+
+Zonas:
+- cabeza: pelo muy corto;
+- cuello: pelo más denso;
+- hombros: transición a cerdas;
+- costados: pelo duro de longitud media;
+- vientre: pelo más corto;
+- patas: pelo compacto y resistente.
+
+La piel visible alrededor del hocico y pies es gruesa y mate.
+
+### Gama de color
+
+Colores naturales:
+- ocre seco;
+- marrón tostado;
+- pardo ceniza;
+- tierra rojiza apagada;
+- beige sucio;
+- gris pajizo.
+
+El dorso puede ser más oscuro que los costados.
+
+La cara puede mostrar una máscara ligeramente oscura alrededor de hocico y ojos, pero no un patrón simétrico obligatorio.
+
+No se admiten colores saturados ni marcas mágicas.
+
+### Silueta frontal
+
+Vista de frente debe leerse:
+- muy ancho de hombros;
+- cabeza hundida entre el cuerpo;
+- patas delanteras separadas;
+- hocico corto;
+- ojos pequeños;
+- puntas dorsales visibles detrás y por encima del cráneo.
+
+No debe parecer estrecho.
+
+### Silueta lateral
+
+Ésta es la vista definitoria.
+
+Debe mostrar:
+- cuerpo corto;
+- espalda convexa;
+- lomo alto;
+- cuello casi inexistente;
+- cabeza baja;
+- patas robustas;
+- cola mínima;
+- gran volumen dorsal de púas principales + secundarias.
+
+Incluso sin color, la silueta lateral debe distinguirse inmediatamente de Mordelinde.
+
+### Silueta posterior
+
+Vista desde atrás:
+- grupa ancha;
+- patas separadas;
+- cola mínima;
+- púas laterales abriéndose alrededor del dorso;
+- púas maestras disminuyendo progresivamente hacia la grupa.
+
+No debe tener una línea delgada de púas sobre un cuerpo estrecho.
+
+### Locomoción normal
+
+Espinajo camina con:
+- pasos cortos;
+- balance corporal perceptible;
+- cabeza baja;
+- movimientos deliberados.
+
+Puede trotar, pero no parece diseñado para velocidad sostenida.
+
+No corre en zigzag como Mordelinde.
+
+### Embestida
+
+La embestida es:
+- corta;
+- explosiva;
+- pesada;
+- prácticamente lineal.
+
+Antes de cargar:
+1. se planta;
+2. eriza el lomo;
+3. baja la cabeza;
+4. raspa o presiona el suelo;
+5. lanza unos pocos metros de aceleración.
+
+Si el intruso se aleja lo suficiente, normalmente no mantiene una persecución larga.
+
+### Conducta alimentaria
+
+Busca alimento removiendo:
+- rastrojo;
+- tierra blanda;
+- hojas secas;
+- raíces superficiales.
+
+Puede usar primero el hocico y después las patas.
+
+Su alimentación incluye:
+- tubérculos;
+- bulbos;
+- raíces;
+- insectos;
+- larvas;
+- frutos caídos;
+- materia vegetal resistente.
+
+No caza animales grandes.
+
+### Territorialidad
+
+Espinajo no considera todo el campo “su territorio”.
+
+La defensa intensa aparece sobre todo alrededor de:
+- alimento abundante;
+- madrigueras/refugios temporales;
+- crías;
+- zonas donde ha estado alimentándose durante cierto tiempo.
+
+Por eso un viajero puede ver uno a distancia sin ser atacado.
+
+El peligro comienza cuando invade demasiado ese espacio o bloquea la retirada de las crías.
+
+### Refugio
+
+No excava túneles largos como criatura especializada.
+
+Aprovecha:
+- depresiones naturales;
+- raíces grandes;
+- montones de rastrojo;
+- matorrales densos;
+- pequeñas cavidades superficiales.
+
+Puede ampliar un refugio con hocico y patas, pero su cuerpo ancho limita túneles estrechos.
+
+### Crías
+
+Las crías:
+- nacen con cuerpo compacto;
+- tienen púas cortas y relativamente flexibles;
+- adquieren rigidez y longitud con el crecimiento.
+
+Un adulto con crías cercanas presenta territorialidad mucho más marcada.
+
+No es necesario mostrar crías en arte estándar.
+
+### Señales en el entorno
+
+Espinajo deja rastros mucho más contundentes que Mordelinde:
+- **surcos anchos** en tierra blanda;
+- raíces arrancadas, no solo roídas;
+- montones de rastrojo desplazados;
+- zonas de suelo aplastadas por el cuerpo;
+- huellas de cuatro dedos profundas y separadas;
 - púas desprendidas;
-- zonas de cultivo removidas durante la noche.
+- cerdas rígidas atrapadas en arbustos;
+- pequeñas zonas de revolcado;
+- tierra compactada frente a lugares defendidos.
+
+La lectura ambiental debe comunicar **peso y fuerza**, no actividad nerviosa.
 
 ### Variación individual permitida
 
-- tonos dentro de la gama de rastrojo/tierra;
-- cantidad de cerdas cortas alrededor de la cresta;
-- tamaño de las púas dentro de un rango adulto razonable;
-- pequeñas cicatrices y puntas de púas gastadas.
+Puede variar:
+- color dentro de la gama terrosa;
+- tamaño adulto;
+- longitud exacta de las púas;
+- densidad de púas secundarias;
+- cantidad de cerdas rígidas;
+- desgaste o rotura de algunas puntas;
+- cicatrices;
+- suciedad.
 
-Los jóvenes poseen púas más cortas y menos rígidas. La diferencia sexual adulta no necesita ser visible desde lejos.
+La arquitectura corporal no varía:
+- siempre es compacto;
+- siempre presenta lomo alto;
+- siempre posee masa dorsal espinosa;
+- siempre tiene cuello muy corto;
+- siempre tiene cola mínima.
+
+### Diferencias con Mordelinde — control obligatorio para Arte
+
+| Rasgo | Mordelinde | Espinajo de rastrojo |
+| --- | --- | --- |
+| Silueta | Alargada y flexible | Corta, barrilada y maciza |
+| Movimiento | Carrera baja en zigzag | Paso pesado + embestida corta |
+| Estrategia | Huir | Plantarse y defender |
+| Cabeza | Cuña corta y móvil | Triangular, ancha, roma y hundida |
+| Cuello | Visible dentro de cuerpo alargado | Casi inexistente |
+| Patas | Delanteras excavadoras ligeras | Cuatro patas robustas; delanteras muy fuertes |
+| Cola | Corta pero visible y peluda | Muy corta, casi oculta |
+| Dorso | Peludo | Gran masa dorsal de púas |
+| Rastro | Montículos y tallos roídos | Surcos, raíces arrancadas, suelo aplastado y púas |
+| Impresión | Nervioso y escurridizo | Pesado, defensivo y territorial |
+
+### Prueba visual obligatoria
+
+Antes de aprobar arte de Espinajo:
+
+1. convertir mentalmente ambos animales en silueta negra;
+2. ocultar las púas de Espinajo;
+3. comparar proporciones.
+
+Si Espinajo continúa pareciendo simplemente un Mordelinde agrandado, **rechazar la anatomía**.
+
+Debe seguir distinguiéndose por:
+- cuerpo corto;
+- espalda alta;
+- anchura;
+- cabeza integrada;
+- patas abiertas;
+- cuello mínimo;
+- cola casi inexistente.
 
 ### No representar
 
-- cuerpo cubierto completamente de púas;
-- púas que se disparan;
-- cuernos o colmillos exteriores;
+- cuerpo largo tipo Mordelinde;
+- anatomía flexible de corredor;
+- cuello largo;
+- cola larga o expresiva;
+- hocico fino;
+- orejas grandes;
+- ojos grandes o tiernos;
+- solo una fila escasa de púas decorativas;
+- cuerpo liso con “púas pegadas” encima;
+- cuerpo completamente cubierto de púas como puercoespín literal;
+- silueta de jabalí literal;
+- grandes colmillos;
+- cuernos;
 - placas minerales;
-- armadura;
+- caparazón;
+- armadura artificial;
+- púas metálicas;
+- púas que se disparan;
 - brillo mágico;
-- anatomía de jabalí literal;
-- tamaño de montura o bestia gigante;
-- comportamiento depredador;
+- tamaño de montura;
+- postura de depredador;
 - rasgos de Arcane.
+
+### Frase rectora para Arte
+
+> **Espinajo es una bestia de campo corta, ancha y pesada cuyo cuerpo parece construido alrededor de un lomo defensivo de púas; cava, se planta y embiste. Nunca debe leerse como un Mordelinde modificado.**
+
+### Comportamiento visible
+
+- remueve tierra con hocico y patas delanteras;
+- desplaza rastrojo en lugar de atravesarlo con agilidad;
+- se refugia entre matorrales o acumulaciones vegetales;
+- eriza una masa amplia de púas antes de atacar;
+- sostiene territorio durante unos instantes;
+- realiza cargas breves;
+- abandona una zona si reconoce un depredador claramente superior.
+
+### Valor narrativo
+
+Espinajo enseña una conducta distinta a la de Mordelinde.
+
+El jugador que ya aprendió que una criatura pequeña puede huir descubre aquí que **otra criatura de nivel inicial puede advertir, sostener posición y castigar la aproximación**.
+
+Su diseño debe reforzar esa diferencia antes de que el combate empiece.
 
 ## Amenaza superior: Cornalomo
 
