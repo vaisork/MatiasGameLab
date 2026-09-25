@@ -1,5 +1,33 @@
 # HANDOFF — Entrega técnica
 
+## ENTREGA — Pantalla estable: la imagen y los controles ya no se mueven
+
+**DESARROLLADOR:** Claude — Desarrollador de Servidor de Vintage Telnet
+**HEAD BASE:** `b8b749b` (origin/main)
+**TAREA ASIGNADA:** Javier (2026-09-25), después de probar en su celular: "la zona de imágenes se va y regresa, debe quedarse quieta" y "la pantalla se ajusta a cada rato".
+**RAMA:** `claude/vt-art-stable`
+
+### CAUSAS ENCONTRADAS
+1. Todo se servía con `Cache-Control: no-store`, **incluida la ilustración** (~425 KB). En cada acción el celular volvía a descargarla y el marco quedaba vacío hasta que llegaba.
+2. **21 de 25 salas no tienen arte aprobado**: el marco desaparecía y todo saltaba hacia arriba.
+3. El texto de la sala aparecía letra por letra **haciendo crecer el terminal**, y la cruz y los botones bajaban mientras tanto.
+4. El terminal cambiaba de alto según el largo del texto de cada sala, y en el teléfono usaba `dvh`, que cambia cuando el navegador muestra u oculta su barra.
+
+### CAMBIOS
+- `server/app.py`: iconos, arte, mapas y UI (`app_icon`, `html_ui_assets`, `location_assets`, `map_assets`) → `Cache-Control: public, max-age=86400`. Páginas y API siguen con `no-store`.
+- `entry.html`:
+  - El marco de arte **siempre existe** con alto fijo. Sin arte aprobado muestra un marco sobrio con ícono y nombre del lugar (rojizo en combate); no se inventa ninguna imagen. La imagen ya no usa `loading="lazy"` sino `fetchpriority="high"`.
+  - El texto completo **ocupa su lugar desde el inicio**; la parte no revelada es invisible (`visibility:hidden`).
+  - Terminal de **alto fijo** (`30svh` exploración / `42svh` combate, con `dvh` de respaldo) que se desplaza por dentro, y `.app` en `100svh`.
+
+### PRUEBAS
+- Suite **242/242 OK**, con 3 nuevas en `tests/test_screen_stability.py`.
+- Medición en Chromium a 390 px: posición vertical de arte, terminal, cruz, comando y barra al cargar, a los 0.4 s y a los 3 s, en Valdren (con arte) → Sendero (sin arte) → Valdren → Mercado (con arte). **Idéntica al píxel en los 12 puntos.**
+
+**LISTO PARA PUBLICAR:** falta la autorización de Javier ("sube"). Luego se despliega con `sudo vt-deploy latest`.
+
+---
+
 ## ENTREGA — Seguridad: panel del DM solo desde la red privada (no desde internet)
 
 **DESARROLLADOR:** Claude — Desarrollador de Servidor de Vintage Telnet

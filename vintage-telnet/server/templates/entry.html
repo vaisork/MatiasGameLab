@@ -302,8 +302,16 @@
     }
     .location-art{border:2px solid #9a7a3e;border-radius:12px;box-shadow:0 0 0 1px #000,inset 0 0 0 1px #d7b56a33}
     .location-art img{height:clamp(150px,34vw,260px)}
+    .location-art{height:clamp(150px,34vw,260px);min-height:0}
+    .location-art img{height:100%!important}
+    .art-placeholder{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+      background:radial-gradient(ellipse at 50% 40%,#1c2636 0,#0d131c 70%);color:#8a7a58;
+      font:700 .82rem Georgia,serif;letter-spacing:.12em;text-transform:uppercase;text-align:center;padding:12px}
+    .art-placeholder .ui-icon{width:30px;height:30px;flex-basis:30px;color:#6d5a37}
+    .in-combat .art-placeholder{background:radial-gradient(ellipse at 50% 40%,#2a1210 0,#120a09 70%);color:#b0685c}
+    .in-combat .art-placeholder .ui-icon{color:#8a3a2e}
     .terminal{grid-template-rows:minmax(0,1fr) auto;min-height:140px}
-    .game-shell .log{max-height:clamp(150px,34dvh,380px)}
+    .game-shell .log{height:clamp(150px,34dvh,380px);height:clamp(150px,34svh,380px)}
     .enemy-name{margin:0;color:#ff7565!important;font-weight:800}
     .condition{display:flex;align-items:center;gap:10px;margin:6px 0 8px}
     .condition-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;flex:1 1 auto;max-width:240px}
@@ -371,7 +379,7 @@
     }
         @media(max-width:640px){
       .app{
-        height:100dvh;overflow:auto;padding:max(6px,env(safe-area-inset-top)) 6px max(6px,env(safe-area-inset-bottom));
+        height:100dvh;height:100svh;overflow:auto;padding:max(6px,env(safe-area-inset-top)) 6px max(6px,env(safe-area-inset-bottom));
         grid-template-rows:auto auto minmax(0,1fr);gap:6px
       }
       .topbar{min-height:44px;padding:6px 9px;border-radius:10px}
@@ -403,9 +411,9 @@
       .dpad{grid-template-columns:repeat(3,48px);grid-template-rows:repeat(3,46px);gap:4px}
       .game-shell{gap:7px}
       .place-bar{min-height:38px;padding:6px 10px;font-size:.8rem}
-      .location-art img{height:clamp(140px,42vw,190px)}
-      .game-shell .log{max-height:30dvh}
-      .game-shell.in-combat .log{max-height:42dvh}
+      .location-art,.location-art img{height:clamp(140px,42vw,190px)!important}
+      .game-shell .log{height:30dvh;height:30svh}
+      .game-shell.in-combat .log{height:42dvh;height:42svh}
       .combat-row.defenses .action{min-height:40px}
       .tool-row{grid-template-columns:repeat(4,minmax(0,1fr))}
       .tool-row .btn{flex-direction:column;gap:3px;min-height:54px;padding:5px 2px;font-size:.7rem}
@@ -548,13 +556,22 @@
           {% endif %}
         </header>
 
-        {% if room.art %}
-        <figure class="location-art">
+        {# El marco de la ilustración siempre ocupa el mismo lugar y tamaño,
+           haya o no arte aprobado para esta sala, para que la pantalla no
+           salte al moverse (petición de Javier). Sin arte se ve un marco
+           sobrio con el nombre del lugar; no se inventa ninguna imagen. #}
+        <figure class="location-art{{ '' if room.art else ' no-art' }}">
+          {% if room.art %}
           <img data-location-art src="{{ room.art.src }}" alt="{{ room.art.alt }}"
-               width="{{ room.art.width }}" height="{{ room.art.height }}" loading="lazy" decoding="async">
+               width="{{ room.art.width }}" height="{{ room.art.height }}" fetchpriority="high" decoding="async">
           <div class="location-art-fallback" hidden>La ilustración contextual no está disponible. El juego continúa normalmente.</div>
+          {% else %}
+          <div class="art-placeholder" aria-hidden="true">
+            <svg class="ui-icon"><use href="{{ '#icon-swords' if room.encounter else '#icon-pin' }}"/></svg>
+            <span>{{ room.name }}</span>
+          </div>
+          {% endif %}
         </figure>
-        {% endif %}
 
         <section class="terminal{% if room.encounter %} in-combat{% endif %}" aria-labelledby="placeTitle">
           <p class="sr-only" id="roomDescriptionAccessible">{{ room.description }}</p>
@@ -1237,7 +1254,14 @@
     let alreadyRead = false;
     try { alreadyRead = sessionStorage.getItem("vt:last-room-text") === roomKey; } catch (_error) {}
     if (!alreadyRead) {
-      mainParagraph.textContent = "";
+      // El texto completo ocupa su espacio desde el primer momento: la parte
+      // aún no revelada es invisible (visibility:hidden), así el terminal y
+      // los botones de abajo no se mueven mientras aparecen las letras.
+      const visiblePart = document.createElement("span");
+      const hiddenPart = document.createElement("span");
+      hiddenPart.style.visibility = "hidden";
+      hiddenPart.textContent = fullText;
+      mainParagraph.replaceChildren(visiblePart, hiddenPart);
       let shown = 0;
       let timer = null;
       const revealAll = () => {
@@ -1249,7 +1273,8 @@
       timer = setInterval(() => {
         shown += 2;
         if (shown >= fullText.length) { revealAll(); return; }
-        mainParagraph.textContent = fullText.slice(0, shown);
+        visiblePart.textContent = fullText.slice(0, shown);
+        hiddenPart.textContent = fullText.slice(shown);
       }, 26);
       const log = document.querySelector(".log");
       if (log) log.addEventListener("click", revealAll, {once: true});

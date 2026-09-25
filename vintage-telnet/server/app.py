@@ -142,9 +142,18 @@ def create_app(config=None):
     def inject_csp_nonce():
         return {"csp_nonce": getattr(g, "csp_nonce", "")}
 
+    # Imágenes/iconos públicos del juego: el celular los guarda un día para
+    # que la ilustración no se vuelva a descargar (y parpadee) en cada acción.
+    # Las páginas y la API siguen sin guardarse (no-store): llevan datos del
+    # jugador.
+    CACHEABLE_ENDPOINTS = {"app_icon", "html_ui_assets", "location_assets", "map_assets"}
+
     @app.after_request
     def headers(response):
-        response.headers["Cache-Control"] = "no-store"
+        if request.endpoint in CACHEABLE_ENDPOINTS and response.status_code in (200, 304):
+            response.headers["Cache-Control"] = "public, max-age=86400"
+        else:
+            response.headers["Cache-Control"] = "no-store"
         response.headers["X-Content-Type-Options"] = "nosniff"
         response.headers["X-Frame-Options"] = "DENY"
         response.headers["Referrer-Policy"] = "no-referrer"
