@@ -362,6 +362,8 @@ class EntryTests(unittest.TestCase):
         self.assertIn('action="/evaluate"', html)
         self.assertNotIn('action="/flee"', html)
         self.assertNotIn(">Descansar</button>", html)
+        self.assertEqual(html.count('<i class="on"></i>'), 4)  # criatura entera
+        self.assertIn("entero / apenas afectado", html)
         # Al atacar, empieza la pelea (GAMEPLAY.md §26.5).
         self.post("/attack", {})
         html = self.client.get("/").get_data(as_text=True)
@@ -371,8 +373,6 @@ class EntryTests(unittest.TestCase):
         self.assertIn('action="/flee"', html)
         self.assertIn('action="/evaluate"', html)
         self.assertIn('class="condition-bar"', html)
-        self.assertEqual(html.count('<i class="on"></i>'), 4)  # criatura entera
-        self.assertIn("entero / apenas afectado", html)
         self.assertNotIn('class="dpad"', html)
         self.assertNotIn(">Descansar</button>", html)
         self.assertNotRegex(html, r"HP:\s*\d+/\d+")
