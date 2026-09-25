@@ -19,7 +19,7 @@ Reglas aprobadas: `GAMEPLAY.md` §33 y `RANDOM_ENCOUNTER_GAMEPLAY.md`.
     el pool debe declarar `"gameplay_override": True` (aprobación explícita
     de Jugabilidad).
   - Qué salas son elegibles y qué criaturas viven ahí lo entregan
-    Historia/Narrativa (§8). Hasta recibir ese mapeo, `RANDOM_ENCOUNTER_POOLS`
+    Historia/Narrativa (§8, Issue #166). Hasta recibir ese mapeo, `RANDOM_ENCOUNTER_POOLS`
     **sigue vacío** y el juego se comporta exactamente como antes (§10).
 
 Formato de un pool:
