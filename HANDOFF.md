@@ -46,7 +46,74 @@
 ### DEPLOY
 `sudo vt-deploy latest` aplica la migración v10 → v11 con respaldo y ensayo previo, como en v9 y v10.
 
-**LISTO PARA PUBLICAR:** falta la autorización de Javier ("sube").
+**PUBLICADO:** Javier autorizó ("súbela tú"); se integra a `main` con la PR #155.
+
+---
+
+## ENTREGA — Ajuste tras revisión de Jugabilidad en PR #165 (GAMEPLAY §33)
+
+**DESARROLLADOR:** Claude — Desarrollador de Servidor de Vintage Telnet
+**HEAD BASE:** `8336f91` (origin/main) — sincronizado sobre la entrega anterior
+**TAREA ASIGNADA:** correcciones pedidas por Jugabilidad en su revisión de PR #165 (comentario del 2026-09-25 04:30 UTC): actualizar la nota "PENDIENTE DE JUGABILIDAD" de `encounters.py` con los parámetros ya cerrados en `GAMEPLAY.md` §33, y sincronizar la rama con `main` (que había avanzado con CREATURES.md, GAMEPLAY.md y RANDOM_ENCOUNTER_GAMEPLAY.md nuevos).
+**RAMA:** `claude/vt-random-encounters` (misma rama de PR #165)
+
+### CAMBIOS
+- Merge de `origin/main` en la rama (sin conflictos: solo trajo documentación nueva de Historiador/Jugabilidad).
+- `server/encounters.py`: el docstring ya no dice "PENDIENTE DE JUGABILIDAD"; documenta los parámetros v1 de §33 (tirada solo al entrar a sala elegible, 20% base con banda ordinaria 10–35%, reutilizar el cooldown de ~5 min post-victoria sin cooldown adicional) y deja explícito que lo que falta ahora es la ecología regional del Issue #166 (Historiador/Narrador), no una decisión de Jugabilidad.
+- `RANDOM_ENCOUNTER_POOLS` sigue vacío, tal como pidió la revisión: no se activa contenido hasta que Historia/Narrativa entreguen salas y fauna canónica del Issue #166.
+- Sin cambios de comportamiento, esquema, UI, canon ni balance.
+
+### PRUEBAS
+- Suite **269/269 OK** tras el merge (`.venv/bin/python -m unittest discover -s vintage-telnet/tests -v`), incluidas las 11 de `test_random_encounters.py`.
+
+### TRABAJO PREVIO AFECTADO
+- Ninguno. Es la misma entrega de PR #165, ahora al día con `main` y con la documentación corregida que pidió Jugabilidad.
+
+### PENDIENTES (no inventados)
+- **Historiador / Narrador (Issue #166):** ecología de pools regionales — qué salas son elegibles y qué criaturas canónicas viven en cada zona. Hasta entonces `RANDOM_ENCOUNTER_POOLS` sigue vacío.
+- **Arquitecto de Vintage Telnet:** la revisión de arquitectura que pide el Issue #160 sigue abierta.
+
+**PUBLICADO** junto con la PR #165 (`d505fb9`), con autorización de Javier.
+
+---
+
+## ENTREGA — Motor de encuentros aleatorios (Issue #160)
+
+**DESARROLLADOR:** Claude — Desarrollador de Servidor de Vintage Telnet (Javier reasignó #160, pensada para el Junior)
+**HEAD BASE:** `5cc9e6f` (origin/main)
+**TAREA ASIGNADA:** Issue #160: que la fauna común pueda aparecer al azar en caminos y campo sin asignar cada criatura sala por sala, sin romper los encuentros narrativos.
+**RAMA:** `claude/vt-random-encounters`
+
+### CAMBIOS
+- **Nuevo `server/encounters.py`:**
+  - `get_encounter_for_room(room_id, rng=None, pools=None)` aplica el orden de #160: **1)** el encuentro fijo de `world.ROOM_ENCOUNTER`, **2)** el pool aleatorio de la sala, **3)** ninguno;
+  - `RANDOM_ENCOUNTER_POOLS = {pool: {"rooms", "chance", "creatures": [(id, peso)]}}` **empieza vacío**, así que el juego no cambia hasta que se llene;
+  - `validate_pools` se ejecuta al importar y rechaza con error criaturas o salas inexistentes, pesos o probabilidades inválidos, pools vacíos y salas repetidas en dos pools;
+  - el RNG es inyectable (`rng` o `encounters._rng`) para pruebas reproducibles.
+- **`app.attempt_move`:** usa el motor. Solo tira el dado si en esa sala no hay una pelea activa ni enfriamiento. Lo demás del combate no cambia.
+- Sin cambios de esquema, UI, arte, canon ni balance.
+
+### PRUEBAS
+- Suite **269/269 OK**, con 11 nuevas en `tests/test_random_encounters.py`:
+  - el encuentro fijo manda sobre el pool;
+  - una sala elegible puede dar criaturas distintas;
+  - una sala no elegible nunca da criatura;
+  - con la misma semilla sale la misma secuencia;
+  - se respetan los pesos (75/25);
+  - las configuraciones rotas se rechazan;
+  - integración con `/move`: aparece, falla la tirada, sin pools todo sigue igual y con enfriamiento no se tira el dado.
+
+### ALINEADO CON JUGABILIDAD (GAMEPLAY.md §33 + RANDOM_ENCOUNTER_GAMEPLAY.md, ya en `main`)
+- La tirada ocurre solo al entrar a una sala elegible y se reutiliza el enfriamiento de 5 min: ya era así.
+- Nuevo `encounters.DENSITY` con los perfiles de §2: borde habitado 10 %, camino 20 %, silvestre 30 % y riesgo alto 35 %.
+- `validate_pools` rechaza probabilidades fuera de la banda 10–35 % salvo que el pool tenga `"gameplay_override": True`.
+- Suite **270/270 OK**.
+
+### PENDIENTES (no inventados)
+- **Historiador / Narrador:** el mapeo de qué salas son elegibles y qué criaturas viven en cada una (§8 y §10 de la estrategia). Hasta entonces `RANDOM_ENCOUNTER_POOLS` sigue vacío, como pide Jugabilidad.
+- **Jugabilidad / Narrador (§4 de la estrategia):** hoy, cuando hay una criatura, la pantalla entra en modo combate y oculta las salidas, y para irse hay que huir. §4 dice que la presencia de una criatura no obliga a pelear. Falta definir si la fauna evasiva o que ignora al jugador debe dejarlo pasar.
+
+**PUBLICADO:** Javier autorizó ("súbela tú") y se integró a `main` en `d505fb9` (PR #165).
 
 ---
 
@@ -99,7 +166,7 @@
 ### DEPLOY
 `sudo vt-deploy latest` aplica la migración v9 → v10 con respaldo y ensayo previo, como hizo con la v9.
 
-**LISTO PARA PUBLICAR:** falta la autorización de Javier ("sube").
+**PUBLICADO:** Javier autorizó ("súbela tú"); se integra a `main` con la PR #155.
 
 ---
 
@@ -246,7 +313,7 @@ Movimiento, reglas, combate, persistencia, esquema (sigue en v9) y canon. La rej
 - Primera instalación y deploy **en la Raspberry física**, que es el criterio de cierre de #141.
 - Nota para quien instale: si hay una copia vieja de `vt_deploy.py` ya instalada en `/usr/local/lib/vintage-telnet/`, hay que volver a correr el instalador después de integrar esta rama.
 
-**LISTO PARA PUBLICAR:** falta la autorización de Javier ("sube").
+**PUBLICADO:** Javier autorizó ("súbela tú"); se integra a `main` con la PR #155.
 
 ---
 

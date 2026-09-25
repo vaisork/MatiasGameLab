@@ -12,7 +12,7 @@ from flask import (Flask, abort, g, jsonify, redirect, render_template, request,
                     session, url_for)
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from . import combat, creatures, dm_auth, items, store, world
+from . import combat, creatures, dm_auth, encounters, items, store, world
 
 # Issue #46 resuelto: el Narrador fijo la plaza central de Valdren como
 # punto de reaparicion tras morir (GAMEPLAY.md 20.9) y de recuperacion
@@ -354,11 +354,15 @@ def create_app(config=None):
         store.move_player(path, player["id"], destination, direction)
         store.mark_visited(path, player["id"], destination)
         store.mark_route_traversed(path, player["id"], previous_room, destination)
-        encounter_creature = world.get_room_encounter(destination)
-        if (encounter_creature and not store.get_encounter(path, player["id"], destination)
+        # Primero el encuentro fijo de la sala y, si no hay, la fauna
+        # aleatoria de su pool (Issue #160). Solo se tira el dado si no hay
+        # ya una pelea activa ni enfriamiento en esa sala.
+        if (not store.get_encounter(path, player["id"], destination)
                 and store.creature_available(path, player["id"], destination)):
-            creature = creatures.get_creature(encounter_creature)
-            store.start_encounter(path, player["id"], destination, encounter_creature, creature["hp"])
+            encounter_creature = encounters.get_encounter_for_room(destination)
+            if encounter_creature:
+                creature = creatures.get_creature(encounter_creature)
+                store.start_encounter(path, player["id"], destination, encounter_creature, creature["hp"])
         if (destination == "valdren_centro"
                 and store.has_discovery(path, player["id"], "lindero_roto")
                 and not store.has_discovery(path, player["id"], "regreso_valdren_lindero")):
