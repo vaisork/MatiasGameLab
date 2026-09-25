@@ -340,7 +340,8 @@ def create_app(config=None):
 
     def attempt_move(player, direction):
         """Unica logica autoritativa de movimiento. Devuelve
-        (accepted, previous_room_id, new_room_id_or_None, reason_or_None).
+        (accepted, previous_room_id, new_room_id_or_None, reason_or_None,
+        reward_message_or_None).
 
         De paso actualiza el mapa progresivo (GAMEPLAY.md 23: la sala de
         destino queda visitada y la ruta recorrida), coloca una criatura si
@@ -350,7 +351,7 @@ def create_app(config=None):
         room = world.get_room(previous_room)
         destination = room["exits"].get(direction) if room else None
         if not destination:
-            return False, previous_room, None, "No puedes ir en esa dirección."
+            return False, previous_room, None, "No puedes ir en esa dirección.", None
         store.move_player(path, player["id"], destination, direction)
         store.mark_visited(path, player["id"], destination)
         store.mark_route_traversed(path, player["id"], previous_room, destination)
@@ -363,13 +364,24 @@ def create_app(config=None):
             if encounter_creature:
                 creature = creatures.get_creature(encounter_creature)
                 store.start_encounter(path, player["id"], destination, encounter_creature, creature["hp"])
+        reward_message = None
         if (destination == "valdren_centro"
                 and store.has_discovery(path, player["id"], "lindero_roto")
                 and not store.has_discovery(path, player["id"], "regreso_valdren_lindero")):
             discovery = world.get_discovery("regreso_valdren_lindero")
-            store.award_discovery(path, player["id"], "regreso_valdren_lindero",
-                                   discovery["category"], discovery["reference_level"])
-        return True, previous_room, destination, None
+            is_new, xp_amount, xp_state = store.award_discovery(
+                path, player["id"], "regreso_valdren_lindero",
+                discovery["category"], discovery["reference_level"])
+            # Issue #147: primera recompensa ganada jugando -- una sola vez
+            # por personaje, otorgada aqui via la via autoritativa existente
+            # (store.grant_item, 32.5), nunca por compra ni loot aleatorio.
+            if is_new and discovery.get("reward_item"):
+                store.grant_item(path, player["id"], discovery["reward_item"])
+                reward_message = f"{discovery['reward_text']} (+{xp_amount} XP)"
+                level_message = _level_up_message(xp_state)
+                if level_message:
+                    reward_message = f"{reward_message} {level_message}"
+        return True, previous_room, destination, None, reward_message
 
     def _attributes(player):
         return {name: player[f"attr_{name}"] for name in combat.ATTRIBUTES}
@@ -986,7 +998,8 @@ def create_app(config=None):
         require_approved_player()
         if not character_ready(g.player):
             abort(403)
-        accepted, _previous, _new, reason = attempt_move(g.player, request.form.get("direction", ""))
+        accepted, _previous, _new, reason, _reward_message = attempt_move(
+            g.player, request.form.get("direction", ""))
         if not accepted:
             room_data = room_view(g.player["room"], g.player["id"])
             return render_template("entry.html", player=g.player, species_list=world.SPECIES,
@@ -1016,7 +1029,7 @@ def create_app(config=None):
             abort(400)
         intent = parse_intent(raw)
         if intent["type"] == "move":
-            accepted, _previous, _new, reason = attempt_move(g.player, intent["direction"])
+            accepted, _previous, _new, reason, _reward_message = attempt_move(g.player, intent["direction"])
             if not accepted:
                 room_data = room_view(g.player["room"], g.player["id"])
                 return render_template("entry.html", player=g.player, species_list=world.SPECIES,
@@ -1188,7 +1201,8 @@ def create_app(config=None):
         kind = intent["type"]
 
         if kind == "move":
-            accepted, previous_room, new_room, reason = attempt_move(g.player, intent["direction"])
+            accepted, previous_room, new_room, reason, reward_message = attempt_move(
+                g.player, intent["direction"])
             current_room_id = new_room if accepted else previous_room
             return jsonify(
                 accepted=accepted,
@@ -1196,6 +1210,10 @@ def create_app(config=None):
                 previous_room=previous_room,
                 current_room=room_view(current_room_id, g.player["id"]),
                 reason=reason,
+                # Issue #147: texto de la primera recompensa ganada jugando
+                # (Acolchado de Camino), solo presente el movimiento en que
+                # se otorga -- None en cualquier otro caso.
+                reward_message=reward_message,
             ), (200 if accepted else 400)
         if kind == "look":
             return jsonify(
@@ -1336,13 +1354,17 @@ def create_app(config=None):
         direction = DIRECTION_ALIASES.get(str(payload.get("direction", "")).strip().lower())
         if direction is None:
             return jsonify(accepted=False, reason="Dirección desconocida."), 400
-        accepted, previous_room, new_room, reason = attempt_move(g.player, direction)
+        accepted, previous_room, new_room, reason, reward_message = attempt_move(g.player, direction)
         current_room_id = new_room if accepted else previous_room
         return jsonify(
             accepted=accepted,
             previous_room=previous_room,
             reason=reason,
             current_room=room_view(current_room_id, g.player["id"]),
+            # Issue #147: texto de la primera recompensa ganada jugando
+            # (Acolchado de Camino), solo presente el movimiento en que se
+            # otorga -- None en cualquier otro caso.
+            reward_message=reward_message,
         ), (200 if accepted else 400)
 
     @app.get("/api/character")

@@ -1378,3 +1378,35 @@ No debe ofrecer poderes con PP (§25.8: todavía no hay contenido de poder valid
 ### Aviso para el Integrador / Operador de Raspberry
 - No se hizo push a `main`.
 - No se tocó la Raspberry.
+
+
+## VT-SERVER: primera recompensa ganada jugando — Acolchado de Camino (Issue #147)
+
+**Desarrollador:** Claude — Desarrollador de Servidor de Vintage Telnet
+**Estado:** LISTO PARA REVISIÓN
+**HEAD base:** `d840e0ac4554d6d71960b4635e6a21f5c39d1ecf` (`origin/main`)
+**Rama de entrega:** `claude/vintage-telnet-server-lindero-reward`
+**Origen:** Issue #147, marcada **LISTO PARA DESARROLLO/IMPLEMENTACIÓN** por el Arquitecto de Vintage Telnet y Raspberry Pi (comentario 2026-09-25T10:42) después de que Narrador propuso el objeto/momento/texto, Jugabilidad validó balance (10% de protección, momento de progresión) e Historiador confirmó en canon (`ARMOR_CATALOG.md`, commit `edd21289e`) que el Acolchado de Camino puede entregarse como reconocimiento comunitario. No inventé ningún dato: objeto, hito, frecuencia y texto son exactamente el contrato ya cerrado en el issue.
+
+### Cambios
+- **Contrato final implementado:** completar *El lindero roto* (examinar huellas) y volver a `valdren_centro` otorga, **una sola vez por personaje**, `acolchado_camino` del catálogo (`ARMOR_CATALOG.md`/`server/items.py`, 10% de protección, sin Forja).
+- `world.DISCOVERIES["regreso_valdren_lindero"]` ahora declara `reward_item` y `reward_text` (el texto exacto que propuso Narrador) junto al hito ya existente — no se creó un sistema nuevo de recompensas, solo se colgó la entrega del hito que ya marcaba ese momento de forma autoritativa (una sola vez, vía `store.award_discovery`).
+- `attempt_move()` (única lógica autoritativa de movimiento) llama a `store.grant_item()` (32.5, la misma vía autoritativa que ya usa el DM) exactamente cuando ese hito se otorga por primera vez (`is_new`), y arma un `reward_message` (texto + XP + aviso de subida de nivel si corresponde, mismo patrón que ya usa `resolve_inspect`). `attempt_move()` pasó de devolver una tupla de 4 a una de 5 (se agregó `reward_message` al final); actualicé las 4 llamadas que la desempaquetan.
+- `reward_message` se expone en las dos rutas JSON estructuradas (`POST /api/move`, `POST /api/intent` con `move`) como un campo más (`None` salvo en el movimiento exacto que otorga la recompensa), siguiendo el mismo contrato de "el servidor entrega el estado ya resuelto" que ya usan Issues #120/#73/#57.
+- No se tocó combate, economía, canon, `NARRATIVE.md`, `ARMOR_CATALOG.md` ni ningún archivo fuera de `vintage-telnet/server/` y `vintage-telnet/tests/`.
+
+### Pendiente / aviso para quien integre la UI
+- Las rutas clásicas basadas en formulario (`POST /move`, `POST /command`) **no muestran** el `reward_message` — hoy tampoco muestran el mensaje del propio hito `regreso_valdren_lindero` (gap preexistente, no lo introduje ni lo agrandé). Si se quiere mostrar el texto de Narrador en la pantalla real (`server/templates/entry.html`), consumir `reward_message` desde `/api/move` o `/api/intent`; no lo até a la plantilla para no chocar con el trabajo activo de Arte/UI sobre esa misma pantalla (Issues #135/#143/#152) ni salirme de una tarea de servidor/datos.
+- El panel de Inventario ya muestra objetos entregados por `grant_item()` sin cambios adicionales (Issue #57 ya lo cubre).
+
+### Pruebas
+- `cd vintage-telnet && .venv/bin/python -m unittest discover -s tests -v` → **283/283 OK** (280 existentes + 3 nuevas en `tests/test_pilot_lindero_roto.py`): el contrato de datos del hito (`reward_item`/`reward_text`), el objeto entra al inventario exactamente una vez incluso saliendo/reentrando a Valdren, y `reward_message` sale por `/api/move` solo en el movimiento que otorga la recompensa (`None` antes y después).
+- `py_compile` limpio en `server/app.py` y `server/world.py`.
+
+### Trabajo previo afectado
+Ninguno: el hito `regreso_valdren_lindero`, su XP y el resto de descubrimientos/mapa/combate se comportan igual que antes; solo se agregó la entrega del objeto y el mensaje en el mismo punto donde ya se otorgaba el hito.
+
+### Aviso para el otro desarrollador / Integrador
+- No se hizo push a `main`; solo commits en `claude/vintage-telnet-server-lindero-reward`.
+- No se desplegó ni tocó la Raspberry Pi.
+- **LISTO PARA PUBLICAR:** falta autorización de Javier ("sube"). Sin migración de esquema (usa las tablas `discoveries`/`inventory_items` ya existentes).
