@@ -45,8 +45,10 @@ class PublishedArtTests(unittest.TestCase):
     def test_first_combat_creatures_and_veyra_road_have_art(self):
         self.assertIn("mordelinde", creatures.CREATURE_ART)
         self.assertIn("espinajo_rastrojo", creatures.CREATURE_ART)
-        self.assertEqual(world.get_visual_context_id("road_north"), "zone.veyra.road")
         self.assertIn("zone.veyra.road", world.VISUAL_CONTEXT_ART)
+        road_rooms = [r for r in world.ROOMS if world.get_visual_context_id(r) == "zone.veyra.road"]
+        self.assertTrue(road_rooms)
+        self.assertIsNotNone(world.describe_room(road_rooms[0], [])["art"])
         for creature_id in creatures.CREATURE_ART:
             self.assertIsNotNone(creatures.get_creature(creature_id))
 
@@ -61,8 +63,10 @@ class PublishedArtTests(unittest.TestCase):
         csrf = re.search(r'name="csrf" value="([^"]+)"', self.client.get("/").get_data(as_text=True))[1]
         self.client.post("/species", data=dict(csrf=csrf, species="humano"))
         self.client.post("/class", data=dict(csrf=csrf, player_class="juramentado"))
-        self.client.post("/move", data=dict(csrf=csrf, direction="west"))  # sendero
-        self.client.post("/move", data=dict(csrf=csrf, direction="west"))  # parcela: Mordelinde
+        # Camina de Valdren a la Parcela removida siguiendo las salidas reales.
+        for here, there in (("valdren_centro", "valdren_sendero"), ("valdren_sendero", "valdren_camino_parcela")):
+            direction = next(d for d, dest in world.ROOMS[here]["exits"].items() if dest == there)
+            self.client.post("/move", data=dict(csrf=csrf, direction=direction))
         html = self.client.get("/").get_data(as_text=True)
         self.assertIn("/assets/creatures/mordelinde.webp", html)
 
