@@ -93,6 +93,12 @@ ROOM_VISUAL_CONTEXT_OVERRIDES = {
     "valdren_camino_parcela": "zone.edran.valdren_outskirts",
     "valdren_camino_cerca": "zone.edran.valdren_outskirts",
     "valdren_camino_lindero": "zone.edran.valdren_outskirts",
+    "valdren_lindero_tres_piedras": "zone.edran.valdren_outskirts",
+    "valdren_camino_hundido": "zone.edran.valdren_outskirts",
+    "valdren_cobertizos_viejos": "zone.edran.valdren_outskirts",
+    "valdren_cruce_cercas": "zone.edran.valdren_outskirts",
+    "valdren_campo_rastrojo": "zone.edran.valdren_outskirts",
+    "valdren_zanja_vieja": "zone.edran.valdren_outskirts",
 }
 
 _TOWN_VISUAL_CONTEXT_PREFIXES = ("valdren", "khariel", "brumak", "narevia", "velmora")
@@ -234,8 +240,69 @@ ROOMS["valdren_camino_lindero"] = {
         "barro conserva depresiones profundas. En este tramo no ves los pequenos "
         "movimientos entre cultivos que acompanaban el camino hasta ahora."
     ),
-    "exits": {"east": "valdren_camino_cerca"},
+    "exits": {"east": "valdren_camino_cerca", "west": "valdren_lindero_tres_piedras"},
 }
+
+# Expansion del recorrido inicial de Valdren. Conserva intacta la
+# microaventura El lindero roto y, despues de su hito final, permite seguir
+# caminando por Edran. Son salas de transito/exploracion: no agregan encuentros
+# scripted, recompensas, balance ni reglas nuevas.
+ROOMS["valdren_lindero_tres_piedras"] = {
+    "name": "Lindero de las tres piedras",
+    "description": (
+        "Tres piedras grandes marcan una division mas antigua que las cercas "
+        "cercanas. El camino sigue entre parcelas menos juntas y las voces de "
+        "Valdren ya llegan debiles desde el este."
+    ),
+    "exits": {"east": "valdren_camino_lindero", "west": "valdren_camino_hundido"},
+}
+ROOMS["valdren_camino_hundido"] = {
+    "name": "Camino hundido",
+    "description": (
+        "Generaciones de paso han dejado la franja de tierra ligeramente hundida "
+        "entre los campos. A ambos lados hay hierba, surcos viejos y reparaciones "
+        "hechas en epocas distintas."
+    ),
+    "exits": {"east": "valdren_lindero_tres_piedras", "west": "valdren_cobertizos_viejos"},
+}
+ROOMS["valdren_cobertizos_viejos"] = {
+    "name": "Cobertizos viejos",
+    "description": (
+        "Varios cobertizos bajos se levantan junto al camino. Algunos siguen en "
+        "uso; otros conservan tablas y apoyos reemplazados muchas veces. El campo "
+        "abierto empieza a ocupar mas espacio que las construcciones."
+    ),
+    "exits": {"east": "valdren_camino_hundido", "west": "valdren_cruce_cercas"},
+}
+ROOMS["valdren_cruce_cercas"] = {
+    "name": "Cruce de las cercas",
+    "description": (
+        "Dos cercas se separan y dejan un cruce ancho de tierra. Un sendero menor "
+        "se pierde entre parcelas exteriores, mientras el camino principal "
+        "continua alejandose de Valdren."
+    ),
+    "exits": {"east": "valdren_cobertizos_viejos", "west": "valdren_campo_rastrojo"},
+}
+ROOMS["valdren_campo_rastrojo"] = {
+    "name": "Campo de rastrojo",
+    "description": (
+        "Los cultivos continuos quedan atras. Rastrojo, hierba y terrenos en "
+        "descanso se alternan junto a un camino todavia claro. Ya no se distingue "
+        "ninguna casa individual de Valdren."
+    ),
+    "exits": {"east": "valdren_cruce_cercas", "west": "valdren_zanja_vieja"},
+}
+ROOMS["valdren_zanja_vieja"] = {
+    "name": "La zanja vieja",
+    "description": (
+        "Una zanja de drenaje acompana el camino durante un tramo. Sus bordes "
+        "muestran arreglos de piedra, tierra y madera hechos en momentos distintos. "
+        "Hacia el oeste el terreno sigue abierto."
+    ),
+    "exits": {"east": "valdren_campo_rastrojo"},
+}
+
+# Estas salas comparten el contexto visual de las afueras de Valdren.
 
 # examinar <objetivo> por sala -- las claves se comparan normalizadas
 # (minusculas, sin acentos; ver app.py _normalize).
