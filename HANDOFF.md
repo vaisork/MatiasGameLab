@@ -1,5 +1,36 @@
 # HANDOFF — Entrega técnica
 
+## ENTREGA — Senku: arranque resistente y carga segura de persistencia (#81)
+
+**DESARROLLADOR:** Claude — Desarrollador y Revisor de Senku
+**HEAD BASE:** `afd1a07a55d4b57e13810ee85dae4ebe2a024fd2`
+**TAREA ASIGNADA:** Bug fix — botón DESPERTAR no inicia el juego en la versión pública cuando el almacenamiento local está bloqueado o restringido en el navegador, y hacer el arranque resistente.
+**RAMA:** `claude/senku-resilient-startup-fix`
+
+### CAMBIOS
+- `senku/juego.html`:
+  - Se encapsuló la restauración inicial de `churus`, `secret` y `collected` con bloques `try/catch` utilizando wrappers seguros de almacenamiento (`storageGet`).
+  - Se añadió salvaguarda en `rr()` para comprobar si `x.roundRect` está definido antes de invocarlo, usando `x.rect` como fallback en navegadores o WebViews antiguos.
+  - Se verificó la existencia del elemento DOM en `hold()` antes de registrar listeners de puntero.
+  - Se aseguró el flujo de arranque para que la portada se oculte y la escena "Casa" inicie correctamente al pulsar DESPERTAR.
+
+### PRUEBAS
+- Pruebas automatizadas con Playwright en servidor local (`http.server`):
+  - **Escritorio (1280×800):** navegación desde el portal `index.html` → `senku/` → `juego.html` → DESPERTAR → zona Casa activa y botón de retorno al portal funcionando.
+  - **Móvil (390×844) con `localStorage` totalmente bloqueado (simulación de `SecurityError`):** inicialización limpia de `juego.html`, pulsar DESPERTAR oculta el overlay de portada y entra a Casa, visualización del vestidor/trajes funcional sin errores en consola.
+  - **Tablet (820×1180):** respuesta de movimiento táctil (`#right`) y renderizado de sprites.
+
+### TRABAJO PREVIO AFECTADO
+- Ninguno. Se conserva la estructura, estilos y assets de Senku v0.5.9.
+
+### PENDIENTES
+- Ninguno técnico.
+
+### AVISO PARA EL OTRO DESARROLLADOR
+- Mantener siempre el acceso a `localStorage` detrás de `storageGet` y `storageSet` con `try/catch` para evitar abortar la inicialización del script en navegadores o modos con almacenamiento bloqueado.
+
+---
+
 ## ENTREGA — Reloj global de hora del día conectado a `world.get_ambient()` (Issue #138)
 
 **DESARROLLADOR:** Claude — Desarrollador de Servidor de Vintage Telnet

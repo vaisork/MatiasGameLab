@@ -143,7 +143,9 @@ function storageSet(key,value){
  try{window.localStorage.setItem(key,value);return true}catch(err){storageAvailable=false;console.warn('Senku: no se pudo guardar la partida; se continuará sin persistencia.',err);return false}
 }
 let selectedSkin=storageGet('senku_skin')||'normal';
-let collected=new Set();
+try{const sc=storageGet('senku_churus');if(sc)churus=parseInt(sc,10)||0}catch(e){churus=0}
+try{secret=storageGet('senku_secret')==='1'}catch(e){secret=false}
+let collected=new Set();try{const sa=storageGet('senku_collected');if(sa){const p=JSON.parse(sa);if(Array.isArray(p))collected=new Set(p)}}catch(e){collected=new Set()}
 const senkuSheet=new Image();senkuSheet.src='../assets/senku/senku-sprites.png?v=050';
 const secretRatSheet=new Image();secretRatSheet.src='../assets/trajes/rata/walk-sheet.png?v=050';
 const ratSheet=new Image();ratSheet.src='../assets/rata/white-rat-sprite-v2.png?v=051';
@@ -190,7 +192,7 @@ function setScene(s){
  if(s==='taco'){p.x=60;p.y=430;items=[{id:'taco-0',x:230,y:430},{id:'taco-1',x:580,y:430},{id:'taco-2',x:744,y:355}].map(q=>({...q,t:collected.has(q.id)?1:0}))}
  p.vx=p.vy=0;hud()
 }
-function hold(id,k){const e=document.getElementById(id),on=q=>{q.preventDefault();keys[k]=true},off=q=>{q.preventDefault();keys[k]=false};e.addEventListener('pointerdown',on);e.addEventListener('pointerup',off);e.addEventListener('pointercancel',off);e.addEventListener('pointerleave',off)}
+function hold(id,k){const e=document.getElementById(id);if(!e)return;const on=q=>{q.preventDefault();keys[k]=true},off=q=>{q.preventDefault();keys[k]=false};e.addEventListener('pointerdown',on);e.addEventListener('pointerup',off);e.addEventListener('pointercancel',off);e.addEventListener('pointerleave',off)}
 hold('left','l');hold('right','r');hold('jump','j');hold('action','a');
 addEventListener('keydown',e=>{if(e.code==='ArrowLeft'||e.code==='KeyA')keys.l=true;if(e.code==='ArrowRight'||e.code==='KeyD')keys.r=true;if(e.code==='ArrowUp'||e.code==='Space'||e.code==='KeyW'){keys.j=true;e.preventDefault()}if(e.code==='KeyE'||e.code==='Enter')keys.a=true});
 addEventListener('keyup',e=>{if(e.code==='ArrowLeft'||e.code==='KeyA')keys.l=false;if(e.code==='ArrowRight'||e.code==='KeyD')keys.r=false;if(e.code==='ArrowUp'||e.code==='Space'||e.code==='KeyW')keys.j=false;if(e.code==='KeyE'||e.code==='Enter')keys.a=false});
@@ -235,7 +237,7 @@ function update(dt){if(!running)return;physics(dt);collect();interaction();bumpC
 function bumpCup(){if(scene!=='house'||cupKnocked)return;if(Math.hypot(p.x+27-cupX,p.y+18-cupY)<48){cupKnocked=true;cupX=566}}
 function fallCup(dt){if(scene!=='house'||!cupKnocked||cupY>=488)return;cupVy+=1500*dt;cupY=Math.min(488,cupY+cupVy*dt);if(cupY>=488)cupVy=0}
 
-function rr(a,b,w,h,r){x.beginPath();x.roundRect(a,b,w,h,r)}
+function rr(a,b,w,h,r){x.beginPath();if(typeof x.roundRect==='function')x.roundRect(a,b,w,h,r);else x.rect(a,b,w,h)}
 function drawChuru(q){if(q.t)return;x.save();x.translate(q.x,q.y+Math.sin(time*4+q.x)*4);x.fillStyle='#edc45a';rr(-9,-19,18,33,5);x.fill();x.fillStyle='#9d5938';x.fillRect(-6,-13,12,12);x.restore()}
 function pix(gx,gy,s,col){x.fillStyle=col;x.fillRect(gx*s,gy*s,s,s)}
 function fillPix(grid,x0,y0,w,h,code){
