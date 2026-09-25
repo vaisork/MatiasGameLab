@@ -1,5 +1,33 @@
 # HANDOFF — Entrega técnica
 
+## ENTREGA — Reloj global de hora del día conectado a `world.get_ambient()` (Issue #138)
+
+**DESARROLLADOR:** Claude — Desarrollador de Servidor de Vintage Telnet
+**HEAD BASE:** `8336f915cb7d0e48425916d517a1ca7f84643e6a` (origin/main)
+**TAREA ASIGNADA:** revisión automática recurrente (Issue #47) sobre el Issue #138. Jugabilidad ya dejó el contrato v1 como comentario en el issue (2026-09-25T02:07): reloj de juego **global y compartido**, amanecer → día → atardecer → noche, ciclo de 4h reales/60 min reales por estado, sin efecto mecánico en v1, y cerró con "Handoff a Servidor: conectar `world.get_ambient()` con este reloj compartido". El Narrador entregó las etiquetas visibles el mismo día.
+**RAMA:** `claude/vintage-telnet-server-ambient-clock`
+
+### CAMBIOS (solo `server/world.py` + pruebas; sin esquema, UI nueva, arte ni canon)
+- `world._current_time_of_day(now=None)`: función pura de `time.time()` (inyectable) que da amanecer/día/atardecer/noche según el ciclo de 4h/60 min por estado que definió Jugabilidad. Al ser función del tiempo real y no un contador persistente, reiniciar el servidor no reinicia el día de forma arbitraria (lo que pedía el criterio de aceptación del issue).
+- `world.get_ambient(room_id, now=None)`: ahora devuelve `time_of_day` con ese reloj; `weather` **sigue en `None`** — el Narrador dejó explícito en el mismo issue que no puede asignar distribución regional de clima sin el canon del Historiador, que todavía no llegó. No se inventa.
+- Iconos usados (ya existían en `AMBIENT_ICONS`): amanecer→`amanecer`, día→`sol`, atardecer→`atardecer`, noche→`luna`.
+
+### PENDIENTE, NO INVENTADO
+- **NECESIDAD DE HISTORIADOR** (ya registrada por Narrador en el propio Issue #138): canon de clima plausible por región (Edran, Hoshai, Korven, Lethra, Nhal, Vaisgard) antes de que `weather` deje de ser `None`.
+- **Registro formal en `GAMEPLAY.md`:** al momento de esta entrega, el contrato de Jugabilidad para #138 solo existe como comentario del issue — la rama `gameplay/issue-138-time-weather-contract` no lo contiene (confirmado con `git diff` contra `main`, sigue igual que cuando Javier lo señaló el 2026-09-24). No me corresponde escribir `GAMEPLAY.md`; lo dejo señalado para Jugabilidad, que ya autorizó explícitamente implementar el reloj sin esperar ese paso ("Desarrollo puede implementar ya el reloj compartido").
+- Efectos mecánicos de hora/clima (Percepción con niebla, criaturas nocturnas, Vesperi en baja luz, etc.) siguen fuera de alcance: Jugabilidad dijo expresamente que v1 es solo ambiental/presentacional.
+
+### PRUEBAS
+- Suite completa **263/263 OK** (`.venv/bin/python -m unittest discover -s tests`).
+- `tests/test_entry.py`: reescribí `test_ambient_slot_is_empty_until_gameplay_and_narrative_define_it` → `test_ambient_shows_shared_time_of_day_but_no_weather_yet` (ya no puede esperar `ambient == {None, None}`; ahora comprueba que `time_of_day` viene poblado, `weather` sigue `None`, y que la barra muestra el chip). Añadí `AmbientClockTests` (5 pruebas nuevas): límites del ciclo/orden, reproducibilidad con la misma `now`, que no depende de un contador (equivalente a sobrevivir un reinicio), `get_ambient` usa el reloj y dejando `weather` sin definir, y que cada estado usa un icono conocido de `AMBIENT_ICONS`.
+- `py_compile` limpio en los dos archivos tocados.
+
+- Revisado por Claude (sesión interactiva): cumple el contrato de Jugabilidad y Narrador en #138. Combinado con las PR #172 y #173: **305/305 OK**.
+
+**PUBLICADO:** Javier autorizó ("súbelas tú"); se integra con la PR #168. Sin migración: el esquema sigue igual.
+
+---
+
 ## ENTREGA — Arte aprobado en el juego: Mordelinde, Espinajo de rastrojo y camino de Veyra (#151)
 
 **DESARROLLADOR:** Claude — Desarrollador de Servidor de Vintage Telnet
