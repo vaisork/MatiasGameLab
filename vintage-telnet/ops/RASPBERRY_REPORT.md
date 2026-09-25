@@ -936,3 +936,44 @@ punto 3 de la nota anterior; los puntos 1, 4 y 5 siguen vigentes tal cual):
 No adjunto contraseñas, claves, cookies, hashes ni bases en este reporte.
 No afirmo ningún resultado de instalación, despliegue o rollback que no se
 ejecutó realmente en el hardware físico.
+
+## Actualización de la revisión periódica — primer despliegue real de vt-deploy confirmado, queda un solo pendiente de red — 2026-09-25
+
+Misma sesión automatizada en la nube (sin SSH/sudo ni acceso a la red
+Tailscale del equipo físico). `main` avanzó a
+`b8b749b1fad0a3d0762f23afe28f729e508aaa41` (merge de PR #149) desde la nota
+anterior.
+
+Según los comentarios de la Issue #141 (no ejecutado ni verificado por mí,
+solo leído del hilo):
+
+- Javier instaló `vt-deploy` en la Raspberry física y corrió
+  `sudo vt-deploy latest` con éxito — **primer despliegue real de esquema
+  v9** en producción, resolviendo el pendiente que arrastraban varias notas
+  anteriores de este reporte.
+- Otra sesión verificó desde internet (Tailscale Funnel) que `/healthz`
+  responde `{"schema_version": 9, "status": "ok"}`, que la pantalla
+  principal nueva (#137), la elección de clase (#133), el panel de PA
+  (#134) y la navegación con minimapa/"Salidas" (#143) están presentes, y
+  que `/dm` responde **404 desde internet** (confirma que PR #149 cerró el
+  acceso público al panel del DM).
+
+**Pendiente real restante, con la misma limitación de acceso que motiva
+esta nota:** confirmar que `/dm` sigue respondiendo **200** desde dentro de
+la red Tailscale o desde `http://127.0.0.1:8080/dm` en la propia Raspberry
+(para asegurar que PR #149 solo bloqueó el acceso público, no rompió el uso
+legítimo del panel del DM), y registrar en este reporte la salida completa
+del `vt-deploy` real (no solo la confirmación verbal de Javier). Ninguna de
+las dos cosas es alcanzable desde esta sesión en la nube: la primera
+requiere estar en la red Tailscale o en el propio equipo; la segunda
+requiere haber presenciado la corrida real, que no ocurrió en esta sesión.
+
+Con esto, la Issue #141 ya tiene su despliegue real y su prueba de
+rollback (Raspberry simulada, PR #146); solo falta la confirmación de
+`/dm` en red interna y el registro de la salida del comando para poder
+cerrarla con evidencia completa. La prueba de Android (#83) y el probe de
+Ollama real (#19) siguen igual de pendientes, sin novedad.
+
+No adjunto contraseñas, claves, cookies, hashes ni bases en este reporte.
+No afirmo ningún resultado que no haya leído textualmente del propio hilo
+de la Issue #141 o verificado yo misma.
