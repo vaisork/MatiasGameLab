@@ -5,6 +5,8 @@ no debe interpretarse como mapa canonico completo. Los textos visibles usan
 solo hechos ya establecidos en SETTLEMENTS.md, SPECIES.md y NARRATIVE.md.
 """
 
+import time
+
 OPPOSITE_DIRECTION = {"north": "south", "south": "north", "east": "west", "west": "east"}
 ALL_DIRECTIONS = ("north", "south", "east", "west")
 
@@ -388,21 +390,45 @@ def get_discovery(key):
 
 
 # Hora del día y clima (Issue #138, petición directa de Javier). La pantalla
-# ya tiene su espacio en la barra de lugar; QUÉ horas y climas existen, cómo
-# cambian (reloj real, reloj de juego, por zona, al azar...) y si afectan al
-# juego lo deciden Jugabilidad y Narrador. Mientras no lo definan, no hay
-# ambiente y la barra no muestra nada: no se inventa ningún estado.
-#
-# Contrato: cada campo es None o {"label": texto visible, "icon": clave}. Las
-# claves de icono disponibles en la interfaz son AMBIENT_ICONS; un icono
-# desconocido se muestra solo como texto.
+# ya tiene su espacio en la barra de lugar. Contrato: cada campo es None o
+# {"label": texto visible, "icon": clave}. Las claves de icono disponibles en
+# la interfaz son AMBIENT_ICONS; un icono desconocido se muestra solo texto.
 AMBIENT_ICONS = ("sol", "luna", "amanecer", "atardecer", "nube", "lluvia", "niebla", "nieve", "tormenta", "viento")
 
+# Hora del día: handoff de Jugabilidad en el Issue #138 (2026-09-25, todavía
+# sin registrar en GAMEPLAY.md al momento de implementar esto — el criterio
+# de salida de la issue sigue abierto por ese lado, pero Jugabilidad autorizó
+# explícitamente implementar ya el reloj). Reloj de juego global y compartido
+# por todos los jugadores, no personal ni por acciones: amanecer -> día ->
+# atardecer -> noche, ciclo completo de 4 horas reales, 60 minutos reales por
+# estado. Etiquetas del Narrador en el mismo issue.
+_TIME_OF_DAY_STATES = (
+    {"label": "Amanecer", "icon": "amanecer"},
+    {"label": "Día", "icon": "sol"},
+    {"label": "Atardecer", "icon": "atardecer"},
+    {"label": "Noche", "icon": "luna"},
+)
+_TIME_OF_DAY_STATE_SECONDS = 60 * 60  # 60 min reales por estado (ciclo de 4h)
 
-def get_ambient(room_id):
+
+def _current_time_of_day(now=None):
+    """Estado del reloj global de hora del día para `now` (segundos Unix,
+    por defecto time.time()). Es una función pura del tiempo real, no un
+    contador persistente: reiniciar el servidor no reinicia el día de forma
+    arbitraria. `now` es inyectable para pruebas reproducibles."""
+    if now is None:
+        now = time.time()
+    index = int(now // _TIME_OF_DAY_STATE_SECONDS) % len(_TIME_OF_DAY_STATES)
+    return _TIME_OF_DAY_STATES[index]
+
+
+def get_ambient(room_id, now=None):
     """Ambiente visible de una sala: {"time_of_day": ..., "weather": ...}.
-    Punto único que Jugabilidad/Narrador llenarán; hoy siempre vacío."""
-    return {"time_of_day": None, "weather": None}
+    time_of_day usa el reloj global compartido (Issue #138). weather sigue
+    en None: el Narrador no puede asignar distribución regional de clima
+    sin el canon de Historiador que todavía falta en ese mismo issue, así
+    que no se inventa. `now` se reenvía tal cual a `_current_time_of_day`."""
+    return {"time_of_day": _current_time_of_day(now), "weather": None}
 
 
 # Minimapa (navegación, Issue #135): coordenadas de rejilla para cada sala,
