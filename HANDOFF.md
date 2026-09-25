@@ -24,6 +24,16 @@
 - Suite **242/242 OK**, con 3 nuevas en `tests/test_screen_stability.py`.
 - Medición en Chromium a 390 px: posición vertical de arte, terminal, cruz, comando y barra al cargar, a los 0.4 s y a los 3 s, en Valdren (con arte) → Sendero (sin arte) → Valdren → Mercado (con arte). **Idéntica al píxel en los 12 puntos.**
 
+### SEGUNDA RONDA (Javier, 2026-09-25)
+Pidió que el marco de imagen siga esta regla: pueblo → su imagen fija; camino → imagen de camino; pelea → el animal; sin nada que mostrar → vacío y quieto. También pidió botones ~20 % más chicos, letra ~10 % más chica, más espacio de lectura, y las imágenes de las especies en la pantalla de elegir especie.
+- **Pueblos:** Khariel, Brumak, Narevia y Velmora ya tenían arte **aprobado y publicado desde el 2026-09-23** (commits `6de5885`, `0f07a28`, `81ed307`, `c5af42b`), pero nunca se había conectado. Ya están en `VISUAL_CONTEXT_ART`, así que los 6 asentamientos muestran su imagen.
+- **Caminos** (`zone.veyra.road`, `zone.edran.valdren_outskirts`): el marco queda vacío hasta que Arte publique la imagen; después basta agregar la fila en `VISUAL_CONTEXT_ART`.
+- **Combate:** `creatures.CREATURE_ART` (vacío por ahora) y la ruta `/assets/creatures/<archivo>` (cacheable). En combate el marco muestra la criatura o queda vacío; nunca el paisaje. Solicitud de arte registrada en una issue para el Director de Arte.
+- **Marco vacío:** sin texto ni ícono, solo el marco, como pidió Javier.
+- **Especies:** la ruta `/assets/species/<archivo>` sirve las 5 fichas aprobadas (`assets/vintage-telnet/species/`). Cada tarjeta muestra el recorte central de la ficha y el enlace "Ver ficha completa". Se quitó "Retrato pendiente de asset aprobado".
+- **Tamaños:** bloque "Compacto" al final del CSS. Botones ~20 % más bajos (acción 46→37 px; en teléfono 44→36, cruz 40×37, barra inferior 54→44) y letra del terminal ~10 % menor (15→13.5 px en teléfono). Terminal más alto: 36svh exploración / 46svh combate / hasta 40svh en escritorio. El cuadro de comando conserva 16 px de letra por el zoom de iOS.
+- **Pruebas:** 242/242 OK. En Chromium a 390 px, Khariel → Sendero → Khariel → Vaisgard → Camino del Norte: arte, terminal, cruz, comando y barra en la **misma posición** al cargar y a los 3 s. También revisado a 820×1180 (iPad).
+
 **LISTO PARA PUBLICAR:** falta la autorización de Javier ("sube"). Luego se despliega con `sudo vt-deploy latest`.
 
 ---

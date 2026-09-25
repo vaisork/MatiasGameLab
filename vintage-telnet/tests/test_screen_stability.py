@@ -43,12 +43,12 @@ class ScreenStabilityTests(unittest.TestCase):
         self.post("/move", dict(direction="west"))  # sendero: sin arte aprobado
         html = self.client.get("/").get_data(as_text=True)
         self.assertIn('<figure class="location-art no-art">', html)
-        self.assertIn('<span>Sendero de Valdren</span>', html)
+        self.assertIn('<div class="art-placeholder" aria-hidden="true"></div>', html)
 
     def test_text_reveal_reserves_full_height(self):
         html = self.client.get("/").get_data(as_text=True)
         self.assertIn('hiddenPart.style.visibility = "hidden"', html)
-        self.assertIn(".game-shell .log{height:30dvh;height:30svh}", html)
+        self.assertIn(".game-shell .log{height:36dvh;height:36svh}", html)
 
 
 if __name__ == "__main__":

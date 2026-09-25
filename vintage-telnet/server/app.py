@@ -70,6 +70,8 @@ LOCATION_ASSETS_DIR = Path(__file__).resolve().parent.parent.parent / "assets" /
 # Mapa regional aprobado (Issue #120 / PR #99): carpeta propia y acotada, nunca
 # el arbol completo de assets/.
 MAPS_ASSETS_DIR = Path(__file__).resolve().parent.parent.parent / "assets" / "vintage-telnet" / "maps"
+CREATURE_ASSETS_DIR = Path(__file__).resolve().parent.parent.parent / "assets" / "vintage-telnet" / "creatures"
+SPECIES_ASSETS_DIR = Path(__file__).resolve().parent.parent.parent / "assets" / "vintage-telnet" / "species"
 APP_ICON_PATH = Path(__file__).resolve().parent.parent.parent / "assets" / "icon" / "vintage-telnet-portal.webp"
 
 
@@ -146,7 +148,7 @@ def create_app(config=None):
     # que la ilustración no se vuelva a descargar (y parpadee) en cada acción.
     # Las páginas y la API siguen sin guardarse (no-store): llevan datos del
     # jugador.
-    CACHEABLE_ENDPOINTS = {"app_icon", "html_ui_assets", "location_assets", "map_assets"}
+    CACHEABLE_ENDPOINTS = {"app_icon", "html_ui_assets", "location_assets", "map_assets", "creature_assets", "species_assets"}
 
     @app.after_request
     def headers(response):
@@ -232,6 +234,9 @@ def create_app(config=None):
                 "condition": combat.enemy_condition(encounter["hp_current"], creature["hp"]),
                 "behavior": creature["behavior_text"],
             }
+            # En combate el marco muestra a la criatura, o nada si todavía no
+            # hay arte aprobado de ella (nunca el paisaje de fondo).
+            view["art"] = creatures.CREATURE_ART.get(encounter["creature_id"])
             # Issue #73 / UI_ACTIONS_CONTRACT.md: fuente estructurada de
             # acciones de combate/descanso inmediatas -- el cliente no debe
             # deducir botones por su cuenta. Alcance de esta entrega: solo
@@ -1477,6 +1482,17 @@ def create_app(config=None):
         # send_from_directory ya rechaza cualquier `filename` que intente
         # escapar de MAPS_ASSETS_DIR (traversal) con 404.
         return send_from_directory(MAPS_ASSETS_DIR, filename, mimetype="image/webp")
+
+    @app.get("/assets/species/<path:filename>")
+    def species_assets(filename):
+        # Fichas aprobadas de las cinco especies (pantalla de elección).
+        return send_from_directory(SPECIES_ASSETS_DIR, filename, mimetype="image/webp")
+
+    @app.get("/assets/creatures/<path:filename>")
+    def creature_assets(filename):
+        # Ilustraciones aprobadas de criaturas (combate). Mismas garantías que
+        # map_assets: WebP explícito y send_from_directory rechaza traversal.
+        return send_from_directory(CREATURE_ASSETS_DIR, filename, mimetype="image/webp")
 
     # --- Dungeon Master ---------------------------------------------------
 

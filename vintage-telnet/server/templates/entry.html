@@ -266,6 +266,9 @@
     .species-card:has(input:checked){border-color:var(--gold);box-shadow:0 0 0 2px #d7b56a33}
     .species-card input{position:absolute;top:12px;right:12px}
     .species-art-placeholder{display:grid;place-items:center;aspect-ratio:4/3;margin-bottom:10px;border:1px dashed #465366;border-radius:9px;color:var(--muted);font:700 .75rem ui-sans-serif,system-ui,sans-serif}
+    .species-art{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;object-position:50% 28%;
+      margin-bottom:10px;border:1px solid #465366;border-radius:9px;background:#d9d6cf}
+    .species-card .species-sheet{display:inline-block;margin-top:8px;color:var(--gold);font:700 .74rem ui-sans-serif,system-ui,sans-serif}
     .species-card strong{display:block;color:var(--green3);margin-bottom:5px;font:.95rem ui-sans-serif,system-ui,sans-serif}
     .species-card span{display:block;color:#d9ccb1;font:.78rem/1.45 ui-sans-serif,system-ui,sans-serif}
     label{display:block;margin-top:12px;font-size:.85rem;color:var(--muted)}
@@ -430,6 +433,31 @@
     @media(prefers-reduced-motion:reduce){
       *,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}
     }
+    /* Compacto (Javier, 2026-09-25): botones ~20 % más chicos y letra ~10 %
+       más chica, para dejar más espacio al cuadro de lectura. El cuadro de
+       comando se queda en 16 px de letra: con menos, iPhone hace zoom. */
+    .action{min-height:37px}
+    .btn{min-height:37px}
+    .dpad{grid-template-columns:repeat(3,40px);grid-template-rows:repeat(3,37px)}
+    .action-attack{min-height:50px;font-size:1.05rem}
+    .commandbar input{min-height:40px}
+    .combat-row.defenses .action{min-height:34px}
+    .entry p{font-size:clamp(.86rem,1.8vw,.92rem)}
+    .game-shell .log{height:clamp(170px,40dvh,440px);height:clamp(170px,40svh,440px)}
+    @media(max-width:640px){
+      .action{min-height:36px;font-size:.72rem}
+      .context-actions .action{min-height:34px}
+      .action-attack{min-height:46px;font-size:.98rem}
+      .btn{min-height:36px}
+      .dpad{grid-template-columns:repeat(3,40px);grid-template-rows:repeat(3,37px)}
+      .tool-row .btn{min-height:44px;font-size:.64rem}
+      .commandbar input{min-height:38px}
+      .combat-row.defenses .action{min-height:32px}
+      .entry p{font-size:13.5px}
+      .entry .cmd{font-size:.7rem}
+      .game-shell .log{height:36dvh;height:36svh}
+      .game-shell.in-combat .log{height:46dvh;height:46svh}
+    }
   </style>
 </head>
 <body>
@@ -499,7 +527,8 @@
           {% for s in species_list %}
           <label class="species-card">
             <input type="radio" name="species" value="{{ s.id }}" required>
-            <span class="species-art-placeholder" aria-hidden="true">Retrato pendiente de asset aprobado</span>
+            <img class="species-art" src="/assets/species/{{ s.id }}.webp" alt="Ilustración de la especie {{ s.name }}"
+                 width="1222" height="1287" loading="lazy" decoding="async">
             <strong>{{ s.name }}</strong>
             {% if s.id == 'humano' %}
               <span>Fisiología generalista, capaz de adaptarse a entornos muy distintos mediante experiencia, herramientas y conocimiento.</span>
@@ -514,6 +543,7 @@
             {% else %}
               <span>{{ s.blurb }}</span>
             {% endif %}
+            <a class="species-sheet" href="/assets/species/{{ s.id }}.webp" target="_blank" rel="noopener">Ver ficha completa</a>
           </label>
           {% endfor %}
         </div>
@@ -558,18 +588,16 @@
 
         {# El marco de la ilustración siempre ocupa el mismo lugar y tamaño,
            haya o no arte aprobado para esta sala, para que la pantalla no
-           salte al moverse (petición de Javier). Sin arte se ve un marco
-           sobrio con el nombre del lugar; no se inventa ninguna imagen. #}
+           salte al moverse (petición de Javier). Pueblo: su ilustración;
+           camino: la del camino; combate: la criatura. Si no hay imagen
+           aprobada, el marco queda vacío y quieto; no se inventa ninguna. #}
         <figure class="location-art{{ '' if room.art else ' no-art' }}">
           {% if room.art %}
           <img data-location-art src="{{ room.art.src }}" alt="{{ room.art.alt }}"
                width="{{ room.art.width }}" height="{{ room.art.height }}" fetchpriority="high" decoding="async">
           <div class="location-art-fallback" hidden>La ilustración contextual no está disponible. El juego continúa normalmente.</div>
           {% else %}
-          <div class="art-placeholder" aria-hidden="true">
-            <svg class="ui-icon"><use href="{{ '#icon-swords' if room.encounter else '#icon-pin' }}"/></svg>
-            <span>{{ room.name }}</span>
-          </div>
+          <div class="art-placeholder" aria-hidden="true"></div>
           {% endif %}
         </figure>
 
