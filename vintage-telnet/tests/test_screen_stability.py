@@ -72,3 +72,42 @@ class CombatReadingTests(ScreenStabilityTests):
         self.assertIn("data-result-entry>", html)
         self.assertNotIn('<div class="alert-note"', html)
         self.assertIn("<p data-room-description", html)
+
+
+class CombatLogTests(ScreenStabilityTests):
+    def enter_combat(self):
+        self.post("/move", dict(direction="west"))
+        self.post("/move", dict(direction="west"))  # Parcela removida: Mordelinde
+        self.player_id = self.client.get("/api/me").json["player"]["id"]
+        self.path = self.app.config["DATABASE"]
+
+    def test_fight_is_told_turn_by_turn_and_only_while_it_lasts(self):
+        self.enter_combat()
+        self.post("/evaluate", {})
+        self.post("/dodge", {})
+        self.post("/command", dict(text="resistir"))  # por comando también cuenta
+        log = store.get_combat_log(self.path, self.player_id, "valdren_camino_parcela")
+        self.assertEqual([line["action"] for line in log], ["evaluar", "esquivar", "resistir"])
+        html = self.client.get("/").get_data(as_text=True)
+        self.assertEqual(html.count('class="entry combat-line'), 3)
+        self.assertIn('class="entry combat-line result-entry" role="status" data-result-entry', html)
+        # Al terminar la pelea (aquí, huyendo o ganando) el relato se borra.
+        store.clear_encounter(self.path, self.player_id, "valdren_camino_parcela")
+        self.assertEqual(store.get_combat_log(self.path, self.player_id, "valdren_camino_parcela"), [])
+
+    def test_log_never_grows_beyond_the_limit(self):
+        self.enter_combat()
+        for i in range(store.COMBAT_LOG_KEEP + 15):
+            store.append_combat_log(self.path, self.player_id, "valdren_camino_parcela", "atacar", f"turno {i}")
+        with store.connect(self.path) as db:
+            count = db.execute("SELECT COUNT(*) FROM combat_log").fetchone()[0]
+        self.assertEqual(count, store.COMBAT_LOG_KEEP)
+        shown = store.get_combat_log(self.path, self.player_id, "valdren_camino_parcela")
+        self.assertEqual(len(shown), 20)
+        self.assertEqual(shown[-1]["text"], f"turno {store.COMBAT_LOG_KEEP + 14}")
+
+    def test_actions_without_a_creature_are_not_logged(self):
+        self.path = self.app.config["DATABASE"]
+        self.post("/attack", {})
+        with store.connect(self.path) as db:
+            self.assertEqual(db.execute("SELECT COUNT(*) FROM combat_log").fetchone()[0], 0)

@@ -1,5 +1,35 @@
 # HANDOFF — Entrega técnica
 
+## ENTREGA — Relato de la pelea (historial de combate) + la pantalla siempre cabe en el celular
+
+**DESARROLLADOR:** Claude — Desarrollador de Servidor de Vintage Telnet
+**HEAD BASE:** `5d4a31d` (origin/main)
+**TAREA ASIGNADA:** Javier (2026-09-25): "sí, hazlo" — guardar el historial de la pelea para leerla turno por turno.
+**RAMA:** `claude/vt-combat-log`
+
+### CAMBIOS
+- **Esquema v9 → v10.** Nueva tabla `combat_log` (id, player_id, room_id, action, text, created_at) con índice. Es aditiva: no toca datos existentes.
+- `store.append_combat_log` / `get_combat_log` (últimas 20 líneas) con **poda a 30 líneas** por encuentro. `start_encounter` borra el relato viejo si el encuentro es nuevo y `clear_encounter` lo borra al terminar la pelea: victoria, huida o derrota. **Nunca crece.** Una pelea ocupa unos 2 KB.
+- `app.py`: `_record_combat` envuelve atacar, huir, esquivar, resistir y bloquear, y hay un envoltorio para evaluar. Registra la acción venga de un botón, de un comando escrito o de `/api/intent`. No registra nada si no hay criatura (`no_target`) ni si la pelea ya terminó.
+- `room_view` expone `combat_log` en combate. `entry.html` lo muestra como relato (`> acción` + texto), con la última línea destacada. En combate, el cuadro de lectura siempre se desplaza hasta lo más reciente.
+- **Layout en teléfono** (arregla un recorte real): `.app` y `.layout` pasan a columna flex, y el terminal toma **exactamente el espacio que sobra**. Antes el cuadro se aplastaba y la última línea quedaba oculta, y además sobraban ~220 px abajo. En pantallas bajas (≤720 px de alto, como el iPhone SE) la imagen mide 120 px.
+
+### PRUEBAS
+- Suite **253/253 OK**, con 3 nuevas en `CombatLogTests`: relato por turnos también por comando, poda a 30, sin criatura no se registra y se borra al terminar. Las simulaciones de bases v7/v8 ahora tampoco tienen `combat_log`.
+- Migración real de una base **v9 con 3 jugadores** → v10: jugadores intactos y `integrity_check ok`.
+- En Chromium a 390×844, 375×667 y 820×1180, en exploración y en combate de 4 turnos:
+  - las posiciones de imagen, terminal, comando y barra son **idénticas** turno a turno;
+  - el terminal nunca queda bajo los controles;
+  - la última línea siempre está a la vista;
+  - la página no desborda.
+
+### DEPLOY
+`sudo vt-deploy latest` aplica la migración v9 → v10 con respaldo y ensayo previo, como hizo con la v9.
+
+**LISTO PARA PUBLICAR:** falta la autorización de Javier ("sube").
+
+---
+
 ## ENTREGA — Pantalla estable: la imagen y los controles ya no se mueven
 
 **DESARROLLADOR:** Claude — Desarrollador de Servidor de Vintage Telnet

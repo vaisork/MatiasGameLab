@@ -14,7 +14,7 @@ STATUSES = ("pending", "approved", "rejected", "removed")
 
 # Version de esquema que deja initialize(); ops/inventory_migration_probe.py
 # la usa para validar una migracion de prueba contra la copia de la base viva.
-SCHEMA_VERSION = 9
+SCHEMA_VERSION = 10
 
 PLAYER_COLUMNS = (
     "id, player_number, username, name, status, species, player_class, room, heading, created_at, last_access_at"
@@ -232,6 +232,12 @@ def initialize(path):
             # jugador la elige; personajes existentes la eligen al volver.
             db.execute("ALTER TABLE players ADD COLUMN player_class TEXT "
                        "CHECK(player_class IN ('arcano', 'juramentado', 'sombra', 'artifice'))")
+        if version <= 9:
+            # v10: historial de la pelea en curso (petición de Javier,
+            # 2026-09-25). Solo vive mientras dura el encuentro: se borra al
+            # terminarlo y se poda a COMBAT_LOG_KEEP líneas, así nunca crece.
+            db.execute(COMBAT_LOG_TABLE)
+            db.execute("CREATE INDEX combat_log_player_room ON combat_log(player_id, room_id, id)")
         db.execute(f"PRAGMA user_version = {SCHEMA_VERSION}")
 
 
@@ -609,17 +615,52 @@ def get_encounter(path, player_id, room_id):
         return dict(row) if row else None
 
 
+COMBAT_LOG_TABLE = """CREATE TABLE combat_log (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            player_id TEXT NOT NULL REFERENCES players(id),
+            room_id TEXT NOT NULL,
+            action TEXT NOT NULL,
+            text TEXT NOT NULL,
+            created_at TEXT NOT NULL)"""
+COMBAT_LOG_KEEP = 30
+
+
+def append_combat_log(path, player_id, room_id, action, text):
+    """Agrega una línea al relato de la pelea en curso y poda las más viejas
+    (solo quedan las últimas COMBAT_LOG_KEEP de ese encuentro)."""
+    with connect(path) as db:
+        db.execute("INSERT INTO combat_log(player_id, room_id, action, text, created_at) VALUES (?, ?, ?, ?, ?)",
+                   (player_id, room_id, action, text, utcnow()))
+        db.execute(
+            """DELETE FROM combat_log WHERE player_id = ? AND room_id = ? AND id NOT IN (
+                   SELECT id FROM combat_log WHERE player_id = ? AND room_id = ?
+                   ORDER BY id DESC LIMIT ?)""",
+            (player_id, room_id, player_id, room_id, COMBAT_LOG_KEEP))
+
+
+def get_combat_log(path, player_id, room_id, limit=20):
+    """Últimas `limit` líneas de la pelea en curso, de la más vieja a la más nueva."""
+    with connect(path) as db:
+        rows = db.execute(
+            """SELECT action, text FROM combat_log WHERE player_id = ? AND room_id = ?
+               ORDER BY id DESC LIMIT ?""", (player_id, room_id, limit)).fetchall()
+    return [dict(row) for row in reversed(rows)]
+
+
 def start_encounter(path, player_id, room_id, creature_id, hp):
     """No-op si ya hay un encuentro activo en esa sala para ese jugador
     (persistente: si se aleja y vuelve sin resolverlo, sigue con la misma
     vida que tenia)."""
     with connect(path) as db:
-        db.execute(
+        cursor = db.execute(
             """INSERT OR IGNORE INTO room_encounters
                (player_id, room_id, creature_id, hp_current, failed_flee_attempts, created_at)
                VALUES (?, ?, ?, ?, 0, ?)""",
             (player_id, room_id, creature_id, hp, utcnow()),
         )
+        if cursor.rowcount:
+            # Encuentro nuevo: no arrastra relato de una pelea anterior.
+            db.execute("DELETE FROM combat_log WHERE player_id = ? AND room_id = ?", (player_id, room_id))
 
 
 def update_encounter(path, player_id, room_id, hp_current=None, failed_flee_attempts=None):
@@ -642,6 +683,7 @@ def update_encounter(path, player_id, room_id, hp_current=None, failed_flee_atte
 def clear_encounter(path, player_id, room_id):
     with connect(path) as db:
         db.execute("DELETE FROM room_encounters WHERE player_id = ? AND room_id = ?", (player_id, room_id))
+        db.execute("DELETE FROM combat_log WHERE player_id = ? AND room_id = ?", (player_id, room_id))
 
 
 def record_pve_victory(path, player_id, family):

@@ -237,6 +237,7 @@ def create_app(config=None):
             # En combate el marco muestra a la criatura, o nada si todavía no
             # hay arte aprobado de ella (nunca el paisaje de fondo).
             view["art"] = creatures.CREATURE_ART.get(encounter["creature_id"])
+            view["combat_log"] = store.get_combat_log(path, player_id, room_id)
             # Issue #73 / UI_ACTIONS_CONTRACT.md: fuente estructurada de
             # acciones de combate/descanso inmediatas -- el cliente no debe
             # deducir botones por su cuenta. Alcance de esta entrega: solo
@@ -715,6 +716,35 @@ def create_app(config=None):
         store.update_combat_state(path, player["id"], hp_current=player_hp,
                                    fatigue=round(fatigue), wound=new_wound)
         return {"outcome": "failed", "messages": messages}
+
+    # Relato de la pelea (petición de Javier, 2026-09-25): cada acción de
+    # combate que ocurre con una criatura presente deja su línea en el
+    # historial del encuentro, sin importar si llegó por botón, comando o API.
+    # Si la acción terminó el encuentro, store.clear_encounter ya borró el
+    # historial y no se agrega nada.
+    def _record_combat(action, fn):
+        def wrapper(player, *args, **kwargs):
+            room_id = player["room"]
+            result = fn(player, *args, **kwargs)
+            if (room_id and result.get("outcome") not in ("no_target", "unavailable")
+                    and store.get_encounter(path, player["id"], room_id)):
+                store.append_combat_log(path, player["id"], room_id, action, " ".join(result["messages"]))
+            return result
+        return wrapper
+
+    attempt_attack = _record_combat("atacar", attempt_attack)
+    attempt_flee = _record_combat("huir", attempt_flee)
+    attempt_dodge = _record_combat("esquivar", attempt_dodge)
+    attempt_resist = _record_combat("resistir", attempt_resist)
+    attempt_block = _record_combat("bloquear", attempt_block)
+
+    _attempt_evaluate_raw = attempt_evaluate
+
+    def attempt_evaluate(player):
+        name, message = _attempt_evaluate_raw(player)
+        if player["room"] and store.get_encounter(path, player["id"], player["room"]):
+            store.append_combat_log(path, player["id"], player["room"], "evaluar", message)
+        return name, message
 
     def attempt_rest(player):
         """GAMEPLAY.md 24.8: accion explicita `descansar`, solo fuera de
