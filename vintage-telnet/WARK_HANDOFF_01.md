@@ -11,4 +11,4 @@
 - **PRUEBAS:** lectura comparada de `main`, `AGENTS.md`, `REGIONS.md`, `CREATURES.md`, `NARRATIVE.md`, `GAMEPLAY.md`, `server/world.py` y ramas `historia/vt-malla-regional-212` / `narrador/routes-doc-main-sync`. Verificación documental, sin pruebas de código por no haberlo modificado.
 - **DEPENDENCIAS:** Historiador valida canon de la malla #212; Narrador convierte funciones en escenas; Jugabilidad valida efectos mecánicos. El Arquitecto coordina si alguna propuesta pasa a implementación.
 - **BLOQUEOS:** ninguno para la entrega de análisis. La incorporación al juego espera las validaciones citadas.
-- **ESTADO FINAL:** entrega cerrada en rama, sin merge. Automatización de dos ciclos pausada al recibir la instrucción de no autoasignar trabajo. Wark espera el siguiente encargo directo de Javier.
+- **ESTADO DE ESTE CICLO:** primera entrega cerrada en rama, sin merge. Javier confirmó que el encargo general continúa; la automatización de dos ciclos está reactivada. El ciclo 02 está documentado en `WARK_CICLO_02_ESCALA_RETORNO.md`.
