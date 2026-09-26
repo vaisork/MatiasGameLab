@@ -2747,3 +2747,188 @@ La variedad verbal nunca justifica inventar contenido.
 ### 35.12 Principio
 
 **El NPC puede improvisar cómo habla; no puede improvisar qué es verdad ni qué cambia en el mundo.**
+
+
+## 36. Separación jugable de clases — capacidades firma v1
+
+**Estado:** APROBADO PARA PRIMERA IMPLEMENTACIÓN Y PLAYTEST.  
+**Contenido de referencia:** Issue #208 / PR #214 (`CLASSES.md`).
+
+La clase debe sentirse distinta **antes de que el jugador tenga muchos niveles o poderes**. La primera separación no se consigue aumentando o bajando el daño del arma inicial, sino dando a cada clase una forma propia de intervenir en el mismo peligro.
+
+### 36.1 Primera capacidad desde nivel 1
+
+Al elegir clase, el personaje conoce automáticamente una **capacidad firma inicial**. No consume PP y no requiere compra.
+
+- Juramentado → **Guardia Comprometida**
+- Arcano → **Impulso Arcano**
+- Sombra → **Borrar el Foco**
+- Artífice → **Tiro de Interrupción**
+
+Estas cuatro capacidades son exclusivas de la clase inicial durante la primera fase de implementación. No se permite todavía aprenderlas cruzando clases.
+
+La segunda capacidad propuesta por Historia para cada clase queda reservada para el siguiente paquete después del playtest de estas cuatro:
+- Paso de Ruptura;
+- Velo de Contención;
+- Finta de Vacío;
+- Traba de Campo.
+
+Objetivo: comprobar primero que la identidad básica funciona antes de añadir otra capa.
+
+### 36.2 Regla común de intervención
+
+Usar una capacidad firma cuenta como la intervención estratégica de esa ronda y **sustituye el ataque básico** salvo cuando la propia capacidad indique que incluye un disparo.
+
+Cada capacidad:
+- genera **5 puntos base de fatiga**, aplicando el modificador normal de fatiga;
+- entra en recarga después de usarse;
+- no consume PP durante combate;
+- no puede activarse si su requisito físico/contextual no se cumple.
+
+Definición de recarga:
+- **2 rondas:** después de usarla, deben completarse 2 intervenciones propias antes de volver a estar disponible;
+- **4 rondas:** deben completarse 4 intervenciones propias;
+- **8 rondas:** deben completarse 8 intervenciones propias.
+
+La interfaz muestra la capacidad aunque esté en recarga, pero deshabilitada con el número de rondas restantes. No oculta/desaparece el botón.
+
+### 36.3 Intención enemiga visible
+
+Para que las clases puedan responder de manera táctica, una criatura puede preparar una acción especial y comunicarla antes de resolverla.
+
+Contrato mínimo:
+- `prepared_action`: acción especial anunciada;
+- `interruptible`: si puede ser interrumpida por las capacidades que lo permiten;
+- `frontal`: si una guardia frontal puede responder coherentemente;
+- texto/señal visible antes de la intervención del jugador.
+
+El jugador debe recibir **una intervención legítima** entre la señal y la resolución.
+
+No todas las acciones enemigas necesitan preparación. Los ataques básicos pueden seguir resolviéndose normalmente.
+
+El primer caso de prueba será la **embestida territorial del Espinajo de rastrojo**, que ya tiene una referencia de 60% de precisión cuando se ignora su advertencia.
+
+### 36.4 Juramentado — Guardia Comprometida
+
+**Rol:** sostener el intercambio frontal.
+
+Requisitos:
+- combate activo;
+- amenaza visible;
+- arma/objeto equipado que permita bloquear;
+- el ataque a responder debe ser frontal cuando se trate de una acción preparada.
+
+Efecto:
+- sustituye el ataque básico;
+- dura hasta la siguiente acción ofensiva del enemigo;
+- reducción adicional:
+
+`ReducciónGuardia = mínimo(45%, 30% + 0.25%×(Destreza-10) + 0.15%×(Resistencia-10))`
+
+- se aplica multiplicativamente después de armadura, no sumando porcentajes;
+- si la acción preparada frontal tenía un bono especial de precisión por carga/compromiso, Guardia Comprometida elimina ese bono y la devuelve como máximo a la precisión ordinaria de la criatura antes de aplicar la defensa.
+
+Recarga: **2 rondas**.
+
+No vuelve invulnerable al Juramentado y no sustituye a Bloquear: Bloquear sigue disponible cuando Guardia está en recarga.
+
+La protección directa de otro jugador se reserva para una extensión posterior cuando el sistema multijugador tenga selección de objetivo suficiente.
+
+### 36.5 Arcano — Impulso Arcano
+
+**Rol:** alterar sobrenaturalmente la acción inmediata del enemigo.
+
+Requisitos:
+- combate activo;
+- foco arcano válido equipado;
+- línea/objetivo legítimo.
+
+Efecto:
+- sustituye el ataque básico;
+- no causa daño directo en esta v1;
+- si existe una `prepared_action` marcada `interruptible`, elimina la acción especial y el enemigo resuelve en su lugar una respuesta básica con **-10 puntos porcentuales de precisión**;
+- si no existe acción preparada, la siguiente respuesta del enemigo recibe **-20 puntos porcentuales de precisión**;
+- la precisión final conserva el mínimo general de 20%.
+
+Recarga: **4 rondas**.
+
+Impulso Arcano no empuja físicamente de forma garantizada a criaturas enormes ni cambia de sala al objetivo. La interrupción es el efecto mecánico; la magnitud narrativa del desplazamiento depende del objetivo.
+
+### 36.6 Sombra — Borrar el Foco
+
+**Rol:** manipular atención y convertir un fallo enemigo en oportunidad.
+
+Requisitos:
+- combate activo;
+- el contexto debe permitir romper momentáneamente la atención (`focus_break_possible=true` o equivalente autorizado por la escena);
+- no funciona contra un objetivo expresamente incapaz de perder el foco por este medio.
+
+Efecto:
+- sustituye el ataque básico;
+- la siguiente respuesta del enemigo recibe **-25 puntos porcentuales de precisión**, respetando mínimo 20%;
+- si esa respuesta falla, el Sombra obtiene **Apertura**;
+- Apertura se consume en el siguiente ataque básico del Sombra y concede **+15 puntos porcentuales de precisión** a ese único ataque;
+- Apertura se pierde al terminar el combate o al usarla.
+
+Recarga: **4 rondas**.
+
+No concede invisibilidad y no borra huellas, sonido u olor.
+
+### 36.7 Artífice — Tiro de Interrupción
+
+**Rol:** alterar el ritmo del enemigo desde distancia mediante un disparo deliberado.
+
+Requisitos:
+- combate activo;
+- arma a distancia válida equipada;
+- línea de tiro.
+
+Efecto:
+- esta capacidad **sí incluye un ataque**;
+- utiliza la precisión normal del ataque del personaje;
+- si impacta, inflige **75% del daño bruto que habría producido su ataque básico**;
+- si impacta sobre una `prepared_action` `interruptible`, cancela la acción especial y el enemigo responde con su acción básica normal;
+- si no existe acción preparada y el disparo impacta, la siguiente respuesta enemiga recibe **-15 puntos porcentuales de precisión**;
+- si falla el disparo, no obtiene el efecto de interrupción.
+
+Recarga: **2 rondas**.
+
+No atraviesa obstáculos ni interrumpe automáticamente acciones declaradas no interruptibles.
+
+### 36.8 Primera prueba comparativa: Espinajo
+
+La misma embestida anunciada debe producir cuatro decisiones reconocibles:
+
+- **Juramentado:** decide sostener la embestida y reducir su consecuencia.
+- **Arcano:** altera la carga antes de que llegue mediante fuerza sobrenatural.
+- **Sombra:** sale del foco, intentando convertir la carga en una apertura.
+- **Artífice:** intenta romper la carga con un disparo de interrupción.
+
+Si las cuatro experiencias terminan resolviéndose visual y mecánicamente como “haces un ataque distinto”, la implementación falla el objetivo aunque los números estén balanceados.
+
+### 36.9 Segundo escalón y PP
+
+Después de validar estas cuatro capacidades en juego real:
+
+- la segunda capacidad de cada clase podrá entrar como poder temprano;
+- objetivo de desbloqueo inicial: **nivel 5**;
+- coste nativo de referencia: **1 PP**;
+- el personaje decide comprarla; no se gasta PP automáticamente.
+
+Cuando se habilite aprendizaje fuera de clase, el sobrecoste de §20.12 se aplica como:
+
+`CosteFueraClase = techo(CosteBase × 1.5)`
+
+Por tanto un poder nativo de 1 PP costaría 2 PP fuera de clase, además de cualquier requisito de maestro/contenido que corresponda.
+
+El aprendizaje cruzado **no forma parte de la primera implementación**.
+
+### 36.10 Criterio de éxito
+
+La separación inicial de clases queda validada cuando:
+1. un personaje recién creado ya dispone de una decisión propia de su clase;
+2. las cuatro capacidades usan el mismo combate sin crear cuatro motores separados;
+3. el jugador puede reconocer la clase por la decisión que toma, no solo por el arma;
+4. ninguna capacidad es siempre mejor que atacar/defender normalmente;
+5. una criatura con intención visible permite respuestas distintas y comprensibles;
+6. el sistema queda extensible a las segundas capacidades sin rehacer combate.
