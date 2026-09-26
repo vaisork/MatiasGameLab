@@ -48,6 +48,6 @@ Medir por separado: tiempo de primera lectura, decisiones, vueltas voluntarias, 
 - **Narrador:** escribir escenas breves de ida y vuelta, señales observables antes de ambos desvíos y un descubrimiento que recompense atención sin misión artificial.
 - **Jugabilidad:** decidir si los dos trazados de Orilla Partida son transitables desde el inicio, qué significa descansar en el vado, qué se registra en el mapa, consecuencias de desviarse y si algún hallazgo merece XP.
 - **Arquitecto:** coordinar orden de integración de canon, escenas y futura implementación sin tomar esta ficha como especificación de código.
-- **Wark siguiente ciclo:** revisar cambios nuevos de estas ramas y preparar una ficha equivalente para un corredor distinto o refinar esta según validación; registrar las diferencias.
+- **Wark:** entrega concluida; espera un nuevo encargo directo de Javier antes de abrir otro corredor o refinar esta ficha.
 
 **No contiene material de `SECRETS.md` ni `NARRATIVE_RESERVED.md`.**
