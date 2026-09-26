@@ -132,7 +132,27 @@ Los Vesperi se establecieron en el **Bosque de Nhal**, donde la densidad del dos
 
 Velmora creció como un asentamiento que recompensa la atención y el conocimiento del entorno.
 
+### La permanencia de los pueblos
+
+Ninguno de los cinco asentamientos posee una única fecha de fundación indiscutible.
+
+Durante un periodo prolongado coexistieron tres situaciones:
+- personas que vivían principalmente en Vaisgard;
+- familias que pasaban temporadas en los nuevos territorios;
+- comunidades que ya permanecían fuera de la ciudad durante casi todo el año.
+
+La transformación histórica ocurrió cuando regresar a Vaisgard dejó de ser necesario para que un asentamiento pudiera sobrevivir como comunidad.
+
+A partir de ese punto:
+- las estructuras temporales empezaron a repararse como viviendas permanentes;
+- aparecieron espacios comunitarios propios;
+- las rutas dejaron de ser únicamente caminos de exploración;
+- nacieron generaciones cuya primera memoria era el pueblo y no Vaisgard.
+
+Esto explica por qué las cinco comunidades consideran hoy sus pueblos hogares antiguos aunque todos sean posteriores a la ciudad.
+
 ---
+
 
 ## V. La Era del Retorno
 
@@ -152,6 +172,18 @@ Vaisgard se convirtió gradualmente en:
 Esta etapa dio origen a la forma actual de la **Plaza de las Cinco Rutas** y al Mercado de las Rutas.
 
 La ciudad dejó de ser solamente el antiguo hogar común y se convirtió en el centro que conecta comunidades ya diferenciadas.
+
+### Las primeras generaciones del retorno
+
+Las personas que habían nacido ya en los pueblos cambiaron la relación con Vaisgard.
+
+Para sus padres o abuelos, el viaje podía significar regresar a un lugar donde habían vivido. Para ellas, Vaisgard era una ciudad heredada: importante por historia, intercambio y memoria, pero distinta de su hogar cotidiano.
+
+Ese cambio consolidó identidades locales sin romper el vínculo común.
+
+También transformó los caminos. Los trayectos usados antes por exploradores y familias que se desplazaban por temporadas comenzaron a mantenerse como rutas regulares.
+
+La historia de las **Cinco Rutas** pertenece a esta fase. No aparecieron completas en un mismo momento: se consolidaron conforme los cinco pueblos se volvieron estables y el tránsito con Vaisgard se hizo permanente.
 
 ---
 
@@ -182,6 +214,61 @@ Hasta este punto, la columna vertebral histórica contiene cinco grandes proceso
 5. **Los pueblos devolvieron a Vaisgard una nueva función como centro de intercambio.**
 
 Estos hechos pueden ser utilizados por el Narrador sin necesidad de inventar un origen diferente del mundo.
+
+---
+
+## La historia que permanece visible
+
+Vintage Telnet no necesita explicar su pasado únicamente mediante libros o personajes que den discursos.
+
+Buena parte de la historia pública puede descubrirse observando el mundo.
+
+### En Valdren
+- linderos antiguos bajo cercas más recientes;
+- caminos que existían antes que algunas viviendas;
+- parcelas cuya forma conserva decisiones de las primeras generaciones agrícolas.
+
+### En Khariel
+- terrazas con reparaciones de épocas distintas;
+- anclajes de pasos y puentes ya sustituidos;
+- miradores anteriores a la organización actual del pueblo.
+
+### En Brumak
+- roca natural incorporada a construcciones posteriores;
+- pasajes de la primera escala Dravak;
+- patios ampliados cuando aumentó el contacto con visitantes.
+
+### En Narevia
+- restos de antiguas plataformas;
+- marcadores de agua;
+- pasos que cambiaron conforme cambió el humedal.
+
+### En Velmora
+- refugios absorbidos por construcciones posteriores;
+- marcas de orientación más antiguas que algunos senderos actuales;
+- recorridos cuya forma conserva la lógica de los primeros grupos.
+
+### En Vaisgard
+- arquitectura de épocas superpuestas;
+- espacios reutilizados;
+- rutas cegadas;
+- conductos, cisternas y cimentaciones cuyo origen es anterior a los pueblos.
+
+Esta historia visible permite que leer y observar tengan valor incluso cuando no exista un secreto inmediato.
+
+---
+
+## Conocimiento histórico y descubrimiento
+
+No toda la historia debe entregarse al jugador con el mismo nivel de certeza.
+
+Se distinguen tres capas:
+
+1. **Conocimiento público:** hechos generales como la antigüedad de Vaisgard, la convivencia de las cinco poblaciones y el origen gradual de los pueblos.
+2. **Historia local:** recuerdos, construcciones y tradiciones que un habitante de una región puede conocer mejor que un visitante.
+3. **Historia por descubrir:** hechos incompletos, contradicciones, ruinas y preguntas cuya respuesta requiere exploración.
+
+El Narrador puede utilizar estas capas para que dos personajes sepan cosas distintas sin contradecir el canon.
 
 ---
 

@@ -55,6 +55,10 @@ El Historiador no sustituye:
 - **Jugabilidad / VT-GAME-002 — Matriz de 8 atributos para juego de lectura:** revisión canónica entregada en `ATTRIBUTES_CANON_REVIEW.md`. Los ocho atributos son compatibles si no sustituyen especie, clase, conocimiento, poder, equipo ni decisiones de lectura del jugador.
 - **Jugabilidad / Issue #55 — catálogo inicial de armaduras:** entregado en `ARMOR_CATALOG.md`. El Historiador fijó ocho identidades de equipo, procedencia cultural, obtención y uso de Forja física. Los valores 10/20/30/35 % quedan explícitamente como propuestas pendientes de validación de Jugabilidad; no se añadieron fórmulas, bonos de atributos, durabilidad ni resistencias nuevas.
 
+## Entregas históricas recientes
+
+- **Historia visible / Issue #159:** expansión preparada para entrada, cinco pueblos y Vaisgard. Se añadió `ENTRY_HISTORY_CANON.md`, se ampliaron `HISTORY.md`, `SETTLEMENTS.md` y `VAISGARD.md` con transiciones históricas, huellas físicas visibles, memoria pública y lugares históricos consumibles por Narrativa sin revelar secretos.
+
 ## Entrega para presentación
 
 - **Presentación pública de Vintage Telnet:** texto del Historiador preparado en `PRESENTATION_HISTORIAN.md`, sin spoilers ni secretos del Dungeon Master. Incluye mundo, Vaisgard, cinco pueblos/especies, exploración mediante lectura, atributos narrados y promesa de expansión.
@@ -99,6 +103,7 @@ Estos especialistas no son necesarios automáticamente. El Arquitecto decidirá 
 - `FUTURE_IDEAS.md` — incubadora de ideas no activas.
 - `SETTLEMENTS.md` — pueblos y asentamientos.
 - `HISTORY.md` — arquitectura histórica y cronología del mundo.
+- `ENTRY_HISTORY_CANON.md` — historia pública y spoiler-safe que puede conocer un personaje nuevo al entrar.
 - `VAISGARD.md` — ciudad principal, estructura e historia.
 - `REGIONS.md` — geografía inicial y caminos.
 - `CREATURES.md` — fauna inicial, rastros y amenazas regionales; entrega para VT-NAR-002.
