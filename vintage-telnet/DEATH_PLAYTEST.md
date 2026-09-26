@@ -59,7 +59,7 @@ Al alcanzar **0 HP**:
 
 ### Motivo para suspender pérdida de arma
 
-GAMEPLAY §11 permite que una derrota frente a una amenaza excepcional llegue a provocar pérdida de arma, pero ese flujo de recuperación/transferencia todavía no está cerrado.
+GAMEPLAY §11 reserva la pérdida de arma PvE para **jefes explícitos**. Cornalomo no es un jefe, por lo que derrotar al jugador aquí no debe activar pérdida de arma.
 
 DEATH-01 valida únicamente:
 
@@ -67,7 +67,7 @@ DEATH-01 valida únicamente:
 
 No mezclar en la misma prueba la mecánica todavía abierta de pérdida de arma.
 
-Una segunda prueba futura podrá validar BOSS-LOSS cuando ese contrato exista.
+Una prueba futura con un **jefe real** podrá validar BOSS-LOSS cuando ese contrato exista.
 
 ## 5. Qué debe ver el jugador
 
