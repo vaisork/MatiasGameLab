@@ -1,3 +1,31 @@
+DESARROLLADOR: Jules
+HEAD BASE: 76f83d799d38a10421da7baa0e5df6bfd6559110
+RAMA: jules-issue-221
+COMMIT: 6a228ddc5fc642d3fb3946fcbdefd34f9925c0d9
+ARCHIVOS MODIFICADOS:
+- vintage-telnet/tests/test_issue_221.py (nuevo)
+
+PRUEBAS Y RESULTADOS:
+Ejecuté `python3 -m unittest discover -s tests -v` en `vintage-telnet` obteniendo un total de 310 tests, todos en estado OK. Las nuevas pruebas en `vintage-telnet/tests/test_issue_221.py` comprueban:
+- Rutas públicas devuelven onboarding.
+- Login inválido falla de forma segura, devolviendo 401 y el mensaje correspondiente.
+- El flujo de logout elimina sesión.
+- Rutas protegidas (`/api/me`, `/move`) redireccionan o niegan acceso devolviendo 401.
+- Flujo público no altera estado de cuenta, validando que usuarios y acceso no sumen counts.
+Todo se agregó para cubrir espacios, ya que la batería principal en `test_entry.py` cubría muchas protecciones pero no incluía el test negativo explícito sin autorización para todas las rutas API o la inmutabilidad de la base al ver las páginas de entrada.
+
+HUECOS DE COBERTURA ENCONTRADOS:
+- Había pruebas extensivas en `test_entry.py` de cómo se creaba una cuenta y logueaba, pero faltaban pruebas explícitas para cuando un visitante intenta rutas de API sin estar logueado o ingresando credenciales erróneas.
+- Se agregó el archivo nuevo `test_issue_221.py` conteniendo solo pruebas unitarias requeridas.
+
+BUGS DETECTADOS:
+Ninguno de los flujos se rompió bajo las nuevas pruebas unitarias.
+
+CONFIRMACIÓN:
+Confirmo explícitamente que no se modificó ningún archivo de código de producción, ui, u otro (solamente agregué un test).
+
+AVISO PARA EL INTEGRADOR:
+Este PR sólo añade tests complementarios tal como fue solicitado en Issue #221. Listo para revisión.
 # HANDOFF — Entrega técnica
 
 ## ENTREGA — Reloj global de hora del día conectado a `world.get_ambient()` (Issue #138)
