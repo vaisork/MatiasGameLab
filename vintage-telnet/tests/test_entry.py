@@ -33,19 +33,6 @@ class EntryTests(unittest.TestCase):
     def register(self, username="matias", client=None, name="Matías"):
         return self.post("/register", dict(username=username, name=name, password="una clave de prueba"), client)
 
-
-    def test_onboarding_new_routes_and_content_are_present(self):
-        # PR 209: The entry view should have the new onboarding logic.
-        res = self.client.get("/")
-        self.assertEqual(res.status_code, 200)
-        html = res.get_data(as_text=True)
-        self.assertIn("Conocer el Mundo", html)
-        self.assertIn("Guía del aventurero", html)
-        self.assertIn("Entrar / Crear cuenta", html)
-        # Content from PR 211
-        self.assertIn("content-reading-area", html)
-        self.assertNotIn("NOTA DE DISEÑO", html)
-
     def test_public_p0_has_no_editorial_placeholders(self):
         for room in world.ROOMS.values():
             visible = (room["name"] + " " + room["description"]).lower()
@@ -261,9 +248,9 @@ class EntryTests(unittest.TestCase):
         self.assertIn('data-onboarding-view="login" hidden', html)
         self.assertIn('data-onboarding-view="register" hidden', html)
         self.assertIn("Un mundo de fantasía que se descubre leyendo, explorando y tomando decisiones.", html)
-        # self.assertIn("Cómo empezar", html)
-        # removed
-        # removed
+        self.assertIn("Cómo empezar", html)
+        self.assertIn("Ya tengo una cuenta y quiero continuar mi viaje.", html)
+        self.assertIn("Soy nuevo y quiero preparar mi entrada al mundo.", html)
         self.assertEqual(html.count('action="/login"'), 1)
         self.assertEqual(html.count('action="/register"'), 1)
         self.assertIn('min-height:44px', html)

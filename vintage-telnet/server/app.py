@@ -9,12 +9,8 @@ import sqlite3
 import unicodedata
 
 from flask import (Flask, abort, g, jsonify, redirect, render_template, request, send_from_directory,
-
                     session, url_for)
 from werkzeug.security import check_password_hash, generate_password_hash
-from . import content_parser
-from pathlib import Path
-
 
 from . import combat, creatures, dm_auth, encounters, items, store, world
 
@@ -109,9 +105,6 @@ def create_app(config=None):
     app.jinja_env.globals["class_list"] = world.CLASSES
     app.jinja_env.globals["class_names"] = {c["id"]: c["name"] for c in world.CLASSES}
     app.jinja_env.globals["ambient_icons"] = world.AMBIENT_ICONS
-    app.jinja_env.globals["guide_content"] = content_parser.parse_adventurer_guide(Path(__file__).resolve().parent.parent)
-    app.jinja_env.globals["world_content"] = content_parser.parse_know_the_world(Path(__file__).resolve().parent.parent)
-
 
     def from_public_internet():
         """Tailscale Funnel marca cada petición que llega desde internet con
