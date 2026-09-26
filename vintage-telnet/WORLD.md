@@ -90,6 +90,12 @@ La identidad y contexto son expansión canónica del Historiador. Jugabilidad ya
 
 No crea críticos, durabilidad, economía, requisitos numéricos universales, efectos mágicos ni sistemas nuevos.
 
+### 16. Identidad de clases — `CLASSES.md`
+
+Define qué significa en el mundo seguir los caminos **Arcano, Juramentado, Sombra y Artífice**, y entrega dos capacidades tempranas por clase para que su forma de jugar sea reconocible más allá del arma inicial.
+
+Historia define nombre, ficción, lectura para el jugador, límites narrativos y justificación de aprendizaje. Jugabilidad conserva efecto mecánico, atributos, recargas, costes, balance y desbloqueos.
+
 ## Relación con el Narrador
 
 El Historiador construye la **historia estructural y la arquitectura del mundo**: hechos pasados, lugares, culturas, causas, consecuencias, ruinas, conflictos, relaciones y secretos. El Narrador utiliza esa base para crear relatos, escenas, encuentros y experiencias concretas de los jugadores. El Historiador no debe asumir por defecto la función del Narrador.
@@ -120,4 +126,5 @@ El Historiador define qué necesita el mundo, por qué lo necesita y qué funci�
 **Arcanes:** `vintage-telnet/ARCANES.md`  
 **Armaduras:** `vintage-telnet/ARMOR_CATALOG.md`  
 **Armas:** `vintage-telnet/WEAPON_CATALOG.md`  
+**Clases:** `vintage-telnet/CLASSES.md`  
 **Fuente mecánica:** `vintage-telnet/GAMEPLAY.md`
