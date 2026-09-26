@@ -106,6 +106,7 @@ Estos especialistas no son necesarios automáticamente. El Arquitecto decidirá 
 - `SECRETS.md` — información reservada del Dungeon Master.
 - `PRESENTATION_HISTORIAN.md` — texto público del mundo para la presentación.
 - `ART_WORLD_GUIDE.md` — jerarquía y canon visual para Arte.
+- `CLASSES.md` — identidad narrativa de clases y capacidades tempranas para validación de Jugabilidad.
 - `ARMOR_CATALOG.md` — primer catálogo canónico de armaduras; identidad/obtención/Forja definidas por Historia y porcentajes propuestos para revisión de Jugabilidad.
 - `GAMEPLAY.md` — fuente de verdad mecánica.
 
@@ -113,3 +114,8 @@ Estos especialistas no son necesarios automáticamente. El Arquitecto decidirá 
 
 **Estado:** listo para revisión del Arquitecto.  
 **Responsable:** Historiador y Constructor del Mundo de Vintage Telnet.
+
+
+## Entregas históricas recientes
+
+- **Issue #208 — identidad de clases:** entregado `CLASSES.md` con identidad diferenciada y dos capacidades tempranas por Arcano, Juramentado, Sombra y Artífice. Pendiente de Jugabilidad: efectos, atributos, recargas, balance y desbloqueo.
