@@ -845,6 +845,20 @@ def append_combat_log(path, player_id, room_id, action, text):
             (player_id, room_id, player_id, room_id, COMBAT_LOG_KEEP))
 
 
+# Acciones que comprometen al personaje en la pelea (GAMEPLAY.md §26.5).
+# "evaluar" no cuenta: mirar a la criatura no es pelear con ella.
+ENGAGING_ACTIONS = ("atacar", "esquivar", "resistir", "bloquear", "huir")
+
+
+def combat_engaged(path, player_id, room_id):
+    """True si el personaje ya peleó con la criatura de esa sala."""
+    with connect(path) as db:
+        return db.execute(
+            f"SELECT 1 FROM combat_log WHERE player_id = ? AND room_id = ? "
+            f"AND action IN ({','.join('?' * len(ENGAGING_ACTIONS))}) LIMIT 1",
+            (player_id, room_id, *ENGAGING_ACTIONS)).fetchone() is not None
+
+
 def get_combat_log(path, player_id, room_id, limit=20):
     """Últimas `limit` líneas de la pelea en curso, de la más vieja a la más nueva."""
     with connect(path) as db:

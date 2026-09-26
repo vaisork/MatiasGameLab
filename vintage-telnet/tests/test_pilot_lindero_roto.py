@@ -246,6 +246,13 @@ class WorldContentTests(unittest.TestCase):
         for key in ("senales_mordelinde", "lindero_roto", "regreso_valdren_lindero"):
             self.assertIsNotNone(world.get_discovery(key))
 
+    def test_return_milestone_carries_the_item_147_reward(self):
+        # Issue #147: el hito de regreso debe declarar el objeto y el texto
+        # de la recompensa que Narrador/Historiador/Jugabilidad aprobaron.
+        discovery = world.get_discovery("regreso_valdren_lindero")
+        self.assertEqual(discovery["reward_item"], "acolchado_camino")
+        self.assertIn("Acolchado de Camino", discovery["reward_text"])
+
 
 # --- Integracion end-to-end contra el servidor real -------------------------
 
@@ -378,6 +385,66 @@ class PilotIntegrationTests(unittest.TestCase):
         self.post("/move", dict(direction="north"))
         self.post("/move", dict(direction="south"))
         self.assertEqual(self.character()["xp"], 20)
+
+    def test_returning_to_valdren_grants_acolchado_camino_once(self):
+        # Issue #147: primera recompensa ganada jugando, contrato cerrado por
+        # Narrador/Historiador/Jugabilidad -- objeto real en el inventario,
+        # una sola vez por personaje.
+        self.register_and_enter_world()
+        self.walk_to_lindero()
+        self.post("/command", dict(text="examinar huellas"))
+        self.post("/move", dict(direction="south"))
+        self.post("/move", dict(direction="south"))
+        self.post("/move", dict(direction="south"))
+        self.post("/move", dict(direction="south"))  # entra a valdren_centro
+        inventory = self.client.get("/api/inventory").json["items"]
+        acolchados = [item for item in inventory if item["item_key"] == "acolchado_camino"]
+        self.assertEqual(len(acolchados), 1)
+        self.assertEqual(acolchados[0]["name"], "Acolchado de Camino")
+        self.assertEqual(acolchados[0]["armor_reduction"], 0.10)
+        self.assertFalse(acolchados[0]["forge_validated"])
+        # Salir y volver a entrar a Valdren no debe duplicar el objeto
+        # (mismo hito de una sola vez que ya protege la XP del regreso).
+        self.post("/move", dict(direction="north"))
+        self.post("/move", dict(direction="south"))
+        inventory_again = self.client.get("/api/inventory").json["items"]
+        self.assertEqual(
+            len([item for item in inventory_again if item["item_key"] == "acolchado_camino"]), 1)
+
+    def test_reward_text_is_shown_on_screen_once(self):
+        # La pantalla de juego usa los formularios (/move): el texto de la
+        # recompensa debe verse en el cuadro de lectura justo al llegar, y
+        # desaparecer después.
+        self.register_and_enter_world()
+        self.walk_to_lindero()
+        self.post("/command", dict(text="examinar huellas"))
+        for _ in range(4):
+            self.post("/move", dict(direction="south"))  # ... entra a valdren_centro
+        html = self.client.get("/").get_data(as_text=True)
+        self.assertIn("reward-entry", html)
+        self.assertIn("Has obtenido: Acolchado de Camino.", html)
+        html_again = self.client.get("/").get_data(as_text=True)
+        self.assertNotIn("Has obtenido: Acolchado de Camino.", html_again)
+
+    def test_reward_text_is_returned_once_via_api_move(self):
+        # Texto de Narrador (#147, comentario del 2026-09-25) expuesto por la
+        # via estructurada para que un cliente lo muestre sin inferirlo.
+        self.register_and_enter_world()
+        self.walk_to_lindero()
+        self.post("/command", dict(text="examinar huellas"))
+        csrf = self.csrf()
+        for _ in range(3):  # sendero, parcela, cerca: todavia no cruza el hito
+            response = self.client.post("/api/move", json={"direction": "south", "csrf": csrf})
+            self.assertTrue(response.json["accepted"])
+            self.assertIsNone(response.json["reward_message"])
+        response = self.client.post("/api/move", json={"direction": "south", "csrf": csrf})  # valdren_centro
+        reward_message = response.json["reward_message"]
+        self.assertIn("Has obtenido: Acolchado de Camino.", reward_message)
+        self.assertIn("(+10 XP)", reward_message)
+        # Salir y volver a entrar no repite el texto de recompensa.
+        self.client.post("/api/move", json={"direction": "north", "csrf": csrf})
+        response = self.client.post("/api/move", json={"direction": "south", "csrf": csrf})
+        self.assertIsNone(response.json["reward_message"])
 
     def test_examining_unknown_target_falls_back_to_generic_message(self):
         self.register_and_enter_world()

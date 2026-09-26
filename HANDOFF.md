@@ -1,5 +1,82 @@
 # HANDOFF — Entrega técnica
 
+## ENTREGA — Criatura a la vista vs. pelea: se puede seguir de largo, pero ya peleando hay que huir (§26.5)
+
+**DESARROLLADOR:** Claude — Desarrollador de Servidor de Vintage Telnet
+**HEAD BASE:** rama de la PR #177 (`claude/vintage-telnet-server-lindero-reward`, al día con `main`). Esta PR depende de #177 porque ambas tocan `attempt_move`.
+**TAREA ASIGNADA:** Javier (2026-09-25): "haz una revisión más y avanza lo que puedas".
+**RAMA:** `claude/vt-seguir-de-largo`
+
+### PROBLEMA ENCONTRADO
+1. **Bug §26.5:** estando en pelea, escribir `norte` en el cuadro de comando (o usar `/api/move`) sacaba al personaje **gratis**, sin Huir. `GAMEPLAY.md` §26.5 lo prohíbe: "Esto evita que escribir `norte` sustituya el sistema de huida".
+2. **Contradicción con el diseño:** `world.py` dice "el jugador decide si combate, evalúa o sigue de largo — la criatura nunca ataca primero", y `RANDOM_ENCOUNTER_GAMEPLAY.md` §4 dice "encuentro no significa combate obligatorio". Pero la pantalla entraba en modo combate apenas aparecía la criatura y escondía las salidas. Con la fauna aleatoria en los caminos, eso habría convertido cada encuentro en una pelea o una huida forzada.
+
+### CAMBIO REALIZADO
+- `store.combat_engaged()`: un personaje está **comprometido** si ya atacó, esquivó, resistió, bloqueó o intentó huir contra esa criatura. **Evaluar no cuenta.**
+- `attempt_move` (botón, comando escrito y API):
+  - **comprometido** → rechaza con "Estás peleando con X: para irte tienes que huir.";
+  - **solo a la vista** → puede irse; la criatura se queda atrás y al volver reaparece entera, igual que antes.
+- `room_view` expone `encounter.engaged`.
+- **Pantalla:**
+  - con la criatura a la vista: chip "Criatura a la vista", descripción del lugar, salidas, cruz de dirección y botones **Atacar / Evaluar / Mirar**; el comportamiento de la criatura aparece primero en el cuadro;
+  - al atacar: "¡COMBATE!" y el panel de pelea de siempre (Atacar, Huir, Evaluar, Esquivar, Resistir).
+
+### PRUEBAS
+- Suite **312/312 OK**, con 3 nuevas en `tests/test_seguir_de_largo.py`:
+  - seguir de largo y reaparición al volver;
+  - evaluar no compromete;
+  - ya peleando, ni el botón, ni `sur` escrito, ni `/api/move` sacan al personaje.
+- Chromium a 390 px: los dos estados en la Parcela removida con Mordelinde.
+
+### AVISO
+- Cambia la experiencia de *El lindero roto*: ahora se puede pasar junto a Mordelinde y Espinajo sin pelear. Es lo que dicen el comentario del mundo y §4, pero **Jugabilidad y Narrador deben confirmarlo** en el playtest.
+
+**LISTO PARA PUBLICAR:** falta la autorización de Javier ("sube"). Integrar después de #177. Sin migración.
+
+---
+
+## ENTREGA — Primera recompensa ganada jugando — Acolchado de Camino (Issue #147)
+
+**Desarrollador:** Claude — Desarrollador de Servidor de Vintage Telnet
+**Estado:** LISTO PARA REVISIÓN
+**HEAD base:** `d840e0ac4554d6d71960b4635e6a21f5c39d1ecf` (`origin/main`)
+**Rama de entrega:** `claude/vintage-telnet-server-lindero-reward`
+**Origen:** Issue #147, marcada **LISTO PARA DESARROLLO/IMPLEMENTACIÓN** por el Arquitecto de Vintage Telnet y Raspberry Pi (comentario 2026-09-25T10:42) después de que Narrador propuso el objeto/momento/texto, Jugabilidad validó balance (10% de protección, momento de progresión) e Historiador confirmó en canon (`ARMOR_CATALOG.md`, commit `edd21289e`) que el Acolchado de Camino puede entregarse como reconocimiento comunitario. No inventé ningún dato: objeto, hito, frecuencia y texto son exactamente el contrato ya cerrado en el issue.
+
+### Cambios
+- **Contrato final implementado:** completar *El lindero roto* (examinar huellas) y volver a `valdren_centro` otorga, **una sola vez por personaje**, `acolchado_camino` del catálogo (`ARMOR_CATALOG.md`/`server/items.py`, 10% de protección, sin Forja).
+- `world.DISCOVERIES["regreso_valdren_lindero"]` ahora declara `reward_item` y `reward_text` (el texto exacto que propuso Narrador) junto al hito ya existente — no se creó un sistema nuevo de recompensas, solo se colgó la entrega del hito que ya marcaba ese momento de forma autoritativa (una sola vez, vía `store.award_discovery`).
+- `attempt_move()` (única lógica autoritativa de movimiento) llama a `store.grant_item()` (32.5, la misma vía autoritativa que ya usa el DM) exactamente cuando ese hito se otorga por primera vez (`is_new`), y arma un `reward_message` (texto + XP + aviso de subida de nivel si corresponde, mismo patrón que ya usa `resolve_inspect`). `attempt_move()` pasó de devolver una tupla de 4 a una de 5 (se agregó `reward_message` al final); actualicé las 4 llamadas que la desempaquetan.
+- `reward_message` se expone en las dos rutas JSON estructuradas (`POST /api/move`, `POST /api/intent` con `move`) como un campo más (`None` salvo en el movimiento exacto que otorga la recompensa), siguiendo el mismo contrato de "el servidor entrega el estado ya resuelto" que ya usan Issues #120/#73/#57.
+- No se tocó combate, economía, canon, `NARRATIVE.md`, `ARMOR_CATALOG.md` ni ningún archivo fuera de `vintage-telnet/server/` y `vintage-telnet/tests/`.
+
+### Pendiente / aviso para quien integre la UI
+- Las rutas clásicas basadas en formulario (`POST /move`, `POST /command`) **no muestran** el `reward_message` — hoy tampoco muestran el mensaje del propio hito `regreso_valdren_lindero` (gap preexistente, no lo introduje ni lo agrandé). Si se quiere mostrar el texto de Narrador en la pantalla real (`server/templates/entry.html`), consumir `reward_message` desde `/api/move` o `/api/intent`; no lo até a la plantilla para no chocar con el trabajo activo de Arte/UI sobre esa misma pantalla (Issues #135/#143/#152) ni salirme de una tarea de servidor/datos.
+- El panel de Inventario ya muestra objetos entregados por `grant_item()` sin cambios adicionales (Issue #57 ya lo cubre).
+
+### Pruebas
+- `cd vintage-telnet && .venv/bin/python -m unittest discover -s tests -v` → **283/283 OK** (280 existentes + 3 nuevas en `tests/test_pilot_lindero_roto.py`): el contrato de datos del hito (`reward_item`/`reward_text`), el objeto entra al inventario exactamente una vez incluso saliendo/reentrando a Valdren, y `reward_message` sale por `/api/move` solo en el movimiento que otorga la recompensa (`None` antes y después).
+- `py_compile` limpio en `server/app.py` y `server/world.py`.
+
+### Trabajo previo afectado
+Ninguno: el hito `regreso_valdren_lindero`, su XP y el resto de descubrimientos/mapa/combate se comportan igual que antes; solo se agregó la entrega del objeto y el mensaje en el mismo punto donde ya se otorgaba el hito.
+
+### Aviso para el otro desarrollador / Integrador
+- No se hizo push a `main`; solo commits en `claude/vintage-telnet-server-lindero-reward`.
+- No se desplegó ni tocó la Raspberry Pi.
+- **LISTO PARA PUBLICAR:** falta autorización de Javier ("sube"). Sin migración de esquema (usa las tablas `discoveries`/`inventory_items` ya existentes).
+
+### AJUSTE (Claude, sesión interactiva — 2026-09-25)
+- **La recompensa ya se ve en la pantalla de juego.**
+  - `/move` y el comando escrito dejan el texto como aviso de un solo uso (`session["notice"]`).
+  - `index` lo muestra en el cuadro de lectura, en dorado, y desaparece al recargar.
+  - Antes solo lo devolvía `/api/move`, que el celular no usa.
+- Rama actualizada con `main` (Cinco Rutas, arte y reloj). Suite **309/309 OK**, con la prueba nueva `test_reward_text_is_shown_on_screen_once`.
+
+**LISTO PARA PUBLICAR:** falta la autorización de Javier ("sube"). Sin migración de esquema.
+
+---
+
 ## ENTREGA — Reloj global de hora del día conectado a `world.get_ambient()` (Issue #138)
 
 **DESARROLLADOR:** Claude — Desarrollador de Servidor de Vintage Telnet
@@ -1510,3 +1587,5 @@ No debe ofrecer poderes con PP (§25.8: todavía no hay contenido de poder valid
 ### Aviso para el Integrador / Operador de Raspberry
 - No se hizo push a `main`.
 - No se tocó la Raspberry.
+
+
