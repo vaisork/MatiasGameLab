@@ -7,21 +7,10 @@
     <p class="onboarding-about">Vintage Telnet es un mundo persistente de fantasía compartido con otros jugadores. Tu viaje comienza en uno de cinco pueblos y crece mientras observas el entorno, recorres caminos y descubres criaturas, lugares e historias.</p>
 
     <div class="onboarding-actions" aria-label="Elige cómo continuar">
-      <button class="btn primary" type="button" data-onboarding-go="login" aria-controls="onboarding-login">Entrar</button>
-      <p>Ya tengo una cuenta y quiero continuar mi viaje.</p>
-      <button class="btn" type="button" data-onboarding-go="register" aria-controls="onboarding-register">Crear cuenta</button>
-      <p>Soy nuevo y quiero preparar mi entrada al mundo.</p>
+      <button class="btn" type="button" data-onboarding-go="world" aria-controls="onboarding-world">Conocer el Mundo</button>
+      <button class="btn" type="button" data-onboarding-go="guide" aria-controls="onboarding-guide">Guía del aventurero</button>
+      <button class="btn primary" type="button" data-onboarding-go="login" aria-controls="onboarding-login">Entrar / Crear cuenta</button>
     </div>
-
-    <section class="how-start" aria-labelledby="how-start-title">
-      <h2 id="how-start-title">Cómo empezar</h2>
-      <ol>
-        <li>Crea tu cuenta o entra con una que ya tengas.</li>
-        <li>Si eres nuevo, espera a que el Dungeon Master apruebe a tu personaje.</li>
-        <li>Elige una de las cinco especies cuando tu entrada esté habilitada.</li>
-        <li>Entra al mundo, observa tu entorno y comienza a explorar.</li>
-      </ol>
-    </section>
   </div>
 
   <section class="card onboarding-panel" id="onboarding-login" data-onboarding-view="login"{% if view != 'login' %} hidden{% endif %} aria-labelledby="login-title">
@@ -55,6 +44,69 @@
       </form>
       <p class="onboarding-note">Tu personaje queda pendiente de aprobación del Dungeon Master antes de poder jugar.</p>
       <div class="onboarding-nav"><button class="btn" type="button" data-onboarding-go="welcome">Volver a bienvenida</button><button class="btn" type="button" data-onboarding-go="login">Entrar</button></div>
+    </div>
+  </section>
+
+
+  <!-- Conocer el Mundo -->
+  <section class="card onboarding-panel" id="onboarding-world" data-onboarding-view="world"{% if view != 'world' %} hidden{% endif %} aria-labelledby="world-title">
+    <div class="card-head">
+      <b id="world-title">Conocer el Mundo</b>
+      <span>Una introducción al universo de Vintage Telnet.</span>
+    </div>
+    <div class="card-body">
+      <div class="onboarding-nav">
+        <button class="btn" type="button" data-onboarding-go="welcome">Volver a portada</button>
+      </div>
+      <div class="content-reading-area">
+        <ul class="content-index">
+          {% for chapter in world_content %}
+          <li><a href="#world-chap-{{ loop.index }}" onclick="document.querySelectorAll('.world-chapter').forEach(e => e.hidden = true); document.getElementById('world-chap-{{ loop.index }}').hidden = false;">{{ chapter.title }}</a></li>
+          {% endfor %}
+          <li style="margin-top: 10px;"><button class="btn" type="button" onclick="document.querySelectorAll('.world-chapter').forEach(e => e.hidden = false); this.style.display='none';">Leer todo</button></li>
+        </ul>
+
+        <div class="content-chapters" style="margin-top: 20px;">
+          {% for chapter in world_content %}
+          <div class="world-chapter" id="world-chap-{{ loop.index }}" {% if loop.index > 1 %}hidden{% endif %}>
+            <h2>{{ chapter.title }}</h2>
+            <div class="markdown-body">
+              {{ chapter.body | safe }}
+            </div>
+            {% if loop.index < world_content|length %}
+            <button class="btn" type="button" style="margin-top: 20px;" onclick="document.getElementById('world-chap-{{ loop.index }}').hidden = true; document.getElementById('world-chap-{{ loop.index + 1 }}').hidden = false; window.scrollTo(0,0);">Siguiente: {{ world_content[loop.index].title }}</button>
+            {% endif %}
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="onboarding-nav" style="margin-top: 24px;">
+        <button class="btn" type="button" data-onboarding-go="welcome">Volver a portada</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Guia del aventurero -->
+  <section class="card onboarding-panel" id="onboarding-guide" data-onboarding-view="guide"{% if view != 'guide' %} hidden{% endif %} aria-labelledby="guide-title">
+    <div class="card-head">
+      <b id="guide-title">Guía del aventurero</b>
+      <span>Cómo se juega la experiencia.</span>
+    </div>
+    <div class="card-body">
+      <div class="onboarding-nav">
+        <button class="btn" type="button" data-onboarding-go="welcome">Volver a portada</button>
+      </div>
+      <div class="content-reading-area" style="margin-top: 20px;">
+        <div class="markdown-body">
+          {% for chapter in guide_content %}
+            <h2>{{ chapter.title }}</h2>
+            {{ chapter.body | safe }}
+          {% endfor %}
+        </div>
+      </div>
+      <div class="onboarding-nav" style="margin-top: 24px;">
+        <button class="btn" type="button" data-onboarding-go="welcome">Volver a portada</button>
+      </div>
     </div>
   </section>
 </section>
