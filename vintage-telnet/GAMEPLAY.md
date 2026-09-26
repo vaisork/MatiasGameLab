@@ -2457,3 +2457,120 @@ El jugador descubre que una ruta tiene más o menos fauna mediante experiencia, 
 ### 33.8 Principio
 
 **La fauna aleatoria añade incertidumbre al desplazamiento; no interrumpe la lectura, no reemplaza encuentros escritos y no convierte caminar entre dos salas en una máquina de farmear.**
+
+
+## 34. Hogar inicial persistente — v1
+
+**Estado:** APROBADO COMO CONTRATO DE JUGABILIDAD PARA #114.
+
+El hogar es una **base personal persistente del personaje**, no una frase de introducción ni un simple punto de spawn técnico.
+
+### 34.1 Primer ingreso al mundo
+
+Cuando un personaje nuevo queda listo para jugar, su primera entrada al mundo comienza en su hogar correspondiente.
+
+La experiencia debe permitir entender:
+
+**hogar propio → pueblo/comunidad → exterior/mundo**
+
+La introducción extensa del hogar se muestra una sola vez por personaje. Las visitas posteriores utilizan presentación breve.
+
+### 34.2 Propiedad y persistencia
+
+Cada personaje tiene un hogar persistente asociado a su origen.
+
+En v1:
+- el hogar pertenece al personaje;
+- no desaparece al cerrar sesión;
+- no cambia por subir de nivel;
+- crear varios personajes en una misma cuenta no convierte sus hogares en un único hogar compartido;
+- otros jugadores no entran automáticamente al hogar ajeno.
+
+Visitas, permisos o vivienda compartida quedan para una fase social posterior.
+
+### 34.3 Seguridad
+
+El hogar es zona **segura** por defecto:
+- no genera fauna aleatoria;
+- no inicia PvP;
+- no contiene encuentros hostiles ordinarios;
+- permite descanso cuando el personaje no está en combate.
+
+Cualquier excepción narrativa futura debe ser explícita y aprobada; no se introduce en v1.
+
+### 34.4 Salida y regreso
+
+Salir del hogar conduce al asentamiento inicial correspondiente mediante una conexión autoritativa del mundo.
+
+**No existe botón universal de teletransporte “volver a casa” en v1.**
+
+El jugador regresa caminando por el mundo salvo:
+- muerte/respawn;
+- una futura mecánica de viaje expresamente aprobada;
+- intervención legítima del DM.
+
+Esto evita convertir el hogar en escape gratuito ante riesgo.
+
+### 34.5 Respawn
+
+El hogar es un **punto seguro válido de respaldo**, pero no reemplaza automáticamente todos los respawns locales.
+
+Orden conceptual:
+1. si la zona/aventura tiene un punto seguro específico ya aprobado, usarlo;
+2. si no existe uno aplicable, el hogar puede actuar como fallback seguro.
+
+Por tanto, el binding vigente de *El lindero roto* a `valdren_centro` permanece válido y no se borra.
+
+### 34.6 Recuperación
+
+Estar en casa no concede curación instantánea ni elimina heridas por excepción.
+
+La recuperación usa las reglas normales de descanso/recuperación segura de §24.
+
+El hogar aporta **seguridad y pertenencia**, no una fuente infinita de recuperación instantánea.
+
+### 34.7 Inventario y “mis cosas”
+
+En v1, el inventario persistente del personaje sigue siendo el sistema autoritativo de objetos.
+
+El hogar puede mostrar narrativamente pertenencias, pero **no introduce todavía**:
+- cofre separado;
+- banco;
+- peso adicional almacenado;
+- inventario doméstico;
+- crafting doméstico;
+- economía.
+
+Si posteriormente se necesita almacenamiento separado, se diseñará como sistema propio.
+
+### 34.8 Arcanes
+
+Se conserva §21.6:
+- Arcanes vinculados que no viajan con el personaje permanecen en casa;
+- máximo 3 vinculados y 1 activo viajando según las reglas vigentes.
+
+Esto no obliga a implementar Arcanes para entregar el hogar v1.
+
+### 34.9 Información y secretos
+
+El hogar no revela automáticamente:
+- rutas secretas;
+- contenido del mundo no descubierto;
+- recompensas;
+- tutoriales exhaustivos.
+
+Puede enseñar controles básicos de manera contextual, pero su función principal es establecer pertenencia y punto de partida.
+
+### 34.10 Contrato mínimo de interfaz
+
+La interfaz debe permitir:
+- reconocer claramente que el lugar actual es **tu hogar**;
+- salir hacia el pueblo mediante la misma lógica de movimiento del servidor;
+- descansar cuando sea válido;
+- consultar Personaje/Inventario normalmente.
+
+No se necesita una pantalla de gestión de vivienda separada para v1.
+
+### 34.11 Principio
+
+**El hogar es el lugar del que el personaje sale y al que puede volver; debe sentirse propio sin convertirse todavía en un sistema de vivienda, almacenamiento o teletransporte.**
