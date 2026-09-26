@@ -712,6 +712,17 @@ DISCOVERIES = {
         "category": "hito_narrativo_menor",
         "reference_level": 1,
         "message": "Vuelves a Valdren sabiendo leer las senales del camino que dejaste atras.",
+        # Issue #147: primera recompensa ganada jugando, contrato cerrado por
+        # Narrador/Historiador/Jugabilidad. Objeto ya validado en
+        # ARMOR_CATALOG.md (obtencion tambien como "reconocimiento comunitario
+        # puntual" en Valdren) -- una sola vez por personaje, sin moneda,
+        # tienda ni loot aleatorio.
+        "reward_item": "acolchado_camino",
+        "reward_text": (
+            "Regresas a Valdren con el lindero resuelto. Entre el equipo de camino te "
+            "entregan un Acolchado de Camino: sencillo, reforzado y hecho para volver a "
+            "salir. Has obtenido: Acolchado de Camino."
+        ),
     },
 }
 
