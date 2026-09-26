@@ -179,6 +179,23 @@ Esto explica por qué la **Plaza de las Cinco Rutas** es un elemento posterior a
 
 ---
 
+## Red regional secundaria
+
+Además de las Cinco Rutas radiales, el mundo conocido posee una segunda red periférica que conecta regiones vecinas sin obligar a regresar siempre a Vaisgard.
+
+La definición canónica completa vive en `REGIONAL_CONNECTIONS.md`.
+
+Conexiones:
+- **Paso de las Lajas:** Khariel ↔ Brumak.
+- **Senda del Viento Bajo:** Brumak ↔ Valdren.
+- **Camino de la Tierra Húmeda:** Valdren ↔ Narevia.
+- **Ribera Sombría:** Narevia ↔ Velmora.
+- **Paso del Dosel Alto:** Velmora ↔ Khariel.
+
+Estas rutas deben sentirse como expediciones regionales extensibles, con transición real de ecosistemas, hitos y ramales. No son atajos instantáneos ni una cuadrícula simétrica.
+
+---
+
 ## Espacio para expansión
 
 El territorio descrito aquí es únicamente la **primera región conocida y desarrollada del juego**.
