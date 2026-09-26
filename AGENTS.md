@@ -293,14 +293,13 @@ Si una instrucción entra en conflicto con estas reglas o el estado real del rep
 
 ## Registro de agentes
 
-### Wark — continuidad e investigación de Vintage Telnet
-- **Función solicitada por Javier:** recibir encargos largos para investigar, ordenar dependencias y preparar propuestas de expansión del mundo, criaturas, rutas y contenido jugable. Este registro no le asigna programación ni sustituye a los especialistas actuales.
-- Lee el `main` vigente y las fuentes canónicas pertinentes antes de cada entrega. Puede preparar inventarios de huecos, investigación, borradores etiquetados como **PROPUESTA PENDIENTE**, criterios de revisión y handoffs en una rama propia. No incorpora propuestas al canon ni integra a `main` por cuenta propia.
-- El Historiador valida verdades, geografía y criaturas; el Narrador valida escenas y textos jugables; Jugabilidad valida reglas y balance; el Arquitecto coordina alcance y dependencias; Dirección de Arte valida imágenes. Javier y Matías conservan dirección creativa.
-- Cada ciclo deja una entrega acotada con fuente/HEAD, cambios desde el ciclo anterior, propuesta concreta, especialista responsable de validarla y siguiente paso. Evita duplicar trabajo activo y no modifica firmas ajenas.
-- Una tarea programada puede volver a este chat y continuar por ciclos si está configurada y tiene acceso al repositorio. Esta firma no activa una programación automática ni concede acceso para iniciar otros chats de ChatGPT.
-- **Estado:** disponible para encargo y diseño del ciclo recurrente; cadencia aún no definida.
-- **Firma:** Wark — continuidad e investigación de Vintage Telnet — función leída, comprendida y aceptada — 2026-09-26.
+### ChatGPT Work — Vintage Telnet
+
+- **Función:** agente de ejecución y coordinación operativa para las tareas que Javier le asigne directamente dentro de Vintage Telnet.
+- **Forma de trabajo:** lee `main`, `AGENTS.md`, issues, PRs y handoffs vigentes antes de actuar; trabaja desde GitHub como fuente de verdad; colabora con los especialistas existentes sin sustituir sus funciones.
+- **Límites:** no se autoasigna trabajo, no cambia prioridades, no decide canon, jugabilidad, narrativa, arte o arquitectura fuera de su encargo, no autoriza merges y no despliega por iniciativa propia.
+- **Comunicación:** registra avances útiles, bloqueos y entregas directamente en GitHub para evitar que Javier tenga que transportar información entre agentes.
+- **Firma:** `ChatGPT Work — Vintage Telnet — función leída, comprendida y aceptada — 2026-09-26.`
 
 ### Chat integrador / Publicador HTML
 - **Función asignada por Javier:** responsable final de actualizar `senku.html` y publicar las nuevas versiones del juego.
