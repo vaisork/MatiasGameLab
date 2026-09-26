@@ -2574,3 +2574,168 @@ No se necesita una pantalla de gestión de vivienda separada para v1.
 ### 34.11 Principio
 
 **El hogar es el lugar del que el personaje sale y al que puede volver; debe sentirse propio sin convertirse todavía en un sistema de vivienda, almacenamiento o teletransporte.**
+
+
+## 35. Conversación dinámica con NPCs — contrato de jugabilidad v1
+
+**Estado:** APROBADO COMO LÍMITE FUNCIONAL PARA #115.  
+**No decide:** modelo, proveedor, arquitectura, latencia ni despliegue.
+
+La conversación dinámica puede existir siempre que el sistema de generación **no se convierta en autoridad del mundo**.
+
+### 35.1 Inicio y alcance
+
+La conversación se inicia únicamente con un NPC legítimamente presente/visible mediante la intención autoritativa `hablar <npc>` o una interfaz equivalente.
+
+La v1 trata la conversación con NPC como un canal distinto de:
+- chat entre jugadores;
+- comandos del mundo;
+- narración de sala.
+
+Por defecto, el intercambio es **personal entre personaje y NPC**. Si una consecuencia debe ser pública para la sala/mundo, el servidor la publica como evento separado y autoritativo.
+
+### 35.2 Fuentes de verdad del NPC
+
+Antes de responder, el sistema debe construir contexto únicamente desde información autorizada:
+
+- identidad y personalidad persistentes;
+- conocimientos reales permitidos;
+- creencias/rumores que el NPC puede sostener;
+- información que explícitamente desconoce;
+- relaciones;
+- hechos del mundo que ese NPC puede conocer;
+- estado relevante ya validado del personaje;
+- memoria conversacional permitida entre ese personaje y ese NPC.
+
+Una respuesta nunca convierte una invención del generador en canon.
+
+### 35.3 Regla obligatoria: puede no saber
+
+Un NPC debe poder responder:
+- que no sabe;
+- que no está seguro;
+- que solo escuchó un rumor;
+- que no quiere hablar del tema;
+- que necesita contexto adicional.
+
+**“No sé” es una respuesta válida y preferible a inventar mundo.**
+
+### 35.4 Verdad, rumor y opinión
+
+La conversación debe conservar la separación:
+
+- **hecho conocido**;
+- **creencia/opinión**;
+- **rumor**;
+- **desconocimiento**.
+
+El jugador puede usar lo dicho como pista, pero una afirmación de NPC no se vuelve automáticamente verdad objetiva.
+
+### 35.5 Memoria
+
+La v1 necesita continuidad suficiente para que un NPC no parezca reiniciarse en cada frase.
+
+Persistir por relación personaje↔NPC únicamente información conversacional significativa, por ejemplo:
+- temas ya tratados;
+- información que el jugador reveló y el NPC aceptó legítimamente;
+- promesas/rechazos relevantes;
+- cambios de confianza o disposición ya autorizados;
+- hitos de conversación definidos por contenido.
+
+No es obligatorio guardar para siempre el transcript completo ni convertir cada frase casual en estado persistente.
+
+La memoria no puede sobrescribir hechos canónicos ni crear relaciones/objetos/eventos por sí sola.
+
+### 35.6 Presencia
+
+Se mantiene GAMEPLAY §16:
+
+**Presencia mejora la recepción de una propuesta plausible; no obliga a creer ni obedecer.**
+
+Puede afectar:
+- disposición a continuar hablando;
+- tono;
+- cantidad/profundidad de información que el NPC ya puede revelar;
+- aceptación de una petición razonable cuando el contenido permita esa posibilidad.
+
+No puede:
+- convertir mentira absurda en verdad;
+- revelar un secreto que el NPC no conoce/no puede revelar;
+- obligar a actuar contra límites esenciales;
+- controlar a otro jugador humano.
+
+### 35.7 El texto del NPC no ejecuta acciones
+
+La respuesta generada es **habla**, no una transacción autoritativa.
+
+Frases como:
+- “te doy esta espada”;
+- “te pago 100 sellos”;
+- “la puerta queda abierta”;
+- “ya eres miembro”;
+- “te enseño este poder”;
+
+no cambian estado por sí mismas.
+
+Toda consecuencia mecánica requiere una regla/acción estructurada validada por servidor:
+- otorgar objeto;
+- cambiar estado de descubrimiento;
+- registrar relación;
+- abrir acceso;
+- activar evento;
+- modificar inventario;
+- cualquier otro cambio persistente.
+
+Si no existe esa acción, el NPC puede hablar pero no producir el cambio.
+
+### 35.8 Seguridad de secretos
+
+El contexto de conversación debe excluir información que el NPC no puede conocer.
+
+No enviar al generador:
+- secretos del DM irrelevantes;
+- soluciones futuras;
+- inventario oculto de otros jugadores;
+- estados privados innecesarios;
+- datos de sistema.
+
+Un NPC no puede revelar un secreto solamente porque el modelo subyacente “lo sabe” por contexto global.
+
+### 35.9 Fallo técnico
+
+La conversación dinámica **no debe ser requisito para que el mundo funcione**.
+
+Si el motor de conversación está caído, lento o devuelve una salida inválida:
+- el servidor falla cerrado;
+- no altera estado;
+- puede mostrar una respuesta breve de fallback compatible con el NPC;
+- movimiento, combate, inventario y resto del juego continúan.
+
+### 35.10 Conversación y progresión
+
+Hablar por sí mismo no otorga XP repetible.
+
+XP o recompensa solo aparece cuando existe:
+- descubrimiento válido;
+- hito narrativo;
+- acción aprobada;
+- otro evento de progresión definido fuera del texto libre.
+
+Esto evita farmear conversación.
+
+### 35.11 Repetición
+
+El sistema debe permitir lenguaje natural variado, pero no necesita fabricar nueva información para evitar repetirse.
+
+Ante preguntas repetidas, el NPC puede:
+- resumir;
+- decir que ya habló del tema;
+- cambiar tono;
+- repetir el dato esencial;
+- negarse a insistir.
+
+La variedad verbal nunca justifica inventar contenido.
+
+### 35.12 Principio
+
+**El NPC puede improvisar cómo habla; no puede improvisar qué es verdad ni qué cambia en el mundo.**
