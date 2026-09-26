@@ -69,6 +69,6 @@ La ficha se puede repetir cinco veces sin clonar escenas. La primera ficha prior
 
 ## Estado de entrega
 
-La ficha piloto de **Tierra Húmeda** ya se entregó en `WARK_CICLO_01_TIERRA_HUMEDA.md`. El Historiador debe validar qué hechos del corredor #212 se vuelven canon en `main`; Narrador convierte funciones en prosa y escenas; Jugabilidad decide cualquier costo, descanso, acceso, encuentros o recompensa; Arquitecto coordina implementación posterior. Wark espera un nuevo encargo directo de Javier antes de abrir otro frente.
+La ficha piloto de **Tierra Húmeda** ya se entregó en `WARK_CICLO_01_TIERRA_HUMEDA.md`. El Historiador debe validar qué hechos del corredor #212 se vuelven canon en `main`; Narrador convierte funciones en prosa y escenas; Jugabilidad decide cualquier costo, descanso, acceso, encuentros o recompensa; Arquitecto coordina implementación posterior. Javier confirmó que el encargo de llenar huecos de recorrido continúa; los siguientes ciclos permanecen dentro de esta asignación.
 
 **Criterio de aceptación del piloto:** un lector puede explicar dónde está, cómo volver, qué pista justifica investigar un ramal y por qué el otro camino sigue hacia Narevia, sin revelar secretos ni recurrir a combate obligatorio.
