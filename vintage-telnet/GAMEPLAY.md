@@ -91,9 +91,17 @@ Una muerte no borra al personaje ni destruye todo el progreso acumulado. Esto es
 La recuperación v1 después de morir queda fijada en la sección 20. La selección concreta entre puntos válidos y cualquier requisito de descubrimiento/activación siguen dependiendo del diseño narrativo y de zona.
 
 ### 11. Riesgo de pérdida de armas
-Morir frente a monstruos comunes no provoca pérdida del arma por este principio.
+Morir frente a criaturas comunes, territoriales, peligrosas o incluso **amenazas superiores** no provoca pérdida del arma por este principio.
 
-Las derrotas contra monstruos excepcionalmente poderosos y las derrotas en PvP sí pueden provocar pérdida de armas.
+En PvE, la pérdida de arma queda reservada únicamente a enemigos que el contenido haya definido explícitamente como **jefes**. Ser muy fuerte, ser Abrumador o tener una dificultad muy superior al jugador **no convierte automáticamente a una criatura en jefe**.
+
+Por tanto:
+- una criatura básica o regional no hace perder el arma al derrotar al jugador;
+- una amenaza superior regional tampoco hace perder el arma si no es un jefe;
+- solo un jefe explícito puede activar una futura regla de pérdida de arma;
+- derrotas en PvP pueden seguir provocando pérdida de arma conforme al contrato específico de PvP.
+
+La pérdida frente a jefe tampoco debe asumirse como automática para todos los jefes: el contenido/regla concreta debe indicar que ese enfrentamiento tiene ese riesgo.
 
 Cuando un jugador pierde el derecho sobre un arma, conservar físicamente una pieza impresa no le permite seguir utilizándola dentro del juego. Debe volver a obtener legítimamente el derecho a usarla conforme a las reglas del juego.
 
