@@ -67,8 +67,8 @@ La ficha se puede repetir cinco veces sin clonar escenas. La primera ficha prior
 - No poblar `vintage-telnet/content/` ni `server/world.py` desde este documento. Requieren una entrega aprobada y trabajo técnico posterior.
 - El material de `SECRETS.md` y `NARRATIVE_RESERVED.md` no se traslada a fichas públicas ni a conversaciones normales con Javier jugador.
 
-## Siguiente entrega de Wark
+## Estado de entrega
 
-Preparar la ficha piloto de **Tierra Húmeda** con orden de 6–8 funciones de escena (sin exigir 6–8 salas), señales observables, ida/vuelta, dos desvíos ya propuestos y dependencias explícitas. El Historiador debe validar qué hechos del corredor #212 se vuelven canon en `main`; Narrador convierte funciones en prosa y escenas; Jugabilidad decide cualquier costo, descanso, acceso, encuentros o recompensa; Arquitecto coordina implementación posterior.
+La ficha piloto de **Tierra Húmeda** ya se entregó en `WARK_CICLO_01_TIERRA_HUMEDA.md`. El Historiador debe validar qué hechos del corredor #212 se vuelven canon en `main`; Narrador convierte funciones en prosa y escenas; Jugabilidad decide cualquier costo, descanso, acceso, encuentros o recompensa; Arquitecto coordina implementación posterior. Wark espera un nuevo encargo directo de Javier antes de abrir otro frente.
 
 **Criterio de aceptación del piloto:** un lector puede explicar dónde está, cómo volver, qué pista justifica investigar un ramal y por qué el otro camino sigue hacia Narevia, sin revelar secretos ni recurrir a combate obligatorio.
