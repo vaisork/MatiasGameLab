@@ -841,8 +841,8 @@
   <div class="footer">Vintage Telnet · servidor real · texto primero, HTML como herramienta</div>
 </div>
 
-<dialog id="characterDialog">
-  <div class="modal-head"><strong>Personaje</strong><button class="close" data-close aria-label="Cerrar">×</button></div>
+<dialog id="characterDialog" aria-labelledby="characterDialogTitle">
+  <div class="modal-head"><strong id="characterDialogTitle">Personaje</strong><button class="close" data-close aria-label="Cerrar personaje">×</button></div>
   <div class="modal-body">
     {% if player and player.hp_current is not none %}
     <div class="character-stack">
@@ -885,10 +885,10 @@
   <div class="modal-head"><strong id="mapDialogTitle">Mapa y orientación</strong><button class="close" data-close aria-label="Cerrar mapa">×</button></div>
   <div class="modal-body">
     <div class="segmented" role="tablist" aria-label="Vista del mapa">
-      <button class="segment" type="button" role="tab" aria-selected="true" data-map-tab="general"><svg class="ui-icon" aria-hidden="true"><use href="#icon-map"/></svg>Mapa general</button>
-      <button class="segment" type="button" role="tab" aria-selected="false" data-map-tab="heading"><svg class="ui-icon" aria-hidden="true"><use href="#icon-compass"/></svg>Dirección actual</button>
+      <button class="segment" id="mapTabGeneral" type="button" role="tab" aria-selected="true" aria-controls="mapPanelGeneral" data-map-tab="general"><svg class="ui-icon" aria-hidden="true"><use href="#icon-map"/></svg>Mapa general</button>
+      <button class="segment" id="mapTabHeading" type="button" role="tab" aria-selected="false" aria-controls="mapPanelHeading" data-map-tab="heading"><svg class="ui-icon" aria-hidden="true"><use href="#icon-compass"/></svg>Dirección actual</button>
     </div>
-    <section class="map-panel" data-map-panel="general">
+    <section class="map-panel" id="mapPanelGeneral" role="tabpanel" aria-labelledby="mapTabGeneral" data-map-panel="general">
       {% if room %}<p class="map-here"><b>Estás en:</b> {{ room.name }}</p>{% endif %}
       <div class="minimap-frame">
         <div class="minimap-scroll" id="minimapScroll"><p class="map-empty">El mapa todavía no se ha cargado.</p></div>
@@ -911,7 +911,7 @@
         <div id="mapContent" class="map-empty">El mapa todavía no se ha cargado.</div>
       </div>
     </section>
-    <section class="map-panel" data-map-panel="heading" hidden>
+    <section class="map-panel" id="mapPanelHeading" role="tabpanel" aria-labelledby="mapTabHeading" data-map-panel="heading" hidden>
       <div class="compass" id="headingCompass" aria-label="Brújula"><span class="north" data-heading="north">N</span><span class="west" data-heading="west">O</span><span class="center">•</span><span class="east" data-heading="east">E</span><span class="south" data-heading="south">S</span></div>
       <p class="map-status" id="headingStatus">Dirección actual no registrada.</p>
       <p class="map-status">El rumbo se muestra únicamente cuando lo confirma el servidor.</p>
@@ -922,10 +922,10 @@
   <div class="modal-head"><strong id="helpDialogTitle">Ayuda</strong><button class="close" data-close aria-label="Cerrar ayuda">×</button></div>
   <div class="modal-body">
     <div class="help-tabs" role="tablist" aria-label="Tipo de ayuda">
-      <button class="segment" type="button" role="tab" aria-selected="true" data-help-tab="quick">Guía rápida</button>
-      <button class="segment" type="button" role="tab" aria-selected="false" data-help-tab="kids">Explícamelo fácil</button>
+      <button class="segment" id="helpTabQuick" type="button" role="tab" aria-selected="true" aria-controls="helpPanelQuick" data-help-tab="quick">Guía rápida</button>
+      <button class="segment" id="helpTabKids" type="button" role="tab" aria-selected="false" aria-controls="helpPanelKids" data-help-tab="kids">Explícamelo fácil</button>
     </div>
-    <section class="help-panel" data-help-panel="quick">
+    <section class="help-panel" id="helpPanelQuick" role="tabpanel" aria-labelledby="helpTabQuick" data-help-panel="quick">
       <div class="help-grid">
         <section class="help-card"><h3>1. Muévete</h3><p><strong>N / S / E / O</strong> recorre salidas disponibles. <strong>Mirar</strong> vuelve a leer dónde estás.</p></section>
         <section class="help-card"><h3>2. Investiga</h3><p><strong>Explora:</strong> mira el lugar y examina aquello que llame tu atención. <strong>Observar</strong> busca señales; <strong>Evaluar</strong> estima cualitativamente el peligro de una criatura visible.</p></section>
@@ -934,7 +934,7 @@
         <section class="help-card"><h3>5. Habla</h3><p><strong>Hablar</strong> conversa con un NPC. Para chat local usa <code>decir &lt;texto&gt;</code>. Un comando desconocido no se publica.</p></section>
       </div>
     </section>
-    <section class="help-panel" data-help-panel="kids" hidden>
+    <section class="help-panel" id="helpPanelKids" role="tabpanel" aria-labelledby="helpTabKids" data-help-panel="kids" hidden>
       <div class="help-grid">
         <section class="help-card"><h3>Lee antes de elegir</h3><p>El texto te da pistas. No necesitas memorizar todo: busca lo que cambia tu decisión.</p></section>
         <section class="help-card"><h3>Si no sabes qué hacer</h3><p>Prueba <strong>mirar</strong>. Después observa o examina algo que te llame la atención. Una segunda pista puede aclarar la primera.</p></section>
@@ -982,10 +982,29 @@
   const activateTabs = (buttonSelector, panelSelector, dataKey) => {
     const buttons = [...document.querySelectorAll(buttonSelector)];
     const panels = [...document.querySelectorAll(panelSelector)];
-    buttons.forEach(button => button.addEventListener("click", () => {
-      buttons.forEach(other => other.setAttribute("aria-selected", String(other === button)));
+    const activate = button => {
+      buttons.forEach(other => {
+        const selected = other === button;
+        other.setAttribute("aria-selected", String(selected));
+        other.tabIndex = selected ? 0 : -1;
+      });
       panels.forEach(panel => { panel.hidden = panel.dataset[dataKey] !== button.dataset[dataKey]; });
-    }));
+    };
+    buttons.forEach((button, index) => {
+      button.tabIndex = button.getAttribute("aria-selected") === "true" ? 0 : -1;
+      button.addEventListener("click", () => activate(button));
+      button.addEventListener("keydown", event => {
+        let target = null;
+        if (event.key === "ArrowRight" || event.key === "ArrowDown") target = buttons[(index + 1) % buttons.length];
+        if (event.key === "ArrowLeft" || event.key === "ArrowUp") target = buttons[(index - 1 + buttons.length) % buttons.length];
+        if (event.key === "Home") target = buttons[0];
+        if (event.key === "End") target = buttons[buttons.length - 1];
+        if (!target) return;
+        event.preventDefault();
+        activate(target);
+        target.focus();
+      });
+    });
   };
   activateTabs("[data-map-tab]", "[data-map-panel]", "mapPanel");
   activateTabs("[data-help-tab]", "[data-help-panel]", "helpPanel");
