@@ -49,7 +49,7 @@ class ScreenStabilityTests(unittest.TestCase):
             self.post("/move", dict(direction="north"))  # sendero: sin arte aprobado ni encuentro
         html = self.client.get("/").get_data(as_text=True)
         self.assertIn('<figure class="location-art no-art" data-swap="art"', html)
-        self.assertIn('<div class="art-placeholder" aria-hidden="true"></div>', html)
+        self.assertIn('<div class="art-neutral" aria-hidden="true"></div>', html)
 
     def test_text_reveal_reserves_full_height(self):
         html = self.client.get("/").get_data(as_text=True)
