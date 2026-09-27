@@ -252,6 +252,7 @@ class UnapiedraServerIntegrationTests(unittest.TestCase):
         self.post("/dm/approve", dict(username=username), dm, csrf_path="/dm")
         self.post("/species", dict(species="felaryn"))  # arranca en khariel_centro
         self.post("/class", dict(player_class="juramentado"))
+        self.post("/move", dict(direction="south"))
 
     def get_player_id(self):
         return self.client.get("/api/me").json["player"]["id"]

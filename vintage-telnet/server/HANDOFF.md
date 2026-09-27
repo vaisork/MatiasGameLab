@@ -1,5 +1,22 @@
 # Handoff — Desarrollador de Servidor — Vintage Telnet
 
+## Entrega lista para revisión: HOME-CORE — hogar personal persistente mínimo (#280) — 2026-09-27
+
+- **DESARROLLADOR:** Codex — implementación acotada de servidor.
+- **HEAD BASE:** `278af19a3718655bb1515958d08469c499ff24e1` (`origin/main` al iniciar).
+- **RAMA:** `codex/home-core-280`.
+- **ESTADO:** LISTO PARA REVISIÓN. Sin merge ni despliegue.
+- **CONTRATO:** un hogar por personaje recién creado, creado al completar especie/clase; salida privada de una sola dirección hacia el centro inicial de su especie. El grafo regional permanece intacto y no tiene entrada al hogar.
+- **CAMBIOS:**
+  - `server/store.py`: migración v13 con marca `home_onboarding`; las filas existentes reciben `0` y conservan ubicación. La clase y el hogar del personaje nuevo se fijan atómicamente. El normalizador de arranque preserva solo el room ID `home:<id propio>`.
+  - `server/app.py`: resolución dinámica y privada del hogar con nombre `Tu hogar`, descripción neutral aprobada, una salida cardinal, descanso normal, sin arte/contexto inventados ni encuentros configurados.
+  - `tests/test_home_core.py`: hogares distintos por personaje/cuenta, inicio y salida para las cinco especies, persistencia al recrear app, ubicación exterior tras reconectar, descanso normal, ausencia de encuentros, migración v12 y preservación de personajes existentes.
+  - Fixtures de pruebas de mapa regional actualizados para salir explícitamente del hogar antes de probar rutas y sistemas de pueblo.
+- **PRUEBAS:**
+  - `.venv/bin/python -m unittest tests.test_home_core tests.test_class_choice -q`: **17 tests OK**.
+  - `.venv/bin/python -m unittest discover -s tests`: **399 tests OK, 0 fallos, 0 errores**. La base limpia `278af19` dio **392 tests OK** en la misma Raspberry/venv antes del cambio.
+- **PENDIENTES:** no hay cambios de mundo, reglas de respawn, PvP, vivienda compartida ni reentrada desde el pueblo; no pertenecen al contrato v1.
+
 ## Entrega lista para revisión: Acciones estructuradas derivadas del diálogo con gate autoritativo (#247) — 2026-09-27
 
 - **DESARROLLADOR:** Antigravity (Desarrollador principal para implementaciones pesadas).

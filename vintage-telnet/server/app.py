@@ -210,14 +210,44 @@ def create_app(config=None):
                     unexplored.append({"from": room_id, "direction": direction})
         return {"current_room": current_room, "places": places, "unexplored_exits": unexplored}
 
+    def _home_room_id(player_id):
+        return f"home:{player_id}"
+
+    def _room_for_player(room_id, player_id):
+        """Resolve the caller's private, dynamic HOME-CORE room only."""
+        if room_id == _home_room_id(player_id):
+            town_id = world.get_starting_room_for_species(
+                store.character_by_player_id(path, player_id)["species"]
+            )
+            return {
+                "id": room_id,
+                "name": "Tu hogar",
+                "description": (
+                    "Este es tu hogar. Aquí comienza tu viaje y aquí conservas "
+                    "un lugar propio dentro del mundo. La salida conduce hacia tu comunidad."
+                ),
+                # La conexión vive solo en este room privado; no añade una
+                # salida al mapa regional ni permite entrar desde el pueblo.
+                "exits": {"south": town_id},
+            }
+        return world.get_room(room_id)
+
     def room_view(room_id, player_id):
-        others = store.players_in_room(path, room_id, exclude_id=player_id)
-        view = world.describe_room(room_id, [p["name"] for p in others])
+        room_data = _room_for_player(room_id, player_id)
+        private_home = room_id == _home_room_id(player_id)
+        others = [] if private_home else store.players_in_room(path, room_id, exclude_id=player_id)
+        if private_home:
+            view = {"id": room_id, "name": room_data["name"],
+                    "description": room_data["description"],
+                    "exits": [{"direction": "south", "label": world.DIRECTION_LABEL_ES["south"]}],
+                    "others_present": [], "visual_context_id": None, "art": None,
+                    "ambient": None}
+        else:
+            view = world.describe_room(room_id, [p["name"] for p in others])
         view["messages"] = store.recent_messages(path, room_id)
         # Navegación: el nombre del destino de cada salida solo se muestra si
         # el personaje ya estuvo ahí (GAMEPLAY.md 23: el mapa es progresivo);
         # una salida nueva se ve como dirección sin nombre.
-        room_data = world.get_room(room_id)
         if room_data and view.get("exits"):
             visited = set(store.get_map_state(path, player_id)["visited_rooms"])
             for exit_info in view["exits"]:
@@ -359,13 +389,14 @@ def create_app(config=None):
         la sala de destino puede tenerla y todavia no hay ninguna activa
         (VT-NAR-003), y otorga el hito de regreso si corresponde."""
         previous_room = player["room"]
-        room = world.get_room(previous_room)
+        room = _room_for_player(previous_room, player["id"])
         destination = room["exits"].get(direction) if room else None
         if not destination:
             return False, previous_room, None, "No puedes ir en esa dirección."
         store.move_player(path, player["id"], destination, direction)
         store.mark_visited(path, player["id"], destination)
-        store.mark_route_traversed(path, player["id"], previous_room, destination)
+        if previous_room != _home_room_id(player["id"]):
+            store.mark_route_traversed(path, player["id"], previous_room, destination)
         # Primero el encuentro fijo de la sala y, si no hay, la fauna
         # aleatoria de su pool (Issue #160). Solo se tira el dado si no hay
         # ya una pelea activa ni enfriamiento en esa sala.
@@ -846,9 +877,12 @@ def create_app(config=None):
         if class_id not in world.CLASS_IDS:
             return False, None, "Elige una clase de la lista."
         updated = store.set_player_class(path, player["id"], class_id,
-                                         items.STARTER_WEAPON_BY_CLASS.get(class_id))
+                                         items.STARTER_WEAPON_BY_CLASS.get(class_id),
+                                         _home_room_id(player["id"]))
         if not updated:
             return False, None, "Ya elegiste tu clase."
+        if player["home_onboarding"]:
+            store.mark_visited(path, player["id"], _home_room_id(player["id"]))
         return True, class_id, None
 
     def api_player_state(player):

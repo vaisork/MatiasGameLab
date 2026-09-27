@@ -28,7 +28,14 @@ class EntryTests(unittest.TestCase):
         client = client or self.client
         page = client.get("/").get_data(as_text=True)
         csrf = re.search(r'name="csrf" value="([^"]+)"', page)[1]
-        return client.post(route, data={**(data or {}), "csrf": csrf})
+        response = client.post(route, data={**(data or {}), "csrf": csrf})
+        if route == "/class" and response.status_code == 303:
+            # Estas pruebas ejercitan funciones del mapa regional; el
+            # personaje nuevo sale primero de su hogar privado.
+            page = client.get("/").get_data(as_text=True)
+            token = re.search(r'name="csrf" value="([^\"]+)"', page)[1]
+            client.post("/move", data={"direction": "south", "csrf": token})
+        return response
 
     def register(self, username="matias", client=None, name="Matías"):
         return self.post("/register", dict(username=username, name=name, password="una clave de prueba"), client)
@@ -174,9 +181,8 @@ class EntryTests(unittest.TestCase):
         self.assertIn("traversed_routes", map_response.json)
         self.assertIn("valdren_centro", map_response.json["visited_rooms"])
 
-        # Issue #120: rumbo autoritativo -- null hasta el primer movimiento
-        # aceptado, luego la direccion cardinal exacta que el servidor uso.
-        self.assertIsNone(map_response.json["current_heading"])
+        # El primer movimiento del personaje nuevo sale del hogar hacia el sur.
+        self.assertEqual(map_response.json["current_heading"], "south")
         self.assertEqual(self.post("/move", {"direction": "north"}).status_code, 303)
         state_after_move = self.client.get("/api/map").json
         self.assertEqual(state_after_move["current_heading"], "north")

@@ -154,6 +154,9 @@ class ClassChoiceTests(unittest.TestCase):
         self.enter_with_species("dravak")
         player_id = self.me()["id"]
         store.award_xp(self.path, player_id, 40)
+        # Este personaje representa uno existente antes de HOME-CORE.
+        with store.connect(self.path) as db:
+            db.execute("UPDATE players SET home_onboarding = 0 WHERE id = ?", (player_id,))
         with sqlite3.connect(self.path) as db:
             undo_v11(db)
             db.execute("ALTER TABLE players DROP COLUMN player_class")

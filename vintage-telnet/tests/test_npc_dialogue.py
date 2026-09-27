@@ -265,6 +265,7 @@ class NPCDialogueWorldIsolationAndIntegrationTests(unittest.TestCase):
         # Seleccionar humano y sombra (inicia en valdren_centro)
         self.post("/species", dict(species="humano"))
         self.post("/class", dict(player_class="sombra"))
+        self.post("/move", dict(direction="south"))
 
     def move_to_forja(self):
         # En valdren_centro, la salida 'west' lleva a valdren_forja

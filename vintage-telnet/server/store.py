@@ -16,7 +16,7 @@ STATUSES = ("pending", "approved", "rejected", "removed")
 
 # Version de esquema que deja initialize(); ops/inventory_migration_probe.py
 # la usa para validar una migracion de prueba contra la copia de la base viva.
-SCHEMA_VERSION = 12
+SCHEMA_VERSION = 13
 
 # Cuentas con varios personajes (petición de Javier, 2026-09-25): un usuario
 # para entrar puede tener hasta 5 personajes; el nombre de cada personaje es
@@ -70,7 +70,7 @@ def name_key(name):
     return " ".join(plain.casefold().split())
 
 PLAYER_COLUMNS = (
-    "id, player_number, username, name, status, species, player_class, room, heading, created_at, last_access_at"
+    "id, player_number, username, name, status, species, player_class, room, heading, created_at, last_access_at, home_onboarding"
 )
 
 ATTRIBUTE_COLUMNS = ", ".join(f"attr_{name}" for name in combat.ATTRIBUTES)
@@ -298,6 +298,13 @@ def initialize(path):
             db.execute("CREATE INDEX IF NOT EXISTS npc_memories_player_npc ON npc_memories(player_id, npc_id, id)")
             db.execute(NPC_ACTION_LOGS_TABLE)
             db.execute("CREATE INDEX IF NOT EXISTS npc_action_logs_player_npc ON npc_action_logs(player_id, npc_id, id)")
+        if version <= 12:
+            # v13 (HOME-CORE): solo personajes creados después de esta versión
+            # pasan automáticamente del onboarding al hogar. Los existentes
+            # conservan su posición y no son reubicados.
+            columns = {row["name"] for row in db.execute("PRAGMA table_info(players)")}
+            if "home_onboarding" not in columns:
+                db.execute("ALTER TABLE players ADD COLUMN home_onboarding INTEGER NOT NULL DEFAULT 0")
         db.execute(f"PRAGMA user_version = {SCHEMA_VERSION}")
 
 
@@ -364,6 +371,10 @@ def relocate_players_outside_world(path, valid_rooms, fallback_room_for):
         for row in rows:
             if row["room"] in valid_rooms:
                 continue
+            # HOME-CORE rooms are character-scoped runtime locations, not
+            # entries in the static regional world graph.
+            if row["room"] == f"home:{row['id']}":
+                continue
             db.execute("DELETE FROM room_encounters WHERE player_id = ? AND room_id = ?",
                        (row["id"], row["room"]))
             db.execute("DELETE FROM combat_log WHERE player_id = ? AND room_id = ?",
@@ -418,8 +429,8 @@ def _check_name_free(db, name):
 def _insert_character(db, account_id, handle, name, now):
     player_id = str(uuid.uuid4())
     db.execute("""INSERT INTO players(id, username, name, name_key, password_hash, account_id,
-                                      created_at, last_access_at)
-                  VALUES (?, ?, ?, ?, '', ?, ?, ?)""",
+                                      created_at, last_access_at, home_onboarding)
+                  VALUES (?, ?, ?, ?, '', ?, ?, ?, 1)""",
                (player_id, handle, name, name_key(name), account_id, now, now))
     return player_id
 
@@ -616,7 +627,7 @@ def set_species(path, player_id, species, room):
         return cursor.rowcount > 0
 
 
-def set_player_class(path, player_id, class_id, starter_weapon_key=None):
+def set_player_class(path, player_id, class_id, starter_weapon_key=None, home_room=None):
     """Clase inicial (Issue #112). Igual que `set_species`: solo toma efecto
     la primera vez y exige que la especie ya este elegida; rowcount decide
     que llamada gano frente a dos POST concurrentes.
@@ -624,15 +635,18 @@ def set_player_class(path, player_id, class_id, starter_weapon_key=None):
     En la misma transaccion entrega el arma inicial de la clase (entrega
     autoritativa, GAMEPLAY.md 32.5) y la deja activa si el personaje no tenia
     ya un arma equipada, para que nunca quede clase sin arma ni arma sin
-    clase."""
+    clase. Cuando la ruta autoritativa proporciona `home_room`, la ubicación
+    del personaje nuevo también se fija al hogar dentro de esta transacción."""
     if starter_weapon_key is not None and items.category_of(starter_weapon_key) != "weapon":
         raise ValueError(f"Arma inicial desconocida: {starter_weapon_key}")
     with connect(path) as db:
         db.execute("BEGIN IMMEDIATE")
         cursor = db.execute(
-            """UPDATE players SET player_class = ?
+            """UPDATE players SET player_class = ?,
+                   room = CASE WHEN home_onboarding = 1 AND ? IS NOT NULL THEN ? ELSE room END,
+                   home_onboarding = CASE WHEN ? IS NOT NULL THEN 0 ELSE home_onboarding END
                WHERE id = ? AND player_class IS NULL AND species IS NOT NULL""",
-            (class_id, player_id),
+            (class_id, home_room, home_room, home_room, player_id),
         )
         if cursor.rowcount == 0:
             return False

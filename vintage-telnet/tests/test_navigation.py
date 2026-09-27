@@ -19,6 +19,7 @@ class NavigationTests(unittest.TestCase):
         store.set_status(self.path, "matias", "approved")
         self.post("/species", dict(species="humano"))  # valdren_centro
         self.post("/class", dict(player_class="sombra"))
+        self.post("/move", dict(direction="south"))  # salida del hogar al centro de Valdren
 
     def tearDown(self):
         self.temp.cleanup()
