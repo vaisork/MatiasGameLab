@@ -1439,7 +1439,14 @@
   // no aparezca todo de golpe. Solo el parrafo principal de la sala -- los
   // demas mensajes (presentes, encuentro, chat) se quedan como estan.
   // Respeta prefers-reduced-motion y es interrumpible con un toque/clic.
+  // Si llega otro swap antes de terminar, se cancela el timer anterior: no
+  // dejamos intervalos trabajando sobre nodos que ya salieron del DOM.
+  let cancelActiveReveal = null;
   const afterRender = () => {
+    if (cancelActiveReveal) {
+      cancelActiveReveal();
+      cancelActiveReveal = null;
+    }
     const resultEntries = document.querySelectorAll("[data-result-entry]");
     const resultEntry = resultEntries[resultEntries.length - 1];
     if (resultEntry) {
@@ -1469,19 +1476,25 @@
         mainParagraph.replaceChildren(visiblePart, hiddenPart);
         let shown = 0;
         let timer = null;
-        const revealAll = () => {
+        const revealLog = document.querySelector(".log");
+        const stopReveal = () => {
           if (timer !== null) clearInterval(timer);
           timer = null;
+          if (revealLog) revealLog.removeEventListener("click", revealAll);
+        };
+        const revealAll = () => {
+          stopReveal();
+          cancelActiveReveal = null;
           mainParagraph.textContent = fullText;
           try { sessionStorage.setItem("vt:last-room-text", roomKey); } catch (_error) {}
         };
+        cancelActiveReveal = stopReveal;
         timer = setInterval(() => {
           shown += 2;
           if (shown >= fullText.length) { revealAll(); return; }
           visiblePart.textContent = fullText.slice(0, shown);
           hiddenPart.textContent = fullText.slice(shown);
         }, 26);
-        const revealLog = document.querySelector(".log");
         if (revealLog) revealLog.addEventListener("click", revealAll, {once: true});
       }
     }
