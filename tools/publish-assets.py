@@ -35,7 +35,9 @@ ALLOWLIST = (
     "assets/vintage-telnet/locations/",
     "assets/vintage-telnet/species/",
     "assets/vintage-telnet/maps/",
+    "assets/vintage-telnet/creatures/",
 )
+REPLACEMENT_AUTHORIZATIONS = "docs/ASSET_REPLACEMENT_AUTHORIZATIONS.json"
 ALLOWED_EXTENSIONS = {".png", ".webp", ".jpg", ".jpeg"}
 MAX_FILE_BYTES = 8 * 1024 * 1024
 MAX_DIMENSION = 8192
@@ -372,9 +374,38 @@ def _changed_paths(repo: Path, base_ref: str) -> list[tuple[str, str]]:
     return rows
 
 
+def _replacement_authorizations(repo: Path, base_ref: str) -> set[str]:
+    """Return replacement paths authorized by the PR base, never by the PR itself."""
+    raw = _run_git(repo, "show", f"{base_ref}:{REPLACEMENT_AUTHORIZATIONS}", check=False)
+    if not raw:
+        return set()
+    try:
+        payload = json.loads(raw)
+    except json.JSONDecodeError as exc:
+        raise AssetBatchError(f"invalid {REPLACEMENT_AUTHORIZATIONS} in {base_ref}: {exc}") from exc
+    if not isinstance(payload, dict) or set(payload) != {"replace"}:
+        raise AssetBatchError(f"{REPLACEMENT_AUTHORIZATIONS} must contain only a 'replace' list")
+    paths = payload["replace"]
+    if not isinstance(paths, list) or any(not isinstance(path, str) for path in paths):
+        raise AssetBatchError(f"{REPLACEMENT_AUTHORIZATIONS} 'replace' must be a list of paths")
+    authorized: set[str] = set()
+    for path in paths:
+        normalized = path.replace("\\", "/").strip()
+        if normalized != path or not any(normalized.startswith(prefix) for prefix in ALLOWLIST):
+            raise AssetBatchError(f"invalid replacement authorization path: {path}")
+        safe_name(Path(normalized).name)
+        authorized.add(normalized)
+    return authorized
+
+
 def validate_pr(repo: Path, base_ref: str) -> int:
     changes = _changed_paths(repo, base_ref)
     asset_changes = [(s, p) for s, p in changes if p.startswith("assets/")]
+    try:
+        replacement_authorizations = _replacement_authorizations(repo, base_ref)
+    except AssetBatchError as exc:
+        print(f"ASSET PR VALIDATION: FAILED\n- {exc}", file=sys.stderr)
+        return 2
     if not asset_changes:
         print("ASSET PR VALIDATION: OK (no asset changes)")
         return 0
@@ -388,10 +419,14 @@ def validate_pr(repo: Path, base_ref: str) -> int:
         if ext in FORBIDDEN_FINAL_EXTENSIONS:
             violations.append(f"forbidden final asset type: {path}")
             continue
-        if status != "A":
-            violations.append(
-                f"v1 asset PRs may only add new files; replacement/deletion needs explicit future flow: {status} {path}"
-            )
+        if status == "D":
+            violations.append(f"asset deletion is not authorized: {path}")
+            continue
+        if status == "M" and path not in replacement_authorizations:
+            violations.append(f"asset replacement not authorized by base: {path}")
+            continue
+        if status not in {"A", "M"}:
+            violations.append(f"unsupported asset change status: {status} {path}")
             continue
         try:
             safe_name(Path(path).name)
@@ -404,7 +439,7 @@ def validate_pr(repo: Path, base_ref: str) -> int:
         if not p.startswith("assets/")
         and p not in {"tools/publish-assets.py", ".github/workflows/asset-validation.yml"}
         and not p.startswith("tests/asset_publisher/")
-        and p != "docs/ASSET_BATCH_PUBLISHER.md"
+        and p not in {"docs/ASSET_BATCH_PUBLISHER.md", REPLACEMENT_AUTHORIZATIONS}
     ]
     if asset_changes and non_asset_changes:
         violations.append(
