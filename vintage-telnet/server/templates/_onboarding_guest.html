@@ -1,5 +1,6 @@
 {% set view = onboarding_view or 'welcome' %}{% set fv = form_values or {} %}
-<section class="onboarding" data-onboarding data-view="{{ view }}" aria-labelledby="welcome-title">
+{% set onboarding_title_id = 'login-title' if view == 'login' else ('register-title' if view == 'register' else 'welcome-title') %}
+<section class="onboarding" data-onboarding data-view="{{ view }}" aria-labelledby="{{ onboarding_title_id }}">
   <div class="onboarding-panel onboarding-welcome" data-onboarding-view="welcome"{% if view != 'welcome' %} hidden{% endif %}>
     <p class="onboarding-kicker">Matías Game Lab</p>
     <h1 id="welcome-title">Vintage Telnet</h1>
