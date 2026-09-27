@@ -58,6 +58,17 @@ class DmPrivateTests(unittest.TestCase):
         self.assertEqual(client.get("/", headers=FUNNEL).status_code, 200)
         self.assertEqual(client.get("/healthz", headers=FUNNEL).status_code, 200)
 
+    def test_dm_logout_revokes_session_on_private_network(self):
+        client = self.app.test_client()
+        client.post("/dm/login", data={"csrf": self.csrf(client, "/dm"), "dm_password": "dm-secret-value"})
+        self.assertIn("Cerrar sesión", client.get("/dm").get_data(as_text=True))
+        response = client.post("/dm/logout", data={"csrf": self.csrf(client, "/dm")})
+        self.assertEqual(response.status_code, 303)
+        self.assertNotIn("Cerrar sesión", client.get("/dm").get_data(as_text=True))
+        approve = client.post("/dm/approve", data={"csrf": self.csrf(client, "/dm"), "username": "x"})
+        self.assertEqual(approve.status_code, 403)
+
+
 
 if __name__ == "__main__":
     unittest.main()
