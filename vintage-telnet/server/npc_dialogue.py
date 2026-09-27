@@ -16,12 +16,50 @@ from __future__ import annotations
 import abc
 from copy import deepcopy
 from dataclasses import dataclass, field
+import json
 import logging
+import re
 from typing import Any, Callable
 
-from . import store
+from . import store, world
 
 logger = logging.getLogger(__name__)
+
+
+# ---------------------------------------------------------------------------
+# Acciones estructuradas y Gate autoritativo (Issue #247)
+# ---------------------------------------------------------------------------
+
+ALLOWLISTED_NPC_ACTIONS: frozenset[str] = frozenset({
+    "indicate_route",
+    "reveal_lore_topic",
+    "show_workshop_item",
+})
+
+VALID_WORKSHOP_TOOLS: frozenset[str] = frozenset({
+    "martillo de fragua",
+    "tenaza de temple",
+    "reja de arado",
+    "clavo de herrar",
+    "yunque menor",
+    "cincel de hierro",
+})
+
+
+@dataclass(frozen=True)
+class ProposedAction:
+    """Propuesta de acción estructurada emitida por el diálogo del NPC."""
+    action_type: str
+    payload: dict[str, Any] = field(default_factory=dict)
+
+
+@dataclass(frozen=True)
+class ActionGateResult:
+    """Resultado autoritativo de la evaluación de una acción propuesta."""
+    accepted: bool
+    action_type: str | None = None
+    reason: str = ""
+    effect: dict[str, Any] | None = None
 
 
 # ---------------------------------------------------------------------------
@@ -47,7 +85,7 @@ class DialoguePrompt:
 
 @dataclass(frozen=True)
 class DialogueResult:
-    """Resultado estrictamente textual de la conversación con el NPC."""
+    """Resultado estrictamente textual y de acción evaluada por el Gate."""
     success: bool
     npc_id: str | None = None
     npc_name: str | None = None
@@ -55,6 +93,8 @@ class DialogueResult:
     is_fallback: bool = False
     error: str | None = None
     reason: str | None = None
+    proposed_action: ProposedAction | None = None
+    gate_result: ActionGateResult | None = None
 
 
 # ---------------------------------------------------------------------------
@@ -281,8 +321,209 @@ def build_dialogue_prompt(
     )
 
 
+_ACTION_TAG_REGEX = re.compile(r'<!--ACTION:\s*(\{.*?\})\s*-->', re.DOTALL)
+
+
+def extract_proposed_action(raw_output: Any) -> tuple[str, ProposedAction | None]:
+    """Separa el texto conversacional limpio de cualquier propuesta de acción estructurada.
+
+    Garantiza que la respuesta narrativa y la propuesta de acción sean canales separados.
+    """
+    if isinstance(raw_output, tuple) and len(raw_output) == 2:
+        text, action = raw_output
+        return str(text or "").strip(), action if isinstance(action, ProposedAction) else None
+
+    raw_text = str(raw_output or "")
+    match = _ACTION_TAG_REGEX.search(raw_text)
+    if not match:
+        return raw_text.strip(), None
+
+    json_str = match.group(1)
+    clean_text = _ACTION_TAG_REGEX.sub("", raw_text).strip()
+    try:
+        data = json.loads(json_str)
+        if isinstance(data, dict) and "type" in data:
+            action_type = str(data["type"]).strip()
+            payload = data.get("payload") if isinstance(data.get("payload"), dict) else {k: v for k, v in data.items() if k != "type"}
+            return clean_text, ProposedAction(action_type=action_type, payload=payload)
+    except Exception as exc:
+        logger.warning("Propuesta de acción malformada en diálogo de NPC: %s", exc)
+
+    return clean_text, None
+
+
+def evaluate_action_gate(
+    npc: dict[str, Any] | Any,
+    player: dict[str, Any] | Any,
+    proposed: ProposedAction | None,
+    *,
+    room_id: str | None = None,
+    db_path: str | None = None,
+) -> ActionGateResult:
+    """Valida precondiciones y autoridad de una acción propuesta.
+
+    Garantías de seguridad (Issue #247):
+    1. Si proposed es None -> no hay acción.
+    2. Si action_type no está en ALLOWLISTED_NPC_ACTIONS -> rechazo tajante (action_not_allowlisted).
+    3. Si el jugador o el NPC no están en la misma sala -> rechazo (presence_mismatch).
+    4. Validación estricta de precondiciones por tipo de acción:
+       - indicate_route: la dirección debe existir en las salidas de la sala en world.ROOMS.
+       - reveal_lore_topic: el tema debe estar en npc['knowledge_allowed'] y NO en npc['knowledge_forbidden'].
+       - show_workshop_item: el NPC debe ser herrero en sala de forja y la herramienta ser válida.
+    5. Cero mutaciones de estado si falla la validación.
+    6. Sin economía, sin inventario de jugador, sin quests arbitrarias.
+    7. Auditoría autoritativa de aceptación/rechazo en SQLite.
+    """
+    if proposed is None:
+        return ActionGateResult(accepted=False, reason="no_action_proposed")
+
+    npc_data = dict(npc) if npc is not None else {}
+    player_data = dict(player) if player is not None else {}
+    player_id = str(player_data.get("id") or "").strip()
+    npc_id = str(npc_data.get("id") or "").strip()
+    action_type = str(proposed.action_type or "").strip()
+
+    # 1. Allowlist estricta
+    if action_type not in ALLOWLISTED_NPC_ACTIONS:
+        result = ActionGateResult(
+            accepted=False,
+            action_type=action_type,
+            reason="action_not_allowlisted",
+        )
+        if db_path and player_id and npc_id:
+            try:
+                store.record_npc_action_gate_evaluation(
+                    db_path, player_id, npc_id, action_type, False, result.reason, proposed.payload
+                )
+            except Exception as exc:
+                logger.warning("Fallo al registrar auditoría de acción: %s", exc)
+        return result
+
+    # 2. Validación de presencia
+    npc_loc = npc_data.get("location") or npc_data.get("room_id")
+    current_room = room_id or player_data.get("room")
+    if not current_room or current_room != npc_loc:
+        result = ActionGateResult(
+            accepted=False,
+            action_type=action_type,
+            reason="presence_mismatch",
+        )
+        if db_path and player_id and npc_id:
+            try:
+                store.record_npc_action_gate_evaluation(
+                    db_path, player_id, npc_id, action_type, False, result.reason, proposed.payload
+                )
+            except Exception as exc:
+                logger.warning("Fallo al registrar auditoría de acción: %s", exc)
+        return result
+
+    # 3. Validación de precondiciones por tipo de acción
+    if action_type == "indicate_route":
+        direction = str(proposed.payload.get("direction") or "").strip().lower()
+        room_info = world.get_room(current_room)
+        exits = room_info.get("exits", {}) if room_info else {}
+        if direction not in exits:
+            result = ActionGateResult(
+                accepted=False,
+                action_type=action_type,
+                reason=f"invalid_direction: {direction}",
+            )
+        else:
+            destination_id = exits[direction]
+            dest_room = world.get_room(destination_id)
+            dest_name = dest_room.get("name") if dest_room else destination_id
+            result = ActionGateResult(
+                accepted=True,
+                action_type=action_type,
+                reason="route_indicated_safely",
+                effect={
+                    "direction": direction,
+                    "destination": destination_id,
+                    "destination_name": dest_name,
+                    "indicated_by": npc_data.get("name"),
+                },
+            )
+
+    elif action_type == "reveal_lore_topic":
+        raw_topic = str(proposed.payload.get("topic") or "").strip()
+        topic_lower = raw_topic.lower()
+        forbidden_list = [str(k).lower() for k in (npc_data.get("knowledge_forbidden") or [])]
+        allowed_list = [str(k).lower() for k in (npc_data.get("knowledge_allowed") or [])]
+
+        if any(f in topic_lower or topic_lower in f for f in forbidden_list if f):
+            result = ActionGateResult(
+                accepted=False,
+                action_type=action_type,
+                reason="forbidden_topic_rejected",
+            )
+        elif not any(a in topic_lower or topic_lower in a for a in allowed_list if a):
+            result = ActionGateResult(
+                accepted=False,
+                action_type=action_type,
+                reason="topic_not_in_knowledge_allowed",
+            )
+        else:
+            result = ActionGateResult(
+                accepted=True,
+                action_type=action_type,
+                reason="topic_revealed_safely",
+                effect={
+                    "topic": raw_topic,
+                    "authorized": True,
+                    "revealed_by": npc_data.get("name"),
+                },
+            )
+
+    elif action_type == "show_workshop_item":
+        item_name = str(proposed.payload.get("item_name") or "").strip().lower()
+        role = str(npc_data.get("role") or "").lower()
+        if role != "herrero" or not current_room.endswith("_forja"):
+            result = ActionGateResult(
+                accepted=False,
+                action_type=action_type,
+                reason="workshop_precondition_failed",
+            )
+        elif item_name not in VALID_WORKSHOP_TOOLS:
+            result = ActionGateResult(
+                accepted=False,
+                action_type=action_type,
+                reason=f"invalid_workshop_tool: {item_name}",
+            )
+        else:
+            result = ActionGateResult(
+                accepted=True,
+                action_type=action_type,
+                reason="workshop_tool_shown_safely",
+                effect={
+                    "tool": item_name,
+                    "inspected": True,
+                    "workshop": current_room,
+                    "artisan": npc_data.get("name"),
+                },
+            )
+    else:
+        result = ActionGateResult(accepted=False, action_type=action_type, reason="unsupported_action")
+
+    # Registro de auditoría (Issue #247: registrar acción aceptada/rechazada)
+    if db_path and player_id and npc_id:
+        try:
+            store.record_npc_action_gate_evaluation(
+                db_path,
+                player_id,
+                npc_id,
+                action_type,
+                result.accepted,
+                result.reason,
+                proposed.payload,
+            )
+        except Exception as exc:
+            logger.warning("Fallo al registrar auditoría de acción para NPC %s: %s", npc_id, exc)
+
+    return result
+
+
 # ---------------------------------------------------------------------------
-# Motor principal de conversación autoritativa (Criterios 1, 4, 6 e Issue #246)
+# Motor principal de conversación autoritativa (Criterios 1, 4, 6 e Issues #246, #247)
 # ---------------------------------------------------------------------------
 
 def converse(
@@ -303,6 +544,7 @@ def converse(
     - Criterio 4: Cero modificaciones al estado del mundo, jugador o base de datos de juego.
     - Criterio 6: Si el proveedor falla o da timeout, degrada de forma segura a fallback.
     - Issue #246: Mantiene memoria conversacional reciente acotada por pareja jugador-NPC.
+    - Issue #247: Valida propuestas de acción estructuradas con Gate autoritativo y canal separado.
     """
     reg = registry or _REGISTRY
     player_data = dict(player) if player is not None else {}
@@ -357,54 +599,59 @@ def converse(
     )
 
     try:
-        raw_reply = prov.generate_reply(prompt)
-        cleaned_reply = (raw_reply or "").strip()
-        if not cleaned_reply:
+        raw_output = prov.generate_reply(prompt)
+        clean_reply, proposed = extract_proposed_action(raw_output)
+        if not clean_reply:
             logger.warning("Proveedor devolvió respuesta vacía para NPC %s; usando fallback", npc.get("id"))
-            res = DialogueResult(
-                success=True,
-                npc_id=npc.get("id"),
-                npc_name=npc.get("name"),
-                text=fallback_text,
-                is_fallback=True,
-            )
+            clean_reply = fallback_text
+            is_fallback = True
+            proposed = None
         else:
-            res = DialogueResult(
-                success=True,
-                npc_id=npc.get("id"),
-                npc_name=npc.get("name"),
-                text=cleaned_reply,
-                is_fallback=False,
-            )
+            is_fallback = False
     except Exception as exc:
         logger.warning(
             "Fallo al invocar proveedor de diálogo para NPC %s (%s). Degradando a fallback.",
             npc.get("id"),
             exc,
         )
-        res = DialogueResult(
-            success=True,
-            npc_id=npc.get("id"),
-            npc_name=npc.get("name"),
-            text=fallback_text,
-            is_fallback=True,
+        clean_reply = fallback_text
+        is_fallback = True
+        proposed = None
+
+    # 6. Evaluación autoritativa de acción propuesta por el Gate (Issue #247)
+    gate_result: ActionGateResult | None = None
+    if proposed is not None:
+        gate_result = evaluate_action_gate(
+            npc,
+            player,
+            proposed,
+            room_id=current_room,
+            db_path=db_path,
         )
 
-    # 6. Registro de memoria conversacional reciente tras diálogo exitoso (Issue #246)
-    if res.success and db_path and player_id and npc_id:
+    # 7. Registro de memoria conversacional reciente tras diálogo exitoso (Issue #246)
+    if db_path and player_id and npc_id:
         try:
             store.record_npc_dialogue_exchange(
                 db_path,
                 player_id,
                 npc_id,
                 message,
-                res.text,
+                clean_reply,
                 window_size=window_size,
             )
         except Exception as exc:
             logger.warning("Fallo al guardar memoria de NPC %s para jugador %s: %s", npc_id, player_id, exc)
 
-    return res
+    return DialogueResult(
+        success=True,
+        npc_id=npc.get("id"),
+        npc_name=npc.get("name"),
+        text=clean_reply,
+        is_fallback=is_fallback,
+        proposed_action=proposed,
+        gate_result=gate_result,
+    )
 
 
 # ---------------------------------------------------------------------------

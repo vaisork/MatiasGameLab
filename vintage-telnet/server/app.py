@@ -1380,6 +1380,19 @@ def create_app(config=None):
                     error=result.error,
                     reason=result.reason,
                 ), 409
+            action_payload = (
+                {"action_type": result.proposed_action.action_type, "payload": result.proposed_action.payload}
+                if result.proposed_action else None
+            )
+            gate_payload = (
+                {
+                    "accepted": result.gate_result.accepted,
+                    "action_type": result.gate_result.action_type,
+                    "reason": result.gate_result.reason,
+                    "effect": result.gate_result.effect,
+                }
+                if result.gate_result else None
+            )
             return jsonify(
                 accepted=True,
                 intent="talk_npc",
@@ -1387,6 +1400,8 @@ def create_app(config=None):
                 npc_name=result.npc_name,
                 reply=result.text,
                 is_fallback=result.is_fallback,
+                proposed_action=action_payload,
+                gate_result=gate_payload,
             ), 200
         return jsonify(
             accepted=False,
@@ -1415,6 +1430,19 @@ def create_app(config=None):
                 error=result.error,
                 reason=result.reason,
             ), status_code
+        action_payload = (
+            {"action_type": result.proposed_action.action_type, "payload": result.proposed_action.payload}
+            if result.proposed_action else None
+        )
+        gate_payload = (
+            {
+                "accepted": result.gate_result.accepted,
+                "action_type": result.gate_result.action_type,
+                "reason": result.gate_result.reason,
+                "effect": result.gate_result.effect,
+            }
+            if result.gate_result else None
+        )
         return jsonify(
             accepted=True,
             intent="talk_npc",
@@ -1422,6 +1450,8 @@ def create_app(config=None):
             npc_name=result.npc_name,
             reply=result.text,
             is_fallback=result.is_fallback,
+            proposed_action=action_payload,
+            gate_result=gate_payload,
         ), 200
 
     @app.post("/api/move")
