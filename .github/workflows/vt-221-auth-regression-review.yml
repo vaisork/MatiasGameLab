@@ -1,9 +1,12 @@
 name: VT #221 auth regression review
 
 on:
-  push:
+  pull_request:
     branches:
-      - junior/issue-221-auth-regression
+      - main
+    paths:
+      - "vintage-telnet/tests/test_public_auth_regression.py"
+      - ".github/workflows/vt-221-auth-regression-review.yml"
 
 permissions:
   contents: read
