@@ -187,6 +187,82 @@ class AssetPublisherTests(unittest.TestCase):
             b = asset(p2, "assets/vintage-telnet/maps/b.png")
             self.assertEqual(pub.batch_digest([a, b]), pub.batch_digest([b, a]))
 
+    def test_creature_asset_is_allowed(self):
+        td, repo = self.make_repo()
+        self.addCleanup(td.cleanup)
+        self.git(repo, "branch", "base-for-pr", "main")
+        creature = repo / "assets/vintage-telnet/creatures/mordelinde.png"
+        creature.parent.mkdir(parents=True)
+        creature.write_bytes(png_bytes(10, 12))
+        self.git(repo, "add", creature.relative_to(repo).as_posix())
+        self.git(repo, "commit", "-m", "add creature")
+        self.assertEqual(pub.validate_pr(repo, "base-for-pr"), 0)
+
+    def test_pr_replacement_without_base_authorization_fails(self):
+        td, repo = self.make_repo()
+        self.addCleanup(td.cleanup)
+        asset = repo / "assets/vintage-telnet/locations/valdren.png"
+        asset.parent.mkdir(parents=True)
+        asset.write_bytes(png_bytes(10, 12))
+        self.git(repo, "add", asset.relative_to(repo).as_posix())
+        self.git(repo, "commit", "-m", "base asset")
+        self.git(repo, "branch", "-f", "base-for-pr", "HEAD")
+        asset.write_bytes(png_bytes(12, 14))
+        self.git(repo, "add", asset.relative_to(repo).as_posix())
+        self.git(repo, "commit", "-m", "replace without authorization")
+        self.assertEqual(pub.validate_pr(repo, "base-for-pr"), 2)
+
+    def test_pr_replacement_authorized_in_base_passes(self):
+        td, repo = self.make_repo()
+        self.addCleanup(td.cleanup)
+        asset = repo / "assets/vintage-telnet/locations/valdren.png"
+        auth = repo / pub.REPLACEMENT_AUTHORIZATIONS
+        asset.parent.mkdir(parents=True)
+        auth.parent.mkdir(parents=True)
+        asset.write_bytes(png_bytes(10, 12))
+        auth.write_text(json.dumps({"replace": [asset.relative_to(repo).as_posix()]}), encoding="utf-8")
+        self.git(repo, "add", asset.relative_to(repo).as_posix(), auth.relative_to(repo).as_posix())
+        self.git(repo, "commit", "-m", "authorize replacement")
+        self.git(repo, "branch", "-f", "base-for-pr", "HEAD")
+        asset.write_bytes(png_bytes(12, 14))
+        self.git(repo, "add", asset.relative_to(repo).as_posix())
+        self.git(repo, "commit", "-m", "authorized replacement")
+        self.assertEqual(pub.validate_pr(repo, "base-for-pr"), 0)
+
+    def test_pr_cannot_self_authorize_replacement(self):
+        td, repo = self.make_repo()
+        self.addCleanup(td.cleanup)
+        asset = repo / "assets/vintage-telnet/locations/valdren.png"
+        auth = repo / pub.REPLACEMENT_AUTHORIZATIONS
+        asset.parent.mkdir(parents=True)
+        asset.write_bytes(png_bytes(10, 12))
+        self.git(repo, "add", asset.relative_to(repo).as_posix())
+        self.git(repo, "commit", "-m", "base asset")
+        self.git(repo, "branch", "-f", "base-for-pr", "HEAD")
+        auth.parent.mkdir(parents=True)
+        auth.write_text(json.dumps({"replace": [asset.relative_to(repo).as_posix()]}), encoding="utf-8")
+        asset.write_bytes(png_bytes(12, 14))
+        self.git(repo, "add", asset.relative_to(repo).as_posix(), auth.relative_to(repo).as_posix())
+        self.git(repo, "commit", "-m", "self authorize")
+        self.assertEqual(pub.validate_pr(repo, "base-for-pr"), 2)
+
+    def test_pr_asset_deletion_still_fails(self):
+        td, repo = self.make_repo()
+        self.addCleanup(td.cleanup)
+        asset = repo / "assets/vintage-telnet/locations/valdren.png"
+        auth = repo / pub.REPLACEMENT_AUTHORIZATIONS
+        asset.parent.mkdir(parents=True)
+        auth.parent.mkdir(parents=True)
+        asset.write_bytes(png_bytes(10, 12))
+        auth.write_text(json.dumps({"replace": [asset.relative_to(repo).as_posix()]}), encoding="utf-8")
+        self.git(repo, "add", asset.relative_to(repo).as_posix(), auth.relative_to(repo).as_posix())
+        self.git(repo, "commit", "-m", "base asset")
+        self.git(repo, "branch", "-f", "base-for-pr", "HEAD")
+        asset.unlink()
+        self.git(repo, "add", "-u")
+        self.git(repo, "commit", "-m", "delete asset")
+        self.assertEqual(pub.validate_pr(repo, "base-for-pr"), 2)
+
     def test_pr_validation_reuses_same_rules(self):
         td, repo = self.make_repo()
         self.addCleanup(td.cleanup)
