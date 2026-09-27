@@ -956,8 +956,13 @@
       views.forEach(view => { view.hidden = view.dataset.onboardingView !== name; });
       onboarding.dataset.view = name;
       const target = views.find(view => view.dataset.onboardingView === name);
-      const focusTarget = target && target.querySelector("h1,[id$='-title'],input,button");
-      if (focusTarget) focusTarget.focus({preventScroll:true});
+      const title = target && target.querySelector("h1,[id$='-title']");
+      if (title && title.id) onboarding.setAttribute("aria-labelledby", title.id);
+      const focusTarget = target && (target.querySelector('input:not([type="hidden"]),button') || title);
+      if (focusTarget) {
+        if (!focusTarget.matches("input,button,a[href],select,textarea,[tabindex]")) focusTarget.tabIndex = -1;
+        focusTarget.focus({preventScroll:true});
+      }
     };
     onboarding.querySelectorAll("[data-onboarding-go]").forEach(button => {
       button.addEventListener("click", () => showOnboarding(button.dataset.onboardingGo));
