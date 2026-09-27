@@ -71,9 +71,10 @@ class RouteStructureTests(unittest.TestCase):
 
     def test_visual_contexts_follow_the_canon(self):
         ctx = world.get_visual_context_id
-        self.assertEqual(ctx("alto_terrazas"), "zone.khariel")
+        self.assertEqual(ctx("alto_terrazas"), "zone.khariel.terrazas")
         self.assertEqual(ctx("valdren_camino_hundido"), "zone.edran.valdren_outskirts")
-        self.assertEqual(ctx("alto_puente_viento"), None)  # tramo profundo sin canon visual todavía
+        self.assertEqual(ctx("alto_puente_viento"), "zone.hoshai.khariel_approach")
+        self.assertEqual(ctx("piedra_pared_partida"), None)  # Korven: sin paisaje aprobado todavía
         for room_id in ("campos_acceso", "alto_aproximacion", "piedra_aproximacion",
                         "juncos_aproximacion", "sombra_aproximacion", "cuenca_aproximacion_sur"):
             self.assertEqual(ctx(room_id), "zone.veyra.road", room_id)

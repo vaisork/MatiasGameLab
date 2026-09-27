@@ -73,3 +73,20 @@ class PublishedArtTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class ApproachLandscapeTests(unittest.TestCase):
+    """Paisajes de aproximación aprobados (PR #174, #176, #185, #186): cubren
+    los tramos exteriores de su ruta, no los de otras regiones."""
+
+    def test_route_rooms_use_their_regional_landscape(self):
+        ctx = world.get_visual_context_id
+        self.assertEqual(ctx("alto_terrazas"), "zone.khariel.terrazas")
+        for room_id in world._ids(world.ROUTE_B)[1:14]:
+            self.assertEqual(ctx(room_id), "zone.hoshai.khariel_approach", room_id)
+        for room_id in world._ids(world.ROUTE_D)[1:14]:
+            self.assertEqual(ctx(room_id), "zone.lethra.narevia_approach", room_id)
+        # Korven y Nhal todavía sin paisaje aprobado: marco vacío, nunca ajeno.
+        self.assertIsNone(world.describe_room("piedra_pared_partida", [])["art"])
+        self.assertIsNone(world.describe_room("sombra_raiz_alta", [])["art"])
+        self.assertIsNotNone(world.describe_room("valdren_sendero", [])["art"])

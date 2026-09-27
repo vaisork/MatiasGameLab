@@ -1,5 +1,32 @@
 # HANDOFF — Entrega técnica
 
+## ENTREGA — Segundo lote de arte en el juego: afueras de Valdren, terraza de Khariel y paisajes de aproximación
+
+**DESARROLLADOR:** Claude — Desarrollador de Servidor de Vintage Telnet
+**HEAD BASE:** `afd1a07` (origin/main)
+**TAREA ASIGNADA:** Javier (2026-09-25): "revisa si tienes trabajo de programación con lo nuevo que ha subido".
+**RAMA:** `claude/vt-art-lote-2`. Incluye sin modificar los commits de las 9 PR del Publicador: #174, #175, #176, #178, #184, #185, #186, #187 y #188.
+
+### CAMBIOS
+- **Contextos nuevos en `world.VISUAL_CONTEXT_ART`:**
+  - `zone.edran.valdren_outskirts` → `valdren-outskirts.webp` (1672×941). El Sendero de Valdren, *El lindero roto* y el Camino de los Campos A1–A10 ya tienen imagen;
+  - `zone.hoshai.khariel_approach` → `hoshai-khariel-approach.webp`, en el Camino Alto B2–B14;
+  - `zone.lethra.narevia_approach` → `lethra-narevia-approach.webp`, en el Camino de los Juncos D2–D14;
+  - `zone.khariel.terrazas` → `khariel-terraza.webp`, en B1 "Terrazas habitadas".
+- El brief de cada paisaje de aproximación pide "reutilizable para varias salas exteriores antes de entrar" al pueblo. **Dirección de Arte puede mover esa asignación** cambiando solo `ROOM_VISUAL_CONTEXT_OVERRIDES`.
+- **Reemplazos sin código** (misma ruta): Brumak V2, Narevia V1 y Velmora V1.
+- **Uñapiedra y Cornalomo quedan publicados pero sin usar.** Todavía no son criaturas combatibles: falta la tabla de Jugabilidad y Cornalomo está excluido a propósito según `NARRATIVE.md`. Cuando existan en `creatures.py`, basta una fila en `CREATURE_ART`.
+- Siguen sin paisaje: Korven (C2–C14), Nhal (E2–E13, #181 en producción) y Edran abierto (A11–A13).
+- Pruebas: las que usaban el sendero como ejemplo de "sala sin arte" ahora usan la Pared partida (Korven). `ApproachLandscapeTests` fija qué región usa cada paisaje.
+
+### PRUEBAS
+- Suite **306/306 OK**. `test_published_art` comprueba que cada imagen referenciada existe y se sirve como WebP.
+- Chromium a 390 px: Mirador antiguo con el paisaje de Hoshai. El marco mantiene su altura fija aunque el paisaje sea 16:9.
+
+**LISTO PARA PUBLICAR:** falta la autorización de Javier ("sube"). Sin migración.
+
+---
+
 ## ENTREGA — Reloj global de hora del día conectado a `world.get_ambient()` (Issue #138)
 
 **DESARROLLADOR:** Claude — Desarrollador de Servidor de Vintage Telnet

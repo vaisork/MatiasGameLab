@@ -85,9 +85,35 @@ VISUAL_CONTEXT_ART = {
         "width": 1536,
         "height": 1024,
     },
-    # "zone.edran.valdren_outskirts": pieza 4/4 de #151, todavía en Arte.
-    # Hasta que se publique, el marco queda vacío y quieto (petición de
-    # Javier, 2026-09-25).
+    # Aprobados por Dirección de Arte y publicados por el Publicador (PR
+    # #174, #176, #185, #186). Los paisajes de aproximación son, según su
+    # brief, "reutilizables para varias salas exteriores antes de entrar" al
+    # pueblo; aquí cubren los tramos de ruta de su región (ver
+    # ROOM_VISUAL_CONTEXT_OVERRIDES más abajo).
+    "zone.edran.valdren_outskirts": {
+        "src": "/assets/locations/valdren-outskirts.webp",
+        "alt": "Alrededores de Valdren: parcelas, cercas bajas y caminos de tierra",
+        "width": 1672,
+        "height": 941,
+    },
+    "zone.hoshai.khariel_approach": {
+        "src": "/assets/locations/hoshai-khariel-approach.webp",
+        "alt": "Sierra de Hoshai en la aproximación a Khariel",
+        "width": 1672,
+        "height": 941,
+    },
+    "zone.lethra.narevia_approach": {
+        "src": "/assets/locations/lethra-narevia-approach.webp",
+        "alt": "Aguas de Lethra en la aproximación a Narevia",
+        "width": 1672,
+        "height": 941,
+    },
+    "zone.khariel.terrazas": {
+        "src": "/assets/locations/khariel-terraza.webp",
+        "alt": "Terrazas habitadas de Khariel",
+        "width": 1536,
+        "height": 1024,
+    },
 }
 
 # Excepciones explicitas de VISUAL_CONTEXT_CANON.md ("Mapeo de las salas
@@ -624,8 +650,9 @@ link("valdren_cruce_cercas",
      "valdren_parcelas_exteriores")
 
 ROOM_VISUAL_CONTEXT_OVERRIDES.update({
-    # Primer tramo de cada camino, todavía pegado a su pueblo.
-    "alto_terrazas": "zone.khariel",
+    # Primer tramo de cada camino, todavía pegado a su pueblo. En Khariel es
+    # justamente "Terrazas habitadas": usa la terraza arquitectónica aprobada.
+    "alto_terrazas": "zone.khariel.terrazas",
     "piedra_patio_exterior": "zone.brumak",
     "juncos_plataformas": "zone.narevia",
     "sombra_borde": "zone.velmora",
@@ -634,8 +661,14 @@ ROOM_VISUAL_CONTEXT_OVERRIDES.update({
         _ids(ROUTE_A_BLOCK_2)[3:] + _ids(ROUTE_B)[-3:] + _ids(ROUTE_C)[-3:]
         + _ids(ROUTE_D)[-3:] + _ids(ROUTE_E)[-4:] + _ids(APPROACH_SOUTH))},
 })
-# Los tramos profundos de cada región (A8-A13 y los centrales de B-E) no
-# tienen todavía contexto visual canónico: el marco queda vacío y quieto.
+# Paisajes de aproximación aprobados: los tramos exteriores de cada camino
+# entre el borde del pueblo y la Cuenca (B2-B14, D2-D14).
+ROOM_VISUAL_CONTEXT_OVERRIDES.update(
+    {room_id: "zone.hoshai.khariel_approach" for room_id in _ids(ROUTE_B)[1:14]})
+ROOM_VISUAL_CONTEXT_OVERRIDES.update(
+    {room_id: "zone.lethra.narevia_approach" for room_id in _ids(ROUTE_D)[1:14]})
+# A8-A13 (Edran abierto), C2-C14 (Korven) y E2-E13 (Nhal, #181 en Arte) aún
+# no tienen paisaje aprobado: el marco queda vacío y quieto.
 
 DYNAMIC_HABITAT_ROOMS.update({
     "campos_colinas": "veyra_transicion",  # A14: solo con pool propio de transición

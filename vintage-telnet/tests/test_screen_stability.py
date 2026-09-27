@@ -23,6 +23,12 @@ class ScreenStabilityTests(unittest.TestCase):
     def tearDown(self):
         self.temp.cleanup()
 
+    def move_to(self, room_id):
+        """Coloca al personaje directo en una sala (sin caminar la ruta)."""
+        player_id = self.client.get("/api/me").json["player"]["id"]
+        with store.connect(self.app.config["DATABASE"]) as db:
+            db.execute("UPDATE players SET room = ? WHERE id = ?", (room_id, player_id))
+
     def post(self, route, data):
         page = self.client.get("/").get_data(as_text=True)
         csrf = re.search(r'name="csrf" value="([^"]+)"', page)[1]
@@ -40,7 +46,9 @@ class ScreenStabilityTests(unittest.TestCase):
         self.assertIn('<figure class="location-art" data-swap="art"', html)
         self.assertIn('fetchpriority="high"', html)
         self.assertNotIn('loading="lazy" decoding="async">\n          <div class="location-art-fallback"', html)
-        self.post("/move", dict(direction="north"))  # sendero: sin arte aprobado
+        # Una sala todavía sin paisaje aprobado (Pedrales de Korven): el marco
+        # sigue ahí, vacío y quieto.
+        self.move_to("piedra_pared_partida")
         html = self.client.get("/").get_data(as_text=True)
         self.assertIn('<figure class="location-art no-art" data-swap="art"', html)
         self.assertIn('<div class="art-placeholder" aria-hidden="true"></div>', html)
