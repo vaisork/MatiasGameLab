@@ -3397,3 +3397,169 @@ Regla de presentación v1:
 **Poblar el mundo no significa multiplicar combates ni multiplicar llamadas a IA.**
 
 C0 y N0 existen precisamente para que haya vida que no necesita convertirse en sistema pesado.
+
+## 40. Amenazas regionales C3 — motor reusable v1
+
+**Estado:** CONTRATO APROBADO PARA DESARROLLO.  
+**Relacionados:** #332 / #335 / §33 / §36 / §38.
+
+C3 representa amenazas regionales superiores:
+- Cornalomo;
+- Rasgacumbres;
+- Quebrarrocas;
+- Dorsalodo;
+- Rasgacorteza;
+y futuras amenazas equivalentes.
+
+No son pools C1 ordinarios y no son jefes por defecto.
+
+### 40.1 Zona de amenaza
+
+Cada presencia C3 se configura mediante un `threat_zone_id`.
+
+Contrato mínimo de zona:
+- región/hábitat autorizado;
+- salas de advertencia;
+- sala(s) de proximidad/encuentro;
+- creature_id;
+- cooldown;
+- modo de presencia;
+- señales narrativas autorizadas.
+
+No deducir zonas por prefijo de room_id.
+
+### 40.2 Estados por personaje/zona
+
+Estado mínimo:
+
+- `unknown` — no ha leído señales;
+- `warned` — recibió advertencia válida;
+- `close` — llegó a proximidad crítica;
+- `resolved` — evitó, huyó, venció o salió del evento;
+- `cooldown` — no debe retrigger inmediato.
+
+El motor puede persistir estos estados solo cuando sea necesario para evitar repetición/reconexión abusiva.
+
+### 40.3 Advertencia obligatoria
+
+Una amenaza C3 no inicia directamente desde `unknown`.
+
+Antes del compromiso:
+1. al menos una señal ambiental clara;
+2. oportunidad de evaluar/observar;
+3. opción de retroceder.
+
+Para amenazas con canon más fuerte, Narrativa puede exigir más de una señal.
+
+Un encuentro scripted puede avanzar etapas, pero no saltarse silenciosamente la advertencia salvo evento excepcional aprobado.
+
+### 40.4 Proximidad crítica
+
+Al llegar a `close`:
+- presentar criatura/señal inequívoca;
+- no iniciar combate automáticamente por defecto;
+- ofrecer decisión: evitar/retroceder, observar/evaluar o iniciar/provocar.
+
+Una criatura agresiva puede comprometer después de esa decisión si su contrato concreto lo permite.
+
+### 40.5 Pool especial
+
+C3 nunca entra en el pool C1 de §33.
+
+Puede usar un `special_threat_roll` únicamente dentro de una zona ya advertida.
+
+Perfiles permitidos de referencia:
+- `threat_scripted` — presencia decidida por contenido;
+- `threat_rare` — **10%** en proximidad autorizada;
+- `threat_uncommon` — **20%** en contenido explícito.
+
+No usar >20% para una amenaza superior sin revisión específica de Jugabilidad.
+
+Si el roll falla, las señales pueden existir igualmente: **rastro ≠ aparición garantizada**.
+
+### 40.6 Cooldown anti-spam
+
+Default C3 después de una resolución:
+- **30 minutos reales por personaje + threat_zone_id**.
+
+Resoluciones que activan cooldown:
+- evitar después de proximidad;
+- huir de combate;
+- victoria;
+- muerte/respawn;
+- abandono explícito de la zona tras activación.
+
+Durante cooldown:
+- pueden permanecer rastros ambientales no interactivos;
+- no reaparece el encuentro C3 para ese personaje;
+- entrar/salir repetidamente no rerollea.
+
+Contenido scripted puede usar otro cooldown, pero debe declararlo.
+
+### 40.7 Combate
+
+C3 reutiliza combate normal.
+
+Puede añadir:
+- `prepared_action`;
+- `frontal`;
+- `interruptible`;
+- `focus_break_possible`;
+solo mediante la infraestructura de §36.
+
+No crear lógica paralela por criatura.
+
+### 40.8 Huida
+
+Huida usa estadísticas específicas de criatura.
+
+Una huida exitosa:
+- cierra combate;
+- activa cooldown;
+- por defecto no persigue a través de varias salas.
+
+Una amenaza concreta puede tener persecución corta solo con contrato explícito.
+
+### 40.9 Victoria/derrota
+
+Victoria:
+- XP/familia normal según contrato;
+- sin loot especial automático;
+- sin muerte persistente global por defecto.
+
+Derrota:
+- muerte/respawn normal;
+- equipo conservado;
+- sin pérdida de arma por ser C3.
+
+### 40.10 Prioridad con otros encuentros
+
+Orden:
+1. combate activo;
+2. scripted de historia;
+3. evento C3 ya comprometido;
+4. pool C1 ordinario;
+5. C0 ambiental.
+
+Cuando una zona C3 está en etapa `close`, no tirar C1 en esa misma transición.
+
+No mezclar dos amenazas C3 en la misma sala/evento v1.
+
+### 40.11 Tests mínimos del motor
+
+- no C3 desde estado unknown;
+- warning precede close;
+- retroceso antes de combate funciona;
+- special roll solo en zona compatible;
+- roll fallido no borra rastros;
+- cooldown evita reroll enter/exit;
+- reconnect conserva cooldown cuando aplique;
+- C1 no contamina C3;
+- huida activa cooldown;
+- muerte activa cooldown y conserva arma;
+- prepared_action usa §36;
+- amenaza distinta mantiene estado aislado.
+
+### 40.12 Principio
+
+**Una amenaza superior debe poder asustar al jugador antes de obligarlo a pelear.**
