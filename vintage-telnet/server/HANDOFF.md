@@ -1,5 +1,44 @@
 # Handoff — Desarrollador de Servidor — Vintage Telnet
 
+## Entrega lista para revisión: Contrato seguro de conversación dinámica con NPC (#245) — 2026-09-27
+
+- **DESARROLLADOR:** Antigravity (Desarrollador principal para implementaciones pesadas).
+- **HEAD BASE:** `dfa97d07945d8b85775796c82fa08d9980b191c9` (`origin/main` remoto vigente tras merge de Uñapiedra v1 / PR #239).
+- **TAREA:** Issue #245 — `VT-NPC/DEV: contrato seguro de conversación dinámica con un NPC`.
+- **RAMA:** `antigravity/vt-245-npc-dialogue`
+- **CONTRATO APROBADO Y ALCANCE (GAMEPLAY §35):**
+  - **Presencia autoritativa (Criterio 1):** Fail closed. Si el NPC no existe o no está en la misma sala del jugador (`room_id`), no conversa (`accepted=False`, reason explicativa). El proveedor de diálogo no es invocado bajo ninguna circunstancia de ausencia o inexistencia.
+  - **Personalidad persistente (Criterio 2):** `build_dialogue_prompt` consume la personalidad persistente autoritativa (`temperament`, `speech_style`, `formality`, `traits`, `example_phrases`).
+  - **Exclusión estricta de secretos (Criterio 3):** ÚNICAMENTE los elementos de `knowledge_allowed` entran al prompt. `knowledge_forbidden`, secretos del DM, tramas futuras y datos privados quedan completamente excluidos del contexto.
+  - **Cero mutaciones en el mundo (Criterio 4 / GAMEPLAY §35.7):** Separación estricta entre diálogo y mecánica. Ningún texto generado altera SQLite, HP, Max HP, XP, monedas, inventario, equipo ni estado del mundo.
+  - **Proveedor desacoplado (Criterio 5):** Interfaz abstracta `DialogueProvider`, desacoplada de cualquier LLM específico (Ollama/llama.cpp/API externa). Implementaciones `FixedDialogueProvider` y `MockDialogueProvider` para pruebas deterministas y configurable en runtime.
+  - **Degradación segura (Criterio 6 / GAMEPLAY §35.9):** Cualquier excepción, timeout o respuesta vacía del proveedor es capturada silenciosamente, degradando de inmediato a `fallback_dialogue` del NPC con flag `is_fallback=True`.
+  - **NPC canónico inicial:** Registrado Daro (`daro_herrero`) en `valdren_forja` (Valdren) con personalidad completa, conocimientos de forja/caminos y exclusión de secretos de Vaisgard.
+  - **Endpoints y vistas integradas:**
+    - `room_view`: expone `npcs` y añade acción `hablar` con targets correspondientes cuando hay NPCs en la sala.
+    - `/command`: procesa `talk_npc` con soporte para mensajes contextuales (`hablar daro <mensaje>`).
+    - `/api/intent`: procesa `talk_npc`, preservando código 409 cuando el NPC no está presente para total compatibilidad con la suite preexistente (`test_gameplay.py`).
+    - `POST /api/talk`: nuevo endpoint estructurado para interacción conversacional cliente-servidor.
+- **ARCHIVOS MODIFICADOS / CREADOS:**
+  - `vintage-telnet/server/npc_dialogue.py` (nuevo): contrato de datos `DialoguePrompt`, `DialogueResult`, interfaz `DialogueProvider`, registro autoritativo `NPCRegistry`, función `build_dialogue_prompt`, motor autoritativo `converse` y carga de NPCs canónicos.
+  - `vintage-telnet/server/app.py`: integración con `room_view`, `parse_intent`, `/command`, `/api/intent` y endpoint `POST /api/talk`.
+  - `vintage-telnet/tests/test_npc_dialogue.py` (nuevo): 16 tests de aislamiento, criterios 1 a 6, inmutabilidad estricta de base de datos e integración HTTP.
+  - `vintage-telnet/server/HANDOFF.md`: este registro.
+
+### Pruebas ejecutadas y verificación
+
+1. `vintage-telnet/tests/test_npc_dialogue.py`: **16/16 tests PASS**.
+   - Criterio 1: target vacío, NPC inexistente y NPC en otra sala devuelven `success=False` y no llaman al proveedor.
+   - Criterios 2 y 3: prompt contiene personalidad y solo `knowledge_allowed`; excluye totalmente `knowledge_forbidden` y secretos.
+   - Criterio 4: snapshot comparativo de base de datos SQLite antes y después de 15 diálogos variados (vía `/command`, `/api/intent`, `/api/talk`) confirma 0 mutaciones en tablas ni en el jugador.
+   - Criterio 5: `DialogueProvider` es abstracto; `FixedDialogueProvider` y `MockDialogueProvider` funcionan correctamente.
+   - Criterio 6: timeout o excepción del proveedor degrada a `fallback_dialogue` sin arrojar error.
+   - Vistas HTTP: `/command`, `/api/intent` y `/api/talk` funcionan en `valdren_forja` y rechazan adecuadamente en `valdren_centro`.
+2. Suite completa descubierta (`discover tests`): **364 tests PASS (0 fallos, 0 errores, 1 skipped en Windows)**.
+3. MERGE: NO / DEPLOY: NO.
+
+---
+
 ## Entrega lista para revisión: Uñapiedra v1 para Hoshai / Khariel — Bloque A (#229) — 2026-09-27
 
 - **DESARROLLADOR:** Antigravity (Desarrollador principal para implementaciones pesadas).

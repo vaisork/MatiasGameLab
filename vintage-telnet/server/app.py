@@ -12,7 +12,7 @@ from flask import (Flask, abort, g, jsonify, redirect, render_template, request,
                     session, url_for)
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from . import combat, content_parser, creatures, dm_auth, encounters, items, store, world
+from . import combat, content_parser, creatures, dm_auth, encounters, items, npc_dialogue, store, world
 
 # Issue #46 resuelto: el Narrador fijo la plaza central de Valdren como
 # punto de reaparicion tras morir (GAMEPLAY.md 20.9) y de recuperacion
@@ -259,6 +259,11 @@ def create_app(config=None):
         else:
             view["encounter"] = None
             view["available_actions"] = [{"action": "descansar"}]
+            npcs_present = npc_dialogue.get_registry().get_in_room(room_id)
+            if npcs_present:
+                view["npcs"] = [{"id": n["id"], "name": n["name"], "role": n.get("role", "habitante")} for n in npcs_present]
+                for n in npcs_present:
+                    view["available_actions"].append({"action": "hablar", "targets": [n["name"].lower(), n["id"]]})
         return view
 
     # Intenciones canonicas: boton y comando escrito deben terminar en la misma
@@ -322,8 +327,14 @@ def create_app(config=None):
                 return {"type": "evaluate", "target": text[len(prefix):].strip()}
         for prefix in TALK_PREFIXES:
             if lowered.startswith(prefix):
-                target = text[len(prefix):].strip()
-                return {"type": "talk_npc", "target": target} if target else {"type": "invalid"}
+                target_raw = text[len(prefix):].strip()
+                if not target_raw:
+                    return {"type": "invalid"}
+                parts = target_raw.split(None, 1)
+                candidate = parts[0]
+                if len(parts) > 1 and npc_dialogue.get_registry().get(candidate) is not None:
+                    return {"type": "talk_npc", "target": candidate, "message": parts[1].strip()}
+                return {"type": "talk_npc", "target": target_raw, "message": ""}
         for prefix in EQUIP_PREFIXES:
             if lowered.startswith(prefix):
                 target = text[len(prefix):].strip()
@@ -1125,10 +1136,23 @@ def create_app(config=None):
             return render_template("entry.html", player=player_now, species_list=world.SPECIES,
                                    room=room_data, error=" ".join(result["messages"])), 200
         if intent["type"] == "talk_npc":
+            result = npc_dialogue.converse(
+                g.player,
+                intent["target"],
+                message=intent.get("message", ""),
+                room_id=g.player["room"],
+            )
+            player_now = store.player_for_token(path, session.get("token"))
             room_data = room_view(g.player["room"], g.player["id"])
+            if not result.success:
+                return render_template(
+                    "entry.html", player=player_now, species_list=world.SPECIES, room=room_data,
+                    error=result.reason,
+                ), 200
+            dialogue_text = f"{result.npc_name}: «{result.text}»"
             return render_template(
-                "entry.html", player=g.player, species_list=world.SPECIES, room=room_data,
-                error="La conversación con NPC tiene contrato separado, pero todavía no hay NPC activo."
+                "entry.html", player=player_now, species_list=world.SPECIES, room=room_data,
+                error=dialogue_text,
             ), 200
         room_data = room_view(g.player["room"], g.player["id"])
         return render_template(
@@ -1339,17 +1363,64 @@ def create_app(config=None):
                 player=dict(player_now) if player_now else None,
             )
         if kind == "talk_npc":
+            result = npc_dialogue.converse(
+                g.player,
+                intent["target"],
+                message=intent.get("message", ""),
+                room_id=g.player["room"],
+            )
+            if not result.success:
+                return jsonify(
+                    accepted=False,
+                    intent="talk_npc",
+                    npc=intent["target"],
+                    target=intent["target"],
+                    error=result.error,
+                    reason=result.reason,
+                ), 409
             return jsonify(
-                accepted=False,
+                accepted=True,
                 intent="talk_npc",
-                npc=intent["target"],
-                reason="No hay NPC activo para conversación todavía.",
-            ), 409
+                npc=result.npc_id,
+                npc_name=result.npc_name,
+                reply=result.text,
+                is_fallback=result.is_fallback,
+            ), 200
         return jsonify(
             accepted=False,
             intent=kind,
             reason="Comando no reconocido. Para chat usa: decir <texto>.",
         ), 400
+
+    @app.post("/api/talk")
+    def api_talk():
+        """Contrato estructurado para conversación con NPC (Issue #245)."""
+        error = api_player_state(g.player)
+        if error:
+            return error
+        data = request.get_json(silent=True) or request.form
+        target = (data.get("target") or data.get("npc") or "").strip()
+        message = (data.get("message") or data.get("text") or "").strip()
+        if not target:
+            return jsonify(accepted=False, error="target_required", reason="Debes indicar con quién deseas hablar."), 400
+        result = npc_dialogue.converse(g.player, target, message=message, room_id=g.player["room"])
+        if not result.success:
+            status_code = 404 if result.error in ("npc_not_found", "npc_not_present") else 400
+            return jsonify(
+                accepted=False,
+                intent="talk_npc",
+                target=target,
+                error=result.error,
+                reason=result.reason,
+            ), status_code
+        return jsonify(
+            accepted=True,
+            intent="talk_npc",
+            npc=result.npc_id,
+            npc_name=result.npc_name,
+            reply=result.text,
+            is_fallback=result.is_fallback,
+        ), 200
 
     @app.post("/api/move")
     def api_move():
