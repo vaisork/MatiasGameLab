@@ -76,6 +76,18 @@ CREATURES = {
         "behavior_text": ("Uñapiedra se aplasta contra la roca y busca una grieta o saliente cercana; "
                            "si la acorralas, sisea y defiende el refugio con una mordida corta."),
     },
+    "saltacresta": {
+        "name": "Saltacresta",
+        "family": "saltacresta",
+        "reference_level": 2,
+        "hp": 36,
+        "precision": 50,
+        "damage": 7,
+        "flee_agilidad": 16,
+        "flee_percepcion": 14,
+        "behavior_text": ("Saltacresta flexiona las patas traseras y busca una terraza libre; "
+                           "si le cierras la salida, golpea el suelo y se prepara para defenderse con una patada corta."),
+    },
 }
 
 
