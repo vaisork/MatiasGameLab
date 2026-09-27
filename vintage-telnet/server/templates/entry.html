@@ -964,11 +964,20 @@
     });
   }
 
+  const dialogInvokers = new WeakMap();
   document.querySelectorAll("[data-open]").forEach(b => b.addEventListener("click", () => {
     const d = document.getElementById(b.dataset.open);
-    if (d && !d.open) d.showModal();
+    if (d && !d.open) {
+      dialogInvokers.set(d, b);
+      d.showModal();
+    }
   }));
   document.querySelectorAll("[data-close]").forEach(b => b.addEventListener("click", () => b.closest("dialog").close()));
+  document.querySelectorAll("dialog").forEach(d => d.addEventListener("close", () => {
+    const invoker = dialogInvokers.get(d);
+    if (invoker && invoker.isConnected) invoker.focus();
+    dialogInvokers.delete(d);
+  }));
   const wireArt = root => root.querySelectorAll("[data-location-art]").forEach(img => img.addEventListener("error", () => {
     const frame = img.closest(".location-art");
     if (!frame) { img.hidden = true; return; }
