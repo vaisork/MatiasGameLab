@@ -560,6 +560,10 @@ class EntryTests(unittest.TestCase):
         self.assertIn('button.focus({preventScroll: true});', html)
         self.assertIn('controls.focus({preventScroll: true});', html)
         self.assertIn('restoreActionFocus(focusHint);', html)
+        self.assertIn('let cancelActiveReveal = null;', html)
+        self.assertIn('if (cancelActiveReveal) {', html)
+        self.assertIn('cancelActiveReveal = stopReveal;', html)
+        self.assertIn('revealLog.removeEventListener("click", revealAll);', html)
 
     def test_inventory_ui_consumes_authoritative_api_without_local_rules(self):
         self.assertEqual(self.register().status_code, 303)
