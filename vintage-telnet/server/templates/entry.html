@@ -330,12 +330,7 @@
     .location-art img{height:clamp(150px,34vw,260px)}
     .location-art{height:clamp(150px,34vw,260px);min-height:0}
     .location-art img{height:100%!important}
-    .art-placeholder{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
-      background:radial-gradient(ellipse at 50% 40%,#1c2636 0,#0d131c 70%);color:#8a7a58;
-      font:700 .82rem Georgia,serif;letter-spacing:.12em;text-transform:uppercase;text-align:center;padding:12px}
-    .art-placeholder .ui-icon{width:30px;height:30px;flex-basis:30px;color:#6d5a37}
-    .in-combat .art-placeholder{background:radial-gradient(ellipse at 50% 40%,#2a1210 0,#120a09 70%);color:#b0685c}
-    .in-combat .art-placeholder .ui-icon{color:#8a3a2e}
+    .art-neutral{height:100%;background:#0d131c}
     .terminal{grid-template-rows:minmax(0,1fr) auto;min-height:140px}
     .game-shell .log{height:clamp(150px,34dvh,380px);height:clamp(150px,34svh,380px)}
     .enemy-name{margin:0;color:#ff7565!important;font-weight:800}
@@ -691,9 +686,8 @@
           {% if room.art %}
           <img data-location-art src="{{ room.art.src }}" alt="{{ room.art.alt }}"
                width="{{ room.art.width }}" height="{{ room.art.height }}" fetchpriority="high" decoding="async">
-          <div class="location-art-fallback" hidden>La ilustración contextual no está disponible. El juego continúa normalmente.</div>
           {% else %}
-          <div class="art-placeholder" aria-hidden="true"></div>
+          <div class="art-neutral" aria-hidden="true"></div>
           {% endif %}
         </figure>
 
@@ -979,9 +973,14 @@
   }));
   document.querySelectorAll("[data-close]").forEach(b => b.addEventListener("click", () => b.closest("dialog").close()));
   const wireArt = root => root.querySelectorAll("[data-location-art]").forEach(img => img.addEventListener("error", () => {
-    img.hidden = true;
-    const fallback = img.nextElementSibling;
-    if (fallback) fallback.hidden = false;
+    const frame = img.closest(".location-art");
+    if (!frame) { img.hidden = true; return; }
+    const neutral = document.createElement("div");
+    neutral.className = "art-neutral";
+    neutral.setAttribute("aria-hidden", "true");
+    frame.classList.add("no-art");
+    frame.dataset.artSrc = "";
+    img.replaceWith(neutral);
   }));
   wireArt(document);
 
