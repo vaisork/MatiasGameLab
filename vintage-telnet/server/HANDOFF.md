@@ -1,100 +1,51 @@
 # Handoff — Desarrollador de Servidor — Vintage Telnet
 
+## Entrega lista para revisión: Uñapiedra v1 para Hoshai / Khariel — Bloque A (#229) — 2026-09-27
+
+- **DESARROLLADOR:** Antigravity (Desarrollador principal para implementaciones pesadas).
+- **HEAD BASE:** `dc5721fa6bb3d58ef8a5c36720f4f9f60cb05372` (`origin/main` remoto vigente tras merge de PR #224, #225, #230).
+- **TAREA:** Issue #229 — Bloque A (Fauna combatible para Hoshai/Khariel: Uñapiedra v1).
+- **RAMA:** `antigravity/vt-229-unapiedra`
+- **CONTRATO APROBADO:** Transferencia directa de Jugabilidad y Arquitectura en Issue #229 (2026-09-27) y asignación formal de Arquitectura (`ASIGNACIÓN ACTIVA — Antigravity`).
+  - Perfil exacto: `unapiedra`, family `unapiedra`, ref 1, HP 30, precisión 45, daño 5, flee_agilidad 15, flee_percepcion 12, armadura 0.0.
+  - Comportamiento canónico: evasivo, sisea y defiende refugio/grieta con mordida corta si es acorralada; no persigue.
+  - Arte: no bloqueante; marco de combate neutral/vacío (`art` is None).
+  - Contextos identificados: `alto_terrazas`, `alto_garganta`, hábitat `hoshai_alto`. Sala de encuentro autorizada: `alto_terrazas` (Sierra de Hoshai, terraza exterior de Khariel). 0% en interiores, forja, centro de Khariel y salas seguras. Sin spawn productivo inventado en pools.
+- **ARCHIVOS MODIFICADOS / CREADOS:**
+  - `vintage-telnet/server/creatures.py`: añade perfil de `unapiedra` en `CREATURES` y conserva `CREATURE_ART` sin entrada para marco neutral.
+  - `vintage-telnet/server/world.py`: conecta encuentro en `alto_terrazas` (`ROOM_ENCOUNTER["alto_terrazas"] = "unapiedra"`).
+  - `vintage-telnet/tests/test_unapiedra.py`: suite completa de 13 tests con playtest estadístico (40 combates por cada una de las 4 clases = 160 combates simulados), validación de contextos/hábitats/exclusiones e integración Flask/SQLite.
+  - `vintage-telnet/tests/test_cinco_rutas.py`: incorpora `alto_terrazas` en la validación de encuentros autorizados en rutas y robustece limpieza SQLite.
+  - `vintage-telnet/tests/test_screen_stability.py`: asegura paso determinista por `valdren_sendero` sin activación de encuentros espurios.
+  - `vintage-telnet/tests/test_class_choice.py`: robustece importación de esquema y limpieza SQLite.
+  - `vintage-telnet/tests/test_vt_deploy.py`: omite de forma limpia en plataformas Windows (específico de Linux/Raspberry Pi).
+  - `vintage-telnet/server/HANDOFF.md`: este registro.
+
+### Pruebas ejecutadas y verificación
+
+1. `vintage-telnet/tests/test_unapiedra.py`: **13/13 tests PASS**.
+   - Perfil de combate exacto y textos canónicos aprobados.
+   - Marco de arte neutral/vacío (`art` is None) verificado tanto unitariamente como en `view["art"]` y en la API estructurada `/api/room`.
+   - Evaluación contra nivel 1: clasifica como `favorable` (`combat.encounter_category(...) == "favorable"`).
+   - Duración de combate comparable a Mordelinde (~5 rondas esperadas).
+   - Huida estándar contra Agilidad 15 / Percepción 12 (47.45% base, 62.45% tras fallo).
+   - Cero apariciones en salas civiles o seguras (`khariel_centro`, forjas, mercados, senderos interiores, Vaisgard).
+   - No es boss, no quita armas, no introduce amenazas superiores.
+   - **Playtest estadístico (Criterios 3 y 9):** 40 combates completos a muerte por clase a nivel 1 (Arcano, Juramentado, Sombra, Artífice = 160 combates):
+     - **0 derrotas** (160/160 victorias).
+     - HP final promedio > 70 HP en todas las clases.
+     - 100% de éxito en 160 intentos de huida desde combate activo.
+   - **Integración cliente-servidor real:**
+     - Personaje Felaryn saliendo de `khariel_centro` a `alto_terrazas` encuentra a Uñapiedra.
+     - `evaluar` devuelve encuentro favorable en `combat_log`.
+     - Derrota otorga XP de familia `unapiedra` y limpia el encuentro en SQLite.
+     - Huida con éxito retira al personaje a `khariel_centro` y limpia el encuentro.
+2. Suite completa descubierta (`discover tests`): **330 tests PASS (0 fallos, 0 errores, 1 skipped)**.
+3. MERGE: NO / DEPLOY: NO.
+
+---
 
 ## Subentrega de #213 / DEATH-01 — Regresión del motor de muerte y respawn — 2026-09-26
-
-- **DESARROLLADOR:** Antigravity (Desarrollo de pruebas — Vintage Telnet).
-- **HEAD BASE REAL:** `e0ca3a824e8e040c5da8cb08ea6b83f3e9c7042a` (origin/main vigente tras #222 y #223).
-- **RAMA:** `antigravity/vt-death-regression-01`
-- **COMMIT:** rama `antigravity/vt-death-regression-01` (subentrega #213).
-- **ARCHIVOS MODIFICADOS:**
-  - `vintage-telnet/tests/test_death_regression.py` (nuevo archivo de pruebas)
-  - `vintage-telnet/server/HANDOFF.md`
-- **ALCANCE Y NATURALEZA:** Subentrega exclusiva de regresión del motor de muerte y respawn existente (DEATH_PLAYTEST.md §7). No implementa Cornalomo, ramales, narrativa ni contenido nuevo. No cierra por sí sola todo #213.
-
-### Implementado y verificado
-
-1. **Aislamiento frente a #207:** control explícito de `encounters._rng.random` (retorna 0.50 >= 0.10) para que la sala `valdren_sendero` no genere encuentros aleatorios espurios mientras el test transita hacia `valdren_camino_parcela`.
-2. **Cobertura de los 8 puntos autorizados de DEATH-01:**
-   - Llegar a 0 HP concluye el combate inmediatamente con desenlace `defeat` y mensaje visible.
-   - Eliminación total del encuentro de la base de datos (sin dejar registros fantasma en la tabla `room_encounters` ni en `store.get_encounter`).
-   - Respawn autoritativo en `valdren_centro` (`SAFE_ROOM_ID`).
-   - Estado de respawn según GAMEPLAY/DEATH_PLAYTEST: 60% HP máximo, 40 fatiga, y herida degradada en un grado (e.g. de 'moderada' a 'leve').
-   - Conservación íntegra de progresión: nivel, XP, PA sin gastar y PP sin gastar antes y después de la derrota.
-   - Conservación íntegra de inventario y equipo: comparación exhaustiva de `items`, `equipped` (arma y armadura), `armor_reduction_total` y `carga_multiplier` antes y después de morir.
-   - Persistencia completa tras recreación/reconexión de cliente: una nueva sesión recupera exactamente el estado de respawn, progresión e inventario/equipo completo.
-   - APIs autoritativas (`/api/me`, `/api/character`, `/api/room`) reflejan la sala segura sin combate activo (`in_combat = False`) y sin criaturas presentes.
-3. **Flujos alternativos de derrota cubiertos:**
-   - Derrota durante huida fallida (DEATH_PLAYTEST §7.B).
-   - Derrota durante defensa activa (esquivar, DEATH_PLAYTEST §7.C).
-   - Capacidad de reanudar exploración saliendo de la sala segura hacia `valdren_sendero` (DEATH_PLAYTEST §7.E).
-
-### Pruebas ejecutadas
-
-- **Prueba específica:** `python -m unittest vintage-telnet/tests/test_death_regression.py`
-  - Ejecutada 4 veces consecutivas para verificar determinismo y ausencia de aleatoriedad.
-  - Resultado: 4 tests OK en cada ejecución (~3.8s a 4.1s).
-- **Suite completa en Windows:**
-  - Comando: `python -m unittest discover -s vintage-telnet/tests -p "test_*.py"`
-  - Resultado: 307 tests ejecutados, 0 fallos, 3 errores conocidos de baseline en entorno Windows.
-  - No se declara la suite completa verde debido a las limitaciones del entorno Windows:
-    1. `test_vt_deploy.py`: `ModuleNotFoundError: No module named 'fcntl'`. Requiere módulos POSIX (`fcntl`, `pwd`) exclusivos de Linux/Raspberry Pi.
-    2. `test_cinco_rutas.py`: `PermissionError: [WinError 32]` en `tearDown` al intentar eliminar el archivo temporal de SQLite mientras Windows retiene el handle.
-    3. `test_class_choice.py`: `PermissionError: [WinError 32]` idéntico en `tearDown` por lock de SQLite en Windows.
-- **PENDIENTE EXPLÍCITO:** Validación completa de la suite en Raspberry Pi / Linux por Codex.
-
-## Entrega de Issue #213 — Cornalomo como amenaza superior regional y prueba de muerte/respawn DEATH-01 — 2026-09-27
-
-- **DESARROLLADOR:** Antigravity (Desarrollo principal para implementaciones pesadas).
-- **HEAD BASE:** `4d8b36c8be4baaa78996b7f3fa5950e32f50dfa8` (`origin/main` tras merge de PR #228).
-- **TAREA:** Issue #213 — Implementar Cornalomo como amenaza superior regional opcional y validar de extremo a extremo el flujo completo de combate real y muerte/reaparición segura conforme a `DEATH_PLAYTEST.md`.
-- **RAMA:** `antigravity/vt-213-cornalomo-death` (rama limpia creada desde `origin/main`).
-- **ARCHIVOS MODIFICADOS / CREADOS:**
-  - `vintage-telnet/server/creatures.py`:
-    - Incorpora el perfil v1 aprobado de Cornalomo (`name="Cornalomo"`, `family="cornalomo"`, `reference_level=8`, `hp=120`, `precision=65`, `damage=20`, `armor_reduction=0.20`, `flee_agilidad=8`, `flee_percepcion=9`, `behavior_text`).
-    - Conserva `CREATURE_ART` sin entrada para `cornalomo` (marco de combate neutral/vacío conforme a las reglas).
-  - `vintage-telnet/server/app.py`:
-    - Aplica la reducción de armadura de la criatura (`combat.apply_armor_reduction(player_damage, creature.get("armor_reduction", 0.0))`) al impactar en combate, reduciendo el daño recibido por Cornalomo en un 20%.
-  - `vintage-telnet/server/world.py`:
-    - Añade la sala `valdren_pastos_altos` ("Pastos altos") como ramal opcional accesible al este desde `valdren_cruce_cercas`, fuera del recorrido obligatorio a Vaisgard.
-    - Señales de peligro y descripciones canónicas (`CREATURES.md` / `NARRATIVE.md`) reflejadas fielmente en la sala y sus objetivos de `examinar` (`cerca`, `cercas`, `huellas`, `huella`, `arboles`, `arbol`, `pasto`).
-    - Conecta el encuentro fijo autoritativo: `ROOM_ENCOUNTER["valdren_pastos_altos"] = "cornalomo"`.
-    - Asigna contexto visual `zone.edran.valdren_outskirts`.
-  - `vintage-telnet/tests/test_pilot_lindero_roto.py`:
-    - Actualiza el test placeholder `test_cornalomo_has_no_playable_stats_yet` a `test_cornalomo_has_approved_playable_stats`, verificando que el perfil aprobado por Jugabilidad está activo.
-  - `vintage-telnet/tests/test_cornalomo_death.py`:
-    - Nueva suite integral con 11 tests automatizados que cubren de punta a punta: perfil, ramal opcional, señales previas, evaluación "Abrumador" ("te supera claramente"), reducción física de armadura, derrota atacando, derrota huyendo, derrota defendiendo, respawn seguro en `valdren_centro` (60% HP, 40 fatiga, degradación de herida, 0 pérdida de arma/equipo/XP/inventario), reconexión en nueva sesión, huida normal permitida, exploración continua tras respawn y ausencia de regresiones.
-  - `vintage-telnet/server/HANDOFF.md`: este registro.
-- **ESTADO:** LISTO PARA REVISIÓN / PR NUEVA Y AUTOCONTENIDA.
-- **MERGE:** NO.
-- **DEPLOY:** NO.
-
-### Verificación y pruebas automatizadas
-
-Ejecutado con Python 3.12 y `PYTHONPATH=vintage-telnet`:
-- `tests.test_cornalomo_death`: **11 tests pasando verde (17.6 s)**.
-- `tests.test_random_encounters`: **16 tests pasando verde**.
-- `tests.test_pilot_lindero_roto`: **48 tests pasando verde**.
-- `tests.test_valdren_route_expansion`: **13 tests pasando verde**.
-- `tests.test_navigation`: **4 tests pasando verde**.
-- `tests.test_entry`: **36 tests pasando verde**.
-- `tests.test_public_onboarding`: **11 tests pasando verde**.
-- Lote combinado de 139 tests: **139 tests pasando verde (78.6 s)**.
-- Regresión del mundo y mapa 2D sin colisiones de coordenadas.
-- Exclusión total de Cornalomo de los pools aleatorios ordinarios (`edran_01_*`).
-
-### Cumplimiento estricto de restricciones
-
-1. Cornalomo NO es un jefe; es amenaza superior regional.
-2. Derrota NO provoca pérdida de arma: arma, armadura e inventario 100% intactos.
-3. No se crearon comandos de muerte ficticios ni trampas; combate autoritativo real.
-4. Señales previas tomadas directamente del canon (`CREATURES.md`).
-5. Evaluación cualitativa devuelve exactamente "te supera claramente" ("abrumador").
-6. El jugador puede retroceder antes de combatir si no desea pelear (la criatura no ataca primero).
-7. Huida con fórmula general permitida.
-8. Reaparición segura en `valdren_centro` con 60% HP, 40 fatiga y herida degradada 1 grado.
-9. No queda combate ni encuentro fantasma en SQLite ni en memoria.
-10. No se modificó el esquema de base de datos ni #216 (capacidades de clase).
 
 ---
 
