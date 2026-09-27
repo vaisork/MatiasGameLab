@@ -318,6 +318,8 @@ class EntryTests(unittest.TestCase):
         self.assertIn('id="helpPanelQuick" role="tabpanel" aria-labelledby="helpTabQuick"', html)
         self.assertIn('id="helpTabKids" type="button" role="tab" aria-selected="false" aria-controls="helpPanelKids"', html)
         self.assertIn('id="helpPanelKids" role="tabpanel" aria-labelledby="helpTabKids"', html)
+        self.assertIn('.segment:hover{border-color:#8a6d47}', html)
+        self.assertIn('.segment:focus-visible{outline:3px solid #f0d18c;outline-offset:2px}', html)
         self.assertIn('event.key === "ArrowRight" || event.key === "ArrowDown"', html)
         self.assertIn('event.key === "Home"', html)
         self.assertIn('other.tabIndex = selected ? 0 : -1', html)
