@@ -254,6 +254,16 @@ class EntryTests(unittest.TestCase):
         self.assertEqual(html.count('action="/login"'), 1)
         self.assertEqual(html.count('action="/register"'), 1)
         self.assertIn('min-height:44px', html)
+        self.assertIn('data-view="welcome" aria-labelledby="welcome-title"', html)
+        self.assertIn('const title = target && target.querySelector("h1,[id$=\'-title\']");', html)
+        self.assertIn("onboarding.setAttribute(\"aria-labelledby\", title.id);", html)
+        self.assertIn('target.querySelector(\'input:not([type="hidden"]),button\') || title', html)
+        self.assertIn("focusTarget.tabIndex = -1;", html)
+
+        login_html = self.client.get("/?view=login").get_data(as_text=True)
+        self.assertIn('data-view="login" aria-labelledby="login-title"', login_html)
+        register_html = self.client.get("/?view=register").get_data(as_text=True)
+        self.assertIn('data-view="register" aria-labelledby="register-title"', register_html)
 
     def test_pending_player_gets_process_state_copy(self):
         self.assertEqual(self.register().status_code, 303)
