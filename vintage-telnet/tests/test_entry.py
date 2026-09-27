@@ -518,6 +518,28 @@ class EntryTests(unittest.TestCase):
         self.assertNotIn("button-huir-danger.png", html)
         self.assertNotIn("btn-art btn-flee", html)
 
+    def test_ajax_swapped_controls_keep_dialogs_and_prefill_interactive(self):
+        """#135: los controles dentro de game-shell se reemplazan por fetch;
+        sus acciones JS deben usar delegación o resolver nodos actuales, nunca
+        listeners/referencias capturados solo al cargar la página."""
+        self.assertEqual(self.register().status_code, 303)
+        store.set_status(self.path, "matias", "approved")
+        self.assertEqual(self.post("/species", {"species": "humano"}).status_code, 303)
+        self.assertEqual(self.post("/class", {"player_class": "sombra"}).status_code, 303)
+        html = self.client.get("/").get_data(as_text=True)
+
+        self.assertIn('event.target.closest("[data-open]")', html)
+        self.assertIn("document.getElementById(button.dataset.open)", html)
+        self.assertNotIn('document.querySelectorAll("[data-open]").forEach', html)
+
+        self.assertIn('event.target.closest(\'[data-open="characterDialog"]\')', html)
+        self.assertIn('event.target.closest("[data-inventory-open]")', html)
+        self.assertIn('event.target.closest("[data-map-open]")', html)
+
+        self.assertIn('const commandInput = document.getElementById("commandInput");', html)
+        self.assertNotIn('const inventoryButton = document.querySelector("[data-inventory-open]");', html)
+        self.assertNotIn('const mapButton = document.querySelector("[data-map-open]");', html)
+
     def test_inventory_ui_consumes_authoritative_api_without_local_rules(self):
         self.assertEqual(self.register().status_code, 303)
         store.set_status(self.path, "matias", "approved")
