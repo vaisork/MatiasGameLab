@@ -17,8 +17,9 @@ class NavigationTests(unittest.TestCase):
         self.path = self.app.config["DATABASE"]
         self.post("/register", dict(username="matias", name="Matías", password="una clave de prueba"))
         store.set_status(self.path, "matias", "approved")
-        self.post("/species", dict(species="humano"))  # valdren_centro
+        self.post("/species", dict(species="humano"))
         self.post("/class", dict(player_class="sombra"))
+        self.post("/move", dict(direction="south"))
 
     def tearDown(self):
         self.temp.cleanup()

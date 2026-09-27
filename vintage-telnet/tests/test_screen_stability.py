@@ -21,6 +21,7 @@ class ScreenStabilityTests(unittest.TestCase):
         store.set_status(self.app.config["DATABASE"], "matias", "approved")
         self.post("/species", dict(species="humano"))
         self.post("/class", dict(player_class="sombra"))
+        self.post("/move", dict(direction="south"))
 
     def tearDown(self):
         try:
