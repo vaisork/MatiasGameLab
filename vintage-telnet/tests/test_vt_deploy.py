@@ -302,6 +302,60 @@ class FullDeploySimulationTests(unittest.TestCase):
             self.assertEqual(rc, 0)
             mock_atomic.assert_called_once_with(self.releases / sha)
 
+    def test_pre_switch_failure_does_not_touch_current_or_run_rollback(self):
+        """Un fallo durante la validación previa no debe tocar producción.
+
+        Si la migración simulada falla antes de detener el servicio o cambiar
+        el symlink current, el deploy aborta sin ejecutar rollback: todavía no
+        existe nada que restaurar en producción.
+        """
+        sha = "a" * 40
+        prev_sha = "d" * 40
+        prev_dir = self.releases / prev_sha
+        prev_dir.mkdir()
+
+        mock_current = MagicMock()
+        mock_current.exists.return_value = True
+        mock_current.is_symlink.return_value = True
+        mock_current.resolve.return_value = prev_dir
+
+        def fake_archive(repo, owner, home, sha, dest):
+            project = dest / "vintage-telnet"
+            project.mkdir(parents=True)
+            (project / "requirements.txt").write_text("", encoding="utf-8")
+
+        with patch.object(vt_deploy, "INSTALL_ROOT", self.root), \
+             patch.object(vt_deploy, "RELEASES_ROOT", self.releases), \
+             patch.object(vt_deploy, "CURRENT_LINK", mock_current), \
+             patch.object(vt_deploy, "DATA_DIR", self.data_dir), \
+             patch.object(vt_deploy, "DATABASE", self.db_path), \
+             patch.object(vt_deploy, "LOCK_FILE", self.lock_file), \
+             patch.object(vt_deploy, "resolve_authorized_sha", return_value=sha), \
+             patch.object(vt_deploy, "archive_commit", side_effect=fake_archive), \
+             patch.object(vt_deploy, "read_expected_schema", return_value=10), \
+             patch.object(vt_deploy, "database_player_ids", return_value=["p1"]), \
+             patch.object(vt_deploy, "verified_backup", return_value=self.root / "backup.sqlite3"), \
+             patch.object(
+                 vt_deploy,
+                 "validate_migration_on_copy",
+                 side_effect=vt_deploy.DeployError("migración inválida"),
+             ), \
+             patch.object(vt_deploy, "atomic_current") as mock_atomic, \
+             patch.object(vt_deploy, "rollback") as mock_rollback, \
+             patch.object(vt_deploy, "run") as mock_run:
+
+            with self.assertRaises(vt_deploy.DeployError) as ctx:
+                vt_deploy.main(["--sha", sha, "--repo-root", str(self.repo), "--skip-fetch"])
+
+            self.assertIn("migración inválida", str(ctx.exception))
+            mock_atomic.assert_not_called()
+            mock_rollback.assert_not_called()
+            self.assertFalse(
+                any(call.args and call.args[0] and call.args[0][0] == "systemctl"
+                    for call in mock_run.call_args_list),
+                "Un fallo pre-switch no debe detener ni reiniciar el servicio.",
+            )
+
     def test_full_deploy_cycle_triggers_rollback_on_health_failure(self):
         sha = "f" * 40
         prev_sha = "d" * 40
