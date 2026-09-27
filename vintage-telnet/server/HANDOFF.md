@@ -1,5 +1,60 @@
 # Handoff — Desarrollador de Servidor — Vintage Telnet
 
+## Entrega de Issue #213 — Cornalomo como amenaza superior regional y prueba de muerte/respawn DEATH-01 — 2026-09-27
+
+- **DESARROLLADOR:** Antigravity (Desarrollo principal para implementaciones pesadas).
+- **HEAD BASE:** `4d8b36c8be4baaa78996b7f3fa5950e32f50dfa8` (`origin/main` tras merge de PR #228).
+- **TAREA:** Issue #213 — Implementar Cornalomo como amenaza superior regional opcional y validar de extremo a extremo el flujo completo de combate real y muerte/reaparición segura conforme a `DEATH_PLAYTEST.md`.
+- **RAMA:** `antigravity/vt-213-cornalomo-death` (rama limpia creada desde `origin/main`).
+- **ARCHIVOS MODIFICADOS / CREADOS:**
+  - `vintage-telnet/server/creatures.py`:
+    - Incorpora el perfil v1 aprobado de Cornalomo (`name="Cornalomo"`, `family="cornalomo"`, `reference_level=8`, `hp=120`, `precision=65`, `damage=20`, `armor_reduction=0.20`, `flee_agilidad=8`, `flee_percepcion=9`, `behavior_text`).
+    - Conserva `CREATURE_ART` sin entrada para `cornalomo` (marco de combate neutral/vacío conforme a las reglas).
+  - `vintage-telnet/server/app.py`:
+    - Aplica la reducción de armadura de la criatura (`combat.apply_armor_reduction(player_damage, creature.get("armor_reduction", 0.0))`) al impactar en combate, reduciendo el daño recibido por Cornalomo en un 20%.
+  - `vintage-telnet/server/world.py`:
+    - Añade la sala `valdren_pastos_altos` ("Pastos altos") como ramal opcional accesible al este desde `valdren_cruce_cercas`, fuera del recorrido obligatorio a Vaisgard.
+    - Señales de peligro y descripciones canónicas (`CREATURES.md` / `NARRATIVE.md`) reflejadas fielmente en la sala y sus objetivos de `examinar` (`cerca`, `cercas`, `huellas`, `huella`, `arboles`, `arbol`, `pasto`).
+    - Conecta el encuentro fijo autoritativo: `ROOM_ENCOUNTER["valdren_pastos_altos"] = "cornalomo"`.
+    - Asigna contexto visual `zone.edran.valdren_outskirts`.
+  - `vintage-telnet/tests/test_pilot_lindero_roto.py`:
+    - Actualiza el test placeholder `test_cornalomo_has_no_playable_stats_yet` a `test_cornalomo_has_approved_playable_stats`, verificando que el perfil aprobado por Jugabilidad está activo.
+  - `vintage-telnet/tests/test_cornalomo_death.py`:
+    - Nueva suite integral con 11 tests automatizados que cubren de punta a punta: perfil, ramal opcional, señales previas, evaluación "Abrumador" ("te supera claramente"), reducción física de armadura, derrota atacando, derrota huyendo, derrota defendiendo, respawn seguro en `valdren_centro` (60% HP, 40 fatiga, degradación de herida, 0 pérdida de arma/equipo/XP/inventario), reconexión en nueva sesión, huida normal permitida, exploración continua tras respawn y ausencia de regresiones.
+  - `vintage-telnet/server/HANDOFF.md`: este registro.
+- **ESTADO:** LISTO PARA REVISIÓN / PR NUEVA Y AUTOCONTENIDA.
+- **MERGE:** NO.
+- **DEPLOY:** NO.
+
+### Verificación y pruebas automatizadas
+
+Ejecutado con Python 3.12 y `PYTHONPATH=vintage-telnet`:
+- `tests.test_cornalomo_death`: **11 tests pasando verde (17.6 s)**.
+- `tests.test_random_encounters`: **16 tests pasando verde**.
+- `tests.test_pilot_lindero_roto`: **48 tests pasando verde**.
+- `tests.test_valdren_route_expansion`: **13 tests pasando verde**.
+- `tests.test_navigation`: **4 tests pasando verde**.
+- `tests.test_entry`: **36 tests pasando verde**.
+- `tests.test_public_onboarding`: **11 tests pasando verde**.
+- Lote combinado de 139 tests: **139 tests pasando verde (78.6 s)**.
+- Regresión del mundo y mapa 2D sin colisiones de coordenadas.
+- Exclusión total de Cornalomo de los pools aleatorios ordinarios (`edran_01_*`).
+
+### Cumplimiento estricto de restricciones
+
+1. Cornalomo NO es un jefe; es amenaza superior regional.
+2. Derrota NO provoca pérdida de arma: arma, armadura e inventario 100% intactos.
+3. No se crearon comandos de muerte ficticios ni trampas; combate autoritativo real.
+4. Señales previas tomadas directamente del canon (`CREATURES.md`).
+5. Evaluación cualitativa devuelve exactamente "te supera claramente" ("abrumador").
+6. El jugador puede retroceder antes de combatir si no desea pelear (la criatura no ataca primero).
+7. Huida con fórmula general permitida.
+8. Reaparición segura en `valdren_centro` con 60% HP, 40 fatiga y herida degradada 1 grado.
+9. No queda combate ni encuentro fantasma en SQLite ni en memoria.
+10. No se modificó el esquema de base de datos ni #216 (capacidades de clase).
+
+---
+
 ## Entrega limpia de Issues #209 y #211 — Portada pública y lectores canónicos — 2026-09-26
 
 - **DESARROLLADOR:** Antigravity (Relevo de desarrollo).
