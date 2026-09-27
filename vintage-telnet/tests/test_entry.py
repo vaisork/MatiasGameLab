@@ -322,6 +322,17 @@ class EntryTests(unittest.TestCase):
         self.assertIn('event.key === "Home"', html)
         self.assertIn('other.tabIndex = selected ? 0 : -1', html)
 
+        # En móvil los controles interactivos principales conservan objetivos
+        # táctiles de al menos 44 px; el modo compacto no debe volver a 32–38 px.
+        self.assertIn('@media(max-width:640px){\n      .action{min-height:44px', html)
+        self.assertIn('.context-actions .action{min-height:44px}', html)
+        self.assertIn('.btn{min-height:44px}', html)
+        self.assertIn('.dpad{grid-template-columns:repeat(3,44px);grid-template-rows:repeat(3,44px)}', html)
+        self.assertIn('.commandbar input{min-height:44px}', html)
+        self.assertIn('.combat-row.defenses .action{min-height:44px}', html)
+        self.assertNotIn('.context-actions .action{min-height:34px}', html)
+        self.assertNotIn('.combat-row.defenses .action{min-height:32px}', html)
+
         self.assertIn(".art-neutral{height:100%;background:#0d131c}", html)
         self.assertNotIn(".location-art-fallback", html)
         self.assertNotIn("btn-art btn-flee", html)
