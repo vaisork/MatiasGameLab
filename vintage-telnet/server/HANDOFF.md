@@ -1,5 +1,43 @@
 # Handoff — Desarrollador de Servidor — Vintage Telnet
 
+## Entrega lista para revisión: vt-deploy reusable y seguro (#141) — 2026-09-27
+
+- **DESARROLLADOR:** Antigravity (Desarrollador principal para implementaciones pesadas).
+- **HEAD BASE:** `993110e` (`origin/main` remoto tras merge de PR #271 y #272).
+- **TAREA:** Issue #141 — `VT-OPS: reemplazar scripts update_vN por un deploy reusable y seguro`.
+- **RAMA:** `antigravity/vt-141-deploy-reusable`
+- **CONTRATO APROBADO Y ALCANCE (Issue #141):**
+  - **Recepción de argumento flexible y compatible:** Soporte explícito de `--sha <commit>` conforme al contrato de #141, así como argumento posicional (`latest`, `main` o `<commit>`).
+  - **Verificación de ancestría en Git:** Validación estricta con `git rev-parse` y `git merge-base --is-ancestor <sha> origin/main`, garantizando que únicamente commits integrados en main puedan desplegarse.
+  - **Backup verificado:** Reutilización de `ops/backup.sh` y `vintage-telnet-backup.service`, comprobando la creación efectiva de un nuevo snapshot `vintage-*.sqlite3`.
+  - **Release aislado y preparación en venv:** Clonación vía `git archive` en carpeta aislada bajo `/opt/vintage-telnet/releases/`, instalación de dependencias en `.venv` y ejecución de la suite completa de tests (`unittest discover -s tests -v`) antes de tocar producción.
+  - **Esquema dinámico:** Lectura de `SCHEMA_VERSION` directamente del código del release en lugar de constantes hardcodeadas. Validación de migración en copia temporal del backup.
+  - **Conmutación atómica y preservación:** Conmutación atómica del symlink `/opt/vintage-telnet/current` (`os.replace`), reinicio de `vintage-telnet.service`, validación de `/healthz`, schema, IDs de jugadores preservados y ejecución de `raspberry_preflight.py`.
+  - **Rollback automático y cuarentena:** En caso de falla post-switch, restauración automática de base de datos desde backup, conmutación del symlink al release anterior y reinicio de servicio. Aislamiento de releases fallidos en `.failed-<sha>-<timestamp>` para permitir reintentos sin bloqueo.
+  - **Tolerancia y testing:** Imports protegidos de `fcntl` y `pwd` y verificaciones de `hasattr(os, 'chown')` y `hasattr(os, 'geteuid')` para habilitar ejecución de pruebas unitarias y de simulación en cualquier entorno.
+  - **Alcance respetado:** Construcción y pruebas sin activación en la Raspberry física de producción (validación física separada a cargo del operador).
+- **ARCHIVOS MODIFICADOS / CREADOS:**
+  - `vintage-telnet/ops/vt_deploy.py`: soporte de flag `--sha`, tolerancias POSIX y compatibilidad de testing.
+  - `vintage-telnet/tests/test_vt_deploy.py`: suite ampliada a 15 pruebas exhaustivas (parseo CLI, SQLite y backups, cuarentena de fallos, rollback automático y simulación end-to-end de ciclo feliz y rollback).
+  - `vintage-telnet/server/HANDOFF.md`: este registro.
+
+### Pruebas ejecutadas y verificación
+
+1. `vintage-telnet/tests/test_vt_deploy.py`: **15/15 tests PASS**.
+   - Parseo de `--sha <sha>` explícito y posicional `latest`.
+   - Rechazo cuando no se especifica revisión o cuando no es ancestro de `origin/main`.
+   - Lectura ordenada y preservación de IDs de jugadores en SQLite.
+   - Restauración atómica de base de datos desde backup.
+   - Cuarentena de release fallido conservando evidencia sin borrar.
+   - Inmutabilidad del release `current` ante cuarentena.
+   - Rollback automático post-switch con restauración de base y servicio.
+   - Simulación end-to-end completa del ciclo feliz (`test_full_deploy_cycle_happy_path`).
+   - Simulación end-to-end completa de rollback post-switch (`test_full_deploy_cycle_triggers_rollback_on_health_failure`).
+2. Suite completa descubierta (`discover tests`): **386 tests PASS (0 fallos, 0 errores, 0 skipped)**.
+3. MERGE: NO / DEPLOY: NO.
+
+---
+
 ## Entrega lista para revisión: Memoria conversacional acotada por jugador y NPC (#246) — 2026-09-27
 
 - **DESARROLLADOR:** Antigravity (Desarrollador principal para implementaciones pesadas).
