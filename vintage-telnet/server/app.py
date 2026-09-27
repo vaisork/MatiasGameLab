@@ -1141,6 +1141,7 @@ def create_app(config=None):
                 intent["target"],
                 message=intent.get("message", ""),
                 room_id=g.player["room"],
+                db_path=path,
             )
             player_now = store.player_for_token(path, session.get("token"))
             room_data = room_view(g.player["room"], g.player["id"])
@@ -1368,6 +1369,7 @@ def create_app(config=None):
                 intent["target"],
                 message=intent.get("message", ""),
                 room_id=g.player["room"],
+                db_path=path,
             )
             if not result.success:
                 return jsonify(
@@ -1403,7 +1405,7 @@ def create_app(config=None):
         message = (data.get("message") or data.get("text") or "").strip()
         if not target:
             return jsonify(accepted=False, error="target_required", reason="Debes indicar con quién deseas hablar."), 400
-        result = npc_dialogue.converse(g.player, target, message=message, room_id=g.player["room"])
+        result = npc_dialogue.converse(g.player, target, message=message, room_id=g.player["room"], db_path=path)
         if not result.success:
             status_code = 404 if result.error in ("npc_not_found", "npc_not_present") else 400
             return jsonify(

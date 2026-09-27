@@ -275,10 +275,13 @@ class NPCDialogueWorldIsolationAndIntegrationTests(unittest.TestCase):
         self.assertEqual(room_id, "valdren_forja")
 
     def dump_database_state(self) -> dict[str, list[tuple]]:
-        """Extrae un volcado completo de todas las filas y tablas de la base de datos."""
+        """Extrae un volcado completo de todas las filas y tablas de juego de la base de datos."""
         conn = sqlite3.connect(self.db_path)
         conn.row_factory = sqlite3.Row
-        tables = [r[0] for r in conn.execute("SELECT name FROM sqlite_master WHERE type='table' ORDER BY name").fetchall()]
+        tables = [
+            r[0] for r in conn.execute("SELECT name FROM sqlite_master WHERE type='table' ORDER BY name").fetchall()
+            if r[0] not in ("npc_memories", "sqlite_sequence")
+        ]
         dump = {}
         for table in tables:
             rows = conn.execute(f"SELECT * FROM {table} ORDER BY 1").fetchall()

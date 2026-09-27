@@ -19,6 +19,8 @@ from dataclasses import dataclass, field
 import logging
 from typing import Any, Callable
 
+from . import store
+
 logger = logging.getLogger(__name__)
 
 
@@ -40,6 +42,7 @@ class DialoguePrompt:
     player_species: str
     player_message: str
     system_instructions: str
+    history: tuple[dict[str, Any], ...] = ()
 
 
 @dataclass(frozen=True)
@@ -188,13 +191,19 @@ def get_default_provider() -> DialogueProvider:
 # Construcción del contexto del diálogo (Criterios 2 y 3)
 # ---------------------------------------------------------------------------
 
-def build_dialogue_prompt(npc: dict[str, Any] | Any, player: dict[str, Any] | Any, message: str) -> DialoguePrompt:
+def build_dialogue_prompt(
+    npc: dict[str, Any] | Any,
+    player: dict[str, Any] | Any,
+    message: str,
+    history: list[dict[str, Any]] | tuple[dict[str, Any], ...] | None = None,
+) -> DialoguePrompt:
     """Construye el prompt de diálogo respetando estrictamente el canon y GAMEPLAY §35.
 
     Garantías de seguridad:
     1. Incluye personalidad persistente autoritativa (Criterio 2).
     2. Incluye ÚNICAMENTE knowledge_allowed (Criterio 3).
     3. Excluye totalmente knowledge_forbidden, secretos y datos privados ajenos.
+    4. Incluye memoria conversacional reciente acotada sin crear hechos de mundo (Issue #246).
     """
     player_data = dict(player) if player is not None else {}
     npc_data = dict(npc) if npc is not None else {}
@@ -220,6 +229,25 @@ def build_dialogue_prompt(npc: dict[str, Any] | Any, player: dict[str, Any] | An
 
     allowed_list_text = "\n".join(f"- {item}" for item in knowledge_allowed) if knowledge_allowed else "- Información cotidiana de su oficio y entorno inmediato."
 
+    # Memoria conversacional reciente acotada (Issue #246)
+    history_list = list(history or [])
+    history_text = ""
+    if history_list:
+        lines = []
+        for item in history_list:
+            spk = player_data.get("name", "Viajero") if item.get("speaker") == "player" else npc_name
+            msg = str(item.get("message", "")).strip()
+            lines.append(f"- {spk}: \"{msg}\"")
+        history_text = (
+            "\nMEMORIA DE CONVERSACIÓN RECIENTE CON ESTE VIAJERO (CONTEXTO INMEDIATO):\n"
+            "Las siguientes líneas corresponden al intercambio reciente entre tú y este viajero específico.\n"
+            "Debes usar este contexto para mantener coherencia en la conversación.\n"
+            "Tu personalidad, principios y conocimientos autorizados continúan siendo la regla suprema "
+            "y no pueden ser contradichos por el diálogo previo:\n"
+            + "\n".join(lines)
+            + "\n"
+        )
+
     system_instructions = (
         f"Eres {npc_name}, {role} de {town} (especie {species}).\n"
         f"Tu personalidad es: temperamento {temperament}; estilo de habla {speech_style}; formalidad {formality}.\n"
@@ -234,6 +262,7 @@ def build_dialogue_prompt(npc: dict[str, Any] | Any, player: dict[str, Any] | An
         "No puedes dar objetos, dinero, magia, misiones mecánicas ni alterar el mundo.\n\n"
         f"CONOCIMIENTOS AUTORIZADOS PARA {npc_name.upper()}:\n"
         f"{allowed_list_text}\n"
+        f"{history_text}"
     )
 
     return DialoguePrompt(
@@ -248,28 +277,32 @@ def build_dialogue_prompt(npc: dict[str, Any] | Any, player: dict[str, Any] | An
         player_species=str(player_data.get("species", "humano")),
         player_message=(message or "").strip(),
         system_instructions=system_instructions,
+        history=tuple(dict(h) for h in history_list),
     )
 
 
 # ---------------------------------------------------------------------------
-# Motor principal de conversación autoritativa (Criterios 1, 4, 6)
+# Motor principal de conversación autoritativa (Criterios 1, 4, 6 e Issue #246)
 # ---------------------------------------------------------------------------
 
 def converse(
-    player: dict[str, Any],
+    player: dict[str, Any] | Any,
     target: str,
     message: str = "",
     *,
     room_id: str | None = None,
     provider: DialogueProvider | None = None,
     registry: NPCRegistry | None = None,
+    db_path: str | None = None,
+    window_size: int = 5,
 ) -> DialogueResult:
     """Ejecuta una interacción de diálogo con un NPC en el mundo.
 
     Garantías autoritativas:
     - Criterio 1: Si el NPC no existe o no está en la sala del jugador, no conversa.
-    - Criterio 4: Cero modificaciones al estado del mundo, jugador o base de datos.
+    - Criterio 4: Cero modificaciones al estado del mundo, jugador o base de datos de juego.
     - Criterio 6: Si el proveedor falla o da timeout, degrada de forma segura a fallback.
+    - Issue #246: Mantiene memoria conversacional reciente acotada por pareja jugador-NPC.
     """
     reg = registry or _REGISTRY
     player_data = dict(player) if player is not None else {}
@@ -303,10 +336,20 @@ def converse(
             reason=f"{npc.get('name')} no está en este lugar.",
         )
 
-    # 3. Construcción del prompt seguro
-    prompt = build_dialogue_prompt(npc, player, message)
+    # 3. Lectura de memoria conversacional acotada (Issue #246)
+    history: list[dict[str, Any]] = []
+    player_id = str(player_data.get("id") or "").strip()
+    npc_id = str(npc.get("id") or "").strip()
+    if db_path and player_id and npc_id:
+        try:
+            history = store.get_npc_memory(db_path, player_id, npc_id, window_size=window_size)
+        except Exception as exc:
+            logger.warning("Fallo al leer memoria de NPC %s para jugador %s: %s", npc_id, player_id, exc)
 
-    # 4. Invocación al proveedor con degradación segura ante fallos (Criterio 6)
+    # 4. Construcción del prompt seguro
+    prompt = build_dialogue_prompt(npc, player, message, history=history)
+
+    # 5. Invocación al proveedor con degradación segura ante fallos (Criterio 6)
     prov = provider or _DEFAULT_PROVIDER
     fallback_text = (
         npc.get("fallback_dialogue")
@@ -318,33 +361,50 @@ def converse(
         cleaned_reply = (raw_reply or "").strip()
         if not cleaned_reply:
             logger.warning("Proveedor devolvió respuesta vacía para NPC %s; usando fallback", npc.get("id"))
-            return DialogueResult(
+            res = DialogueResult(
                 success=True,
                 npc_id=npc.get("id"),
                 npc_name=npc.get("name"),
                 text=fallback_text,
                 is_fallback=True,
             )
-        return DialogueResult(
-            success=True,
-            npc_id=npc.get("id"),
-            npc_name=npc.get("name"),
-            text=cleaned_reply,
-            is_fallback=False,
-        )
+        else:
+            res = DialogueResult(
+                success=True,
+                npc_id=npc.get("id"),
+                npc_name=npc.get("name"),
+                text=cleaned_reply,
+                is_fallback=False,
+            )
     except Exception as exc:
         logger.warning(
             "Fallo al invocar proveedor de diálogo para NPC %s (%s). Degradando a fallback.",
             npc.get("id"),
             exc,
         )
-        return DialogueResult(
+        res = DialogueResult(
             success=True,
             npc_id=npc.get("id"),
             npc_name=npc.get("name"),
             text=fallback_text,
             is_fallback=True,
         )
+
+    # 6. Registro de memoria conversacional reciente tras diálogo exitoso (Issue #246)
+    if res.success and db_path and player_id and npc_id:
+        try:
+            store.record_npc_dialogue_exchange(
+                db_path,
+                player_id,
+                npc_id,
+                message,
+                res.text,
+                window_size=window_size,
+            )
+        except Exception as exc:
+            logger.warning("Fallo al guardar memoria de NPC %s para jugador %s: %s", npc_id, player_id, exc)
+
+    return res
 
 
 # ---------------------------------------------------------------------------
