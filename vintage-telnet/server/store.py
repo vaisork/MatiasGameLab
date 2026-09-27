@@ -15,12 +15,25 @@ STATUSES = ("pending", "approved", "rejected", "removed")
 
 # Version de esquema que deja initialize(); ops/inventory_migration_probe.py
 # la usa para validar una migracion de prueba contra la copia de la base viva.
-SCHEMA_VERSION = 11
+SCHEMA_VERSION = 12
 
 # Cuentas con varios personajes (petición de Javier, 2026-09-25): un usuario
 # para entrar puede tener hasta 5 personajes; el nombre de cada personaje es
 # único en todo el mundo y el Dungeon Master aprueba cada uno.
 MAX_CHARACTERS_PER_ACCOUNT = 5
+
+# v12: Issue #246 (GAMEPLAY.md 35) -- memoria conversacional acotada por
+# pareja jugador <-> NPC. Registra intervenciones recientes ('player' y 'npc'),
+# con poda determinista para evitar crecimiento ilimitado.
+NPC_MEMORIES_TABLE = """CREATE TABLE IF NOT EXISTS npc_memories (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    player_id TEXT NOT NULL REFERENCES players(id),
+    npc_id TEXT NOT NULL,
+    speaker TEXT NOT NULL CHECK(speaker IN ('player', 'npc')),
+    message TEXT NOT NULL,
+    created_at TEXT NOT NULL)"""
+
+DEFAULT_NPC_MEMORY_WINDOW = 5  # Últimos 5 turnos (hasta 10 mensajes)
 
 
 class UsernameTaken(Exception):
@@ -267,6 +280,9 @@ def initialize(path):
             db.execute("CREATE INDEX combat_log_player_room ON combat_log(player_id, room_id, id)")
         if version <= 10:
             _migrate_to_accounts(db)
+        if version <= 11:
+            db.execute(NPC_MEMORIES_TABLE)
+            db.execute("CREATE INDEX IF NOT EXISTS npc_memories_player_npc ON npc_memories(player_id, npc_id, id)")
         db.execute(f"PRAGMA user_version = {SCHEMA_VERSION}")
 
 
@@ -1058,3 +1074,78 @@ def unequip_item(path, player_id, category):
     column = "equipped_weapon_id" if category == "weapon" else "equipped_armor_id"
     with connect(path) as db:
         db.execute(f"UPDATE players SET {column} = NULL WHERE id = ?", (player_id,))
+
+
+# ---------------------------------------------------------------------------
+# Memoria conversacional acotada por pareja jugador <-> NPC (Issue #246)
+# ---------------------------------------------------------------------------
+
+def record_npc_dialogue_exchange(
+    path,
+    player_id,
+    npc_id,
+    player_message,
+    npc_reply,
+    window_size=DEFAULT_NPC_MEMORY_WINDOW,
+):
+    """Registra atómicamente el intercambio conversacional entre jugador y NPC.
+
+    Aplica poda determinista FIFO para conservar únicamente los últimos
+    `window_size` intercambios (2 * window_size mensajes) de esa pareja.
+    """
+    now = datetime.now(timezone.utc).isoformat()
+    max_messages = max(2, int(window_size) * 2)
+    with connect(path) as db:
+        db.execute("BEGIN IMMEDIATE")
+        if player_message:
+            db.execute(
+                "INSERT INTO npc_memories(player_id, npc_id, speaker, message, created_at) VALUES (?, ?, 'player', ?, ?)",
+                (player_id, npc_id, str(player_message).strip(), now),
+            )
+        if npc_reply:
+            db.execute(
+                "INSERT INTO npc_memories(player_id, npc_id, speaker, message, created_at) VALUES (?, ?, 'npc', ?, ?)",
+                (player_id, npc_id, str(npc_reply).strip(), now),
+            )
+        # Poda determinista: conservar solo los últimos max_messages IDs de esta pareja
+        db.execute(
+            """DELETE FROM npc_memories
+               WHERE player_id = ? AND npc_id = ?
+                 AND id NOT IN (
+                     SELECT id FROM npc_memories
+                     WHERE player_id = ? AND npc_id = ?
+                     ORDER BY id DESC LIMIT ?
+                 )""",
+            (player_id, npc_id, player_id, npc_id, max_messages),
+        )
+
+
+def get_npc_memory(path, player_id, npc_id, window_size=DEFAULT_NPC_MEMORY_WINDOW):
+    """Recupera los mensajes recientes de la memoria conversacional entre
+    un jugador y un NPC, ordenados cronológicamente (más antiguo a más reciente)."""
+    max_messages = max(1, int(window_size) * 2)
+    with connect(path) as db:
+        rows = db.execute(
+            """SELECT speaker, message, created_at FROM (
+                   SELECT id, speaker, message, created_at
+                   FROM npc_memories
+                   WHERE player_id = ? AND npc_id = ?
+                   ORDER BY id DESC LIMIT ?
+               ) ORDER BY id ASC""",
+            (player_id, npc_id, max_messages),
+        ).fetchall()
+        return [{"speaker": r["speaker"], "message": r["message"], "created_at": r["created_at"]} for r in rows]
+
+
+def clear_npc_memory(path, player_id=None, npc_id=None):
+    """Elimina memoria conversacional para pruebas o reinicios controlados."""
+    with connect(path) as db:
+        db.execute("BEGIN IMMEDIATE")
+        if player_id and npc_id:
+            db.execute("DELETE FROM npc_memories WHERE player_id = ? AND npc_id = ?", (player_id, npc_id))
+        elif player_id:
+            db.execute("DELETE FROM npc_memories WHERE player_id = ?", (player_id,))
+        elif npc_id:
+            db.execute("DELETE FROM npc_memories WHERE npc_id = ?", (npc_id,))
+        else:
+            db.execute("DELETE FROM npc_memories")

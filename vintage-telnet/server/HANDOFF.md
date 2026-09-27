@@ -1,5 +1,46 @@
 # Handoff — Desarrollador de Servidor — Vintage Telnet
 
+## Entrega lista para revisión: Memoria conversacional acotada por jugador y NPC (#246) — 2026-09-27
+
+- **DESARROLLADOR:** Antigravity (Desarrollador principal para implementaciones pesadas).
+- **HEAD BASE:** `7dd5186` (commit de PR #271, sobre `dfa97d0` de `origin/main`).
+- **TAREA:** Issue #246 — `VT-NPC/DEV: memoria conversacional acotada por jugador y NPC`.
+- **RAMA:** `antigravity/vt-246-npc-memory`
+- **CONTRATO APROBADO Y ALCANCE:**
+  - **Memoria por pareja jugador ↔ NPC:** Clave compuesta estricta `(player_id, npc_id)`.
+  - **Aislamiento absoluto entre jugadores:** El prompt y contexto del jugador B jamás contienen información hablada entre el jugador A y el NPC.
+  - **Aislamiento entre diferentes NPCs:** El historial de conversación de un jugador con un NPC (ej. Daro el herrero) no contamina el contexto con otro NPC (ej. Elena la boticaria).
+  - **Ventana limitada y poda determinista FIFO:** Tamaño de ventana configurable (`window_size`, por defecto 5 turnos / 10 mensajes). Poda automática por SQL (`DELETE ... WHERE id NOT IN (SELECT id ... LIMIT ?)`), garantizando que la tabla nunca crezca indefinidamente.
+  - **Inmutabilidad de la personalidad autoritativa:** La personalidad base (`temperament`, `speech_style`, `formality`, `traits`, `example_phrases`) y los conocimientos autorizados (`knowledge_allowed`) continúan siendo la regla suprema. El historial se inyecta como contexto conversacional reciente debidamente delimitado sin capacidad de alterar las directrices del NPC.
+  - **Cero hechos de mundo:** La memoria es estrictamente dialógica; registrar intercambios no altera oro, inventario, nivel, atributos, HP ni salas del jugador.
+  - **Persistencia y supervivencia a reconexión:** Almacenado en tabla SQLite `npc_memories` con migración v12 idempotente (`IF NOT EXISTS`). El historial reciente permanece disponible tras reconexión del jugador.
+  - **Sin UI nueva, sin economía, sin quests automáticas:** Se preserva el flujo existente sin agregar elementos fuera de contrato.
+- **ARCHIVOS MODIFICADOS / CREADOS:**
+  - `vintage-telnet/server/store.py`: `SCHEMA_VERSION = 12`, migración v12 idempotente de `npc_memories`, funciones `record_npc_dialogue_exchange`, `get_npc_memory`, `clear_npc_memory`.
+  - `vintage-telnet/server/npc_dialogue.py`: `history` en `DialoguePrompt`, formateo contextual en `build_dialogue_prompt`, lectura y guardado atómico en `converse(..., db_path=path)`.
+  - `vintage-telnet/server/app.py`: propagación de `db_path=path` a `converse` en `/command`, `/api/intent` y `/api/talk`.
+  - `vintage-telnet/tests/test_npc_memory.py` (nuevo): 9 tests de aislamiento entre jugadores/NPCs, poda FIFO, reconexión, inmutabilidad de mundo e integración HTTP.
+  - `vintage-telnet/tests/test_npc_dialogue.py`: volcado de base de datos adaptado para aislar tablas de juego respecto a `npc_memories`.
+  - `vintage-telnet/server/HANDOFF.md`: este registro.
+
+### Pruebas ejecutadas y verificación
+
+1. `vintage-telnet/tests/test_npc_memory.py`: **9/9 tests PASS**.
+   - Aislamiento estricto entre jugadores (Matías vs Sofía).
+   - Aislamiento estricto entre NPCs (Daro vs Elena).
+   - Poda determinista FIFO con ventana 3 (de 7 turnos conserva solo 5, 6 y 7; turnos 1 a 4 eliminados).
+   - Caso borde ventana 1 (conserva exactamente el último intercambio de 2 mensajes).
+   - Inmutabilidad de la personalidad ante intentos de reescritura.
+   - Persistencia tras recargar personaje desde la base de datos (reconexión).
+   - `clear_npc_memory` selectivo por pareja.
+   - Cero mutaciones en columnas de personaje (HP, XP, nivel, oro, equipo intactos).
+   - Acumulación secuencial a través de `/command`, `/api/intent` y `/api/talk`.
+2. `vintage-telnet/tests/test_npc_dialogue.py`: **16/16 tests PASS**.
+3. Suite completa descubierta (`discover tests`): **373 tests PASS (0 fallos, 0 errores, 1 skipped en Windows)**.
+4. MERGE: NO / DEPLOY: NO.
+
+---
+
 ## Entrega lista para revisión: Contrato seguro de conversación dinámica con NPC (#245) — 2026-09-27
 
 - **DESARROLLADOR:** Antigravity (Desarrollador principal para implementaciones pesadas).
