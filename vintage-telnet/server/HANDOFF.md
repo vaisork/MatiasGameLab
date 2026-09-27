@@ -3,7 +3,7 @@
 ## Entrega lista para revisión: HOME-CORE — hogar personal persistente mínimo (#280) — 2026-09-27
 
 - **DESARROLLADOR:** Antigravity (Desarrollador principal para implementaciones pesadas).
-- **HEAD BASE:** `278af19` (origin/main remoto vigente).
+- **HEAD BASE:** `39349d0` (`origin/main` remoto vigente tras rebase limpio).
 - **TAREA:** Issue #280 — `VT-SERVER: HOME-CORE — hogar personal persistente mínimo` (HOME-01 / GAMEPLAY §34).
 - **RAMA:** `antigravity/vt-280-home-core`
 - **CONTRATO APROBADO Y ALCANCE (GAMEPLAY §34 / HOME-01):**
@@ -20,13 +20,13 @@
   - `vintage-telnet/server/world.py`: constantes canónicas de hogar, resolver hook de especie, `get_home_room_id`, `is_home_room`, `parse_home_player_id`, construcción dinámica de sala en `get_room`.
   - `vintage-telnet/server/store.py`: `get_player_species`, salvaguarda de salas de hogar en `relocate_players_outside_world`.
   - `vintage-telnet/server/app.py`: registro de resolver de especie en inicio, asignación de sala hogar en `attempt_choose_species`, resolución del pueblo en `/api/species`, exclusión de rutas regionales al salir/entrar de casa en `attempt_move`, soporte de comandos literales (`salir`/`salida`/`out`/`leave`) mapeados a `world.HOME_EXIT_DIRECTION`.
-  - `vintage-telnet/tests/test_home_core.py` (nuevo): 11 tests exhaustivos verificando cada caso de aceptación del Issue #280.
+  - `vintage-telnet/tests/test_home_core.py` (nuevo): 12 tests exhaustivos verificando cada caso de aceptación del Issue #280 y la regresión de aislamiento de rutas regional (incorporada desde PR apilada #351 de Junior 1).
   - Suites adaptadas para salir del hogar al centro de comunidad: `tests/test_cinco_rutas.py`, `tests/test_class_choice.py`, `tests/test_combat_actions.py`, `tests/test_cornalomo_death.py`, `tests/test_death_regression.py`, `tests/test_entry.py`, `tests/test_gameplay.py`, `tests/test_inventory.py`, `tests/test_navigation.py`, `tests/test_npc_actions.py`, `tests/test_npc_dialogue.py`, `tests/test_npc_memory.py`, `tests/test_pilot_lindero_roto.py`, `tests/test_progression.py`, `tests/test_published_art.py`, `tests/test_random_encounters.py`, `tests/test_screen_stability.py`, `tests/test_unapiedra.py`.
   - `vintage-telnet/server/HANDOFF.md`: este registro.
 
 ### Pruebas ejecutadas y verificación
 
-1. `tests/test_home_core.py`: **11/11 tests PASS**.
+1. `tests/test_home_core.py`: **12/12 tests PASS**.
    - Dos personajes de la misma cuenta obtienen hogares distintos (`home:<id1>` != `home:<id2>`).
    - Dos cuentas no comparten hogar ni mensajes privados.
    - Personaje nuevo inicia en su hogar tras completar onboarding (nombre `Tu hogar`, descripción y controles limpios).
@@ -38,7 +38,8 @@
    - Inventario y equipo operan sin sistema de almacenamiento nuevo.
    - Personajes existentes con posición válida no son teletransportados.
    - Reinicio de servidor / verificación de esquema preserva personajes en su hogar.
-2. Suite completa descubierta (`python -m unittest discover -s tests`): **400 tests PASS (0 fallos, 0 errores, 1 skipped en Windows)**.
+   - Salir del hogar no crea ruta regional falsa en `traversed_routes` y el viaje normal sí registra rutas (test de Junior 1).
+2. Suite completa descubierta (`python -m unittest discover -s tests`): **401 tests PASS (0 fallos, 0 errores, 1 skipped en Windows)**.
 3. MERGE: NO / DEPLOY: NO.
 
 ---
