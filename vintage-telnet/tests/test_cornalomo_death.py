@@ -84,6 +84,7 @@ class CornalomoDeathTests(unittest.TestCase):
         self.post("/species", dict(species="humano"))
         player_id = self.client.get("/api/me").json["player"]["id"]
         store.set_player_class(self.path, player_id, "juramentado")
+        self.post("/move", dict(direction="south"))  # salir del hogar al centro de Valdren
         return player_id
 
     def character(self, client=None):

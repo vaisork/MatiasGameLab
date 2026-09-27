@@ -98,6 +98,7 @@ def create_app(config=None):
         raise RuntimeError("VT_DATA_DIR debe ser una ruta absoluta persistente.")
     path = str(Path(app.config["DATA_DIR"]) / "vintage.sqlite3")
     store.initialize(path)
+    world.set_home_species_resolver(lambda pid: store.get_player_species(path, pid))
     store.relocate_players_outside_world(path, set(world.ROOMS), world.get_starting_room_for_species)
     app.config["DATABASE"] = path
     dummy_hash = generate_password_hash(secrets.token_urlsafe(32))
@@ -273,6 +274,7 @@ def create_app(config=None):
         "sur": "south", "s": "south", "south": "south",
         "este": "east", "e": "east", "east": "east",
         "oeste": "west", "o": "west", "west": "west",
+        "salir": "salir", "salida": "salir", "out": "salir", "leave": "salir",
     }
     LOOK_ALIASES = {"mirar", "ver", "look"}
     INSPECT_ALIASES = {"observar", "examinar"}
@@ -360,12 +362,18 @@ def create_app(config=None):
         (VT-NAR-003), y otorga el hito de regreso si corresponde."""
         previous_room = player["room"]
         room = world.get_room(previous_room)
+        if direction in ("salir", "salida", "out", "leave"):
+            if world.is_home_room(previous_room):
+                direction = world.HOME_EXIT_DIRECTION
+            else:
+                return False, previous_room, None, "No puedes ir en esa dirección."
         destination = room["exits"].get(direction) if room else None
         if not destination:
             return False, previous_room, None, "No puedes ir en esa dirección."
         store.move_player(path, player["id"], destination, direction)
         store.mark_visited(path, player["id"], destination)
-        store.mark_route_traversed(path, player["id"], previous_room, destination)
+        if not world.is_home_room(previous_room) and not world.is_home_room(destination):
+            store.mark_route_traversed(path, player["id"], previous_room, destination)
         # Primero el encuentro fijo de la sala y, si no hay, la fauna
         # aleatoria de su pool (Issue #160). Solo se tira el dado si no hay
         # ya una pelea activa ni enfriamiento en esa sala.
@@ -831,11 +839,14 @@ def create_app(config=None):
         pueden terminar ambos con accepted=True."""
         if species_id not in world.SPECIES_IDS:
             return False, None, None, "Elige una especie de la lista."
-        room_id = world.get_starting_room_for_species(species_id)
+        # VT-SERVER: HOME-CORE (Issue #280 / GAMEPLAY.md §34)
+        # El personaje nuevo comienza en su hogar personal persistente.
+        room_id = world.get_home_room_id(player["id"])
         updated = store.set_species(path, player["id"], species_id, room_id)
         if not updated:
             return False, None, None, "Ya elegiste tu especie."
-        store.mark_visited(path, player["id"], room_id)
+        starting_town = world.get_starting_room_for_species(species_id)
+        store.mark_visited(path, player["id"], starting_town)
         return True, species_id, room_id, None
 
     def attempt_choose_class(player, class_id):
@@ -1196,7 +1207,8 @@ def create_app(config=None):
         if not accepted:
             return jsonify(accepted=False, reason=reason), 400
         updated_player = store.player_for_token(path, session.get("token"))
-        town = world.get_room(room_id)
+        starting_town_room = world.get_starting_room_for_species(species_id)
+        town = world.get_room(starting_town_room)
         return jsonify(
             accepted=True,
             species=species_id,

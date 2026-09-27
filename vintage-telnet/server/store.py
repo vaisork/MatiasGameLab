@@ -362,7 +362,7 @@ def relocate_players_outside_world(path, valid_rooms, fallback_room_for):
         rows = db.execute("SELECT id, species, room FROM players WHERE room IS NOT NULL").fetchall()
         moved = 0
         for row in rows:
-            if row["room"] in valid_rooms:
+            if row["room"] in valid_rooms or (isinstance(row["room"], str) and row["room"] == f"home:{row['id']}"):
                 continue
             db.execute("DELETE FROM room_encounters WHERE player_id = ? AND room_id = ?",
                        (row["id"], row["room"]))
@@ -568,6 +568,14 @@ def character_by_id(db, player_id):
     return db.execute(
         f"SELECT {CHARACTER_COLUMNS} FROM players WHERE id = ?", (player_id,)
     ).fetchone()
+
+
+def get_player_species(path, player_id):
+    """Obtiene la especie persistida de un personaje según su ID."""
+    with connect(path) as db:
+        row = db.execute("SELECT species FROM players WHERE id = ?", (player_id,)).fetchone()
+        return row["species"] if row else None
+
 
 
 def list_by_status(path, status):
