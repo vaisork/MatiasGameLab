@@ -2,14 +2,22 @@
 reintento del mismo SHA no quede bloqueado tras un rollback (Issue #141)."""
 import importlib.util
 from pathlib import Path
+import sys
 import tempfile
 import unittest
 from unittest.mock import patch
 
-_SPEC = importlib.util.spec_from_file_location(
-    "vt_deploy", Path(__file__).resolve().parents[1] / "ops" / "vt_deploy.py")
-vt_deploy = importlib.util.module_from_spec(_SPEC)
-_SPEC.loader.exec_module(vt_deploy)
+vt_deploy = None
+
+
+def setUpModule():
+    if sys.platform == "win32":
+        raise unittest.SkipTest("vt_deploy requiere fcntl/POSIX (prueba específica de Linux/Raspberry Pi)")
+    global vt_deploy
+    _SPEC = importlib.util.spec_from_file_location(
+        "vt_deploy", Path(__file__).resolve().parents[1] / "ops" / "vt_deploy.py")
+    vt_deploy = importlib.util.module_from_spec(_SPEC)
+    _SPEC.loader.exec_module(vt_deploy)
 
 
 class QuarantineFailedReleaseTests(unittest.TestCase):

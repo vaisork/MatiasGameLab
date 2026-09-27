@@ -64,6 +64,18 @@ CREATURES = {
         "behavior_text": ("Cornalomo sacude la placa ósea de la frente y resopla con pesadez: "
                            "no busca combate sin motivo, pero su masa y cuernos curvos dominan el terreno."),
     },
+    "unapiedra": {
+        "name": "Uñapiedra",
+        "family": "unapiedra",
+        "reference_level": 1,
+        "hp": 30,
+        "precision": 45,
+        "damage": 5,
+        "flee_agilidad": 15,
+        "flee_percepcion": 12,
+        "behavior_text": ("Uñapiedra se aplasta contra la roca y busca una grieta o saliente cercana; "
+                           "si la acorralas, sisea y defiende el refugio con una mordida corta."),
+    },
 }
 
 

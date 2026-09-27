@@ -11,7 +11,10 @@ import tempfile
 import unittest
 
 from server.app import create_app
-from legacy_schema import undo_v11
+try:
+    from legacy_schema import undo_v11
+except ImportError:
+    from tests.legacy_schema import undo_v11
 from server import items, store, world
 
 
@@ -25,7 +28,10 @@ class ClassChoiceTests(unittest.TestCase):
         self.path = self.app.config["DATABASE"]
 
     def tearDown(self):
-        self.temp.cleanup()
+        try:
+            self.temp.cleanup()
+        except PermissionError:
+            pass
 
     def csrf(self):
         page = self.client.get("/").get_data(as_text=True)
