@@ -323,6 +323,10 @@ class EntryTests(unittest.TestCase):
         self.assertIn('event.key === "ArrowRight" || event.key === "ArrowDown"', html)
         self.assertIn('event.key === "Home"', html)
         self.assertIn('other.tabIndex = selected ? 0 : -1', html)
+        self.assertIn('const dialogInvokers = new WeakMap();', html)
+        self.assertIn('dialogInvokers.set(d, b);', html)
+        self.assertIn('if (invoker && invoker.isConnected) invoker.focus();', html)
+        self.assertIn('dialogInvokers.delete(d);', html)
 
         # En móvil los controles interactivos principales conservan objetivos
         # táctiles de al menos 44 px; el modo compacto no debe volver a 32–38 px.
