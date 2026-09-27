@@ -6,11 +6,28 @@
     <p class="onboarding-subtitle">Un mundo de fantasía que se descubre leyendo, explorando y tomando decisiones.</p>
     <p class="onboarding-about">Vintage Telnet es un mundo persistente de fantasía compartido con otros jugadores. Tu viaje comienza en uno de cinco pueblos y crece mientras observas el entorno, recorres caminos y descubres criaturas, lugares e historias.</p>
 
-    <div class="onboarding-actions" aria-label="Elige cómo continuar">
-      <button class="btn primary" type="button" data-onboarding-go="login" aria-controls="onboarding-login">Entrar</button>
-      <p>Ya tengo una cuenta y quiero continuar mi viaje.</p>
-      <button class="btn" type="button" data-onboarding-go="register" aria-controls="onboarding-register">Crear cuenta</button>
-      <p>Soy nuevo y quiero preparar mi entrada al mundo.</p>
+    <div class="portal-options" aria-label="Accesos principales del juego">
+      <div class="portal-entry-card">
+        <div class="portal-card-header">
+          <strong>Entrar / Crear cuenta</strong>
+          <span>Comienza tu viaje o accede con tu personaje existente.</span>
+        </div>
+        <div class="portal-entry-buttons">
+          <button class="btn primary" type="button" data-onboarding-go="login" aria-controls="onboarding-login">Entrar</button>
+          <button class="btn" type="button" data-onboarding-go="register" aria-controls="onboarding-register">Crear cuenta</button>
+        </div>
+      </div>
+
+      <div class="portal-readings-grid">
+        <a class="btn portal-reading-btn" href="/mundo" id="portal-link-world">
+          <span class="portal-btn-title">Conocer el Mundo</span>
+          <span class="portal-btn-desc">Historia, las cinco especies y regiones de la Cuenca de Veyra</span>
+        </a>
+        <a class="btn portal-reading-btn" href="/guia" id="portal-link-guide">
+          <span class="portal-btn-title">Guía del aventurero</span>
+          <span class="portal-btn-desc">Observación, exploración, combate y supervivencia</span>
+        </a>
+      </div>
     </div>
 
     <section class="how-start" aria-labelledby="how-start-title">

@@ -1,5 +1,6 @@
 # Handoff — Desarrollador de Servidor — Vintage Telnet
 
+
 ## Subentrega de #213 / DEATH-01 — Regresión del motor de muerte y respawn — 2026-09-26
 
 - **DESARROLLADOR:** Antigravity (Desarrollo de pruebas — Vintage Telnet).
@@ -41,6 +42,110 @@
     2. `test_cinco_rutas.py`: `PermissionError: [WinError 32]` en `tearDown` al intentar eliminar el archivo temporal de SQLite mientras Windows retiene el handle.
     3. `test_class_choice.py`: `PermissionError: [WinError 32]` idéntico en `tearDown` por lock de SQLite en Windows.
 - **PENDIENTE EXPLÍCITO:** Validación completa de la suite en Raspberry Pi / Linux por Codex.
+
+## Entrega de Issue #213 — Cornalomo como amenaza superior regional y prueba de muerte/respawn DEATH-01 — 2026-09-27
+
+- **DESARROLLADOR:** Antigravity (Desarrollo principal para implementaciones pesadas).
+- **HEAD BASE:** `4d8b36c8be4baaa78996b7f3fa5950e32f50dfa8` (`origin/main` tras merge de PR #228).
+- **TAREA:** Issue #213 — Implementar Cornalomo como amenaza superior regional opcional y validar de extremo a extremo el flujo completo de combate real y muerte/reaparición segura conforme a `DEATH_PLAYTEST.md`.
+- **RAMA:** `antigravity/vt-213-cornalomo-death` (rama limpia creada desde `origin/main`).
+- **ARCHIVOS MODIFICADOS / CREADOS:**
+  - `vintage-telnet/server/creatures.py`:
+    - Incorpora el perfil v1 aprobado de Cornalomo (`name="Cornalomo"`, `family="cornalomo"`, `reference_level=8`, `hp=120`, `precision=65`, `damage=20`, `armor_reduction=0.20`, `flee_agilidad=8`, `flee_percepcion=9`, `behavior_text`).
+    - Conserva `CREATURE_ART` sin entrada para `cornalomo` (marco de combate neutral/vacío conforme a las reglas).
+  - `vintage-telnet/server/app.py`:
+    - Aplica la reducción de armadura de la criatura (`combat.apply_armor_reduction(player_damage, creature.get("armor_reduction", 0.0))`) al impactar en combate, reduciendo el daño recibido por Cornalomo en un 20%.
+  - `vintage-telnet/server/world.py`:
+    - Añade la sala `valdren_pastos_altos` ("Pastos altos") como ramal opcional accesible al este desde `valdren_cruce_cercas`, fuera del recorrido obligatorio a Vaisgard.
+    - Señales de peligro y descripciones canónicas (`CREATURES.md` / `NARRATIVE.md`) reflejadas fielmente en la sala y sus objetivos de `examinar` (`cerca`, `cercas`, `huellas`, `huella`, `arboles`, `arbol`, `pasto`).
+    - Conecta el encuentro fijo autoritativo: `ROOM_ENCOUNTER["valdren_pastos_altos"] = "cornalomo"`.
+    - Asigna contexto visual `zone.edran.valdren_outskirts`.
+  - `vintage-telnet/tests/test_pilot_lindero_roto.py`:
+    - Actualiza el test placeholder `test_cornalomo_has_no_playable_stats_yet` a `test_cornalomo_has_approved_playable_stats`, verificando que el perfil aprobado por Jugabilidad está activo.
+  - `vintage-telnet/tests/test_cornalomo_death.py`:
+    - Nueva suite integral con 11 tests automatizados que cubren de punta a punta: perfil, ramal opcional, señales previas, evaluación "Abrumador" ("te supera claramente"), reducción física de armadura, derrota atacando, derrota huyendo, derrota defendiendo, respawn seguro en `valdren_centro` (60% HP, 40 fatiga, degradación de herida, 0 pérdida de arma/equipo/XP/inventario), reconexión en nueva sesión, huida normal permitida, exploración continua tras respawn y ausencia de regresiones.
+  - `vintage-telnet/server/HANDOFF.md`: este registro.
+- **ESTADO:** LISTO PARA REVISIÓN / PR NUEVA Y AUTOCONTENIDA.
+- **MERGE:** NO.
+- **DEPLOY:** NO.
+
+### Verificación y pruebas automatizadas
+
+Ejecutado con Python 3.12 y `PYTHONPATH=vintage-telnet`:
+- `tests.test_cornalomo_death`: **11 tests pasando verde (17.6 s)**.
+- `tests.test_random_encounters`: **16 tests pasando verde**.
+- `tests.test_pilot_lindero_roto`: **48 tests pasando verde**.
+- `tests.test_valdren_route_expansion`: **13 tests pasando verde**.
+- `tests.test_navigation`: **4 tests pasando verde**.
+- `tests.test_entry`: **36 tests pasando verde**.
+- `tests.test_public_onboarding`: **11 tests pasando verde**.
+- Lote combinado de 139 tests: **139 tests pasando verde (78.6 s)**.
+- Regresión del mundo y mapa 2D sin colisiones de coordenadas.
+- Exclusión total de Cornalomo de los pools aleatorios ordinarios (`edran_01_*`).
+
+### Cumplimiento estricto de restricciones
+
+1. Cornalomo NO es un jefe; es amenaza superior regional.
+2. Derrota NO provoca pérdida de arma: arma, armadura e inventario 100% intactos.
+3. No se crearon comandos de muerte ficticios ni trampas; combate autoritativo real.
+4. Señales previas tomadas directamente del canon (`CREATURES.md`).
+5. Evaluación cualitativa devuelve exactamente "te supera claramente" ("abrumador").
+6. El jugador puede retroceder antes de combatir si no desea pelear (la criatura no ataca primero).
+7. Huida con fórmula general permitida.
+8. Reaparición segura en `valdren_centro` con 60% HP, 40 fatiga y herida degradada 1 grado.
+9. No queda combate ni encuentro fantasma en SQLite ni en memoria.
+10. No se modificó el esquema de base de datos ni #216 (capacidades de clase).
+
+---
+
+## Entrega limpia de Issues #209 y #211 — Portada pública y lectores canónicos — 2026-09-26
+
+- **DESARROLLADOR:** Antigravity (Relevo de desarrollo).
+- **HEAD BASE:** `e0ca3a83e2ae2d1cf002bce64f956b92607ca64a` (`origin/main` remoto vigente).
+- **TAREA:** Issues #209 y #211 — Implementación de la portada pública de Vintage Telnet con 3 accesos claros:
+  1. *Conocer el Mundo* (contenido canónico de #211).
+  2. *Guía del aventurero* (contenido de `ENTRY_ADVENTURER_GUIDE.md`).
+  3. *Entrar / Crear cuenta* (acceso directo a formularios de autenticación).
+- **RAMA:** `antigravity/vt-209-211-clean` (rama limpia creada desde `origin/main`; descarta totalmente la PR #219 de Jules y no reutiliza ramas divergentes).
+- **ARCHIVOS MODIFICADOS / CREADOS:**
+  - `vintage-telnet/KNOW_THE_WORLD_MENU.md`: rescatado intacto de `origin/historia/vt-conocer-el-mundo` (#211).
+  - `vintage-telnet/HANDOFF_KNOW_THE_WORLD_UI.md`: rescatado intacto de #211.
+  - `vintage-telnet/server/content_parser.py`: nuevo parser modular que estructura ambos documentos, aísla metadatos internos e inserta las imágenes canónicas aprobadas en sus marcadores sin requerir dependencias externas (sin `markdown==3.11`).
+  - `vintage-telnet/server/app.py`: agrega rutas públicas de solo lectura `/mundo` y `/guia`, e integra parámetro `view` en `/` para acceso directo sin scroll.
+  - `vintage-telnet/server/templates/_onboarding_guest.html`: reorganiza la pantalla de bienvenida con los 3 accesos claros de forma compacta y accesible.
+  - `vintage-telnet/server/templates/entry.html`: estilos CSS y responsividad móvil para las opciones del portal público.
+  - `vintage-telnet/server/templates/world.html`: plantilla dedicada de lectura con índice, navegación por 5 capítulos, opción "Leer todo", imágenes canónicas aprobadas y mejora progresiva para cambio instantáneo de pestañas con o sin JavaScript.
+  - `vintage-telnet/server/templates/guide.html`: plantilla dedicada para la Guía del Aventurero con las 15 secciones aprobadas, índice jump navigation y enlaces de retorno.
+  - `vintage-telnet/tests/test_public_onboarding.py`: suite exhaustiva de 11 tests automatizados que cubren accesos, navegación, ausencia de metadatos/notas internas y seguridad.
+  - `vintage-telnet/server/HANDOFF.md`: este registro.
+- **ESTADO:** LISTO PARA REVISIÓN / SUPERA Y REEMPLAZA A PR #219.
+
+### Verificación y pruebas automatizadas
+
+Ejecutado en Windows con Python 3.12:
+- `tests.test_public_onboarding`: **11 tests pasando verde (1.696 s)**.
+  - Portada con los 3 accesos visibles.
+  - Acceso directo a `view=login` y `view=register`.
+  - `/mundo`: público, de solo lectura, sin alterar base de datos.
+  - `/mundo`: navegación por capítulos (1..5) e índice "Leer todo".
+  - `/mundo`: cero fugas de notas internas (`Clasificación`, `Responsable`, `NOTA DE DISEÑO`, `Reglas de implementación`, etc.).
+  - `/mundo`: imágenes canónicas insertadas en marcadores aprobados; marcador 3 omitido limpiamente sin placeholders.
+  - `/guia`: público, de solo lectura, con las 15 secciones aprobadas e índice jump navigation.
+  - `/guia`: cero fugas de notas editoriales (`Tipo:`, `Autoridad:`, `Regla editorial:`, `APROBADO POR JAVIER`).
+  - Flujo de registro y login existente 100% preservado.
+  - Cabeceras de seguridad y nonces CSP presentes y válidos.
+- `tests.test_entry`: **36 tests pasando verde (10.579 s)**.
+- `tests.test_http` y `tests.test_dm_private`: **5 tests pasando verde (3.675 s)**.
+
+### Relación con #211 y PR #219
+
+- Cumple la cadena solicitada: consume el paquete canónico de #211 y lo integra a la interfaz de usuario (#209).
+- Reemplaza y deja obsoleta a la PR #219 de Jules, la cual modificó indebidamente archivos ajenos (`GAMEPLAY.md`, `DEATH_PLAYTEST.md`, `SHARED_RESEARCH.md`), agregó una dependencia innecesaria a `requirements.txt` y no implementó la interfaz requerida.
+- No modifica `GAMEPLAY.md`, `DEATH_PLAYTEST.md`, `requirements.txt` ni archivos de Senku u Ojo de Agua.
+- No realiza merge ni despliegue directo a `main`.
+
+---
+
 
 ## Relevo de #207 — EDRAN-01 — 2026-09-26
 

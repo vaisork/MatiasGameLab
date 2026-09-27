@@ -12,7 +12,7 @@ from flask import (Flask, abort, g, jsonify, redirect, render_template, request,
                     session, url_for)
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from . import combat, creatures, dm_auth, encounters, items, store, world
+from . import combat, content_parser, creatures, dm_auth, encounters, items, store, world
 
 # Issue #46 resuelto: el Narrador fijo la plaza central de Valdren como
 # punto de reaparicion tras morir (GAMEPLAY.md 20.9) y de recuperacion
@@ -490,8 +490,10 @@ def create_app(config=None):
             accuracy_penalty=accuracy_penalty, damage_multiplier=damage_multiplier)
         messages = []
         if player_hits:
+            player_damage = combat.apply_armor_reduction(player_damage, creature.get("armor_reduction", 0.0))
             messages.append(f"Golpeas a {creature['name']} por {round(player_damage)} de daño.")
         else:
+            player_damage = 0.0
             messages.append(f"Fallas tu ataque contra {creature['name']}.")
         creature_hp = encounter["hp_current"] - player_damage
 
@@ -870,7 +872,35 @@ def create_app(config=None):
         room = None
         if g.player is not None and g.player["status"] == "approved" and g.player["room"]:
             room = room_view(g.player["room"], g.player["id"])
-        return render_template("entry.html", player=g.player, species_list=world.SPECIES, room=room)
+        onboarding_view = request.args.get("view", "welcome").strip().lower()
+        if onboarding_view not in ("welcome", "login", "register"):
+            onboarding_view = "welcome"
+        return render_template("entry.html", player=g.player, species_list=world.SPECIES, room=room,
+                               onboarding_view=onboarding_view)
+
+    @app.get("/mundo")
+    def world_reader():
+        capitulo = request.args.get("capitulo", "1").strip().lower()
+        if capitulo not in ("1", "2", "3", "4", "5", "todo"):
+            capitulo = "1"
+        content = content_parser.get_world_content()
+        return render_template(
+            "world.html",
+            world=content,
+            active_chapter=capitulo,
+            account=g.account,
+            player=g.player,
+        )
+
+    @app.get("/guia")
+    def guide_reader():
+        content = content_parser.get_guide_content()
+        return render_template(
+            "guide.html",
+            guide=content,
+            account=g.account,
+            player=g.player,
+        )
 
     @app.post("/register")
     def register():
