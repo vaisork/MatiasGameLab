@@ -205,10 +205,17 @@ class CreatureCalibrationTests(unittest.TestCase):
     def test_espinajo_is_comparable_or_dangerous_for_a_new_character(self):
         self.assertIn(self._category_for("espinajo_rastrojo"), ("comparable", "peligroso"))
 
-    def test_cornalomo_has_no_playable_stats_yet(self):
-        # NARRATIVE.md: Desarrollo debe pedir la tabla de Cornalomo a
-        # Jugabilidad antes de montar combate real; no se inventa aqui.
-        self.assertIsNone(creatures.get_creature("cornalomo"))
+    def test_cornalomo_has_approved_playable_stats(self):
+        # Issue #213 / DEATH-01 / STARTER_CREATURE_BALANCE.md: Jugabilidad aprobó
+        # el perfil oficial de combate de Cornalomo.
+        cornalomo = creatures.get_creature("cornalomo")
+        self.assertIsNotNone(cornalomo)
+        self.assertEqual(cornalomo["reference_level"], 8)
+        self.assertEqual(cornalomo["hp"], 120)
+        self.assertEqual(cornalomo["precision"], 65)
+        self.assertEqual(cornalomo["damage"], 20)
+        self.assertEqual(cornalomo["armor_reduction"], 0.20)
+        self.assertEqual(cornalomo["family"], "cornalomo")
 
 
 # --- world.py: contenido y conectividad de la microaventura -----------------

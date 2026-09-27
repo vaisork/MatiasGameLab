@@ -490,8 +490,10 @@ def create_app(config=None):
             accuracy_penalty=accuracy_penalty, damage_multiplier=damage_multiplier)
         messages = []
         if player_hits:
+            player_damage = combat.apply_armor_reduction(player_damage, creature.get("armor_reduction", 0.0))
             messages.append(f"Golpeas a {creature['name']} por {round(player_damage)} de daño.")
         else:
+            player_damage = 0.0
             messages.append(f"Fallas tu ataque contra {creature['name']}.")
         creature_hp = encounter["hp_current"] - player_damage
 
