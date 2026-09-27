@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#141c28">
+  <link rel="icon" type="image/webp" href="/assets/app-icon/vintage-telnet.webp">
+  <title>Vintage Telnet — Conocer el Mundo</title>
+  <style>
+    :root{
+      color-scheme:dark;
+      --shell:#141c28;--shell2:#1c2636;--panel:#171f2c;--line:#8a6a35;
+      --ink:#e8e1cd;--muted:#a9b3c4;--gold:#d7b56a;--danger:#e2a99c;
+      --term:#030806;--term2:#06110b;--green:#8dff9f;--green2:#5abf70;--green3:#baffc3;
+      font-family:Georgia,"Times New Roman",serif;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;min-height:100%;background:#0a0e15;color:var(--ink)}
+    body{min-height:100dvh;background:
+      url("/assets/html-ui/backgrounds/background-slate-blue-subtle-tile.png"),
+      radial-gradient(circle at 18% 0%,#22314a 0,transparent 30%),
+      radial-gradient(circle at 85% 10%,#1a2436 0,transparent 26%),
+      linear-gradient(#10161f,#090c12)}
+    button,input{font:inherit}
+    button{touch-action:manipulation}
+    a{color:var(--gold)}
+    .app{
+      width:min(1100px,100%);min-height:100dvh;margin:auto;padding:
+      max(10px,env(safe-area-inset-top)) clamp(10px,2vw,22px)
+      max(10px,env(safe-area-inset-bottom));
+      display:flex;flex-direction:column;gap:12px;
+    }
+    .topbar{
+      min-height:48px;display:flex;align-items:center;justify-content:space-between;gap:12px;
+      padding:8px 12px;border:1px solid var(--line);border-radius:12px;
+      background:linear-gradient(180deg,var(--shell2),var(--panel));box-shadow:0 10px 35px #0007;
+    }
+    .brand strong{font-size:clamp(.98rem,2.4vw,1.3rem);letter-spacing:.08em}
+    .brand small{display:block;color:var(--muted);font:600 .72rem/1.2 ui-sans-serif,system-ui,sans-serif;margin-top:2px}
+    .status{display:flex;align-items:center;gap:7px;color:#e5c37a;font:700 .72rem ui-monospace,monospace;text-transform:uppercase;white-space:nowrap}
+    .status i{width:8px;height:8px;border-radius:50%;background:#e5c37a;box-shadow:0 0 10px #e5c37aaa}
+    .divider{
+      height:12px;background:url("/assets/html-ui/dividers/divider-horizontal-gold-diamond.png")
+      no-repeat center/contain;margin:18px 0;
+    }
+    .btn{
+      min-height:42px;border:1px solid #6d5434;border-radius:10px;background:linear-gradient(var(--shell2),var(--panel));
+      color:var(--ink);font:700 .84rem ui-sans-serif,system-ui,sans-serif;padding:8px 14px;cursor:pointer;
+      text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:7px;
+    }
+    .btn:hover{border-color:var(--gold)}
+    .btn:active{transform:translateY(1px)}
+    .btn:focus-visible{outline:3px solid #f0d18c;outline-offset:2px}
+    .btn.primary{background:#d8b56a;color:#20160b;border-color:#f1d28f}
+    .reader-container{
+      width:min(860px,100%);margin:0 auto;display:flex;flex-direction:column;gap:14px;
+    }
+    .reader-card{
+      border:1px solid var(--line);border-radius:16px;
+      background:linear-gradient(180deg,var(--shell2),var(--panel));
+      box-shadow:0 18px 55px #0008;padding:clamp(16px,3.5vw,28px);
+    }
+    .reader-header{
+      display:flex;flex-direction:column;gap:6px;border-bottom:1px solid #4a3824;padding-bottom:14px;
+    }
+    .reader-top-nav{
+      display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:4px;
+    }
+    .reader-kicker{
+      margin:0;color:var(--gold);font:800 .72rem ui-monospace,monospace;letter-spacing:.12em;text-transform:uppercase;
+    }
+    .reader-title{
+      margin:4px 0 0;color:var(--green3);font:800 clamp(1.5rem,5vw,2.2rem)/1.1 ui-monospace,monospace;
+      letter-spacing:.05em;text-transform:uppercase;
+    }
+    .reader-subtitle{
+      margin:4px 0 0;color:#d9ccb1;font:500 .92rem/1.5 ui-sans-serif,system-ui,sans-serif;
+    }
+    .chapter-nav{
+      margin:14px 0 6px;display:flex;flex-direction:column;gap:8px;
+    }
+    .chapter-nav-title{
+      color:var(--gold);font:700 .76rem ui-monospace,monospace;text-transform:uppercase;letter-spacing:.08em;margin:0;
+    }
+    .chapter-tabs{
+      display:flex;flex-wrap:wrap;gap:6px;
+    }
+    .chapter-tab{
+      min-height:38px;padding:6px 12px;border:1px solid #4f5f73;border-radius:8px;
+      background:#111925;color:var(--ink);font:700 .78rem ui-sans-serif,system-ui,sans-serif;
+      text-decoration:none;display:inline-flex;align-items:center;justify-content:center;
+    }
+    .chapter-tab:hover{border-color:var(--gold);color:var(--gold)}
+    .chapter-tab.active{border-color:var(--gold);background:#252014;color:var(--gold);box-shadow:0 0 0 1px var(--gold)}
+    .chapter-view{
+      margin-top:14px;font-size:clamp(.94rem,1.8vw,1.04rem);line-height:1.7;color:#e2dbc7;
+    }
+    .chapter-view[hidden]{display:none!important}
+    .chapter-view h2{
+      color:var(--green3);font-family:ui-monospace,monospace;font-size:clamp(1.2rem,3vw,1.55rem);margin:24px 0 14px;
+      border-bottom:1px solid #3d3120;padding-bottom:6px;letter-spacing:.04em;
+    }
+    .chapter-view h3{
+      color:var(--gold);font-family:ui-sans-serif,system-ui,sans-serif;font-size:clamp(1.05rem,2.4vw,1.25rem);margin:22px 0 8px;
+    }
+    .chapter-view p{
+      margin:0 0 14px;max-width:76ch;
+    }
+    .chapter-view ul,.chapter-view ol{
+      margin:0 0 16px;padding-left:1.5rem;color:#ded6c1;
+    }
+    .chapter-view li{margin-bottom:6px}
+    .chapter-view strong{color:#fff}
+    .world-art{
+      margin:22px 0;border:1px solid #5a472c;border-radius:12px;overflow:hidden;
+      background:#0c121b;box-shadow:0 10px 30px #0009;
+    }
+    .world-art img{
+      display:block;width:100%;height:auto;max-height:460px;object-fit:contain;background:#090e15;
+    }
+    .world-art figcaption{
+      padding:9px 14px;border-top:1px solid #382c1b;background:var(--shell2);
+      color:var(--muted);font:600 .78rem/1.4 ui-sans-serif,system-ui,sans-serif;text-align:center;
+    }
+    .todo-toc{
+      border:1px solid #4a3a25;border-radius:12px;background:#101722;padding:12px 14px;margin:16px 0;
+    }
+    .todo-toc h3{margin:0 0 8px;color:var(--gold);font:700 .86rem ui-sans-serif,system-ui,sans-serif}
+    .todo-toc ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:6px}
+    .todo-toc a{
+      display:block;padding:7px 10px;border:1px solid #3a4759;border-radius:8px;background:#141d2a;
+      color:var(--ink);font:600 .8rem ui-sans-serif,system-ui,sans-serif;text-decoration:none;
+    }
+    .todo-toc a:hover{border-color:var(--gold);color:var(--gold)}
+    .chapter-pager{
+      display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;align-items:center;
+      margin-top:24px;border-top:1px solid #3d3120;padding-top:14px;
+    }
+    .chapter-pager-group{display:flex;flex-wrap:wrap;gap:8px}
+    .back-to-top{
+      color:var(--muted);font:600 .75rem ui-sans-serif,system-ui,sans-serif;text-decoration:none;
+      white-space:nowrap;padding:4px 8px;border:1px solid #404f63;border-radius:6px;
+    }
+    .back-to-top:hover{color:var(--gold);border-color:var(--gold)}
+    .reader-footer{
+      margin-top:28px;border-top:1px solid var(--line);padding-top:20px;
+      display:flex;flex-direction:column;gap:12px;align-items:center;text-align:center;
+    }
+    .reader-footer-actions{
+      display:flex;flex-wrap:wrap;gap:8px;justify-content:center;width:100%;
+    }
+    @media(max-width:640px){
+      .chapter-tab{font-size:.74rem;min-height:36px;padding:5px 8px}
+      .chapter-pager{flex-direction:column;align-items:stretch}
+      .chapter-pager .btn{width:100%}
+    }
+  </style>
+</head>
+<body id="top">
+<div class="app">
+  <header class="topbar">
+    <div class="brand"><strong>VINTAGE TELNET</strong><small>Matías Game Lab</small></div>
+    <div class="status">
+      <i></i>
+      {% if player %}<span>Jugador #{{ '%04d' | format(player.player_number) }} · {{ player.name }}</span>
+      {% elif account %}<span>{{ account.username }}</span>
+      {% else %}<span>Invitado</span>{% endif %}
+    </div>
+  </header>
+
+  <main class="reader-container">
+    <article class="reader-card">
+      <header class="reader-header">
+        <div class="reader-top-nav">
+          <p class="reader-kicker">Ambientación canónica</p>
+          <a href="/" class="btn">← Volver a portada</a>
+        </div>
+        <h1 class="reader-title">{{ world.title }}</h1>
+        <p class="reader-subtitle">{{ world.subtitle }}</p>
+      </header>
+
+      <nav class="chapter-nav" aria-label="Navegación de capítulos">
+        <p class="chapter-nav-title">Capítulos:</p>
+        <div class="chapter-tabs" role="tablist">
+          {% for c in world.chapters %}
+          <a href="/mundo?capitulo={{ c.num }}"
+             class="chapter-tab{% if active_chapter == c.num|string %} active{% endif %}"
+             data-chapter-target="{{ c.num }}"
+             role="tab"
+             aria-selected="{{ 'true' if active_chapter == c.num|string else 'false' }}">
+            {{ c.short_title }}
+          </a>
+          {% endfor %}
+          <a href="/mundo?capitulo=todo"
+             class="chapter-tab{% if active_chapter == 'todo' %} active{% endif %}"
+             data-chapter-target="todo"
+             role="tab"
+             aria-selected="{{ 'true' if active_chapter == 'todo' else 'false' }}">
+            Leer todo
+          </a>
+        </div>
+      </nav>
+
+      {% if active_chapter == 'todo' %}
+        <nav id="indice-todo" class="todo-toc" aria-label="Índice de la lectura completa">
+          <h3>Índice del mundo:</h3>
+          <ul>
+            {% for c in world.chapters %}
+            <li><a href="#capitulo-{{ c.num }}">{{ c.title }}</a></li>
+            {% endfor %}
+          </ul>
+        </nav>
+
+        <div class="chapters-todo-container">
+          {% for c in world.chapters %}
+          <section id="capitulo-{{ c.num }}" class="chapter-view" data-chapter-view="{{ c.num }}">
+            <h2>{{ c.title }}</h2>
+            {{ c.html | safe }}
+            <div style="margin-top:14px;text-align:right">
+              <a href="#indice-todo" class="back-to-top">↑ Subir al índice</a>
+            </div>
+            {% if not loop.last %}
+            <div class="divider" role="separator"></div>
+            {% endif %}
+          </section>
+          {% endfor %}
+        </div>
+
+      {% else %}
+        {% for c in world.chapters %}
+        <section id="capitulo-{{ c.num }}"
+                 class="chapter-view"
+                 data-chapter-view="{{ c.num }}"
+                 {% if active_chapter != c.num|string %}hidden{% endif %}>
+          <h2>{{ c.title }}</h2>
+          {{ c.html | safe }}
+          <nav class="chapter-pager" aria-label="Navegación entre capítulos">
+            <div class="chapter-pager-group">
+              {% if c.num > 1 %}
+              <a href="/mundo?capitulo={{ c.num - 1 }}" class="btn" data-pager-go="{{ c.num - 1 }}">← Anterior</a>
+              {% endif %}
+              {% if c.num < 5 %}
+              <a href="/mundo?capitulo={{ c.num + 1 }}" class="btn primary" data-pager-go="{{ c.num + 1 }}">Siguiente →</a>
+              {% endif %}
+            </div>
+            <div class="chapter-pager-group">
+              <a href="/mundo?capitulo=todo" class="btn">Leer todo</a>
+              <a href="/" class="btn">Volver a portada</a>
+            </div>
+          </nav>
+        </section>
+        {% endfor %}
+      {% endif %}
+
+      <footer class="reader-footer">
+        <p style="margin:0;color:var(--gold);font:700 .9rem ui-sans-serif,system-ui,sans-serif">
+          ¿Listo para comenzar tu viaje en Vintage Telnet?
+        </p>
+        <div class="reader-footer-actions">
+          <a href="/?view=login" class="btn primary">Entrar / Crear cuenta</a>
+          <a href="/guia" class="btn">Guía del aventurero →</a>
+          <a href="/" class="btn">Volver a portada</a>
+          <a href="#top" class="btn">↑ Inicio</a>
+        </div>
+      </footer>
+    </article>
+  </main>
+</div>
+
+<script nonce="{{ csp_nonce }}">
+(() => {
+  // Mejora progresiva para Conocer el Mundo:
+  // Si los 5 capítulos están en el DOM, permite cambiar de capítulo al instante
+  // sin recargar la página, actualizando la URL mediante history.pushState.
+  const tabs = document.querySelectorAll(".chapter-tabs [data-chapter-target]");
+  const chapterViews = document.querySelectorAll("[data-chapter-view]");
+  if (tabs.length && chapterViews.length && !document.querySelector(".chapters-todo-container")) {
+    tabs.forEach(tab => {
+      tab.addEventListener("click", e => {
+        const target = tab.dataset.chapterTarget;
+        if (target === "todo") return; // Permitir navegación estándar hacia 'todo'
+        e.preventDefault();
+        chapterViews.forEach(v => {
+          v.hidden = v.dataset.chapterView !== target;
+        });
+        tabs.forEach(t => {
+          const isActive = t.dataset.chapterTarget === target;
+          t.classList.toggle("active", isActive);
+          t.setAttribute("aria-selected", isActive ? "true" : "false");
+        });
+        window.history.pushState(null, "", "/mundo?capitulo=" + target);
+        const activeView = document.querySelector(`[data-chapter-view="${target}"]`);
+        if (activeView) {
+          activeView.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+    });
+
+    document.querySelectorAll("[data-pager-go]").forEach(btn => {
+      btn.addEventListener("click", e => {
+        const target = btn.dataset.pagerGo;
+        e.preventDefault();
+        const tab = document.querySelector(`.chapter-tabs [data-chapter-target="${target}"]`);
+        if (tab) tab.click();
+      });
+    });
+  }
+})();
+</script>
+</body>
+</html>

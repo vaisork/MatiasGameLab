@@ -244,6 +244,22 @@
     .onboarding-about{margin:10px 0 0;color:#d9ccb1;font:.9rem/1.55 ui-sans-serif,system-ui,sans-serif}
     .onboarding-actions{display:grid;grid-template-columns:1fr;gap:6px;margin-top:18px}
     .onboarding-actions p{margin:0 0 8px;color:var(--muted);font:.78rem/1.35 ui-sans-serif,system-ui,sans-serif}
+    .portal-options{display:grid;gap:12px;margin-top:18px}
+    .portal-entry-card{
+      border:1px solid #735933;border-radius:12px;background:linear-gradient(180deg,#1c2638,#141d2a);
+      padding:14px;box-shadow:0 8px 24px #0006
+    }
+    .portal-card-header strong{display:block;color:var(--gold);font-size:1rem;margin-bottom:2px}
+    .portal-card-header span{display:block;color:var(--muted);font:600 .78rem/1.35 ui-sans-serif,system-ui,sans-serif;margin-bottom:12px}
+    .portal-entry-buttons{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .portal-readings-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .portal-reading-btn{
+      display:flex;flex-direction:column;align-items:flex-start;justify-content:center;
+      text-align:left;padding:12px;min-height:72px;border-color:#4d5d73;text-decoration:none
+    }
+    .portal-reading-btn .portal-btn-title{display:block;color:var(--green3);font:800 .9rem ui-monospace,monospace;margin-bottom:3px}
+    .portal-reading-btn .portal-btn-desc{display:block;color:#c0b7a3;font:500 .74rem/1.3 ui-sans-serif,system-ui,sans-serif}
+    .portal-reading-btn:hover{border-color:var(--gold);background:#1a2332}
     .how-start{margin-top:18px;border-top:1px solid #4b3a25;padding-top:14px}
     .how-start h2{margin:0 0 8px;color:var(--gold);font:800 .95rem ui-sans-serif,system-ui,sans-serif}
     .how-start ol{margin:0;padding-left:1.2rem;color:#d9ccb1;font:.84rem/1.55 ui-sans-serif,system-ui,sans-serif}
@@ -399,6 +415,8 @@
       .help-grid{grid-template-columns:1fr}
       .species-grid{grid-template-columns:1fr}
       .onboarding-nav{grid-template-columns:1fr}
+      .portal-readings-grid{grid-template-columns:1fr}
+      .portal-entry-buttons{grid-template-columns:1fr}
     }
         @media(max-width:640px){
       .app{
