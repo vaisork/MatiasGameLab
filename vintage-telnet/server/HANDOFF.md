@@ -1,5 +1,48 @@
 # Handoff — Desarrollador de Servidor — Vintage Telnet
 
+
+## Subentrega de #213 / DEATH-01 — Regresión del motor de muerte y respawn — 2026-09-26
+
+- **DESARROLLADOR:** Antigravity (Desarrollo de pruebas — Vintage Telnet).
+- **HEAD BASE REAL:** `e0ca3a824e8e040c5da8cb08ea6b83f3e9c7042a` (origin/main vigente tras #222 y #223).
+- **RAMA:** `antigravity/vt-death-regression-01`
+- **COMMIT:** rama `antigravity/vt-death-regression-01` (subentrega #213).
+- **ARCHIVOS MODIFICADOS:**
+  - `vintage-telnet/tests/test_death_regression.py` (nuevo archivo de pruebas)
+  - `vintage-telnet/server/HANDOFF.md`
+- **ALCANCE Y NATURALEZA:** Subentrega exclusiva de regresión del motor de muerte y respawn existente (DEATH_PLAYTEST.md §7). No implementa Cornalomo, ramales, narrativa ni contenido nuevo. No cierra por sí sola todo #213.
+
+### Implementado y verificado
+
+1. **Aislamiento frente a #207:** control explícito de `encounters._rng.random` (retorna 0.50 >= 0.10) para que la sala `valdren_sendero` no genere encuentros aleatorios espurios mientras el test transita hacia `valdren_camino_parcela`.
+2. **Cobertura de los 8 puntos autorizados de DEATH-01:**
+   - Llegar a 0 HP concluye el combate inmediatamente con desenlace `defeat` y mensaje visible.
+   - Eliminación total del encuentro de la base de datos (sin dejar registros fantasma en la tabla `room_encounters` ni en `store.get_encounter`).
+   - Respawn autoritativo en `valdren_centro` (`SAFE_ROOM_ID`).
+   - Estado de respawn según GAMEPLAY/DEATH_PLAYTEST: 60% HP máximo, 40 fatiga, y herida degradada en un grado (e.g. de 'moderada' a 'leve').
+   - Conservación íntegra de progresión: nivel, XP, PA sin gastar y PP sin gastar antes y después de la derrota.
+   - Conservación íntegra de inventario y equipo: comparación exhaustiva de `items`, `equipped` (arma y armadura), `armor_reduction_total` y `carga_multiplier` antes y después de morir.
+   - Persistencia completa tras recreación/reconexión de cliente: una nueva sesión recupera exactamente el estado de respawn, progresión e inventario/equipo completo.
+   - APIs autoritativas (`/api/me`, `/api/character`, `/api/room`) reflejan la sala segura sin combate activo (`in_combat = False`) y sin criaturas presentes.
+3. **Flujos alternativos de derrota cubiertos:**
+   - Derrota durante huida fallida (DEATH_PLAYTEST §7.B).
+   - Derrota durante defensa activa (esquivar, DEATH_PLAYTEST §7.C).
+   - Capacidad de reanudar exploración saliendo de la sala segura hacia `valdren_sendero` (DEATH_PLAYTEST §7.E).
+
+### Pruebas ejecutadas
+
+- **Prueba específica:** `python -m unittest vintage-telnet/tests/test_death_regression.py`
+  - Ejecutada 4 veces consecutivas para verificar determinismo y ausencia de aleatoriedad.
+  - Resultado: 4 tests OK en cada ejecución (~3.8s a 4.1s).
+- **Suite completa en Windows:**
+  - Comando: `python -m unittest discover -s vintage-telnet/tests -p "test_*.py"`
+  - Resultado: 307 tests ejecutados, 0 fallos, 3 errores conocidos de baseline en entorno Windows.
+  - No se declara la suite completa verde debido a las limitaciones del entorno Windows:
+    1. `test_vt_deploy.py`: `ModuleNotFoundError: No module named 'fcntl'`. Requiere módulos POSIX (`fcntl`, `pwd`) exclusivos de Linux/Raspberry Pi.
+    2. `test_cinco_rutas.py`: `PermissionError: [WinError 32]` en `tearDown` al intentar eliminar el archivo temporal de SQLite mientras Windows retiene el handle.
+    3. `test_class_choice.py`: `PermissionError: [WinError 32]` idéntico en `tearDown` por lock de SQLite en Windows.
+- **PENDIENTE EXPLÍCITO:** Validación completa de la suite en Raspberry Pi / Linux por Codex.
+
 ## Entrega de Issue #213 — Cornalomo como amenaza superior regional y prueba de muerte/respawn DEATH-01 — 2026-09-27
 
 - **DESARROLLADOR:** Antigravity (Desarrollo principal para implementaciones pesadas).
@@ -102,6 +145,7 @@ Ejecutado en Windows con Python 3.12:
 - No realiza merge ni despliegue directo a `main`.
 
 ---
+
 
 ## Relevo de #207 — EDRAN-01 — 2026-09-26
 
