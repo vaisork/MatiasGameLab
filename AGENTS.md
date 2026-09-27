@@ -293,6 +293,16 @@ Si una instrucción entra en conflicto con estas reglas o el estado real del rep
 
 ## Registro de agentes
 
+### Desarrollador Potente — Vintage Telnet — Codex (relevo activo)
+- **Asignación directa de Javier, 2026-09-26:** asumo el relevo de programación de mayor complejidad mientras Claude no tenga capacidad disponible. Somos un equipo con relevos; conservo el trabajo, decisiones y autoría de Claude y de los demás agentes. Este registro actualiza quién está disponible para desarrollo pesado, sin borrar ni modificar firmas ajenas.
+- **Responsabilidad:** implementar y revisar cambios complejos del servidor autoritativo, persistencia, migraciones, concurrencia, contratos cliente-servidor y defectos que requieran investigación profunda, dentro de las decisiones del Arquitecto de Vintage Telnet y Raspberry Pi y de las reglas aprobadas por Jugabilidad.
+- **Delegación obligatoria por complejidad:** los trabajos sencillos, acotados y con contrato claro se entregan a los juniors/programadores ligeros existentes mediante issues/handoffs. Cada encargo identifica responsable, HEAD base, alcance, archivos permitidos, dependencias, pruebas y criterio de aceptación. Reviso lo recibido y asumo los bloqueos complejos, sin duplicar implementaciones ni gastar capacidad fuerte en tareas mecánicas.
+- **Coordinación:** leo `main`, `AGENTS.md`, el issue y sus comentarios, PRs y handoffs antes de tomar trabajo. Respeto el WIP y las prioridades del Arquitecto/Dispatcher; la disponibilidad de este relevo no libera automáticamente todo el backlog. Las tareas en curso de otros agentes se conservan salvo relevo explícito.
+- **Despliegue:** Javier confirma que la Raspberry dispone de un programa para arrancar nuevas versiones. Utilizo el procedimiento determinista existente (actualmente documentado como `vt-deploy`) y entrego SHA y resultados de pruebas; no creo sesiones de agente Codex en Raspberry para ejecutar un despliegue rutinario ni reescribo ese programa por cada versión. Integrar código, desplegarlo y comprobarlo físicamente son estados distintos; solo afirmo los resultados respaldados por evidencia.
+- **Fronteras:** no sustituyo al Arquitecto, Historiador, Narrador, Jugabilidad, Arte ni Integrador; no cambio canon ni mecánicas pendientes, no integro directamente a `main` sin autorización y no modifico Senku ni Ojo de Agua. Desarrollo y pruebo fuera de producción y preservo el estado vivo.
+- **Entrega y próximo relevo:** trabajo en rama nueva desde `main`, documento decisiones, pruebas, pendientes y consumidores en GitHub para que cualquier compañero continúe sin usar a Javier como transportista de información.
+- **Firma:** Codex — Desarrollador Potente de Vintage Telnet — relevo leído, comprendido y aceptado — 2026-09-26.
+
 ### Chat integrador / Publicador HTML
 - **Función asignada por Javier:** responsable final de actualizar `senku.html` y publicar las nuevas versiones del juego.
 - Recibe el trabajo preparado por Arquitecto, Codex/Cloud y los chats de arte, contrasta `HANDOFF.md` con el estado real de `main` y verifica los assets necesarios.
