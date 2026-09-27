@@ -1489,6 +1489,45 @@
   // y solo se reemplazan las regiones [data-swap] con la respuesta. Si la
   // respuesta no es una pantalla de juego, se recarga normal.
   let actionInFlight = false;
+  const actionFocusHint = (form, submitter) => {
+    if (!(submitter instanceof HTMLElement) || document.activeElement !== submitter) return null;
+    const scope = form.closest(".dpad") ? "dpad"
+      : form.closest(".context-actions") ? "context"
+      : form.classList.contains("commandbar") ? "commandbar"
+      : form.closest(".combat-panel") ? "combat"
+      : "";
+    return {
+      action: form.getAttribute("action") || "",
+      direction: form.querySelector('input[name="direction"]')?.value || "",
+      text: form.querySelector('input[name="text"][type="hidden"]')?.value || "",
+      scope,
+    };
+  };
+  const restoreActionFocus = hint => {
+    if (!hint) return;
+    const forms = [...document.querySelectorAll(".game-shell form")];
+    const equivalent = forms.find(candidate => {
+      const scope = candidate.closest(".dpad") ? "dpad"
+        : candidate.closest(".context-actions") ? "context"
+        : candidate.classList.contains("commandbar") ? "commandbar"
+        : candidate.closest(".combat-panel") ? "combat"
+        : "";
+      return (candidate.getAttribute("action") || "") === hint.action
+        && (candidate.querySelector('input[name="direction"]')?.value || "") === hint.direction
+        && (candidate.querySelector('input[name="text"][type="hidden"]')?.value || "") === hint.text
+        && scope === hint.scope;
+    });
+    const button = equivalent && equivalent.querySelector('button[type="submit"]:not(:disabled)');
+    if (button) {
+      button.focus({preventScroll: true});
+      return;
+    }
+    const controls = document.querySelector('[data-swap="controls"]');
+    if (controls) {
+      controls.tabIndex = -1;
+      controls.focus({preventScroll: true});
+    }
+  };
   const swapFrom = html => {
     const next = new DOMParser().parseFromString(html, "text/html");
     const nextShell = next.querySelector(".game-shell");
@@ -1513,6 +1552,7 @@
     if (!(form instanceof HTMLFormElement) || !form.closest(".game-shell")) return;
     event.preventDefault();
     if (actionInFlight) return;
+    const focusHint = actionFocusHint(form, event.submitter);
     actionInFlight = true;
     try {
       const method = (form.getAttribute("method") || "get").toUpperCase();
@@ -1531,6 +1571,7 @@
         if (input) input.value = "";
       }
       afterRender();
+      restoreActionFocus(focusHint);
     } catch (_error) {
       window.location.assign("/");
     } finally {
