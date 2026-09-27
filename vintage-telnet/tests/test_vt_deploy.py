@@ -43,7 +43,7 @@ class DeployCliArgumentParsingTests(unittest.TestCase):
 
     def test_cli_accepts_explicit_sha_flag(self):
         sha_val = "a" * 40
-        with patch.object(vt_deploy.os, "geteuid", return_value=0), \
+        with patch.object(vt_deploy.os, "geteuid", return_value=0, create=True), \
              patch.object(vt_deploy, "pwd", None), \
              patch.object(vt_deploy, "resolve_authorized_sha", return_value=sha_val) as mock_resolve, \
              patch.object(vt_deploy, "LOCK_FILE", Path(tempfile.gettempdir()) / "test_vt_deploy.lock"), \
@@ -65,7 +65,7 @@ class DeployCliArgumentParsingTests(unittest.TestCase):
 
     def test_cli_accepts_positional_revision(self):
         sha_val = "b" * 40
-        with patch.object(vt_deploy.os, "geteuid", return_value=0), \
+        with patch.object(vt_deploy.os, "geteuid", return_value=0, create=True), \
              patch.object(vt_deploy, "pwd", None), \
              patch.object(vt_deploy, "resolve_authorized_sha", return_value=sha_val) as mock_resolve, \
              patch.object(vt_deploy, "LOCK_FILE", Path(tempfile.gettempdir()) / "test_vt_deploy.lock"), \
@@ -285,7 +285,7 @@ class FullDeploySimulationTests(unittest.TestCase):
             p.mkdir(parents=True)
             (p / "requirements.txt").write_text("", encoding="utf-8")
 
-        with patch.object(vt_deploy.os, "geteuid", return_value=0), \
+        with patch.object(vt_deploy.os, "geteuid", return_value=0, create=True), \
              patch.object(vt_deploy, "INSTALL_ROOT", self.root), \
              patch.object(vt_deploy, "RELEASES_ROOT", self.releases), \
              patch.object(vt_deploy, "CURRENT_LINK", mock_current), \
@@ -329,7 +329,7 @@ class FullDeploySimulationTests(unittest.TestCase):
             project.mkdir(parents=True)
             (project / "requirements.txt").write_text("", encoding="utf-8")
 
-        with patch.object(vt_deploy.os, "geteuid", return_value=0), \
+        with patch.object(vt_deploy.os, "geteuid", return_value=0, create=True), \
              patch.object(vt_deploy, "INSTALL_ROOT", self.root), \
              patch.object(vt_deploy, "RELEASES_ROOT", self.releases), \
              patch.object(vt_deploy, "CURRENT_LINK", mock_current), \
@@ -378,7 +378,7 @@ class FullDeploySimulationTests(unittest.TestCase):
             p.mkdir(parents=True)
             (p / "requirements.txt").write_text("", encoding="utf-8")
 
-        with patch.object(vt_deploy.os, "geteuid", return_value=0), \
+        with patch.object(vt_deploy.os, "geteuid", return_value=0, create=True), \
              patch.object(vt_deploy, "INSTALL_ROOT", self.root), \
              patch.object(vt_deploy, "RELEASES_ROOT", self.releases), \
              patch.object(vt_deploy, "CURRENT_LINK", mock_current), \
