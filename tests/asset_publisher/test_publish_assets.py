@@ -198,6 +198,17 @@ class AssetPublisherTests(unittest.TestCase):
         self.git(repo, "commit", "-m", "add creature")
         self.assertEqual(pub.validate_pr(repo, "base-for-pr"), 0)
 
+    def test_pr_asset_outside_allowlist_fails(self):
+        td, repo = self.make_repo()
+        self.addCleanup(td.cleanup)
+        self.git(repo, "branch", "base-for-pr", "main")
+        asset = repo / "assets/other-project/not-allowed.png"
+        asset.parent.mkdir(parents=True)
+        asset.write_bytes(png_bytes(10, 12))
+        self.git(repo, "add", asset.relative_to(repo).as_posix())
+        self.git(repo, "commit", "-m", "invalid asset path")
+        self.assertEqual(pub.validate_pr(repo, "base-for-pr"), 2)
+
     def test_pr_replacement_without_base_authorization_fails(self):
         td, repo = self.make_repo()
         self.addCleanup(td.cleanup)
