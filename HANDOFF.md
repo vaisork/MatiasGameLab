@@ -1,7 +1,7 @@
 DESARROLLADOR: Jules
-HEAD BASE: 76f83d799d38a10421da7baa0e5df6bfd6559110
+HEAD BASE: 271a92eba6f0e3b554328d57ed1c66a61a7624f0
 RAMA: jules-issue-221
-COMMIT: 6a228ddc5fc642d3fb3946fcbdefd34f9925c0d9
+COMMIT: 7c8d2aa3e470c2af8afcdbb9cfc8903c7e13000c
 ARCHIVOS MODIFICADOS:
 - vintage-telnet/tests/test_issue_221.py (nuevo)
 

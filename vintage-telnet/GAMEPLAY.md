@@ -91,9 +91,17 @@ Una muerte no borra al personaje ni destruye todo el progreso acumulado. Esto es
 La recuperación v1 después de morir queda fijada en la sección 20. La selección concreta entre puntos válidos y cualquier requisito de descubrimiento/activación siguen dependiendo del diseño narrativo y de zona.
 
 ### 11. Riesgo de pérdida de armas
-Morir frente a monstruos comunes no provoca pérdida del arma por este principio.
+Morir frente a criaturas comunes, territoriales, peligrosas o incluso **amenazas superiores** no provoca pérdida del arma por este principio.
 
-Las derrotas contra monstruos excepcionalmente poderosos y las derrotas en PvP sí pueden provocar pérdida de armas.
+En PvE, la pérdida de arma queda reservada únicamente a enemigos que el contenido haya definido explícitamente como **jefes**. Ser muy fuerte, ser Abrumador o tener una dificultad muy superior al jugador **no convierte automáticamente a una criatura en jefe**.
+
+Por tanto:
+- una criatura básica o regional no hace perder el arma al derrotar al jugador;
+- una amenaza superior regional tampoco hace perder el arma si no es un jefe;
+- solo un jefe explícito puede activar una futura regla de pérdida de arma;
+- derrotas en PvP pueden seguir provocando pérdida de arma conforme al contrato específico de PvP.
+
+La pérdida frente a jefe tampoco debe asumirse como automática para todos los jefes: el contenido/regla concreta debe indicar que ese enfrentamiento tiene ese riesgo.
 
 Cuando un jugador pierde el derecho sobre un arma, conservar físicamente una pieza impresa no le permite seguir utilizándola dentro del juego. Debe volver a obtener legítimamente el derecho a usarla conforme a las reglas del juego.
 
@@ -2457,3 +2465,470 @@ El jugador descubre que una ruta tiene más o menos fauna mediante experiencia, 
 ### 33.8 Principio
 
 **La fauna aleatoria añade incertidumbre al desplazamiento; no interrumpe la lectura, no reemplaza encuentros escritos y no convierte caminar entre dos salas en una máquina de farmear.**
+
+
+## 34. Hogar inicial persistente — v1
+
+**Estado:** APROBADO COMO CONTRATO DE JUGABILIDAD PARA #114.
+
+El hogar es una **base personal persistente del personaje**, no una frase de introducción ni un simple punto de spawn técnico.
+
+### 34.1 Primer ingreso al mundo
+
+Cuando un personaje nuevo queda listo para jugar, su primera entrada al mundo comienza en su hogar correspondiente.
+
+La experiencia debe permitir entender:
+
+**hogar propio → pueblo/comunidad → exterior/mundo**
+
+La introducción extensa del hogar se muestra una sola vez por personaje. Las visitas posteriores utilizan presentación breve.
+
+### 34.2 Propiedad y persistencia
+
+Cada personaje tiene un hogar persistente asociado a su origen.
+
+En v1:
+- el hogar pertenece al personaje;
+- no desaparece al cerrar sesión;
+- no cambia por subir de nivel;
+- crear varios personajes en una misma cuenta no convierte sus hogares en un único hogar compartido;
+- otros jugadores no entran automáticamente al hogar ajeno.
+
+Visitas, permisos o vivienda compartida quedan para una fase social posterior.
+
+### 34.3 Seguridad
+
+El hogar es zona **segura** por defecto:
+- no genera fauna aleatoria;
+- no inicia PvP;
+- no contiene encuentros hostiles ordinarios;
+- permite descanso cuando el personaje no está en combate.
+
+Cualquier excepción narrativa futura debe ser explícita y aprobada; no se introduce en v1.
+
+### 34.4 Salida y regreso
+
+Salir del hogar conduce al asentamiento inicial correspondiente mediante una conexión autoritativa del mundo.
+
+**No existe botón universal de teletransporte “volver a casa” en v1.**
+
+El jugador regresa caminando por el mundo salvo:
+- muerte/respawn;
+- una futura mecánica de viaje expresamente aprobada;
+- intervención legítima del DM.
+
+Esto evita convertir el hogar en escape gratuito ante riesgo.
+
+### 34.5 Respawn
+
+El hogar es un **punto seguro válido de respaldo**, pero no reemplaza automáticamente todos los respawns locales.
+
+Orden conceptual:
+1. si la zona/aventura tiene un punto seguro específico ya aprobado, usarlo;
+2. si no existe uno aplicable, el hogar puede actuar como fallback seguro.
+
+Por tanto, el binding vigente de *El lindero roto* a `valdren_centro` permanece válido y no se borra.
+
+### 34.6 Recuperación
+
+Estar en casa no concede curación instantánea ni elimina heridas por excepción.
+
+La recuperación usa las reglas normales de descanso/recuperación segura de §24.
+
+El hogar aporta **seguridad y pertenencia**, no una fuente infinita de recuperación instantánea.
+
+### 34.7 Inventario y “mis cosas”
+
+En v1, el inventario persistente del personaje sigue siendo el sistema autoritativo de objetos.
+
+El hogar puede mostrar narrativamente pertenencias, pero **no introduce todavía**:
+- cofre separado;
+- banco;
+- peso adicional almacenado;
+- inventario doméstico;
+- crafting doméstico;
+- economía.
+
+Si posteriormente se necesita almacenamiento separado, se diseñará como sistema propio.
+
+### 34.8 Arcanes
+
+Se conserva §21.6:
+- Arcanes vinculados que no viajan con el personaje permanecen en casa;
+- máximo 3 vinculados y 1 activo viajando según las reglas vigentes.
+
+Esto no obliga a implementar Arcanes para entregar el hogar v1.
+
+### 34.9 Información y secretos
+
+El hogar no revela automáticamente:
+- rutas secretas;
+- contenido del mundo no descubierto;
+- recompensas;
+- tutoriales exhaustivos.
+
+Puede enseñar controles básicos de manera contextual, pero su función principal es establecer pertenencia y punto de partida.
+
+### 34.10 Contrato mínimo de interfaz
+
+La interfaz debe permitir:
+- reconocer claramente que el lugar actual es **tu hogar**;
+- salir hacia el pueblo mediante la misma lógica de movimiento del servidor;
+- descansar cuando sea válido;
+- consultar Personaje/Inventario normalmente.
+
+No se necesita una pantalla de gestión de vivienda separada para v1.
+
+### 34.11 Principio
+
+**El hogar es el lugar del que el personaje sale y al que puede volver; debe sentirse propio sin convertirse todavía en un sistema de vivienda, almacenamiento o teletransporte.**
+
+
+## 35. Conversación dinámica con NPCs — contrato de jugabilidad v1
+
+**Estado:** APROBADO COMO LÍMITE FUNCIONAL PARA #115.
+**No decide:** modelo, proveedor, arquitectura, latencia ni despliegue.
+
+La conversación dinámica puede existir siempre que el sistema de generación **no se convierta en autoridad del mundo**.
+
+### 35.1 Inicio y alcance
+
+La conversación se inicia únicamente con un NPC legítimamente presente/visible mediante la intención autoritativa `hablar <npc>` o una interfaz equivalente.
+
+La v1 trata la conversación con NPC como un canal distinto de:
+- chat entre jugadores;
+- comandos del mundo;
+- narración de sala.
+
+Por defecto, el intercambio es **personal entre personaje y NPC**. Si una consecuencia debe ser pública para la sala/mundo, el servidor la publica como evento separado y autoritativo.
+
+### 35.2 Fuentes de verdad del NPC
+
+Antes de responder, el sistema debe construir contexto únicamente desde información autorizada:
+
+- identidad y personalidad persistentes;
+- conocimientos reales permitidos;
+- creencias/rumores que el NPC puede sostener;
+- información que explícitamente desconoce;
+- relaciones;
+- hechos del mundo que ese NPC puede conocer;
+- estado relevante ya validado del personaje;
+- memoria conversacional permitida entre ese personaje y ese NPC.
+
+Una respuesta nunca convierte una invención del generador en canon.
+
+### 35.3 Regla obligatoria: puede no saber
+
+Un NPC debe poder responder:
+- que no sabe;
+- que no está seguro;
+- que solo escuchó un rumor;
+- que no quiere hablar del tema;
+- que necesita contexto adicional.
+
+**“No sé” es una respuesta válida y preferible a inventar mundo.**
+
+### 35.4 Verdad, rumor y opinión
+
+La conversación debe conservar la separación:
+
+- **hecho conocido**;
+- **creencia/opinión**;
+- **rumor**;
+- **desconocimiento**.
+
+El jugador puede usar lo dicho como pista, pero una afirmación de NPC no se vuelve automáticamente verdad objetiva.
+
+### 35.5 Memoria
+
+La v1 necesita continuidad suficiente para que un NPC no parezca reiniciarse en cada frase.
+
+Persistir por relación personaje↔NPC únicamente información conversacional significativa, por ejemplo:
+- temas ya tratados;
+- información que el jugador reveló y el NPC aceptó legítimamente;
+- promesas/rechazos relevantes;
+- cambios de confianza o disposición ya autorizados;
+- hitos de conversación definidos por contenido.
+
+No es obligatorio guardar para siempre el transcript completo ni convertir cada frase casual en estado persistente.
+
+La memoria no puede sobrescribir hechos canónicos ni crear relaciones/objetos/eventos por sí sola.
+
+### 35.6 Presencia
+
+Se mantiene GAMEPLAY §16:
+
+**Presencia mejora la recepción de una propuesta plausible; no obliga a creer ni obedecer.**
+
+Puede afectar:
+- disposición a continuar hablando;
+- tono;
+- cantidad/profundidad de información que el NPC ya puede revelar;
+- aceptación de una petición razonable cuando el contenido permita esa posibilidad.
+
+No puede:
+- convertir mentira absurda en verdad;
+- revelar un secreto que el NPC no conoce/no puede revelar;
+- obligar a actuar contra límites esenciales;
+- controlar a otro jugador humano.
+
+### 35.7 El texto del NPC no ejecuta acciones
+
+La respuesta generada es **habla**, no una transacción autoritativa.
+
+Frases como:
+- “te doy esta espada”;
+- “te pago 100 sellos”;
+- “la puerta queda abierta”;
+- “ya eres miembro”;
+- “te enseño este poder”;
+
+no cambian estado por sí mismas.
+
+Toda consecuencia mecánica requiere una regla/acción estructurada validada por servidor:
+- otorgar objeto;
+- cambiar estado de descubrimiento;
+- registrar relación;
+- abrir acceso;
+- activar evento;
+- modificar inventario;
+- cualquier otro cambio persistente.
+
+Si no existe esa acción, el NPC puede hablar pero no producir el cambio.
+
+### 35.8 Seguridad de secretos
+
+El contexto de conversación debe excluir información que el NPC no puede conocer.
+
+No enviar al generador:
+- secretos del DM irrelevantes;
+- soluciones futuras;
+- inventario oculto de otros jugadores;
+- estados privados innecesarios;
+- datos de sistema.
+
+Un NPC no puede revelar un secreto solamente porque el modelo subyacente “lo sabe” por contexto global.
+
+### 35.9 Fallo técnico
+
+La conversación dinámica **no debe ser requisito para que el mundo funcione**.
+
+Si el motor de conversación está caído, lento o devuelve una salida inválida:
+- el servidor falla cerrado;
+- no altera estado;
+- puede mostrar una respuesta breve de fallback compatible con el NPC;
+- movimiento, combate, inventario y resto del juego continúan.
+
+### 35.10 Conversación y progresión
+
+Hablar por sí mismo no otorga XP repetible.
+
+XP o recompensa solo aparece cuando existe:
+- descubrimiento válido;
+- hito narrativo;
+- acción aprobada;
+- otro evento de progresión definido fuera del texto libre.
+
+Esto evita farmear conversación.
+
+### 35.11 Repetición
+
+El sistema debe permitir lenguaje natural variado, pero no necesita fabricar nueva información para evitar repetirse.
+
+Ante preguntas repetidas, el NPC puede:
+- resumir;
+- decir que ya habló del tema;
+- cambiar tono;
+- repetir el dato esencial;
+- negarse a insistir.
+
+La variedad verbal nunca justifica inventar contenido.
+
+### 35.12 Principio
+
+**El NPC puede improvisar cómo habla; no puede improvisar qué es verdad ni qué cambia en el mundo.**
+
+
+## 36. Separación jugable de clases — capacidades firma v1
+
+**Estado:** APROBADO PARA PRIMERA IMPLEMENTACIÓN Y PLAYTEST.
+**Contenido de referencia:** Issue #208 / PR #214 (`CLASSES.md`).
+
+La clase debe sentirse distinta **antes de que el jugador tenga muchos niveles o poderes**. La primera separación no se consigue aumentando o bajando el daño del arma inicial, sino dando a cada clase una forma propia de intervenir en el mismo peligro.
+
+### 36.1 Primera capacidad desde nivel 1
+
+Al elegir clase, el personaje conoce automáticamente una **capacidad firma inicial**. No consume PP y no requiere compra.
+
+- Juramentado → **Guardia Comprometida**
+- Arcano → **Impulso Arcano**
+- Sombra → **Borrar el Foco**
+- Artífice → **Tiro de Interrupción**
+
+Estas cuatro capacidades son exclusivas de la clase inicial durante la primera fase de implementación. No se permite todavía aprenderlas cruzando clases.
+
+La segunda capacidad propuesta por Historia para cada clase queda reservada para el siguiente paquete después del playtest de estas cuatro:
+- Paso de Ruptura;
+- Velo de Contención;
+- Finta de Vacío;
+- Traba de Campo.
+
+Objetivo: comprobar primero que la identidad básica funciona antes de añadir otra capa.
+
+### 36.2 Regla común de intervención
+
+Usar una capacidad firma cuenta como la intervención estratégica de esa ronda y **sustituye el ataque básico** salvo cuando la propia capacidad indique que incluye un disparo.
+
+Cada capacidad:
+- genera **5 puntos base de fatiga**, aplicando el modificador normal de fatiga;
+- entra en recarga después de usarse;
+- no consume PP durante combate;
+- no puede activarse si su requisito físico/contextual no se cumple.
+
+Definición de recarga:
+- **2 rondas:** después de usarla, deben completarse 2 intervenciones propias antes de volver a estar disponible;
+- **4 rondas:** deben completarse 4 intervenciones propias;
+- **8 rondas:** deben completarse 8 intervenciones propias.
+
+La interfaz muestra la capacidad aunque esté en recarga, pero deshabilitada con el número de rondas restantes. No oculta/desaparece el botón.
+
+### 36.3 Intención enemiga visible
+
+Para que las clases puedan responder de manera táctica, una criatura puede preparar una acción especial y comunicarla antes de resolverla.
+
+Contrato mínimo:
+- `prepared_action`: acción especial anunciada;
+- `interruptible`: si puede ser interrumpida por las capacidades que lo permiten;
+- `frontal`: si una guardia frontal puede responder coherentemente;
+- texto/señal visible antes de la intervención del jugador.
+
+El jugador debe recibir **una intervención legítima** entre la señal y la resolución.
+
+No todas las acciones enemigas necesitan preparación. Los ataques básicos pueden seguir resolviéndose normalmente.
+
+El primer caso de prueba será la **embestida territorial del Espinajo de rastrojo**, que ya tiene una referencia de 60% de precisión cuando se ignora su advertencia.
+
+### 36.4 Juramentado — Guardia Comprometida
+
+**Rol:** sostener el intercambio frontal.
+
+Requisitos:
+- combate activo;
+- amenaza visible;
+- arma/objeto equipado que permita bloquear;
+- el ataque a responder debe ser frontal cuando se trate de una acción preparada.
+
+Efecto:
+- sustituye el ataque básico;
+- dura hasta la siguiente acción ofensiva del enemigo;
+- reducción adicional:
+
+`ReducciónGuardia = mínimo(45%, 30% + 0.25%×(Destreza-10) + 0.15%×(Resistencia-10))`
+
+- se aplica multiplicativamente después de armadura, no sumando porcentajes;
+- si la acción preparada frontal tenía un bono especial de precisión por carga/compromiso, Guardia Comprometida elimina ese bono y la devuelve como máximo a la precisión ordinaria de la criatura antes de aplicar la defensa.
+
+Recarga: **2 rondas**.
+
+No vuelve invulnerable al Juramentado y no sustituye a Bloquear: Bloquear sigue disponible cuando Guardia está en recarga.
+
+La protección directa de otro jugador se reserva para una extensión posterior cuando el sistema multijugador tenga selección de objetivo suficiente.
+
+### 36.5 Arcano — Impulso Arcano
+
+**Rol:** alterar sobrenaturalmente la acción inmediata del enemigo.
+
+Requisitos:
+- combate activo;
+- foco arcano válido equipado;
+- línea/objetivo legítimo.
+
+Efecto:
+- sustituye el ataque básico;
+- no causa daño directo en esta v1;
+- si existe una `prepared_action` marcada `interruptible`, elimina la acción especial y el enemigo resuelve en su lugar una respuesta básica con **-10 puntos porcentuales de precisión**;
+- si no existe acción preparada, la siguiente respuesta del enemigo recibe **-20 puntos porcentuales de precisión**;
+- la precisión final conserva el mínimo general de 20%.
+
+Recarga: **4 rondas**.
+
+Impulso Arcano no empuja físicamente de forma garantizada a criaturas enormes ni cambia de sala al objetivo. La interrupción es el efecto mecánico; la magnitud narrativa del desplazamiento depende del objetivo.
+
+### 36.6 Sombra — Borrar el Foco
+
+**Rol:** manipular atención y convertir un fallo enemigo en oportunidad.
+
+Requisitos:
+- combate activo;
+- el contexto debe permitir romper momentáneamente la atención (`focus_break_possible=true` o equivalente autorizado por la escena);
+- no funciona contra un objetivo expresamente incapaz de perder el foco por este medio.
+
+Efecto:
+- sustituye el ataque básico;
+- la siguiente respuesta del enemigo recibe **-25 puntos porcentuales de precisión**, respetando mínimo 20%;
+- si esa respuesta falla, el Sombra obtiene **Apertura**;
+- Apertura se consume en el siguiente ataque básico del Sombra y concede **+15 puntos porcentuales de precisión** a ese único ataque;
+- Apertura se pierde al terminar el combate o al usarla.
+
+Recarga: **4 rondas**.
+
+No concede invisibilidad y no borra huellas, sonido u olor.
+
+### 36.7 Artífice — Tiro de Interrupción
+
+**Rol:** alterar el ritmo del enemigo desde distancia mediante un disparo deliberado.
+
+Requisitos:
+- combate activo;
+- arma a distancia válida equipada;
+- línea de tiro.
+
+Efecto:
+- esta capacidad **sí incluye un ataque**;
+- utiliza la precisión normal del ataque del personaje;
+- si impacta, inflige **75% del daño bruto que habría producido su ataque básico**;
+- si impacta sobre una `prepared_action` `interruptible`, cancela la acción especial y el enemigo responde con su acción básica normal;
+- si no existe acción preparada y el disparo impacta, la siguiente respuesta enemiga recibe **-15 puntos porcentuales de precisión**;
+- si falla el disparo, no obtiene el efecto de interrupción.
+
+Recarga: **2 rondas**.
+
+No atraviesa obstáculos ni interrumpe automáticamente acciones declaradas no interruptibles.
+
+### 36.8 Primera prueba comparativa: Espinajo
+
+La misma embestida anunciada debe producir cuatro decisiones reconocibles:
+
+- **Juramentado:** decide sostener la embestida y reducir su consecuencia.
+- **Arcano:** altera la carga antes de que llegue mediante fuerza sobrenatural.
+- **Sombra:** sale del foco, intentando convertir la carga en una apertura.
+- **Artífice:** intenta romper la carga con un disparo de interrupción.
+
+Si las cuatro experiencias terminan resolviéndose visual y mecánicamente como “haces un ataque distinto”, la implementación falla el objetivo aunque los números estén balanceados.
+
+### 36.9 Segundo escalón y PP
+
+Después de validar estas cuatro capacidades en juego real:
+
+- la segunda capacidad de cada clase podrá entrar como poder temprano;
+- objetivo de desbloqueo inicial: **nivel 5**;
+- coste nativo de referencia: **1 PP**;
+- el personaje decide comprarla; no se gasta PP automáticamente.
+
+Cuando se habilite aprendizaje fuera de clase, el sobrecoste de §20.12 se aplica como:
+
+`CosteFueraClase = techo(CosteBase × 1.5)`
+
+Por tanto un poder nativo de 1 PP costaría 2 PP fuera de clase, además de cualquier requisito de maestro/contenido que corresponda.
+
+El aprendizaje cruzado **no forma parte de la primera implementación**.
+
+### 36.10 Criterio de éxito
+
+La separación inicial de clases queda validada cuando:
+1. un personaje recién creado ya dispone de una decisión propia de su clase;
+2. las cuatro capacidades usan el mismo combate sin crear cuatro motores separados;
+3. el jugador puede reconocer la clase por la decisión que toma, no solo por el arma;
+4. ninguna capacidad es siempre mejor que atacar/defender normalmente;
+5. una criatura con intención visible permite respuestas distintas y comprensibles;
+6. el sistema queda extensible a las segundas capacidades sin rehacer combate.
