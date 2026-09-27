@@ -1,0 +1,36 @@
+name: VT #269 pre-switch regression review
+
+on:
+  pull_request:
+    branches:
+      - antigravity/vt-141-deploy-reusable
+    paths:
+      - "vintage-telnet/tests/test_vt_deploy.py"
+      - ".github/workflows/vt-269-preswitch-review.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  test-vt-deploy-preswitch:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: vintage-telnet
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run vt-deploy tests
+        run: python -m unittest tests.test_vt_deploy -v
+
+      - name: Run complete Vintage Telnet suite
+        run: python -m unittest discover -s tests -v
