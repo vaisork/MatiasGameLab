@@ -2,6 +2,7 @@
 from contextlib import contextmanager
 from datetime import datetime, timedelta, timezone
 import hashlib
+import json
 from pathlib import Path
 import secrets
 import sqlite3
@@ -34,6 +35,18 @@ NPC_MEMORIES_TABLE = """CREATE TABLE IF NOT EXISTS npc_memories (
     created_at TEXT NOT NULL)"""
 
 DEFAULT_NPC_MEMORY_WINDOW = 5  # Últimos 5 turnos (hasta 10 mensajes)
+
+# v12: Issue #247 -- registro de auditoría de propuestas de acciones de NPCs
+# evaluadas por el gate autoritativo (aceptadas o rechazadas).
+NPC_ACTION_LOGS_TABLE = """CREATE TABLE IF NOT EXISTS npc_action_logs (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    player_id TEXT NOT NULL,
+    npc_id TEXT NOT NULL,
+    action_type TEXT NOT NULL,
+    accepted INTEGER NOT NULL CHECK(accepted IN (0, 1)),
+    reason TEXT NOT NULL,
+    payload_json TEXT,
+    created_at TEXT NOT NULL)"""
 
 
 class UsernameTaken(Exception):
@@ -283,6 +296,8 @@ def initialize(path):
         if version <= 11:
             db.execute(NPC_MEMORIES_TABLE)
             db.execute("CREATE INDEX IF NOT EXISTS npc_memories_player_npc ON npc_memories(player_id, npc_id, id)")
+            db.execute(NPC_ACTION_LOGS_TABLE)
+            db.execute("CREATE INDEX IF NOT EXISTS npc_action_logs_player_npc ON npc_action_logs(player_id, npc_id, id)")
         db.execute(f"PRAGMA user_version = {SCHEMA_VERSION}")
 
 
@@ -1149,3 +1164,59 @@ def clear_npc_memory(path, player_id=None, npc_id=None):
             db.execute("DELETE FROM npc_memories WHERE npc_id = ?", (npc_id,))
         else:
             db.execute("DELETE FROM npc_memories")
+
+
+# ---------------------------------------------------------------------------
+# Auditoría de acciones propuestas por NPCs con Gate autoritativo (Issue #247)
+# ---------------------------------------------------------------------------
+
+def record_npc_action_gate_evaluation(
+    path,
+    player_id,
+    npc_id,
+    action_type,
+    accepted,
+    reason,
+    payload=None,
+):
+    """Registra en auditoría una propuesta de acción de NPC evaluada por el Gate."""
+    now = datetime.now(timezone.utc).isoformat()
+    payload_str = json.dumps(payload, ensure_ascii=False) if payload is not None else None
+    with connect(path) as db:
+        db.execute(
+            """INSERT INTO npc_action_logs(player_id, npc_id, action_type, accepted, reason, payload_json, created_at)
+               VALUES (?, ?, ?, ?, ?, ?, ?)""",
+            (player_id, npc_id, action_type, 1 if accepted else 0, reason, payload_str, now),
+        )
+
+
+def list_npc_action_logs(path, player_id=None, npc_id=None, limit=20):
+    """Consulta el registro de auditoría de acciones propuestas por NPCs."""
+    with connect(path) as db:
+        query = "SELECT id, player_id, npc_id, action_type, accepted, reason, payload_json, created_at FROM npc_action_logs"
+        params = []
+        conditions = []
+        if player_id:
+            conditions.append("player_id = ?")
+            params.append(player_id)
+        if npc_id:
+            conditions.append("npc_id = ?")
+            params.append(npc_id)
+        if conditions:
+            query += " WHERE " + " AND ".join(conditions)
+        query += " ORDER BY id DESC LIMIT ?"
+        params.append(limit)
+        rows = db.execute(query, params).fetchall()
+        return [
+            {
+                "id": r["id"],
+                "player_id": r["player_id"],
+                "npc_id": r["npc_id"],
+                "action_type": r["action_type"],
+                "accepted": bool(r["accepted"]),
+                "reason": r["reason"],
+                "payload_json": r["payload_json"],
+                "created_at": r["created_at"],
+            }
+            for r in rows
+        ]

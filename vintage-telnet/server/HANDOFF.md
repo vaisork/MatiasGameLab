@@ -1,5 +1,51 @@
 # Handoff — Desarrollador de Servidor — Vintage Telnet
 
+## Entrega lista para revisión: Acciones estructuradas derivadas del diálogo con gate autoritativo (#247) — 2026-09-27
+
+- **DESARROLLADOR:** Antigravity (Desarrollador principal para implementaciones pesadas).
+- **HEAD BASE:** `3d95121` (commit de PR #272, rama `antigravity/vt-246-npc-memory`).
+- **TAREA:** Issue #247 — `VT-NPC/DEV: acciones estructuradas derivadas del diálogo con gate autoritativo`.
+- **RAMA:** `antigravity/vt-247-npc-actions`
+- **CONTRATO APROBADO Y ALCANCE (GAMEPLAY §35.7 y §35.8):**
+  - **Separación estricta de canales:** El texto narrativo/conversacional jamás ejecuta acciones ni altera el mundo. La respuesta narrativa al jugador está completamente limpia de marcas técnicas (`<!--ACTION: {...}-->` es parseada y removida de la prosa).
+  - **Catálogo allowlisted cerrado:** Solo 3 acciones válidas:
+    1. `indicate_route`: señalar salida cardinal existente en la sala actual.
+    2. `reveal_lore_topic`: revelar tema permitido dentro de `knowledge_allowed` del NPC (rechazo tajante si está en `knowledge_forbidden` o es desconocido).
+    3. `show_workshop_item`: mostrar herramienta del taller presente en `VALID_WORKSHOP_TOOLS` (ej. `martillo_forja`, `tenazas_bronce`, `fuelle_cuero`).
+  - **Gate autoritativo en servidor (`evaluate_action_gate`):**
+    - Valida precondiciones objetivas: presencia de jugador y NPC en la misma sala (`room_id`), coincidencia de IDs, validez de targets frente a la topología del mundo (`world.ROOMS[room_id]["exits"]`) y la base de conocimiento autorizada (`knowledge_allowed` / `knowledge_forbidden`).
+    - Si falla cualquier validación o la acción no está en la allowlist, `accepted=False`, se detalla la razón del rechazo y no ocurre mutación alguna.
+  - **Cero mutaciones en estado de juego:** Ninguna acción de diálogo altera oro, inventario, stats, HP, XP, nivel ni equipamiento.
+  - **Prevención de inyecciones maliciosas:** Intentos de inyectar acciones económicas (`give_gold`, `grant_item`, `execute_sql`, etc.) son rechazados tajantemente en el gate (`accepted=False`, reason `action_not_allowlisted`).
+  - **Auditoría persistente en SQLite:** Tabla `npc_action_logs` con migración v13 idempotente (`IF NOT EXISTS`) e índice `npc_action_logs_player_npc`. Registra cada propuesta evaluada con timestamp, jugador, npc, sala, acción, payload, estado de aceptación y razón de rechazo.
+  - **Endpoints integrados:** `/api/intent` y `POST /api/talk` exponen de manera estructurada `proposed_action` y `gate_result`.
+- **ARCHIVOS MODIFICADOS / CREADOS:**
+  - `vintage-telnet/server/store.py`: `SCHEMA_VERSION = 13`, tabla e índice de `npc_action_logs`, funciones `record_npc_action_gate_evaluation` y `list_npc_action_logs`.
+  - `vintage-telnet/server/npc_dialogue.py`: `ProposedAction`, `ActionGateResult`, allowlist de acciones y herramientas, extracción limpia regex `extract_proposed_action`, evaluación del gate `evaluate_action_gate`, integración en `converse`.
+  - `vintage-telnet/server/app.py`: propagación estructurada de `proposed_action` y `gate_result` en `/api/intent` y `POST /api/talk`.
+  - `vintage-telnet/tests/test_npc_actions.py` (nuevo): 16 tests de catálogo allowlist, validaciones de gate, inyecciones, rechazo de secretos, auditoría SQLite, endpoints HTTP e inmutabilidad de estadísticas.
+  - `vintage-telnet/server/HANDOFF.md`: este registro.
+
+### Pruebas ejecutadas y verificación
+
+1. `vintage-telnet/tests/test_npc_actions.py`: **16/16 tests PASS**.
+   - Validación de extracción limpia de prosa vs acción propuesta.
+   - Aceptación de `indicate_route` con salida válida.
+   - Rechazo de `indicate_route` si la salida no existe en la sala.
+   - Aceptación de `reveal_lore_topic` para temas permitidos.
+   - Rechazo tajante de `reveal_lore_topic` para temas prohibidos o desconocidos.
+   - Aceptación de `show_workshop_item` para herramientas del catálogo.
+   - Rechazo tajante de inyecciones arbitrarias (`give_gold`, `grant_item`, `execute_sql`).
+   - Cero mutaciones en estado de jugador (HP, XP, oro, inventario, equipo intactos).
+   - Auditoría completa persistida en tabla `npc_action_logs`.
+   - Rechazo en gate cuando jugador o NPC no están en la sala.
+   - Integración end-to-end vía `/api/intent` y `POST /api/talk`.
+2. Las 3 suites de NPCs (`test_npc_dialogue.py`, `test_npc_memory.py`, `test_npc_actions.py`): **41/41 tests PASS**.
+3. Suite completa descubierta (`python -m unittest discover tests`): **389 tests PASS (0 fallos, 0 errores, 1 skipped en Windows)**.
+4. MERGE: NO / DEPLOY: NO.
+
+---
+
 ## Entrega lista para revisión: Memoria conversacional acotada por jugador y NPC (#246) — 2026-09-27
 
 - **DESARROLLADOR:** Antigravity (Desarrollador principal para implementaciones pesadas).
