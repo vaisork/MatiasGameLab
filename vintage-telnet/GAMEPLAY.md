@@ -2932,3 +2932,111 @@ La separación inicial de clases queda validada cuando:
 4. ninguna capacidad es siempre mejor que atacar/defender normalmente;
 5. una criatura con intención visible permite respuestas distintas y comprensibles;
 6. el sistema queda extensible a las segundas capacidades sin rehacer combate.
+
+
+## 37. Clima regional compartido — v1
+
+**Estado:** APROBADO PARA IMPLEMENTACIÓN.  
+**Canon regional:** PR #293 / `REGIONAL_WEATHER_CANON.md`.  
+**Presentación:** vocabulario de #138: Despejado, Nublado, Lluvia, Niebla, Nieve, Tormenta, Viento.
+
+La v1 conserva el clima como **ambiental/presentacional**:
+- no modifica daño;
+- no modifica defensa;
+- no modifica Percepción;
+- no modifica movimiento;
+- no modifica encuentros;
+- no modifica especies;
+- no modifica capacidades;
+- no modifica `available_actions`.
+
+### 37.1 Estado compartido, no personal
+
+El clima no se genera por jugador ni por sesión.
+
+La simulación usa una **fase climática global** derivada del tiempo real. Todos los jugadores que estén en la misma región durante la misma fase observan el mismo clima.
+
+Regiones distintas pueden manifestar climas distintos durante una misma fase porque cada región tiene un conjunto canónico distinto de climas permitidos.
+
+Por tanto:
+- el reloj/fase es global;
+- la manifestación es regional;
+- nunca es personal.
+
+### 37.2 Cadencia
+
+Una fase climática dura **2 horas reales**.
+
+Referencia determinista:
+
+`weather_epoch = floor(unix_time / 7200)`
+
+Reiniciar el servidor no reinicia ni adelanta el clima.
+
+No se requiere tabla SQLite ni job programado para mantener esta fase.
+
+### 37.3 Selección regional determinista
+
+Cada región mantiene una lista ordenada de climas permitidos tomada literalmente de `REGIONAL_WEATHER_CANON.md`.
+
+Para una región:
+
+`index = (weather_epoch + region_offset) mod len(allowed_weather)`
+
+`weather = allowed_weather[index]`
+
+Cada región recibe un `region_offset` fijo y estable definido en configuración, no aleatorio en cada arranque.
+
+Objetivo:
+- evitar RNG no reproducible;
+- evitar persistencia innecesaria;
+- garantizar que una región nunca muestre clima prohibido;
+- permitir que regiones diferentes no cambien siempre al mismo estado visual.
+
+Los offsets son implementación técnica y no tienen significado narrativo.
+
+### 37.4 Restricciones canónicas
+
+La selección nunca puede elegir un estado que Historia haya excluido de esa región.
+
+Ejemplos ya cerrados por Historia:
+- **Nieve**: solo Hoshai en v1;
+- Korven: sin Niebla ni Nieve;
+- Lethra y Nhal: Niebla permitida;
+- Veyra/Edran: sin Nieve.
+
+Si el canon regional cambia, se modifica la lista permitida; no se cambia la fórmula.
+
+### 37.5 Cambio de región
+
+Al entrar a otra región, la interfaz recalcula inmediatamente la manifestación climática usando:
+- la misma `weather_epoch` global;
+- la lista permitida de la nueva región.
+
+No existe transición gradual obligatoria en v1.
+
+### 37.6 Cambio de fase durante sesión
+
+Cuando cambia `weather_epoch`:
+- la siguiente consulta/render de ambiente muestra el nuevo clima;
+- no se interrumpe combate;
+- no aparece modal obligatorio;
+- no se reescribe automáticamente toda la descripción de sala.
+
+La interfaz puede actualizar la etiqueta/icono de clima de forma normal.
+
+### 37.7 Hora y clima son independientes
+
+El reloj de hora del día de #138 sigue:
+**Amanecer → Día → Atardecer → Noche**, 60 minutos reales por estado.
+
+El clima cambia cada 2 horas reales y no necesita alinearse con amanecer/día/etc.
+
+No inferir:
+- lluvia porque sea noche;
+- niebla porque sea amanecer;
+- tormenta por una hora específica.
+
+### 37.8 Principio
+
+**La fase climática pertenece al mundo; el clima visible pertenece a la región. Ninguno pertenece al jugador.**
