@@ -324,7 +324,7 @@ class EntryTests(unittest.TestCase):
         self.assertIn('event.key === "Home"', html)
         self.assertIn('other.tabIndex = selected ? 0 : -1', html)
         self.assertIn('const dialogInvokers = new WeakMap();', html)
-        self.assertIn('dialogInvokers.set(d, b);', html)
+        self.assertIn('dialogInvokers.set(d, button);', html)
         self.assertIn('if (invoker && invoker.isConnected) invoker.focus();', html)
         self.assertIn('dialogInvokers.delete(d);', html)
 
