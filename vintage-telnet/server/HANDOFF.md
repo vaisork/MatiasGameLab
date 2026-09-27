@@ -1,5 +1,128 @@
 # Handoff — Desarrollador de Servidor — Vintage Telnet
 
+## Relevo de #207 — EDRAN-01 — 2026-09-26
+
+- **DESARROLLADOR:** Codex.
+- **HEAD BASE:** `271a92eba6f0e3b554328d57ed1c66a61a7624f0` (main remoto comprobado antes de trabajar).
+- **RAMA:** `codex/vt-207-edran-pools`, creada desde ese main; no reutiliza ramas anteriores.
+- **COMMIT de implementación:** `424caa8be4d77716d360913627b704257065d08f`.
+- **ARCHIVOS MODIFICADOS:** `vintage-telnet/server/encounters.py`,
+  `vintage-telnet/tests/test_random_encounters.py` y este HANDOFF.
+- **Estado actual:** EN RELEVO / VALIDACIÓN COMPLETA PENDIENTE. Javier pide continuar
+  desde Codex en Raspberry; esta sesión deja de implementar para evitar trabajo simultáneo.
+- **Estado final requerido:** `LISTO PARA REVISIÓN`, solo tras resolver pendientes y
+  obtener suite completa verde. No declarar ese criterio cumplido todavía.
+
+### Implementado y verificado
+
+Únicamente tres pools EDRAN-01: sendero 10% / 85:15; camino hundido y parcelas
+exteriores 20% / 75:25; campo rastrojo y campos sin cerca 30% / 65:35.
+Los pesos corresponden a Mordelinde y Espinajo de rastrojo, respectivamente.
+Todas las demás salas y Cornalomo quedan fuera. No cambia ninguna función del motor.
+
+Leídos AGENTS.md, Issue #207 completo, GAMEPLAY §33, RANDOM_ENCOUNTER_GAMEPLAY.md,
+motor y tests. Comprobadas ramas remotas y búsqueda de PRs de #207: no se encontró
+otra implementación activa. La rama histórica `claude/vt-random-encounters`
+corresponde al motor anterior, no se reutilizó.
+
+**TESTS ejecutados:** Windows, Python 3.12.14, desde `vintage-telnet/`:
+
+```text
+.venv/Scripts/python.exe -m unittest discover -s tests -p test_random_encounters.py -v
+16 tests: OK
+git diff --check
+OK
+```
+
+Cubren configuración válida, allowlist exacta de cinco salas, chances y pesos
+exactos, exclusión de todas las otras salas y Cornalomo, prioridad scripted sin
+consumir RNG, distribución reproducible con semilla 207 e integración de movimiento
+con la configuración real. La prueba de pools vacíos ahora los inyecta explícitamente.
+
+**Suite completa:** `python -m unittest discover -s tests -v`, ejecutada en Windows
+antes del último ajuste de tests: **306 tests, 1 fallo y 3 errores, 193.463 s**.
+No está verde. Repetir sobre el commit entregado en Linux. Se observaron errores en
+`test_players_left_on_removed_roads_are_sent_home` y
+`test_existing_v8_character_keeps_progress_and_chooses_class_on_return`, y fallo en
+`test_resting_outside_combat_heals_and_reduces_fatigue`. No atribuir automáticamente
+todos los fallos a Windows o a #207: comparar con HEAD BASE en un checkout separado.
+Los dos primeros errores son `PermissionError: [WinError 32]` en `tearDown`, al
+borrar SQLite temporal aún abierto. El tercer error es la importación de
+`test_vt_deploy`: `ModuleNotFoundError: No module named 'fcntl'`.
+Ese módulo también importa `pwd`, exclusivo de Unix; este PC no tiene WSL.
+El fallo de descanso es `AssertionError: 'Descansas un momento' not found`.
+
+### Continuación por Codex en Raspberry (autorizada por Javier)
+
+La Raspberry se usa aquí como **entorno aislado de desarrollo y pruebas**. No es
+un despliegue. No usar Ojo de Agua ni modificar el checkout que ejecute producción.
+
+1. Leer este bloque, AGENTS.md e Issue #207. Comprobar remoto y HEAD de esta rama.
+   Esta rama es ahora el relevo autorizado; no comenzar otra implementación de #207.
+2. Crear un checkout/worktree separado bajo el home del usuario, fuera de `/opt`,
+   `/etc` y `/var`, y un virtualenv nuevo. No usar ni copiar la base de datos real,
+   secretos o configuración del servicio. Los tests deben usar sus datos temporales.
+3. Desde `vintage-telnet/`, instalar `requirements.txt` en ese virtualenv y ejecutar:
+
+   ```sh
+   python -m unittest discover -s tests -p test_random_encounters.py -v
+   python -m unittest discover -s tests -v
+   ```
+
+4. Revisar la prueba antigua de descanso: entra a `valdren_sendero` suponiendo que
+   está vacío. Ahora hay 10% de encuentro. Inyectar RNG de fallo de tirada en esa
+   prueba para garantizar su precondición; no cambiar descanso, combate ni pools
+   para hacerla pasar. Revisar otros supuestos similares solo si producen fallos.
+5. Comparar los demás errores con HEAD BASE. Si son ajenos a #207, documentarlos
+   para Arquitectura sin reparar lógica ajena ni inventar contratos. Si el contrato
+   de #207 contradice el código, detener implementación y documentar el conflicto.
+6. Continuar mediante commits/push en esta misma rama y actualizar su PR; no crear
+   una PR duplicada. Devolver SHA probado, Python/SO, comandos, conteos, resultado
+   y tracebacks relevantes sin secretos. Actualizar este HANDOFF con el estado real.
+
+**Fronteras:** no cambiar combate, daño, XP, narrativa, canon, UI, SQLite, criaturas,
+economía, probabilidades generales del motor ni Senku. No comenzar #216 ni #213.
+No ejecutar `vt-deploy`, `systemctl`, migraciones sobre datos vivos, merge, reinicios
+o instalaciones del sistema. Si falta un paquete del sistema, reportar la necesidad.
+
+**Incompatibilidades:** no detectada incompatibilidad entre contrato #207 y la
+configuración/motor. Hay precondiciones antiguas de tests por revisar y limitación
+de entorno Windows. **Confirmación de alcance:** solo #207 y documentación de relevo;
+sin merge, deploy ni pruebas físicas en Raspberry realizadas por esta sesión.
+
+### Validación final en Raspberry — Codex — 2026-09-26
+
+- **Estado:** LISTO PARA REVISIÓN.
+- **Entorno aislado:** `/home/jdiaz/MatiasGameLab-vt207`, virtualenv
+  `.venv-vt207`, Python 3.13.5; solo datos temporales de tests.
+- Se controló `server.encounters._rng` en dos pruebas históricas que requieren
+  `valdren_sendero` vacío: descanso de campo y retorno tras huir. No se cambió
+  lógica de descanso, huida, combate ni configuración EDRAN-01.
+- Los errores Windows de SQLite y `fcntl` no se reproducen en Linux. En HEAD BASE,
+  la prueba de rutas eliminadas y `test_vt_deploy` también pasan; son limitaciones
+  del entorno Windows, ajenas a #207. La migración v8 pasa en la suite Linux.
+- Validación final desde `vintage-telnet/`:
+
+  ```text
+  ../.venv-vt207/bin/python -m unittest discover -s tests -p test_random_encounters.py -v
+  16 tests, OK
+  ../.venv-vt207/bin/python -m unittest tests.test_pilot_lindero_roto.PilotIntegrationTests.test_resting_outside_combat_heals_and_reduces_fatigue tests.test_pilot_lindero_roto.PilotIntegrationTests.test_fleeing_successfully_returns_toward_valdren_and_clears_encounter -v
+  2 tests, OK
+  ../.venv-vt207/bin/python -m unittest discover -s tests -v
+  309 tests, OK (68.718 s)
+  ../.venv-vt207/bin/python -m pip check
+  No broken requirements found.
+  git diff --check
+  OK
+  ```
+- Sin producción, servicios, secretos, bases reales, deploy, merge ni reinicios.
+- **Pendientes:** revisión e integración por el flujo normal; no hay pendiente
+  técnico de #207. No se inició #216 ni #213.
+
+---
+
+## Entrega histórica — Issue #57 (conservada)
+
 **Desarrollador:** Claude — Desarrollador de Servidor — Vintage Telnet.
 **Estado:** entrega nueva, lista para revisión de Arquitectura/Jugabilidad.
 **Tarea asignada:** Issue #57 — VT-GAME/DEV: implementar inventario y

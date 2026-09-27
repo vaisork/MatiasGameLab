@@ -8,7 +8,7 @@ import unittest
 from unittest.mock import patch
 
 from server.app import create_app
-from server import combat, creatures, store, world
+from server import combat, creatures, encounters, store, world
 
 
 class FixedRoll:
@@ -469,9 +469,11 @@ class PilotIntegrationTests(unittest.TestCase):
     def test_fleeing_successfully_returns_toward_valdren_and_clears_encounter(self, mock_random):
         mock_random.return_value = FixedRoll(0)  # 0 < cualquier probabilidad de huida real: siempre escapa
         self.register_and_enter_world()
-        self.post("/move", dict(direction="north"))
-        self.post("/move", dict(direction="north"))  # parcela: Mordelinde
-        self.post("/command", dict(text="huir"))
+        with patch.object(encounters, "_rng") as encounter_rng:
+            encounter_rng.random.return_value = 0.10  # sendero queda libre al entrar y al huir
+            self.post("/move", dict(direction="north"))
+            self.post("/move", dict(direction="north"))  # parcela: Mordelinde
+            self.post("/command", dict(text="huir"))
         me = self.client.get("/api/me").json["player"]
         self.assertEqual(me["room"], "valdren_sendero")
         room = self.client.get("/api/room").json["room"]
@@ -512,7 +514,9 @@ class PilotIntegrationTests(unittest.TestCase):
     def test_resting_outside_combat_heals_and_reduces_fatigue(self):
         # Fuera de la sala segura (24.8: descanso de campo v1).
         self.register_and_enter_world()
-        self.post("/move", dict(direction="north"))  # valdren_sendero: no es SAFE_ROOM_ID
+        with patch.object(encounters, "_rng") as rng:
+            rng.random.return_value = 0.10  # falla el 10% del pool EDRAN-01
+            self.post("/move", dict(direction="north"))  # valdren_sendero: no es SAFE_ROOM_ID
         player_id = self.client.get("/api/me").json["player"]["id"]
         with store.connect(self.path) as db:
             db.execute("UPDATE players SET hp_current = 50, fatigue = 80 WHERE id = ?", (player_id,))
