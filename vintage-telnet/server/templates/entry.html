@@ -965,13 +965,18 @@
   }
 
   const dialogInvokers = new WeakMap();
-  document.querySelectorAll("[data-open]").forEach(b => b.addEventListener("click", () => {
-    const d = document.getElementById(b.dataset.open);
+  // Los controles de juego se reemplazan tras cada acción por fetch. Abrir
+  // diálogos se delega en document para que los botones nuevos conserven su
+  // comportamiento sin tener que reinyectar listeners después de cada swap.
+  document.addEventListener("click", event => {
+    const button = event.target.closest("[data-open]");
+    if (!button) return;
+    const d = document.getElementById(button.dataset.open);
     if (d && !d.open) {
-      dialogInvokers.set(d, b);
+      dialogInvokers.set(d, button);
       d.showModal();
     }
-  }));
+  });
   document.querySelectorAll("[data-close]").forEach(b => b.addEventListener("click", () => b.closest("dialog").close()));
   document.querySelectorAll("dialog").forEach(d => d.addEventListener("close", () => {
     const invoker = dialogInvokers.get(d);
@@ -1137,7 +1142,9 @@
       paAccept.disabled = false;
     }
   });
-  document.querySelectorAll('[data-open="characterDialog"]').forEach(button => button.addEventListener("click", loadPa));
+  document.addEventListener("click", event => {
+    if (event.target.closest('[data-open="characterDialog"]')) loadPa();
+  });
   const characterDialog = document.getElementById("characterDialog");
   if (characterDialog) characterDialog.addEventListener("close", () => {
     closePaConfirm();
@@ -1163,15 +1170,16 @@
     button.click();
   });
 
-  const commandInput = document.getElementById("commandInput");
   document.addEventListener("click", event => {
     const button = event.target.closest("[data-prefill]");
-    if (!button || !commandInput) return;
+    if (!button) return;
+    // commandbar también se reemplaza después de cada acción: buscar el input
+    // vigente en el momento del click evita escribir sobre un nodo ya separado.
+    const commandInput = document.getElementById("commandInput");
+    if (!commandInput) return;
     commandInput.value = button.dataset.prefill;
     commandInput.focus();
   });
-
-  const inventoryButton = document.querySelector("[data-inventory-open]");
   const inventoryStatus = document.getElementById("inventoryStatus");
   const inventoryContent = document.getElementById("inventoryContent");
   const equipmentSummary = document.getElementById("equipmentSummary");
@@ -1251,7 +1259,7 @@
     inventoryContent.className = "";
     inventoryContent.replaceChildren(list);
   };
-  if (inventoryButton) inventoryButton.addEventListener("click", async () => {
+  const loadInventory = async () => {
     inventoryStatus.textContent = "Consultando inventario…";
     inventoryContent.className = "inventory-empty";
     inventoryContent.textContent = "Cargando objetos…";
@@ -1266,9 +1274,10 @@
       inventoryContent.textContent = "No se pudo cargar el inventario. Puedes seguir jugando normalmente.";
       inventoryStatus.textContent = "Inventario no disponible en este momento.";
     }
+  };
+  document.addEventListener("click", event => {
+    if (event.target.closest("[data-inventory-open]")) loadInventory();
   });
-
-    const mapButton = document.querySelector("[data-map-open]");
   const mapStatus = document.getElementById("mapStatus");
   const mapContent = document.getElementById("mapContent");
   const headingStatus = document.getElementById("headingStatus");
@@ -1396,7 +1405,7 @@
     mapContent.className = "";
     mapContent.replaceChildren(wrapper);
   };
-  if (mapButton) mapButton.addEventListener("click", async () => {
+  const loadMap = async () => {
     mapStatus.textContent = "Consultando tu mapa…";
     mapContent.className = "map-empty";
     mapContent.textContent = "Cargando lugares conocidos…";
@@ -1414,6 +1423,9 @@
       mapContent.textContent = "No se pudo cargar el mapa. Puedes seguir jugando normalmente.";
       mapStatus.textContent = "Mapa no disponible en este momento.";
     }
+  };
+  document.addEventListener("click", event => {
+    if (event.target.closest("[data-map-open]")) loadMap();
   });
 
   document.querySelectorAll("dialog").forEach(d => d.addEventListener("click", e => { if (e.target === d) d.close(); }));
