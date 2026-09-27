@@ -9,7 +9,7 @@ import time
 import unittest
 
 from server.app import create_app
-from server import store, world
+from server import creatures, store, world
 
 
 class EntryTests(unittest.TestCase):
@@ -306,7 +306,8 @@ class EntryTests(unittest.TestCase):
         self.assertIn("Explícamelo fácil", html)
         self.assertIn("Los atributos ayudan, no juegan por ti", html)
 
-        self.assertIn(".location-art-fallback[hidden]{display:none!important}", html)
+        self.assertIn(".art-neutral{height:100%;background:#0d131c}", html)
+        self.assertNotIn(".location-art-fallback", html)
         self.assertNotIn("btn-art btn-flee", html)
         self.assertNotIn("button-huir-danger.png", html)
         self.assertIn(".action-danger{", html)
@@ -362,9 +363,53 @@ class EntryTests(unittest.TestCase):
         self.assertIn('class="condition-bar"', html)
         self.assertEqual(html.count('<i class="on"></i>'), 4)  # criatura entera
         self.assertIn("entero / apenas afectado", html)
+        self.assertIn('data-location-art src="/assets/creatures/mordelinde.webp"', html)
         self.assertNotIn('class="dpad"', html)
         self.assertNotIn(">Descansar</button>", html)
         self.assertNotRegex(html, r"HP:\s*\d+/\d+")
+
+    def test_creature_without_approved_art_keeps_neutral_frame(self):
+        """Issue #244: sin asset aprobado no hay placeholder, texto de error
+        ni imagen rota; combate, estado y controles permanecen visibles."""
+        from unittest.mock import patch
+
+        self.assertEqual(self.register().status_code, 303)
+        store.set_status(self.path, "matias", "approved")
+        self.assertEqual(self.post("/species", {"species": "humano"}).status_code, 303)
+        self.assertEqual(self.post("/class", {"player_class": "sombra"}).status_code, 303)
+        self.post("/move", {"direction": "north"})
+        self.post("/move", {"direction": "north"})
+
+        with patch.dict(creatures.CREATURE_ART, {}, clear=True):
+            html = self.client.get("/").get_data(as_text=True)
+
+        self.assertIn('class="place-bar combat"', html)
+        self.assertIn("¡COMBATE!", html)
+        self.assertIn('class="location-art no-art"', html)
+        self.assertIn('data-art-src=""', html)
+        self.assertIn('class="art-neutral" aria-hidden="true"', html)
+        self.assertNotIn("data-location-art", html)
+        self.assertNotIn("/assets/creatures/", html)
+        self.assertNotIn("La ilustración contextual no está disponible", html)
+        self.assertNotIn("art-placeholder", html)
+        self.assertIn('class="enemy-name"', html)
+        self.assertIn('class="condition-bar"', html)
+        self.assertIn('class="action action-attack"', html)
+        self.assertIn('action="/flee"', html)
+
+    def test_failed_art_image_degrades_to_neutral_frame_without_error_text(self):
+        """Un asset publicado que falle al cargar se reemplaza por el mismo
+        marco neutral; el navegador no deja icono roto ni texto placeholder."""
+        self.assertEqual(self.register().status_code, 303)
+        store.set_status(self.path, "matias", "approved")
+        self.assertEqual(self.post("/species", {"species": "humano"}).status_code, 303)
+        self.assertEqual(self.post("/class", {"player_class": "sombra"}).status_code, 303)
+        html = self.client.get("/").get_data(as_text=True)
+
+        self.assertIn('neutral.className = "art-neutral"', html)
+        self.assertIn("img.replaceWith(neutral);", html)
+        self.assertNotIn("La ilustración contextual no está disponible", html)
+        self.assertNotIn(".location-art-fallback", html)
 
     def test_ambient_shows_shared_time_of_day_but_no_weather_yet(self):
         """Issue #138 (petición de Javier): el servidor expone `ambient` y la
