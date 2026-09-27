@@ -157,6 +157,7 @@ class ClassChoiceTests(unittest.TestCase):
         with sqlite3.connect(self.path) as db:
             undo_v11(db)
             db.execute("ALTER TABLE players DROP COLUMN player_class")
+            db.execute("UPDATE players SET room = 'brumak_centro' WHERE id = ?", (player_id,))
             db.execute("DROP TABLE combat_log")  # llega en v10
             db.execute("PRAGMA user_version = 8")
         app = create_app(self.config)

@@ -1,5 +1,48 @@
 # Handoff — Desarrollador de Servidor — Vintage Telnet
 
+## Entrega lista para revisión: HOME-CORE — hogar personal persistente mínimo (#280) — 2026-09-27
+
+- **DESARROLLADOR:** Antigravity (Desarrollador principal para implementaciones pesadas).
+- **HEAD BASE:** `278af19` (origin/main remoto vigente).
+- **TAREA:** Issue #280 — `VT-SERVER: HOME-CORE — hogar personal persistente mínimo` (HOME-01 / GAMEPLAY §34).
+- **RAMA:** `antigravity/vt-280-home-core`
+- **CONTRATO APROBADO Y ALCANCE (GAMEPLAY §34 / HOME-01):**
+  - **Un hogar por personaje dinámico:** Cada personaje aprobado y con onboarding completo dispone de su propio espacio `home:<player_id>` aislado, sin miles de filas estáticas en `world.py`.
+  - **Primera entrada jugable en su hogar:** Todo personaje nuevo que completa especie y clase inicia en su hogar personal (`Tu hogar`), no directamente en el centro del pueblo.
+  - **Salida hacia comunidad según especie:** Una única salida funcional (`sur` o comando `salir` / `salida` / `out` / `leave`) conduce hacia el asentamiento inicial de su especie (Humano → Valdren, Felaryn → Khariel, Dravak → Brumak, Marevyn → Narevia, Vesperi → Velmora).
+  - **Sin alteración del mapa regional:** No crea rutas ficticias en `traversed_routes` entre el hogar y el mundo exterior ni altera el mapa regional.
+  - **Seguridad total:** 0 encuentros aleatorios, 0 encuentros fijos ordinarios y 0 PvP en el hogar. Descanso normal permitido; sin curación mágica instantánea.
+  - **Persistencia honesta:** Desconectar dentro del hogar recupera la posición en el hogar; salir al pueblo y desconectar conserva la posición en el pueblo (el hogar no "atrae" magnéticamente al personaje).
+  - **Preservación de jugadores existentes:** Personajes existentes con posición válida en el mundo no son reubicados. La verificación de inicio (`relocate_players_outside_world`) protege explícitamente a los personajes ubicados en sus hogares legítimos.
+  - **Cero almacenamiento / economía doméstica:** No se crearon cofres, bancos, muebles, stash ni economía doméstica en esta fase.
+  - **Cero pantalla nueva:** Renderizado directo en las vistas existentes con nombre `Tu hogar`, descripción neutra autorizada y controles ordinarios.
+- **ARCHIVOS MODIFICADOS / CREADOS:**
+  - `vintage-telnet/server/world.py`: constantes canónicas de hogar, resolver hook de especie, `get_home_room_id`, `is_home_room`, `parse_home_player_id`, construcción dinámica de sala en `get_room`.
+  - `vintage-telnet/server/store.py`: `get_player_species`, salvaguarda de salas de hogar en `relocate_players_outside_world`.
+  - `vintage-telnet/server/app.py`: registro de resolver de especie en inicio, asignación de sala hogar en `attempt_choose_species`, resolución del pueblo en `/api/species`, exclusión de rutas regionales al salir/entrar de casa en `attempt_move`, soporte de comandos literales (`salir`/`salida`/`out`/`leave`) mapeados a `world.HOME_EXIT_DIRECTION`.
+  - `vintage-telnet/tests/test_home_core.py` (nuevo): 11 tests exhaustivos verificando cada caso de aceptación del Issue #280.
+  - Suites adaptadas para salir del hogar al centro de comunidad: `tests/test_cinco_rutas.py`, `tests/test_class_choice.py`, `tests/test_combat_actions.py`, `tests/test_cornalomo_death.py`, `tests/test_death_regression.py`, `tests/test_entry.py`, `tests/test_gameplay.py`, `tests/test_inventory.py`, `tests/test_navigation.py`, `tests/test_npc_actions.py`, `tests/test_npc_dialogue.py`, `tests/test_npc_memory.py`, `tests/test_pilot_lindero_roto.py`, `tests/test_progression.py`, `tests/test_published_art.py`, `tests/test_random_encounters.py`, `tests/test_screen_stability.py`, `tests/test_unapiedra.py`.
+  - `vintage-telnet/server/HANDOFF.md`: este registro.
+
+### Pruebas ejecutadas y verificación
+
+1. `tests/test_home_core.py`: **11/11 tests PASS**.
+   - Dos personajes de la misma cuenta obtienen hogares distintos (`home:<id1>` != `home:<id2>`).
+   - Dos cuentas no comparten hogar ni mensajes privados.
+   - Personaje nuevo inicia en su hogar tras completar onboarding (nombre `Tu hogar`, descripción y controles limpios).
+   - Salida conduce al pueblo inicial exacto por cada una de las 5 especies (vía botón dirección y comando `salir`).
+   - Reconectar dentro del hogar conserva la ubicación en el hogar.
+   - Salir y reconectar fuera no devuelve automáticamente al hogar.
+   - Cero encuentros fijos y aleatorios; descanso normal permitido.
+   - Cero PvP en el hogar.
+   - Inventario y equipo operan sin sistema de almacenamiento nuevo.
+   - Personajes existentes con posición válida no son teletransportados.
+   - Reinicio de servidor / verificación de esquema preserva personajes en su hogar.
+2. Suite completa descubierta (`python -m unittest discover -s tests`): **400 tests PASS (0 fallos, 0 errores, 1 skipped en Windows)**.
+3. MERGE: NO / DEPLOY: NO.
+
+---
+
 ## Entrega lista para revisión: Acciones estructuradas derivadas del diálogo con gate autoritativo (#247) — 2026-09-27
 
 - **DESARROLLADOR:** Antigravity (Desarrollador principal para implementaciones pesadas).

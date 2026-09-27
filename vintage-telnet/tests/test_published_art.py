@@ -63,6 +63,7 @@ class PublishedArtTests(unittest.TestCase):
         csrf = re.search(r'name="csrf" value="([^"]+)"', self.client.get("/").get_data(as_text=True))[1]
         self.client.post("/species", data=dict(csrf=csrf, species="humano"))
         self.client.post("/class", data=dict(csrf=csrf, player_class="juramentado"))
+        self.client.post("/move", data=dict(csrf=csrf, direction="south"))
         # Camina de Valdren a la Parcela removida siguiendo las salidas reales.
         for here, there in (("valdren_centro", "valdren_sendero"), ("valdren_sendero", "valdren_camino_parcela")):
             direction = next(d for d, dest in world.ROOMS[here]["exits"].items() if dest == there)

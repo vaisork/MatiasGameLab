@@ -172,11 +172,16 @@ class EntryTests(unittest.TestCase):
         self.assertEqual(map_response.status_code, 200)
         self.assertIn("visited_rooms", map_response.json)
         self.assertIn("traversed_routes", map_response.json)
-        self.assertIn("valdren_centro", map_response.json["visited_rooms"])
-
         # Issue #120: rumbo autoritativo -- null hasta el primer movimiento
         # aceptado, luego la direccion cardinal exacta que el servidor uso.
         self.assertIsNone(map_response.json["current_heading"])
+
+        # Salir del hogar hacia Valdren
+        self.assertEqual(self.post("/move", {"direction": "south"}).status_code, 303)
+        state_in_valdren = self.client.get("/api/map").json
+        self.assertIn("valdren_centro", state_in_valdren["visited_rooms"])
+        self.assertEqual(state_in_valdren["current_heading"], "south")
+
         self.assertEqual(self.post("/move", {"direction": "north"}).status_code, 303)
         state_after_move = self.client.get("/api/map").json
         self.assertEqual(state_after_move["current_heading"], "north")
@@ -338,6 +343,7 @@ class EntryTests(unittest.TestCase):
         store.set_status(self.path, "matias", "approved")
         self.assertEqual(self.post("/species", {"species": "humano"}).status_code, 303)
         self.assertEqual(self.post("/class", {"player_class": "sombra"}).status_code, 303)
+        self.post("/move", {"direction": "south"})
         html = self.client.get("/").get_data(as_text=True)
         self.assertIn('class="place-bar"', html)
         self.assertIn('<strong id="placeTitle">VALDREN', html)
@@ -377,6 +383,7 @@ class EntryTests(unittest.TestCase):
         store.set_status(self.path, "matias", "approved")
         self.assertEqual(self.post("/species", {"species": "humano"}).status_code, 303)
         self.assertEqual(self.post("/class", {"player_class": "sombra"}).status_code, 303)
+        self.post("/move", {"direction": "south"})
         self.post("/move", {"direction": "north"})
         self.post("/move", {"direction": "north"})
 
