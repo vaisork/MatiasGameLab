@@ -11,7 +11,8 @@ Cubre:
 8. PvP no puede iniciarse dentro;
 9. inventario/equipamiento permanece sin nuevo sistema de almacenamiento;
 10. personajes existentes con posición válida no son teletransportados;
-11. cambio/migración de esquema y reinicio de servidor no destruyen estado vivo.
+11. cambio/migración de esquema y reinicio de servidor no destruyen estado vivo;
+12. salir del hogar no crea una ruta regional falsa y el viaje normal sí registra rutas.
 """
 
 import os
@@ -306,6 +307,35 @@ class HomeCoreTests(unittest.TestCase):
         client_restarted.post("/move", data=dict(csrf=csrf_val2, direction=world.HOME_EXIT_DIRECTION))
         player_in_town = client_restarted.get("/api/me").json["player"]
         self.assertEqual(player_in_town["room"], "brumak_centro")
+
+
+    # 12. salir del hogar no contamina el mapa regional
+    def test_home_exit_does_not_create_regional_route_but_normal_travel_does(self):
+        self.register_and_approve("cartografo", name="Cartógrafo")
+        self.complete_onboarding("humano", "sombra")
+        player = self.client.get("/api/me").json["player"]
+        player_id = player["id"]
+        home_id = player["room"]
+
+        self.assertTrue(world.is_home_room(home_id))
+        self.assertEqual(store.get_map_state(self.path, player_id)["traversed_routes"], [])
+
+        # HOME-CORE: la transición hogar -> comunidad no es una ruta regional.
+        self.post("/move", dict(direction=world.HOME_EXIT_DIRECTION))
+        map_after_home_exit = store.get_map_state(self.path, player_id)
+        self.assertEqual(map_after_home_exit["traversed_routes"], [])
+        self.assertNotIn(
+            sorted([home_id, "valdren_centro"]),
+            map_after_home_exit["traversed_routes"],
+        )
+
+        # El guard del hogar no debe romper el registro normal de rutas.
+        self.post("/move", dict(direction="north"))
+        map_after_normal_move = store.get_map_state(self.path, player_id)
+        self.assertIn(
+            sorted(["valdren_centro", "valdren_sendero"]),
+            map_after_normal_move["traversed_routes"],
+        )
 
 
 if __name__ == "__main__":
