@@ -3196,3 +3196,204 @@ Antes de integrar Cargallanura:
 10. no bloquea ruta principal.
 
 **Principio:** fauna mayor debe enseñar “este territorio no gira alrededor de tu nivel”.
+
+## 39. Mundo vivo ambiental — C0 / N0 / N5-lite v1
+
+**Estado:** CONTRATO DE MOTOR APROBADO; contenido regional pendiente de Historia/Narrativa.  
+**Relacionados:** #332, #333, #334, #338.
+
+El mundo puede sentirse poblado sin convertir toda presencia en enemigo, quest o NPC con LLM.
+
+### 39.1 Fauna ambiental C0
+
+C0 representa animales/vida cotidiana **no combatible**.
+
+No tiene:
+- HP;
+- XP;
+- loot;
+- inventario;
+- familia de antifarmeo;
+- combate;
+- bloqueo de movimiento;
+- persistencia individual.
+
+Un C0 puede:
+- cruzar;
+- huir;
+- ignorar;
+- alimentarse;
+- emitir sonido;
+- dejar una observación breve.
+
+Si el jugador intenta atacarlo en v1, **no se inicia combate**. La presencia se retira/desaparece con una respuesta legible.
+
+### 39.2 Densidad C0 por perfil
+
+Historia marca compatibilidad/hábitat; Jugabilidad usa uno de estos perfiles:
+
+- `ambient_none` → **0%**
+- `ambient_sparse` → **15%**
+- `ambient_normal` → **30%**
+- `ambient_rich` → **45%**
+
+Máximo visible v1:
+- **1 evento C0 por sala**.
+
+No sumar varios rolls para “llenar” una sala.
+
+### 39.3 Selección C0 compartida y determinista
+
+Para evitar que cada jugador vea un mundo totalmente distinto, la presencia ambiental se deriva de una fase temporal compartida.
+
+`ambient_epoch = floor(unix_time / 600)`
+
+Cada 10 minutos reales puede cambiar la observación ambiental de una sala.
+
+Selección:
+- hash/semilla estable con `ambient_epoch + room_id + habitat_id`;
+- solo especies C0 permitidas por Historia para ese hábitat;
+- mismo resultado para jugadores en la misma sala/fase;
+- sin tabla DB en v1.
+
+La implementación debe permitir inyectar tiempo/RNG/hash para tests.
+
+### 39.4 Anti-spam C0
+
+Una misma sesión no vuelve a imprimir automáticamente el mismo evento C0 para el mismo `room_id + ambient_epoch` en cada render.
+
+Puede reaparecer:
+- al cambiar de fase;
+- al reconectar;
+- si una acción explícita de observación lo consulta y sigue vigente.
+
+Moverse ida/vuelta no debe producir una cascada de frases repetidas.
+
+### 39.5 Prioridad C0 frente a combate/contenido
+
+Orden:
+1. combate activo;
+2. encuentro scripted;
+3. encuentro combatible aleatorio C1+;
+4. presencia ambiental C0.
+
+Si existe 1–3, C0 puede omitirse de la presentación para mantener legibilidad.
+
+C0 jamás reemplaza ni cancela un scripted.
+
+### 39.6 NPC ambiental N0
+
+N0 representa presencia humana/multiespecie de fondo:
+- habitante;
+- trabajador;
+- viajero;
+- visitante;
+- grupo descrito como una sola presencia ambiental.
+
+No tiene:
+- memoria;
+- LLM;
+- quest;
+- reputación;
+- inventario funcional;
+- comercio;
+- mutación de estado.
+
+Puede ofrecer:
+- descripción breve;
+- bark/frase corta preescrita;
+- respuesta fija si el jugador intenta hablar.
+
+No se promueve automáticamente a N2/N3/N4.
+
+### 39.7 Densidad N0
+
+Perfiles:
+
+- `population_none` → **0%**
+- `population_sparse` → **15%**
+- `population_normal` → **30%**
+- `population_busy` → **55%**
+- `population_hub` → **75%**
+
+Máximo:
+- **1 presencia N0 ambiental por sala** en v1;
+- NPCs scripted/definidos no cuentan para ese máximo.
+
+Historia define qué perfiles son plausibles por sala/rol.
+
+### 39.8 Fase compartida N0
+
+`population_epoch = floor(unix_time / 900)`
+
+La población ambiental puede cambiar cada **15 minutos reales**.
+
+Selección determinista por:
+- epoch;
+- room_id;
+- tabla de roles permitidos.
+
+Mismos jugadores/sala/fase ven la misma presencia ambiental.
+
+No DB para N0 efímero.
+
+### 39.9 Prioridad N0
+
+- NPC scripted nunca es sustituido.
+- N0 puede coexistir con NPCs definidos si no vuelve ilegible la sala.
+- combate activo puede ocultar la presentación ambiental.
+- N0 no bloquea salida ni interacción principal.
+- N0 no puede otorgar recompensa, abrir acceso, entregar objeto ni completar hito.
+
+### 39.10 Conversación con N0
+
+`hablar <presencia ambiental>` devuelve una respuesta fija/bark si Narrativa la proporciona.
+
+No invoca proveedor LLM.
+
+Si una presencia necesita:
+- identidad persistente;
+- memoria;
+- conocimiento propio;
+- acción estructurada;
+entonces deja de ser N0 y debe usar N1–N4 según #332.
+
+### 39.11 N5-lite — viajeros definidos
+
+Un viajero definido puede moverse por una ruta autorizada sin simulación social compleja.
+
+Reglas de Jugabilidad:
+- movimiento por **tiempo**, nunca por acciones del jugador;
+- cadencia de referencia inicial: **10 minutos reales por paso**, configurable por NPC;
+- solo conexiones reales de la ruta;
+- puede tener pausas/landmarks explícitos;
+- nunca entra a hogar privado/interior no autorizado;
+- no teleporta;
+- si su ruta termina, puede detenerse, invertir sentido o desaparecer según contrato del NPC;
+- conversación/LLM no decide movimiento.
+
+Persistencia:
+- solo NPCs expresamente marcados `persistent_traveler=true` necesitan posición persistente;
+- viajeros ambientales efímeros pueden derivar posición determinísticamente del tiempo/ruta sin DB.
+
+### 39.12 Separación de capas
+
+Un mismo room puede contener:
+- NPC scripted;
+- presencia N0;
+- señales ambientales C0;
+pero la interfaz debe priorizar legibilidad.
+
+No convertir cantidad de entidades en obligación de mostrar cinco párrafos.
+
+Regla de presentación v1:
+- máximo una frase C0;
+- máximo una presencia N0;
+- NPCs definidos se muestran normalmente;
+- combate domina la presentación cuando está activo.
+
+### 39.13 Principio
+
+**Poblar el mundo no significa multiplicar combates ni multiplicar llamadas a IA.**
+
+C0 y N0 existen precisamente para que haya vida que no necesita convertirse en sistema pesado.
