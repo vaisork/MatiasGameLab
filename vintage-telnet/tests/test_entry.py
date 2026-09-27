@@ -259,6 +259,16 @@ class EntryTests(unittest.TestCase):
         self.assertEqual(html.count('action="/login"'), 1)
         self.assertEqual(html.count('action="/register"'), 1)
         self.assertIn('min-height:44px', html)
+        self.assertIn('data-view="welcome" aria-labelledby="welcome-title"', html)
+        self.assertIn('const title = target && target.querySelector("h1,[id$=\'-title\']");', html)
+        self.assertIn("onboarding.setAttribute(\"aria-labelledby\", title.id);", html)
+        self.assertIn('target.querySelector(\'input:not([type="hidden"]),button\') || title', html)
+        self.assertIn("focusTarget.tabIndex = -1;", html)
+
+        login_html = self.client.get("/?view=login").get_data(as_text=True)
+        self.assertIn('data-view="login" aria-labelledby="login-title"', login_html)
+        register_html = self.client.get("/?view=register").get_data(as_text=True)
+        self.assertIn('data-view="register" aria-labelledby="register-title"', register_html)
 
     def test_pending_player_gets_process_state_copy(self):
         self.assertEqual(self.register().status_code, 303)
@@ -310,6 +320,39 @@ class EntryTests(unittest.TestCase):
         self.assertIn('data-help-tab="kids"', html)
         self.assertIn("Explícamelo fácil", html)
         self.assertIn("Los atributos ayudan, no juegan por ti", html)
+
+        # Accesibilidad de superficies secundarias: cada dialog tiene nombre
+        # accesible y los tabs enlazan explícitamente con su tabpanel.
+        self.assertIn('<dialog id="characterDialog" aria-labelledby="characterDialogTitle">', html)
+        self.assertIn('<strong id="characterDialogTitle">Personaje</strong>', html)
+        self.assertIn('id="mapTabGeneral" type="button" role="tab" aria-selected="true" aria-controls="mapPanelGeneral"', html)
+        self.assertIn('id="mapPanelGeneral" role="tabpanel" aria-labelledby="mapTabGeneral"', html)
+        self.assertIn('id="mapTabHeading" type="button" role="tab" aria-selected="false" aria-controls="mapPanelHeading"', html)
+        self.assertIn('id="mapPanelHeading" role="tabpanel" aria-labelledby="mapTabHeading"', html)
+        self.assertIn('id="helpTabQuick" type="button" role="tab" aria-selected="true" aria-controls="helpPanelQuick"', html)
+        self.assertIn('id="helpPanelQuick" role="tabpanel" aria-labelledby="helpTabQuick"', html)
+        self.assertIn('id="helpTabKids" type="button" role="tab" aria-selected="false" aria-controls="helpPanelKids"', html)
+        self.assertIn('id="helpPanelKids" role="tabpanel" aria-labelledby="helpTabKids"', html)
+        self.assertIn('.segment:hover{border-color:#8a6d47}', html)
+        self.assertIn('.segment:focus-visible{outline:3px solid #f0d18c;outline-offset:2px}', html)
+        self.assertIn('event.key === "ArrowRight" || event.key === "ArrowDown"', html)
+        self.assertIn('event.key === "Home"', html)
+        self.assertIn('other.tabIndex = selected ? 0 : -1', html)
+        self.assertIn('const dialogInvokers = new WeakMap();', html)
+        self.assertIn('dialogInvokers.set(d, button);', html)
+        self.assertIn('if (invoker && invoker.isConnected) invoker.focus();', html)
+        self.assertIn('dialogInvokers.delete(d);', html)
+
+        # En móvil los controles interactivos principales conservan objetivos
+        # táctiles de al menos 44 px; el modo compacto no debe volver a 32–38 px.
+        self.assertIn('@media(max-width:640px){\n      .action{min-height:44px', html)
+        self.assertIn('.context-actions .action{min-height:44px}', html)
+        self.assertIn('.btn{min-height:44px}', html)
+        self.assertIn('.dpad{grid-template-columns:repeat(3,44px);grid-template-rows:repeat(3,44px)}', html)
+        self.assertIn('.commandbar input{min-height:44px}', html)
+        self.assertIn('.combat-row.defenses .action{min-height:44px}', html)
+        self.assertNotIn('.context-actions .action{min-height:34px}', html)
+        self.assertNotIn('.combat-row.defenses .action{min-height:32px}', html)
 
         self.assertIn(".art-neutral{height:100%;background:#0d131c}", html)
         self.assertNotIn(".location-art-fallback", html)
@@ -491,6 +534,47 @@ class EntryTests(unittest.TestCase):
 
         self.assertNotIn("button-huir-danger.png", html)
         self.assertNotIn("btn-art btn-flee", html)
+
+    def test_ajax_swapped_controls_keep_dialogs_and_prefill_interactive(self):
+        """#135: los controles dentro de game-shell se reemplazan por fetch;
+        sus acciones JS deben usar delegación o resolver nodos actuales, nunca
+        listeners/referencias capturados solo al cargar la página."""
+        self.assertEqual(self.register().status_code, 303)
+        store.set_status(self.path, "matias", "approved")
+        self.assertEqual(self.post("/species", {"species": "humano"}).status_code, 303)
+        self.assertEqual(self.post("/class", {"player_class": "sombra"}).status_code, 303)
+        html = self.client.get("/").get_data(as_text=True)
+
+        self.assertIn('event.target.closest("[data-open]")', html)
+        self.assertIn("document.getElementById(button.dataset.open)", html)
+        self.assertNotIn('document.querySelectorAll("[data-open]").forEach', html)
+
+        self.assertIn('event.target.closest(\'[data-open="characterDialog"]\')', html)
+        self.assertIn('event.target.closest("[data-inventory-open]")', html)
+        self.assertIn('event.target.closest("[data-map-open]")', html)
+
+        self.assertIn('const commandInput = document.getElementById("commandInput");', html)
+        self.assertNotIn('const inventoryButton = document.querySelector("[data-inventory-open]");', html)
+        self.assertNotIn('const mapButton = document.querySelector("[data-map-open]");', html)
+
+        # Si una acción sustituye el bloque de controles por AJAX, el botón
+        # enfocado desaparece del DOM. Junior 2 conserva el foco en el control
+        # equivalente o, si cambia el estado, en el nuevo grupo de controles.
+        self.assertIn('const actionFocusHint = (form, submitter) => {', html)
+        self.assertIn('document.activeElement !== submitter', html)
+        self.assertIn('const restoreActionFocus = hint => {', html)
+        self.assertIn('const focusHint = actionFocusHint(form, event.submitter);', html)
+        self.assertIn('button.focus({preventScroll: true});', html)
+        self.assertIn('controls.focus({preventScroll: true});', html)
+        self.assertIn('restoreActionFocus(focusHint);', html)
+        self.assertIn('id="gameLiveStatus" role="status" aria-live="polite" aria-atomic="true"', html)
+        self.assertIn('const announceGameState = () => {', html)
+        self.assertIn('"Ubicación: " + place.textContent.trim() + "." + combat', html)
+        self.assertIn('announceGameState();', html)
+        self.assertIn('let cancelActiveReveal = null;', html)
+        self.assertIn('if (cancelActiveReveal) {', html)
+        self.assertIn('cancelActiveReveal = stopReveal;', html)
+        self.assertIn('revealLog.removeEventListener("click", revealAll);', html)
 
     def test_inventory_ui_consumes_authoritative_api_without_local_rules(self):
         self.assertEqual(self.register().status_code, 303)
