@@ -306,6 +306,22 @@ class EntryTests(unittest.TestCase):
         self.assertIn("Explícamelo fácil", html)
         self.assertIn("Los atributos ayudan, no juegan por ti", html)
 
+        # Accesibilidad de superficies secundarias: cada dialog tiene nombre
+        # accesible y los tabs enlazan explícitamente con su tabpanel.
+        self.assertIn('<dialog id="characterDialog" aria-labelledby="characterDialogTitle">', html)
+        self.assertIn('<strong id="characterDialogTitle">Personaje</strong>', html)
+        self.assertIn('id="mapTabGeneral" type="button" role="tab" aria-selected="true" aria-controls="mapPanelGeneral"', html)
+        self.assertIn('id="mapPanelGeneral" role="tabpanel" aria-labelledby="mapTabGeneral"', html)
+        self.assertIn('id="mapTabHeading" type="button" role="tab" aria-selected="false" aria-controls="mapPanelHeading"', html)
+        self.assertIn('id="mapPanelHeading" role="tabpanel" aria-labelledby="mapTabHeading"', html)
+        self.assertIn('id="helpTabQuick" type="button" role="tab" aria-selected="true" aria-controls="helpPanelQuick"', html)
+        self.assertIn('id="helpPanelQuick" role="tabpanel" aria-labelledby="helpTabQuick"', html)
+        self.assertIn('id="helpTabKids" type="button" role="tab" aria-selected="false" aria-controls="helpPanelKids"', html)
+        self.assertIn('id="helpPanelKids" role="tabpanel" aria-labelledby="helpTabKids"', html)
+        self.assertIn('event.key === "ArrowRight" || event.key === "ArrowDown"', html)
+        self.assertIn('event.key === "Home"', html)
+        self.assertIn('other.tabIndex = selected ? 0 : -1', html)
+
         self.assertIn(".art-neutral{height:100%;background:#0d131c}", html)
         self.assertNotIn(".location-art-fallback", html)
         self.assertNotIn("btn-art btn-flee", html)
