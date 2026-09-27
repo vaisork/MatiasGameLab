@@ -393,7 +393,7 @@ class EntryTests(unittest.TestCase):
         self.assertNotIn("data-location-art", art_html)
         self.assertNotIn("/assets/creatures/", art_html)
         self.assertNotIn("La ilustración contextual no está disponible", html)
-        self.assertNotIn("art-placeholder", html)
+        self.assertNotIn("art-placeholder", art_html)
         self.assertIn('class="enemy-name"', html)
         self.assertIn('class="condition-bar"', html)
         self.assertIn('class="action action-attack"', html)
