@@ -1,5 +1,53 @@
 # Handoff — Desarrollador de Servidor — Vintage Telnet
 
+## Entrega limpia de Issues #209 y #211 — Portada pública y lectores canónicos — 2026-09-26
+
+- **DESARROLLADOR:** Antigravity (Relevo de desarrollo).
+- **HEAD BASE:** `e0ca3a83e2ae2d1cf002bce64f956b92607ca64a` (`origin/main` remoto vigente).
+- **TAREA:** Issues #209 y #211 — Implementación de la portada pública de Vintage Telnet con 3 accesos claros:
+  1. *Conocer el Mundo* (contenido canónico de #211).
+  2. *Guía del aventurero* (contenido de `ENTRY_ADVENTURER_GUIDE.md`).
+  3. *Entrar / Crear cuenta* (acceso directo a formularios de autenticación).
+- **RAMA:** `antigravity/vt-209-211-clean` (rama limpia creada desde `origin/main`; descarta totalmente la PR #219 de Jules y no reutiliza ramas divergentes).
+- **ARCHIVOS MODIFICADOS / CREADOS:**
+  - `vintage-telnet/KNOW_THE_WORLD_MENU.md`: rescatado intacto de `origin/historia/vt-conocer-el-mundo` (#211).
+  - `vintage-telnet/HANDOFF_KNOW_THE_WORLD_UI.md`: rescatado intacto de #211.
+  - `vintage-telnet/server/content_parser.py`: nuevo parser modular que estructura ambos documentos, aísla metadatos internos e inserta las imágenes canónicas aprobadas en sus marcadores sin requerir dependencias externas (sin `markdown==3.11`).
+  - `vintage-telnet/server/app.py`: agrega rutas públicas de solo lectura `/mundo` y `/guia`, e integra parámetro `view` en `/` para acceso directo sin scroll.
+  - `vintage-telnet/server/templates/_onboarding_guest.html`: reorganiza la pantalla de bienvenida con los 3 accesos claros de forma compacta y accesible.
+  - `vintage-telnet/server/templates/entry.html`: estilos CSS y responsividad móvil para las opciones del portal público.
+  - `vintage-telnet/server/templates/world.html`: plantilla dedicada de lectura con índice, navegación por 5 capítulos, opción "Leer todo", imágenes canónicas aprobadas y mejora progresiva para cambio instantáneo de pestañas con o sin JavaScript.
+  - `vintage-telnet/server/templates/guide.html`: plantilla dedicada para la Guía del Aventurero con las 15 secciones aprobadas, índice jump navigation y enlaces de retorno.
+  - `vintage-telnet/tests/test_public_onboarding.py`: suite exhaustiva de 11 tests automatizados que cubren accesos, navegación, ausencia de metadatos/notas internas y seguridad.
+  - `vintage-telnet/server/HANDOFF.md`: este registro.
+- **ESTADO:** LISTO PARA REVISIÓN / SUPERA Y REEMPLAZA A PR #219.
+
+### Verificación y pruebas automatizadas
+
+Ejecutado en Windows con Python 3.12:
+- `tests.test_public_onboarding`: **11 tests pasando verde (1.696 s)**.
+  - Portada con los 3 accesos visibles.
+  - Acceso directo a `view=login` y `view=register`.
+  - `/mundo`: público, de solo lectura, sin alterar base de datos.
+  - `/mundo`: navegación por capítulos (1..5) e índice "Leer todo".
+  - `/mundo`: cero fugas de notas internas (`Clasificación`, `Responsable`, `NOTA DE DISEÑO`, `Reglas de implementación`, etc.).
+  - `/mundo`: imágenes canónicas insertadas en marcadores aprobados; marcador 3 omitido limpiamente sin placeholders.
+  - `/guia`: público, de solo lectura, con las 15 secciones aprobadas e índice jump navigation.
+  - `/guia`: cero fugas de notas editoriales (`Tipo:`, `Autoridad:`, `Regla editorial:`, `APROBADO POR JAVIER`).
+  - Flujo de registro y login existente 100% preservado.
+  - Cabeceras de seguridad y nonces CSP presentes y válidos.
+- `tests.test_entry`: **36 tests pasando verde (10.579 s)**.
+- `tests.test_http` y `tests.test_dm_private`: **5 tests pasando verde (3.675 s)**.
+
+### Relación con #211 y PR #219
+
+- Cumple la cadena solicitada: consume el paquete canónico de #211 y lo integra a la interfaz de usuario (#209).
+- Reemplaza y deja obsoleta a la PR #219 de Jules, la cual modificó indebidamente archivos ajenos (`GAMEPLAY.md`, `DEATH_PLAYTEST.md`, `SHARED_RESEARCH.md`), agregó una dependencia innecesaria a `requirements.txt` y no implementó la interfaz requerida.
+- No modifica `GAMEPLAY.md`, `DEATH_PLAYTEST.md`, `requirements.txt` ni archivos de Senku u Ojo de Agua.
+- No realiza merge ni despliegue directo a `main`.
+
+---
+
 ## Relevo de #207 — EDRAN-01 — 2026-09-26
 
 - **DESARROLLADOR:** Codex.
