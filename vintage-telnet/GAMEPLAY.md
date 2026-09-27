@@ -3040,3 +3040,159 @@ No inferir:
 ### 37.8 Principio
 
 **La fase climática pertenece al mundo; el clima visible pertenece a la región. Ninguno pertenece al jugador.**
+
+
+## 38. Fauna mayor regional — contrato v1
+
+**Estado:** APROBADO PARA CONTENIDO Y PRIMERA IMPLEMENTACIÓN.  
+**Canon:** Issue #330 / PR #331 — `MAJOR_FAUNA.md` + `MAJOR_FAUNA_TERRITORIES.md`.
+
+La **fauna mayor** es una categoría de criaturas naturales por encima de la fauna menor y de las amenazas superiores regionales iniciales.
+
+No equivale a “jefe”.
+
+### 38.1 Jerarquía funcional
+
+- fauna menor → presencia ordinaria/regional;
+- amenaza superior → peligro regional fuerte, fuera de pools ordinarios iniciales;
+- fauna mayor → peligro natural excepcional, territorio propio y advertencias múltiples;
+- jefe → contenido explícitamente marcado como jefe, con contrato propio.
+
+Ser fauna mayor:
+- no activa pérdida de arma;
+- no activa recompensa de jefe;
+- no cambia respawn;
+- no convierte una muerte en permanente;
+- no otorga privilegios de boss por potencia numérica.
+
+### 38.2 Sin escalado automático
+
+La fauna mayor usa estadísticas fijas por especie/encuentro.
+
+No escala automáticamente al nivel del personaje.
+
+Un jugador demasiado débil puede encontrar una criatura que lo supera ampliamente y la respuesta correcta puede ser retirarse.
+
+### 38.3 Territorio en tres anillos
+
+Consumir los tres anillos de Historia.
+
+**Anillo I — borde**
+- mínimo un rastro físico + cambio leve en fauna;
+- 0 combate forzado;
+- retirada libre del territorio.
+
+**Anillo II — territorio activo**
+- señales recientes + cambio claro en fauna;
+- puede existir avistamiento/sonido;
+- 0 combate forzado por defecto;
+- retirada todavía disponible antes de compromiso.
+
+**Anillo III — proximidad crítica**
+- última señal inequívoca;
+- el jugador recibe al menos una decisión real antes de quedar comprometido, salvo que él mismo ataque primero;
+- opciones mínimas: observar/evaluar, retroceder cuando el comportamiento lo permita, o provocar/iniciar combate.
+
+La criatura no “aparece de la nada”.
+
+### 38.4 Combate y retirada
+
+Una vez iniciado el combate:
+- usa el motor normal;
+- las acciones preparadas pueden usar §36;
+- huida usa contrato específico de especie;
+- una huida exitosa termina persecución salvo que el contrato de esa especie diga lo contrario;
+- fauna mayor puede abandonar el combate por conducta propia sin ser derrotada.
+
+Matarla no es la única resolución válida.
+
+### 38.5 Derrota del jugador
+
+Si fauna mayor lleva al jugador a 0 HP:
+- muerte/respawn normal;
+- inventario y equipo permanecen conforme reglas vigentes;
+- **no pérdida de arma** por ser fauna mayor;
+- cualquier pérdida de arma PvE requiere un jefe explícito conforme §11.
+
+### 38.6 Recompensas
+
+V1:
+- XP usa familia/referencia propia y antifarmeo normal;
+- no crear drop especial automático;
+- no crear material de crafting automático;
+- no crear “trofeo de jefe” por analogía.
+
+Recompensas especiales futuras requieren contrato de contenido propio.
+
+### 38.7 Primera fauna mayor: Cargallanura
+
+**Región:** Edran.  
+**Rol:** herbívoro territorial de gran masa.  
+**No jefe.**
+
+Perfil v1:
+- family: `cargallanura`
+- reference_level: **12**
+- HP: **210**
+- precisión básica: **58%**
+- daño bruto básico: **26**
+- reducción física: **25%**
+- flee_agilidad: **10**
+- flee_percepcion: **12**
+
+Objetivo:
+- Abrumador para personajes iniciales;
+- peligro serio incluso después de superar las amenazas tempranas;
+- no diseñado como requisito obligatorio de progreso.
+
+### 38.8 Acción preparada — Carga comprometida
+
+Cargallanura puede preparar una carga frontal si decide combatir y dispone de espacio.
+
+Señal:
+- se coloca de frente;
+- baja cabeza;
+- fija patas;
+- resopla/golpea el suelo.
+
+Contrato:
+- `prepared_action = cargallanura_charge`
+- `frontal = true`
+- `interruptible = true`
+- precisión si resuelve sin respuesta: **70%**
+- daño bruto: **38**
+- debe existir una intervención del jugador antes de resolver.
+
+La interrupción no significa lanzar físicamente al animal; puede significar romper alineación, obligarlo a frenar o desviar la trayectoria.
+
+Las cuatro capacidades de §36 deben tener respuesta coherente:
+- Juramentado sostiene/reduce;
+- Arcano altera la carga;
+- Sombra rompe el foco/ángulo;
+- Artífice intenta interrumpir con tiro técnico.
+
+### 38.9 Conducta de Cargallanura
+
+- no caza al jugador;
+- no inicia combate por simple presencia en Anillo I/II;
+- si tiene una salida razonable, puede abandonar el encuentro;
+- una huida exitosa del jugador termina la persecución;
+- no persigue a través de múltiples salas;
+- no aparece en Valdren ni parcelas densas;
+- no comparte encuentro ordinario con Cornalomo.
+
+### 38.10 Criterio de prueba
+
+Antes de integrar Cargallanura:
+1. señales de Anillo I/II/III existen;
+2. nivel 1 lo evalúa como Abrumador;
+3. puede matar nivel 1 si este insiste;
+4. retirarse antes del combate es posible;
+5. huida durante combate es posible;
+6. muerte conserva arma/equipo;
+7. la carga preparada concede una intervención;
+8. ninguna capacidad de clase convierte el encuentro en trivial;
+9. no entra en pools aleatorios ordinarios;
+10. no bloquea ruta principal.
+
+**Principio:** fauna mayor debe enseñar “este territorio no gira alrededor de tu nivel”.
