@@ -540,6 +540,17 @@ class EntryTests(unittest.TestCase):
         self.assertNotIn('const inventoryButton = document.querySelector("[data-inventory-open]");', html)
         self.assertNotIn('const mapButton = document.querySelector("[data-map-open]");', html)
 
+        # Si una acción sustituye el bloque de controles por AJAX, el botón
+        # enfocado desaparece del DOM. Junior 2 conserva el foco en el control
+        # equivalente o, si cambia el estado, en el nuevo grupo de controles.
+        self.assertIn('const actionFocusHint = (form, submitter) => {', html)
+        self.assertIn('document.activeElement !== submitter', html)
+        self.assertIn('const restoreActionFocus = hint => {', html)
+        self.assertIn('const focusHint = actionFocusHint(form, event.submitter);', html)
+        self.assertIn('button.focus({preventScroll: true});', html)
+        self.assertIn('controls.focus({preventScroll: true});', html)
+        self.assertIn('restoreActionFocus(focusHint);', html)
+
     def test_inventory_ui_consumes_authoritative_api_without_local_rules(self):
         self.assertEqual(self.register().status_code, 303)
         store.set_status(self.path, "matias", "approved")
