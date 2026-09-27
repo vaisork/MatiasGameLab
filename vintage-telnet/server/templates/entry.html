@@ -663,6 +663,7 @@
   {% else %}
     <div class="layout">
       <main class="game-shell{% if room.encounter %} in-combat{% endif %}">
+        <p class="sr-only" id="gameLiveStatus" role="status" aria-live="polite" aria-atomic="true"></p>
         <header class="place-bar{% if room.encounter %} combat{% endif %}" data-swap="place">
           <svg class="ui-icon" aria-hidden="true"><use href="{{ '#icon-swords' if room.encounter else '#icon-pin' }}"/></svg>
           <strong id="placeTitle">{{ room.name.upper() }}</strong>
@@ -1507,6 +1508,13 @@
   // y solo se reemplazan las regiones [data-swap] con la respuesta. Si la
   // respuesta no es una pantalla de juego, se recarga normal.
   let actionInFlight = false;
+  const announceGameState = () => {
+    const live = document.getElementById("gameLiveStatus");
+    const place = document.getElementById("placeTitle");
+    if (!live || !place) return;
+    const combat = document.querySelector(".place-bar.combat") ? " Combate activo." : "";
+    live.textContent = "Ubicación: " + place.textContent.trim() + "." + combat;
+  };
   const actionFocusHint = (form, submitter) => {
     if (!(submitter instanceof HTMLElement) || document.activeElement !== submitter) return null;
     const scope = form.closest(".dpad") ? "dpad"
@@ -1589,6 +1597,7 @@
         if (input) input.value = "";
       }
       afterRender();
+      announceGameState();
       restoreActionFocus(focusHint);
     } catch (_error) {
       window.location.assign("/");
