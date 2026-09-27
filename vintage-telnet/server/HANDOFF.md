@@ -90,6 +90,35 @@ configuración/motor. Hay precondiciones antiguas de tests por revisar y limitac
 de entorno Windows. **Confirmación de alcance:** solo #207 y documentación de relevo;
 sin merge, deploy ni pruebas físicas en Raspberry realizadas por esta sesión.
 
+### Validación final en Raspberry — Codex — 2026-09-26
+
+- **Estado:** LISTO PARA REVISIÓN.
+- **Entorno aislado:** `/home/jdiaz/MatiasGameLab-vt207`, virtualenv
+  `.venv-vt207`, Python 3.13.5; solo datos temporales de tests.
+- Se controló `server.encounters._rng` en dos pruebas históricas que requieren
+  `valdren_sendero` vacío: descanso de campo y retorno tras huir. No se cambió
+  lógica de descanso, huida, combate ni configuración EDRAN-01.
+- Los errores Windows de SQLite y `fcntl` no se reproducen en Linux. En HEAD BASE,
+  la prueba de rutas eliminadas y `test_vt_deploy` también pasan; son limitaciones
+  del entorno Windows, ajenas a #207. La migración v8 pasa en la suite Linux.
+- Validación final desde `vintage-telnet/`:
+
+  ```text
+  ../.venv-vt207/bin/python -m unittest discover -s tests -p test_random_encounters.py -v
+  16 tests, OK
+  ../.venv-vt207/bin/python -m unittest tests.test_pilot_lindero_roto.PilotIntegrationTests.test_resting_outside_combat_heals_and_reduces_fatigue tests.test_pilot_lindero_roto.PilotIntegrationTests.test_fleeing_successfully_returns_toward_valdren_and_clears_encounter -v
+  2 tests, OK
+  ../.venv-vt207/bin/python -m unittest discover -s tests -v
+  309 tests, OK (68.718 s)
+  ../.venv-vt207/bin/python -m pip check
+  No broken requirements found.
+  git diff --check
+  OK
+  ```
+- Sin producción, servicios, secretos, bases reales, deploy, merge ni reinicios.
+- **Pendientes:** revisión e integración por el flujo normal; no hay pendiente
+  técnico de #207. No se inició #216 ni #213.
+
 ---
 
 ## Entrega histórica — Issue #57 (conservada)
