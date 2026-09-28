@@ -18,7 +18,7 @@ import random
 import time
 from typing import Dict, List, Optional
 
-from server import combat, items, store, world
+from server import combat, items, respawn as respawn_logic, store, world
 
 
 @dataclass
@@ -364,7 +364,7 @@ def resolve_boss_attack_round(
 
     # 4. Comprobar derrota del jugador (§41.6, §41.7)
     if player_hp <= 0:
-        return resolve_boss_player_defeat(db_path, player, boss, messages=messages, now=now)
+        return resolve_boss_player_defeat(db_path, player, boss, messages=messages, now=now, current_wound=new_wound)
 
     # Personaje sigue en pie
     store.update_combat_state(
@@ -379,6 +379,7 @@ def resolve_boss_player_defeat(
     boss: BossContract,
     messages: List[str] = None,
     now: Optional[float] = None,
+    current_wound: Optional[str] = None,
 ) -> dict:
     """Resuelve la caída de un jugador ante el jefe C5 (§41.6, §41.7)."""
     player = dict(player)
@@ -399,19 +400,14 @@ def resolve_boss_player_defeat(
             # §41.9: Sin arma equipada: no sustituye la penalización por armadura, inventario, etc.
             messages.append("No llevabas ningún arma que el jefe pudiera arrebatar.")
 
-    # Muerte y respawn canónicos (60% HP, 40 fatiga, herida degradada 1 grado, lugar seguro)
-    respawn = combat.respawn_state(player["hp_max"])
-    respawn_wound = combat.respawn_wound(player.get("wound", "ninguna"))
-    store.update_combat_state(
+    # Muerte y respawn canónicos mediante la autoridad común #478.
+    respawn_result = respawn_logic.apply_player_respawn(
         db_path,
-        player["id"],
-        hp_current=respawn["hp_current"],
-        fatigue=respawn["fatigue"],
-        wound=respawn_wound,
+        player,
+        current_wound=current_wound if current_wound is not None else player.get("wound", "ninguna"),
+        death_room_id=player.get("room"),
     )
-    safe_room = world.get_room("valdren_centro")
-    safe_room_name = safe_room["name"] if safe_room else "un lugar seguro"
-    store.move_player(db_path, player["id"], "valdren_centro", None)
+    safe_room_name = respawn_result["room_name"]
     messages.append(f"Vuelves en ti en {safe_room_name}.")
     messages.append("Conservas tu equipo e inventario." if not lost_weapon_info else "Conservas el resto de tu equipo e inventario.")
 
@@ -493,7 +489,7 @@ def resolve_boss_player_flee(
 
     player_hp = player["hp_current"] - (boss_damage if boss_hits else 0)
     if player_hp <= 0:
-        return resolve_boss_player_defeat(db_path, player, boss, messages=messages, now=now)
+        return resolve_boss_player_defeat(db_path, player, boss, messages=messages, now=now, current_wound=new_wound)
 
     store.update_combat_state(db_path, player["id"], hp_current=round(player_hp), wound=new_wound)
     return {"outcome": "failed", "messages": messages}
@@ -606,7 +602,7 @@ def resolve_boss_dodge_round(
         messages.append(f"Sufres una herida {new_wound}.")
     player_hp = player["hp_current"] - boss_damage
     if player_hp <= 0:
-        return resolve_boss_player_defeat(db_path, player, boss, messages=messages, now=now)
+        return resolve_boss_player_defeat(db_path, player, boss, messages=messages, now=now, current_wound=new_wound)
 
     store.update_combat_state(
         db_path, player["id"], hp_current=round(player_hp), fatigue=round(fatigue), wound=new_wound
@@ -661,7 +657,7 @@ def resolve_boss_resist_round(
         messages.append(f"Sufres una herida {new_wound}.")
     player_hp = player["hp_current"] - boss_damage
     if player_hp <= 0:
-        return resolve_boss_player_defeat(db_path, player, boss, messages=messages, now=now)
+        return resolve_boss_player_defeat(db_path, player, boss, messages=messages, now=now, current_wound=new_wound)
 
     store.update_combat_state(
         db_path, player["id"], hp_current=round(player_hp), fatigue=round(fatigue), wound=new_wound
@@ -720,7 +716,7 @@ def resolve_boss_block_round(
         messages.append(f"Sufres una herida {new_wound}.")
     player_hp = player["hp_current"] - boss_damage
     if player_hp <= 0:
-        return resolve_boss_player_defeat(db_path, player, boss, messages=messages, now=now)
+        return resolve_boss_player_defeat(db_path, player, boss, messages=messages, now=now, current_wound=new_wound)
 
     store.update_combat_state(
         db_path, player["id"], hp_current=round(player_hp), fatigue=round(fatigue), wound=new_wound
