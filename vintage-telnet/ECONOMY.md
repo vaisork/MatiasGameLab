@@ -435,6 +435,62 @@ No todos los jugadores deben seguir exactamente esta curva.
 
 ---
 
+
+
+# 17.1 Escenarios de ahorro temprano
+
+Los precios se validan contra tres perfiles, partiendo de **20 sellos iniciales**.
+
+## A. Jugador ahorrador
+- ingreso: 35–40 sellos/h;
+- gasto en recuperación: 5–10 sellos/h;
+- ahorro neto: 25–35 sellos/h.
+
+Tiempo aproximado desde creación:
+- Varita 40 → **<1 h**
+- Puñal 50 → **~1 h**
+- Arco 65 → **~1.5 h**
+- Espada 85 → **~2 h**
+
+Este jugador elige posponer recuperación/consumo y debe progresar más rápido económicamente.
+
+## B. Jugador normal
+- ingreso: 30–35 sellos/h;
+- gasto: 10–15 sellos/h;
+- ahorro neto: 15–25 sellos/h.
+
+Tiempo aproximado:
+- Varita → **1–1.5 h**
+- Puñal → **1.5–2 h**
+- Arco → **2–3 h**
+- Espada → **3–4 h**
+
+Esta es la curva objetivo principal.
+
+## C. Jugador castigado / mucha recuperación
+- ingreso: 25–30 sellos/h;
+- gasto: 18–20 sellos/h;
+- ahorro neto: 5–12 sellos/h.
+
+Puede tardar bastante más en comprar un arma, pero:
+- ya posee un arma inicial funcional;
+- comprar otra arma no es requisito para seguir jugando;
+- puede mejorar su economía reduciendo daño, huyendo mejor o escogiendo encargos.
+
+Si este perfil queda bloqueado para continuar la historia por falta de dinero, la economía falla.
+
+## Conclusión de precios
+
+Los precios **40 / 50 / 65 / 85** se mantienen para v1.
+
+No bajarlos antes de playtest porque:
+- el jugador empieza equipado;
+- la compra es alternativa/mejora horizontal temprana, no acceso básico al combate;
+- el saldo inicial de 20 reduce la primera barrera;
+- la recuperación crea una decisión real entre seguridad y ahorro.
+
+No subirlos mientras no exista evidencia de inflación real.
+
 # 18. Alarmas de inflación
 
 Registrar y revisar:
