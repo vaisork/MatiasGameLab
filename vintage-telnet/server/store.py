@@ -302,6 +302,7 @@ def initialize(path):
             # v13: REST-01 (#377 / GAMEPLAY.md 24.8-24.9). Acumula solo el
             # HP realmente restaurado por descanso de campo durante el ciclo.
             db.execute("ALTER TABLE players ADD COLUMN field_rest_budget_max REAL")
+            db.execute("ALTER TABLE players ADD COLUMN field_rest_budget_max REAL")
             db.execute("ALTER TABLE players ADD COLUMN field_rest_healed REAL NOT NULL DEFAULT 0")
         db.execute(f"PRAGMA user_version = {SCHEMA_VERSION}")
 
@@ -1012,9 +1013,7 @@ def apply_field_rest(path, player_id):
         used = max(0.0, row["field_rest_healed"] or 0.0)
         budget_max = stored_budget
 
-        # Un ciclo no nace al descansar con HP completo ni cuando una herida
-        # impide recuperar vida. Se fija en el primer descanso que sí puede
-        # curar, usando el HP faltante en ese instante (GAMEPLAY 24.8).
+        # El ciclo nace solo si este descanso realmente puede recuperar HP.
         wound_cap = row["hp_max"] * combat.WOUND_REST_HP_CAP_FRACTION[row["wound"]]
         heal_room = max(0.0, min(row["hp_max"], wound_cap) - row["hp_current"])
         if budget_max is None and heal_room > 0:
@@ -1028,7 +1027,6 @@ def apply_field_rest(path, player_id):
         )
         used_after = used + result["healed"]
 
-        # Solo una curación real inicializa el presupuesto persistente.
         budget_to_store = stored_budget
         if budget_to_store is None and result["healed"] > 0:
             budget_to_store = budget_max
