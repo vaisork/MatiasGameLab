@@ -1,8 +1,8 @@
 # Vintage Telnet — Capa narrativa de encuentros de Nhal
 
-**Issue:** #306  
-**Rol:** Narrador  
-**Alcance:** Camino de la Sombra Verde vigente en `main`.  
+**Issue:** #306
+**Rol:** Narrador
+**Alcance:** Camino de la Sombra Verde vigente en `main`.
 **Canon ecológico:** #166 / PR #281 y mapping de Historia #323.
 
 Esta capa no fija porcentajes, pesos, números de combate ni nuevas mecánicas. Su función es impedir que poblar Nhal convierta el bosque en una sucesión uniforme de peleas.
