@@ -735,25 +735,51 @@ def converse(
         or f"{npc.get('name')} asiente en silencio y continúa con sus quehaceres."
     )
 
-    try:
-        raw_output = prov.generate_reply(prompt)
-        clean_reply, proposed = extract_proposed_action(raw_output)
-        if not clean_reply:
-            logger.warning("Proveedor devolvió respuesta vacía para NPC %s; usando fallback", npc.get("id"))
+    # Manejo de la escena autoritativa de Aren (HOSHAI-WEAPON-01 / #287)
+    if npc_id == "khariel_taller_hoshai_01":
+        has_item = store.get_story_flag(db_path, player_id, "hoshai_hoja_recibida") if (db_path and player_id) else False
+        has_helped = store.get_story_flag(db_path, player_id, "hoshai_paso_ayudado") if (db_path and player_id) else False
+
+        msg_lower = (message or "").strip().lower()
+        offers_help = any(w in msg_lower for w in ("ayud", "sujet", "asegur", "paso", "amarre", "mano", "si", "sí", "claro", "vale", "apoyo", "cuenta"))
+
+        if has_item:
+            clean_reply = "Ya cumpliste aquí. La pieza que te confiaron sigue siendo la misma; no hay otra esperando por repetir el favor."
+        elif has_helped or offers_help:
+            if db_path and player_id:
+                store.set_story_flag(db_path, player_id, "hoshai_paso_ayudado", True)
+                store.grant_story_item_once(db_path, player_id, "hoshai_hoja_recibida", "hoja_hoshai", forge_validated=False)
+            clean_reply = (
+                "Entre ambos vuelven a tensar el amarre. La carga queda estable y el paso recupera su espacio. "
+                "No fue una hazaña, pero alguien tenía que detenerse a hacerlo.\n\n"
+                "—Bien. No todos los que pasan se detienen cuando hace falta una mano.\n\n"
+                "Te confían una Hoja de Hoshai todavía pendiente de Forja. Puedes conservarla, pero antes de usarla tendrá que pasar por ese proceso."
+            )
+        else:
+            clean_reply = "—Si vas a quedarte un momento, sujeta desde ahí. Con eso basta para dejar libre el paso."
+
+        is_fallback = False
+        proposed = None
+    else:
+        try:
+            raw_output = prov.generate_reply(prompt)
+            clean_reply, proposed = extract_proposed_action(raw_output)
+            if not clean_reply:
+                logger.warning("Proveedor devolvió respuesta vacía para NPC %s; usando fallback", npc.get("id"))
+                clean_reply = fallback_text
+                is_fallback = True
+                proposed = None
+            else:
+                is_fallback = False
+        except Exception as exc:
+            logger.warning(
+                "Fallo al invocar proveedor de diálogo para NPC %s (%s). Degradando a fallback.",
+                npc.get("id"),
+                exc,
+            )
             clean_reply = fallback_text
             is_fallback = True
             proposed = None
-        else:
-            is_fallback = False
-    except Exception as exc:
-        logger.warning(
-            "Fallo al invocar proveedor de diálogo para NPC %s (%s). Degradando a fallback.",
-            npc.get("id"),
-            exc,
-        )
-        clean_reply = fallback_text
-        is_fallback = True
-        proposed = None
 
     # 6. Evaluación autoritativa de acción propuesta por el Gate (Issue #247)
     gate_result: ActionGateResult | None = None
@@ -835,7 +861,45 @@ CANONICAL_NPCS: list[dict[str, Any]] = [
             "el contenido de cofres o inventarios ajenos",
         ],
         "fallback_dialogue": "Daro examina una tenaza sobre el yunque en silencio, asiente y vuelve a la fragua.",
-    }
+    },
+    {
+        "id": "khariel_taller_hoshai_01",
+        "name": "Aren",
+        "species": "Felaryn",
+        "town": "Khariel",
+        "location": "khariel_forja",
+        "role": "artesano de taller",
+        "personality": {
+            "temperament": "meticuloso, práctico y agradecido con la ayuda honesta",
+            "speech_style": "sobrio, directo y pausado",
+            "formality": "neutral",
+            "humor": "escaso",
+            "sociability": "moderada",
+            "response_length": "breve",
+            "expressive_reactions": [
+                "comprueba la tensión del amarre",
+                "asiente con sobriedad",
+                "ordena las herramientas del taller",
+            ],
+            "traits": ["artesano", "observador", "sobrio"],
+            "example_phrases": [
+                "Si vas a quedarte un momento, sujeta desde ahí. Con eso basta para dejar libre el paso.",
+                "No hace falta hacerlo perfecto. Solo que vuelva a quedar firme y podamos pasar.",
+                "Bien. No todos los que pasan se detienen cuando hace falta una mano.",
+            ],
+        },
+        "knowledge_allowed": [
+            "el funcionamiento cotidiano del taller y del paso de carga",
+            "el trabajo de mantenimiento de herramientas y amarres en Khariel",
+            "la necesidad de validación en la Forja antes de poder usar una Hoja de Hoshai",
+        ],
+        "knowledge_forbidden": [
+            "estadísticas internas, fórmulas de daño, flags ni reglas de balance",
+            "afirmar que la Hoja esté validada antes de confirmarlo el sistema",
+            "secretos antiguos, gremios inventados o historia oculta",
+        ],
+        "fallback_dialogue": "Aren asiente con sobriedad y continúa ajustando las sujeciones del taller.",
+    },
 ]
 
 
@@ -843,6 +907,22 @@ def load_canonical_npcs() -> None:
     """Carga los NPCs canónicos iniciales en el registro."""
     for npc in CANONICAL_NPCS:
         _REGISTRY.register(npc)
+
+    # Cargar fichas JSON de content/npcs/ si existen
+    from pathlib import Path
+    npcs_dir = Path(__file__).resolve().parent.parent / "content" / "npcs"
+    if npcs_dir.is_dir():
+        for file in sorted(npcs_dir.glob("*.json")):
+            try:
+                with open(file, encoding="utf-8") as f:
+                    data = json.load(f)
+                    if isinstance(data, dict) and "id" in data and "name" in data:
+                        if "location" not in data and "room_id" in data:
+                            data["location"] = data["room_id"]
+                        if _REGISTRY.get(data["id"]) is None:
+                            _REGISTRY.register(data)
+            except Exception as exc:
+                logger.warning("Fallo al cargar ficha NPC %s: %s", file, exc)
 
 
 # Cargar al importar

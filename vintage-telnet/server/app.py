@@ -275,6 +275,8 @@ def create_app(config=None):
                 view["npcs"] = [{"id": n["id"], "name": n["name"], "role": n.get("role", "habitante")} for n in npcs_present]
                 for n in npcs_present:
                     view["available_actions"].append({"action": "hablar", "targets": [n["name"].lower(), n["id"]]})
+            if room_id == "khariel_forja" and not store.get_story_flag(path, player_id, "hoshai_paso_ayudado"):
+                view["available_actions"].append({"action": "ayudar", "targets": ["aren", "paso"]})
         return view
 
     # Intenciones canonicas: boton y comando escrito deben terminar en la misma
@@ -297,6 +299,7 @@ def create_app(config=None):
     DODGE_ALIASES = {"esquivar"}
     BLOCK_ALIASES = {"bloquear"}
     RESIST_ALIASES = {"resistir"}
+    HELP_ALIASES = {"ayudar", "sujetar", "asegurar", "socorrer"}
     # GAMEPLAY.md 32.8: comandos canónicos de inventario/equipo (Issue #57).
     EQUIP_PREFIXES = ("equipar ",)
     UNEQUIP_PREFIXES = ("desequipar ",)
@@ -337,6 +340,12 @@ def create_app(config=None):
             prefix = verb + " "
             if lowered.startswith(prefix):
                 return {"type": "evaluate", "target": text[len(prefix):].strip()}
+        for verb in HELP_ALIASES:
+            if lowered == verb:
+                return {"type": "help_scene", "target": ""}
+            prefix = verb + " "
+            if lowered.startswith(prefix):
+                return {"type": "help_scene", "target": text[len(prefix):].strip()}
         for prefix in TALK_PREFIXES:
             if lowered.startswith(prefix):
                 target_raw = text[len(prefix):].strip()
@@ -1245,6 +1254,27 @@ def create_app(config=None):
                 "entry.html", player=player_now, species_list=world.SPECIES, room=room_data,
                 error=dialogue_text,
             ), 200
+        if intent["type"] == "help_scene":
+            room_id = g.player["room"]
+            player_now = store.player_for_token(path, session.get("token"))
+            room_data = room_view(room_id, g.player["id"])
+            if room_id == "khariel_forja":
+                result = npc_dialogue.converse(
+                    g.player,
+                    "khariel_taller_hoshai_01",
+                    message="ayudo a sujetar el amarre",
+                    room_id=room_id,
+                    db_path=path,
+                )
+                dialogue_text = f"{result.npc_name}: «{result.text}»"
+                return render_template(
+                    "entry.html", player=player_now, species_list=world.SPECIES, room=room_data,
+                    error=dialogue_text,
+                ), 200
+            return render_template(
+                "entry.html", player=player_now, species_list=world.SPECIES, room=room_data,
+                error="No hay ninguna tarea o paso que asegurar aquí.",
+            ), 200
         room_data = room_view(g.player["room"], g.player["id"])
         return render_template(
             "entry.html", player=g.player, species_list=world.SPECIES, room=room_data,
@@ -1503,6 +1533,31 @@ def create_app(config=None):
                 proposed_action=action_payload,
                 gate_result=gate_payload,
             ), 200
+        if kind == "help_scene":
+            room_id = g.player["room"]
+            if room_id == "khariel_forja":
+                result = npc_dialogue.converse(
+                    g.player,
+                    "khariel_taller_hoshai_01",
+                    message="ayudo a sujetar el amarre",
+                    room_id=room_id,
+                    db_path=path,
+                )
+                player_now = store.player_for_token(path, session.get("token"))
+                return jsonify(
+                    accepted=True,
+                    intent="help_scene",
+                    npc=result.npc_id,
+                    npc_name=result.npc_name,
+                    reply=result.text,
+                    player=dict(player_now) if player_now else None,
+                    current_room=room_view(player_now["room"], player_now["id"]) if player_now else None,
+                ), 200
+            return jsonify(
+                accepted=False,
+                intent="help_scene",
+                reason="No hay ninguna tarea o paso que asegurar aquí.",
+            ), 400
         return jsonify(
             accepted=False,
             intent=kind,
