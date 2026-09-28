@@ -94,11 +94,21 @@ class RegionalPoolContractTests(unittest.TestCase):
             "valdren_sendero", "valdren_camino_hundido", "valdren_parcelas_exteriores",
             "valdren_campo_rastrojo", "valdren_campos_sin_cerca",
         }
-        self.assertEqual(
-            ({room for pool in encounters.RANDOM_ENCOUNTER_POOLS.values() for room in pool["rooms"]}
-             - edran_rooms),
-            set(expected),
-        )
+        surface_branch_rooms = {
+            "bm_02_raices_sobre_roca", "bm_04_ladera_grava", "bm_05_saliente_raices",
+            "bm_06_terraza_exterior", "bm_07_risco_sombreado", "bm_08_antesala_boca",
+            "cq_02_orilla_juncos_bajos", "cq_04_raices_ribera", "cq_05_recodo_tronco",
+            "cq_06_paso_raices", "cq_07_orilla_blanda", "cq_08_recodo_sin_vista",
+            "ca_02_patio_grava", "ca_03_plataforma_baja", "ca_04_montones_descarte",
+            "ca_06_plataforma_alta", "ca_07_frente_quebrado", "ca_08_paso_bloques",
+            "ge_02_terrazas_rotas", "ge_03_repisa_viento", "ge_04_quiebre_lajas",
+            "ge_06_fisuras_paralelas", "ge_07_grava_fondo", "ge_08_ultima_luz_directa",
+            "mh_02_bordes_vencidos", "mh_03_juncos_partidos", "mh_05_terreno_dos_aguas",
+            "mh_06_restos_cauce", "mh_08_rodeo_base", "mh_09_plataforma_caida",
+        }
+        all_pool_rooms = {room for pool in encounters.RANDOM_ENCOUNTER_POOLS.values() for room in pool["rooms"]}
+        self.assertTrue(surface_branch_rooms <= all_pool_rooms)
+        self.assertEqual(all_pool_rooms - edran_rooms - surface_branch_rooms, set(expected))
         for room_id, (chance, weighted) in expected.items():
             with self.subTest(room=room_id):
                 pool = encounters.pool_for_room(room_id)
