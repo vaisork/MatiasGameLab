@@ -17,7 +17,7 @@ Cualquier especie y clase puede colaborar. No requiere capacidad racial.
 
 ## Hito
 
-`korven_carga_asentada`
+`korven_trabajo_ayudado`
 
 Se completa cuando el jugador acepta ayudar y deja la carga estable y el tránsito libre. No requiere combate ni puzzle.
 
@@ -44,10 +44,21 @@ En revisitas no se entrega otra copia.
 
 Sin tienda, dinero, crafting, drop de fauna, requisito Dravak, requisito de clase o nivel, propiedades nuevas ni auto-validación de Forja.
 
-Desarrollo puede colocar la escena en una sala cotidiana compatible de Brumak ya existente. Si no existe una adecuada, debe registrar la dependencia antes de inventar geografía.
+La escena ocurre en `brumak_forja`, sala existente de Brumak dedicada a fabricar y reparar armas y herramientas. El actor funcional queda vinculado a `brumak_taller_korven_01` (Karn), ya usado por la implementación de PR #441. La ficha de NPC debe conservar el contrato del Creador de NPCs; Narrativa no añade biografía ni canon fuera de esta función.
 
 Estados persistentes:
-- `korven_carga_asentada`
+- `korven_trabajo_ayudado`
 - `korven_martillo_recibido`
 
 La implementación pesada respeta el orden indicado en #288 respecto de HOSHAI-WEAPON-01.
+
+## Contrato final de integración
+
+- room_id: `brumak_forja`
+- actor: `brumak_taller_korven_01` (Karn)
+- ayuda completada: `korven_trabajo_ayudado`
+- recompensa: `korven_martillo_recibido`
+- item: `martillo_korven`
+- estado inicial: `forge_validated=false`
+
+El nombre `korven_carga_asentada` de la primera versión narrativa queda retirado. Jugabilidad fijó `korven_trabajo_ayudado` como identificador autoritativo.
