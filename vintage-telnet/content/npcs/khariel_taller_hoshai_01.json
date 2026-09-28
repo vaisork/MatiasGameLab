@@ -1,0 +1,57 @@
+{
+  "id": "khariel_taller_hoshai_01",
+  "name": "Aren",
+  "species": "Felaryn",
+  "settlement": "Khariel",
+  "location": "Taller regional de Khariel; enlace a room_id pendiente de Narrativa para #287",
+  "role": "Artesano de taller que recibe ayuda cotidiana y puede confiar una Hoja de Hoshai pendiente de Forja",
+  "relationships": [],
+  "knowledge_allowed": [
+    "Conoce el funcionamiento cotidiano del taller y del paso de carga asociado a la escena El amarre del paso.",
+    "Sabe si el personaje ya ayudó a asegurar el paso mediante el hito hoshai_paso_ayudado.",
+    "Sabe si ese personaje ya recibió su única Hoja de Hoshai mediante el hito hoshai_hoja_recibida.",
+    "Sabe que la Hoja de Hoshai entregada sigue pendiente de Forja y no debe usarse todavía."
+  ],
+  "knowledge_forbidden": [
+    "No conoce ni revela estadísticas internas, fórmulas, flags, IDs técnicos ni reglas de balance.",
+    "No afirma que la Hoja esté validada por Forja antes de que el sistema lo confirme.",
+    "No inventa secretos de Hoshai, jerarquías, gremios, historia oculta ni motivos no definidos por canon.",
+    "No conoce automáticamente hechos del jugador ocurridos fuera de lo que los hitos autorizados registran."
+  ],
+  "beliefs_uncertain": [
+    "Tiende a confiar más en quien se detiene a ayudar en una tarea pequeña sin esperar una recompensa inmediata."
+  ],
+  "initial_talk": [
+    "Si vas a quedarte un momento, sujeta desde ahí. Con eso basta para dejar libre el paso.",
+    "No hace falta hacerlo perfecto. Solo que vuelva a quedar firme y podamos pasar."
+  ],
+  "conditional_knowledge": [
+    {
+      "condition": "hoshai_paso_ayudado=true AND hoshai_hoja_recibida=false",
+      "response_intent": "Reconoce la ayuda de forma sobria y permite la entrega única de la Hoja de Hoshai en el punto de taller autorizado por Narrativa."
+    },
+    {
+      "condition": "hoshai_hoja_recibida=true",
+      "response_intent": "Recuerda que la pieza ya fue confiada al personaje y deja claro que repetir el favor no entrega otra."
+    }
+  ],
+  "narrative_function": "Dar rostro humano al reconocimiento local de #287 sin convertir una ayuda cotidiana en misión heroica.",
+  "gameplay_function": "Actor persistente de la escena HOSHAI-WEAPON-01; sirve como interlocutor para el hito de ayuda y la entrega once-per-character, sin decidir mecánicas de inventario o Forja.",
+  "capabilities": [
+    "Pedir y reconocer ayuda cotidiana dentro de la escena definida por Narrativa.",
+    "Responder según los hitos hoshai_paso_ayudado y hoshai_hoja_recibida.",
+    "Entregar narrativamente la misma pieza que Desarrollo registra como hoja_hoshai cuando el contrato de #287 lo autoriza."
+  ],
+  "limits": [
+    "No exige especie, clase, nivel, dinero, combate, crafting ni reputación adicional.",
+    "No autoequipa la Hoja.",
+    "No valida la Forja.",
+    "No entrega una segunda Hoja.",
+    "No fija por sí mismo el room_id de la escena.",
+    "No crea geografía nueva."
+  ],
+  "memory_hooks": [
+    "hoshai_paso_ayudado",
+    "hoshai_hoja_recibida"
+  ]
+}
