@@ -44,6 +44,16 @@ DENSITY = {
 }
 ORDINARY_BAND = (0.10, 0.35)
 
+# GAMEPLAY.md §40: amenazas regionales C3 v1. Estas criaturas usan el motor
+# especial de amenazas y nunca pueden entrar en un pool C1 ordinario.
+C3_THREAT_IDS = frozenset({
+    "cornalomo",
+    "rasgacumbres",
+    "quebrarrocas",
+    "dorsalodo",
+    "rasgacorteza",
+})
+
 # EDRAN-01 — Issue #207. Las demás salas no pertenecen a ningún pool.
 RANDOM_ENCOUNTER_POOLS = {
     "edran_01_borde_habitado": {
@@ -72,8 +82,8 @@ class InvalidPoolConfig(ValueError):
 
 def validate_pools(pools):
     """Rechaza cualquier configuración rota en vez de ignorarla en silencio:
-    criatura inexistente, sala inexistente, peso o probabilidad inválidos,
-    pool vacío o una sala repetida en dos pools."""
+    criatura inexistente, amenaza C3 dentro de C1, sala inexistente,
+    peso o probabilidad inválidos, pool vacío o una sala repetida en dos pools."""
     seen_rooms = {}
     for pool_id, pool in pools.items():
         rooms = pool.get("rooms")
@@ -104,6 +114,10 @@ def validate_pools(pools):
             creature_id, weight = entry
             if creatures.get_creature(creature_id) is None:
                 raise InvalidPoolConfig(f"{pool_id}: criatura inexistente {creature_id!r}")
+            if creature_id in C3_THREAT_IDS:
+                raise InvalidPoolConfig(
+                    f"{pool_id}: amenaza C3 {creature_id!r} no puede entrar en pool C1 ordinario "
+                    "(GAMEPLAY.md §40.5)")
             if isinstance(weight, bool) or not isinstance(weight, (int, float)) or weight <= 0:
                 raise InvalidPoolConfig(f"{pool_id}: peso inválido para {creature_id!r}")
     return pools
