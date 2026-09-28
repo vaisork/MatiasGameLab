@@ -12,7 +12,7 @@ from flask import (Flask, abort, g, jsonify, redirect, render_template, request,
                     session, url_for)
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from . import combat, content_parser, creatures, dm_auth, economy, encounters, items, npc_dialogue, population, store, threats, world
+from . import bosses, combat, content_parser, creatures, dm_auth, economy, encounters, items, npc_dialogue, population, store, threats, world
 
 # Issue #46 resuelto: el Narrador fijo la plaza central de Valdren como
 # punto de reaparicion tras morir (GAMEPLAY.md 20.9) y de recuperacion
@@ -293,8 +293,11 @@ def create_app(config=None):
                 exit_info["known_name"] = target["name"] if target else None
         encounter = store.get_encounter(path, player_id, room_id)
         view["in_combat"] = bool(encounter and encounter.get("engaged", 1))
+        boss_eval = bosses.get_room_boss_view(path, player_id, room_id)
+        if boss_eval and boss_eval.message:
+            view["threat_signal"] = boss_eval.message
         threat_eval = threats.get_room_threat_view(path, player_id, room_id)
-        if threat_eval and threat_eval.message:
+        if not (boss_eval and boss_eval.message) and threat_eval and threat_eval.message:
             view["threat_signal"] = threat_eval.message
         if encounter:
             creature = creatures.get_creature(encounter["creature_id"])
@@ -350,6 +353,16 @@ def create_app(config=None):
                                               "disabled_reason": disabled_reason}
                 if ready:
                     view["available_actions"].append({"action": "capacidad", "name": ability_def["name"]})
+        elif boss_eval and boss_eval.close_encounter:
+            view["encounter"] = None
+            view["boss_c5"] = {
+                "boss_id": boss_eval.boss_id, "name": boss_eval.name,
+                "current_hp": boss_eval.current_hp, "max_hp": boss_eval.max_hp,
+                "phase": boss_eval.current_phase,
+            }
+            view["available_actions"] = list(boss_eval.available_actions)
+            view["npcs"] = []
+            view["n0_presence"] = None
         else:
             view["encounter"] = None
             if threat_eval and threat_eval.close_encounter:
@@ -540,7 +553,9 @@ def create_app(config=None):
         # Primero el encuentro fijo de la sala y, si no hay, la fauna
         # aleatoria de su pool (Issue #160). Solo se tira el dado si no hay
         # ya una pelea activa ni enfriamiento en esa sala Y no hay C3 en close (§40.10).
-        if (not is_close_threat
+        boss_in_destination = bosses.get_boss_by_arena(destination)
+        boss_active = bool(boss_in_destination and not bosses.is_boss_defeated(path, boss_in_destination.boss_id))
+        if (not is_close_threat and not boss_active
                 and not store.get_encounter(path, player["id"], destination)
                 and store.creature_available(path, player["id"], destination)):
             encounter_creature = encounters.get_encounter_for_room(destination)
@@ -549,6 +564,9 @@ def create_app(config=None):
                 store.start_encounter(path, player["id"], destination, encounter_creature,
                                       creature["hp"], engaged=bool(world.get_room_encounter(destination)))
         level_up_event = None
+        previous_boss = bosses.get_boss_by_arena(previous_room)
+        if previous_boss and not bosses.is_boss_defeated(path, previous_boss.boss_id):
+            bosses.check_and_clear_attempt_if_wiped(path, previous_boss.boss_id)
         if (destination == "valdren_centro"
                 and store.has_discovery(path, player["id"], "lindero_roto")
                 and not store.has_discovery(path, player["id"], "regreso_valdren_lindero")):
@@ -665,6 +683,19 @@ def create_app(config=None):
         """GAMEPLAY.md 22.11 / §40.4: solo funciona sobre un objetivo visible (la
         criatura activa de la sala o una amenaza regional C3 en proximidad crítica)
         y nunca revela números."""
+        boss = bosses.get_boss_by_arena(player["room"])
+        if boss and not bosses.is_boss_defeated(path, boss.boss_id):
+            attempt = store.get_boss_attempt(path, boss.boss_id)
+            current_hp = attempt["current_hp"] if attempt else float(boss.max_hp)
+            phase = bosses.determine_current_phase(boss, current_hp)
+            attrs = _attributes(player)
+            equipment = _equipment(player)
+            player_dps = combat.expected_dps(attrs["destreza"], attrs["percepcion"], attrs["fuerza"],
+                combat.competencia_general(player["level"]), combat.competencia_general(10),
+                base_arma=equipment["weapon_base_damage"])
+            enemy_dps = combat.fixed_expected_dps(phase.precision, phase.damage)
+            category = combat.encounter_category(player_dps, player["hp_current"], enemy_dps, current_hp)
+            return boss.name, f"{boss.name} {EVALUATE_TEXT[category]}."
         encounter = store.get_encounter(path, player["id"], player["room"])
         creature_id = None
         if encounter:
@@ -730,6 +761,9 @@ def create_app(config=None):
         ('no_target'|'victory'|'ongoing'|'defeat') y 'messages'."""
         encounter = store.get_encounter(path, player["id"], player["room"])
         if not encounter:
+            boss = bosses.get_boss_by_arena(player["room"])
+            if boss and not bosses.is_boss_defeated(path, boss.boss_id):
+                return bosses.resolve_boss_attack_round(path, player, boss, rng=rng)
             threat_eval = threats.get_room_threat_view(path, player["id"], player["room"])
             if threat_eval and threat_eval.close_encounter:
                 creature_data = creatures.get_creature(threat_eval.creature_id)
@@ -852,6 +886,9 @@ def create_app(config=None):
         falla, la criatura tiene una oportunidad de golpear."""
         encounter = store.get_encounter(path, player["id"], player["room"])
         if not encounter:
+            boss = bosses.get_boss_by_arena(player["room"])
+            if boss and not bosses.is_boss_defeated(path, boss.boss_id):
+                return bosses.resolve_boss_player_flee(path, player, boss, rng=rng)
             return {"outcome": "no_target", "messages": ["No hay ninguna criatura de la que huir."]}
         creature = creatures.get_creature(encounter["creature_id"])
         room = world.get_room(player["room"])
@@ -957,6 +994,9 @@ def create_app(config=None):
         conecta igual, el daño es el normal (esquivar no reduce daño)."""
         encounter = store.get_encounter(path, player["id"], player["room"])
         if not encounter or not encounter.get("engaged", 1):
+            boss = bosses.get_boss_by_arena(player["room"])
+            if boss and not bosses.is_boss_defeated(path, boss.boss_id):
+                return bosses.resolve_boss_dodge_round(path, player, boss, rng=rng)
             return {"outcome": "no_target", "messages": ["No hay ningún ataque que esquivar aquí."]}
         creature = creatures.get_creature(encounter["creature_id"])
         attrs = _attributes(player)
@@ -1012,6 +1052,9 @@ def create_app(config=None):
         golpeado; si el golpe conecta, reduce su daño según Resistencia."""
         encounter = store.get_encounter(path, player["id"], player["room"])
         if not encounter or not encounter.get("engaged", 1):
+            boss = bosses.get_boss_by_arena(player["room"])
+            if boss and not bosses.is_boss_defeated(path, boss.boss_id):
+                return bosses.resolve_boss_resist_round(path, player, boss, rng=rng)
             return {"outcome": "no_target", "messages": ["No hay ningún golpe que resistir aquí."]}
         creature = creatures.get_creature(encounter["creature_id"])
         attrs = _attributes(player)
@@ -1067,6 +1110,9 @@ def create_app(config=None):
         real."""
         encounter = store.get_encounter(path, player["id"], player["room"])
         if not encounter or not encounter.get("engaged", 1):
+            boss = bosses.get_boss_by_arena(player["room"])
+            if boss and not bosses.is_boss_defeated(path, boss.boss_id):
+                return bosses.resolve_boss_block_round(path, player, boss, rng=rng)
             return {"outcome": "no_target", "messages": ["No hay ningún golpe que bloquear aquí."]}
         if not _can_block(path, player["id"]):
             return {"outcome": "unavailable",
@@ -1410,6 +1456,9 @@ def create_app(config=None):
         solo una recuperación completa gratuita. El presupuesto autoritativo
         vive en SQLite y se consume atómicamente en store.apply_field_rest().
         """
+        boss = bosses.get_boss_by_arena(player["room"])
+        if boss and not bosses.is_boss_defeated(path, boss.boss_id):
+            return {"outcome": "blocked", "messages": ["No puedes descansar ante la presencia de un jefe."]}
         if store.get_encounter(path, player["id"], player["room"]):
             return {"outcome": "blocked", "messages": ["No puedes descansar con una criatura cerca."]}
         threat_eval = threats.get_room_threat_view(path, player["id"], player["room"])
@@ -1441,6 +1490,9 @@ def create_app(config=None):
         """GAMEPLAY.md 32.3: `equipar <objeto>`. Solo fuera de combate,
         requiere poseer el objeto y, si el catálogo lo exige, tener la
         validación de Forja completa (32.4)."""
+        boss = bosses.get_boss_by_arena(player["room"])
+        if boss and not bosses.is_boss_defeated(path, boss.boss_id):
+            return {"outcome": "blocked", "messages": ["No puedes equipar nada ante la presencia de un jefe."]}
         if store.get_encounter(path, player["id"], player["room"]):
             return {"outcome": "blocked", "messages": ["No puedes equipar nada con una criatura cerca."]}
         threat_eval = threats.get_room_threat_view(path, player["id"], player["room"])
@@ -1458,8 +1510,11 @@ def create_app(config=None):
         return {"outcome": "equipped", "messages": [f"Equipas {items.get_item(item_key)['name']}."]}
 
     def attempt_unequip(player, target_text):
-        """GAMEPLAY.md 32.3: `desequipar <objeto>`. Solo fuera de combate;
-        devuelve el objeto a poseído/no activo, sin coste."""
+        """GAMEPLAY.md 32.3: desequipar solo fuera de combate; el objeto
+        sigue en el inventario pero deja de aportar sus efectos."""
+        boss = bosses.get_boss_by_arena(player["room"])
+        if boss and not bosses.is_boss_defeated(path, boss.boss_id):
+            return {"outcome": "blocked", "messages": ["No puedes desequipar nada ante la presencia de un jefe."]}
         if store.get_encounter(path, player["id"], player["room"]):
             return {"outcome": "blocked", "messages": ["No puedes desequipar nada con una criatura cerca."]}
         threat_eval = threats.get_room_threat_view(path, player["id"], player["room"])

@@ -18,11 +18,13 @@ class SchemaReconciliationTests(unittest.TestCase):
     def tearDown(self):
         self.temp_dir.cleanup()
 
-    def test_new_database_has_all_schema_18_features(self):
+    def test_new_database_has_all_schema_19_features(self):
         with store.connect(self.db_path) as db:
-            self.assertEqual(db.execute("PRAGMA user_version").fetchone()[0], 18)
+            self.assertEqual(db.execute("PRAGMA user_version").fetchone()[0], 19)
             tables = {r["name"] for r in db.execute("SELECT name FROM sqlite_master WHERE type='table'")}
-            self.assertTrue({"player_story_flags", "economy_ledger", "player_threat_states"} <= tables)
+            self.assertTrue({"player_story_flags", "economy_ledger", "player_threat_states",
+                             "world_boss_states", "boss_attempts", "boss_attempt_participants",
+                             "player_lost_weapons", "boss_rewards_claimed"} <= tables)
             encounter_cols = {r["name"] for r in db.execute("PRAGMA table_info(room_encounters)")}
             self.assertTrue({"engaged", "signature_cooldown", "apertura", "prepared_action"} <= encounter_cols)
 
@@ -34,7 +36,7 @@ class SchemaReconciliationTests(unittest.TestCase):
             db.execute("PRAGMA user_version=17")
         store.initialize(self.db_path)
         with store.connect(self.db_path) as db:
-            self.assertEqual(db.execute("PRAGMA user_version").fetchone()[0], 18)
+            self.assertEqual(db.execute("PRAGMA user_version").fetchone()[0], 19)
             player = db.execute("SELECT id, name, level, sellos FROM players").fetchone()
             self.assertEqual((player["id"], player["name"], player["level"], player["sellos"]),
                              (self.player_id, "Jugador Migracion", 3, 47))
@@ -55,7 +57,7 @@ class SchemaReconciliationTests(unittest.TestCase):
             db.execute("PRAGMA user_version=14")
         store.initialize(self.db_path)
         with store.connect(self.db_path) as db:
-            self.assertEqual(db.execute("PRAGMA user_version").fetchone()[0], 18)
+            self.assertEqual(db.execute("PRAGMA user_version").fetchone()[0], 19)
             encounter = db.execute("SELECT creature_id, hp_current, engaged, signature_cooldown, apertura, prepared_action FROM room_encounters").fetchone()
             self.assertEqual((encounter["creature_id"], encounter["hp_current"], encounter["engaged"]),
                              ("mordelinde", 31, 1))
@@ -66,6 +68,20 @@ class SchemaReconciliationTests(unittest.TestCase):
             seed = db.execute("SELECT delta, balance_after FROM economy_ledger WHERE player_id=?", (self.player_id,)).fetchone()
             self.assertEqual((seed["delta"], seed["balance_after"]), (20, 20))
             self.assertIsNotNone(db.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='player_threat_states'").fetchone())
+
+    def test_v18_upgrade_creates_boss_tables_without_changing_player_data(self):
+        with store.connect(self.db_path) as db:
+            db.execute("UPDATE players SET level=4, sellos=63 WHERE id=?", (self.player_id,))
+            db.execute("PRAGMA user_version=18")
+        store.initialize(self.db_path)
+        with store.connect(self.db_path) as db:
+            self.assertEqual(db.execute("PRAGMA user_version").fetchone()[0], 19)
+            player = db.execute("SELECT id, name, level, sellos FROM players WHERE id=?", (self.player_id,)).fetchone()
+            self.assertEqual((player["id"], player["name"], player["level"], player["sellos"]),
+                             (self.player_id, "Jugador Migracion", 4, 63))
+            tables = {row["name"] for row in db.execute("SELECT name FROM sqlite_master WHERE type='table'")}
+            self.assertTrue({"world_boss_states", "boss_attempts", "boss_attempt_participants",
+                             "player_lost_weapons", "boss_rewards_claimed"} <= tables)
 
 
 if __name__ == "__main__":
