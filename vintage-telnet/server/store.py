@@ -16,7 +16,7 @@ STATUSES = ("pending", "approved", "rejected", "removed")
 
 # Version de esquema que deja initialize(); ops/inventory_migration_probe.py
 # la usa para validar una migracion de prueba contra la copia de la base viva.
-SCHEMA_VERSION = 18
+SCHEMA_VERSION = 19
 
 # Cuentas con varios personajes (petición de Javier, 2026-09-25): un usuario
 # para entrar puede tener hasta 5 personajes; el nombre de cada personaje es
@@ -74,6 +74,45 @@ ECONOMY_LEDGER_TABLE = """CREATE TABLE IF NOT EXISTS economy_ledger (
     reason_code TEXT NOT NULL,
     source_key TEXT,
     created_at REAL NOT NULL)"""
+
+WORLD_BOSS_STATES_TABLE = """CREATE TABLE IF NOT EXISTS world_boss_states (
+    boss_id TEXT PRIMARY KEY,
+    defeated INTEGER NOT NULL DEFAULT 0,
+    defeated_at REAL,
+    updated_at REAL NOT NULL)"""
+
+BOSS_ATTEMPTS_TABLE = """CREATE TABLE IF NOT EXISTS boss_attempts (
+    boss_id TEXT PRIMARY KEY,
+    arena_room_id TEXT NOT NULL,
+    current_hp REAL NOT NULL,
+    current_phase INTEGER NOT NULL DEFAULT 0,
+    started_at REAL NOT NULL,
+    updated_at REAL NOT NULL)"""
+
+BOSS_ATTEMPT_PARTICIPANTS_TABLE = """CREATE TABLE IF NOT EXISTS boss_attempt_participants (
+    boss_id TEXT NOT NULL,
+    player_id TEXT NOT NULL,
+    damage_dealt REAL NOT NULL DEFAULT 0,
+    joined_at REAL NOT NULL,
+    PRIMARY KEY (boss_id, player_id),
+    FOREIGN KEY(player_id) REFERENCES players(id) ON DELETE CASCADE)"""
+
+PLAYER_LOST_WEAPONS_TABLE = """CREATE TABLE IF NOT EXISTS player_lost_weapons (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    item_id TEXT NOT NULL UNIQUE,
+    player_id TEXT NOT NULL REFERENCES players(id) ON DELETE CASCADE,
+    boss_id TEXT NOT NULL,
+    lost_at REAL NOT NULL,
+    recovered_at REAL)"""
+
+BOSS_REWARDS_CLAIMED_TABLE = """CREATE TABLE IF NOT EXISTS boss_rewards_claimed (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    boss_id TEXT NOT NULL,
+    scope TEXT NOT NULL CHECK(scope IN ('world', 'character')),
+    claimant_id TEXT,
+    reward_key TEXT NOT NULL,
+    claimed_at REAL NOT NULL,
+    UNIQUE(boss_id, scope, claimant_id, reward_key))"""
 
 
 class UsernameTaken(Exception):
@@ -380,6 +419,15 @@ def initialize(path):
         if version <= 17:
             db.execute(PLAYER_THREAT_STATES_TABLE)
             db.execute("CREATE INDEX IF NOT EXISTS threat_states_player_zone ON player_threat_states(player_id, threat_zone_id)")
+        if version <= 18:
+            # v19: BOSS-ENGINE-01 (#362), luego de economía (v17) y amenazas (v18).
+            db.execute(WORLD_BOSS_STATES_TABLE)
+            db.execute(BOSS_ATTEMPTS_TABLE)
+            db.execute(BOSS_ATTEMPT_PARTICIPANTS_TABLE)
+            db.execute(PLAYER_LOST_WEAPONS_TABLE)
+            db.execute(BOSS_REWARDS_CLAIMED_TABLE)
+            db.execute("CREATE INDEX IF NOT EXISTS lost_weapons_player ON player_lost_weapons(player_id, recovered_at)")
+            db.execute("CREATE INDEX IF NOT EXISTS boss_rewards_scope ON boss_rewards_claimed(boss_id, scope, claimant_id)")
         db.execute(f"PRAGMA user_version = {SCHEMA_VERSION}")
 
 
@@ -1215,8 +1263,11 @@ def list_inventory(path, player_id):
     están activos."""
     with connect(path) as db:
         rows = db.execute(
-            """SELECT id, item_key, category, forge_validated, acquired_at FROM inventory_items
-               WHERE player_id = ? ORDER BY acquired_at""",
+            """SELECT i.id, i.item_key, i.category, i.forge_validated, i.acquired_at,
+                      lw.boss_id AS lost_to_boss
+               FROM inventory_items i
+               LEFT JOIN player_lost_weapons lw ON lw.item_id = i.id AND lw.recovered_at IS NULL
+               WHERE i.player_id = ? ORDER BY i.acquired_at""",
             (player_id,),
         ).fetchall()
         return [dict(row) for row in rows]
@@ -1253,6 +1304,11 @@ def equip_item(path, player_id, item_id):
         ).fetchone()
         if item is None:
             return False, None, "No posees ese objeto."
+        lost_rec = db.execute(
+            "SELECT 1 FROM player_lost_weapons WHERE item_id = ? AND recovered_at IS NULL", (item_id,)
+        ).fetchone()
+        if lost_rec:
+            return False, None, "Esa arma fue arrebatada por un jefe y no puede equiparse."
         catalog = items.get_item(item["item_key"])
         if catalog["forge_required"] and not item["forge_validated"]:
             return False, None, "Ese objeto todavía no tiene su validación de Forja completa."
@@ -1536,3 +1592,197 @@ def grant_story_item_once(path, player_id, flag, item_key, forge_validated=False
             (player_id, flag, now),
         )
         return True, item_id
+
+
+# Motor de jefes únicos C5 (Issue #362 / GAMEPLAY §41)
+# ---------------------------------------------------------------------------
+
+def get_world_boss_state(path, boss_id):
+    """Devuelve el estado persistente global de un jefe C5 en el mundo."""
+    with connect(path) as db:
+        row = db.execute(
+            "SELECT boss_id, defeated, defeated_at, updated_at FROM world_boss_states WHERE boss_id = ?",
+            (boss_id,),
+        ).fetchone()
+        if not row:
+            return {"boss_id": boss_id, "defeated": False, "defeated_at": None, "updated_at": 0.0}
+        return {
+            "boss_id": row["boss_id"],
+            "defeated": bool(row["defeated"]),
+            "defeated_at": row["defeated_at"],
+            "updated_at": row["updated_at"],
+        }
+
+
+def set_world_boss_defeated(path, boss_id, defeated=True, now=None):
+    """Marca la derrota persistente y compartida de un jefe único C5 (§41.2)."""
+    now = now if now is not None else time.time()
+    with connect(path) as db:
+        db.execute(
+            """INSERT INTO world_boss_states (boss_id, defeated, defeated_at, updated_at)
+               VALUES (?, ?, ?, ?)
+               ON CONFLICT(boss_id) DO UPDATE SET
+                   defeated = excluded.defeated,
+                   defeated_at = excluded.defeated_at,
+                   updated_at = excluded.updated_at""",
+            (boss_id, int(bool(defeated)), now if defeated else None, now),
+        )
+
+
+def get_boss_attempt(path, boss_id):
+    """Obtiene el estado del intento activo contra el jefe o None si no hay intento (§41.3)."""
+    with connect(path) as db:
+        row = db.execute(
+            "SELECT boss_id, arena_room_id, current_hp, current_phase, started_at, updated_at "
+            "FROM boss_attempts WHERE boss_id = ?",
+            (boss_id,),
+        ).fetchone()
+        if not row:
+            return None
+        return {
+            "boss_id": row["boss_id"],
+            "arena_room_id": row["arena_room_id"],
+            "current_hp": row["current_hp"],
+            "current_phase": row["current_phase"],
+            "started_at": row["started_at"],
+            "updated_at": row["updated_at"],
+        }
+
+
+def save_boss_attempt(path, boss_id, arena_room_id, current_hp, current_phase, started_at=None, now=None):
+    """Guarda o actualiza el intento activo contra el jefe (§41.3)."""
+    now = now if now is not None else time.time()
+    started_at = started_at if started_at is not None else now
+    with connect(path) as db:
+        db.execute(
+            """INSERT INTO boss_attempts (boss_id, arena_room_id, current_hp, current_phase, started_at, updated_at)
+               VALUES (?, ?, ?, ?, ?, ?)
+               ON CONFLICT(boss_id) DO UPDATE SET
+                   current_hp = excluded.current_hp,
+                   current_phase = excluded.current_phase,
+                   updated_at = excluded.updated_at""",
+            (boss_id, arena_room_id, current_hp, current_phase, started_at, now),
+        )
+
+
+def clear_boss_attempt(path, boss_id):
+    """Elimina el intento activo y sus participantes tras wipe, huida total o victoria (§41.3, §41.12)."""
+    with connect(path) as db:
+        db.execute("BEGIN IMMEDIATE")
+        db.execute("DELETE FROM boss_attempt_participants WHERE boss_id = ?", (boss_id,))
+        db.execute("DELETE FROM boss_attempts WHERE boss_id = ?", (boss_id,))
+
+
+def add_boss_participant(path, boss_id, player_id, now=None):
+    """Registra a un jugador como participante del intento activo (§41.3)."""
+    now = now if now is not None else time.time()
+    with connect(path) as db:
+        db.execute(
+            """INSERT OR IGNORE INTO boss_attempt_participants (boss_id, player_id, damage_dealt, joined_at)
+               VALUES (?, ?, 0, ?)""",
+            (boss_id, player_id, now),
+        )
+
+
+def get_boss_participants(path, boss_id):
+    """Lista todos los participantes del intento con el daño acumulado por cada uno (§41.11)."""
+    with connect(path) as db:
+        rows = db.execute(
+            "SELECT player_id, damage_dealt, joined_at FROM boss_attempt_participants WHERE boss_id = ?",
+            (boss_id,),
+        ).fetchall()
+        return [dict(r) for r in rows]
+
+
+def update_boss_participant_damage(path, boss_id, player_id, damage_delta):
+    """Suma daño infligido por un participante para validar contribución significativa (§41.11)."""
+    with connect(path) as db:
+        db.execute(
+            """UPDATE boss_attempt_participants
+               SET damage_dealt = damage_dealt + ?
+               WHERE boss_id = ? AND player_id = ?""",
+            (damage_delta, boss_id, player_id),
+        )
+
+
+def record_lost_weapon(path, player_id, item_id, boss_id, now=None):
+    """Registra la pérdida de un arma ante un jefe (§41.7)."""
+    now = now if now is not None else time.time()
+    with connect(path) as db:
+        db.execute("BEGIN IMMEDIATE")
+        # Desequipar arma del jugador
+        db.execute("UPDATE players SET equipped_weapon_id = NULL WHERE id = ? AND equipped_weapon_id = ?",
+                   (player_id, item_id))
+        # Registrar pérdida
+        db.execute(
+            """INSERT INTO player_lost_weapons (item_id, player_id, boss_id, lost_at, recovered_at)
+               VALUES (?, ?, ?, ?, NULL)
+               ON CONFLICT(item_id) DO UPDATE SET
+                   boss_id = excluded.boss_id,
+                   lost_at = excluded.lost_at,
+                   recovered_at = NULL""",
+            (item_id, player_id, boss_id, now),
+        )
+
+
+def recover_lost_weapon(path, player_id, item_id, now=None):
+    """Restaura la condición utilizable de un arma perdida sin duplicar la instancia (§41.7)."""
+    now = now if now is not None else time.time()
+    with connect(path) as db:
+        cur = db.execute(
+            "UPDATE player_lost_weapons SET recovered_at = ? WHERE item_id = ? AND player_id = ? AND recovered_at IS NULL",
+            (now, item_id, player_id),
+        )
+        return cur.rowcount > 0
+
+
+def get_lost_weapons(path, player_id):
+    """Devuelve las armas actualmente perdidas y no recuperadas de un jugador (§41.7)."""
+    with connect(path) as db:
+        rows = db.execute(
+            """SELECT lw.item_id, lw.boss_id, lw.lost_at, i.item_key
+               FROM player_lost_weapons lw
+               JOIN inventory_items i ON i.id = lw.item_id
+               WHERE lw.player_id = ? AND lw.recovered_at IS NULL""",
+            (player_id,),
+        ).fetchall()
+        return [dict(r) for r in rows]
+
+
+def is_weapon_lost(path, item_id):
+    """Comprueba si un objeto de arma está actualmente perdido ante un jefe (§41.7)."""
+    with connect(path) as db:
+        row = db.execute(
+            "SELECT 1 FROM player_lost_weapons WHERE item_id = ? AND recovered_at IS NULL",
+            (item_id,),
+        ).fetchone()
+        return bool(row)
+
+
+def is_boss_reward_claimed(path, boss_id, scope, claimant_id, reward_key):
+    """Comprueba si una recompensa ya fue entregada según su alcance (§41.10)."""
+    with connect(path) as db:
+        target_id = claimant_id if scope == "character" else None
+        if target_id is None:
+            row = db.execute(
+                "SELECT 1 FROM boss_rewards_claimed WHERE boss_id = ? AND scope = ? AND claimant_id IS NULL AND reward_key = ?",
+                (boss_id, scope, reward_key),
+            ).fetchone()
+        else:
+            row = db.execute(
+                "SELECT 1 FROM boss_rewards_claimed WHERE boss_id = ? AND scope = ? AND claimant_id = ? AND reward_key = ?",
+                (boss_id, scope, target_id, reward_key),
+            ).fetchone()
+        return bool(row)
+
+
+def record_boss_reward_claimed(path, boss_id, scope, claimant_id, reward_key, now=None):
+    """Registra la entrega atómica de una recompensa de jefe (§41.10)."""
+    now = now if now is not None else time.time()
+    target_id = claimant_id if scope == "character" else None
+    with connect(path) as db:
+        db.execute(
+            """INSERT OR IGNORE INTO boss_rewards_claimed (boss_id, scope, claimant_id, reward_key, claimed_at)
+               VALUES (?, ?, ?, ?, ?)""",
+            (boss_id, scope, target_id, reward_key, now),
+        )
