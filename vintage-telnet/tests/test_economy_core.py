@@ -70,9 +70,9 @@ class EconomyCoreCatalogAndMathTests(unittest.TestCase):
 
 
 class EconomyMigrationAndPersistenceTests(unittest.TestCase):
-    """Pruebas de migración de esquema v14 a v15 y persistencia del ledger."""
+    """Pruebas de migración de esquema v14 a v17 y persistencia del ledger."""
 
-    def test_migration_v14_to_v15_adds_sellos_and_seeds_ledger_for_existing_players(self):
+    def test_migration_v14_to_v17_adds_all_tables_and_preserves_player_data(self):
         with tempfile.TemporaryDirectory() as td:
             db_path = str(Path(td) / "test.db")
             # 1. Crear base en v14 con un jugador existente
@@ -89,12 +89,15 @@ class EconomyMigrationAndPersistenceTests(unittest.TestCase):
                 )
                 db.execute("PRAGMA user_version = 14")
 
-            # 2. Ejecutar initialize() que debe aplicar la migración v15
+            # 2. Ejecutar initialize() debe aplicar v15-v17 desde un esquema legado.
             store.initialize(db_path)
 
-            # 3. Validar esquema v15 y datos
+            # 3. Validar tablas, columnas y datos preservados.
             with store.connect(db_path) as db:
-                self.assertEqual(db.execute("PRAGMA user_version").fetchone()[0], 15)
+                self.assertEqual(db.execute("PRAGMA user_version").fetchone()[0], 17)
+                encounter_cols = {row["name"] for row in db.execute("PRAGMA table_info(room_encounters)")}
+                self.assertTrue({"engaged", "signature_cooldown", "apertura", "prepared_action"} <= encounter_cols)
+                self.assertTrue(db.execute("SELECT 1 FROM player_story_flags LIMIT 1").fetchone() is None)
                 cols = {row["name"] for row in db.execute("PRAGMA table_info(players)").fetchall()}
                 self.assertIn("sellos", cols)
                 player_row = db.execute("SELECT sellos FROM players WHERE id = ?", (p_id,)).fetchone()
@@ -106,7 +109,7 @@ class EconomyMigrationAndPersistenceTests(unittest.TestCase):
                 self.assertEqual(entry["delta"], 20)
                 self.assertEqual(entry["balance_after"], 20)
                 self.assertEqual(entry["reason_code"], "starting_purse")
-                self.assertEqual(entry["source_key"], "migration:v15")
+                self.assertEqual(entry["source_key"], "migration:v17")
 
     def test_new_character_receives_20_sellos_and_character_creation_ledger(self):
         with tempfile.TemporaryDirectory() as td:
