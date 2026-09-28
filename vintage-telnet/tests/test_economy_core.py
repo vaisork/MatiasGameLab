@@ -232,7 +232,7 @@ class EconomyAppIntegrationTests(unittest.TestCase):
         self.assertIn('"Es tu última arma utilizable; consigue otra antes de vender."', html)
         self.assertIn('"¿Comprar " + label + " por " + formatSellos(price)', html)
         self.assertIn('"Daro te paga " + formatSellos(price) + " por " + label', html)
-        self.assertIn('shopConfirmActions' if False else 'class="shop-confirm-actions"', html)
+        self.assertIn('class="shop-confirm-actions"', html)
         self.assertIn('.shop-confirm-actions .action{min-height:44px}', html)
 
     # --- Pruebas de Compra ---
