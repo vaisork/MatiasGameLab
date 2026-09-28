@@ -95,6 +95,20 @@ class CornalomoDeathTests(unittest.TestCase):
         client = client or self.client
         return client.get("/api/inventory").json
 
+    def assert_death_presentation(self, html):
+        self.assertIn('<section class="death-event" data-death-event', html)
+        self.assertIn("HAS MUERTO", html)
+        self.assertIn("Las fuerzas te abandonan", html)
+        self.assertIn("REAPARICIÓN", html)
+        self.assertIn("Vuelves en ti en", html)
+        self.assertIn("Estado al volver", html)
+        self.assertIn("Salud", html)
+        self.assertIn("Fatiga", html)
+        self.assertIn("Herida", html)
+        self.assertIn("Equipo", html)
+        self.assertIn("Inventario", html)
+        self.assertIn("Conservas tu equipo e inventario", html)
+
     def reach_pastos_altos(self):
         """Camina desde valdren_centro hasta valdren_pastos_altos por la ruta canónica."""
         directions = ["north", "north", "north", "north", "east", "north", "east", "east", "east"]
@@ -234,7 +248,14 @@ class CornalomoDeathTests(unittest.TestCase):
         response = self.post("/command", dict(text="atacar"))
         html = response.get_data(as_text=True)
         self.assertIn("Cornalomo te derrota", html)
-        self.assertIn(RESPAWN_MESSAGE, html)
+        self.assertNotIn(RESPAWN_MESSAGE, html)
+        self.assert_death_presentation(html)
+
+        # La presentación es efímera: refrescar/reconectar muestra el estado
+        # persistido, pero no reproduce indefinidamente la muerte consumida.
+        refreshed = self.client.get("/").get_data(as_text=True)
+        self.assertNotIn('<section class="death-event" data-death-event', refreshed)
+        self.assertNotIn("HAS MUERTO", refreshed)
 
         # 1 y 2: Encuentro terminado y sin encuentro fantasma en store/SQLite
         self.assertIsNone(store.get_encounter(self.path, pid, "valdren_pastos_altos"))
@@ -315,6 +336,7 @@ class CornalomoDeathTests(unittest.TestCase):
         response = self.post("/command", dict(text="huir"))
         html = response.get_data(as_text=True)
         self.assertIn("Cornalomo te derrota", html)
+        self.assert_death_presentation(html)
 
         self.assertIsNone(store.get_encounter(self.path, pid, "valdren_pastos_altos"))
         me = self.client.get("/api/me").json["player"]
@@ -340,6 +362,7 @@ class CornalomoDeathTests(unittest.TestCase):
         response = self.post("/command", dict(text="esquivar"))
         html = response.get_data(as_text=True)
         self.assertIn("Cornalomo te derrota", html)
+        self.assert_death_presentation(html)
 
         self.assertIsNone(store.get_encounter(self.path, pid, "valdren_pastos_altos"))
         me = self.client.get("/api/me").json["player"]
@@ -349,6 +372,29 @@ class CornalomoDeathTests(unittest.TestCase):
         self.assertEqual(char["hp_current"], round(char["hp_max"] * 0.60))
         self.assertEqual(char["fatigue"], 40)
         self.assertFalse(char["in_combat"])
+
+    @patch("server.app.random.Random")
+    def test_defeat_while_resisting_uses_same_visible_death_presentation(self, mock_random):
+        mock_random.return_value = SequenceRng(0.0)
+        pid = self.register_and_enter_world()
+        self.reach_pastos_altos()
+        store.update_combat_state(self.path, pid, hp_current=10)
+
+        html = self.post("/command", dict(text="resistir")).get_data(as_text=True)
+        self.assert_death_presentation(html)
+        self.assertEqual(self.client.get("/api/me").json["player"]["room"], "valdren_centro")
+
+    @patch("server.app._can_block", return_value=True)
+    @patch("server.app.random.Random")
+    def test_defeat_while_blocking_uses_same_visible_death_presentation(self, mock_random, _can_block):
+        mock_random.return_value = SequenceRng(0.0)
+        pid = self.register_and_enter_world()
+        self.reach_pastos_altos()
+        store.update_combat_state(self.path, pid, hp_current=10)
+
+        html = self.post("/command", dict(text="bloquear")).get_data(as_text=True)
+        self.assert_death_presentation(html)
+        self.assertEqual(self.client.get("/api/me").json["player"]["room"], "valdren_centro")
 
     # --- 8. Huida exitosa con fórmula normal ---
 
