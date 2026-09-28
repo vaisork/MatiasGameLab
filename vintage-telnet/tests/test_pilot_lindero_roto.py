@@ -152,14 +152,17 @@ class CombatMathTests(unittest.TestCase):
         # GAMEPLAY.md 24.8, sin herida: sin tope de HP, -25 de fatiga con
         # Resistencia 10.
         result = combat.rest_result(hp_current=50, hp_max_value=100, fatigue=80,
-                                     resistencia=10, wound="ninguna")
-        self.assertEqual(result, {"hp_current": 60, "fatigue": 55})
+                                     resistencia=10, wound="ninguna", budget_remaining=30)
+        self.assertEqual(result["hp_current"], 60)
+        self.assertEqual(result["fatigue"], 55)
+        self.assertEqual(result["healed"], 10)
+        self.assertEqual(result["budget_remaining"], 20)
 
     def test_rest_result_respects_wound_hp_cap(self):
         # GAMEPLAY.md 24.6: herida grave no deja curar el descanso de campo
         # por encima del 65% del HP maximo.
         result = combat.rest_result(hp_current=64, hp_max_value=100, fatigue=0,
-                                     resistencia=10, wound="grave")
+                                     resistencia=10, wound="grave", budget_remaining=30)
         self.assertEqual(result["hp_current"], 65)
 
     def test_safe_recovery_result_fully_heals_and_upgrades_wound_one_grade(self):
@@ -529,26 +532,25 @@ class PilotIntegrationTests(unittest.TestCase):
         with store.connect(self.path) as db:
             db.execute("UPDATE players SET hp_current = 50, fatigue = 80 WHERE id = ?", (player_id,))
         page = self.post("/command", dict(text="descansar")).get_data(as_text=True)
-        self.assertIn("Descansas un momento", page)
+        self.assertIn("Descansas y recuperas 10 HP", page)
         character = self.character()
         self.assertEqual(character["hp_current"], 60)  # +10% de 100 de HP máximo.
         self.assertEqual(character["fatigue"], 55)  # 80 - (25 + 0.2*(10-10)).
 
-    def test_resting_in_valdren_centro_uses_full_safe_recovery(self):
-        # Issue #46: valdren_centro es el punto de recuperación segura
-        # (GAMEPLAY.md 24.9) — descansar ahí cura HP al 100%, fatiga a 0 y
-        # mejora la herida un grado, en vez del descanso de campo v1.
-        self.register_and_enter_world()  # humano arranca en valdren_centro
+    def test_resting_in_valdren_centro_uses_limited_field_budget(self):
+        # REST-01 / GAMEPLAY 24.9: un lugar seguro permite descansar sin
+        # peligro, pero no regala curación completa solo por pulsar descansar.
+        self.register_and_enter_world()
         player_id = self.client.get("/api/me").json["player"]["id"]
         with store.connect(self.path) as db:
             db.execute("UPDATE players SET hp_current = 50, fatigue = 80, wound = 'moderada' WHERE id = ?",
                        (player_id,))
         page = self.post("/command", dict(text="descansar")).get_data(as_text=True)
-        self.assertIn("plaza de Valdren", page)
+        self.assertIn("recuperas 10 HP", page)
         character = self.character()
-        self.assertEqual(character["hp_current"], round(character["hp_max"]))
-        self.assertEqual(character["fatigue"], 0)
-        self.assertEqual(character["wound"], "leve")
+        self.assertEqual(character["hp_current"], 60)
+        self.assertEqual(character["fatigue"], 55)
+        self.assertEqual(character["wound"], "moderada")
 
     def test_resting_is_blocked_while_a_creature_is_present(self):
         self.register_and_enter_world()

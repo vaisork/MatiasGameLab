@@ -593,7 +593,7 @@ def create_app(config=None):
             respawn_wound_value = combat.respawn_wound(new_wound)
             store.update_combat_state(path, player["id"], hp_current=respawn["hp_current"],
                                        fatigue=respawn["fatigue"], wound=respawn_wound_value,
-                                       room=SAFE_ROOM_ID)
+                                       room=SAFE_ROOM_ID, reset_rest_budget=True)
             return _defeat_result(creature, messages, player, respawn, respawn_wound_value)
 
         store.update_combat_state(path, player["id"], hp_current=player_hp,
@@ -650,7 +650,7 @@ def create_app(config=None):
             respawn_wound_value = combat.respawn_wound(new_wound)
             store.update_combat_state(path, player["id"], hp_current=respawn["hp_current"],
                                        fatigue=respawn["fatigue"], wound=respawn_wound_value,
-                                       room=SAFE_ROOM_ID)
+                                       room=SAFE_ROOM_ID, reset_rest_budget=True)
             return _defeat_result(creature, messages, player, respawn, respawn_wound_value)
         store.update_combat_state(path, player["id"], hp_current=player_hp,
                                    fatigue=round(fatigue), wound=new_wound)
@@ -690,7 +690,7 @@ def create_app(config=None):
             respawn_wound_value = combat.respawn_wound(new_wound)
             store.update_combat_state(path, player["id"], hp_current=respawn["hp_current"],
                                        fatigue=respawn["fatigue"], wound=respawn_wound_value,
-                                       room=SAFE_ROOM_ID)
+                                       room=SAFE_ROOM_ID, reset_rest_budget=True)
             return _defeat_result(creature, messages, player, respawn, respawn_wound_value)
         store.update_combat_state(path, player["id"], hp_current=player_hp,
                                    fatigue=round(fatigue), wound=new_wound)
@@ -728,7 +728,7 @@ def create_app(config=None):
             respawn_wound_value = combat.respawn_wound(new_wound)
             store.update_combat_state(path, player["id"], hp_current=respawn["hp_current"],
                                        fatigue=respawn["fatigue"], wound=respawn_wound_value,
-                                       room=SAFE_ROOM_ID)
+                                       room=SAFE_ROOM_ID, reset_rest_budget=True)
             return _defeat_result(creature, messages, player, respawn, respawn_wound_value)
         store.update_combat_state(path, player["id"], hp_current=player_hp,
                                    fatigue=round(fatigue), wound=new_wound)
@@ -769,7 +769,7 @@ def create_app(config=None):
             respawn_wound_value = combat.respawn_wound(new_wound)
             store.update_combat_state(path, player["id"], hp_current=respawn["hp_current"],
                                        fatigue=respawn["fatigue"], wound=respawn_wound_value,
-                                       room=SAFE_ROOM_ID)
+                                       room=SAFE_ROOM_ID, reset_rest_budget=True)
             return _defeat_result(creature, messages, player, respawn, respawn_wound_value)
         store.update_combat_state(path, player["id"], hp_current=player_hp,
                                    fatigue=round(fatigue), wound=new_wound)
@@ -805,29 +805,35 @@ def create_app(config=None):
         return name, message
 
     def attempt_rest(player):
-        """GAMEPLAY.md 24.8: accion explicita `descansar`, solo fuera de
-        combate. En `SAFE_ROOM_ID` (Issue #46) usa la recuperacion segura
-        completa de 24.9 en vez del descanso de campo basico."""
+        """GAMEPLAY.md 24.8-24.9 / REST-01: descanso gratuito limitado.
+
+        Un lugar seguro permite descansar sin peligro, pero no concede por sí
+        solo una recuperación completa gratuita. El presupuesto autoritativo
+        vive en SQLite y se consume atómicamente en store.apply_field_rest().
+        """
         if store.get_encounter(path, player["id"], player["room"]):
             return {"outcome": "blocked", "messages": ["No puedes descansar con una criatura cerca."]}
-        in_safe_room = player["room"] == SAFE_ROOM_ID
-        already_recovered = (player["hp_current"] >= player["hp_max"] and player["fatigue"] <= 0
-                              and (not in_safe_room or player["wound"] == "ninguna"))
-        if already_recovered:
-            return {"outcome": "no_op", "messages": ["Ya estás descansado."]}
-        if in_safe_room:
-            result = combat.safe_recovery_result(player["hp_max"], player["wound"])
-            store.update_combat_state(path, player["id"], hp_current=result["hp_current"],
-                                       fatigue=result["fatigue"], wound=result["wound"])
-            return {"outcome": "rested", "messages": [
-                f"{SAFE_RECOVERY_MESSAGE} (HP {result['hp_current']}/{round(player['hp_max'])}, "
-                f"fatiga {result['fatigue']})."]}
-        result = combat.rest_result(player["hp_current"], player["hp_max"], player["fatigue"],
-                                     player["attr_resistencia"], player["wound"])
-        store.update_combat_state(path, player["id"], hp_current=result["hp_current"], fatigue=result["fatigue"])
-        return {"outcome": "rested", "messages": [
-            f"Descansas un momento y recuperas fuerzas (HP {result['hp_current']}/{round(player['hp_max'])}, "
-            f"fatiga {result['fatigue']})."]}
+        result = store.apply_field_rest(path, player["id"])
+        if result is None:
+            return {"outcome": "blocked", "messages": ["No se pudo recuperar el estado del personaje."]}
+
+        healed = result["healed"]
+        remaining = result["budget_remaining"]
+        hp_now = result["hp_current"]
+        fatigue_now = result["fatigue"]
+        if healed > 0:
+            message = (f"Descansas y recuperas {round(healed)} HP. "
+                       f"Recuperación de campo restante: {round(remaining)} HP.")
+        elif hp_now >= player["hp_max"]:
+            message = "Tu vida ya está al máximo. El descanso todavía puede reducir fatiga."
+        elif remaining <= 0:
+            message = ("Descansas y recuperas fuerzas, pero el descanso de campo ya no puede "
+                       "restaurar más vida. Necesitas provisiones o una recuperación completa legítima.")
+        else:
+            message = "Descansas y recuperas fuerzas. Tu herida limita la recuperación de vida."
+
+        unchanged = (healed <= 0 and round(fatigue_now) == round(player["fatigue"]))
+        return {"outcome": "no_op" if unchanged else "rested", "messages": [message]}
 
     def attempt_equip(player, target_text):
         """GAMEPLAY.md 32.3: `equipar <objeto>`. Solo fuera de combate,

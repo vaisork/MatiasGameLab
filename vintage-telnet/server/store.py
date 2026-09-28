@@ -16,7 +16,7 @@ STATUSES = ("pending", "approved", "rejected", "removed")
 
 # Version de esquema que deja initialize(); ops/inventory_migration_probe.py
 # la usa para validar una migracion de prueba contra la copia de la base viva.
-SCHEMA_VERSION = 12
+SCHEMA_VERSION = 13
 
 # Cuentas con varios personajes (petición de Javier, 2026-09-25): un usuario
 # para entrar puede tener hasta 5 personajes; el nombre de cada personaje es
@@ -83,7 +83,7 @@ ATTRIBUTE_COLUMNS = ", ".join(f"attr_{name}" for name in combat.ATTRIBUTES)
 # pp_unspent (GAMEPLAY.md 25.8) y fatigue_updated_at (24.7, recuperacion
 # pasiva calculada por tiempo en servidor) se agregan en el esquema v8.
 CHARACTER_COLUMNS = (f"{PLAYER_COLUMNS}, level, xp, pa_unspent, pp_unspent, hp_current, hp_max, "
-                     f"fatigue, fatigue_updated_at, wound, "
+                     f"fatigue, fatigue_updated_at, wound, field_rest_budget_max, field_rest_healed, "
                      f"{ATTRIBUTE_COLUMNS}, equipped_weapon_id, equipped_armor_id")
 
 
@@ -298,6 +298,20 @@ def initialize(path):
             db.execute("CREATE INDEX IF NOT EXISTS npc_memories_player_npc ON npc_memories(player_id, npc_id, id)")
             db.execute(NPC_ACTION_LOGS_TABLE)
             db.execute("CREATE INDEX IF NOT EXISTS npc_action_logs_player_npc ON npc_action_logs(player_id, npc_id, id)")
+        if version <= 12:
+            # v13: REST-01 (#377 / GAMEPLAY.md 24.8-24.9). Acumula solo el
+            # HP realmente restaurado por descanso de campo durante el ciclo.
+            # Algunos fixtures/instalaciones pueden tener las columnas de v13
+            # con user_version anterior (p. ej., después de una migración
+            # interrumpida). Completar sólo las que falten hace segura la
+            # reanudación sin volver a agregarlas.
+            player_columns = {
+                row["name"] for row in db.execute("PRAGMA table_info(players)").fetchall()
+            }
+            if "field_rest_budget_max" not in player_columns:
+                db.execute("ALTER TABLE players ADD COLUMN field_rest_budget_max REAL")
+            if "field_rest_healed" not in player_columns:
+                db.execute("ALTER TABLE players ADD COLUMN field_rest_healed REAL NOT NULL DEFAULT 0")
         db.execute(f"PRAGMA user_version = {SCHEMA_VERSION}")
 
 
@@ -955,7 +969,8 @@ def record_pve_victory(path, player_id, family):
         return is_first, repeats
 
 
-def update_combat_state(path, player_id, hp_current=None, wound=None, room=None, fatigue=None):
+def update_combat_state(path, player_id, hp_current=None, wound=None, room=None, fatigue=None,
+                        reset_rest_budget=False):
     fields, params = [], []
     if hp_current is not None:
         fields.append("hp_current = ?")
@@ -974,11 +989,67 @@ def update_combat_state(path, player_id, hp_current=None, wound=None, room=None,
         params.append(fatigue)
         fields.append("fatigue_updated_at = ?")
         params.append(time.time())
+    if reset_rest_budget:
+        fields.append("field_rest_budget_max = NULL")
+        fields.append("field_rest_healed = 0")
     if not fields:
         return
     params.append(player_id)
     with connect(path) as db:
         db.execute(f"UPDATE players SET {', '.join(fields)} WHERE id = ?", params)
+
+
+def apply_field_rest(path, player_id):
+    """Aplica REST-01 de forma transaccional y devuelve el resultado real.
+
+    El presupuesto se fija una sola vez al 30% del HP que faltaba cuando
+    comienza un ciclo que realmente puede curar. BEGIN IMMEDIATE serializa
+    solicitudes simultaneas para que daño/reintentos no amplíen ese límite.
+    """
+    with connect(path) as db:
+        db.execute("BEGIN IMMEDIATE")
+        row = db.execute(
+            """SELECT hp_current, hp_max, fatigue, wound, attr_resistencia,
+                      field_rest_budget_max, field_rest_healed
+               FROM players WHERE id = ?""",
+            (player_id,),
+        ).fetchone()
+        if row is None:
+            return None
+
+        stored_budget = row["field_rest_budget_max"]
+        used = max(0.0, row["field_rest_healed"] or 0.0)
+        budget_max = stored_budget
+
+        # El ciclo nace solo si este descanso realmente puede recuperar HP.
+        wound_cap = row["hp_max"] * combat.WOUND_REST_HP_CAP_FRACTION[row["wound"]]
+        heal_room = max(0.0, min(row["hp_max"], wound_cap) - row["hp_current"])
+        if budget_max is None and heal_room > 0:
+            missing_hp = max(0.0, row["hp_max"] - row["hp_current"])
+            budget_max = missing_hp * combat.FIELD_REST_MISSING_HP_FRACTION
+
+        remaining = max(0.0, (budget_max or 0.0) - used)
+        result = combat.rest_result(
+            row["hp_current"], row["hp_max"], row["fatigue"],
+            row["attr_resistencia"], row["wound"], remaining,
+        )
+        used_after = used + result["healed"]
+
+        budget_to_store = stored_budget
+        if budget_to_store is None and result["healed"] > 0:
+            budget_to_store = budget_max
+
+        db.execute(
+            """UPDATE players
+               SET hp_current = ?, fatigue = ?, fatigue_updated_at = ?,
+                   field_rest_budget_max = ?, field_rest_healed = ?
+               WHERE id = ?""",
+            (result["hp_current"], result["fatigue"], time.time(),
+             budget_to_store, used_after, player_id),
+        )
+        result["budget_max"] = budget_to_store
+        result["field_rest_healed"] = used_after
+        return result
 
 
 # --- GAMEPLAY.md 20.14: respawn de monstruos comunes con temporizador -----

@@ -102,8 +102,11 @@ class DeathRegressionTests(unittest.TestCase):
         self.post("/command", dict(text="equipar Acolchado de Camino"))
 
         with store.connect(self.path) as db:
-            db.execute("UPDATE players SET xp = 45, pa_unspent = 3, pp_unspent = 1, wound = 'moderada' WHERE id = ?",
-                       (pid,))
+            db.execute("""UPDATE players
+                          SET xp = 45, pa_unspent = 3, pp_unspent = 1,
+                              wound = 'moderada', field_rest_budget_max = 12,
+                              field_rest_healed = 10
+                          WHERE id = ?""", (pid,))
 
         char_before = self.character()
         inv_before = self.inventory()
@@ -144,6 +147,12 @@ class DeathRegressionTests(unittest.TestCase):
         self.assertEqual(char_after["fatigue"], 40)
         self.assertEqual(char_after["wound"], "leve")  # degradada de moderada a leve
         self.assertFalse(char_after["in_combat"])
+        with store.connect(self.path) as db:
+            rest_state = db.execute(
+                "SELECT field_rest_budget_max, field_rest_healed FROM players WHERE id = ?",
+                (pid,)).fetchone()
+        self.assertIsNone(rest_state["field_rest_budget_max"])
+        self.assertEqual(rest_state["field_rest_healed"], 0)  # REST-01: muerte inicia ciclo nuevo.
 
         # 5: XP, nivel, PA y PP intactos antes de reconectar
         self.assertEqual(char_after["level"], char_before["level"])
