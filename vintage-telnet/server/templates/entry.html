@@ -989,7 +989,7 @@
       <button class="segment" id="mapTabHeading" type="button" role="tab" aria-selected="false" aria-controls="mapPanelHeading" data-map-tab="heading"><svg class="ui-icon" aria-hidden="true"><use href="#icon-compass"/></svg>Dirección actual</button>
     </div>
     <section class="map-panel" id="mapPanelGeneral" role="tabpanel" aria-labelledby="mapTabGeneral" data-map-panel="general">
-      {% if room %}<p class="map-here"><b>Estás en:</b> {{ room.name }}</p>{% endif %}
+      {% if room %}<p class="map-here"><b>Estás en:</b> <span id="mapCurrentRoomName">{{ room.name }}</span></p>{% endif %}
       <div class="minimap-frame">
         <div class="minimap-scroll" id="minimapScroll"><p class="map-empty">El mapa todavía no se ha cargado.</p></div>
         <ul class="minimap-legend" aria-label="Leyenda del mapa">
@@ -1098,7 +1098,7 @@
   }));
   wireArt(document);
 
-  const activateTabs = (buttonSelector, panelSelector, dataKey) => {
+  const activateTabs = (buttonSelector, panelSelector, buttonKey, panelKey) => {
     const buttons = [...document.querySelectorAll(buttonSelector)];
     const panels = [...document.querySelectorAll(panelSelector)];
     const activate = button => {
@@ -1107,7 +1107,7 @@
         other.setAttribute("aria-selected", String(selected));
         other.tabIndex = selected ? 0 : -1;
       });
-      panels.forEach(panel => { panel.hidden = panel.dataset[dataKey] !== button.dataset[dataKey]; });
+      panels.forEach(panel => { panel.hidden = panel.dataset[panelKey] !== button.dataset[buttonKey]; });
     };
     buttons.forEach((button, index) => {
       button.tabIndex = button.getAttribute("aria-selected") === "true" ? 0 : -1;
@@ -1125,8 +1125,8 @@
       });
     });
   };
-  activateTabs("[data-map-tab]", "[data-map-panel]", "mapPanel");
-  activateTabs("[data-help-tab]", "[data-help-panel]", "helpPanel");
+  activateTabs("[data-map-tab]", "[data-map-panel]", "mapTab", "mapPanel");
+  activateTabs("[data-help-tab]", "[data-help-panel]", "helpTab", "helpPanel");
 
   // Gasto de PA (GAMEPLAY.md 19/25.4/25.5). El servidor calcula costes,
   // decide si se puede gastar y aplica el +1; aquí solo se muestra el
@@ -1419,7 +1419,11 @@
   };
   const readableId = id => String(id).replaceAll("_", " ");
   let placeNames = {};
-  const placeName = id => placeNames[id] || readableId(id);
+  const placeName = id => {
+    if (placeNames[id]) return placeNames[id];
+    if (typeof id === "string" && id.startsWith("home:")) return "Tu hogar";
+    return readableId(id);
+  };
   const SVG_NS = "http://www.w3.org/2000/svg";
   const svgEl = (name, attrs) => {
     const el = document.createElementNS(SVG_NS, name);
@@ -1541,7 +1545,15 @@
       const response = await fetch("/api/map", {headers: {"Accept": "application/json"}});
       if (!response.ok) throw new Error("map unavailable");
       const data = await response.json();
-      placeNames = Object.fromEntries((Array.isArray(data.places) ? data.places : []).map(p => [p.id, p.name]));
+      placeNames = Object.assign(
+        {},
+        data.room_names || {},
+        Object.fromEntries((Array.isArray(data.places) ? data.places : []).map(p => [p.id, p.name]))
+      );
+      if (data.current_room_name) {
+        const hereEl = document.getElementById("mapCurrentRoomName");
+        if (hereEl) hereEl.textContent = data.current_room_name;
+      }
       renderMinimap(data);
       renderMap(data);
       renderHeading(data.current_heading);
@@ -1771,6 +1783,11 @@
       const text = incomingBadge.textContent.trim();
       const match = text.match(/^(?:(\d+) PA)?(?: · )?(?:(\d+) PP)?$/);
       syncPointIndicators(match && match[1] ? Number(match[1]) : 0, match && match[2] ? Number(match[2]) : 0);
+    }
+    const incomingHere = next.querySelector("#mapCurrentRoomName");
+    const currentHere = document.getElementById("mapCurrentRoomName");
+    if (currentHere && incomingHere) {
+      currentHere.textContent = incomingHere.textContent;
     }
     const currentChat = document.querySelector("[data-room-chat]");
     if (currentChat) roomActivitySnapshot = currentChat.dataset.roomId + "|";
