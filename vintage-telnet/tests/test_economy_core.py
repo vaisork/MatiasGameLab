@@ -70,9 +70,9 @@ class EconomyCoreCatalogAndMathTests(unittest.TestCase):
 
 
 class EconomyMigrationAndPersistenceTests(unittest.TestCase):
-    """Pruebas de migración de esquema v14 a v17 y persistencia del ledger."""
+    """Pruebas de migración de esquema v14 a v18 y persistencia del ledger."""
 
-    def test_migration_v14_to_v17_adds_all_tables_and_preserves_player_data(self):
+    def test_migration_v14_to_v18_adds_all_tables_and_preserves_player_data(self):
         with tempfile.TemporaryDirectory() as td:
             db_path = str(Path(td) / "test.db")
             # 1. Crear base en v14 con un jugador existente
@@ -94,10 +94,11 @@ class EconomyMigrationAndPersistenceTests(unittest.TestCase):
 
             # 3. Validar tablas, columnas y datos preservados.
             with store.connect(db_path) as db:
-                self.assertEqual(db.execute("PRAGMA user_version").fetchone()[0], 17)
+                self.assertEqual(db.execute("PRAGMA user_version").fetchone()[0], 18)
                 encounter_cols = {row["name"] for row in db.execute("PRAGMA table_info(room_encounters)")}
                 self.assertTrue({"engaged", "signature_cooldown", "apertura", "prepared_action"} <= encounter_cols)
                 self.assertTrue(db.execute("SELECT 1 FROM player_story_flags LIMIT 1").fetchone() is None)
+                self.assertIsNotNone(db.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='player_threat_states'").fetchone())
                 cols = {row["name"] for row in db.execute("PRAGMA table_info(players)").fetchall()}
                 self.assertIn("sellos", cols)
                 player_row = db.execute("SELECT sellos FROM players WHERE id = ?", (p_id,)).fetchone()

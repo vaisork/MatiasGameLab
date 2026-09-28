@@ -580,4 +580,3 @@ def resolve_tiro_de_interrupcion_attack_roll(
     if prepared_action and prepared_action.get("interruptible", False):
         return True, damage, {"interrupted": True, "enemy_accuracy_penalty": 0}
     return True, damage, {"interrupted": False, "enemy_accuracy_penalty": 15}
-

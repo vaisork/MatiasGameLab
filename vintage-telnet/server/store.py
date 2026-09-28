@@ -16,7 +16,7 @@ STATUSES = ("pending", "approved", "rejected", "removed")
 
 # Version de esquema que deja initialize(); ops/inventory_migration_probe.py
 # la usa para validar una migracion de prueba contra la copia de la base viva.
-SCHEMA_VERSION = 17
+SCHEMA_VERSION = 18
 
 # Cuentas con varios personajes (petición de Javier, 2026-09-25): un usuario
 # para entrar puede tener hasta 5 personajes; el nombre de cada personaje es
@@ -48,6 +48,16 @@ NPC_ACTION_LOGS_TABLE = """CREATE TABLE IF NOT EXISTS npc_action_logs (
     payload_json TEXT,
     created_at TEXT NOT NULL)"""
 
+# v13: Issue #335 (GAMEPLAY.md §40) -- motor de amenazas regionales C3 v1.
+# Persiste el estado de la zona por personaje (unknown, warned, close, resolved)
+# y la marca temporal de cooldown anti-spam (30 minutos reales = 1800s).
+PLAYER_THREAT_STATES_TABLE = """CREATE TABLE IF NOT EXISTS player_threat_states (
+    player_id TEXT NOT NULL REFERENCES players(id),
+    threat_zone_id TEXT NOT NULL,
+    state TEXT NOT NULL CHECK(state IN ('unknown', 'warned', 'close', 'resolved')),
+    cooldown_until REAL,
+    updated_at REAL NOT NULL,
+    PRIMARY KEY (player_id, threat_zone_id))"""
 # v15 story flags and v17 economy ledger.
 STORY_FLAGS_TABLE = """CREATE TABLE IF NOT EXISTS player_story_flags (
     player_id TEXT NOT NULL REFERENCES players(id) ON DELETE CASCADE,
@@ -359,8 +369,7 @@ def initialize(path):
             db.execute(ECONOMY_LEDGER_TABLE)
             db.execute("CREATE INDEX IF NOT EXISTS economy_ledger_player ON economy_ledger(player_id, id)")
             now_ts = time.time()
-            existing = db.execute("SELECT id, sellos FROM players").fetchall()
-            for player in existing:
+            for player in db.execute("SELECT id, sellos FROM players").fetchall():
                 if not db.execute("SELECT 1 FROM economy_ledger WHERE player_id = ? LIMIT 1", (player["id"],)).fetchone():
                     balance = int(player["sellos"] or 0)
                     db.execute(
@@ -368,6 +377,9 @@ def initialize(path):
                            VALUES (?, ?, ?, 'starting_purse', 'migration:v17', ?)""",
                         (player["id"], balance, balance, now_ts),
                     )
+        if version <= 17:
+            db.execute(PLAYER_THREAT_STATES_TABLE)
+            db.execute("CREATE INDEX IF NOT EXISTS threat_states_player_zone ON player_threat_states(player_id, threat_zone_id)")
         db.execute(f"PRAGMA user_version = {SCHEMA_VERSION}")
 
 
@@ -1390,6 +1402,48 @@ def list_npc_action_logs(path, player_id=None, npc_id=None, limit=20):
         ]
 
 
+def get_threat_state(path, player_id, threat_zone_id):
+    """Devuelve el estado de una zona de amenaza C3 para un jugador o None."""
+    with connect(path) as db:
+        row = db.execute(
+            "SELECT player_id, threat_zone_id, state, cooldown_until, updated_at "
+            "FROM player_threat_states WHERE player_id = ? AND threat_zone_id = ?",
+            (player_id, threat_zone_id),
+        ).fetchone()
+        if not row:
+            return None
+        return {
+            "player_id": row["player_id"],
+            "threat_zone_id": row["threat_zone_id"],
+            "state": row["state"],
+            "cooldown_until": row["cooldown_until"],
+            "updated_at": row["updated_at"],
+        }
+
+
+def set_threat_state(path, player_id, threat_zone_id, state, cooldown_until=None, now=None):
+    """Inserta o actualiza el estado de una amenaza C3 (unknown, warned, close, resolved)."""
+    if now is None:
+        now = time.time()
+    with connect(path) as db:
+        db.execute(
+            """INSERT INTO player_threat_states (player_id, threat_zone_id, state, cooldown_until, updated_at)
+               VALUES (?, ?, ?, ?, ?)
+               ON CONFLICT(player_id, threat_zone_id) DO UPDATE SET
+                   state = excluded.state,
+                   cooldown_until = excluded.cooldown_until,
+                   updated_at = excluded.updated_at""",
+            (player_id, threat_zone_id, state, cooldown_until, now),
+        )
+
+
+def clear_threat_state(path, player_id, threat_zone_id):
+    """Elimina el estado de una amenaza C3 (para pruebas o reinicio)."""
+    with connect(path) as db:
+        db.execute(
+            "DELETE FROM player_threat_states WHERE player_id = ? AND threat_zone_id = ?",
+            (player_id, threat_zone_id),
+        )
 # --- VT-SERVER: STORY-FLAGS-01 (#427 / GAMEPLAY.md §§22, 32 / #287, #288) ---
 def get_story_flag(path, player_id, flag):
     """Devuelve True si el flag narrativo está activo para el jugador, o False si no existe o es inactivo."""

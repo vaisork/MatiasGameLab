@@ -126,4 +126,3 @@ def is_ranged(item_key):
     """GAMEPLAY.md 36.7: si el arma es un arma a distancia valida."""
     item = ITEMS.get(item_key)
     return bool(item and item.get("is_ranged", False))
-

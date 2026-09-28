@@ -174,6 +174,95 @@ CREATURES = {
         "behavior_text": ("Hilaria de niebla permanece inmóvil junto a su red baja; los filamentos "
                            "vibran antes de que retroceda hacia un hueco de corteza."),
     },
+    # GAMEPLAY §40 / REGIONAL_THREAT_PROFILES.md (#335): Amenazas regionales C3 v1
+    "rasgacumbres": {
+        "name": "Rasgacumbres",
+        "family": "rasgacumbres",
+        "reference_level": 9,
+        "hp": 110,
+        "precision": 70,
+        "damage": 22,
+        "armor_reduction": 0.10,
+        "flee_agilidad": 18,
+        "flee_percepcion": 17,
+        "behavior_text": ("Rasgacumbres vigila desde las alturas de la sierra y reduce distancia "
+                           "en picado hacia las crestas."),
+        "prepared_action": {
+            "id": "rasgacumbres_descenso",
+            "name": "Descenso de picada",
+            "signal": "grava que cae y reducción rápida de distancia desde altura",
+            "frontal": False,
+            "interruptible": True,
+            "precision": 76,
+            "damage": 30,
+        },
+    },
+    "quebrarrocas": {
+        "name": "Quebrarrocas",
+        "family": "quebrarrocas",
+        "reference_level": 10,
+        "hp": 150,
+        "precision": 55,
+        "damage": 24,
+        "armor_reduction": 0.30,
+        "flee_agilidad": 8,
+        "flee_percepcion": 11,
+        "behavior_text": ("Quebrarrocas empuja desde la roca fracturada; su cuerpo acorazado "
+                           "y macizo avanza como un ariete."),
+        "prepared_action": {
+            "id": "quebrarrocas_empuje",
+            "name": "Empuje de roca",
+            "signal": "vibración fuerte y piedras desplazándose con violencia",
+            "frontal": True,
+            "interruptible": True,
+            "precision": 64,
+            "damage": 34,
+        },
+    },
+    "dorsalodo": {
+        "name": "Dorsalodo",
+        "family": "dorsalodo",
+        "reference_level": 10,
+        "hp": 135,
+        "precision": 62,
+        "damage": 24,
+        "armor_reduction": 0.15,
+        "flee_agilidad": 12,
+        "flee_percepcion": 16,
+        "behavior_text": ("Dorsalodo emerge del agua turbia alineando su cuerpo dorsal "
+                           "acorazado para arremeter."),
+        "prepared_action": {
+            "id": "dorsalodo_arremetida",
+            "name": "Arremetida de fango",
+            "signal": "onda amplia en el agua y juncos abiertos súbitamente",
+            "frontal": True,
+            "interruptible": True,
+            "precision": 72,
+            "damage": 32,
+        },
+    },
+    "rasgacorteza": {
+        "name": "Rasgacorteza",
+        "family": "rasgacorteza",
+        "reference_level": 10,
+        "hp": 145,
+        "precision": 60,
+        "damage": 25,
+        "armor_reduction": 0.25,
+        "flee_agilidad": 10,
+        "flee_percepcion": 17,
+        "behavior_text": ("Rasgacorteza se desgaja del follaje como una pared viva "
+                           "y bloquea el paso en silencio."),
+        "prepared_action": {
+            "id": "rasgacorteza_arremetida",
+            "name": "Arremetida de tronco",
+            "signal": "corteza desprendiéndose y masa viva interponiéndose en el paso",
+            "frontal": True,
+            "interruptible": True,
+            "precision": 68,
+            "damage": 35,
+        },
+    },
     # Segunda oleada de fauna menor (#412) — contratos mecánicos literales de #340, #342–#345.
     # Sin assets aprobados: estas criaturas dejan el marco de combate neutral.
     "remojunco": {
@@ -259,6 +348,10 @@ CREATURE_ART = {
     "cornalomo": {"src": "/assets/creatures/cornalomo.webp",
                   "alt": "Cornalomo avanzando por los Llanos de Edran con la placa frontal y las estructuras dorsales visibles",
                   "width": 1536, "height": 1024},
+    # Publicado en PR #258 (Issue #205)
+    "rasgacorteza": {"src": "/assets/creatures/rasgacorteza.webp",
+                     "alt": "Rasgacorteza camuflado en el follaje del bosque de Nhal",
+                     "width": 1536, "height": 1024},
 }
 
 
