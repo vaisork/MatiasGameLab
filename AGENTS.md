@@ -18,6 +18,25 @@ La versión extensa anterior se conserva en [docs/archive/AGENTS_FULL_2026-09-27
 8. No desplegar a Raspberry salvo autorización explícita para esa ejecución.
 9. Al entregar una PR o contrato, toma la siguiente READY independiente de tu cola.
 
+## Política de pruebas y consumo
+
+1. **No ejecutes la suite completa automáticamente después de cada entrega.**
+2. **Siempre ejecuta:**
+   - tests específicos de la feature;
+   - tests de los módulos directamente afectados;
+   - `git diff --check`.
+3. **Ejecuta la suite completa únicamente si la PR modifica:**
+   - persistencia/esquema;
+   - transacciones compartidas;
+   - combate central;
+   - autenticación/sesiones;
+   - dependencias o infraestructura común de alto impacto.
+4. **Máximo una ejecución de suite completa por PR**, salvo que hayas modificado código después de un fallo.
+5. **Cadenas de PR dependientes:** las PR intermedias usan pruebas focales; la suite completa se ejecuta al cerrar el paquete.
+6. **Responsabilidad de Codex:** Codex es responsable de la suite completa definitiva sobre el candidato reconciliado que realmente se integrará a `main`.
+7. **Salida compacta:** usa salida silenciosa/compacta de tests. Registra únicamente comando, cantidad PASS/FAIL/SKIP y fallos relevantes. No pegues logs completos cuando todo está verde.
+8. **Lectura quirúrgica:** no releas documentos o archivos de todo el repositorio si el issue y las dependencias indican las secciones exactas necesarias.
+
 ## Rol → cola → producto
 
 | Rol | Cola | Producto |
@@ -230,7 +249,7 @@ No inventar canon/balance, ampliar alcance, tocar sistemas innecesarios ni despl
 
 Antes de entregar:
 1. revisar diff contra `main`;
-2. ejecutar suite relevante y, cuando sea razonable, completa;
+2. ejecutar pruebas focales según la Política de pruebas y consumo (suite completa solo si aplica según la política);
 3. añadir regresiones;
 4. probar persistencia/reconnect/reintentos/concurrencia cuando aplique;
 5. comprobar idempotencia cuando exista riesgo;
