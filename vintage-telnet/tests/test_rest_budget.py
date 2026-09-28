@@ -51,7 +51,7 @@ class RestBudgetIntegrationTests(unittest.TestCase):
     def raw(self):
         with store.connect(self.path) as db:
             return dict(db.execute(
-                """SELECT hp_current, hp_max, fatigue, wound,
+                """SELECT hp_current, hp_max, fatigue, fatigue_updated_at, wound,
                           field_rest_budget_max, field_rest_healed
                    FROM players WHERE id = ?""", (self.player_id,)).fetchone())
 
@@ -162,16 +162,55 @@ class RestBudgetIntegrationTests(unittest.TestCase):
         self.assertEqual(state["field_rest_healed"], 0)
         self.assertLess(state["fatigue"], 50)
 
-    def test_exhausted_budget_still_reduces_fatigue(self):
+    def test_exhausted_budget_blocks_rest_without_mutating_state(self):
+        self.set_state(hp_current=50, hp_max=100, fatigue=80, fatigue_updated_at=1234,
+                       wound="ninguna", field_rest_budget_max=12, field_rest_healed=12)
+        before = self.raw()
+        result = store.apply_field_rest(self.path, self.player_id)
+        self.assertEqual(result["blocked"], "budget_exhausted")
+        self.assertEqual(result["healed"], 0)
+        self.assertEqual(result["budget_remaining"], 0)
+        self.assertEqual(self.raw(), before)
+
+    def test_available_actions_remove_rest_at_zero_budget_and_manual_request_is_blocked(self):
+        self.set_state(hp_current=50, hp_max=100, fatigue=80, fatigue_updated_at=1234,
+                       wound="ninguna", field_rest_budget_max=12, field_rest_healed=12)
+        room = self.client.get("/api/room").json["room"]
+        self.assertEqual(room["rest_recovery"], {"available": False, "budget_remaining": 0.0})
+        self.assertNotIn("descansar", {action["action"] for action in room["available_actions"]})
+        before = self.raw()
+        response = self.post("/command", {"text": "descansar"})
+        self.assertEqual(response.status_code, 200)
+        self.assertIn("agotaste la recuperación de campo disponible", response.get_data(as_text=True))
+        self.assertEqual(self.raw(), before)
+
+    def test_last_rest_consumes_budget_and_disables_next_action(self):
+        self.set_state(hp_current=70, hp_max=100, fatigue=80, wound="ninguna",
+                       field_rest_budget_max=12, field_rest_healed=10)
+        before = self.client.get("/api/room").json["room"]
+        self.assertEqual(before["rest_recovery"], {"available": True, "budget_remaining": 2.0})
+        self.assertIn("descansar", {action["action"] for action in before["available_actions"]})
+        response = self.post("/command", {"text": "descansar"})
+        self.assertEqual(response.status_code, 200)
+        after = self.client.get("/api/room").json["room"]
+        self.assertEqual(after["rest_recovery"], {"available": False, "budget_remaining": 0.0})
+        self.assertNotIn("descansar", {action["action"] for action in after["available_actions"]})
+        state = self.raw()
+        self.assertEqual(state["hp_current"], 72)
+        self.assertEqual(state["field_rest_healed"], 12)
+
+    def test_exhausted_status_survives_restart_and_reset_restores_availability(self):
         self.set_state(hp_current=50, hp_max=100, fatigue=80, wound="ninguna",
                        field_rest_budget_max=12, field_rest_healed=12)
-        result = store.apply_field_rest(self.path, self.player_id)
-        self.assertEqual(result["healed"], 0)
-        self.assertEqual(result["hp_current"], 50)
-        self.assertEqual(result["fatigue"], 55)
-        state = self.raw()
-        self.assertEqual(state["field_rest_budget_max"], 12)
-        self.assertEqual(state["field_rest_healed"], 12)
+        self.assertEqual(store.field_rest_status(self.path, self.player_id),
+                         {"available": False, "budget_remaining": 0.0})
+        restarted = create_app(self.config)
+        self.assertEqual(restarted.config["DATABASE"], self.path)
+        self.assertEqual(store.field_rest_status(self.path, self.player_id),
+                         {"available": False, "budget_remaining": 0.0})
+        store.update_combat_state(self.path, self.player_id, reset_rest_budget=True)
+        self.assertEqual(store.field_rest_status(self.path, self.player_id),
+                         {"available": True, "budget_remaining": None})
 
     def test_full_hp_does_not_start_cycle_or_consume_budget(self):
         self.set_state(hp_current=100, hp_max=100, fatigue=30, wound="ninguna",
