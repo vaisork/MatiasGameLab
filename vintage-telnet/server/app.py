@@ -372,10 +372,10 @@ def create_app(config=None):
             if world.is_home_room(previous_room):
                 direction = world.HOME_EXIT_DIRECTION
             else:
-                return False, previous_room, None, "No puedes ir en esa dirección.", None, None
+                return False, previous_room, None, "No puedes ir en esa dirección.", None
         destination = room["exits"].get(direction) if room else None
         if not destination:
-            return False, previous_room, None, "No puedes ir en esa dirección."
+            return False, previous_room, None, "No puedes ir en esa dirección.", None
         store.move_player(path, player["id"], destination, direction)
         store.mark_visited(path, player["id"], destination)
         if not world.is_home_room(previous_room) and not world.is_home_room(destination):
