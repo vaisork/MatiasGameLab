@@ -4,6 +4,7 @@ El registro completo anterior está preservado sin cambios en [docs/archive/VT_S
 
 | # | Entrega registrada |
 |---:|---|
+| — | REST-01 (#377): migración v13 tolera columnas existentes/parciales de presupuesto de descanso; PR #383, rama `junior/377-rest-budget`, base integrada `fe3b402`. 434 pruebas pasan en Linux/Python 3.13 con `python -m unittest discover -s tests -q`; workflow temporal de la rama retirado. Entrega para revisión/integración; sin Raspberry ni deploy — 2026-09-28 |
 | — | Proveedor Ollama runtime opt-in (#382) — PR #386, rama `codex/vt-ollama-dialogue-runtime`, base `a03cfe4`; decisión explícita de Javier: permite Ollama para conversación de Vintage Telnet, nunca `ojo-de-agua:latest`. 23 pruebas de diálogo y suite de 420 pasan. Sonda sintética con `llama3.2:3b`: primera llamada excedió 60 s; segunda respondió en ~58 s con errores gramaticales y un detalle no confirmado. `qwen3:4b` queda sin probar. Servicio sigue en `fixed`; no desplegado — 2026-09-28 |
 | 1 | Entrega lista para revisión: HOME-CORE — hogar personal persistente mínimo (#280) — 2026-09-27 |
 | 2 | Entrega lista para revisión: Acciones estructuradas derivadas del diálogo con gate autoritativo (#247) — 2026-09-27 |

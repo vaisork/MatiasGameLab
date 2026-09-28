@@ -65,6 +65,26 @@ class RestBudgetIntegrationTests(unittest.TestCase):
         self.assertIsNone(state["field_rest_budget_max"])
         self.assertEqual(state["field_rest_healed"], 0)
 
+    def test_v13_migration_resumes_when_columns_already_exist_or_partially_exist(self):
+        # Older fixtures or an interrupted deployment can contain one or both
+        # v13 columns while user_version still reports v12.
+        for missing_columns in ((), ("field_rest_healed",), ("field_rest_budget_max",)):
+            with self.subTest(missing_columns=missing_columns), tempfile.TemporaryDirectory() as temp:
+                path = f"{temp}/vt.sqlite3"
+                store.initialize(path)
+                with store.connect(path) as db:
+                    for column in missing_columns:
+                        db.execute(f"ALTER TABLE players DROP COLUMN {column}")
+                    db.execute("PRAGMA user_version = 12")
+
+                store.initialize(path)
+
+                with store.connect(path) as db:
+                    columns = {row["name"] for row in db.execute("PRAGMA table_info(players)")}
+                    self.assertEqual(db.execute("PRAGMA user_version").fetchone()[0], 13)
+                self.assertIn("field_rest_budget_max", columns)
+                self.assertIn("field_rest_healed", columns)
+
     def test_budget_is_30_percent_of_missing_hp_at_cycle_start(self):
         self.set_state(hp_current=60, hp_max=100, fatigue=100, wound="ninguna",
                        field_rest_budget_max=None, field_rest_healed=0)

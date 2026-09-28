@@ -301,8 +301,17 @@ def initialize(path):
         if version <= 12:
             # v13: REST-01 (#377 / GAMEPLAY.md 24.8-24.9). Acumula solo el
             # HP realmente restaurado por descanso de campo durante el ciclo.
-            db.execute("ALTER TABLE players ADD COLUMN field_rest_budget_max REAL")
-            db.execute("ALTER TABLE players ADD COLUMN field_rest_healed REAL NOT NULL DEFAULT 0")
+            # Algunos fixtures/instalaciones pueden tener las columnas de v13
+            # con user_version anterior (p. ej., después de una migración
+            # interrumpida). Completar sólo las que falten hace segura la
+            # reanudación sin volver a agregarlas.
+            player_columns = {
+                row["name"] for row in db.execute("PRAGMA table_info(players)").fetchall()
+            }
+            if "field_rest_budget_max" not in player_columns:
+                db.execute("ALTER TABLE players ADD COLUMN field_rest_budget_max REAL")
+            if "field_rest_healed" not in player_columns:
+                db.execute("ALTER TABLE players ADD COLUMN field_rest_healed REAL NOT NULL DEFAULT 0")
         db.execute(f"PRAGMA user_version = {SCHEMA_VERSION}")
 
 
