@@ -185,6 +185,56 @@ class EconomyAppIntegrationTests(unittest.TestCase):
     def get_sellos(self):
         return economy.get_player_balance(self.path, self.player_id)
 
+    # --- UI de economía (#414) ---
+
+    def test_economy_ui_uses_authoritative_shop_payload_and_structured_transactions(self):
+        html = self.client.get("/").get_data(as_text=True)
+
+        self.assertIn('id="walletFactAmount"', html)
+        self.assertIn('id="shopDialog"', html)
+        self.assertIn('id="shopConfirm"', html)
+        self.assertIn('fetch("/api/shop/daro"', html)
+        self.assertIn('fetch("/api/inventory"', html)
+        self.assertIn('"/api/shop/daro/buy"', html)
+        self.assertIn('"/api/shop/daro/sell"', html)
+        self.assertIn("entry.price", html)
+        self.assertIn("entry.resale_price", html)
+        self.assertIn("button.dataset.shopBuy = entry.item_key", html)
+        self.assertIn("button.dataset.shopSell = item.id", html)
+        self.assertIn('body: JSON.stringify(payload)', html)
+
+        # El precio y el catálogo ya no se duplican en el markup estático.
+        self.assertNotIn("Comprar (40)", html)
+        self.assertNotIn("Comprar (50)", html)
+        self.assertNotIn('value="comprar varita de aprendiz"', html)
+        self.assertNotIn("Para vender un arma a Daro", html)
+
+    def test_shop_dialog_survives_ajax_navigation_and_wallet_uses_singular(self):
+        self.set_sellos(1)
+        # Fuera de la forja el botón contextual desaparece, pero el diálogo
+        # sigue en el DOM para que un swap AJAX al entrar pueda abrirlo.
+        store.move_player(self.path, self.player_id, "valdren_centro")
+        html = self.client.get("/").get_data(as_text=True)
+
+        self.assertIn('id="shopDialog"', html)
+        self.assertIn('id="walletFactAmount">1 sello</span>', html)
+        self.assertIn('id="charWalletAmount">1 sello</strong>', html)
+        self.assertIn('id="inventoryWalletAmount">1 sello</strong>', html)
+        self.assertIn('id="shopWalletAmount">1 sello</strong>', html)
+        self.assertIn('value === 1 ? "sello" : "sellos"', html)
+
+    def test_shop_ui_explains_funds_and_sale_guards_before_confirmation(self):
+        html = self.client.get("/").get_data(as_text=True)
+
+        self.assertIn('"Faltan " + formatSellos(price - balance)', html)
+        self.assertIn('"Necesitas " + formatSellos(price) + ". Tienes " + formatSellos(balance)', html)
+        self.assertIn('"Está equipado; desequípalo antes de vender."', html)
+        self.assertIn('"Es tu última arma utilizable; consigue otra antes de vender."', html)
+        self.assertIn('"¿Comprar " + label + " por " + formatSellos(price)', html)
+        self.assertIn('"Daro te paga " + formatSellos(price) + " por " + label', html)
+        self.assertIn('class="shop-confirm-actions"', html)
+        self.assertIn('.shop-confirm-actions .action{min-height:44px}', html)
+
     # --- Pruebas de Compra ---
 
     def test_buy_item_with_sufficient_funds_succeeds(self):
