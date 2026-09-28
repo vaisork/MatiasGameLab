@@ -1,3 +1,16 @@
+# Entrega preparada para revisión: NPCs visibles y acceso directo a conversación (#373) — 2026-09-27
+
+- **RESPONSABLE:** Codex — Desarrollador de Servidor de Vintage Telnet.
+- **HEAD BASE:** `4d0ccbed0cd6b631d032ef4223912d089dae094b` (`origin/main`).
+- **RAMA:** `codex/vt-373-visible-npcs`.
+- **RECLASIFICACIÓN:** Javier confirmó que `/api/room` en la Raspberry ya devuelve a Daro y la acción `hablar`; Arquitectura corrigió el diagnóstico de #373 a un defecto de presentación frontend y pidió no continuar investigando el despliegue.
+- **CAMBIO:** La vista de sala ahora muestra una sección “Personas aquí” cuando hay NPCs presentes, con nombre, rol y botón “Hablar” por personaje. El botón prepara `hablar <npc_id>` en el campo de comando para que el jugador escriba su mensaje; el comando existente `hablar daro hola` se conserva sin cambios.
+- **ARCHIVOS:** `server/templates/entry.html` y cobertura de salida HTML en `tests/test_npc_dialogue.py`.
+- **PRUEBAS:** módulo NPC, **17/17 PASS**; suite completa, **405/405 PASS** (virtualenv temporal `/tmp/vt373-venv`). `git diff --check` también pasa.
+- **LÍMITE DE VALIDACIÓN:** no se modificó backend, canon, datos ni servicio de producción. El cambio no está desplegado; la verificación visual final de Daro en el navegador real sigue pendiente.
+- **ESTADO:** LISTO PARA REVISIÓN DE CÓDIGO; #373 no se considera cerrado hasta validar la interfaz en producción.
+- **MERGE / DEPLOY:** NO.
+
 # Handoff — Desarrollador de Servidor — Vintage Telnet
 
 ## Integración lista para revisión: arte de Cornalomo en combate (#365) — 2026-09-28
