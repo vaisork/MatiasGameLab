@@ -164,6 +164,69 @@ CREATURES = {
         "behavior_text": ("Hilaria de niebla permanece inmóvil junto a su red baja; los filamentos "
                            "vibran antes de que retroceda hacia un hueco de corteza."),
     },
+    # Segunda oleada de fauna menor (#412) — contratos mecánicos literales de #340, #342–#345.
+    # Sin assets aprobados: estas criaturas dejan el marco de combate neutral.
+    "remojunco": {
+        "name": "Remojunco",
+        "family": "remojunco",
+        "reference_level": 1,
+        "hp": 24,
+        "precision": 42,
+        "damage": 4,
+        "flee_agilidad": 16,
+        "flee_percepcion": 12,
+        "behavior_text": ("Remojunco busca raíces y semillas entre juncos; al menor peligro "
+                           "se sumerge o corre hacia la vegetación de ribera."),
+    },
+    "garralaja": {
+        "name": "Garralaja",
+        "family": "garralaja",
+        "reference_level": 1,
+        "hp": 22,
+        "precision": 46,
+        "damage": 4,
+        "flee_agilidad": 17,
+        "flee_percepcion": 14,
+        "behavior_text": ("Garralaja permanece adherida a la roca seca y se repliega lateralmente "
+                           "hacia fisuras estrechas si detecta pasos cercanos."),
+    },
+    "cavapolvo": {
+        "name": "Cavapolvo",
+        "family": "cavapolvo",
+        "reference_level": 2,
+        "hp": 35,
+        "precision": 48,
+        "damage": 7,
+        "armor_reduction": 0.05,
+        "flee_agilidad": 9,
+        "flee_percepcion": 10,
+        "behavior_text": ("Cavapolvo se planta frente a su madriguera de grava y tierra dura; "
+                           "si te acercas demasiado, defiende la entrada antes de escarbar para huir."),
+    },
+    "velacauce": {
+        "name": "Velacauce",
+        "family": "velacauce",
+        "reference_level": 2,
+        "hp": 27,
+        "precision": 53,
+        "damage": 6,
+        "flee_agilidad": 15,
+        "flee_percepcion": 14,
+        "behavior_text": ("Velacauce aguarda inmóvil entre raíces sumergidas; al menor disturbio "
+                           "en el agua se desliza hacia el fondo del canal."),
+    },
+    "silbarisco": {
+        "name": "Silbarisco",
+        "family": "silbarisco",
+        "reference_level": 1,
+        "hp": 26,
+        "precision": 43,
+        "damage": 4,
+        "flee_agilidad": 17,
+        "flee_percepcion": 13,
+        "behavior_text": ("Silbarisco vigila desde una terraza baja entre raíces y roca; "
+                           "emite un silbido agudo de alarma y busca cobertura entre la maleza."),
+    },
 }
 
 
