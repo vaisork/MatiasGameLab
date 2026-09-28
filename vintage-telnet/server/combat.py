@@ -341,7 +341,7 @@ WOUND_REST_HP_CAP_FRACTION = {"ninguna": 1.0, "leve": 1.0, "moderada": 0.85, "gr
 
 # GAMEPLAY.md 24.8 (REST-01 / #377): presupuesto gratuito persistente por
 # ciclo y máximo de curación por cada uso de `descansar`.
-FIELD_REST_BUDGET_FRACTION = 0.30
+FIELD_REST_MISSING_HP_FRACTION = 0.30
 FIELD_REST_PER_USE_FRACTION = 0.10
 
 # 24.4: penalizaciones de precision/dano segun estado de fatiga (20.7 fija
