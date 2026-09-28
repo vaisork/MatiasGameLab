@@ -1,3 +1,5 @@
+> **Archivo histórico (estado de una etapa anterior).** Este texto se conserva para trazabilidad; no describe el estado operativo actual de `main`. Para comenzar una tarea, usa [la entrada rápida](README.md), el issue/PR vigente y el código integrado. No ejecutes la «próxima secuencia» de este documento sin volver a comprobar su vigencia.
+
 # Vintage Telnet — Estado técnico inicial para Investigación
 
 **Revisión:** 2026-09-20
