@@ -90,6 +90,12 @@ La identidad y contexto son expansión canónica del Historiador. Jugabilidad ya
 
 No crea críticos, durabilidad, economía, requisitos numéricos universales, efectos mágicos ni sistemas nuevos.
 
+### 17. Malla regional secundaria — `REGIONAL_CONNECTIONS.md`
+
+Define la segunda red de viaje entre regiones sin pasar siempre por Vaisgard: cinco corredores periféricos, diez ramales de expansión y cinco asentamientos menores de apoyo.
+
+Sirve como canon geográfico para Narrativa, Jugabilidad y futuros accesos de mazmorra/jefe. No fija dificultad, número de salas, requisitos de nivel ni tiempos.
+
 ## Relación con el Narrador
 
 El Historiador construye la **historia estructural y la arquitectura del mundo**: hechos pasados, lugares, culturas, causas, consecuencias, ruinas, conflictos, relaciones y secretos. El Narrador utiliza esa base para crear relatos, escenas, encuentros y experiencias concretas de los jugadores. El Historiador no debe asumir por defecto la función del Narrador.
@@ -113,6 +119,7 @@ El Historiador define qué necesita el mundo, por qué lo necesita y qué funci�
 **Historia del mundo:** `vintage-telnet/HISTORY.md`  
 **Ciudad principal:** `vintage-telnet/VAISGARD.md`  
 **Regiones y caminos:** `vintage-telnet/REGIONS.md`  
+**Malla regional secundaria:** `vintage-telnet/REGIONAL_CONNECTIONS.md`  
 **Criaturas y fauna:** `vintage-telnet/CREATURES.md`  
 **Especies jugables:** `vintage-telnet/SPECIES.md`  
 **Revisión canónica de atributos:** `vintage-telnet/ATTRIBUTES_CANON_REVIEW.md`  

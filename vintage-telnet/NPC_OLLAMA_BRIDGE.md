@@ -113,8 +113,11 @@ Además de `personality`, se añaden:
 Si Ollama está apagado, no tiene modelo, tarda demasiado o devuelve JSON fuera del
 contrato, la creación de personalidad falla sin modificar la ficha original.
 
-Esto **no afecta al juego en ejecución**: Ollama no forma parte de login, movimiento,
-chat, combate ni ninguna petición crítica del jugador.
+Este puente de **generación única de personalidad** no se ejecuta durante el juego:
+no participa en login, movimiento ni combate. Las conversaciones en runtime tienen
+un proveedor Ollama separado y opt-in, documentado en
+[`NPC_DIALOGUE_RUNTIME.md`](NPC_DIALOGUE_RUNTIME.md); configurar este puente de
+personalidad no activa aquel proveedor.
 
 ## Regeneración
 

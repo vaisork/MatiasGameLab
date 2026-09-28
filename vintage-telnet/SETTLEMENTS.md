@@ -140,6 +140,37 @@ La anatomía y capacidades naturales definitivas de los Vesperi siguen pendiente
 
 ---
 
+## Asentamientos secundarios de la malla regional
+
+### Refugio de Lajas
+**Región:** transición Hoshai/Korven.  
+**Tipo:** puesto de descanso pequeño.  
+**Función:** refugio de viajeros, reparación básica e información del paso.
+
+### Parada de los Cardos
+**Región:** transición Korven/Edran.  
+**Tipo:** caserío de ruta.  
+**Función:** descanso, intercambio de cargas y noticias.
+
+### Vado de Juncos
+**Región:** transición Edran/Lethra.  
+**Tipo:** asentamiento pequeño sobre terreno alto.  
+**Función:** punto de cruce y adaptación entre camino firme, pasarela y agua.
+
+### Orilla Velada
+**Región:** transición Lethra/Nhal.  
+**Tipo:** embarcadero-refugio.  
+**Función:** último punto claramente abierto antes del bosque denso.
+
+### Alto de las Raíces
+**Región:** transición Nhal/Hoshai.  
+**Tipo:** refugio de montaña y bosque.  
+**Función:** descanso antes del ascenso y punto de noticias entre ambas regiones.
+
+Estos asentamientos no necesitan tienda, NPC fijo ni economía para existir. Su función principal es sostener viajes largos y dar puntos de orientación/regreso sin competir con los cinco pueblos principales.
+
+---
+
 ## Ciudad principal
 
 ### Vaisgard

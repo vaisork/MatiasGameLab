@@ -169,6 +169,13 @@
     .character-block{border:1px solid #3d4a5d;border-radius:10px;background:#101722;padding:10px}
     .character-block h3{margin:0 0 6px}
     .character-block p{margin:0}
+    .point-badge{display:inline-flex;align-items:center;justify-content:center;min-height:20px;padding:2px 6px;
+      border:1px solid #b68c3d;border-radius:999px;background:#2a2112;color:#f4d98f;
+      font:800 .64rem/1 ui-sans-serif,system-ui,sans-serif;white-space:nowrap}
+    .point-badge[hidden]{display:none}
+    .points-callout{margin:0 0 9px!important;padding:8px 10px;border:1px solid #8c713c;border-radius:8px;
+      background:#211b10;color:#f2d996;font:750 .82rem/1.4 ui-sans-serif,system-ui,sans-serif}
+    .points-callout[hidden]{display:none}
     .pa-summary{display:flex;flex-wrap:wrap;gap:8px 16px;margin:0 0 8px;font:700 .82rem ui-sans-serif,system-ui,sans-serif}
     .pa-summary b{color:var(--gold)}
     .attr-list{display:grid;gap:6px}
@@ -764,9 +771,9 @@
             {% if room.exits and not room.encounter %}
             <div class="entry exits-entry"><p class="system">Salidas: {% for e in room.exits %}<b>{{ e.label }}</b>{% if e.known_name %} ({{ e.known_name }}){% endif %}{{ ' · ' if not loop.last }}{% endfor %}</p></div>
             {% endif %}
-            {% if room.others_present %}
-            <div class="entry"><p class="system">También aquí: {{ room.others_present | join(', ') }}</p></div>
-            {% endif %}
+            <div data-room-presence aria-live="polite"{% if not room.others_present %} hidden{% endif %}>
+              {% if room.others_present %}<div class="entry"><p class="system">También aquí: {{ room.others_present | join(', ') }}</p></div>{% endif %}
+            </div>
             {% if room.encounter %}
             <div class="entry encounter-entry">
               <p class="system">{{ room.encounter.behavior }}</p>
@@ -786,12 +793,14 @@
               <p>{{ error }}</p>
             </div>
             {% endif %}
-            {% for m in room.messages %}
-            <div class="entry">
-              <div class="cmd">&gt; {{ m.name }}</div>
-              <p>{{ m.body }}</p>
+            <div data-room-chat data-room-id="{{ room.id if room.id is defined else '' }}">
+              {% for m in room.messages %}
+              <div class="entry">
+                <div class="cmd">&gt; {{ m.name }}</div>
+                <p>{{ m.body }}</p>
+              </div>
+              {% endfor %}
             </div>
-            {% endfor %}
           </div>
           {% if room.encounter %}
           {# Estado del enemigo fijo al pie: la narración crece por encima
@@ -890,7 +899,11 @@
             <button class="btn primary" type="submit"><svg class="ui-icon" aria-hidden="true"><use href="#icon-send"/></svg>Enviar</button>
           </form>
           <div class="tool-row" aria-label="Herramientas">
-            <button class="btn" type="button" data-open="characterDialog"><svg class="ui-icon" aria-hidden="true"><use href="#icon-user"/></svg>Personaje</button>
+            <button class="btn" type="button" data-open="characterDialog" data-character-tool
+                    aria-label="Personaje{% if player.pa_unspent or player.pp_unspent %}, {{ player.pa_unspent }} PA{% if player.pp_unspent %} y {{ player.pp_unspent }} PP{% endif %} disponibles{% endif %}">
+              <svg class="ui-icon" aria-hidden="true"><use href="#icon-user"/></svg><span>Personaje</span>
+              <span class="point-badge" data-point-badge{% if not player.pa_unspent and not player.pp_unspent %} hidden{% endif %}>{% if player.pa_unspent and player.pp_unspent %}{{ player.pa_unspent }} PA · {{ player.pp_unspent }} PP{% elif player.pa_unspent %}{{ player.pa_unspent }} PA{% elif player.pp_unspent %}{{ player.pp_unspent }} PP{% endif %}</span>
+            </button>
             <button class="btn" type="button" data-open="inventoryDialog" data-inventory-open><svg class="ui-icon" aria-hidden="true"><use href="#icon-bag"/></svg>Inventario</button>
             <button class="btn" type="button" data-open="mapDialog" data-map-open><svg class="ui-icon" aria-hidden="true"><use href="#icon-map"/></svg>Mapa</button>
             <button class="btn" type="button" data-open="helpDialog"><svg class="ui-icon" aria-hidden="true"><use href="#icon-help"/></svg>Ayuda</button>
@@ -927,7 +940,10 @@
     <div class="character-stack">
       <section class="character-block"><h3>{{ player.name }} — Nivel {{ player.level }}</h3><p>{{ player.species }}{% if player.player_class %} · {{ class_names.get(player.player_class) }}{% endif %}</p></section>
       <section class="character-block"><h3>Estado</h3><p id="charStateLine">HP {{ player.hp_current | round | int }}/{{ player.hp_max | round | int }} · Fatiga {{ player.fatigue }} · Herida {{ player.wound }}</p></section>
-      <section class="character-block"><h3>Progreso</h3><p id="charProgressLine">XP {{ player.xp }}/{{ xp_for_next_level(player.level) }} · PA sin gastar {{ player.pa_unspent }}</p></section>
+      <section class="character-block"><h3>Progreso</h3>
+        <p class="points-callout" id="pointsCallout"{% if not player.pa_unspent and not player.pp_unspent %} hidden{% endif %}>{% if player.pa_unspent and player.pp_unspent %}Tienes {{ player.pa_unspent }} PA y {{ player.pp_unspent }} PP disponibles.{% elif player.pa_unspent %}Tienes {{ player.pa_unspent }} PA por asignar.{% elif player.pp_unspent %}Tienes {{ player.pp_unspent }} PP disponible{% if player.pp_unspent != 1 %}s{% endif %}.{% endif %}</p>
+        <p id="charProgressLine">XP {{ player.xp }}/{{ xp_for_next_level(player.level) }} · PA sin gastar {{ player.pa_unspent }} · PP sin gastar {{ player.pp_unspent }}</p>
+      </section>
       <section class="character-block"><h3>Atributos</h3><p id="charAttributesLine">Fuerza {{ player.attr_fuerza }} · Resistencia {{ player.attr_resistencia }} · Agilidad {{ player.attr_agilidad }} · Percepción {{ player.attr_percepcion }}<br>
       Intelecto {{ player.attr_intelecto }} · Voluntad {{ player.attr_voluntad }} · Destreza {{ player.attr_destreza }} · Presencia {{ player.attr_presencia }}</p></section>
     </div>
@@ -1127,10 +1143,34 @@
   let needsReload = false;
 
   const closePaConfirm = () => { paPending = null; if (paConfirm) paConfirm.hidden = true; };
+  const pointBalanceText = (pa, pp) => pa && pp ? pa + " PA · " + pp + " PP" : pa ? pa + " PA" : pp ? pp + " PP" : "";
+  const syncPointIndicators = (paValue, ppValue) => {
+    const pa = Number(paValue || 0);
+    const pp = Number(ppValue || 0);
+    const balance = pointBalanceText(pa, pp);
+    const badge = document.querySelector("[data-point-badge]");
+    if (badge) {
+      badge.textContent = balance;
+      badge.hidden = !balance;
+    }
+    const characterTool = document.querySelector("[data-character-tool]");
+    if (characterTool) characterTool.setAttribute("aria-label",
+      balance ? "Personaje, " + (pa ? pa + " PA" : "") + (pa && pp ? " y " : "") + (pp ? pp + " PP" : "") + " disponibles" : "Personaje");
+    const callout = document.getElementById("pointsCallout");
+    if (callout) {
+      callout.hidden = !balance;
+      callout.textContent = pa && pp ? "Tienes " + pa + " PA y " + pp + " PP disponibles."
+        : pa ? "Tienes " + pa + " PA por asignar."
+        : pp ? "Tienes " + pp + " PP disponible" + (pp === 1 ? "." : "s.")
+        : "";
+    }
+  };
   const renderPa = data => {
     const pa = Number(data.pa_unspent || 0);
+    const pp = Number(data.pp_unspent || 0);
+    syncPointIndicators(pa, pp);
     paSummary.replaceChildren();
-    [["PA sin gastar", pa], ["PP sin gastar", Number(data.pp_unspent || 0)]].forEach(([label, value]) => {
+    [["PA sin gastar", pa], ["PP sin gastar", pp]].forEach(([label, value]) => {
       const item = document.createElement("span");
       const b = document.createElement("b");
       b.textContent = value;
@@ -1176,7 +1216,8 @@
     if (stateLine && data.hp_max != null) stateLine.textContent = "HP " + Math.round(data.hp_current) + "/" +
       Math.round(data.hp_max) + " · Fatiga " + data.fatigue + " · Herida " + data.wound;
     const progressLine = document.getElementById("charProgressLine");
-    if (progressLine && data.xp_to_next != null) progressLine.textContent = "XP " + data.xp + "/" + data.xp_to_next + " · PA sin gastar " + pa;
+    if (progressLine && data.xp_to_next != null) progressLine.textContent = "XP " + data.xp + "/" + data.xp_to_next +
+      " · PA sin gastar " + pa + " · PP sin gastar " + pp;
     const attributesLine = document.getElementById("charAttributesLine");
     if (attributesLine && data.attributes) attributesLine.textContent = Object.keys(attributeLabels)
       .filter(name => data.attributes[name] != null)
@@ -1586,6 +1627,71 @@
   // y solo se reemplazan las regiones [data-swap] con la respuesta. Si la
   // respuesta no es una pantalla de juego, se recarga normal.
   let actionInFlight = false;
+  let roomActivitySnapshot = "";
+  let roomPresenceSnapshot = "";
+  const renderRoomPresence = names => {
+    const host = document.querySelector("[data-room-presence]");
+    if (!host) return;
+    const clean = Array.isArray(names) ? names.filter(name => typeof name === "string" && name.trim()) : [];
+    const snapshot = clean.join("\u0000");
+    if (snapshot === roomPresenceSnapshot) return;
+    roomPresenceSnapshot = snapshot;
+    host.hidden = clean.length === 0;
+    if (!clean.length) {
+      host.replaceChildren();
+      return;
+    }
+    const entry = document.createElement("div");
+    entry.className = "entry";
+    const p = document.createElement("p");
+    p.className = "system";
+    p.textContent = "También aquí: " + clean.join(", ");
+    entry.appendChild(p);
+    host.replaceChildren(entry);
+  };
+  const renderRoomMessages = (roomId, messages) => {
+    const host = document.querySelector("[data-room-chat]");
+    if (!host || host.dataset.roomId !== roomId) return;
+    const clean = Array.isArray(messages) ? messages : [];
+    const snapshot = roomId + "|" + JSON.stringify(clean.map(m => [m.created_at || "", m.name || "", m.body || ""]));
+    if (snapshot === roomActivitySnapshot) return;
+    roomActivitySnapshot = snapshot;
+    const fragment = document.createDocumentFragment();
+    clean.forEach(message => {
+      const entry = document.createElement("div");
+      entry.className = "entry";
+      const cmd = document.createElement("div");
+      cmd.className = "cmd";
+      cmd.textContent = "> " + String(message.name || "");
+      const p = document.createElement("p");
+      p.textContent = String(message.body || "");
+      entry.append(cmd, p);
+      fragment.appendChild(entry);
+    });
+    host.replaceChildren(fragment);
+  };
+  const refreshRoomActivity = async () => {
+    if (document.hidden || actionInFlight || !document.querySelector(".game-shell")) return;
+    const host = document.querySelector("[data-room-chat]");
+    const expectedRoomId = host && host.dataset.roomId;
+    if (!expectedRoomId) return;
+    try {
+      const response = await fetch("/api/room", {credentials: "same-origin", headers: {"Accept": "application/json"}});
+      if (!response.ok) return;
+      const data = await response.json();
+      const room = data && data.room;
+      const currentHost = document.querySelector("[data-room-chat]");
+      if (!room || room.id !== expectedRoomId || !currentHost || currentHost.dataset.roomId !== expectedRoomId) return;
+      renderRoomPresence(room.others_present);
+      renderRoomMessages(room.id, room.messages);
+    } catch (_error) {
+      // Mejora progresiva: un fallo de polling nunca bloquea el juego.
+    }
+  };
+  window.setInterval(refreshRoomActivity, 5000);
+  window.addEventListener("focus", refreshRoomActivity);
+  document.addEventListener("visibilitychange", () => { if (!document.hidden) refreshRoomActivity(); });
+
   const announceGameState = () => {
     const live = document.getElementById("gameLiveStatus");
     const place = document.getElementById("placeTitle");
@@ -1652,6 +1758,18 @@
       if (key === "art") wireArt(imported);
     }
     shell.className = nextShell.className;
+    // La barra de herramientas no forma parte de data-swap="controls".
+    // Copiamos el saldo de puntos desde la respuesta autoritativa para que
+    // el badge de Personaje aparezca/desaparezca inmediatamente tras ganar o gastar PA/PP.
+    const incomingBadge = next.querySelector("[data-point-badge]");
+    if (incomingBadge) {
+      const text = incomingBadge.textContent.trim();
+      const match = text.match(/^(?:(\d+) PA)?(?: · )?(?:(\d+) PP)?$/);
+      syncPointIndicators(match && match[1] ? Number(match[1]) : 0, match && match[2] ? Number(match[2]) : 0);
+    }
+    const currentChat = document.querySelector("[data-room-chat]");
+    if (currentChat) roomActivitySnapshot = currentChat.dataset.roomId + "|";
+    roomPresenceSnapshot = "";
     return true;
   };
   document.addEventListener("submit", async event => {
