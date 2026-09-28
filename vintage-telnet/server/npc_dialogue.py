@@ -16,10 +16,16 @@ from __future__ import annotations
 import abc
 from copy import deepcopy
 from dataclasses import dataclass, field
+import ipaddress
 import json
 import logging
+import os
 import re
+import threading
 from typing import Any, Callable
+from urllib.error import HTTPError, URLError
+from urllib.parse import urlsplit
+from urllib.request import Request, urlopen
 
 from . import store, world
 
@@ -127,6 +133,132 @@ class FixedDialogueProvider(DialogueProvider):
         return self.reply
 
 
+class OllamaDialogueProvider(DialogueProvider):
+    """Runtime NPC conversation through a local Ollama chat endpoint.
+
+    The provider sends only the already-authorized dialogue prompt and the
+    player's current utterance. It has no tools and cannot mutate game state.
+    """
+
+    def __init__(self, *, base_url: str, model: str, timeout: float = 120.0):
+        parsed = urlsplit((base_url or "").strip())
+        host = parsed.hostname or ""
+        try:
+            port = parsed.port
+        except ValueError as exc:
+            raise ValueError("La URL local de Ollama de diálogo tiene un puerto inválido.") from exc
+        try:
+            is_loopback = host.lower() == "localhost" or ipaddress.ip_address(host).is_loopback
+        except ValueError:
+            is_loopback = False
+        if (
+            parsed.scheme != "http"
+            or not is_loopback
+            or parsed.username
+            or parsed.password
+            or parsed.query
+            or parsed.fragment
+            or parsed.path not in ("", "/")
+            or port is None
+        ):
+            raise ValueError("Ollama de diálogo debe usar HTTP local en loopback con puerto explícito.")
+        cleaned_model = (model or "").strip()
+        if not cleaned_model or len(cleaned_model) > 128:
+            raise ValueError("Configura un modelo Ollama de diálogo válido.")
+        if not 1 <= float(timeout) <= 180:
+            raise ValueError("El timeout de diálogo Ollama debe estar entre 1 y 180 segundos.")
+        self.base_url = f"{parsed.scheme}://{parsed.netloc}"
+        self.model = cleaned_model
+        self.timeout = float(timeout)
+        self._inference_lock = threading.Lock()
+
+    def generate_reply(self, prompt: DialoguePrompt) -> str:
+        if not prompt.player_message.strip():
+            player_text = "El viajero se acerca para conversar, pero aún no ha dicho nada."
+        else:
+            player_text = prompt.player_message.strip()
+        if len(player_text) > 500:
+            raise RuntimeError("El mensaje para el NPC supera el límite de 500 caracteres.")
+        payload = {
+            "model": self.model,
+            "messages": [
+                {"role": "system", "content": prompt.system_instructions},
+                {"role": "user", "content": player_text},
+            ],
+            "stream": False,
+            "think": False,
+            "options": {"temperature": 0.6, "num_predict": 160},
+        }
+        request = Request(
+            f"{self.base_url}/api/chat",
+            data=json.dumps(payload, ensure_ascii=False).encode("utf-8"),
+            headers={"Accept": "application/json", "Content-Type": "application/json"},
+            method="POST",
+        )
+        if not self._inference_lock.acquire(blocking=False):
+            raise RuntimeError("Ollama de diálogo ya está atendiendo otra conversación.")
+        try:
+            try:
+                with urlopen(request, timeout=self.timeout) as response:
+                    raw_body = response.read(65537)
+                if len(raw_body) > 65536:
+                    raise RuntimeError("Ollama devolvió una respuesta demasiado grande.")
+                data = json.loads(raw_body.decode("utf-8"))
+            except HTTPError as exc:
+                raise RuntimeError(f"Ollama respondió HTTP {exc.code}.") from exc
+            except (URLError, TimeoutError, OSError) as exc:
+                raise RuntimeError("No se pudo contactar con Ollama local.") from exc
+            except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+                raise RuntimeError("Ollama devolvió una respuesta JSON inválida.") from exc
+
+            message = data.get("message") if isinstance(data, dict) else None
+            content = message.get("content") if isinstance(message, dict) else None
+            if not isinstance(content, str) or not content.strip():
+                raise RuntimeError("Ollama no devolvió texto de conversación.")
+            return content.strip()
+        finally:
+            self._inference_lock.release()
+
+
+class UnavailableDialogueProvider(DialogueProvider):
+    """Keeps the server available while a requested provider is misconfigured."""
+
+    def __init__(self, reason: str):
+        self.reason = reason
+
+    def generate_reply(self, prompt: DialoguePrompt) -> str:
+        raise RuntimeError(self.reason)
+
+
+def dialogue_provider_from_environment(environ: dict[str, str] | None = None) -> DialogueProvider:
+    """Build the runtime provider without making any network request at startup."""
+    config = os.environ if environ is None else environ
+    selected = config.get("VT_NPC_DIALOGUE_PROVIDER", "fixed").strip().lower()
+    if selected == "fixed":
+        return FixedDialogueProvider()
+    if selected != "ollama":
+        reason = "VT_NPC_DIALOGUE_PROVIDER debe ser 'fixed' u 'ollama'."
+        logger.error(reason)
+        return UnavailableDialogueProvider(reason)
+
+    model = config.get("VT_OLLAMA_DIALOGUE_MODEL", "").strip()
+    if not model:
+        reason = "Falta VT_OLLAMA_DIALOGUE_MODEL para habilitar Ollama en conversaciones."
+        logger.error(reason)
+        return UnavailableDialogueProvider(reason)
+    try:
+        timeout = float(config.get("VT_OLLAMA_DIALOGUE_TIMEOUT", "120"))
+        return OllamaDialogueProvider(
+            base_url=config.get("VT_OLLAMA_DIALOGUE_URL", "http://127.0.0.1:11434"),
+            model=model,
+            timeout=timeout,
+        )
+    except (TypeError, ValueError) as exc:
+        reason = f"Configuración inválida del proveedor Ollama de diálogo: {exc}"
+        logger.error(reason)
+        return UnavailableDialogueProvider(reason)
+
+
 class MockDialogueProvider(DialogueProvider):
     """Proveedor configurable para pruebas de aislamiento, validación y latencia."""
 
@@ -211,7 +343,7 @@ class NPCRegistry:
 
 # Registro global y proveedor global por defecto
 _REGISTRY = NPCRegistry()
-_DEFAULT_PROVIDER: DialogueProvider = FixedDialogueProvider()
+_DEFAULT_PROVIDER: DialogueProvider = dialogue_provider_from_environment()
 
 
 def get_registry() -> NPCRegistry:
@@ -264,6 +396,9 @@ def build_dialogue_prompt(
     temperament = personality.get("temperament", "calmado y reservado")
     speech_style = personality.get("speech_style", "sencillo y directo")
     formality = personality.get("formality", "neutral")
+    humor = personality.get("humor", "discreto")
+    sociability = personality.get("sociability", "moderada")
+    response_length = personality.get("response_length", "breve")
     traits = ", ".join(personality.get("traits") or ["reservado"])
     example_phrases = "\n".join(f"- \"{p}\"" for p in (personality.get("example_phrases") or []))
 
@@ -290,7 +425,9 @@ def build_dialogue_prompt(
 
     system_instructions = (
         f"Eres {npc_name}, {role} de {town} (especie {species}).\n"
-        f"Tu personalidad es: temperamento {temperament}; estilo de habla {speech_style}; formalidad {formality}.\n"
+        f"Tu personalidad es: temperamento {temperament}; estilo de habla {speech_style}; "
+        f"formalidad {formality}; humor {humor}; sociabilidad {sociability}; "
+        f"longitud habitual de respuesta {response_length}.\n"
         f"Rasgos: {traits}.\n"
         f"Ejemplos de cómo te expresas:\n{example_phrases}\n\n"
         "REGLAS OBLIGATORIAS DE JUEGO (GAMEPLAY §35):\n"

@@ -4,6 +4,7 @@ El registro completo anterior está preservado sin cambios en [docs/archive/VT_S
 
 | # | Entrega registrada |
 |---:|---|
+| — | En revisión: proveedor Ollama runtime opt-in después de #245 — rama `codex/vt-ollama-dialogue-runtime`, base `a03cfe4`; 23 pruebas de diálogo y suite de 420 pasan. Prueba sintética real con `llama3.2:3b` excedió 60 s sin respuesta; modelo descargado de memoria. Runtime no habilitado ni desplegado — 2026-09-28 |
 | 1 | Entrega lista para revisión: HOME-CORE — hogar personal persistente mínimo (#280) — 2026-09-27 |
 | 2 | Entrega lista para revisión: Acciones estructuradas derivadas del diálogo con gate autoritativo (#247) — 2026-09-27 |
 | 3 | Entrega lista para revisión: Memoria conversacional acotada por jugador y NPC (#246) — 2026-09-27 |

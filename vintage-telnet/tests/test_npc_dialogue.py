@@ -10,6 +10,7 @@ Verifica todos los criterios de aceptación y GAMEPLAY §35:
 7. Endpoints y contratos: /command, /api/intent y /api/talk.
 """
 from copy import deepcopy
+import json
 import os
 import re
 import sqlite3
@@ -27,8 +28,11 @@ from server.npc_dialogue import (
     FixedDialogueProvider,
     MockDialogueProvider,
     NPCRegistry,
+    OllamaDialogueProvider,
+    UnavailableDialogueProvider,
     build_dialogue_prompt,
     converse,
+    dialogue_provider_from_environment,
 )
 
 
@@ -72,6 +76,11 @@ class NPCDialogueUnitTests(unittest.TestCase):
             "species": "humano",
             "room": "valdren_forja",
         }
+
+    def test_dialogue_prompt_includes_all_personality_voice_fields(self):
+        prompt = build_dialogue_prompt(self.sample_npc, self.player, "Buena tarde.")
+        for detail in ("humor discreto", "sociabilidad moderada", "longitud habitual de respuesta breve"):
+            self.assertIn(detail, prompt.system_instructions)
 
     # --- Criterio 2: Personalidad persistente en el contexto -----------------
 
@@ -460,6 +469,93 @@ class NPCDialogueWorldIsolationAndIntegrationTests(unittest.TestCase):
         self.assertEqual(resp_ok.json["npc_name"], "Daro")
         self.assertIn("El fuego arde parejo", resp_ok.json["reply"])
         self.assertFalse(resp_ok.json["is_fallback"])
+
+
+class OllamaDialogueProviderTests(unittest.TestCase):
+    def setUp(self):
+        self.npc = next(npc for npc in CANONICAL_NPCS if npc["id"] == "daro_herrero")
+        self.player = {"id": "p_01", "name": "Matías", "species": "humano", "room": "valdren_forja"}
+        self.prompt = build_dialogue_prompt(self.npc, self.player, "hola, buena tarde")
+
+    def test_provider_sends_authorized_prompt_and_returns_ollama_chat_text(self):
+        class Response:
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *_args):
+                return False
+
+            def read(self, _limit):
+                return b'{"message":{"content":"Buenas tardes, viajero."}}'
+
+        provider = OllamaDialogueProvider(
+            base_url="http://127.0.0.1:11434/", model="test-model", timeout=12
+        )
+        with patch("server.npc_dialogue.urlopen", return_value=Response()) as send:
+            reply = provider.generate_reply(self.prompt)
+
+        self.assertEqual(reply, "Buenas tardes, viajero.")
+        request = send.call_args.args[0]
+        self.assertEqual(request.full_url, "http://127.0.0.1:11434/api/chat")
+        self.assertEqual(send.call_args.kwargs["timeout"], 12)
+        payload = json.loads(request.data.decode("utf-8"))
+        self.assertEqual(payload["model"], "test-model")
+        self.assertFalse(payload["stream"])
+        self.assertFalse(payload["think"])
+        self.assertEqual(payload["messages"][0]["role"], "system")
+        self.assertIn("forja local de Valdren", payload["messages"][0]["content"])
+        self.assertNotIn("secretos subterráneos", payload["messages"][0]["content"])
+        self.assertEqual(payload["messages"][1], {"role": "user", "content": "hola, buena tarde"})
+        self.assertNotIn("tools", payload)
+
+    def test_provider_allows_only_one_inference_at_a_time(self):
+        provider = OllamaDialogueProvider(base_url="http://127.0.0.1:11434", model="test-model")
+        provider._inference_lock.acquire()
+        try:
+            with patch("server.npc_dialogue.urlopen") as send:
+                with self.assertRaisesRegex(RuntimeError, "otra conversación"):
+                    provider.generate_reply(self.prompt)
+            send.assert_not_called()
+        finally:
+            provider._inference_lock.release()
+
+    def test_provider_rejects_non_loopback_urls(self):
+        for url in (
+            "https://127.0.0.1:11434",
+            "http://example.com:11434",
+            "http://192.168.1.4:11434",
+        ):
+            with self.subTest(url=url), self.assertRaises(ValueError):
+                OllamaDialogueProvider(base_url=url, model="test-model")
+
+    def test_environment_selects_fixed_or_explicit_ollama_without_network(self):
+        self.assertIsInstance(dialogue_provider_from_environment({}), FixedDialogueProvider)
+        provider = dialogue_provider_from_environment({
+            "VT_NPC_DIALOGUE_PROVIDER": "ollama",
+            "VT_OLLAMA_DIALOGUE_MODEL": "test-model",
+            "VT_OLLAMA_DIALOGUE_URL": "http://localhost:11434",
+        })
+        self.assertIsInstance(provider, OllamaDialogueProvider)
+        self.assertEqual(provider.model, "test-model")
+        self.assertEqual(provider.timeout, 120)
+        misconfigured = dialogue_provider_from_environment({"VT_NPC_DIALOGUE_PROVIDER": "ollama"})
+        self.assertIsInstance(misconfigured, UnavailableDialogueProvider)
+        with self.assertRaises(ValueError):
+            OllamaDialogueProvider(
+                base_url="http://localhost:11434", model="test-model", timeout=181
+            )
+
+    def test_provider_failure_uses_canonical_npc_fallback(self):
+        registry = NPCRegistry()
+        registry.register(self.npc)
+        provider = OllamaDialogueProvider(base_url="http://127.0.0.1:11434", model="test-model")
+        with patch("server.npc_dialogue.urlopen", side_effect=TimeoutError("test timeout")):
+            result = converse(
+                self.player, "daro_herrero", "hola", room_id="valdren_forja",
+                provider=provider, registry=registry,
+            )
+        self.assertTrue(result.is_fallback)
+        self.assertEqual(result.text, self.npc["fallback_dialogue"])
 
 
 if __name__ == "__main__":
