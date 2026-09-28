@@ -85,9 +85,13 @@ VISUAL_CONTEXT_ART = {
         "width": 1536,
         "height": 1024,
     },
-    # "zone.edran.valdren_outskirts": pieza 4/4 de #151, todavía en Arte.
-    # Hasta que se publique, el marco queda vacío y quieto (petición de
-    # Javier, 2026-09-25).
+    # Issue #151, arte aprobado por Dirección y publicado en PR #174.
+    "zone.edran.valdren_outskirts": {
+        "src": "/assets/locations/valdren-outskirts.webp",
+        "alt": "Alrededores de Valdren: parcelas, cercas bajas y caminos de tierra",
+        "width": 1672,
+        "height": 941,
+    },
 }
 
 # Excepciones explicitas de VISUAL_CONTEXT_CANON.md ("Mapeo de las salas
@@ -816,12 +820,69 @@ CLASSES = [
 CLASS_IDS = tuple(c["id"] for c in CLASSES)
 
 
+# VT-SERVER: HOME-CORE (Issue #280 / Issue #114 / GAMEPLAY.md §34)
+# Hogar personal persistente mínimo: base propia dinámica por personaje sin inflar ROOMS.
+HOME_ROOM_NAME = "Tu hogar"
+HOME_ROOM_DESCRIPTION = (
+    "Este es tu hogar. Aquí comienza tu viaje y aquí conservas un lugar propio "
+    "dentro del mundo. La salida conduce hacia tu comunidad."
+)
+HOME_EXIT_DIRECTION = "south"
+
+_HOME_SPECIES_RESOLVER = None
+
+
+def set_home_species_resolver(resolver):
+    global _HOME_SPECIES_RESOLVER
+    _HOME_SPECIES_RESOLVER = resolver
+
+
+def get_home_room_id(player_id, species=None):
+    if not player_id:
+        raise ValueError("player_id es obligatorio para el hogar personal.")
+    return f"home:{player_id}"
+
+
+def is_home_room(room_id):
+    return isinstance(room_id, str) and room_id.startswith("home:")
+
+
+def parse_home_player_id(room_id):
+    if is_home_room(room_id):
+        return room_id.split("home:", 1)[1]
+    return None
+
+
 def get_room(room_id):
-    return ROOMS.get(room_id)
+    room = ROOMS.get(room_id)
+    if room is not None:
+        return room
+    if is_home_room(room_id):
+        player_id = parse_home_player_id(room_id)
+        species = None
+        if _HOME_SPECIES_RESOLVER and player_id:
+            try:
+                species = _HOME_SPECIES_RESOLVER(player_id)
+            except Exception:
+                species = None
+        if not species or species not in STARTING_ROOM_BY_SPECIES:
+            species = "humano"
+        town_room = get_starting_room_for_species(species)
+        return {
+            "id": room_id,
+            "name": HOME_ROOM_NAME,
+            "description": HOME_ROOM_DESCRIPTION,
+            "exits": {HOME_EXIT_DIRECTION: town_room},
+            "is_home": True,
+            "owner_player_id": player_id,
+            "species": species,
+        }
+    return None
 
 
 def get_starting_room_for_species(species_id):
     return STARTING_ROOM_BY_SPECIES.get(species_id, "vaisgard")
+
 
 
 def get_examine_text(room_id, normalized_target):

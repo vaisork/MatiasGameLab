@@ -348,6 +348,16 @@
     .context-actions{display:grid;gap:8px;align-content:center}
     .context-actions form{margin:0}
     .context-actions .action{justify-content:flex-start;padding-left:14px}
+    .npc-presence{grid-column:1/-1;display:grid;gap:8px;border:1px solid #806538;border-radius:11px;
+      background:linear-gradient(120deg,#211d16,#111925);padding:10px}
+    .npc-presence h3{margin:0;color:var(--gold);font:800 .76rem ui-sans-serif,system-ui,sans-serif;
+      letter-spacing:.08em;text-transform:uppercase}
+    .npc-list{display:grid;gap:7px;margin:0;padding:0;list-style:none}
+    .npc-card{display:flex;align-items:center;justify-content:space-between;gap:10px;
+      border:1px solid #3d4a5d;border-radius:9px;background:#0c121b;padding:7px 8px 7px 10px}
+    .npc-card strong{display:block;color:var(--ink);font:750 .9rem ui-sans-serif,system-ui,sans-serif}
+    .npc-card span{display:block;margin-top:2px;color:var(--muted);font:600 .74rem ui-sans-serif,system-ui,sans-serif}
+    .npc-card .action{width:auto;min-width:100px;min-height:44px;justify-content:center}
     .combat-panel{display:grid;gap:8px}
     .combat-panel form{margin:0}
     .combat-row{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:8px}
@@ -380,6 +390,25 @@
     .result-entry p{color:var(--green3)!important}
     .in-combat .result-entry{border-left-color:#b0402f;background:#240d0a66;border-radius:0 8px 8px 0;padding:6px 8px}
     .in-combat .result-entry p{color:#ffd9d1!important}
+    .death-slot:empty{display:none}
+    .death-event{
+      border:2px solid #9a3328;border-radius:12px;background:linear-gradient(180deg,#260c0a,#120807);
+      box-shadow:0 10px 28px #0008,inset 0 1px 0 #ff8a7a22;padding:14px 16px;color:#f1dfd8
+    }
+    .death-event:focus{outline:3px solid #f0d18c;outline-offset:2px}
+    .death-last-hit{margin:0 0 10px;padding-bottom:9px;border-bottom:1px solid #5a2019}
+    .death-last-hit p{margin:2px 0;color:#e8c2b8;font:600 .82rem/1.45 ui-monospace,monospace}
+    .death-title{margin:0;color:#ff8d7d;font:900 clamp(1.45rem,5vw,2.15rem)/1 Georgia,serif;letter-spacing:.12em}
+    .death-defeat{margin:8px 0 4px;color:#ffd2c7;font-weight:800}
+    .death-fall{margin:0 0 12px;color:#d9c5be;line-height:1.5}
+    .death-respawn{border-top:1px solid #704038;padding-top:11px}
+    .death-respawn>strong{display:block;color:var(--gold);font:800 .75rem/1.2 ui-sans-serif,system-ui,sans-serif;letter-spacing:.1em}
+    .death-respawn>p{margin:6px 0 10px}
+    .death-state{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin:0}
+    .death-state div{border:1px solid #4c332d;border-radius:8px;background:#0d1015;padding:7px 8px}
+    .death-state dt{color:#9f918b;font:700 .65rem/1.2 ui-sans-serif,system-ui,sans-serif;text-transform:uppercase;letter-spacing:.04em}
+    .death-state dd{margin:3px 0 0;color:#f2e7df;font:800 .82rem/1.25 ui-sans-serif,system-ui,sans-serif}
+    .death-preserved{margin:10px 0 0!important;color:#b8dfbd!important;font-weight:750}
     .exits-entry p{font-size:.86em!important;color:#79d88d!important}
     .exits-entry b{color:var(--green3)}
     .minimap-frame{border:1px solid var(--line);border-radius:12px;background:#0c1219;overflow:hidden}
@@ -437,6 +466,9 @@
       .location-art{min-height:120px}
       .location-art img{height:clamp(120px,38vw,170px)}
       .terminal-alert{padding:6px 9px;font-size:.69rem}
+      .death-event{padding:11px 12px}
+      .death-state{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .death-state div:first-child{grid-column:1/-1}
       .terminal-hint{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
       .tool-row{display:grid;grid-template-columns:repeat(4,1fr);position:sticky;bottom:max(0px,env(safe-area-inset-bottom));z-index:2;background:#141c28;padding-top:4px}
       .tool-row .btn{min-height:46px}
@@ -664,6 +696,36 @@
     <div class="layout">
       <main class="game-shell{% if room.encounter %} in-combat{% endif %}">
         <p class="sr-only" id="gameLiveStatus" role="status" aria-live="polite" aria-atomic="true"></p>
+        <div class="death-slot" data-swap="death">
+          {% if death_event %}
+          <section class="death-event" data-death-event tabindex="-1" role="alert" aria-live="assertive"
+                   aria-atomic="true" aria-labelledby="deathEventTitle">
+            {% if death_event.combat_messages %}
+            <div class="death-last-hit" aria-label="Últimos instantes del combate">
+              {% for message in death_event.combat_messages %}<p>{{ message }}</p>{% endfor %}
+            </div>
+            {% endif %}
+            <h2 class="death-title" id="deathEventTitle">{{ death_event.heading }}</h2>
+            <p class="death-defeat">{{ death_event.defeat_message }}</p>
+            <p class="death-fall">{{ death_event.fall_message }}</p>
+            <div class="death-respawn">
+              <strong>REAPARICIÓN</strong>
+              <p>{{ death_event.respawn_message }}</p>
+              {% set post = death_event.post_respawn_state %}
+              <dl class="death-state" aria-label="Estado al volver">
+                <div><dt>Salud</dt><dd>{{ post.hp_current }}/{{ post.hp_max }} HP</dd></div>
+                <div><dt>Fatiga</dt><dd>{{ post.fatigue }}</dd></div>
+                <div><dt>Herida</dt><dd>{{ post.wound }}</dd></div>
+                <div><dt>Equipo</dt><dd>{{ post.equipment }}</dd></div>
+                <div><dt>Inventario</dt><dd>{{ post.inventory }}</dd></div>
+              </dl>
+              {% if death_event.preservation_message %}
+              <p class="death-preserved">{{ death_event.preservation_message }}</p>
+              {% endif %}
+            </div>
+          </section>
+          {% endif %}
+        </div>
         <header class="place-bar{% if room.encounter %} combat{% endif %}" data-swap="place">
           <svg class="ui-icon" aria-hidden="true"><use href="{{ '#icon-swords' if room.encounter else '#icon-pin' }}"/></svg>
           <strong id="placeTitle">{{ room.name.upper() }}</strong>
@@ -804,6 +866,20 @@
             <form method="post" action="/command"><input type="hidden" name="csrf" value="{{ session.csrf }}"><input type="hidden" name="text" value="descansar"><button class="action" type="submit"><svg class="ui-icon" aria-hidden="true"><use href="#icon-bed"/></svg>Descansar</button></form>
             {% endif %}
           </div>
+          {% if room.npcs %}
+          <section class="npc-presence" aria-labelledby="npc-presence-title">
+            <h3 id="npc-presence-title">Personas aquí</h3>
+            <ul class="npc-list">
+              {% for npc in room.npcs %}
+              <li class="npc-card">
+                <div><strong>{{ npc.name }}</strong><span>{{ npc.role | capitalize }}</span></div>
+                <button class="action action-gold" type="button" data-prefill="hablar {{ npc.id }} "
+                        aria-label="Hablar con {{ npc.name }}">Hablar</button>
+              </li>
+              {% endfor %}
+            </ul>
+          </section>
+          {% endif %}
         </section>
         {% endif %}
 
@@ -1448,6 +1524,8 @@
       cancelActiveReveal();
       cancelActiveReveal = null;
     }
+    const deathEvent = document.querySelector("[data-death-event]");
+    if (deathEvent) deathEvent.focus({preventScroll:false});
     const resultEntries = document.querySelectorAll("[data-result-entry]");
     const resultEntry = resultEntries[resultEntries.length - 1];
     if (resultEntry) {
@@ -1460,7 +1538,7 @@
       }
     }
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const mainParagraph = document.querySelector("[data-room-description]");
+    const mainParagraph = deathEvent ? null : document.querySelector("[data-room-description]");
     if (mainParagraph && !reduceMotion) {
       const fullText = mainParagraph.textContent;
       const roomKey = mainParagraph.dataset.roomKey + ":" + fullText;
@@ -1530,6 +1608,9 @@
     };
   };
   const restoreActionFocus = hint => {
+    // La escena de derrota tiene prioridad sobre restaurar el foco al botón
+    // de combate que desapareció tras aplicar el respawn.
+    if (document.querySelector("[data-death-event]")) return;
     if (!hint) return;
     const forms = [...document.querySelectorAll(".game-shell form")];
     const equivalent = forms.find(candidate => {
@@ -1559,7 +1640,7 @@
     const nextShell = next.querySelector(".game-shell");
     const shell = document.querySelector(".game-shell");
     if (!nextShell || !shell) return false;
-    for (const key of ["place", "art", "terminal", "controls", "side"]) {
+    for (const key of ["death", "place", "art", "terminal", "controls", "side"]) {
       const current = document.querySelector(`[data-swap="${key}"]`);
       const incoming = next.querySelector(`[data-swap="${key}"]`);
       if (!current || !incoming) continue;

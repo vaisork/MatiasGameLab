@@ -55,7 +55,7 @@ class EngineTests(unittest.TestCase):
                                  [("mordelinde", mordelinde), ("espinajo_rastrojo", espinajo)])
                 self.assertIsNone(world.get_room_encounter(room))
 
-    def test_edran_excludes_every_other_room_and_cornalomo(self):
+    def test_edran_excludes_every_other_room_and_c3_threats(self):
         for room in set(world.ROOMS) - self.EDRAN_ROOMS.keys():
             with self.subTest(room=room):
                 self.assertIsNone(encounters.pool_for_room(room))
@@ -64,7 +64,19 @@ class EngineTests(unittest.TestCase):
                                  world.get_room_encounter(room))
                 self.assertEqual(rng.mock_calls, [])
         for pool in encounters.RANDOM_ENCOUNTER_POOLS.values():
-            self.assertNotIn("cornalomo", [cid for cid, _ in pool["creatures"]])
+            ids = {cid for cid, _ in pool["creatures"]}
+            self.assertTrue(encounters.C3_THREAT_IDS.isdisjoint(ids))
+
+    def test_c3_threat_is_rejected_from_ordinary_pool(self):
+        # Cornalomo ya existe como criatura real, así que este caso comprueba
+        # específicamente la frontera C1/C3 y no el guard de ID inexistente.
+        pool = {
+            "rooms": {"valdren_sendero"},
+            "chance": encounters.DENSITY["camino"],
+            "creatures": [("cornalomo", 1)],
+        }
+        with self.assertRaisesRegex(encounters.InvalidPoolConfig, r"amenaza C3 .*cornalomo"):
+            encounters.validate_pools({"c3_invalido": pool})
 
     def test_edran_chance_boundaries_and_exact_weights_reach_rng(self):
         for room, (chance, mordelinde, espinajo) in self.EDRAN_ROOMS.items():
@@ -180,9 +192,10 @@ class MoveIntegrationTests(unittest.TestCase):
         self.path = self.app.config["DATABASE"]
         self.post("/register", dict(username="matias", name="Matías", password="una clave de prueba"))
         store.set_status(self.path, "matias", "approved")
-        self.post("/species", dict(species="humano"))  # valdren_centro
+        self.post("/species", dict(species="humano"))
         self.player_id = self.client.get("/api/me").json["player"]["id"]
         store.set_player_class(self.path, self.player_id, "juramentado")
+        self.post("/move", dict(direction="south"))  # salir del hogar al centro de Valdren
 
     def tearDown(self):
         self.temp.cleanup()

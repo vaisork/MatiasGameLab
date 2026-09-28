@@ -421,6 +421,7 @@ class NPCMemoryFlaskIntegrationTests(unittest.TestCase):
             self.post("/dm/approve", dict(username=username), dm, csrf_path="/dm")
         self.post("/species", dict(species="humano"))
         self.post("/class", dict(player_class="sombra"))
+        self.post("/move", dict(direction="south"))
 
     def move_to_forja(self):
         res = self.post("/move", dict(direction="west"))

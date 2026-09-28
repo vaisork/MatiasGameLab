@@ -74,8 +74,9 @@ class ProgressionIntegrationTests(unittest.TestCase):
         with patch.dict("os.environ", {"VT_DM_PASSWORD": "dm-secret-value"}):
             self.post("/dm/login", dict(dm_password="dm-secret-value"), dm, csrf_path="/dm")
             self.post("/dm/approve", dict(username=username), dm, csrf_path="/dm")
-        self.post("/species", dict(species="humano"))  # arranca en valdren_centro
+        self.post("/species", dict(species="humano"))
         self.choose_class_without_starter_weapon()
+        self.post("/move", dict(direction="south"))  # salir del hogar al centro de Valdren
 
     def player_id(self):
         return self.client.get("/api/me").json["player"]["id"]

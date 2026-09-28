@@ -31,6 +31,12 @@ SAFE_RECOVERY_MESSAGE = ("En la plaza de Valdren puedes detenerte sin vigilar ca
                           "campo. Entre el movimiento cotidiano del pueblo recuperas fuerzas "
                           "antes de volver al camino.")
 
+# DEATH-PRESENTATION-01 (#366 / Narrador PR #368). Texto reusable; no cambia
+# ninguna consecuencia mecánica de muerte o respawn.
+DEATH_HEADING = "HAS MUERTO"
+DEATH_FALL_MESSAGE = ("Las fuerzas te abandonan. El combate desaparece a tu alrededor y "
+                      "pierdes la conciencia.")
+
 # Categorias cualitativas de "evaluar" (GAMEPLAY.md 22.11) -- nunca exponen
 # numeros, solo la frase equivalente.
 EVALUATE_TEXT = {
@@ -98,6 +104,7 @@ def create_app(config=None):
         raise RuntimeError("VT_DATA_DIR debe ser una ruta absoluta persistente.")
     path = str(Path(app.config["DATA_DIR"]) / "vintage.sqlite3")
     store.initialize(path)
+    world.set_home_species_resolver(lambda pid: store.get_player_species(path, pid))
     store.relocate_players_outside_world(path, set(world.ROOMS), world.get_starting_room_for_species)
     app.config["DATABASE"] = path
     dummy_hash = generate_password_hash(secrets.token_urlsafe(32))
@@ -273,6 +280,7 @@ def create_app(config=None):
         "sur": "south", "s": "south", "south": "south",
         "este": "east", "e": "east", "east": "east",
         "oeste": "west", "o": "west", "west": "west",
+        "salir": "salir", "salida": "salir", "out": "salir", "leave": "salir",
     }
     LOOK_ALIASES = {"mirar", "ver", "look"}
     INSPECT_ALIASES = {"observar", "examinar"}
@@ -360,12 +368,18 @@ def create_app(config=None):
         (VT-NAR-003), y otorga el hito de regreso si corresponde."""
         previous_room = player["room"]
         room = world.get_room(previous_room)
+        if direction in ("salir", "salida", "out", "leave"):
+            if world.is_home_room(previous_room):
+                direction = world.HOME_EXIT_DIRECTION
+            else:
+                return False, previous_room, None, "No puedes ir en esa dirección."
         destination = room["exits"].get(direction) if room else None
         if not destination:
             return False, previous_room, None, "No puedes ir en esa dirección."
         store.move_player(path, player["id"], destination, direction)
         store.mark_visited(path, player["id"], destination)
-        store.mark_route_traversed(path, player["id"], previous_room, destination)
+        if not world.is_home_room(previous_room) and not world.is_home_room(destination):
+            store.mark_route_traversed(path, player["id"], previous_room, destination)
         # Primero el encuentro fijo de la sala y, si no hay, la fauna
         # aleatoria de su pool (Issue #160). Solo se tira el dado si no hay
         # ya una pelea activa ni enfriamiento en esa sala.
@@ -472,6 +486,36 @@ def create_app(config=None):
         category = combat.encounter_category(player_dps, player["hp_current"], enemy_dps, creature["hp"])
         return creature["name"], f"{creature['name']} {EVALUATE_TEXT[category]}."
 
+    def _defeat_result(creature, combat_messages, player, respawn, respawn_wound_value):
+        """Añade presentación estructurada a una derrota ya resuelta.
+
+        La lógica autoritativa (0 HP, limpieza de encuentro, respawn, HP,
+        fatiga, herida e inventario) ocurre antes de llamar a este helper.
+        messages conserva el formato legado para clientes existentes; la UI
+        consume death_event y nunca detecta muerte buscando palabras.
+        """
+        safe_room = world.get_room(SAFE_ROOM_ID)
+        location_name = safe_room["name"] if safe_room else "un lugar seguro"
+        death_event = {
+            "heading": DEATH_HEADING,
+            "combat_messages": list(combat_messages),
+            "defeat_message": f"{creature['name']} te derrota.",
+            "fall_message": DEATH_FALL_MESSAGE,
+            "respawn_message": f"Vuelves en ti en {location_name}.",
+            "post_respawn_state": {
+                "hp_current": respawn["hp_current"],
+                "hp_max": round(player["hp_max"]),
+                "fatigue": respawn["fatigue"],
+                "wound": respawn_wound_value,
+                "equipment": "Conservado",
+                "inventory": "Conservado",
+            },
+            "preservation_message": "Conservas tu equipo e inventario.",
+        }
+        legacy_messages = list(combat_messages)
+        legacy_messages.append(f"{creature['name']} te derrota. {RESPAWN_MESSAGE}")
+        return {"outcome": "defeat", "messages": legacy_messages, "death_event": death_event}
+
     def attempt_attack(player, rng=None):
         """Una ronda de combate real (golpe del jugador y, si la criatura
         sobrevive, contragolpe). Aplica fatiga/heridas segun GAMEPLAY.md 24
@@ -550,8 +594,7 @@ def create_app(config=None):
             store.update_combat_state(path, player["id"], hp_current=respawn["hp_current"],
                                        fatigue=respawn["fatigue"], wound=respawn_wound_value,
                                        room=SAFE_ROOM_ID)
-            messages.append(f"{creature['name']} te derrota. {RESPAWN_MESSAGE}")
-            return {"outcome": "defeat", "messages": messages}
+            return _defeat_result(creature, messages, player, respawn, respawn_wound_value)
 
         store.update_combat_state(path, player["id"], hp_current=player_hp,
                                    fatigue=round(fatigue), wound=new_wound)
@@ -608,8 +651,7 @@ def create_app(config=None):
             store.update_combat_state(path, player["id"], hp_current=respawn["hp_current"],
                                        fatigue=respawn["fatigue"], wound=respawn_wound_value,
                                        room=SAFE_ROOM_ID)
-            messages.append(f"{creature['name']} te derrota. {RESPAWN_MESSAGE}")
-            return {"outcome": "defeat", "messages": messages}
+            return _defeat_result(creature, messages, player, respawn, respawn_wound_value)
         store.update_combat_state(path, player["id"], hp_current=player_hp,
                                    fatigue=round(fatigue), wound=new_wound)
         return {"outcome": "failed", "messages": messages}
@@ -649,8 +691,7 @@ def create_app(config=None):
             store.update_combat_state(path, player["id"], hp_current=respawn["hp_current"],
                                        fatigue=respawn["fatigue"], wound=respawn_wound_value,
                                        room=SAFE_ROOM_ID)
-            messages.append(f"{creature['name']} te derrota. {RESPAWN_MESSAGE}")
-            return {"outcome": "defeat", "messages": messages}
+            return _defeat_result(creature, messages, player, respawn, respawn_wound_value)
         store.update_combat_state(path, player["id"], hp_current=player_hp,
                                    fatigue=round(fatigue), wound=new_wound)
         return {"outcome": "failed", "messages": messages}
@@ -688,8 +729,7 @@ def create_app(config=None):
             store.update_combat_state(path, player["id"], hp_current=respawn["hp_current"],
                                        fatigue=respawn["fatigue"], wound=respawn_wound_value,
                                        room=SAFE_ROOM_ID)
-            messages.append(f"{creature['name']} te derrota. {RESPAWN_MESSAGE}")
-            return {"outcome": "defeat", "messages": messages}
+            return _defeat_result(creature, messages, player, respawn, respawn_wound_value)
         store.update_combat_state(path, player["id"], hp_current=player_hp,
                                    fatigue=round(fatigue), wound=new_wound)
         return {"outcome": "failed", "messages": messages}
@@ -730,8 +770,7 @@ def create_app(config=None):
             store.update_combat_state(path, player["id"], hp_current=respawn["hp_current"],
                                        fatigue=respawn["fatigue"], wound=respawn_wound_value,
                                        room=SAFE_ROOM_ID)
-            messages.append(f"{creature['name']} te derrota. {RESPAWN_MESSAGE}")
-            return {"outcome": "defeat", "messages": messages}
+            return _defeat_result(creature, messages, player, respawn, respawn_wound_value)
         store.update_combat_state(path, player["id"], hp_current=player_hp,
                                    fatigue=round(fatigue), wound=new_wound)
         return {"outcome": "failed", "messages": messages}
@@ -831,11 +870,14 @@ def create_app(config=None):
         pueden terminar ambos con accepted=True."""
         if species_id not in world.SPECIES_IDS:
             return False, None, None, "Elige una especie de la lista."
-        room_id = world.get_starting_room_for_species(species_id)
+        # VT-SERVER: HOME-CORE (Issue #280 / GAMEPLAY.md §34)
+        # El personaje nuevo comienza en su hogar personal persistente.
+        room_id = world.get_home_room_id(player["id"])
         updated = store.set_species(path, player["id"], species_id, room_id)
         if not updated:
             return False, None, None, "Ya elegiste tu especie."
-        store.mark_visited(path, player["id"], room_id)
+        starting_town = world.get_starting_room_for_species(species_id)
+        store.mark_visited(path, player["id"], starting_town)
         return True, species_id, room_id, None
 
     def attempt_choose_class(player, class_id):
@@ -1023,6 +1065,20 @@ def create_app(config=None):
                                    error=reason), 400
         return redirect(url_for("index"), code=303)
 
+    def _combat_result_page(result):
+        """Renderiza una resolución de combate sin inferir derrota desde texto."""
+        player_now = store.player_for_token(path, session.get("token"))
+        room_data = room_view(player_now["room"], player_now["id"])
+        death_event = result.get("death_event")
+        return render_template(
+            "entry.html",
+            player=player_now,
+            species_list=world.SPECIES,
+            room=room_data,
+            error=None if death_event else " ".join(result["messages"]),
+            death_event=death_event,
+        ), 200
+
     @app.post("/move")
     def move():
         require_approved_player()
@@ -1088,17 +1144,9 @@ def create_app(config=None):
             return render_template("entry.html", player=g.player, species_list=world.SPECIES,
                                    room=room_data, error=message), 200
         if intent["type"] == "attack":
-            result = attempt_attack(g.player)
-            player_now = store.player_for_token(path, session.get("token"))
-            room_data = room_view(player_now["room"], player_now["id"])
-            return render_template("entry.html", player=player_now, species_list=world.SPECIES,
-                                   room=room_data, error=" ".join(result["messages"])), 200
+            return _combat_result_page(attempt_attack(g.player))
         if intent["type"] == "flee":
-            result = attempt_flee(g.player)
-            player_now = store.player_for_token(path, session.get("token"))
-            room_data = room_view(player_now["room"], player_now["id"])
-            return render_template("entry.html", player=player_now, species_list=world.SPECIES,
-                                   room=room_data, error=" ".join(result["messages"])), 200
+            return _combat_result_page(attempt_flee(g.player))
         if intent["type"] == "rest":
             result = attempt_rest(g.player)
             player_now = store.player_for_token(path, session.get("token"))
@@ -1106,23 +1154,11 @@ def create_app(config=None):
             return render_template("entry.html", player=player_now, species_list=world.SPECIES,
                                    room=room_data, error=" ".join(result["messages"])), 200
         if intent["type"] == "dodge":
-            result = attempt_dodge(g.player)
-            player_now = store.player_for_token(path, session.get("token"))
-            room_data = room_view(player_now["room"], player_now["id"])
-            return render_template("entry.html", player=player_now, species_list=world.SPECIES,
-                                   room=room_data, error=" ".join(result["messages"])), 200
+            return _combat_result_page(attempt_dodge(g.player))
         if intent["type"] == "resist":
-            result = attempt_resist(g.player)
-            player_now = store.player_for_token(path, session.get("token"))
-            room_data = room_view(player_now["room"], player_now["id"])
-            return render_template("entry.html", player=player_now, species_list=world.SPECIES,
-                                   room=room_data, error=" ".join(result["messages"])), 200
+            return _combat_result_page(attempt_resist(g.player))
         if intent["type"] == "block":
-            result = attempt_block(g.player)
-            player_now = store.player_for_token(path, session.get("token"))
-            room_data = room_view(player_now["room"], player_now["id"])
-            return render_template("entry.html", player=player_now, species_list=world.SPECIES,
-                                   room=room_data, error=" ".join(result["messages"])), 200
+            return _combat_result_page(attempt_block(g.player))
         if intent["type"] == "equip":
             result = attempt_equip(g.player, intent["target"])
             player_now = store.player_for_token(path, session.get("token"))
@@ -1196,7 +1232,8 @@ def create_app(config=None):
         if not accepted:
             return jsonify(accepted=False, reason=reason), 400
         updated_player = store.player_for_token(path, session.get("token"))
-        town = world.get_room(room_id)
+        starting_town_room = world.get_starting_room_for_species(species_id)
+        town = world.get_room(starting_town_room)
         return jsonify(
             accepted=True,
             species=species_id,
@@ -1286,6 +1323,7 @@ def create_app(config=None):
                 intent="attack",
                 outcome=result["outcome"],
                 messages=result["messages"],
+                death_event=result.get("death_event"),
                 player=dict(player_now) if player_now else None,
                 current_room=room_view(player_now["room"], player_now["id"]) if player_now else None,
             )
@@ -1297,6 +1335,7 @@ def create_app(config=None):
                 intent="flee",
                 outcome=result["outcome"],
                 messages=result["messages"],
+                death_event=result.get("death_event"),
                 player=dict(player_now) if player_now else None,
                 current_room=room_view(player_now["room"], player_now["id"]) if player_now else None,
             )
@@ -1318,6 +1357,7 @@ def create_app(config=None):
                 intent="dodge",
                 outcome=result["outcome"],
                 messages=result["messages"],
+                death_event=result.get("death_event"),
                 player=dict(player_now) if player_now else None,
                 current_room=room_view(player_now["room"], player_now["id"]) if player_now else None,
             )
@@ -1329,6 +1369,7 @@ def create_app(config=None):
                 intent="resist",
                 outcome=result["outcome"],
                 messages=result["messages"],
+                death_event=result.get("death_event"),
                 player=dict(player_now) if player_now else None,
                 current_room=room_view(player_now["room"], player_now["id"]) if player_now else None,
             )
@@ -1340,6 +1381,7 @@ def create_app(config=None):
                 intent="block",
                 outcome=result["outcome"],
                 messages=result["messages"],
+                death_event=result.get("death_event"),
                 player=dict(player_now) if player_now else None,
                 current_room=room_view(player_now["room"], player_now["id"]) if player_now else None,
             )
@@ -1600,55 +1642,35 @@ def create_app(config=None):
         require_approved_player()
         if not character_ready(g.player):
             abort(403)
-        result = attempt_attack(g.player)
-        player_now = store.player_for_token(path, session.get("token"))
-        room_data = room_view(player_now["room"], player_now["id"])
-        return render_template("entry.html", player=player_now, species_list=world.SPECIES,
-                               room=room_data, error=" ".join(result["messages"])), 200
+        return _combat_result_page(attempt_attack(g.player))
 
     @app.post("/flee")
     def flee():
         require_approved_player()
         if not character_ready(g.player):
             abort(403)
-        result = attempt_flee(g.player)
-        player_now = store.player_for_token(path, session.get("token"))
-        room_data = room_view(player_now["room"], player_now["id"])
-        return render_template("entry.html", player=player_now, species_list=world.SPECIES,
-                               room=room_data, error=" ".join(result["messages"])), 200
+        return _combat_result_page(attempt_flee(g.player))
 
     @app.post("/dodge")
     def dodge():
         require_approved_player()
         if not character_ready(g.player):
             abort(403)
-        result = attempt_dodge(g.player)
-        player_now = store.player_for_token(path, session.get("token"))
-        room_data = room_view(player_now["room"], player_now["id"])
-        return render_template("entry.html", player=player_now, species_list=world.SPECIES,
-                               room=room_data, error=" ".join(result["messages"])), 200
+        return _combat_result_page(attempt_dodge(g.player))
 
     @app.post("/resist")
     def resist():
         require_approved_player()
         if not character_ready(g.player):
             abort(403)
-        result = attempt_resist(g.player)
-        player_now = store.player_for_token(path, session.get("token"))
-        room_data = room_view(player_now["room"], player_now["id"])
-        return render_template("entry.html", player=player_now, species_list=world.SPECIES,
-                               room=room_data, error=" ".join(result["messages"])), 200
+        return _combat_result_page(attempt_resist(g.player))
 
     @app.post("/block")
     def block():
         require_approved_player()
         if not character_ready(g.player):
             abort(403)
-        result = attempt_block(g.player)
-        player_now = store.player_for_token(path, session.get("token"))
-        room_data = room_view(player_now["room"], player_now["id"])
-        return render_template("entry.html", player=player_now, species_list=world.SPECIES,
-                               room=room_data, error=" ".join(result["messages"])), 200
+        return _combat_result_page(attempt_block(g.player))
 
     @app.post("/evaluate")
     def evaluate():

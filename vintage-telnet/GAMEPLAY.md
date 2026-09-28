@@ -1341,10 +1341,72 @@ Comprar/desbloquear un poder solo será posible cuando exista contenido de poder
 
 ### 25.9 Notificación de progreso
 
-Al subir de nivel, el jugador debe recibir una notificación breve y persistente en la sesión que indique:
-- nuevo nivel;
-- PA obtenidos;
-- PP obtenido cuando corresponda.
+Subir de nivel debe sentirse como un **evento visible**, no como un número que cambió silenciosamente.
+
+Cuando una acción otorgue suficiente XP para subir uno o más niveles, el jugador debe recibir simultáneamente:
+
+1. **Mensaje destacado inmediato**
+   - encabezado: `¡SUBISTE A NIVEL <n>!`;
+   - `+<PA> PA para mejorar atributos`;
+   - `+<PP> PP` cuando corresponda;
+   - indicar el nuevo objetivo de XP: `Siguiente nivel: <xp_required> XP`.
+
+2. **Registro persistente en el log**
+   El mismo evento debe quedar escrito en el historial de la sesión.  
+   No basta con cambiar la cifra de nivel o reiniciar visualmente la barra de XP.
+
+3. **Indicador pendiente en Personaje**
+   Si quedan PA o PP sin gastar, el acceso a **Personaje** debe mostrar un badge/indicador visible con el saldo pendiente.
+   Ejemplo:
+   - `Personaje · 2 PA`
+   - o un badge numérico equivalente.
+
+4. **Énfasis dentro del panel Personaje**
+   Mientras existan PA sin gastar, mostrar una llamada clara:
+   `Tienes <n> PA nuevos por asignar.`
+
+### 25.9.1 Reinicio visual de XP
+
+Cuando el jugador cruza un nivel, la XP usada para alcanzar ese nivel pasa a formar parte de la progresión ya consumida y el contador visible muestra el progreso hacia el siguiente nivel.
+
+Este cambio **debe ir acompañado del mensaje de subida de nivel**.
+
+Nunca debe ocurrir visualmente:
+
+`XP alta → XP 0/<siguiente>`
+
+sin una explicación visible, porque el jugador puede interpretarlo como pérdida de experiencia.
+
+### 25.9.2 Momento de presentación
+
+- Si la subida ocurre durante combate, mostrar el aviso al resolver la acción/ronda que otorgó la XP.
+- No abrir automáticamente el panel Personaje.
+- No bloquear la lectura con un modal obligatorio que requiera distribuir puntos.
+- Un banner/toast destacado y descartable es válido.
+- El evento debe sobrevivir lo suficiente para ser leído y también quedar en el log.
+- Si una sola concesión de XP sube varios niveles, mostrar el nivel final y el total de PA/PP ganados en ese evento.
+
+### 25.9.3 Texto v1 recomendado
+
+Ejemplo nivel 1 → 2:
+
+`¡SUBISTE A NIVEL 2!`  
+`Ganaste 2 PA para mejorar tus atributos.`  
+`Siguiente nivel: 118 XP.`
+
+Ejemplo con PP:
+
+`¡SUBISTE A NIVEL 5!`  
+`Ganaste 2 PA y 1 PP.`
+
+### 25.9.4 Criterio de éxito
+
+La implementación falla aunque los datos sean correctos si, después de subir de nivel, un jugador razonable puede creer que:
+- perdió XP;
+- no sabe que ganó PA;
+- no sabe dónde gastar esos PA.
+
+El objetivo es que el jugador pueda reconocer la subida de nivel **sin tener que abrir Personaje para descubrir que ocurrió**.
 
 No mostrar automáticamente una ventana obligatoria de distribución en medio de combate o lectura. El jugador decide cuándo abrir Personaje y gastar sus PA.
 
@@ -2932,3 +2994,853 @@ La separación inicial de clases queda validada cuando:
 4. ninguna capacidad es siempre mejor que atacar/defender normalmente;
 5. una criatura con intención visible permite respuestas distintas y comprensibles;
 6. el sistema queda extensible a las segundas capacidades sin rehacer combate.
+
+
+## 37. Clima regional compartido — v1
+
+**Estado:** APROBADO PARA IMPLEMENTACIÓN.  
+**Canon regional:** PR #293 / `REGIONAL_WEATHER_CANON.md`.  
+**Presentación:** vocabulario de #138: Despejado, Nublado, Lluvia, Niebla, Nieve, Tormenta, Viento.
+
+La v1 conserva el clima como **ambiental/presentacional**:
+- no modifica daño;
+- no modifica defensa;
+- no modifica Percepción;
+- no modifica movimiento;
+- no modifica encuentros;
+- no modifica especies;
+- no modifica capacidades;
+- no modifica `available_actions`.
+
+### 37.1 Estado compartido, no personal
+
+El clima no se genera por jugador ni por sesión.
+
+La simulación usa una **fase climática global** derivada del tiempo real. Todos los jugadores que estén en la misma región durante la misma fase observan el mismo clima.
+
+Regiones distintas pueden manifestar climas distintos durante una misma fase porque cada región tiene un conjunto canónico distinto de climas permitidos.
+
+Por tanto:
+- el reloj/fase es global;
+- la manifestación es regional;
+- nunca es personal.
+
+### 37.2 Cadencia
+
+Una fase climática dura **2 horas reales**.
+
+Referencia determinista:
+
+`weather_epoch = floor(unix_time / 7200)`
+
+Reiniciar el servidor no reinicia ni adelanta el clima.
+
+No se requiere tabla SQLite ni job programado para mantener esta fase.
+
+### 37.3 Selección regional determinista
+
+Cada región mantiene una lista ordenada de climas permitidos tomada literalmente de `REGIONAL_WEATHER_CANON.md`.
+
+Para una región:
+
+`index = (weather_epoch + region_offset) mod len(allowed_weather)`
+
+`weather = allowed_weather[index]`
+
+Cada región recibe un `region_offset` fijo y estable definido en configuración, no aleatorio en cada arranque.
+
+Objetivo:
+- evitar RNG no reproducible;
+- evitar persistencia innecesaria;
+- garantizar que una región nunca muestre clima prohibido;
+- permitir que regiones diferentes no cambien siempre al mismo estado visual.
+
+Los offsets son implementación técnica y no tienen significado narrativo.
+
+### 37.4 Restricciones canónicas
+
+La selección nunca puede elegir un estado que Historia haya excluido de esa región.
+
+Ejemplos ya cerrados por Historia:
+- **Nieve**: solo Hoshai en v1;
+- Korven: sin Niebla ni Nieve;
+- Lethra y Nhal: Niebla permitida;
+- Veyra/Edran: sin Nieve.
+
+Si el canon regional cambia, se modifica la lista permitida; no se cambia la fórmula.
+
+### 37.5 Cambio de región
+
+Al entrar a otra región, la interfaz recalcula inmediatamente la manifestación climática usando:
+- la misma `weather_epoch` global;
+- la lista permitida de la nueva región.
+
+No existe transición gradual obligatoria en v1.
+
+### 37.6 Cambio de fase durante sesión
+
+Cuando cambia `weather_epoch`:
+- la siguiente consulta/render de ambiente muestra el nuevo clima;
+- no se interrumpe combate;
+- no aparece modal obligatorio;
+- no se reescribe automáticamente toda la descripción de sala.
+
+La interfaz puede actualizar la etiqueta/icono de clima de forma normal.
+
+### 37.7 Hora y clima son independientes
+
+El reloj de hora del día de #138 sigue:
+**Amanecer → Día → Atardecer → Noche**, 60 minutos reales por estado.
+
+El clima cambia cada 2 horas reales y no necesita alinearse con amanecer/día/etc.
+
+No inferir:
+- lluvia porque sea noche;
+- niebla porque sea amanecer;
+- tormenta por una hora específica.
+
+### 37.8 Principio
+
+**La fase climática pertenece al mundo; el clima visible pertenece a la región. Ninguno pertenece al jugador.**
+
+
+## 38. Fauna mayor regional — contrato v1
+
+**Estado:** APROBADO PARA CONTENIDO Y PRIMERA IMPLEMENTACIÓN.  
+**Canon:** Issue #330 / PR #331 — `MAJOR_FAUNA.md` + `MAJOR_FAUNA_TERRITORIES.md`.
+
+La **fauna mayor** es una categoría de criaturas naturales por encima de la fauna menor y de las amenazas superiores regionales iniciales.
+
+No equivale a “jefe”.
+
+### 38.1 Jerarquía funcional
+
+- fauna menor → presencia ordinaria/regional;
+- amenaza superior → peligro regional fuerte, fuera de pools ordinarios iniciales;
+- fauna mayor → peligro natural excepcional, territorio propio y advertencias múltiples;
+- jefe → contenido explícitamente marcado como jefe, con contrato propio.
+
+Ser fauna mayor:
+- no activa pérdida de arma;
+- no activa recompensa de jefe;
+- no cambia respawn;
+- no convierte una muerte en permanente;
+- no otorga privilegios de boss por potencia numérica.
+
+### 38.2 Sin escalado automático
+
+La fauna mayor usa estadísticas fijas por especie/encuentro.
+
+No escala automáticamente al nivel del personaje.
+
+Un jugador demasiado débil puede encontrar una criatura que lo supera ampliamente y la respuesta correcta puede ser retirarse.
+
+### 38.3 Territorio en tres anillos
+
+Consumir los tres anillos de Historia.
+
+**Anillo I — borde**
+- mínimo un rastro físico + cambio leve en fauna;
+- 0 combate forzado;
+- retirada libre del territorio.
+
+**Anillo II — territorio activo**
+- señales recientes + cambio claro en fauna;
+- puede existir avistamiento/sonido;
+- 0 combate forzado por defecto;
+- retirada todavía disponible antes de compromiso.
+
+**Anillo III — proximidad crítica**
+- última señal inequívoca;
+- el jugador recibe al menos una decisión real antes de quedar comprometido, salvo que él mismo ataque primero;
+- opciones mínimas: observar/evaluar, retroceder cuando el comportamiento lo permita, o provocar/iniciar combate.
+
+La criatura no “aparece de la nada”.
+
+### 38.4 Combate y retirada
+
+Una vez iniciado el combate:
+- usa el motor normal;
+- las acciones preparadas pueden usar §36;
+- huida usa contrato específico de especie;
+- una huida exitosa termina persecución salvo que el contrato de esa especie diga lo contrario;
+- fauna mayor puede abandonar el combate por conducta propia sin ser derrotada.
+
+Matarla no es la única resolución válida.
+
+### 38.5 Derrota del jugador
+
+Si fauna mayor lleva al jugador a 0 HP:
+- muerte/respawn normal;
+- inventario y equipo permanecen conforme reglas vigentes;
+- **no pérdida de arma** por ser fauna mayor;
+- cualquier pérdida de arma PvE requiere un jefe explícito conforme §11.
+
+### 38.6 Recompensas
+
+V1:
+- XP usa familia/referencia propia y antifarmeo normal;
+- no crear drop especial automático;
+- no crear material de crafting automático;
+- no crear “trofeo de jefe” por analogía.
+
+Recompensas especiales futuras requieren contrato de contenido propio.
+
+### 38.7 Primera fauna mayor: Cargallanura
+
+**Región:** Edran.  
+**Rol:** herbívoro territorial de gran masa.  
+**No jefe.**
+
+Perfil v1:
+- family: `cargallanura`
+- reference_level: **12**
+- HP: **210**
+- precisión básica: **58%**
+- daño bruto básico: **26**
+- reducción física: **25%**
+- flee_agilidad: **10**
+- flee_percepcion: **12**
+
+Objetivo:
+- Abrumador para personajes iniciales;
+- peligro serio incluso después de superar las amenazas tempranas;
+- no diseñado como requisito obligatorio de progreso.
+
+### 38.8 Acción preparada — Carga comprometida
+
+Cargallanura puede preparar una carga frontal si decide combatir y dispone de espacio.
+
+Señal:
+- se coloca de frente;
+- baja cabeza;
+- fija patas;
+- resopla/golpea el suelo.
+
+Contrato:
+- `prepared_action = cargallanura_charge`
+- `frontal = true`
+- `interruptible = true`
+- precisión si resuelve sin respuesta: **70%**
+- daño bruto: **38**
+- debe existir una intervención del jugador antes de resolver.
+
+La interrupción no significa lanzar físicamente al animal; puede significar romper alineación, obligarlo a frenar o desviar la trayectoria.
+
+Las cuatro capacidades de §36 deben tener respuesta coherente:
+- Juramentado sostiene/reduce;
+- Arcano altera la carga;
+- Sombra rompe el foco/ángulo;
+- Artífice intenta interrumpir con tiro técnico.
+
+### 38.9 Conducta de Cargallanura
+
+- no caza al jugador;
+- no inicia combate por simple presencia en Anillo I/II;
+- si tiene una salida razonable, puede abandonar el encuentro;
+- una huida exitosa del jugador termina la persecución;
+- no persigue a través de múltiples salas;
+- no aparece en Valdren ni parcelas densas;
+- no comparte encuentro ordinario con Cornalomo.
+
+### 38.10 Criterio de prueba
+
+Antes de integrar Cargallanura:
+1. señales de Anillo I/II/III existen;
+2. nivel 1 lo evalúa como Abrumador;
+3. puede matar nivel 1 si este insiste;
+4. retirarse antes del combate es posible;
+5. huida durante combate es posible;
+6. muerte conserva arma/equipo;
+7. la carga preparada concede una intervención;
+8. ninguna capacidad de clase convierte el encuentro en trivial;
+9. no entra en pools aleatorios ordinarios;
+10. no bloquea ruta principal.
+
+**Principio:** fauna mayor debe enseñar “este territorio no gira alrededor de tu nivel”.
+
+## 39. Mundo vivo ambiental — C0 / N0 / N5-lite v1
+
+**Estado:** CONTRATO DE MOTOR APROBADO; contenido regional pendiente de Historia/Narrativa.  
+**Relacionados:** #332, #333, #334, #338.
+
+El mundo puede sentirse poblado sin convertir toda presencia en enemigo, quest o NPC con LLM.
+
+### 39.1 Fauna ambiental C0
+
+C0 representa animales/vida cotidiana **no combatible**.
+
+No tiene:
+- HP;
+- XP;
+- loot;
+- inventario;
+- familia de antifarmeo;
+- combate;
+- bloqueo de movimiento;
+- persistencia individual.
+
+Un C0 puede:
+- cruzar;
+- huir;
+- ignorar;
+- alimentarse;
+- emitir sonido;
+- dejar una observación breve.
+
+Si el jugador intenta atacarlo en v1, **no se inicia combate**. La presencia se retira/desaparece con una respuesta legible.
+
+### 39.2 Densidad C0 por perfil
+
+Historia marca compatibilidad/hábitat; Jugabilidad usa uno de estos perfiles:
+
+- `ambient_none` → **0%**
+- `ambient_sparse` → **15%**
+- `ambient_normal` → **30%**
+- `ambient_rich` → **45%**
+
+Máximo visible v1:
+- **1 evento C0 por sala**.
+
+No sumar varios rolls para “llenar” una sala.
+
+### 39.3 Selección C0 compartida y determinista
+
+Para evitar que cada jugador vea un mundo totalmente distinto, la presencia ambiental se deriva de una fase temporal compartida.
+
+`ambient_epoch = floor(unix_time / 600)`
+
+Cada 10 minutos reales puede cambiar la observación ambiental de una sala.
+
+Selección:
+- hash/semilla estable con `ambient_epoch + room_id + habitat_id`;
+- solo especies C0 permitidas por Historia para ese hábitat;
+- mismo resultado para jugadores en la misma sala/fase;
+- sin tabla DB en v1.
+
+La implementación debe permitir inyectar tiempo/RNG/hash para tests.
+
+### 39.4 Anti-spam C0
+
+Una misma sesión no vuelve a imprimir automáticamente el mismo evento C0 para el mismo `room_id + ambient_epoch` en cada render.
+
+Puede reaparecer:
+- al cambiar de fase;
+- al reconectar;
+- si una acción explícita de observación lo consulta y sigue vigente.
+
+Moverse ida/vuelta no debe producir una cascada de frases repetidas.
+
+### 39.5 Prioridad C0 frente a combate/contenido
+
+Orden:
+1. combate activo;
+2. encuentro scripted;
+3. encuentro combatible aleatorio C1+;
+4. presencia ambiental C0.
+
+Si existe 1–3, C0 puede omitirse de la presentación para mantener legibilidad.
+
+C0 jamás reemplaza ni cancela un scripted.
+
+### 39.6 NPC ambiental N0
+
+N0 representa presencia humana/multiespecie de fondo:
+- habitante;
+- trabajador;
+- viajero;
+- visitante;
+- grupo descrito como una sola presencia ambiental.
+
+No tiene:
+- memoria;
+- LLM;
+- quest;
+- reputación;
+- inventario funcional;
+- comercio;
+- mutación de estado.
+
+Puede ofrecer:
+- descripción breve;
+- bark/frase corta preescrita;
+- respuesta fija si el jugador intenta hablar.
+
+No se promueve automáticamente a N2/N3/N4.
+
+### 39.7 Densidad N0
+
+Perfiles:
+
+- `population_none` → **0%**
+- `population_sparse` → **15%**
+- `population_normal` → **30%**
+- `population_busy` → **55%**
+- `population_hub` → **75%**
+
+Máximo:
+- **1 presencia N0 ambiental por sala** en v1;
+- NPCs scripted/definidos no cuentan para ese máximo.
+
+Historia define qué perfiles son plausibles por sala/rol.
+
+### 39.8 Fase compartida N0
+
+`population_epoch = floor(unix_time / 900)`
+
+La población ambiental puede cambiar cada **15 minutos reales**.
+
+Selección determinista por:
+- epoch;
+- room_id;
+- tabla de roles permitidos.
+
+Mismos jugadores/sala/fase ven la misma presencia ambiental.
+
+No DB para N0 efímero.
+
+### 39.9 Prioridad N0
+
+- NPC scripted nunca es sustituido.
+- N0 puede coexistir con NPCs definidos si no vuelve ilegible la sala.
+- combate activo puede ocultar la presentación ambiental.
+- N0 no bloquea salida ni interacción principal.
+- N0 no puede otorgar recompensa, abrir acceso, entregar objeto ni completar hito.
+
+### 39.10 Conversación con N0
+
+`hablar <presencia ambiental>` devuelve una respuesta fija/bark si Narrativa la proporciona.
+
+No invoca proveedor LLM.
+
+Si una presencia necesita:
+- identidad persistente;
+- memoria;
+- conocimiento propio;
+- acción estructurada;
+entonces deja de ser N0 y debe usar N1–N4 según #332.
+
+### 39.11 N5-lite — viajeros definidos
+
+Un viajero definido puede moverse por una ruta autorizada sin simulación social compleja.
+
+Reglas de Jugabilidad:
+- movimiento por **tiempo**, nunca por acciones del jugador;
+- cadencia de referencia inicial: **10 minutos reales por paso**, configurable por NPC;
+- solo conexiones reales de la ruta;
+- puede tener pausas/landmarks explícitos;
+- nunca entra a hogar privado/interior no autorizado;
+- no teleporta;
+- si su ruta termina, puede detenerse, invertir sentido o desaparecer según contrato del NPC;
+- conversación/LLM no decide movimiento.
+
+Persistencia:
+- solo NPCs expresamente marcados `persistent_traveler=true` necesitan posición persistente;
+- viajeros ambientales efímeros pueden derivar posición determinísticamente del tiempo/ruta sin DB.
+
+### 39.12 Separación de capas
+
+Un mismo room puede contener:
+- NPC scripted;
+- presencia N0;
+- señales ambientales C0;
+pero la interfaz debe priorizar legibilidad.
+
+No convertir cantidad de entidades en obligación de mostrar cinco párrafos.
+
+Regla de presentación v1:
+- máximo una frase C0;
+- máximo una presencia N0;
+- NPCs definidos se muestran normalmente;
+- combate domina la presentación cuando está activo.
+
+### 39.13 Principio
+
+**Poblar el mundo no significa multiplicar combates ni multiplicar llamadas a IA.**
+
+C0 y N0 existen precisamente para que haya vida que no necesita convertirse en sistema pesado.
+
+## 40. Amenazas regionales C3 — motor reusable v1
+
+**Estado:** CONTRATO APROBADO PARA DESARROLLO.  
+**Relacionados:** #332 / #335 / §33 / §36 / §38.
+
+C3 representa amenazas regionales superiores:
+- Cornalomo;
+- Rasgacumbres;
+- Quebrarrocas;
+- Dorsalodo;
+- Rasgacorteza;
+y futuras amenazas equivalentes.
+
+No son pools C1 ordinarios y no son jefes por defecto.
+
+### 40.1 Zona de amenaza
+
+Cada presencia C3 se configura mediante un `threat_zone_id`.
+
+Contrato mínimo de zona:
+- región/hábitat autorizado;
+- salas de advertencia;
+- sala(s) de proximidad/encuentro;
+- creature_id;
+- cooldown;
+- modo de presencia;
+- señales narrativas autorizadas.
+
+No deducir zonas por prefijo de room_id.
+
+### 40.2 Estados por personaje/zona
+
+Estado mínimo:
+
+- `unknown` — no ha leído señales;
+- `warned` — recibió advertencia válida;
+- `close` — llegó a proximidad crítica;
+- `resolved` — evitó, huyó, venció o salió del evento;
+- `cooldown` — no debe retrigger inmediato.
+
+El motor puede persistir estos estados solo cuando sea necesario para evitar repetición/reconexión abusiva.
+
+### 40.3 Advertencia obligatoria
+
+Una amenaza C3 no inicia directamente desde `unknown`.
+
+Antes del compromiso:
+1. al menos una señal ambiental clara;
+2. oportunidad de evaluar/observar;
+3. opción de retroceder.
+
+Para amenazas con canon más fuerte, Narrativa puede exigir más de una señal.
+
+Un encuentro scripted puede avanzar etapas, pero no saltarse silenciosamente la advertencia salvo evento excepcional aprobado.
+
+### 40.4 Proximidad crítica
+
+Al llegar a `close`:
+- presentar criatura/señal inequívoca;
+- no iniciar combate automáticamente por defecto;
+- ofrecer decisión: evitar/retroceder, observar/evaluar o iniciar/provocar.
+
+Una criatura agresiva puede comprometer después de esa decisión si su contrato concreto lo permite.
+
+### 40.5 Pool especial
+
+C3 nunca entra en el pool C1 de §33.
+
+Puede usar un `special_threat_roll` únicamente dentro de una zona ya advertida.
+
+Perfiles permitidos de referencia:
+- `threat_scripted` — presencia decidida por contenido;
+- `threat_rare` — **10%** en proximidad autorizada;
+- `threat_uncommon` — **20%** en contenido explícito.
+
+No usar >20% para una amenaza superior sin revisión específica de Jugabilidad.
+
+Si el roll falla, las señales pueden existir igualmente: **rastro ≠ aparición garantizada**.
+
+### 40.6 Cooldown anti-spam
+
+Default C3 después de una resolución:
+- **30 minutos reales por personaje + threat_zone_id**.
+
+Resoluciones que activan cooldown:
+- evitar después de proximidad;
+- huir de combate;
+- victoria;
+- muerte/respawn;
+- abandono explícito de la zona tras activación.
+
+Durante cooldown:
+- pueden permanecer rastros ambientales no interactivos;
+- no reaparece el encuentro C3 para ese personaje;
+- entrar/salir repetidamente no rerollea.
+
+Contenido scripted puede usar otro cooldown, pero debe declararlo.
+
+### 40.7 Combate
+
+C3 reutiliza combate normal.
+
+Puede añadir:
+- `prepared_action`;
+- `frontal`;
+- `interruptible`;
+- `focus_break_possible`;
+solo mediante la infraestructura de §36.
+
+No crear lógica paralela por criatura.
+
+### 40.8 Huida
+
+Huida usa estadísticas específicas de criatura.
+
+Una huida exitosa:
+- cierra combate;
+- activa cooldown;
+- por defecto no persigue a través de varias salas.
+
+Una amenaza concreta puede tener persecución corta solo con contrato explícito.
+
+### 40.9 Victoria/derrota
+
+Victoria:
+- XP/familia normal según contrato;
+- sin loot especial automático;
+- sin muerte persistente global por defecto.
+
+Derrota:
+- muerte/respawn normal;
+- equipo conservado;
+- sin pérdida de arma por ser C3.
+
+### 40.10 Prioridad con otros encuentros
+
+Orden:
+1. combate activo;
+2. scripted de historia;
+3. evento C3 ya comprometido;
+4. pool C1 ordinario;
+5. C0 ambiental.
+
+Cuando una zona C3 está en etapa `close`, no tirar C1 en esa misma transición.
+
+No mezclar dos amenazas C3 en la misma sala/evento v1.
+
+### 40.11 Tests mínimos del motor
+
+- no C3 desde estado unknown;
+- warning precede close;
+- retroceso antes de combate funciona;
+- special roll solo en zona compatible;
+- roll fallido no borra rastros;
+- cooldown evita reroll enter/exit;
+- reconnect conserva cooldown cuando aplique;
+- C1 no contamina C3;
+- huida activa cooldown;
+- muerte activa cooldown y conserva arma;
+- prepared_action usa §36;
+- amenaza distinta mantiene estado aislado.
+
+### 40.12 Principio
+
+**Una amenaza superior debe poder asustar al jugador antes de obligarlo a pelear.**
+
+## 41. Jefes únicos C5 — contrato reusable v1
+
+**Estado:** CONTRATO DE JUGABILIDAD APROBADO; sin jefe concreto asignado todavía.  
+**Relacionados:** §11, §36, §40, #332.
+
+C5 representa un **jefe explícitamente definido como jefe**. Potencia, tamaño o rareza por sí solos nunca elevan C3/C4 a C5.
+
+### 41.1 Declaración explícita
+
+Todo jefe C5 necesita un contrato con, como mínimo:
+
+- `boss_id` único;
+- nombre/canon del ejemplar;
+- zona/entrada concreta;
+- señales previas;
+- fases o estados;
+- condición de victoria;
+- regla de retirada;
+- regla de reintento;
+- recompensas autorizadas;
+- `weapon_loss_on_defeat: true|false`;
+- si la pérdida está activa, ruta legítima de recuperación/reemplazo.
+
+Default:
+
+`weapon_loss_on_defeat = false`
+
+No inferirlo por dificultad.
+
+### 41.2 Jefe único y persistencia
+
+Un C5 es un ejemplar único del mundo.
+
+Al morir:
+- `boss_defeated=true` de forma persistente y compartida;
+- no reaparece por cooldown, reconexión ni reinicio;
+- sus encuentros aleatorios/scripted posteriores deben quedar desactivados;
+- el mundo puede conservar rastros, cadáver, cambio de sala o texto posterior si Narrativa/Historia lo definen.
+
+La victoria persistente pertenece al mundo, no a una sola sesión.
+
+### 41.3 Intento activo
+
+Mientras el jefe está vivo:
+- participantes presentes comparten el mismo encounter autorizado;
+- HP/fase del intento son compartidos por participantes legítimos;
+- entrar como espectador no concede XP/recompensa.
+
+Si todos los participantes:
+- mueren;
+- huyen;
+- abandonan legítimamente el encounter;
+
+el **intento termina**.
+
+Default v1:
+- HP del jefe vuelve al máximo;
+- fase vuelve al inicio;
+- no se conserva daño entre intentos.
+
+Un jefe concreto puede persistir fase/daño solo mediante contrato explícito.
+
+### 41.4 Advertencia y retirada
+
+Un jefe debe estar precedido por contenido legible.
+
+Antes del primer compromiso debe existir:
+1. evidencia de peligro;
+2. un último punto de retorno;
+3. decisión explícita de entrar/provocar/continuar.
+
+No iniciar C5 desde una tirada de pool ordinario.
+
+Retirarse antes de iniciar no es derrota.
+
+Durante combate, la huida puede:
+- usar fórmula normal;
+- usar salida/condición propia;
+pero nunca se declara imposible sin contrato específico y señalización clara.
+
+### 41.5 Fases
+
+C5 puede tener varias fases.
+
+Cada fase puede declarar:
+- rango de HP o trigger;
+- acciones preparadas disponibles;
+- precisión/daño propios;
+- reglas de objetivo;
+- cambios de terreno autorizados;
+- ventana de retirada si aplica.
+
+Las acciones preparadas reutilizan §36.
+
+No crear minijuego/motor separado por jefe cuando una fase puede expresarse con estados y acciones data-driven.
+
+### 41.6 Muerte del jugador
+
+Derrota contra jefe usa primero la muerte/respawn general.
+
+Se preservan por defecto:
+- personaje;
+- nivel/XP;
+- PA/PP;
+- armadura;
+- inventario normal;
+- descubrimientos.
+
+La única pérdida especial PvE contemplada inicialmente es la **arma equipada**, y solo bajo §41.7.
+
+No borrar inventario completo ni nivel por analogía con juegos distintos.
+
+### 41.7 Pérdida de arma — opt-in por jefe
+
+La pérdida solo ocurre si:
+
+`weapon_loss_on_defeat = true`
+
+y el jugador tenía un arma equipada al producirse la derrota.
+
+Entonces:
+1. el arma se desequipa;
+2. la instancia deja de ser utilizable/equipable bajo un estado persistente de pérdida;
+3. no desaparece silenciosamente sin registro;
+4. su pieza física existente NO vuelve a habilitarla por sí sola;
+5. el contrato del jefe debe ofrecer una vía legítima para recuperar el derecho o conseguir reemplazo.
+
+La implementación puede usar un estado como `lost_to_boss` o equivalente, pero no debe falsear `forge_validated` para representar otra cosa.
+
+### 41.8 Gate obligatorio antes de habilitar pérdida
+
+Un jefe **no puede** salir a producción con pérdida de arma activa si no están cerrados:
+
+- qué arma puede perderse;
+- qué ocurre con arma inicial;
+- qué pasa si el jugador no lleva arma;
+- ruta de recuperación/reemplazo;
+- comportamiento de Forja física;
+- inventario lleno si se entrega reemplazo;
+- reconexión;
+- segunda derrota antes de recuperar;
+- mensaje claro al jugador.
+
+Hasta entonces, el flag permanece `false`.
+
+### 41.9 Sin arma equipada
+
+Si el jugador llega sin arma:
+- no pierde otro objeto “en compensación”;
+- no pierde armadura;
+- no pierde moneda;
+- no pierde XP.
+
+El jefe sigue pudiendo derrotarlo normalmente.
+
+### 41.10 Recompensas
+
+Recompensas de jefe deben declararse explícitamente.
+
+Pueden incluir, según contenido aprobado:
+- XP;
+- descubrimiento/hito;
+- objeto;
+- acceso;
+- cambio del mundo.
+
+No otorgar automáticamente:
+- arma legendaria;
+- dinero;
+- loot aleatorio;
+- poder;
+solo por tener `boss_id`.
+
+Cada recompensa debe ser once-per-world o once-per-character según su contrato.
+
+### 41.11 Participación multijugador
+
+Para recompensa individual:
+- solo participantes con contribución significativa cuentan;
+- observadores no reciben XP/objeto.
+
+Para estado del mundo:
+- una victoria válida marca al jefe muerto para todos.
+
+Si un jefe entrega recompensa personal once-per-character, un jugador ausente no la recibe retroactivamente salvo que el contenido lo indique.
+
+### 41.12 Reintento tras derrota
+
+Después de wipe/huida:
+- jugador reaparece según contrato de zona/general;
+- boss sigue vivo;
+- intento activo desaparece;
+- al volver, boss comienza completo por default;
+- señales/entrada permanecen descubiertas si ya lo estaban.
+
+No obligar a repetir descubrimientos básicos solo para volver a intentar.
+
+### 41.13 Tests mínimos de BOSS-ENGINE
+
+- un C3/C4 no obtiene comportamiento C5 accidentalmente;
+- boss_id único;
+- boss derrotado no reaparece tras reconnect/restart;
+- wipe sin victoria NO marca derrotado;
+- HP/fase reset default entre intentos;
+- participantes comparten encounter;
+- espectador no cobra;
+- retirada previa no cuenta derrota;
+- `weapon_loss_on_defeat=false` conserva arma;
+- `true` pierde únicamente arma equipada;
+- sin arma no sustituye la penalización por otro objeto;
+- estado de arma perdida persiste;
+- recuperación/reemplazo no duplica;
+- recompensas once-* respetan su alcance;
+- Forja no se usa falsamente como flag de pérdida.
+
+### 41.14 Principio
+
+**Un jefe puede imponer una consecuencia excepcional porque su contrato la declara; no porque sea simplemente muy fuerte.**

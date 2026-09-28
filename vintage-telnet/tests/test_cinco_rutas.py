@@ -108,6 +108,7 @@ class RouteWalkTests(unittest.TestCase):
         store.set_status(self.path, "viajero", "approved")
         self.client.post("/species", data=dict(csrf=self.csrf(), species=species))
         self.client.post("/class", data=dict(csrf=self.csrf(), player_class="artifice"))
+        self.client.post("/move", data=dict(csrf=self.csrf(), direction="south"))
 
     def test_felaryn_walks_the_camino_alto_from_khariel_to_vaisgard(self):
         self.enter("felaryn")

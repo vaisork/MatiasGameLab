@@ -21,6 +21,7 @@ class ScreenStabilityTests(unittest.TestCase):
         store.set_status(self.app.config["DATABASE"], "matias", "approved")
         self.post("/species", dict(species="humano"))
         self.post("/class", dict(player_class="sombra"))
+        self.post("/move", dict(direction="south"))
 
     def tearDown(self):
         try:
@@ -46,7 +47,10 @@ class ScreenStabilityTests(unittest.TestCase):
         self.assertIn('fetchpriority="high"', html)
         self.assertNotIn('loading="lazy" decoding="async">\n          <div class="location-art-fallback"', html)
         with patch("server.encounters.get_encounter_for_room", return_value=None):
-            self.post("/move", dict(direction="north"))  # sendero: sin arte aprobado ni encuentro
+            player_id = self.client.get("/api/me").json["player"]["id"]
+            with store.connect(self.app.config["DATABASE"]) as db:
+                db.execute("UPDATE players SET room = ? WHERE id = ?",
+                           ("piedra_pared_partida", player_id))
         html = self.client.get("/").get_data(as_text=True)
         self.assertIn('<figure class="location-art no-art" data-swap="art"', html)
         self.assertIn('<div class="art-neutral" aria-hidden="true"></div>', html)

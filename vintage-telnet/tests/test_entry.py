@@ -67,10 +67,9 @@ class EntryTests(unittest.TestCase):
         self.assertNotEqual(sendero["visual_context_id"], "zone.valdren")
 
     def test_context_without_an_approved_asset_falls_back_to_no_art(self):
-        # Los pueblos tienen arte publicado; las afueras de Valdren (pieza 4/4
-        # de #151) todavía no.
-        room = world.describe_room("valdren_sendero", [])
-        self.assertEqual(room["visual_context_id"], "zone.edran.valdren_outskirts")
+        # Un contexto todavía sin paisaje aprobado conserva el marco neutro.
+        room = world.describe_room("piedra_pared_partida", [])
+        self.assertIsNone(room["visual_context_id"])
         self.assertIsNone(room["art"])
         for town in ("valdren_centro", "khariel_centro", "brumak_centro", "narevia_centro",
                      "velmora_centro", "vaisgard"):
@@ -172,11 +171,16 @@ class EntryTests(unittest.TestCase):
         self.assertEqual(map_response.status_code, 200)
         self.assertIn("visited_rooms", map_response.json)
         self.assertIn("traversed_routes", map_response.json)
-        self.assertIn("valdren_centro", map_response.json["visited_rooms"])
-
         # Issue #120: rumbo autoritativo -- null hasta el primer movimiento
         # aceptado, luego la direccion cardinal exacta que el servidor uso.
         self.assertIsNone(map_response.json["current_heading"])
+
+        # Salir del hogar hacia Valdren
+        self.assertEqual(self.post("/move", {"direction": "south"}).status_code, 303)
+        state_in_valdren = self.client.get("/api/map").json
+        self.assertIn("valdren_centro", state_in_valdren["visited_rooms"])
+        self.assertEqual(state_in_valdren["current_heading"], "south")
+
         self.assertEqual(self.post("/move", {"direction": "north"}).status_code, 303)
         state_after_move = self.client.get("/api/map").json
         self.assertEqual(state_after_move["current_heading"], "north")
@@ -342,6 +346,7 @@ class EntryTests(unittest.TestCase):
         # táctiles de al menos 44 px; el modo compacto no debe volver a 32–38 px.
         self.assertIn('@media(max-width:640px){\n      .action{min-height:44px', html)
         self.assertIn('.context-actions .action{min-height:44px}', html)
+        self.assertIn('.npc-card .action{width:auto;min-width:100px;min-height:44px;justify-content:center}', html)
         self.assertIn('.btn{min-height:44px}', html)
         self.assertIn('.dpad{grid-template-columns:repeat(3,44px);grid-template-rows:repeat(3,44px)}', html)
         self.assertIn('.commandbar input{min-height:44px}', html)
@@ -381,6 +386,7 @@ class EntryTests(unittest.TestCase):
         store.set_status(self.path, "matias", "approved")
         self.assertEqual(self.post("/species", {"species": "humano"}).status_code, 303)
         self.assertEqual(self.post("/class", {"player_class": "sombra"}).status_code, 303)
+        self.post("/move", {"direction": "south"})
         html = self.client.get("/").get_data(as_text=True)
         self.assertIn('class="place-bar"', html)
         self.assertIn('<strong id="placeTitle">VALDREN', html)
@@ -420,6 +426,7 @@ class EntryTests(unittest.TestCase):
         store.set_status(self.path, "matias", "approved")
         self.assertEqual(self.post("/species", {"species": "humano"}).status_code, 303)
         self.assertEqual(self.post("/class", {"player_class": "sombra"}).status_code, 303)
+        self.post("/move", {"direction": "south"})
         self.post("/move", {"direction": "north"})
         self.post("/move", {"direction": "north"})
 
@@ -556,6 +563,7 @@ class EntryTests(unittest.TestCase):
         self.assertIn('const actionFocusHint = (form, submitter) => {', html)
         self.assertIn('document.activeElement !== submitter', html)
         self.assertIn('const restoreActionFocus = hint => {', html)
+        self.assertIn('if (document.querySelector("[data-death-event]")) return;', html)
         self.assertIn('const focusHint = actionFocusHint(form, event.submitter);', html)
         self.assertIn('button.focus({preventScroll: true});', html)
         self.assertIn('controls.focus({preventScroll: true});', html)
