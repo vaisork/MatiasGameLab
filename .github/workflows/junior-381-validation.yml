@@ -1,0 +1,19 @@
+name: junior-381-validation
+on:
+  push:
+    branches: [junior/381-level-up-event]
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: vintage-telnet
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m pip install -r requirements.txt
+      - run: python -m unittest tests.test_progression -v
+      - run: python -m unittest tests.test_pilot_lindero_roto -v
+      - run: python -m unittest discover -s tests -v
