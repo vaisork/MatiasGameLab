@@ -12,7 +12,7 @@ from flask import (Flask, abort, g, jsonify, redirect, render_template, request,
                     session, url_for)
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from . import combat, content_parser, creatures, dm_auth, encounters, items, npc_dialogue, store, world
+from . import combat, content_parser, creatures, dm_auth, encounters, items, npc_dialogue, population, store, world
 
 # Issue #46 resuelto: el Narrador fijo la plaza central de Valdren como
 # punto de reaparicion tras morir (GAMEPLAY.md 20.9) y de recuperacion
@@ -282,18 +282,39 @@ def create_app(config=None):
                 ])
             if view["in_combat"] and _can_block(path, player_id):
                 view["available_actions"].append({"action": "bloquear"})
+            view["n0_presence"] = None
         else:
             view["encounter"] = None
             view["available_actions"] = [{"action": "descansar"}]
             npcs_present = npc_dialogue.get_registry().get_in_room(room_id)
+            npcs_list = []
             if npcs_present:
-                view["npcs"] = [{"id": n["id"], "name": n["name"], "role": n.get("role", "habitante")} for n in npcs_present]
+                npcs_list = [{"id": n["id"], "name": n["name"], "role": n.get("role", "habitante"), "is_n0": False} for n in npcs_present]
                 for n in npcs_present:
                     view["available_actions"].append({"action": "hablar", "targets": [n["name"].lower(), n["id"]]})
             if room_id == "khariel_forja" and not store.get_story_flag(path, player_id, "hoshai_paso_ayudado"):
                 view["available_actions"].append({"action": "ayudar", "targets": ["aren", "paso"]})
             elif room_id == "brumak_forja" and not store.get_story_flag(path, player_id, "korven_carga_asentada"):
                 view["available_actions"].append({"action": "ayudar", "targets": ["karn", "apoyo"]})
+
+            # GAMEPLAY §39.6-39.10: Presencia ambiental N0 efímera sin LLM ni mutación DB
+            n0 = population.get_room_n0_presence(room_id, room_data=room_data)
+            view["n0_presence"] = n0
+            if n0:
+                npcs_list.append({
+                    "id": n0["id"],
+                    "name": n0["name"],
+                    "role": n0["role_id"],
+                    "is_n0": True,
+                    "bark": n0.get("bark", ""),
+                })
+                view["available_actions"].append({
+                    "action": "hablar",
+                    "targets": [n0["name"].lower(), n0["id"], n0["role_id"].lower()],
+                })
+
+            if npcs_list:
+                view["npcs"] = npcs_list
         return view
 
     # Intenciones canonicas: boton y comando escrito deben terminar en la misma
@@ -1252,6 +1273,20 @@ def create_app(config=None):
             return render_template("entry.html", player=player_now, species_list=world.SPECIES,
                                    room=room_data, error=" ".join(result["messages"])), 200
         if intent["type"] == "talk_npc":
+            target = intent.get("target", "")
+            target_norm = target.strip().lower()
+            room_data_current = world.get_room(g.player["room"])
+            encounter_active = store.get_encounter(path, g.player["id"], g.player["room"])
+            n0 = None if encounter_active else population.get_room_n0_presence(g.player["room"], room_data=room_data_current)
+            if n0 and target_norm in (n0["id"].lower(), n0["name"].lower(), n0["role_id"].lower()):
+                player_now = store.player_for_token(path, session.get("token"))
+                room_data = room_view(g.player["room"], g.player["id"])
+                dialogue_text = f"{n0['name']}: «{n0['reply']}»"
+                return render_template(
+                    "entry.html", player=player_now, species_list=world.SPECIES, room=room_data,
+                    error=dialogue_text,
+                ), 200
+
             result = npc_dialogue.converse(
                 g.player,
                 intent["target"],
@@ -1524,6 +1559,24 @@ def create_app(config=None):
                 player=dict(player_now) if player_now else None,
             )
         if kind == "talk_npc":
+            target = intent.get("target", "")
+            target_norm = target.strip().lower()
+            room_data_current = world.get_room(g.player["room"])
+            encounter_active = store.get_encounter(path, g.player["id"], g.player["room"])
+            n0 = None if encounter_active else population.get_room_n0_presence(g.player["room"], room_data=room_data_current)
+            if n0 and target_norm in (n0["id"].lower(), n0["name"].lower(), n0["role_id"].lower()):
+                return jsonify(
+                    accepted=True,
+                    intent="talk_npc",
+                    npc=n0["id"],
+                    npc_name=n0["name"],
+                    reply=n0["reply"],
+                    is_fallback=False,
+                    is_n0=True,
+                    proposed_action=None,
+                    gate_result=None,
+                ), 200
+
             result = npc_dialogue.converse(
                 g.player,
                 intent["target"],
@@ -1623,6 +1676,24 @@ def create_app(config=None):
         message = (data.get("message") or data.get("text") or "").strip()
         if not target:
             return jsonify(accepted=False, error="target_required", reason="Debes indicar con quién deseas hablar."), 400
+
+        target_norm = target.strip().lower()
+        room_data_current = world.get_room(g.player["room"])
+        encounter_active = store.get_encounter(path, g.player["id"], g.player["room"])
+        n0 = None if encounter_active else population.get_room_n0_presence(g.player["room"], room_data=room_data_current)
+        if n0 and target_norm in (n0["id"].lower(), n0["name"].lower(), n0["role_id"].lower()):
+            return jsonify(
+                accepted=True,
+                intent="talk_npc",
+                npc=n0["id"],
+                npc_name=n0["name"],
+                reply=n0["reply"],
+                is_fallback=False,
+                is_n0=True,
+                proposed_action=None,
+                gate_result=None,
+            ), 200
+
         result = npc_dialogue.converse(g.player, target, message=message, room_id=g.player["room"], db_path=path)
         if not result.success:
             status_code = 404 if result.error in ("npc_not_found", "npc_not_present") else 400
