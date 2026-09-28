@@ -88,6 +88,12 @@ class ProgressionIntegrationTests(unittest.TestCase):
         return self.client.post("/api/character/attributes", json=dict(
             attribute=attribute, current_value=current_value, csrf=self.csrf()))
 
+    def api_intent(self, text):
+        return self.client.post("/api/intent", json={
+            "text": text,
+            "csrf": self.client.get("/api/me").json["csrf"],
+        })
+
     def set_columns(self, **values):
         assignments = ", ".join(f"{name} = ?" for name in values)
         with store.connect(self.path) as db:
@@ -116,6 +122,105 @@ class ProgressionIntegrationTests(unittest.TestCase):
         self.assertEqual(state["pp_gained"], 1)
         self.assertEqual(state["pa_gained"], 8)
         self.assertEqual(self.character()["pp_unspent"], 1)
+
+
+    # --- 25.9 / #381: evento estructurado de subida --------------------------
+
+    def _walk_to_mordelinde_signs(self):
+        self.post("/move", dict(direction="north"))
+        self.post("/move", dict(direction="north"))
+
+    def test_discovery_level_up_event_exposes_authoritative_1_to_2_payload(self):
+        self.set_columns(xp=combat.xp_for_next_level(1) - 4)
+        self._walk_to_mordelinde_signs()
+        self.api_intent("examinar tallos")
+        response = self.api_intent("examinar monticulos")
+        event = response.json["level_up_event"]
+        self.assertEqual(event, {
+            "level_up": True,
+            "new_level": 2,
+            "levels_gained": 1,
+            "pa_gained": 2,
+            "pp_gained": 0,
+            "xp_current": 1,
+            "xp_next": combat.xp_for_next_level(2),
+        })
+
+        # El evento no vive en estado persistente: un GET/reconnect no lo reemite.
+        self.assertNotIn("level_up_event", self.client.get("/api/me").json)
+        look = self.api_intent("mirar")
+        self.assertNotIn("level_up_event", look.json)
+
+    def test_discovery_level_up_event_exposes_pp_on_4_to_5(self):
+        self.set_columns(level=4, xp=combat.xp_for_next_level(4) - 4)
+        self._walk_to_mordelinde_signs()
+        self.api_intent("examinar tallos")
+        event = self.api_intent("examinar monticulos").json["level_up_event"]
+        self.assertTrue(event["level_up"])
+        self.assertEqual(event["new_level"], 5)
+        self.assertEqual(event["levels_gained"], 1)
+        self.assertEqual(event["pa_gained"], 2)
+        self.assertEqual(event["pp_gained"], 1)
+        self.assertEqual(event["xp_current"], 1)
+        self.assertEqual(event["xp_next"], combat.xp_for_next_level(5))
+
+    def test_discovery_event_preserves_overflow_across_multiple_levels(self):
+        xp_before = combat.xp_for_next_level(1) + combat.xp_for_next_level(2) - 3
+        self.set_columns(level=1, xp=xp_before)
+        self._walk_to_mordelinde_signs()
+        self.api_intent("examinar tallos")
+        event = self.api_intent("examinar monticulos").json["level_up_event"]
+        self.assertEqual(event["new_level"], 3)
+        self.assertEqual(event["levels_gained"], 2)
+        self.assertEqual(event["pa_gained"], 4)
+        self.assertEqual(event["pp_gained"], 0)
+        self.assertEqual(event["xp_current"], 2)
+        self.assertEqual(event["xp_next"], combat.xp_for_next_level(3))
+
+    def test_xp_without_level_emits_explicit_false_not_old_event(self):
+        self._walk_to_mordelinde_signs()
+        self.api_intent("examinar tallos")
+        first = self.api_intent("examinar monticulos").json
+        self.assertEqual(first["level_up_event"], {"level_up": False})
+        repeated = self.api_intent("examinar monticulos").json
+        self.assertIsNone(repeated["level_up_event"])
+
+    @patch("server.combat.random.Random")
+    def test_pve_victory_exposes_level_up_event(self, mock_random):
+        rng = mock_random.return_value
+        rng.uniform.return_value = 0.0
+        pid = self.player_id()
+        self.set_columns(xp=combat.xp_for_next_level(1) - 1)
+        store.start_encounter(self.path, pid, "valdren_centro", "mordelinde", 0.1)
+        response = self.api_intent("atacar")
+        self.assertEqual(response.json["outcome"], "victory")
+        event = response.json["level_up_event"]
+        self.assertTrue(event["level_up"])
+        self.assertEqual(event["new_level"], 2)
+        self.assertEqual(event["pa_gained"], 2)
+        self.assertEqual(event["xp_next"], combat.xp_for_next_level(2))
+
+    def test_move_milestone_exposes_level_up_event(self):
+        pid = self.player_id()
+        with store.connect(self.path) as db:
+            db.execute(
+                "INSERT INTO discoveries(player_id, key, xp_awarded, created_at) VALUES (?, ?, 0, ?)",
+                (pid, "lindero_roto", store.utcnow()),
+            )
+            db.execute(
+                "UPDATE players SET room = 'valdren_sendero', xp = ? WHERE id = ?",
+                (combat.xp_for_next_level(1) - 1, pid),
+            )
+        response = self.client.post("/api/move", json={
+            "direction": "sur",
+            "csrf": self.client.get("/api/me").json["csrf"],
+        })
+        self.assertEqual(response.status_code, 200)
+        event = response.json["level_up_event"]
+        self.assertTrue(event["level_up"])
+        self.assertEqual(event["new_level"], 2)
+        self.assertEqual(event["pa_gained"], 2)
+        self.assertEqual(event["xp_next"], combat.xp_for_next_level(2))
 
     # --- 25.4 / 25.5 / 25.7: gasto de PA -------------------------------------
 
