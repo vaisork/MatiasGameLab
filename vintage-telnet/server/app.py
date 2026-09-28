@@ -12,7 +12,7 @@ from flask import (Flask, abort, g, jsonify, redirect, render_template, request,
                     session, url_for)
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from . import combat, content_parser, creatures, dm_auth, economy, encounters, items, npc_dialogue, store, world
+from . import combat, content_parser, creatures, dm_auth, economy, encounters, items, npc_dialogue, population, store, world
 
 # Issue #46 resuelto: el Narrador fijo la plaza central de Valdren como
 # punto de reaparicion tras morir (GAMEPLAY.md 20.9) y de recuperacion
@@ -68,6 +68,50 @@ def _can_block(path, player_id):
     weapon_key, _armor_key = store.equipped_item_keys(path, character["equipped_weapon_id"], None)
     weapon = items.get_item(weapon_key) if weapon_key else None
     return bool(weapon and weapon["can_block"])
+
+
+def _equipped_weapon(path, player_id):
+    """Objeto del catalogo para el arma equipada real, o None si va desarmado."""
+    character = store.character_by_player_id(path, player_id)
+    if not character or not character["equipped_weapon_id"]:
+        return None
+    weapon_key, _ = store.equipped_item_keys(path, character["equipped_weapon_id"], None)
+    return items.get_item(weapon_key) if weapon_key else None
+
+
+def _can_use_signature_ability(path, player, encounter=None):
+    """GAMEPLAY.md 36: valida requisitos fisicos/contextuales de la capacidad firma.
+    Devuelve (authorized: bool, reason_if_not: str or None, ability_dict)."""
+    if player is None:
+        return False, "Personaje no encontrado.", None
+    player_dict = dict(player) if hasattr(player, "keys") else player
+    player_class = player_dict.get("player_class")
+    ability = combat.SIGNATURE_ABILITIES.get(player_class)
+    if not ability:
+        return False, "Tu clase no dispone de una capacidad firma.", None
+    if encounter:
+        enc_dict = dict(encounter) if hasattr(encounter, "keys") else encounter
+        if enc_dict.get("signature_cooldown", 0) > 0:
+            cd = enc_dict["signature_cooldown"]
+            return False, f"{ability['name']} está en recarga (faltan {cd} rondas).", ability
+    if player_class == "juramentado":
+        if not _can_block(path, player["id"]):
+            return False, "Requiere un arma u objeto equipado que permita bloquear.", ability
+    elif player_class == "arcano":
+        w = _equipped_weapon(path, player["id"])
+        if not (w and w.get("is_arcane_focus")):
+            return False, "Requiere un foco arcano equipado.", ability
+    elif player_class == "artifice":
+        w = _equipped_weapon(path, player["id"])
+        if not (w and w.get("is_ranged")):
+            return False, "Requiere un arma a distancia equipada.", ability
+    elif player_class == "sombra":
+        if encounter:
+            creature = creatures.get_creature(encounter["creature_id"])
+            if creature and not creature.get("focus_break_possible", True):
+                return False, "El objetivo no puede perder el foco por este medio.", ability
+    return True, None, ability
+
 
 # Biblioteca de arte HTML (vintage-telnet/assets/html-ui/), servida explícitamente en vez de
 # habilitar una carpeta estática general -- mantiene el resto del árbol del repo fuera de HTTP.
@@ -215,7 +259,22 @@ def create_app(config=None):
             for direction, destination in room["exits"].items():
                 if destination not in visited_set:
                     unexplored.append({"from": room_id, "direction": direction})
-        return {"current_room": current_room, "places": places, "unexplored_exits": unexplored}
+        current_room_data = world.get_room(current_room)
+        current_room_name = current_room_data["name"] if current_room_data else current_room
+        room_names = {}
+        for r_id in state.get("visited_rooms", []):
+            r = world.get_room(r_id)
+            if r and "name" in r:
+                room_names[r_id] = r["name"]
+            elif world.is_home_room(r_id):
+                room_names[r_id] = world.HOME_ROOM_NAME
+        return {
+            "current_room": current_room,
+            "current_room_name": current_room_name,
+            "places": places,
+            "unexplored_exits": unexplored,
+            "room_names": room_names,
+        }
 
     def room_view(room_id, player_id):
         others = store.players_in_room(path, room_id, exclude_id=player_id)
@@ -235,6 +294,7 @@ def create_app(config=None):
         view["in_combat"] = bool(encounter and encounter.get("engaged", 1))
         if encounter:
             creature = creatures.get_creature(encounter["creature_id"])
+            prep = encounter.get("prepared_action")
             view["encounter"] = {
                 "creature_id": encounter["creature_id"],
                 "name": creature["name"],
@@ -244,6 +304,15 @@ def create_app(config=None):
                 "condition": combat.enemy_condition(encounter["hp_current"], creature["hp"]),
                 "behavior": creature["behavior_text"],
             }
+            if prep:
+                view["encounter"]["prepared_action"] = {
+                    "id": prep["id"],
+                    "name": prep["name"],
+                    "interruptible": prep.get("interruptible", False),
+                    "frontal": prep.get("frontal", False),
+                    "telegraph": prep.get("telegraph", ""),
+                }
+                view["encounter"]["telegraph"] = prep.get("telegraph", "")
             # En combate el marco muestra a la criatura, o nada si todavía no
             # hay arte aprobado de ella (nunca el paisaje de fondo).
             view["art"] = creatures.CREATURE_ART.get(encounter["creature_id"])
@@ -267,14 +336,48 @@ def create_app(config=None):
                 ])
             if view["in_combat"] and _can_block(path, player_id):
                 view["available_actions"].append({"action": "bloquear"})
+            view["n0_presence"] = None
+            character = store.character_by_player_id(path, player_id)
+            if character and character["player_class"]:
+                ready, disabled_reason, ability_def = _can_use_signature_ability(path, character, encounter)
+                cd = encounter.get("signature_cooldown", 0) if encounter else 0
+                view["signature_ability"] = {"id": ability_def["id"], "name": ability_def["name"],
+                                              "cooldown_remaining": cd, "ready": ready,
+                                              "disabled_reason": disabled_reason}
+                if ready:
+                    view["available_actions"].append({"action": "capacidad", "name": ability_def["name"]})
         else:
             view["encounter"] = None
             view["available_actions"] = [{"action": "descansar"}]
             npcs_present = npc_dialogue.get_registry().get_in_room(room_id)
+            npcs_list = []
             if npcs_present:
-                view["npcs"] = [{"id": n["id"], "name": n["name"], "role": n.get("role", "habitante")} for n in npcs_present]
+                npcs_list = [{"id": n["id"], "name": n["name"], "role": n.get("role", "habitante"), "is_n0": False} for n in npcs_present]
                 for n in npcs_present:
                     view["available_actions"].append({"action": "hablar", "targets": [n["name"].lower(), n["id"]]})
+            if room_id == "khariel_forja" and not store.get_story_flag(path, player_id, "hoshai_paso_ayudado"):
+                view["available_actions"].append({"action": "ayudar", "targets": ["aren", "paso"]})
+            elif room_id == "brumak_forja" and not store.get_story_flag(path, player_id, "korven_carga_asentada"):
+                view["available_actions"].append({"action": "ayudar", "targets": ["karn", "apoyo"]})
+
+            # GAMEPLAY §39.6-39.10: Presencia ambiental N0 efímera sin LLM ni mutación DB
+            n0 = population.get_room_n0_presence(room_id, room_data=room_data)
+            view["n0_presence"] = n0
+            if n0:
+                npcs_list.append({
+                    "id": n0["id"],
+                    "name": n0["name"],
+                    "role": n0["role_id"],
+                    "is_n0": True,
+                    "bark": n0.get("bark", ""),
+                })
+                view["available_actions"].append({
+                    "action": "hablar",
+                    "targets": [n0["name"].lower(), n0["id"], n0["role_id"].lower()],
+                })
+
+            if npcs_list:
+                view["npcs"] = npcs_list
         return view
 
     # Intenciones canonicas: boton y comando escrito deben terminar en la misma
@@ -297,6 +400,12 @@ def create_app(config=None):
     DODGE_ALIASES = {"esquivar"}
     BLOCK_ALIASES = {"bloquear"}
     RESIST_ALIASES = {"resistir"}
+    HELP_ALIASES = {"ayudar", "sujetar", "asegurar", "socorrer", "sostener"}
+    SIGNATURE_ABILITY_ALIASES = {
+        "capacidad", "firma", "habilidad", "guardia comprometida", "guardia", "guardia_comprometida",
+        "impulso arcano", "impulso", "impulso_arcano", "borrar el foco", "borrar foco", "foco", "borrar_el_foco",
+        "tiro de interrupcion", "tiro de interrupción", "interrupcion", "interrupción", "tiro", "tiro_de_interrupcion",
+    }
     # GAMEPLAY.md 32.8: comandos canónicos de inventario/equipo (Issue #57).
     EQUIP_PREFIXES = ("equipar ",)
     UNEQUIP_PREFIXES = ("desequipar ",)
@@ -322,6 +431,8 @@ def create_app(config=None):
             return {"type": "block"}
         if lowered in RESIST_ALIASES:
             return {"type": "resist"}
+        if lowered in SIGNATURE_ABILITY_ALIASES or lowered.startswith("capacidad "):
+            return {"type": "signature_ability"}
         for verb in INSPECT_ALIASES:
             if lowered == verb:
                 return {"type": "inspect", "verb": verb, "target": ""}
@@ -340,6 +451,12 @@ def create_app(config=None):
             prefix = verb + " "
             if lowered.startswith(prefix):
                 return {"type": "evaluate", "target": text[len(prefix):].strip()}
+        for verb in HELP_ALIASES:
+            if lowered == verb:
+                return {"type": "help_scene", "target": ""}
+            prefix = verb + " "
+            if lowered.startswith(prefix):
+                return {"type": "help_scene", "target": text[len(prefix):].strip()}
         for prefix in TALK_PREFIXES:
             if lowered.startswith(prefix):
                 target_raw = text[len(prefix):].strip()
@@ -594,11 +711,17 @@ def create_app(config=None):
         accuracy_penalty = combat.combined_accuracy_penalty(player["fatigue"], wound)
         damage_multiplier = combat.combined_damage_multiplier(player["fatigue"], wound)
 
+        # GAMEPLAY.md 36.6: bono de Apertura (+15% precision en siguiente basico)
+        apertura = encounter.get("apertura", 0)
+        apertura_bonus = 15 if apertura > 0 else 0
+
         player_hits, player_damage = combat.resolve_attack_roll(
             attrs["destreza"], attrs["percepcion"], attrs["fuerza"], cg_player, cg_enemy, rng=rng,
             base_arma=equipment["weapon_base_damage"],
-            accuracy_penalty=accuracy_penalty, damage_multiplier=damage_multiplier)
+            accuracy_penalty=accuracy_penalty - apertura_bonus, damage_multiplier=damage_multiplier)
         messages = []
+        if apertura_bonus > 0:
+            messages.append("Aprovechas la apertura creada (+15% precisión).")
         if player_hits:
             player_damage = combat.apply_armor_reduction(player_damage, creature.get("armor_reduction", 0.0))
             messages.append(f"Golpeas a {creature['name']} por {round(player_damage)} de daño.")
@@ -628,19 +751,41 @@ def create_app(config=None):
             return {"outcome": "victory", "messages": messages,
                     "level_up_event": _level_up_event(xp_state)}
 
-        store.update_encounter(path, player["id"], player["room"], hp_current=creature_hp)
+        # Decremento de recarga de capacidad firma tras intervencion (36.2)
+        cd = encounter.get("signature_cooldown", 0)
+        new_cd = max(0, cd - 1) if cd > 0 else 0
+
+        # Accion de respuesta enemiga: preparada o basica (36.3)
+        prepared_action = encounter.get("prepared_action")
+        if prepared_action:
+            enemy_prec = prepared_action.get("precision", creature["precision"])
+            enemy_dmg = prepared_action.get("damage", creature["damage"])
+            prep_name = prepared_action.get("name")
+        else:
+            enemy_prec = creature["precision"]
+            enemy_dmg = creature["damage"]
+            prep_name = None
+
+        store.update_encounter(path, player["id"], player["room"], hp_current=creature_hp,
+                               signature_cooldown=new_cd, apertura=0, prepared_action=None)
 
         enemy_hits, enemy_damage = combat.resolve_fixed_attack_roll(
-            creature["precision"], creature["damage"], rng=rng)
+            enemy_prec, enemy_dmg, rng=rng)
         new_wound = wound
         if enemy_hits:
             enemy_damage = combat.apply_armor_reduction(enemy_damage, equipment["armor_reduction"])
-            messages.append(f"{creature['name']} te golpea por {round(enemy_damage)} de daño.")
+            if prep_name:
+                messages.append(f"{creature['name']} ejecuta su {prep_name} y te golpea por {round(enemy_damage)} de daño.")
+            else:
+                messages.append(f"{creature['name']} te golpea por {round(enemy_damage)} de daño.")
             new_wound = combat.worse_wound(wound, combat.wound_from_hit(enemy_damage, player["hp_max"]))
             if new_wound != wound:
                 messages.append(f"Sufres una herida {new_wound}.")
         else:
-            messages.append(f"{creature['name']} falla su ataque.")
+            if prep_name:
+                messages.append(f"{creature['name']} falla su {prep_name}.")
+            else:
+                messages.append(f"{creature['name']} falla su ataque.")
         player_hp = player["hp_current"] - (enemy_damage if enemy_hits else 0)
 
         if player_hp <= 0:
@@ -686,17 +831,32 @@ def create_app(config=None):
                 attempt_move(player, retreat_direction)
             return {"outcome": "success", "messages": messages}
 
+        cd = encounter.get("signature_cooldown", 0)
+        new_cd = max(0, cd - 1) if cd > 0 else 0
+        prepared_action = encounter.get("prepared_action")
+        if prepared_action:
+            enemy_prec = prepared_action.get("precision", creature["precision"])
+            enemy_dmg = prepared_action.get("damage", creature["damage"])
+            prep_name = prepared_action.get("name")
+        else:
+            enemy_prec = creature["precision"]
+            enemy_dmg = creature["damage"]
+            prep_name = None
+
         store.update_encounter(path, player["id"], player["room"],
                                 failed_flee_attempts=encounter["failed_flee_attempts"] + 1,
-                                engaged=True)
+                                engaged=True, signature_cooldown=new_cd, prepared_action=None)
         enemy_hits, enemy_damage = combat.resolve_fixed_attack_roll(
-            creature["precision"], creature["damage"], rng=rng)
+            enemy_prec, enemy_dmg, rng=rng)
         messages = [f"No logras huir de {creature['name']}."]
         if not enemy_hits:
             store.update_combat_state(path, player["id"], fatigue=round(fatigue))
             return {"outcome": "failed", "messages": messages}
         enemy_damage = combat.apply_armor_reduction(enemy_damage, equipment["armor_reduction"])
-        messages.append(f"{creature['name']} te golpea por {round(enemy_damage)} de daño mientras intentas escapar.")
+        if prep_name:
+            messages.append(f"{creature['name']} te alcanza con su {prep_name} por {round(enemy_damage)} de daño mientras intentas escapar.")
+        else:
+            messages.append(f"{creature['name']} te golpea por {round(enemy_damage)} de daño mientras intentas escapar.")
         new_wound = combat.worse_wound(wound, combat.wound_from_hit(enemy_damage, player["hp_max"]))
         if new_wound != wound:
             messages.append(f"Sufres una herida {new_wound}.")
@@ -729,14 +889,30 @@ def create_app(config=None):
             "esquivar", attrs["resistencia"], wound, armor_reduction=equipment["armor_reduction"]))
         accuracy_penalty = combat.combined_accuracy_penalty(player["fatigue"], wound)
         rng = rng or random.Random()
+
+        cd = encounter.get("signature_cooldown", 0)
+        new_cd = max(0, cd - 1) if cd > 0 else 0
+        prepared_action = encounter.get("prepared_action")
+        prep_name = prepared_action.get("name") if prepared_action else None
+        enemy_prec = prepared_action.get("precision", creature["precision"]) if prepared_action else creature["precision"]
+        enemy_dmg = prepared_action.get("damage", creature["damage"]) if prepared_action else creature["damage"]
+
+        store.update_encounter(path, player["id"], player["room"],
+                               signature_cooldown=new_cd, prepared_action=None)
+
         enemy_hits, enemy_damage = combat.resolve_dodged_attack_roll(
-            creature["precision"], creature["damage"], attrs["agilidad"], attrs["percepcion"],
+            enemy_prec, enemy_dmg, attrs["agilidad"], attrs["percepcion"],
             accuracy_penalty=accuracy_penalty, rng=rng)
         if not enemy_hits:
             store.update_combat_state(path, player["id"], fatigue=round(fatigue))
+            if prep_name:
+                return {"outcome": "success", "messages": [f"Esquivas la {prep_name} de {creature['name']}."]}
             return {"outcome": "success", "messages": [f"Esquivas el ataque de {creature['name']}."]}
         enemy_damage = combat.apply_armor_reduction(enemy_damage, equipment["armor_reduction"])
-        messages = [f"No logras esquivar y {creature['name']} te golpea por {round(enemy_damage)} de daño."]
+        if prep_name:
+            messages = [f"No logras esquivar y {creature['name']} te golpea con su {prep_name} por {round(enemy_damage)} de daño."]
+        else:
+            messages = [f"No logras esquivar y {creature['name']} te golpea por {round(enemy_damage)} de daño."]
         new_wound = combat.worse_wound(wound, combat.wound_from_hit(enemy_damage, player["hp_max"]))
         if new_wound != wound:
             messages.append(f"Sufres una herida {new_wound}.")
@@ -767,14 +943,31 @@ def create_app(config=None):
         fatigue = min(100, player["fatigue"] + combat.fatigue_gained(
             "resistir", attrs["resistencia"], wound, armor_reduction=equipment["armor_reduction"]))
         rng = rng or random.Random()
+
+        cd = encounter.get("signature_cooldown", 0)
+        new_cd = max(0, cd - 1) if cd > 0 else 0
+        prepared_action = encounter.get("prepared_action")
+        prep_name = prepared_action.get("name") if prepared_action else None
+        enemy_prec = prepared_action.get("precision", creature["precision"]) if prepared_action else creature["precision"]
+        enemy_dmg = prepared_action.get("damage", creature["damage"]) if prepared_action else creature["damage"]
+
+        store.update_encounter(path, player["id"], player["room"],
+                               signature_cooldown=new_cd, prepared_action=None)
+
         enemy_hits, enemy_damage = combat.resolve_resisted_attack_roll(
-            creature["precision"], creature["damage"], attrs["resistencia"], rng=rng)
+            enemy_prec, enemy_dmg, attrs["resistencia"], rng=rng)
         if not enemy_hits:
             store.update_combat_state(path, player["id"], fatigue=round(fatigue))
+            if prep_name:
+                return {"outcome": "success", "messages": [f"Te preparas y {creature['name']} falla su {prep_name}."]}
             return {"outcome": "success", "messages": [f"Te preparas y {creature['name']} falla su ataque."]}
         enemy_damage = combat.apply_armor_reduction(enemy_damage, equipment["armor_reduction"])
-        messages = [f"Resistes el golpe de {creature['name']}, que aun así te hace "
-                    f"{round(enemy_damage)} de daño."]
+        if prep_name:
+            messages = [f"Resistes la {prep_name} de {creature['name']}, que aun así te hace "
+                        f"{round(enemy_damage)} de daño."]
+        else:
+            messages = [f"Resistes el golpe de {creature['name']}, que aun así te hace "
+                        f"{round(enemy_damage)} de daño."]
         new_wound = combat.worse_wound(wound, combat.wound_from_hit(enemy_damage, player["hp_max"]))
         if new_wound != wound:
             messages.append(f"Sufres una herida {new_wound}.")
@@ -808,14 +1001,31 @@ def create_app(config=None):
         fatigue = min(100, player["fatigue"] + combat.fatigue_gained(
             "bloquear", attrs["resistencia"], wound, armor_reduction=equipment["armor_reduction"]))
         rng = rng or random.Random()
+
+        cd = encounter.get("signature_cooldown", 0)
+        new_cd = max(0, cd - 1) if cd > 0 else 0
+        prepared_action = encounter.get("prepared_action")
+        prep_name = prepared_action.get("name") if prepared_action else None
+        enemy_prec = prepared_action.get("precision", creature["precision"]) if prepared_action else creature["precision"]
+        enemy_dmg = prepared_action.get("damage", creature["damage"]) if prepared_action else creature["damage"]
+
+        store.update_encounter(path, player["id"], player["room"],
+                               signature_cooldown=new_cd, prepared_action=None)
+
         enemy_hits, enemy_damage = combat.resolve_blocked_attack_roll(
-            creature["precision"], creature["damage"], attrs["destreza"], rng=rng)
+            enemy_prec, enemy_dmg, attrs["destreza"], rng=rng)
         if not enemy_hits:
             store.update_combat_state(path, player["id"], fatigue=round(fatigue))
+            if prep_name:
+                return {"outcome": "success", "messages": [f"Bloqueas la {prep_name} de {creature['name']}."]}
             return {"outcome": "success", "messages": [f"Bloqueas el ataque de {creature['name']}."]}
         enemy_damage = combat.apply_armor_reduction(enemy_damage, equipment["armor_reduction"])
-        messages = [f"Bloqueas parcialmente a {creature['name']}, que aun así te hace "
-                    f"{round(enemy_damage)} de daño."]
+        if prep_name:
+            messages = [f"Bloqueas parcialmente la {prep_name} de {creature['name']}, que aun así te hace "
+                        f"{round(enemy_damage)} de daño."]
+        else:
+            messages = [f"Bloqueas parcialmente a {creature['name']}, que aun así te hace "
+                        f"{round(enemy_damage)} de daño."]
         new_wound = combat.worse_wound(wound, combat.wound_from_hit(enemy_damage, player["hp_max"]))
         if new_wound != wound:
             messages.append(f"Sufres una herida {new_wound}.")
@@ -831,6 +1041,260 @@ def create_app(config=None):
         store.update_combat_state(path, player["id"], hp_current=player_hp,
                                    fatigue=round(fatigue), wound=new_wound)
         return {"outcome": "failed", "messages": messages}
+
+    def attempt_signature_ability(player, rng=None):
+        """GAMEPLAY.md 36: Uso de la capacidad firma de la clase del personaje.
+        Sustituye el ataque básico, genera 5 de fatiga base, entra en recarga
+        y resuelve la interacción táctica."""
+        encounter = store.get_encounter(path, player["id"], player["room"])
+        if not encounter:
+            return {"outcome": "no_target", "messages": ["No hay ninguna criatura contra la que usar tu capacidad aquí."]}
+        authorized, reason, ability = _can_use_signature_ability(path, player, encounter)
+        if not authorized:
+            return {"outcome": "unavailable", "messages": [reason]}
+
+        player_class = player["player_class"]
+        creature = creatures.get_creature(encounter["creature_id"])
+        attrs = _attributes(player)
+        equipment = _equipment(player)
+        wound = player["wound"]
+
+        # 36.2: genera 5 puntos base de fatiga
+        fatigue = min(100, player["fatigue"] + combat.fatigue_gained(
+            "capacidad_firma", attrs["resistencia"], wound, armor_reduction=equipment["armor_reduction"]))
+
+        messages = []
+        prepared_action = encounter.get("prepared_action")
+        cooldown_rounds = ability["cooldown"]
+
+        if player_class == "juramentado":
+            # 36.4: Guardia Comprometida
+            is_frontal = bool(prepared_action and prepared_action.get("frontal"))
+            creature_base_prec = creature["precision"]
+            enemy_prec = prepared_action.get("precision", creature["precision"]) if prepared_action else creature["precision"]
+            enemy_dmg = prepared_action.get("damage", creature["damage"]) if prepared_action else creature["damage"]
+            prep_name = prepared_action.get("name") if prepared_action else None
+
+            enemy_hits, enemy_damage = combat.resolve_guardia_comprometida_attack_roll(
+                enemy_prec, enemy_dmg, attrs["destreza"], attrs["resistencia"],
+                is_frontal_charge=is_frontal, creature_base_precision=creature_base_prec, rng=rng)
+
+            store.update_encounter(path, player["id"], player["room"],
+                                   signature_cooldown=cooldown_rounds, prepared_action=None)
+
+            if not enemy_hits:
+                store.update_combat_state(path, player["id"], fatigue=round(fatigue))
+                if prep_name:
+                    messages.append(f"Mantienes una Guardia Comprometida firme: {creature['name']} se estrella contra tu defensa con su {prep_name} sin lograr dañarte.")
+                else:
+                    messages.append(f"Mantienes una Guardia Comprometida y {creature['name']} no logra conectar su ataque.")
+                return {"outcome": "success", "messages": messages}
+
+            enemy_damage = combat.apply_armor_reduction(enemy_damage, equipment["armor_reduction"])
+            red_pct = round(combat.guardia_reduction(attrs["destreza"], attrs["resistencia"]) * 100)
+            if prep_name:
+                messages.append(f"Sostienes tu Guardia Comprometida ante la {prep_name} de {creature['name']}: reduces el impacto (-{red_pct}%) y recibes {round(enemy_damage)} de daño.")
+            else:
+                messages.append(f"Sostienes tu Guardia Comprometida: mitigas el ataque de {creature['name']} (-{red_pct}%) y recibes {round(enemy_damage)} de daño.")
+
+            new_wound = combat.worse_wound(wound, combat.wound_from_hit(enemy_damage, player["hp_max"]))
+            if new_wound != wound:
+                messages.append(f"Sufres una herida {new_wound}.")
+            player_hp = player["hp_current"] - enemy_damage
+            if player_hp <= 0:
+                store.clear_encounter(path, player["id"], player["room"])
+                respawn = combat.respawn_state(player["hp_max"])
+                respawn_wound_value = combat.respawn_wound(new_wound)
+                store.update_combat_state(path, player["id"], hp_current=respawn["hp_current"],
+                                           fatigue=respawn["fatigue"], wound=respawn_wound_value,
+                                           room=SAFE_ROOM_ID)
+                messages.append(f"{creature['name']} te derrota. {RESPAWN_MESSAGE}")
+                return {"outcome": "defeat", "messages": messages}
+            store.update_combat_state(path, player["id"], hp_current=player_hp,
+                                       fatigue=round(fatigue), wound=new_wound)
+            return {"outcome": "ongoing", "messages": messages}
+
+        elif player_class == "arcano":
+            # 36.5: Impulso Arcano
+            imp_result = combat.resolve_impulso_arcano_effect(prepared_action)
+            prep_name = prepared_action.get("name") if prepared_action else None
+            if imp_result["interrupted"]:
+                messages.append(f"Liberas un Impulso Arcano que desbarata la {prep_name} de {creature['name']}.")
+            else:
+                messages.append(f"Canalizas un Impulso Arcano que desestabiliza a {creature['name']} (-20% precisión).")
+
+            store.update_encounter(path, player["id"], player["room"],
+                                   signature_cooldown=cooldown_rounds, prepared_action=None)
+
+            effective_precision = max(20, creature["precision"] - imp_result["enemy_accuracy_penalty"])
+            enemy_hits, enemy_damage = combat.resolve_fixed_attack_roll(
+                effective_precision, creature["damage"], rng=rng)
+
+            if not enemy_hits:
+                store.update_combat_state(path, player["id"], fatigue=round(fatigue))
+                messages.append(f"{creature['name']} falla su ataque desestabilizado.")
+                return {"outcome": "success", "messages": messages}
+
+            enemy_damage = combat.apply_armor_reduction(enemy_damage, equipment["armor_reduction"])
+            messages.append(f"{creature['name']} ataca de forma descompuesta pero te alcanza por {round(enemy_damage)} de daño.")
+            new_wound = combat.worse_wound(wound, combat.wound_from_hit(enemy_damage, player["hp_max"]))
+            if new_wound != wound:
+                messages.append(f"Sufres una herida {new_wound}.")
+            player_hp = player["hp_current"] - enemy_damage
+            if player_hp <= 0:
+                store.clear_encounter(path, player["id"], player["room"])
+                respawn = combat.respawn_state(player["hp_max"])
+                respawn_wound_value = combat.respawn_wound(new_wound)
+                store.update_combat_state(path, player["id"], hp_current=respawn["hp_current"],
+                                           fatigue=respawn["fatigue"], wound=respawn_wound_value,
+                                           room=SAFE_ROOM_ID)
+                messages.append(f"{creature['name']} te derrota. {RESPAWN_MESSAGE}")
+                return {"outcome": "defeat", "messages": messages}
+            store.update_combat_state(path, player["id"], hp_current=player_hp,
+                                       fatigue=round(fatigue), wound=new_wound)
+            return {"outcome": "ongoing", "messages": messages}
+
+        elif player_class == "sombra":
+            # 36.6: Borrar el Foco
+            foco_result = combat.resolve_borrar_el_foco_effect()
+            penalty = foco_result["enemy_accuracy_penalty"]
+            prep_name = prepared_action.get("name") if prepared_action else None
+            if prepared_action:
+                base_prec = prepared_action.get("precision", creature["precision"])
+                base_dmg = prepared_action.get("damage", creature["damage"])
+            else:
+                base_prec = creature["precision"]
+                base_dmg = creature["damage"]
+
+            effective_precision = max(20, base_prec - penalty)
+            enemy_hits, enemy_damage = combat.resolve_fixed_attack_roll(
+                effective_precision, base_dmg, rng=rng)
+
+            if not enemy_hits:
+                store.update_encounter(path, player["id"], player["room"],
+                                       signature_cooldown=cooldown_rounds, apertura=1, prepared_action=None)
+                store.update_combat_state(path, player["id"], fatigue=round(fatigue))
+                if prep_name:
+                    messages.append(f"Borras el foco: {creature['name']} pierde tu posición y su {prep_name} golpea el aire. ¡Ganas Apertura (+15% precisión en tu próximo ataque)!")
+                else:
+                    messages.append(f"Borras el foco: {creature['name']} pierde tu posición y ataca al vacío. ¡Ganas Apertura (+15% precisión en tu próximo ataque)!")
+                return {"outcome": "success", "messages": messages}
+
+            store.update_encounter(path, player["id"], player["room"],
+                                   signature_cooldown=cooldown_rounds, apertura=0, prepared_action=None)
+            enemy_damage = combat.apply_armor_reduction(enemy_damage, equipment["armor_reduction"])
+            messages.append(f"Rompes la línea de atención, pero {creature['name']} logra alcanzarte por {round(enemy_damage)} de daño.")
+            new_wound = combat.worse_wound(wound, combat.wound_from_hit(enemy_damage, player["hp_max"]))
+            if new_wound != wound:
+                messages.append(f"Sufres una herida {new_wound}.")
+            player_hp = player["hp_current"] - enemy_damage
+            if player_hp <= 0:
+                store.clear_encounter(path, player["id"], player["room"])
+                respawn = combat.respawn_state(player["hp_max"])
+                respawn_wound_value = combat.respawn_wound(new_wound)
+                store.update_combat_state(path, player["id"], hp_current=respawn["hp_current"],
+                                           fatigue=respawn["fatigue"], wound=respawn_wound_value,
+                                           room=SAFE_ROOM_ID)
+                messages.append(f"{creature['name']} te derrota. {RESPAWN_MESSAGE}")
+                return {"outcome": "defeat", "messages": messages}
+            store.update_combat_state(path, player["id"], hp_current=player_hp,
+                                       fatigue=round(fatigue), wound=new_wound)
+            return {"outcome": "ongoing", "messages": messages}
+
+        elif player_class == "artifice":
+            # 36.7: Tiro de Interrupción
+            cg_player = combat.competencia_general(player["level"])
+            cg_enemy = combat.competencia_general(creature["reference_level"])
+            accuracy_penalty = combat.combined_accuracy_penalty(player["fatigue"], wound)
+            damage_multiplier = combat.combined_damage_multiplier(player["fatigue"], wound)
+            apertura = encounter.get("apertura", 0)
+            apertura_bonus = 15 if apertura > 0 else 0
+
+            player_hits, player_damage, shot_effect = combat.resolve_tiro_de_interrupcion_attack_roll(
+                attrs["destreza"], attrs["percepcion"], attrs["fuerza"],
+                cg_player, cg_enemy, base_arma=equipment["weapon_base_damage"],
+                accuracy_penalty=accuracy_penalty, damage_multiplier=damage_multiplier,
+                apertura_bonus=apertura_bonus, prepared_action=prepared_action, rng=rng)
+
+            if apertura > 0:
+                store.update_encounter(path, player["id"], player["room"], apertura=0)
+
+            if player_hits:
+                player_damage = combat.apply_armor_reduction(player_damage, creature.get("armor_reduction", 0.0))
+                messages.append(f"Disparas un Tiro de Interrupción certero e impactas a {creature['name']} por {round(player_damage)} de daño.")
+                creature_hp = encounter["hp_current"] - player_damage
+                if creature_hp <= 0:
+                    store.clear_encounter(path, player["id"], player["room"])
+                    store.start_creature_cooldown(path, player["id"], player["room"], encounter["creature_id"])
+                    is_first, repeats = store.record_pve_victory(path, player["id"], creature["family"])
+                    player_dps = combat.expected_dps(attrs["destreza"], attrs["percepcion"], attrs["fuerza"],
+                                                      cg_player, cg_enemy, base_arma=equipment["weapon_base_damage"])
+                    enemy_dps = combat.fixed_expected_dps(creature["precision"], creature["damage"])
+                    category = combat.encounter_category(player_dps, player["hp_current"], enemy_dps, creature["hp"])
+                    xp_amount = combat.combat_xp(creature["reference_level"], category, player["level"],
+                                                  is_first, repeats)
+                    xp_state = store.award_xp(path, player["id"], xp_amount)
+                    store.update_combat_state(path, player["id"], fatigue=round(fatigue))
+                    messages.append(f"¡{creature['name']} cae derrotado! Ganas {xp_amount} XP.")
+                    if is_first:
+                        messages.append(f"Primera vez que superas a un {creature['name']}: bono de familia incluido.")
+                    level_message = _level_up_message(xp_state)
+                    if level_message:
+                        messages.append(level_message)
+                    return {"outcome": "victory", "messages": messages}
+
+                store.update_encounter(path, player["id"], player["room"],
+                                       hp_current=creature_hp, signature_cooldown=cooldown_rounds,
+                                       prepared_action=None)
+
+                if shot_effect["interrupted"]:
+                    prep_name = prepared_action.get("name", "acción especial")
+                    messages.append(f"El impacto desbarata la {prep_name} de {creature['name']}, forzando un ataque básico ordinario.")
+                    enemy_prec = creature["precision"]
+                    enemy_dmg = creature["damage"]
+                else:
+                    messages.append(f"El impacto descompone el avance de {creature['name']} (-15% precisión).")
+                    enemy_prec = max(20, creature["precision"] - shot_effect["enemy_accuracy_penalty"])
+                    enemy_dmg = creature["damage"]
+            else:
+                messages.append(f"Tu Tiro de Interrupción falla contra {creature['name']}.")
+                store.update_encounter(path, player["id"], player["room"],
+                                       signature_cooldown=cooldown_rounds, prepared_action=None)
+                if prepared_action:
+                    enemy_prec = prepared_action.get("precision", creature["precision"])
+                    enemy_dmg = prepared_action.get("damage", creature["damage"])
+                else:
+                    enemy_prec = creature["precision"]
+                    enemy_dmg = creature["damage"]
+
+            # Enemy counter-attack
+            enemy_hits, enemy_damage = combat.resolve_fixed_attack_roll(
+                enemy_prec, enemy_dmg, rng=rng)
+            if not enemy_hits:
+                store.update_combat_state(path, player["id"], fatigue=round(fatigue))
+                messages.append(f"{creature['name']} falla su ataque.")
+                return {"outcome": "ongoing", "messages": messages}
+
+            enemy_damage = combat.apply_armor_reduction(enemy_damage, equipment["armor_reduction"])
+            messages.append(f"{creature['name']} te golpea por {round(enemy_damage)} de daño.")
+            new_wound = combat.worse_wound(wound, combat.wound_from_hit(enemy_damage, player["hp_max"]))
+            if new_wound != wound:
+                messages.append(f"Sufres una herida {new_wound}.")
+            player_hp = player["hp_current"] - enemy_damage
+            if player_hp <= 0:
+                store.clear_encounter(path, player["id"], player["room"])
+                respawn = combat.respawn_state(player["hp_max"])
+                respawn_wound_value = combat.respawn_wound(new_wound)
+                store.update_combat_state(path, player["id"], hp_current=respawn["hp_current"],
+                                           fatigue=respawn["fatigue"], wound=respawn_wound_value,
+                                           room=SAFE_ROOM_ID)
+                messages.append(f"{creature['name']} te derrota. {RESPAWN_MESSAGE}")
+                return {"outcome": "defeat", "messages": messages}
+            store.update_combat_state(path, player["id"], hp_current=player_hp,
+                                       fatigue=round(fatigue), wound=new_wound)
+            return {"outcome": "ongoing", "messages": messages}
+
+        return {"outcome": "unavailable", "messages": ["Capacidad no implementada."]}
 
     # Relato de la pelea (petición de Javier, 2026-09-25): cada acción de
     # combate que ocurre con una criatura presente deja su línea en el
@@ -852,6 +1316,7 @@ def create_app(config=None):
     attempt_dodge = _record_combat("esquivar", attempt_dodge)
     attempt_resist = _record_combat("resistir", attempt_resist)
     attempt_block = _record_combat("bloquear", attempt_block)
+    attempt_signature_ability = _record_combat("capacidad", attempt_signature_ability)
 
     _attempt_evaluate_raw = attempt_evaluate
 
@@ -1292,6 +1757,8 @@ def create_app(config=None):
             return _combat_result_page(attempt_resist(g.player))
         if intent["type"] == "block":
             return _combat_result_page(attempt_block(g.player))
+        if intent["type"] == "signature_ability":
+            return _combat_result_page(attempt_signature_ability(g.player))
         if intent["type"] == "equip":
             result = attempt_equip(g.player, intent["target"])
             player_now = store.player_for_token(path, session.get("token"))
@@ -1317,6 +1784,20 @@ def create_app(config=None):
             return render_template("entry.html", player=player_now, species_list=world.SPECIES,
                                    room=room_data, error=" ".join(result["messages"])), 200
         if intent["type"] == "talk_npc":
+            target = intent.get("target", "")
+            target_norm = target.strip().lower()
+            room_data_current = world.get_room(g.player["room"])
+            encounter_active = store.get_encounter(path, g.player["id"], g.player["room"])
+            n0 = None if encounter_active else population.get_room_n0_presence(g.player["room"], room_data=room_data_current)
+            if n0 and target_norm in (n0["id"].lower(), n0["name"].lower(), n0["role_id"].lower()):
+                player_now = store.player_for_token(path, session.get("token"))
+                room_data = room_view(g.player["room"], g.player["id"])
+                dialogue_text = f"{n0['name']}: «{n0['reply']}»"
+                return render_template(
+                    "entry.html", player=player_now, species_list=world.SPECIES, room=room_data,
+                    error=dialogue_text,
+                ), 200
+
             result = npc_dialogue.converse(
                 g.player,
                 intent["target"],
@@ -1338,6 +1819,40 @@ def create_app(config=None):
             return render_template(
                 "entry.html", player=player_now, species_list=world.SPECIES, room=room_data,
                 error=dialogue_text,
+            ), 200
+        if intent["type"] == "help_scene":
+            room_id = g.player["room"]
+            player_now = store.player_for_token(path, session.get("token"))
+            room_data = room_view(room_id, g.player["id"])
+            if room_id == "khariel_forja":
+                result = npc_dialogue.converse(
+                    g.player,
+                    "khariel_taller_hoshai_01",
+                    message="ayudo a sujetar el amarre",
+                    room_id=room_id,
+                    db_path=path,
+                )
+                dialogue_text = f"{result.npc_name}: «{result.text}»"
+                return render_template(
+                    "entry.html", player=player_now, species_list=world.SPECIES, room=room_data,
+                    error=dialogue_text,
+                ), 200
+            elif room_id == "brumak_forja":
+                result = npc_dialogue.converse(
+                    g.player,
+                    "brumak_taller_korven_01",
+                    message="ayudo a sostener el apoyo",
+                    room_id=room_id,
+                    db_path=path,
+                )
+                dialogue_text = f"{result.npc_name}: «{result.text}»"
+                return render_template(
+                    "entry.html", player=player_now, species_list=world.SPECIES, room=room_data,
+                    error=dialogue_text,
+                ), 200
+            return render_template(
+                "entry.html", player=player_now, species_list=world.SPECIES, room=room_data,
+                error="No hay ninguna tarea o paso que asegurar aquí.",
             ), 200
         room_data = room_view(g.player["room"], g.player["id"])
         return render_template(
@@ -1537,6 +2052,17 @@ def create_app(config=None):
                 player=dict(player_now) if player_now else None,
                 current_room=room_view(player_now["room"], player_now["id"]) if player_now else None,
             )
+        if kind == "signature_ability":
+            result = attempt_signature_ability(g.player)
+            player_now = store.player_for_token(path, session.get("token"))
+            return jsonify(
+                accepted=result["outcome"] not in ("no_target", "unavailable"),
+                intent="signature_ability",
+                outcome=result["outcome"],
+                messages=result["messages"],
+                player=dict(player_now) if player_now else None,
+                current_room=room_view(player_now["room"], player_now["id"]) if player_now else None,
+            )
         if kind == "equip":
             result = attempt_equip(g.player, intent["target"])
             player_now = store.player_for_token(path, session.get("token"))
@@ -1578,6 +2104,24 @@ def create_app(config=None):
                 player=dict(player_now) if player_now else None,
             )
         if kind == "talk_npc":
+            target = intent.get("target", "")
+            target_norm = target.strip().lower()
+            room_data_current = world.get_room(g.player["room"])
+            encounter_active = store.get_encounter(path, g.player["id"], g.player["room"])
+            n0 = None if encounter_active else population.get_room_n0_presence(g.player["room"], room_data=room_data_current)
+            if n0 and target_norm in (n0["id"].lower(), n0["name"].lower(), n0["role_id"].lower()):
+                return jsonify(
+                    accepted=True,
+                    intent="talk_npc",
+                    npc=n0["id"],
+                    npc_name=n0["name"],
+                    reply=n0["reply"],
+                    is_fallback=False,
+                    is_n0=True,
+                    proposed_action=None,
+                    gate_result=None,
+                ), 200
+
             result = npc_dialogue.converse(
                 g.player,
                 intent["target"],
@@ -1617,6 +2161,49 @@ def create_app(config=None):
                 proposed_action=action_payload,
                 gate_result=gate_payload,
             ), 200
+        if kind == "help_scene":
+            room_id = g.player["room"]
+            if room_id == "khariel_forja":
+                result = npc_dialogue.converse(
+                    g.player,
+                    "khariel_taller_hoshai_01",
+                    message="ayudo a sujetar el amarre",
+                    room_id=room_id,
+                    db_path=path,
+                )
+                player_now = store.player_for_token(path, session.get("token"))
+                return jsonify(
+                    accepted=True,
+                    intent="help_scene",
+                    npc=result.npc_id,
+                    npc_name=result.npc_name,
+                    reply=result.text,
+                    player=dict(player_now) if player_now else None,
+                    current_room=room_view(player_now["room"], player_now["id"]) if player_now else None,
+                ), 200
+            elif room_id == "brumak_forja":
+                result = npc_dialogue.converse(
+                    g.player,
+                    "brumak_taller_korven_01",
+                    message="ayudo a sostener el apoyo",
+                    room_id=room_id,
+                    db_path=path,
+                )
+                player_now = store.player_for_token(path, session.get("token"))
+                return jsonify(
+                    accepted=True,
+                    intent="help_scene",
+                    npc=result.npc_id,
+                    npc_name=result.npc_name,
+                    reply=result.text,
+                    player=dict(player_now) if player_now else None,
+                    current_room=room_view(player_now["room"], player_now["id"]) if player_now else None,
+                ), 200
+            return jsonify(
+                accepted=False,
+                intent="help_scene",
+                reason="No hay ninguna tarea o paso que asegurar aquí.",
+            ), 400
         return jsonify(
             accepted=False,
             intent=kind,
@@ -1634,6 +2221,24 @@ def create_app(config=None):
         message = (data.get("message") or data.get("text") or "").strip()
         if not target:
             return jsonify(accepted=False, error="target_required", reason="Debes indicar con quién deseas hablar."), 400
+
+        target_norm = target.strip().lower()
+        room_data_current = world.get_room(g.player["room"])
+        encounter_active = store.get_encounter(path, g.player["id"], g.player["room"])
+        n0 = None if encounter_active else population.get_room_n0_presence(g.player["room"], room_data=room_data_current)
+        if n0 and target_norm in (n0["id"].lower(), n0["name"].lower(), n0["role_id"].lower()):
+            return jsonify(
+                accepted=True,
+                intent="talk_npc",
+                npc=n0["id"],
+                npc_name=n0["name"],
+                reply=n0["reply"],
+                is_fallback=False,
+                is_n0=True,
+                proposed_action=None,
+                gate_result=None,
+            ), 200
+
         result = npc_dialogue.converse(g.player, target, message=message, room_id=g.player["room"], db_path=path)
         if not result.success:
             status_code = 404 if result.error in ("npc_not_found", "npc_not_present") else 400
@@ -1705,8 +2310,12 @@ def create_app(config=None):
             return error
         encounter = (store.get_encounter(path, g.player["id"], g.player["room"])
                      if g.player["room"] else None)
+        player_class = g.player["player_class"]
+        ability_info = combat.SIGNATURE_ABILITIES.get(player_class) if player_class else None
         return jsonify(
             species=g.player["species"], player_class=g.player["player_class"],
+            signature_ability=({"id": ability_info["id"], "name": ability_info["name"], "cooldown": ability_info["cooldown"]}
+                               if ability_info else None),
             level=g.player["level"], xp=g.player["xp"],
             xp_to_next=combat.xp_for_next_level(g.player["level"]),
             pa_unspent=g.player["pa_unspent"], pp_unspent=g.player["pp_unspent"],
@@ -1937,6 +2546,18 @@ def create_app(config=None):
         room_data = room_view(g.player["room"], g.player["id"])
         return render_template("entry.html", player=g.player, species_list=world.SPECIES,
                                room=room_data, error=message), 200
+
+    @app.post("/ability")
+    def ability():
+        require_approved_player()
+        if not character_ready(g.player):
+            abort(403)
+        result = attempt_signature_ability(g.player)
+        player_now = store.player_for_token(path, session.get("token"))
+        room_data = room_view(player_now["room"], player_now["id"])
+        return render_template("entry.html", player=player_now, species_list=world.SPECIES,
+                               room=room_data, error=" ".join(result["messages"])), 200
+
 
     @app.get("/healthz")
     def health():

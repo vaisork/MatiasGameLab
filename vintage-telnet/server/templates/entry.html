@@ -364,6 +364,7 @@
       border:1px solid #3d4a5d;border-radius:9px;background:#0c121b;padding:7px 8px 7px 10px}
     .npc-card strong{display:block;color:var(--ink);font:750 .9rem ui-sans-serif,system-ui,sans-serif}
     .npc-card span{display:block;margin-top:2px;color:var(--muted);font:600 .74rem ui-sans-serif,system-ui,sans-serif}
+    .npc-card .npc-bark-text{margin:4px 0 0;color:#c0b7a3;font:500 italic .8rem ui-sans-serif,system-ui,sans-serif}
     .npc-card .action{width:auto;min-width:100px;min-height:44px;justify-content:center}
     .combat-panel{display:grid;gap:8px}
     .combat-panel form{margin:0}
@@ -777,6 +778,9 @@
             {% if room.encounter %}
             <div class="entry encounter-entry">
               <p class="system">{{ room.encounter.behavior }}</p>
+              {% if room.encounter.telegraph %}
+              <p class="system" style="color: #f1d28f; font-weight: bold; margin-top: 4px;">{{ room.encounter.telegraph }}</p>
+              {% endif %}
             </div>
             {% endif %}
             {# Relato de la pelea en curso: turno por turno, la última línea
@@ -826,6 +830,9 @@
         <section class="combat-panel" aria-label="{{ 'Acciones de combate' if room.in_combat else 'Fauna cercana' }}" data-swap="controls">
           {% if 'atacar' in action_names %}
           <form method="post" action="/attack"><input type="hidden" name="csrf" value="{{ session.csrf }}"><button class="action action-attack" type="submit"><svg class="ui-icon" aria-hidden="true"><use href="#icon-swords"/></svg>Atacar</button></form>
+          {% endif %}
+          {% if room.signature_ability %}
+          <form method="post" action="/ability"><input type="hidden" name="csrf" value="{{ session.csrf }}"><button class="action action-primary" type="submit" {% if not room.signature_ability.ready %}disabled aria-disabled="true" title="{{ room.signature_ability.disabled_reason or '' }}"{% endif %}>{{ room.signature_ability.name }}{% if room.signature_ability.cooldown_remaining > 0 %} ({{ room.signature_ability.cooldown_remaining }}){% endif %}</button></form>
           {% endif %}
           <div class="combat-row">
             {% if 'huir' in action_names %}
@@ -886,7 +893,11 @@
             <ul class="npc-list">
               {% for npc in room.npcs %}
               <li class="npc-card">
-                <div><strong>{{ npc.name }}</strong><span>{{ npc.role | capitalize }}</span></div>
+                <div>
+                  <strong>{{ npc.name }}</strong>
+                  <span>{{ npc.role | capitalize }}</span>
+                  {% if npc.bark %}<p class="npc-bark-text">«{{ npc.bark }}»</p>{% endif %}
+                </div>
                 <button class="action action-gold" type="button" data-prefill="hablar {{ npc.id }} "
                         aria-label="Hablar con {{ npc.name }}">Hablar</button>
               </li>
@@ -1034,7 +1045,7 @@
       <button class="segment" id="mapTabHeading" type="button" role="tab" aria-selected="false" aria-controls="mapPanelHeading" data-map-tab="heading"><svg class="ui-icon" aria-hidden="true"><use href="#icon-compass"/></svg>Dirección actual</button>
     </div>
     <section class="map-panel" id="mapPanelGeneral" role="tabpanel" aria-labelledby="mapTabGeneral" data-map-panel="general">
-      {% if room %}<p class="map-here"><b>Estás en:</b> {{ room.name }}</p>{% endif %}
+      {% if room %}<p class="map-here"><b>Estás en:</b> <span id="mapCurrentRoomName">{{ room.name }}</span></p>{% endif %}
       <div class="minimap-frame">
         <div class="minimap-scroll" id="minimapScroll"><p class="map-empty">El mapa todavía no se ha cargado.</p></div>
         <ul class="minimap-legend" aria-label="Leyenda del mapa">
@@ -1143,7 +1154,7 @@
   }));
   wireArt(document);
 
-  const activateTabs = (buttonSelector, panelSelector, dataKey) => {
+  const activateTabs = (buttonSelector, panelSelector, buttonKey, panelKey) => {
     const buttons = [...document.querySelectorAll(buttonSelector)];
     const panels = [...document.querySelectorAll(panelSelector)];
     const activate = button => {
@@ -1152,7 +1163,7 @@
         other.setAttribute("aria-selected", String(selected));
         other.tabIndex = selected ? 0 : -1;
       });
-      panels.forEach(panel => { panel.hidden = panel.dataset[dataKey] !== button.dataset[dataKey]; });
+      panels.forEach(panel => { panel.hidden = panel.dataset[panelKey] !== button.dataset[buttonKey]; });
     };
     buttons.forEach((button, index) => {
       button.tabIndex = button.getAttribute("aria-selected") === "true" ? 0 : -1;
@@ -1170,8 +1181,8 @@
       });
     });
   };
-  activateTabs("[data-map-tab]", "[data-map-panel]", "mapPanel");
-  activateTabs("[data-help-tab]", "[data-help-panel]", "helpPanel");
+  activateTabs("[data-map-tab]", "[data-map-panel]", "mapTab", "mapPanel");
+  activateTabs("[data-help-tab]", "[data-help-panel]", "helpTab", "helpPanel");
 
   // Gasto de PA (GAMEPLAY.md 19/25.4/25.5). El servidor calcula costes,
   // decide si se puede gastar y aplica el +1; aquí solo se muestra el
@@ -1476,7 +1487,11 @@
   };
   const readableId = id => String(id).replaceAll("_", " ");
   let placeNames = {};
-  const placeName = id => placeNames[id] || readableId(id);
+  const placeName = id => {
+    if (placeNames[id]) return placeNames[id];
+    if (typeof id === "string" && id.startsWith("home:")) return "Tu hogar";
+    return readableId(id);
+  };
   const SVG_NS = "http://www.w3.org/2000/svg";
   const svgEl = (name, attrs) => {
     const el = document.createElementNS(SVG_NS, name);
@@ -1598,7 +1613,15 @@
       const response = await fetch("/api/map", {headers: {"Accept": "application/json"}});
       if (!response.ok) throw new Error("map unavailable");
       const data = await response.json();
-      placeNames = Object.fromEntries((Array.isArray(data.places) ? data.places : []).map(p => [p.id, p.name]));
+      placeNames = Object.assign(
+        {},
+        data.room_names || {},
+        Object.fromEntries((Array.isArray(data.places) ? data.places : []).map(p => [p.id, p.name]))
+      );
+      if (data.current_room_name) {
+        const hereEl = document.getElementById("mapCurrentRoomName");
+        if (hereEl) hereEl.textContent = data.current_room_name;
+      }
       renderMinimap(data);
       renderMap(data);
       renderHeading(data.current_heading);
@@ -1828,6 +1851,11 @@
       const text = incomingBadge.textContent.trim();
       const match = text.match(/^(?:(\d+) PA)?(?: · )?(?:(\d+) PP)?$/);
       syncPointIndicators(match && match[1] ? Number(match[1]) : 0, match && match[2] ? Number(match[2]) : 0);
+    }
+    const incomingHere = next.querySelector("#mapCurrentRoomName");
+    const currentHere = document.getElementById("mapCurrentRoomName");
+    if (currentHere && incomingHere) {
+      currentHere.textContent = incomingHere.textContent;
     }
     const currentChat = document.querySelector("[data-room-chat]");
     if (currentChat) roomActivitySnapshot = currentChat.dataset.roomId + "|";

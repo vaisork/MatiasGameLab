@@ -16,7 +16,7 @@ STATUSES = ("pending", "approved", "rejected", "removed")
 
 # Version de esquema que deja initialize(); ops/inventory_migration_probe.py
 # la usa para validar una migracion de prueba contra la copia de la base viva.
-SCHEMA_VERSION = 15
+SCHEMA_VERSION = 17
 
 # Cuentas con varios personajes (petición de Javier, 2026-09-25): un usuario
 # para entrar puede tener hasta 5 personajes; el nombre de cada personaje es
@@ -48,8 +48,14 @@ NPC_ACTION_LOGS_TABLE = """CREATE TABLE IF NOT EXISTS npc_action_logs (
     payload_json TEXT,
     created_at TEXT NOT NULL)"""
 
-# v15: Issue #408 (ECONOMY-CORE-01 / ECONOMY.md §19) -- ledger autoritativo de sellos.
-# Registra cada movimiento (delta, balance_after, reason_code, source_key).
+# v15 story flags and v17 economy ledger.
+STORY_FLAGS_TABLE = """CREATE TABLE IF NOT EXISTS player_story_flags (
+    player_id TEXT NOT NULL REFERENCES players(id) ON DELETE CASCADE,
+    flag TEXT NOT NULL,
+    value INTEGER NOT NULL DEFAULT 1,
+    created_at REAL NOT NULL,
+    PRIMARY KEY (player_id, flag))"""
+
 ECONOMY_LEDGER_TABLE = """CREATE TABLE IF NOT EXISTS economy_ledger (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     player_id TEXT NOT NULL REFERENCES players(id),
@@ -155,6 +161,9 @@ CHARACTER_TABLES = [
             hp_current REAL NOT NULL,
             failed_flee_attempts INTEGER NOT NULL DEFAULT 0,
             engaged INTEGER NOT NULL DEFAULT 1,
+            signature_cooldown INTEGER NOT NULL DEFAULT 0,
+            apertura INTEGER NOT NULL DEFAULT 0,
+            prepared_action TEXT,
             created_at TEXT NOT NULL,
             UNIQUE(player_id, room_id))""",
 ]
@@ -334,26 +343,31 @@ def initialize(path):
             if "engaged" not in encounter_columns:
                 db.execute("ALTER TABLE room_encounters ADD COLUMN engaged INTEGER NOT NULL DEFAULT 1")
         if version <= 14:
-            # v15: ECONOMY-CORE-01 (#408 / ECONOMY.md §§3, 19). Cartera de sellos
-            # (20 iniciales) y ledger autoritativo de transacciones.
-            player_columns = {
-                row["name"] for row in db.execute("PRAGMA table_info(players)").fetchall()
-            }
+            db.execute(STORY_FLAGS_TABLE)
+            db.execute("CREATE INDEX IF NOT EXISTS story_flags_player ON player_story_flags(player_id, flag)")
+        if version <= 15:
+            cols = {row["name"] for row in db.execute("PRAGMA table_info(room_encounters)").fetchall()}
+            for column, declaration in (("signature_cooldown", "INTEGER NOT NULL DEFAULT 0"),
+                                        ("apertura", "INTEGER NOT NULL DEFAULT 0"),
+                                        ("prepared_action", "TEXT")):
+                if column not in cols:
+                    db.execute(f"ALTER TABLE room_encounters ADD COLUMN {column} {declaration}")
+        if version <= 16:
+            player_columns = {row["name"] for row in db.execute("PRAGMA table_info(players)").fetchall()}
             if "sellos" not in player_columns:
                 db.execute("ALTER TABLE players ADD COLUMN sellos INTEGER NOT NULL DEFAULT 20")
             db.execute(ECONOMY_LEDGER_TABLE)
             db.execute("CREATE INDEX IF NOT EXISTS economy_ledger_player ON economy_ledger(player_id, id)")
             now_ts = time.time()
-            existing_players = db.execute(
-                """SELECT p.id FROM players p
-                   WHERE NOT EXISTS (SELECT 1 FROM economy_ledger el WHERE el.player_id = p.id)"""
-            ).fetchall()
-            for p in existing_players:
-                db.execute(
-                    """INSERT INTO economy_ledger (player_id, delta, balance_after, reason_code, source_key, created_at)
-                       VALUES (?, 20, 20, 'starting_purse', 'migration:v15', ?)""",
-                    (p["id"], now_ts),
-                )
+            existing = db.execute("SELECT id, sellos FROM players").fetchall()
+            for player in existing:
+                if not db.execute("SELECT 1 FROM economy_ledger WHERE player_id = ? LIMIT 1", (player["id"],)).fetchone():
+                    balance = int(player["sellos"] or 0)
+                    db.execute(
+                        """INSERT INTO economy_ledger (player_id, delta, balance_after, reason_code, source_key, created_at)
+                           VALUES (?, ?, ?, 'starting_purse', 'migration:v17', ?)""",
+                        (player["id"], balance, balance, now_ts),
+                    )
         db.execute(f"PRAGMA user_version = {SCHEMA_VERSION}")
 
 
@@ -922,7 +936,15 @@ def get_encounter(path, player_id, room_id):
         row = db.execute(
             "SELECT * FROM room_encounters WHERE player_id = ? AND room_id = ?", (player_id, room_id)
         ).fetchone()
-        return dict(row) if row else None
+        if not row:
+            return None
+        result = dict(row)
+        if result.get("prepared_action") and isinstance(result["prepared_action"], str):
+            try:
+                result["prepared_action"] = json.loads(result["prepared_action"])
+            except (TypeError, ValueError):
+                pass
+        return result
 
 
 COMBAT_LOG_TABLE = """CREATE TABLE combat_log (
@@ -957,23 +979,31 @@ def get_combat_log(path, player_id, room_id, limit=20):
     return [dict(row) for row in reversed(rows)]
 
 
-def start_encounter(path, player_id, room_id, creature_id, hp, engaged=True):
-    """No-op si ya hay un encuentro activo en esa sala para ese jugador
-    (persistente: si se aleja y vuelve sin resolverlo, sigue con la misma
-    vida que tenia)."""
+_UNSET = object()
+
+
+def start_encounter(path, player_id, room_id, creature_id, hp, engaged=True, prepared_action=None):
+    """No-op if the player already has an encounter in this room."""
+    if prepared_action is None and creature_id:
+        from . import creatures
+        creature = creatures.get_creature(creature_id)
+        if creature and creature.get("prepared_action"):
+            prepared_action = creature["prepared_action"]
+    prep_json = json.dumps(prepared_action) if isinstance(prepared_action, dict) else prepared_action
     with connect(path) as db:
         cursor = db.execute(
             """INSERT OR IGNORE INTO room_encounters
-               (player_id, room_id, creature_id, hp_current, failed_flee_attempts, engaged, created_at)
-               VALUES (?, ?, ?, ?, 0, ?, ?)""",
-            (player_id, room_id, creature_id, hp, int(bool(engaged)), utcnow()),
+               (player_id, room_id, creature_id, hp_current, failed_flee_attempts, engaged,
+                signature_cooldown, apertura, prepared_action, created_at)
+               VALUES (?, ?, ?, ?, 0, ?, 0, 0, ?, ?)""",
+            (player_id, room_id, creature_id, hp, int(bool(engaged)), prep_json, utcnow()),
         )
         if cursor.rowcount:
-            # Encuentro nuevo: no arrastra relato de una pelea anterior.
             db.execute("DELETE FROM combat_log WHERE player_id = ? AND room_id = ?", (player_id, room_id))
 
 
-def update_encounter(path, player_id, room_id, hp_current=None, failed_flee_attempts=None, engaged=None):
+def update_encounter(path, player_id, room_id, hp_current=None, failed_flee_attempts=None,
+                     engaged=None, signature_cooldown=None, apertura=None, prepared_action=_UNSET):
     fields, params = [], []
     if hp_current is not None:
         fields.append("hp_current = ?")
@@ -984,14 +1014,20 @@ def update_encounter(path, player_id, room_id, hp_current=None, failed_flee_atte
     if engaged is not None:
         fields.append("engaged = ?")
         params.append(int(bool(engaged)))
+    if signature_cooldown is not None:
+        fields.append("signature_cooldown = ?")
+        params.append(signature_cooldown)
+    if apertura is not None:
+        fields.append("apertura = ?")
+        params.append(apertura)
+    if prepared_action is not _UNSET:
+        fields.append("prepared_action = ?")
+        params.append(json.dumps(prepared_action) if isinstance(prepared_action, dict) else prepared_action)
     if not fields:
         return
     params += [player_id, room_id]
     with connect(path) as db:
-        db.execute(
-            f"UPDATE room_encounters SET {', '.join(fields)} WHERE player_id = ? AND room_id = ?", params
-        )
-
+        db.execute(f"UPDATE room_encounters SET {', '.join(fields)} WHERE player_id = ? AND room_id = ?", params)
 
 def clear_encounter(path, player_id, room_id):
     with connect(path) as db:
@@ -1352,3 +1388,97 @@ def list_npc_action_logs(path, player_id=None, npc_id=None, limit=20):
             }
             for r in rows
         ]
+
+
+# --- VT-SERVER: STORY-FLAGS-01 (#427 / GAMEPLAY.md §§22, 32 / #287, #288) ---
+def get_story_flag(path, player_id, flag):
+    """Devuelve True si el flag narrativo está activo para el jugador, o False si no existe o es inactivo."""
+    if not player_id or not flag:
+        return False
+    with connect(path) as db:
+        row = db.execute(
+            "SELECT value FROM player_story_flags WHERE player_id = ? AND flag = ?",
+            (player_id, flag),
+        ).fetchone()
+        return bool(row and row["value"])
+
+
+def get_player_story_flags(path, player_id):
+    """Devuelve un diccionario {flag: bool} con todos los flags narrativos registrados para el jugador."""
+    if not player_id:
+        return {}
+    with connect(path) as db:
+        rows = db.execute(
+            "SELECT flag, value FROM player_story_flags WHERE player_id = ?",
+            (player_id,),
+        ).fetchall()
+        return {row["flag"]: bool(row["value"]) for row in rows}
+
+
+def set_story_flag(path, player_id, flag, value=True):
+    """Fija un flag narrativo para el jugador de forma persistente e idempotente.
+    Devuelve True si se modificó o insertó el flag, o False si ya tenía el mismo valor."""
+    if not player_id:
+        raise ValueError("player_id es obligatorio para fijar un flag narrativo.")
+    if not flag:
+        raise ValueError("flag es obligatorio.")
+    int_val = 1 if value else 0
+    now = time.time()
+    with connect(path) as db:
+        db.execute("BEGIN IMMEDIATE")
+        current = db.execute(
+            "SELECT value FROM player_story_flags WHERE player_id = ? AND flag = ?",
+            (player_id, flag),
+        ).fetchone()
+        if current is not None and current["value"] == int_val:
+            return False
+        db.execute(
+            """INSERT INTO player_story_flags (player_id, flag, value, created_at)
+               VALUES (?, ?, ?, ?)
+               ON CONFLICT(player_id, flag) DO UPDATE SET value = excluded.value, created_at = excluded.created_at""",
+            (player_id, flag, int_val, now),
+        )
+        return True
+
+
+def clear_story_flag(path, player_id, flag):
+    """Elimina completamente un flag narrativo del jugador."""
+    if not player_id or not flag:
+        return
+    with connect(path) as db:
+        db.execute(
+            "DELETE FROM player_story_flags WHERE player_id = ? AND flag = ?",
+            (player_id, flag),
+        )
+
+
+def grant_story_item_once(path, player_id, flag, item_key, forge_validated=False):
+    """Operación atómica para STORY-FLAGS-01 (#427):
+    Si el flag no está activo, otorga exactamente 1x item_key (sin autoequipar y sin XP)
+    y activa el flag en una sola transacción efectiva.
+    Si el flag ya está activo, no otorga nada y devuelve (False, None).
+    Garantiza idempotencia ante reintentos y consistencia ante fallos (rollback automático si falla el grant).
+    Devuelve (True, item_id) si se entregó el objeto, o (False, None) si ya había sido entregado."""
+    if not player_id:
+        raise ValueError("player_id es obligatorio.")
+    if not flag:
+        raise ValueError("flag es obligatorio.")
+    now = time.time()
+    with connect(path) as db:
+        db.execute("BEGIN IMMEDIATE")
+        current = db.execute(
+            "SELECT value FROM player_story_flags WHERE player_id = ? AND flag = ?",
+            (player_id, flag),
+        ).fetchone()
+        if current is not None and current["value"]:
+            return False, None
+
+        item_id = grant_item(path, player_id, item_key, forge_validated=forge_validated, connection=db)
+
+        db.execute(
+            """INSERT INTO player_story_flags (player_id, flag, value, created_at)
+               VALUES (?, ?, 1, ?)
+               ON CONFLICT(player_id, flag) DO UPDATE SET value = 1, created_at = excluded.created_at""",
+            (player_id, flag, now),
+        )
+        return True, item_id
