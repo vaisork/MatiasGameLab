@@ -743,6 +743,13 @@ DISCOVERIES = {
         "message": "Comprendes que una criatura mucho mayor que las que conoces atraveso este lindero.",
     },
     "regreso_valdren_lindero": {
+        # Contrato Narrador/Historia/Jugabilidad #147, rescatado de PR #177.
+        "reward_item": "acolchado_camino",
+        "reward_text": (
+            "Regresas a Valdren con el lindero resuelto. Entre el equipo de camino te "
+            "entregan un Acolchado de Camino: sencillo, reforzado y hecho para volver a "
+            "salir. Has obtenido: Acolchado de Camino."
+        ),
         "category": "hito_narrativo_menor",
         "reference_level": 1,
         "message": "Vuelves a Valdren sabiendo leer las senales del camino que dejaste atras.",

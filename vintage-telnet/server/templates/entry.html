@@ -792,6 +792,10 @@
             <div class="entry result-entry" role="status" data-result-entry>
               <p>{{ error }}</p>
             </div>
+            {% elif notice %}
+            <div class="entry result-entry" role="status" data-result-entry>
+              <p>{{ notice }}</p>
+            </div>
             {% endif %}
             <div data-room-chat data-room-id="{{ room.id if room.id is defined else '' }}">
               {% for m in room.messages %}
