@@ -577,6 +577,48 @@ class EntryTests(unittest.TestCase):
         self.assertIn('cancelActiveReveal = stopReveal;', html)
         self.assertIn('revealLog.removeEventListener("click", revealAll);', html)
 
+    def test_room_activity_polling_uses_authoritative_api_without_cross_room_updates(self):
+        """#376: presencia/chat idle se refrescan desde /api/room; la UI no
+        inventa TTL ni aplica una respuesta si pertenece a otra sala."""
+        self.assertEqual(self.register().status_code, 303)
+        store.set_status(self.path, "matias", "approved")
+        self.assertEqual(self.post("/species", {"species": "humano"}).status_code, 303)
+        self.assertEqual(self.post("/class", {"player_class": "sombra"}).status_code, 303)
+        html = self.client.get("/").get_data(as_text=True)
+
+        self.assertIn('data-room-presence aria-live="polite"', html)
+        self.assertIn('data-room-chat data-room-id=', html)
+        self.assertIn('const refreshRoomActivity = async () => {', html)
+        self.assertIn('document.hidden || actionInFlight', html)
+        self.assertIn('fetch("/api/room"', html)
+        self.assertIn('if (!room || room.id !== expectedRoomId) return;', html)
+        self.assertIn('window.setInterval(refreshRoomActivity, 5000)', html)
+        self.assertIn('window.addEventListener("focus", refreshRoomActivity)', html)
+        self.assertIn('if (snapshot === roomPresenceSnapshot) return;', html)
+
+    def test_explicit_room_exit_disappears_from_other_players_next_authoritative_read(self):
+        """#376: el movimiento explícito ya es inmediato en servidor; este
+        test bloquea la regresión mientras backend añade fallback de TTL."""
+        other = self.app.test_client()
+
+        def ready(client, username, name):
+            self.assertEqual(self.register(username, client, name).status_code, 303)
+            store.set_status(self.path, username, "approved")
+            self.assertEqual(self.post("/species", {"species": "humano"}, client).status_code, 303)
+            self.assertEqual(self.post("/class", {"player_class": "sombra"}, client).status_code, 303)
+            self.assertIn(self.post("/move", {"direction": "south"}, client).status_code, (200, 303))
+
+        ready(self.client, "matias", "Matías")
+        ready(other, "marcos", "Marcos")
+
+        room_a = self.client.get("/api/room").json["room"]
+        self.assertEqual(room_a["id"], "valdren_centro")
+        self.assertIn("Marcos", room_a["others_present"])
+
+        self.assertIn(self.post("/move", {"direction": "west"}, other).status_code, (200, 303))
+        room_a_after = self.client.get("/api/room").json["room"]
+        self.assertNotIn("Marcos", room_a_after["others_present"])
+
     def test_inventory_ui_consumes_authoritative_api_without_local_rules(self):
         self.assertEqual(self.register().status_code, 303)
         store.set_status(self.path, "matias", "approved")
