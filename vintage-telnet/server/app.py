@@ -563,6 +563,26 @@ def create_app(config=None):
                 if level_message:
                     g.reward_message += f" {level_message}"
             level_up_event = _level_up_event(xp_state)
+        # Umbrales de los 5 ramales superficiales (#419, #422, #423, #424, #341)
+        SURFACE_THRESHOLDS_INFO = {
+            "bm_09_boca_rocosa": ("boca_montana_umbral_descubierto", "boca_montana_umbral", "Boca de la Montaña"),
+            "cq_09_estrechamiento_raices_roca": ("canal_quieto_umbral_descubierto", "canal_quieto_umbral", "Canal Quieto"),
+            "ca_09_cavidad_tras_frente": ("cantera_abandonada_umbral_descubierto", "cantera_abandonada_umbral", "Cantera Abandonada"),
+            "ge_09_boca_inferior": ("grieta_eco_seco_umbral_descubierto", "grieta_eco_seco_umbral", "Grieta del Eco Seco"),
+            "mh_10_umbral_inferior": ("molino_hundido_umbral_descubierto", "molino_hundido_umbral", "Molino Hundido"),
+        }
+        if destination in SURFACE_THRESHOLDS_INFO:
+            flag_name, disc_key, name = SURFACE_THRESHOLDS_INFO[destination]
+            if not store.get_story_flag(path, player["id"], flag_name):
+                store.set_story_flag(path, player["id"], flag_name, True)
+                is_new, xp_amount, xp_state = store.award_discovery(
+                    path, player["id"], disc_key, "descubrimiento_mayor", 1)
+                if is_new:
+                    g.reward_message = f"Has alcanzado el umbral de {name}. (+{xp_amount} XP)"
+                    level_message = _level_up_message(xp_state)
+                    if level_message:
+                        g.reward_message += f" {level_message}"
+                    level_up_event = _level_up_event(xp_state)
         return True, previous_room, destination, None, level_up_event
 
     def _attributes(player):
