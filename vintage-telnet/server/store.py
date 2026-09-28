@@ -48,6 +48,17 @@ NPC_ACTION_LOGS_TABLE = """CREATE TABLE IF NOT EXISTS npc_action_logs (
     payload_json TEXT,
     created_at TEXT NOT NULL)"""
 
+# Issue #338: GAMEPLAY.md 39.11 -- estado de viajeros persistentes (persistent_traveler=True).
+# Los viajeros efímeros (persistent_traveler=False) derivan su posición determinísticamente
+# del tiempo y de la ruta sin escribir en la base de datos.
+TRAVELER_STATES_TABLE = """CREATE TABLE IF NOT EXISTS traveler_states (
+    npc_id TEXT PRIMARY KEY,
+    route_id TEXT NOT NULL,
+    current_room TEXT NOT NULL,
+    step_index INTEGER NOT NULL DEFAULT 0,
+    direction INTEGER NOT NULL DEFAULT 1,
+    last_step_time REAL NOT NULL)"""
+
 
 class UsernameTaken(Exception):
     pass
@@ -321,6 +332,7 @@ def initialize(path):
             }
             if "engaged" not in encounter_columns:
                 db.execute("ALTER TABLE room_encounters ADD COLUMN engaged INTEGER NOT NULL DEFAULT 1")
+        db.execute(TRAVELER_STATES_TABLE)
         db.execute(f"PRAGMA user_version = {SCHEMA_VERSION}")
 
 
@@ -1314,3 +1326,40 @@ def list_npc_action_logs(path, player_id=None, npc_id=None, limit=20):
             }
             for r in rows
         ]
+
+
+def get_traveler_state(path, npc_id):
+    """Devuelve dict con el estado del viajero persistente o None."""
+    with connect(path) as db:
+        row = db.execute(
+            "SELECT npc_id, route_id, current_room, step_index, direction, last_step_time "
+            "FROM traveler_states WHERE npc_id = ?",
+            (npc_id,)
+        ).fetchone()
+        if not row:
+            return None
+        return {
+            "npc_id": row["npc_id"],
+            "route_id": row["route_id"],
+            "current_room": row["current_room"],
+            "step_index": row["step_index"],
+            "direction": row["direction"],
+            "last_step_time": row["last_step_time"],
+        }
+
+
+def save_traveler_state(path, npc_id, route_id, current_room, step_index, direction, last_step_time):
+    """Inserta o actualiza el estado de un viajero persistente."""
+    with connect(path) as db:
+        db.execute("BEGIN IMMEDIATE")
+        db.execute(
+            """INSERT INTO traveler_states (npc_id, route_id, current_room, step_index, direction, last_step_time)
+               VALUES (?, ?, ?, ?, ?, ?)
+               ON CONFLICT(npc_id) DO UPDATE SET
+                   route_id = excluded.route_id,
+                   current_room = excluded.current_room,
+                   step_index = excluded.step_index,
+                   direction = excluded.direction,
+                   last_step_time = excluded.last_step_time""",
+            (npc_id, route_id, current_room, step_index, direction, last_step_time)
+        )

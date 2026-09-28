@@ -12,7 +12,7 @@ from flask import (Flask, abort, g, jsonify, redirect, render_template, request,
                     session, url_for)
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from . import combat, content_parser, creatures, dm_auth, encounters, items, npc_dialogue, store, world
+from . import combat, content_parser, creatures, dm_auth, encounters, items, npc_dialogue, store, travelers, world
 
 # Issue #46 resuelto: el Narrador fijo la plaza central de Valdren como
 # punto de reaparicion tras morir (GAMEPLAY.md 20.9) y de recuperacion
@@ -270,7 +270,11 @@ def create_app(config=None):
         else:
             view["encounter"] = None
             view["available_actions"] = [{"action": "descansar"}]
-            npcs_present = npc_dialogue.get_registry().get_in_room(room_id)
+            npcs_present = list(npc_dialogue.get_registry().get_in_room(room_id))
+            travelers_present = travelers.get_travelers_in_room(room_id, db_path=path)
+            for t in travelers_present:
+                if not any(n["id"] == t["id"] for n in npcs_present):
+                    npcs_present.append(t)
             if npcs_present:
                 view["npcs"] = [{"id": n["id"], "name": n["name"], "role": n.get("role", "habitante")} for n in npcs_present]
                 for n in npcs_present:

@@ -27,7 +27,7 @@ from urllib.error import HTTPError, URLError
 from urllib.parse import urlsplit
 from urllib.request import Request, urlopen
 
-from . import store, world
+from . import store, travelers, world
 
 logger = logging.getLogger(__name__)
 
@@ -706,6 +706,9 @@ def converse(
 
     # 2. Verificación de presencia en la misma sala (Criterio 1)
     npc_location = npc.get("location") or npc.get("room_id")
+    if travelers.is_traveler(npc.get("id")):
+        npc_location = travelers.get_traveler_position(npc.get("id"), db_path=db_path)
+
     if not current_room or npc_location != current_room:
         return DialogueResult(
             success=False,
@@ -735,25 +738,39 @@ def converse(
         or f"{npc.get('name')} asiente en silencio y continúa con sus quehaceres."
     )
 
-    try:
-        raw_output = prov.generate_reply(prompt)
-        clean_reply, proposed = extract_proposed_action(raw_output)
-        if not clean_reply:
-            logger.warning("Proveedor devolvió respuesta vacía para NPC %s; usando fallback", npc.get("id"))
+    # Manejo de la interacción sobria de Loren (N5-lite / Issue #338)
+    if npc_id == "viajero_loren":
+        t_def = travelers.get_registry().get("viajero_loren")
+        phrases = t_def.phrases if t_def else [
+            "Las cercas de Valdren quedan atrás; el camino hacia Veyra está despejado hoy.",
+            "Solo llevo recados sencillos de los campos. Buen viaje en el camino.",
+            "El viento sopla limpio desde los llanos. No hay novedad en las parcelas.",
+        ]
+        msg_hash = sum(ord(c) for c in (message or current_room or ""))
+        chosen_phrase = phrases[msg_hash % len(phrases)]
+        clean_reply = f"—{chosen_phrase}"
+        is_fallback = False
+        proposed = None
+    else:
+        try:
+            raw_output = prov.generate_reply(prompt)
+            clean_reply, proposed = extract_proposed_action(raw_output)
+            if not clean_reply:
+                logger.warning("Proveedor devolvió respuesta vacía para NPC %s; usando fallback", npc.get("id"))
+                clean_reply = fallback_text
+                is_fallback = True
+                proposed = None
+            else:
+                is_fallback = False
+        except Exception as exc:
+            logger.warning(
+                "Fallo al invocar proveedor de diálogo para NPC %s (%s). Degradando a fallback.",
+                npc.get("id"),
+                exc,
+            )
             clean_reply = fallback_text
             is_fallback = True
             proposed = None
-        else:
-            is_fallback = False
-    except Exception as exc:
-        logger.warning(
-            "Fallo al invocar proveedor de diálogo para NPC %s (%s). Degradando a fallback.",
-            npc.get("id"),
-            exc,
-        )
-        clean_reply = fallback_text
-        is_fallback = True
-        proposed = None
 
     # 6. Evaluación autoritativa de acción propuesta por el Gate (Issue #247)
     gate_result: ActionGateResult | None = None
@@ -835,7 +852,45 @@ CANONICAL_NPCS: list[dict[str, Any]] = [
             "el contenido de cofres o inventarios ajenos",
         ],
         "fallback_dialogue": "Daro examina una tenaza sobre el yunque en silencio, asiente y vuelve a la fragua.",
-    }
+    },
+    {
+        "id": "viajero_loren",
+        "name": "Loren",
+        "species": "humano",
+        "town": "Valdren",
+        "location": None,  # Dinámico según viajero
+        "role": "viajero de camino",
+        "personality": {
+            "temperament": "tranquilo, observador y acostumbrado al camino",
+            "speech_style": "breve, pausado y cordial",
+            "formality": "neutral",
+            "humor": "escaso",
+            "sociability": "moderada",
+            "response_length": "breve",
+            "expressive_reactions": [
+                "asiente con una leve inclinación de cabeza",
+                "ajusta la correa de su morral",
+                "mira a lo largo del sendero",
+            ],
+            "traits": ["viajero", "observador", "tranquilo"],
+            "example_phrases": [
+                "Las cercas de Valdren quedan atrás; el camino hacia Veyra está despejado hoy.",
+                "Solo llevo recados sencillos de los campos. Buen viaje en el camino.",
+                "El viento sopla limpio desde los llanos. No hay novedad en las parcelas.",
+            ],
+        },
+        "knowledge_allowed": [
+            "el estado visible del camino entre Valdren y los llanos",
+            "noticias cotidianas sobre el clima y el tránsito de viajeros",
+            "los cobertizos y marcas del sendero",
+        ],
+        "knowledge_forbidden": [
+            "estadísticas internas, fórmulas de daño, flags ni reglas de balance",
+            "secretos antiguos, gremios inventados o historia oculta",
+            "misiones heroicas, compras o mercancías mágicas",
+        ],
+        "fallback_dialogue": "Loren asiente con una leve inclinación de cabeza y sigue atento al camino.",
+    },
 ]
 
 
