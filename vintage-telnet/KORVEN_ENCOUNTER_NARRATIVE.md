@@ -1,6 +1,6 @@
 # KORVEN-01 — Mapping narrativo del Camino de Piedra
 
-**Origen:** #304 / #166  
+**Origen:** #304 / #166
 **Capa:** Narrador
 
 | room_id | estado | exclusión deliberada | señal previa |
