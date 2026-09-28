@@ -302,7 +302,6 @@ def initialize(path):
             # v13: REST-01 (#377 / GAMEPLAY.md 24.8-24.9). Acumula solo el
             # HP realmente restaurado por descanso de campo durante el ciclo.
             db.execute("ALTER TABLE players ADD COLUMN field_rest_budget_max REAL")
-            db.execute("ALTER TABLE players ADD COLUMN field_rest_budget_max REAL")
             db.execute("ALTER TABLE players ADD COLUMN field_rest_healed REAL NOT NULL DEFAULT 0")
         db.execute(f"PRAGMA user_version = {SCHEMA_VERSION}")
 
