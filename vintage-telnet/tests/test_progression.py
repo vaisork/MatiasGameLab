@@ -222,6 +222,53 @@ class ProgressionIntegrationTests(unittest.TestCase):
         self.assertEqual(event["pa_gained"], 2)
         self.assertEqual(event["xp_next"], combat.xp_for_next_level(2))
 
+    def _assert_level_up_banner(self, html, level, pa=2, pp=0):
+        self.assertIn('class="level-up-event" data-level-up-event', html)
+        self.assertIn(f"¡SUBISTE A NIVEL {level}!", html)
+        points = f"Ganaste {pa} PA" + (f" y {pp} PP" if pp else "") + "."
+        self.assertIn(points, html)
+        self.assertIn(f"Siguiente nivel: {combat.xp_for_next_level(level)} XP", html)
+        self.assertIn('data-level-up-dismiss', html)
+        self.assertIn('min-width:44px;min-height:44px', html)
+
+    def test_html_inspect_shows_ephemeral_level_up_banner(self):
+        self.set_columns(xp=combat.xp_for_next_level(1) - 4)
+        self._walk_to_mordelinde_signs()
+        self.post("/command", dict(text="examinar tallos"))
+        response = self.post("/command", dict(text="examinar monticulos"))
+        self.assertEqual(response.status_code, 200)
+        self._assert_level_up_banner(response.get_data(as_text=True), 2)
+
+        refreshed = self.client.get("/").get_data(as_text=True)
+        self.assertNotIn('class="level-up-event" data-level-up-event', refreshed)
+
+    def test_html_move_milestone_shows_level_up_banner_without_reconnect_replay(self):
+        pid = self.player_id()
+        with store.connect(self.path) as db:
+            db.execute(
+                "INSERT INTO discoveries(player_id, key, xp_awarded, created_at) VALUES (?, ?, 0, ?)",
+                (pid, "lindero_roto", store.utcnow()),
+            )
+            db.execute(
+                "UPDATE players SET room = 'valdren_sendero', xp = ? WHERE id = ?",
+                (combat.xp_for_next_level(1) - 1, pid),
+            )
+        response = self.post("/move", dict(direction="south"))
+        self.assertEqual(response.status_code, 200)
+        self._assert_level_up_banner(response.get_data(as_text=True), 2)
+        self.assertNotIn('class="level-up-event" data-level-up-event',
+                         self.client.get("/").get_data(as_text=True))
+
+    @patch("server.combat.random.Random")
+    def test_html_pve_victory_shows_level_up_banner(self, mock_random):
+        mock_random.return_value.uniform.return_value = 0.0
+        pid = self.player_id()
+        self.set_columns(xp=combat.xp_for_next_level(1) - 1)
+        store.start_encounter(self.path, pid, "valdren_centro", "mordelinde", 0.1)
+        response = self.post("/attack")
+        self.assertEqual(response.status_code, 200)
+        self._assert_level_up_banner(response.get_data(as_text=True), 2)
+
     # --- 25.4 / 25.5 / 25.7: gasto de PA -------------------------------------
 
     def test_character_exposes_costs_pp_and_combat_flag(self):
