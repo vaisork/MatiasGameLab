@@ -1,7 +1,7 @@
 # LETHRA-01 — Mapping narrativo del Camino de los Juncos
 
-**Origen:** #305 / #166  
-**Capa:** Narrador  
+**Origen:** #305 / #166
+**Capa:** Narrador
 **Fuente de room_id:** `server/world.py` en main. El issue contiene varios nombres desactualizados; este documento usa los IDs autoritativos actuales.
 
 | room_id | estado | exclusión deliberada | señal previa |
