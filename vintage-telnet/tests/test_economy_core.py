@@ -94,7 +94,7 @@ class EconomyMigrationAndPersistenceTests(unittest.TestCase):
 
             # 3. Validar tablas, columnas y datos preservados.
             with store.connect(db_path) as db:
-                self.assertEqual(db.execute("PRAGMA user_version").fetchone()[0], 20)
+                self.assertEqual(db.execute("PRAGMA user_version").fetchone()[0], 21)
                 encounter_cols = {row["name"] for row in db.execute("PRAGMA table_info(room_encounters)")}
                 self.assertTrue({"engaged", "signature_cooldown", "apertura", "prepared_action"} <= encounter_cols)
                 self.assertTrue(db.execute("SELECT 1 FROM player_story_flags LIMIT 1").fetchone() is None)

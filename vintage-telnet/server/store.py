@@ -16,7 +16,7 @@ STATUSES = ("pending", "approved", "rejected", "removed")
 
 # Version de esquema que deja initialize(); ops/inventory_migration_probe.py
 # la usa para validar una migracion de prueba contra la copia de la base viva.
-SCHEMA_VERSION = 20
+SCHEMA_VERSION = 21
 
 # Cuentas con varios personajes (petición de Javier, 2026-09-25): un usuario
 # para entrar puede tener hasta 5 personajes; el nombre de cada personaje es
@@ -113,6 +113,11 @@ TRAVELER_STATES_TABLE = """CREATE TABLE IF NOT EXISTS traveler_states (
     step_index INTEGER NOT NULL DEFAULT 0,
     direction INTEGER NOT NULL DEFAULT 1,
     last_step_time REAL NOT NULL)"""
+
+MAJOR_FAUNA_STATES_TABLE = """CREATE TABLE IF NOT EXISTS major_fauna_states (
+    zone_id TEXT PRIMARY KEY,
+    last_defeated_epoch INTEGER NOT NULL,
+    last_defeated_at REAL NOT NULL)"""
 
 BOSS_REWARDS_CLAIMED_TABLE = """CREATE TABLE IF NOT EXISTS boss_rewards_claimed (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -440,6 +445,9 @@ def initialize(path):
         if version <= 19:
             # v20: TRAVELER-ROUTINES-01 (#338), después del motor C5 v19.
             db.execute(TRAVELER_STATES_TABLE)
+        if version <= 20:
+            # v21: MAJOR-FAUNA-ENGINE-01 (#336), fauna C4 tras viajeros v20.
+            db.execute(MAJOR_FAUNA_STATES_TABLE)
         db.execute(f"PRAGMA user_version = {SCHEMA_VERSION}")
 
 
@@ -1832,4 +1840,32 @@ def save_traveler_state(path, npc_id, route_id, current_room, step_index, direct
                    direction = excluded.direction,
                    last_step_time = excluded.last_step_time""",
             (npc_id, route_id, current_room, step_index, direction, last_step_time)
+        )
+def get_major_fauna_state(path, zone_id):
+    """Devuelve dict con el estado de la zona de fauna mayor o None."""
+    with connect(path) as db:
+        row = db.execute(
+            "SELECT zone_id, last_defeated_epoch, last_defeated_at FROM major_fauna_states WHERE zone_id = ?",
+            (zone_id,)
+        ).fetchone()
+        if not row:
+            return None
+        return {
+            "zone_id": row["zone_id"],
+            "last_defeated_epoch": row["last_defeated_epoch"],
+            "last_defeated_at": row["last_defeated_at"],
+        }
+
+
+def record_major_fauna_defeat(path, zone_id, epoch, defeated_at):
+    """Registra la derrota de una fauna mayor en una zona y epoch dada."""
+    with connect(path) as db:
+        db.execute("BEGIN IMMEDIATE")
+        db.execute(
+            """INSERT INTO major_fauna_states (zone_id, last_defeated_epoch, last_defeated_at)
+               VALUES (?, ?, ?)
+               ON CONFLICT(zone_id) DO UPDATE SET
+                   last_defeated_epoch = excluded.last_defeated_epoch,
+                   last_defeated_at = excluded.last_defeated_at""",
+            (zone_id, epoch, defeated_at)
         )

@@ -326,6 +326,14 @@ CREATURES = {
         "behavior_text": ("Silbarisco vigila desde una terraza baja entre raíces y roca; "
                            "emite un silbido agudo de alarma y busca cobertura entre la maleza."),
     },
+    # Issue #336/#339: fauna mayor C4 de Edran (GAMEPLAY §38.7).
+    "cargallanura": {
+        "name": "Cargallanura", "family": "cargallanura", "reference_level": 12,
+        "hp": 210, "precision": 58, "damage": 26, "armor_reduction": 0.25,
+        "flee_agilidad": 10, "flee_percepcion": 12,
+        "behavior_text": ("Cargallanura resopla con lentitud y te evalúa con indiferencia territorial "
+                          "mientras mantengas la distancia."),
+    },
 }
 
 
