@@ -1172,35 +1172,128 @@ Cuando el personaje está fuera de combate y no realiza esfuerzo intenso:
 
 La recuperación pasiva evita que una pausa breve sea inútil sin convertir esperar en la estrategia principal.
 
-### 24.8 Acción explícita `descansar`
+### 24.8 Acción explícita `descansar` — recuperación de campo limitada
 
 Fuera de combate y cuando el contexto sea seguro, el jugador puede usar:
 
 **`descansar`**
 
-Una acción de descanso v1:
-- recupera **10% del HP máximo**;
-- reduce fatiga en **25 puntos + 0.2 × (Resistencia - 10)**;
-- respeta el límite de recuperación de HP impuesto por una herida moderada/grave;
-- puede ser rechazada/interrumpida si existe peligro inmediato.
+Descansar sigue siendo gratuito y útil para recuperar fuerzas, pero **no puede sustituir alimentos, consumibles o una recuperación completa legítima**.
+
+#### Presupuesto gratuito de HP por ciclo
+
+Cada personaje dispone de un **presupuesto de recuperación de campo** equivalente al **30% de su HP máximo** por ciclo de recuperación.
+
+`PresupuestoCampo = 0.30 × HPmax`
+
+Cada uso de `descansar` intenta recuperar:
+
+`HPDescanso = mínimo(0.10 × HPmax, presupuesto_restante, tope_herida - HP_actual)`
+
+y además reduce fatiga en:
+
+`25 + 0.2 × (Resistencia - 10)`
+
+puntos, sin bajar de 0.
+
+Por tanto:
+- normalmente los primeros tres descansos de un ciclo pueden aportar hasta 10% de HPmax cada uno;
+- si falta menos vida, solo recupera lo necesario;
+- el HP realmente recuperado es lo único que consume presupuesto;
+- cuando el presupuesto de campo llega a 0, `descansar` puede seguir reduciendo fatiga, pero recupera **0 HP**;
+- nunca cura por encima de HPmax;
+- conserva los topes de herida moderada/grave de §24.6.
+
+Ejemplo con HPmax 100:
+- personaje en 60 HP y presupuesto intacto;
+- primer descanso → hasta 70;
+- segundo → hasta 80;
+- tercero → hasta 90;
+- descansos posteriores → 0 HP, aunque todavía pueden reducir fatiga.
+
+Ejemplo en 75 HP:
+- primer descanso → 85;
+- segundo → 95;
+- tercero → 100 consumiendo solo 5 HP de presupuesto;
+- quedan 5 HP de presupuesto para daño posterior dentro del mismo ciclo.
+
+El objetivo no es imponer un techo artificial de 70/80/90% de vida, sino limitar **cuánta curación gratuita total** puede producir el descanso en una expedición.
+
+#### Persistencia y anti-spam
+
+El presupuesto usado debe ser persistente por personaje.
+
+**NO lo reinician:**
+- cambiar de sala;
+- entrar/salir de un pueblo;
+- esperar;
+- reconectar;
+- reiniciar servidor;
+- subir de nivel;
+- recibir daño;
+- comenzar/terminar un combate;
+- huir.
+
+Esto evita recuperar gratis indefinidamente mediante ida/vuelta, reconnect o daño pequeño deliberado.
+
+#### Reinicio del ciclo
+
+El presupuesto vuelve a estar completo únicamente cuando ocurre una **fuente legítima de recuperación completa/ciclo nuevo**, por ejemplo:
+- consumir un alimento/consumible que explícitamente reinicie recuperación de campo;
+- usar un servicio/punto de recuperación con coste/recurso cuando ese contenido exista;
+- una regla especial de contenido que declare explícitamente `reset_rest_budget=true`.
+
+La muerte/respawn **reinicia el presupuesto de campo** para evitar que un personaje recién reaparecido quede atrapado sin capacidad básica de recuperarse; el respawn mantiene sus valores propios de HP/fatiga y no cura al 100%.
+
+Hasta que alimentos/servicios estén implementados, muerte/respawn es el único reset global garantizado además de herramientas de administración/QA.
+
+#### Redondeo
+
+El motor puede conservar HP con decimales.
+
+La interfaz muestra HP y recuperación redondeados de la misma forma que el estado actual del personaje; nunca debe prometer más HP de los realmente aplicados.
+
+Si la recuperación calculada es positiva pero inferior a 1 HP, puede aplicarse internamente y acumularse; no forzar +1 artificial.
+
+#### Mensajes
+
+Cuando recupera HP:
+
+`Descansas y recuperas <X> HP. Recuperación de campo restante: <Y> HP.`
+
+Cuando ya no queda presupuesto:
+
+`Descansas y recuperas fuerzas, pero el descanso de campo ya no puede restaurar más vida. Necesitas provisiones o una recuperación completa legítima.`
+
+Si HP está completo:
+
+`Tu vida ya está al máximo. El descanso todavía puede reducir fatiga.`
 
 La interfaz puede ofrecer **Descansar** como acción contextual; botón y comando son la misma intención.
 
-### 24.9 Recuperación segura
+### 24.9 Recuperación segura y recursos
 
-Un lugar que Narrativa/Historia marque como punto válido de recuperación segura puede ofrecer una recuperación superior.
+Un lugar seguro **no restaura automáticamente HP al 100% solo por estar allí**.
 
-Una recuperación segura completa:
-- restaura HP al 100%;
-- reduce fatiga a 0;
-- mejora una herida en **un grado**:
+Un punto que Narrativa/Historia marque como recuperación segura puede:
+- permitir descansar sin peligro;
+- reducir fatiga conforme al sistema vigente;
+- habilitar alimentos, consumibles o servicios de recuperación cuando esos sistemas existan.
+
+Una **recuperación completa legítima** puede:
+- restaurar HP al 100%;
+- reducir fatiga a 0;
+- mejorar una herida en **un grado**:
   - grave → moderada;
   - moderada → leve;
-  - leve → ninguna.
+  - leve → ninguna;
+- reiniciar el presupuesto de recuperación de campo.
 
-El contenido decide qué lugares ofrecen esta recuperación; Jugabilidad fija el efecto.
+Pero requiere una fuente explícita de contenido/recurso/servicio; no se obtiene pulsando gratis el mismo botón indefinidamente.
 
-Para evitar spam, una nueva mejora de herida requiere **un nuevo ciclo legítimo de recuperación** definido por el servidor/contenido, no pulsar el mismo botón repetidamente en el mismo instante.
+El contenido decide qué recursos o lugares ofrecen esa recuperación y su coste. Jugabilidad fija el efecto.
+
+Para evitar spam, una nueva mejora de herida requiere **un nuevo ciclo legítimo de recuperación**, no repetir la misma acción gratuita.
 
 ### 24.10 Ataque básico antes del equipamiento definitivo
 
