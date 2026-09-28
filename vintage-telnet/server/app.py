@@ -215,7 +215,22 @@ def create_app(config=None):
             for direction, destination in room["exits"].items():
                 if destination not in visited_set:
                     unexplored.append({"from": room_id, "direction": direction})
-        return {"current_room": current_room, "places": places, "unexplored_exits": unexplored}
+        current_room_data = world.get_room(current_room)
+        current_room_name = current_room_data["name"] if current_room_data else current_room
+        room_names = {}
+        for r_id in state.get("visited_rooms", []):
+            r = world.get_room(r_id)
+            if r and "name" in r:
+                room_names[r_id] = r["name"]
+            elif world.is_home_room(r_id):
+                room_names[r_id] = world.HOME_ROOM_NAME
+        return {
+            "current_room": current_room,
+            "current_room_name": current_room_name,
+            "places": places,
+            "unexplored_exits": unexplored,
+            "room_names": room_names,
+        }
 
     def room_view(room_id, player_id):
         others = store.players_in_room(path, room_id, exclude_id=player_id)
