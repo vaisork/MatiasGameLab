@@ -18,7 +18,8 @@ class RespawnRoutingTests(unittest.TestCase):
         with store.connect(self.path) as db:
             db.execute(
                 """UPDATE players
-                   SET status = 'approved', species = 'humano'
+                   SET status = 'approved', species = 'humano',
+                       hp_max = 100, hp_current = 100
                    WHERE id = ?""",
                 (self.player_id,),
             )
