@@ -96,7 +96,7 @@ class CornalomoDeathTests(unittest.TestCase):
         return client.get("/api/inventory").json
 
     def assert_death_presentation(self, html):
-        self.assertIn('data-death-event', html)
+        self.assertIn('<section class="death-event" data-death-event', html)
         self.assertIn("HAS MUERTO", html)
         self.assertIn("Las fuerzas te abandonan", html)
         self.assertIn("REAPARICIÓN", html)
@@ -254,7 +254,7 @@ class CornalomoDeathTests(unittest.TestCase):
         # La presentación es efímera: refrescar/reconectar muestra el estado
         # persistido, pero no reproduce indefinidamente la muerte consumida.
         refreshed = self.client.get("/").get_data(as_text=True)
-        self.assertNotIn('data-death-event', refreshed)
+        self.assertNotIn('<section class="death-event" data-death-event', refreshed)
         self.assertNotIn("HAS MUERTO", refreshed)
 
         # 1 y 2: Encuentro terminado y sin encuentro fantasma en store/SQLite
