@@ -1280,6 +1280,32 @@ def update_combat_state(path, player_id, hp_current=None, wound=None, room=None,
         db.execute(f"UPDATE players SET {', '.join(fields)} WHERE id = ?", params)
 
 
+
+FIELD_REST_EPSILON = 1e-9
+
+
+def _field_rest_status_from_row(row):
+    """Estado no mutante del presupuesto REST-01."""
+    budget_max = row["field_rest_budget_max"]
+    used = max(0.0, row["field_rest_healed"] or 0.0)
+    if budget_max is None:
+        return {"available": True, "budget_remaining": None}
+    remaining = max(0.0, float(budget_max) - used)
+    if remaining <= FIELD_REST_EPSILON:
+        remaining = 0.0
+    return {"available": remaining > 0.0, "budget_remaining": remaining}
+
+
+def field_rest_status(path, player_id):
+    """Devuelve disponibilidad/restante de REST-01 sin modificar al personaje."""
+    with connect(path) as db:
+        row = db.execute(
+            """SELECT field_rest_budget_max, field_rest_healed
+               FROM players WHERE id = ?""",
+            (player_id,),
+        ).fetchone()
+        return _field_rest_status_from_row(row) if row is not None else None
+
 def apply_field_rest(path, player_id):
     """Aplica REST-01 de forma transaccional y devuelve el resultado real.
 
@@ -1298,6 +1324,19 @@ def apply_field_rest(path, player_id):
         if row is None:
             return None
 
+        status = _field_rest_status_from_row(row)
+        if not status["available"] and status["budget_remaining"] is not None:
+            used = max(0.0, row["field_rest_healed"] or 0.0)
+            return {
+                "hp_current": row["hp_current"],
+                "fatigue": row["fatigue"],
+                "healed": 0.0,
+                "budget_remaining": 0.0,
+                "budget_max": row["field_rest_budget_max"],
+                "field_rest_healed": used,
+                "blocked": "budget_exhausted",
+            }
+
         stored_budget = row["field_rest_budget_max"]
         used = max(0.0, row["field_rest_healed"] or 0.0)
         budget_max = stored_budget
@@ -1310,6 +1349,8 @@ def apply_field_rest(path, player_id):
             budget_max = missing_hp * combat.FIELD_REST_MISSING_HP_FRACTION
 
         remaining = max(0.0, (budget_max or 0.0) - used)
+        if remaining <= FIELD_REST_EPSILON:
+            remaining = 0.0
         result = combat.rest_result(
             row["hp_current"], row["hp_max"], row["fatigue"],
             row["attr_resistencia"], row["wound"], remaining,
