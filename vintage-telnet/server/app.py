@@ -391,7 +391,7 @@ def create_app(config=None):
                         view["available_actions"].append({"action": "hablar", "targets": [n["name"].lower(), n["id"]]})
                 if room_id == "khariel_forja" and not store.get_story_flag(path, player_id, "hoshai_paso_ayudado"):
                     view["available_actions"].append({"action": "ayudar", "targets": ["aren", "paso"]})
-                elif room_id == "brumak_forja" and not store.get_story_flag(path, player_id, "korven_carga_asentada"):
+                elif room_id == "brumak_forja" and not store.reconcile_story_flag_alias(path, player_id, "korven_carga_asentada", "korven_trabajo_ayudado"):
                     view["available_actions"].append({"action": "ayudar", "targets": ["karn", "apoyo"]})
                 n0 = population.get_room_n0_presence(room_id, room_data=room_data)
                 view["n0_presence"] = n0
