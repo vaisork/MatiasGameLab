@@ -1347,7 +1347,6 @@ def create_app(config=None):
                 intent="rest",
                 outcome=result["outcome"],
                 messages=result["messages"],
-                death_event=result.get("death_event"),
                 player=dict(player_now) if player_now else None,
             )
         if kind == "dodge":
@@ -1394,7 +1393,6 @@ def create_app(config=None):
                 intent="equip",
                 outcome=result["outcome"],
                 messages=result["messages"],
-                death_event=result.get("death_event"),
                 player=dict(player_now) if player_now else None,
             )
         if kind == "unequip":
@@ -1405,7 +1403,6 @@ def create_app(config=None):
                 intent="unequip",
                 outcome=result["outcome"],
                 messages=result["messages"],
-                death_event=result.get("death_event"),
                 player=dict(player_now) if player_now else None,
             )
         if kind == "talk_npc":
