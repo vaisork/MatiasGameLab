@@ -14,6 +14,6 @@ jobs:
         with:
           python-version: "3.11"
       - run: python -m pip install -r requirements.txt
-      - run: python -m unittest tests.test_progression -v
-      - run: python -m unittest tests.test_pilot_lindero_roto -v
+      - run: python -m unittest discover -s tests -p 'test_progression.py' -v
+      - run: python -m unittest discover -s tests -p 'test_pilot_lindero_roto.py' -v
       - run: python -m unittest discover -s tests -v
