@@ -290,7 +290,7 @@ class NPCDialogueWorldIsolationAndIntegrationTests(unittest.TestCase):
         conn.row_factory = sqlite3.Row
         tables = [
             r[0] for r in conn.execute("SELECT name FROM sqlite_master WHERE type='table' ORDER BY name").fetchall()
-            if r[0] not in ("npc_memories", "sqlite_sequence")
+            if r[0] not in ("npc_memories", "sqlite_sequence", "player_presence")
         ]
         dump = {}
         for table in tables:

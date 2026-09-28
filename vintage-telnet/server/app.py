@@ -1085,8 +1085,15 @@ def create_app(config=None):
 
     @app.post("/logout")
     def logout():
+        token = session.get("token", "")
         with store.connect(path) as db:
-            db.execute("DELETE FROM sessions WHERE token_hash = ?", (store.digest(session.get("token", "")),))
+            row = db.execute(
+                "SELECT player_id FROM sessions WHERE token_hash = ?",
+                (store.digest(token),),
+            ).fetchone()
+            if row and row["player_id"]:
+                store._clear_presence(db, row["player_id"])
+            db.execute("DELETE FROM sessions WHERE token_hash = ?", (store.digest(token),))
         session.clear()
         return redirect(url_for("index"), code=303)
 
