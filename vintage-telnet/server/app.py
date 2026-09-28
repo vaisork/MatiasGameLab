@@ -277,6 +277,8 @@ def create_app(config=None):
                     view["available_actions"].append({"action": "hablar", "targets": [n["name"].lower(), n["id"]]})
             if room_id == "khariel_forja" and not store.get_story_flag(path, player_id, "hoshai_paso_ayudado"):
                 view["available_actions"].append({"action": "ayudar", "targets": ["aren", "paso"]})
+            elif room_id == "brumak_forja" and not store.get_story_flag(path, player_id, "korven_carga_asentada"):
+                view["available_actions"].append({"action": "ayudar", "targets": ["karn", "apoyo"]})
         return view
 
     # Intenciones canonicas: boton y comando escrito deben terminar en la misma
@@ -299,7 +301,7 @@ def create_app(config=None):
     DODGE_ALIASES = {"esquivar"}
     BLOCK_ALIASES = {"bloquear"}
     RESIST_ALIASES = {"resistir"}
-    HELP_ALIASES = {"ayudar", "sujetar", "asegurar", "socorrer"}
+    HELP_ALIASES = {"ayudar", "sujetar", "asegurar", "socorrer", "sostener"}
     # GAMEPLAY.md 32.8: comandos canónicos de inventario/equipo (Issue #57).
     EQUIP_PREFIXES = ("equipar ",)
     UNEQUIP_PREFIXES = ("desequipar ",)
@@ -1271,6 +1273,19 @@ def create_app(config=None):
                     "entry.html", player=player_now, species_list=world.SPECIES, room=room_data,
                     error=dialogue_text,
                 ), 200
+            elif room_id == "brumak_forja":
+                result = npc_dialogue.converse(
+                    g.player,
+                    "brumak_taller_korven_01",
+                    message="ayudo a sostener el apoyo",
+                    room_id=room_id,
+                    db_path=path,
+                )
+                dialogue_text = f"{result.npc_name}: «{result.text}»"
+                return render_template(
+                    "entry.html", player=player_now, species_list=world.SPECIES, room=room_data,
+                    error=dialogue_text,
+                ), 200
             return render_template(
                 "entry.html", player=player_now, species_list=world.SPECIES, room=room_data,
                 error="No hay ninguna tarea o paso que asegurar aquí.",
@@ -1540,6 +1555,24 @@ def create_app(config=None):
                     g.player,
                     "khariel_taller_hoshai_01",
                     message="ayudo a sujetar el amarre",
+                    room_id=room_id,
+                    db_path=path,
+                )
+                player_now = store.player_for_token(path, session.get("token"))
+                return jsonify(
+                    accepted=True,
+                    intent="help_scene",
+                    npc=result.npc_id,
+                    npc_name=result.npc_name,
+                    reply=result.text,
+                    player=dict(player_now) if player_now else None,
+                    current_room=room_view(player_now["room"], player_now["id"]) if player_now else None,
+                ), 200
+            elif room_id == "brumak_forja":
+                result = npc_dialogue.converse(
+                    g.player,
+                    "brumak_taller_korven_01",
+                    message="ayudo a sostener el apoyo",
                     room_id=room_id,
                     db_path=path,
                 )
