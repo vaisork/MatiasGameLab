@@ -13,6 +13,27 @@
 
 # Handoff — Desarrollador de Servidor — Vintage Telnet
 
+## Integración lista para revisión: arte de Cornalomo en combate (#365) — 2026-09-28
+
+- **RESPONSABLE:** Codex — Integrador.
+- **HEAD BASE:** `daaa728eddde629cb0c694a4c00b40c8bc438cb9` (incluye el asset aprobado integrado por PR #188).
+- **RAMA:** `codex/vt-365-cornalomo-art`.
+- **CAMBIO:** `server/creatures.py` conecta `cornalomo` con `/assets/creatures/cornalomo.webp`; la prueba de `test_cornalomo_death.py` ahora comprueba el catálogo, el HTML de combate y la respuesta HTTP `image/webp`.
+- **AUDITORÍA:** Cornalomo era el único asset de criatura publicado en `main` que carecía de entrada en `CREATURE_ART`. Los demás assets de criatura publicados ya estaban registrados; las entregas que aún están en PR abiertas no se cuentan como assets integrados.
+- **PR #188:** fusionada como `daaa728`; SHA-256 runtime comprobado contra #180: `476a3304e5b2da49fe50fd21cc2e772cfa7c6b10f6cc77bcfe9dcc1f5ff428ee`. El workflow de publicación pasó después de actualizar su base.
+- **PRUEBAS:** `python -m unittest tests.test_cornalomo_death tests.test_published_art tests.test_entry -v` — **53/53 PASS**. `git diff --check` — **PASS**.
+- **PENDIENTES:** revisión e integración de esta corrección. **MERGE: NO / DEPLOY: NO.**
+
+## Integración lista para revisión: paisaje de las afueras de Valdren (#151) — 2026-09-28
+
+- **RESPONSABLE:** Codex — Integrador.
+- **HEAD BASE:** `494c16a164d31e40a9e0fb7cbd8507782bef88fc` (incluye el arte aprobado de #174).
+- **RAMA:** `codex/vt-151-valdren-outskirts-art`.
+- **CAMBIO:** conecta `zone.edran.valdren_outskirts` con `valdren-outskirts.webp`; el mismo contexto ya cubre Sendero, Parcela, Cerca y Lindero.
+- **CANON:** actualizado `VISUAL_CONTEXT_CANON.md` para reflejar el asset aprobado en #151 y publicado en #174.
+- **PRUEBAS:** `python -m unittest tests.test_published_art tests.test_entry tests.test_screen_stability tests.test_cinco_rutas -v` — **70/70 PASS**. `git diff --check` — **PASS**.
+- **PENDIENTES:** revisión e integración de esta conexión. **MERGE: NO / DEPLOY: NO.**
+
 ## Entrega lista para revisión: HOME-CORE — hogar personal persistente mínimo (#280) — 2026-09-27
 
 - **DESARROLLADOR:** Antigravity (Desarrollador principal para implementaciones pesadas).
