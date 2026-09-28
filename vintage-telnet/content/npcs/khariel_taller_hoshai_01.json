@@ -3,7 +3,7 @@
   "name": "Aren",
   "species": "Felaryn",
   "settlement": "Khariel",
-  "location": "Taller regional de Khariel; enlace a room_id pendiente de Narrativa para #287",
+  "location": "khariel_forja",
   "role": "Artesano de taller que recibe ayuda cotidiana y puede confiar una Hoja de Hoshai pendiente de Forja",
   "relationships": [],
   "knowledge_allowed": [
