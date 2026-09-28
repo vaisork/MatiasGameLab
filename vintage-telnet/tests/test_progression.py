@@ -229,6 +229,7 @@ class ProgressionIntegrationTests(unittest.TestCase):
         self.assertIn(points, html)
         self.assertIn(f"Siguiente nivel: {combat.xp_for_next_level(level)} XP", html)
         self.assertIn('data-level-up-dismiss', html)
+        self.assertIn('min-width:44px;min-height:44px', html)
 
     def test_html_inspect_shows_ephemeral_level_up_banner(self):
         self.set_columns(xp=combat.xp_for_next_level(1) - 4)
