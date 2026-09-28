@@ -1589,10 +1589,14 @@
   // respuesta no es una pantalla de juego, se recarga normal.
   let actionInFlight = false;
   let roomActivitySnapshot = "";
+  let roomPresenceSnapshot = "";
   const renderRoomPresence = names => {
     const host = document.querySelector("[data-room-presence]");
     if (!host) return;
     const clean = Array.isArray(names) ? names.filter(name => typeof name === "string" && name.trim()) : [];
+    const snapshot = clean.join("\u0000");
+    if (snapshot === roomPresenceSnapshot) return;
+    roomPresenceSnapshot = snapshot;
     host.hidden = clean.length === 0;
     if (!clean.length) {
       host.replaceChildren();
@@ -1647,8 +1651,6 @@
   const roomActivityTimer = window.setInterval(refreshRoomActivity, 5000);
   window.addEventListener("focus", refreshRoomActivity);
   document.addEventListener("visibilitychange", () => { if (!document.hidden) refreshRoomActivity(); });
-  window.addEventListener("pagehide", () => window.clearInterval(roomActivityTimer), {once: true});
-
   const announceGameState = () => {
     const live = document.getElementById("gameLiveStatus");
     const place = document.getElementById("placeTitle");
@@ -1717,6 +1719,7 @@
     shell.className = nextShell.className;
     const currentChat = document.querySelector("[data-room-chat]");
     if (currentChat) roomActivitySnapshot = currentChat.dataset.roomId + "|";
+    roomPresenceSnapshot = "";
     return true;
   };
   document.addEventListener("submit", async event => {
