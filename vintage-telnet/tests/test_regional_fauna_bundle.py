@@ -126,7 +126,10 @@ class RegionalPoolContractTests(unittest.TestCase):
             with self.subTest(room=room_id):
                 pool = encounters.pool_for_room(room_id)
                 self.assertIsNotNone(world.get_room(room_id))
-                self.assertIsNone(world.get_room_encounter(room_id))
+                if room_id == "alto_terraza_abandonada":
+                    self.assertEqual(world.get_room_encounter(room_id), "saltacresta")
+                else:
+                    self.assertIsNone(world.get_room_encounter(room_id))
                 self.assertEqual(pool["chance"], chance)
                 self.assertEqual(pool["creatures"], list(weighted))
 
@@ -154,15 +157,23 @@ class RegionalPoolContractTests(unittest.TestCase):
             for cid, _weight in pool["creatures"]))
 
     def test_scripted_encounter_preempts_regional_pool_without_rng(self):
-        for room_id in ("alto_escalones", "piedra_hendiduras"):
-            with self.subTest(room=room_id):
-                rng = Mock()
-                with patch.dict(world.ROOM_ENCOUNTER, {room_id: "espinajo_rastrojo"}):
-                    self.assertEqual(
-                        encounters.get_encounter_for_room(room_id, rng),
-                        "espinajo_rastrojo",
-                    )
-                self.assertEqual(rng.mock_calls, [])
+        # Hoshai ya tiene Saltacresta scripted en la terraza abandonada:
+        # #313 añade la capa random, pero nunca debe eclipsar ese encuentro.
+        rng = Mock()
+        self.assertEqual(
+            encounters.get_encounter_for_room("alto_terraza_abandonada", rng),
+            "saltacresta",
+        )
+        self.assertEqual(rng.mock_calls, [])
+
+        # También protegemos la precedencia genérica sobre otro pool regional.
+        rng = Mock()
+        with patch.dict(world.ROOM_ENCOUNTER, {"piedra_hendiduras": "espinajo_rastrojo"}):
+            self.assertEqual(
+                encounters.get_encounter_for_room("piedra_hendiduras", rng),
+                "espinajo_rastrojo",
+            )
+        self.assertEqual(rng.mock_calls, [])
 
     def test_hoshai_exact_mapping_and_zero_percent_pauses(self):
         for room_id, (chance, weighted) in HOSHAI.items():
@@ -199,7 +210,10 @@ class RegionalPoolContractTests(unittest.TestCase):
                 with self.subTest(region=region, room=room_id):
                     def sample():
                         rng = random.Random(406)
-                        return [encounters.get_encounter_for_room(room_id, rng) for _ in range(5000)]
+                        # El playtest estadístico mide la capa RANDOM. Un
+                        # scripted existente se valida por separado arriba.
+                        with patch.object(world, "get_room_encounter", return_value=None):
+                            return [encounters.get_encounter_for_room(room_id, rng) for _ in range(5000)]
                     results = sample()
                     self.assertEqual(results, sample())
                     hits = [result for result in results if result is not None]
@@ -215,8 +229,13 @@ class RegionalPoolContractTests(unittest.TestCase):
             counts = []
             for walk in range(20):
                 rng = random.Random(40600 + walk)
-                count = sum(encounters.get_encounter_for_room(room_id, rng) is not None
-                            for room_id in route[1:])
+                # El ritmo del pool random se mide sin contar scripted,
+                # porque presencia scripted > random es una capa distinta.
+                with patch.object(world, "get_room_encounter", return_value=None):
+                    count = sum(
+                        encounters.get_encounter_for_room(room_id, rng) is not None
+                        for room_id in route[1:]
+                    )
                 counts.append(count)
             with self.subTest(region=region):
                 self.assertTrue(any(count == 0 for count in counts), counts)
