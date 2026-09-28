@@ -529,7 +529,8 @@ class EntryTests(unittest.TestCase):
         ):
             self.assertIn(f'id="{symbol}"', html)
 
-        for label in ("Personaje", "Mapa", "Ayuda", "Enviar"):
+        self.assertIn("<span>Personaje</span>", html)
+        for label in ("Mapa", "Ayuda", "Enviar"):
             self.assertIn(f">{label}</button>", html)
 
         self.assertNotIn("button-huir-danger.png", html)
