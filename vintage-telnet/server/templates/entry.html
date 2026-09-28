@@ -101,6 +101,7 @@
     .location-art img{
       display:block;width:100%;height:clamp(120px,20vw,240px);object-fit:cover
     }
+    .controls-swap{display:grid;gap:8px}
     .controls-row{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:center}
     .dpad{
       display:grid;grid-template-columns:repeat(3,50px);grid-template-rows:repeat(3,46px);gap:5px;justify-content:center
@@ -164,6 +165,14 @@
     .inventory-meta{color:var(--muted);font:600 .76rem/1.4 ui-sans-serif,system-ui,sans-serif}
     .inventory-item .action{width:auto;min-width:112px}
     .inventory-empty{border:1px dashed #4b586a;border-radius:9px;padding:12px;color:var(--muted);font:600 .8rem/1.45 ui-sans-serif,system-ui,sans-serif}
+    .shop-content{display:grid;gap:14px}
+    .shop-section{display:grid;gap:8px}
+    .shop-section h4{margin:0;color:var(--gold)}
+    .shop-confirm{margin-top:12px;border:1px solid var(--gold);border-radius:10px;background:#1d1a13;padding:12px;display:grid;gap:10px}
+    .shop-confirm[hidden]{display:none}
+    .shop-confirm p{margin:0;font:600 .88rem/1.45 ui-sans-serif,system-ui,sans-serif}
+    .shop-confirm-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .shop-confirm-actions .action{min-height:44px}
     .forge-ok{color:#85d99a}.forge-blocked{color:#e3ad9f}
     .character-stack{display:grid;gap:10px}
     .character-block{border:1px solid #3d4a5d;border-radius:10px;background:#101722;padding:10px}
@@ -398,6 +407,22 @@
     .result-entry p{color:var(--green3)!important}
     .in-combat .result-entry{border-left-color:#b0402f;background:#240d0a66;border-radius:0 8px 8px 0;padding:6px 8px}
     .in-combat .result-entry p{color:#ffd9d1!important}
+    .level-up-slot:empty{display:none}
+    .level-up-event{
+      position:relative;border:2px solid #b58a32;border-radius:12px;
+      background:linear-gradient(180deg,#2a2413,#151309);
+      box-shadow:0 10px 28px #0007,inset 0 1px 0 #ffe6a633;padding:13px 44px 13px 15px;color:#f5ead0
+    }
+    .level-up-title{margin:0;color:#f6d76e;font:900 clamp(1.15rem,4vw,1.55rem)/1.1 Georgia,serif;letter-spacing:.06em}
+    .level-up-event p{margin:6px 0 0;line-height:1.4}
+    .level-up-points{font-weight:800;color:#fff0b8}
+    .level-up-progress{color:#d8ccb0;font-size:.86rem}
+    .level-up-dismiss{
+      position:absolute;right:8px;top:8px;min-width:44px;min-height:44px;border:1px solid #8a6d35;border-radius:8px;
+      background:#17140c;color:#f3dda2;font:800 1rem/1 ui-sans-serif,system-ui,sans-serif;cursor:pointer
+    }
+    .level-up-dismiss:hover{border-color:#d6b65e}
+    .level-up-dismiss:focus-visible{outline:3px solid #f0d18c;outline-offset:2px}
     .death-slot:empty{display:none}
     .death-event{
       border:2px solid #9a3328;border-radius:12px;background:linear-gradient(180deg,#260c0a,#120807);
@@ -704,6 +729,20 @@
     <div class="layout">
       <main class="game-shell{% if room.in_combat %} in-combat{% endif %}">
         <p class="sr-only" id="gameLiveStatus" role="status" aria-live="polite" aria-atomic="true"></p>
+        <div class="level-up-slot" data-swap="level">
+          {% if level_up_event and level_up_event.level_up %}
+          <section class="level-up-event" data-level-up-event role="status" aria-live="polite"
+                   aria-atomic="true" aria-labelledby="levelUpTitle">
+            <button class="level-up-dismiss" type="button" data-level-up-dismiss aria-label="Cerrar aviso de subida de nivel">×</button>
+            <h2 class="level-up-title" id="levelUpTitle">¡SUBISTE A NIVEL {{ level_up_event.new_level }}!</h2>
+            {% if level_up_event.levels_gained > 1 %}
+            <p>Avanzaste {{ level_up_event.levels_gained }} niveles en esta recompensa.</p>
+            {% endif %}
+            <p class="level-up-points">Ganaste {{ level_up_event.pa_gained }} PA{% if level_up_event.pp_gained %} y {{ level_up_event.pp_gained }} PP{% endif %}.</p>
+            <p class="level-up-progress">XP actual: {{ level_up_event.xp_current }}{% if level_up_event.xp_next is not none %} · Siguiente nivel: {{ level_up_event.xp_next }} XP{% else %} · Nivel máximo alcanzado{% endif %}</p>
+          </section>
+          {% endif %}
+        </div>
         <div class="death-slot" data-swap="death">
           {% if death_event %}
           <section class="death-event" data-death-event tabindex="-1" role="alert" aria-live="assertive"
@@ -826,8 +865,9 @@
         </section>
 
         {% set action_names = room.available_actions | map(attribute='action') | list %}
+        <div class="controls-swap" data-swap="controls">
         {% if room.encounter %}
-        <section class="combat-panel" aria-label="{{ 'Acciones de combate' if room.in_combat else 'Fauna cercana' }}" data-swap="controls">
+        <section class="combat-panel" aria-label="{{ 'Acciones de combate' if room.in_combat else 'Fauna cercana' }}">
           {% if 'atacar' in action_names %}
           <form method="post" action="/attack"><input type="hidden" name="csrf" value="{{ session.csrf }}"><button class="action action-attack" type="submit"><svg class="ui-icon" aria-hidden="true"><use href="#icon-swords"/></svg>Atacar</button></form>
           {% endif %}
@@ -856,7 +896,7 @@
         </section>
         {% endif %}
         {% if not room.in_combat %}
-        <section class="controls-row" aria-label="Controles principales" data-swap="controls">
+        <section class="controls-row" aria-label="Controles principales">
           <div class="dpad" aria-label="Movimiento cardinal">
             {% set exit_dirs = room.exits | map(attribute='direction') | list %}
             {% set exit_names = {} %}{% for e in room.exits if e.known_name %}{% set _ = exit_names.update({e.direction: e.known_name}) %}{% endfor %}
@@ -907,6 +947,7 @@
           {% endif %}
         </section>
         {% endif %}
+        </div>
 
         <section class="command-zone">
           <form class="commandbar" method="post" action="/command">
@@ -941,7 +982,7 @@
             <div class="fact"><b>Nivel</b><span>{{ player.level }} ({{ player.xp }} XP)</span></div>
             <div class="fact"><b>HP</b><span>{{ player.hp_current | round | int }}/{{ player.hp_max | round | int }}</span></div>
             {% if player.wound != 'ninguna' %}<div class="fact"><b>Herida</b><span>{{ player.wound }}</span></div>{% endif %}
-            <div class="fact" id="walletFact"><b>Sellos</b><span id="walletFactAmount">{{ player.sellos }} sellos</span></div>
+            <div class="fact" id="walletFact"><b>Sellos</b><span id="walletFactAmount">{{ player.sellos }} {{ 'sello' if player.sellos == 1 else 'sellos' }}</span></div>
           </div>
         </section>
       </aside>
@@ -963,7 +1004,7 @@
       <section class="character-block"><h3>Progreso</h3>
         <p class="points-callout" id="pointsCallout"{% if not player.pa_unspent and not player.pp_unspent %} hidden{% endif %}>{% if player.pa_unspent and player.pp_unspent %}Tienes {{ player.pa_unspent }} PA y {{ player.pp_unspent }} PP disponibles.{% elif player.pa_unspent %}Tienes {{ player.pa_unspent }} PA por asignar.{% elif player.pp_unspent %}Tienes {{ player.pp_unspent }} PP disponible{% if player.pp_unspent != 1 %}s{% endif %}.{% endif %}</p>
         <p id="charProgressLine">XP {{ player.xp }}/{{ xp_for_next_level(player.level) }} · PA sin gastar {{ player.pa_unspent }} · PP sin gastar {{ player.pp_unspent }}</p>
-        <p id="charWalletLine">Cartera: <strong id="charWalletAmount">{{ player.sellos }}</strong> sellos</p>
+        <p id="charWalletLine">Cartera: <strong id="charWalletAmount">{{ player.sellos }} {{ 'sello' if player.sellos == 1 else 'sellos' }}</strong></p>
       </section>
       <section class="character-block"><h3>Atributos</h3><p id="charAttributesLine">Fuerza {{ player.attr_fuerza }} · Resistencia {{ player.attr_resistencia }} · Agilidad {{ player.attr_agilidad }} · Percepción {{ player.attr_percepcion }}<br>
       Intelecto {{ player.attr_intelecto }} · Voluntad {{ player.attr_voluntad }} · Destreza {{ player.attr_destreza }} · Presencia {{ player.attr_presencia }}</p></section>
@@ -993,7 +1034,7 @@
     <div class="inventory-state">
       <div class="wallet-banner" style="background:#131d27;border:1px solid #3d4f66;padding:8px 12px;border-radius:4px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;">
         <span>Cartera de sellos:</span>
-        <strong id="inventoryWalletAmount">{{ player.sellos if player else 0 }} sellos</strong>
+        <strong id="inventoryWalletAmount">{{ player.sellos if player else 0 }} {{ 'sello' if player and player.sellos == 1 else 'sellos' }}</strong>
       </div>
       <p class="map-status" id="inventoryStatus" aria-live="polite">Abre Inventario para consultar el estado autoritativo del servidor.</p>
       <div id="equipmentSummary" class="equipment-summary"></div>
@@ -1001,42 +1042,28 @@
     </div>
   </div>
 </dialog>
-{% if room and room.id == 'valdren_forja' %}
 <dialog id="shopDialog" aria-labelledby="shopDialogTitle">
   <div class="modal-head"><strong id="shopDialogTitle">Taller de Daro — Valdren</strong><button class="close" data-close aria-label="Cerrar taller">×</button></div>
   <div class="modal-body">
     <div class="shop-state">
       <div class="wallet-banner" style="background:#131d27;border:1px solid #3d4f66;padding:8px 12px;border-radius:4px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;">
         <span>Tus fondos disponibles:</span>
-        <strong id="shopWalletAmount">{{ player.sellos if player else 0 }} sellos</strong>
+        <strong id="shopWalletAmount">{{ player.sellos if player else 0 }} {{ 'sello' if player and player.sellos == 1 else 'sellos' }}</strong>
       </div>
-      <p class="map-status" id="shopStatus" aria-live="polite">Daro forja y vende armas comunes, y recompra al 35% de su valor.</p>
+      <p class="map-status" id="shopStatus" aria-live="polite">Abre el taller para consultar catálogo, precios y reventa autoritativos.</p>
       <div id="shopContent" class="shop-content">
-        <h4 style="margin:10px 0 6px">Catálogo de venta</h4>
-        <div class="shop-catalog-list">
-          <div class="inventory-item">
-            <div><strong>Varita de aprendiz</strong><div class="inventory-meta">Arma · Daño base 7 · 40 sellos</div></div>
-            <form method="post" action="/command"><input type="hidden" name="csrf" value="{{ session.csrf }}"><input type="hidden" name="text" value="comprar varita de aprendiz"><button class="action action-primary" type="submit">Comprar (40)</button></form>
-          </div>
-          <div class="inventory-item">
-            <div><strong>Puñal de camino</strong><div class="inventory-meta">Arma · Daño base 8 · 50 sellos</div></div>
-            <form method="post" action="/command"><input type="hidden" name="csrf" value="{{ session.csrf }}"><input type="hidden" name="text" value="comprar puñal de camino"><button class="action action-primary" type="submit">Comprar (50)</button></form>
-          </div>
-          <div class="inventory-item">
-            <div><strong>Arco de ruta</strong><div class="inventory-meta">Arma · Daño base 9 · 65 sellos</div></div>
-            <form method="post" action="/command"><input type="hidden" name="csrf" value="{{ session.csrf }}"><input type="hidden" name="text" value="comprar arco de ruta"><button class="action action-primary" type="submit">Comprar (65)</button></form>
-          </div>
-          <div class="inventory-item">
-            <div><strong>Espada de juramento</strong><div class="inventory-meta">Arma · Daño base 10 · Bloquear/desviar · 85 sellos</div></div>
-            <form method="post" action="/command"><input type="hidden" name="csrf" value="{{ session.csrf }}"><input type="hidden" name="text" value="comprar espada de juramento"><button class="action action-primary" type="submit">Comprar (85)</button></form>
-          </div>
+        <div class="inventory-empty">El catálogo todavía no se ha cargado.</div>
+      </div>
+      <div class="shop-confirm" id="shopConfirm" hidden>
+        <p id="shopConfirmText"></p>
+        <div class="shop-confirm-actions">
+          <button class="action" type="button" id="shopCancel">Cancelar</button>
+          <button class="action action-primary" type="button" id="shopAccept">Confirmar</button>
         </div>
-        <p class="map-status" style="margin-top:12px">Para vender un arma a Daro (35% de valor), usa <code>vender &lt;arma&gt;</code> en el terminal tras desequiparla.</p>
       </div>
     </div>
   </div>
 </dialog>
-{% endif %}
 <dialog id="mapDialog" aria-labelledby="mapDialogTitle">
   <div class="modal-head"><strong id="mapDialogTitle">Mapa y orientación</strong><button class="close" data-close aria-label="Cerrar mapa">×</button></div>
   <div class="modal-body">
@@ -1369,6 +1396,20 @@
   const equipmentSummary = document.getElementById("equipmentSummary");
   const csrfValue = document.querySelector('input[name="csrf"]')?.value || "";
 
+  const formatSellos = amount => {
+    const value = Number(amount);
+    if (!Number.isFinite(value)) return "— sellos";
+    return value + " " + (value === 1 ? "sello" : "sellos");
+  };
+  const updateWallet = amount => {
+    if (amount == null) return;
+    const text = formatSellos(amount);
+    ["inventoryWalletAmount", "walletAmount", "shopWalletAmount", "charWalletAmount", "walletFactAmount"].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = text;
+    });
+  };
+
   const itemDetails = item => {
     const parts = [item.category === "weapon" ? "Arma" : "Armadura"];
     if (item.base_damage != null) parts.push("Daño base " + item.base_damage);
@@ -1407,7 +1448,7 @@
       ["Armadura activa", armor ? armor.name : "Ninguna"],
       ["Protección total", Math.round((data.armor_reduction_total || 0) * 100) + "%"],
       ["Carga física", "×" + Number(data.carga_multiplier || 1).toFixed(2)],
-      ["Cartera de sellos", (data.sellos != null ? data.sellos : "—") + " sellos"],
+      ["Cartera de sellos", formatSellos(data.sellos)],
     ].forEach(([label, value]) => {
       const slot = document.createElement("div");
       slot.className = "equipment-slot";
@@ -1419,16 +1460,7 @@
       equipmentSummary.appendChild(slot);
     });
 
-    if (data.sellos != null) {
-      ["inventoryWalletAmount", "walletAmount", "shopWalletAmount"].forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.textContent = data.sellos + " sellos";
-      });
-      const charWallet = document.getElementById("charWalletAmount");
-      if (charWallet) charWallet.textContent = data.sellos;
-      const walletFact = document.getElementById("walletFactAmount");
-      if (walletFact) walletFact.textContent = data.sellos + " sellos";
-    }
+    updateWallet(data.sellos);
 
     const items = Array.isArray(data.items) ? data.items : [];
     if (!items.length) {
@@ -1474,6 +1506,214 @@
   document.addEventListener("click", event => {
     if (event.target.closest("[data-inventory-open]")) loadInventory();
   });
+
+  const shopStatus = document.getElementById("shopStatus");
+  const shopContent = document.getElementById("shopContent");
+  const shopConfirm = document.getElementById("shopConfirm");
+  const shopConfirmText = document.getElementById("shopConfirmText");
+  const shopCancel = document.getElementById("shopCancel");
+  const shopAccept = document.getElementById("shopAccept");
+  const shopDialog = document.getElementById("shopDialog");
+  let shopPending = null;
+
+  const shopRow = (nameText, metaText, button) => {
+    const row = document.createElement("div");
+    row.className = "inventory-item";
+    const info = document.createElement("div");
+    const name = document.createElement("strong");
+    name.textContent = nameText;
+    const meta = document.createElement("div");
+    meta.className = "inventory-meta";
+    meta.textContent = metaText;
+    info.append(name, meta);
+    row.append(info, button);
+    return row;
+  };
+  const closeShopConfirm = () => {
+    shopPending = null;
+    if (shopConfirm) shopConfirm.hidden = true;
+  };
+  const requestShopConfirmation = (kind, button) => {
+    if (!shopConfirm || !shopConfirmText || !shopAccept) return;
+    const price = Number(button.dataset.shopPrice);
+    const label = button.dataset.shopLabel || "este objeto";
+    shopPending = {
+      kind,
+      itemKey: button.dataset.shopBuy || null,
+      itemId: button.dataset.shopSell || null,
+      label,
+      price,
+    };
+    shopConfirmText.textContent = kind === "buy"
+      ? "¿Comprar " + label + " por " + formatSellos(price) + "? El servidor volverá a validar saldo y precio."
+      : "Daro te paga " + formatSellos(price) + " por " + label + ". ¿Confirmar venta?";
+    shopConfirm.hidden = false;
+    shopAccept.focus();
+  };
+  const renderShop = (shop, inventory) => {
+    updateWallet(shop.sellos);
+    shopContent.replaceChildren();
+    if (!shop.in_shop) {
+      const empty = document.createElement("div");
+      empty.className = "inventory-empty";
+      empty.textContent = "Debes estar en la Forja de Valdren para comerciar con Daro.";
+      shopContent.appendChild(empty);
+      return;
+    }
+
+    const catalog = Array.isArray(shop.catalog) ? shop.catalog : [];
+    const catalogByKey = new Map(catalog.map(entry => [entry.item_key, entry]));
+    const balance = Number(shop.sellos || 0);
+
+    const buySection = document.createElement("section");
+    buySection.className = "shop-section";
+    const buyTitle = document.createElement("h4");
+    buyTitle.textContent = "Comprar";
+    buySection.appendChild(buyTitle);
+    catalog.forEach(entry => {
+      const price = Number(entry.price);
+      const affordable = balance >= price;
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "action action-primary";
+      button.dataset.shopBuy = entry.item_key;
+      button.dataset.shopLabel = entry.name;
+      button.dataset.shopPrice = String(price);
+      button.textContent = affordable ? "Comprar · " + formatSellos(price) : "Faltan " + formatSellos(price - balance);
+      if (!affordable) {
+        button.disabled = true;
+        button.title = "Necesitas " + formatSellos(price) + ". Tienes " + formatSellos(balance) + ".";
+      }
+      const details = ["Arma"];
+      if (entry.base_damage != null) details.push("Daño base " + entry.base_damage);
+      if (entry.can_block) details.push("Permite bloquear");
+      details.push("Precio " + formatSellos(price));
+      buySection.appendChild(shopRow(entry.name, details.join(" · "), button));
+    });
+    if (!catalog.length) {
+      const empty = document.createElement("div");
+      empty.className = "inventory-empty";
+      empty.textContent = "Daro no tiene artículos disponibles en este momento.";
+      buySection.appendChild(empty);
+    }
+    shopContent.appendChild(buySection);
+
+    const sellSection = document.createElement("section");
+    sellSection.className = "shop-section";
+    const sellTitle = document.createElement("h4");
+    sellTitle.textContent = "Vender";
+    sellSection.appendChild(sellTitle);
+    const owned = Array.isArray(inventory.items) ? inventory.items : [];
+    const weaponCount = owned.filter(item => item.category === "weapon").length;
+    const resaleItems = owned.filter(item => catalogByKey.has(item.item_key));
+    resaleItems.forEach(item => {
+      const entry = catalogByKey.get(item.item_key);
+      const price = Number(entry.resale_price);
+      let blocked = "";
+      if (item.equipped) blocked = "Está equipado; desequípalo antes de vender.";
+      else if (item.category === "weapon" && weaponCount <= 1) blocked = "Es tu última arma utilizable; consigue otra antes de vender.";
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "action";
+      button.dataset.shopSell = item.id;
+      button.dataset.shopLabel = item.name;
+      button.dataset.shopPrice = String(price);
+      button.textContent = "Vender · +" + formatSellos(price);
+      if (blocked) {
+        button.disabled = true;
+        button.title = blocked;
+      }
+      const meta = "Daro paga " + formatSellos(price) + (blocked ? " · " + blocked : "");
+      sellSection.appendChild(shopRow(item.name + (item.equipped ? " · Equipado" : ""), meta, button));
+    });
+    if (!resaleItems.length) {
+      const empty = document.createElement("div");
+      empty.className = "inventory-empty";
+      empty.textContent = "No tienes armas comunes que Daro recompre.";
+      sellSection.appendChild(empty);
+    }
+    shopContent.appendChild(sellSection);
+  };
+  const loadShop = async finalMessage => {
+    if (!shopStatus || !shopContent) return;
+    closeShopConfirm();
+    shopStatus.textContent = "Consultando catálogo, saldo e inventario…";
+    shopContent.className = "shop-content";
+    shopContent.replaceChildren();
+    const loading = document.createElement("div");
+    loading.className = "inventory-empty";
+    loading.textContent = "Cargando comercio autoritativo…";
+    shopContent.appendChild(loading);
+    try {
+      const [shopResponse, inventoryResponse] = await Promise.all([
+        fetch("/api/shop/daro", {headers: {"Accept": "application/json"}}),
+        fetch("/api/inventory", {headers: {"Accept": "application/json"}}),
+      ]);
+      if (!shopResponse.ok || !inventoryResponse.ok) throw new Error("shop unavailable");
+      const shop = await shopResponse.json();
+      const inventory = await inventoryResponse.json();
+      renderShop(shop, inventory);
+      renderInventory(inventory);
+      shopStatus.textContent = finalMessage || "Precios, saldo y reventa confirmados por el servidor.";
+    } catch (_error) {
+      shopContent.replaceChildren();
+      const empty = document.createElement("div");
+      empty.className = "inventory-empty";
+      empty.textContent = "No se pudo cargar el taller. Tus sellos e inventario no cambiaron.";
+      shopContent.appendChild(empty);
+      shopStatus.textContent = "Taller no disponible en este momento.";
+    }
+  };
+
+  document.addEventListener("click", event => {
+    if (event.target.closest("[data-shop-open]")) {
+      loadShop();
+      return;
+    }
+    const buy = event.target.closest("[data-shop-buy]");
+    if (buy && !buy.disabled) {
+      requestShopConfirmation("buy", buy);
+      return;
+    }
+    const sell = event.target.closest("[data-shop-sell]");
+    if (sell && !sell.disabled) requestShopConfirmation("sell", sell);
+  });
+  if (shopCancel) shopCancel.addEventListener("click", () => {
+    closeShopConfirm();
+    shopStatus.textContent = "Operación cancelada. No cambiaron tus sellos ni tu inventario.";
+  });
+  if (shopDialog) shopDialog.addEventListener("close", closeShopConfirm);
+  if (shopAccept) shopAccept.addEventListener("click", async () => {
+    if (!shopPending) return;
+    const request = shopPending;
+    shopAccept.disabled = true;
+    try {
+      const endpoint = request.kind === "buy" ? "/api/shop/daro/buy" : "/api/shop/daro/sell";
+      const payload = request.kind === "buy"
+        ? {item_key: request.itemKey, csrf: csrfValue}
+        : {item_id: request.itemId, csrf: csrfValue};
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: {"Content-Type": "application/json", "Accept": "application/json"},
+        body: JSON.stringify(payload),
+      });
+      const body = await response.json().catch(() => ({}));
+      updateWallet(body.sellos);
+      const serverMessage = Array.isArray(body.messages) && body.messages.length
+        ? body.messages.join(" ")
+        : (response.ok ? "Operación completada." : "Daro rechazó la operación.");
+      const balanceMessage = body.sellos == null ? "" :
+        (request.kind === "buy" ? " Te quedan " : " Ahora tienes ") + formatSellos(body.sellos) + ".";
+      closeShopConfirm();
+      await loadShop(serverMessage + balanceMessage);
+    } catch (_error) {
+      closeShopConfirm();
+      shopStatus.textContent = "No se pudo contactar al servidor. No confirmamos ningún cambio.";
+    } finally {
+      shopAccept.disabled = false;
+    }
+  });
+
   const mapStatus = document.getElementById("mapStatus");
   const mapContent = document.getElementById("mapContent");
   const headingStatus = document.getElementById("headingStatus");
@@ -1831,15 +2071,24 @@
     const nextShell = next.querySelector(".game-shell");
     const shell = document.querySelector(".game-shell");
     if (!nextShell || !shell) return false;
-    for (const key of ["death", "place", "art", "terminal", "controls", "side"]) {
-      const current = document.querySelector(`[data-swap="${key}"]`);
+    for (const key of ["level", "death", "place", "art", "terminal", "controls", "side"]) {
+      const currentMatches = [...document.querySelectorAll(`[data-swap="${key}"]`)];
+      const current = currentMatches[0];
       const incoming = next.querySelector(`[data-swap="${key}"]`);
       if (!current || !incoming) continue;
+      // Una versión anterior podía dejar dos regiones "controls" en el DOM.
+      // Al reemplazar, eliminar cualquier duplicado obsoleto garantiza que el
+      // siguiente swap siempre parta de una sola región autoritativa.
+      const removeStaleCopies = () => currentMatches.slice(1).forEach(extra => extra.remove());
       // La imagen no se toca si sigue siendo la misma: así no parpadea.
       if (key === "art" && current.dataset.artSrc === incoming.dataset.artSrc
-          && current.className === incoming.className) continue;
+          && current.className === incoming.className) {
+        removeStaleCopies();
+        continue;
+      }
       const imported = document.importNode(incoming, true);
       current.replaceWith(imported);
+      removeStaleCopies();
       if (key === "art") wireArt(imported);
     }
     shell.className = nextShell.className;
@@ -1862,6 +2111,13 @@
     roomPresenceSnapshot = "";
     return true;
   };
+  document.addEventListener("click", event => {
+    const dismiss = event.target.closest("[data-level-up-dismiss]");
+    if (!dismiss) return;
+    const panel = dismiss.closest("[data-level-up-event]");
+    if (panel) panel.remove();
+  });
+
   document.addEventListener("submit", async event => {
     const form = event.target;
     if (!(form instanceof HTMLFormElement) || !form.closest(".game-shell")) return;
