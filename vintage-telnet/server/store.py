@@ -16,7 +16,7 @@ STATUSES = ("pending", "approved", "rejected", "removed")
 
 # Version de esquema que deja initialize(); ops/inventory_migration_probe.py
 # la usa para validar una migracion de prueba contra la copia de la base viva.
-SCHEMA_VERSION = 12
+SCHEMA_VERSION = 13
 
 # Cuentas con varios personajes (petición de Javier, 2026-09-25): un usuario
 # para entrar puede tener hasta 5 personajes; el nombre de cada personaje es
@@ -142,6 +142,9 @@ CHARACTER_TABLES = [
             creature_id TEXT NOT NULL,
             hp_current REAL NOT NULL,
             failed_flee_attempts INTEGER NOT NULL DEFAULT 0,
+            signature_cooldown INTEGER NOT NULL DEFAULT 0,
+            apertura INTEGER NOT NULL DEFAULT 0,
+            prepared_action TEXT,
             created_at TEXT NOT NULL,
             UNIQUE(player_id, room_id))""",
 ]
@@ -298,6 +301,15 @@ def initialize(path):
             db.execute("CREATE INDEX IF NOT EXISTS npc_memories_player_npc ON npc_memories(player_id, npc_id, id)")
             db.execute(NPC_ACTION_LOGS_TABLE)
             db.execute("CREATE INDEX IF NOT EXISTS npc_action_logs_player_npc ON npc_action_logs(player_id, npc_id, id)")
+        if version <= 12:
+            # v13: Issue #216 (GAMEPLAY.md §36) -- capacidades firma de clase y accion preparada enemiga.
+            cols = {row[1] for row in db.execute("PRAGMA table_info(room_encounters)").fetchall()}
+            if "signature_cooldown" not in cols:
+                db.execute("ALTER TABLE room_encounters ADD COLUMN signature_cooldown INTEGER NOT NULL DEFAULT 0")
+            if "apertura" not in cols:
+                db.execute("ALTER TABLE room_encounters ADD COLUMN apertura INTEGER NOT NULL DEFAULT 0")
+            if "prepared_action" not in cols:
+                db.execute("ALTER TABLE room_encounters ADD COLUMN prepared_action TEXT")
         db.execute(f"PRAGMA user_version = {SCHEMA_VERSION}")
 
 
@@ -850,7 +862,15 @@ def get_encounter(path, player_id, room_id):
         row = db.execute(
             "SELECT * FROM room_encounters WHERE player_id = ? AND room_id = ?", (player_id, room_id)
         ).fetchone()
-        return dict(row) if row else None
+        if not row:
+            return None
+        res = dict(row)
+        if res.get("prepared_action") and isinstance(res["prepared_action"], str):
+            try:
+                res["prepared_action"] = json.loads(res["prepared_action"])
+            except Exception:
+                pass
+        return res
 
 
 COMBAT_LOG_TABLE = """CREATE TABLE combat_log (
@@ -885,23 +905,34 @@ def get_combat_log(path, player_id, room_id, limit=20):
     return [dict(row) for row in reversed(rows)]
 
 
-def start_encounter(path, player_id, room_id, creature_id, hp):
+_UNSET = object()
+
+
+def start_encounter(path, player_id, room_id, creature_id, hp, prepared_action=None):
     """No-op si ya hay un encuentro activo en esa sala para ese jugador
     (persistente: si se aleja y vuelve sin resolverlo, sigue con la misma
     vida que tenia)."""
+    if prepared_action is None and creature_id:
+        from . import creatures
+        c = creatures.get_creature(creature_id)
+        if c and c.get("prepared_action"):
+            prepared_action = c.get("prepared_action")
+    prep_json = json.dumps(prepared_action) if isinstance(prepared_action, dict) else prepared_action
     with connect(path) as db:
         cursor = db.execute(
             """INSERT OR IGNORE INTO room_encounters
-               (player_id, room_id, creature_id, hp_current, failed_flee_attempts, created_at)
-               VALUES (?, ?, ?, ?, 0, ?)""",
-            (player_id, room_id, creature_id, hp, utcnow()),
+               (player_id, room_id, creature_id, hp_current, failed_flee_attempts,
+                signature_cooldown, apertura, prepared_action, created_at)
+               VALUES (?, ?, ?, ?, 0, 0, 0, ?, ?)""",
+            (player_id, room_id, creature_id, hp, prep_json, utcnow()),
         )
         if cursor.rowcount:
             # Encuentro nuevo: no arrastra relato de una pelea anterior.
             db.execute("DELETE FROM combat_log WHERE player_id = ? AND room_id = ?", (player_id, room_id))
 
 
-def update_encounter(path, player_id, room_id, hp_current=None, failed_flee_attempts=None):
+def update_encounter(path, player_id, room_id, hp_current=None, failed_flee_attempts=None,
+                     signature_cooldown=None, apertura=None, prepared_action=_UNSET):
     fields, params = [], []
     if hp_current is not None:
         fields.append("hp_current = ?")
@@ -909,6 +940,18 @@ def update_encounter(path, player_id, room_id, hp_current=None, failed_flee_atte
     if failed_flee_attempts is not None:
         fields.append("failed_flee_attempts = ?")
         params.append(failed_flee_attempts)
+    if signature_cooldown is not None:
+        fields.append("signature_cooldown = ?")
+        params.append(signature_cooldown)
+    if apertura is not None:
+        fields.append("apertura = ?")
+        params.append(apertura)
+    if prepared_action is not _UNSET:
+        fields.append("prepared_action = ?")
+        if isinstance(prepared_action, dict):
+            params.append(json.dumps(prepared_action))
+        else:
+            params.append(prepared_action)
     if not fields:
         return
     params += [player_id, room_id]

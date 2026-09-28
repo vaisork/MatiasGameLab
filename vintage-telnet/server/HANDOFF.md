@@ -1,5 +1,49 @@
 # Handoff — Desarrollador de Servidor — Vintage Telnet
 
+## Entrega lista para revisión: Capacidades firma de clase + Intención enemiga v1 (#216) — 2026-09-27
+
+- **DESARROLLADOR:** Antigravity (Desarrollador principal para implementaciones pesadas).
+- **HEAD BASE:** `39349d0` (HEAD actual de `origin/main`).
+- **TAREA:** Issue #216 — `VT-GAME/DEV: capacidades firma de clase + intención enemiga v1` (P0 OPERACIÓN / GAMEPLAY §36 / #208 / CLASSES.md).
+- **RAMA:** `antigravity/vt-216-signature-skills`
+- **CONTRATO APROBADO Y ALCANCE (GAMEPLAY §36):**
+  - **1ª Capacidad firma de las 4 clases iniciales:**
+    1. **Juramentado — *Guardia Comprometida*:** (CD: 2 rondas). Requiere arma u objeto con capacidad de bloqueo (`can_block`). Reduce daño recibido según `destreza` y `resistencia` (`guardia_reduction`). Ante ataques frontales preparados (`is_frontal`), impone penalización de precisión enemiga proporcional a la destreza del defensor.
+    2. **Arcano — *Impulso Arcano*:** (CD: 4 rondas). Requiere foco arcano equipado (`is_arcane_focus`). Si el enemigo prepara una acción interrumpible (`interruptible`), la cancela y penaliza su precisión básica en -10%; si no es interrumpible, reduce la precisión enemiga en -20% durante el turno.
+    3. **Sombra — *Borrar el Foco*:** (CD: 4 rondas). Quiebre de foco táctico. Reduce la precisión enemiga en -25%. Si el ataque enemigo falla como consecuencia, otorga el estado temporal `Apertura` (+15% de precisión en el próximo ataque básico de la Sombra).
+    4. **Artífice — *Tiro de Interrupción*:** (CD: 2 rondas). Requiere arma a distancia equipada (`is_ranged`). Disparo rápido que inflige el 75% del daño de ataque básico. Si conecta y la criatura tiene una acción interrumpible preparada, la cancela por completo; si no es interrumpible, penaliza la precisión enemiga en -15%.
+  - **Intención enemiga v1 (Acción preparada):**
+    - Estructura `prepared_action`: `id`, `name`, `precision`, `damage`, `interruptible`, `frontal`, `telegraph`.
+    - Implementado y configurado en `espinajo_rastrojo` (`embestida_territorial`, precisión 60%, daño 8, telegrafiado en sala y terminal).
+    - Respuesta reactiva: las acciones de combate (`atacar`, `esquivar`, `resistir`, `bloquear`, `huir`, `capacidad`) interactúan con la acción preparada enemiga, resolviendo o mitigando la embestida y decrementando cooldowns por turno.
+  - **Fatiga autoritativa:**
+    - Coste base de 5 puntos de fatiga por activación (`FATIGUE_BASE_COST["capacidad_firma"] = 5`), afectado por resistencia, heridas y armadura.
+  - **Persistencia en SQLite (v13):**
+    - Columnas añadidas a `room_encounters`: `signature_cooldown` (INTEGER DEFAULT 0), `apertura` (INTEGER DEFAULT 0), `prepared_action` (TEXT JSON).
+    - Migración defensiva v13 sin duplicación ni conflicto con esquemas base nuevos.
+  - **UI / API / Terminal:**
+    - Expuesto en vista de sala `room["signature_ability"]` con nombre, recarga restante, disponibilidad y razón de deshabilitación.
+    - Botón de capacidad firma integrado en `combat-panel` (`entry.html`), deshabilitado con contador de rondas en enfriamiento.
+    - Telegrafiado visual de la intención enemiga (`room["encounter"]["telegraph"]`) en sala y panel de combate.
+    - Endpoint `/ability` y parseo de intención en `/api/intent` y `/command` (alias como "capacidad", "guardia comprometida", "impulso arcano", "borrar el foco", "tiro de interrupción").
+- **ARCHIVOS MODIFICADOS / CREADOS:**
+  - `vintage-telnet/server/items.py`: Flags `is_arcane_focus` y `is_ranged` en catálogo de armas y funciones de consulta `can_block`, `is_arcane_focus`, `is_ranged`.
+  - `vintage-telnet/server/combat.py`: Constantes y fórmulas de resolución para las 4 capacidades firma (`guardia_reduction`, `resolve_guardia_comprometida_attack_roll`, `resolve_impulso_arcano_effect`, `resolve_borrar_el_foco_effect`, `resolve_tiro_de_interrupcion_attack_roll`), fatiga de capacidad firma (5 base).
+  - `vintage-telnet/server/creatures.py`: Definición de acción preparada en `espinajo_rastrojo` (`embestida_territorial`).
+  - `vintage-telnet/server/store.py`: `SCHEMA_VERSION = 13`, columnas y migración en `room_encounters`, persistencia de `signature_cooldown`, `apertura`, `prepared_action` en `start_encounter`, `update_encounter` y `get_encounter`.
+  - `vintage-telnet/server/app.py`: Validación contextual de capacidad firma `_can_use_signature_ability`, manejo del estado `apertura` y decremento de cooldowns en todas las acciones de combate, implementación de `attempt_signature_ability`, exposición en `/api/intent`, `/ability`, `/command`, `/api/room` y `/api/character`.
+  - `vintage-telnet/server/templates/entry.html`: Visualización de acción telegrafiada enemiga y botón de capacidad de clase con estado dinámico de cooldown.
+  - `vintage-telnet/tests/test_signature_skills.py` (nuevo): 14 tests de integración y unidad cubriendo requisitos de armas, mitigación, interrupciones, estados temporales, fatiga y contratos de API.
+  - `vintage-telnet/server/HANDOFF.md`: Este registro.
+
+### Pruebas ejecutadas y verificación
+
+1. `vintage-telnet/tests/test_signature_skills.py`: **14/14 tests PASS**.
+2. Suite completa descubierta (`python -m unittest discover -s tests`): **403 tests PASS (0 fallos, 0 errores, 1 skipped en Windows)**.
+3. MERGE: NO / DEPLOY: NO.
+
+---
+
 ## Entrega lista para revisión: Acciones estructuradas derivadas del diálogo con gate autoritativo (#247) — 2026-09-27
 
 - **DESARROLLADOR:** Antigravity (Desarrollador principal para implementaciones pesadas).
