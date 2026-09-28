@@ -1,0 +1,24 @@
+name: junior-hoshai-313-validation
+
+on:
+  push:
+    branches:
+      - junior/313-hoshai-regional-pool
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: vintage-telnet
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m pip install -r requirements.txt
+      - run: python -m unittest tests.test_random_encounters -v
+      - run: python -m unittest tests.test_regional_fauna_bundle -v
+      - run: python -m unittest tests.test_unapiedra -v
+      - run: python -m unittest tests.test_saltacresta -v
+      - run: python -m unittest discover -s tests -v
