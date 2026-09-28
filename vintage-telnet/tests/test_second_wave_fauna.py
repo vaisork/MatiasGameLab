@@ -54,17 +54,27 @@ class SecondWaveCreatureContractTests(unittest.TestCase):
                 self.assertNotIn("prepared_action", creature)
                 self.assertNotIn("multi_enemy", creature)
 
-    def test_creatures_not_in_unauthorized_pools_or_unintegrated_rooms(self):
-        """Ninguna criatura debe asignarse a salas inexistentes o pools previos sin contrato de ramal."""
-        all_pool_creatures = {
-            cid
-            for pool in encounters.RANDOM_ENCOUNTER_POOLS.values()
-            for cid, _w in pool["creatures"]
+    def test_creatures_appear_only_in_authorized_surface_branch_pools(self):
+        """La segunda oleada sólo entra en pools de los ramales ya integrados (#458)."""
+        authorized_rooms = {
+            "remojunco": {"mh_02_bordes_vencidos", "mh_03_juncos_partidos", "mh_05_terreno_dos_aguas",
+                           "mh_06_restos_cauce", "mh_08_rodeo_base", "mh_09_plataforma_caida"},
+            "garralaja": {"ge_02_terrazas_rotas", "ge_03_repisa_viento", "ge_04_quiebre_lajas",
+                          "ge_06_fisuras_paralelas", "ge_07_grava_fondo", "ge_08_ultima_luz_directa"},
+            "cavapolvo": {"ca_04_montones_descarte", "ca_07_frente_quebrado"},
+            "velacauce": {"cq_04_raices_ribera", "cq_06_paso_raices", "cq_07_orilla_blanda", "cq_08_recodo_sin_vista"},
+            "silbarisco": {"bm_02_raices_sobre_roca", "bm_04_ladera_grava", "bm_05_saliente_raices",
+                           "bm_06_terraza_exterior"},
         }
-        for creature_id in SECOND_WAVE_PROFILES:
+        for creature_id, expected_rooms in authorized_rooms.items():
             with self.subTest(creature=creature_id):
-                self.assertNotIn(creature_id, all_pool_creatures,
-                                 f"{creature_id} no debe entrar en pools aleatorios sin su ramal integrado.")
+                actual_rooms = {
+                    room
+                    for pool in encounters.RANDOM_ENCOUNTER_POOLS.values()
+                    if any(cid == creature_id for cid, _weight in pool["creatures"])
+                    for room in pool["rooms"]
+                }
+                self.assertEqual(actual_rooms, expected_rooms)
                 self.assertNotIn(creature_id, world.ROOM_ENCOUNTER.values(),
                                  f"{creature_id} no debe tener encuentro fijo sin contrato de sala.")
 

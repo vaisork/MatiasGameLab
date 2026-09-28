@@ -360,11 +360,12 @@ class NPCDialogueWorldIsolationAndIntegrationTests(unittest.TestCase):
 
     def test_room_view_exposes_npcs_and_talk_action_when_present(self):
         self.register_and_approve()
-        # En valdren_centro no hay NPCs
+        # Valdren_centro no tiene NPC fijo; un viajero dinámico como Loren sí puede aparecer.
         view_centro = self.client.get("/api/room").json["room"]
-        self.assertNotIn("npcs", view_centro)
+        npcs_centro = view_centro.get("npcs", [])
+        self.assertFalse(any(npc["id"] == "daro_herrero" for npc in npcs_centro))
         talk_actions_centro = [a for a in view_centro.get("available_actions", []) if a.get("action") == "hablar"]
-        self.assertEqual(len(talk_actions_centro), 0)
+        self.assertFalse(any("daro" in a.get("targets", []) for a in talk_actions_centro))
 
         # Moverse a valdren_forja
         self.move_to_forja()

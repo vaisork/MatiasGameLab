@@ -237,7 +237,8 @@ class TestPopulationN0Integration(unittest.TestCase):
         """En producción inicial sin roles activos, /api/room no muestra N0 y no rompe tests existentes."""
         self.register_and_approve()
         room_res = self.client.get("/api/room").json["room"]
-        self.assertNotIn("npcs", room_res)
+        # Viajeros persistentes (p. ej. Loren) no son población N0.
+        self.assertFalse(any(npc.get("is_n0", False) for npc in room_res.get("npcs", [])))
         self.assertIsNone(room_res.get("n0_presence"))
 
     def test_coexistence_with_scripted_npc_in_forja(self):
