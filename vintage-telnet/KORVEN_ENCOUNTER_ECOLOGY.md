@@ -1,8 +1,8 @@
 # KORVEN-01 — Mapping ecológico del Camino de Piedra
 
-**Origen:** #304 / #166 / PR #281  
-**Capa:** Historiador y Constructor del Mundo  
-**Región:** Pedrales de Korven — Brumak → Veyra  
+**Origen:** #304 / #166 / PR #281
+**Capa:** Historiador y Constructor del Mundo
+**Región:** Pedrales de Korven — Brumak → Veyra
 **Criaturas evaluadas:** Cascapedernal / Colagrieta
 
 Este documento resuelve únicamente la capa de Historia pedida en #304.
