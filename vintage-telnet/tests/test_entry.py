@@ -591,7 +591,7 @@ class EntryTests(unittest.TestCase):
         self.assertIn('const refreshRoomActivity = async () => {', html)
         self.assertIn('document.hidden || actionInFlight', html)
         self.assertIn('fetch("/api/room"', html)
-        self.assertIn('if (!room || room.id !== expectedRoomId) return;', html)
+        self.assertIn('currentHost.dataset.roomId !== expectedRoomId', html)
         self.assertIn('window.setInterval(refreshRoomActivity, 5000)', html)
         self.assertIn('window.addEventListener("focus", refreshRoomActivity)', html)
         self.assertIn('if (snapshot === roomPresenceSnapshot) return;', html)
