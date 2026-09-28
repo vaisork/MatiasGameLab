@@ -576,6 +576,40 @@ class EntryTests(unittest.TestCase):
         self.assertIn('cancelActiveReveal = stopReveal;', html)
         self.assertIn('revealLog.removeEventListener("click", revealAll);', html)
 
+    def test_controls_swap_region_is_single_in_exploration_and_nearby_fauna(self):
+        """#463: fauna cercana y controles de exploración pueden coexistir,
+        pero deben vivir dentro de una sola región AJAX autoritativa."""
+        self.assertEqual(self.register().status_code, 303)
+        store.set_status(self.path, "matias", "approved")
+        self.assertEqual(self.post("/species", {"species": "humano"}).status_code, 303)
+        self.assertEqual(self.post("/class", {"player_class": "sombra"}).status_code, 303)
+
+        html = self.client.get("/").get_data(as_text=True)
+        self.assertEqual(html.count('data-swap="controls"'), 1)
+        self.assertIn('class="controls-swap" data-swap="controls"', html)
+
+        # Sendero -> parcela con Mordelinde. Forzamos el encuentro a estado
+        # no-engaged para reproducir el caso que antes rendereaba dos regiones:
+        # "Fauna cercana" + "Controles principales".
+        self.post("/move", {"direction": "north"})
+        self.post("/move", {"direction": "north"})
+        player_id = self.client.get("/api/me").json["player"]["id"]
+        with store.connect(self.path) as db:
+            db.execute(
+                "UPDATE room_encounters SET engaged = 0 WHERE player_id = ?",
+                (player_id,),
+            )
+        html = self.client.get("/").get_data(as_text=True)
+        self.assertIn("Fauna cercana", html)
+        self.assertIn('aria-label="Controles principales"', html)
+        self.assertEqual(html.count('data-swap="controls"'), 1)
+
+        # Defensa adicional: si una sesión vieja ya arrastra duplicados,
+        # swapFrom conserva el primero y elimina copias obsoletas.
+        self.assertIn("const currentMatches = [...document.querySelectorAll(", html)
+        self.assertIn("currentMatches.slice(1).forEach(extra => extra.remove())", html)
+        self.assertIn("removeStaleCopies();", html)
+
     def test_room_activity_polling_uses_authoritative_api_without_cross_room_updates(self):
         """#376: presencia/chat idle se refrescan desde /api/room; la UI no
         inventa TTL ni aplica una respuesta si pertenece a otra sala."""
