@@ -83,7 +83,7 @@ ATTRIBUTE_COLUMNS = ", ".join(f"attr_{name}" for name in combat.ATTRIBUTES)
 # pp_unspent (GAMEPLAY.md 25.8) y fatigue_updated_at (24.7, recuperacion
 # pasiva calculada por tiempo en servidor) se agregan en el esquema v8.
 CHARACTER_COLUMNS = (f"{PLAYER_COLUMNS}, level, xp, pa_unspent, pp_unspent, hp_current, hp_max, "
-                     f"fatigue, fatigue_updated_at, wound, field_rest_healed, "
+                     f"fatigue, fatigue_updated_at, wound, field_rest_budget_max, field_rest_healed, "
                      f"{ATTRIBUTE_COLUMNS}, equipped_weapon_id, equipped_armor_id")
 
 
@@ -301,6 +301,7 @@ def initialize(path):
         if version <= 12:
             # v13: REST-01 (#377 / GAMEPLAY.md 24.8-24.9). Acumula solo el
             # HP realmente restaurado por descanso de campo durante el ciclo.
+            db.execute("ALTER TABLE players ADD COLUMN field_rest_budget_max REAL")
             db.execute("ALTER TABLE players ADD COLUMN field_rest_healed REAL NOT NULL DEFAULT 0")
         db.execute(f"PRAGMA user_version = {SCHEMA_VERSION}")
 
@@ -980,6 +981,7 @@ def update_combat_state(path, player_id, hp_current=None, wound=None, room=None,
         fields.append("fatigue_updated_at = ?")
         params.append(time.time())
     if reset_rest_budget:
+        fields.append("field_rest_budget_max = NULL")
         fields.append("field_rest_healed = 0")
     if not fields:
         return
@@ -991,36 +993,55 @@ def update_combat_state(path, player_id, hp_current=None, wound=None, room=None,
 def apply_field_rest(path, player_id):
     """Aplica REST-01 de forma transaccional y devuelve el resultado real.
 
-    BEGIN IMMEDIATE serializa dos peticiones simultaneas del mismo personaje:
-    cada una recalcula el presupuesto desde el estado ya confirmado por la
-    anterior, por lo que nunca se puede curar por encima del 30% de HPmax.
+    El presupuesto se fija una sola vez al 30% del HP que faltaba cuando
+    comienza un ciclo que realmente puede curar. BEGIN IMMEDIATE serializa
+    solicitudes simultaneas para que daño/reintentos no amplíen ese límite.
     """
     with connect(path) as db:
         db.execute("BEGIN IMMEDIATE")
         row = db.execute(
             """SELECT hp_current, hp_max, fatigue, wound, attr_resistencia,
-                      field_rest_healed
+                      field_rest_budget_max, field_rest_healed
                FROM players WHERE id = ?""",
             (player_id,),
         ).fetchone()
         if row is None:
             return None
-        budget_max = max(0.0, row["hp_max"] * combat.FIELD_REST_BUDGET_FRACTION)
+
+        stored_budget = row["field_rest_budget_max"]
         used = max(0.0, row["field_rest_healed"] or 0.0)
-        remaining = max(0.0, budget_max - used)
+        budget_max = stored_budget
+
+        # Un ciclo no nace al descansar con HP completo ni cuando una herida
+        # impide recuperar vida. Se fija en el primer descanso que sí puede
+        # curar, usando el HP faltante en ese instante (GAMEPLAY 24.8).
+        wound_cap = row["hp_max"] * combat.WOUND_REST_HP_CAP_FRACTION[row["wound"]]
+        heal_room = max(0.0, min(row["hp_max"], wound_cap) - row["hp_current"])
+        if budget_max is None and heal_room > 0:
+            missing_hp = max(0.0, row["hp_max"] - row["hp_current"])
+            budget_max = missing_hp * combat.FIELD_REST_MISSING_HP_FRACTION
+
+        remaining = max(0.0, (budget_max or 0.0) - used)
         result = combat.rest_result(
             row["hp_current"], row["hp_max"], row["fatigue"],
             row["attr_resistencia"], row["wound"], remaining,
         )
         used_after = used + result["healed"]
+
+        # Solo una curación real inicializa el presupuesto persistente.
+        budget_to_store = stored_budget
+        if budget_to_store is None and result["healed"] > 0:
+            budget_to_store = budget_max
+
         db.execute(
             """UPDATE players
                SET hp_current = ?, fatigue = ?, fatigue_updated_at = ?,
-                   field_rest_healed = ?
+                   field_rest_budget_max = ?, field_rest_healed = ?
                WHERE id = ?""",
-            (result["hp_current"], result["fatigue"], time.time(), used_after, player_id),
+            (result["hp_current"], result["fatigue"], time.time(),
+             budget_to_store, used_after, player_id),
         )
-        result["budget_max"] = budget_max
+        result["budget_max"] = budget_to_store
         result["field_rest_healed"] = used_after
         return result
 
