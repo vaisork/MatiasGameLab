@@ -201,12 +201,18 @@ class StoryFlagsTests(unittest.TestCase):
         items_in_inv = [it for it in store.list_inventory(self.db_path, self.player_id) if it["item_key"] == "hoja_hoshai"]
         self.assertEqual(len(items_in_inv), 1)
 
-    def test_schema_migration_v14_to_v15(self):
-        """Verifica que una base de datos existente en v14 se actualiza limpiamente a v15."""
+    def test_schema_migration_v14_to_current(self):
+        """Verifica que una base v14 real completa se actualiza al esquema actual."""
         mig_path = os.path.join(self.temp_dir.name, "mig_v14.sqlite3")
-        # Crear base de datos simulada en v14 sin la tabla player_story_flags
+        # Una base v14 ya contiene room_encounters; las columnas de habilidades,
+        # economía y amenazas se agregaron en versiones posteriores.
         with sqlite3.connect(mig_path) as db:
             db.execute("CREATE TABLE players (id TEXT PRIMARY KEY, username TEXT, name TEXT, password_hash TEXT, status TEXT, created_at TEXT, last_access_at TEXT)")
+            db.execute("""CREATE TABLE room_encounters (
+                player_id TEXT NOT NULL, room_id TEXT NOT NULL, creature_id TEXT NOT NULL,
+                hp_current REAL NOT NULL, failed_flee_attempts INTEGER NOT NULL DEFAULT 0,
+                engaged INTEGER NOT NULL DEFAULT 1, created_at TEXT NOT NULL,
+                UNIQUE(player_id, room_id))""")
             db.execute("PRAGMA user_version = 14")
 
         # Ejecutar initialize()
@@ -214,10 +220,12 @@ class StoryFlagsTests(unittest.TestCase):
 
         with sqlite3.connect(mig_path) as db:
             version = db.execute("PRAGMA user_version").fetchone()[0]
-            self.assertEqual(version, 15)
+            self.assertEqual(version, store.SCHEMA_VERSION)
             # La tabla player_story_flags existe
             tables = {r[0] for r in db.execute("SELECT name FROM sqlite_master WHERE type='table'").fetchall()}
             self.assertIn("player_story_flags", tables)
+            self.assertIn("economy_ledger", tables)
+            self.assertIn("player_threat_states", tables)
 
 
 if __name__ == "__main__":
