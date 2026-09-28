@@ -290,8 +290,9 @@ class PilotIntegrationTests(unittest.TestCase):
         dm = self.app.test_client()
         self.post("/dm/login", dict(dm_password="dm-secret-value"), dm, csrf_path="/dm")
         self.post("/dm/approve", dict(username=username), dm, csrf_path="/dm")
-        self.post("/species", dict(species="humano"))  # arranca en valdren_centro
+        self.post("/species", dict(species="humano"))
         self.choose_class_without_starter_weapon()
+        self.post("/move", dict(direction="south"))  # salir del hogar al centro de Valdren
 
     def walk_to_lindero(self):
         self.post("/move", dict(direction="north"))  # sendero

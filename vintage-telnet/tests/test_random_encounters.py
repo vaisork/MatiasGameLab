@@ -192,9 +192,10 @@ class MoveIntegrationTests(unittest.TestCase):
         self.path = self.app.config["DATABASE"]
         self.post("/register", dict(username="matias", name="Matías", password="una clave de prueba"))
         store.set_status(self.path, "matias", "approved")
-        self.post("/species", dict(species="humano"))  # valdren_centro
+        self.post("/species", dict(species="humano"))
         self.player_id = self.client.get("/api/me").json["player"]["id"]
         store.set_player_class(self.path, self.player_id, "juramentado")
+        self.post("/move", dict(direction="south"))  # salir del hogar al centro de Valdren
 
     def tearDown(self):
         self.temp.cleanup()

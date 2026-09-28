@@ -262,9 +262,10 @@ class NPCDialogueWorldIsolationAndIntegrationTests(unittest.TestCase):
             dm = self.app.test_client()
             self.post("/dm/login", dict(dm_password="dm-secret-value"), dm, csrf_path="/dm")
             self.post("/dm/approve", dict(username=username), dm, csrf_path="/dm")
-        # Seleccionar humano y sombra (inicia en valdren_centro)
+        # Seleccionar humano y sombra
         self.post("/species", dict(species="humano"))
         self.post("/class", dict(player_class="sombra"))
+        self.post("/move", dict(direction="south"))
 
     def move_to_forja(self):
         # En valdren_centro, la salida 'west' lleva a valdren_forja
@@ -366,6 +367,20 @@ class NPCDialogueWorldIsolationAndIntegrationTests(unittest.TestCase):
         talk_actions = [a for a in view_forja["available_actions"] if a.get("action") == "hablar"]
         self.assertTrue(len(talk_actions) > 0)
         self.assertIn("daro", talk_actions[0]["targets"])
+
+    def test_room_screen_renders_present_npc_and_discoverable_talk_button(self):
+        self.register_and_approve()
+        self.move_to_forja()
+
+        response = self.client.get("/")
+        html = response.get_data(as_text=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertIn('aria-labelledby="npc-presence-title"', html)
+        self.assertIn("Personas aquí", html)
+        self.assertIn("Daro", html)
+        self.assertIn("Herrero", html)
+        self.assertIn('data-prefill="hablar daro_herrero "', html)
+        self.assertIn('aria-label="Hablar con Daro"', html)
 
     def test_command_talk_npc_success_in_forja(self):
         self.register_and_approve()

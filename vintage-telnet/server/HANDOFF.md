@@ -1,4 +1,82 @@
+# Entrega preparada para revisión: NPCs visibles y acceso directo a conversación (#373) — 2026-09-27
+
+- **RESPONSABLE:** Codex — Desarrollador de Servidor de Vintage Telnet.
+- **HEAD BASE:** `4d0ccbed0cd6b631d032ef4223912d089dae094b` (`origin/main`).
+- **RAMA:** `codex/vt-373-visible-npcs`.
+- **RECLASIFICACIÓN:** Javier confirmó que `/api/room` en la Raspberry ya devuelve a Daro y la acción `hablar`; Arquitectura corrigió el diagnóstico de #373 a un defecto de presentación frontend y pidió no continuar investigando el despliegue.
+- **CAMBIO:** La vista de sala ahora muestra una sección “Personas aquí” cuando hay NPCs presentes, con nombre, rol y botón “Hablar” por personaje. El botón prepara `hablar <npc_id>` en el campo de comando para que el jugador escriba su mensaje; el comando existente `hablar daro hola` se conserva sin cambios.
+- **ARCHIVOS:** `server/templates/entry.html` y cobertura de salida HTML en `tests/test_npc_dialogue.py`.
+- **PRUEBAS:** módulo NPC, **17/17 PASS**; suite completa, **405/405 PASS** (virtualenv temporal `/tmp/vt373-venv`). `git diff --check` también pasa.
+- **LÍMITE DE VALIDACIÓN:** no se modificó backend, canon, datos ni servicio de producción. El cambio no está desplegado; la verificación visual final de Daro en el navegador real sigue pendiente.
+- **ESTADO:** LISTO PARA REVISIÓN DE CÓDIGO; #373 no se considera cerrado hasta validar la interfaz en producción.
+- **MERGE / DEPLOY:** NO.
+
 # Handoff — Desarrollador de Servidor — Vintage Telnet
+
+## Integración lista para revisión: arte de Cornalomo en combate (#365) — 2026-09-28
+
+- **RESPONSABLE:** Codex — Integrador.
+- **HEAD BASE:** `daaa728eddde629cb0c694a4c00b40c8bc438cb9` (incluye el asset aprobado integrado por PR #188).
+- **RAMA:** `codex/vt-365-cornalomo-art`.
+- **CAMBIO:** `server/creatures.py` conecta `cornalomo` con `/assets/creatures/cornalomo.webp`; la prueba de `test_cornalomo_death.py` ahora comprueba el catálogo, el HTML de combate y la respuesta HTTP `image/webp`.
+- **AUDITORÍA:** Cornalomo era el único asset de criatura publicado en `main` que carecía de entrada en `CREATURE_ART`. Los demás assets de criatura publicados ya estaban registrados; las entregas que aún están en PR abiertas no se cuentan como assets integrados.
+- **PR #188:** fusionada como `daaa728`; SHA-256 runtime comprobado contra #180: `476a3304e5b2da49fe50fd21cc2e772cfa7c6b10f6cc77bcfe9dcc1f5ff428ee`. El workflow de publicación pasó después de actualizar su base.
+- **PRUEBAS:** `python -m unittest tests.test_cornalomo_death tests.test_published_art tests.test_entry -v` — **53/53 PASS**. `git diff --check` — **PASS**.
+- **PENDIENTES:** revisión e integración de esta corrección. **MERGE: NO / DEPLOY: NO.**
+
+## Integración lista para revisión: paisaje de las afueras de Valdren (#151) — 2026-09-28
+
+- **RESPONSABLE:** Codex — Integrador.
+- **HEAD BASE:** `494c16a164d31e40a9e0fb7cbd8507782bef88fc` (incluye el arte aprobado de #174).
+- **RAMA:** `codex/vt-151-valdren-outskirts-art`.
+- **CAMBIO:** conecta `zone.edran.valdren_outskirts` con `valdren-outskirts.webp`; el mismo contexto ya cubre Sendero, Parcela, Cerca y Lindero.
+- **CANON:** actualizado `VISUAL_CONTEXT_CANON.md` para reflejar el asset aprobado en #151 y publicado en #174.
+- **PRUEBAS:** `python -m unittest tests.test_published_art tests.test_entry tests.test_screen_stability tests.test_cinco_rutas -v` — **70/70 PASS**. `git diff --check` — **PASS**.
+- **PENDIENTES:** revisión e integración de esta conexión. **MERGE: NO / DEPLOY: NO.**
+
+## Entrega lista para revisión: HOME-CORE — hogar personal persistente mínimo (#280) — 2026-09-27
+
+- **DESARROLLADOR:** Antigravity (Desarrollador principal para implementaciones pesadas).
+- **HEAD BASE:** `39349d0` (`origin/main` remoto vigente tras rebase limpio).
+- **TAREA:** Issue #280 — `VT-SERVER: HOME-CORE — hogar personal persistente mínimo` (HOME-01 / GAMEPLAY §34).
+- **RAMA:** `antigravity/vt-280-home-core`
+- **CONTRATO APROBADO Y ALCANCE (GAMEPLAY §34 / HOME-01):**
+  - **Un hogar por personaje dinámico:** Cada personaje aprobado y con onboarding completo dispone de su propio espacio `home:<player_id>` aislado, sin miles de filas estáticas en `world.py`.
+  - **Primera entrada jugable en su hogar:** Todo personaje nuevo que completa especie y clase inicia en su hogar personal (`Tu hogar`), no directamente en el centro del pueblo.
+  - **Salida hacia comunidad según especie:** Una única salida funcional (`sur` o comando `salir` / `salida` / `out` / `leave`) conduce hacia el asentamiento inicial de su especie (Humano → Valdren, Felaryn → Khariel, Dravak → Brumak, Marevyn → Narevia, Vesperi → Velmora).
+  - **Sin alteración del mapa regional:** No crea rutas ficticias en `traversed_routes` entre el hogar y el mundo exterior ni altera el mapa regional.
+  - **Seguridad total:** 0 encuentros aleatorios, 0 encuentros fijos ordinarios y 0 PvP en el hogar. Descanso normal permitido; sin curación mágica instantánea.
+  - **Persistencia honesta:** Desconectar dentro del hogar recupera la posición en el hogar; salir al pueblo y desconectar conserva la posición en el pueblo (el hogar no "atrae" magnéticamente al personaje).
+  - **Preservación de jugadores existentes:** Personajes existentes con posición válida en el mundo no son reubicados. La verificación de inicio (`relocate_players_outside_world`) protege explícitamente a los personajes ubicados en sus hogares legítimos.
+  - **Cero almacenamiento / economía doméstica:** No se crearon cofres, bancos, muebles, stash ni economía doméstica en esta fase.
+  - **Cero pantalla nueva:** Renderizado directo en las vistas existentes con nombre `Tu hogar`, descripción neutra autorizada y controles ordinarios.
+- **ARCHIVOS MODIFICADOS / CREADOS:**
+  - `vintage-telnet/server/world.py`: constantes canónicas de hogar, resolver hook de especie, `get_home_room_id`, `is_home_room`, `parse_home_player_id`, construcción dinámica de sala en `get_room`.
+  - `vintage-telnet/server/store.py`: `get_player_species`, salvaguarda de salas de hogar en `relocate_players_outside_world`.
+  - `vintage-telnet/server/app.py`: registro de resolver de especie en inicio, asignación de sala hogar en `attempt_choose_species`, resolución del pueblo en `/api/species`, exclusión de rutas regionales al salir/entrar de casa en `attempt_move`, soporte de comandos literales (`salir`/`salida`/`out`/`leave`) mapeados a `world.HOME_EXIT_DIRECTION`.
+  - `vintage-telnet/tests/test_home_core.py` (nuevo): 12 tests exhaustivos verificando cada caso de aceptación del Issue #280 y la regresión de aislamiento de rutas regional (incorporada desde PR apilada #351 de Junior 1).
+  - Suites adaptadas para salir del hogar al centro de comunidad: `tests/test_cinco_rutas.py`, `tests/test_class_choice.py`, `tests/test_combat_actions.py`, `tests/test_cornalomo_death.py`, `tests/test_death_regression.py`, `tests/test_entry.py`, `tests/test_gameplay.py`, `tests/test_inventory.py`, `tests/test_navigation.py`, `tests/test_npc_actions.py`, `tests/test_npc_dialogue.py`, `tests/test_npc_memory.py`, `tests/test_pilot_lindero_roto.py`, `tests/test_progression.py`, `tests/test_published_art.py`, `tests/test_random_encounters.py`, `tests/test_screen_stability.py`, `tests/test_unapiedra.py`.
+  - `vintage-telnet/server/HANDOFF.md`: este registro.
+
+### Pruebas ejecutadas y verificación
+
+1. `tests/test_home_core.py`: **12/12 tests PASS**.
+   - Dos personajes de la misma cuenta obtienen hogares distintos (`home:<id1>` != `home:<id2>`).
+   - Dos cuentas no comparten hogar ni mensajes privados.
+   - Personaje nuevo inicia en su hogar tras completar onboarding (nombre `Tu hogar`, descripción y controles limpios).
+   - Salida conduce al pueblo inicial exacto por cada una de las 5 especies (vía botón dirección y comando `salir`).
+   - Reconectar dentro del hogar conserva la ubicación en el hogar.
+   - Salir y reconectar fuera no devuelve automáticamente al hogar.
+   - Cero encuentros fijos y aleatorios; descanso normal permitido.
+   - Cero PvP en el hogar.
+   - Inventario y equipo operan sin sistema de almacenamiento nuevo.
+   - Personajes existentes con posición válida no son teletransportados.
+   - Reinicio de servidor / verificación de esquema preserva personajes en su hogar.
+   - Salir del hogar no crea ruta regional falsa en `traversed_routes` y el viaje normal sí registra rutas (test de Junior 1).
+2. Suite completa descubierta (`python -m unittest discover -s tests`): **401 tests PASS (0 fallos, 0 errores, 1 skipped en Windows)**.
+3. MERGE: NO / DEPLOY: NO.
+
+---
 
 ## Entrega lista para revisión: Acciones estructuradas derivadas del diálogo con gate autoritativo (#247) — 2026-09-27
 
