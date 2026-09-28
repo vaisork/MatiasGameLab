@@ -619,6 +619,41 @@ class EntryTests(unittest.TestCase):
         self.assertNotIn("attribute_cost(", html)
         self.assertNotIn("deshacer gasto", html.lower())
 
+    def test_character_tool_shows_persistent_unspent_point_badge_and_callout(self):
+        """#370: PA/PP sin gastar deben ser visibles sin abrir Personaje y
+        mantenerse sincronizables después de swaps AJAX."""
+        self.assertEqual(self.register().status_code, 303)
+        store.set_status(self.path, "matias", "approved")
+        self.assertEqual(self.post("/species", {"species": "humano"}).status_code, 303)
+        self.assertEqual(self.post("/class", {"player_class": "sombra"}).status_code, 303)
+        player_id = self.client.get("/api/me").json["player"]["id"]
+        with store.connect(self.path) as db:
+            db.execute("UPDATE players SET pa_unspent = 2, pp_unspent = 1 WHERE id = ?", (player_id,))
+
+        html = self.client.get("/").get_data(as_text=True)
+        self.assertIn('data-character-tool', html)
+        self.assertIn('data-point-badge', html)
+        self.assertIn('2 PA · 1 PP', html)
+        self.assertIn('aria-label="Personaje, 2 PA y 1 PP disponibles"', html)
+        self.assertIn('id="pointsCallout"', html)
+        self.assertIn("Tienes 2 PA y 1 PP disponibles.", html)
+        self.assertIn("PP sin gastar 1", html)
+
+        # El saldo se actualiza tanto al abrir Personaje como al recibir una
+        # respuesta HTML autoritativa tras cualquier acción AJAX.
+        self.assertIn("const syncPointIndicators = (paValue, ppValue) => {", html)
+        self.assertIn('const incomingBadge = next.querySelector("[data-point-badge]");', html)
+        self.assertIn("syncPointIndicators(match && match[1] ? Number(match[1]) : 0", html)
+
+    def test_character_tool_hides_point_badge_when_no_points_are_pending(self):
+        self.assertEqual(self.register().status_code, 303)
+        store.set_status(self.path, "matias", "approved")
+        self.assertEqual(self.post("/species", {"species": "humano"}).status_code, 303)
+        self.assertEqual(self.post("/class", {"player_class": "sombra"}).status_code, 303)
+        html = self.client.get("/").get_data(as_text=True)
+        self.assertRegex(html, r'<span class="point-badge" data-point-badge hidden>')
+        self.assertRegex(html, r'id="pointsCallout" hidden')
+
     def test_inventory_api_fields_renderable_by_ui(self):
         self.assertEqual(self.register().status_code, 303)
         store.set_status(self.path, "matias", "approved")
