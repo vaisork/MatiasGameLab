@@ -1,8 +1,8 @@
 # NHAL-01 — Mapping ecológico del Camino de la Sombra Verde
 
-**Origen:** #306 / #166 / PR #281  
-**Capa:** Historiador y Constructor del Mundo  
-**Región:** Bosque de Nhal — Velmora → Veyra  
+**Origen:** #306 / #166 / PR #281
+**Capa:** Historiador y Constructor del Mundo
+**Región:** Bosque de Nhal — Velmora → Veyra
 **Criaturas evaluadas:** Rondamusgo / Hilaria de niebla
 
 Este documento usa los `room_id` autoritativos actuales de `server/world.py`.
