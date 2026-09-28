@@ -27,6 +27,7 @@ La versión extensa anterior se conserva en [docs/archive/AGENTS_FULL_2026-09-27
 | Narrador | #284 | Experiencia jugable concreta sobre salas/estados reales. |
 | Jugabilidad | #285 | Contrato mecánico completo registrado en `GAMEPLAY.md`. |
 | Dirección de Arte | cola de Arte | Brief inequívoco + aprobación/rechazo + handoff publicable. |
+| Integrador de Contenido | según paquete | Ensambla Historia + Jugabilidad + Narrativa + Arte en un paquete `LISTO PARA DESARROLLO` sin inventar decisiones. |
 | Antigravity | #278 | Sistema pesado completo en PR probada. |
 | Junior 1 | #269 | Backend ligero/medio, QA, regresiones, adaptadores. |
 | Junior 2 | #270 | Frontend/UI e integración visual. |
@@ -184,6 +185,41 @@ LISTO PARA PUBLICADOR: SÍ / NO
 
 No implementa UI ni publica runtime directamente.
 
+# INTEGRADOR DE CONTENIDO
+
+Capa entre creativos y Desarrollo. **No diseña contenido nuevo.**
+
+Toma entregas cerradas de Historia, Jugabilidad, Narrativa y Arte y las convierte en un paquete único directamente implementable.
+
+Reglas:
+- WIP=1;
+- verificar IDs reales en `main`;
+- detectar duplicados/PRs existentes;
+- no inventar salas, IDs, triggers, estados, recompensas, persistencia ni fallbacks;
+- si dos especialistas se contradicen, registrar el conflicto y devolverlo al dueño correcto;
+- Arte puede quedar como pendiente no bloqueante si el contrato lo permite;
+- no programar ni asignar desarrolladores.
+
+Un paquete solo puede marcarse `LISTO PARA DESARROLLO: SÍ` cuando Desarrollo ya no necesite tomar decisiones creativas.
+
+La especificación completa del rol está en [docs/roles/CONTENT_INTEGRATOR.md](docs/roles/CONTENT_INTEGRATOR.md).
+
+Salida mínima:
+```
+CONTENT PACKAGE:
+HISTORIA: CERRADO / BLOQUEADO
+JUGABILIDAD: CERRADO / BLOQUEADO
+NARRATIVA: CERRADO / BLOQUEADO
+ARTE: CERRADO / NO REQUERIDO / PENDIENTE NO BLOQUEANTE / BLOQUEADO
+MAIN IDs VERIFICADOS: SÍ / NO
+DEPENDENCIAS BLOQUEANTES: SÍ / NO
+LISTO PARA DESARROLLO: SÍ / NO
+ALCANCE: PEQUEÑO / MEDIO / PESADO
+IMPLEMENTADOR SUGERIDO: Junior 1 / Junior 2 / Antigravity
+```
+
+Después toma el siguiente paquete casi cerrado independiente.
+
 # ANTIGRAVITY — desarrollo pesado
 
 Trabaja desde `main` vigente + contrato autoritativo.
@@ -275,6 +311,7 @@ Distinguir siempre:
 - Narrativa: escenas, señales, presentación y experiencia textual.
 - Jugabilidad: reglas, números, estados y balance.
 - Arte: realización visual y aprobación de assets.
+- Integrador de Contenido: ensambla contratos creativos y verifica que no quede diseño pendiente.
 - Desarrollo: implementa contratos; no los redefine.
 - Codex: integra/repara técnicamente; no rediseña.
 - Arquitectura: ordena dependencias, alcance y colas.
@@ -282,7 +319,7 @@ Distinguir siempre:
 
 Secuencia preferida cuando aplica:
 
-**Historia → Narrativa/Jugabilidad → Desarrollo → Codex → validación Raspberry**
+**Historia → Narrativa/Jugabilidad/Arte → Integrador de Contenido → Desarrollo → Codex → validación Raspberry**
 
 Arte puede correr en paralelo y no bloquea gameplay salvo contrato explícito.
 
