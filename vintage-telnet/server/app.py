@@ -876,8 +876,10 @@ def create_app(config=None):
         updated = store.set_species(path, player["id"], species_id, room_id)
         if not updated:
             return False, None, None, "Ya elegiste tu especie."
-        starting_town = world.get_starting_room_for_species(species_id)
-        store.mark_visited(path, player["id"], starting_town)
+        # El mapa progresivo debe reflejar lo que el personaje realmente ha
+        # pisado. Al completar especie ya está físicamente en su hogar; el
+        # pueblo se marca después, cuando attempt_move() acepta hogar→pueblo.
+        store.mark_visited(path, player["id"], room_id)
         return True, species_id, room_id, None
 
     def attempt_choose_class(player, class_id):
