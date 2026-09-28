@@ -18,12 +18,12 @@ class RespawnRoutingTests(unittest.TestCase):
         with store.connect(self.path) as db:
             db.execute(
                 """UPDATE players
-                   SET status = 'approved', species = 'humano',
-                       player_class = 'juramentado'
+                   SET status = 'approved', species = 'humano'
                    WHERE id = ?""",
                 (self.player_id,),
             )
-        self.player = dict(store.player_for_token(self.path, self.token))
+        store.set_player_class(self.path, self.player_id, "juramentado")
+        self.player = dict(store.character_by_player_id(self.path, self.player_id))
 
     def tearDown(self):
         self.temp.cleanup()
