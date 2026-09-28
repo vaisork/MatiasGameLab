@@ -3,7 +3,7 @@
 Contrato autoritativo (KORVEN_WEAPON_SCENE.md / PR #288 / GAMEPLAY.md §§22, 32):
 1. Karn (brumak_taller_korven_01) presente en brumak_forja.
 2. Petición inicial de ayuda si el jugador no ha ayudado ("—Sostén ese extremo. Yo corrijo el apoyo...").
-3. Resolución de ayuda (korven_carga_asentada) al ofrecer colaboración o usar comando 'ayudar'/'sostener'.
+3. Resolución de ayuda (korven_trabajo_ayudado) al ofrecer colaboración o usar comando 'ayudar'/'sostener'.
 4. Entrega única de Martillo de Korven (korven_martillo_recibido, item_key="martillo_korven", forge_validated=False).
 5. Sin autoequipar, sin XP, sin alteración de nivel ni atributos.
 6. Idempotencia y revisitas: no duplica el objeto, respuesta sobria de cumplimiento.
@@ -72,7 +72,7 @@ class KorvenWeaponSceneTests(unittest.TestCase):
         )
         self.assertTrue(result.success)
         self.assertIn("Sostén ese extremo", result.text)
-        self.assertFalse(store.get_story_flag(self.db_path, self.player_id, "korven_carga_asentada"))
+        self.assertFalse(store.get_story_flag(self.db_path, self.player_id, "korven_trabajo_ayudado"))
         self.assertFalse(store.get_story_flag(self.db_path, self.player_id, "korven_martillo_recibido"))
         self.assertEqual(len(store.list_inventory(self.db_path, self.player_id)), 0)
 
@@ -95,7 +95,7 @@ class KorvenWeaponSceneTests(unittest.TestCase):
         self.assertIn("Te entregan un Martillo de Korven", result.text)
 
         # Verificar flags
-        self.assertTrue(store.get_story_flag(self.db_path, self.player_id, "korven_carga_asentada"))
+        self.assertTrue(store.get_story_flag(self.db_path, self.player_id, "korven_trabajo_ayudado"))
         self.assertTrue(store.get_story_flag(self.db_path, self.player_id, "korven_martillo_recibido"))
 
         # Verificar inventario
@@ -154,7 +154,7 @@ class KorvenWeaponSceneTests(unittest.TestCase):
         self.assertIn("El apoyo vuelve a quedar bajo el peso correcto", data["reply"])
         self.assertIn("Te entregan un Martillo de Korven", data["reply"])
 
-        self.assertTrue(store.get_story_flag(self.db_path, self.player_id, "korven_carga_asentada"))
+        self.assertTrue(store.get_story_flag(self.db_path, self.player_id, "korven_trabajo_ayudado"))
         self.assertTrue(store.get_story_flag(self.db_path, self.player_id, "korven_martillo_recibido"))
         inv = store.list_inventory(self.db_path, self.player_id)
         self.assertEqual(len(inv), 1)
@@ -189,13 +189,89 @@ class KorvenWeaponSceneTests(unittest.TestCase):
         self.assertTrue(store.get_story_flag(self.db_path, self.player_id, "korven_martillo_recibido"))
 
         # Jugador 2 NO tiene flags ni martillo
-        self.assertFalse(store.get_story_flag(self.db_path, p2["id"], "korven_carga_asentada"))
+        self.assertFalse(store.get_story_flag(self.db_path, p2["id"], "korven_trabajo_ayudado"))
         self.assertFalse(store.get_story_flag(self.db_path, p2["id"], "korven_martillo_recibido"))
         self.assertEqual(len(store.list_inventory(self.db_path, p2["id"])), 0)
 
         # Jugador 2 habla con Karn y recibe la petición inicial
         result_p2 = npc_dialogue.converse(p2, "Karn", message="hola", room_id="brumak_forja", db_path=self.db_path)
         self.assertIn("Sostén ese extremo", result_p2.text)
+
+
+    def test_legacy_help_flag_is_migrated_and_progress_is_preserved(self):
+        """Un jugador antiguo conserva progreso sin mantener dos flags ni ganar XP."""
+        char_before = store.character_by_player_id(self.db_path, self.player_id)
+        xp_before = char_before["xp"]
+        level_before = char_before["level"]
+
+        # Simula estado producido por la implementación anterior a #466.
+        store.set_story_flag(self.db_path, self.player_id, "korven_carga_asentada", True)
+        self.assertFalse(store.get_story_flag(
+            self.db_path, self.player_id, "korven_trabajo_ayudado"
+        ))
+
+        result = npc_dialogue.converse(
+            self.player,
+            "brumak_taller_korven_01",
+            message="hola",
+            room_id="brumak_forja",
+            db_path=self.db_path,
+        )
+
+        self.assertTrue(result.success)
+        self.assertTrue(store.get_story_flag(
+            self.db_path, self.player_id, "korven_trabajo_ayudado"
+        ))
+        self.assertFalse(store.get_story_flag(
+            self.db_path, self.player_id, "korven_carga_asentada"
+        ))
+        self.assertTrue(store.get_story_flag(
+            self.db_path, self.player_id, "korven_martillo_recibido"
+        ))
+        inv = store.list_inventory(self.db_path, self.player_id)
+        self.assertEqual([item["item_key"] for item in inv], ["martillo_korven"])
+
+        char_after = store.character_by_player_id(self.db_path, self.player_id)
+        self.assertEqual(char_after["xp"], xp_before)
+        self.assertEqual(char_after["level"], level_before)
+
+        # Restart/retry: el estado canónico persiste y no entrega otro martillo.
+        store.initialize(self.db_path)
+        retry = npc_dialogue.converse(
+            dict(store.character_by_player_id(self.db_path, self.player_id)),
+            "brumak_taller_korven_01",
+            message="ayudo otra vez",
+            room_id="brumak_forja",
+            db_path=self.db_path,
+        )
+        self.assertIn("Ya cumpliste aquí", retry.text)
+        self.assertEqual(
+            [item["item_key"] for item in store.list_inventory(self.db_path, self.player_id)],
+            ["martillo_korven"],
+        )
+        self.assertFalse(store.get_story_flag(
+            self.db_path, self.player_id, "korven_carga_asentada"
+        ))
+
+    def test_room_view_migrates_legacy_flag_and_does_not_offer_help_again(self):
+        """La lectura autoritativa de la forja reconcilia legacy sin reabrir la tarea."""
+        store.set_story_flag(self.db_path, self.player_id, "korven_carga_asentada", True)
+        with self.client.session_transaction() as sess:
+            sess["token"] = self.token
+            sess["csrf"] = "test-csrf"
+
+        room = self.client.get("/api/room").json["room"]
+        help_actions = [
+            action for action in room.get("available_actions", [])
+            if action.get("action") == "ayudar"
+        ]
+        self.assertEqual(help_actions, [])
+        self.assertTrue(store.get_story_flag(
+            self.db_path, self.player_id, "korven_trabajo_ayudado"
+        ))
+        self.assertFalse(store.get_story_flag(
+            self.db_path, self.player_id, "korven_carga_asentada"
+        ))
 
 
 if __name__ == "__main__":
