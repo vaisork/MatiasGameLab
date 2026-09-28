@@ -16,7 +16,7 @@ STATUSES = ("pending", "approved", "rejected", "removed")
 
 # Version de esquema que deja initialize(); ops/inventory_migration_probe.py
 # la usa para validar una migracion de prueba contra la copia de la base viva.
-SCHEMA_VERSION = 12
+SCHEMA_VERSION = 13
 
 # Cuentas con varios personajes (petición de Javier, 2026-09-25): un usuario
 # para entrar puede tener hasta 5 personajes; el nombre de cada personaje es
@@ -83,7 +83,7 @@ ATTRIBUTE_COLUMNS = ", ".join(f"attr_{name}" for name in combat.ATTRIBUTES)
 # pp_unspent (GAMEPLAY.md 25.8) y fatigue_updated_at (24.7, recuperacion
 # pasiva calculada por tiempo en servidor) se agregan en el esquema v8.
 CHARACTER_COLUMNS = (f"{PLAYER_COLUMNS}, level, xp, pa_unspent, pp_unspent, hp_current, hp_max, "
-                     f"fatigue, fatigue_updated_at, wound, "
+                     f"fatigue, fatigue_updated_at, wound, field_rest_healed, "
                      f"{ATTRIBUTE_COLUMNS}, equipped_weapon_id, equipped_armor_id")
 
 
@@ -298,6 +298,10 @@ def initialize(path):
             db.execute("CREATE INDEX IF NOT EXISTS npc_memories_player_npc ON npc_memories(player_id, npc_id, id)")
             db.execute(NPC_ACTION_LOGS_TABLE)
             db.execute("CREATE INDEX IF NOT EXISTS npc_action_logs_player_npc ON npc_action_logs(player_id, npc_id, id)")
+        if version <= 12:
+            # v13: REST-01 (#377 / GAMEPLAY.md 24.8-24.9). Acumula solo el
+            # HP realmente restaurado por descanso de campo durante el ciclo.
+            db.execute("ALTER TABLE players ADD COLUMN field_rest_healed REAL NOT NULL DEFAULT 0")
         db.execute(f"PRAGMA user_version = {SCHEMA_VERSION}")
 
 
@@ -955,7 +959,8 @@ def record_pve_victory(path, player_id, family):
         return is_first, repeats
 
 
-def update_combat_state(path, player_id, hp_current=None, wound=None, room=None, fatigue=None):
+def update_combat_state(path, player_id, hp_current=None, wound=None, room=None, fatigue=None,
+                        reset_rest_budget=False):
     fields, params = [], []
     if hp_current is not None:
         fields.append("hp_current = ?")
@@ -974,11 +979,50 @@ def update_combat_state(path, player_id, hp_current=None, wound=None, room=None,
         params.append(fatigue)
         fields.append("fatigue_updated_at = ?")
         params.append(time.time())
+    if reset_rest_budget:
+        fields.append("field_rest_healed = 0")
     if not fields:
         return
     params.append(player_id)
     with connect(path) as db:
         db.execute(f"UPDATE players SET {', '.join(fields)} WHERE id = ?", params)
+
+
+def apply_field_rest(path, player_id):
+    """Aplica REST-01 de forma transaccional y devuelve el resultado real.
+
+    BEGIN IMMEDIATE serializa dos peticiones simultaneas del mismo personaje:
+    cada una recalcula el presupuesto desde el estado ya confirmado por la
+    anterior, por lo que nunca se puede curar por encima del 30% de HPmax.
+    """
+    with connect(path) as db:
+        db.execute("BEGIN IMMEDIATE")
+        row = db.execute(
+            """SELECT hp_current, hp_max, fatigue, wound, attr_resistencia,
+                      field_rest_healed
+               FROM players WHERE id = ?""",
+            (player_id,),
+        ).fetchone()
+        if row is None:
+            return None
+        budget_max = max(0.0, row["hp_max"] * combat.FIELD_REST_BUDGET_FRACTION)
+        used = max(0.0, row["field_rest_healed"] or 0.0)
+        remaining = max(0.0, budget_max - used)
+        result = combat.rest_result(
+            row["hp_current"], row["hp_max"], row["fatigue"],
+            row["attr_resistencia"], row["wound"], remaining,
+        )
+        used_after = used + result["healed"]
+        db.execute(
+            """UPDATE players
+               SET hp_current = ?, fatigue = ?, fatigue_updated_at = ?,
+                   field_rest_healed = ?
+               WHERE id = ?""",
+            (result["hp_current"], result["fatigue"], time.time(), used_after, player_id),
+        )
+        result["budget_max"] = budget_max
+        result["field_rest_healed"] = used_after
+        return result
 
 
 # --- GAMEPLAY.md 20.14: respawn de monstruos comunes con temporizador -----
