@@ -341,6 +341,19 @@ Cada uno requiere contrato propio.
 
 ---
 
+## Primer bucle P0 de recuperación
+
+Para PLAYABLE-LOOP-01, los primeros valores ejecutables quedan fijados:
+
+| Recurso/servicio | Precio | Efecto resumido |
+| --- | ---: | --- |
+| Provisión básica de camino | **8 sellos** | +18% HPmax, -20 fatiga, no reset field-rest |
+| Servicio seguro de recuperación | **18 sellos** | hasta 90% HPmax, fatiga0, herida -1 grado, reset field-rest |
+
+Los nombres visibles quedan para Historia/Narrativa; los números son de Jugabilidad.
+
+La recuperación completa a100% permanece como servicio futuro de **24–30 sellos** y no bloquea el P0.
+
 # 14. Relación con REST-01
 
 El descanso gratuito es deliberadamente incompleto.
