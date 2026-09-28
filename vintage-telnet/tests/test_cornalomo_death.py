@@ -2,7 +2,7 @@
 
 Contrato validado:
 1. Perfil autoritativo de Cornalomo (HP 120, precisión 65, daño 20, reducción 20%, nivel ref 8).
-2. Sin arte publicado -> marco neutral/vacío en combate.
+2. Arte aprobado de Cornalomo visible durante el combate.
 3. Ramal opcional en Pastos altos fuera del recorrido obligatorio a Vaisgard.
 4. Señales de peligro antes del combate conforme al canon de CREATURES.md.
 5. Retirada libre antes de iniciar combate (la criatura no ataca primero).
@@ -121,8 +121,21 @@ class CornalomoDeathTests(unittest.TestCase):
         self.assertEqual(c["flee_percepcion"], 9)
         self.assertIn("placa ósea", c["behavior_text"])
         self.assertIn("cuernos curvos", c["behavior_text"])
-        # Sin arte aprobado -> marco neutral/vacío
-        self.assertIsNone(creatures.CREATURE_ART.get("cornalomo"))
+        art = creatures.CREATURE_ART.get("cornalomo")
+        self.assertEqual(art["src"], "/assets/creatures/cornalomo.webp")
+        self.assertEqual((art["width"], art["height"]), (1536, 1024))
+
+    def test_cornalomo_art_is_shown_during_combat_and_served(self):
+        self.register_and_enter_world()
+        self.reach_pastos_altos()
+
+        html = self.client.get("/").get_data(as_text=True)
+        self.assertIn('class="place-bar combat"', html)
+        self.assertIn('data-location-art src="/assets/creatures/cornalomo.webp"', html)
+
+        response = self.client.get("/assets/creatures/cornalomo.webp")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.mimetype, "image/webp")
 
     # --- 2. Ubicación opcional, ramal y señales previas ---
 

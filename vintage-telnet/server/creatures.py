@@ -94,6 +94,10 @@ CREATURE_ART = {
     "espinajo_rastrojo": {"src": "/assets/creatures/espinajo_rastrojo.webp",
                           "alt": "Espinajo de rastrojo con la cresta de púas erizada",
                           "width": 1536, "height": 1024},
+    # Issue #180, aprobado por Dirección de Arte y publicado en PR #188.
+    "cornalomo": {"src": "/assets/creatures/cornalomo.webp",
+                  "alt": "Cornalomo avanzando por los Llanos de Edran con la placa frontal y las estructuras dorsales visibles",
+                  "width": 1536, "height": 1024},
 }
 
 
