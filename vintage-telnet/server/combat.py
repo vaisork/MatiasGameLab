@@ -326,6 +326,7 @@ FATIGUE_BASE_COST = {
     "bloquear": 5,
     "esquivar": 6,
     "huir": 8,
+    "capacidad_firma": 5,
 }
 
 WOUND_ORDER = ("ninguna", "leve", "moderada", "grave")
@@ -478,3 +479,104 @@ def safe_recovery_result(hp_max_value, wound):
     NARRATIVA en server/README.md -- no se ata todavia a ninguna sala para
     no inventar esa decision."""
     return {"hp_current": round(hp_max_value), "fatigue": 0, "wound": respawn_wound(wound)}
+
+
+# --- GAMEPLAY.md 36: capacidades firma de clase + intencion enemiga v1 ------
+
+SIGNATURE_ABILITIES = {
+    "juramentado": {
+        "id": "guardia_comprometida",
+        "name": "Guardia Comprometida",
+        "cooldown": 2,
+        "replaces_basic_attack": True,
+        "has_attack": False,
+    },
+    "arcano": {
+        "id": "impulso_arcano",
+        "name": "Impulso Arcano",
+        "cooldown": 4,
+        "replaces_basic_attack": True,
+        "has_attack": False,
+    },
+    "sombra": {
+        "id": "borrar_el_foco",
+        "name": "Borrar el Foco",
+        "cooldown": 4,
+        "replaces_basic_attack": True,
+        "has_attack": False,
+    },
+    "artifice": {
+        "id": "tiro_de_interrupcion",
+        "name": "Tiro de Interrupción",
+        "cooldown": 2,
+        "replaces_basic_attack": True,
+        "has_attack": True,
+    },
+}
+
+
+def guardia_reduction(destreza, resistencia):
+    """GAMEPLAY.md 36.4: ReducciónGuardia = mínimo(45%, 30% + 0.25%×(Destreza-10) + 0.15%×(Resistencia-10))."""
+    return min(0.45, 0.30 + 0.0025 * (destreza - 10) + 0.0015 * (resistencia - 10))
+
+
+def resolve_guardia_comprometida_attack_roll(
+    enemy_precision, enemy_damage, destreza, resistencia,
+    is_frontal_charge=False, creature_base_precision=None, rng=None
+):
+    """GAMEPLAY.md 36.4: Guardia Comprometida sostiene el intercambio frontal.
+    Si la accion preparada frontal tenia un bono especial de precision por
+    carga/compromiso, elimina ese bono y la devuelve como maximo a la
+    precision ordinaria de la criatura antes de aplicar la defensa.
+    Aplica ReduccionGuardia sobre el dano si conecta."""
+    rng = rng or random.Random()
+    effective_precision = enemy_precision
+    if is_frontal_charge and creature_base_precision is not None:
+        effective_precision = min(enemy_precision, creature_base_precision)
+    hits = rng.uniform(0, 100) < effective_precision
+    if not hits:
+        return False, 0.0
+    reduction = guardia_reduction(destreza, resistencia)
+    return True, float(enemy_damage) * (1 - reduction)
+
+
+def resolve_impulso_arcano_effect(prepared_action=None):
+    """GAMEPLAY.md 36.5: si existe una prepared_action marcada interruptible,
+    elimina la accion especial y el enemigo resuelve en su lugar una respuesta
+    basica con -10 puntos porcentuales de precision. Si no existe accion
+    preparada, la siguiente respuesta del enemigo recibe -20 puntos porcentuales
+    de precision (minimo general de 20%)."""
+    if prepared_action and prepared_action.get("interruptible", False):
+        return {"interrupted": True, "enemy_accuracy_penalty": 10}
+    return {"interrupted": False, "enemy_accuracy_penalty": 20}
+
+
+def resolve_borrar_el_foco_effect():
+    """GAMEPLAY.md 36.6: la siguiente respuesta del enemigo recibe -25 puntos
+    porcentuales de precision, respetando minimo 20%. Si esa respuesta falla,
+    el Sombra obtiene Apertura (+15% precision en su siguiente ataque basico)."""
+    return {"enemy_accuracy_penalty": 25}
+
+
+def resolve_tiro_de_interrupcion_attack_roll(
+    attacker_destreza, attacker_percepcion, attacker_fuerza,
+    attacker_cg, defender_cg, base_arma=BASE_ARMA, accuracy_penalty=0,
+    damage_multiplier=1.0, apertura_bonus=0, prepared_action=None, rng=None
+):
+    """GAMEPLAY.md 36.7: utiliza precision normal de ataque (mas bono de apertura si aplica).
+    Si impacta, inflige 75% del dano bruto que habria producido su ataque basico.
+    Si impacta sobre prepared_action interruptible, cancela la accion especial
+    y el enemigo responde con accion basica normal. Si impacta y no habia accion
+    preparada, la siguiente respuesta enemiga recibe -15 puntos porcentuales
+    de precision (minimo 20%). Si falla, no obtiene efecto de interrupcion."""
+    rng = rng or random.Random()
+    hit_chance = max(0, accuracy(attacker_destreza, attacker_percepcion, attacker_cg, defender_cg)
+                     - accuracy_penalty + apertura_bonus)
+    hits = rng.uniform(0, 100) < hit_chance
+    if not hits:
+        return False, 0.0, {"interrupted": False, "enemy_accuracy_penalty": 0}
+    damage = (raw_damage(attacker_fuerza, attacker_destreza, attacker_cg, base_arma)
+              * damage_multiplier * 0.75)
+    if prepared_action and prepared_action.get("interruptible", False):
+        return True, damage, {"interrupted": True, "enemy_accuracy_penalty": 0}
+    return True, damage, {"interrupted": False, "enemy_accuracy_penalty": 15}

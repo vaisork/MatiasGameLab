@@ -19,17 +19,23 @@ def _fold(text):
 # WEAPON_CATALOG.md, tabla "Resumen validado para implementación".
 WEAPONS = {
     "varita_aprendiz": {"name": "Varita de aprendiz", "base_damage": 7,
-                         "can_block": False, "forge_required": False},
+                         "can_block": False, "forge_required": False,
+                         "is_arcane_focus": True, "is_ranged": False},
     "punal_camino": {"name": "Puñal de camino", "base_damage": 8,
-                      "can_block": False, "forge_required": False},
+                      "can_block": False, "forge_required": False,
+                      "is_arcane_focus": False, "is_ranged": False},
     "arco_ruta": {"name": "Arco de ruta", "base_damage": 9,
-                  "can_block": False, "forge_required": False},
+                  "can_block": False, "forge_required": False,
+                  "is_arcane_focus": False, "is_ranged": True},
     "espada_juramento": {"name": "Espada de juramento", "base_damage": 10,
-                          "can_block": True, "forge_required": False},
+                          "can_block": True, "forge_required": False,
+                          "is_arcane_focus": False, "is_ranged": False},
     "hoja_hoshai": {"name": "Hoja de Hoshai", "base_damage": 11,
-                     "can_block": True, "forge_required": True},
+                     "can_block": True, "forge_required": True,
+                     "is_arcane_focus": False, "is_ranged": False},
     "martillo_korven": {"name": "Martillo de Korven", "base_damage": 12,
-                         "can_block": True, "forge_required": True},
+                         "can_block": True, "forge_required": True,
+                         "is_arcane_focus": False, "is_ranged": False},
 }
 
 # Arma inicial por clase (Issue #112). Sale de la "Obtención narrativa" de
@@ -102,3 +108,21 @@ def find_key_by_name(text):
         if item["normalized_name"] == normalized:
             return key
     return None
+
+
+def can_block(item_key):
+    """GAMEPLAY.md 20.5: si el arma permite bloquear/desviar."""
+    item = ITEMS.get(item_key)
+    return bool(item and item.get("can_block", False))
+
+
+def is_arcane_focus(item_key):
+    """GAMEPLAY.md 36.5: si el arma/objeto es un foco arcano valido."""
+    item = ITEMS.get(item_key)
+    return bool(item and item.get("is_arcane_focus", False))
+
+
+def is_ranged(item_key):
+    """GAMEPLAY.md 36.7: si el arma es un arma a distancia valida."""
+    item = ITEMS.get(item_key)
+    return bool(item and item.get("is_ranged", False))
