@@ -764,9 +764,9 @@
             {% if room.exits and not room.encounter %}
             <div class="entry exits-entry"><p class="system">Salidas: {% for e in room.exits %}<b>{{ e.label }}</b>{% if e.known_name %} ({{ e.known_name }}){% endif %}{{ ' · ' if not loop.last }}{% endfor %}</p></div>
             {% endif %}
-            {% if room.others_present %}
-            <div class="entry"><p class="system">También aquí: {{ room.others_present | join(', ') }}</p></div>
-            {% endif %}
+            <div data-room-presence aria-live="polite"{% if not room.others_present %} hidden{% endif %}>
+              {% if room.others_present %}<div class="entry"><p class="system">También aquí: {{ room.others_present | join(', ') }}</p></div>{% endif %}
+            </div>
             {% if room.encounter %}
             <div class="entry encounter-entry">
               <p class="system">{{ room.encounter.behavior }}</p>
@@ -786,12 +786,14 @@
               <p>{{ error }}</p>
             </div>
             {% endif %}
-            {% for m in room.messages %}
-            <div class="entry">
-              <div class="cmd">&gt; {{ m.name }}</div>
-              <p>{{ m.body }}</p>
+            <div data-room-chat data-room-id="{{ room.id if room.id is defined else '' }}">
+              {% for m in room.messages %}
+              <div class="entry">
+                <div class="cmd">&gt; {{ m.name }}</div>
+                <p>{{ m.body }}</p>
+              </div>
+              {% endfor %}
             </div>
-            {% endfor %}
           </div>
           {% if room.encounter %}
           {# Estado del enemigo fijo al pie: la narración crece por encima
@@ -1586,6 +1588,67 @@
   // y solo se reemplazan las regiones [data-swap] con la respuesta. Si la
   // respuesta no es una pantalla de juego, se recarga normal.
   let actionInFlight = false;
+  let roomActivitySnapshot = "";
+  const renderRoomPresence = names => {
+    const host = document.querySelector("[data-room-presence]");
+    if (!host) return;
+    const clean = Array.isArray(names) ? names.filter(name => typeof name === "string" && name.trim()) : [];
+    host.hidden = clean.length === 0;
+    if (!clean.length) {
+      host.replaceChildren();
+      return;
+    }
+    const entry = document.createElement("div");
+    entry.className = "entry";
+    const p = document.createElement("p");
+    p.className = "system";
+    p.textContent = "También aquí: " + clean.join(", ");
+    entry.appendChild(p);
+    host.replaceChildren(entry);
+  };
+  const renderRoomMessages = (roomId, messages) => {
+    const host = document.querySelector("[data-room-chat]");
+    if (!host || host.dataset.roomId !== roomId) return;
+    const clean = Array.isArray(messages) ? messages : [];
+    const snapshot = roomId + "|" + JSON.stringify(clean.map(m => [m.created_at || "", m.name || "", m.body || ""]));
+    if (snapshot === roomActivitySnapshot) return;
+    roomActivitySnapshot = snapshot;
+    const fragment = document.createDocumentFragment();
+    clean.forEach(message => {
+      const entry = document.createElement("div");
+      entry.className = "entry";
+      const cmd = document.createElement("div");
+      cmd.className = "cmd";
+      cmd.textContent = "> " + String(message.name || "");
+      const p = document.createElement("p");
+      p.textContent = String(message.body || "");
+      entry.append(cmd, p);
+      fragment.appendChild(entry);
+    });
+    host.replaceChildren(fragment);
+  };
+  const refreshRoomActivity = async () => {
+    if (document.hidden || actionInFlight || !document.querySelector(".game-shell")) return;
+    const host = document.querySelector("[data-room-chat]");
+    const expectedRoomId = host && host.dataset.roomId;
+    if (!expectedRoomId) return;
+    try {
+      const response = await fetch("/api/room", {credentials: "same-origin", headers: {"Accept": "application/json"}});
+      if (!response.ok) return;
+      const data = await response.json();
+      const room = data && data.room;
+      if (!room || room.id !== expectedRoomId) return;
+      renderRoomPresence(room.others_present);
+      renderRoomMessages(room.id, room.messages);
+    } catch (_error) {
+      // Polling de presencia/chat es mejora progresiva; nunca bloquea el juego.
+    }
+  };
+  const roomActivityTimer = window.setInterval(refreshRoomActivity, 5000);
+  window.addEventListener("focus", refreshRoomActivity);
+  document.addEventListener("visibilitychange", () => { if (!document.hidden) refreshRoomActivity(); });
+  window.addEventListener("pagehide", () => window.clearInterval(roomActivityTimer), {once: true});
+
   const announceGameState = () => {
     const live = document.getElementById("gameLiveStatus");
     const place = document.getElementById("placeTitle");
@@ -1652,6 +1715,8 @@
       if (key === "art") wireArt(imported);
     }
     shell.className = nextShell.className;
+    const currentChat = document.querySelector("[data-room-chat]");
+    if (currentChat) roomActivitySnapshot = currentChat.dataset.roomId + "|";
     return true;
   };
   document.addEventListener("submit", async event => {
