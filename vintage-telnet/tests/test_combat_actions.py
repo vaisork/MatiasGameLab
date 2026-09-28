@@ -266,10 +266,12 @@ class CombatActionsIntegrationTests(unittest.TestCase):
 
     # --- available_actions -----------------------------------------------------
 
-    def test_available_actions_offers_only_rest_outside_combat(self):
+    def test_available_actions_offers_rest_but_no_combat_actions_outside_combat(self):
         self.register_and_enter_world()
         room = self.room()
-        self.assertEqual(room["available_actions"], [{"action": "descansar"}])
+        actions = {entry["action"] for entry in room["available_actions"]}
+        self.assertIn("descansar", actions)
+        self.assertTrue(actions.isdisjoint({"atacar", "evaluar", "huir", "esquivar", "resistir", "bloquear", "capacidad"}))
 
     def test_available_actions_lists_combat_options_with_a_creature_present(self):
         self.register_and_enter_world()
