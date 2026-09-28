@@ -27,19 +27,22 @@ from urllib.error import HTTPError, URLError
 from urllib.parse import urlsplit
 from urllib.request import Request, urlopen
 
-from . import store, world
+from . import economy, items, store, world
 
 logger = logging.getLogger(__name__)
 
 
 # ---------------------------------------------------------------------------
-# Acciones estructuradas y Gate autoritativo (Issue #247)
+# Acciones estructuradas y Gate autoritativo (Issues #247, #385)
 # ---------------------------------------------------------------------------
 
 ALLOWLISTED_NPC_ACTIONS: frozenset[str] = frozenset({
     "indicate_route",
     "reveal_lore_topic",
     "show_workshop_item",
+    "list_shop_inventory",
+    "quote_item",
+    "purchase_item",
 })
 
 VALID_WORKSHOP_TOOLS: frozenset[str] = frozenset({
@@ -423,6 +426,18 @@ def build_dialogue_prompt(
             + "\n"
         )
 
+    npc_loc = npc_data.get("location") or npc_data.get("room_id")
+    shop_guidelines = ""
+    if role in ("herrero", "comerciante") and (npc_loc == "valdren_forja" or npc_data.get("id") == "daro_herrero"):
+        shop_guidelines = (
+            "\nACCIONES ESTRUCTURADAS DE TIENDA AUTORIZADAS (GAMEPLAY §35, Issue #385):\n"
+            "Puedes emitir etiquetas al final de tu respuesta (canal separado) si el jugador consulta tu catálogo, cotiza o compra:\n"
+            "- Listar armas disponibles: <!--ACTION: {\"type\": \"list_shop_inventory\", \"payload\": {}}-->\n"
+            "- Cotizar precio oficial: <!--ACTION: {\"type\": \"quote_item\", \"payload\": {\"item_key\": \"<item_key>\"}}-->\n"
+            "- Concretar compra autoritativa cuando el jugador solicita comprar: <!--ACTION: {\"type\": \"purchase_item\", \"payload\": {\"item_key\": \"<item_key>\"}}-->\n"
+            "El servidor siempre valida precio, fondos y presencia objetiva; el diálogo no tiene autoridad directa sobre el saldo ni el inventario.\n"
+        )
+
     system_instructions = (
         f"Eres {npc_name}, {role} de {town} (especie {species}).\n"
         f"Tu personalidad es: temperamento {temperament}; estilo de habla {speech_style}; "
@@ -440,6 +455,7 @@ def build_dialogue_prompt(
         f"CONOCIMIENTOS AUTORIZADOS PARA {npc_name.upper()}:\n"
         f"{allowed_list_text}\n"
         f"{history_text}"
+        f"{shop_guidelines}"
     )
 
     return DialoguePrompt(
@@ -638,6 +654,145 @@ def evaluate_action_gate(
                     "artisan": npc_data.get("name"),
                 },
             )
+
+    elif action_type == "list_shop_inventory":
+        role = str(npc_data.get("role") or "").lower()
+        if role not in ("herrero", "comerciante") or current_room != economy.DARO_SHOP_ROOM:
+            result = ActionGateResult(
+                accepted=False,
+                action_type=action_type,
+                reason="shop_not_available",
+            )
+        elif player_data.get("in_combat"):
+            result = ActionGateResult(
+                accepted=False,
+                action_type=action_type,
+                reason="cannot_trade_during_combat",
+            )
+        else:
+            catalog = economy.get_daro_catalog_items()
+            result = ActionGateResult(
+                accepted=True,
+                action_type=action_type,
+                reason="shop_inventory_listed",
+                effect={
+                    "merchant": npc_data.get("name"),
+                    "room": current_room,
+                    "currency": "sellos",
+                    "catalog": catalog,
+                },
+            )
+
+    elif action_type == "quote_item":
+        role = str(npc_data.get("role") or "").lower()
+        if role not in ("herrero", "comerciante") or current_room != economy.DARO_SHOP_ROOM:
+            result = ActionGateResult(
+                accepted=False,
+                action_type=action_type,
+                reason="shop_not_available",
+            )
+        elif player_data.get("in_combat"):
+            result = ActionGateResult(
+                accepted=False,
+                action_type=action_type,
+                reason="cannot_trade_during_combat",
+            )
+        else:
+            raw_item = str(
+                proposed.payload.get("item_key")
+                or proposed.payload.get("item_name")
+                or proposed.payload.get("item")
+                or ""
+            ).strip()
+            item_key = economy.resolve_daro_item(raw_item)
+            if not item_key or item_key not in economy.DARO_CATALOG:
+                result = ActionGateResult(
+                    accepted=False,
+                    action_type=action_type,
+                    reason="item_not_in_catalog",
+                    effect={"requested_item": raw_item},
+                )
+            else:
+                price = economy.DARO_CATALOG[item_key]
+                balance = (
+                    economy.get_player_balance(db_path, player_id)
+                    if (db_path and player_id)
+                    else player_data.get("sellos", 0)
+                )
+                item_info = items.get_item(item_key)
+                item_name = item_info["name"] if item_info else item_key
+                result = ActionGateResult(
+                    accepted=True,
+                    action_type=action_type,
+                    reason="item_quoted_safely",
+                    effect={
+                        "item_key": item_key,
+                        "item_name": item_name,
+                        "price_sellos": price,
+                        "player_balance": balance,
+                        "can_afford": (balance >= price),
+                        "quoted_by": npc_data.get("name"),
+                    },
+                )
+
+    elif action_type == "purchase_item":
+        role = str(npc_data.get("role") or "").lower()
+        if role not in ("herrero", "comerciante") or current_room != economy.DARO_SHOP_ROOM:
+            result = ActionGateResult(
+                accepted=False,
+                action_type=action_type,
+                reason="shop_not_available",
+            )
+        elif player_data.get("in_combat"):
+            result = ActionGateResult(
+                accepted=False,
+                action_type=action_type,
+                reason="cannot_buy_during_combat",
+            )
+        elif not db_path or not player_id:
+            result = ActionGateResult(
+                accepted=False,
+                action_type=action_type,
+                reason="storage_unavailable",
+            )
+        else:
+            raw_item = str(
+                proposed.payload.get("item_key")
+                or proposed.payload.get("item_name")
+                or proposed.payload.get("item")
+                or ""
+            ).strip()
+            item_key = economy.resolve_daro_item(raw_item)
+            if not item_key or item_key not in economy.DARO_CATALOG:
+                result = ActionGateResult(
+                    accepted=False,
+                    action_type=action_type,
+                    reason="item_not_in_catalog",
+                    effect={"requested_item": raw_item},
+                )
+            else:
+                client_tx_id = proposed.payload.get("client_tx_id") or proposed.payload.get("request_id")
+                success, msg, extra = economy.buy_item_from_daro(
+                    db_path,
+                    player_id,
+                    item_key,
+                    client_tx_id=str(client_tx_id).strip() if client_tx_id else None,
+                )
+                if not success:
+                    reason_code = "insufficient_funds" if "suficientes sellos" in msg.lower() else msg
+                    result = ActionGateResult(
+                        accepted=False,
+                        action_type=action_type,
+                        reason=reason_code,
+                        effect=extra,
+                    )
+                else:
+                    result = ActionGateResult(
+                        accepted=True,
+                        action_type=action_type,
+                        reason="item_purchased_safely",
+                        effect=extra,
+                    )
     else:
         result = ActionGateResult(accepted=False, action_type=action_type, reason="unsupported_action")
 
@@ -820,6 +975,8 @@ CANONICAL_NPCS: list[dict[str, Any]] = [
                 "El hierro caliente no espera.",
                 "Cada herramienta tiene su peso y su labor.",
                 "Si buscas alboroto, este no es el taller adecuado.",
+                "Una espada de juramento son ochenta y cinco sellos; ni uno más, ni uno menos.",
+                "No vendo armas de Khariel ni de Brumak; este es un taller de Valdren.",
             ],
         },
         "knowledge_allowed": [
@@ -827,12 +984,17 @@ CANONICAL_NPCS: list[dict[str, Any]] = [
             "reparación de aperos, clavos y rejas de arado",
             "el estado de los caminos inmediatos y cercas alrededor de Valdren",
             "la precaución de no internarse desprevenido en pastos altos ni cruces aislados",
+            "armas comunes de ruta que vende en el taller por sellos de bronce: Varita de aprendiz (40), Puñal de camino (50), Arco de ruta (65) y Espada de juramento (85)",
+            "no vende armas culturales ni regionales exclusivas como la Hoja de Hoshai o el Martillo de Korven",
+            "acepta sellos como forma de pago ordinaria en su taller",
+            "recompra únicamente las cuatro armas comunes de su catálogo al 35% del valor base",
         ],
         "knowledge_forbidden": [
             "los secretos subterráneos de Vaisgard",
             "la ubicación exacta de amenazas mayores de las Cinco Rutas",
             "la verdad sobre las ruinas antiguas",
             "el contenido de cofres o inventarios ajenos",
+            "precios distintos a los fijados oficialmente o descuentos inventados",
         ],
         "fallback_dialogue": "Daro examina una tenaza sobre el yunque en silencio, asiente y vuelve a la fragua.",
     }

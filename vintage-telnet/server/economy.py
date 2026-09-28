@@ -104,6 +104,9 @@ def daro_catalog_entries() -> list[dict]:
     return entries
 
 
+get_daro_catalog_items = daro_catalog_entries
+
+
 def get_player_balance(path: str, player_id: str) -> int:
     """Obtiene el saldo autoritativo de sellos de un personaje."""
     with store.connect(path) as db:
@@ -127,7 +130,13 @@ def list_player_ledger(path: str, player_id: str, limit: int = 50) -> list[dict]
         return [dict(r) for r in rows]
 
 
-def buy_item_from_daro(path: str, player_id: str, item_key: str, now: float | None = None) -> tuple[bool, str, dict | None]:
+def buy_item_from_daro(
+    path: str,
+    player_id: str,
+    item_key: str,
+    now: float | None = None,
+    client_tx_id: str | None = None,
+) -> tuple[bool, str, dict | None]:
     """Compra atómicamente un objeto a Daro.
 
     Validaciones:
@@ -138,6 +147,7 @@ def buy_item_from_daro(path: str, player_id: str, item_key: str, now: float | No
     - Debita el precio en sellos.
     - Crea una nueva instancia del objeto en inventory_items.
     - Registra la transacción en economy_ledger.
+    - Soporta client_tx_id opcional para deduplicación idempotente ante reintentos/doble submit.
 
     Retorna: (éxito, mensaje, datos_extra)
     """
@@ -152,8 +162,28 @@ def buy_item_from_daro(path: str, player_id: str, item_key: str, now: float | No
     if not catalog_item:
         return False, "Objeto desconocido en el catálogo.", None
 
+    clean_tx_id = str(client_tx_id).strip() if client_tx_id else None
+
     with store.connect(path) as db:
         db.execute("BEGIN IMMEDIATE")
+
+        # Comprobación de idempotencia si se proporciona client_tx_id
+        if clean_tx_id:
+            expected_key = f"daro:buy:{item_key}:{clean_tx_id}"
+            existing = db.execute(
+                "SELECT balance_after FROM economy_ledger WHERE player_id = ? AND source_key = ?",
+                (player_id, expected_key),
+            ).fetchone()
+            if existing:
+                return True, f"Compras {catalog_item['name']} a Daro por {price} sellos.", {
+                    "balance": existing["balance_after"],
+                    "item_key": item_key,
+                    "name": catalog_item["name"],
+                    "idempotent_replay": True,
+                    "forge_validated": False,
+                    "is_equipped": False,
+                }
+
         player_row = db.execute("SELECT sellos FROM players WHERE id = ?", (player_id,)).fetchone()
         if not player_row:
             return False, "Personaje no encontrado.", None
@@ -177,10 +207,11 @@ def buy_item_from_daro(path: str, player_id: str, item_key: str, now: float | No
             (instance_id, player_id, item_key, catalog_item["category"], store.utcnow()),
         )
 
+        ledger_source = f"daro:buy:{item_key}:{clean_tx_id}" if clean_tx_id else f"daro:buy:{item_key}:{instance_id}"
         db.execute(
             """INSERT INTO economy_ledger (player_id, delta, balance_after, reason_code, source_key, created_at)
                VALUES (?, ?, ?, 'shop_purchase', ?, ?)""",
-            (player_id, -price, new_balance, f"daro:buy:{item_key}:{instance_id}", now),
+            (player_id, -price, new_balance, ledger_source, now),
         )
 
         return True, f"Compras {catalog_item['name']} a Daro por {price} sellos.", {
@@ -188,6 +219,8 @@ def buy_item_from_daro(path: str, player_id: str, item_key: str, now: float | No
             "instance_id": instance_id,
             "item_key": item_key,
             "name": catalog_item["name"],
+            "forge_validated": False,
+            "is_equipped": False,
         }
 
 
