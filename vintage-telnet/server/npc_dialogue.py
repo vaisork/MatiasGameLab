@@ -760,6 +760,31 @@ def converse(
 
         is_fallback = False
         proposed = None
+
+    # Manejo de la escena autoritativa de Karn (KORVEN-WEAPON-01 / #288)
+    elif npc_id == "brumak_taller_korven_01":
+        has_item = store.get_story_flag(db_path, player_id, "korven_martillo_recibido") if (db_path and player_id) else False
+        has_helped = store.get_story_flag(db_path, player_id, "korven_carga_asentada") if (db_path and player_id) else False
+
+        msg_lower = (message or "").strip().lower()
+        offers_help = any(w in msg_lower for w in ("ayud", "sosten", "sostén", "apoyo", "carg", "firme", "fuerz", "mano", "si", "sí", "claro", "vale", "apoyo", "cuenta"))
+
+        if has_item:
+            clean_reply = "Ya cumpliste aquí. La pieza que te entregaron sigue siendo la misma; no hay otra esperando por repetir la ayuda."
+        elif has_helped or offers_help:
+            if db_path and player_id:
+                store.set_story_flag(db_path, player_id, "korven_carga_asentada", True)
+                store.grant_story_item_once(db_path, player_id, "korven_martillo_recibido", "martillo_korven", forge_validated=False)
+            clean_reply = (
+                "El apoyo vuelve a quedar bajo el peso correcto. La carga queda estable y el paso vuelve a estar libre.\n\n"
+                "—Así está bien. Una herramienta sirve más cuando quien la lleva sabe cuándo hacer fuerza y cuándo sostener.\n\n"
+                "Te entregan un Martillo de Korven. La pieza es tuya, pero todavía necesita validación de Forja antes de poder equiparse."
+            )
+        else:
+            clean_reply = "—Sostén ese extremo. Yo corrijo el apoyo. Si queda firme, podremos moverla."
+
+        is_fallback = False
+        proposed = None
     else:
         try:
             raw_output = prov.generate_reply(prompt)
@@ -899,6 +924,44 @@ CANONICAL_NPCS: list[dict[str, Any]] = [
             "secretos antiguos, gremios inventados o historia oculta",
         ],
         "fallback_dialogue": "Aren asiente con sobriedad y continúa ajustando las sujeciones del taller.",
+    },
+    {
+        "id": "brumak_taller_korven_01",
+        "name": "Karn",
+        "species": "Dravak",
+        "town": "Brumak",
+        "location": "brumak_forja",
+        "role": "artesano de taller",
+        "personality": {
+            "temperament": "práctico, resistente y paciente",
+            "speech_style": "sobrio, conciso y de pocas palabras",
+            "formality": "neutral",
+            "humor": "escaso",
+            "sociability": "moderada",
+            "response_length": "breve",
+            "expressive_reactions": [
+                "comprueba la solidez del apoyo de piedra",
+                "asiente con firmeza",
+                "golpea suavemente el mango del martillo contra la palma",
+            ],
+            "traits": ["artesano", "firme", "práctico"],
+            "example_phrases": [
+                "—Sostén ese extremo. Yo corrijo el apoyo. Si queda firme, podremos moverla.",
+                "Una carga mal apoyada termina quebrando lo que tiene debajo.",
+                "—Así está bien. Una herramienta sirve más cuando quien la lleva sabe cuándo hacer fuerza y cuándo sostener.",
+            ],
+        },
+        "knowledge_allowed": [
+            "el funcionamiento del taller de Brumak y el trabajo de piedra y metal",
+            "el equilibrio y sujeción de cargas pesadas",
+            "la necesidad de validación de Forja antes de poder usar un Martillo de Korven",
+        ],
+        "knowledge_forbidden": [
+            "estadísticas internas, fórmulas de daño, flags ni reglas de balance",
+            "afirmar que el Martillo esté validado antes de confirmarlo el sistema",
+            "secretos de Korven, jerarquías ni historia oculta",
+        ],
+        "fallback_dialogue": "Karn asiente con firmeza y vuelve a comprobar los apoyos de piedra del taller.",
     },
 ]
 
