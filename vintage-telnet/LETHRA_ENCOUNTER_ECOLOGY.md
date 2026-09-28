@@ -1,8 +1,8 @@
 # LETHRA-01 — Mapping ecológico del Camino de los Juncos
 
-**Origen:** #305 / #166 / PR #281  
-**Capa:** Historiador y Constructor del Mundo  
-**Región:** Aguas de Lethra — Narevia → Veyra  
+**Origen:** #305 / #166 / PR #281
+**Capa:** Historiador y Constructor del Mundo
+**Región:** Aguas de Lethra — Narevia → Veyra
 **Criaturas evaluadas:** Pinzajunco / Saltalodo
 
 Este documento usa los `room_id` autoritativos de `server/world.py` en `main`.
