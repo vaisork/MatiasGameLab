@@ -102,7 +102,7 @@ class RegionalCreatureContractTests(unittest.TestCase):
 class RegionalPoolContractTests(unittest.TestCase):
     def test_every_pool_room_chance_and_weight_matches_approved_tables(self):
         encounters.validate_pools(encounters.RANDOM_ENCOUNTER_POOLS)
-        expected = {**KORVEN, **LETHRA, **NHAL}
+        expected = {**HOSHAI, **KORVEN, **LETHRA, **NHAL}
         edran_rooms = {
             "valdren_sendero", "valdren_camino_hundido", "valdren_parcelas_exteriores",
             "valdren_campo_rastrojo", "valdren_campos_sin_cerca",
