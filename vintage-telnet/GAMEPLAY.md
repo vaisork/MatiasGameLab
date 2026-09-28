@@ -1574,17 +1574,40 @@ Como comportamiento base para criaturas comunes:
 
 No se introduce todavía una barra compleja de amenaza/aggro.
 
-### 26.5 Movimiento durante combate
+### 26.5 Movimiento durante encuentro y combate
 
-Un personaje involucrado en combate **no puede usar movimiento cardinal normal para escapar gratis**.
+**Ver una criatura no equivale a estar comprometido en combate.**
 
-Si intenta salir mientras sigue comprometido:
-- el servidor debe exigir la acción **Huir**;
+Mientras la criatura esté solo **a la vista** y el jugador no haya realizado una acción de compromiso:
+- puede `mirar`;
+- puede `observar`;
+- puede `examinar`;
+- puede `evaluar`;
+- puede usar movimiento cardinal normal para seguir de largo;
+- el encuentro visible se abandona sin necesidad de `huir`.
+
+Estas acciones de lectura **no comprometen** por sí solas al personaje.
+
+El personaje pasa a estado **comprometido** cuando ocurre cualquiera de estas condiciones:
+- ejecuta `atacar` contra la criatura;
+- usa una capacidad/intervención que actúa directamente sobre la criatura o su acción preparada;
+- elige `esquivar`, `bloquear` o `resistir` frente a una acción hostil ya iniciada;
+- una regla explícita de contenido establece que una agresión enemiga inevitable ya comenzó después de una advertencia/decisión válida.
+
+Una vez comprometido:
+- movimiento cardinal normal **no puede usarse para escapar gratis**;
+- el servidor exige **Huir**;
 - Huir usa §20.10 y §24;
-- tras una huida exitosa, el personaje puede quedar en la salida/destino que el servidor determine válidamente;
-- una huida fallida consume la intervención de esa ronda.
+- huida exitosa termina el compromiso y mueve al jugador según salida válida;
+- huida fallida consume la intervención y el personaje sigue comprometido.
 
-Esto evita que escribir `norte` sustituya el sistema de huida.
+`evaluar`, `mirar`, `observar` o simplemente tener una criatura visible nunca deben bloquear salidas por sí solos.
+
+Botón, comando y API deben aplicar exactamente la misma regla.
+
+Esto evita tanto:
+- que escribir `norte` sustituya Huir durante una pelea;
+- como que cada encuentro aleatorio obligue a combatir o huir cuando el jugador todavía no decidió involucrarse.
 
 ### 26.6 Fin del encuentro
 
@@ -1612,6 +1635,65 @@ Cada participante calcula su categoría personal:
 - ambos deben haber participado significativamente.
 
 Por tanto, ayudar es posible sin convertir matar criaturas débiles para otro jugador en el método dominante de power-leveling.
+
+### 26.8 Presencia local y chat activo — v1
+
+La interfaz debe distinguir entre:
+- **presencia actual**;
+- **mensajes recientes de la sala**;
+- **historial antiguo**.
+
+#### Presencia
+
+Una salida explícita de sala elimina la presencia inmediatamente para los demás en la siguiente actualización normal.
+
+Para cierre abrupto, pérdida de conexión o pestaña abandonada:
+- el cliente activo envía/produce heartbeat mediante su tráfico normal;
+- referencia de heartbeat visible: **cada 5 segundos**;
+- un jugador sin actividad/heartbeat durante **30 segundos** deja de mostrarse en `También aquí`.
+
+Reglas:
+- `last_seen`/heartbeat es autoritativo del servidor;
+- ocultar pestaña o perder red puede hacer que el jugador deje de verse tras 30 s;
+- al volver a actividad reaparece sin duplicarse;
+- logout explícito expira presencia inmediatamente;
+- el jugador nunca se muestra a sí mismo.
+
+Presencia no cambia `players.room`: solo decide si ese personaje cuenta como **actualmente presente** para interacción/chat.
+
+Si B aparece en `También aquí`, B debe ser elegible para recibir chat local. Si ya expiró, no debe figurar ni recibir nuevos mensajes locales.
+
+#### Chat activo
+
+La vista de chat local muestra por defecto únicamente mensajes de la sala de los **últimos 10 minutos**.
+
+Mensajes anteriores:
+- pueden conservarse en almacenamiento/historial;
+- no aparecen mezclados como conversación activa;
+- una futura vista `Historial` puede consultarlos separadamente.
+
+Cambiar de sala:
+- cierra inmediatamente el contexto activo de la sala anterior;
+- nunca muestra mensajes de otra sala en la actual.
+
+Volver a una sala:
+- puede mostrar los mensajes recientes dentro de la ventana de 10 minutos;
+- mensajes de horas anteriores no reaparecen como conversación actual.
+
+El límite de 30 mensajes puede mantenerse como tope adicional, pero **no sustituye** la ventana temporal.
+
+#### Refresh
+
+Un polling/refresh de aproximadamente **5 segundos** con pestaña visible es válido para v1.
+
+Al recuperar foco:
+- refrescar inmediatamente presencia y chat activo.
+
+No se requiere WebSocket para cerrar este problema.
+
+### 26.9 Principio de presencia
+
+**Estar guardado en una sala no significa estar conectado en ella; estar en el historial no significa estar conversando ahora.**
 
 ### 26.8 Principio
 
