@@ -778,6 +778,9 @@
             {% if room.encounter %}
             <div class="entry encounter-entry">
               <p class="system">{{ room.encounter.behavior }}</p>
+              {% if room.encounter.telegraph %}
+              <p class="system" style="color: #f1d28f; font-weight: bold; margin-top: 4px;">{{ room.encounter.telegraph }}</p>
+              {% endif %}
             </div>
             {% endif %}
             {# Relato de la pelea en curso: turno por turno, la última línea
@@ -827,6 +830,9 @@
         <section class="combat-panel" aria-label="{{ 'Acciones de combate' if room.in_combat else 'Fauna cercana' }}" data-swap="controls">
           {% if 'atacar' in action_names %}
           <form method="post" action="/attack"><input type="hidden" name="csrf" value="{{ session.csrf }}"><button class="action action-attack" type="submit"><svg class="ui-icon" aria-hidden="true"><use href="#icon-swords"/></svg>Atacar</button></form>
+          {% endif %}
+          {% if room.signature_ability %}
+          <form method="post" action="/ability"><input type="hidden" name="csrf" value="{{ session.csrf }}"><button class="action action-primary" type="submit" {% if not room.signature_ability.ready %}disabled aria-disabled="true" title="{{ room.signature_ability.disabled_reason or '' }}"{% endif %}>{{ room.signature_ability.name }}{% if room.signature_ability.cooldown_remaining > 0 %} ({{ room.signature_ability.cooldown_remaining }}){% endif %}</button></form>
           {% endif %}
           <div class="combat-row">
             {% if 'huir' in action_names %}

@@ -50,6 +50,16 @@ CREATURES = {
         "flee_percepcion": 10,
         "behavior_text": ("Espinajo de rastrojo eriza las puas del lomo y se mantiene firme: "
                            "vigila su territorio y no huye con facilidad."),
+        "prepared_action": {
+            "id": "embestida_territorial",
+            "name": "embestida territorial",
+            "interruptible": True,
+            "frontal": True,
+            "telegraph": ("Espinajo de rastrojo baja la cabeza raspando el suelo con sus púas, "
+                          "preparando una embestida frontal."),
+            "precision": 60,
+            "damage": 8,
+        },
     },
     "cornalomo": {
         "name": "Cornalomo",
