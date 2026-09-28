@@ -3563,3 +3563,222 @@ No mezclar dos amenazas C3 en la misma sala/evento v1.
 ### 40.12 Principio
 
 **Una amenaza superior debe poder asustar al jugador antes de obligarlo a pelear.**
+
+## 41. Jefes únicos C5 — contrato reusable v1
+
+**Estado:** CONTRATO DE JUGABILIDAD APROBADO; sin jefe concreto asignado todavía.  
+**Relacionados:** §11, §36, §40, #332.
+
+C5 representa un **jefe explícitamente definido como jefe**. Potencia, tamaño o rareza por sí solos nunca elevan C3/C4 a C5.
+
+### 41.1 Declaración explícita
+
+Todo jefe C5 necesita un contrato con, como mínimo:
+
+- `boss_id` único;
+- nombre/canon del ejemplar;
+- zona/entrada concreta;
+- señales previas;
+- fases o estados;
+- condición de victoria;
+- regla de retirada;
+- regla de reintento;
+- recompensas autorizadas;
+- `weapon_loss_on_defeat: true|false`;
+- si la pérdida está activa, ruta legítima de recuperación/reemplazo.
+
+Default:
+
+`weapon_loss_on_defeat = false`
+
+No inferirlo por dificultad.
+
+### 41.2 Jefe único y persistencia
+
+Un C5 es un ejemplar único del mundo.
+
+Al morir:
+- `boss_defeated=true` de forma persistente y compartida;
+- no reaparece por cooldown, reconexión ni reinicio;
+- sus encuentros aleatorios/scripted posteriores deben quedar desactivados;
+- el mundo puede conservar rastros, cadáver, cambio de sala o texto posterior si Narrativa/Historia lo definen.
+
+La victoria persistente pertenece al mundo, no a una sola sesión.
+
+### 41.3 Intento activo
+
+Mientras el jefe está vivo:
+- participantes presentes comparten el mismo encounter autorizado;
+- HP/fase del intento son compartidos por participantes legítimos;
+- entrar como espectador no concede XP/recompensa.
+
+Si todos los participantes:
+- mueren;
+- huyen;
+- abandonan legítimamente el encounter;
+
+el **intento termina**.
+
+Default v1:
+- HP del jefe vuelve al máximo;
+- fase vuelve al inicio;
+- no se conserva daño entre intentos.
+
+Un jefe concreto puede persistir fase/daño solo mediante contrato explícito.
+
+### 41.4 Advertencia y retirada
+
+Un jefe debe estar precedido por contenido legible.
+
+Antes del primer compromiso debe existir:
+1. evidencia de peligro;
+2. un último punto de retorno;
+3. decisión explícita de entrar/provocar/continuar.
+
+No iniciar C5 desde una tirada de pool ordinario.
+
+Retirarse antes de iniciar no es derrota.
+
+Durante combate, la huida puede:
+- usar fórmula normal;
+- usar salida/condición propia;
+pero nunca se declara imposible sin contrato específico y señalización clara.
+
+### 41.5 Fases
+
+C5 puede tener varias fases.
+
+Cada fase puede declarar:
+- rango de HP o trigger;
+- acciones preparadas disponibles;
+- precisión/daño propios;
+- reglas de objetivo;
+- cambios de terreno autorizados;
+- ventana de retirada si aplica.
+
+Las acciones preparadas reutilizan §36.
+
+No crear minijuego/motor separado por jefe cuando una fase puede expresarse con estados y acciones data-driven.
+
+### 41.6 Muerte del jugador
+
+Derrota contra jefe usa primero la muerte/respawn general.
+
+Se preservan por defecto:
+- personaje;
+- nivel/XP;
+- PA/PP;
+- armadura;
+- inventario normal;
+- descubrimientos.
+
+La única pérdida especial PvE contemplada inicialmente es la **arma equipada**, y solo bajo §41.7.
+
+No borrar inventario completo ni nivel por analogía con juegos distintos.
+
+### 41.7 Pérdida de arma — opt-in por jefe
+
+La pérdida solo ocurre si:
+
+`weapon_loss_on_defeat = true`
+
+y el jugador tenía un arma equipada al producirse la derrota.
+
+Entonces:
+1. el arma se desequipa;
+2. la instancia deja de ser utilizable/equipable bajo un estado persistente de pérdida;
+3. no desaparece silenciosamente sin registro;
+4. su pieza física existente NO vuelve a habilitarla por sí sola;
+5. el contrato del jefe debe ofrecer una vía legítima para recuperar el derecho o conseguir reemplazo.
+
+La implementación puede usar un estado como `lost_to_boss` o equivalente, pero no debe falsear `forge_validated` para representar otra cosa.
+
+### 41.8 Gate obligatorio antes de habilitar pérdida
+
+Un jefe **no puede** salir a producción con pérdida de arma activa si no están cerrados:
+
+- qué arma puede perderse;
+- qué ocurre con arma inicial;
+- qué pasa si el jugador no lleva arma;
+- ruta de recuperación/reemplazo;
+- comportamiento de Forja física;
+- inventario lleno si se entrega reemplazo;
+- reconexión;
+- segunda derrota antes de recuperar;
+- mensaje claro al jugador.
+
+Hasta entonces, el flag permanece `false`.
+
+### 41.9 Sin arma equipada
+
+Si el jugador llega sin arma:
+- no pierde otro objeto “en compensación”;
+- no pierde armadura;
+- no pierde moneda;
+- no pierde XP.
+
+El jefe sigue pudiendo derrotarlo normalmente.
+
+### 41.10 Recompensas
+
+Recompensas de jefe deben declararse explícitamente.
+
+Pueden incluir, según contenido aprobado:
+- XP;
+- descubrimiento/hito;
+- objeto;
+- acceso;
+- cambio del mundo.
+
+No otorgar automáticamente:
+- arma legendaria;
+- dinero;
+- loot aleatorio;
+- poder;
+solo por tener `boss_id`.
+
+Cada recompensa debe ser once-per-world o once-per-character según su contrato.
+
+### 41.11 Participación multijugador
+
+Para recompensa individual:
+- solo participantes con contribución significativa cuentan;
+- observadores no reciben XP/objeto.
+
+Para estado del mundo:
+- una victoria válida marca al jefe muerto para todos.
+
+Si un jefe entrega recompensa personal once-per-character, un jugador ausente no la recibe retroactivamente salvo que el contenido lo indique.
+
+### 41.12 Reintento tras derrota
+
+Después de wipe/huida:
+- jugador reaparece según contrato de zona/general;
+- boss sigue vivo;
+- intento activo desaparece;
+- al volver, boss comienza completo por default;
+- señales/entrada permanecen descubiertas si ya lo estaban.
+
+No obligar a repetir descubrimientos básicos solo para volver a intentar.
+
+### 41.13 Tests mínimos de BOSS-ENGINE
+
+- un C3/C4 no obtiene comportamiento C5 accidentalmente;
+- boss_id único;
+- boss derrotado no reaparece tras reconnect/restart;
+- wipe sin victoria NO marca derrotado;
+- HP/fase reset default entre intentos;
+- participantes comparten encounter;
+- espectador no cobra;
+- retirada previa no cuenta derrota;
+- `weapon_loss_on_defeat=false` conserva arma;
+- `true` pierde únicamente arma equipada;
+- sin arma no sustituye la penalización por otro objeto;
+- estado de arma perdida persiste;
+- recuperación/reemplazo no duplica;
+- recompensas once-* respetan su alcance;
+- Forja no se usa falsamente como flag de pérdida.
+
+### 41.14 Principio
+
+**Un jefe puede imponer una consecuencia excepcional porque su contrato la declara; no porque sea simplemente muy fuerte.**
