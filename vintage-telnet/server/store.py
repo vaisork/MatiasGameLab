@@ -1657,6 +1657,46 @@ def get_player_story_flags(path, player_id):
         return {row["flag"]: bool(row["value"]) for row in rows}
 
 
+def reconcile_story_flag_alias(path, player_id, legacy_flag, canonical_flag):
+    """Convierte un flag narrativo legacy al nombre canónico de forma atómica.
+
+    Si cualquiera de los dos está activo, conserva el progreso activando el
+    canónico. El flag legacy se elimina en la misma transacción para no
+    mantener dos fuentes de verdad divergentes. Devuelve el estado canónico.
+    """
+    if not player_id:
+        raise ValueError("player_id es obligatorio para reconciliar flags.")
+    if not legacy_flag or not canonical_flag:
+        raise ValueError("legacy_flag y canonical_flag son obligatorios.")
+    if legacy_flag == canonical_flag:
+        return get_story_flag(path, player_id, canonical_flag)
+
+    with connect(path) as db:
+        db.execute("BEGIN IMMEDIATE")
+        rows = {
+            row["flag"]: bool(row["value"])
+            for row in db.execute(
+                """SELECT flag, value FROM player_story_flags
+                   WHERE player_id = ? AND flag IN (?, ?)""",
+                (player_id, legacy_flag, canonical_flag),
+            ).fetchall()
+        }
+        active = rows.get(canonical_flag, False) or rows.get(legacy_flag, False)
+        if active and not rows.get(canonical_flag, False):
+            db.execute(
+                """INSERT INTO player_story_flags (player_id, flag, value, created_at)
+                   VALUES (?, ?, 1, ?)
+                   ON CONFLICT(player_id, flag)
+                   DO UPDATE SET value = 1, created_at = excluded.created_at""",
+                (player_id, canonical_flag, time.time()),
+            )
+        db.execute(
+            "DELETE FROM player_story_flags WHERE player_id = ? AND flag = ?",
+            (player_id, legacy_flag),
+        )
+        return active
+
+
 def set_story_flag(path, player_id, flag, value=True):
     """Fija un flag narrativo para el jugador de forma persistente e idempotente.
     Devuelve True si se modificó o insertó el flag, o False si ya tenía el mismo valor."""
