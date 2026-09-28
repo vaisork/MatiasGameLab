@@ -360,7 +360,7 @@ def create_app(config=None):
 
     def attempt_move(player, direction):
         """Unica logica autoritativa de movimiento. Devuelve
-        (accepted, previous_room_id, new_room_id_or_None, reason_or_None).
+        (accepted, previous_room_id, new_room_id_or_None, reason_or_None, level_up_event_or_None).
 
         De paso actualiza el mapa progresivo (GAMEPLAY.md 23: la sala de
         destino queda visitada y la ruta recorrida), coloca una criatura si
@@ -372,7 +372,7 @@ def create_app(config=None):
             if world.is_home_room(previous_room):
                 direction = world.HOME_EXIT_DIRECTION
             else:
-                return False, previous_room, None, "No puedes ir en esa dirección."
+                return False, previous_room, None, "No puedes ir en esa dirección.", None, None
         destination = room["exits"].get(direction) if room else None
         if not destination:
             return False, previous_room, None, "No puedes ir en esa dirección."
@@ -389,13 +389,16 @@ def create_app(config=None):
             if encounter_creature:
                 creature = creatures.get_creature(encounter_creature)
                 store.start_encounter(path, player["id"], destination, encounter_creature, creature["hp"])
+        level_up_event = None
         if (destination == "valdren_centro"
                 and store.has_discovery(path, player["id"], "lindero_roto")
                 and not store.has_discovery(path, player["id"], "regreso_valdren_lindero")):
             discovery = world.get_discovery("regreso_valdren_lindero")
-            store.award_discovery(path, player["id"], "regreso_valdren_lindero",
-                                   discovery["category"], discovery["reference_level"])
-        return True, previous_room, destination, None
+            _is_new, _xp_amount, xp_state = store.award_discovery(
+                path, player["id"], "regreso_valdren_lindero",
+                discovery["category"], discovery["reference_level"])
+            level_up_event = _level_up_event(xp_state)
+        return True, previous_room, destination, None, level_up_event
 
     def _attributes(player):
         return {name: player[f"attr_{name}"] for name in combat.ATTRIBUTES}
@@ -410,6 +413,28 @@ def create_app(config=None):
         if xp_state["pp_gained"]:
             message += f", +{xp_state['pp_gained']} PP"
         return message + "."
+
+    def _level_up_event(xp_state):
+        """#381 / GAMEPLAY §25.9: evento efímero para el frontend.
+
+        Consume exclusivamente el resultado autoritativo de store.award_xp()
+        y la función vigente de XP siguiente; no persiste nada, así que un
+        GET/reconnect posterior no puede reemitir una subida antigua.
+        """
+        if not xp_state:
+            return None
+        if not xp_state["levels_gained"]:
+            return {"level_up": False}
+        new_level = xp_state["level"]
+        return {
+            "level_up": True,
+            "new_level": new_level,
+            "levels_gained": xp_state["levels_gained"],
+            "pa_gained": xp_state["pa_gained"],
+            "pp_gained": xp_state["pp_gained"],
+            "xp_current": xp_state["xp"],
+            "xp_next": None if new_level >= 100 else combat.xp_for_next_level(new_level),
+        }
 
     def _equipment(player):
         """GAMEPLAY.md 32: arma/armadura activas resueltas a sus valores de
@@ -458,6 +483,7 @@ def create_app(config=None):
         elif player["room"] == "valdren_camino_lindero" and normalized == "huellas":
             discovery_key = "lindero_roto"
         awarded_message = None
+        level_up_event = None
         if discovery_key:
             discovery = world.get_discovery(discovery_key)
             is_new, xp_amount, xp_state = store.award_discovery(
@@ -467,7 +493,8 @@ def create_app(config=None):
                 level_message = _level_up_message(xp_state)
                 if level_message:
                     awarded_message = f"{awarded_message} {level_message}"
-        return text, awarded_message
+                level_up_event = _level_up_event(xp_state)
+        return text, awarded_message, level_up_event
 
     def attempt_evaluate(player):
         """GAMEPLAY.md 22.11: solo funciona sobre un objetivo visible (la
@@ -570,7 +597,8 @@ def create_app(config=None):
             level_message = _level_up_message(xp_state)
             if level_message:
                 messages.append(level_message)
-            return {"outcome": "victory", "messages": messages}
+            return {"outcome": "victory", "messages": messages,
+                    "level_up_event": _level_up_event(xp_state)}
 
         store.update_encounter(path, player["id"], player["room"], hp_current=creature_hp)
 
@@ -1084,7 +1112,7 @@ def create_app(config=None):
         require_approved_player()
         if not character_ready(g.player):
             abort(403)
-        accepted, _previous, _new, reason = attempt_move(g.player, request.form.get("direction", ""))
+        accepted, _previous, _new, reason, _level_event = attempt_move(g.player, request.form.get("direction", ""))
         if not accepted:
             room_data = room_view(g.player["room"], g.player["id"])
             return render_template("entry.html", player=g.player, species_list=world.SPECIES,
@@ -1114,7 +1142,7 @@ def create_app(config=None):
             abort(400)
         intent = parse_intent(raw)
         if intent["type"] == "move":
-            accepted, _previous, _new, reason = attempt_move(g.player, intent["direction"])
+            accepted, _previous, _new, reason, _level_event = attempt_move(g.player, intent["direction"])
             if not accepted:
                 room_data = room_view(g.player["room"], g.player["id"])
                 return render_template("entry.html", player=g.player, species_list=world.SPECIES,
@@ -1130,7 +1158,7 @@ def create_app(config=None):
             target = intent["target"] or "el lugar"
             result = resolve_inspect(g.player, intent["target"])
             if result:
-                text, awarded = result
+                text, awarded, _level_event = result
                 message = f"{text} {awarded}" if awarded else text
             else:
                 message = f"Inspección registrada para {target}. No hay detalle adicional autorizado todavía."
@@ -1281,7 +1309,7 @@ def create_app(config=None):
         kind = intent["type"]
 
         if kind == "move":
-            accepted, previous_room, new_room, reason = attempt_move(g.player, intent["direction"])
+            accepted, previous_room, new_room, reason, level_up_event = attempt_move(g.player, intent["direction"])
             current_room_id = new_room if accepted else previous_room
             return jsonify(
                 accepted=accepted,
@@ -1289,6 +1317,7 @@ def create_app(config=None):
                 previous_room=previous_room,
                 current_room=room_view(current_room_id, g.player["id"]),
                 reason=reason,
+                level_up_event=level_up_event,
             ), (200 if accepted else 400)
         if kind == "look":
             return jsonify(
@@ -1301,7 +1330,7 @@ def create_app(config=None):
             return jsonify(accepted=True, intent="say")
         if kind == "inspect":
             result = resolve_inspect(g.player, intent["target"])
-            text, awarded = result if result else (None, None)
+            text, awarded, level_up_event = result if result else (None, None, None)
             return jsonify(
                 accepted=True,
                 intent="inspect",
@@ -1310,6 +1339,7 @@ def create_app(config=None):
                 detail=text,
                 message=(text or "No hay detalle adicional autorizado todavía."),
                 discovery=awarded,
+                level_up_event=level_up_event,
                 current_room=room_view(g.player["room"], g.player["id"]),
             )
         if kind == "evaluate":
@@ -1324,6 +1354,7 @@ def create_app(config=None):
                 outcome=result["outcome"],
                 messages=result["messages"],
                 death_event=result.get("death_event"),
+                level_up_event=result.get("level_up_event"),
                 player=dict(player_now) if player_now else None,
                 current_room=room_view(player_now["room"], player_now["id"]) if player_now else None,
             )
@@ -1512,13 +1543,14 @@ def create_app(config=None):
         direction = DIRECTION_ALIASES.get(str(payload.get("direction", "")).strip().lower())
         if direction is None:
             return jsonify(accepted=False, reason="Dirección desconocida."), 400
-        accepted, previous_room, new_room, reason = attempt_move(g.player, direction)
+        accepted, previous_room, new_room, reason, level_up_event = attempt_move(g.player, direction)
         current_room_id = new_room if accepted else previous_room
         return jsonify(
             accepted=accepted,
             previous_room=previous_room,
             reason=reason,
             current_room=room_view(current_room_id, g.player["id"]),
+            level_up_event=level_up_event,
         ), (200 if accepted else 400)
 
     @app.get("/api/character")
