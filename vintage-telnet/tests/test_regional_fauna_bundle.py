@@ -17,6 +17,18 @@ PROFILES = {
 
 # room_id -> (chance, creature weights). Zeros from the approved tables are
 # asserted separately so reserved/transitional rooms cannot enter by accident.
+HOSHAI = {
+    "alto_anclajes": (0.10, (("unapiedra", 100),)),
+    "alto_escalones": (0.20, (("unapiedra", 50), ("saltacresta", 50))),
+    "alto_terraza_abandonada": (0.30, (("unapiedra", 50), ("saltacresta", 50))),
+    "alto_garganta": (0.30, (("unapiedra", 100),)),
+    "alto_cruce_alturas": (0.20, (("unapiedra", 50), ("saltacresta", 50))),
+    "alto_pinar": (0.20, (("saltacresta", 100),)),
+    "alto_descenso": (0.30, (("unapiedra", 50), ("saltacresta", 50))),
+    "alto_ultimo_risco": (0.30, (("unapiedra", 75), ("saltacresta", 25))),
+    "alto_camino_falda": (0.10, (("unapiedra", 50), ("saltacresta", 50))),
+}
+
 KORVEN = {
     "piedra_pared_anclajes": (0.10, (("cascapedernal", 100),)),
     "piedra_paso_corto": (0.20, (("cascapedernal", 60), ("colagrieta", 40))),
@@ -49,9 +61,10 @@ NHAL = {
     "sombra_raiz_alta": (0.30, (("rondamusgo", 50), ("hilaria_niebla", 50))),
     "sombra_bosque_abierto": (0.10, (("rondamusgo", 100),)),
 }
-REGIONS = {"KORVEN-01": KORVEN, "LETHRA-01": LETHRA, "NHAL-01": NHAL}
+REGIONS = {"HOSHAI-01": HOSHAI, "KORVEN-01": KORVEN, "LETHRA-01": LETHRA, "NHAL-01": NHAL}
 
 RESERVED = {
+    "HOSHAI-01": {"alto_terrazas", "alto_mirador", "alto_puente_viento", "alto_agua_fria"},
     "KORVEN-01": {"piedra_patio_exterior", "piedra_primer_monton", "piedra_abrigo_viento", "piedra_clara"},
     "LETHRA-01": {"juncos_plataformas", "juncos_pasarela_antigua", "juncos_isla_refugio",
                   "juncos_embarcadero", "juncos_suelo_firme", "juncos_entrada_veyra"},
@@ -127,6 +140,7 @@ class RegionalPoolContractTests(unittest.TestCase):
 
     def test_regions_do_not_mix_families_or_admit_threats(self):
         allowed = {
+            "HOSHAI-01": {"unapiedra", "saltacresta"},
             "KORVEN-01": {"cascapedernal", "colagrieta"},
             "LETHRA-01": {"pinzajunco", "saltalodo"},
             "NHAL-01": {"rondamusgo", "hilaria_niebla"},
@@ -140,12 +154,44 @@ class RegionalPoolContractTests(unittest.TestCase):
             for cid, _weight in pool["creatures"]))
 
     def test_scripted_encounter_preempts_regional_pool_without_rng(self):
-        room_id = "piedra_hendiduras"
-        rng = Mock()
-        with patch.dict(world.ROOM_ENCOUNTER, {room_id: "espinajo_rastrojo"}):
-            self.assertEqual(encounters.get_encounter_for_room(room_id, rng), "espinajo_rastrojo")
-        rng.assert_not_called()
-        self.assertEqual(rng.mock_calls, [])
+        for room_id in ("alto_escalones", "piedra_hendiduras"):
+            with self.subTest(room=room_id):
+                rng = Mock()
+                with patch.dict(world.ROOM_ENCOUNTER, {room_id: "espinajo_rastrojo"}):
+                    self.assertEqual(
+                        encounters.get_encounter_for_room(room_id, rng),
+                        "espinajo_rastrojo",
+                    )
+                self.assertEqual(rng.mock_calls, [])
+
+    def test_hoshai_exact_mapping_and_zero_percent_pauses(self):
+        for room_id, (chance, weighted) in HOSHAI.items():
+            with self.subTest(room=room_id):
+                pool = encounters.pool_for_room(room_id)
+                self.assertIsNotNone(pool)
+                self.assertEqual(pool["chance"], chance)
+                self.assertEqual(pool["creatures"], list(weighted))
+                self.assertEqual(world.get_room_region(room_id), "hoshai")
+        for room_id in RESERVED["HOSHAI-01"]:
+            with self.subTest(pause=room_id):
+                self.assertIsNone(encounters.pool_for_room(room_id))
+
+    def test_hoshai_ecological_exclusions_and_c3_boundary(self):
+        active_ids = {
+            creature_id
+            for room_id in HOSHAI
+            for creature_id, _weight in encounters.pool_for_room(room_id)["creatures"]
+        }
+        self.assertEqual(active_ids, {"unapiedra", "saltacresta"})
+        self.assertNotIn("rasgacumbres", active_ids)
+        self.assertTrue(encounters.C3_THREAT_IDS.isdisjoint(active_ids))
+
+        only_unapiedra = {"alto_anclajes", "alto_garganta"}
+        only_saltacresta = {"alto_pinar"}
+        for room_id in only_unapiedra:
+            self.assertEqual(encounters.pool_for_room(room_id)["creatures"], [("unapiedra", 100)])
+        for room_id in only_saltacresta:
+            self.assertEqual(encounters.pool_for_room(room_id)["creatures"], [("saltacresta", 100)])
 
     def test_pool_selection_is_deterministic_and_respects_chance_and_weights(self):
         for region, config in REGIONS.items():
@@ -163,7 +209,7 @@ class RegionalPoolContractTests(unittest.TestCase):
                         self.assertAlmostEqual(share, weight / sum(w for _, w in weighted), delta=0.06)
 
     def test_twenty_complete_route_walks_per_region_keep_pauses_and_pacing(self):
-        route_for_region = {"KORVEN-01": "C", "LETHRA-01": "D", "NHAL-01": "E"}
+        route_for_region = {"HOSHAI-01": "B", "KORVEN-01": "C", "LETHRA-01": "D", "NHAL-01": "E"}
         for region, route_key in route_for_region.items():
             route = world.ROUTE_CHAINS[route_key][0]
             counts = []
