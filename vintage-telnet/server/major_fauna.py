@@ -33,7 +33,7 @@ import random
 import time
 from typing import Any, Optional
 
-from . import combat, creatures, encounters, items, store, world
+from . import combat, creatures, encounters, items, respawn as respawn_logic, store, world
 
 logger = logging.getLogger(__name__)
 
@@ -482,29 +482,29 @@ def resolve_major_fauna_player_defeat(
     db_path: str,
     player: dict[str, Any],
     spec: MajorFaunaSpec,
+    current_wound: Optional[str] = None,
 ) -> dict[str, Any]:
-    """Resuelve la derrota del jugador frente a fauna mayor (GAMEPLAY §38.5).
-    Invariantes estrictos:
-    - Muerte y respawn en valdren_centro.
-    - NO pérdida de arma ni de equipo (reservado exclusivamente a bosses C5).
-    - Preservación de inventario y estado legal.
-    """
+    """Resuelve C4 con el mismo estado y routing canónicos de cualquier muerte."""
     player_id = player["id"]
-    # Limpiar encuentro activo si existiera en room_encounters
+    # Limpiar encounter activo, conservando el estado/cooldown C4 externo.
     with store.connect(db_path) as db:
         db.execute("DELETE FROM room_encounters WHERE player_id = ?", (player_id,))
-        # Respawn en Valdren
-        db.execute(
-            "UPDATE players SET room = 'valdren_centro', hp_current = 20, fatigue = 0, wound = 'grave' WHERE id = ?",
-            (player_id,)
-        )
 
+    respawn_result = respawn_logic.apply_player_respawn(
+        db_path,
+        player,
+        current_wound=current_wound if current_wound is not None else player.get("wound", "ninguna"),
+        death_room_id=player.get("room"),
+    )
     return {
         "outcome": "player_defeated",
         "weapon_lost": False,
         "equipment_preserved": True,
-        "respawn_room": "valdren_centro",
-        "message": f"{spec.name} te ha derribado con su masa implacable. Despiertas herido de vuelta en la plaza de Valdren.",
+        "respawn_room": respawn_result["room_id"],
+        "message": (
+            f"{spec.name} te ha derribado con su masa implacable. "
+            f"Vuelves en ti en {respawn_result['room_name']}."
+        ),
     }
 
 
