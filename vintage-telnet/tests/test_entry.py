@@ -585,8 +585,9 @@ class EntryTests(unittest.TestCase):
         self.assertEqual(self.post("/class", {"player_class": "sombra"}).status_code, 303)
 
         html = self.client.get("/").get_data(as_text=True)
-        self.assertEqual(html.count('data-swap="controls"'), 1)
-        self.assertIn('class="controls-swap" data-swap="controls"', html)
+        control_regions = re.findall(r'<[^>]+data-swap="controls"[^>]*>', html)
+        self.assertEqual(len(control_regions), 1)
+        self.assertIn('class="controls-swap" data-swap="controls"', control_regions[0])
 
         # Sendero -> parcela con Mordelinde. Forzamos el encuentro a estado
         # no-engaged para reproducir el caso que antes rendereaba dos regiones:
@@ -602,7 +603,8 @@ class EntryTests(unittest.TestCase):
         html = self.client.get("/").get_data(as_text=True)
         self.assertIn("Fauna cercana", html)
         self.assertIn('aria-label="Controles principales"', html)
-        self.assertEqual(html.count('data-swap="controls"'), 1)
+        control_regions = re.findall(r'<[^>]+data-swap="controls"[^>]*>', html)
+        self.assertEqual(len(control_regions), 1)
 
         # Defensa adicional: si una sesión vieja ya arrastra duplicados,
         # swapFrom conserva el primero y elimina copias obsoletas.
