@@ -16,7 +16,7 @@ STATUSES = ("pending", "approved", "rejected", "removed")
 
 # Version de esquema que deja initialize(); ops/inventory_migration_probe.py
 # la usa para validar una migracion de prueba contra la copia de la base viva.
-SCHEMA_VERSION = 14
+SCHEMA_VERSION = 15
 
 # Cuentas con varios personajes (petición de Javier, 2026-09-25): un usuario
 # para entrar puede tener hasta 5 personajes; el nombre de cada personaje es
@@ -47,6 +47,17 @@ NPC_ACTION_LOGS_TABLE = """CREATE TABLE IF NOT EXISTS npc_action_logs (
     reason TEXT NOT NULL,
     payload_json TEXT,
     created_at TEXT NOT NULL)"""
+
+# v13: Issue #335 (GAMEPLAY.md §40) -- motor de amenazas regionales C3 v1.
+# Persiste el estado de la zona por personaje (unknown, warned, close, resolved)
+# y la marca temporal de cooldown anti-spam (30 minutos reales = 1800s).
+PLAYER_THREAT_STATES_TABLE = """CREATE TABLE IF NOT EXISTS player_threat_states (
+    player_id TEXT NOT NULL REFERENCES players(id),
+    threat_zone_id TEXT NOT NULL,
+    state TEXT NOT NULL CHECK(state IN ('unknown', 'warned', 'close', 'resolved')),
+    cooldown_until REAL,
+    updated_at REAL NOT NULL,
+    PRIMARY KEY (player_id, threat_zone_id))"""
 
 
 class UsernameTaken(Exception):
@@ -321,6 +332,10 @@ def initialize(path):
             }
             if "engaged" not in encounter_columns:
                 db.execute("ALTER TABLE room_encounters ADD COLUMN engaged INTEGER NOT NULL DEFAULT 1")
+        if version <= 14:
+            # v15: Issue #335 (GAMEPLAY.md §40) -- motor de amenazas regionales C3 v1.
+            db.execute(PLAYER_THREAT_STATES_TABLE)
+            db.execute("CREATE INDEX IF NOT EXISTS threat_states_player_zone ON player_threat_states(player_id, threat_zone_id)")
         db.execute(f"PRAGMA user_version = {SCHEMA_VERSION}")
 
 
@@ -1314,3 +1329,47 @@ def list_npc_action_logs(path, player_id=None, npc_id=None, limit=20):
             }
             for r in rows
         ]
+
+
+def get_threat_state(path, player_id, threat_zone_id):
+    """Devuelve el estado de una zona de amenaza C3 para un jugador o None."""
+    with connect(path) as db:
+        row = db.execute(
+            "SELECT player_id, threat_zone_id, state, cooldown_until, updated_at "
+            "FROM player_threat_states WHERE player_id = ? AND threat_zone_id = ?",
+            (player_id, threat_zone_id),
+        ).fetchone()
+        if not row:
+            return None
+        return {
+            "player_id": row["player_id"],
+            "threat_zone_id": row["threat_zone_id"],
+            "state": row["state"],
+            "cooldown_until": row["cooldown_until"],
+            "updated_at": row["updated_at"],
+        }
+
+
+def set_threat_state(path, player_id, threat_zone_id, state, cooldown_until=None, now=None):
+    """Inserta o actualiza el estado de una amenaza C3 (unknown, warned, close, resolved)."""
+    if now is None:
+        now = time.time()
+    with connect(path) as db:
+        db.execute(
+            """INSERT INTO player_threat_states (player_id, threat_zone_id, state, cooldown_until, updated_at)
+               VALUES (?, ?, ?, ?, ?)
+               ON CONFLICT(player_id, threat_zone_id) DO UPDATE SET
+                   state = excluded.state,
+                   cooldown_until = excluded.cooldown_until,
+                   updated_at = excluded.updated_at""",
+            (player_id, threat_zone_id, state, cooldown_until, now),
+        )
+
+
+def clear_threat_state(path, player_id, threat_zone_id):
+    """Elimina el estado de una amenaza C3 (para pruebas o reinicio)."""
+    with connect(path) as db:
+        db.execute(
+            "DELETE FROM player_threat_states WHERE player_id = ? AND threat_zone_id = ?",
+            (player_id, threat_zone_id),
+        )

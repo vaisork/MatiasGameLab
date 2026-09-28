@@ -11,15 +11,16 @@ El registro completo anterior está preservado sin cambios en [docs/archive/VT_S
 | — | `vt-deploy` reusable (#141): PR #294 integrada por merge `c89c821`; añade soporte `--sha` y compatibilidad de pruebas no POSIX. Primer intento físico con `0aff022` abortó antes de backup/switch: dos pruebas compartían `/tmp/test_vt_deploy.lock` y recibieron `PermissionError`. PR #395 aísla ese lock por prueba; `test_vt_deploy` 16/16 y suite completa 490/490 pasan. Gate físico de update + rollback aún pendiente; #141 permanece abierta — 2026-09-28 |
 | — | Cola integrada en esta ronda: PRs #291 + #401 cierran las aclaraciones históricas Wark de #212; #400 añade canon material limitado de hogares (no define almacén, UI ni respawn); #396 fija moneda/catálogo de Daro, pero precios y reglas de compra de #384 siguen pendientes; #399 registra fauna C0 como dato de Historia, sin activar el motor ni poblar el catálogo productivo; #391 formaliza frontera arte/UI y sustituye #109; #394 agrega regresiones de diálogo Ollama; #392 implementa recompensa única del Acolchado de Camino y preserva `level_up_event` de #390. Verificación conjunta Linux/Python 3.13: suite 501/501 OK. Issues #109 y #177 cerrados; #384, #212, #333 siguen abiertos por sus fases restantes. Sin deploy — 2026-09-28 |
 | — | #406, rama `codex/vt-406-regional-fauna-bundle`: perfiles literales de Cascapedernal/Colagrieta, Pinzajunco/Saltalodo, Rondamusgo/Hilaria; pools Korven/Lethra/Nhal según #314/#315/#317. La fauna aleatoria aparece como avistamiento sin iniciar combate; atacar inicia combate y Huir usa la tirada existente de Cornalomo, con contraataque si falla. Migración v14 mantiene encuentros existentes como comprometidos. Linux/Python 3.13: suite completa 512/512 OK; focales aleatorios + migración 28/28 OK; simulaciones de balance y recorridos regionales pasan. PR #415 lista para revisión/merge. Sin deploy; pendiente el playtest de Javier/Matías. |
-| 1 | Entrega lista para revisión: HOME-CORE — hogar personal persistente mínimo (#280) — 2026-09-27 |
-| 2 | Entrega lista para revisión: Acciones estructuradas derivadas del diálogo con gate autoritativo (#247) — 2026-09-27 |
-| 3 | Entrega lista para revisión: Memoria conversacional acotada por jugador y NPC (#246) — 2026-09-27 |
-| 4 | Entrega lista para revisión: Contrato seguro de conversación dinámica con NPC (#245) — 2026-09-27 |
-| 5 | Entrega lista para revisión: Uñapiedra v1 para Hoshai / Khariel — Bloque A (#229) — 2026-09-27 |
-| 6 | Subentrega de #213 / DEATH-01 — Regresión del motor de muerte y respawn — 2026-09-26 |
-| 7 | Entrega limpia de Issues #209 y #211 — Portada pública y lectores canónicos — 2026-09-26 |
-| 8 | Relevo de #207 — EDRAN-01 — 2026-09-26 |
-| 9 | Entrega histórica — Issue #57 (conservada) |
+| 1 | Entrega lista para revisión: THREAT-C3-ENGINE — motor reusable de amenazas regionales C3 v1 (#335) — 2026-09-28 |
+| 2 | Entrega lista para revisión: HOME-CORE — hogar personal persistente mínimo (#280) — 2026-09-27 |
+| 3 | Entrega lista para revisión: Acciones estructuradas derivadas del diálogo con gate autoritativo (#247) — 2026-09-27 |
+| 4 | Entrega lista para revisión: Memoria conversacional acotada por jugador y NPC (#246) — 2026-09-27 |
+| 5 | Entrega lista para revisión: Contrato seguro de conversación dinámica con NPC (#245) — 2026-09-27 |
+| 6 | Entrega lista para revisión: Uñapiedra v1 para Hoshai / Khariel — Bloque A (#229) — 2026-09-27 |
+| 7 | Subentrega de #213 / DEATH-01 — Regresión del motor de muerte y respawn — 2026-09-26 |
+| 8 | Entrega limpia de Issues #209 y #211 — Portada pública y lectores canónicos — 2026-09-26 |
+| 9 | Relevo de #207 — EDRAN-01 — 2026-09-26 |
+| 10 | Entrega histórica — Issue #57 (conservada) |
 
 La entrada histórica #57 continúa con apartados «Contexto», «Objetivo», «Cambios», «Pruebas», «Trabajo previo afectado», «Pendiente» y «Riesgos» en el registro íntegro. No se descartó.
 

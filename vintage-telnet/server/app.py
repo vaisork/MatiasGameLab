@@ -12,7 +12,7 @@ from flask import (Flask, abort, g, jsonify, redirect, render_template, request,
                     session, url_for)
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from . import combat, content_parser, creatures, dm_auth, encounters, items, npc_dialogue, store, world
+from . import combat, content_parser, creatures, dm_auth, encounters, items, npc_dialogue, store, threats, world
 
 # Issue #46 resuelto: el Narrador fijo la plaza central de Valdren como
 # punto de reaparicion tras morir (GAMEPLAY.md 20.9) y de recuperacion
@@ -104,6 +104,7 @@ def create_app(config=None):
         raise RuntimeError("VT_DATA_DIR debe ser una ruta absoluta persistente.")
     path = str(Path(app.config["DATA_DIR"]) / "vintage.sqlite3")
     store.initialize(path)
+    threats.load_canonical_threat_zones()
     world.set_home_species_resolver(lambda pid: store.get_player_species(path, pid))
     store.relocate_players_outside_world(path, set(world.ROOMS), world.get_starting_room_for_species)
     app.config["DATABASE"] = path
@@ -233,6 +234,9 @@ def create_app(config=None):
                 exit_info["known_name"] = target["name"] if target else None
         encounter = store.get_encounter(path, player_id, room_id)
         view["in_combat"] = bool(encounter and encounter.get("engaged", 1))
+        threat_eval = threats.get_room_threat_view(path, player_id, room_id)
+        if threat_eval and threat_eval.message:
+            view["threat_signal"] = threat_eval.message
         if encounter:
             creature = creatures.get_creature(encounter["creature_id"])
             view["encounter"] = {
@@ -269,12 +273,24 @@ def create_app(config=None):
                 view["available_actions"].append({"action": "bloquear"})
         else:
             view["encounter"] = None
-            view["available_actions"] = [{"action": "descansar"}]
-            npcs_present = npc_dialogue.get_registry().get_in_room(room_id)
-            if npcs_present:
-                view["npcs"] = [{"id": n["id"], "name": n["name"], "role": n.get("role", "habitante")} for n in npcs_present]
-                for n in npcs_present:
-                    view["available_actions"].append({"action": "hablar", "targets": [n["name"].lower(), n["id"]]})
+            if threat_eval and threat_eval.close_encounter:
+                creature = creatures.get_creature(threat_eval.creature_id)
+                view["threat_c3"] = {
+                    "threat_zone_id": threat_eval.zone_id,
+                    "creature_id": threat_eval.creature_id,
+                    "name": creature["name"],
+                    "condition": combat.enemy_condition(creature["hp"], creature["hp"]),
+                    "behavior": creature["behavior_text"],
+                }
+                view["art"] = creatures.CREATURE_ART.get(threat_eval.creature_id)
+                view["available_actions"] = list(threat_eval.available_actions)
+            else:
+                view["available_actions"] = [{"action": "descansar"}]
+                npcs_present = npc_dialogue.get_registry().get_in_room(room_id)
+                if npcs_present:
+                    view["npcs"] = [{"id": n["id"], "name": n["name"], "role": n.get("role", "habitante")} for n in npcs_present]
+                    for n in npcs_present:
+                        view["available_actions"].append({"action": "hablar", "targets": [n["name"].lower(), n["id"]]})
         return view
 
     # Intenciones canonicas: boton y comando escrito deben terminar en la misma
@@ -291,6 +307,7 @@ def create_app(config=None):
     SAY_PREFIXES = ("decir ", "say ")
     TALK_PREFIXES = ("hablar con ", "hablar ")
     FLEE_ALIASES = {"huir"}
+    AVOID_ALIASES = {"evitar", "retroceder", "avoid"}
     ATTACK_ALIASES = {"atacar"}
     EVALUATE_ALIASES = {"evaluar", "considerar"}
     REST_ALIASES = {"descansar"}
@@ -311,6 +328,8 @@ def create_app(config=None):
             return {"type": "look"}
         if lowered in FLEE_ALIASES:
             return {"type": "flee"}
+        if lowered in AVOID_ALIASES:
+            return {"type": "avoid"}
         if lowered in REST_ALIASES:
             return {"type": "rest"}
         if lowered in DODGE_ALIASES:
@@ -380,14 +399,26 @@ def create_app(config=None):
         destination = room["exits"].get(direction) if room else None
         if not destination:
             return False, previous_room, None, "No puedes ir en esa dirección.", None
+        # GAMEPLAY §40.6: Abandono explícito de zona C3 tras activación en close
+        for p_zone in threats.get_threat_zones_for_room(previous_room):
+            if previous_room in p_zone.encounter_rooms:
+                rec = store.get_threat_state(path, player["id"], p_zone.threat_zone_id)
+                if rec and rec["state"] == "close":
+                    threats.resolve_threat_avoid(path, player["id"], p_zone.threat_zone_id)
         store.move_player(path, player["id"], destination, direction)
         store.mark_visited(path, player["id"], destination)
         if not world.is_home_room(previous_room) and not world.is_home_room(destination):
             store.mark_route_traversed(path, player["id"], previous_room, destination)
+
+        # GAMEPLAY §40.10: Evaluación de amenaza C3 en sala de destino
+        threat_eval = threats.evaluate_room_threat(path, player["id"], destination)
+        is_close_threat = bool(threat_eval and threat_eval.close_encounter)
+
         # Primero el encuentro fijo de la sala y, si no hay, la fauna
         # aleatoria de su pool (Issue #160). Solo se tira el dado si no hay
-        # ya una pelea activa ni enfriamiento en esa sala.
-        if (not store.get_encounter(path, player["id"], destination)
+        # ya una pelea activa ni enfriamiento en esa sala Y no hay C3 en close (§40.10).
+        if (not is_close_threat
+                and not store.get_encounter(path, player["id"], destination)
                 and store.creature_available(path, player["id"], destination)):
             encounter_creature = encounters.get_encounter_for_room(destination)
             if encounter_creature:
@@ -508,12 +539,20 @@ def create_app(config=None):
         return text, awarded_message, level_up_event
 
     def attempt_evaluate(player):
-        """GAMEPLAY.md 22.11: solo funciona sobre un objetivo visible (la
-        criatura activa de la sala) y nunca revela numeros."""
+        """GAMEPLAY.md 22.11 / §40.4: solo funciona sobre un objetivo visible (la
+        criatura activa de la sala o una amenaza regional C3 en proximidad crítica)
+        y nunca revela números."""
         encounter = store.get_encounter(path, player["id"], player["room"])
-        if not encounter:
+        creature_id = None
+        if encounter:
+            creature_id = encounter["creature_id"]
+        else:
+            threat_eval = threats.get_room_threat_view(path, player["id"], player["room"])
+            if threat_eval and threat_eval.close_encounter:
+                creature_id = threat_eval.creature_id
+        if not creature_id:
             return None, "No hay ninguna criatura visible para evaluar."
-        creature = creatures.get_creature(encounter["creature_id"])
+        creature = creatures.get_creature(creature_id)
         attrs = _attributes(player)
         equipment = _equipment(player)
         cg_player = combat.competencia_general(player["level"])
@@ -532,6 +571,11 @@ def create_app(config=None):
         messages conserva el formato legado para clientes existentes; la UI
         consume death_event y nunca detecta muerte buscando palabras.
         """
+        creature_family = creature.get("family", "")
+        if creature_family in encounters.C3_THREAT_IDS:
+            for tz in threats.get_all_threat_zones():
+                if tz.creature_id == creature_family:
+                    threats.resolve_threat_combat_end(path, player["id"], tz.threat_zone_id, "defeat")
         safe_room = world.get_room(SAFE_ROOM_ID)
         location_name = safe_room["name"] if safe_room else "un lugar seguro"
         death_event = {
@@ -563,7 +607,13 @@ def create_app(config=None):
         ('no_target'|'victory'|'ongoing'|'defeat') y 'messages'."""
         encounter = store.get_encounter(path, player["id"], player["room"])
         if not encounter:
-            return {"outcome": "no_target", "messages": ["No hay ninguna criatura para atacar aquí."]}
+            threat_eval = threats.get_room_threat_view(path, player["id"], player["room"])
+            if threat_eval and threat_eval.close_encounter:
+                creature_data = creatures.get_creature(threat_eval.creature_id)
+                store.start_encounter(path, player["id"], player["room"], threat_eval.creature_id, creature_data["hp"])
+                encounter = store.get_encounter(path, player["id"], player["room"])
+            else:
+                return {"outcome": "no_target", "messages": ["No hay ninguna criatura para atacar aquí."]}
         if not encounter.get("engaged", 1):
             store.update_encounter(path, player["id"], player["room"], engaged=True)
         creature = creatures.get_creature(encounter["creature_id"])
@@ -595,6 +645,10 @@ def create_app(config=None):
         if creature_hp <= 0:
             store.clear_encounter(path, player["id"], player["room"])
             store.start_creature_cooldown(path, player["id"], player["room"], encounter["creature_id"])
+            if encounter["creature_id"] in encounters.C3_THREAT_IDS:
+                for tz in threats.get_all_threat_zones():
+                    if tz.creature_id == encounter["creature_id"]:
+                        threats.resolve_threat_combat_end(path, player["id"], tz.threat_zone_id, "victory")
             is_first, repeats = store.record_pve_victory(path, player["id"], creature["family"])
             player_dps = combat.expected_dps(attrs["destreza"], attrs["percepcion"], attrs["fuerza"],
                                               cg_player, cg_enemy, base_arma=equipment["weapon_base_damage"])
@@ -665,6 +719,10 @@ def create_app(config=None):
         rng = rng or random.Random()
         if rng.uniform(0, 100) < chance:
             store.clear_encounter(path, player["id"], player["room"])
+            if encounter["creature_id"] in encounters.C3_THREAT_IDS:
+                for tz in threats.get_all_threat_zones():
+                    if tz.creature_id == encounter["creature_id"]:
+                        threats.resolve_threat_combat_end(path, player["id"], tz.threat_zone_id, "flee")
             store.update_combat_state(path, player["id"], fatigue=round(fatigue))
             messages = [f"Consigues alejarte de {creature['name']}."]
             if retreat_direction:
@@ -697,6 +755,34 @@ def create_app(config=None):
         store.update_combat_state(path, player["id"], hp_current=player_hp,
                                    fatigue=round(fatigue), wound=new_wound)
         return {"outcome": "failed", "messages": messages}
+
+    def attempt_avoid(player):
+        """GAMEPLAY.md §40.4/§40.6: decisión explícita de evitar/retroceder ante una
+        amenaza regional en proximidad crítica ('close'). Resuelve el encuentro sin
+        combate y activa enfriamiento de 30 minutos reales."""
+        active_zone = None
+        for z in threats.get_threat_zones_for_room(player["room"]):
+            if player["room"] in z.encounter_rooms:
+                rec = store.get_threat_state(path, player["id"], z.threat_zone_id)
+                if rec and rec["state"] == "close":
+                    active_zone = z
+                    break
+        if not active_zone:
+            return {"outcome": "no_target", "messages": ["No hay ninguna amenaza que evitar aquí."]}
+        threats.resolve_threat_avoid(path, player["id"], active_zone.threat_zone_id)
+        creature = creatures.get_creature(active_zone.creature_id)
+        room = world.get_room(player["room"])
+        retreat_direction = None
+        for dir_cand, dest_cand in room.get("exits", {}).items():
+            if dest_cand in active_zone.warning_rooms:
+                retreat_direction = dir_cand
+                break
+        if not retreat_direction:
+            retreat_direction = "south" if "south" in room.get("exits", {}) else next(iter(room.get("exits", {})), None)
+        messages = [f"Decides retroceder con cautela. Te alejas sin provocar a {creature['name']}."]
+        if retreat_direction:
+            attempt_move(player, retreat_direction)
+        return {"outcome": "avoided", "messages": messages}
 
     def attempt_dodge(player, rng=None):
         """GAMEPLAY.md 20.5/24.2/24.3: sustituye el ataque básico del
@@ -855,6 +941,9 @@ def create_app(config=None):
         """
         if store.get_encounter(path, player["id"], player["room"]):
             return {"outcome": "blocked", "messages": ["No puedes descansar con una criatura cerca."]}
+        threat_eval = threats.get_room_threat_view(path, player["id"], player["room"])
+        if threat_eval and threat_eval.close_encounter:
+            return {"outcome": "blocked", "messages": ["No puedes descansar frente a una amenaza regional."]}
         result = store.apply_field_rest(path, player["id"])
         if result is None:
             return {"outcome": "blocked", "messages": ["No se pudo recuperar el estado del personaje."]}
@@ -883,6 +972,9 @@ def create_app(config=None):
         validación de Forja completa (32.4)."""
         if store.get_encounter(path, player["id"], player["room"]):
             return {"outcome": "blocked", "messages": ["No puedes equipar nada con una criatura cerca."]}
+        threat_eval = threats.get_room_threat_view(path, player["id"], player["room"])
+        if threat_eval and threat_eval.close_encounter:
+            return {"outcome": "blocked", "messages": ["No puedes equipar nada frente a una amenaza regional."]}
         item_key = items.find_key_by_name(target_text)
         if item_key is None:
             return {"outcome": "not_found", "messages": ["No reconoces ese objeto."]}
@@ -899,6 +991,9 @@ def create_app(config=None):
         devuelve el objeto a poseído/no activo, sin coste."""
         if store.get_encounter(path, player["id"], player["room"]):
             return {"outcome": "blocked", "messages": ["No puedes desequipar nada con una criatura cerca."]}
+        threat_eval = threats.get_room_threat_view(path, player["id"], player["room"])
+        if threat_eval and threat_eval.close_encounter:
+            return {"outcome": "blocked", "messages": ["No puedes desequipar nada frente a una amenaza regional."]}
         item_key = items.find_key_by_name(target_text)
         if item_key is None:
             return {"outcome": "not_found", "messages": ["No reconoces ese objeto."]}
@@ -1201,6 +1296,12 @@ def create_app(config=None):
             return _combat_result_page(attempt_attack(g.player))
         if intent["type"] == "flee":
             return _combat_result_page(attempt_flee(g.player))
+        if intent["type"] == "avoid":
+            result = attempt_avoid(g.player)
+            player_now = store.player_for_token(path, session.get("token"))
+            room_data = room_view(player_now["room"], player_now["id"])
+            return render_template("entry.html", player=player_now, species_list=world.SPECIES,
+                                   room=room_data, error=" ".join(result["messages"])), (200 if result["outcome"] != "no_target" else 400)
         if intent["type"] == "rest":
             result = attempt_rest(g.player)
             player_now = store.player_for_token(path, session.get("token"))
@@ -1397,6 +1498,17 @@ def create_app(config=None):
                 player=dict(player_now) if player_now else None,
                 current_room=room_view(player_now["room"], player_now["id"]) if player_now else None,
             )
+        if kind == "avoid":
+            result = attempt_avoid(g.player)
+            player_now = store.player_for_token(path, session.get("token"))
+            return jsonify(
+                accepted=result["outcome"] != "no_target",
+                intent="avoid",
+                outcome=result["outcome"],
+                messages=result["messages"],
+                player=dict(player_now) if player_now else None,
+                current_room=room_view(player_now["room"], player_now["id"]) if player_now else None,
+            ), (200 if result["outcome"] != "no_target" else 400)
         if kind == "rest":
             result = attempt_rest(g.player)
             player_now = store.player_for_token(path, session.get("token"))
@@ -1743,6 +1855,17 @@ def create_app(config=None):
         room_data = room_view(g.player["room"], g.player["id"])
         return render_template("entry.html", player=g.player, species_list=world.SPECIES,
                                room=room_data, error=message), 200
+
+    @app.post("/avoid")
+    def avoid():
+        require_approved_player()
+        if not character_ready(g.player):
+            abort(403)
+        result = attempt_avoid(g.player)
+        player_now = store.player_for_token(path, session.get("token"))
+        room_data = room_view(player_now["room"], player_now["id"])
+        return render_template("entry.html", player=player_now, species_list=world.SPECIES,
+                               room=room_data, error=" ".join(result["messages"])), (200 if result["outcome"] != "no_target" else 400)
 
     @app.get("/healthz")
     def health():
