@@ -1,5 +1,15 @@
 # Handoff — Desarrollador de Servidor — Vintage Telnet
 
+## Integración lista para revisión: paisaje de las afueras de Valdren (#151) — 2026-09-28
+
+- **RESPONSABLE:** Codex — Integrador.
+- **HEAD BASE:** `494c16a164d31e40a9e0fb7cbd8507782bef88fc` (incluye el arte aprobado de #174).
+- **RAMA:** `codex/vt-151-valdren-outskirts-art`.
+- **CAMBIO:** conecta `zone.edran.valdren_outskirts` con `valdren-outskirts.webp`; el mismo contexto ya cubre Sendero, Parcela, Cerca y Lindero.
+- **CANON:** actualizado `VISUAL_CONTEXT_CANON.md` para reflejar el asset aprobado en #151 y publicado en #174.
+- **PRUEBAS:** `python -m unittest tests.test_published_art tests.test_entry tests.test_screen_stability tests.test_cinco_rutas -v` — **70/70 PASS**. `git diff --check` — **PASS**.
+- **PENDIENTES:** revisión e integración de esta conexión. **MERGE: NO / DEPLOY: NO.**
+
 ## Entrega lista para revisión: HOME-CORE — hogar personal persistente mínimo (#280) — 2026-09-27
 
 - **DESARROLLADOR:** Antigravity (Desarrollador principal para implementaciones pesadas).
