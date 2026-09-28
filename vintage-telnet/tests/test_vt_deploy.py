@@ -41,12 +41,18 @@ def are_symlinks_supported() -> bool:
 class DeployCliArgumentParsingTests(unittest.TestCase):
     """Verifica que el comando CLI acepte --sha explícito conforme al contrato de #141."""
 
+    def isolated_lock_path(self):
+        """Evita colisiones/permisos de un archivo de lock fijo en /tmp."""
+        temp_dir = tempfile.TemporaryDirectory(prefix="vt-deploy-lock-test-")
+        self.addCleanup(temp_dir.cleanup)
+        return Path(temp_dir.name) / "deploy.lock"
+
     def test_cli_accepts_explicit_sha_flag(self):
         sha_val = "a" * 40
         with patch.object(vt_deploy.os, "geteuid", return_value=0, create=True), \
              patch.object(vt_deploy, "pwd", None), \
              patch.object(vt_deploy, "resolve_authorized_sha", return_value=sha_val) as mock_resolve, \
-             patch.object(vt_deploy, "LOCK_FILE", Path(tempfile.gettempdir()) / "test_vt_deploy.lock"), \
+             patch.object(vt_deploy, "LOCK_FILE", self.isolated_lock_path()), \
              patch("builtins.open", unittest.mock.mock_open()), \
              patch.object(vt_deploy, "run"), \
              patch.object(vt_deploy, "health_payload", return_value={"status": "ok", "schema_version": 10}), \
@@ -68,7 +74,7 @@ class DeployCliArgumentParsingTests(unittest.TestCase):
         with patch.object(vt_deploy.os, "geteuid", return_value=0, create=True), \
              patch.object(vt_deploy, "pwd", None), \
              patch.object(vt_deploy, "resolve_authorized_sha", return_value=sha_val) as mock_resolve, \
-             patch.object(vt_deploy, "LOCK_FILE", Path(tempfile.gettempdir()) / "test_vt_deploy.lock"), \
+             patch.object(vt_deploy, "LOCK_FILE", self.isolated_lock_path()), \
              patch("builtins.open", unittest.mock.mock_open()), \
              patch.object(vt_deploy, "run"), \
              patch.object(vt_deploy, "health_payload", return_value={"status": "ok", "schema_version": 10}), \
