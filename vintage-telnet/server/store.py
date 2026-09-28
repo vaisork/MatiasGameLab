@@ -16,7 +16,7 @@ STATUSES = ("pending", "approved", "rejected", "removed")
 
 # Version de esquema que deja initialize(); ops/inventory_migration_probe.py
 # la usa para validar una migracion de prueba contra la copia de la base viva.
-SCHEMA_VERSION = 14
+SCHEMA_VERSION = 15
 
 # Cuentas con varios personajes (petición de Javier, 2026-09-25): un usuario
 # para entrar puede tener hasta 5 personajes; el nombre de cada personaje es
@@ -47,6 +47,15 @@ NPC_ACTION_LOGS_TABLE = """CREATE TABLE IF NOT EXISTS npc_action_logs (
     reason TEXT NOT NULL,
     payload_json TEXT,
     created_at TEXT NOT NULL)"""
+
+# v15: Issue #427 -- flags narrativos persistentes por jugador sin XP.
+# Soporta microescenas, entregas únicas once-per-character (#287, #288) y branching.
+STORY_FLAGS_TABLE = """CREATE TABLE IF NOT EXISTS player_story_flags (
+    player_id TEXT NOT NULL REFERENCES players(id) ON DELETE CASCADE,
+    flag TEXT NOT NULL,
+    value INTEGER NOT NULL DEFAULT 1,
+    created_at REAL NOT NULL,
+    PRIMARY KEY (player_id, flag))"""
 
 
 class UsernameTaken(Exception):
@@ -321,6 +330,11 @@ def initialize(path):
             }
             if "engaged" not in encounter_columns:
                 db.execute("ALTER TABLE room_encounters ADD COLUMN engaged INTEGER NOT NULL DEFAULT 1")
+        if version <= 14:
+            # v15: STORY-FLAGS-01 (#427) -- flags narrativos persistentes por jugador
+            # sin XP, para microescenas y entregas únicas una sola vez (#287, #288).
+            db.execute(STORY_FLAGS_TABLE)
+            db.execute("CREATE INDEX IF NOT EXISTS story_flags_player ON player_story_flags(player_id, flag)")
         db.execute(f"PRAGMA user_version = {SCHEMA_VERSION}")
 
 
@@ -1314,3 +1328,97 @@ def list_npc_action_logs(path, player_id=None, npc_id=None, limit=20):
             }
             for r in rows
         ]
+
+
+# --- VT-SERVER: STORY-FLAGS-01 (#427 / GAMEPLAY.md §§22, 32 / #287, #288) ---
+def get_story_flag(path, player_id, flag):
+    """Devuelve True si el flag narrativo está activo para el jugador, o False si no existe o es inactivo."""
+    if not player_id or not flag:
+        return False
+    with connect(path) as db:
+        row = db.execute(
+            "SELECT value FROM player_story_flags WHERE player_id = ? AND flag = ?",
+            (player_id, flag),
+        ).fetchone()
+        return bool(row and row["value"])
+
+
+def get_player_story_flags(path, player_id):
+    """Devuelve un diccionario {flag: bool} con todos los flags narrativos registrados para el jugador."""
+    if not player_id:
+        return {}
+    with connect(path) as db:
+        rows = db.execute(
+            "SELECT flag, value FROM player_story_flags WHERE player_id = ?",
+            (player_id,),
+        ).fetchall()
+        return {row["flag"]: bool(row["value"]) for row in rows}
+
+
+def set_story_flag(path, player_id, flag, value=True):
+    """Fija un flag narrativo para el jugador de forma persistente e idempotente.
+    Devuelve True si se modificó o insertó el flag, o False si ya tenía el mismo valor."""
+    if not player_id:
+        raise ValueError("player_id es obligatorio para fijar un flag narrativo.")
+    if not flag:
+        raise ValueError("flag es obligatorio.")
+    int_val = 1 if value else 0
+    now = time.time()
+    with connect(path) as db:
+        db.execute("BEGIN IMMEDIATE")
+        current = db.execute(
+            "SELECT value FROM player_story_flags WHERE player_id = ? AND flag = ?",
+            (player_id, flag),
+        ).fetchone()
+        if current is not None and current["value"] == int_val:
+            return False
+        db.execute(
+            """INSERT INTO player_story_flags (player_id, flag, value, created_at)
+               VALUES (?, ?, ?, ?)
+               ON CONFLICT(player_id, flag) DO UPDATE SET value = excluded.value, created_at = excluded.created_at""",
+            (player_id, flag, int_val, now),
+        )
+        return True
+
+
+def clear_story_flag(path, player_id, flag):
+    """Elimina completamente un flag narrativo del jugador."""
+    if not player_id or not flag:
+        return
+    with connect(path) as db:
+        db.execute(
+            "DELETE FROM player_story_flags WHERE player_id = ? AND flag = ?",
+            (player_id, flag),
+        )
+
+
+def grant_story_item_once(path, player_id, flag, item_key, forge_validated=False):
+    """Operación atómica para STORY-FLAGS-01 (#427):
+    Si el flag no está activo, otorga exactamente 1x item_key (sin autoequipar y sin XP)
+    y activa el flag en una sola transacción efectiva.
+    Si el flag ya está activo, no otorga nada y devuelve (False, None).
+    Garantiza idempotencia ante reintentos y consistencia ante fallos (rollback automático si falla el grant).
+    Devuelve (True, item_id) si se entregó el objeto, o (False, None) si ya había sido entregado."""
+    if not player_id:
+        raise ValueError("player_id es obligatorio.")
+    if not flag:
+        raise ValueError("flag es obligatorio.")
+    now = time.time()
+    with connect(path) as db:
+        db.execute("BEGIN IMMEDIATE")
+        current = db.execute(
+            "SELECT value FROM player_story_flags WHERE player_id = ? AND flag = ?",
+            (player_id, flag),
+        ).fetchone()
+        if current is not None and current["value"]:
+            return False, None
+
+        item_id = grant_item(path, player_id, item_key, forge_validated=forge_validated, connection=db)
+
+        db.execute(
+            """INSERT INTO player_story_flags (player_id, flag, value, created_at)
+               VALUES (?, ?, 1, ?)
+               ON CONFLICT(player_id, flag) DO UPDATE SET value = 1, created_at = excluded.created_at""",
+            (player_id, flag, now),
+        )
+        return True, item_id

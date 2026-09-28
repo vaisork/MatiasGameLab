@@ -1,0 +1,57 @@
+{
+  "id": "brumak_taller_korven_01",
+  "name": "Karn",
+  "species": "Dravak",
+  "settlement": "Brumak",
+  "location": "brumak_forja",
+  "role": "Artesano de taller que recibe colaboración útil y puede confiar un Martillo de Korven pendiente de Forja",
+  "relationships": [],
+  "knowledge_allowed": [
+    "Conoce el funcionamiento cotidiano del taller y la colocación de apoyos para cargas pesadas en Brumak.",
+    "Sabe si el personaje ya colaboró en asentar la carga mediante el hito korven_carga_asentada.",
+    "Sabe si ese personaje ya recibió su único Martillo de Korven mediante el hito korven_martillo_recibido.",
+    "Sabe que el Martillo de Korven entregado sigue pendiente de validación de Forja y no debe usarse todavía."
+  ],
+  "knowledge_forbidden": [
+    "No conoce ni revela estadísticas internas, fórmulas de daño, flags ni reglas de balance.",
+    "No afirma que el Martillo esté validado por Forja antes de que el sistema lo confirme.",
+    "No inventa secretos de Korven, jerarquías ni historia oculta.",
+    "No conoce automáticamente hechos del jugador ocurridos fuera de lo que los hitos autorizados registran."
+  ],
+  "beliefs_uncertain": [
+    "Valora a quien comprende el peso y el equilibrio de las cosas antes de apresurarse a empujar."
+  ],
+  "initial_talk": [
+    "—Sostén ese extremo. Yo corrijo el apoyo. Si queda firme, podremos moverla.",
+    "Una carga mal apoyada termina quebrando lo que tiene debajo."
+  ],
+  "conditional_knowledge": [
+    {
+      "condition": "korven_carga_asentada=true AND korven_martillo_recibido=false",
+      "response_intent": "Reconoce la ayuda de forma sobria y permite la entrega única del Martillo de Korven en el taller."
+    },
+    {
+      "condition": "korven_martillo_recibido=true",
+      "response_intent": "Recuerda que la herramienta ya fue entregada y deja claro que repetir la ayuda no entrega otra."
+    }
+  ],
+  "narrative_function": "Dar rostro a la colaboración práctica de Brumak en #288 sin convertir un ajuste cotidiano en misión heroica.",
+  "gameplay_function": "Actor persistente de la escena KORVEN-WEAPON-01; interlocutor para el hito korven_carga_asentada y la entrega once-per-character korven_martillo_recibido.",
+  "capabilities": [
+    "Pedir y reconocer ayuda cotidiana dentro de la escena definida por Narrativa.",
+    "Responder según los hitos korven_carga_asentada y korven_martillo_recibido.",
+    "Entregar narrativamente la misma pieza que Desarrollo registra como martillo_korven cuando el contrato de #288 lo autoriza."
+  ],
+  "limits": [
+    "No exige especie, clase, nivel, dinero, combate, crafting ni reputación adicional.",
+    "No autoequipa el Martillo.",
+    "No valida la Forja.",
+    "No entrega un segundo Martillo.",
+    "No fija por sí mismo el room_id de la escena.",
+    "No crea geografía nueva."
+  ],
+  "memory_hooks": [
+    "korven_carga_asentada",
+    "korven_martillo_recibido"
+  ]
+}

@@ -645,6 +645,279 @@ link("valdren_cruce_cercas",
 ROOMS["valdren_pastos_altos"]["exits"] = {}
 link("valdren_cruce_cercas", "east", "valdren_pastos_altos")
 
+# --- Ramales superficiales hacia mazmorras (Issue #430 / PR #429 / #341 #419 #422 #423 #424) ---
+# 46 ubicaciones superficiales aprobadas, distribuidas en 5 ramales periféricos.
+SURFACE_BRANCH_MAPPING = {
+    "MH-01": "mh_01_desvio_acequia",
+    "MH-02": "mh_02_bordes_vencidos",
+    "MH-03": "mh_03_juncos_partidos",
+    "MH-04": "mh_04_piedra_canal",
+    "MH-05": "mh_05_terreno_dos_aguas",
+    "MH-06": "mh_06_restos_cauce",
+    "MH-07": "mh_07_vista_molino",
+    "MH-08": "mh_08_rodeo_base",
+    "MH-09": "mh_09_plataforma_caida",
+    "MH-10": "mh_10_umbral_inferior",
+    "GE-01": "ge_01_desvio_grieta",
+    "GE-02": "ge_02_terrazas_rotas",
+    "GE-03": "ge_03_repisa_viento",
+    "GE-04": "ge_04_quiebre_lajas",
+    "GE-05": "ge_05_bolsillo_seco",
+    "GE-06": "ge_06_fisuras_paralelas",
+    "GE-07": "ge_07_grava_fondo",
+    "GE-08": "ge_08_ultima_luz_directa",
+    "GE-09": "ge_09_boca_inferior",
+    "CA-01": "ca_01_desvio_descarte",
+    "CA-02": "ca_02_patio_grava",
+    "CA-03": "ca_03_plataforma_baja",
+    "CA-04": "ca_04_montones_descarte",
+    "CA-05": "ca_05_zanja_seca",
+    "CA-06": "ca_06_plataforma_alta",
+    "CA-07": "ca_07_frente_quebrado",
+    "CA-08": "ca_08_paso_bloques",
+    "CA-09": "ca_09_cavidad_tras_frente",
+    "CQ-01": "cq_01_desvio_agua_lenta",
+    "CQ-02": "cq_02_orilla_juncos_bajos",
+    "CQ-03": "cq_03_ensanchamiento_claro",
+    "CQ-04": "cq_04_raices_ribera",
+    "CQ-05": "cq_05_recodo_tronco",
+    "CQ-06": "cq_06_paso_raices",
+    "CQ-07": "cq_07_orilla_blanda",
+    "CQ-08": "cq_08_recodo_sin_vista",
+    "CQ-09": "cq_09_estrechamiento_raices_roca",
+    "BM-01": "bm_01_desvio_dosel",
+    "BM-02": "bm_02_raices_sobre_roca",
+    "BM-03": "bm_03_piedra_sotobosque",
+    "BM-04": "bm_04_ladera_grava",
+    "BM-05": "bm_05_saliente_raices",
+    "BM-06": "bm_06_terraza_exterior",
+    "BM-07": "bm_07_risco_sombreado",
+    "BM-08": "bm_08_antesala_boca",
+    "BM-09": "bm_09_boca_rocosa",
+}
+
+SURFACE_BRANCH_ANCHORS = {
+    "MH": {
+        "branch_entry": "mh_01_desvio_acequia",
+        "anchor_room": "valdren_vado_menor",
+        "direction_from_anchor": "south",
+        "corridor": "Camino de la Tierra Húmeda",
+    },
+    "GE": {
+        "branch_entry": "ge_01_desvio_grieta",
+        "anchor_room": "alto_terrazas",
+        "direction_from_anchor": "west",
+        "corridor": "Paso de las Lajas",
+    },
+    "CA": {
+        "branch_entry": "ca_01_desvio_descarte",
+        "anchor_room": "piedra_patio_exterior",
+        "direction_from_anchor": "south",
+        "corridor": "Senda del Viento Bajo",
+    },
+    "CQ": {
+        "branch_entry": "cq_01_desvio_agua_lenta",
+        "anchor_room": "juncos_plataformas",
+        "direction_from_anchor": "east",
+        "corridor": "Ribera Sombría",
+    },
+    "BM": {
+        "branch_entry": "bm_01_desvio_dosel",
+        "anchor_room": "sombra_borde",
+        "direction_from_anchor": "north",
+        "corridor": "Paso del Dosel Alto",
+    },
+}
+
+SURFACE_BRANCH_THRESHOLDS = (
+    "mh_10_umbral_inferior",
+    "ge_09_boca_inferior",
+    "ca_09_cavidad_tras_frente",
+    "cq_09_estrechamiento_raices_roca",
+    "bm_09_boca_rocosa",
+)
+
+def get_surface_branch_room_id(code: str) -> str | None:
+    """Devuelve el room_id técnico para un ID narrativo (ej. 'MH-01')."""
+    return SURFACE_BRANCH_MAPPING.get(code)
+
+def get_surface_branch_code(room_id: str) -> str | None:
+    """Devuelve el ID narrativo (ej. 'MH-01') a partir del room_id técnico."""
+    for code, r_id in SURFACE_BRANCH_MAPPING.items():
+        if r_id == room_id:
+            return code
+    return None
+
+# Definición de salas de los cinco ramales superficiales
+BRANCH_MOLINO_HUNDIDO = [
+    ("mh_01_desvio_acequia", "Desvío de la acequia",
+     "Desde el Camino de la Tierra Húmeda, una acequia antigua se aparta hacia terreno más bajo. "
+     "El agua corre lenta entre tierra pisada y vegetación húmeda. El paso principal sigue siendo legible "
+     "como referencia a tu espalda."),
+    ("mh_02_bordes_vencidos", "Bordes vencidos",
+     "La acequia pierde su forma regular. Algunos bordes han cedido y el agua invade depresiones laterales "
+     "con barro reciente y tallos doblados, aunque todavía queda suelo firme para avanzar."),
+    ("mh_03_juncos_partidos", "Juncos partidos",
+     "La vegetación alta empieza a ocultar el recorrido recto. Pasos estrechos se abren entre juncos "
+     "y entradas pequeñas al agua, dejando atrás la vista clara de la bifurcación inicial."),
+    ("mh_04_piedra_canal", "Piedra del canal",
+     "Un bloque de piedra resistente se levanta junto al antiguo canal, parcialmente cubierto por humedad "
+     "y vegetación. Es un punto firme y reconocible antes de continuar hacia terreno más bajo."),
+    ("mh_05_terreno_dos_aguas", "Terreno de dos aguas",
+     "El suelo húmedo se divide brevemente entre una franja más firme y expuesta y otra más corta y cubierta. "
+     "Ambos pasos vuelven a reunirse poco después sobre el cauce."),
+    ("mh_06_restos_cauce", "Restos del cauce",
+     "Aparecen piedras desplazadas, maderas viejas y el borde definido de una infraestructura que alteró el flujo "
+     "del agua. La presencia de una construcción mayor se intuye en el terreno."),
+    ("mh_07_vista_molino", "Vista del Molino",
+     "El terreno se abre lo suficiente para mostrar el conjunto exterior del Molino Hundido: una parte superior "
+     "sobre suelo firme y una base tomada por el agua, el barro y la vegetación."),
+    ("mh_08_rodeo_base", "Rodeo de la base",
+     "El paso bordea la estructura por una franja transitable entre raíces y restos de madera. El agua y los muros "
+     "reducen el espacio lateral y cortan las líneas de visión."),
+    ("mh_09_plataforma_caida", "Plataforma caída",
+     "Un borde elevado de piedra permite observar el sector inferior del molino antes de descender. Hacia atrás queda "
+     "el exterior recorrido; delante, la estructura desciende donde el agua y la sombra ganan espacio."),
+    ("mh_10_umbral_inferior", "Umbral inferior",
+     "Llegas al acceso del nivel inferior del Molino Hundido. El agua lame los peldaños y la entrada se interna en la "
+     "oscuridad de la base. Aquí termina el exterior conocido."),
+]
+
+BRANCH_GRIETA_ECO_SECO = [
+    ("ge_01_desvio_grieta", "Desvío de la grieta",
+     "Una fractura natural descendente se abre en la roca expuesta, apartándose del Paso de las Lajas. "
+     "La boca superior conserva luz amplia y la conexión con la ruta es inmediata a tu espalda."),
+    ("ge_02_terrazas_rotas", "Terrazas rotas",
+     "Lajas escalonadas y grava fina forman peldaños irregulares hacia abajo. El viento de la sierra "
+     "todavía entra franco entre las paredes de piedra."),
+    ("ge_03_repisa_viento", "Repisa del viento",
+     "Una repisa lateral amplia ofrece suelo estable junto a fisuras secas. Una última corriente constante "
+     "de aire acompaña este tramo antes de que las paredes se estrechen."),
+    ("ge_04_quiebre_lajas", "Quiebre de las lajas",
+     "Placas de roca inclinadas y huecos laterales rompen la uniformidad del suelo. El paso se vuelve más encajonado "
+     "y el crujido de la grava resuena contra la piedra cercana."),
+    ("ge_05_bolsillo_seco", "Bolsillo seco",
+     "Un ensanchamiento protegido entre paredes altas corta el viento por completo. La luz directa disminuye, "
+     "pero la salida superior sigue siendo una referencia legible de regreso."),
+    ("ge_06_fisuras_paralelas", "Fisuras paralelas",
+     "El corredor se estrecha entre grietas laterales y paredes próximas. La roca conserva hendiduras profundas "
+     "y el suelo desciende en un desnivel suave y protegido."),
+    ("ge_07_grava_fondo", "Grava de fondo",
+     "Una bajada corta de grava suelta se extiende entre repisas bajas. Las paredes de roca encierran el sonido "
+     "y la luz exterior llega tamizada desde lo alto."),
+    ("ge_08_ultima_luz_directa", "Última luz directa",
+     "Un recodo de la grieta donde la abertura superior ilumina una última franja de roca. Mirando hacia atrás "
+     "permanece visible la línea de luz que orienta el regreso."),
+    ("ge_09_boca_inferior", "Boca inferior",
+     "El corte abierto de la grieta se comprime en un estrechamiento pétreo. El aire se vuelve inmóvil, el eco se acorta "
+     "y la abertura insinúa una profundidad que continúa bajo la roca."),
+]
+
+BRANCH_CANTERA_ABANDONADA = [
+    ("ca_01_desvio_descarte", "Desvío de piedra descartada",
+     "Montones de piedra acumulada y grava anuncian una excavación antigua que se aparta de la Senda del Viento Bajo. "
+     "El borde abierto conserva vegetación residual y la ruta principal a la vista."),
+    ("ca_02_patio_grava", "Patio de grava",
+     "Una explanada irregular cubierta de polvo y piedra partida se extiende ante las primeras paredes de corte. "
+     "El espacio sigue siendo amplio y despejado."),
+    ("ca_03_plataforma_baja", "Plataforma baja",
+     "Una superficie de trabajo antigua y rebajada ofrece buena visibilidad del terreno. Desde aquí se distingue "
+     "con total claridad el desvío de salida hacia la senda."),
+    ("ca_04_montones_descarte", "Montones de descarte",
+     "Pasajes cortos discurren entre montículos de piedra desechada y polvo seco. Los bloques apilados forman refugios "
+     "bajos al pie de la pared."),
+    ("ca_05_zanja_seca", "Zanja seca",
+     "Un canal de drenaje superficial, seco desde hace tiempo, marca el desnivel entre dos plataformas. El lugar ofrece "
+     "una pausa limpia entre las acumulaciones de piedra."),
+    ("ca_06_plataforma_alta", "Plataforma alta",
+     "Una repisa de trabajo elevada se asoma a un frente de roca más fracturado. El polvo en suspensión y las fisuras "
+     "visibles muestran un terreno menos uniforme."),
+    ("ca_07_frente_quebrado", "Frente quebrado",
+     "El frente bajo de extracción presenta fracturas hondas, bloques caídos y cavidades superficiales al pie del corte mineral."),
+    ("ca_08_paso_bloques", "Paso entre bloques",
+     "Un corredor irregular serpentea entre bloques desprendidos. Aunque el paso se encajona, el cielo sigue visible "
+     "y la plataforma alta sirve de referencia detrás."),
+    ("ca_09_cavidad_tras_frente", "Cavidad tras el frente",
+     "Una abertura entre grandes bloques marca la transición entre la excavación exterior y una cavidad no explorada. "
+     "El aire y la sombra cambian al pie de la piedra."),
+]
+
+BRANCH_CANAL_QUIETO = [
+    ("cq_01_desvio_agua_lenta", "Desvío de agua lenta",
+     "Un brazo del cauce se separa de la Ribera Sombría. La corriente se vuelve notablemente más lenta junto a una orilla "
+     "firme que permite seguir el agua hacia la sombra."),
+    ("cq_02_orilla_juncos_bajos", "Orilla de juncos bajos",
+     "El sendero bordea juncos de ribera y tramos de barro blando. El agua apenas se mueve y el paso permanece transitable "
+     "sobre suelo firme."),
+    ("cq_03_ensanchamiento_claro", "Ensanchamiento claro",
+     "Una bolsa de agua abierta deja espacio a una orilla limpia con buena visibilidad. Hacia atrás aún se reconoce "
+     "el punto de bifurcación con la ribera principal."),
+    ("cq_04_raices_ribera", "Raíces de ribera",
+     "Raíces gruesas se extienden sobre el barro húmedo y se hunden en el canal. La vegetación se cierra sobre la orilla "
+     "y abundan los huecos junto al agua."),
+    ("cq_05_recodo_tronco", "Recodo del tronco",
+     "Un gran tronco caído altera el margen del canal sin cortar el paso. Su madera musgosa sirve como hito reconocible "
+     "bajo una sombra cada vez más densa."),
+    ("cq_06_paso_raices", "Paso entre raíces",
+     "El sendero se estrecha entre contrafuertes leñosos y anclajes vegetales. Las ramas bajas tamizan la luz sobre un "
+     "suelo húmedo pero transitable."),
+    ("cq_07_orilla_blanda", "Orilla blanda",
+     "El barro se vuelve más continuo junto al agua estancada. La cobertura del follaje se espesa y el recorrido exige "
+     "pisar con atención sobre las franjas firmes."),
+    ("cq_08_recodo_sin_vista", "Recodo sin vista",
+     "Una curva cerrada del canal oculta por completo la entrada lejana. No obstante, las raíces y el tronco previo forman "
+     "una cadena clara para orientar el regreso."),
+    ("cq_09_estrechamiento_raices_roca", "Estrechamiento bajo raíces y roca",
+     "El canal y la orilla se comprimen bajo un arco macizo de raíces y piedra. La corriente se desliza hacia una penumbra "
+     "cerrada donde termina el exterior."),
+]
+
+BRANCH_BOCA_MONTANA = [
+    ("bm_01_desvio_dosel", "Desvío bajo el dosel",
+     "Un sendero se aparta del Paso del Dosel Alto entre raíces y piedra emergente. El bosque cerrado de hojas y humedad "
+     "mantiene a la espalda la referencia del camino principal."),
+    ("bm_02_raices_sobre_roca", "Raíces sobre roca",
+     "Raíces gruesas cruzan placas inclinadas de piedra bajo una cobertura vegetal tupida. El suelo empieza a ganar inclinación "
+     "de forma constante."),
+    ("bm_03_piedra_sotobosque", "Piedra del sotobosque",
+     "Un claro breve entre troncos y roca ofrece espacio y descanso bajo los árboles. El corredor de bajada hacia la ruta "
+     "permanece visible a la espalda."),
+    ("bm_04_ladera_grava", "Ladera de grava",
+     "La cuesta asciende con mayor decisión. La capa de hojas disminuye y dan paso a grava suelta y piedra de montaña."),
+    ("bm_05_saliente_raices", "Saliente de raíces",
+     "Un saliente bajo combina raíces expuestas y roca firme, creando huecos protegidos. Es un punto intermedio reconocible "
+     "antes de los riscos superiores."),
+    ("bm_06_terraza_exterior", "Terraza exterior",
+     "Una terraza rocosa se asoma por encima de las copas del bosque. El aire fresco y el espacio abierto recuperan una "
+     "vista amplia hacia el exterior."),
+    ("bm_07_risco_sombreado", "Risco sombreado",
+     "La roca domina el paisaje con menos vegetación, salientes agudos y grietas profundas. El camino bordea la pared en un "
+     "tramo frío y expuesto."),
+    ("bm_08_antesala_boca", "Antesala de la boca",
+     "Un suelo de grava fría se extiende al pie de una pared rocosa dominante. Detrás todavía se distingue la terraza "
+     "exterior y la línea superior del bosque."),
+    ("bm_09_boca_rocosa", "Boca rocosa",
+     "Una abertura natural irregular se interna en la sierra. Paredes y techo de piedra empiezan a cerrar el paso, "
+     "marcando el umbral hacia lo profundo de la montaña."),
+]
+
+for _branch_specs in (BRANCH_MOLINO_HUNDIDO, BRANCH_GRIETA_ECO_SECO, BRANCH_CANTERA_ABANDONADA, BRANCH_CANAL_QUIETO, BRANCH_BOCA_MONTANA):
+    ROOMS.update(_route_rooms(_branch_specs))
+
+# Enlaces bidireccionales de cada ramal superficial
+_link_chain([r[0] for r in BRANCH_MOLINO_HUNDIDO], "S" * 9)
+_link_chain([r[0] for r in BRANCH_GRIETA_ECO_SECO], "O" * 8)
+_link_chain([r[0] for r in BRANCH_CANTERA_ABANDONADA], "S" * 8)
+_link_chain([r[0] for r in BRANCH_CANAL_QUIETO], "E" * 8)
+_link_chain([r[0] for r in BRANCH_BOCA_MONTANA], "N" * 8)
+
+# Anclaje a las salas vigentes canónicas
+link(SURFACE_BRANCH_ANCHORS["MH"]["anchor_room"], SURFACE_BRANCH_ANCHORS["MH"]["direction_from_anchor"], SURFACE_BRANCH_ANCHORS["MH"]["branch_entry"])
+link(SURFACE_BRANCH_ANCHORS["GE"]["anchor_room"], SURFACE_BRANCH_ANCHORS["GE"]["direction_from_anchor"], SURFACE_BRANCH_ANCHORS["GE"]["branch_entry"])
+link(SURFACE_BRANCH_ANCHORS["CA"]["anchor_room"], SURFACE_BRANCH_ANCHORS["CA"]["direction_from_anchor"], SURFACE_BRANCH_ANCHORS["CA"]["branch_entry"])
+link(SURFACE_BRANCH_ANCHORS["CQ"]["anchor_room"], SURFACE_BRANCH_ANCHORS["CQ"]["direction_from_anchor"], SURFACE_BRANCH_ANCHORS["CQ"]["branch_entry"])
+link(SURFACE_BRANCH_ANCHORS["BM"]["anchor_room"], SURFACE_BRANCH_ANCHORS["BM"]["direction_from_anchor"], SURFACE_BRANCH_ANCHORS["BM"]["branch_entry"])
+
 ROOM_VISUAL_CONTEXT_OVERRIDES.update({
     # Primer tramo de cada camino, todavía pegado a su pueblo.
     "alto_terrazas": "zone.khariel",
