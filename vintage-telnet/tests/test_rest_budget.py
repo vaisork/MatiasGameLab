@@ -57,7 +57,7 @@ class RestBudgetIntegrationTests(unittest.TestCase):
 
     def test_schema_v14_persists_rest_cycle_and_encounter_commitment_columns(self):
         with store.connect(self.path) as db:
-            self.assertEqual(db.execute("PRAGMA user_version").fetchone()[0], 14)
+            self.assertEqual(db.execute("PRAGMA user_version").fetchone()[0], store.SCHEMA_VERSION)
             columns = {row["name"] for row in db.execute("PRAGMA table_info(players)").fetchall()}
             encounter_columns = {row["name"] for row in db.execute("PRAGMA table_info(room_encounters)").fetchall()}
         self.assertIn("field_rest_budget_max", columns)
@@ -83,7 +83,7 @@ class RestBudgetIntegrationTests(unittest.TestCase):
 
                 with store.connect(path) as db:
                     columns = {row["name"] for row in db.execute("PRAGMA table_info(players)")}
-                    self.assertEqual(db.execute("PRAGMA user_version").fetchone()[0], 14)
+                    self.assertEqual(db.execute("PRAGMA user_version").fetchone()[0], store.SCHEMA_VERSION)
                 self.assertIn("field_rest_budget_max", columns)
                 self.assertIn("field_rest_healed", columns)
 

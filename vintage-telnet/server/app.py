@@ -12,7 +12,7 @@ from flask import (Flask, abort, g, jsonify, redirect, render_template, request,
                     session, url_for)
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from . import combat, content_parser, creatures, dm_auth, encounters, items, npc_dialogue, store, world
+from . import combat, content_parser, creatures, dm_auth, economy, encounters, items, npc_dialogue, store, world
 
 # Issue #46 resuelto: el Narrador fijo la plaza central de Valdren como
 # punto de reaparicion tras morir (GAMEPLAY.md 20.9) y de recuperacion
@@ -300,6 +300,9 @@ def create_app(config=None):
     # GAMEPLAY.md 32.8: comandos canónicos de inventario/equipo (Issue #57).
     EQUIP_PREFIXES = ("equipar ",)
     UNEQUIP_PREFIXES = ("desequipar ",)
+    # ECONOMY.md §§7-9: comandos de comercio con Daro (Issue #408).
+    BUY_PREFIXES = ("comprar ",)
+    SELL_PREFIXES = ("vender ",)
 
     def parse_intent(raw):
         """Clasifica texto del terminal sin convertir comandos desconocidos en chat."""
@@ -355,6 +358,18 @@ def create_app(config=None):
             if lowered.startswith(prefix):
                 target = text[len(prefix):].strip()
                 return {"type": "unequip", "target": target} if target else {"type": "invalid"}
+        if lowered == "comprar":
+            return {"type": "buy", "target": ""}
+        for prefix in BUY_PREFIXES:
+            if lowered.startswith(prefix):
+                target = text[len(prefix):].strip()
+                return {"type": "buy", "target": target} if target else {"type": "invalid"}
+        if lowered == "vender":
+            return {"type": "sell", "target": ""}
+        for prefix in SELL_PREFIXES:
+            if lowered.startswith(prefix):
+                target = text[len(prefix):].strip()
+                return {"type": "sell", "target": target} if target else {"type": "invalid"}
         for prefix in SAY_PREFIXES:
             if lowered.startswith(prefix):
                 body = text[len(prefix):].strip()
@@ -911,6 +926,70 @@ def create_app(config=None):
         store.unequip_item(path, player["id"], category)
         return {"outcome": "unequipped", "messages": [f"Guardas {items.get_item(item_key)['name']}."]}
 
+    def attempt_buy(player, target_text):
+        """ECONOMY-CORE-01 (#408 / ECONOMY.md §§7, 10, 20): compra atómica de armas a Daro.
+        Solo fuera de combate y físicamente en el taller de Daro (valdren_forja)."""
+        if store.get_encounter(path, player["id"], player["room"]):
+            return {"outcome": "blocked", "messages": ["No puedes comerciar durante un encuentro."]}
+        if player["room"] != economy.DARO_SHOP_ROOM:
+            return {"outcome": "blocked", "messages": ["Solo puedes comerciar con Daro en su taller de Valdren (valdren_forja)."]}
+        if not target_text:
+            return {
+                "outcome": "rejected",
+                "messages": [
+                    "¿Qué deseas comprar? Daro vende: Varita de aprendiz (40 sellos), "
+                    "Puñal de camino (50 sellos), Arco de ruta (65 sellos), "
+                    "Espada de juramento (85 sellos)."
+                ],
+            }
+        item_key = economy.resolve_daro_item(target_text)
+        if not item_key:
+            return {"outcome": "not_found", "messages": ["Daro no vende ese objeto en su taller."]}
+
+        ok, message, extra = economy.buy_item_from_daro(path, player["id"], item_key)
+        if not ok:
+            return {"outcome": "rejected", "messages": [message], "balance": extra.get("balance") if extra else None}
+        return {"outcome": "bought", "messages": [message], "item_key": item_key, "balance": extra["balance"]}
+
+    def attempt_sell(player, target_text):
+        """ECONOMY-CORE-01 (#408 / ECONOMY.md §§8, 9, 20): reventa atómica al 35% a Daro.
+        Solo fuera de combate y físicamente en el taller de Daro (valdren_forja).
+        Rechaza vender objetos equipados o la última arma utilizable."""
+        if store.get_encounter(path, player["id"], player["room"]):
+            return {"outcome": "blocked", "messages": ["No puedes comerciar durante un encuentro."]}
+        if player["room"] != economy.DARO_SHOP_ROOM:
+            return {"outcome": "blocked", "messages": ["Solo puedes comerciar con Daro en su taller de Valdren (valdren_forja)."]}
+        if not target_text:
+            return {
+                "outcome": "rejected",
+                "messages": [
+                    "¿Qué deseas vender? Daro compra armas comunes de su catálogo al 35% de su valor: "
+                    "Varita (14 sellos), Puñal (17 sellos), Arco (22 sellos), Espada (29 sellos)."
+                ],
+            }
+
+        item_key = economy.resolve_daro_item(target_text) or items.find_key_by_name(target_text)
+        if not item_key:
+            return {"outcome": "not_found", "messages": ["No reconoces ese objeto."]}
+
+        if item_key not in economy.DARO_BUYBACK:
+            return {"outcome": "rejected", "messages": ["Daro no compra este tipo de objeto."]}
+
+        inv = store.list_inventory(path, player["id"])
+        matches = [it for it in inv if it["item_key"] == item_key]
+        if not matches:
+            return {"outcome": "not_owned", "messages": ["No posees ese objeto en tu inventario."]}
+
+        unequipped = [it for it in matches if it["id"] not in (player["equipped_weapon_id"], player["equipped_armor_id"])]
+        if not unequipped:
+            return {"outcome": "equipped", "messages": ["No puedes vender un objeto que tienes equipado. Desequípalo primero."]}
+
+        instance_to_sell = unequipped[0]
+        ok, message, extra = economy.sell_item_to_daro(path, player["id"], instance_to_sell["id"])
+        if not ok:
+            return {"outcome": "rejected", "messages": [message], "balance": extra.get("balance") if extra else None}
+        return {"outcome": "sold", "messages": [message], "item_key": item_key, "balance": extra["balance"]}
+
     def attempt_choose_species(player, species_id):
         """Devuelve (accepted, species_or_None, room_or_None, reason_or_None).
         La atomicidad real la garantiza store.set_species (rowcount), no una
@@ -1225,6 +1304,18 @@ def create_app(config=None):
             room_data = room_view(player_now["room"], player_now["id"])
             return render_template("entry.html", player=player_now, species_list=world.SPECIES,
                                    room=room_data, error=" ".join(result["messages"])), 200
+        if intent["type"] == "buy":
+            result = attempt_buy(g.player, intent["target"])
+            player_now = store.player_for_token(path, session.get("token"))
+            room_data = room_view(player_now["room"], player_now["id"])
+            return render_template("entry.html", player=player_now, species_list=world.SPECIES,
+                                   room=room_data, error=" ".join(result["messages"])), 200
+        if intent["type"] == "sell":
+            result = attempt_sell(g.player, intent["target"])
+            player_now = store.player_for_token(path, session.get("token"))
+            room_data = room_view(player_now["room"], player_now["id"])
+            return render_template("entry.html", player=player_now, species_list=world.SPECIES,
+                                   room=room_data, error=" ".join(result["messages"])), 200
         if intent["type"] == "talk_npc":
             result = npc_dialogue.converse(
                 g.player,
@@ -1463,6 +1554,26 @@ def create_app(config=None):
                 messages=result["messages"],
                 player=dict(player_now) if player_now else None,
             )
+        if kind == "buy":
+            result = attempt_buy(g.player, intent["target"])
+            player_now = store.player_for_token(path, session.get("token"))
+            return jsonify(
+                accepted=result["outcome"] == "bought",
+                intent="buy",
+                outcome=result["outcome"],
+                messages=result["messages"],
+                player=dict(player_now) if player_now else None,
+            )
+        if kind == "sell":
+            result = attempt_sell(g.player, intent["target"])
+            player_now = store.player_for_token(path, session.get("token"))
+            return jsonify(
+                accepted=result["outcome"] == "sold",
+                intent="sell",
+                outcome=result["outcome"],
+                messages=result["messages"],
+                player=dict(player_now) if player_now else None,
+            )
         if kind == "talk_npc":
             result = npc_dialogue.converse(
                 g.player,
@@ -1606,6 +1717,7 @@ def create_app(config=None):
                              for name, value in _attributes(g.player).items()},
             in_combat=bool(encounter and encounter.get("engaged", 1)),
             discoveries=store.list_discoveries(path, g.player["id"]),
+            sellos=g.player["sellos"],
         )
 
     @app.post("/api/character/attributes")
@@ -1681,9 +1793,88 @@ def create_app(config=None):
                 "weapon": next((row for row in inventory if row["id"] == weapon_id), None),
                 "armor": next((row for row in inventory if row["id"] == armor_id), None),
             },
+            sellos=g.player["sellos"],
             armor_reduction_total=equipment["armor_reduction"],
             carga_multiplier=combat.armor_load_multiplier(equipment["armor_reduction"]),
         )
+
+    @app.get("/api/shop/daro")
+    def api_shop_daro():
+        """ECONOMY-CORE-01: catálogo de compra y recompra de Daro en Valdren."""
+        error = api_player_state(g.player)
+        if error:
+            return error
+        in_shop = (g.player["room"] == economy.DARO_SHOP_ROOM)
+        return jsonify(
+            shop_id=economy.DARO_NPC_ID,
+            shop_name="Taller de Daro",
+            room=economy.DARO_SHOP_ROOM,
+            in_shop=in_shop,
+            sellos=g.player["sellos"],
+            catalog=economy.daro_catalog_entries(),
+        )
+
+    @app.post("/api/shop/daro/buy")
+    def api_shop_daro_buy():
+        """ECONOMY-CORE-01: compra estructurada en el taller de Daro."""
+        error = api_player_state(g.player)
+        if error:
+            return error
+        data = request.get_json(silent=True) or request.form
+        item_target = (data.get("item_key") or data.get("item") or "").strip()
+        result = attempt_buy(g.player, item_target)
+        player_now = store.player_for_token(path, session.get("token"))
+        status_code = 200 if result["outcome"] == "bought" else 400
+        return jsonify(
+            accepted=result["outcome"] == "bought",
+            outcome=result["outcome"],
+            messages=result["messages"],
+            sellos=player_now["sellos"] if player_now else None,
+            item_key=result.get("item_key"),
+        ), status_code
+
+    @app.post("/api/shop/daro/sell")
+    def api_shop_daro_sell():
+        """ECONOMY-CORE-01: venta estructurada en el taller de Daro."""
+        error = api_player_state(g.player)
+        if error:
+            return error
+        data = request.get_json(silent=True) or request.form
+        item_id = data.get("item_id")
+        item_target = (data.get("item_key") or data.get("item") or "").strip()
+        if item_id:
+            if store.get_encounter(path, g.player["id"], g.player["room"]):
+                return jsonify(accepted=False, outcome="blocked", messages=["No puedes comerciar durante un encuentro."]), 400
+            if g.player["room"] != economy.DARO_SHOP_ROOM:
+                return jsonify(accepted=False, outcome="blocked", messages=["Solo puedes comerciar con Daro en su taller de Valdren (valdren_forja)."]), 400
+            ok, message, extra = economy.sell_item_to_daro(path, g.player["id"], item_id)
+            player_now = store.player_for_token(path, session.get("token"))
+            return jsonify(
+                accepted=ok,
+                outcome="sold" if ok else "rejected",
+                messages=[message],
+                sellos=player_now["sellos"] if player_now else None,
+            ), (200 if ok else 400)
+        else:
+            result = attempt_sell(g.player, item_target)
+            player_now = store.player_for_token(path, session.get("token"))
+            status_code = 200 if result["outcome"] == "sold" else 400
+            return jsonify(
+                accepted=result["outcome"] == "sold",
+                outcome=result["outcome"],
+                messages=result["messages"],
+                sellos=player_now["sellos"] if player_now else None,
+                item_key=result.get("item_key"),
+            ), status_code
+
+    @app.get("/api/economy/ledger")
+    def api_economy_ledger():
+        """ECONOMY-CORE-01: consulta autoritativa del ledger del personaje."""
+        error = api_player_state(g.player)
+        if error:
+            return error
+        entries = economy.list_player_ledger(path, g.player["id"])
+        return jsonify(sellos=g.player["sellos"], entries=entries)
 
     @app.get("/api/map")
     def api_map():

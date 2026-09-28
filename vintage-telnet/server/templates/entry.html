@@ -910,6 +910,9 @@
               <span class="point-badge" data-point-badge{% if not player.pa_unspent and not player.pp_unspent %} hidden{% endif %}>{% if player.pa_unspent and player.pp_unspent %}{{ player.pa_unspent }} PA · {{ player.pp_unspent }} PP{% elif player.pa_unspent %}{{ player.pa_unspent }} PA{% elif player.pp_unspent %}{{ player.pp_unspent }} PP{% endif %}</span>
             </button>
             <button class="btn" type="button" data-open="inventoryDialog" data-inventory-open><svg class="ui-icon" aria-hidden="true"><use href="#icon-bag"/></svg>Inventario</button>
+            {% if room and room.id == 'valdren_forja' %}
+            <button class="btn" type="button" data-open="shopDialog" data-shop-open><svg class="ui-icon" aria-hidden="true"><use href="#icon-bag"/></svg>Taller de Daro</button>
+            {% endif %}
             <button class="btn" type="button" data-open="mapDialog" data-map-open><svg class="ui-icon" aria-hidden="true"><use href="#icon-map"/></svg>Mapa</button>
             <button class="btn" type="button" data-open="helpDialog"><svg class="ui-icon" aria-hidden="true"><use href="#icon-help"/></svg>Ayuda</button>
           </div>
@@ -927,6 +930,7 @@
             <div class="fact"><b>Nivel</b><span>{{ player.level }} ({{ player.xp }} XP)</span></div>
             <div class="fact"><b>HP</b><span>{{ player.hp_current | round | int }}/{{ player.hp_max | round | int }}</span></div>
             {% if player.wound != 'ninguna' %}<div class="fact"><b>Herida</b><span>{{ player.wound }}</span></div>{% endif %}
+            <div class="fact" id="walletFact"><b>Sellos</b><span id="walletFactAmount">{{ player.sellos }} sellos</span></div>
           </div>
         </section>
       </aside>
@@ -948,6 +952,7 @@
       <section class="character-block"><h3>Progreso</h3>
         <p class="points-callout" id="pointsCallout"{% if not player.pa_unspent and not player.pp_unspent %} hidden{% endif %}>{% if player.pa_unspent and player.pp_unspent %}Tienes {{ player.pa_unspent }} PA y {{ player.pp_unspent }} PP disponibles.{% elif player.pa_unspent %}Tienes {{ player.pa_unspent }} PA por asignar.{% elif player.pp_unspent %}Tienes {{ player.pp_unspent }} PP disponible{% if player.pp_unspent != 1 %}s{% endif %}.{% endif %}</p>
         <p id="charProgressLine">XP {{ player.xp }}/{{ xp_for_next_level(player.level) }} · PA sin gastar {{ player.pa_unspent }} · PP sin gastar {{ player.pp_unspent }}</p>
+        <p id="charWalletLine">Cartera: <strong id="charWalletAmount">{{ player.sellos }}</strong> sellos</p>
       </section>
       <section class="character-block"><h3>Atributos</h3><p id="charAttributesLine">Fuerza {{ player.attr_fuerza }} · Resistencia {{ player.attr_resistencia }} · Agilidad {{ player.attr_agilidad }} · Percepción {{ player.attr_percepcion }}<br>
       Intelecto {{ player.attr_intelecto }} · Voluntad {{ player.attr_voluntad }} · Destreza {{ player.attr_destreza }} · Presencia {{ player.attr_presencia }}</p></section>
@@ -975,12 +980,52 @@
   <div class="modal-head"><strong id="inventoryDialogTitle">Inventario y equipo</strong><button class="close" data-close aria-label="Cerrar inventario">×</button></div>
   <div class="modal-body">
     <div class="inventory-state">
+      <div class="wallet-banner" style="background:#131d27;border:1px solid #3d4f66;padding:8px 12px;border-radius:4px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;">
+        <span>Cartera de sellos:</span>
+        <strong id="inventoryWalletAmount">{{ player.sellos if player else 0 }} sellos</strong>
+      </div>
       <p class="map-status" id="inventoryStatus" aria-live="polite">Abre Inventario para consultar el estado autoritativo del servidor.</p>
       <div id="equipmentSummary" class="equipment-summary"></div>
       <div id="inventoryContent" class="inventory-empty">El inventario todavía no se ha cargado.</div>
     </div>
   </div>
 </dialog>
+{% if room and room.id == 'valdren_forja' %}
+<dialog id="shopDialog" aria-labelledby="shopDialogTitle">
+  <div class="modal-head"><strong id="shopDialogTitle">Taller de Daro — Valdren</strong><button class="close" data-close aria-label="Cerrar taller">×</button></div>
+  <div class="modal-body">
+    <div class="shop-state">
+      <div class="wallet-banner" style="background:#131d27;border:1px solid #3d4f66;padding:8px 12px;border-radius:4px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;">
+        <span>Tus fondos disponibles:</span>
+        <strong id="shopWalletAmount">{{ player.sellos if player else 0 }} sellos</strong>
+      </div>
+      <p class="map-status" id="shopStatus" aria-live="polite">Daro forja y vende armas comunes, y recompra al 35% de su valor.</p>
+      <div id="shopContent" class="shop-content">
+        <h4 style="margin:10px 0 6px">Catálogo de venta</h4>
+        <div class="shop-catalog-list">
+          <div class="inventory-item">
+            <div><strong>Varita de aprendiz</strong><div class="inventory-meta">Arma · Daño base 7 · 40 sellos</div></div>
+            <form method="post" action="/command"><input type="hidden" name="csrf" value="{{ session.csrf }}"><input type="hidden" name="text" value="comprar varita de aprendiz"><button class="action action-primary" type="submit">Comprar (40)</button></form>
+          </div>
+          <div class="inventory-item">
+            <div><strong>Puñal de camino</strong><div class="inventory-meta">Arma · Daño base 8 · 50 sellos</div></div>
+            <form method="post" action="/command"><input type="hidden" name="csrf" value="{{ session.csrf }}"><input type="hidden" name="text" value="comprar puñal de camino"><button class="action action-primary" type="submit">Comprar (50)</button></form>
+          </div>
+          <div class="inventory-item">
+            <div><strong>Arco de ruta</strong><div class="inventory-meta">Arma · Daño base 9 · 65 sellos</div></div>
+            <form method="post" action="/command"><input type="hidden" name="csrf" value="{{ session.csrf }}"><input type="hidden" name="text" value="comprar arco de ruta"><button class="action action-primary" type="submit">Comprar (65)</button></form>
+          </div>
+          <div class="inventory-item">
+            <div><strong>Espada de juramento</strong><div class="inventory-meta">Arma · Daño base 10 · Bloquear/desviar · 85 sellos</div></div>
+            <form method="post" action="/command"><input type="hidden" name="csrf" value="{{ session.csrf }}"><input type="hidden" name="text" value="comprar espada de juramento"><button class="action action-primary" type="submit">Comprar (85)</button></form>
+          </div>
+        </div>
+        <p class="map-status" style="margin-top:12px">Para vender un arma a Daro (35% de valor), usa <code>vender &lt;arma&gt;</code> en el terminal tras desequiparla.</p>
+      </div>
+    </div>
+  </div>
+</dialog>
+{% endif %}
 <dialog id="mapDialog" aria-labelledby="mapDialogTitle">
   <div class="modal-head"><strong id="mapDialogTitle">Mapa y orientación</strong><button class="close" data-close aria-label="Cerrar mapa">×</button></div>
   <div class="modal-body">
@@ -1351,6 +1396,7 @@
       ["Armadura activa", armor ? armor.name : "Ninguna"],
       ["Protección total", Math.round((data.armor_reduction_total || 0) * 100) + "%"],
       ["Carga física", "×" + Number(data.carga_multiplier || 1).toFixed(2)],
+      ["Cartera de sellos", (data.sellos != null ? data.sellos : "—") + " sellos"],
     ].forEach(([label, value]) => {
       const slot = document.createElement("div");
       slot.className = "equipment-slot";
@@ -1361,6 +1407,17 @@
       slot.append(strong, span);
       equipmentSummary.appendChild(slot);
     });
+
+    if (data.sellos != null) {
+      ["inventoryWalletAmount", "walletAmount", "shopWalletAmount"].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = data.sellos + " sellos";
+      });
+      const charWallet = document.getElementById("charWalletAmount");
+      if (charWallet) charWallet.textContent = data.sellos;
+      const walletFact = document.getElementById("walletFactAmount");
+      if (walletFact) walletFact.textContent = data.sellos + " sellos";
+    }
 
     const items = Array.isArray(data.items) ? data.items : [];
     if (!items.length) {

@@ -16,7 +16,7 @@ STATUSES = ("pending", "approved", "rejected", "removed")
 
 # Version de esquema que deja initialize(); ops/inventory_migration_probe.py
 # la usa para validar una migracion de prueba contra la copia de la base viva.
-SCHEMA_VERSION = 14
+SCHEMA_VERSION = 15
 
 # Cuentas con varios personajes (petición de Javier, 2026-09-25): un usuario
 # para entrar puede tener hasta 5 personajes; el nombre de cada personaje es
@@ -47,6 +47,17 @@ NPC_ACTION_LOGS_TABLE = """CREATE TABLE IF NOT EXISTS npc_action_logs (
     reason TEXT NOT NULL,
     payload_json TEXT,
     created_at TEXT NOT NULL)"""
+
+# v15: Issue #408 (ECONOMY-CORE-01 / ECONOMY.md §19) -- ledger autoritativo de sellos.
+# Registra cada movimiento (delta, balance_after, reason_code, source_key).
+ECONOMY_LEDGER_TABLE = """CREATE TABLE IF NOT EXISTS economy_ledger (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    player_id TEXT NOT NULL REFERENCES players(id),
+    delta INTEGER NOT NULL,
+    balance_after INTEGER NOT NULL,
+    reason_code TEXT NOT NULL,
+    source_key TEXT,
+    created_at REAL NOT NULL)"""
 
 
 class UsernameTaken(Exception):
@@ -82,9 +93,10 @@ ATTRIBUTE_COLUMNS = ", ".join(f"attr_{name}" for name in combat.ATTRIBUTES)
 # igual: el arma/armadura activa del personaje es parte de su estado.
 # pp_unspent (GAMEPLAY.md 25.8) y fatigue_updated_at (24.7, recuperacion
 # pasiva calculada por tiempo en servidor) se agregan en el esquema v8.
+# sellos (Issue #408, ECONOMY.md §§2-3) cartera autoritativa en esquema v15.
 CHARACTER_COLUMNS = (f"{PLAYER_COLUMNS}, level, xp, pa_unspent, pp_unspent, hp_current, hp_max, "
                      f"fatigue, fatigue_updated_at, wound, field_rest_budget_max, field_rest_healed, "
-                     f"{ATTRIBUTE_COLUMNS}, equipped_weapon_id, equipped_armor_id")
+                     f"{ATTRIBUTE_COLUMNS}, equipped_weapon_id, equipped_armor_id, sellos")
 
 
 def utcnow():
@@ -321,6 +333,27 @@ def initialize(path):
             }
             if "engaged" not in encounter_columns:
                 db.execute("ALTER TABLE room_encounters ADD COLUMN engaged INTEGER NOT NULL DEFAULT 1")
+        if version <= 14:
+            # v15: ECONOMY-CORE-01 (#408 / ECONOMY.md §§3, 19). Cartera de sellos
+            # (20 iniciales) y ledger autoritativo de transacciones.
+            player_columns = {
+                row["name"] for row in db.execute("PRAGMA table_info(players)").fetchall()
+            }
+            if "sellos" not in player_columns:
+                db.execute("ALTER TABLE players ADD COLUMN sellos INTEGER NOT NULL DEFAULT 20")
+            db.execute(ECONOMY_LEDGER_TABLE)
+            db.execute("CREATE INDEX IF NOT EXISTS economy_ledger_player ON economy_ledger(player_id, id)")
+            now_ts = time.time()
+            existing_players = db.execute(
+                """SELECT p.id FROM players p
+                   WHERE NOT EXISTS (SELECT 1 FROM economy_ledger el WHERE el.player_id = p.id)"""
+            ).fetchall()
+            for p in existing_players:
+                db.execute(
+                    """INSERT INTO economy_ledger (player_id, delta, balance_after, reason_code, source_key, created_at)
+                       VALUES (?, 20, 20, 'starting_purse', 'migration:v15', ?)""",
+                    (p["id"], now_ts),
+                )
         db.execute(f"PRAGMA user_version = {SCHEMA_VERSION}")
 
 
@@ -441,9 +474,14 @@ def _check_name_free(db, name):
 def _insert_character(db, account_id, handle, name, now):
     player_id = str(uuid.uuid4())
     db.execute("""INSERT INTO players(id, username, name, name_key, password_hash, account_id,
-                                      created_at, last_access_at)
-                  VALUES (?, ?, ?, ?, '', ?, ?, ?)""",
+                                      created_at, last_access_at, sellos)
+                  VALUES (?, ?, ?, ?, '', ?, ?, ?, 20)""",
                (player_id, handle, name, name_key(name), account_id, now, now))
+    db.execute(
+        """INSERT INTO economy_ledger (player_id, delta, balance_after, reason_code, source_key, created_at)
+           VALUES (?, 20, 20, 'starting_purse', 'character_creation', ?)""",
+        (player_id, time.time()),
+    )
     return player_id
 
 
