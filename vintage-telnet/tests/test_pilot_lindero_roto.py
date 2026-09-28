@@ -308,7 +308,9 @@ class PilotIntegrationTests(unittest.TestCase):
     def test_new_character_starts_with_only_the_starting_town_visited(self):
         self.register_and_enter_world()
         state = self.client.get("/api/map").json
-        self.assertEqual(state["visited_rooms"], ["valdren_centro"])
+        player_id = self.client.get("/api/me").json["player"]["id"]
+        home_id = world.get_home_room_id(player_id)
+        self.assertEqual(state["visited_rooms"], [home_id, "valdren_centro"])
         self.assertEqual(state["traversed_routes"], [])
 
     def test_walking_the_path_marks_rooms_visited_and_routes_traversed(self):

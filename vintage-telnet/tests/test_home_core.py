@@ -318,12 +318,18 @@ class HomeCoreTests(unittest.TestCase):
         home_id = player["room"]
 
         self.assertTrue(world.is_home_room(home_id))
-        self.assertEqual(store.get_map_state(self.path, player_id)["traversed_routes"], [])
+        map_initial = store.get_map_state(self.path, player_id)
+        self.assertEqual(map_initial["traversed_routes"], [])
+        # Issue #357: tras especie+clase, hogar visitado y pueblo inicial NO visitado
+        self.assertIn(home_id, map_initial["visited_rooms"])
+        self.assertNotIn("valdren_centro", map_initial["visited_rooms"])
 
-        # HOME-CORE: la transición hogar -> comunidad no es una ruta regional.
+        # HOME-CORE: la transición hogar -> comunidad no es una ruta regional,
+        # y es aquí donde el pueblo inicial queda marcado como visitado físicamente.
         self.post("/move", dict(direction=world.HOME_EXIT_DIRECTION))
         map_after_home_exit = store.get_map_state(self.path, player_id)
         self.assertEqual(map_after_home_exit["traversed_routes"], [])
+        self.assertIn("valdren_centro", map_after_home_exit["visited_rooms"])
         self.assertNotIn(
             sorted([home_id, "valdren_centro"]),
             map_after_home_exit["traversed_routes"],

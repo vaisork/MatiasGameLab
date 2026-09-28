@@ -1,5 +1,29 @@
 # Handoff — Desarrollador de Servidor — Vintage Telnet
 
+## Entrega lista para revisión: Corrección marca prematura de pueblo inicial (#357) — 2026-09-27
+
+- **DESARROLLADOR:** Antigravity (Desarrollador principal para implementaciones pesadas).
+- **HEAD BASE:** `46c3eec` (`origin/main` remoto vigente).
+- **TAREA:** Issue #357 — `VT-SERVER/QA: pueblo inicial aparece visitado antes de salir del hogar (#280)`.
+- **RAMA:** `antigravity/vt-357-starter-town-visited`
+- **CONTRATO APROBADO Y ALCANCE (GAMEPLAY §34 / Issue #357):**
+  - **Corrección de marca prematura:** En `attempt_choose_species()`, el personaje nuevo inicia físicamente en su hogar personal (`home:<player_id>`). Se eliminó la llamada prematura que marcaba `starting_town` como visitada al elegir especie.
+  - **Visita autoritativa honesta:** Al completar especie se marca como visitado únicamente su propio hogar (`room_id`). El pueblo inicial de la especie pasa a `visited_rooms` únicamente cuando el personaje realiza el movimiento físico explícito desde su hogar hacia el exterior (`attempt_move`), momento en el que el servidor registra el pueblo sin generar rutas regionales espurias.
+  - **Regresión agregada en QA/Tests:** En `test_home_core.py` (test 12), se comprueba de forma explícita que tras especie y clase el hogar figura en `visited_rooms` y el pueblo inicial NO figura; tras ejecutar el movimiento hacia el exterior, el pueblo inicial sí figura en `visited_rooms` y `traversed_routes` continúa limpio (0 rutas regionales falsas).
+- **ARCHIVOS MODIFICADOS:**
+  - `vintage-telnet/server/app.py`: `store.mark_visited(path, player["id"], room_id)` en `attempt_choose_species` en lugar de `starting_town`.
+  - `vintage-telnet/tests/test_home_core.py`: aserciones de `visited_rooms` antes y después de salir de casa en `test_home_exit_does_not_create_regional_route_but_normal_travel_does`.
+  - `vintage-telnet/tests/test_pilot_lindero_roto.py`: actualización de `test_new_character_starts_with_only_the_starting_town_visited` para verificar que al entrar al mundo figuran el hogar y el pueblo inicial tras salir.
+  - `vintage-telnet/server/HANDOFF.md`: este registro.
+
+### Pruebas ejecutadas y verificación
+
+1. `tests/test_home_core.py`: **12/12 tests PASS**.
+2. Suite completa descubierta (`python -m unittest discover -s tests`): **401 tests PASS (0 fallos, 0 errores, 1 skipped en Windows)**.
+3. MERGE: NO / DEPLOY: NO.
+
+---
+
 ## Entrega lista para revisión: HOME-CORE — hogar personal persistente mínimo (#280) — 2026-09-27
 
 - **DESARROLLADOR:** Antigravity (Desarrollador principal para implementaciones pesadas).

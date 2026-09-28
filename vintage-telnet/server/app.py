@@ -845,8 +845,9 @@ def create_app(config=None):
         updated = store.set_species(path, player["id"], species_id, room_id)
         if not updated:
             return False, None, None, "Ya elegiste tu especie."
-        starting_town = world.get_starting_room_for_species(species_id)
-        store.mark_visited(path, player["id"], starting_town)
+        # Solo el hogar personal queda marcado como visitado al comenzar;
+        # el pueblo inicial se visita al salir físicamente de casa (Issue #357 / GAMEPLAY §34).
+        store.mark_visited(path, player["id"], room_id)
         return True, species_id, room_id, None
 
     def attempt_choose_class(player, class_id):
