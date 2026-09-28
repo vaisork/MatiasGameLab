@@ -1182,13 +1182,19 @@ Descansar sigue siendo gratuito y útil para recuperar fuerzas, pero **no puede 
 
 #### Presupuesto gratuito de HP por ciclo
 
-Cada personaje dispone de un **presupuesto de recuperación de campo** equivalente al **30% de su HP máximo** por ciclo de recuperación.
+El descanso gratuito puede recuperar como máximo el **30% de la vida que faltaba al comenzar ese ciclo de recuperación de campo**.
 
-`PresupuestoCampo = 0.30 × HPmax`
+Al primer descanso que realmente intenta curar HP en un ciclo:
+
+`HPFaltanteInicial = HPmax - HP_actual`
+
+`PresupuestoCampo = 0.30 × HPFaltanteInicial`
+
+Ese presupuesto queda fijado y persistente hasta que el ciclo se reinicie.
 
 Cada uso de `descansar` intenta recuperar:
 
-`HPDescanso = mínimo(0.10 × HPmax, presupuesto_restante, tope_herida - HP_actual)`
+`HPDescanso = mínimo(0.10 × HPmax, presupuesto_restante, tope_herida - HP_actual, HPmax - HP_actual)`
 
 y además reduce fatiga en:
 
@@ -1197,27 +1203,33 @@ y además reduce fatiga en:
 puntos, sin bajar de 0.
 
 Por tanto:
-- normalmente los primeros tres descansos de un ciclo pueden aportar hasta 10% de HPmax cada uno;
-- si falta menos vida, solo recupera lo necesario;
-- el HP realmente recuperado es lo único que consume presupuesto;
-- cuando el presupuesto de campo llega a 0, `descansar` puede seguir reduciendo fatiga, pero recupera **0 HP**;
+- repetir `descansar` nunca puede convertir por sí solo toda la vida faltante en HP;
+- solo el HP realmente recuperado consume presupuesto;
+- recibir daño después de haber iniciado el ciclo **no aumenta** el presupuesto;
+- cuando el presupuesto llega a 0, `descansar` puede seguir reduciendo fatiga, pero recupera **0 HP**;
 - nunca cura por encima de HPmax;
 - conserva los topes de herida moderada/grave de §24.6.
 
-Ejemplo con HPmax 100:
-- personaje en 60 HP y presupuesto intacto;
-- primer descanso → hasta 70;
-- segundo → hasta 80;
-- tercero → hasta 90;
-- descansos posteriores → 0 HP, aunque todavía pueden reducir fatiga.
+Ejemplo con HPmax 100 y HP 60:
+- faltan 40 HP;
+- presupuesto del ciclo = 12 HP;
+- primer descanso puede llevar 60 → 70;
+- segundo solo puede llevar 70 → 72;
+- descansos posteriores curan 0 HP.
 
-Ejemplo en 75 HP:
-- primer descanso → 85;
-- segundo → 95;
-- tercero → 100 consumiendo solo 5 HP de presupuesto;
-- quedan 5 HP de presupuesto para daño posterior dentro del mismo ciclo.
+Ejemplo con HPmax 100 y HP 75:
+- faltan 25 HP;
+- presupuesto del ciclo = 7.5 HP;
+- el descanso puede llevar aproximadamente 75 → 82.5;
+- repetirlo no puede llevar al personaje gratis a 100%.
 
-El objetivo no es imponer un techo artificial de 70/80/90% de vida, sino limitar **cuánta curación gratuita total** puede producir el descanso en una expedición.
+Ejemplo con HPmax 100 y HP 20:
+- faltan 80 HP;
+- presupuesto = 24 HP;
+- descanso gratuito puede llegar como máximo aproximadamente a 44 HP;
+- para una recuperación completa se necesitan provisiones/servicio/otra fuente legítima.
+
+Si el personaje está a HP completo, descansar no inicia un nuevo presupuesto de curación; solo puede reducir fatiga. El ciclo de curación se inicializa la primera vez que exista HP faltante y el descanso pueda recuperar vida.
 
 #### Persistencia y anti-spam
 
