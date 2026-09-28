@@ -12,7 +12,7 @@ Cubre:
 9. inventario/equipamiento permanece sin nuevo sistema de almacenamiento;
 10. personajes existentes con posición válida no son teletransportados;
 11. cambio/migración de esquema y reinicio de servidor no destruyen estado vivo;
-12. salir del hogar no crea una ruta regional falsa y el viaje normal sí registra rutas.
+12. hogar/pueblo se marcan visitados solo al pisarlos y la salida no crea ruta regional falsa.
 """
 
 import os
@@ -318,12 +318,18 @@ class HomeCoreTests(unittest.TestCase):
         home_id = player["room"]
 
         self.assertTrue(world.is_home_room(home_id))
-        self.assertEqual(store.get_map_state(self.path, player_id)["traversed_routes"], [])
+        map_before_exit = store.get_map_state(self.path, player_id)
+        self.assertEqual(map_before_exit["traversed_routes"], [])
+        self.assertIn(home_id, map_before_exit["visited_rooms"])
+        self.assertNotIn("valdren_centro", map_before_exit["visited_rooms"])
 
-        # HOME-CORE: la transición hogar -> comunidad no es una ruta regional.
+        # HOME-CORE: la transición hogar -> comunidad marca el pueblo visitado,
+        # pero no es una ruta regional.
         self.post("/move", dict(direction=world.HOME_EXIT_DIRECTION))
         map_after_home_exit = store.get_map_state(self.path, player_id)
         self.assertEqual(map_after_home_exit["traversed_routes"], [])
+        self.assertIn(home_id, map_after_home_exit["visited_rooms"])
+        self.assertIn("valdren_centro", map_after_home_exit["visited_rooms"])
         self.assertNotIn(
             sorted([home_id, "valdren_centro"]),
             map_after_home_exit["traversed_routes"],

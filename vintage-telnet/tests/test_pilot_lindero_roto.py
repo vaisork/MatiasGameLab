@@ -308,10 +308,13 @@ class PilotIntegrationTests(unittest.TestCase):
 
     # --- Mapa progresivo ---------------------------------------------------
 
-    def test_new_character_starts_with_only_the_starting_town_visited(self):
+    def test_new_character_map_includes_home_and_starting_town_after_exit(self):
         self.register_and_enter_world()
         state = self.client.get("/api/map").json
-        self.assertEqual(state["visited_rooms"], ["valdren_centro"])
+        home_rooms = [room for room in state["visited_rooms"] if room.startswith("home:")]
+        self.assertEqual(len(home_rooms), 1)
+        self.assertIn("valdren_centro", state["visited_rooms"])
+        self.assertEqual(len(state["visited_rooms"]), 2)
         self.assertEqual(state["traversed_routes"], [])
 
     def test_walking_the_path_marks_rooms_visited_and_routes_traversed(self):
