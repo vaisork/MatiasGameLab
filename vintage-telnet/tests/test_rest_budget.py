@@ -55,12 +55,14 @@ class RestBudgetIntegrationTests(unittest.TestCase):
                           field_rest_budget_max, field_rest_healed
                    FROM players WHERE id = ?""", (self.player_id,)).fetchone())
 
-    def test_schema_v13_persists_rest_cycle_columns(self):
+    def test_schema_v14_persists_rest_cycle_and_encounter_commitment_columns(self):
         with store.connect(self.path) as db:
-            self.assertEqual(db.execute("PRAGMA user_version").fetchone()[0], 13)
+            self.assertEqual(db.execute("PRAGMA user_version").fetchone()[0], 14)
             columns = {row["name"] for row in db.execute("PRAGMA table_info(players)").fetchall()}
+            encounter_columns = {row["name"] for row in db.execute("PRAGMA table_info(room_encounters)").fetchall()}
         self.assertIn("field_rest_budget_max", columns)
         self.assertIn("field_rest_healed", columns)
+        self.assertIn("engaged", encounter_columns)
         state = self.raw()
         self.assertIsNone(state["field_rest_budget_max"])
         self.assertEqual(state["field_rest_healed"], 0)
@@ -81,7 +83,7 @@ class RestBudgetIntegrationTests(unittest.TestCase):
 
                 with store.connect(path) as db:
                     columns = {row["name"] for row in db.execute("PRAGMA table_info(players)")}
-                    self.assertEqual(db.execute("PRAGMA user_version").fetchone()[0], 13)
+                    self.assertEqual(db.execute("PRAGMA user_version").fetchone()[0], 14)
                 self.assertIn("field_rest_budget_max", columns)
                 self.assertIn("field_rest_healed", columns)
 

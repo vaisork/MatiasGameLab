@@ -44,8 +44,10 @@ class EngineTests(unittest.TestCase):
 
     def test_production_config_matches_edran_01(self):
         encounters.validate_pools(encounters.RANDOM_ENCOUNTER_POOLS)
-        self.assertEqual(len(encounters.RANDOM_ENCOUNTER_POOLS), 3)
-        rooms = set().union(*(p["rooms"] for p in encounters.RANDOM_ENCOUNTER_POOLS.values()))
+        edran_pools = {pool_id: pool for pool_id, pool in encounters.RANDOM_ENCOUNTER_POOLS.items()
+                       if pool_id.startswith("edran_01_")}
+        self.assertEqual(len(edran_pools), 3)
+        rooms = set().union(*(p["rooms"] for p in edran_pools.values()))
         self.assertEqual(rooms, set(self.EDRAN_ROOMS))
         for room, (chance, mordelinde, espinajo) in self.EDRAN_ROOMS.items():
             with self.subTest(room=room):
@@ -56,13 +58,12 @@ class EngineTests(unittest.TestCase):
                 self.assertIsNone(world.get_room_encounter(room))
 
     def test_edran_excludes_every_other_room_and_c3_threats(self):
+        edran_pools = [pool for pool_id, pool in encounters.RANDOM_ENCOUNTER_POOLS.items()
+                       if pool_id.startswith("edran_01_")]
         for room in set(world.ROOMS) - self.EDRAN_ROOMS.keys():
             with self.subTest(room=room):
-                self.assertIsNone(encounters.pool_for_room(room))
-                rng = Mock()
-                self.assertEqual(encounters.get_encounter_for_room(room, rng),
-                                 world.get_room_encounter(room))
-                self.assertEqual(rng.mock_calls, [])
+                self.assertTrue(all(room not in pool["rooms"] for pool in edran_pools),
+                                f"Una sala ajena a Edran no debe entrar a un pool EDRAN-01: {room}")
         for pool in encounters.RANDOM_ENCOUNTER_POOLS.values():
             ids = {cid for cid, _ in pool["creatures"]}
             self.assertTrue(encounters.C3_THREAT_IDS.isdisjoint(ids))
@@ -213,7 +214,31 @@ class MoveIntegrationTests(unittest.TestCase):
             self.post("/move", dict(direction="north"))
         self.assertEqual(self.client.get("/api/me").json["player"]["room"], "valdren_sendero")
         self.assertEqual(self.encounter("valdren_sendero")["creature_id"], "espinajo_rastrojo")
+        self.assertEqual(self.encounter("valdren_sendero")["engaged"], 0)
+        room = self.client.get("/api/room").json["room"]
+        self.assertFalse(room["in_combat"])
+        self.assertEqual({action["action"] for action in room["available_actions"]}, {"atacar", "evaluar", "huir"})
         self.assertIn("Espinajo de rastrojo", self.client.get("/").get_data(as_text=True))
+
+    def test_failed_flee_from_sighting_counterattacks_and_commits_combat(self):
+        with patch.object(encounters, "_rng", AlwaysRoll(0.0, pick=1)):
+            self.post("/move", dict(direction="north"))
+
+        class FailedEscapeThenHit:
+            def __init__(self):
+                self.rolls = iter((100, 0))
+            def uniform(self, _low, _high):
+                return next(self.rolls)  # la huida falla y el contraataque acierta
+            def random(self):
+                return 0  # el contraataque acierta
+
+        with patch("server.app.random.Random", return_value=FailedEscapeThenHit()):
+            result = self.post("/flee")
+        self.assertEqual(result.status_code, 200)
+        self.assertLess(self.client.get("/api/me").json["player"]["hp_current"], 100)
+        self.assertEqual(self.encounter("valdren_sendero")["engaged"], 1)
+        room = self.client.get("/api/room").json["room"]
+        self.assertTrue(room["in_combat"])
 
     def test_failed_roll_leaves_room_empty(self):
         with patch.object(encounters, "_rng", AlwaysRoll(0.10)):

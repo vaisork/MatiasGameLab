@@ -701,7 +701,7 @@
 
   {% else %}
     <div class="layout">
-      <main class="game-shell{% if room.encounter %} in-combat{% endif %}">
+      <main class="game-shell{% if room.in_combat %} in-combat{% endif %}">
         <p class="sr-only" id="gameLiveStatus" role="status" aria-live="polite" aria-atomic="true"></p>
         <div class="death-slot" data-swap="death">
           {% if death_event %}
@@ -733,10 +733,10 @@
           </section>
           {% endif %}
         </div>
-        <header class="place-bar{% if room.encounter %} combat{% endif %}" data-swap="place">
-          <svg class="ui-icon" aria-hidden="true"><use href="{{ '#icon-swords' if room.encounter else '#icon-pin' }}"/></svg>
+        <header class="place-bar{% if room.in_combat %} combat{% endif %}" data-swap="place">
+          <svg class="ui-icon" aria-hidden="true"><use href="{{ '#icon-swords' if room.in_combat else '#icon-pin' }}"/></svg>
           <strong id="placeTitle">{{ room.name.upper() }}</strong>
-          {% if room.encounter %}<span class="combat-flag">¡COMBATE!</span>
+          {% if room.in_combat %}<span class="combat-flag">¡COMBATE!</span>
           {% elif room.ambient %}
             {% for item in [room.ambient.time_of_day, room.ambient.weather] if item %}
             <span class="ambient-chip">{% if item.icon in ambient_icons %}<svg class="ui-icon" aria-hidden="true"><use href="#icon-amb-{{ item.icon }}"/></svg>{% endif %}{{ item.label }}</span>
@@ -758,17 +758,17 @@
           {% endif %}
         </figure>
 
-        <section class="terminal{% if room.encounter %} in-combat{% endif %}" aria-labelledby="placeTitle" data-swap="terminal">
+        <section class="terminal{% if room.in_combat %} in-combat{% endif %}" aria-labelledby="placeTitle" data-swap="terminal">
           <p class="sr-only" id="roomDescriptionAccessible">{{ room.description }}</p>
           <div class="log" aria-describedby="roomDescriptionAccessible">
             {# En combate solo importa leer la pelea: no se repite cómo es el lugar. #}
-            {% if not room.encounter %}
+            {% if not room.in_combat %}
             <div class="entry room-description-entry">
               <div class="cmd">&gt; mirar</div>
               <p data-room-description data-room-key="{{ room.id if room.id is defined else room.name }}">{{ room.description }}</p>
             </div>
             {% endif %}
-            {% if room.exits and not room.encounter %}
+            {% if room.exits and not room.in_combat %}
             <div class="entry exits-entry"><p class="system">Salidas: {% for e in room.exits %}<b>{{ e.label }}</b>{% if e.known_name %} ({{ e.known_name }}){% endif %}{{ ' · ' if not loop.last }}{% endfor %}</p></div>
             {% endif %}
             <div data-room-presence aria-live="polite"{% if not room.others_present %} hidden{% endif %}>
@@ -781,7 +781,7 @@
             {% endif %}
             {# Relato de la pelea en curso: turno por turno, la última línea
                destacada y a la vista (petición de Javier, 2026-09-25). #}
-            {% set combat_log = room.combat_log if room.encounter and room.combat_log else [] %}
+            {% set combat_log = room.combat_log if room.in_combat and room.combat_log else [] %}
             {% for line in combat_log %}
             <div class="entry combat-line{{ ' result-entry' if loop.last }}"{% if loop.last %} role="status" data-result-entry{% endif %}>
               <div class="cmd">&gt; {{ line.action }}</div>
@@ -823,7 +823,7 @@
 
         {% set action_names = room.available_actions | map(attribute='action') | list %}
         {% if room.encounter %}
-        <section class="combat-panel" aria-label="Acciones de combate" data-swap="controls">
+        <section class="combat-panel" aria-label="{{ 'Acciones de combate' if room.in_combat else 'Fauna cercana' }}" data-swap="controls">
           {% if 'atacar' in action_names %}
           <form method="post" action="/attack"><input type="hidden" name="csrf" value="{{ session.csrf }}"><button class="action action-attack" type="submit"><svg class="ui-icon" aria-hidden="true"><use href="#icon-swords"/></svg>Atacar</button></form>
           {% endif %}
@@ -847,7 +847,8 @@
             {% endif %}
           </div>
         </section>
-        {% else %}
+        {% endif %}
+        {% if not room.in_combat %}
         <section class="controls-row" aria-label="Controles principales" data-swap="controls">
           <div class="dpad" aria-label="Movimiento cardinal">
             {% set exit_dirs = room.exits | map(attribute='direction') | list %}

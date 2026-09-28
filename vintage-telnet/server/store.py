@@ -16,7 +16,7 @@ STATUSES = ("pending", "approved", "rejected", "removed")
 
 # Version de esquema que deja initialize(); ops/inventory_migration_probe.py
 # la usa para validar una migracion de prueba contra la copia de la base viva.
-SCHEMA_VERSION = 13
+SCHEMA_VERSION = 14
 
 # Cuentas con varios personajes (petición de Javier, 2026-09-25): un usuario
 # para entrar puede tener hasta 5 personajes; el nombre de cada personaje es
@@ -142,6 +142,7 @@ CHARACTER_TABLES = [
             creature_id TEXT NOT NULL,
             hp_current REAL NOT NULL,
             failed_flee_attempts INTEGER NOT NULL DEFAULT 0,
+            engaged INTEGER NOT NULL DEFAULT 1,
             created_at TEXT NOT NULL,
             UNIQUE(player_id, room_id))""",
 ]
@@ -312,6 +313,14 @@ def initialize(path):
                 db.execute("ALTER TABLE players ADD COLUMN field_rest_budget_max REAL")
             if "field_rest_healed" not in player_columns:
                 db.execute("ALTER TABLE players ADD COLUMN field_rest_healed REAL NOT NULL DEFAULT 0")
+        if version <= 13:
+            # v14: una criatura de fauna puede ser visible antes de que el
+            # jugador acepte el combate. Las filas previas siguen activas.
+            encounter_columns = {
+                row["name"] for row in db.execute("PRAGMA table_info(room_encounters)").fetchall()
+            }
+            if "engaged" not in encounter_columns:
+                db.execute("ALTER TABLE room_encounters ADD COLUMN engaged INTEGER NOT NULL DEFAULT 1")
         db.execute(f"PRAGMA user_version = {SCHEMA_VERSION}")
 
 
@@ -554,7 +563,7 @@ def _settle_passive_fatigue(db, row, now=None):
         return False
     now = time.time() if now is None else now
     since = row["fatigue_updated_at"]
-    in_combat = db.execute("SELECT 1 FROM room_encounters WHERE player_id = ? AND room_id = ?",
+    in_combat = db.execute("SELECT 1 FROM room_encounters WHERE player_id = ? AND room_id = ? AND engaged = 1",
                            (row["id"], row["room"])).fetchone() is not None
     step = combat.FATIGUE_RECOVERY_SECONDS_PER_POINT
     recovered = 0 if since is None else int(max(0.0, now - since) // step)
@@ -750,7 +759,7 @@ def spend_attribute_point(path, player_id, attribute, expected_value):
         row = character_by_id(db, player_id)
         if row is None or row["level"] is None or row["species"] is None:
             return False, "no_character", None
-        if db.execute("SELECT 1 FROM room_encounters WHERE player_id = ? AND room_id = ?",
+        if db.execute("SELECT 1 FROM room_encounters WHERE player_id = ? AND room_id = ? AND engaged = 1",
                       (player_id, row["room"])).fetchone():
             return False, "in_combat", None
         current = row[column]
@@ -910,23 +919,23 @@ def get_combat_log(path, player_id, room_id, limit=20):
     return [dict(row) for row in reversed(rows)]
 
 
-def start_encounter(path, player_id, room_id, creature_id, hp):
+def start_encounter(path, player_id, room_id, creature_id, hp, engaged=True):
     """No-op si ya hay un encuentro activo en esa sala para ese jugador
     (persistente: si se aleja y vuelve sin resolverlo, sigue con la misma
     vida que tenia)."""
     with connect(path) as db:
         cursor = db.execute(
             """INSERT OR IGNORE INTO room_encounters
-               (player_id, room_id, creature_id, hp_current, failed_flee_attempts, created_at)
-               VALUES (?, ?, ?, ?, 0, ?)""",
-            (player_id, room_id, creature_id, hp, utcnow()),
+               (player_id, room_id, creature_id, hp_current, failed_flee_attempts, engaged, created_at)
+               VALUES (?, ?, ?, ?, 0, ?, ?)""",
+            (player_id, room_id, creature_id, hp, int(bool(engaged)), utcnow()),
         )
         if cursor.rowcount:
             # Encuentro nuevo: no arrastra relato de una pelea anterior.
             db.execute("DELETE FROM combat_log WHERE player_id = ? AND room_id = ?", (player_id, room_id))
 
 
-def update_encounter(path, player_id, room_id, hp_current=None, failed_flee_attempts=None):
+def update_encounter(path, player_id, room_id, hp_current=None, failed_flee_attempts=None, engaged=None):
     fields, params = [], []
     if hp_current is not None:
         fields.append("hp_current = ?")
@@ -934,6 +943,9 @@ def update_encounter(path, player_id, room_id, hp_current=None, failed_flee_atte
     if failed_flee_attempts is not None:
         fields.append("failed_flee_attempts = ?")
         params.append(failed_flee_attempts)
+    if engaged is not None:
+        fields.append("engaged = ?")
+        params.append(int(bool(engaged)))
     if not fields:
         return
     params += [player_id, room_id]
