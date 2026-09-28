@@ -1307,6 +1307,69 @@ El contenido decide qué recursos o lugares ofrecen esa recuperación y su coste
 
 Para evitar spam, una nueva mejora de herida requiere **un nuevo ciclo legítimo de recuperación**, no repetir la misma acción gratuita.
 
+### 24.9.1 Recuperación económica temprana — contrato mecánico v1
+
+Para cerrar el bucle de expedición sin introducir hambre/sed, la v1 admite dos fuentes de recuperación pagada. Historia/Narrativa pueden cambiar su **nombre y presentación**, pero no estos efectos sin nueva revisión de Jugabilidad.
+
+#### Provisión básica de camino
+
+Objeto consumible de una sola utilización.
+
+Precio objetivo autoritativo: **8 sellos**.
+
+Uso:
+- solo fuera de combate;
+- restaura **18% del HP máximo**;
+- nunca supera HPmax;
+- reduce fatiga en **20 puntos**;
+- no mejora heridas;
+- **no reinicia** el presupuesto de descanso de campo;
+- no puede consumirse si no produciría ningún efecto;
+- una unidad desaparece únicamente después de aplicar el efecto con éxito.
+
+Ejemplo HPmax100:
+- 60 HP → 78 HP;
+- 82 HP → 100 HP;
+- 100 HP y fatiga 35 → conserva 100 HP y baja fatiga a15.
+
+La provisión es una herramienta de viaje, no una curación completa.
+
+#### Servicio seguro de recuperación
+
+Servicio presencial en un punto seguro autorizado por contenido.
+
+Precio objetivo autoritativo: **18 sellos**.
+
+Una utilización:
+- si HP < 90% HPmax, restaura hasta **90% HPmax**;
+- fatiga → **0**;
+- mejora la herida principal **un grado**;
+- reinicia el ciclo de recuperación de campo (`reset_rest_budget=true`);
+- no otorga buff ni inmunidad posterior.
+
+Si el personaje ya está por encima de 90% HP, el servicio no reduce HP; conserva el valor mayor.
+
+No cobrar si HP, fatiga, herida y presupuesto no obtendrían ningún beneficio.
+
+Este servicio permite regresar al pueblo, pagar y preparar un segundo intento sin que **morir** sea la mejor forma de reiniciar la recuperación.
+
+#### Recuperación completa futura
+
+Una fuente que restaure directamente a 100% puede existir después dentro de la banda económica de **24–30 sellos**, pero **no es necesaria para cerrar el primer bucle jugable** y no debe bloquear la implementación de los dos efectos anteriores.
+
+#### Atomicidad
+
+Compra/uso:
+- servidor autoritativo;
+- descontar sellos y aplicar efecto en una sola transacción lógica;
+- fallo → no consumir objeto/servicio ni sellos;
+- doble submit no duplica curación;
+- reconnect conserva resultado.
+
+#### Principio
+
+**Descansar es gratuito y parcial; la provisión extiende una expedición; el servicio seguro prepara la siguiente.**
+
 ### 24.10 Ataque básico antes del equipamiento definitivo
 
 Mientras el sistema real de armas iniciales todavía no esté integrado, el primer piloto puede usar internamente:
