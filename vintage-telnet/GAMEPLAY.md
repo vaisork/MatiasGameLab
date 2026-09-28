@@ -4094,3 +4094,105 @@ No obligar a repetir descubrimientos básicos solo para volver a intentar.
 ### 41.14 Principio
 
 **Un jefe puede imponer una consecuencia excepcional porque su contrato la declara; no porque sea simplemente muy fuerte.**
+
+
+## 42. Recuperación material de fauna común — COMBAT-SALVAGE v1
+
+**Estado:** MECÁNICA P0 CERRADA; nombres de materiales/compradores pertenecen a Historia.
+
+Objetivo: una victoria C1 puede producir valor realizable sin convertir a la fauna en una fuente directa de sellos.
+
+### 42.1 Elegibilidad
+
+Solo aplica a fauna **C1 ordinaria** que Historia marque con al menos un material aprovechable.
+
+No aplica automáticamente a:
+- C0;
+- C3;
+- C4;
+- C5;
+- NPCs;
+- criaturas cuya ficha histórica indique que no dejan material útil.
+
+El jugador debe haber sido participante significativo del encuentro conforme a la misma elegibilidad usada para XP.
+
+### 42.2 Obtención automática
+
+V1 no añade un verbo `desollar`, herramienta de recolección ni minijuego.
+
+Al terminar una victoria elegible:
+- el servidor resuelve salvage automáticamente;
+- si hay éxito, entra una unidad material al inventario;
+- si falla, se informa brevemente que no quedó nada aprovechable;
+- no se crean sellos en ese momento.
+
+Esto evita que olvidar un comando vuelva inútil una victoria ya conseguida.
+
+### 42.3 Probabilidad base
+
+Por criatura elegible:
+
+**70%** de probabilidad base de obtener **1 unidad**.
+
+Máximo v1:
+**1 unidad de salvage por criatura derrotada** antes del reparto multijugador.
+
+Historia puede declarar una criatura sin salvage; no puede subir probabilidades/precios.
+
+### 42.4 Antifarmeo
+
+Reutilizar la ventana de las **últimas 10 victorias PvE por familia**.
+
+Multiplicador sobre la probabilidad de salvage:
+- repeticiones 1–3 de la misma familia: **100%**;
+- repeticiones 4–5: **60%**;
+- repetición 6+: **25%**.
+
+Por tanto, con base70%:
+- primeras 3 → 70%;
+- 4–5 → 42%;
+- 6+ → 17.5%.
+
+No reset por reconnect, muerte ni cambio de sala.
+
+### 42.5 Valor económico
+
+Banda v1 por unidad:
+- criatura referencia1: **3 sellos**;
+- criatura referencia2: **4 sellos**.
+
+Si Historia necesita un material excepcional fuera de esta banda, requiere revisión nueva de Jugabilidad.
+
+El comprador/actor concreto debe estar autorizado por Historia y existir en contenido.
+
+El servidor fija el precio; cliente/NPC generativo no lo decide.
+
+### 42.6 Multijugador
+
+Para evitar multiplicar la economía por número de jugadores:
+- se realiza **un solo roll de salvage por criatura**;
+- si tiene éxito, se crea **una sola unidad**;
+- se asigna entre participantes elegibles de forma uniforme/determinista según mecanismo técnico;
+- no se duplica una piel/material para cada participante.
+
+XP sigue siendo personal conforme a §22; salvage es una propiedad física única del enemigo.
+
+### 42.7 Venta
+
+Antes de vender:
+- UI muestra material, cantidad y precio unitario;
+- operación atómica;
+- venta descuenta cantidad y acredita sellos;
+- doble submit no duplica ingreso;
+- material no desaparece si el crédito falla.
+
+No crafting obligatorio en v1.
+
+### 42.8 Meta económica
+
+Con 2–4 C1 durante una expedición:
+- salvage debe aportar normalmente **unos pocos sellos**, no financiar por sí solo todo el viaje;
+- el ingreso principal temprano sigue combinando encargos #409 + materiales;
+- matar indefinidamente la misma familia debe degradarse claramente por antifarmeo.
+
+**Principio:** combatir puede dejar algo útil; trabajar/explorar sigue siendo necesario para sostener la economía.
