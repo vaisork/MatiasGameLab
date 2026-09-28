@@ -938,13 +938,59 @@ def _current_time_of_day(now=None):
     return _TIME_OF_DAY_STATES[index]
 
 
+def get_room_region(room_id):
+    """Devuelve el identificador canónico de región para `room_id`
+    ('veyra', 'edran', 'hoshai', 'korven', 'lethra', 'nhal').
+    Si la sala define explícitamente un atributo 'region', este prevalece;
+    en caso contrario se resuelve según la geografía canónica de rutas,
+    pueblos y accesos a la Cuenca de Veyra."""
+    if not room_id:
+        return "veyra"
+    if is_home_room(room_id):
+        home = get_room(room_id)
+        if home and HOME_EXIT_DIRECTION in home.get("exits", {}):
+            return get_room_region(home["exits"][HOME_EXIT_DIRECTION])
+        return "edran"
+    room = ROOMS.get(room_id)
+    if room and "region" in room:
+        return room["region"]
+    if room_id in ("vaisgard", "cuenca_aproximacion_sur"):
+        return "veyra"
+    # Tramos del anillo exterior que entran a la Cuenca de Veyra
+    if room_id in (
+        "campos_colinas", "campos_almacen", "campos_vista_vaisgard",
+        "campos_camino_exterior", "campos_acceso",
+        "alto_cuenca_norte", "alto_vista_vaisgard", "alto_aproximacion",
+        "piedra_entrada_veyra", "piedra_vista_vaisgard", "piedra_aproximacion",
+        "juncos_entrada_veyra", "juncos_vista_vaisgard", "juncos_aproximacion",
+        "sombra_entrada_veyra", "sombra_cruce_viajeros", "sombra_vista_vaisgard",
+        "sombra_aproximacion",
+    ):
+        return "veyra"
+    if room_id.startswith("valdren_") or room_id.startswith("campos_"):
+        return "edran"
+    if room_id.startswith("khariel_") or room_id.startswith("alto_"):
+        return "hoshai"
+    if room_id.startswith("brumak_") or room_id.startswith("piedra_"):
+        return "korven"
+    if room_id.startswith("narevia_") or room_id.startswith("juncos_"):
+        return "lethra"
+    if room_id.startswith("velmora_") or room_id.startswith("sombra_"):
+        return "nhal"
+    return "veyra"
+
+
 def get_ambient(room_id, now=None):
     """Ambiente visible de una sala: {"time_of_day": ..., "weather": ...}.
-    time_of_day usa el reloj global compartido (Issue #138). weather sigue
-    en None: el Narrador no puede asignar distribución regional de clima
-    sin el canon de Historiador que todavía falta en ese mismo issue, así
-    que no se inventa. `now` se reenvía tal cual a `_current_time_of_day`."""
-    return {"time_of_day": _current_time_of_day(now), "weather": None}
+    time_of_day usa el reloj global compartido (Issue #138). weather usa
+    el clima regional compartido v1 determinista (GAMEPLAY §37,
+    REGIONAL_WEATHER_CANON.md). `now` se reenvía a ambas funciones."""
+    from . import weather
+    region = get_room_region(room_id)
+    return {
+        "time_of_day": _current_time_of_day(now),
+        "weather": weather.get_region_weather(region, now=now),
+    }
 
 
 # Minimapa (navegación, Issue #135): coordenadas de rejilla para cada sala,
