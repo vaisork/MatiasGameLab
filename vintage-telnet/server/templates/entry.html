@@ -1641,7 +1641,8 @@
       if (!response.ok) return;
       const data = await response.json();
       const room = data && data.room;
-      if (!room || room.id !== expectedRoomId) return;
+      const currentHost = document.querySelector("[data-room-chat]");
+      if (!room || room.id !== expectedRoomId || !currentHost || currentHost.dataset.roomId !== expectedRoomId) return;
       renderRoomPresence(room.others_present);
       renderRoomMessages(room.id, room.messages);
     } catch (_error) {
