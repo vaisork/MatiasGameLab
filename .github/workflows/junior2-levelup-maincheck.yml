@@ -15,6 +15,6 @@ jobs:
         with:
           python-version: "3.12"
       - run: python -m pip install -r requirements.txt
-      - run: python -m unittest tests.test_progression -v
+      - run: python -m unittest discover -s tests -p 'test_progression.py' -v
       - run: python -m unittest tests.test_entry -v
       - run: python -m unittest discover -s tests -v
