@@ -463,18 +463,16 @@ class EntryTests(unittest.TestCase):
         self.assertNotIn("La ilustración contextual no está disponible", html)
         self.assertNotIn(".location-art-fallback", html)
 
-    def test_ambient_shows_shared_time_of_day_but_no_weather_yet(self):
-        """Issue #138 (petición de Javier): el servidor expone `ambient` y la
-        barra de lugar tiene su espacio. Jugabilidad ya definió el reloj
-        global de hora del día (handoff en el issue), así que ese campo se
-        muestra; weather sigue None porque el Narrador todavía espera el
-        canon regional de clima del Historiador — no se inventa."""
+    def test_ambient_shows_shared_time_of_day_and_regional_weather(self):
+        """Issue #138 / GAMEPLAY §37: el servidor expone `ambient` y la barra de lugar
+        muestra time_of_day (reloj global) y weather (clima regional compartido)."""
         self.assertEqual(self.register().status_code, 303)
         store.set_status(self.path, "matias", "approved")
         self.assertEqual(self.post("/species", {"species": "humano"}).status_code, 303)
         self.assertEqual(self.post("/class", {"player_class": "sombra"}).status_code, 303)
         room = self.client.get("/api/room").json["room"]
-        self.assertIsNone(room["ambient"]["weather"])
+        self.assertIsNotNone(room["ambient"]["weather"])
+        self.assertIn(room["ambient"]["weather"]["label"], ("Despejado", "Nublado", "Lluvia", "Niebla", "Tormenta", "Viento"))
         self.assertIn(room["ambient"]["time_of_day"]["label"], ("Amanecer", "Día", "Atardecer", "Noche"))
         self.assertIn('class="ambient-chip"', self.client.get("/").get_data(as_text=True))
 
@@ -786,9 +784,15 @@ class AmbientClockTests(unittest.TestCase):
         # (equivalente a un reinicio del servidor) devuelven el mismo estado.
         self.assertEqual(world.get_ambient("cualquier-sala"), world.get_ambient("cualquier-sala"))
 
-    def test_get_ambient_uses_the_shared_clock_and_leaves_weather_unset(self):
+    def test_get_ambient_uses_the_shared_clock_and_regional_weather(self):
         ambient = world.get_ambient("cualquier-sala", now=0)
-        self.assertEqual(ambient, {"time_of_day": {"label": "Amanecer", "icon": "amanecer"}, "weather": None})
+        self.assertEqual(
+            ambient,
+            {
+                "time_of_day": {"label": "Amanecer", "icon": "amanecer"},
+                "weather": {"label": "Despejado", "icon": "sol", "key": "despejado"},
+            },
+        )
 
     def test_every_state_uses_a_known_icon(self):
         for state in world._TIME_OF_DAY_STATES:
