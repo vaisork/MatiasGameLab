@@ -146,6 +146,8 @@
       font:600 .8rem/1.45 ui-sans-serif,system-ui,sans-serif}
     .segmented{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:12px}
     .segment{min-height:44px;border:1px solid #4b586a;border-radius:9px;background:#101722;color:var(--ink);font-weight:750}
+    .segment:hover{border-color:#8a6d47}
+    .segment:focus-visible{outline:3px solid #f0d18c;outline-offset:2px}
     .segment[aria-selected="true"]{border-color:var(--gold);color:var(--gold);background:#1d1a13}
     .map-panel[hidden]{display:none!important}
     .regional-map{display:block;width:100%;height:auto;max-height:360px;object-fit:contain;border:1px solid #4b586a;border-radius:10px;background:#0c121b}
@@ -355,7 +357,7 @@
       border:1px solid #3d4a5d;border-radius:9px;background:#0c121b;padding:7px 8px 7px 10px}
     .npc-card strong{display:block;color:var(--ink);font:750 .9rem ui-sans-serif,system-ui,sans-serif}
     .npc-card span{display:block;margin-top:2px;color:var(--muted);font:600 .74rem ui-sans-serif,system-ui,sans-serif}
-    .npc-card .action{width:auto;min-width:100px;min-height:42px;justify-content:center}
+    .npc-card .action{width:auto;min-width:100px;min-height:44px;justify-content:center}
     .combat-panel{display:grid;gap:8px}
     .combat-panel form{margin:0}
     .combat-row{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:8px}
@@ -505,14 +507,14 @@
     .entry p{font-size:clamp(.86rem,1.8vw,.92rem)}
     .game-shell .log{height:clamp(170px,40dvh,440px);height:clamp(170px,40svh,440px)}
     @media(max-width:640px){
-      .action{min-height:36px;font-size:.72rem}
-      .context-actions .action{min-height:34px}
-      .action-attack{min-height:46px;font-size:.98rem}
-      .btn{min-height:36px}
-      .dpad{grid-template-columns:repeat(3,40px);grid-template-rows:repeat(3,37px)}
+      .action{min-height:44px;font-size:.72rem}
+      .context-actions .action{min-height:44px}
+      .action-attack{min-height:48px;font-size:.98rem}
+      .btn{min-height:44px}
+      .dpad{grid-template-columns:repeat(3,44px);grid-template-rows:repeat(3,44px)}
       .tool-row .btn{min-height:44px;font-size:.64rem}
-      .commandbar input{min-height:38px}
-      .combat-row.defenses .action{min-height:32px}
+      .commandbar input{min-height:44px}
+      .combat-row.defenses .action{min-height:44px}
       .entry p{font-size:13.5px}
       .entry .cmd{font-size:.7rem}
       .game-shell .log{height:36dvh;height:36svh}
@@ -693,6 +695,7 @@
   {% else %}
     <div class="layout">
       <main class="game-shell{% if room.encounter %} in-combat{% endif %}">
+        <p class="sr-only" id="gameLiveStatus" role="status" aria-live="polite" aria-atomic="true"></p>
         <div class="death-slot" data-swap="death">
           {% if death_event %}
           <section class="death-event" data-death-event tabindex="-1" role="alert" aria-live="assertive"
@@ -917,8 +920,8 @@
   <div class="footer">Vintage Telnet · servidor real · texto primero, HTML como herramienta</div>
 </div>
 
-<dialog id="characterDialog">
-  <div class="modal-head"><strong>Personaje</strong><button class="close" data-close aria-label="Cerrar">×</button></div>
+<dialog id="characterDialog" aria-labelledby="characterDialogTitle">
+  <div class="modal-head"><strong id="characterDialogTitle">Personaje</strong><button class="close" data-close aria-label="Cerrar personaje">×</button></div>
   <div class="modal-body">
     {% if player and player.hp_current is not none %}
     <div class="character-stack">
@@ -961,10 +964,10 @@
   <div class="modal-head"><strong id="mapDialogTitle">Mapa y orientación</strong><button class="close" data-close aria-label="Cerrar mapa">×</button></div>
   <div class="modal-body">
     <div class="segmented" role="tablist" aria-label="Vista del mapa">
-      <button class="segment" type="button" role="tab" aria-selected="true" data-map-tab="general"><svg class="ui-icon" aria-hidden="true"><use href="#icon-map"/></svg>Mapa general</button>
-      <button class="segment" type="button" role="tab" aria-selected="false" data-map-tab="heading"><svg class="ui-icon" aria-hidden="true"><use href="#icon-compass"/></svg>Dirección actual</button>
+      <button class="segment" id="mapTabGeneral" type="button" role="tab" aria-selected="true" aria-controls="mapPanelGeneral" data-map-tab="general"><svg class="ui-icon" aria-hidden="true"><use href="#icon-map"/></svg>Mapa general</button>
+      <button class="segment" id="mapTabHeading" type="button" role="tab" aria-selected="false" aria-controls="mapPanelHeading" data-map-tab="heading"><svg class="ui-icon" aria-hidden="true"><use href="#icon-compass"/></svg>Dirección actual</button>
     </div>
-    <section class="map-panel" data-map-panel="general">
+    <section class="map-panel" id="mapPanelGeneral" role="tabpanel" aria-labelledby="mapTabGeneral" data-map-panel="general">
       {% if room %}<p class="map-here"><b>Estás en:</b> {{ room.name }}</p>{% endif %}
       <div class="minimap-frame">
         <div class="minimap-scroll" id="minimapScroll"><p class="map-empty">El mapa todavía no se ha cargado.</p></div>
@@ -987,7 +990,7 @@
         <div id="mapContent" class="map-empty">El mapa todavía no se ha cargado.</div>
       </div>
     </section>
-    <section class="map-panel" data-map-panel="heading" hidden>
+    <section class="map-panel" id="mapPanelHeading" role="tabpanel" aria-labelledby="mapTabHeading" data-map-panel="heading" hidden>
       <div class="compass" id="headingCompass" aria-label="Brújula"><span class="north" data-heading="north">N</span><span class="west" data-heading="west">O</span><span class="center">•</span><span class="east" data-heading="east">E</span><span class="south" data-heading="south">S</span></div>
       <p class="map-status" id="headingStatus">Dirección actual no registrada.</p>
       <p class="map-status">El rumbo se muestra únicamente cuando lo confirma el servidor.</p>
@@ -998,10 +1001,10 @@
   <div class="modal-head"><strong id="helpDialogTitle">Ayuda</strong><button class="close" data-close aria-label="Cerrar ayuda">×</button></div>
   <div class="modal-body">
     <div class="help-tabs" role="tablist" aria-label="Tipo de ayuda">
-      <button class="segment" type="button" role="tab" aria-selected="true" data-help-tab="quick">Guía rápida</button>
-      <button class="segment" type="button" role="tab" aria-selected="false" data-help-tab="kids">Explícamelo fácil</button>
+      <button class="segment" id="helpTabQuick" type="button" role="tab" aria-selected="true" aria-controls="helpPanelQuick" data-help-tab="quick">Guía rápida</button>
+      <button class="segment" id="helpTabKids" type="button" role="tab" aria-selected="false" aria-controls="helpPanelKids" data-help-tab="kids">Explícamelo fácil</button>
     </div>
-    <section class="help-panel" data-help-panel="quick">
+    <section class="help-panel" id="helpPanelQuick" role="tabpanel" aria-labelledby="helpTabQuick" data-help-panel="quick">
       <div class="help-grid">
         <section class="help-card"><h3>1. Muévete</h3><p><strong>N / S / E / O</strong> recorre salidas disponibles. <strong>Mirar</strong> vuelve a leer dónde estás.</p></section>
         <section class="help-card"><h3>2. Investiga</h3><p><strong>Explora:</strong> mira el lugar y examina aquello que llame tu atención. <strong>Observar</strong> busca señales; <strong>Evaluar</strong> estima cualitativamente el peligro de una criatura visible.</p></section>
@@ -1010,7 +1013,7 @@
         <section class="help-card"><h3>5. Habla</h3><p><strong>Hablar</strong> conversa con un NPC. Para chat local usa <code>decir &lt;texto&gt;</code>. Un comando desconocido no se publica.</p></section>
       </div>
     </section>
-    <section class="help-panel" data-help-panel="kids" hidden>
+    <section class="help-panel" id="helpPanelKids" role="tabpanel" aria-labelledby="helpTabKids" data-help-panel="kids" hidden>
       <div class="help-grid">
         <section class="help-card"><h3>Lee antes de elegir</h3><p>El texto te da pistas. No necesitas memorizar todo: busca lo que cambia tu decisión.</p></section>
         <section class="help-card"><h3>Si no sabes qué hacer</h3><p>Prueba <strong>mirar</strong>. Después observa o examina algo que te llame la atención. Una segunda pista puede aclarar la primera.</p></section>
@@ -1030,19 +1033,38 @@
       views.forEach(view => { view.hidden = view.dataset.onboardingView !== name; });
       onboarding.dataset.view = name;
       const target = views.find(view => view.dataset.onboardingView === name);
-      const focusTarget = target && target.querySelector("h1,[id$='-title'],input,button");
-      if (focusTarget) focusTarget.focus({preventScroll:true});
+      const title = target && target.querySelector("h1,[id$='-title']");
+      if (title && title.id) onboarding.setAttribute("aria-labelledby", title.id);
+      const focusTarget = target && (target.querySelector('input:not([type="hidden"]),button') || title);
+      if (focusTarget) {
+        if (!focusTarget.matches("input,button,a[href],select,textarea,[tabindex]")) focusTarget.tabIndex = -1;
+        focusTarget.focus({preventScroll:true});
+      }
     };
     onboarding.querySelectorAll("[data-onboarding-go]").forEach(button => {
       button.addEventListener("click", () => showOnboarding(button.dataset.onboardingGo));
     });
   }
 
-  document.querySelectorAll("[data-open]").forEach(b => b.addEventListener("click", () => {
-    const d = document.getElementById(b.dataset.open);
-    if (d && !d.open) d.showModal();
-  }));
+  const dialogInvokers = new WeakMap();
+  // Los controles de juego se reemplazan tras cada acción por fetch. Abrir
+  // diálogos se delega en document para que los botones nuevos conserven su
+  // comportamiento sin tener que reinyectar listeners después de cada swap.
+  document.addEventListener("click", event => {
+    const button = event.target.closest("[data-open]");
+    if (!button) return;
+    const d = document.getElementById(button.dataset.open);
+    if (d && !d.open) {
+      dialogInvokers.set(d, button);
+      d.showModal();
+    }
+  });
   document.querySelectorAll("[data-close]").forEach(b => b.addEventListener("click", () => b.closest("dialog").close()));
+  document.querySelectorAll("dialog").forEach(d => d.addEventListener("close", () => {
+    const invoker = dialogInvokers.get(d);
+    if (invoker && invoker.isConnected) invoker.focus();
+    dialogInvokers.delete(d);
+  }));
   const wireArt = root => root.querySelectorAll("[data-location-art]").forEach(img => img.addEventListener("error", () => {
     const frame = img.closest(".location-art");
     if (!frame) { img.hidden = true; return; }
@@ -1058,10 +1080,29 @@
   const activateTabs = (buttonSelector, panelSelector, dataKey) => {
     const buttons = [...document.querySelectorAll(buttonSelector)];
     const panels = [...document.querySelectorAll(panelSelector)];
-    buttons.forEach(button => button.addEventListener("click", () => {
-      buttons.forEach(other => other.setAttribute("aria-selected", String(other === button)));
+    const activate = button => {
+      buttons.forEach(other => {
+        const selected = other === button;
+        other.setAttribute("aria-selected", String(selected));
+        other.tabIndex = selected ? 0 : -1;
+      });
       panels.forEach(panel => { panel.hidden = panel.dataset[dataKey] !== button.dataset[dataKey]; });
-    }));
+    };
+    buttons.forEach((button, index) => {
+      button.tabIndex = button.getAttribute("aria-selected") === "true" ? 0 : -1;
+      button.addEventListener("click", () => activate(button));
+      button.addEventListener("keydown", event => {
+        let target = null;
+        if (event.key === "ArrowRight" || event.key === "ArrowDown") target = buttons[(index + 1) % buttons.length];
+        if (event.key === "ArrowLeft" || event.key === "ArrowUp") target = buttons[(index - 1 + buttons.length) % buttons.length];
+        if (event.key === "Home") target = buttons[0];
+        if (event.key === "End") target = buttons[buttons.length - 1];
+        if (!target) return;
+        event.preventDefault();
+        activate(target);
+        target.focus();
+      });
+    });
   };
   activateTabs("[data-map-tab]", "[data-map-panel]", "mapPanel");
   activateTabs("[data-help-tab]", "[data-help-panel]", "helpPanel");
@@ -1183,7 +1224,9 @@
       paAccept.disabled = false;
     }
   });
-  document.querySelectorAll('[data-open="characterDialog"]').forEach(button => button.addEventListener("click", loadPa));
+  document.addEventListener("click", event => {
+    if (event.target.closest('[data-open="characterDialog"]')) loadPa();
+  });
   const characterDialog = document.getElementById("characterDialog");
   if (characterDialog) characterDialog.addEventListener("close", () => {
     closePaConfirm();
@@ -1209,15 +1252,16 @@
     button.click();
   });
 
-  const commandInput = document.getElementById("commandInput");
   document.addEventListener("click", event => {
     const button = event.target.closest("[data-prefill]");
-    if (!button || !commandInput) return;
+    if (!button) return;
+    // commandbar también se reemplaza después de cada acción: buscar el input
+    // vigente en el momento del click evita escribir sobre un nodo ya separado.
+    const commandInput = document.getElementById("commandInput");
+    if (!commandInput) return;
     commandInput.value = button.dataset.prefill;
     commandInput.focus();
   });
-
-  const inventoryButton = document.querySelector("[data-inventory-open]");
   const inventoryStatus = document.getElementById("inventoryStatus");
   const inventoryContent = document.getElementById("inventoryContent");
   const equipmentSummary = document.getElementById("equipmentSummary");
@@ -1297,7 +1341,7 @@
     inventoryContent.className = "";
     inventoryContent.replaceChildren(list);
   };
-  if (inventoryButton) inventoryButton.addEventListener("click", async () => {
+  const loadInventory = async () => {
     inventoryStatus.textContent = "Consultando inventario…";
     inventoryContent.className = "inventory-empty";
     inventoryContent.textContent = "Cargando objetos…";
@@ -1312,9 +1356,10 @@
       inventoryContent.textContent = "No se pudo cargar el inventario. Puedes seguir jugando normalmente.";
       inventoryStatus.textContent = "Inventario no disponible en este momento.";
     }
+  };
+  document.addEventListener("click", event => {
+    if (event.target.closest("[data-inventory-open]")) loadInventory();
   });
-
-    const mapButton = document.querySelector("[data-map-open]");
   const mapStatus = document.getElementById("mapStatus");
   const mapContent = document.getElementById("mapContent");
   const headingStatus = document.getElementById("headingStatus");
@@ -1442,7 +1487,7 @@
     mapContent.className = "";
     mapContent.replaceChildren(wrapper);
   };
-  if (mapButton) mapButton.addEventListener("click", async () => {
+  const loadMap = async () => {
     mapStatus.textContent = "Consultando tu mapa…";
     mapContent.className = "map-empty";
     mapContent.textContent = "Cargando lugares conocidos…";
@@ -1460,6 +1505,9 @@
       mapContent.textContent = "No se pudo cargar el mapa. Puedes seguir jugando normalmente.";
       mapStatus.textContent = "Mapa no disponible en este momento.";
     }
+  };
+  document.addEventListener("click", event => {
+    if (event.target.closest("[data-map-open]")) loadMap();
   });
 
   document.querySelectorAll("dialog").forEach(d => d.addEventListener("click", e => { if (e.target === d) d.close(); }));
@@ -1468,7 +1516,14 @@
   // no aparezca todo de golpe. Solo el parrafo principal de la sala -- los
   // demas mensajes (presentes, encuentro, chat) se quedan como estan.
   // Respeta prefers-reduced-motion y es interrumpible con un toque/clic.
+  // Si llega otro swap antes de terminar, se cancela el timer anterior: no
+  // dejamos intervalos trabajando sobre nodos que ya salieron del DOM.
+  let cancelActiveReveal = null;
   const afterRender = () => {
+    if (cancelActiveReveal) {
+      cancelActiveReveal();
+      cancelActiveReveal = null;
+    }
     const deathEvent = document.querySelector("[data-death-event]");
     if (deathEvent) deathEvent.focus({preventScroll:false});
     const resultEntries = document.querySelectorAll("[data-result-entry]");
@@ -1500,19 +1555,25 @@
         mainParagraph.replaceChildren(visiblePart, hiddenPart);
         let shown = 0;
         let timer = null;
-        const revealAll = () => {
+        const revealLog = document.querySelector(".log");
+        const stopReveal = () => {
           if (timer !== null) clearInterval(timer);
           timer = null;
+          if (revealLog) revealLog.removeEventListener("click", revealAll);
+        };
+        const revealAll = () => {
+          stopReveal();
+          cancelActiveReveal = null;
           mainParagraph.textContent = fullText;
           try { sessionStorage.setItem("vt:last-room-text", roomKey); } catch (_error) {}
         };
+        cancelActiveReveal = stopReveal;
         timer = setInterval(() => {
           shown += 2;
           if (shown >= fullText.length) { revealAll(); return; }
           visiblePart.textContent = fullText.slice(0, shown);
           hiddenPart.textContent = fullText.slice(shown);
         }, 26);
-        const revealLog = document.querySelector(".log");
         if (revealLog) revealLog.addEventListener("click", revealAll, {once: true});
       }
     }
@@ -1525,6 +1586,55 @@
   // y solo se reemplazan las regiones [data-swap] con la respuesta. Si la
   // respuesta no es una pantalla de juego, se recarga normal.
   let actionInFlight = false;
+  const announceGameState = () => {
+    const live = document.getElementById("gameLiveStatus");
+    const place = document.getElementById("placeTitle");
+    if (!live || !place) return;
+    const combat = document.querySelector(".place-bar.combat") ? " Combate activo." : "";
+    live.textContent = "Ubicación: " + place.textContent.trim() + "." + combat;
+  };
+  const actionFocusHint = (form, submitter) => {
+    if (!(submitter instanceof HTMLElement) || document.activeElement !== submitter) return null;
+    const scope = form.closest(".dpad") ? "dpad"
+      : form.closest(".context-actions") ? "context"
+      : form.classList.contains("commandbar") ? "commandbar"
+      : form.closest(".combat-panel") ? "combat"
+      : "";
+    return {
+      action: form.getAttribute("action") || "",
+      direction: form.querySelector('input[name="direction"]')?.value || "",
+      text: form.querySelector('input[name="text"][type="hidden"]')?.value || "",
+      scope,
+    };
+  };
+  const restoreActionFocus = hint => {
+    // La escena de derrota tiene prioridad sobre restaurar el foco al botón
+    // de combate que desapareció tras aplicar el respawn.
+    if (document.querySelector("[data-death-event]")) return;
+    if (!hint) return;
+    const forms = [...document.querySelectorAll(".game-shell form")];
+    const equivalent = forms.find(candidate => {
+      const scope = candidate.closest(".dpad") ? "dpad"
+        : candidate.closest(".context-actions") ? "context"
+        : candidate.classList.contains("commandbar") ? "commandbar"
+        : candidate.closest(".combat-panel") ? "combat"
+        : "";
+      return (candidate.getAttribute("action") || "") === hint.action
+        && (candidate.querySelector('input[name="direction"]')?.value || "") === hint.direction
+        && (candidate.querySelector('input[name="text"][type="hidden"]')?.value || "") === hint.text
+        && scope === hint.scope;
+    });
+    const button = equivalent && equivalent.querySelector('button[type="submit"]:not(:disabled)');
+    if (button) {
+      button.focus({preventScroll: true});
+      return;
+    }
+    const controls = document.querySelector('[data-swap="controls"]');
+    if (controls) {
+      controls.tabIndex = -1;
+      controls.focus({preventScroll: true});
+    }
+  };
   const swapFrom = html => {
     const next = new DOMParser().parseFromString(html, "text/html");
     const nextShell = next.querySelector(".game-shell");
@@ -1549,6 +1659,7 @@
     if (!(form instanceof HTMLFormElement) || !form.closest(".game-shell")) return;
     event.preventDefault();
     if (actionInFlight) return;
+    const focusHint = actionFocusHint(form, event.submitter);
     actionInFlight = true;
     try {
       const method = (form.getAttribute("method") || "get").toUpperCase();
@@ -1567,6 +1678,8 @@
         if (input) input.value = "";
       }
       afterRender();
+      announceGameState();
+      restoreActionFocus(focusHint);
     } catch (_error) {
       window.location.assign("/");
     } finally {
