@@ -589,17 +589,15 @@ class EntryTests(unittest.TestCase):
         self.assertEqual(len(control_regions), 1)
         self.assertIn('class="controls-swap" data-swap="controls"', control_regions[0])
 
-        # Sendero -> parcela con Mordelinde. Forzamos el encuentro a estado
-        # no-engaged para reproducir el caso que antes rendereaba dos regiones:
+        # Parcela con Mordelinde no-engaged: reproduce de forma
+        # determinista el caso que antes rendereaba dos regiones simultáneas,
         # "Fauna cercana" + "Controles principales".
-        self.post("/move", {"direction": "north"})
-        self.post("/move", {"direction": "north"})
         player_id = self.client.get("/api/me").json["player"]["id"]
-        with store.connect(self.path) as db:
-            db.execute(
-                "UPDATE room_encounters SET engaged = 0 WHERE player_id = ?",
-                (player_id,),
-            )
+        store.move_player(self.path, player_id, "valdren_camino_parcela")
+        store.start_encounter(
+            self.path, player_id, "valdren_camino_parcela",
+            "mordelinde", 30, engaged=False,
+        )
         html = self.client.get("/").get_data(as_text=True)
         self.assertIn("Fauna cercana", html)
         self.assertIn('aria-label="Controles principales"', html)
