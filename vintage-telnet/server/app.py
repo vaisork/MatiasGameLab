@@ -394,9 +394,15 @@ def create_app(config=None):
                 and store.has_discovery(path, player["id"], "lindero_roto")
                 and not store.has_discovery(path, player["id"], "regreso_valdren_lindero")):
             discovery = world.get_discovery("regreso_valdren_lindero")
-            _is_new, _xp_amount, xp_state = store.award_discovery(
+            is_new, xp_amount, xp_state = store.award_discovery(
                 path, player["id"], "regreso_valdren_lindero",
-                discovery["category"], discovery["reference_level"])
+                discovery["category"], discovery["reference_level"],
+                reward_item=discovery["reward_item"])
+            if is_new:
+                g.reward_message = f"{discovery['reward_text']} (+{xp_amount} XP)"
+                level_message = _level_up_message(xp_state)
+                if level_message:
+                    g.reward_message += f" {level_message}"
             level_up_event = _level_up_event(xp_state)
         return True, previous_room, destination, None, level_up_event
 
@@ -965,7 +971,7 @@ def create_app(config=None):
         if onboarding_view not in ("welcome", "login", "register"):
             onboarding_view = "welcome"
         return render_template("entry.html", player=g.player, species_list=world.SPECIES, room=room,
-                               onboarding_view=onboarding_view)
+                               onboarding_view=onboarding_view, notice=session.pop("reward_notice", None))
 
     @app.get("/mundo")
     def world_reader():
@@ -1121,6 +1127,8 @@ def create_app(config=None):
         if not character_ready(g.player):
             abort(403)
         accepted, _previous, _new, reason, _level_event = attempt_move(g.player, request.form.get("direction", ""))
+        if accepted and getattr(g, "reward_message", None):
+            session["reward_notice"] = g.reward_message
         if not accepted:
             room_data = room_view(g.player["room"], g.player["id"])
             return render_template("entry.html", player=g.player, species_list=world.SPECIES,
@@ -1151,6 +1159,8 @@ def create_app(config=None):
         intent = parse_intent(raw)
         if intent["type"] == "move":
             accepted, _previous, _new, reason, _level_event = attempt_move(g.player, intent["direction"])
+            if accepted and getattr(g, "reward_message", None):
+                session["reward_notice"] = g.reward_message
             if not accepted:
                 room_data = room_view(g.player["room"], g.player["id"])
                 return render_template("entry.html", player=g.player, species_list=world.SPECIES,
@@ -1322,6 +1332,7 @@ def create_app(config=None):
             return jsonify(
                 accepted=accepted,
                 intent="move",
+                reward_message=getattr(g, "reward_message", None),
                 previous_room=previous_room,
                 current_room=room_view(current_room_id, g.player["id"]),
                 reason=reason,
@@ -1557,6 +1568,7 @@ def create_app(config=None):
             accepted=accepted,
             previous_room=previous_room,
             reason=reason,
+            reward_message=getattr(g, "reward_message", None),
             current_room=room_view(current_room_id, g.player["id"]),
             level_up_event=level_up_event,
         ), (200 if accepted else 400)

@@ -1,5 +1,5 @@
 """SQLite storage. Every operation owns its connection; writes are transactional."""
-from contextlib import contextmanager
+from contextlib import contextmanager, nullcontext
 from datetime import datetime, timedelta, timezone
 import hashlib
 import json
@@ -776,7 +776,7 @@ def spend_attribute_point(path, player_id, attribute, expected_value):
                             "hp_current": new_hp, "hp_max": new_max}
 
 
-def award_discovery(path, player_id, key, category, reference_level):
+def award_discovery(path, player_id, key, category, reference_level, *, reward_item=None):
     """Otorga un descubrimiento/hito una sola vez por personaje (22.7).
     Devuelve (is_new, xp_awarded, xp_state_or_None) -- xp_state es el
     resultado de award_xp, para notificar una subida de nivel (25.9)."""
@@ -787,6 +787,9 @@ def award_discovery(path, player_id, key, category, reference_level):
             (player_id, key, xp_amount, utcnow()),
         )
         is_new = cursor.rowcount > 0
+        if is_new and reward_item:
+            # Hito y objeto se confirman juntos: un fallo no pierde la recompensa.
+            grant_item(path, player_id, reward_item, connection=db)
     xp_state = award_xp(path, player_id, xp_amount) if is_new else None
     return is_new, xp_amount, xp_state
 
@@ -1091,7 +1094,7 @@ def character_by_player_id(path, player_id):
         return character_by_id(db, player_id)
 
 
-def grant_item(path, player_id, item_key, forge_validated=False):
+def grant_item(path, player_id, item_key, forge_validated=False, *, connection=None):
     """Entrega autoritativa de un objeto del catálogo (32.5): recompensa,
     encargo válido, Forja o acción administrativa -- nunca compra directa
     del jugador en v1. Cada llamada crea una instancia propia (id nueva),
@@ -1100,7 +1103,7 @@ def grant_item(path, player_id, item_key, forge_validated=False):
     if category is None:
         raise ValueError(f"Objeto desconocido en el catálogo: {item_key}")
     item_id = str(uuid.uuid4())
-    with connect(path) as db:
+    with (connect(path) if connection is None else nullcontext(connection)) as db:
         db.execute(
             """INSERT INTO inventory_items(id, player_id, item_key, category, forge_validated, acquired_at)
                VALUES (?, ?, ?, ?, ?, ?)""",
