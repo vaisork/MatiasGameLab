@@ -214,7 +214,31 @@ class MoveIntegrationTests(unittest.TestCase):
             self.post("/move", dict(direction="north"))
         self.assertEqual(self.client.get("/api/me").json["player"]["room"], "valdren_sendero")
         self.assertEqual(self.encounter("valdren_sendero")["creature_id"], "espinajo_rastrojo")
+        self.assertEqual(self.encounter("valdren_sendero")["engaged"], 0)
+        room = self.client.get("/api/room").json["room"]
+        self.assertFalse(room["in_combat"])
+        self.assertEqual({action["action"] for action in room["available_actions"]}, {"atacar", "evaluar", "huir"})
         self.assertIn("Espinajo de rastrojo", self.client.get("/").get_data(as_text=True))
+
+    def test_failed_flee_from_sighting_counterattacks_and_commits_combat(self):
+        with patch.object(encounters, "_rng", AlwaysRoll(0.0, pick=1)):
+            self.post("/move", dict(direction="north"))
+
+        class FailedEscapeThenHit:
+            def __init__(self):
+                self.rolls = iter((100, 0))
+            def uniform(self, _low, _high):
+                return next(self.rolls)  # la huida falla y el contraataque acierta
+            def random(self):
+                return 0  # el contraataque acierta
+
+        with patch("server.app.random.Random", return_value=FailedEscapeThenHit()):
+            result = self.post("/flee")
+        self.assertEqual(result.status_code, 200)
+        self.assertLess(self.client.get("/api/me").json["player"]["hp_current"], 100)
+        self.assertEqual(self.encounter("valdren_sendero")["engaged"], 1)
+        room = self.client.get("/api/room").json["room"]
+        self.assertTrue(room["in_combat"])
 
     def test_failed_roll_leaves_room_empty(self):
         with patch.object(encounters, "_rng", AlwaysRoll(0.10)):

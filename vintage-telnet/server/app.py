@@ -232,6 +232,7 @@ def create_app(config=None):
                 target = world.get_room(destination) if destination in visited else None
                 exit_info["known_name"] = target["name"] if target else None
         encounter = store.get_encounter(path, player_id, room_id)
+        view["in_combat"] = bool(encounter and encounter.get("engaged", 1))
         if encounter:
             creature = creatures.get_creature(encounter["creature_id"])
             view["encounter"] = {
@@ -246,7 +247,7 @@ def create_app(config=None):
             # En combate el marco muestra a la criatura, o nada si todavía no
             # hay arte aprobado de ella (nunca el paisaje de fondo).
             view["art"] = creatures.CREATURE_ART.get(encounter["creature_id"])
-            view["combat_log"] = store.get_combat_log(path, player_id, room_id)
+            view["combat_log"] = store.get_combat_log(path, player_id, room_id) if view["in_combat"] else []
             # Issue #73 / UI_ACTIONS_CONTRACT.md: fuente estructurada de
             # acciones de combate/descanso inmediatas -- el cliente no debe
             # deducir botones por su cuenta. Alcance de esta entrega: solo
@@ -258,10 +259,13 @@ def create_app(config=None):
                 {"action": "atacar", "targets": [encounter["creature_id"]]},
                 {"action": "evaluar", "targets": [encounter["creature_id"]]},
                 {"action": "huir"},
-                {"action": "esquivar"},
-                {"action": "resistir"},
             ]
-            if _can_block(path, player_id):
+            if view["in_combat"]:
+                view["available_actions"].extend([
+                    {"action": "esquivar"},
+                    {"action": "resistir"},
+                ])
+            if view["in_combat"] and _can_block(path, player_id):
                 view["available_actions"].append({"action": "bloquear"})
         else:
             view["encounter"] = None
@@ -388,7 +392,8 @@ def create_app(config=None):
             encounter_creature = encounters.get_encounter_for_room(destination)
             if encounter_creature:
                 creature = creatures.get_creature(encounter_creature)
-                store.start_encounter(path, player["id"], destination, encounter_creature, creature["hp"])
+                store.start_encounter(path, player["id"], destination, encounter_creature,
+                                      creature["hp"], engaged=bool(world.get_room_encounter(destination)))
         level_up_event = None
         if (destination == "valdren_centro"
                 and store.has_discovery(path, player["id"], "lindero_roto")
@@ -559,6 +564,8 @@ def create_app(config=None):
         encounter = store.get_encounter(path, player["id"], player["room"])
         if not encounter:
             return {"outcome": "no_target", "messages": ["No hay ninguna criatura para atacar aquí."]}
+        if not encounter.get("engaged", 1):
+            store.update_encounter(path, player["id"], player["room"], engaged=True)
         creature = creatures.get_creature(encounter["creature_id"])
         attrs = _attributes(player)
         equipment = _equipment(player)
@@ -665,7 +672,8 @@ def create_app(config=None):
             return {"outcome": "success", "messages": messages}
 
         store.update_encounter(path, player["id"], player["room"],
-                                failed_flee_attempts=encounter["failed_flee_attempts"] + 1)
+                                failed_flee_attempts=encounter["failed_flee_attempts"] + 1,
+                                engaged=True)
         enemy_hits, enemy_damage = combat.resolve_fixed_attack_roll(
             creature["precision"], creature["damage"], rng=rng)
         messages = [f"No logras huir de {creature['name']}."]
@@ -696,7 +704,7 @@ def create_app(config=None):
         criatura. Reduce la probabilidad de que ese golpe conecte; si
         conecta igual, el daño es el normal (esquivar no reduce daño)."""
         encounter = store.get_encounter(path, player["id"], player["room"])
-        if not encounter:
+        if not encounter or not encounter.get("engaged", 1):
             return {"outcome": "no_target", "messages": ["No hay ningún ataque que esquivar aquí."]}
         creature = creatures.get_creature(encounter["creature_id"])
         attrs = _attributes(player)
@@ -735,7 +743,7 @@ def create_app(config=None):
         resistir el golpe entrante. No cambia la probabilidad de ser
         golpeado; si el golpe conecta, reduce su daño según Resistencia."""
         encounter = store.get_encounter(path, player["id"], player["room"])
-        if not encounter:
+        if not encounter or not encounter.get("engaged", 1):
             return {"outcome": "no_target", "messages": ["No hay ningún golpe que resistir aquí."]}
         creature = creatures.get_creature(encounter["creature_id"])
         attrs = _attributes(player)
@@ -773,7 +781,7 @@ def create_app(config=None):
         `_can_block`, que desde el Issue #57 consulta el arma equipada
         real."""
         encounter = store.get_encounter(path, player["id"], player["room"])
-        if not encounter:
+        if not encounter or not encounter.get("engaged", 1):
             return {"outcome": "no_target", "messages": ["No hay ningún golpe que bloquear aquí."]}
         if not _can_block(path, player["id"]):
             return {"outcome": "unavailable",
@@ -1581,6 +1589,8 @@ def create_app(config=None):
         error = api_player_state(g.player)
         if error:
             return error
+        encounter = (store.get_encounter(path, g.player["id"], g.player["room"])
+                     if g.player["room"] else None)
         return jsonify(
             species=g.player["species"], player_class=g.player["player_class"],
             level=g.player["level"], xp=g.player["xp"],
@@ -1594,7 +1604,7 @@ def create_app(config=None):
             # coste antes de confirmar. El cliente no calcula costes.
             attribute_costs={name: combat.attribute_cost(value)
                              for name, value in _attributes(g.player).items()},
-            in_combat=bool(g.player["room"] and store.get_encounter(path, g.player["id"], g.player["room"])),
+            in_combat=bool(encounter and encounter.get("engaged", 1)),
             discoveries=store.list_discoveries(path, g.player["id"]),
         )
 
