@@ -78,6 +78,43 @@ RANDOM_ENCOUNTER_POOLS = {
         "chance": DENSITY["silvestre"],
         "creatures": [("mordelinde", 65), ("espinajo_rastrojo", 35)],
     },
+    # HOSHAI-POOL-01 (#313): mapping final de PR #462.
+    # Las cuatro pausas 0% no entran en RANDOM_ENCOUNTER_POOLS.
+    "hoshai_01_anclajes": {
+        "rooms": {"alto_anclajes"},
+        "chance": DENSITY["borde_habitado"],
+        "creatures": [("unapiedra", 100)],
+    },
+    "hoshai_01_camino_mixto": {
+        "rooms": {"alto_escalones", "alto_cruce_alturas"},
+        "chance": DENSITY["camino"],
+        "creatures": [("unapiedra", 50), ("saltacresta", 50)],
+    },
+    "hoshai_01_terraza_descenso": {
+        "rooms": {"alto_terraza_abandonada", "alto_descenso"},
+        "chance": DENSITY["silvestre"],
+        "creatures": [("unapiedra", 50), ("saltacresta", 50)],
+    },
+    "hoshai_01_garganta": {
+        "rooms": {"alto_garganta"},
+        "chance": DENSITY["silvestre"],
+        "creatures": [("unapiedra", 100)],
+    },
+    "hoshai_01_pinar": {
+        "rooms": {"alto_pinar"},
+        "chance": DENSITY["camino"],
+        "creatures": [("saltacresta", 100)],
+    },
+    "hoshai_01_ultimo_risco": {
+        "rooms": {"alto_ultimo_risco"},
+        "chance": DENSITY["silvestre"],
+        "creatures": [("unapiedra", 75), ("saltacresta", 25)],
+    },
+    "hoshai_01_camino_falda": {
+        "rooms": {"alto_camino_falda"},
+        "chance": DENSITY["borde_habitado"],
+        "creatures": [("unapiedra", 50), ("saltacresta", 50)],
+    },
     # KORVEN-POOL-01 (#314): solo rooms con chance aprobada > 0.
     "korven_01_pared_anclajes": {
         "rooms": {"piedra_pared_anclajes"}, "chance": DENSITY["borde_habitado"],
