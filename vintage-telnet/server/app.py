@@ -1813,6 +1813,9 @@ def create_app(config=None):
                     error=result.reason,
                 ), 200
             dialogue_text = f"{result.npc_name}: «{result.text}»"
+            if result.gate_result and result.gate_result.accepted and result.gate_result.action_type == "purchase_item":
+                eff = result.gate_result.effect or {}
+                dialogue_text += f" [Comprado: {eff.get('name', 'arma')} por {eff.get('price', '')} sellos. Saldo restante: {eff.get('balance')} sellos]"
             return render_template(
                 "entry.html", player=player_now, species_list=world.SPECIES, room=room_data,
                 error=dialogue_text,
