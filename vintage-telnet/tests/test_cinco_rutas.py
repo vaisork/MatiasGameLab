@@ -58,7 +58,7 @@ class RouteStructureTests(unittest.TestCase):
     def test_route_rooms_have_no_fixed_encounters_besides_el_lindero_roto(self):
         route_rooms = {r for chain, _ in world.ROUTE_CHAINS.values() for r in chain}
         self.assertEqual(route_rooms & set(world.ROOM_ENCOUNTER),
-                         {"valdren_camino_parcela", "valdren_camino_cerca", "alto_terrazas"})
+                         {"valdren_camino_parcela", "valdren_camino_cerca", "alto_terrazas", "alto_terraza_abandonada"})
 
     def test_route_text_is_spanish_with_accents(self):
         for letter, (chain, _letters) in world.ROUTE_CHAINS.items():

@@ -726,6 +726,7 @@ ROOM_ENCOUNTER = {
     "valdren_camino_cerca": "espinajo_rastrojo",
     "valdren_pastos_altos": "cornalomo",
     "alto_terrazas": "unapiedra",
+    "alto_terraza_abandonada": "saltacresta",
 }
 
 # Descubrimientos de la microaventura (GAMEPLAY.md 22.7). nivel_referencia
