@@ -1,6 +1,6 @@
 # WORLD-POPULATION-01 — voz de NPCs ambientales
 
-Origen: #334. Capa Narrador.  
+Origen: #334. Capa Narrador.
 Este documento entrega barks reusables. Historia asigna los role_id definitivos, regiones y restricciones; Jugabilidad ya cerró densidad y persistencia.
 
 ## Habitante
