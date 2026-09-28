@@ -52,6 +52,15 @@ class PublishedArtTests(unittest.TestCase):
         for creature_id in creatures.CREATURE_ART:
             self.assertIsNotNone(creatures.get_creature(creature_id))
 
+    def test_approved_valdren_outskirts_art_is_used_by_its_rooms(self):
+        expected = "zone.edran.valdren_outskirts"
+        for room_id in ("valdren_sendero", "valdren_camino_parcela",
+                        "valdren_camino_cerca", "valdren_camino_lindero"):
+            with self.subTest(room=room_id):
+                room = world.describe_room(room_id, [])
+                self.assertEqual(room["visual_context_id"], expected)
+                self.assertEqual(room["art"], world.VISUAL_CONTEXT_ART[expected])
+
     def test_combat_frame_shows_the_creature(self):
         page = self.client.get("/").get_data(as_text=True)
         csrf = re.search(r'name="csrf" value="([^"]+)"', page)[1]

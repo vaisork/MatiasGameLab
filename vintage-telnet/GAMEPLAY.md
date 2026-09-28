@@ -1341,10 +1341,72 @@ Comprar/desbloquear un poder solo será posible cuando exista contenido de poder
 
 ### 25.9 Notificación de progreso
 
-Al subir de nivel, el jugador debe recibir una notificación breve y persistente en la sesión que indique:
-- nuevo nivel;
-- PA obtenidos;
-- PP obtenido cuando corresponda.
+Subir de nivel debe sentirse como un **evento visible**, no como un número que cambió silenciosamente.
+
+Cuando una acción otorgue suficiente XP para subir uno o más niveles, el jugador debe recibir simultáneamente:
+
+1. **Mensaje destacado inmediato**
+   - encabezado: `¡SUBISTE A NIVEL <n>!`;
+   - `+<PA> PA para mejorar atributos`;
+   - `+<PP> PP` cuando corresponda;
+   - indicar el nuevo objetivo de XP: `Siguiente nivel: <xp_required> XP`.
+
+2. **Registro persistente en el log**
+   El mismo evento debe quedar escrito en el historial de la sesión.  
+   No basta con cambiar la cifra de nivel o reiniciar visualmente la barra de XP.
+
+3. **Indicador pendiente en Personaje**
+   Si quedan PA o PP sin gastar, el acceso a **Personaje** debe mostrar un badge/indicador visible con el saldo pendiente.
+   Ejemplo:
+   - `Personaje · 2 PA`
+   - o un badge numérico equivalente.
+
+4. **Énfasis dentro del panel Personaje**
+   Mientras existan PA sin gastar, mostrar una llamada clara:
+   `Tienes <n> PA nuevos por asignar.`
+
+### 25.9.1 Reinicio visual de XP
+
+Cuando el jugador cruza un nivel, la XP usada para alcanzar ese nivel pasa a formar parte de la progresión ya consumida y el contador visible muestra el progreso hacia el siguiente nivel.
+
+Este cambio **debe ir acompañado del mensaje de subida de nivel**.
+
+Nunca debe ocurrir visualmente:
+
+`XP alta → XP 0/<siguiente>`
+
+sin una explicación visible, porque el jugador puede interpretarlo como pérdida de experiencia.
+
+### 25.9.2 Momento de presentación
+
+- Si la subida ocurre durante combate, mostrar el aviso al resolver la acción/ronda que otorgó la XP.
+- No abrir automáticamente el panel Personaje.
+- No bloquear la lectura con un modal obligatorio que requiera distribuir puntos.
+- Un banner/toast destacado y descartable es válido.
+- El evento debe sobrevivir lo suficiente para ser leído y también quedar en el log.
+- Si una sola concesión de XP sube varios niveles, mostrar el nivel final y el total de PA/PP ganados en ese evento.
+
+### 25.9.3 Texto v1 recomendado
+
+Ejemplo nivel 1 → 2:
+
+`¡SUBISTE A NIVEL 2!`  
+`Ganaste 2 PA para mejorar tus atributos.`  
+`Siguiente nivel: 118 XP.`
+
+Ejemplo con PP:
+
+`¡SUBISTE A NIVEL 5!`  
+`Ganaste 2 PA y 1 PP.`
+
+### 25.9.4 Criterio de éxito
+
+La implementación falla aunque los datos sean correctos si, después de subir de nivel, un jugador razonable puede creer que:
+- perdió XP;
+- no sabe que ganó PA;
+- no sabe dónde gastar esos PA.
+
+El objetivo es que el jugador pueda reconocer la subida de nivel **sin tener que abrir Personaje para descubrir que ocurrió**.
 
 No mostrar automáticamente una ventana obligatoria de distribución en medio de combate o lectura. El jugador decide cuándo abrir Personaje y gastar sus PA.
 

@@ -368,6 +368,20 @@ class NPCDialogueWorldIsolationAndIntegrationTests(unittest.TestCase):
         self.assertTrue(len(talk_actions) > 0)
         self.assertIn("daro", talk_actions[0]["targets"])
 
+    def test_room_screen_renders_present_npc_and_discoverable_talk_button(self):
+        self.register_and_approve()
+        self.move_to_forja()
+
+        response = self.client.get("/")
+        html = response.get_data(as_text=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertIn('aria-labelledby="npc-presence-title"', html)
+        self.assertIn("Personas aquí", html)
+        self.assertIn("Daro", html)
+        self.assertIn("Herrero", html)
+        self.assertIn('data-prefill="hablar daro_herrero "', html)
+        self.assertIn('aria-label="Hablar con Daro"', html)
+
     def test_command_talk_npc_success_in_forja(self):
         self.register_and_approve()
         self.move_to_forja()

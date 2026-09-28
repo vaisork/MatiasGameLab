@@ -21,7 +21,7 @@ Este documento define un contrato de **presentación canónica**, no una mecáni
 | --- | --- | --- | --- |
 | `zone.vaisgard` | **Vaisgard** | Ciudad de Vaisgard y sus salas urbanas presentes/futuras mientras sigan dentro de la ciudad | `assets/vintage-telnet/locations/vaisgard.webp` |
 | `zone.valdren` | **Valdren** | Centro y micro-salas internas del pueblo de Valdren | `assets/vintage-telnet/locations/valdren.webp` |
-| `zone.edran.valdren_outskirts` | **Alrededores de Valdren** | Salida del pueblo, parcelas, cercas y camino inmediato de la microaventura *El lindero roto* dentro de los Llanos de Edran | ninguno aprobado todavía |
+| `zone.edran.valdren_outskirts` | **Alrededores de Valdren** | Salida del pueblo, parcelas, cercas y camino inmediato de la microaventura *El lindero roto* dentro de los Llanos de Edran | `assets/vintage-telnet/locations/valdren-outskirts.webp` (aprobado en #151; publicado en #174) |
 | `zone.veyra.road` | **Caminos de la Cuenca de Veyra** | Tramos técnicos actuales de camino entre asentamientos que no están dentro de un pueblo ni forman parte de la salida inmediata de Valdren | ninguno aprobado todavía |
 | `zone.khariel` | **Khariel** | Centro y micro-salas internas de Khariel | ninguno aprobado en runtime todavía |
 | `zone.brumak` | **Brumak** | Centro y micro-salas internas de Brumak | ninguno aprobado en runtime todavía |
@@ -38,10 +38,10 @@ Los últimos cuatro IDs quedan definidos para que el contrato no tenga que cambi
 | `valdren_centro` | `zone.valdren` | Valdren | `valdren.webp` |
 | `valdren_forja` | `zone.valdren` | Valdren | `valdren.webp` |
 | `valdren_mercado` | `zone.valdren` | Valdren | `valdren.webp` |
-| `valdren_sendero` | `zone.edran.valdren_outskirts` | Alrededores de Valdren | ninguno |
-| `valdren_camino_parcela` | `zone.edran.valdren_outskirts` | Alrededores de Valdren | ninguno |
-| `valdren_camino_cerca` | `zone.edran.valdren_outskirts` | Alrededores de Valdren | ninguno |
-| `valdren_camino_lindero` | `zone.edran.valdren_outskirts` | Alrededores de Valdren | ninguno |
+| `valdren_sendero` | `zone.edran.valdren_outskirts` | Alrededores de Valdren | `valdren-outskirts.webp` |
+| `valdren_camino_parcela` | `zone.edran.valdren_outskirts` | Alrededores de Valdren | `valdren-outskirts.webp` |
+| `valdren_camino_cerca` | `zone.edran.valdren_outskirts` | Alrededores de Valdren | `valdren-outskirts.webp` |
+| `valdren_camino_lindero` | `zone.edran.valdren_outskirts` | Alrededores de Valdren | `valdren-outskirts.webp` |
 | `road_north` | `zone.veyra.road` | Caminos de la Cuenca de Veyra | ninguno |
 | `road_west` | `zone.veyra.road` | Caminos de la Cuenca de Veyra | ninguno |
 | `khariel_centro` | `zone.khariel` | Khariel | ninguno en runtime |
@@ -73,7 +73,7 @@ La frontera presentacional se fija al salir del núcleo cotidiano del pueblo hac
 - parcela, cerca y lindero conservan ese mismo contexto visual: son una sola salida rural continua y no necesitan una imagen distinta por micro-sala;
 - el contexto termina cuando una ruta futura abandone inequívocamente este entorno inmediato. Este documento no inventa todavía cuál será esa sala.
 
-Esto evita dos errores: mantener la ilustración del pueblo cuando el texto ya sitúa al jugador fuera de sus últimas casas, o cambiar de imagen cuatro veces durante una misma salida rural.
+La ilustración de contexto quedó aprobada en #151 y publicada en #174. Esto evita dos errores: mantener la ilustración del pueblo cuando el texto ya sitúa al jugador fuera de sus últimas casas, o cambiar de imagen cuatro veces durante una misma salida rural.
 
 ## Textos consumibles
 

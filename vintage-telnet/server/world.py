@@ -85,9 +85,13 @@ VISUAL_CONTEXT_ART = {
         "width": 1536,
         "height": 1024,
     },
-    # "zone.edran.valdren_outskirts": pieza 4/4 de #151, todavía en Arte.
-    # Hasta que se publique, el marco queda vacío y quieto (petición de
-    # Javier, 2026-09-25).
+    # Issue #151, arte aprobado por Dirección y publicado en PR #174.
+    "zone.edran.valdren_outskirts": {
+        "src": "/assets/locations/valdren-outskirts.webp",
+        "alt": "Alrededores de Valdren: parcelas, cercas bajas y caminos de tierra",
+        "width": 1672,
+        "height": 941,
+    },
 }
 
 # Excepciones explicitas de VISUAL_CONTEXT_CANON.md ("Mapeo de las salas
