@@ -19,8 +19,8 @@ Reglas aprobadas: `GAMEPLAY.md` §33 y `RANDOM_ENCOUNTER_GAMEPLAY.md`.
     el pool debe declarar `"gameplay_override": True` (aprobación explícita
     de Jugabilidad).
   - Qué salas son elegibles y qué criaturas viven ahí lo entregan
-    Historia/Narrativa (§8, Issue #166). `RANDOM_ENCOUNTER_POOLS` activa
-    únicamente el mapeo EDRAN-01 aprobado en Issue #207.
+    Historia/Narrativa (§8, Issue #166). `RANDOM_ENCOUNTER_POOLS` contiene
+    únicamente mapeos regionales aprobados por las funciones responsables.
 
 Formato de un pool:
 
@@ -54,7 +54,9 @@ C3_THREAT_IDS = frozenset({
     "rasgacorteza",
 })
 
-# EDRAN-01 — Issue #207. Las demás salas no pertenecen a ningún pool.
+# EDRAN-01 (#207) y fauna regional aprobada en #314/#315/#317.
+# Las salas con chance 0%, reservadas, civiles o de transición no aparecen
+# en ningún pool; cada entrega conserva su tabla contractual en el issue.
 RANDOM_ENCOUNTER_POOLS = {
     "edran_01_borde_habitado": {
         "rooms": {"valdren_sendero"},
@@ -70,6 +72,113 @@ RANDOM_ENCOUNTER_POOLS = {
         "rooms": {"valdren_campo_rastrojo", "valdren_campos_sin_cerca"},
         "chance": DENSITY["silvestre"],
         "creatures": [("mordelinde", 65), ("espinajo_rastrojo", 35)],
+    },
+    # KORVEN-POOL-01 (#314): solo rooms con chance aprobada > 0.
+    "korven_01_pared_anclajes": {
+        "rooms": {"piedra_pared_anclajes"}, "chance": DENSITY["borde_habitado"],
+        "creatures": [("cascapedernal", 100)],
+    },
+    "korven_01_paso_corto": {
+        "rooms": {"piedra_paso_corto"}, "chance": DENSITY["camino"],
+        "creatures": [("cascapedernal", 60), ("colagrieta", 40)],
+    },
+    "korven_01_patio_abierto": {
+        "rooms": {"piedra_patio_abierto"}, "chance": DENSITY["borde_habitado"],
+        "creatures": [("cascapedernal", 100)],
+    },
+    "korven_01_hendiduras": {
+        "rooms": {"piedra_hendiduras"}, "chance": DENSITY["silvestre"],
+        "creatures": [("cascapedernal", 40), ("colagrieta", 60)],
+    },
+    "korven_01_pared_partida": {
+        "rooms": {"piedra_pared_partida"}, "chance": DENSITY["camino"],
+        "creatures": [("cascapedernal", 50), ("colagrieta", 50)],
+    },
+    "korven_01_meseta_baja": {
+        "rooms": {"piedra_meseta_baja"}, "chance": DENSITY["camino"],
+        "creatures": [("cascapedernal", 100)],
+    },
+    "korven_01_cruce_montones": {
+        "rooms": {"piedra_cruce_montones"}, "chance": DENSITY["camino"],
+        "creatures": [("cascapedernal", 100)],
+    },
+    "korven_01_cavidades": {
+        "rooms": {"piedra_cavidades"}, "chance": DENSITY["silvestre"],
+        "creatures": [("cascapedernal", 35), ("colagrieta", 65)],
+    },
+    "korven_01_ultimo_corredor": {
+        "rooms": {"piedra_ultimo_corredor"}, "chance": DENSITY["silvestre"],
+        "creatures": [("cascapedernal", 40), ("colagrieta", 60)],
+    },
+    "korven_01_suelo_quebrado": {
+        "rooms": {"piedra_suelo_quebrado"}, "chance": DENSITY["borde_habitado"],
+        "creatures": [("cascapedernal", 100)],
+    },
+    # LETHRA-POOL-01 (#315).
+    "lethra_01_postes": {
+        "rooms": {"juncos_postes"}, "chance": DENSITY["borde_habitado"],
+        "creatures": [("pinzajunco", 100)],
+    },
+    "lethra_01_juncal": {
+        "rooms": {"juncos_juncal"}, "chance": DENSITY["camino"],
+        "creatures": [("pinzajunco", 55), ("saltalodo", 45)],
+    },
+    "lethra_01_paso_raices": {
+        "rooms": {"juncos_paso_raices"}, "chance": DENSITY["silvestre"],
+        "creatures": [("pinzajunco", 50), ("saltalodo", 50)],
+    },
+    "lethra_01_agua_entre_caminos": {
+        "rooms": {"juncos_agua_entre_caminos"}, "chance": DENSITY["silvestre"],
+        "creatures": [("pinzajunco", 55), ("saltalodo", 45)],
+    },
+    "lethra_01_pasarela_larga": {
+        "rooms": {"juncos_pasarela_larga"}, "chance": DENSITY["camino"],
+        "creatures": [("saltalodo", 100)],
+    },
+    "lethra_01_islas_bajas": {
+        "rooms": {"juncos_islas_bajas"}, "chance": DENSITY["camino"],
+        "creatures": [("pinzajunco", 50), ("saltalodo", 50)],
+    },
+    "lethra_01_canal_ancho": {
+        "rooms": {"juncos_canal_ancho"}, "chance": DENSITY["silvestre"],
+        "creatures": [("pinzajunco", 55), ("saltalodo", 45)],
+    },
+    "lethra_01_ultimos": {
+        "rooms": {"juncos_ultimos"}, "chance": DENSITY["silvestre"],
+        "creatures": [("pinzajunco", 40), ("saltalodo", 60)],
+    },
+    "lethra_01_corrientes": {
+        "rooms": {"juncos_corrientes"}, "chance": DENSITY["borde_habitado"],
+        "creatures": [("pinzajunco", 100)],
+    },
+    # NHAL-POOL-01 (#317): Hilaria solo donde Historia confirma anclajes.
+    "nhal_01_raices_cruzadas": {
+        "rooms": {"sombra_raices_cruzadas"}, "chance": DENSITY["camino"],
+        "creatures": [("rondamusgo", 50), ("hilaria_niebla", 50)],
+    },
+    "nhal_01_claro_pequeno": {
+        "rooms": {"sombra_claro_pequeno"}, "chance": DENSITY["borde_habitado"],
+        "creatures": [("rondamusgo", 100)],
+    },
+    "nhal_01_sendero_doble": {
+        "rooms": {"sombra_sendero_doble"}, "chance": DENSITY["camino"],
+        "creatures": [("rondamusgo", 55), ("hilaria_niebla", 45)],
+    },
+    "nhal_01_niebla_baja": {
+        "rooms": {"sombra_niebla_baja"}, "chance": DENSITY["silvestre"],
+        "creatures": [("rondamusgo", 40), ("hilaria_niebla", 60)],
+    },
+    "nhal_01_arbol_caido": {
+        "rooms": {"sombra_arbol_caido"}, "chance": DENSITY["silvestre"],
+        "creatures": [("rondamusgo", 40), ("hilaria_niebla", 60)],
+    },
+    "nhal_01_raiz_alta": {
+        "rooms": {"sombra_raiz_alta"}, "chance": DENSITY["silvestre"],
+        "creatures": [("rondamusgo", 50), ("hilaria_niebla", 50)],
+    },
+    "nhal_01_bosque_abierto": {
+        "rooms": {"sombra_bosque_abierto"}, "chance": DENSITY["borde_habitado"],
+        "creatures": [("rondamusgo", 100)],
     },
 }
 

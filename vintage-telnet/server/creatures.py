@@ -88,6 +88,82 @@ CREATURES = {
         "behavior_text": ("Saltacresta flexiona las patas traseras y busca una terraza libre; "
                            "si le cierras la salida, golpea el suelo y se prepara para defenderse con una patada corta."),
     },
+    # Fauna regional v1 — contratos mecánicos literales de #298–#303.
+    # Sin assets aprobados: estas criaturas dejan el marco de combate neutral.
+    "cascapedernal": {
+        "name": "Cascapedernal",
+        "family": "cascapedernal",
+        "reference_level": 1,
+        "hp": 34,
+        "precision": 42,
+        "damage": 5,
+        "armor_reduction": 0.10,
+        "flee_agilidad": 8,
+        "flee_percepcion": 9,
+        "behavior_text": ("Cascapedernal se encoge y golpea el suelo con el borde de su caparazón; "
+                           "permanece junto a la piedra cálida y busca una hendidura estrecha."),
+    },
+    "colagrieta": {
+        "name": "Colagrieta",
+        "family": "colagrieta",
+        "reference_level": 2,
+        "hp": 33,
+        "precision": 52,
+        "damage": 7,
+        "flee_agilidad": 14,
+        "flee_percepcion": 13,
+        "behavior_text": ("Colagrieta asoma la cabeza desde una fisura y repliega su cola contra la roca; "
+                           "evita permanecer en terreno abierto y retrocede al notar vibraciones."),
+    },
+    "pinzajunco": {
+        "name": "Pinzajunco",
+        "family": "pinzajunco",
+        "reference_level": 1,
+        "hp": 32,
+        "precision": 47,
+        "damage": 6,
+        "armor_reduction": 0.05,
+        "flee_agilidad": 8,
+        "flee_percepcion": 10,
+        "behavior_text": ("Pinzajunco levanta la pinza mayor como advertencia y se mueve de lado "
+                           "entre barro, raíces y juncos."),
+    },
+    "saltalodo": {
+        "name": "Saltalodo",
+        "family": "saltalodo",
+        "reference_level": 2,
+        "hp": 38,
+        "precision": 50,
+        "damage": 7,
+        "flee_agilidad": 14,
+        "flee_percepcion": 12,
+        "behavior_text": ("Saltalodo permanece semisumergido; al asustarse, salta hacia el agua profunda, "
+                           "aunque un ejemplar territorial puede defender su charca."),
+    },
+    "rondamusgo": {
+        "name": "Rondamusgo",
+        "family": "rondamusgo",
+        "reference_level": 1,
+        "hp": 29,
+        "precision": 44,
+        "damage": 5,
+        "flee_agilidad": 14,
+        "flee_percepcion": 12,
+        "behavior_text": ("Rondamusgo se queda inmóvil al oír pasos y corre cuando se siente observado; "
+                           "busca hongos y raíces tiernas entre la hojarasca."),
+    },
+    "hilaria_niebla": {
+        "name": "Hilaria de niebla",
+        "family": "hilaria_niebla",
+        "reference_level": 2,
+        "hp": 34,
+        "precision": 52,
+        "damage": 7,
+        "flee_agilidad": 10,
+        "flee_percepcion": 14,
+        "behavior_text": ("Hilaria de niebla permanece inmóvil junto a su red baja; los filamentos "
+                           "vibran antes de que retroceda hacia un hueco de corteza."),
+    },
 }
 
 
