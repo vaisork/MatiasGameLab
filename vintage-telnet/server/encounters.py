@@ -185,6 +185,131 @@ RANDOM_ENCOUNTER_POOLS = {
         "rooms": {"sombra_bosque_abierto"}, "chance": DENSITY["borde_habitado"],
         "creatures": [("rondamusgo", 100)],
     },
+    # BM-01: Boca de la Montaña superficial (#424 / BOCA_MONTANA_APPROACH.md)
+    "bm_02_raices_sobre_roca": {
+        "rooms": {"bm_02_raices_sobre_roca"}, "chance": DENSITY["borde_habitado"],
+        "creatures": [("rondamusgo", 30), ("hilaria_niebla", 20), ("silbarisco", 50)],
+    },
+    "bm_04_ladera_grava": {
+        "rooms": {"bm_04_ladera_grava"}, "chance": DENSITY["camino"],
+        "creatures": [("silbarisco", 100)],
+    },
+    "bm_05_saliente_raices": {
+        "rooms": {"bm_05_saliente_raices"}, "chance": DENSITY["silvestre"],
+        "creatures": [("hilaria_niebla", 35), ("silbarisco", 65)],
+    },
+    "bm_06_terraza_exterior": {
+        "rooms": {"bm_06_terraza_exterior"}, "chance": DENSITY["camino"],
+        "creatures": [("silbarisco", 30), ("unapiedra", 35), ("saltacresta", 35)],
+    },
+    "bm_07_risco_sombreado": {
+        "rooms": {"bm_07_risco_sombreado"}, "chance": DENSITY["riesgo_alto"],
+        "creatures": [("unapiedra", 65), ("saltacresta", 35)],
+    },
+    "bm_08_antesala_boca": {
+        "rooms": {"bm_08_antesala_boca"}, "chance": DENSITY["borde_habitado"],
+        "creatures": [("unapiedra", 100)],
+    },
+    # CQ-01: Canal Quieto superficial (#423 / CANAL_QUIETO_APPROACH.md)
+    "cq_02_orilla_juncos_bajos": {
+        "rooms": {"cq_02_orilla_juncos_bajos"}, "chance": DENSITY["borde_habitado"],
+        "creatures": [("pinzajunco", 55), ("saltalodo", 45)],
+    },
+    "cq_04_raices_ribera": {
+        "rooms": {"cq_04_raices_ribera"}, "chance": DENSITY["silvestre"],
+        "creatures": [("pinzajunco", 35), ("velacauce", 65)],
+    },
+    "cq_05_recodo_tronco": {
+        "rooms": {"cq_05_recodo_tronco"}, "chance": DENSITY["borde_habitado"],
+        "creatures": [("rondamusgo", 100)],
+    },
+    "cq_06_paso_raices": {
+        "rooms": {"cq_06_paso_raices"}, "chance": DENSITY["camino"],
+        "creatures": [("pinzajunco", 25), ("rondamusgo", 30), ("hilaria_niebla", 25), ("velacauce", 20)],
+    },
+    "cq_07_orilla_blanda": {
+        "rooms": {"cq_07_orilla_blanda"}, "chance": DENSITY["riesgo_alto"],
+        "creatures": [("pinzajunco", 25), ("saltalodo", 30), ("velacauce", 45)],
+    },
+    "cq_08_recodo_sin_vista": {
+        "rooms": {"cq_08_recodo_sin_vista"}, "chance": DENSITY["borde_habitado"],
+        "creatures": [("velacauce", 100)],
+    },
+    # CA-01: Cantera Abandonada superficial (#422 / CANTERA_ABANDONADA_APPROACH.md)
+    "ca_02_patio_grava": {
+        "rooms": {"ca_02_patio_grava"}, "chance": DENSITY["borde_habitado"],
+        "creatures": [("mordelinde", 60), ("espinajo_rastrojo", 40)],
+    },
+    "ca_03_plataforma_baja": {
+        "rooms": {"ca_03_plataforma_baja"}, "chance": DENSITY["camino"],
+        "creatures": [("cascapedernal", 100)],
+    },
+    "ca_04_montones_descarte": {
+        "rooms": {"ca_04_montones_descarte"}, "chance": DENSITY["silvestre"],
+        "creatures": [("cascapedernal", 40), ("cavapolvo", 60)],
+    },
+    "ca_06_plataforma_alta": {
+        "rooms": {"ca_06_plataforma_alta"}, "chance": DENSITY["camino"],
+        "creatures": [("cascapedernal", 50), ("colagrieta", 50)],
+    },
+    "ca_07_frente_quebrado": {
+        "rooms": {"ca_07_frente_quebrado"}, "chance": DENSITY["riesgo_alto"],
+        "creatures": [("cascapedernal", 20), ("colagrieta", 35), ("cavapolvo", 45)],
+    },
+    "ca_08_paso_bloques": {
+        "rooms": {"ca_08_paso_bloques"}, "chance": DENSITY["borde_habitado"],
+        "creatures": [("cascapedernal", 40), ("colagrieta", 60)],
+    },
+    # GE-01: Grieta del Eco Seco superficial (#419 / GRIETA_ECO_SECO_APPROACH.md)
+    "ge_02_terrazas_rotas": {
+        "rooms": {"ge_02_terrazas_rotas"}, "chance": DENSITY["borde_habitado"],
+        "creatures": [("unapiedra", 45), ("saltacresta", 25), ("garralaja", 30)],
+    },
+    "ge_03_repisa_viento": {
+        "rooms": {"ge_03_repisa_viento"}, "chance": DENSITY["camino"],
+        "creatures": [("unapiedra", 30), ("cascapedernal", 15), ("garralaja", 55)],
+    },
+    "ge_04_quiebre_lajas": {
+        "rooms": {"ge_04_quiebre_lajas"}, "chance": DENSITY["silvestre"],
+        "creatures": [("unapiedra", 15), ("cascapedernal", 35), ("garralaja", 50)],
+    },
+    "ge_06_fisuras_paralelas": {
+        "rooms": {"ge_06_fisuras_paralelas"}, "chance": DENSITY["silvestre"],
+        "creatures": [("cascapedernal", 15), ("colagrieta", 50), ("garralaja", 35)],
+    },
+    "ge_07_grava_fondo": {
+        "rooms": {"ge_07_grava_fondo"}, "chance": DENSITY["riesgo_alto"],
+        "creatures": [("cascapedernal", 20), ("colagrieta", 35), ("garralaja", 45)],
+    },
+    "ge_08_ultima_luz_directa": {
+        "rooms": {"ge_08_ultima_luz_directa"}, "chance": DENSITY["borde_habitado"],
+        "creatures": [("unapiedra", 35), ("cascapedernal", 20), ("colagrieta", 10), ("garralaja", 35)],
+    },
+    # MH-01: Molino Hundido superficial (#341)
+    "mh_02_bordes_vencidos": {
+        "rooms": {"mh_02_bordes_vencidos"}, "chance": DENSITY["borde_habitado"],
+        "creatures": [("mordelinde", 50), ("pinzajunco", 20), ("saltalodo", 10), ("remojunco", 20)],
+    },
+    "mh_03_juncos_partidos": {
+        "rooms": {"mh_03_juncos_partidos"}, "chance": DENSITY["camino"],
+        "creatures": [("mordelinde", 10), ("pinzajunco", 25), ("saltalodo", 20), ("remojunco", 45)],
+    },
+    "mh_05_terreno_dos_aguas": {
+        "rooms": {"mh_05_terreno_dos_aguas"}, "chance": DENSITY["camino"],
+        "creatures": [("mordelinde", 15), ("pinzajunco", 30), ("saltalodo", 25), ("remojunco", 30)],
+    },
+    "mh_06_restos_cauce": {
+        "rooms": {"mh_06_restos_cauce"}, "chance": DENSITY["silvestre"],
+        "creatures": [("pinzajunco", 30), ("saltalodo", 25), ("remojunco", 45)],
+    },
+    "mh_08_rodeo_base": {
+        "rooms": {"mh_08_rodeo_base"}, "chance": DENSITY["riesgo_alto"],
+        "creatures": [("pinzajunco", 30), ("saltalodo", 35), ("remojunco", 35)],
+    },
+    "mh_09_plataforma_caida": {
+        "rooms": {"mh_09_plataforma_caida"}, "chance": DENSITY["camino"],
+        "creatures": [("pinzajunco", 20), ("saltalodo", 40), ("remojunco", 40)],
+    },
 }
 
 _rng = random.Random()
