@@ -346,6 +346,16 @@
     .context-actions{display:grid;gap:8px;align-content:center}
     .context-actions form{margin:0}
     .context-actions .action{justify-content:flex-start;padding-left:14px}
+    .npc-presence{grid-column:1/-1;display:grid;gap:8px;border:1px solid #806538;border-radius:11px;
+      background:linear-gradient(120deg,#211d16,#111925);padding:10px}
+    .npc-presence h3{margin:0;color:var(--gold);font:800 .76rem ui-sans-serif,system-ui,sans-serif;
+      letter-spacing:.08em;text-transform:uppercase}
+    .npc-list{display:grid;gap:7px;margin:0;padding:0;list-style:none}
+    .npc-card{display:flex;align-items:center;justify-content:space-between;gap:10px;
+      border:1px solid #3d4a5d;border-radius:9px;background:#0c121b;padding:7px 8px 7px 10px}
+    .npc-card strong{display:block;color:var(--ink);font:750 .9rem ui-sans-serif,system-ui,sans-serif}
+    .npc-card span{display:block;margin-top:2px;color:var(--muted);font:600 .74rem ui-sans-serif,system-ui,sans-serif}
+    .npc-card .action{width:auto;min-width:100px;min-height:42px;justify-content:center}
     .combat-panel{display:grid;gap:8px}
     .combat-panel form{margin:0}
     .combat-row{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:8px}
@@ -801,6 +811,20 @@
             <form method="post" action="/command"><input type="hidden" name="csrf" value="{{ session.csrf }}"><input type="hidden" name="text" value="descansar"><button class="action" type="submit"><svg class="ui-icon" aria-hidden="true"><use href="#icon-bed"/></svg>Descansar</button></form>
             {% endif %}
           </div>
+          {% if room.npcs %}
+          <section class="npc-presence" aria-labelledby="npc-presence-title">
+            <h3 id="npc-presence-title">Personas aquí</h3>
+            <ul class="npc-list">
+              {% for npc in room.npcs %}
+              <li class="npc-card">
+                <div><strong>{{ npc.name }}</strong><span>{{ npc.role | capitalize }}</span></div>
+                <button class="action action-gold" type="button" data-prefill="hablar {{ npc.id }} "
+                        aria-label="Hablar con {{ npc.name }}">Hablar</button>
+              </li>
+              {% endfor %}
+            </ul>
+          </section>
+          {% endif %}
         </section>
         {% endif %}
 
