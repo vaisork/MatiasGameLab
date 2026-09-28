@@ -164,6 +164,20 @@ CREATURES = {
         "behavior_text": ("Hilaria de niebla permanece inmóvil junto a su red baja; los filamentos "
                            "vibran antes de que retroceda hacia un hueco de corteza."),
     },
+    # Issue #336/#339: Fauna mayor C4 de Edran (GAMEPLAY §38.7).
+    "cargallanura": {
+        "name": "Cargallanura",
+        "family": "cargallanura",
+        "reference_level": 12,
+        "hp": 210,
+        "precision": 58,
+        "damage": 26,
+        "armor_reduction": 0.25,
+        "flee_agilidad": 10,
+        "flee_percepcion": 12,
+        "behavior_text": ("Cargallanura resopla con lentitud y te evalúa con indiferencia territorial "
+                           "mientras mantengas la distancia."),
+    },
 }
 
 

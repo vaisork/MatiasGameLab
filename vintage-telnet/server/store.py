@@ -48,6 +48,12 @@ NPC_ACTION_LOGS_TABLE = """CREATE TABLE IF NOT EXISTS npc_action_logs (
     payload_json TEXT,
     created_at TEXT NOT NULL)"""
 
+# Issue #336: GAMEPLAY.md 38 -- estado de zonas de fauna mayor C4.
+MAJOR_FAUNA_STATES_TABLE = """CREATE TABLE IF NOT EXISTS major_fauna_states (
+    zone_id TEXT PRIMARY KEY,
+    last_defeated_epoch INTEGER NOT NULL,
+    last_defeated_at REAL NOT NULL)"""
+
 
 class UsernameTaken(Exception):
     pass
@@ -321,6 +327,7 @@ def initialize(path):
             }
             if "engaged" not in encounter_columns:
                 db.execute("ALTER TABLE room_encounters ADD COLUMN engaged INTEGER NOT NULL DEFAULT 1")
+        db.execute(MAJOR_FAUNA_STATES_TABLE)
         db.execute(f"PRAGMA user_version = {SCHEMA_VERSION}")
 
 
@@ -1314,3 +1321,34 @@ def list_npc_action_logs(path, player_id=None, npc_id=None, limit=20):
             }
             for r in rows
         ]
+
+
+def get_major_fauna_state(path, zone_id):
+    """Devuelve dict con el estado de la zona de fauna mayor o None."""
+    with connect(path) as db:
+        row = db.execute(
+            "SELECT zone_id, last_defeated_epoch, last_defeated_at FROM major_fauna_states WHERE zone_id = ?",
+            (zone_id,)
+        ).fetchone()
+        if not row:
+            return None
+        return {
+            "zone_id": row["zone_id"],
+            "last_defeated_epoch": row["last_defeated_epoch"],
+            "last_defeated_at": row["last_defeated_at"],
+        }
+
+
+def record_major_fauna_defeat(path, zone_id, epoch, defeated_at):
+    """Registra la derrota de una fauna mayor en una zona y epoch dada."""
+    with connect(path) as db:
+        db.execute("BEGIN IMMEDIATE")
+        db.execute(
+            """INSERT INTO major_fauna_states (zone_id, last_defeated_epoch, last_defeated_at)
+               VALUES (?, ?, ?)
+               ON CONFLICT(zone_id) DO UPDATE SET
+                   last_defeated_epoch = excluded.last_defeated_epoch,
+                   last_defeated_at = excluded.last_defeated_at""",
+            (zone_id, epoch, defeated_at)
+        )
+

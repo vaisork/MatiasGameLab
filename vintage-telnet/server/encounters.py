@@ -54,6 +54,11 @@ C3_THREAT_IDS = frozenset({
     "rasgacorteza",
 })
 
+# GAMEPLAY.md §38: fauna mayor C4. No entra en pools aleatorios ordinarios.
+C4_MAJOR_FAUNA_IDS = frozenset({
+    "cargallanura",
+})
+
 # EDRAN-01 (#207) y fauna regional aprobada en #314/#315/#317.
 # Las salas con chance 0%, reservadas, civiles o de transición no aparecen
 # en ningún pool; cada entrega conserva su tabla contractual en el issue.
@@ -227,6 +232,10 @@ def validate_pools(pools):
                 raise InvalidPoolConfig(
                     f"{pool_id}: amenaza C3 {creature_id!r} no puede entrar en pool C1 ordinario "
                     "(GAMEPLAY.md §40.5)")
+            if creature_id in C4_MAJOR_FAUNA_IDS:
+                raise InvalidPoolConfig(
+                    f"{pool_id}: fauna mayor C4 {creature_id!r} no puede entrar en pool C1 ordinario "
+                    "(GAMEPLAY.md §38.10)")
             if isinstance(weight, bool) or not isinstance(weight, (int, float)) or weight <= 0:
                 raise InvalidPoolConfig(f"{pool_id}: peso inválido para {creature_id!r}")
     return pools

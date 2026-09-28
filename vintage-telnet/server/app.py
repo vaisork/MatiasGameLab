@@ -12,7 +12,7 @@ from flask import (Flask, abort, g, jsonify, redirect, render_template, request,
                     session, url_for)
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from . import combat, content_parser, creatures, dm_auth, encounters, items, npc_dialogue, store, world
+from . import combat, content_parser, creatures, dm_auth, encounters, items, major_fauna, npc_dialogue, store, world
 
 # Issue #46 resuelto: el Narrador fijo la plaza central de Valdren como
 # punto de reaparicion tras morir (GAMEPLAY.md 20.9) y de recuperacion
@@ -275,6 +275,15 @@ def create_app(config=None):
                 view["npcs"] = [{"id": n["id"], "name": n["name"], "role": n.get("role", "habitante")} for n in npcs_present]
                 for n in npcs_present:
                     view["available_actions"].append({"action": "hablar", "targets": [n["name"].lower(), n["id"]]})
+
+        major_data = major_fauna.get_zone_view_data(room_id, db_path=path)
+        if major_data:
+            view["major_fauna"] = major_data
+            if major_data["ring"] == 3 and major_data["present"] and not view.get("in_combat"):
+                if not any(a.get("action") == "atacar" for a in view["available_actions"]):
+                    view["available_actions"].append({"action": "atacar", "targets": [major_data["species_id"], major_data["species_name"].lower()]})
+                if not any(a.get("action") == "observar" for a in view["available_actions"]):
+                    view["available_actions"].append({"action": "observar", "targets": [major_data["species_id"], major_data["species_name"].lower()]})
         return view
 
     # Intenciones canonicas: boton y comando escrito deben terminar en la misma
