@@ -14,6 +14,15 @@ from server import combat, store
 from legacy_schema import undo_v11
 
 
+class FixedRoll:
+    """RNG de prueba determinista: uniforme devuelve siempre valor fijo."""
+    def __init__(self, value):
+        self.value = value
+
+    def uniform(self, a, b):
+        return self.value
+
+
 # --- combat.py: reglas puras -------------------------------------------------
 
 class ProgressionMathTests(unittest.TestCase):
@@ -229,6 +238,143 @@ class ProgressionIntegrationTests(unittest.TestCase):
             clock = db.execute("SELECT fatigue_updated_at FROM players WHERE id = ?",
                                (self.player_id(),)).fetchone()[0]
         self.assertAlmostEqual(clock, time.time(), delta=5)
+
+    # --- LEVEL-UP-EVENT-01 (Issue #381 / #370 / GAMEPLAY §25.9) ---------------
+
+    def test_level_up_payload_1_to_2(self):
+        player_id = self.player_id()
+        xp_needed = combat.xp_for_next_level(1)
+        state = store.award_xp(self.path, player_id, xp_needed)
+        self.assertEqual(state["new_level"], 2)
+        self.assertEqual(state["level"], 2)
+        self.assertEqual(state["levels_gained"], 1)
+        self.assertEqual(state["pa_gained"], 2)
+        self.assertEqual(state["pp_gained"], 0)
+        self.assertEqual(state["xp_current"], 0)
+        self.assertEqual(state["xp_next"], combat.xp_for_next_level(2))
+
+    def test_level_up_payload_4_to_5(self):
+        player_id = self.player_id()
+        self.set_columns(level=4, xp=0)
+        xp_needed = combat.xp_for_next_level(4)
+        state = store.award_xp(self.path, player_id, xp_needed)
+        self.assertEqual(state["new_level"], 5)
+        self.assertEqual(state["level"], 5)
+        self.assertEqual(state["levels_gained"], 1)
+        self.assertEqual(state["pa_gained"], 2)
+        self.assertEqual(state["pp_gained"], 1)
+        self.assertEqual(state["xp_next"], combat.xp_for_next_level(5))
+
+    def test_surplus_xp_is_preserved(self):
+        player_id = self.player_id()
+        self.set_columns(level=1, xp=90)
+        state = store.award_xp(self.path, player_id, 30)
+        self.assertEqual(state["new_level"], 2)
+        self.assertEqual(state["xp_current"], 20)
+
+    def test_multiple_levels_in_single_award(self):
+        player_id = self.player_id()
+        xp_amount = combat.xp_for_next_level(1) + combat.xp_for_next_level(2) + 50
+        state = store.award_xp(self.path, player_id, xp_amount)
+        self.assertEqual(state["new_level"], 3)
+        self.assertEqual(state["levels_gained"], 2)
+        self.assertEqual(state["pa_gained"], 4)
+        self.assertEqual(state["xp_current"], 50)
+        self.assertEqual(state["xp_next"], combat.xp_for_next_level(3))
+
+    @patch("server.combat.random.Random")
+    def test_combat_victory_level_up_emits_structured_event(self, mock_random):
+        mock_random.return_value = FixedRoll(0)
+        threshold = combat.xp_for_next_level(1) - 1
+        self.set_columns(room="valdren_camino_parcela", xp=threshold, attr_destreza=50, attr_percepcion=50)
+        store.start_encounter(self.path, self.player_id(), "valdren_camino_parcela", "mordelinde", 1)
+        response = self.client.post("/api/intent", json={"text": "atacar", "csrf": self.csrf()})
+        self.assertEqual(response.status_code, 200)
+        data = response.get_json()
+        self.assertEqual(data["outcome"], "victory")
+        self.assertTrue(data["level_up"])
+        event = data["level_up_event"]
+        self.assertIsNotNone(event)
+        self.assertEqual(event["new_level"], 2)
+        self.assertEqual(event["level"], 2)
+        self.assertEqual(event["levels_gained"], 1)
+        self.assertEqual(event["pa_gained"], 2)
+        self.assertEqual(event["pp_gained"], 0)
+        self.assertEqual(event["xp_next"], combat.xp_for_next_level(2))
+        self.assertIn("¡SUBISTE A NIVEL 2!", event["message"])
+
+    def test_discovery_level_up_emits_structured_event(self):
+        threshold = combat.xp_for_next_level(1) - 1
+        self.set_columns(room="valdren_camino_lindero", xp=threshold)
+        response = self.client.post("/api/intent", json={"text": "examinar huellas", "csrf": self.csrf()})
+        self.assertEqual(response.status_code, 200)
+        data = response.get_json()
+        self.assertTrue(data["accepted"])
+        self.assertTrue(data["level_up"])
+        event = data["level_up_event"]
+        self.assertIsNotNone(event)
+        self.assertEqual(event["new_level"], 2)
+        self.assertEqual(event["pa_gained"], 2)
+        self.assertEqual(event["xp_next"], combat.xp_for_next_level(2))
+
+    @patch("server.combat.random.Random")
+    def test_subsequent_defeat_preserves_progression(self, mock_random):
+        mock_random.return_value = FixedRoll(0)
+        store.award_xp(self.path, self.player_id(), combat.xp_for_next_level(1))
+        char = self.character()
+        self.assertEqual(char["level"], 2)
+        self.assertEqual(char["pa_unspent"], 2)
+
+        self.set_columns(room="valdren_camino_parcela", hp_current=1)
+        store.start_encounter(self.path, self.player_id(), "valdren_camino_parcela", "mordelinde", 100)
+        mock_random.return_value = FixedRoll(0)
+        res = self.client.post("/attack", data={"csrf": self.csrf()})
+        self.assertEqual(res.status_code, 200)
+
+        player = self.client.get("/api/me").json["player"]
+        self.assertEqual(player["room"], "valdren_centro")
+        self.assertEqual(player["level"], 2)
+        self.assertEqual(player["pa_unspent"], 2)
+
+    def test_reconnect_and_get_does_not_reemit_level_up(self):
+        store.award_xp(self.path, self.player_id(), combat.xp_for_next_level(1))
+        res = self.client.get("/")
+        self.assertEqual(res.status_code, 200)
+
+        res_me = self.client.get("/api/me")
+        data_me = res_me.get_json()
+        self.assertNotIn("level_up_event", data_me)
+        self.assertFalse(data_me.get("level_up", False))
+
+        res_room = self.client.get("/api/room")
+        data_room = res_room.get_json()
+        self.assertNotIn("level_up_event", data_room)
+        self.assertFalse(data_room.get("level_up", False))
+
+    def test_actions_without_xp_do_not_emit_level_up(self):
+        res = self.client.post("/api/intent", json={"text": "mirar", "csrf": self.csrf()})
+        data = res.get_json()
+        self.assertFalse(data.get("level_up", False))
+        self.assertIsNone(data.get("level_up_event"))
+
+        res2 = self.client.post("/api/intent", json={"text": "descansar", "csrf": self.csrf()})
+        data2 = res2.get_json()
+        self.assertFalse(data2.get("level_up", False))
+        self.assertIsNone(data2.get("level_up_event"))
+
+    def test_frontend_can_consume_structured_event_without_parsing_log(self):
+        threshold = combat.xp_for_next_level(1) - 1
+        self.set_columns(room="valdren_camino_lindero", xp=threshold)
+        response = self.client.post("/api/intent", json={"text": "examinar huellas", "csrf": self.csrf()})
+        data = response.get_json()
+        event = data["level_up_event"]
+        self.assertIsInstance(event["new_level"], int)
+        self.assertIsInstance(event["levels_gained"], int)
+        self.assertIsInstance(event["pa_gained"], int)
+        self.assertIsInstance(event["pp_gained"], int)
+        self.assertIsInstance(event["xp_current"], int)
+        self.assertIsInstance(event["xp_next"], int)
+        self.assertIsInstance(event["message"], str)
 
 
 class SchemaV8MigrationTests(unittest.TestCase):
