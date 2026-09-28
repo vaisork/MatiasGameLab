@@ -532,7 +532,7 @@ class PilotIntegrationTests(unittest.TestCase):
         with store.connect(self.path) as db:
             db.execute("UPDATE players SET hp_current = 50, fatigue = 80 WHERE id = ?", (player_id,))
         page = self.post("/command", dict(text="descansar")).get_data(as_text=True)
-        self.assertIn("Descansas un momento", page)
+        self.assertIn("Descansas y recuperas 10 HP", page)
         character = self.character()
         self.assertEqual(character["hp_current"], 60)  # +10% de 100 de HP máximo.
         self.assertEqual(character["fatigue"], 55)  # 80 - (25 + 0.2*(10-10)).
