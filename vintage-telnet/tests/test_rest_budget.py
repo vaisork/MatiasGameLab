@@ -51,85 +51,119 @@ class RestBudgetIntegrationTests(unittest.TestCase):
     def raw(self):
         with store.connect(self.path) as db:
             return dict(db.execute(
-                """SELECT hp_current, hp_max, fatigue, wound, field_rest_healed
+                """SELECT hp_current, hp_max, fatigue, wound,
+                          field_rest_budget_max, field_rest_healed
                    FROM players WHERE id = ?""", (self.player_id,)).fetchone())
 
-    def test_schema_v13_persists_rest_budget_column(self):
+    def test_schema_v13_persists_rest_cycle_columns(self):
         with store.connect(self.path) as db:
             self.assertEqual(db.execute("PRAGMA user_version").fetchone()[0], 13)
             columns = {row["name"] for row in db.execute("PRAGMA table_info(players)").fetchall()}
+        self.assertIn("field_rest_budget_max", columns)
         self.assertIn("field_rest_healed", columns)
-        self.assertEqual(self.raw()["field_rest_healed"], 0)
+        state = self.raw()
+        self.assertIsNone(state["field_rest_budget_max"])
+        self.assertEqual(state["field_rest_healed"], 0)
 
-    def test_three_full_rests_exhaust_30_percent_budget(self):
+    def test_budget_is_30_percent_of_missing_hp_at_cycle_start(self):
         self.set_state(hp_current=60, hp_max=100, fatigue=100, wound="ninguna",
-                       field_rest_healed=0)
-        results = [store.apply_field_rest(self.path, self.player_id) for _ in range(4)]
-        self.assertEqual([round(r["healed"]) for r in results], [10, 10, 10, 0])
-        state = self.raw()
-        self.assertEqual(state["hp_current"], 90)
-        self.assertEqual(state["field_rest_healed"], 30)
-
-    def test_partial_heal_consumes_only_actual_hp(self):
-        self.set_state(hp_current=75, hp_max=100, fatigue=100, wound="ninguna",
-                       field_rest_healed=0)
+                       field_rest_budget_max=None, field_rest_healed=0)
         results = [store.apply_field_rest(self.path, self.player_id) for _ in range(3)]
-        self.assertEqual([round(r["healed"]) for r in results], [10, 10, 5])
+        self.assertEqual([r["healed"] for r in results], [10, 2, 0])
         state = self.raw()
-        self.assertEqual(state["hp_current"], 100)
-        self.assertEqual(state["field_rest_healed"], 25)
-        self.assertEqual(round(results[-1]["budget_remaining"]), 5)
+        self.assertEqual(state["hp_current"], 72)
+        self.assertEqual(state["field_rest_budget_max"], 12)
+        self.assertEqual(state["field_rest_healed"], 12)
 
-    def test_damage_movement_restart_and_level_up_do_not_reset_budget(self):
+    def test_75_hp_fixes_budget_at_7_point_5(self):
+        self.set_state(hp_current=75, hp_max=100, fatigue=100, wound="ninguna",
+                       field_rest_budget_max=None, field_rest_healed=0)
+        first = store.apply_field_rest(self.path, self.player_id)
+        second = store.apply_field_rest(self.path, self.player_id)
+        self.assertEqual(first["healed"], 7.5)
+        self.assertEqual(second["healed"], 0)
+        state = self.raw()
+        self.assertEqual(state["hp_current"], 82.5)
+        self.assertEqual(state["field_rest_budget_max"], 7.5)
+        self.assertEqual(state["field_rest_healed"], 7.5)
+
+    def test_damage_movement_restart_and_level_up_do_not_reset_or_expand_budget(self):
         self.set_state(hp_current=60, hp_max=100, fatigue=0, wound="ninguna",
-                       field_rest_healed=0)
+                       field_rest_budget_max=None, field_rest_healed=0)
         store.apply_field_rest(self.path, self.player_id)
-        store.update_combat_state(self.path, self.player_id, hp_current=50)
+        first = self.raw()
+        self.assertEqual(first["field_rest_budget_max"], 12)
+        self.assertEqual(first["field_rest_healed"], 10)
+
+        # Daño posterior aumenta el HP faltante pero no puede ampliar el ciclo.
+        store.update_combat_state(self.path, self.player_id, hp_current=40)
         store.move_player(self.path, self.player_id, "valdren_centro")
         store.award_xp(self.path, self.player_id, combat.xp_for_next_level(1))
-        self.assertEqual(self.raw()["field_rest_healed"], 10)
+        after_level = self.raw()
+        self.assertEqual(after_level["field_rest_budget_max"], 12)
+        self.assertEqual(after_level["field_rest_healed"], 10)
 
-        # Reinicializar la app sobre el mismo DATA_DIR simula restart; la
-        # migración no debe tocar el contador ya persistido.
+        # Reinicializar la app sobre el mismo DATA_DIR simula restart.
         restarted = create_app(self.config)
         self.assertEqual(restarted.config["DATABASE"], self.path)
-        self.assertEqual(self.raw()["field_rest_healed"], 10)
+        after_restart = self.raw()
+        self.assertEqual(after_restart["field_rest_budget_max"], 12)
+        self.assertEqual(after_restart["field_rest_healed"], 10)
 
-    def test_wound_caps_do_not_burn_blocked_budget(self):
+    def test_wound_caps_consume_only_hp_really_restored(self):
         self.set_state(hp_current=84, hp_max=100, fatigue=0, wound="moderada",
-                       field_rest_healed=0)
+                       field_rest_budget_max=None, field_rest_healed=0)
         moderate = store.apply_field_rest(self.path, self.player_id)
         self.assertEqual(moderate["hp_current"], 85)
         self.assertEqual(moderate["healed"], 1)
-        self.assertEqual(self.raw()["field_rest_healed"], 1)
+        state = self.raw()
+        self.assertEqual(state["field_rest_budget_max"], 4.8)
+        self.assertEqual(state["field_rest_healed"], 1)
 
+        # Nuevo ciclo simulado para el caso grave.
         self.set_state(hp_current=64, hp_max=100, fatigue=0, wound="grave",
-                       field_rest_healed=0)
+                       field_rest_budget_max=None, field_rest_healed=0)
         grave = store.apply_field_rest(self.path, self.player_id)
         self.assertEqual(grave["hp_current"], 65)
         self.assertEqual(grave["healed"], 1)
-        self.assertEqual(self.raw()["field_rest_healed"], 1)
+        state = self.raw()
+        self.assertAlmostEqual(state["field_rest_budget_max"], 10.8)
+        self.assertEqual(state["field_rest_healed"], 1)
+
+    def test_wound_that_blocks_healing_does_not_start_cycle(self):
+        self.set_state(hp_current=90, hp_max=100, fatigue=50, wound="moderada",
+                       field_rest_budget_max=None, field_rest_healed=0)
+        result = store.apply_field_rest(self.path, self.player_id)
+        self.assertEqual(result["healed"], 0)
+        state = self.raw()
+        self.assertIsNone(state["field_rest_budget_max"])
+        self.assertEqual(state["field_rest_healed"], 0)
+        self.assertLess(state["fatigue"], 50)
 
     def test_exhausted_budget_still_reduces_fatigue(self):
         self.set_state(hp_current=50, hp_max=100, fatigue=80, wound="ninguna",
-                       field_rest_healed=30)
+                       field_rest_budget_max=12, field_rest_healed=12)
         result = store.apply_field_rest(self.path, self.player_id)
         self.assertEqual(result["healed"], 0)
         self.assertEqual(result["hp_current"], 50)
         self.assertEqual(result["fatigue"], 55)
-        self.assertEqual(self.raw()["field_rest_healed"], 30)
+        state = self.raw()
+        self.assertEqual(state["field_rest_budget_max"], 12)
+        self.assertEqual(state["field_rest_healed"], 12)
 
-    def test_full_hp_does_not_consume_budget(self):
+    def test_full_hp_does_not_start_cycle_or_consume_budget(self):
         self.set_state(hp_current=100, hp_max=100, fatigue=30, wound="ninguna",
-                       field_rest_healed=10)
+                       field_rest_budget_max=None, field_rest_healed=0)
         result = store.apply_field_rest(self.path, self.player_id)
         self.assertEqual(result["healed"], 0)
         self.assertEqual(result["fatigue"], 5)
-        self.assertEqual(self.raw()["field_rest_healed"], 10)
+        state = self.raw()
+        self.assertIsNone(state["field_rest_budget_max"])
+        self.assertEqual(state["field_rest_healed"], 0)
 
-    def test_double_requests_cannot_exceed_budget(self):
+    def test_double_requests_cannot_exceed_fixed_cycle_budget(self):
         self.set_state(hp_current=60, hp_max=100, fatigue=100, wound="ninguna",
-                       field_rest_healed=0)
+                       field_rest_budget_max=None, field_rest_healed=0)
 
         def rest_once(_):
             return store.apply_field_rest(self.path, self.player_id)["healed"]
@@ -137,10 +171,11 @@ class RestBudgetIntegrationTests(unittest.TestCase):
         with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:
             healed = list(pool.map(rest_once, range(4)))
 
-        self.assertEqual(round(sum(healed)), 30)
+        self.assertEqual(sum(healed), 12)
         state = self.raw()
-        self.assertEqual(state["hp_current"], 90)
-        self.assertEqual(state["field_rest_healed"], 30)
+        self.assertEqual(state["hp_current"], 72)
+        self.assertEqual(state["field_rest_budget_max"], 12)
+        self.assertEqual(state["field_rest_healed"], 12)
 
 
 if __name__ == "__main__":
