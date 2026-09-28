@@ -108,6 +108,7 @@ ROOM_VISUAL_CONTEXT_OVERRIDES = {
     "valdren_campo_rastrojo": "zone.edran.valdren_outskirts",
     "valdren_zanja_vieja": "zone.edran.valdren_outskirts",
     "valdren_parcelas_exteriores": "zone.edran.valdren_outskirts",
+    "valdren_pastos_altos": "zone.edran.valdren_outskirts",
     "valdren_arbol_descanso": "zone.edran.valdren_outskirts",
     "valdren_campos_sin_cerca": "zone.edran.valdren_outskirts",
     "valdren_vado_menor": "zone.edran.valdren_outskirts",
@@ -347,6 +348,20 @@ ROUTE_A_BLOCK_1 = {
     },
 }
 ROOMS.update(ROUTE_A_BLOCK_1)
+
+# Ramal opcional de Edran para la prueba de amenaza regional superior (Cornalomo,
+# Issue #213 / DEATH-01). Claramente fuera del recorrido obligatorio a Vaisgard;
+# sale al este desde el Cruce de las cercas hacia campos altos.
+ROOMS["valdren_pastos_altos"] = {
+    "name": "Pastos altos",
+    "description": (
+        "El terreno asciende hacia una zona de pasto áspero y matorral fuera de las "
+        "parcelas de labor. Cercas partidas a gran altura, árboles jóvenes con la "
+        "corteza raspada y huellas hondas en la tierra húmeda marcan el paso de "
+        "una bestia pesada. No se oye fauna menor."
+    ),
+    "exits": {"west": "valdren_cruce_cercas"},
+}
 
 # Salas marcadas como "hábitat dinámico" en NARRATIVE_ROUTES.md. Solo dicen
 # DÓNDE puede aparecer fauna aleatoria (encounters.py, Issue #160); QUÉ
@@ -622,6 +637,9 @@ ROOMS["valdren_parcelas_exteriores"]["exits"] = {}
 link("valdren_cruce_cercas",
      next(d for d in ("south", "west", "north", "east") if d not in ROOMS["valdren_cruce_cercas"]["exits"]),
      "valdren_parcelas_exteriores")
+# Ramal opcional a Pastos altos (Cornalomo, #213 / DEATH-01).
+ROOMS["valdren_pastos_altos"]["exits"] = {}
+link("valdren_cruce_cercas", "east", "valdren_pastos_altos")
 
 ROOM_VISUAL_CONTEXT_OVERRIDES.update({
     # Primer tramo de cada camino, todavía pegado a su pueblo.
@@ -686,6 +704,15 @@ ROOM_EXAMINE_TARGETS["valdren_zanja_vieja"] = {
     "zanja": 'Comparas los arreglos de la zanja: piedra en un tramo, tierra apisonada en otro, madera más adelante. Este camino se ha cuidado en épocas distintas.',
     "arreglos": 'Comparas los arreglos de la zanja: piedra en un tramo, tierra apisonada en otro, madera más adelante. Este camino se ha cuidado en épocas distintas.',
 }
+ROOM_EXAMINE_TARGETS["valdren_pastos_altos"] = {
+    "cerca": "Los postes gruesos están quebrados hacia afuera a una altura considerable. Nada de lo que vive cerca del pueblo tiene esta fuerza.",
+    "cercas": "Los postes gruesos están quebrados hacia afuera a una altura considerable. Nada de lo que vive cerca del pueblo tiene esta fuerza.",
+    "huellas": "Depresiones muy anchas y profundas en la tierra blanda, con marcas de pezuñas grandes.",
+    "huella": "Depresiones muy anchas y profundas en la tierra blanda, con marcas de pezuñas grandes.",
+    "arboles": "La corteza de los troncos jóvenes fue raspada y arrancada a golpes o frotada con violencia.",
+    "arbol": "La corteza de los troncos jóvenes fue raspada y arrancada a golpes o frotada con violencia.",
+    "pasto": "El pasto áspero está aplastado por el paso de un animal ancho y muy pesado.",
+}
 
 # Encuentro posible por sala (id de vintage-telnet/server/creatures.py). El
 # jugador decide si combate, evalua o sigue de largo -- la criatura nunca
@@ -693,6 +720,8 @@ ROOM_EXAMINE_TARGETS["valdren_zanja_vieja"] = {
 ROOM_ENCOUNTER = {
     "valdren_camino_parcela": "mordelinde",
     "valdren_camino_cerca": "espinajo_rastrojo",
+    "valdren_pastos_altos": "cornalomo",
+    "alto_terrazas": "unapiedra",
 }
 
 # Descubrimientos de la microaventura (GAMEPLAY.md 22.7). nivel_referencia
@@ -787,12 +816,69 @@ CLASSES = [
 CLASS_IDS = tuple(c["id"] for c in CLASSES)
 
 
+# VT-SERVER: HOME-CORE (Issue #280 / Issue #114 / GAMEPLAY.md §34)
+# Hogar personal persistente mínimo: base propia dinámica por personaje sin inflar ROOMS.
+HOME_ROOM_NAME = "Tu hogar"
+HOME_ROOM_DESCRIPTION = (
+    "Este es tu hogar. Aquí comienza tu viaje y aquí conservas un lugar propio "
+    "dentro del mundo. La salida conduce hacia tu comunidad."
+)
+HOME_EXIT_DIRECTION = "south"
+
+_HOME_SPECIES_RESOLVER = None
+
+
+def set_home_species_resolver(resolver):
+    global _HOME_SPECIES_RESOLVER
+    _HOME_SPECIES_RESOLVER = resolver
+
+
+def get_home_room_id(player_id, species=None):
+    if not player_id:
+        raise ValueError("player_id es obligatorio para el hogar personal.")
+    return f"home:{player_id}"
+
+
+def is_home_room(room_id):
+    return isinstance(room_id, str) and room_id.startswith("home:")
+
+
+def parse_home_player_id(room_id):
+    if is_home_room(room_id):
+        return room_id.split("home:", 1)[1]
+    return None
+
+
 def get_room(room_id):
-    return ROOMS.get(room_id)
+    room = ROOMS.get(room_id)
+    if room is not None:
+        return room
+    if is_home_room(room_id):
+        player_id = parse_home_player_id(room_id)
+        species = None
+        if _HOME_SPECIES_RESOLVER and player_id:
+            try:
+                species = _HOME_SPECIES_RESOLVER(player_id)
+            except Exception:
+                species = None
+        if not species or species not in STARTING_ROOM_BY_SPECIES:
+            species = "humano"
+        town_room = get_starting_room_for_species(species)
+        return {
+            "id": room_id,
+            "name": HOME_ROOM_NAME,
+            "description": HOME_ROOM_DESCRIPTION,
+            "exits": {HOME_EXIT_DIRECTION: town_room},
+            "is_home": True,
+            "owner_player_id": player_id,
+            "species": species,
+        }
+    return None
 
 
 def get_starting_room_for_species(species_id):
     return STARTING_ROOM_BY_SPECIES.get(species_id, "vaisgard")
+
 
 
 def get_examine_text(room_id, normalized_target):

@@ -5,6 +5,8 @@ import re
 import tempfile
 import unittest
 
+from unittest.mock import patch
+
 from server.app import create_app
 from server import store
 
@@ -19,9 +21,13 @@ class ScreenStabilityTests(unittest.TestCase):
         store.set_status(self.app.config["DATABASE"], "matias", "approved")
         self.post("/species", dict(species="humano"))
         self.post("/class", dict(player_class="sombra"))
+        self.post("/move", dict(direction="south"))
 
     def tearDown(self):
-        self.temp.cleanup()
+        try:
+            self.temp.cleanup()
+        except PermissionError:
+            pass
 
     def post(self, route, data):
         page = self.client.get("/").get_data(as_text=True)
@@ -40,10 +46,11 @@ class ScreenStabilityTests(unittest.TestCase):
         self.assertIn('<figure class="location-art" data-swap="art"', html)
         self.assertIn('fetchpriority="high"', html)
         self.assertNotIn('loading="lazy" decoding="async">\n          <div class="location-art-fallback"', html)
-        self.post("/move", dict(direction="north"))  # sendero: sin arte aprobado
+        with patch("server.encounters.get_encounter_for_room", return_value=None):
+            self.post("/move", dict(direction="north"))  # sendero: sin arte aprobado ni encuentro
         html = self.client.get("/").get_data(as_text=True)
         self.assertIn('<figure class="location-art no-art" data-swap="art"', html)
-        self.assertIn('<div class="art-placeholder" aria-hidden="true"></div>', html)
+        self.assertIn('<div class="art-neutral" aria-hidden="true"></div>', html)
 
     def test_text_reveal_reserves_full_height(self):
         html = self.client.get("/").get_data(as_text=True)

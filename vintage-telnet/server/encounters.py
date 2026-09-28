@@ -19,8 +19,8 @@ Reglas aprobadas: `GAMEPLAY.md` §33 y `RANDOM_ENCOUNTER_GAMEPLAY.md`.
     el pool debe declarar `"gameplay_override": True` (aprobación explícita
     de Jugabilidad).
   - Qué salas son elegibles y qué criaturas viven ahí lo entregan
-    Historia/Narrativa (§8, Issue #166). Hasta recibir ese mapeo, `RANDOM_ENCOUNTER_POOLS`
-    **sigue vacío** y el juego se comporta exactamente como antes (§10).
+    Historia/Narrativa (§8, Issue #166). `RANDOM_ENCOUNTER_POOLS` activa
+    únicamente el mapeo EDRAN-01 aprobado en Issue #207.
 
 Formato de un pool:
 
@@ -44,7 +44,24 @@ DENSITY = {
 }
 ORDINARY_BAND = (0.10, 0.35)
 
-RANDOM_ENCOUNTER_POOLS = {}
+# EDRAN-01 — Issue #207. Las demás salas no pertenecen a ningún pool.
+RANDOM_ENCOUNTER_POOLS = {
+    "edran_01_borde_habitado": {
+        "rooms": {"valdren_sendero"},
+        "chance": DENSITY["borde_habitado"],
+        "creatures": [("mordelinde", 85), ("espinajo_rastrojo", 15)],
+    },
+    "edran_01_campos_transitados": {
+        "rooms": {"valdren_camino_hundido", "valdren_parcelas_exteriores"},
+        "chance": DENSITY["camino"],
+        "creatures": [("mordelinde", 75), ("espinajo_rastrojo", 25)],
+    },
+    "edran_01_campo_abierto": {
+        "rooms": {"valdren_campo_rastrojo", "valdren_campos_sin_cerca"},
+        "chance": DENSITY["silvestre"],
+        "creatures": [("mordelinde", 65), ("espinajo_rastrojo", 35)],
+    },
+}
 
 _rng = random.Random()
 

@@ -19,12 +19,12 @@ definitivo.
 
 `behavior_text` reformula sin inventar el comportamiento ya descrito en
 CREATURES.md ("corre en zigzag hacia agujeros o maleza" / "eriza las puas
-antes de atacar") para que Mordelinde y Espinajo se lean como criaturas
-distintas antes de que el jugador decida atacar/huir (VT-PSY-004).
+antes de atacar" / "resopla con pesadez") para que las criaturas se lean
+como distintas antes de que el jugador decida atacar/huir (VT-PSY-004).
 
-Cornalomo NO tiene entrada aqui: NARRATIVE.md exige pedir su tabla a
-Jugabilidad antes de montar combate real contra el, y no aparece como
-encuentro jugable en este piloto (solo como senales narrativas)."""
+Cornalomo (Issue #213 / DEATH-01): perfil v1 aprobado directamente por
+Jugabilidad en STARTER_CREATURE_BALANCE.md y DEATH_PLAYTEST.md como amenaza
+superior regional de Edran para la prueba de muerte y respawn."""
 
 CREATURES = {
     "mordelinde": {
@@ -50,6 +50,31 @@ CREATURES = {
         "flee_percepcion": 10,
         "behavior_text": ("Espinajo de rastrojo eriza las puas del lomo y se mantiene firme: "
                            "vigila su territorio y no huye con facilidad."),
+    },
+    "cornalomo": {
+        "name": "Cornalomo",
+        "family": "cornalomo",
+        "reference_level": 8,
+        "hp": 120,
+        "precision": 65,
+        "damage": 20,
+        "armor_reduction": 0.20,
+        "flee_agilidad": 8,
+        "flee_percepcion": 9,
+        "behavior_text": ("Cornalomo sacude la placa ósea de la frente y resopla con pesadez: "
+                           "no busca combate sin motivo, pero su masa y cuernos curvos dominan el terreno."),
+    },
+    "unapiedra": {
+        "name": "Uñapiedra",
+        "family": "unapiedra",
+        "reference_level": 1,
+        "hp": 30,
+        "precision": 45,
+        "damage": 5,
+        "flee_agilidad": 15,
+        "flee_percepcion": 12,
+        "behavior_text": ("Uñapiedra se aplasta contra la roca y busca una grieta o saliente cercana; "
+                           "si la acorralas, sisea y defiende el refugio con una mordida corta."),
     },
 }
 

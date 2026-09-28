@@ -12,7 +12,7 @@ from flask import (Flask, abort, g, jsonify, redirect, render_template, request,
                     session, url_for)
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from . import combat, creatures, dm_auth, encounters, items, store, world
+from . import combat, content_parser, creatures, dm_auth, encounters, items, npc_dialogue, store, world
 
 # Issue #46 resuelto: el Narrador fijo la plaza central de Valdren como
 # punto de reaparicion tras morir (GAMEPLAY.md 20.9) y de recuperacion
@@ -98,6 +98,7 @@ def create_app(config=None):
         raise RuntimeError("VT_DATA_DIR debe ser una ruta absoluta persistente.")
     path = str(Path(app.config["DATA_DIR"]) / "vintage.sqlite3")
     store.initialize(path)
+    world.set_home_species_resolver(lambda pid: store.get_player_species(path, pid))
     store.relocate_players_outside_world(path, set(world.ROOMS), world.get_starting_room_for_species)
     app.config["DATABASE"] = path
     dummy_hash = generate_password_hash(secrets.token_urlsafe(32))
@@ -259,6 +260,11 @@ def create_app(config=None):
         else:
             view["encounter"] = None
             view["available_actions"] = [{"action": "descansar"}]
+            npcs_present = npc_dialogue.get_registry().get_in_room(room_id)
+            if npcs_present:
+                view["npcs"] = [{"id": n["id"], "name": n["name"], "role": n.get("role", "habitante")} for n in npcs_present]
+                for n in npcs_present:
+                    view["available_actions"].append({"action": "hablar", "targets": [n["name"].lower(), n["id"]]})
         return view
 
     # Intenciones canonicas: boton y comando escrito deben terminar en la misma
@@ -268,6 +274,7 @@ def create_app(config=None):
         "sur": "south", "s": "south", "south": "south",
         "este": "east", "e": "east", "east": "east",
         "oeste": "west", "o": "west", "west": "west",
+        "salir": "salir", "salida": "salir", "out": "salir", "leave": "salir",
     }
     LOOK_ALIASES = {"mirar", "ver", "look"}
     INSPECT_ALIASES = {"observar", "examinar"}
@@ -322,8 +329,14 @@ def create_app(config=None):
                 return {"type": "evaluate", "target": text[len(prefix):].strip()}
         for prefix in TALK_PREFIXES:
             if lowered.startswith(prefix):
-                target = text[len(prefix):].strip()
-                return {"type": "talk_npc", "target": target} if target else {"type": "invalid"}
+                target_raw = text[len(prefix):].strip()
+                if not target_raw:
+                    return {"type": "invalid"}
+                parts = target_raw.split(None, 1)
+                candidate = parts[0]
+                if len(parts) > 1 and npc_dialogue.get_registry().get(candidate) is not None:
+                    return {"type": "talk_npc", "target": candidate, "message": parts[1].strip()}
+                return {"type": "talk_npc", "target": target_raw, "message": ""}
         for prefix in EQUIP_PREFIXES:
             if lowered.startswith(prefix):
                 target = text[len(prefix):].strip()
@@ -349,12 +362,18 @@ def create_app(config=None):
         (VT-NAR-003), y otorga el hito de regreso si corresponde."""
         previous_room = player["room"]
         room = world.get_room(previous_room)
+        if direction in ("salir", "salida", "out", "leave"):
+            if world.is_home_room(previous_room):
+                direction = world.HOME_EXIT_DIRECTION
+            else:
+                return False, previous_room, None, "No puedes ir en esa dirección."
         destination = room["exits"].get(direction) if room else None
         if not destination:
             return False, previous_room, None, "No puedes ir en esa dirección."
         store.move_player(path, player["id"], destination, direction)
         store.mark_visited(path, player["id"], destination)
-        store.mark_route_traversed(path, player["id"], previous_room, destination)
+        if not world.is_home_room(previous_room) and not world.is_home_room(destination):
+            store.mark_route_traversed(path, player["id"], previous_room, destination)
         # Primero el encuentro fijo de la sala y, si no hay, la fauna
         # aleatoria de su pool (Issue #160). Solo se tira el dado si no hay
         # ya una pelea activa ni enfriamiento en esa sala.
@@ -490,8 +509,10 @@ def create_app(config=None):
             accuracy_penalty=accuracy_penalty, damage_multiplier=damage_multiplier)
         messages = []
         if player_hits:
+            player_damage = combat.apply_armor_reduction(player_damage, creature.get("armor_reduction", 0.0))
             messages.append(f"Golpeas a {creature['name']} por {round(player_damage)} de daño.")
         else:
+            player_damage = 0.0
             messages.append(f"Fallas tu ataque contra {creature['name']}.")
         creature_hp = encounter["hp_current"] - player_damage
 
@@ -818,11 +839,14 @@ def create_app(config=None):
         pueden terminar ambos con accepted=True."""
         if species_id not in world.SPECIES_IDS:
             return False, None, None, "Elige una especie de la lista."
-        room_id = world.get_starting_room_for_species(species_id)
+        # VT-SERVER: HOME-CORE (Issue #280 / GAMEPLAY.md §34)
+        # El personaje nuevo comienza en su hogar personal persistente.
+        room_id = world.get_home_room_id(player["id"])
         updated = store.set_species(path, player["id"], species_id, room_id)
         if not updated:
             return False, None, None, "Ya elegiste tu especie."
-        store.mark_visited(path, player["id"], room_id)
+        starting_town = world.get_starting_room_for_species(species_id)
+        store.mark_visited(path, player["id"], starting_town)
         return True, species_id, room_id, None
 
     def attempt_choose_class(player, class_id):
@@ -870,7 +894,35 @@ def create_app(config=None):
         room = None
         if g.player is not None and g.player["status"] == "approved" and g.player["room"]:
             room = room_view(g.player["room"], g.player["id"])
-        return render_template("entry.html", player=g.player, species_list=world.SPECIES, room=room)
+        onboarding_view = request.args.get("view", "welcome").strip().lower()
+        if onboarding_view not in ("welcome", "login", "register"):
+            onboarding_view = "welcome"
+        return render_template("entry.html", player=g.player, species_list=world.SPECIES, room=room,
+                               onboarding_view=onboarding_view)
+
+    @app.get("/mundo")
+    def world_reader():
+        capitulo = request.args.get("capitulo", "1").strip().lower()
+        if capitulo not in ("1", "2", "3", "4", "5", "todo"):
+            capitulo = "1"
+        content = content_parser.get_world_content()
+        return render_template(
+            "world.html",
+            world=content,
+            active_chapter=capitulo,
+            account=g.account,
+            player=g.player,
+        )
+
+    @app.get("/guia")
+    def guide_reader():
+        content = content_parser.get_guide_content()
+        return render_template(
+            "guide.html",
+            guide=content,
+            account=g.account,
+            player=g.player,
+        )
 
     @app.post("/register")
     def register():
@@ -1095,10 +1147,24 @@ def create_app(config=None):
             return render_template("entry.html", player=player_now, species_list=world.SPECIES,
                                    room=room_data, error=" ".join(result["messages"])), 200
         if intent["type"] == "talk_npc":
+            result = npc_dialogue.converse(
+                g.player,
+                intent["target"],
+                message=intent.get("message", ""),
+                room_id=g.player["room"],
+                db_path=path,
+            )
+            player_now = store.player_for_token(path, session.get("token"))
             room_data = room_view(g.player["room"], g.player["id"])
+            if not result.success:
+                return render_template(
+                    "entry.html", player=player_now, species_list=world.SPECIES, room=room_data,
+                    error=result.reason,
+                ), 200
+            dialogue_text = f"{result.npc_name}: «{result.text}»"
             return render_template(
-                "entry.html", player=g.player, species_list=world.SPECIES, room=room_data,
-                error="La conversación con NPC tiene contrato separado, pero todavía no hay NPC activo."
+                "entry.html", player=player_now, species_list=world.SPECIES, room=room_data,
+                error=dialogue_text,
             ), 200
         room_data = room_view(g.player["room"], g.player["id"])
         return render_template(
@@ -1141,7 +1207,8 @@ def create_app(config=None):
         if not accepted:
             return jsonify(accepted=False, reason=reason), 400
         updated_player = store.player_for_token(path, session.get("token"))
-        town = world.get_room(room_id)
+        starting_town_room = world.get_starting_room_for_species(species_id)
+        town = world.get_room(starting_town_room)
         return jsonify(
             accepted=True,
             species=species_id,
@@ -1309,17 +1376,95 @@ def create_app(config=None):
                 player=dict(player_now) if player_now else None,
             )
         if kind == "talk_npc":
+            result = npc_dialogue.converse(
+                g.player,
+                intent["target"],
+                message=intent.get("message", ""),
+                room_id=g.player["room"],
+                db_path=path,
+            )
+            if not result.success:
+                return jsonify(
+                    accepted=False,
+                    intent="talk_npc",
+                    npc=intent["target"],
+                    target=intent["target"],
+                    error=result.error,
+                    reason=result.reason,
+                ), 409
+            action_payload = (
+                {"action_type": result.proposed_action.action_type, "payload": result.proposed_action.payload}
+                if result.proposed_action else None
+            )
+            gate_payload = (
+                {
+                    "accepted": result.gate_result.accepted,
+                    "action_type": result.gate_result.action_type,
+                    "reason": result.gate_result.reason,
+                    "effect": result.gate_result.effect,
+                }
+                if result.gate_result else None
+            )
             return jsonify(
-                accepted=False,
+                accepted=True,
                 intent="talk_npc",
-                npc=intent["target"],
-                reason="No hay NPC activo para conversación todavía.",
-            ), 409
+                npc=result.npc_id,
+                npc_name=result.npc_name,
+                reply=result.text,
+                is_fallback=result.is_fallback,
+                proposed_action=action_payload,
+                gate_result=gate_payload,
+            ), 200
         return jsonify(
             accepted=False,
             intent=kind,
             reason="Comando no reconocido. Para chat usa: decir <texto>.",
         ), 400
+
+    @app.post("/api/talk")
+    def api_talk():
+        """Contrato estructurado para conversación con NPC (Issue #245)."""
+        error = api_player_state(g.player)
+        if error:
+            return error
+        data = request.get_json(silent=True) or request.form
+        target = (data.get("target") or data.get("npc") or "").strip()
+        message = (data.get("message") or data.get("text") or "").strip()
+        if not target:
+            return jsonify(accepted=False, error="target_required", reason="Debes indicar con quién deseas hablar."), 400
+        result = npc_dialogue.converse(g.player, target, message=message, room_id=g.player["room"], db_path=path)
+        if not result.success:
+            status_code = 404 if result.error in ("npc_not_found", "npc_not_present") else 400
+            return jsonify(
+                accepted=False,
+                intent="talk_npc",
+                target=target,
+                error=result.error,
+                reason=result.reason,
+            ), status_code
+        action_payload = (
+            {"action_type": result.proposed_action.action_type, "payload": result.proposed_action.payload}
+            if result.proposed_action else None
+        )
+        gate_payload = (
+            {
+                "accepted": result.gate_result.accepted,
+                "action_type": result.gate_result.action_type,
+                "reason": result.gate_result.reason,
+                "effect": result.gate_result.effect,
+            }
+            if result.gate_result else None
+        )
+        return jsonify(
+            accepted=True,
+            intent="talk_npc",
+            npc=result.npc_id,
+            npc_name=result.npc_name,
+            reply=result.text,
+            is_fallback=result.is_fallback,
+            proposed_action=action_payload,
+            gate_result=gate_payload,
+        ), 200
 
     @app.post("/api/move")
     def api_move():

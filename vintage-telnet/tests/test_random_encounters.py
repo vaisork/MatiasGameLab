@@ -5,7 +5,7 @@ import random
 import re
 import tempfile
 import unittest
-from unittest.mock import patch
+from unittest.mock import Mock, patch
 
 from server.app import create_app
 from server import encounters, store, world
@@ -33,10 +33,73 @@ class AlwaysRoll:
 
 
 class EngineTests(unittest.TestCase):
-    def test_production_config_is_valid_and_starts_empty(self):
-        # Hasta que Jugabilidad/Historiador definan pools, el juego no cambia.
+    # Contrato EDRAN-01 (#207), independiente de los perfiles del motor.
+    EDRAN_ROOMS = {
+        "valdren_sendero": (0.10, 85, 15),
+        "valdren_camino_hundido": (0.20, 75, 25),
+        "valdren_parcelas_exteriores": (0.20, 75, 25),
+        "valdren_campo_rastrojo": (0.30, 65, 35),
+        "valdren_campos_sin_cerca": (0.30, 65, 35),
+    }
+
+    def test_production_config_matches_edran_01(self):
         encounters.validate_pools(encounters.RANDOM_ENCOUNTER_POOLS)
-        self.assertEqual(encounters.RANDOM_ENCOUNTER_POOLS, {})
+        self.assertEqual(len(encounters.RANDOM_ENCOUNTER_POOLS), 3)
+        rooms = set().union(*(p["rooms"] for p in encounters.RANDOM_ENCOUNTER_POOLS.values()))
+        self.assertEqual(rooms, set(self.EDRAN_ROOMS))
+        for room, (chance, mordelinde, espinajo) in self.EDRAN_ROOMS.items():
+            with self.subTest(room=room):
+                pool = encounters.pool_for_room(room)
+                self.assertEqual(pool["chance"], chance)
+                self.assertEqual(pool["creatures"],
+                                 [("mordelinde", mordelinde), ("espinajo_rastrojo", espinajo)])
+                self.assertIsNone(world.get_room_encounter(room))
+
+    def test_edran_excludes_every_other_room_and_cornalomo(self):
+        for room in set(world.ROOMS) - self.EDRAN_ROOMS.keys():
+            with self.subTest(room=room):
+                self.assertIsNone(encounters.pool_for_room(room))
+                rng = Mock()
+                self.assertEqual(encounters.get_encounter_for_room(room, rng),
+                                 world.get_room_encounter(room))
+                self.assertEqual(rng.mock_calls, [])
+        for pool in encounters.RANDOM_ENCOUNTER_POOLS.values():
+            self.assertNotIn("cornalomo", [cid for cid, _ in pool["creatures"]])
+
+    def test_edran_chance_boundaries_and_exact_weights_reach_rng(self):
+        for room, (chance, mordelinde, espinajo) in self.EDRAN_ROOMS.items():
+            with self.subTest(room=room):
+                rng = Mock()
+                rng.random.return_value = chance - 0.000001
+                rng.choices.return_value = ["espinajo_rastrojo"]
+                self.assertEqual(encounters.get_encounter_for_room(room, rng), "espinajo_rastrojo")
+                rng.choices.assert_called_once_with(
+                    ["mordelinde", "espinajo_rastrojo"], weights=[mordelinde, espinajo], k=1)
+                rng.reset_mock()
+                rng.random.return_value = chance
+                self.assertIsNone(encounters.get_encounter_for_room(room, rng))
+                rng.choices.assert_not_called()
+
+    def test_scripted_encounter_preempts_an_active_edran_pool_without_rng(self):
+        rng = Mock()
+        with patch.dict(world.ROOM_ENCOUNTER, {"valdren_sendero": "espinajo_rastrojo"}):
+            self.assertEqual(encounters.get_encounter_for_room("valdren_sendero", rng),
+                             "espinajo_rastrojo")
+        self.assertEqual(rng.mock_calls, [])
+
+    def test_edran_distribution_is_reproducible_with_injected_rng(self):
+        for room, (chance, mordelinde, _) in self.EDRAN_ROOMS.items():
+            with self.subTest(room=room):
+                def sample():
+                    rng = random.Random(207)
+                    return [encounters.get_encounter_for_room(room, rng) for _ in range(10000)]
+                results = sample()
+                self.assertEqual(results, sample())
+                hits = [creature for creature in results if creature is not None]
+                self.assertEqual(set(hits), {"mordelinde", "espinajo_rastrojo"})
+                self.assertAlmostEqual(len(hits) / len(results), chance, delta=0.015)
+                self.assertAlmostEqual(hits.count("mordelinde") / len(hits),
+                                       mordelinde / 100, delta=0.04)
 
     def test_fixed_encounter_wins_over_random_pool(self):
         for value in (0.0, 0.99):
@@ -117,9 +180,10 @@ class MoveIntegrationTests(unittest.TestCase):
         self.path = self.app.config["DATABASE"]
         self.post("/register", dict(username="matias", name="Matías", password="una clave de prueba"))
         store.set_status(self.path, "matias", "approved")
-        self.post("/species", dict(species="humano"))  # valdren_centro
+        self.post("/species", dict(species="humano"))
         self.player_id = self.client.get("/api/me").json["player"]["id"]
         store.set_player_class(self.path, self.player_id, "juramentado")
+        self.post("/move", dict(direction="south"))  # salir del hogar al centro de Valdren
 
     def tearDown(self):
         self.temp.cleanup()
@@ -133,22 +197,20 @@ class MoveIntegrationTests(unittest.TestCase):
         return store.get_encounter(self.path, self.player_id, room_id)
 
     def test_entering_eligible_room_starts_random_encounter(self):
-        pools = {"p": {**ROAD_POOL["prueba_camino"], "chance": 1.0}}
-        with patch.object(encounters, "RANDOM_ENCOUNTER_POOLS", pools), \
-                patch.object(encounters, "_rng", AlwaysRoll(0.0, pick=1)):
+        with patch.object(encounters, "_rng", AlwaysRoll(0.0, pick=1)):
             self.post("/move", dict(direction="north"))
         self.assertEqual(self.client.get("/api/me").json["player"]["room"], "valdren_sendero")
         self.assertEqual(self.encounter("valdren_sendero")["creature_id"], "espinajo_rastrojo")
         self.assertIn("Espinajo de rastrojo", self.client.get("/").get_data(as_text=True))
 
     def test_failed_roll_leaves_room_empty(self):
-        with patch.object(encounters, "RANDOM_ENCOUNTER_POOLS", ROAD_POOL), \
-                patch.object(encounters, "_rng", AlwaysRoll(0.9)):
+        with patch.object(encounters, "_rng", AlwaysRoll(0.10)):
             self.post("/move", dict(direction="north"))
         self.assertIsNone(self.encounter("valdren_sendero"))
 
     def test_no_pools_means_behavior_unchanged(self):
-        self.post("/move", dict(direction="north"))  # sendero
+        with patch.object(encounters, "RANDOM_ENCOUNTER_POOLS", {}):
+            self.post("/move", dict(direction="north"))  # sendero
         self.assertIsNone(self.encounter("valdren_sendero"))
         self.post("/move", dict(direction="north"))  # parcela: Mordelinde fija
         self.assertEqual(self.encounter("valdren_camino_parcela")["creature_id"], "mordelinde")

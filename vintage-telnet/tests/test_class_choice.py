@@ -11,7 +11,10 @@ import tempfile
 import unittest
 
 from server.app import create_app
-from legacy_schema import undo_v11
+try:
+    from legacy_schema import undo_v11
+except ImportError:
+    from tests.legacy_schema import undo_v11
 from server import items, store, world
 
 
@@ -25,7 +28,10 @@ class ClassChoiceTests(unittest.TestCase):
         self.path = self.app.config["DATABASE"]
 
     def tearDown(self):
-        self.temp.cleanup()
+        try:
+            self.temp.cleanup()
+        except PermissionError:
+            pass
 
     def csrf(self):
         page = self.client.get("/").get_data(as_text=True)
@@ -151,6 +157,7 @@ class ClassChoiceTests(unittest.TestCase):
         with sqlite3.connect(self.path) as db:
             undo_v11(db)
             db.execute("ALTER TABLE players DROP COLUMN player_class")
+            db.execute("UPDATE players SET room = 'brumak_centro' WHERE id = ?", (player_id,))
             db.execute("DROP TABLE combat_log")  # llega en v10
             db.execute("PRAGMA user_version = 8")
         app = create_app(self.config)

@@ -58,7 +58,7 @@ class RouteStructureTests(unittest.TestCase):
     def test_route_rooms_have_no_fixed_encounters_besides_el_lindero_roto(self):
         route_rooms = {r for chain, _ in world.ROUTE_CHAINS.values() for r in chain}
         self.assertEqual(route_rooms & set(world.ROOM_ENCOUNTER),
-                         {"valdren_camino_parcela", "valdren_camino_cerca"})
+                         {"valdren_camino_parcela", "valdren_camino_cerca", "alto_terrazas"})
 
     def test_route_text_is_spanish_with_accents(self):
         for letter, (chain, _letters) in world.ROUTE_CHAINS.items():
@@ -94,7 +94,10 @@ class RouteWalkTests(unittest.TestCase):
         self.path = self.app.config["DATABASE"]
 
     def tearDown(self):
-        self.temp.cleanup()
+        try:
+            self.temp.cleanup()
+        except PermissionError:
+            pass
 
     def csrf(self):
         return re.search(r'name="csrf" value="([^"]+)"', self.client.get("/").get_data(as_text=True))[1]
@@ -105,6 +108,7 @@ class RouteWalkTests(unittest.TestCase):
         store.set_status(self.path, "viajero", "approved")
         self.client.post("/species", data=dict(csrf=self.csrf(), species=species))
         self.client.post("/class", data=dict(csrf=self.csrf(), player_class="artifice"))
+        self.client.post("/move", data=dict(csrf=self.csrf(), direction="south"))
 
     def test_felaryn_walks_the_camino_alto_from_khariel_to_vaisgard(self):
         self.enter("felaryn")

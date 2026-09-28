@@ -8,7 +8,7 @@ import unittest
 from unittest.mock import patch
 
 from server.app import create_app
-from server import combat, creatures, store, world
+from server import combat, creatures, encounters, store, world
 
 
 class FixedRoll:
@@ -205,10 +205,17 @@ class CreatureCalibrationTests(unittest.TestCase):
     def test_espinajo_is_comparable_or_dangerous_for_a_new_character(self):
         self.assertIn(self._category_for("espinajo_rastrojo"), ("comparable", "peligroso"))
 
-    def test_cornalomo_has_no_playable_stats_yet(self):
-        # NARRATIVE.md: Desarrollo debe pedir la tabla de Cornalomo a
-        # Jugabilidad antes de montar combate real; no se inventa aqui.
-        self.assertIsNone(creatures.get_creature("cornalomo"))
+    def test_cornalomo_has_approved_playable_stats(self):
+        # Issue #213 / DEATH-01 / STARTER_CREATURE_BALANCE.md: Jugabilidad aprobó
+        # el perfil oficial de combate de Cornalomo.
+        cornalomo = creatures.get_creature("cornalomo")
+        self.assertIsNotNone(cornalomo)
+        self.assertEqual(cornalomo["reference_level"], 8)
+        self.assertEqual(cornalomo["hp"], 120)
+        self.assertEqual(cornalomo["precision"], 65)
+        self.assertEqual(cornalomo["damage"], 20)
+        self.assertEqual(cornalomo["armor_reduction"], 0.20)
+        self.assertEqual(cornalomo["family"], "cornalomo")
 
 
 # --- world.py: contenido y conectividad de la microaventura -----------------
@@ -283,8 +290,9 @@ class PilotIntegrationTests(unittest.TestCase):
         dm = self.app.test_client()
         self.post("/dm/login", dict(dm_password="dm-secret-value"), dm, csrf_path="/dm")
         self.post("/dm/approve", dict(username=username), dm, csrf_path="/dm")
-        self.post("/species", dict(species="humano"))  # arranca en valdren_centro
+        self.post("/species", dict(species="humano"))
         self.choose_class_without_starter_weapon()
+        self.post("/move", dict(direction="south"))  # salir del hogar al centro de Valdren
 
     def walk_to_lindero(self):
         self.post("/move", dict(direction="north"))  # sendero
@@ -469,9 +477,11 @@ class PilotIntegrationTests(unittest.TestCase):
     def test_fleeing_successfully_returns_toward_valdren_and_clears_encounter(self, mock_random):
         mock_random.return_value = FixedRoll(0)  # 0 < cualquier probabilidad de huida real: siempre escapa
         self.register_and_enter_world()
-        self.post("/move", dict(direction="north"))
-        self.post("/move", dict(direction="north"))  # parcela: Mordelinde
-        self.post("/command", dict(text="huir"))
+        with patch.object(encounters, "_rng") as encounter_rng:
+            encounter_rng.random.return_value = 0.10  # sendero queda libre al entrar y al huir
+            self.post("/move", dict(direction="north"))
+            self.post("/move", dict(direction="north"))  # parcela: Mordelinde
+            self.post("/command", dict(text="huir"))
         me = self.client.get("/api/me").json["player"]
         self.assertEqual(me["room"], "valdren_sendero")
         room = self.client.get("/api/room").json["room"]
@@ -512,7 +522,9 @@ class PilotIntegrationTests(unittest.TestCase):
     def test_resting_outside_combat_heals_and_reduces_fatigue(self):
         # Fuera de la sala segura (24.8: descanso de campo v1).
         self.register_and_enter_world()
-        self.post("/move", dict(direction="north"))  # valdren_sendero: no es SAFE_ROOM_ID
+        with patch.object(encounters, "_rng") as rng:
+            rng.random.return_value = 0.10  # falla el 10% del pool EDRAN-01
+            self.post("/move", dict(direction="north"))  # valdren_sendero: no es SAFE_ROOM_ID
         player_id = self.client.get("/api/me").json["player"]["id"]
         with store.connect(self.path) as db:
             db.execute("UPDATE players SET hp_current = 50, fatigue = 80 WHERE id = ?", (player_id,))

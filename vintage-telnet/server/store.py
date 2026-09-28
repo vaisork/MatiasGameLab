@@ -2,6 +2,7 @@
 from contextlib import contextmanager
 from datetime import datetime, timedelta, timezone
 import hashlib
+import json
 from pathlib import Path
 import secrets
 import sqlite3
@@ -15,12 +16,37 @@ STATUSES = ("pending", "approved", "rejected", "removed")
 
 # Version de esquema que deja initialize(); ops/inventory_migration_probe.py
 # la usa para validar una migracion de prueba contra la copia de la base viva.
-SCHEMA_VERSION = 11
+SCHEMA_VERSION = 12
 
 # Cuentas con varios personajes (petición de Javier, 2026-09-25): un usuario
 # para entrar puede tener hasta 5 personajes; el nombre de cada personaje es
 # único en todo el mundo y el Dungeon Master aprueba cada uno.
 MAX_CHARACTERS_PER_ACCOUNT = 5
+
+# v12: Issue #246 (GAMEPLAY.md 35) -- memoria conversacional acotada por
+# pareja jugador <-> NPC. Registra intervenciones recientes ('player' y 'npc'),
+# con poda determinista para evitar crecimiento ilimitado.
+NPC_MEMORIES_TABLE = """CREATE TABLE IF NOT EXISTS npc_memories (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    player_id TEXT NOT NULL REFERENCES players(id),
+    npc_id TEXT NOT NULL,
+    speaker TEXT NOT NULL CHECK(speaker IN ('player', 'npc')),
+    message TEXT NOT NULL,
+    created_at TEXT NOT NULL)"""
+
+DEFAULT_NPC_MEMORY_WINDOW = 5  # Últimos 5 turnos (hasta 10 mensajes)
+
+# v12: Issue #247 -- registro de auditoría de propuestas de acciones de NPCs
+# evaluadas por el gate autoritativo (aceptadas o rechazadas).
+NPC_ACTION_LOGS_TABLE = """CREATE TABLE IF NOT EXISTS npc_action_logs (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    player_id TEXT NOT NULL,
+    npc_id TEXT NOT NULL,
+    action_type TEXT NOT NULL,
+    accepted INTEGER NOT NULL CHECK(accepted IN (0, 1)),
+    reason TEXT NOT NULL,
+    payload_json TEXT,
+    created_at TEXT NOT NULL)"""
 
 
 class UsernameTaken(Exception):
@@ -267,6 +293,11 @@ def initialize(path):
             db.execute("CREATE INDEX combat_log_player_room ON combat_log(player_id, room_id, id)")
         if version <= 10:
             _migrate_to_accounts(db)
+        if version <= 11:
+            db.execute(NPC_MEMORIES_TABLE)
+            db.execute("CREATE INDEX IF NOT EXISTS npc_memories_player_npc ON npc_memories(player_id, npc_id, id)")
+            db.execute(NPC_ACTION_LOGS_TABLE)
+            db.execute("CREATE INDEX IF NOT EXISTS npc_action_logs_player_npc ON npc_action_logs(player_id, npc_id, id)")
         db.execute(f"PRAGMA user_version = {SCHEMA_VERSION}")
 
 
@@ -331,7 +362,7 @@ def relocate_players_outside_world(path, valid_rooms, fallback_room_for):
         rows = db.execute("SELECT id, species, room FROM players WHERE room IS NOT NULL").fetchall()
         moved = 0
         for row in rows:
-            if row["room"] in valid_rooms:
+            if row["room"] in valid_rooms or (isinstance(row["room"], str) and row["room"] == f"home:{row['id']}"):
                 continue
             db.execute("DELETE FROM room_encounters WHERE player_id = ? AND room_id = ?",
                        (row["id"], row["room"]))
@@ -537,6 +568,14 @@ def character_by_id(db, player_id):
     return db.execute(
         f"SELECT {CHARACTER_COLUMNS} FROM players WHERE id = ?", (player_id,)
     ).fetchone()
+
+
+def get_player_species(path, player_id):
+    """Obtiene la especie persistida de un personaje según su ID."""
+    with connect(path) as db:
+        row = db.execute("SELECT species FROM players WHERE id = ?", (player_id,)).fetchone()
+        return row["species"] if row else None
+
 
 
 def list_by_status(path, status):
@@ -1058,3 +1097,134 @@ def unequip_item(path, player_id, category):
     column = "equipped_weapon_id" if category == "weapon" else "equipped_armor_id"
     with connect(path) as db:
         db.execute(f"UPDATE players SET {column} = NULL WHERE id = ?", (player_id,))
+
+
+# ---------------------------------------------------------------------------
+# Memoria conversacional acotada por pareja jugador <-> NPC (Issue #246)
+# ---------------------------------------------------------------------------
+
+def record_npc_dialogue_exchange(
+    path,
+    player_id,
+    npc_id,
+    player_message,
+    npc_reply,
+    window_size=DEFAULT_NPC_MEMORY_WINDOW,
+):
+    """Registra atómicamente el intercambio conversacional entre jugador y NPC.
+
+    Aplica poda determinista FIFO para conservar únicamente los últimos
+    `window_size` intercambios (2 * window_size mensajes) de esa pareja.
+    """
+    now = datetime.now(timezone.utc).isoformat()
+    max_messages = max(2, int(window_size) * 2)
+    with connect(path) as db:
+        db.execute("BEGIN IMMEDIATE")
+        if player_message:
+            db.execute(
+                "INSERT INTO npc_memories(player_id, npc_id, speaker, message, created_at) VALUES (?, ?, 'player', ?, ?)",
+                (player_id, npc_id, str(player_message).strip(), now),
+            )
+        if npc_reply:
+            db.execute(
+                "INSERT INTO npc_memories(player_id, npc_id, speaker, message, created_at) VALUES (?, ?, 'npc', ?, ?)",
+                (player_id, npc_id, str(npc_reply).strip(), now),
+            )
+        # Poda determinista: conservar solo los últimos max_messages IDs de esta pareja
+        db.execute(
+            """DELETE FROM npc_memories
+               WHERE player_id = ? AND npc_id = ?
+                 AND id NOT IN (
+                     SELECT id FROM npc_memories
+                     WHERE player_id = ? AND npc_id = ?
+                     ORDER BY id DESC LIMIT ?
+                 )""",
+            (player_id, npc_id, player_id, npc_id, max_messages),
+        )
+
+
+def get_npc_memory(path, player_id, npc_id, window_size=DEFAULT_NPC_MEMORY_WINDOW):
+    """Recupera los mensajes recientes de la memoria conversacional entre
+    un jugador y un NPC, ordenados cronológicamente (más antiguo a más reciente)."""
+    max_messages = max(1, int(window_size) * 2)
+    with connect(path) as db:
+        rows = db.execute(
+            """SELECT speaker, message, created_at FROM (
+                   SELECT id, speaker, message, created_at
+                   FROM npc_memories
+                   WHERE player_id = ? AND npc_id = ?
+                   ORDER BY id DESC LIMIT ?
+               ) ORDER BY id ASC""",
+            (player_id, npc_id, max_messages),
+        ).fetchall()
+        return [{"speaker": r["speaker"], "message": r["message"], "created_at": r["created_at"]} for r in rows]
+
+
+def clear_npc_memory(path, player_id=None, npc_id=None):
+    """Elimina memoria conversacional para pruebas o reinicios controlados."""
+    with connect(path) as db:
+        db.execute("BEGIN IMMEDIATE")
+        if player_id and npc_id:
+            db.execute("DELETE FROM npc_memories WHERE player_id = ? AND npc_id = ?", (player_id, npc_id))
+        elif player_id:
+            db.execute("DELETE FROM npc_memories WHERE player_id = ?", (player_id,))
+        elif npc_id:
+            db.execute("DELETE FROM npc_memories WHERE npc_id = ?", (npc_id,))
+        else:
+            db.execute("DELETE FROM npc_memories")
+
+
+# ---------------------------------------------------------------------------
+# Auditoría de acciones propuestas por NPCs con Gate autoritativo (Issue #247)
+# ---------------------------------------------------------------------------
+
+def record_npc_action_gate_evaluation(
+    path,
+    player_id,
+    npc_id,
+    action_type,
+    accepted,
+    reason,
+    payload=None,
+):
+    """Registra en auditoría una propuesta de acción de NPC evaluada por el Gate."""
+    now = datetime.now(timezone.utc).isoformat()
+    payload_str = json.dumps(payload, ensure_ascii=False) if payload is not None else None
+    with connect(path) as db:
+        db.execute(
+            """INSERT INTO npc_action_logs(player_id, npc_id, action_type, accepted, reason, payload_json, created_at)
+               VALUES (?, ?, ?, ?, ?, ?, ?)""",
+            (player_id, npc_id, action_type, 1 if accepted else 0, reason, payload_str, now),
+        )
+
+
+def list_npc_action_logs(path, player_id=None, npc_id=None, limit=20):
+    """Consulta el registro de auditoría de acciones propuestas por NPCs."""
+    with connect(path) as db:
+        query = "SELECT id, player_id, npc_id, action_type, accepted, reason, payload_json, created_at FROM npc_action_logs"
+        params = []
+        conditions = []
+        if player_id:
+            conditions.append("player_id = ?")
+            params.append(player_id)
+        if npc_id:
+            conditions.append("npc_id = ?")
+            params.append(npc_id)
+        if conditions:
+            query += " WHERE " + " AND ".join(conditions)
+        query += " ORDER BY id DESC LIMIT ?"
+        params.append(limit)
+        rows = db.execute(query, params).fetchall()
+        return [
+            {
+                "id": r["id"],
+                "player_id": r["player_id"],
+                "npc_id": r["npc_id"],
+                "action_type": r["action_type"],
+                "accepted": bool(r["accepted"]),
+                "reason": r["reason"],
+                "payload_json": r["payload_json"],
+                "created_at": r["created_at"],
+            }
+            for r in rows
+        ]
