@@ -72,7 +72,7 @@ class EconomyCoreCatalogAndMathTests(unittest.TestCase):
 class EconomyMigrationAndPersistenceTests(unittest.TestCase):
     """Pruebas de migración de esquema v14 a v18 y persistencia del ledger."""
 
-    def test_migration_v14_to_v18_adds_all_tables_and_preserves_player_data(self):
+    def test_migration_v14_to_current_adds_all_tables_and_preserves_player_data(self):
         with tempfile.TemporaryDirectory() as td:
             db_path = str(Path(td) / "test.db")
             # 1. Crear base en v14 con un jugador existente
@@ -94,7 +94,7 @@ class EconomyMigrationAndPersistenceTests(unittest.TestCase):
 
             # 3. Validar tablas, columnas y datos preservados.
             with store.connect(db_path) as db:
-                self.assertEqual(db.execute("PRAGMA user_version").fetchone()[0], 19)
+                self.assertEqual(db.execute("PRAGMA user_version").fetchone()[0], 20)
                 encounter_cols = {row["name"] for row in db.execute("PRAGMA table_info(room_encounters)")}
                 self.assertTrue({"engaged", "signature_cooldown", "apertura", "prepared_action"} <= encounter_cols)
                 self.assertTrue(db.execute("SELECT 1 FROM player_story_flags LIMIT 1").fetchone() is None)

@@ -16,7 +16,7 @@ STATUSES = ("pending", "approved", "rejected", "removed")
 
 # Version de esquema que deja initialize(); ops/inventory_migration_probe.py
 # la usa para validar una migracion de prueba contra la copia de la base viva.
-SCHEMA_VERSION = 19
+SCHEMA_VERSION = 20
 
 # Cuentas con varios personajes (petición de Javier, 2026-09-25): un usuario
 # para entrar puede tener hasta 5 personajes; el nombre de cada personaje es
@@ -104,6 +104,15 @@ PLAYER_LOST_WEAPONS_TABLE = """CREATE TABLE IF NOT EXISTS player_lost_weapons (
     boss_id TEXT NOT NULL,
     lost_at REAL NOT NULL,
     recovered_at REAL)"""
+
+# Estado durable exclusivo de los viajeros marcados persistent_traveler.
+TRAVELER_STATES_TABLE = """CREATE TABLE IF NOT EXISTS traveler_states (
+    npc_id TEXT PRIMARY KEY,
+    route_id TEXT NOT NULL,
+    current_room TEXT NOT NULL,
+    step_index INTEGER NOT NULL DEFAULT 0,
+    direction INTEGER NOT NULL DEFAULT 1,
+    last_step_time REAL NOT NULL)"""
 
 BOSS_REWARDS_CLAIMED_TABLE = """CREATE TABLE IF NOT EXISTS boss_rewards_claimed (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -428,6 +437,9 @@ def initialize(path):
             db.execute(BOSS_REWARDS_CLAIMED_TABLE)
             db.execute("CREATE INDEX IF NOT EXISTS lost_weapons_player ON player_lost_weapons(player_id, recovered_at)")
             db.execute("CREATE INDEX IF NOT EXISTS boss_rewards_scope ON boss_rewards_claimed(boss_id, scope, claimant_id)")
+        if version <= 19:
+            # v20: TRAVELER-ROUTINES-01 (#338), después del motor C5 v19.
+            db.execute(TRAVELER_STATES_TABLE)
         db.execute(f"PRAGMA user_version = {SCHEMA_VERSION}")
 
 
@@ -1785,4 +1797,39 @@ def record_boss_reward_claimed(path, boss_id, scope, claimant_id, reward_key, no
             """INSERT OR IGNORE INTO boss_rewards_claimed (boss_id, scope, claimant_id, reward_key, claimed_at)
                VALUES (?, ?, ?, ?, ?)""",
             (boss_id, scope, target_id, reward_key, now),
+        )
+def get_traveler_state(path, npc_id):
+    """Devuelve dict con el estado del viajero persistente o None."""
+    with connect(path) as db:
+        row = db.execute(
+            "SELECT npc_id, route_id, current_room, step_index, direction, last_step_time "
+            "FROM traveler_states WHERE npc_id = ?",
+            (npc_id,)
+        ).fetchone()
+        if not row:
+            return None
+        return {
+            "npc_id": row["npc_id"],
+            "route_id": row["route_id"],
+            "current_room": row["current_room"],
+            "step_index": row["step_index"],
+            "direction": row["direction"],
+            "last_step_time": row["last_step_time"],
+        }
+
+
+def save_traveler_state(path, npc_id, route_id, current_room, step_index, direction, last_step_time):
+    """Inserta o actualiza el estado de un viajero persistente."""
+    with connect(path) as db:
+        db.execute("BEGIN IMMEDIATE")
+        db.execute(
+            """INSERT INTO traveler_states (npc_id, route_id, current_room, step_index, direction, last_step_time)
+               VALUES (?, ?, ?, ?, ?, ?)
+               ON CONFLICT(npc_id) DO UPDATE SET
+                   route_id = excluded.route_id,
+                   current_room = excluded.current_room,
+                   step_index = excluded.step_index,
+                   direction = excluded.direction,
+                   last_step_time = excluded.last_step_time""",
+            (npc_id, route_id, current_room, step_index, direction, last_step_time)
         )

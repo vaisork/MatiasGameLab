@@ -27,7 +27,7 @@ from urllib.error import HTTPError, URLError
 from urllib.parse import urlsplit
 from urllib.request import Request, urlopen
 
-from . import economy, items, store, world
+from . import economy, items, store, travelers, world
 
 logger = logging.getLogger(__name__)
 
@@ -861,6 +861,8 @@ def converse(
 
     # 2. Verificación de presencia en la misma sala (Criterio 1)
     npc_location = npc.get("location") or npc.get("room_id")
+    if travelers.is_traveler(npc.get("id")):
+        npc_location = travelers.get_traveler_position(npc.get("id"), db_path=db_path)
     if not current_room or npc_location != current_room:
         return DialogueResult(
             success=False,
@@ -938,6 +940,17 @@ def converse(
         else:
             clean_reply = "—Sostén ese extremo. Yo corrijo el apoyo. Si queda firme, podremos moverla."
 
+        is_fallback = False
+        proposed = None
+    elif npc_id == "viajero_loren":
+        traveler = travelers.get_registry().get("viajero_loren")
+        phrases = traveler.phrases if traveler else [
+            "Las cercas de Valdren quedan atrás; el camino hacia Veyra está despejado hoy.",
+            "Solo llevo recados sencillos de los campos. Buen viaje en el camino.",
+            "El viento sopla limpio desde los llanos. No hay novedad en las parcelas.",
+        ]
+        phrase_key = message or current_room or ""
+        clean_reply = f"—{phrases[sum(ord(char) for char in phrase_key) % len(phrases)]}"
         is_fallback = False
         proposed = None
     else:
@@ -1124,6 +1137,32 @@ CANONICAL_NPCS: list[dict[str, Any]] = [
             "secretos de Korven, jerarquías ni historia oculta",
         ],
         "fallback_dialogue": "Karn asiente con firmeza y vuelve a comprobar los apoyos de piedra del taller.",
+    },
+    {
+        "id": "viajero_loren",
+        "name": "Loren",
+        "species": "humano",
+        "town": "Valdren",
+        "location": None,
+        "role": "viajero de camino",
+        "personality": {
+            "temperament": "tranquilo, observador y acostumbrado al camino",
+            "speech_style": "breve, pausado y cordial",
+            "formality": "neutral",
+            "humor": "escaso",
+            "sociability": "moderada",
+            "response_length": "breve",
+            "expressive_reactions": ["asiente con una leve inclinación de cabeza", "ajusta la correa de su morral", "mira a lo largo del sendero"],
+            "traits": ["viajero", "observador", "tranquilo"],
+            "example_phrases": [
+                "Las cercas de Valdren quedan atrás; el camino hacia Veyra está despejado hoy.",
+                "Solo llevo recados sencillos de los campos. Buen viaje en el camino.",
+                "El viento sopla limpio desde los llanos. No hay novedad en las parcelas.",
+            ],
+        },
+        "knowledge_allowed": ["el estado visible del camino entre Valdren y los llanos", "noticias cotidianas sobre el clima y el tránsito de viajeros", "los cobertizos y marcas del sendero"],
+        "knowledge_forbidden": ["estadísticas internas, fórmulas de daño, flags ni reglas de balance", "secretos antiguos, gremios inventados o historia oculta", "misiones heroicas, compras o mercancías mágicas"],
+        "fallback_dialogue": "Loren asiente con una leve inclinación de cabeza y sigue atento al camino.",
     },
 ]
 
