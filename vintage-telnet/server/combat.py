@@ -339,6 +339,11 @@ WOUND_DAMAGE_MULTIPLIER = {"ninguna": 1.0, "leve": 1.0, "moderada": 1.0, "grave"
 # 24.6: tope de HP que puede recuperar un descanso de campo segun herida.
 WOUND_REST_HP_CAP_FRACTION = {"ninguna": 1.0, "leve": 1.0, "moderada": 0.85, "grave": 0.65}
 
+# GAMEPLAY.md 24.8 (REST-01 / #377): presupuesto gratuito persistente por
+# ciclo y máximo de curación por cada uso de `descansar`.
+FIELD_REST_BUDGET_FRACTION = 0.30
+FIELD_REST_PER_USE_FRACTION = 0.10
+
 # 24.4: penalizaciones de precision/dano segun estado de fatiga (20.7 fija
 # los umbrales 70/90).
 FATIGUE_ACCURACY_PENALTY = {"operativo": 0, "cansado": 5, "agotado": 10}
@@ -417,15 +422,27 @@ def worse_wound(current, candidate):
     return candidate if WOUND_RANK[candidate] > WOUND_RANK[current] else current
 
 
-def rest_result(hp_current, hp_max_value, fatigue, resistencia, wound):
-    """GAMEPLAY.md 24.8: accion explicita `descansar` fuera de combate.
-    Cura 10% del HP maximo (respetando el tope de 24.6 segun herida) y
-    reduce fatiga en 25 + 0.2x(Resistencia-10)."""
-    cap = hp_max_value * WOUND_REST_HP_CAP_FRACTION[wound]
-    healed = min(cap, hp_current + hp_max_value * 0.10)
+def rest_result(hp_current, hp_max_value, fatigue, resistencia, wound, budget_remaining):
+    """GAMEPLAY.md 24.8 / REST-01: calcula un descanso de campo sin mutar DB.
+
+    Como máximo cura 10% de HPmax por uso, nunca supera el presupuesto
+    restante ni el tope de herida. Solo la vida realmente recuperada consume
+    presupuesto. La fatiga puede seguir bajando aunque ya no quede curación.
+    """
+    wound_cap = hp_max_value * WOUND_REST_HP_CAP_FRACTION[wound]
+    heal_room = max(0.0, min(wound_cap, hp_max_value) - hp_current)
+    requested = hp_max_value * FIELD_REST_PER_USE_FRACTION
+    healed = max(0.0, min(requested, max(0.0, budget_remaining), heal_room))
+    new_hp = min(hp_max_value, hp_current + healed)
+    actual_healed = max(0.0, new_hp - hp_current)
     fatigue_reduction = 25 + 0.2 * (resistencia - 10)
     new_fatigue = max(0, fatigue - fatigue_reduction)
-    return {"hp_current": round(healed), "fatigue": round(new_fatigue)}
+    return {
+        "hp_current": new_hp,
+        "fatigue": round(new_fatigue),
+        "healed": actual_healed,
+        "budget_remaining": max(0.0, budget_remaining - actual_healed),
+    }
 
 
 # --- GAMEPLAY.md 31: informacion visible de enemigos -----------------------
