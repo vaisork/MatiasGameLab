@@ -3,11 +3,17 @@
 from __future__ import annotations
 
 import argparse
-import fcntl
+try:
+    import fcntl
+except ImportError:
+    fcntl = None  # type: ignore
 import json
 import os
 from pathlib import Path
-import pwd
+try:
+    import pwd
+except ImportError:
+    pwd = None  # type: ignore
 import shutil
 import sqlite3
 import subprocess
@@ -183,7 +189,8 @@ def restore_database(backup: Path, original_stat: os.stat_result) -> None:
     tmp = DATA_DIR / f'.vintage-rollback-{os.getpid()}.sqlite3'
     try:
         shutil.copy2(backup, tmp)
-        os.chown(tmp, original_stat.st_uid, original_stat.st_gid)
+        if hasattr(os, 'chown'):
+            os.chown(tmp, original_stat.st_uid, original_stat.st_gid)
         os.chmod(tmp, original_stat.st_mode & 0o777)
         os.replace(tmp, DATABASE)
         for suffix in ('-wal', '-shm'):
@@ -218,11 +225,20 @@ def rollback(previous_target: Path | None, backup: Path, original_stat: os.stat_
     else:
         log('ALERTA: no había release previo; base restaurada y servicio quedó detenido.')
 
-def main() -> int:
+def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
         description='Despliega un SHA de main de Vintage Telnet con backup, tests y rollback.'
     )
-    parser.add_argument('revision', help='SHA completo/prefijo o ref ya integrado a origin/main.')
+    parser.add_argument(
+        '--sha',
+        dest='sha_flag',
+        help='SHA explícito autorizado para desplegar (Issue #141).'
+    )
+    parser.add_argument(
+        'revision',
+        nargs='?',
+        help='SHA completo/prefijo o ref ya integrado a origin/main (ej. latest o main).'
+    )
     parser.add_argument(
         '--repo-root',
         type=Path,
@@ -233,9 +249,13 @@ def main() -> int:
         action='store_true',
         help='No hace git fetch; solo si origin/main ya está actualizado localmente.',
     )
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
 
-    if os.geteuid() != 0:
+    target_revision = args.sha_flag or args.revision
+    if not target_revision:
+        raise DeployError('Debe especificar un SHA o revisión a desplegar (ej. --sha <commit> o "latest").')
+
+    if hasattr(os, 'geteuid') and os.geteuid() != 0:
         raise DeployError('Ejecuta este comando con sudo.')
 
     repo = args.repo_root.resolve()
@@ -246,16 +266,22 @@ def main() -> int:
 
     LOCK_FILE.parent.mkdir(parents=True, exist_ok=True)
     with LOCK_FILE.open('w') as lock:
-        try:
-            fcntl.flock(lock.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
-        except BlockingIOError as exc:
-            raise DeployError('Ya hay otro vt-deploy en ejecución.') from exc
+        if fcntl is not None:
+            try:
+                fcntl.flock(lock.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+            except BlockingIOError as exc:
+                raise DeployError('Ya hay otro vt-deploy en ejecución.') from exc
 
-        owner_entry = pwd.getpwuid(repo.stat().st_uid)
-        repo_owner = owner_entry.pw_name
-        repo_owner_home = owner_entry.pw_dir
+        if pwd is not None:
+            owner_entry = pwd.getpwuid(repo.stat().st_uid)
+            repo_owner = owner_entry.pw_name
+            repo_owner_home = owner_entry.pw_dir
+        else:
+            repo_owner = os.environ.get('USER', 'root')
+            repo_owner_home = os.environ.get('HOME', '/root')
+
         sha = resolve_authorized_sha(
-            repo, repo_owner, repo_owner_home, args.revision, skip_fetch=args.skip_fetch
+            repo, repo_owner, repo_owner_home, target_revision, skip_fetch=args.skip_fetch
         )
         log(f'SHA autorizado: {sha}')
 
