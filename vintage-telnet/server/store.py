@@ -16,7 +16,7 @@ STATUSES = ("pending", "approved", "rejected", "removed")
 
 # Version de esquema que deja initialize(); ops/inventory_migration_probe.py
 # la usa para validar una migracion de prueba contra la copia de la base viva.
-SCHEMA_VERSION = 21
+SCHEMA_VERSION = 22
 
 # Cuentas con varios personajes (petición de Javier, 2026-09-25): un usuario
 # para entrar puede tener hasta 5 personajes; el nombre de cada personaje es
@@ -118,6 +118,11 @@ MAJOR_FAUNA_STATES_TABLE = """CREATE TABLE IF NOT EXISTS major_fauna_states (
     zone_id TEXT PRIMARY KEY,
     last_defeated_epoch INTEGER NOT NULL,
     last_defeated_at REAL NOT NULL)"""
+
+# v22: presencia en sala y actividad reciente para chat local (#376).
+PLAYER_PRESENCE_TABLE = """CREATE TABLE IF NOT EXISTS player_presence (
+    player_id TEXT PRIMARY KEY REFERENCES players(id),
+    last_seen_at REAL NOT NULL)"""
 
 BOSS_REWARDS_CLAIMED_TABLE = """CREATE TABLE IF NOT EXISTS boss_rewards_claimed (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -448,6 +453,10 @@ def initialize(path):
         if version <= 20:
             # v21: MAJOR-FAUNA-ENGINE-01 (#336), fauna C4 tras viajeros v20.
             db.execute(MAJOR_FAUNA_STATES_TABLE)
+        if version <= 21:
+            # v22: PRESENCE-CHAT-01 (#376), tabla efímera de actividad.
+            db.execute(PLAYER_PRESENCE_TABLE)
+            db.execute("CREATE INDEX IF NOT EXISTS player_presence_last_seen ON player_presence(last_seen_at)")
         db.execute(f"PRAGMA user_version = {SCHEMA_VERSION}")
 
 
@@ -659,16 +668,44 @@ def select_character(path, token, account_id, player_id):
         db.execute("UPDATE sessions SET player_id = ? WHERE token_hash = ? AND account_id = ?",
                    (player_id, digest(token), account_id))
         _touch_character(db, player_id, "login")
+        _touch_presence(db, player_id)
         return True
+
+
+def _touch_presence(db, player_id, timestamp=None):
+    if not player_id:
+        return
+    ts = time.time() if timestamp is None else float(timestamp)
+    db.execute("""INSERT INTO player_presence(player_id, last_seen_at) VALUES (?, ?)
+                  ON CONFLICT(player_id) DO UPDATE SET last_seen_at = excluded.last_seen_at""",
+               (player_id, ts))
+
+
+def _clear_presence(db, player_id):
+    if player_id:
+        db.execute("DELETE FROM player_presence WHERE player_id = ?", (player_id,))
+
+
+def touch_presence(path, player_id, timestamp=None):
+    with connect(path) as db:
+        _touch_presence(db, player_id, timestamp)
+
+
+def clear_presence(path, player_id):
+    with connect(path) as db:
+        _clear_presence(db, player_id)
 
 
 def release_character(path, token):
     """Vuelve a la lista de personajes sin cerrar la sesión de la cuenta."""
     with connect(path) as db:
+        row = db.execute("SELECT player_id FROM sessions WHERE token_hash = ?", (digest(token or ""),)).fetchone()
+        if row:
+            _clear_presence(db, row["player_id"])
         db.execute("UPDATE sessions SET player_id = NULL WHERE token_hash = ?", (digest(token or ""),))
 
 
-def player_for_token(path, token):
+def player_for_token(path, token, touch=True, now=None):
     if not token:
         return None
     with connect(path) as db:
@@ -676,10 +713,13 @@ def player_for_token(path, token):
                FROM players p
                JOIN sessions s ON s.player_id = p.id
                WHERE s.token_hash = ? AND s.expires_at > ?"""
-        params = (digest(token), int(time.time()))
+        current_ts = int(time.time()) if now is None else int(now)
+        params = (digest(token), current_ts)
         row = db.execute(query, params).fetchone()
-        if row is not None and _settle_passive_fatigue(db, row):
+        if row is not None and _settle_passive_fatigue(db, row, now=current_ts):
             row = db.execute(query, params).fetchone()
+        if row is not None and touch:
+            _touch_presence(db, row["id"], timestamp=current_ts)
         return row
 
 
@@ -756,6 +796,7 @@ def set_status(path, username, status, revoke_sessions=False):
             # Solo saca a ese personaje: la cuenta vuelve a su lista y puede
             # seguir jugando con sus otros personajes.
             db.execute("UPDATE sessions SET player_id = NULL WHERE player_id = ?", (player["id"],))
+            _clear_presence(db, player["id"])
         return player_by_username(db, username)
 
 
@@ -822,13 +863,34 @@ def move_player(path, player_id, room, heading=None):
             db.execute("UPDATE players SET room = ?, heading = ? WHERE id = ?", (room, heading, player_id))
 
 
-def players_in_room(path, room, exclude_id=None):
+def players_in_room(path, room, exclude_id=None, now=None, max_idle_seconds=30):
+    # GAMEPLAY §26.8 (#376): presencia autoritativa con TTL de 30 s por
+    # heartbeat/actividad. Un jugador figura en «También aquí» sólo si:
+    # 1. Está en la sala (p.room = room).
+    # 2. Su estado es 'approved'.
+    # 3. No es el propio jugador que consulta (p.id != exclude_id).
+    # 4. Tiene una sesión activa válida (s.expires_at > current_time).
+    # 5. Ha tenido actividad dentro de los últimos max_idle_seconds (30 s).
+    current_time = time.time() if now is None else float(now)
+    cutoff = current_time - max_idle_seconds
     with connect(path) as db:
         rows = db.execute(
-            "SELECT name, username FROM players WHERE room = ? AND status = 'approved' AND id != ?",
-            (room, exclude_id or ""),
+            """SELECT p.name, p.username
+               FROM players p
+               JOIN player_presence pr ON pr.player_id = p.id
+               JOIN sessions s ON s.player_id = p.id
+               WHERE p.room = ?
+                 AND p.status = 'approved'
+                 AND p.id != ?
+                 AND pr.last_seen_at >= ?
+                 AND s.expires_at > ?
+               GROUP BY p.id
+               ORDER BY p.name ASC""",
+            (room, exclude_id or "", cutoff, int(current_time)),
         ).fetchall()
         return [dict(row) for row in rows]
+
+
 
 
 def add_message(path, room, player_id, body):
@@ -839,20 +901,70 @@ def add_message(path, room, player_id, body):
         )
 
 
-def recent_messages(path, room, limit=30):
+def recent_messages(path, room, limit=30, max_age_seconds=600, now=None):
     # Solo identidad publica (name): el username es la credencial de login de
     # otro jugador y no debe salir en el chat.
+    # GAMEPLAY §26.8: La vista de chat local muestra por defecto únicamente
+    # mensajes de la sala de los últimos 10 minutos (max_age_seconds=600).
     with connect(path) as db:
-        rows = db.execute(
-            """SELECT m.body, m.created_at, p.name FROM room_messages m
-               JOIN players p ON p.id = m.player_id
-               WHERE m.room = ? ORDER BY m.id DESC LIMIT ?""",
-            (room, limit),
-        ).fetchall()
+        if max_age_seconds is not None:
+            if now is None:
+                ref_dt = datetime.now(timezone.utc)
+            elif isinstance(now, (int, float)):
+                ref_dt = datetime.fromtimestamp(now, timezone.utc)
+            elif isinstance(now, datetime):
+                ref_dt = now.astimezone(timezone.utc) if now.tzinfo else now.replace(tzinfo=timezone.utc)
+            else:
+                ref_dt = datetime.now(timezone.utc)
+            cutoff = (ref_dt - timedelta(seconds=max_age_seconds)).isoformat(timespec="microseconds")
+            rows = db.execute(
+                """SELECT m.body, m.created_at, p.name FROM room_messages m
+                   JOIN players p ON p.id = m.player_id
+                   WHERE m.room = ? AND m.created_at >= ?
+                   ORDER BY m.id DESC LIMIT ?""",
+                (room, cutoff, limit),
+            ).fetchall()
+        else:
+            rows = db.execute(
+                """SELECT m.body, m.created_at, p.name FROM room_messages m
+                   JOIN players p ON p.id = m.player_id
+                   WHERE m.room = ? ORDER BY m.id DESC LIMIT ?""",
+                (room, limit),
+            ).fetchall()
+        return [dict(row) for row in reversed(rows)]
+
+
+def historical_messages(path, room, limit=30, before=None):
+    """GAMEPLAY §26.8: Consulta de mensajes archivados/anteriores fuera de la
+    conversación activa de 10 minutos."""
+    with connect(path) as db:
+        if before is not None:
+            if isinstance(before, (int, float)):
+                before_dt = datetime.fromtimestamp(before, timezone.utc).isoformat(timespec="microseconds")
+            elif isinstance(before, datetime):
+                before_dt = (before.astimezone(timezone.utc) if before.tzinfo else before.replace(tzinfo=timezone.utc)).isoformat(timespec="microseconds")
+            else:
+                before_dt = str(before)
+            rows = db.execute(
+                """SELECT m.body, m.created_at, p.name FROM room_messages m
+                   JOIN players p ON p.id = m.player_id
+                   WHERE m.room = ? AND m.created_at < ?
+                   ORDER BY m.id DESC LIMIT ?""",
+                (room, before_dt, limit),
+            ).fetchall()
+        else:
+            rows = db.execute(
+                """SELECT m.body, m.created_at, p.name FROM room_messages m
+                   JOIN players p ON p.id = m.player_id
+                   WHERE m.room = ? ORDER BY m.id DESC LIMIT ?""",
+                (room, limit),
+            ).fetchall()
         return [dict(row) for row in reversed(rows)]
 
 
 # --- Progresion de personaje (VT-NAR-003 / GAMEPLAY.md 20-22) -------------
+
+
 
 def award_xp(path, player_id, amount):
     """Aplica XP y sube de nivel (GAMEPLAY.md 22.1/25.1), recalculando HP
