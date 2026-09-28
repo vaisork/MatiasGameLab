@@ -719,7 +719,8 @@ def award_xp(path, player_id, amount):
         )
         return {"level": new_level, "xp": new_xp, "levels_gained": levels_gained,
                 "pa_gained": 2 * levels_gained, "pp_gained": pp_gained,
-                "hp_current": hp_current, "hp_max": hp_max_value}
+                "hp_current": hp_current, "hp_max": hp_max_value,
+                "xp_next": combat.xp_for_next_level(new_level)}
 
 
 def spend_attribute_point(path, player_id, attribute, expected_value):

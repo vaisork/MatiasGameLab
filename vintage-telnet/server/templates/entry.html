@@ -180,8 +180,41 @@
     .attr-confirm p{margin:0;font:600 .88rem/1.45 ui-sans-serif,system-ui,sans-serif}
     .attr-confirm .confirm-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
     .help-tabs{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px}
-    .help-panel[hidden]{display:none!important}
-    .tool-row .btn{flex:1 1 90px}
+    .tool-row .btn{flex:1 1 90px;position:relative}
+    .badge-pa{
+      display:inline-block;
+      margin-left:4px;
+      padding:2px 6px;
+      border-radius:999px;
+      background:var(--gold);
+      color:#1d150b;
+      font:800 .72rem/1 ui-monospace,monospace;
+      vertical-align:middle;
+      box-shadow:0 0 8px #d8b56a55;
+    }
+    .badge-pa[hidden]{display:none!important}
+    .level-up-toast{
+      margin:0 0 10px;
+      padding:10px 14px;
+      border:1px solid var(--gold);
+      border-radius:10px;
+      background:linear-gradient(90deg, #2a2010, #1b160b);
+      box-shadow:0 4px 16px rgba(216,181,106,.25);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      animation:toastFadeIn .25s ease-out;
+    }
+    @keyframes toastFadeIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+    .level-up-toast-body{display:grid;gap:2px}
+    .level-up-toast-title{color:var(--gold);font:800 .9rem ui-sans-serif,system-ui,sans-serif;letter-spacing:.02em}
+    .level-up-toast-text{color:#f5ebda;font:600 .82rem/1.35 ui-sans-serif,system-ui,sans-serif}
+    .level-up-toast-actions{display:flex;align-items:center;gap:8px;flex:0 0 auto}
+    .level-up-toast-actions .btn{min-height:34px;padding:4px 10px;font-size:.78rem;width:auto}
+    .level-up-toast .close{width:32px;height:32px;min-height:32px;font-size:1.1rem;line-height:1}
+    .action-talk{border-color:#537a6b;color:#a8e6cf}
+    .action-talk:hover{border-color:#85d99a}
     .btn{
       min-height:46px;border:1px solid #6d5434;border-radius:10px;background:linear-gradient(var(--shell2),var(--panel));
       color:var(--ink);font:700 .84rem ui-sans-serif,system-ui,sans-serif;padding:8px;cursor:pointer;width:100%
@@ -688,6 +721,18 @@
 
         <section class="terminal{% if room.encounter %} in-combat{% endif %}" aria-labelledby="placeTitle" data-swap="terminal">
           <p class="sr-only" id="roomDescriptionAccessible">{{ room.description }}</p>
+          {% if level_up_event %}
+          <aside class="level-up-toast" id="levelUpToast" role="alert" aria-live="assertive">
+            <div class="level-up-toast-body">
+              <strong class="level-up-toast-title"><svg class="ui-icon" aria-hidden="true"><use href="#icon-sparkles"/></svg> ¡SUBISTE A NIVEL {{ level_up_event.level }}!</strong>
+              <span class="level-up-toast-text">Ganaste {{ level_up_event.pa_gained }} PA{% if level_up_event.pp_gained %} y {{ level_up_event.pp_gained }} PP{% else %} para mejorar tus atributos{% endif %}. Siguiente nivel: {{ level_up_event.xp_next }} XP.</span>
+            </div>
+            <div class="level-up-toast-actions">
+              <button class="btn" type="button" data-open="characterDialog">Personaje</button>
+              <button class="close" type="button" data-dismiss-toast aria-label="Cerrar aviso">×</button>
+            </div>
+          </aside>
+          {% endif %}
           <div class="log" aria-describedby="roomDescriptionAccessible">
             {# En combate solo importa leer la pelea: no se repite cómo es el lugar. #}
             {% if not room.encounter %}
@@ -701,6 +746,9 @@
             {% endif %}
             {% if room.others_present %}
             <div class="entry"><p class="system">También aquí: {{ room.others_present | join(', ') }}</p></div>
+            {% endif %}
+            {% if room.npcs %}
+            <div class="entry npcs-entry"><p class="system">Personas aquí: {% for n in room.npcs %}<b>{{ n.name }}</b>{% if n.role %} ({{ n.role }}){% endif %}{{ ' · ' if not loop.last }}{% endfor %}</p></div>
             {% endif %}
             {% if room.encounter %}
             <div class="entry encounter-entry">
@@ -797,6 +845,9 @@
           <div class="context-actions" aria-label="Acciones del contexto">
             <form method="get" action="/"><button class="action" type="submit"><svg class="ui-icon" aria-hidden="true"><use href="#icon-eye"/></svg>Mirar</button></form>
             <button class="action" type="button" data-prefill="examinar "><svg class="ui-icon" aria-hidden="true"><use href="#icon-search"/></svg>Examinar</button>
+            {% for npc in room.npcs %}
+            <button class="action action-talk" type="button" data-prefill="hablar con {{ npc.name }} "><svg class="ui-icon" aria-hidden="true"><use href="#icon-user"/></svg>Hablar con {{ npc.name }}</button>
+            {% endfor %}
             {% if 'descansar' in action_names %}
             <form method="post" action="/command"><input type="hidden" name="csrf" value="{{ session.csrf }}"><input type="hidden" name="text" value="descansar"><button class="action" type="submit"><svg class="ui-icon" aria-hidden="true"><use href="#icon-bed"/></svg>Descansar</button></form>
             {% endif %}
@@ -811,7 +862,7 @@
             <button class="btn primary" type="submit"><svg class="ui-icon" aria-hidden="true"><use href="#icon-send"/></svg>Enviar</button>
           </form>
           <div class="tool-row" aria-label="Herramientas">
-            <button class="btn" type="button" data-open="characterDialog"><svg class="ui-icon" aria-hidden="true"><use href="#icon-user"/></svg>Personaje</button>
+            <button class="btn" type="button" data-open="characterDialog" id="btnPersonaje"><svg class="ui-icon" aria-hidden="true"><use href="#icon-user"/></svg>Personaje{% if (player.pa_unspent and player.pa_unspent > 0) or (player.pp_unspent and player.pp_unspent > 0) %}<span class="badge badge-pa" id="btnPersonajeBadge">{% if player.pa_unspent and player.pp_unspent %}{{ player.pa_unspent }} PA · {{ player.pp_unspent }} PP{% elif player.pa_unspent %}{{ player.pa_unspent }} PA{% else %}{{ player.pp_unspent }} PP{% endif %}</span>{% else %}<span class="badge badge-pa" id="btnPersonajeBadge" hidden></span>{% endif %}</button>
             <button class="btn" type="button" data-open="inventoryDialog" data-inventory-open><svg class="ui-icon" aria-hidden="true"><use href="#icon-bag"/></svg>Inventario</button>
             <button class="btn" type="button" data-open="mapDialog" data-map-open><svg class="ui-icon" aria-hidden="true"><use href="#icon-map"/></svg>Mapa</button>
             <button class="btn" type="button" data-open="helpDialog"><svg class="ui-icon" aria-hidden="true"><use href="#icon-help"/></svg>Ayuda</button>
@@ -854,7 +905,7 @@
     </div>
     <section class="character-block" id="paPanel" aria-labelledby="paPanelTitle">
       <h3 id="paPanelTitle">Mejorar atributos</h3>
-      <p class="map-status" id="paStatus" aria-live="polite">Tus PA quedan guardados hasta que decidas gastarlos.</p>
+      <p class="map-status" id="paStatus" aria-live="polite">{% if player.pa_unspent and player.pa_unspent > 0 %}Tienes {{ player.pa_unspent }} PA nuevos por asignar. Elige un atributo para mejorar.{% else %}Tus PA quedan guardados hasta que decidas gastarlos.{% endif %}</p>
       <div class="pa-summary" id="paSummary"></div>
       <div class="attr-confirm" id="paConfirm" role="alertdialog" aria-labelledby="paConfirmText" hidden>
         <p id="paConfirmText"></p>
@@ -962,10 +1013,22 @@
     });
   }
 
-  document.querySelectorAll("[data-open]").forEach(b => b.addEventListener("click", () => {
-    const d = document.getElementById(b.dataset.open);
-    if (d && !d.open) d.showModal();
-  }));
+  document.addEventListener("click", event => {
+    const dismiss = event.target.closest("[data-dismiss-toast]");
+    if (dismiss) {
+      const toast = dismiss.closest(".level-up-toast");
+      if (toast) toast.remove();
+      return;
+    }
+    const openBtn = event.target.closest("[data-open]");
+    if (openBtn) {
+      const d = document.getElementById(openBtn.dataset.open);
+      if (d && !d.open) {
+        if (openBtn.dataset.open === "characterDialog") loadPa();
+        d.showModal();
+      }
+    }
+  });
   document.querySelectorAll("[data-close]").forEach(b => b.addEventListener("click", () => b.closest("dialog").close()));
   const wireArt = root => root.querySelectorAll("[data-location-art]").forEach(img => img.addEventListener("error", () => {
     const frame = img.closest(".location-art");
@@ -1066,7 +1129,24 @@
       .map(name => attributeLabels[name] + " " + data.attributes[name]).join(" · ");
     if (data.in_combat) paStatus.textContent = "Estás en combate: podrás mejorar atributos cuando termine.";
     else if (!pa) paStatus.textContent = "No tienes PA sin gastar. Ganas PA al subir de nivel.";
-    else paStatus.textContent = "Elige un atributo. Antes de gastar te pediremos confirmar.";
+    else paStatus.textContent = "Tienes " + pa + " PA nuevos por asignar. Elige un atributo. Antes de gastar te pediremos confirmar.";
+    const badge = document.getElementById("btnPersonajeBadge");
+    if (badge) {
+      const pp = Number(data.pp_unspent || 0);
+      if (pa > 0 && pp > 0) {
+        badge.textContent = pa + " PA · " + pp + " PP";
+        badge.hidden = false;
+      } else if (pa > 0) {
+        badge.textContent = pa + " PA";
+        badge.hidden = false;
+      } else if (pp > 0) {
+        badge.textContent = pp + " PP";
+        badge.hidden = false;
+      } else {
+        badge.textContent = "";
+        badge.hidden = true;
+      }
+    }
   };
   const loadPa = async () => {
     if (!paPanel) return;
@@ -1462,6 +1542,12 @@
       const imported = document.importNode(incoming, true);
       current.replaceWith(imported);
       if (key === "art") wireArt(imported);
+    }
+    const incomingBadge = next.querySelector("#btnPersonajeBadge");
+    const currentBadge = document.querySelector("#btnPersonajeBadge");
+    if (incomingBadge && currentBadge) {
+      currentBadge.textContent = incomingBadge.textContent;
+      currentBadge.hidden = incomingBadge.hidden;
     }
     shell.className = nextShell.className;
     return true;

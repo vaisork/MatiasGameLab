@@ -395,15 +395,42 @@ def create_app(config=None):
         return {name: player[f"attr_{name}"] for name in combat.ATTRIBUTES}
 
     def _level_up_message(xp_state):
-        """GAMEPLAY.md 25.9: aviso breve de nuevo nivel, PA y PP obtenidos.
+        """GAMEPLAY.md 25.9: aviso destacado de nuevo nivel, PA y PP obtenidos.
         No abre ninguna distribucion obligatoria; el jugador decide cuando
         gastar sus PA desde Personaje."""
-        if not xp_state or not xp_state["levels_gained"]:
+        if not xp_state or not xp_state.get("levels_gained"):
             return None
-        message = f"¡Subes a nivel {xp_state['level']}! +{xp_state['pa_gained']} PA"
-        if xp_state["pp_gained"]:
-            message += f", +{xp_state['pp_gained']} PP"
-        return message + "."
+        lvl = xp_state["level"]
+        pa = xp_state["pa_gained"]
+        pp = xp_state.get("pp_gained", 0)
+        xp_next = xp_state.get("xp_next")
+        if xp_next is None:
+            xp_next = combat.xp_for_next_level(lvl)
+        if pp:
+            pa_pp_part = f"Ganaste {pa} PA y {pp} PP."
+        else:
+            pa_pp_part = f"Ganaste {pa} PA para mejorar tus atributos."
+        return f"¡SUBISTE A NIVEL {lvl}! {pa_pp_part} Siguiente nivel: {xp_next} XP."
+
+    def _level_up_event(xp_state):
+        """Payload estructurado de subida de nivel para la UI (GAMEPLAY.md 25.9)."""
+        if not xp_state or not xp_state.get("levels_gained"):
+            return None
+        lvl = xp_state["level"]
+        pa = xp_state["pa_gained"]
+        pp = xp_state.get("pp_gained", 0)
+        xp_next = xp_state.get("xp_next")
+        if xp_next is None:
+            xp_next = combat.xp_for_next_level(lvl)
+        return {
+            "level": lvl,
+            "levels_gained": xp_state["levels_gained"],
+            "pa_gained": pa,
+            "pp_gained": pp,
+            "xp_current": xp_state.get("xp", 0),
+            "xp_next": xp_next,
+            "message": _level_up_message(xp_state),
+        }
 
     def _equipment(player):
         """GAMEPLAY.md 32: arma/armadura activas resueltas a sus valores de
@@ -452,6 +479,7 @@ def create_app(config=None):
         elif player["room"] == "valdren_camino_lindero" and normalized == "huellas":
             discovery_key = "lindero_roto"
         awarded_message = None
+        level_up_event = None
         if discovery_key:
             discovery = world.get_discovery(discovery_key)
             is_new, xp_amount, xp_state = store.award_discovery(
@@ -461,7 +489,9 @@ def create_app(config=None):
                 level_message = _level_up_message(xp_state)
                 if level_message:
                     awarded_message = f"{awarded_message} {level_message}"
-        return text, awarded_message
+                if xp_state and xp_state.get("levels_gained"):
+                    level_up_event = _level_up_event(xp_state)
+        return text, awarded_message, level_up_event
 
     def attempt_evaluate(player):
         """GAMEPLAY.md 22.11: solo funciona sobre un objetivo visible (la
@@ -534,7 +564,11 @@ def create_app(config=None):
             level_message = _level_up_message(xp_state)
             if level_message:
                 messages.append(level_message)
-            return {"outcome": "victory", "messages": messages}
+            result = {"outcome": "victory", "messages": messages}
+            if xp_state and xp_state.get("levels_gained"):
+                result["level_up"] = True
+                result["level_up_event"] = _level_up_event(xp_state)
+            return result
 
         store.update_encounter(path, player["id"], player["room"], hp_current=creature_hp)
 
@@ -1084,15 +1118,18 @@ def create_app(config=None):
         if intent["type"] == "inspect":
             target = intent["target"] or "el lugar"
             result = resolve_inspect(g.player, intent["target"])
+            level_up_event = None
             if result:
-                text, awarded = result
+                text = result[0]
+                awarded = result[1]
+                level_up_event = result[2] if len(result) > 2 else None
                 message = f"{text} {awarded}" if awarded else text
             else:
                 message = f"Inspección registrada para {target}. No hay detalle adicional autorizado todavía."
             player_now = store.player_for_token(path, session.get("token"))
             room_data = room_view(g.player["room"], g.player["id"])
             return render_template("entry.html", player=player_now, species_list=world.SPECIES,
-                                   room=room_data, error=message), 200
+                                   room=room_data, error=message, level_up_event=level_up_event), 200
         if intent["type"] == "evaluate":
             _name, message = attempt_evaluate(g.player)
             room_data = room_view(g.player["room"], g.player["id"])
@@ -1103,7 +1140,8 @@ def create_app(config=None):
             player_now = store.player_for_token(path, session.get("token"))
             room_data = room_view(player_now["room"], player_now["id"])
             return render_template("entry.html", player=player_now, species_list=world.SPECIES,
-                                   room=room_data, error=" ".join(result["messages"])), 200
+                                   room=room_data, error=" ".join(result["messages"]),
+                                   level_up_event=result.get("level_up_event")), 200
         if intent["type"] == "flee":
             result = attempt_flee(g.player)
             player_now = store.player_for_token(path, session.get("token"))
@@ -1276,7 +1314,9 @@ def create_app(config=None):
             return jsonify(accepted=True, intent="say")
         if kind == "inspect":
             result = resolve_inspect(g.player, intent["target"])
-            text, awarded = result if result else (None, None)
+            text = result[0] if result else None
+            awarded = result[1] if result else None
+            level_event = result[2] if result and len(result) > 2 else None
             return jsonify(
                 accepted=True,
                 intent="inspect",
@@ -1285,6 +1325,8 @@ def create_app(config=None):
                 detail=text,
                 message=(text or "No hay detalle adicional autorizado todavía."),
                 discovery=awarded,
+                level_up=bool(level_event),
+                level_up_event=level_event,
                 current_room=room_view(g.player["room"], g.player["id"]),
             )
         if kind == "evaluate":
@@ -1300,6 +1342,8 @@ def create_app(config=None):
                 messages=result["messages"],
                 player=dict(player_now) if player_now else None,
                 current_room=room_view(player_now["room"], player_now["id"]) if player_now else None,
+                level_up=result.get("level_up", False),
+                level_up_event=result.get("level_up_event"),
             )
         if kind == "flee":
             result = attempt_flee(g.player)
@@ -1616,7 +1660,8 @@ def create_app(config=None):
         player_now = store.player_for_token(path, session.get("token"))
         room_data = room_view(player_now["room"], player_now["id"])
         return render_template("entry.html", player=player_now, species_list=world.SPECIES,
-                               room=room_data, error=" ".join(result["messages"])), 200
+                               room=room_data, error=" ".join(result["messages"]),
+                               level_up_event=result.get("level_up_event")), 200
 
     @app.post("/flee")
     def flee():

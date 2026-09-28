@@ -1,5 +1,40 @@
 # Handoff — Desarrollador de Servidor — Vintage Telnet
 
+## Entrega lista para revisión: LEVEL-UP-FEEDBACK-01 — subida de nivel visible y badge de PA (#370) — 2026-09-27
+
+- **DESARROLLADOR:** Antigravity (Desarrollador principal para implementaciones pesadas).
+- **HEAD BASE:** `4d0ccbe` (`origin/main` remoto vigente).
+- **TAREA:** Issue #370 — `VT-UI/SERVER: LEVEL-UP-FEEDBACK-01 — subida de nivel visible y badge de PA` (GAMEPLAY §25.9).
+- **RAMA:** `antigravity/vt-370-level-up-feedback`
+- **CONTRATO APROBADO Y ALCANCE (GAMEPLAY §25.9):**
+  - **Mensaje destacado inmediato y persistente en el log (§25.9.1, §25.9.2, §25.9.3):**
+    - Formato canónico implementado en `_level_up_message(xp_state)`:
+      `¡SUBISTE A NIVEL <lvl>! Ganaste <pa> PA [y <pp> PP] para mejorar tus atributos. Siguiente nivel: <xp_next> XP.`
+    - Escrito en `messages` de la acción que otorgó la XP (combate o descubrimiento), apareciendo en el log de sesión y en `.result-entry`.
+  - **Payload estructurado de evento (`level_up_event`):**
+    - `store.award_xp` incluye `"xp_next": combat.xp_for_next_level(new_level)` de forma autoritativa.
+    - `attempt_attack`, `/attack` y `/api/intent` devuelven `level_up: True` y `level_up_event` con `level`, `levels_gained`, `pa_gained`, `pp_gained`, `xp_current`, `xp_next` y `message`.
+  - **Indicador / Badge pendiente en Personaje (§25.9 item 3):**
+    - Botón `#btnPersonaje` en la barra de herramientas (`.tool-row`) contiene `<span class="badge badge-pa" id="btnPersonajeBadge">`.
+    - Muestra de forma persistente y visible el saldo pendiente (ej. `2 PA` o `2 PA · 1 PP`), tanto en la plantilla inicial del servidor como en las actualizaciones reactivas del cliente (`renderPa()` y `swapFrom()`).
+    - Si el saldo es 0, el badge queda oculto (`hidden`).
+  - **Énfasis dentro del panel Personaje (§25.9 item 4):**
+    - En `#paStatus`: mientras existan PA sin gastar, muestra la llamada clara: `Tienes <n> PA nuevos por asignar. Elige un atributo...`.
+    - Actualizado en servidor y dinámicamente en JavaScript tras consultar o gastar puntos.
+  - **Banner / Toast no bloqueante (#levelUpToast, §25.9.2):**
+    - `<aside class="level-up-toast" id="levelUpToast" role="alert">`: aviso destacado, visible en móviles y escritorio, con botón de acceso directo a Personaje y botón de descarte `[data-dismiss-toast]`.
+    - No interrumpe la navegación ni obliga a distribuir puntos en combate.
+  - **Visualización de NPCs y acciones de diálogo (Issue #373):**
+    - `entry.html` ahora renderiza `room.npcs` en el terminal (`Personas aquí: <Nombre> (<rol>)`) y añade botones de acción en el contexto (`Hablar con <Nombre>`), permitiendo interacción visual con NPCs autorizados (ej. Daro en `valdren_forja`).
+  - **Tests de integración exhaustivos:**
+    - `tests/test_progression.py` ampliado con 5 nuevos tests que verifican `award_xp`, formato de mensaje, badge de Personaje, toast/banner en victoria de combate, payload de `api_intent` y renderizado de NPCs.
+- **ARCHIVOS MODIFICADOS:**
+  - `vintage-telnet/server/store.py`: `award_xp` incluye `xp_next`.
+  - `vintage-telnet/server/app.py`: `_level_up_message` ajustado al formato §25.9.3, helper `_level_up_event`, integración en `attempt_attack`, `/attack`, `execute_intent` y `/api/intent`.
+  - `vintage-telnet/server/templates/entry.html`: CSS de badge y toast, renderizado de toast, badge en `#btnPersonaje`, énfasis en `#paStatus`, renderizado de `room.npcs` y botones de acción, sincronización en `swapFrom` y listeners delegados.
+  - `vintage-telnet/tests/test_progression.py`: 5 tests nuevos para feedback de nivel, badges y NPCs.
+  - `vintage-telnet/server/HANDOFF.md`: este registro.
+
 ## Entrega lista para revisión: HOME-CORE — hogar personal persistente mínimo (#280) — 2026-09-27
 
 - **DESARROLLADOR:** Antigravity (Desarrollador principal para implementaciones pesadas).

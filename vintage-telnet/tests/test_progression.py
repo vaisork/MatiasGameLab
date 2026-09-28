@@ -14,6 +14,15 @@ from server import combat, store
 from legacy_schema import undo_v11
 
 
+class FixedRoll:
+    """RNG de prueba determinista: uniforme devuelve siempre valor fijo."""
+    def __init__(self, value):
+        self.value = value
+
+    def uniform(self, a, b):
+        return self.value
+
+
 # --- combat.py: reglas puras -------------------------------------------------
 
 class ProgressionMathTests(unittest.TestCase):
@@ -229,6 +238,68 @@ class ProgressionIntegrationTests(unittest.TestCase):
             clock = db.execute("SELECT fatigue_updated_at FROM players WHERE id = ?",
                                (self.player_id(),)).fetchone()[0]
         self.assertAlmostEqual(clock, time.time(), delta=5)
+
+    # --- 25.9: Notificación de progreso (LEVEL-UP-FEEDBACK-01) ----------------
+
+    def test_award_xp_includes_xp_next_and_preserves_progression(self):
+        player_id = self.player_id()
+        state = store.award_xp(self.path, player_id, 10)
+        self.assertIn("xp_next", state)
+        self.assertEqual(state["xp_next"], combat.xp_for_next_level(1))
+        state2 = store.award_xp(self.path, player_id, combat.xp_for_next_level(1))
+        self.assertEqual(state2["level"], 2)
+        self.assertEqual(state2["xp_next"], combat.xp_for_next_level(2))
+
+    def test_personaje_badge_and_pa_status_reflect_unspent_pa(self):
+        self.set_columns(pa_unspent=2)
+        page = self.client.get("/").get_data(as_text=True)
+        self.assertIn('id="btnPersonajeBadge"', page)
+        self.assertIn('2 PA', page)
+        self.assertIn('Tienes 2 PA nuevos por asignar', page)
+
+        self.set_columns(pa_unspent=0)
+        page0 = self.client.get("/").get_data(as_text=True)
+        self.assertIn('id="btnPersonajeBadge" hidden', page0)
+        self.assertIn('Tus PA quedan guardados hasta que decidas gastarlos', page0)
+
+
+    @patch("server.combat.random.Random")
+    def test_combat_victory_level_up_emits_banner_and_event(self, mock_random):
+        mock_random.return_value = FixedRoll(0)
+        threshold = combat.xp_for_next_level(1) - 1
+        self.set_columns(room="valdren_camino_parcela", xp=threshold, attr_destreza=50, attr_percepcion=50)
+        store.start_encounter(self.path, self.player_id(), "valdren_camino_parcela", "mordelinde", 1)
+        response = self.client.post("/attack", data={"csrf": self.csrf()})
+        html = response.get_data(as_text=True)
+        self.assertIn("¡SUBISTE A NIVEL 2!", html)
+        self.assertIn("levelUpToast", html)
+        self.assertIn("Ganaste 2 PA para mejorar tus atributos", html)
+        self.assertIn("Siguiente nivel:", html)
+        self.assertIn("¡SUBISTE A NIVEL 2! Ganaste 2 PA para mejorar tus atributos. Siguiente nivel:", html)
+
+    @patch("server.combat.random.Random")
+    def test_api_intent_attack_returns_structured_level_up_event(self, mock_random):
+        mock_random.return_value = FixedRoll(0)
+        threshold = combat.xp_for_next_level(1) - 1
+        self.set_columns(room="valdren_camino_parcela", xp=threshold, attr_destreza=50, attr_percepcion=50)
+        store.start_encounter(self.path, self.player_id(), "valdren_camino_parcela", "mordelinde", 1)
+        response = self.client.post("/api/intent", json={"text": "atacar", "csrf": self.csrf()})
+        self.assertEqual(response.status_code, 200)
+        data = response.get_json()
+        self.assertEqual(data["outcome"], "victory")
+        event = data["level_up_event"]
+        self.assertIsNotNone(event)
+        self.assertEqual(event["level"], 2)
+        self.assertEqual(event["pa_gained"], 2)
+        self.assertIn("¡SUBISTE A NIVEL 2!", event["message"])
+        self.assertIn("Siguiente nivel: 118 XP.", event["message"])
+
+    def test_room_npcs_rendered_in_terminal_and_actions(self):
+        self.set_columns(room="valdren_forja")
+        page = self.client.get("/").get_data(as_text=True)
+        self.assertIn("Personas aquí:", page)
+        self.assertIn("Daro", page)
+        self.assertIn("Hablar con Daro", page)
 
 
 class SchemaV8MigrationTests(unittest.TestCase):
