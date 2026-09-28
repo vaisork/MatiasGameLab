@@ -82,3 +82,19 @@ La segunda marca evita duplicación por conversación repetida, reconexión o re
 
 ## Criterio de experiencia
 La secuencia completa debe sentirse como una pausa breve dentro del viaje: el jugador ayuda porque está allí, obtiene confianza local y descubre que poseer una buena pieza no significa que ya pueda usarla. La Forja queda como siguiente paso natural.
+
+## Cierre de integración — ubicación y actor
+
+La escena queda fijada en el room_id existente `khariel_forja`. Es la Forja de Khariel ya presente en `main`, un espacio cotidiano de fabricación y reparación, por lo que no se crea geografía nueva.
+
+Actor persistente: `khariel_taller_hoshai_01` (**Aren**), preparado por el Creador de NPCs en PR #426. La ficha de ese NPC debe integrarse antes o junto con la implementación; Narrativa no redefine su canon.
+
+Contrato final para Desarrollo:
+- trigger/presencia: `khariel_forja`;
+- actor: `khariel_taller_hoshai_01`;
+- ayuda: `hoshai_paso_ayudado`;
+- recompensa: `hoshai_hoja_recibida`;
+- item: `hoja_hoshai`;
+- `forge_validated=false` al recibirla.
+
+Este cierre sustituye la instrucción anterior de dejar a Desarrollo escoger una sala compatible.
