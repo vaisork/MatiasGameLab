@@ -98,5 +98,24 @@ class NavigationTests(unittest.TestCase):
         self.assertIn('document.querySelector("dialog[open]")', html)
 
 
+    def test_map_places_and_tabs_resolve_home_and_current_room_without_id_leak(self):
+        # Issue #417: evitar fuga de home:<uuid> y asegurar que la cabecera del modal
+        # refleje la sala actual y que las pestañas de mapa y ayuda no queden ocultas.
+        data = self.client.get("/api/map").json
+        self.assertEqual(data["current_room"], "valdren_centro")
+        self.assertEqual(data["current_room_name"], "Valdren")
+        self.assertIn("room_names", data)
+        home_ids = [r for r in data["visited_rooms"] if world.is_home_room(r)]
+        self.assertTrue(home_ids)
+        self.assertEqual(data["room_names"][home_ids[0]], "Tu hogar")
+        self.assertEqual(data["room_names"]["valdren_centro"], "Valdren")
+
+        html = self.client.get("/").get_data(as_text=True)
+        self.assertIn('id="mapCurrentRoomName"', html)
+        self.assertIn('activateTabs("[data-map-tab]", "[data-map-panel]", "mapTab", "mapPanel")', html)
+        self.assertIn('activateTabs("[data-help-tab]", "[data-help-panel]", "helpTab", "helpPanel")', html)
+        self.assertIn('startsWith("home:")', html)
+
+
 if __name__ == "__main__":
     unittest.main()

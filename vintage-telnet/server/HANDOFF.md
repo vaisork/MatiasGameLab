@@ -21,6 +21,19 @@ El registro completo anterior está preservado sin cambios en [docs/archive/VT_S
 | 8 | Entrega limpia de Issues #209 y #211 — Portada pública y lectores canónicos — 2026-09-26 |
 | 9 | Relevo de #207 — EDRAN-01 — 2026-09-26 |
 | 10 | Entrega histórica — Issue #57 (conservada) |
+| — | #427, rama `antigravity/vt-427-story-flags`: flags narrativos persistentes por jugador sin XP (schema v15: tabla `player_story_flags`). Funciones autoritativas en `store.py` (`get_story_flag`, `get_player_story_flags`, `set_story_flag`, `clear_story_flag`, `grant_story_item_once`). Desbloquea entregas únicas e idempotentes de objetos (#287, #288) con rollback garantizado ante excepciones y protección contra doble submit concurrente. Suite focal 9/9 OK; sin deploy. |
+| — | #287, rama `antigravity/vt-287-hoshai-weapon`: microescena HOSHAI-WEAPON-01 ("El amarre del paso") en `khariel_forja` con actor Aren (`khariel_taller_hoshai_01`). Hito `hoshai_paso_ayudado` y entrega única once-per-character de Hoja de Hoshai (`hoja_hoshai`, `forge_validated=False`) mediante `grant_story_item_once`. Soporte para interacción por diálogo y comando de terminal `ayudar` / `sujetar`. Sin autoequipar, sin XP, sin alteración de stats. Suite focal 7/7 OK; sin deploy. |
+| — | #288, rama `antigravity/vt-288-korven-martillo`: microescena KORVEN-WEAPON-01 ("La carga que no asienta") en `brumak_forja` con actor Karn (`brumak_taller_korven_01`). Hito `korven_carga_asentada` y entrega única once-per-character de Martillo de Korven (`martillo_korven`, `forge_validated=False`) mediante `grant_story_item_once`. Soporte para interacción por diálogo y comandos de terminal `ayudar` / `sostener`. Sin autoequipar, sin XP, sin alteración de stats. Suite focal 7/7 OK; sin deploy. |
+| — | #430, rama `antigravity/vt-430-surface-branches`: SURFACE-BRANCHES-TOPOLOGY — materialización de 46 ubicaciones superficiales en 5 ramales periféricos hacia futuros umbrales de mazmorras (Molino Hundido MH-01..MH-10, Grieta del Eco Seco GE-01..GE-09, Cantera Abandonada CA-01..CA-09, Canal Quieto CQ-01..CQ-09, Boca de la Montaña BM-01..BM-09). Mapeo unívoco canónico `SURFACE_BRANCH_MAPPING`, anclajes bidireccionales resueltos a salas canónicas de ruta, umbrales terminales sin interior funcional, geometría euclidiana 100% libre de colisiones en minimapa. Suite completa: 524/524 OK. Sin cambios en pools ni combate. Sin deploy — 2026-09-28 |
+| 1 | Entrega lista para revisión: HOME-CORE — hogar personal persistente mínimo (#280) — 2026-09-27 |
+| 2 | Entrega lista para revisión: Acciones estructuradas derivadas del diálogo con gate autoritativo (#247) — 2026-09-27 |
+| 3 | Entrega lista para revisión: Memoria conversacional acotada por jugador y NPC (#246) — 2026-09-27 |
+| 4 | Entrega lista para revisión: Contrato seguro de conversación dinámica con NPC (#245) — 2026-09-27 |
+| 5 | Entrega lista para revisión: Uñapiedra v1 para Hoshai / Khariel — Bloque A (#229) — 2026-09-27 |
+| 6 | Subentrega de #213 / DEATH-01 — Regresión del motor de muerte y respawn — 2026-09-26 |
+| 7 | Entrega limpia de Issues #209 y #211 — Portada pública y lectores canónicos — 2026-09-26 |
+| 8 | Relevo de #207 — EDRAN-01 — 2026-09-26 |
+| 9 | Entrega histórica — Issue #57 (conservada) |
 
 La entrada histórica #57 continúa con apartados «Contexto», «Objetivo», «Cambios», «Pruebas», «Trabajo previo afectado», «Pendiente» y «Riesgos» en el registro íntegro. No se descartó.
 
