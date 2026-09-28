@@ -44,7 +44,7 @@ class MajorFaunaEngineTests(unittest.TestCase):
         self.player_id = self.player["id"]
         with store.connect(self.db_path) as db:
             db.execute(
-                "UPDATE players SET status = 'approved', species = 'humano', player_class = 'juramentado', room = 'valdren_centro' WHERE id = ?",
+                "UPDATE players SET status = 'approved', species = 'humano', player_class = 'juramentado', room = 'valdren_centro', hp_max = 100, hp_current = 100 WHERE id = ?",
                 (self.player_id,)
             )
         self.player = dict(store.player_for_token(self.db_path, self.token))
