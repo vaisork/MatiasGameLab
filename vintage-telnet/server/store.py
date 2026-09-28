@@ -16,7 +16,7 @@ STATUSES = ("pending", "approved", "rejected", "removed")
 
 # Version de esquema que deja initialize(); ops/inventory_migration_probe.py
 # la usa para validar una migracion de prueba contra la copia de la base viva.
-SCHEMA_VERSION = 16
+SCHEMA_VERSION = 17
 
 # Cuentas con varios personajes (petición de Javier, 2026-09-25): un usuario
 # para entrar puede tener hasta 5 personajes; el nombre de cada personaje es
@@ -48,14 +48,22 @@ NPC_ACTION_LOGS_TABLE = """CREATE TABLE IF NOT EXISTS npc_action_logs (
     payload_json TEXT,
     created_at TEXT NOT NULL)"""
 
-# v15: Issue #427 -- flags narrativos persistentes por jugador sin XP.
-# Soporta microescenas, entregas únicas once-per-character (#287, #288) y branching.
+# v15 story flags and v17 economy ledger.
 STORY_FLAGS_TABLE = """CREATE TABLE IF NOT EXISTS player_story_flags (
     player_id TEXT NOT NULL REFERENCES players(id) ON DELETE CASCADE,
     flag TEXT NOT NULL,
     value INTEGER NOT NULL DEFAULT 1,
     created_at REAL NOT NULL,
     PRIMARY KEY (player_id, flag))"""
+
+ECONOMY_LEDGER_TABLE = """CREATE TABLE IF NOT EXISTS economy_ledger (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    player_id TEXT NOT NULL REFERENCES players(id),
+    delta INTEGER NOT NULL,
+    balance_after INTEGER NOT NULL,
+    reason_code TEXT NOT NULL,
+    source_key TEXT,
+    created_at REAL NOT NULL)"""
 
 
 class UsernameTaken(Exception):
@@ -91,9 +99,10 @@ ATTRIBUTE_COLUMNS = ", ".join(f"attr_{name}" for name in combat.ATTRIBUTES)
 # igual: el arma/armadura activa del personaje es parte de su estado.
 # pp_unspent (GAMEPLAY.md 25.8) y fatigue_updated_at (24.7, recuperacion
 # pasiva calculada por tiempo en servidor) se agregan en el esquema v8.
+# sellos (Issue #408, ECONOMY.md §§2-3) cartera autoritativa en esquema v15.
 CHARACTER_COLUMNS = (f"{PLAYER_COLUMNS}, level, xp, pa_unspent, pp_unspent, hp_current, hp_max, "
                      f"fatigue, fatigue_updated_at, wound, field_rest_budget_max, field_rest_healed, "
-                     f"{ATTRIBUTE_COLUMNS}, equipped_weapon_id, equipped_armor_id")
+                     f"{ATTRIBUTE_COLUMNS}, equipped_weapon_id, equipped_armor_id, sellos")
 
 
 def utcnow():
@@ -334,18 +343,31 @@ def initialize(path):
             if "engaged" not in encounter_columns:
                 db.execute("ALTER TABLE room_encounters ADD COLUMN engaged INTEGER NOT NULL DEFAULT 1")
         if version <= 14:
-            # v15: STORY-FLAGS-01 (#427) -- flags narrativos persistentes por jugador
-            # sin XP, para microescenas y entregas únicas una sola vez (#287, #288).
             db.execute(STORY_FLAGS_TABLE)
             db.execute("CREATE INDEX IF NOT EXISTS story_flags_player ON player_story_flags(player_id, flag)")
         if version <= 15:
-            # v16: capacidades firma y acción preparada en encuentros existentes.
             cols = {row["name"] for row in db.execute("PRAGMA table_info(room_encounters)").fetchall()}
             for column, declaration in (("signature_cooldown", "INTEGER NOT NULL DEFAULT 0"),
                                         ("apertura", "INTEGER NOT NULL DEFAULT 0"),
                                         ("prepared_action", "TEXT")):
                 if column not in cols:
                     db.execute(f"ALTER TABLE room_encounters ADD COLUMN {column} {declaration}")
+        if version <= 16:
+            player_columns = {row["name"] for row in db.execute("PRAGMA table_info(players)").fetchall()}
+            if "sellos" not in player_columns:
+                db.execute("ALTER TABLE players ADD COLUMN sellos INTEGER NOT NULL DEFAULT 20")
+            db.execute(ECONOMY_LEDGER_TABLE)
+            db.execute("CREATE INDEX IF NOT EXISTS economy_ledger_player ON economy_ledger(player_id, id)")
+            now_ts = time.time()
+            existing = db.execute("SELECT id, sellos FROM players").fetchall()
+            for player in existing:
+                if not db.execute("SELECT 1 FROM economy_ledger WHERE player_id = ? LIMIT 1", (player["id"],)).fetchone():
+                    balance = int(player["sellos"] or 0)
+                    db.execute(
+                        """INSERT INTO economy_ledger (player_id, delta, balance_after, reason_code, source_key, created_at)
+                           VALUES (?, ?, ?, 'starting_purse', 'migration:v17', ?)""",
+                        (player["id"], balance, balance, now_ts),
+                    )
         db.execute(f"PRAGMA user_version = {SCHEMA_VERSION}")
 
 
@@ -466,9 +488,14 @@ def _check_name_free(db, name):
 def _insert_character(db, account_id, handle, name, now):
     player_id = str(uuid.uuid4())
     db.execute("""INSERT INTO players(id, username, name, name_key, password_hash, account_id,
-                                      created_at, last_access_at)
-                  VALUES (?, ?, ?, ?, '', ?, ?, ?)""",
+                                      created_at, last_access_at, sellos)
+                  VALUES (?, ?, ?, ?, '', ?, ?, ?, 20)""",
                (player_id, handle, name, name_key(name), account_id, now, now))
+    db.execute(
+        """INSERT INTO economy_ledger (player_id, delta, balance_after, reason_code, source_key, created_at)
+           VALUES (?, 20, 20, 'starting_purse', 'character_creation', ?)""",
+        (player_id, time.time()),
+    )
     return player_id
 
 
