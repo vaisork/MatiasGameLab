@@ -101,6 +101,7 @@
     .location-art img{
       display:block;width:100%;height:clamp(120px,20vw,240px);object-fit:cover
     }
+    .controls-swap{display:grid;gap:8px}
     .controls-row{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:center}
     .dpad{
       display:grid;grid-template-columns:repeat(3,50px);grid-template-rows:repeat(3,46px);gap:5px;justify-content:center
@@ -864,8 +865,9 @@
         </section>
 
         {% set action_names = room.available_actions | map(attribute='action') | list %}
+        <div class="controls-swap" data-swap="controls">
         {% if room.encounter %}
-        <section class="combat-panel" aria-label="{{ 'Acciones de combate' if room.in_combat else 'Fauna cercana' }}" data-swap="controls">
+        <section class="combat-panel" aria-label="{{ 'Acciones de combate' if room.in_combat else 'Fauna cercana' }}">
           {% if 'atacar' in action_names %}
           <form method="post" action="/attack"><input type="hidden" name="csrf" value="{{ session.csrf }}"><button class="action action-attack" type="submit"><svg class="ui-icon" aria-hidden="true"><use href="#icon-swords"/></svg>Atacar</button></form>
           {% endif %}
@@ -894,7 +896,7 @@
         </section>
         {% endif %}
         {% if not room.in_combat %}
-        <section class="controls-row" aria-label="Controles principales" data-swap="controls">
+        <section class="controls-row" aria-label="Controles principales">
           <div class="dpad" aria-label="Movimiento cardinal">
             {% set exit_dirs = room.exits | map(attribute='direction') | list %}
             {% set exit_names = {} %}{% for e in room.exits if e.known_name %}{% set _ = exit_names.update({e.direction: e.known_name}) %}{% endfor %}
@@ -945,6 +947,7 @@
           {% endif %}
         </section>
         {% endif %}
+        </div>
 
         <section class="command-zone">
           <form class="commandbar" method="post" action="/command">
@@ -2069,14 +2072,23 @@
     const shell = document.querySelector(".game-shell");
     if (!nextShell || !shell) return false;
     for (const key of ["level", "death", "place", "art", "terminal", "controls", "side"]) {
-      const current = document.querySelector(`[data-swap="${key}"]`);
+      const currentMatches = [...document.querySelectorAll(`[data-swap="${key}"]`)];
+      const current = currentMatches[0];
       const incoming = next.querySelector(`[data-swap="${key}"]`);
       if (!current || !incoming) continue;
+      // Una versión anterior podía dejar dos regiones "controls" en el DOM.
+      // Al reemplazar, eliminar cualquier duplicado obsoleto garantiza que el
+      // siguiente swap siempre parta de una sola región autoritativa.
+      const removeStaleCopies = () => currentMatches.slice(1).forEach(extra => extra.remove());
       // La imagen no se toca si sigue siendo la misma: así no parpadea.
       if (key === "art" && current.dataset.artSrc === incoming.dataset.artSrc
-          && current.className === incoming.className) continue;
+          && current.className === incoming.className) {
+        removeStaleCopies();
+        continue;
+      }
       const imported = document.importNode(incoming, true);
       current.replaceWith(imported);
+      removeStaleCopies();
       if (key === "art") wireArt(imported);
     }
     shell.className = nextShell.className;
