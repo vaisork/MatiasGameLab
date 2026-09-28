@@ -49,13 +49,21 @@ a ningún servidor Ollama. Esto verifica el protocolo, selección de proveedor,
 filtrado de conocimiento y fallback, pero no demuestra por sí solo que un modelo
 concreto responda bien o con latencia aceptable.
 
-Sonda manual local del 2026-09-28: `llama3.2:3b` recibió un prompt sintético de
-Daro por `/api/chat`, pero no terminó dentro del timeout de 60 segundos usado
-en la prueba. La configuración predeterminada de runtime se subió a 120 segundos
-para dejar margen al arranque en frío. La petición expiró; descargué el modelo
-de memoria y no obtuve una respuesta usable. No hice una segunda llamada. Este resultado no demuestra que todos
-los modelos o prompts fallen, pero ese modelo/configuración no está listo para
-activar en el juego.
+Sondas manuales locales del 2026-09-28: la primera llamada con
+`llama3.2:3b` superó 60 segundos sin terminar; el modelo se descargó de memoria.
+Con el límite ampliado a 120 segundos, una segunda llamada sintética por el
+adaptador respondió en aproximadamente 58 segundos:
+
+> La forja se está moviendo. Acabo de terminar una pieza de clavos para la cosecha de esta semana. La calidad de la acero es buena y espero que no haya problemas con los aperos.
+
+La respuesta sí es contextual, pero contiene una construcción gramatical
+incorrecta y un detalle de trabajo no confirmado por el contexto autorizado.
+Esto confirma que la integración local funciona y que el límite ampliado permite
+obtener texto; no valida todavía calidad narrativa ni elimina alucinaciones. No
+se probó `qwen3:4b`. La decisión de Javier permite probar Ollama de runtime en
+Vintage Telnet aunque la latencia sea mayor; sigue prohibido usar el modelo
+`ojo-de-agua:latest`. El proveedor del servicio continúa en `fixed` y no se ha
+desplegado.
 
 El flujo de generación única de personalidad de
 [`NPC_OLLAMA_BRIDGE.md`](NPC_OLLAMA_BRIDGE.md) es una función distinta y no
