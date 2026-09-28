@@ -558,5 +558,90 @@ class OllamaDialogueProviderTests(unittest.TestCase):
         self.assertEqual(result.text, self.npc["fallback_dialogue"])
 
 
+    def test_fixed_provider_from_environment_preserves_normal_conversation(self):
+        registry = NPCRegistry()
+        registry.register(self.npc)
+        provider = dialogue_provider_from_environment({"VT_NPC_DIALOGUE_PROVIDER": "fixed"})
+
+        result = converse(
+            self.player, "daro_herrero", "hola",
+            room_id="valdren_forja", provider=provider, registry=registry,
+        )
+
+        self.assertTrue(result.success)
+        self.assertFalse(result.is_fallback)
+        self.assertEqual(result.text, "Te escucho con atención, pero ahora debo atender mis tareas.")
+        self.assertEqual(len(provider.calls), 1)
+
+    def test_busy_ollama_degrades_through_converse_without_breaking_server_flow(self):
+        registry = NPCRegistry()
+        registry.register(self.npc)
+        provider = OllamaDialogueProvider(
+            base_url="http://127.0.0.1:11434", model="test-model"
+        )
+        provider._inference_lock.acquire()
+        try:
+            with patch("server.npc_dialogue.urlopen") as send:
+                result = converse(
+                    self.player, "daro_herrero", "hola",
+                    room_id="valdren_forja", provider=provider, registry=registry,
+                )
+            send.assert_not_called()
+        finally:
+            provider._inference_lock.release()
+
+        self.assertTrue(result.success)
+        self.assertTrue(result.is_fallback)
+        self.assertEqual(result.text, self.npc["fallback_dialogue"])
+
+    def test_invalid_environment_provider_degrades_to_fallback_conversation(self):
+        registry = NPCRegistry()
+        registry.register(self.npc)
+        provider = dialogue_provider_from_environment({
+            "VT_NPC_DIALOGUE_PROVIDER": "ollama",
+        })
+
+        self.assertIsInstance(provider, UnavailableDialogueProvider)
+        result = converse(
+            self.player, "daro_herrero", "hola",
+            room_id="valdren_forja", provider=provider, registry=registry,
+        )
+
+        self.assertTrue(result.success)
+        self.assertTrue(result.is_fallback)
+        self.assertEqual(result.text, self.npc["fallback_dialogue"])
+
+    def test_successful_ollama_reply_does_not_mutate_player_or_npc_state(self):
+        class Response:
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *_args):
+                return False
+
+            def read(self, _limit):
+                return b'{"message":{"content":"Buenas tardes, viajero."}}'
+
+        registry = NPCRegistry()
+        registry.register(self.npc)
+        provider = OllamaDialogueProvider(
+            base_url="http://127.0.0.1:11434", model="test-model"
+        )
+        player_before = deepcopy(self.player)
+        npc_before = deepcopy(registry.get("daro_herrero"))
+
+        with patch("server.npc_dialogue.urlopen", return_value=Response()):
+            result = converse(
+                self.player, "daro_herrero", "hola",
+                room_id="valdren_forja", provider=provider, registry=registry,
+            )
+
+        self.assertTrue(result.success)
+        self.assertFalse(result.is_fallback)
+        self.assertEqual(result.text, "Buenas tardes, viajero.")
+        self.assertEqual(self.player, player_before)
+        self.assertEqual(registry.get("daro_herrero"), npc_before)
+
+
 if __name__ == "__main__":
     unittest.main()
