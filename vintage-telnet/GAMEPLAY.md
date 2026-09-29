@@ -4243,3 +4243,120 @@ Persisten por personaje: instancia aceptada/completada/cobrada, timestamps de co
 - fauna sigue sin entregar sellos directos.
 
 **LISTO PARA DESARROLLO: SÍ.**
+
+
+## 44. Reparación excepcional de equipo — DARO-REPAIR-01
+
+**Estado:** CONTRATO P1 CERRADO. **Relacionado:** #535, #382, #385, #481.
+
+Reparar es un servicio estructurado y autoritativo de Daro, separado de Hablar. V1 **no introduce durabilidad rutinaria**, desgaste por golpe, porcentaje de condición ni mantenimiento periódico.
+
+### 44.1 Estado reparable
+
+Un arma/equipo puede estar únicamente en uno de estos estados mecánicos respecto de reparación:
+
+- intact — funcionamiento normal; no requiere reparación;
+- damaged_event — daño excepcional producido por un evento/contenido que declare explícitamente ese resultado.
+
+Default para todo objeto existente: intact.
+
+Combate ordinario, número de golpes, muerte, huida, viaje, tiempo real, equipar/desequipar y uso normal **no** cambian intact a damaged_event.
+
+Un contenido futuro solo puede aplicar damaged_event si su contrato lo declara explícitamente. No inferir daño por dificultad del enemigo.
+
+### 44.2 Efecto de damaged_event
+
+V1 usa una sola severidad discreta.
+
+Mientras un objeto está damaged_event:
+- permanece en inventario y conserva identidad/propiedad;
+- **no puede equiparse ni usarse como equipo activo**;
+- puede inspeccionarse;
+- no pierde niveles, mejoras ni validaciones que ya posea;
+- no se destruye ni se convierte en otro objeto.
+
+Si el evento daña el objeto actualmente equipado, se desequipa de forma autoritativa al aplicar el estado.
+
+No existe damaged_1/2/3, HP del objeto ni reparación parcial en v1.
+
+### 44.3 Coste
+
+Reparación v1:
+
+**8 sellos por objeto damaged_event.**
+
+El precio es fijo y autoritativo del servidor. El LLM no lo negocia ni modifica.
+
+Razón de balance: equivale a una provisión básica #410 y queda por debajo de un arma nueva de Daro; es una consecuencia excepcional perceptible sin convertirse en un sumidero rutinario.
+
+### 44.4 Operación
+
+Precondiciones:
+1. personaje en la superficie/actor estructurado autorizado para Daro;
+2. objeto pertenece al personaje;
+3. estado exacto damaged_event;
+4. saldo >= 8 sellos.
+
+Éxito atómico:
+- debita 8 sellos una sola vez;
+- cambia damaged_event -> intact;
+- persiste ambos cambios;
+- devuelve feedback inmediato con objeto y coste.
+
+La reparación **no equipa automáticamente** el objeto.
+
+### 44.5 Nada que reparar / fondos insuficientes
+
+Si no existe ningún objeto damaged_event:
+- acción disponible puede responder “nada que reparar”;
+- coste **0**;
+- ningún estado cambia.
+
+Si hay objeto dañado pero saldo < 8:
+- no debitar;
+- no reparar;
+- informar coste requerido y saldo insuficiente.
+
+Objetos intact nunca aceptan un cobro preventivo.
+
+### 44.6 Persistencia e idempotencia
+
+damaged_event persiste por instancia de objeto a muerte, reconnect y restart.
+
+La reparación debe ser transaccional/idempotente:
+- doble submit concurrente no cobra dos veces;
+- retry después de timeout observa el resultado ya confirmado o ejecuta una sola transición;
+- no puede existir estado final intact con dos débitos por la misma reparación.
+
+La muerte mientras el objeto está dañado no lo repara ni lo destruye.
+
+### 44.7 Límites y compatibilidad
+
+- Sin reparación masiva/bulk en v1: una operación por objeto.
+- Sin temporizador de taller.
+- Sin materiales de reparación.
+- Sin habilidad/profesión de herrería del jugador.
+- Sin reparación mediante conversación.
+- Sin descuento por reputación.
+- Sin daño aleatorio de equipo.
+- lost_to_boss de §41, si algún jefe lo habilita en el futuro, **no equivale** a damaged_event y no se arregla pagando 8 sellos.
+- Forja/validación física y reparación son estados/operaciones distintos; reparar no falsifica ni concede forge_validated.
+
+### 44.8 Tests mínimos
+
+- objeto nuevo/default está intact;
+- combate ordinario repetido nunca genera damaged_event;
+- muerte/huida/viaje/tiempo no dañan equipo;
+- solo evento explícitamente autorizado puede aplicar damaged_event;
+- objeto dañado equipado se desequipa;
+- objeto dañado no puede equiparse/usarse;
+- reparar con 8+ sellos debita exactamente 8 y deja intact;
+- reparación no autoequipa;
+- intacto no cobra;
+- fondos insuficientes no cobran ni cambian estado;
+- muerte/reconnect/restart conservan daño;
+- doble submit/retry produce un solo débito y una sola transición;
+- lost_to_boss no entra por la ruta de reparación;
+- conversación con Daro no ejecuta ni altera reparación.
+
+**LISTO PARA DESARROLLO: SÍ.**
