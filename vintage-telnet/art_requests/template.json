@@ -1,0 +1,28 @@
+{
+  "asset_id": "reemplaza_por_id_aprobado",
+  "asset_type": "creature | character | environment | architecture | object | icon",
+  "target": "Describe para qué pantalla o uso se necesita",
+  "canonical_name": "Nombre aprobado en el canon",
+  "art_direction": "Composición, estilo, encuadre, iluminación y acabado decididos por Dirección de Arte",
+  "prompt": "Descripción visual concreta aprobada por Dirección de Arte",
+  "references": [],
+  "negative_constraints": [
+    "No añadir texto legible",
+    "No inventar anatomía, arquitectura ni elementos de canon"
+  ],
+  "aspect_ratio": "square | landscape | portrait",
+  "output_destination": "vintage-telnet/art_generations",
+  "status": "draft",
+  "canon_sources": [],
+  "room_id": null,
+  "creature_id": null,
+  "species_id": null,
+  "prior_asset": null,
+  "edit_source": null,
+  "variation_of": null,
+  "notes": null,
+  "quality": "low",
+  "output_format": "png",
+  "output_compression": null,
+  "background": "auto"
+}
