@@ -16,7 +16,14 @@ STATUSES = ("pending", "approved", "rejected", "removed")
 
 # Version de esquema que deja initialize(); ops/inventory_migration_probe.py
 # la usa para validar una migracion de prueba contra la copia de la base viva.
-SCHEMA_VERSION = 23
+SCHEMA_VERSION = 24
+
+SALVAGE_ITEMS_TABLE = """CREATE TABLE IF NOT EXISTS salvage_items (
+    id TEXT PRIMARY KEY,
+    player_id TEXT NOT NULL REFERENCES players(id) ON DELETE CASCADE,
+    victory_id INTEGER NOT NULL UNIQUE REFERENCES pve_victories(id),
+    item_key TEXT NOT NULL,
+    acquired_at TEXT NOT NULL)"""
 
 # Cuentas con varios personajes (petición de Javier, 2026-09-25): un usuario
 # para entrar puede tener hasta 5 personajes; el nombre de cada personaje es
@@ -487,6 +494,9 @@ def initialize(path):
                 db.execute("DROP TABLE inventory_items")
                 db.execute("ALTER TABLE inventory_items_v23 RENAME TO inventory_items")
                 db.execute("CREATE INDEX inventory_items_player ON inventory_items(player_id)")
+        if version <= 23:
+            db.execute(SALVAGE_ITEMS_TABLE)
+            db.execute("CREATE INDEX IF NOT EXISTS salvage_items_player ON salvage_items(player_id, acquired_at)")
         db.execute(f"PRAGMA user_version = {SCHEMA_VERSION}")
         if foreign_keys_temporarily_disabled:
             db.commit()
@@ -1269,7 +1279,7 @@ def record_pve_victory(path, player_id, family):
     victorias para el antifarmeo (22.6, incluyendo esta victoria). Devuelve
     (is_first_family_victory, repeats_in_last_10)."""
     with connect(path) as db:
-        db.execute(
+        victory = db.execute(
             "INSERT INTO pve_victories(player_id, family, created_at) VALUES (?, ?, ?)",
             (player_id, family, utcnow()),
         )
@@ -1283,6 +1293,8 @@ def record_pve_victory(path, player_id, family):
             (player_id,),
         ).fetchall()
         repeats = sum(1 for row in last_ten if row["family"] == family)
+        from . import salvage
+        salvage.roll_in_transaction(db, player_id, family, repeats, victory.lastrowid)
         return is_first, repeats
 
 
