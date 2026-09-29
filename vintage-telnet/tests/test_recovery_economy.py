@@ -99,6 +99,15 @@ class RecoveryEconomyIntegrationTests(unittest.TestCase):
         forge = self.client.get("/").get_data(as_text=True)
         self.assertIn("Taller de Daro", forge)
 
+    def test_daro_trade_commands_are_discoverable_in_help_and_at_forge(self):
+        store.move_player(self.path, self.player_id, "valdren_forja")
+        forge = self.client.get("/").get_data(as_text=True)
+        self.assertIn("Comercio de Daro:", forge)
+        self.assertIn("comprar &lt;arma&gt;", forge)
+        self.assertIn("vender &lt;arma&gt;", forge)
+        self.assertIn("Taller de Daro", forge)
+        self.assertIn("6. Comercio en la Forja de Valdren", forge)
+
     def test_stable_ids_and_catalog_contract(self):
         self.assertEqual(recovery.RATION_ITEM_ID, "racion_camino_valdren")
         self.assertEqual(recovery.SERVICE_ID, "comida_caliente_valdren_mercado")

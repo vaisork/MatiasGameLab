@@ -862,6 +862,9 @@
           </div>
           {% endif %}
           <div class="terminal-alert terminal-hint">Pista: usa Ayuda para comandos y ejemplos. Para chat local escribe “decir &lt;texto&gt;”.</div>
+          {% if room.id == 'valdren_forja' %}
+          <div class="terminal-alert terminal-hint">Comercio de Daro: escribe <code>comprar</code> para ver el catálogo, <code>comprar &lt;arma&gt;</code> para comprar o <code>vender &lt;arma&gt;</code> para vender.</div>
+          {% endif %}
         </section>
 
         {% set action_names = room.available_actions | map(attribute='action') | list %}
@@ -1129,6 +1132,7 @@
         <section class="help-card"><h3>3. Combate</h3><p>Las acciones aparecen solo cuando el servidor las permite. Huir o una defensa sustituye tu ataque de esa ronda.</p></section>
         <section class="help-card"><h3>4. Recupérate y consulta</h3><p><strong>Descansar</strong> aparece cuando está permitido. Personaje muestra tu estado y Mapa recuerda lugares/rutas conocidos.</p></section>
         <section class="help-card"><h3>5. Habla</h3><p><strong>Hablar</strong> conversa con un NPC. Para chat local usa <code>decir &lt;texto&gt;</code>. Un comando desconocido no se publica.</p></section>
+        <section class="help-card"><h3>6. Comercio en la Forja de Valdren</h3><p>Escribe <code>comprar</code> para consultar el catálogo de Daro, <code>comprar &lt;arma&gt;</code> para comprar o <code>vender &lt;arma&gt;</code> para venderle un arma elegible. También puedes abrir <strong>Taller de Daro</strong> desde Herramientas.</p></section>
       </div>
     </section>
     <section class="help-panel" id="helpPanelKids" role="tabpanel" aria-labelledby="helpTabKids" data-help-panel="kids" hidden>
