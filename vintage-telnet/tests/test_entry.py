@@ -417,6 +417,26 @@ class EntryTests(unittest.TestCase):
         self.assertNotIn(">Descansar</button>", html)
         self.assertNotRegex(html, r"HP:\s*\d+/\d+")
 
+    def test_mobile_forge_tool_updates_after_ajax_navigation(self):
+        """#551: al entrar en la forja se actualiza también la herramienta
+        de tienda, fuera de la región de controles que se intercambia."""
+        self.assertEqual(self.register().status_code, 303)
+        store.set_status(self.path, "matias", "approved")
+        self.assertEqual(self.post("/species", {"species": "humano"}).status_code, 303)
+        self.assertEqual(self.post("/class", {"player_class": "sombra"}).status_code, 303)
+        self.post("/move", {"direction": "south"})
+        plaza = self.client.get("/").get_data(as_text=True)
+        self.assertIn('data-swap="tools"', plaza)
+        self.assertIn('"controls", "tools", "side"', plaza)
+        self.assertNotIn('data-open="shopDialog" data-shop-open', plaza)
+
+        self.post("/move", {"direction": "west"})
+        forge = self.client.get("/").get_data(as_text=True)
+        self.assertIn('data-swap="tools"', forge)
+        self.assertIn('data-open="shopDialog" data-shop-open', forge)
+        self.assertIn('data-prefill="hablar daro_herrero ', forge)
+        self.assertIn('class="mobile-account-menu"', forge)
+
     def test_creature_without_approved_art_keeps_neutral_frame(self):
         """Issue #244: sin asset aprobado no hay placeholder, texto de error
         ni imagen rota; combate, estado y controles permanecen visibles."""

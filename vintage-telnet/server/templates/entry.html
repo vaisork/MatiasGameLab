@@ -284,6 +284,7 @@
     .state-panel{width:min(100%,34rem);margin:0 auto}
     .form-error{margin:0 0 12px;padding:10px 12px;border:1px solid #8a4b3a;border-radius:10px;background:#2a1510;color:#ffd0b0;font:.88rem/1.45 ui-sans-serif,system-ui,sans-serif}
     .account-actions{display:flex;flex-wrap:wrap;gap:8px}
+    .mobile-account-menu,.mobile-action-label,.mobile-context-action{display:none!important}
     .character-list{list-style:none;margin:12px 0;padding:0;display:grid;gap:8px}
     .character-pick{width:100%;display:flex;flex-direction:column;align-items:flex-start;gap:2px;text-align:left}
     .character-pick span{font-size:.8rem;color:var(--muted);font-weight:400}
@@ -566,6 +567,49 @@
     @media(max-width:640px) and (max-height:720px){
       .location-art,.location-art img{height:120px!important}
     }
+    /* #551: el pad conserva sus direcciones; a su lado se distribuyen solo
+       acciones que el servidor ya autorizó para esta sala. */
+    @media(max-width:640px){
+      .app{padding:max(3px,env(safe-area-inset-top)) 4px max(3px,env(safe-area-inset-bottom));gap:4px}
+      .topbar-game{min-height:44px;padding:3px 8px;box-shadow:none}
+      .topbar-game .brand strong{font-size:.8rem;letter-spacing:.04em}
+      .topbar-game .status{display:none}
+      .game-shell{padding:4px;gap:4px;box-shadow:none}
+      .game-shell::before{width:23px;height:23px}
+      .place-bar{min-height:32px;padding:4px 8px}
+      .location-art,.location-art img{height:clamp(150px,45vw,210px)!important}
+      .game-shell > .terminal{min-height:145px}
+      .log{padding:7px 9px}
+      .terminal-head{padding:4px 7px}
+      .terminal-alert{padding:4px 7px}
+      .controls-swap{gap:4px}
+      .controls-row{grid-template-columns:134px minmax(0,1fr);gap:5px;align-items:start}
+      .dpad{grid-template-columns:repeat(3,42px);grid-template-rows:repeat(3,44px);gap:4px}
+      .context-actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:minmax(44px,auto);gap:4px;align-content:start}
+      .context-actions form{min-width:0}
+      .context-actions .action{height:100%;min-height:44px;padding:3px 2px;justify-content:center;text-align:center;font-size:.66rem;line-height:1.14;overflow-wrap:anywhere}
+      .context-actions .ui-icon{display:none}
+      .context-actions .mobile-context-action{display:block!important}
+      .desktop-action-label{display:none}
+      .mobile-action-label{display:inline!important}
+      .controls-row > .npc-presence{grid-column:1/-1}
+      .combat-panel{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px}
+      .combat-panel .combat-row{display:contents}
+      .combat-panel > form:first-child{grid-column:span 2}
+      .combat-panel .action{min-height:44px;height:100%;font-size:.75rem;padding:4px}
+      .combat-panel .action-attack{font-size:.9rem}
+      .combat-panel .action-attack .ui-icon{width:19px;height:19px;flex-basis:19px}
+      .commandbar input{min-height:44px}
+      .tool-row{position:static;padding-top:0;gap:3px}
+      .tool-row .btn{min-height:44px;padding:3px 1px}
+      .tool-row [data-shop-open]{display:none}
+      .game-account-actions{display:none}
+      .mobile-account-menu{display:block!important;position:fixed;top:max(4px,env(safe-area-inset-top));right:7px;z-index:12}
+      .mobile-account-menu summary{display:flex;align-items:center;justify-content:center;min-width:62px;min-height:44px;padding:3px 7px;border:1px solid var(--line);border-radius:8px;background:var(--shell);color:var(--gold);font:700 .72rem ui-sans-serif,system-ui,sans-serif;cursor:pointer;list-style:none}
+      .mobile-account-menu summary::-webkit-details-marker{display:none}
+      .mobile-account-menu .account-actions{display:grid;gap:5px;min-width:190px;padding:7px;border:1px solid var(--line);border-radius:8px;background:var(--shell);box-shadow:0 8px 24px #000a}
+      .mobile-account-menu .btn{min-height:44px;width:100%}
+    }
   </style>
 </head>
 <body>
@@ -595,7 +639,7 @@
   <symbol id="icon-send" viewBox="0 0 24 24"><path d="M3 11.5L21 3l-8.5 18-2-7z"/><path d="M10.5 14L21 3"/></symbol>
 </svg>
 <div class="app">
-  <header class="topbar">
+  <header class="topbar{% if player and player.status == 'approved' and player.species and player.player_class %} topbar-game{% endif %}">
     <div class="brand"><strong>VINTAGE TELNET</strong><small>Matías Game Lab</small></div>
     <div class="status">
       <i></i>
@@ -928,8 +972,18 @@
             <form method="post" action="/command"><input type="hidden" name="csrf" value="{{ session.csrf }}"><input type="hidden" name="text" value="descansar"><button class="action" type="submit"><svg class="ui-icon" aria-hidden="true"><use href="#icon-bed"/></svg>Descansar</button></form>
             {% endif %}
             {% if room.id == 'valdren_centro' %}
-            <form method="post" action="/move"><input type="hidden" name="csrf" value="{{ session.csrf }}"><input type="hidden" name="direction" value="west"><button class="action" type="submit">Ir a la Forja de Daro ←</button></form>
-            <form method="post" action="/move"><input type="hidden" name="csrf" value="{{ session.csrf }}"><input type="hidden" name="direction" value="east"><button class="action" type="submit">Ir al Mercado de Valdren →</button></form>
+            <form method="post" action="/move"><input type="hidden" name="csrf" value="{{ session.csrf }}"><input type="hidden" name="direction" value="west"><button class="action" type="submit"><span class="desktop-action-label">Ir a la Forja de Daro ←</span><span class="mobile-action-label">Forja ←</span></button></form>
+            <form method="post" action="/move"><input type="hidden" name="csrf" value="{{ session.csrf }}"><input type="hidden" name="direction" value="east"><button class="action" type="submit"><span class="desktop-action-label">Ir al Mercado de Valdren →</span><span class="mobile-action-label">Mercado →</span></button></form>
+            {% endif %}
+            {% if room.id == 'valdren_forja' %}
+            <button class="action mobile-context-action" type="button" data-open="shopDialog" data-shop-open>Tienda</button>
+            {% endif %}
+            {% if room.id == 'valdren_mercado' %}
+            <form class="mobile-context-action" method="post" action="/command"><input type="hidden" name="csrf" value="{{ session.csrf }}"><input type="hidden" name="text" value="comprar Ración de camino de Valdren"><button class="action" type="submit">Ración · 8</button></form>
+            <form class="mobile-context-action" method="post" action="/command"><input type="hidden" name="csrf" value="{{ session.csrf }}"><input type="hidden" name="text" value="usar Comida caliente del mercado"><button class="action" type="submit">Comida · 18</button></form>
+            {% endif %}
+            {% if room.npcs %}
+            <button class="action mobile-context-action" type="button" data-prefill="hablar {{ room.npcs[0].id }} " aria-label="Hablar con {{ room.npcs[0].name }}">Hablar</button>
             {% endif %}
           </div>
           {% if room.id == 'valdren_mercado' %}
@@ -970,7 +1024,7 @@
             <input name="text" id="commandInput" aria-label="Escribe un comando" autocomplete="off" autocapitalize="none" spellcheck="false" enterkeyhint="send" maxlength="500" placeholder="> norte, mirar, examinar…">
             <button class="btn primary" type="submit"><svg class="ui-icon" aria-hidden="true"><use href="#icon-send"/></svg>Enviar</button>
           </form>
-          <div class="tool-row" aria-label="Herramientas">
+          <div class="tool-row" aria-label="Herramientas" data-swap="tools">
             <button class="btn" type="button" data-open="characterDialog" data-character-tool
                     aria-label="Personaje{% if player.pa_unspent or player.pp_unspent %}, {{ player.pa_unspent }} PA{% if player.pp_unspent %} y {{ player.pp_unspent }} PP{% endif %} disponibles{% endif %}">
               <svg class="ui-icon" aria-hidden="true"><use href="#icon-user"/></svg><span>Personaje</span>
@@ -1003,7 +1057,8 @@
       </aside>
     </div>
 
-    <div class="account-actions" style="margin-top:8px"><form method="post" action="/characters/switch"><input type="hidden" name="csrf" value="{{ session.csrf }}"><button class="btn" type="submit">Cambiar de personaje</button></form><form method="post" action="/logout"><input type="hidden" name="csrf" value="{{ session.csrf }}"><button class="btn" type="submit">Cerrar sesión</button></form></div>
+    <div class="account-actions game-account-actions" style="margin-top:8px"><form method="post" action="/characters/switch"><input type="hidden" name="csrf" value="{{ session.csrf }}"><button class="btn" type="submit">Cambiar de personaje</button></form><form method="post" action="/logout"><input type="hidden" name="csrf" value="{{ session.csrf }}"><button class="btn" type="submit">Cerrar sesión</button></form></div>
+    <details class="mobile-account-menu"><summary>Cuenta</summary><div class="account-actions"><form method="post" action="/characters/switch"><input type="hidden" name="csrf" value="{{ session.csrf }}"><button class="btn" type="submit">Cambiar de personaje</button></form><form method="post" action="/logout"><input type="hidden" name="csrf" value="{{ session.csrf }}"><button class="btn" type="submit">Cerrar sesión</button></form></div></details>
   {% endif %}
 
   <div class="footer">Vintage Telnet · servidor real · texto primero, HTML como herramienta</div>
@@ -2103,7 +2158,7 @@
     const nextShell = next.querySelector(".game-shell");
     const shell = document.querySelector(".game-shell");
     if (!nextShell || !shell) return false;
-    for (const key of ["level", "death", "place", "art", "terminal", "controls", "side"]) {
+    for (const key of ["level", "death", "place", "art", "terminal", "controls", "tools", "side"]) {
       const currentMatches = [...document.querySelectorAll(`[data-swap="${key}"]`)];
       const current = currentMatches[0];
       const incoming = next.querySelector(`[data-swap="${key}"]`);
@@ -2124,7 +2179,6 @@
       if (key === "art") wireArt(imported);
     }
     shell.className = nextShell.className;
-    // La barra de herramientas no forma parte de data-swap="controls".
     // Copiamos el saldo de puntos desde la respuesta autoritativa para que
     // el badge de Personaje aparezca/desaparezca inmediatamente tras ganar o gastar PA/PP.
     const incomingBadge = next.querySelector("[data-point-badge]");
