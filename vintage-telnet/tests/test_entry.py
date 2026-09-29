@@ -668,10 +668,12 @@ class EntryTests(unittest.TestCase):
         self.assertIn("Protección total", html)
         self.assertIn("Carga física", html)
         self.assertIn('(item.equipped ? "desequipar " : "equipar ") + item.name', html)
-        inventory_commands = html.split("const commandFormFor = item => {", 1)[1].split(
+        inventory_commands = html.split("const commandFormFor = (item, inSalvageMarket) => {", 1)[1].split(
             "const renderInventory = data => {", 1
         )[0].lower()
-        self.assertNotIn("vender", inventory_commands)
+        self.assertIn('"vender material " + item.id', inventory_commands)
+        self.assertIn('item.category === "material" && !insalvagemarket', inventory_commands)
+        self.assertNotIn("vender arma", inventory_commands)
         self.assertNotIn("soltar", inventory_commands)
         self.assertNotIn("durabilidad", html.lower())
 

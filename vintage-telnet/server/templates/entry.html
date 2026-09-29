@@ -1411,14 +1411,15 @@
   };
 
   const itemDetails = item => {
-    const parts = [item.category === "weapon" ? "Arma" : "Armadura"];
+    const parts = [item.category === "weapon" ? "Arma" : item.category === "armor" ? "Armadura" : item.category === "material" ? "Material" : "Consumible"];
+    if (item.category === "material") parts.push("Acopio " + item.price + " sellos");
     if (item.base_damage != null) parts.push("Daño base " + item.base_damage);
     if (item.armor_reduction != null) parts.push("Protección " + Math.round(item.armor_reduction * 100) + "%");
     if (item.can_block) parts.push("Permite bloquear");
     if (item.forge_required) parts.push(item.forge_validated ? "Forja validada" : "Forja pendiente");
     return parts.join(" · ");
   };
-  const commandFormFor = item => {
+  const commandFormFor = (item, inSalvageMarket) => {
     const form = document.createElement("form");
     form.method = "post";
     form.action = "/command";
@@ -1426,11 +1427,15 @@
     csrf.type = "hidden"; csrf.name = "csrf"; csrf.value = csrfValue;
     const text = document.createElement("input");
     text.type = "hidden"; text.name = "text";
-    text.value = (item.equipped ? "desequipar " : "equipar ") + item.name;
+    text.value = item.category === "material" ? "vender material " + item.id : (item.equipped ? "desequipar " : "equipar ") + item.name;
     const button = document.createElement("button");
     button.className = "action";
     button.type = "submit";
-    button.textContent = item.equipped ? "Desequipar" : "Equipar";
+    button.textContent = item.category === "material" ? "Vender" : item.equipped ? "Desequipar" : "Equipar";
+    if (item.category === "material" && !inSalvageMarket) {
+      button.disabled = true;
+      button.title = "Se vende en el acopio del Mercado de Valdren";
+    }
     if (item.forge_required && !item.forge_validated && !item.equipped) {
       button.disabled = true;
       button.title = "Requiere validación de Forja";
@@ -1481,7 +1486,7 @@
       meta.textContent = itemDetails(item);
       if (item.forge_required) meta.classList.add(item.forge_validated ? "forge-ok" : "forge-blocked");
       info.append(name, meta);
-      row.append(info, commandFormFor(item));
+      row.append(info, commandFormFor(item, data.in_salvage_market));
       list.appendChild(row);
     });
     inventoryContent.className = "";
