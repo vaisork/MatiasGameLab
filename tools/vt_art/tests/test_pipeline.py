@@ -158,6 +158,15 @@ class ArtPipelineTests(unittest.TestCase):
                 import os
                 self.assertEqual(os.environ["OPENAI_API_KEY"], "local-secret-value")
 
+    def test_preferred_user_named_env_file_is_read(self):
+        with tempfile.TemporaryDirectory() as folder:
+            env_file = Path(folder) / "Imagenesapykey.env"
+            env_file.write_text("OPENAI_API_KEY=local-secret-value\n", encoding="utf-8")
+            with patch("tools.vt_art.cli.ENV_FILE", env_file), patch("tools.vt_art.cli.LEGACY_ENV_FILE", Path(folder) / ".env"), patch.dict("os.environ", {}, clear=True):
+                load_local_config()
+                import os
+                self.assertEqual(os.environ["OPENAI_API_KEY"], "local-secret-value")
+
     def test_openai_wrapper_sends_parameters_and_decodes_image_response(self):
         calls = []
 

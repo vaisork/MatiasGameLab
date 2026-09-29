@@ -22,30 +22,32 @@ from .pipeline import (
 
 
 DEFAULT_MODEL = "gpt-image-2.5-flare"
-ENV_FILE = ROOT / "vintage-telnet" / ".env"
+ENV_FILE = ROOT / "vintage-telnet" / "Imagenesapykey.env"
+LEGACY_ENV_FILE = ROOT / "vintage-telnet" / ".env"
 
 
 def load_local_config() -> None:
     """Load only the art-tool settings; shell environment takes precedence."""
-    try:
-        lines = ENV_FILE.read_text(encoding="utf-8").splitlines()
-    except FileNotFoundError:
-        return
-    except OSError as exc:
-        raise ArtPipelineError(f"No se pudo leer la configuración local: {ENV_FILE}") from exc
-    for raw in lines:
-        line = raw.strip()
-        if not line or line.startswith("#"):
+    for config_file in (ENV_FILE, LEGACY_ENV_FILE):
+        try:
+            lines = config_file.read_text(encoding="utf-8").splitlines()
+        except FileNotFoundError:
             continue
-        if line.startswith("export "):
-            line = line[7:].lstrip()
-        key, sep, value = line.partition("=")
-        if not sep or key.strip() not in {"OPENAI_API_KEY", "VT_ART_MODEL"}:
-            continue
-        value = value.strip()
-        if len(value) >= 2 and value[0] == value[-1] and value[0] in {"'", '"'}:
-            value = value[1:-1]
-        os.environ.setdefault(key.strip(), value)
+        except OSError as exc:
+            raise ArtPipelineError(f"No se pudo leer la configuración local: {config_file}") from exc
+        for raw in lines:
+            line = raw.strip()
+            if not line or line.startswith("#"):
+                continue
+            if line.startswith("export "):
+                line = line[7:].lstrip()
+            key, sep, value = line.partition("=")
+            if not sep or key.strip() not in {"OPENAI_API_KEY", "VT_ART_MODEL"}:
+                continue
+            value = value.strip()
+            if len(value) >= 2 and value[0] == value[-1] and value[0] in {"'", '"'}:
+                value = value[1:-1]
+            os.environ.setdefault(key.strip(), value)
 
 
 def build_parser() -> argparse.ArgumentParser:

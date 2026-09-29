@@ -4,21 +4,21 @@ Esta herramienta permite a Dirección de Arte generar y versionar borradores de 
 
 ## Preparación única
 
-Desde la carpeta raíz del repositorio, copia `vintage-telnet/.env.example` como `vintage-telnet/.env` y añade la clave:
+Desde la carpeta raíz del repositorio, guarda la clave en `vintage-telnet/Imagenesapykey.env`:
 
 ```dotenv
 OPENAI_API_KEY=pega_aqui_tu_clave
 VT_ART_MODEL=gpt-image-2.5-flare
 ```
 
-En Linux/macOS puedes crearla así:
+En Linux/macOS puedes crearla y protegerla así:
 
 ```bash
-cp vintage-telnet/.env.example vintage-telnet/.env
-chmod 600 vintage-telnet/.env
+touch vintage-telnet/Imagenesapykey.env
+chmod 600 vintage-telnet/Imagenesapykey.env
 ```
 
-En Windows, copia el archivo desde el Explorador y edita `vintage-telnet/.env` con un editor local. Ese archivo y la carpeta de generaciones están excluidos de Git. También se puede definir `OPENAI_API_KEY` en el entorno; una variable ya exportada tiene prioridad sobre `.env`.
+En Windows, crea y edita `vintage-telnet/Imagenesapykey.env` con un editor local. Ese archivo y la carpeta de generaciones están excluidos de Git. Por compatibilidad también se lee `vintage-telnet/.env`; una variable ya exportada tiene prioridad sobre ambos archivos.
 
 Instala el cliente oficial de forma aislada, sin añadir dependencias al servidor:
 

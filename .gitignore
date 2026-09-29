@@ -2,4 +2,5 @@ __pycache__/
 *.py[cod]
 .venv-art/
 vintage-telnet/.env
+vintage-telnet/Imagenesapykey.env
 vintage-telnet/art_generations/
