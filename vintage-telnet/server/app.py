@@ -12,7 +12,7 @@ from flask import (Flask, abort, g, jsonify, redirect, render_template, request,
                     session, url_for)
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from . import bosses, combat, content_parser, creatures, dm_auth, economy, encounters, errands, items, major_fauna, npc_dialogue, population, recovery, respawn as respawn_logic, store, threats, travelers, world
+from . import bosses, combat, content_parser, creatures, dm_auth, economy, encounters, errands, items, major_fauna, npc_dialogue, population, recovery, respawn as respawn_logic, salvage, store, threats, travelers, world
 
 SAFE_RECOVERY_MESSAGE = ("En la plaza de Valdren puedes detenerte sin vigilar cada ruido del "
                           "campo. Entre el movimiento cotidiano del pueblo recuperas fuerzas "
@@ -511,6 +511,10 @@ def create_app(config=None):
             return {"type": "sell", "target": ""}
         if lowered == "encargos":
             return {"type": "errands_list"}
+        if lowered == "materiales":
+            return {"type": "salvage_list"}
+        if lowered.startswith("vender material "):
+            return {"type": "salvage_sell", "material_id": text[len("vender material "):].strip()}
         for verb, action in (("aceptar encargo ", "accept"), ("registrar encargo ", "record"),
                              ("cobrar encargo ", "claim")):
             if lowered.startswith(verb):
@@ -860,6 +864,9 @@ def create_app(config=None):
             xp_state = store.award_xp(path, player["id"], xp_amount)
             store.update_combat_state(path, player["id"], fatigue=round(fatigue))
             messages.append(f"¡{creature['name']} cae derrotado! Ganas {xp_amount} XP.")
+            material_notice = salvage.victory_message(path, player["id"], creature["family"])
+            if material_notice:
+                messages.append(material_notice)
             if is_first:
                 messages.append(f"Primera vez que superas a un {creature['name']}: bono de familia incluido.")
             level_message = _level_up_message(xp_state)
@@ -1346,6 +1353,9 @@ def create_app(config=None):
                     xp_state = store.award_xp(path, player["id"], xp_amount)
                     store.update_combat_state(path, player["id"], fatigue=round(fatigue))
                     messages.append(f"¡{creature['name']} cae derrotado! Ganas {xp_amount} XP.")
+                    material_notice = salvage.victory_message(path, player["id"], creature["family"])
+                    if material_notice:
+                        messages.append(material_notice)
                     if is_first:
                         messages.append(f"Primera vez que superas a un {creature['name']}: bono de familia incluido.")
                     level_message = _level_up_message(xp_state)
@@ -1924,6 +1934,16 @@ def create_app(config=None):
             player_now = store.player_for_token(path, session.get("token"))
             return render_template("entry.html", player=player_now, species_list=world.SPECIES,
                                    room=room_view(player_now["room"], player_now["id"]), error=message), (200 if ok else 400)
+        if intent["type"] in ("salvage_list", "salvage_sell"):
+            if intent["type"] == "salvage_list":
+                materials = salvage.list_materials(path, g.player["id"])
+                message = "; ".join(f"{m['name']} ({m['id']}): {m['price']} sellos" for m in materials) or "No tienes materiales."
+                ok = True
+            else:
+                ok, message, _extra = salvage.sell(path, g.player["id"], g.player["room"], intent["material_id"])
+            player_now = store.player_for_token(path, session.get("token"))
+            return render_template("entry.html", player=player_now, species_list=world.SPECIES,
+                                   room=room_view(player_now["room"], player_now["id"]), error=message), (200 if ok else 400)
         if intent["type"] == "say":
             store.add_message(path, g.player["room"], g.player["id"], intent["body"])
             return redirect(url_for("index"), code=303)
@@ -2187,6 +2207,11 @@ def create_app(config=None):
                                              intent["contract_id"], intent["action"])
             return jsonify(accepted=ok, intent=kind, message=message, result=extra,
                            contracts=errands.list_contracts(path, g.player["id"])), (200 if ok else 400)
+        if kind in ("salvage_list", "salvage_sell"):
+            if kind == "salvage_list":
+                return jsonify(accepted=True, intent=kind, materials=salvage.list_materials(path, g.player["id"]))
+            ok, message, extra = salvage.sell(path, g.player["id"], g.player["room"], intent["material_id"])
+            return jsonify(accepted=ok, intent=kind, message=message, result=extra), (200 if ok else 400)
         if kind == "say":
             store.add_message(path, g.player["room"], g.player["id"], intent["body"])
             return jsonify(accepted=True, intent="say")
@@ -2635,9 +2660,12 @@ def create_app(config=None):
             }
 
         inventory = [decorate(row) for row in store.list_inventory(path, g.player["id"])]
+        materials = salvage.list_materials(path, g.player["id"])
         equipment = _equipment(g.player)
         return jsonify(
-            items=inventory,
+            items=inventory + materials,
+            materials=materials,
+            in_salvage_market=(g.player["room"] == salvage.MARKET),
             equipped={
                 "weapon": next((row for row in inventory if row["id"] == weapon_id), None),
                 "armor": next((row for row in inventory if row["id"] == armor_id), None),
@@ -2655,6 +2683,24 @@ def create_app(config=None):
         data = recovery.catalog()
         return jsonify(**data, in_market=(g.player["room"] == recovery.RECOVERY_ROOM),
                        sellos=g.player["sellos"])
+
+    @app.get("/api/salvage/acopio")
+    def api_salvage_acopio():
+        error = api_player_state(g.player)
+        if error:
+            return error
+        return jsonify(in_market=(g.player["room"] == salvage.MARKET),
+                       materials=salvage.list_materials(path, g.player["id"]), sellos=g.player["sellos"])
+
+    @app.post("/api/salvage/sell")
+    def api_salvage_sell():
+        error = api_player_state(g.player)
+        if error:
+            return error
+        data = request.get_json(silent=True) or request.form
+        ok, message, extra = salvage.sell(path, g.player["id"], g.player["room"],
+                                          str(data.get("material_id") or ""))
+        return jsonify(accepted=ok, message=message, result=extra), (200 if ok else 400)
 
     @app.post("/api/recovery/buy")
     def api_recovery_buy():
