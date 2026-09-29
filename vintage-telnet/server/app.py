@@ -366,7 +366,11 @@ def create_app(config=None):
                 view["npcs"] = []
                 view["n0_presence"] = None
             else:
-                view["available_actions"] = [{"action": "descansar"}]
+                rest_recovery = store.field_rest_status(path, player_id)
+                view["rest_recovery"] = rest_recovery
+                view["available_actions"] = []
+                if rest_recovery and rest_recovery["available"]:
+                    view["available_actions"].append({"action": "descansar"})
                 npcs_present = list(npc_dialogue.get_registry().get_in_room(room_id))
                 for traveler in travelers.get_travelers_in_room(room_id, db_path=path):
                     if not any(npc["id"] == traveler["id"] for npc in npcs_present):
@@ -378,7 +382,7 @@ def create_app(config=None):
                         view["available_actions"].append({"action": "hablar", "targets": [n["name"].lower(), n["id"]]})
                 if room_id == "khariel_forja" and not store.get_story_flag(path, player_id, "hoshai_paso_ayudado"):
                     view["available_actions"].append({"action": "ayudar", "targets": ["aren", "paso"]})
-                elif room_id == "brumak_forja" and not store.get_story_flag(path, player_id, "korven_carga_asentada"):
+                elif room_id == "brumak_forja" and not store.reconcile_story_flag_alias(path, player_id, "korven_carga_asentada", "korven_trabajo_ayudado"):
                     view["available_actions"].append({"action": "ayudar", "targets": ["karn", "apoyo"]})
                 n0 = population.get_room_n0_presence(room_id, room_data=room_data)
                 view["n0_presence"] = n0
@@ -1437,6 +1441,14 @@ def create_app(config=None):
         result = store.apply_field_rest(path, player["id"])
         if result is None:
             return {"outcome": "blocked", "messages": ["No se pudo recuperar el estado del personaje."]}
+        if result.get("blocked") == "budget_exhausted":
+            return {
+                "outcome": "blocked",
+                "messages": [
+                    "No puedes descansar: agotaste la recuperación de campo disponible. "
+                    "Necesitas provisiones o una recuperación completa legítima."
+                ],
+            }
 
         healed = result["healed"]
         remaining = result["budget_remaining"]
