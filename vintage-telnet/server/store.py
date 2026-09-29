@@ -285,18 +285,18 @@ def initialize(path):
     Path(path).parent.mkdir(parents=True, exist_ok=True)
     with connect(path) as db:
         db.execute("PRAGMA journal_mode = WAL")
-        db.execute("BEGIN IMMEDIATE")
         version = db.execute("PRAGMA user_version").fetchone()[0]
         if version not in range(0, SCHEMA_VERSION + 1):
             raise RuntimeError("Versión de base de datos no soportada; no iniciar ni degradar.")
         if version == SCHEMA_VERSION:
             return
-        # v23 amplía el CHECK de inventory_items. SQLite requiere reconstruir
-        # la tabla; desactivamos FKs sólo durante esta migración transaccional
-        # y verificamos integridad al terminar.
+        # v23 amplía el CHECK de inventory_items. SQLite sólo permite cambiar
+        # foreign_keys fuera de una transacción, así que se desactiva antes
+        # de BEGIN y se valida de nuevo al terminar.
         foreign_keys_temporarily_disabled = version <= 22
         if foreign_keys_temporarily_disabled:
             db.execute("PRAGMA foreign_keys = OFF")
+        db.execute("BEGIN IMMEDIATE")
         if version == 0:
             statements = [
                 """CREATE TABLE players (
