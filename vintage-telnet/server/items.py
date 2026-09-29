@@ -84,6 +84,15 @@ for _key, _data in WEAPONS.items():
     ITEMS[_key] = {"key": _key, "category": "weapon", "normalized_name": _fold(_data["name"]), **_data}
 for _key, _data in ARMORS.items():
     ITEMS[_key] = {"key": _key, "category": "armor", "normalized_name": _fold(_data["name"]), **_data}
+
+CONSUMABLES = {
+    "racion_camino_valdren": {
+        "name": "Ración de camino de Valdren",
+        "forge_required": False,
+    },
+}
+for _key, _data in CONSUMABLES.items():
+    ITEMS[_key] = {"key": _key, "category": "consumable", "normalized_name": _fold(_data["name"]), **_data}
 del _key, _data
 
 
