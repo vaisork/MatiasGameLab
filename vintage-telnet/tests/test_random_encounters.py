@@ -240,6 +240,48 @@ class MoveIntegrationTests(unittest.TestCase):
         room = self.client.get("/api/room").json["room"]
         self.assertTrue(room["in_combat"])
 
+    def test_sighted_creature_does_not_block_moving_on(self):
+        # GAMEPLAY.md §26.5: solo a la vista (engaged=0) permite seguir de
+        # largo; no exige huir.
+        with patch.object(encounters, "_rng", AlwaysRoll(0.0, pick=1)):
+            self.post("/move", dict(direction="north"))
+        self.assertEqual(self.encounter("valdren_sendero")["engaged"], 0)
+        result = self.post("/move", dict(direction="south"))
+        self.assertEqual(result.status_code, 303)
+        self.assertEqual(self.client.get("/api/me").json["player"]["room"], "valdren_centro")
+
+    def test_engaged_creature_blocks_movement_until_flee(self):
+        # Tras un intento de huida fallido el jugador queda comprometido
+        # (engaged=1, §26.5) y ya no puede seguir de largo con movimiento
+        # cardinal: debe usar huir.
+        with patch.object(encounters, "_rng", AlwaysRoll(0.0, pick=1)):
+            self.post("/move", dict(direction="north"))
+
+        class FailedEscapeThenHit:
+            def __init__(self):
+                self.rolls = iter((100, 0))
+            def uniform(self, _low, _high):
+                return next(self.rolls)
+            def random(self):
+                return 0
+        with patch("server.app.random.Random", return_value=FailedEscapeThenHit()):
+            self.post("/flee")
+        self.assertEqual(self.encounter("valdren_sendero")["engaged"], 1)
+
+        blocked = self.post("/move", dict(direction="south"))
+        self.assertEqual(blocked.status_code, 400)
+        self.assertIn("Estás peleando con Espinajo de rastrojo: para irte tienes que huir.",
+                       blocked.get_data(as_text=True))
+        self.assertEqual(self.client.get("/api/me").json["player"]["room"], "valdren_sendero")
+
+        class AlwaysEscape:
+            def uniform(self, _low, _high):
+                return 0  # 0 < cualquier chance de huida: siempre escapa
+        with patch("server.app.random.Random", return_value=AlwaysEscape()):
+            escaped = self.post("/flee")
+        self.assertEqual(escaped.status_code, 200)
+        self.assertIsNone(self.encounter("valdren_sendero"))
+
     def test_failed_roll_leaves_room_empty(self):
         with patch.object(encounters, "_rng", AlwaysRoll(0.10)):
             self.post("/move", dict(direction="north"))
