@@ -12,7 +12,7 @@ from flask import (Flask, abort, g, jsonify, redirect, render_template, request,
                     session, url_for)
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from . import bosses, combat, content_parser, creatures, dm_auth, economy, encounters, items, major_fauna, npc_dialogue, population, respawn as respawn_logic, store, threats, travelers, world
+from . import bosses, combat, content_parser, creatures, dm_auth, economy, encounters, items, major_fauna, npc_dialogue, population, recovery, respawn as respawn_logic, store, threats, travelers, world
 
 SAFE_RECOVERY_MESSAGE = ("En la plaza de Valdren puedes detenerte sin vigilar cada ruido del "
                           "campo. Entre el movimiento cotidiano del pueblo recuperas fuerzas "
@@ -366,11 +366,7 @@ def create_app(config=None):
                 view["npcs"] = []
                 view["n0_presence"] = None
             else:
-                rest_recovery = store.field_rest_status(path, player_id)
-                view["rest_recovery"] = rest_recovery
-                view["available_actions"] = []
-                if rest_recovery and rest_recovery["available"]:
-                    view["available_actions"].append({"action": "descansar"})
+                view["available_actions"] = [{"action": "descansar"}]
                 npcs_present = list(npc_dialogue.get_registry().get_in_room(room_id))
                 for traveler in travelers.get_travelers_in_room(room_id, db_path=path):
                     if not any(npc["id"] == traveler["id"] for npc in npcs_present):
@@ -435,6 +431,7 @@ def create_app(config=None):
     # ECONOMY.md §§7-9: comandos de comercio con Daro (Issue #408).
     BUY_PREFIXES = ("comprar ",)
     SELL_PREFIXES = ("vender ",)
+    USE_PREFIXES = ("usar ", "consumir ")
 
     def parse_intent(raw):
         """Clasifica texto del terminal sin convertir comandos desconocidos en chat."""
@@ -512,6 +509,10 @@ def create_app(config=None):
             if lowered.startswith(prefix):
                 target = text[len(prefix):].strip()
                 return {"type": "sell", "target": target} if target else {"type": "invalid"}
+        for prefix in USE_PREFIXES:
+            if lowered.startswith(prefix):
+                target = text[len(prefix):].strip()
+                return {"type": "use_recovery", "target": target} if target else {"type": "invalid"}
         for prefix in SAY_PREFIXES:
             if lowered.startswith(prefix):
                 body = text[len(prefix):].strip()
@@ -1436,14 +1437,6 @@ def create_app(config=None):
         result = store.apply_field_rest(path, player["id"])
         if result is None:
             return {"outcome": "blocked", "messages": ["No se pudo recuperar el estado del personaje."]}
-        if result.get("blocked") == "budget_exhausted":
-            return {
-                "outcome": "blocked",
-                "messages": [
-                    "No puedes descansar: agotaste la recuperación de campo disponible. "
-                    "Necesitas provisiones o una recuperación completa legítima."
-                ],
-            }
 
         healed = result["healed"]
         remaining = result["budget_remaining"]
@@ -1510,12 +1503,29 @@ def create_app(config=None):
         return {"outcome": "unequipped", "messages": [f"Guardas {items.get_item(item_key)['name']}."]}
 
     def attempt_buy(player, target_text):
-        """ECONOMY-CORE-01 (#408 / ECONOMY.md §§7, 10, 20): compra atómica de armas a Daro.
-        Solo fuera de combate y físicamente en el taller de Daro (valdren_forja)."""
+        """Compra autoritativa en el comercio disponible de la sala actual."""
         if store.get_encounter(path, player["id"], player["room"]):
             return {"outcome": "blocked", "messages": ["No puedes comerciar durante un encuentro."]}
+
+        recovery_target = recovery.resolve_recovery_target(target_text)
+        if player["room"] == recovery.RECOVERY_ROOM and recovery_target == recovery.RATION_ITEM_ID:
+            ok, message, extra = recovery.buy_ration(
+                path, player["id"], player["room"]
+            )
+            return {
+                "outcome": "bought" if ok else "rejected",
+                "messages": [message],
+                "item_key": recovery.RATION_ITEM_ID if ok else None,
+                "balance": extra.get("balance") if extra else None,
+            }
+        if player["room"] == recovery.RECOVERY_ROOM and recovery_target == recovery.SERVICE_ID:
+            return {
+                "outcome": "rejected",
+                "messages": ["La comida caliente se consume en el mercado; usa «usar Comida caliente del mercado»."],
+            }
+
         if player["room"] != economy.DARO_SHOP_ROOM:
-            return {"outcome": "blocked", "messages": ["Solo puedes comerciar con Daro en su taller de Valdren (valdren_forja)."]}
+            return {"outcome": "blocked", "messages": ["Aquí no puedes comprar ese objeto."]}
         if not target_text:
             return {
                 "outcome": "rejected",
@@ -1533,6 +1543,31 @@ def create_app(config=None):
         if not ok:
             return {"outcome": "rejected", "messages": [message], "balance": extra.get("balance") if extra else None}
         return {"outcome": "bought", "messages": [message], "item_key": item_key, "balance": extra["balance"]}
+
+    def attempt_use_recovery(player, target_text):
+        """Usa consumible/servicio de recuperación sin inferir efectos en cliente."""
+        target = recovery.resolve_recovery_target(target_text)
+        if target == recovery.RATION_ITEM_ID:
+            owned = next(
+                (row for row in store.list_inventory(path, player["id"])
+                 if row["item_key"] == recovery.RATION_ITEM_ID),
+                None,
+            )
+            if owned is None:
+                return {"outcome": "not_owned", "messages": ["No posees una Ración de camino de Valdren."]}
+            ok, message, extra = recovery.use_ration(path, player["id"], owned["id"])
+            return {"outcome": "used" if ok else "rejected", "messages": [message], "effect": extra}
+        if target == recovery.SERVICE_ID:
+            ok, message, extra = recovery.use_market_service(
+                path, player["id"], player["room"]
+            )
+            return {
+                "outcome": "used" if ok else "rejected",
+                "messages": [message],
+                "effect": extra,
+                "balance": extra.get("balance") if extra else None,
+            }
+        return {"outcome": "not_found", "messages": ["No reconoces esa recuperación."]}
 
     def attempt_sell(player, target_text):
         """ECONOMY-CORE-01 (#408 / ECONOMY.md §§8, 9, 20): reventa atómica al 35% a Daro.
@@ -1928,6 +1963,12 @@ def create_app(config=None):
                                    room=room_data, error=" ".join(result["messages"])), 200
         if intent["type"] == "sell":
             result = attempt_sell(g.player, intent["target"])
+            player_now = store.player_for_token(path, session.get("token"))
+            room_data = room_view(player_now["room"], player_now["id"])
+            return render_template("entry.html", player=player_now, species_list=world.SPECIES,
+                                   room=room_data, error=" ".join(result["messages"])), 200
+        if intent["type"] == "use_recovery":
+            result = attempt_use_recovery(g.player, intent["target"])
             player_now = store.player_for_token(path, session.get("token"))
             room_data = room_view(player_now["room"], player_now["id"])
             return render_template("entry.html", player=player_now, species_list=world.SPECIES,
@@ -2569,6 +2610,63 @@ def create_app(config=None):
             armor_reduction_total=equipment["armor_reduction"],
             carga_multiplier=combat.armor_load_multiplier(equipment["armor_reduction"]),
         )
+
+    @app.get("/api/recovery/valdren")
+    def api_recovery_valdren():
+        error = api_player_state(g.player)
+        if error:
+            return error
+        data = recovery.catalog()
+        return jsonify(**data, in_market=(g.player["room"] == recovery.RECOVERY_ROOM),
+                       sellos=g.player["sellos"])
+
+    @app.post("/api/recovery/buy")
+    def api_recovery_buy():
+        error = api_player_state(g.player)
+        if error:
+            return error
+        data = request.get_json(silent=True) or request.form
+        item_id = (data.get("item_id") or "").strip()
+        if item_id != recovery.RATION_ITEM_ID:
+            return jsonify(accepted=False, outcome="not_found",
+                           messages=["Ese item_id no es una provisión de recuperación."]), 400
+        ok, message, extra = recovery.buy_ration(
+            path, g.player["id"], g.player["room"],
+            client_tx_id=data.get("client_tx_id"),
+        )
+        return jsonify(accepted=ok, outcome="bought" if ok else "rejected",
+                       messages=[message], **(extra or {})), (200 if ok else 400)
+
+    @app.post("/api/recovery/use")
+    def api_recovery_use():
+        error = api_player_state(g.player)
+        if error:
+            return error
+        data = request.get_json(silent=True) or request.form
+        instance_id = (data.get("inventory_item_id") or "").strip()
+        if not instance_id:
+            return jsonify(accepted=False, outcome="invalid",
+                           messages=["Falta inventory_item_id."]), 400
+        ok, message, extra = recovery.use_ration(path, g.player["id"], instance_id)
+        return jsonify(accepted=ok, outcome="used" if ok else "rejected",
+                       messages=[message], **(extra or {})), (200 if ok else 400)
+
+    @app.post("/api/recovery/service")
+    def api_recovery_service():
+        error = api_player_state(g.player)
+        if error:
+            return error
+        data = request.get_json(silent=True) or request.form
+        service_id = (data.get("service_id") or "").strip()
+        if service_id != recovery.SERVICE_ID:
+            return jsonify(accepted=False, outcome="not_found",
+                           messages=["Ese service_id no existe."]), 400
+        ok, message, extra = recovery.use_market_service(
+            path, g.player["id"], g.player["room"],
+            client_tx_id=data.get("client_tx_id"),
+        )
+        return jsonify(accepted=ok, outcome="used" if ok else "rejected",
+                       messages=[message], **(extra or {})), (200 if ok else 400)
 
     @app.get("/api/shop/daro")
     def api_shop_daro():
