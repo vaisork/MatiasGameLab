@@ -1442,6 +1442,8 @@ def equip_item(path, player_id, item_id):
         if lost_rec:
             return False, None, "Esa arma fue arrebatada por un jefe y no puede equiparse."
         catalog = items.get_item(item["item_key"])
+        if item["category"] not in ("weapon", "armor"):
+            return False, item["category"], "Ese objeto no se equipa; se usa o consume."
         if catalog["forge_required"] and not item["forge_validated"]:
             return False, None, "Ese objeto todavía no tiene su validación de Forja completa."
         column = "equipped_weapon_id" if item["category"] == "weapon" else "equipped_armor_id"
