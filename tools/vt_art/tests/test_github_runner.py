@@ -4,66 +4,40 @@ import unittest
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
-from tools.vt_art.github_runner import download_reference, upload_file
-
-
-class FakeResponse:
-    def __init__(self, status_code: int, content: bytes = b"", payload: dict | None = None):
-        self.status_code = status_code
-        self.content = content
-        self._payload = payload or {}
-
-    def json(self):
-        return self._payload
-
-
-class FakeSession:
-    def __init__(self, get_response: FakeResponse | None = None, post_response: FakeResponse | None = None):
-        self.get_response = get_response
-        self.post_response = post_response
-        self.post_args = None
-
-    def get(self, *args, **kwargs):
-        return self.get_response
-
-    def post(self, *args, **kwargs):
-        self.post_args = (args, kwargs)
-        return self.post_response
+from tools.vt_art.github_runner import copy_request_to_version, resolve_request_path
 
 
 class GitHubRunnerTests(unittest.TestCase):
-    def test_download_reference_accepts_png_and_writes_it(self):
-        image = b"\x89PNG\r\n\x1a\nreference"
-        with TemporaryDirectory() as temp_dir:
-            path = Path(temp_dir) / "reference.png"
-            download_reference(FakeSession(get_response=FakeResponse(200, image)), path)
-            self.assertEqual(path.read_bytes(), image)
+    def test_request_path_must_be_existing_json_in_request_directory(self):
+        path = resolve_request_path("vintage-telnet/art_requests/velozanco-edran-fase2.json")
+        self.assertTrue(path.is_file())
+        with self.assertRaisesRegex(ValueError, "ficha JSON"):
+            resolve_request_path("../../AGENTS.md")
+        with self.assertRaisesRegex(ValueError, "ficha JSON"):
+            resolve_request_path("vintage-telnet/art_requests/template.json")
 
-    def test_download_reference_rejects_non_png(self):
+    def test_copy_request_keeps_exact_brief_next_to_draft(self):
         with TemporaryDirectory() as temp_dir:
-            path = Path(temp_dir) / "reference.png"
-            with self.assertRaisesRegex(RuntimeError, "no es un PNG"):
-                download_reference(FakeSession(get_response=FakeResponse(200, b"not png")), path)
-            self.assertFalse(path.exists())
+            temp = Path(temp_dir)
+            source = temp / "approved-request.json"
+            source.write_text('{"asset_id":"velozanco_edran"}\n', encoding="utf-8")
+            version = temp / "v001"
+            version.mkdir()
+            output = copy_request_to_version(source, version)
+            self.assertEqual(output.read_text(encoding="utf-8"), source.read_text(encoding="utf-8"))
 
-    def test_upload_sends_file_to_requested_drive_folder_without_overwrite(self):
+    def test_copy_request_never_overwrites_a_version_brief(self):
         with TemporaryDirectory() as temp_dir:
-            path = Path(temp_dir) / "velozanco_v001.png"
-            path.write_bytes(b"image bytes")
-            session = FakeSession(post_response=FakeResponse(200, payload={"id": "drive-id", "name": path.name}))
-            self.assertEqual(upload_file(session, path, "folder-id"), "drive-id")
-            args, kwargs = session.post_args
-            self.assertIn("uploadType", kwargs["params"])
-            self.assertIn('"parents": ["folder-id"]', kwargs["data"].decode())
-            self.assertIn(b"image bytes", kwargs["data"])
-
-    def test_upload_fails_closed_on_drive_error(self):
-        with TemporaryDirectory() as temp_dir:
-            path = Path(temp_dir) / "draft.png"
-            path.write_bytes(b"image bytes")
-            session = FakeSession(post_response=FakeResponse(403))
-            with self.assertRaisesRegex(RuntimeError, "HTTP 403"):
-                upload_file(session, path, "folder-id")
+            temp = Path(temp_dir)
+            source = temp / "approved-request.json"
+            source.write_text("new brief", encoding="utf-8")
+            version = temp / "v001"
+            version.mkdir()
+            destination = version / "request.json"
+            destination.write_text("old brief", encoding="utf-8")
+            with self.assertRaisesRegex(FileExistsError, "ya existe"):
+                copy_request_to_version(source, version)
+            self.assertEqual(destination.read_text(encoding="utf-8"), "old brief")
 
 
 if __name__ == "__main__":

@@ -57,27 +57,19 @@ Cada asset se guarda sin sobrescribir versiones anteriores en `vintage-telnet/ar
 
 Todo resultado inicia en `draft`. Dirección de Arte revisa visualmente y es quien decide `review` o `approved`; el comando registra la decisión explícita y nunca autoaprueba. `published` sólo registra un estado, no publica ni copia archivos. El Publicador mantiene su flujo de normalización y el Integrador decide las rutas de runtime por separado.
 
-`output_destination` se limita a `vintage-telnet/art_generations/`; la herramienta rechaza rutas dentro de `assets/vintage-telnet/`. Nada llega al juego, se commitea, publica o despliega automáticamente.
+`output_destination` se limita a `vintage-telnet/art_generations/`; la herramienta rechaza rutas dentro de `assets/vintage-telnet/`. La CLI local no hace commits. El workflow de GitHub Actions descrito abajo sí crea una rama y una PR de borrador para revisar el resultado; nada llega al runtime ni se despliega automáticamente.
 
 La Image API puede tardar hasta un par de minutos con instrucciones complejas, y la consistencia entre variantes requiere revisión humana. Una organización puede necesitar completar verificación antes de acceder a los modelos de imagen.
 
 ## Piloto manual desde GitHub Actions
 
-El workflow `.github/workflows/vt-art-pilot.yml` permite ejecutar el piloto aprobado de Velozanco desde GitHub, en un runner hospedado por GitHub. Sólo se activa manualmente desde `main`, hace una generación individual y copia la imagen, `metadata.json` y la ficha a `Mi unidad/Matias Game Lab - Arte/02_APROBADO/Vintage-Telnet`. Aunque se guarde en esa carpeta, el estado registrado sigue siendo `draft`; no aprueba, publica, integra al juego ni despliega. No sube imágenes a Actions artifacts ni al repositorio.
+El workflow `.github/workflows/vt-art-pilot.yml` se ejecuta manualmente desde `main` en un runner hospedado por GitHub. El formulario recibe una ficha aprobada de `vintage-telnet/art_requests/` y genera una sola imagen. Para el piloto Velozanco, sube también la referencia aprobada como `vintage-telnet/art_requests/references/velozanco-edran-fase1-anatomia.png`; las referencias se versionan junto a su solicitud para que el runner no dependa de Drive. El workflow abre una PR con imagen, `metadata.json` y ficha bajo `vintage-telnet/art_generations/<asset_id>/`. El estado sigue siendo `draft`; la PR no aprueba ni integra el asset al juego y no despliega. No sube imágenes a Actions artifacts.
 
 Configuración única del repositorio, en **Settings → Secrets and variables → Actions**:
 
 - Secret `OPENAI_API_KEY`: clave de OpenAI API. No pegarla en chats, fichas, commits ni logs.
-- Secret `VT_ART_DRIVE_OAUTH_JSON`: credencial OAuth de usuario de Drive en JSON, con refresh token, autorizada para el mismo Google Drive. Se necesita porque los archivos deben quedar en una carpeta de **Mi unidad**: las cuentas de servicio no tienen cuota de almacenamiento y no pueden ser dueñas de esos archivos.
+La clave de OpenAI se usa sólo como credencial del job; no se guarda en el repositorio ni se imprime. Los borradores sí quedan públicamente visibles en la PR porque el repositorio es público. Puedes descargarlos desde GitHub y cerrar la PR/eliminar su rama para limpiar borradores; si integras la PR, los archivos quedarán en `main` hasta que los borres manualmente.
 
-Para preparar OAuth de Drive: en Google Cloud crea un proyecto, habilita Drive API, configura el consentimiento OAuth y crea un cliente OAuth tipo **Desktop app**. Descarga su JSON, instala `tools/vt_art/requirements-drive-auth.txt` en un virtualenv y ejecuta:
-
-```bash
-python -m tools.vt_art.authorize_drive ~/Downloads/client_secret_xxx.json
-```
-
-El navegador abrirá Google para autorizar la cuenta que ya tiene acceso a la carpeta y a la referencia Fase 1. El comando guarda el JSON con refresh token en `vintage-telnet/drive-oauth-user.json` y limita sus permisos locales; el archivo está excluido de Git. Copia su contenido localmente al secreto `VT_ART_DRIVE_OAUTH_JSON` en GitHub. No lo pegues en este chat. Si la app OAuth queda en estado **Testing**, Google caduca el refresh token tras siete días; para uso periódico hay que completar la publicación/verificación de OAuth que Google requiera o usar una carpeta de Shared Drive con un service account.
-
-La clave de OpenAI se usa como credencial del job; no se instala ni se guarda dentro del repositorio. La credencial OAuth de Drive autoriza al usuario dueño de la carpeta y el workflow nunca imprime el contenido de los secretos. Para repetir el piloto: abre **Actions → Vintage Telnet — piloto de arte → Run workflow** y elige `main`. Cada ejecución factura una generación; no vuelvas a pulsar para reintentar sin revisar primero el resultado y el uso de la ejecución anterior.
+Para ejecutar: abre **Actions → Vintage Telnet — piloto de arte → Run workflow**, elige `main` y selecciona la ficha aprobada. Cada ejecución factura una generación y crea una PR nueva. Revisa el resultado antes de lanzar otra generación; no hay reintentos automáticos.
 
 Este workflow está limitado al piloto de una imagen. Las futuras fichas no se ejecutan por lote; Dirección de Arte debe seleccionar y autorizar cada alcance antes de extenderlo.

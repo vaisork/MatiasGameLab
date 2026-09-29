@@ -3,6 +3,4 @@ __pycache__/
 .venv-art/
 vintage-telnet/.env
 vintage-telnet/Imagenesapykey.env
-vintage-telnet/drive-oauth-user.json
-vintage-telnet/client_secret_*.json
 vintage-telnet/art_generations/

@@ -2,9 +2,16 @@ name: Vintage Telnet — piloto de arte
 
 on:
   workflow_dispatch:
+    inputs:
+      request_file:
+        description: Ficha JSON aprobada dentro de vintage-telnet/art_requests
+        required: true
+        type: string
+        default: vintage-telnet/art_requests/velozanco-edran-fase2.json
 
 permissions:
-  contents: read
+  contents: write
+  pull-requests: write
 
 concurrency:
   group: vt-art-pilot
@@ -27,12 +34,38 @@ jobs:
           python-version: '3.13'
 
       - name: Install isolated art-pipeline dependencies
-        run: python -m pip install -r tools/vt_art/requirements-github.txt
+        run: python -m pip install -r tools/vt_art/requirements.txt
 
-      - name: Generate one image and save it directly to Drive
+      - name: Generate one image draft
+        id: generation
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          VT_ART_DRIVE_OAUTH_JSON: ${{ secrets.VT_ART_DRIVE_OAUTH_JSON }}
-          VT_ART_DRIVE_FOLDER_ID: 1V1V60SXM7zzSZd7zcYI4SKRanWjUSJo4
           VT_ART_MODEL: gpt-image-2.5-flare
+          VT_ART_REQUEST_FILE: ${{ inputs.request_file }}
+          GITHUB_RUN_NUMBER: ${{ github.run_number }}
         run: python -m tools.vt_art.github_runner
+
+      - name: Open draft pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_ID: ${{ github.run_id }}
+          ASSET_ID: ${{ steps.generation.outputs.asset_id }}
+          VERSION: ${{ steps.generation.outputs.version }}
+        run: |
+          branch="art-drafts/run-${RUN_ID}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch --create "$branch"
+          git add -f vintage-telnet/art_generations/
+          git commit -m "Add ${ASSET_ID} art draft ${VERSION} from run ${RUN_ID}"
+          git push origin "$branch"
+          cat > "$RUNNER_TEMP/art-draft-pr.md" <<'EOF'
+          Generated draft from the approved Velozanco Fase 2 brief.
+
+          This is a review-only draft. It is not approved or integrated into game runtime. Draft files are public because this repository is public. Remove unwanted drafts manually after review.
+          EOF
+          gh pr create \
+            --base main \
+            --head "$branch" \
+            --title "Art draft: ${ASSET_ID} ${VERSION}" \
+            --body-file "$RUNNER_TEMP/art-draft-pr.md"
