@@ -1,0 +1,41 @@
+name: Vintage Telnet — estado de revisión de arte
+
+on:
+  pull_request_review:
+    types: [submitted, dismissed]
+
+permissions:
+  contents: write
+  pull-requests: read
+
+concurrency:
+  group: vt-art-review-${{ github.event.pull_request.number }}
+  cancel-in-progress: false
+
+jobs:
+  record-review-status:
+    if: >-
+      github.repository == 'vaisork/MatiasGameLab' &&
+      github.event.pull_request.base.ref == 'main' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      startsWith(github.event.pull_request.head.ref, 'art-drafts/run-') &&
+      (github.event.action == 'dismissed' ||
+       github.event.review.state == 'approved' ||
+       github.event.review.state == 'changes_requested')
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out trusted main code
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Record the Art Director review in draft metadata
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          VT_ART_PR_NUMBER: ${{ github.event.pull_request.number }}
+          VT_ART_REVIEW_STATE: ${{ github.event.review.state }}
+          VT_ART_REVIEW_COMMIT: ${{ github.event.review.commit_id }}
+        run: python3 tools/vt_art/review_status.py

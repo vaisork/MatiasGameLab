@@ -106,6 +106,13 @@ class ArtPipelineTests(unittest.TestCase):
         all_rows = pipeline.status(self.generations, request.asset_id)
         self.assertEqual([row["status"] for row in all_rows], ["draft", "review"])
 
+    def test_rejected_is_a_recordable_review_status(self):
+        request = self.make_request()
+        pipeline = ArtPipeline(FakeClient(), "gpt-image-2.5-flare")
+        generated = pipeline.generate(request)
+        rows = pipeline.status(self.generations, request.asset_id, "rejected", generated["version"])
+        self.assertEqual((len(rows), rows[0]["status"]), (1, "rejected"))
+
     def test_partial_variants_are_preserved_and_failure_summary_has_no_exception_text(self):
         request = self.make_request()
         client = FakeClient(fail_on=2)
