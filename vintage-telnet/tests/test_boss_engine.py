@@ -427,8 +427,8 @@ class BossEngineTests(unittest.TestCase):
         self.assertEqual(player_after["field_rest_healed"], 0)
         self.assertEqual(len(store.get_lost_weapons(self.path, player_id)), 0)
 
-    def test_boss_outside_edran_uses_home_fallback(self):
-        """Un C5 fuera de Edran no teletransporta globalmente a Valdren."""
+    def test_human_boss_defeat_outside_edran_returns_to_valdren(self):
+        """#544: un Humano usa Valdren al caer ante un C5 fuera de Edran."""
         player_id = self.register_and_enter_world()
         with store.connect(self.path) as db:
             db.execute(
@@ -448,7 +448,7 @@ class BossEngineTests(unittest.TestCase):
         result = bosses.resolve_boss_player_defeat(self.path, player, remote_boss)
         self.assertEqual(result["outcome"], "defeat")
         after = store.character_by_player_id(self.path, player_id)
-        self.assertEqual(after["room"], world.get_home_room_id(player_id))
+        self.assertEqual(after["room"], "valdren_centro")
         self.assertEqual(after["wound"], "ninguna")
         self.assertIn(world.get_room(after["room"])["name"], result["death_event"]["respawn_message"])
 

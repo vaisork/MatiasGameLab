@@ -39,7 +39,28 @@ class RespawnRoutingTests(unittest.TestCase):
     def test_region_without_anchor_falls_back_to_personal_home(self):
         self.assertEqual(world.get_room_region("alto_terrazas"), "hoshai")
         self.assertEqual(
-            respawn.select_respawn_room(self.player_id, "alto_terrazas"),
+            respawn.select_respawn_room(self.player_id, "alto_terrazas", "felaryn"),
+            world.get_home_room_id(self.player_id),
+        )
+
+    def test_humans_always_respawn_in_valdren_across_regions(self):
+        for room_id in (
+            "valdren_forja", "khariel_forja", "brumak_forja",
+            "narevia_forja", "velmora_forja", "vaisgard",
+        ):
+            with self.subTest(room_id=room_id):
+                self.assertEqual(
+                    respawn.select_respawn_room(self.player_id, room_id, "humano"),
+                    "valdren_centro",
+                )
+
+    def test_nonhuman_keeps_regional_anchor_or_home_fallback(self):
+        self.assertEqual(
+            respawn.select_respawn_room(self.player_id, "valdren_camino_parcela", "felaryn"),
+            "valdren_centro",
+        )
+        self.assertEqual(
+            respawn.select_respawn_room(self.player_id, "alto_terrazas", "felaryn"),
             world.get_home_room_id(self.player_id),
         )
 
@@ -60,14 +81,14 @@ class RespawnRoutingTests(unittest.TestCase):
             death_room_id="alto_terrazas",
         )
 
-        expected_home = world.get_home_room_id(self.player_id)
-        self.assertEqual(result["room_id"], expected_home)
+        expected_room = "valdren_centro"
+        self.assertEqual(result["room_id"], expected_room)
         self.assertEqual(result["hp_current"], round(player["hp_max"] * 0.60))
         self.assertEqual(result["fatigue"], 40)
         self.assertEqual(result["wound"], "moderada")
 
         persisted = dict(store.player_for_token(self.path, self.token))
-        self.assertEqual(persisted["room"], expected_home)
+        self.assertEqual(persisted["room"], expected_room)
         self.assertEqual(persisted["hp_current"], round(player["hp_max"] * 0.60))
         self.assertEqual(persisted["fatigue"], 40)
         self.assertEqual(persisted["wound"], "moderada")
@@ -76,7 +97,7 @@ class RespawnRoutingTests(unittest.TestCase):
 
         # Reconnect lógico: la misma sesión/token conserva el destino y estado.
         reconnected = dict(store.player_for_token(self.path, self.token))
-        self.assertEqual(reconnected["room"], expected_home)
+        self.assertEqual(reconnected["room"], expected_room)
         self.assertEqual(reconnected["hp_current"], persisted["hp_current"])
         self.assertEqual(reconnected["fatigue"], 40)
 

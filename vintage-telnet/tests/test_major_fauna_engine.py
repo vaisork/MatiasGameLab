@@ -266,8 +266,8 @@ class MajorFaunaEngineTests(unittest.TestCase):
                 self.assertEqual(after["wound"], expected)
                 self.assertEqual(after["fatigue"], 40)
 
-    def test_major_fauna_defeat_outside_edran_falls_back_to_home(self):
-        """El motor C4 consume el selector #478 en vez de fijar Valdren."""
+    def test_human_major_fauna_defeat_outside_edran_returns_to_valdren(self):
+        """#544: un Humano conserva Valdren como destino aun al caer ante C4."""
         spec = major_fauna.get_registry().get_spec("cargallanura")
         with store.connect(self.db_path) as db:
             db.execute(
@@ -276,9 +276,9 @@ class MajorFaunaEngineTests(unittest.TestCase):
             )
         player = dict(store.player_for_token(self.db_path, self.token))
         result = major_fauna.resolve_major_fauna_player_defeat(self.db_path, player, spec)
-        self.assertEqual(result["respawn_room"], world.get_home_room_id(self.player_id))
+        self.assertEqual(result["respawn_room"], "valdren_centro")
         after = dict(store.player_for_token(self.db_path, self.token))
-        self.assertEqual(after["room"], world.get_home_room_id(self.player_id))
+        self.assertEqual(after["room"], "valdren_centro")
 
     def test_creature_defeat_awards_xp_and_no_boss_trophies(self):
         """Victoria otorga XP regular con antifarmeo, sin loot de jefe ni trofeos, y fija cooldown."""
