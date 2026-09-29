@@ -398,6 +398,22 @@
     .result-entry p{color:var(--green3)!important}
     .in-combat .result-entry{border-left-color:#b0402f;background:#240d0a66;border-radius:0 8px 8px 0;padding:6px 8px}
     .in-combat .result-entry p{color:#ffd9d1!important}
+    .level-up-slot:empty{display:none}
+    .level-up-event{
+      position:relative;border:2px solid #b58a32;border-radius:12px;
+      background:linear-gradient(180deg,#2a2413,#151309);
+      box-shadow:0 10px 28px #0007,inset 0 1px 0 #ffe6a633;padding:13px 44px 13px 15px;color:#f5ead0
+    }
+    .level-up-title{margin:0;color:#f6d76e;font:900 clamp(1.15rem,4vw,1.55rem)/1.1 Georgia,serif;letter-spacing:.06em}
+    .level-up-event p{margin:6px 0 0;line-height:1.4}
+    .level-up-points{font-weight:800;color:#fff0b8}
+    .level-up-progress{color:#d8ccb0;font-size:.86rem}
+    .level-up-dismiss{
+      position:absolute;right:8px;top:8px;min-width:44px;min-height:44px;border:1px solid #8a6d35;border-radius:8px;
+      background:#17140c;color:#f3dda2;font:800 1rem/1 ui-sans-serif,system-ui,sans-serif;cursor:pointer
+    }
+    .level-up-dismiss:hover{border-color:#d6b65e}
+    .level-up-dismiss:focus-visible{outline:3px solid #f0d18c;outline-offset:2px}
     .death-slot:empty{display:none}
     .death-event{
       border:2px solid #9a3328;border-radius:12px;background:linear-gradient(180deg,#260c0a,#120807);
@@ -704,6 +720,20 @@
     <div class="layout">
       <main class="game-shell{% if room.in_combat %} in-combat{% endif %}">
         <p class="sr-only" id="gameLiveStatus" role="status" aria-live="polite" aria-atomic="true"></p>
+        <div class="level-up-slot" data-swap="level">
+          {% if level_up_event and level_up_event.level_up %}
+          <section class="level-up-event" data-level-up-event role="status" aria-live="polite"
+                   aria-atomic="true" aria-labelledby="levelUpTitle">
+            <button class="level-up-dismiss" type="button" data-level-up-dismiss aria-label="Cerrar aviso de subida de nivel">×</button>
+            <h2 class="level-up-title" id="levelUpTitle">¡SUBISTE A NIVEL {{ level_up_event.new_level }}!</h2>
+            {% if level_up_event.levels_gained > 1 %}
+            <p>Avanzaste {{ level_up_event.levels_gained }} niveles en esta recompensa.</p>
+            {% endif %}
+            <p class="level-up-points">Ganaste {{ level_up_event.pa_gained }} PA{% if level_up_event.pp_gained %} y {{ level_up_event.pp_gained }} PP{% endif %}.</p>
+            <p class="level-up-progress">XP actual: {{ level_up_event.xp_current }}{% if level_up_event.xp_next is not none %} · Siguiente nivel: {{ level_up_event.xp_next }} XP{% else %} · Nivel máximo alcanzado{% endif %}</p>
+          </section>
+          {% endif %}
+        </div>
         <div class="death-slot" data-swap="death">
           {% if death_event %}
           <section class="death-event" data-death-event tabindex="-1" role="alert" aria-live="assertive"
@@ -1831,7 +1861,7 @@
     const nextShell = next.querySelector(".game-shell");
     const shell = document.querySelector(".game-shell");
     if (!nextShell || !shell) return false;
-    for (const key of ["death", "place", "art", "terminal", "controls", "side"]) {
+    for (const key of ["level", "death", "place", "art", "terminal", "controls", "side"]) {
       const current = document.querySelector(`[data-swap="${key}"]`);
       const incoming = next.querySelector(`[data-swap="${key}"]`);
       if (!current || !incoming) continue;
@@ -1862,6 +1892,13 @@
     roomPresenceSnapshot = "";
     return true;
   };
+  document.addEventListener("click", event => {
+    const dismiss = event.target.closest("[data-level-up-dismiss]");
+    if (!dismiss) return;
+    const panel = dismiss.closest("[data-level-up-event]");
+    if (panel) panel.remove();
+  });
+
   document.addEventListener("submit", async event => {
     const form = event.target;
     if (!(form instanceof HTMLFormElement) || !form.closest(".game-shell")) return;

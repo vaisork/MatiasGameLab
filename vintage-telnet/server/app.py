@@ -1784,6 +1784,7 @@ def create_app(config=None):
             room=room_data,
             error=None if death_event else " ".join(result["messages"]),
             death_event=death_event,
+            level_up_event=result.get("level_up_event"),
         ), 200
 
     @app.post("/move")
@@ -1791,13 +1792,20 @@ def create_app(config=None):
         require_approved_player()
         if not character_ready(g.player):
             abort(403)
-        accepted, _previous, _new, reason, _level_event = attempt_move(g.player, request.form.get("direction", ""))
-        if accepted and getattr(g, "reward_message", None):
-            session["reward_notice"] = g.reward_message
+        accepted, _previous, _new, reason, level_up_event = attempt_move(g.player, request.form.get("direction", ""))
         if not accepted:
             room_data = room_view(g.player["room"], g.player["id"])
             return render_template("entry.html", player=g.player, species_list=world.SPECIES,
                                    room=room_data, error=reason), 400
+        if level_up_event and level_up_event.get("level_up"):
+            player_now = store.player_for_token(path, session.get("token"))
+            room_data = room_view(player_now["room"], player_now["id"])
+            return render_template(
+                "entry.html", player=player_now, species_list=world.SPECIES, room=room_data,
+                notice=getattr(g, "reward_message", None), level_up_event=level_up_event,
+            ), 200
+        if getattr(g, "reward_message", None):
+            session["reward_notice"] = g.reward_message
         return redirect(url_for("index"), code=303)
 
     @app.post("/room/say")
@@ -1823,13 +1831,20 @@ def create_app(config=None):
             abort(400)
         intent = parse_intent(raw)
         if intent["type"] == "move":
-            accepted, _previous, _new, reason, _level_event = attempt_move(g.player, intent["direction"])
-            if accepted and getattr(g, "reward_message", None):
-                session["reward_notice"] = g.reward_message
+            accepted, _previous, _new, reason, level_up_event = attempt_move(g.player, intent["direction"])
             if not accepted:
                 room_data = room_view(g.player["room"], g.player["id"])
                 return render_template("entry.html", player=g.player, species_list=world.SPECIES,
                                        room=room_data, error=reason), 400
+            if level_up_event and level_up_event.get("level_up"):
+                player_now = store.player_for_token(path, session.get("token"))
+                room_data = room_view(player_now["room"], player_now["id"])
+                return render_template(
+                    "entry.html", player=player_now, species_list=world.SPECIES, room=room_data,
+                    notice=getattr(g, "reward_message", None), level_up_event=level_up_event,
+                ), 200
+            if getattr(g, "reward_message", None):
+                session["reward_notice"] = g.reward_message
             return redirect(url_for("index"), code=303)
         if intent["type"] == "look":
             return redirect(url_for("index"), code=303)
@@ -1840,15 +1855,18 @@ def create_app(config=None):
         if intent["type"] == "inspect":
             target = intent["target"] or "el lugar"
             result = resolve_inspect(g.player, intent["target"])
+            level_up_event = None
             if result:
-                text, awarded, _level_event = result
+                text, awarded, level_up_event = result
                 message = f"{text} {awarded}" if awarded else text
             else:
                 message = f"Inspección registrada para {target}. No hay detalle adicional autorizado todavía."
             player_now = store.player_for_token(path, session.get("token"))
             room_data = room_view(g.player["room"], g.player["id"])
-            return render_template("entry.html", player=player_now, species_list=world.SPECIES,
-                                   room=room_data, error=message), 200
+            return render_template(
+                "entry.html", player=player_now, species_list=world.SPECIES,
+                room=room_data, error=message, level_up_event=level_up_event,
+            ), 200
         if intent["type"] == "evaluate":
             _name, message = attempt_evaluate(g.player)
             room_data = room_view(g.player["room"], g.player["id"])
