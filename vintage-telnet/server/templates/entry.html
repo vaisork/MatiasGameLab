@@ -926,7 +926,21 @@
             {% if 'descansar' in action_names %}
             <form method="post" action="/command"><input type="hidden" name="csrf" value="{{ session.csrf }}"><input type="hidden" name="text" value="descansar"><button class="action" type="submit"><svg class="ui-icon" aria-hidden="true"><use href="#icon-bed"/></svg>Descansar</button></form>
             {% endif %}
+            {% if room.id == 'valdren_centro' %}
+            <form method="post" action="/move"><input type="hidden" name="csrf" value="{{ session.csrf }}"><input type="hidden" name="direction" value="west"><button class="action" type="submit">Ir a la Forja de Daro ←</button></form>
+            <form method="post" action="/move"><input type="hidden" name="csrf" value="{{ session.csrf }}"><input type="hidden" name="direction" value="east"><button class="action" type="submit">Ir al Mercado de Valdren →</button></form>
+            {% endif %}
           </div>
+          {% if room.id == 'valdren_mercado' %}
+          <section class="npc-presence" aria-labelledby="market-recovery-title">
+            <h3 id="market-recovery-title">Provisiones y comida del mercado</h3>
+            <p>Ración de camino: 8 sellos. La guardas y puedes usarla durante el viaje. Comida caliente: 18 sellos; se consume aquí y solo se cobra si te beneficia.</p>
+            <div class="context-actions">
+              <form method="post" action="/command"><input type="hidden" name="csrf" value="{{ session.csrf }}"><input type="hidden" name="text" value="comprar Ración de camino de Valdren"><button class="action" type="submit">Comprar ración · 8 sellos</button></form>
+              <form method="post" action="/command"><input type="hidden" name="csrf" value="{{ session.csrf }}"><input type="hidden" name="text" value="usar Comida caliente del mercado"><button class="action" type="submit">Comida caliente · 18 sellos</button></form>
+            </div>
+          </section>
+          {% endif %}
           {% if room.npcs %}
           <section class="npc-presence" aria-labelledby="npc-presence-title">
             <h3 id="npc-presence-title">Personas aquí</h3>
@@ -1427,11 +1441,11 @@
     csrf.type = "hidden"; csrf.name = "csrf"; csrf.value = csrfValue;
     const text = document.createElement("input");
     text.type = "hidden"; text.name = "text";
-    text.value = item.category === "material" ? "vender material " + item.id : (item.equipped ? "desequipar " : "equipar ") + item.name;
+    text.value = item.category === "material" ? "vender material " + item.id : item.category === "consumable" ? "usar " + item.name : (item.equipped ? "desequipar " : "equipar ") + item.name;
     const button = document.createElement("button");
     button.className = "action";
     button.type = "submit";
-    button.textContent = item.category === "material" ? "Vender" : item.equipped ? "Desequipar" : "Equipar";
+    button.textContent = item.category === "material" ? "Vender" : item.category === "consumable" ? "Usar" : item.equipped ? "Desequipar" : "Equipar";
     if (item.category === "material" && !inSalvageMarket) {
       button.disabled = true;
       button.title = "Se vende en el acopio del Mercado de Valdren";
