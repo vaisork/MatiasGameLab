@@ -303,6 +303,13 @@ class EntryTests(unittest.TestCase):
             self.assertIn(text, html)
         self.assertNotIn("/assets/locations/valdren.webp", html)
         self.assertNotIn("/assets/locations/vaisgard.webp", html)
+        # Issue #548: comparativa de tamaño/proporciones, sin sustituir las
+        # cinco fichas individuales verificadas arriba.
+        self.assertIn('src="/assets/species/comparativa-especies.webp"', html)
+        response = self.client.get("/assets/species/comparativa-especies.webp")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.mimetype, "image/webp")
+        response.close()
 
     def test_ui_v2_mobile_map_help_and_clean_controls(self):
         self.assertEqual(self.register().status_code, 303)
