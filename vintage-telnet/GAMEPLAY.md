@@ -4196,3 +4196,51 @@ Con 2–4 C1 durante una expedición:
 - matar indefinidamente la misma familia debe degradarse claramente por antifarmeo.
 
 **Principio:** combatir puede dejar algo útil; trabajar/explorar sigue siendo necesario para sostener la economía.
+
+
+## 43. Ingreso temprano de Valdren — ECONOMY-INCOME-01
+
+**Estado:** CONTRATO P0 CERRADO. **Relacionado:** #409, #481.
+
+Los tres encargos usan las condiciones estructuradas y textos ya cerrados por Historia/Narrativa. Jugabilidad no modifica actores, rutas ni condiciones de finalización.
+
+| contract_id | payout base | repetición |
+|---|---:|---|
+| `valdren_recado_forja` | **6 sellos** | repetible |
+| `valdren_revision_cobertizos` | **10 sellos** | repetible |
+| `valdren_estado_vado` | **24 sellos** | repetible |
+
+### 43.1 Antifarmeo compartido
+
+Los tres pertenecen a la familia `valdren_paid_errands`. Se cuentan completaciones cobradas por personaje en una ventana móvil de **60 minutos reales**:
+- completaciones 1–2: **100%** del payout base;
+- completaciones 3–4: **60%**, redondeando hacia abajo a sello entero;
+- completación 5+: **30%**, redondeando hacia abajo a sello entero.
+
+La ventana y su historial persisten a reconnect/muerte; cambiar de encargo no reinicia el contador. Solo una finalización válida puede cobrar cada instancia aceptada. Reintentos de submit/reconnect no duplican ledger ni payout.
+
+Payouts efectivos por tramo: recado **6/3/1**, cobertizos **10/6/3**, vado **24/14/7** sellos.
+
+### 43.2 Compatibilidad económica
+
+Sin penalización, una vuelta por los tres contratos suma **40 sellos brutos**, techo del objetivo temprano de **25–40 sellos/h activa**; la cadencia real depende del recorrido ya definido y el antifarmeo reduce ciclos acelerados. La provisión básica de #410 cuesta **8 sellos**: cobertizos financia una unidad; vado financia tres; el recado local aporta 6 sin exigir ruta peligrosa y, combinado con el saldo inicial de 20, mantiene acceso temprano a recuperación sin convertirlo en faucet autosuficiente.
+
+No hay sellos por matar fauna ni por visitar salas.
+
+### 43.3 Persistencia y estados
+
+Persisten por personaje: instancia aceptada/completada/cobrada, timestamps de cobros de la familia y entrada de ledger. Muerte o reconnect no pagan ni reinician una instancia. Una instancia ya cobrada no puede volver a cobrar; para repetir debe aceptarse una nueva instancia conforme al contenido existente.
+
+### 43.4 Aceptación mínima
+
+- cada ID paga exactamente 6/10/24 antes de antifarmeo;
+- primeras dos completaciones familiares dentro de 60 min pagan 100%; tercera/cuarta 60% floor; quinta+ 30% floor;
+- mezclar los tres IDs comparte el mismo contador;
+- al expirar cobros de la ventana móvil, el multiplicador se recupera según el número restante;
+- muerte/reconnect no resetea ventana ni duplica pago;
+- doble submit acredita una sola vez;
+- payout y multiplicador son autoritativos de servidor;
+- recado local puede generar ingreso sin combate ni atravesar la ruta insostenible;
+- fauna sigue sin entregar sellos directos.
+
+**LISTO PARA DESARROLLO: SÍ.**
