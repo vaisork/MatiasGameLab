@@ -16,7 +16,7 @@ STATUSES = ("pending", "approved", "rejected", "removed")
 
 # Version de esquema que deja initialize(); ops/inventory_migration_probe.py
 # la usa para validar una migracion de prueba contra la copia de la base viva.
-SCHEMA_VERSION = 22
+SCHEMA_VERSION = 23
 
 # Cuentas con varios personajes (petición de Javier, 2026-09-25): un usuario
 # para entrar puede tener hasta 5 personajes; el nombre de cada personaje es
@@ -266,7 +266,7 @@ INVENTORY_ITEMS_TABLE = """CREATE TABLE inventory_items (
         id TEXT PRIMARY KEY,
         player_id TEXT NOT NULL REFERENCES players(id),
         item_key TEXT NOT NULL,
-        category TEXT NOT NULL CHECK(category IN ('weapon', 'armor')),
+        category TEXT NOT NULL CHECK(category IN ('weapon', 'armor', 'consumable')),
         forge_validated INTEGER NOT NULL DEFAULT 0,
         acquired_at TEXT NOT NULL)"""
 
@@ -291,6 +291,12 @@ def initialize(path):
             raise RuntimeError("Versión de base de datos no soportada; no iniciar ni degradar.")
         if version == SCHEMA_VERSION:
             return
+        # v23 amplía el CHECK de inventory_items. SQLite requiere reconstruir
+        # la tabla; desactivamos FKs sólo durante esta migración transaccional
+        # y verificamos integridad al terminar.
+        foreign_keys_temporarily_disabled = version <= 22
+        if foreign_keys_temporarily_disabled:
+            db.execute("PRAGMA foreign_keys = OFF")
         if version == 0:
             statements = [
                 """CREATE TABLE players (
@@ -457,7 +463,37 @@ def initialize(path):
             # v22: PRESENCE-CHAT-01 (#376), tabla efímera de actividad.
             db.execute(PLAYER_PRESENCE_TABLE)
             db.execute("CREATE INDEX IF NOT EXISTS player_presence_last_seen ON player_presence(last_seen_at)")
+        if version <= 22:
+            # v23: RECOVERY-CONTENT-IDS-01 (#499). Añade consumibles al
+            # inventario sin alterar IDs, equipamiento ni armas perdidas.
+            inventory_sql_row = db.execute(
+                "SELECT sql FROM sqlite_master WHERE type = 'table' AND name = 'inventory_items'"
+            ).fetchone()
+            inventory_sql = inventory_sql_row["sql"] if inventory_sql_row else ""
+            if inventory_sql and "'consumable'" not in inventory_sql:
+                db.execute("""CREATE TABLE inventory_items_v23 (
+                    id TEXT PRIMARY KEY,
+                    player_id TEXT NOT NULL REFERENCES players(id),
+                    item_key TEXT NOT NULL,
+                    category TEXT NOT NULL CHECK(category IN ('weapon', 'armor', 'consumable')),
+                    forge_validated INTEGER NOT NULL DEFAULT 0,
+                    acquired_at TEXT NOT NULL)""")
+                db.execute(
+                    """INSERT INTO inventory_items_v23
+                       (id, player_id, item_key, category, forge_validated, acquired_at)
+                       SELECT id, player_id, item_key, category, forge_validated, acquired_at
+                       FROM inventory_items"""
+                )
+                db.execute("DROP TABLE inventory_items")
+                db.execute("ALTER TABLE inventory_items_v23 RENAME TO inventory_items")
+                db.execute("CREATE INDEX inventory_items_player ON inventory_items(player_id)")
         db.execute(f"PRAGMA user_version = {SCHEMA_VERSION}")
+        if foreign_keys_temporarily_disabled:
+            db.commit()
+            db.execute("PRAGMA foreign_keys = ON")
+            violations = db.execute("PRAGMA foreign_key_check").fetchall()
+            if violations:
+                raise RuntimeError("Migración v23 dejó referencias de inventario inválidas.")
 
 
 ACCOUNTS_TABLE = """CREATE TABLE accounts (
