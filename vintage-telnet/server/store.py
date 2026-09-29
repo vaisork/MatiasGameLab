@@ -16,7 +16,7 @@ STATUSES = ("pending", "approved", "rejected", "removed")
 
 # Version de esquema que deja initialize(); ops/inventory_migration_probe.py
 # la usa para validar una migracion de prueba contra la copia de la base viva.
-SCHEMA_VERSION = 24
+SCHEMA_VERSION = 25
 
 SALVAGE_ITEMS_TABLE = """CREATE TABLE IF NOT EXISTS salvage_items (
     id TEXT PRIMARY KEY,
@@ -239,6 +239,7 @@ CHARACTER_TABLES = [
             signature_cooldown INTEGER NOT NULL DEFAULT 0,
             apertura INTEGER NOT NULL DEFAULT 0,
             prepared_action TEXT,
+            committed INTEGER NOT NULL DEFAULT 0,
             created_at TEXT NOT NULL,
             UNIQUE(player_id, room_id))""",
 ]
@@ -497,6 +498,16 @@ def initialize(path):
         if version <= 23:
             db.execute(SALVAGE_ITEMS_TABLE)
             db.execute("CREATE INDEX IF NOT EXISTS salvage_items_player ON salvage_items(player_id, acquired_at)")
+        if version <= 24:
+            # v25: GAMEPLAY.md §26.5 (Issue #191/#177) -- distingue "criatura
+            # presente" (engaged, describe si su panel es de combate pleno
+            # desde el primer instante o de avistamiento) de "el jugador ya
+            # se comprometió con ella" (committed: atacó, se defendió, usó
+            # su capacidad firma o falló una huida). Solo lo segundo impide
+            # seguir de largo. Filas previas quedan en 0 (no comprometidas).
+            cols = {row["name"] for row in db.execute("PRAGMA table_info(room_encounters)").fetchall()}
+            if "committed" not in cols:
+                db.execute("ALTER TABLE room_encounters ADD COLUMN committed INTEGER NOT NULL DEFAULT 0")
         db.execute(f"PRAGMA user_version = {SCHEMA_VERSION}")
         if foreign_keys_temporarily_disabled:
             db.commit()
@@ -1232,8 +1243,8 @@ def start_encounter(path, player_id, room_id, creature_id, hp, engaged=True, pre
         cursor = db.execute(
             """INSERT OR IGNORE INTO room_encounters
                (player_id, room_id, creature_id, hp_current, failed_flee_attempts, engaged,
-                signature_cooldown, apertura, prepared_action, created_at)
-               VALUES (?, ?, ?, ?, 0, ?, 0, 0, ?, ?)""",
+                signature_cooldown, apertura, prepared_action, committed, created_at)
+               VALUES (?, ?, ?, ?, 0, ?, 0, 0, ?, 0, ?)""",
             (player_id, room_id, creature_id, hp, int(bool(engaged)), prep_json, utcnow()),
         )
         if cursor.rowcount:
@@ -1241,7 +1252,8 @@ def start_encounter(path, player_id, room_id, creature_id, hp, engaged=True, pre
 
 
 def update_encounter(path, player_id, room_id, hp_current=None, failed_flee_attempts=None,
-                     engaged=None, signature_cooldown=None, apertura=None, prepared_action=_UNSET):
+                     engaged=None, signature_cooldown=None, apertura=None, prepared_action=_UNSET,
+                     committed=None):
     fields, params = [], []
     if hp_current is not None:
         fields.append("hp_current = ?")
@@ -1258,6 +1270,9 @@ def update_encounter(path, player_id, room_id, hp_current=None, failed_flee_atte
     if apertura is not None:
         fields.append("apertura = ?")
         params.append(apertura)
+    if committed is not None:
+        fields.append("committed = ?")
+        params.append(int(bool(committed)))
     if prepared_action is not _UNSET:
         fields.append("prepared_action = ?")
         params.append(json.dumps(prepared_action) if isinstance(prepared_action, dict) else prepared_action)

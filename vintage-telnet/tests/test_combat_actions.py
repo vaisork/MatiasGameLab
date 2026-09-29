@@ -264,6 +264,56 @@ class CombatActionsIntegrationTests(unittest.TestCase):
         self.assertIn("No hay ningún golpe que bloquear aquí", page_button)
         self.assertIn("No hay ningún golpe que bloquear aquí", page_command)
 
+    # --- Movimiento comprometido (GAMEPLAY.md §26.5) ---------------------------
+    #
+    # Mordelinde aparece "engaged" desde que se entra a la parcela (encuentro
+    # fijo, panel de combate pleno desde el primer instante), pero eso solo
+    # describe el tipo de panel: mientras el jugador no la ataque, defienda o
+    # use su capacidad firma contra ella, sigue sin estar *comprometido* y
+    # puede seguir de largo. El movimiento cardinal solo se rechaza una vez
+    # que el jugador toma esa primera acción de combate (o falla una huida).
+
+    def player_room(self):
+        return self.client.get("/api/me").json["player"]["room"]
+
+    def test_can_still_walk_past_a_freshly_seen_fixed_encounter(self):
+        self.register_and_enter_world()
+        self.enter_combat_with_mordelinde()
+        result = self.post("/move", dict(direction="south"))
+        self.assertEqual(result.status_code, 303)
+        self.assertEqual(self.player_room(), "valdren_sendero")
+
+    def test_movement_is_rejected_once_committed_to_a_fixed_encounter(self):
+        self.register_and_enter_world()
+        self.enter_combat_with_mordelinde()
+        self.post("/command", dict(text="atacar"))
+        room_before = self.player_room()
+        page = self.post("/move", dict(direction="south")).get_data(as_text=True)
+        self.assertIn("Estás peleando con Mordelinde: para irte tienes que huir.", page)
+        self.assertEqual(self.player_room(), room_before)
+
+    def test_movement_rejection_is_identical_across_move_command_and_api(self):
+        self.register_and_enter_world()
+        self.enter_combat_with_mordelinde()
+        self.post("/command", dict(text="atacar"))
+        expected = "Estás peleando con Mordelinde: para irte tienes que huir."
+        self.assertIn(expected, self.post("/move", dict(direction="south")).get_data(as_text=True))
+        self.assertIn(expected, self.post("/command", dict(text="sur")).get_data(as_text=True))
+        csrf = self.client.get("/api/me").json["csrf"]
+        api = self.client.post("/api/intent", json={"text": "sur", "csrf": csrf})
+        self.assertFalse(api.json["accepted"])
+        self.assertEqual(api.json["reason"], expected)
+
+    @patch("server.app.random.Random")
+    def test_successful_flee_still_leaves_the_room_once_committed(self, mock_random):
+        mock_random.return_value = FixedRoll(0)  # la huida siempre tiene éxito
+        self.register_and_enter_world()
+        self.enter_combat_with_mordelinde()
+        self.post("/command", dict(text="atacar"))
+        room_before = self.player_room()
+        self.post("/command", dict(text="huir"))
+        self.assertNotEqual(self.player_room(), room_before)
+
     # --- available_actions -----------------------------------------------------
 
     def test_available_actions_offers_rest_but_no_combat_actions_outside_combat(self):

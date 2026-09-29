@@ -59,9 +59,9 @@ class SalvageRuntimeTests(unittest.TestCase):
             db.execute("DROP TABLE salvage_items")
             db.execute("PRAGMA user_version = 23")
         store.initialize(self.path)
-        self.assertEqual(store.SCHEMA_VERSION, 24)
+        self.assertEqual(store.SCHEMA_VERSION, 25)
         with store.connect(self.path) as db:
-            self.assertEqual(db.execute("PRAGMA user_version").fetchone()[0], 24)
+            self.assertEqual(db.execute("PRAGMA user_version").fetchone()[0], 25)
             self.assertEqual(db.execute("SELECT sellos FROM players WHERE id = ?", (self.player_id,)).fetchone()[0], 20)
             self.assertEqual(db.execute("PRAGMA foreign_key_check").fetchall(), [])
 

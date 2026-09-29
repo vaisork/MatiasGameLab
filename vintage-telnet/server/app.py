@@ -573,8 +573,28 @@ def create_app(config=None):
         De paso actualiza el mapa progresivo (GAMEPLAY.md 23: la sala de
         destino queda visitada y la ruta recorrida), coloca una criatura si
         la sala de destino puede tenerla y todavia no hay ninguna activa
-        (VT-NAR-003), y otorga el hito de regreso si corresponde."""
+        (VT-NAR-003), y otorga el hito de regreso si corresponde.
+
+        GAMEPLAY.md §26.5: una criatura presente (vista o incluso un
+        encuentro fijo recien aparecido) no impide seguir de largo por si
+        sola -- `engaged` solo describe si su panel es de combate pleno
+        desde el primer instante (ambush) o de avistamiento (encuentros
+        aleatorios, #160). Lo que bloquea el movimiento es que el propio
+        jugador ya se haya comprometido con ESE encuentro en esta sala:
+        atacó, se defendió (esquivar/resistir/bloquear), usó su capacidad
+        firma o falló un intento de huida (`committed`, ver store.py). Sin
+        ninguna de esas acciones, tanto un avistamiento como una emboscada
+        recién aparecida se pueden dejar atrás; una vez comprometido, el
+        movimiento cardinal se rechaza y exige `huir`. Quien ya limpió el
+        encounter antes de llamar aquí (huida exitosa, victoria, avoid de
+        amenaza C3) no se ve afectado por este guard."""
         previous_room = player["room"]
+        current_encounter = store.get_encounter(path, player["id"], previous_room)
+        if current_encounter and current_encounter.get("committed"):
+            creature = creatures.get_creature(current_encounter["creature_id"])
+            return False, previous_room, None, (
+                f"Estás peleando con {creature['name']}: para irte tienes que huir."
+            ), None
         room = world.get_room(previous_room)
         if direction in ("salir", "salida", "out", "leave"):
             if world.is_home_room(previous_room):
@@ -845,8 +865,8 @@ def create_app(config=None):
                 encounter = store.get_encounter(path, player["id"], player["room"])
             else:
                 return {"outcome": "no_target", "messages": ["No hay ninguna criatura para atacar aquí."]}
-        if not encounter.get("engaged", 1):
-            store.update_encounter(path, player["id"], player["room"], engaged=True)
+        if not encounter.get("engaged", 1) or not encounter.get("committed"):
+            store.update_encounter(path, player["id"], player["room"], engaged=True, committed=True)
         creature = creatures.get_creature(encounter["creature_id"])
         attrs = _attributes(player)
         equipment = _equipment(player)
@@ -1002,7 +1022,7 @@ def create_app(config=None):
 
         store.update_encounter(path, player["id"], player["room"],
                                 failed_flee_attempts=encounter["failed_flee_attempts"] + 1,
-                                engaged=True, signature_cooldown=new_cd, prepared_action=None)
+                                engaged=True, committed=True, signature_cooldown=new_cd, prepared_action=None)
         enemy_hits, enemy_damage = combat.resolve_fixed_attack_roll(
             enemy_prec, enemy_dmg, rng=rng)
         messages = [f"No logras huir de {creature['name']}."]
@@ -1080,7 +1100,7 @@ def create_app(config=None):
         enemy_dmg = prepared_action.get("damage", creature["damage"]) if prepared_action else creature["damage"]
 
         store.update_encounter(path, player["id"], player["room"],
-                               signature_cooldown=new_cd, prepared_action=None)
+                               signature_cooldown=new_cd, prepared_action=None, committed=True)
 
         enemy_hits, enemy_damage = combat.resolve_dodged_attack_roll(
             enemy_prec, enemy_dmg, attrs["agilidad"], attrs["percepcion"],
@@ -1131,7 +1151,7 @@ def create_app(config=None):
         enemy_dmg = prepared_action.get("damage", creature["damage"]) if prepared_action else creature["damage"]
 
         store.update_encounter(path, player["id"], player["room"],
-                               signature_cooldown=new_cd, prepared_action=None)
+                               signature_cooldown=new_cd, prepared_action=None, committed=True)
 
         enemy_hits, enemy_damage = combat.resolve_resisted_attack_roll(
             enemy_prec, enemy_dmg, attrs["resistencia"], rng=rng)
@@ -1186,7 +1206,7 @@ def create_app(config=None):
         enemy_dmg = prepared_action.get("damage", creature["damage"]) if prepared_action else creature["damage"]
 
         store.update_encounter(path, player["id"], player["room"],
-                               signature_cooldown=new_cd, prepared_action=None)
+                               signature_cooldown=new_cd, prepared_action=None, committed=True)
 
         enemy_hits, enemy_damage = combat.resolve_blocked_attack_roll(
             enemy_prec, enemy_dmg, attrs["destreza"], rng=rng)
@@ -1222,6 +1242,8 @@ def create_app(config=None):
         authorized, reason, ability = _can_use_signature_ability(path, player, encounter)
         if not authorized:
             return {"outcome": "unavailable", "messages": [reason]}
+        if not encounter.get("committed"):
+            store.update_encounter(path, player["id"], player["room"], committed=True)
 
         player_class = player["player_class"]
         creature = creatures.get_creature(encounter["creature_id"])
