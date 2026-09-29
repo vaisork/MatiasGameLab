@@ -229,7 +229,7 @@ def create_app(config=None):
         if not g.dm:
             abort(403)
 
-    def _minimap(state, current_room):
+    def _minimap(state, current_room, player_id):
         """Datos del minimapa (navegación, Issue #135), solo de lo conocido:
         salas visitadas con nombre y coordenadas de rejilla (world.map_layout),
         rutas recorridas y, por cada sala visitada, las direcciones de salida
@@ -247,6 +247,35 @@ def create_app(config=None):
             for direction, destination in room["exits"].items():
                 if destination not in visited_set:
                     unexplored.append({"from": room_id, "direction": direction})
+        home_links = []
+        home_ids = {
+            room_id for room_id in state.get("visited_rooms", [])
+            if world.is_home_room(room_id)
+            and world.parse_home_player_id(room_id) == player_id
+        }
+        if (world.is_home_room(current_room)
+                and world.parse_home_player_id(current_room) == player_id):
+            home_ids.add(current_room)
+        for home_id in sorted(home_ids):
+            home_room = world.get_room(home_id)
+            if not home_room or not home_room.get("species"):
+                continue
+            community_id = world.get_starting_room_for_species(home_room["species"])
+            community = world.get_room(community_id)
+            if community is None or community_id not in layout:
+                continue
+            if community_id not in visited_set:
+                x, y = layout[community_id]
+                places.append({"id": community_id, "name": community["name"],
+                               "x": x, "y": y, "current": current_room == community_id,
+                               "kind": "home_community"})
+            community_x, community_y = layout[community_id]
+            home_x, home_y = community_x + 0.65, community_y + 0.45
+            places.append({"id": home_id, "name": world.HOME_ROOM_NAME,
+                           "x": home_x, "y": home_y,
+                           "current": current_room == home_id, "kind": "home"})
+            home_links.append({"home": home_id, "community": community_id,
+                               "traversed": community_id in visited_set})
         current_room_data = world.get_room(current_room)
         current_room_name = current_room_data["name"] if current_room_data else current_room
         room_names = {}
@@ -261,6 +290,7 @@ def create_app(config=None):
             "current_room_name": current_room_name,
             "places": places,
             "unexplored_exits": unexplored,
+            "home_links": home_links,
             "room_names": room_names,
         }
 
@@ -2840,7 +2870,7 @@ def create_app(config=None):
         # frontend no debe inferirlo de narrativa, nombre de sala ni imagen.
         state = store.get_map_state(path, g.player["id"])
         return jsonify(current_heading=g.player["heading"], **state,
-                       **_minimap(state, g.player["room"]))
+                       **_minimap(state, g.player["room"], g.player["id"]))
 
     @app.post("/attack")
     def attack():
