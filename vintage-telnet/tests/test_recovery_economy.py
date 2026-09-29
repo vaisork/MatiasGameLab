@@ -78,6 +78,27 @@ class RecoveryEconomyIntegrationTests(unittest.TestCase):
             if row["item_key"] == recovery.RATION_ITEM_ID
         ]
 
+    def test_valdren_plaza_exposes_market_and_forge_then_buy_ration(self):
+        store.move_player(self.path, self.player_id, "valdren_centro")
+        plaza = self.client.get("/").get_data(as_text=True)
+        self.assertIn("Ir al Mercado de Valdren", plaza)
+        self.assertIn("Ir a la Forja de Daro", plaza)
+        self.assertEqual(self.post("/move", {"direction": "east"}).status_code, 303)
+        market = self.client.get("/").get_data(as_text=True)
+        self.assertIn("Provisiones y comida del mercado", market)
+        self.assertIn("Comprar ración · 8 sellos", market)
+        self.assertIn("Comida caliente · 18 sellos", market)
+        bought = self.post("/command", {"text": "comprar Ración de camino de Valdren"})
+        self.assertEqual(bought.status_code, 200)
+        self.assertIn("Compras", bought.get_data(as_text=True))
+        self.assertEqual(len(self.rations()), 1)
+        inventory_page = self.client.get("/").get_data(as_text=True)
+        self.assertIn('item.category === "consumable" ? "Usar"', inventory_page)
+        self.assertEqual(self.post("/move", {"direction": "west"}).status_code, 303)
+        self.assertEqual(self.post("/move", {"direction": "west"}).status_code, 303)
+        forge = self.client.get("/").get_data(as_text=True)
+        self.assertIn("Taller de Daro", forge)
+
     def test_stable_ids_and_catalog_contract(self):
         self.assertEqual(recovery.RATION_ITEM_ID, "racion_camino_valdren")
         self.assertEqual(recovery.SERVICE_ID, "comida_caliente_valdren_mercado")
