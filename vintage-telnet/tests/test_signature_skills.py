@@ -288,6 +288,36 @@ class SignatureSkillsIntegrationTests(unittest.TestCase):
         self.assertEqual(data["intent"], "signature_ability")
         self.assertIn("Guardia Comprometida", " ".join(data["messages"]))
 
+    def test_signature_ability_defeat_uses_canonical_respawn_and_resets_rest_budget(self):
+        self.register_and_enter_world(player_class="juramentado")
+        self.enter_combat_with_espinajo()
+        player = self.client.get("/api/me").json["player"]
+        with store.connect(self.path) as db:
+            db.execute(
+                """UPDATE players
+                   SET hp_current = 1, field_rest_budget_max = 8, field_rest_healed = 8
+                   WHERE id = ?""",
+                (player["id"],),
+            )
+
+        with patch("server.combat.random.Random") as mock_rng_cls:
+            mock_rng_cls.return_value = FixedRoll(0)
+            response = self.post("/command", dict(text="guardia"))
+
+        self.assertIn("te derrota", response.get_data(as_text=True))
+        after = self.client.get("/api/me").json["player"]
+        self.assertEqual(after["room"], "valdren_centro")
+        self.assertEqual(after["hp_current"], round(after["hp_max"] * 0.60))
+        self.assertEqual(after["fatigue"], 40)
+        with store.connect(self.path) as db:
+            rest = db.execute(
+                """SELECT field_rest_budget_max, field_rest_healed
+                   FROM players WHERE id = ?""",
+                (player["id"],),
+            ).fetchone()
+        self.assertIsNone(rest["field_rest_budget_max"])
+        self.assertEqual(rest["field_rest_healed"], 0)
+
     def test_fatigue_gained_from_signature_ability(self):
         self.register_and_enter_world(player_class="juramentado")
         self.enter_combat_with_espinajo()

@@ -26,7 +26,7 @@ import tempfile
 import unittest
 from unittest.mock import Mock, patch
 
-from server.app import RESPAWN_MESSAGE, create_app
+from server.app import create_app
 from server import combat, creatures, encounters, store, world
 
 
@@ -261,7 +261,7 @@ class CornalomoDeathTests(unittest.TestCase):
         response = self.post("/command", dict(text="atacar"))
         html = response.get_data(as_text=True)
         self.assertIn("Cornalomo te derrota", html)
-        self.assertNotIn(RESPAWN_MESSAGE, html)
+        self.assertIn("Vuelves en ti en", html)
         self.assert_death_presentation(html)
 
         # La presentación es efímera: refrescar/reconectar muestra el estado

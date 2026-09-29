@@ -12,21 +12,8 @@ from flask import (Flask, abort, g, jsonify, redirect, render_template, request,
                     session, url_for)
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from . import bosses, combat, content_parser, creatures, dm_auth, economy, encounters, items, major_fauna, npc_dialogue, population, store, threats, travelers, world
+from . import bosses, combat, content_parser, creatures, dm_auth, economy, encounters, items, major_fauna, npc_dialogue, population, respawn as respawn_logic, store, threats, travelers, world
 
-# Issue #46 resuelto: el Narrador fijo la plaza central de Valdren como
-# punto de reaparicion tras morir (GAMEPLAY.md 20.9) y de recuperacion
-# segura (24.9) para VT-NAR-003 (comentario del 2026-09-23), confirmado
-# compatible con el canon por el Historiador y con conformidad de
-# Jugabilidad. Es una decision narrativa ya tomada, no un marcador
-# provisional de Desarrollo.
-SAFE_ROOM_ID = "valdren_centro"
-
-# Texto propuesto por el Narrador en Issue #46 para respawn y recuperacion
-# segura en `SAFE_ROOM_ID` -- no es redaccion inventada por Desarrollo.
-RESPAWN_MESSAGE = ("Vuelves en ti en la plaza central de Valdren. A tu alrededor regresan los "
-                    "sonidos conocidos del pueblo: voces, pasos y trabajo cotidiano. El camino "
-                    "hacia los campos sigue ahí, pero aquí estás fuera del peligro inmediato.")
 SAFE_RECOVERY_MESSAGE = ("En la plaza de Valdren puedes detenerte sin vigilar cada ruido del "
                           "campo. Entre el movimiento cotidiano del pueblo recuperas fuerzas "
                           "antes de volver al camino.")
@@ -748,40 +735,45 @@ def create_app(config=None):
         category = combat.encounter_category(player_dps, player["hp_current"], enemy_dps, creature["hp"])
         return creature["name"], f"{creature['name']} {EVALUATE_TEXT[category]}."
 
-    def _defeat_result(creature, combat_messages, player, respawn, respawn_wound_value):
-        """Añade presentación estructurada a una derrota ya resuelta.
-
-        La lógica autoritativa (0 HP, limpieza de encuentro, respawn, HP,
-        fatiga, herida e inventario) ocurre antes de llamar a este helper.
-        messages conserva el formato legado para clientes existentes; la UI
-        consume death_event y nunca detecta muerte buscando palabras.
-        """
+    def _defeat_result(creature, combat_messages, player, respawn_result):
+        """Añade presentación estructurada a una derrota ya resuelta."""
         creature_family = creature.get("family", "")
         if creature_family in encounters.C3_THREAT_IDS:
             for tz in threats.get_all_threat_zones():
                 if tz.creature_id == creature_family:
                     threats.resolve_threat_combat_end(path, player["id"], tz.threat_zone_id, "defeat")
-        safe_room = world.get_room(SAFE_ROOM_ID)
-        location_name = safe_room["name"] if safe_room else "un lugar seguro"
         death_event = {
             "heading": DEATH_HEADING,
             "combat_messages": list(combat_messages),
             "defeat_message": f"{creature['name']} te derrota.",
             "fall_message": DEATH_FALL_MESSAGE,
-            "respawn_message": f"Vuelves en ti en {location_name}.",
+            "respawn_message": f"Vuelves en ti en {respawn_result['room_name']}.",
             "post_respawn_state": {
-                "hp_current": respawn["hp_current"],
+                "hp_current": respawn_result["hp_current"],
                 "hp_max": round(player["hp_max"]),
-                "fatigue": respawn["fatigue"],
-                "wound": respawn_wound_value,
+                "fatigue": respawn_result["fatigue"],
+                "wound": respawn_result["wound"],
                 "equipment": "Conservado",
                 "inventory": "Conservado",
             },
             "preservation_message": "Conservas tu equipo e inventario.",
         }
         legacy_messages = list(combat_messages)
-        legacy_messages.append(f"{creature['name']} te derrota. {RESPAWN_MESSAGE}")
+        legacy_messages.append(
+            f"{creature['name']} te derrota. Vuelves en ti en {respawn_result['room_name']}."
+        )
         return {"outcome": "defeat", "messages": legacy_messages, "death_event": death_event}
+
+    def _resolve_standard_defeat(creature, combat_messages, player, current_wound):
+        """Única ruta de muerte para combate C1/C2/C3 y capacidades firma."""
+        store.clear_encounter(path, player["id"], player["room"])
+        respawn_result = respawn_logic.apply_player_respawn(
+            path,
+            player,
+            current_wound=current_wound,
+            death_room_id=player["room"],
+        )
+        return _defeat_result(creature, combat_messages, player, respawn_result)
 
     def attempt_attack(player, rng=None):
         """Una ronda de combate real (golpe del jugador y, si la criatura
@@ -899,13 +891,7 @@ def create_app(config=None):
         player_hp = player["hp_current"] - (enemy_damage if enemy_hits else 0)
 
         if player_hp <= 0:
-            store.clear_encounter(path, player["id"], player["room"])
-            respawn = combat.respawn_state(player["hp_max"])
-            respawn_wound_value = combat.respawn_wound(new_wound)
-            store.update_combat_state(path, player["id"], hp_current=respawn["hp_current"],
-                                       fatigue=respawn["fatigue"], wound=respawn_wound_value,
-                                       room=SAFE_ROOM_ID, reset_rest_budget=True)
-            return _defeat_result(creature, messages, player, respawn, respawn_wound_value)
+            return _resolve_standard_defeat(creature, messages, player, new_wound)
 
         store.update_combat_state(path, player["id"], hp_current=player_hp,
                                    fatigue=round(fatigue), wound=new_wound)
@@ -979,13 +965,7 @@ def create_app(config=None):
             messages.append(f"Sufres una herida {new_wound}.")
         player_hp = player["hp_current"] - enemy_damage
         if player_hp <= 0:
-            store.clear_encounter(path, player["id"], player["room"])
-            respawn = combat.respawn_state(player["hp_max"])
-            respawn_wound_value = combat.respawn_wound(new_wound)
-            store.update_combat_state(path, player["id"], hp_current=respawn["hp_current"],
-                                       fatigue=respawn["fatigue"], wound=respawn_wound_value,
-                                       room=SAFE_ROOM_ID, reset_rest_budget=True)
-            return _defeat_result(creature, messages, player, respawn, respawn_wound_value)
+            return _resolve_standard_defeat(creature, messages, player, new_wound)
         store.update_combat_state(path, player["id"], hp_current=player_hp,
                                    fatigue=round(fatigue), wound=new_wound)
         return {"outcome": "failed", "messages": messages}
@@ -1066,13 +1046,7 @@ def create_app(config=None):
             messages.append(f"Sufres una herida {new_wound}.")
         player_hp = player["hp_current"] - enemy_damage
         if player_hp <= 0:
-            store.clear_encounter(path, player["id"], player["room"])
-            respawn = combat.respawn_state(player["hp_max"])
-            respawn_wound_value = combat.respawn_wound(new_wound)
-            store.update_combat_state(path, player["id"], hp_current=respawn["hp_current"],
-                                       fatigue=respawn["fatigue"], wound=respawn_wound_value,
-                                       room=SAFE_ROOM_ID, reset_rest_budget=True)
-            return _defeat_result(creature, messages, player, respawn, respawn_wound_value)
+            return _resolve_standard_defeat(creature, messages, player, new_wound)
         store.update_combat_state(path, player["id"], hp_current=player_hp,
                                    fatigue=round(fatigue), wound=new_wound)
         return {"outcome": "failed", "messages": messages}
@@ -1124,13 +1098,7 @@ def create_app(config=None):
             messages.append(f"Sufres una herida {new_wound}.")
         player_hp = player["hp_current"] - enemy_damage
         if player_hp <= 0:
-            store.clear_encounter(path, player["id"], player["room"])
-            respawn = combat.respawn_state(player["hp_max"])
-            respawn_wound_value = combat.respawn_wound(new_wound)
-            store.update_combat_state(path, player["id"], hp_current=respawn["hp_current"],
-                                       fatigue=respawn["fatigue"], wound=respawn_wound_value,
-                                       room=SAFE_ROOM_ID, reset_rest_budget=True)
-            return _defeat_result(creature, messages, player, respawn, respawn_wound_value)
+            return _resolve_standard_defeat(creature, messages, player, new_wound)
         store.update_combat_state(path, player["id"], hp_current=player_hp,
                                    fatigue=round(fatigue), wound=new_wound)
         return {"outcome": "failed", "messages": messages}
@@ -1185,13 +1153,7 @@ def create_app(config=None):
             messages.append(f"Sufres una herida {new_wound}.")
         player_hp = player["hp_current"] - enemy_damage
         if player_hp <= 0:
-            store.clear_encounter(path, player["id"], player["room"])
-            respawn = combat.respawn_state(player["hp_max"])
-            respawn_wound_value = combat.respawn_wound(new_wound)
-            store.update_combat_state(path, player["id"], hp_current=respawn["hp_current"],
-                                       fatigue=respawn["fatigue"], wound=respawn_wound_value,
-                                       room=SAFE_ROOM_ID, reset_rest_budget=True)
-            return _defeat_result(creature, messages, player, respawn, respawn_wound_value)
+            return _resolve_standard_defeat(creature, messages, player, new_wound)
         store.update_combat_state(path, player["id"], hp_current=player_hp,
                                    fatigue=round(fatigue), wound=new_wound)
         return {"outcome": "failed", "messages": messages}
@@ -1256,14 +1218,7 @@ def create_app(config=None):
                 messages.append(f"Sufres una herida {new_wound}.")
             player_hp = player["hp_current"] - enemy_damage
             if player_hp <= 0:
-                store.clear_encounter(path, player["id"], player["room"])
-                respawn = combat.respawn_state(player["hp_max"])
-                respawn_wound_value = combat.respawn_wound(new_wound)
-                store.update_combat_state(path, player["id"], hp_current=respawn["hp_current"],
-                                           fatigue=respawn["fatigue"], wound=respawn_wound_value,
-                                           room=SAFE_ROOM_ID)
-                messages.append(f"{creature['name']} te derrota. {RESPAWN_MESSAGE}")
-                return {"outcome": "defeat", "messages": messages}
+                return _resolve_standard_defeat(creature, messages, player, new_wound)
             store.update_combat_state(path, player["id"], hp_current=player_hp,
                                        fatigue=round(fatigue), wound=new_wound)
             return {"outcome": "ongoing", "messages": messages}
@@ -1296,14 +1251,7 @@ def create_app(config=None):
                 messages.append(f"Sufres una herida {new_wound}.")
             player_hp = player["hp_current"] - enemy_damage
             if player_hp <= 0:
-                store.clear_encounter(path, player["id"], player["room"])
-                respawn = combat.respawn_state(player["hp_max"])
-                respawn_wound_value = combat.respawn_wound(new_wound)
-                store.update_combat_state(path, player["id"], hp_current=respawn["hp_current"],
-                                           fatigue=respawn["fatigue"], wound=respawn_wound_value,
-                                           room=SAFE_ROOM_ID)
-                messages.append(f"{creature['name']} te derrota. {RESPAWN_MESSAGE}")
-                return {"outcome": "defeat", "messages": messages}
+                return _resolve_standard_defeat(creature, messages, player, new_wound)
             store.update_combat_state(path, player["id"], hp_current=player_hp,
                                        fatigue=round(fatigue), wound=new_wound)
             return {"outcome": "ongoing", "messages": messages}
@@ -1343,14 +1291,7 @@ def create_app(config=None):
                 messages.append(f"Sufres una herida {new_wound}.")
             player_hp = player["hp_current"] - enemy_damage
             if player_hp <= 0:
-                store.clear_encounter(path, player["id"], player["room"])
-                respawn = combat.respawn_state(player["hp_max"])
-                respawn_wound_value = combat.respawn_wound(new_wound)
-                store.update_combat_state(path, player["id"], hp_current=respawn["hp_current"],
-                                           fatigue=respawn["fatigue"], wound=respawn_wound_value,
-                                           room=SAFE_ROOM_ID)
-                messages.append(f"{creature['name']} te derrota. {RESPAWN_MESSAGE}")
-                return {"outcome": "defeat", "messages": messages}
+                return _resolve_standard_defeat(creature, messages, player, new_wound)
             store.update_combat_state(path, player["id"], hp_current=player_hp,
                                        fatigue=round(fatigue), wound=new_wound)
             return {"outcome": "ongoing", "messages": messages}
@@ -1436,14 +1377,7 @@ def create_app(config=None):
                 messages.append(f"Sufres una herida {new_wound}.")
             player_hp = player["hp_current"] - enemy_damage
             if player_hp <= 0:
-                store.clear_encounter(path, player["id"], player["room"])
-                respawn = combat.respawn_state(player["hp_max"])
-                respawn_wound_value = combat.respawn_wound(new_wound)
-                store.update_combat_state(path, player["id"], hp_current=respawn["hp_current"],
-                                           fatigue=respawn["fatigue"], wound=respawn_wound_value,
-                                           room=SAFE_ROOM_ID)
-                messages.append(f"{creature['name']} te derrota. {RESPAWN_MESSAGE}")
-                return {"outcome": "defeat", "messages": messages}
+                return _resolve_standard_defeat(creature, messages, player, new_wound)
             store.update_combat_state(path, player["id"], hp_current=player_hp,
                                        fatigue=round(fatigue), wound=new_wound)
             return {"outcome": "ongoing", "messages": messages}

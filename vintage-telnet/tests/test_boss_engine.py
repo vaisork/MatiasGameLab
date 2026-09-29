@@ -394,26 +394,63 @@ class BossEngineTests(unittest.TestCase):
     # 9. weapon_loss_on_defeat=false conserva arma (§41.6, §41.7, §41.13)
     # -------------------------------------------------------------------------
     def test_weapon_loss_false_preserves_weapon(self):
-        """GAMEPLAY §41.6: Con weapon_loss_on_defeat=False, el jugador derrotado conserva su arma."""
+        """C5 conserva arma y usa el estado canónico de respawn."""
         self.assertFalse(self.test_boss.weapon_loss_on_defeat)
         player_id = self.register_and_enter_world()
         self.move_to_room("valdren_camino_lindero")
 
-        # Equipar una espada de juramento (catálogo canónico)
         item_id = store.grant_item(self.path, player_id, "espada_juramento", forge_validated=True)
         store.equip_item(self.path, player_id, item_id)
-
+        with store.connect(self.path) as db:
+            db.execute(
+                """UPDATE players
+                   SET wound = 'grave', field_rest_budget_max = 10, field_rest_healed = 10
+                   WHERE id = ?""",
+                (player_id,),
+            )
         player = store.character_by_player_id(self.path, player_id)
         self.assertEqual(player["equipped_weapon_id"], item_id)
 
-        # Muerte contra el jefe
-        res = bosses.resolve_boss_player_defeat(self.path, player, self.test_boss)
+        res = bosses.resolve_boss_player_defeat(
+            self.path, player, self.test_boss, current_wound="grave"
+        )
         self.assertEqual(res["outcome"], "defeat")
         self.assertFalse(res["weapon_lost"])
 
         player_after = store.character_by_player_id(self.path, player_id)
+        self.assertEqual(player_after["room"], "valdren_centro")
+        self.assertEqual(player_after["hp_current"], round(player_after["hp_max"] * 0.60))
+        self.assertEqual(player_after["fatigue"], 40)
+        self.assertEqual(player_after["wound"], "moderada")
         self.assertEqual(player_after["equipped_weapon_id"], item_id)
+        self.assertIsNone(player_after["field_rest_budget_max"])
+        self.assertEqual(player_after["field_rest_healed"], 0)
         self.assertEqual(len(store.get_lost_weapons(self.path, player_id)), 0)
+
+    def test_boss_outside_edran_uses_home_fallback(self):
+        """Un C5 fuera de Edran no teletransporta globalmente a Valdren."""
+        player_id = self.register_and_enter_world()
+        with store.connect(self.path) as db:
+            db.execute(
+                "UPDATE players SET room = 'alto_terrazas', wound = 'leve' WHERE id = ?",
+                (player_id,),
+            )
+        player = store.character_by_player_id(self.path, player_id)
+        remote_boss = BossContract(
+            boss_id="jefe_hoshai_respawn",
+            name="Jefe de prueba Hoshai",
+            entry_room_id="alto_mirador",
+            arena_room_id="alto_terrazas",
+            max_hp=100,
+            phases=[BossPhase(0, "Única", 0.0, 1.0, 50, 10)],
+            weapon_loss_on_defeat=False,
+        )
+        result = bosses.resolve_boss_player_defeat(self.path, player, remote_boss)
+        self.assertEqual(result["outcome"], "defeat")
+        after = store.character_by_player_id(self.path, player_id)
+        self.assertEqual(after["room"], world.get_home_room_id(player_id))
+        self.assertEqual(after["wound"], "ninguna")
+        self.assertIn(world.get_room(after["room"])["name"], result["death_event"]["respawn_message"])
 
     # -------------------------------------------------------------------------
     # 10. weapon_loss_on_defeat=true pierde únicamente arma equipada (§41.7, §41.13)

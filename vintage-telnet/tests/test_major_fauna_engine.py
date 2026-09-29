@@ -44,7 +44,7 @@ class MajorFaunaEngineTests(unittest.TestCase):
         self.player_id = self.player["id"]
         with store.connect(self.db_path) as db:
             db.execute(
-                "UPDATE players SET status = 'approved', species = 'humano', player_class = 'juramentado', room = 'valdren_centro' WHERE id = ?",
+                "UPDATE players SET status = 'approved', species = 'humano', player_class = 'juramentado', room = 'valdren_centro', hp_max = 100, hp_current = 100 WHERE id = ?",
                 (self.player_id,)
             )
         self.player = dict(store.player_for_token(self.db_path, self.token))
@@ -214,19 +214,71 @@ class MajorFaunaEngineTests(unittest.TestCase):
         self.assertIn("no te persigue", res_flee["message"])
 
     def test_player_defeat_respawns_and_preserves_weapons(self):
-        """Muerte frente a fauna mayor NO activa pérdida de arma ni equipo (GAMEPLAY §38.5)."""
+        """C4 usa estado canónico, resetea REST-01 y no pierde equipo."""
         spec = major_fauna.get_registry().get_spec("cargallanura")
+        with store.connect(self.db_path) as db:
+            db.execute(
+                """UPDATE players
+                   SET wound = 'grave', field_rest_budget_max = 12, field_rest_healed = 12
+                   WHERE id = ?""",
+                (self.player_id,),
+            )
+        player = dict(store.player_for_token(self.db_path, self.token))
+        weapon_before = player["equipped_weapon_id"]
+        armor_before = player["equipped_armor_id"]
 
-        res_defeat = major_fauna.resolve_major_fauna_player_defeat(self.db_path, self.player, spec)
+        res_defeat = major_fauna.resolve_major_fauna_player_defeat(
+            self.db_path, player, spec, current_wound="grave"
+        )
         self.assertEqual(res_defeat["outcome"], "player_defeated")
         self.assertFalse(res_defeat["weapon_lost"], "No hay pérdida de arma por fauna mayor")
         self.assertTrue(res_defeat["equipment_preserved"])
         self.assertEqual(res_defeat["respawn_room"], "valdren_centro")
 
-        # Comprobar en DB que el jugador está en valdren_centro y vivo
-        p_after = store.player_for_token(self.db_path, self.token)
+        p_after = dict(store.player_for_token(self.db_path, self.token))
         self.assertEqual(p_after["room"], "valdren_centro")
-        self.assertEqual(p_after["hp_current"], 20)
+        self.assertEqual(p_after["hp_current"], round(p_after["hp_max"] * 0.60))
+        self.assertEqual(p_after["fatigue"], 40)
+        self.assertEqual(p_after["wound"], "moderada")
+        self.assertEqual(p_after["equipped_weapon_id"], weapon_before)
+        self.assertEqual(p_after["equipped_armor_id"], armor_before)
+        self.assertIsNone(p_after["field_rest_budget_max"])
+        self.assertEqual(p_after["field_rest_healed"], 0)
+
+    def test_player_defeat_wound_downgrade_matches_canonical_respawn(self):
+        spec = major_fauna.get_registry().get_spec("cargallanura")
+        for current, expected in (
+            ("grave", "moderada"),
+            ("moderada", "leve"),
+            ("leve", "ninguna"),
+        ):
+            with self.subTest(current=current):
+                with store.connect(self.db_path) as db:
+                    db.execute(
+                        "UPDATE players SET room = 'valdren_centro', wound = ? WHERE id = ?",
+                        (current, self.player_id),
+                    )
+                player = dict(store.player_for_token(self.db_path, self.token))
+                major_fauna.resolve_major_fauna_player_defeat(
+                    self.db_path, player, spec, current_wound=current
+                )
+                after = dict(store.player_for_token(self.db_path, self.token))
+                self.assertEqual(after["wound"], expected)
+                self.assertEqual(after["fatigue"], 40)
+
+    def test_major_fauna_defeat_outside_edran_falls_back_to_home(self):
+        """El motor C4 consume el selector #478 en vez de fijar Valdren."""
+        spec = major_fauna.get_registry().get_spec("cargallanura")
+        with store.connect(self.db_path) as db:
+            db.execute(
+                "UPDATE players SET room = 'alto_terrazas' WHERE id = ?",
+                (self.player_id,),
+            )
+        player = dict(store.player_for_token(self.db_path, self.token))
+        result = major_fauna.resolve_major_fauna_player_defeat(self.db_path, player, spec)
+        self.assertEqual(result["respawn_room"], world.get_home_room_id(self.player_id))
+        after = dict(store.player_for_token(self.db_path, self.token))
+        self.assertEqual(after["room"], world.get_home_room_id(self.player_id))
 
     def test_creature_defeat_awards_xp_and_no_boss_trophies(self):
         """Victoria otorga XP regular con antifarmeo, sin loot de jefe ni trofeos, y fija cooldown."""
