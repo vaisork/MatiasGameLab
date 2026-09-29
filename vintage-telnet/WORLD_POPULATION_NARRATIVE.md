@@ -68,9 +68,30 @@ Respuesta fija:
 - Evitar frases que obliguen a una región concreta hasta que Historia asigne compatibilidad.
 - Si una sala tiene NPC scripted, su diálogo tiene prioridad y estos barks no lo sustituyen.
 
-## N5-lite
+## N5-lite — Loren
 
-Para el primer viajero definido por Historia, reutilizar la voz de Viajero como fallback hasta recibir identidad y ruta canónicas. Cuando Historia publique npc_id y route_id, Narrativa añadirá 3–5 líneas específicas sin alterar su movimiento.
+Primer viajero canónico:
+- npc_id: `viajero_loren`
+- route_id: `valdren_camino_corto_01`
+- movimiento: Valdren → Árbol del descanso → regreso
+- no comerciante, no quest giver, no autoridad
+
+Barks específicos:
+- "Voy hasta el árbol del descanso y luego regreso a Valdren."
+- "Este camino cambia poco de nombre y mucho de aspecto."
+- "Los cobertizos sirven para medir cuánto te has alejado."
+- "Si el cruce queda a tu espalda, conviene recordar por dónde volver."
+- "Llevo noticias pequeñas. Las importantes suelen viajar con más gente."
+
+Respuesta fija a hablar:
+> "Soy Loren. Voy y vuelvo por este camino. Si necesitas una misión o mercancía, tendrás que buscar a otra persona."
+
+Reglas:
+- las frases no cambian su ruta;
+- conversación no ordena movimiento;
+- no promete entrega de objetos;
+- no revela amenazas ni rutas secretas;
+- no crea servicio postal formal.
 
 ## Criterio de experiencia
 
