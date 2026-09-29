@@ -1,0 +1,36 @@
+{
+  "asset_id": "velozanco_edran",
+  "generation_id": "a7dd6570-6526-4c56-ac35-05c77fceeab2",
+  "version": "v001",
+  "prompt": "Create a draft visual asset for Vintage Telnet using the supplied art direction.\n\nAsset type: creature\n\nTarget: Borrador de escena para fauna de los Llanos de Edran; no integrar a runtime.\n\nCanonical name: Velozanco de Edran\n\nArt direction: Fase 2 final usando como referencia obligatoria la Fase 1 aprobada. Mantener congelada la anatomía: cuatro patas locomotoras largas, dos apoyos anteriores cortos, torso suspendido, lámina dorsal flexible baja y cola corta bifurcada en dos filamentos rígidos.\n\nAspect ratio: 1536x1024\n\nPrompt: Create one 1536x1024 landscape scene with safe center. The Velozanco is crossing an open field boundary in Edran in a strong crosswind. Show the complete creature in a low three-quarter side view: its four long locomotor legs are running, and its two short front supports are tucked but still clearly legible. Its flexible dorsal membrane is flattened by the wind. Preserve exactly the approved reference anatomy and proportions. Subordinate background only: field stubble, desaturated agricultural greens, pale wheat, blue-gray sky. Neutral daylight.\n\nCanon sources supplied by the Art Director: Issue #522 — Dirección de Arte, comentario del 2026-09-29\n\nDo not include: No feathers or wings; Do not resemble a dinosaur or giant insect; No glow or magic; No dominant ochre or golden palette; No readable text or HUD; Do not alter the frozen six-limb 4+2 anatomy, suspended torso, dorsal membrane, or bifilament tail\n\nIDs (reference only): velozanco_edran\n\nNotes: Piloto #559/#561: una única generación. No crear variantes hasta revisión del Director de Arte.\n\nUse the attached reference images according to the art direction and constraints above.",
+  "model_id": "gpt-image-2.5-flare",
+  "parameters": {
+    "quality": "low",
+    "size": "1536x1024",
+    "output_format": "png",
+    "output_compression": null,
+    "background": "opaque",
+    "reference_files": [
+      "vintage-telnet/art_requests/velozanco-edran-fase1-anatomia.png"
+    ]
+  },
+  "timestamp_utc": "2026-09-29T20:54:57.418054+00:00",
+  "status": "draft",
+  "image": "vintage-telnet/art_generations/velozanco_edran/v001/velozanco_edran_v001.png",
+  "request_file": "vintage-telnet/art_requests/velozanco-edran-fase2.json",
+  "request_id": "req_a2973150fee24777aaabacf2f42a9798",
+  "usage": {
+    "input_tokens": 1934,
+    "input_tokens_details": {
+      "image_tokens": 1536,
+      "text_tokens": 398
+    },
+    "output_tokens": 158,
+    "total_tokens": 2092,
+    "output_tokens_details": {
+      "image_tokens": 158,
+      "text_tokens": 0
+    }
+  },
+  "cost_estimate": null
+}
