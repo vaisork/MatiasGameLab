@@ -921,7 +921,7 @@ def converse(
     # Manejo de la escena autoritativa de Karn (KORVEN-WEAPON-01 / #288)
     elif npc_id == "brumak_taller_korven_01":
         has_item = store.get_story_flag(db_path, player_id, "korven_martillo_recibido") if (db_path and player_id) else False
-        has_helped = store.get_story_flag(db_path, player_id, "korven_carga_asentada") if (db_path and player_id) else False
+        has_helped = store.reconcile_story_flag_alias(db_path, player_id, "korven_carga_asentada", "korven_trabajo_ayudado") if (db_path and player_id) else False
 
         msg_lower = (message or "").strip().lower()
         offers_help = any(w in msg_lower for w in ("ayud", "sosten", "sostén", "apoyo", "carg", "firme", "fuerz", "mano", "si", "sí", "claro", "vale", "apoyo", "cuenta"))
@@ -930,7 +930,7 @@ def converse(
             clean_reply = "Ya cumpliste aquí. La pieza que te entregaron sigue siendo la misma; no hay otra esperando por repetir la ayuda."
         elif has_helped or offers_help:
             if db_path and player_id:
-                store.set_story_flag(db_path, player_id, "korven_carga_asentada", True)
+                store.set_story_flag(db_path, player_id, "korven_trabajo_ayudado", True)
                 store.grant_story_item_once(db_path, player_id, "korven_martillo_recibido", "martillo_korven", forge_validated=False)
             clean_reply = (
                 "El apoyo vuelve a quedar bajo el peso correcto. La carga queda estable y el paso vuelve a estar libre.\n\n"
