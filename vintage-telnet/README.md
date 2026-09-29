@@ -1,5 +1,7 @@
 # Vintage Telnet — entrada rápida para agentes
 
+Dirección de Arte: el flujo local de generación/versionado de borradores por OpenAI Image API está documentado en [ART_IMAGE_PIPELINE.md](ART_IMAGE_PIPELINE.md); la herramienta CLI vive en `tools/vt_art/` y nunca publica imágenes al runtime.
+
 Este índice orienta la lectura; no sustituye `AGENTS.md`, el canon ni las instrucciones del issue. Comprueba `main` y la PR relacionada antes de actuar. Lee sólo las secciones necesarias para tu tarea; si hay divergencia entre issue antiguo y código/canon vigente, documenta la diferencia.
 
 | Pregunta | Ruta |
