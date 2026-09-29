@@ -1,6 +1,6 @@
 # Generación de borradores de arte con OpenAI
 
-Esta herramienta permite a Dirección de Arte generar y versionar borradores de Vintage Telnet desde fichas JSON. Requiere una cuenta de API con acceso y crédito disponible. **La clave nunca va en la ficha, en la línea de comandos ni en GitHub.**
+Esta herramienta permite a Dirección de Arte generar y versionar borradores de Vintage Telnet desde fichas JSON. Requiere una cuenta de API con acceso y crédito disponible. **La clave nunca va en la ficha, en la línea de comandos ni en el repositorio.** En GitHub Actions se entrega exclusivamente como secret cifrado al job autorizado.
 
 ## Preparación única
 
@@ -57,6 +57,19 @@ Cada asset se guarda sin sobrescribir versiones anteriores en `vintage-telnet/ar
 
 Todo resultado inicia en `draft`. Dirección de Arte revisa visualmente y es quien decide `review` o `approved`; el comando registra la decisión explícita y nunca autoaprueba. `published` sólo registra un estado, no publica ni copia archivos. El Publicador mantiene su flujo de normalización y el Integrador decide las rutas de runtime por separado.
 
-`output_destination` se limita a `vintage-telnet/art_generations/`; la herramienta rechaza rutas dentro de `assets/vintage-telnet/`. Nada llega al juego, se commitea, publica o despliega automáticamente.
+`output_destination` se limita a `vintage-telnet/art_generations/`; la herramienta rechaza rutas dentro de `assets/vintage-telnet/`. La CLI local no hace commits. El workflow de GitHub Actions descrito abajo sí crea una rama y una PR de borrador para revisar el resultado; nada llega al runtime ni se despliega automáticamente.
 
-La Image API puede tardar hasta un par de minutos con instrucciones complejas, y la consistencia entre variantes requiere revisión humana. Una organización puede necesitar completar verificación antes de acceder a los modelos de imagen. El piloto real de #559 queda pendiente de las fichas seleccionadas por Dirección de Arte y una clave local válida.
+La Image API puede tardar hasta un par de minutos con instrucciones complejas, y la consistencia entre variantes requiere revisión humana. Una organización puede necesitar completar verificación antes de acceder a los modelos de imagen.
+
+## Piloto manual desde GitHub Actions
+
+El workflow `.github/workflows/vt-art-pilot.yml` se ejecuta manualmente desde `main` en un runner hospedado por GitHub. El formulario recibe una ficha aprobada de `vintage-telnet/art_requests/` y genera una sola imagen. Para el piloto Velozanco, sube también la referencia aprobada como `vintage-telnet/art_requests/velozanco-edran-fase1-anatomia.png`; las referencias se versionan junto a su solicitud para que el runner no dependa de Drive. El workflow abre una PR con imagen, `metadata.json` y ficha bajo `vintage-telnet/art_generations/<asset_id>/`. El estado sigue siendo `draft`; la PR no aprueba ni integra el asset al juego y no despliega. No sube imágenes a Actions artifacts.
+
+Configuración única del repositorio, en **Settings → Secrets and variables → Actions**:
+
+- Secret `OPENAI_API_KEY`: clave de OpenAI API. No pegarla en chats, fichas, commits ni logs.
+La clave de OpenAI se usa sólo como credencial del job; no se guarda en el repositorio ni se imprime. Los borradores sí quedan públicamente visibles en la PR porque el repositorio es público. Puedes descargarlos desde GitHub y cerrar la PR/eliminar su rama para limpiar borradores; si integras la PR, los archivos quedarán en `main` hasta que los borres manualmente.
+
+Para ejecutar: abre **Actions → Vintage Telnet — piloto de arte → Run workflow**, elige `main` y selecciona la ficha aprobada. Cada ejecución factura una generación y crea una PR nueva. Revisa el resultado antes de lanzar otra generación; no hay reintentos automáticos.
+
+Este workflow está limitado al piloto de una imagen. Las futuras fichas no se ejecutan por lote; Dirección de Arte debe seleccionar y autorizar cada alcance antes de extenderlo.

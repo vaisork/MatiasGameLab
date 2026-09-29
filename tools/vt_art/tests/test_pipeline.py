@@ -84,6 +84,18 @@ class ArtPipelineTests(unittest.TestCase):
         self.assertEqual(first["status"], "draft")
         self.assertEqual(first["request_id"], "req-1")
 
+    def test_explicit_version_hint_is_unique_and_never_overwrites(self):
+        request = self.make_request()
+        client = FakeClient()
+        pipeline = ArtPipeline(client, "gpt-image-2.5-flare")
+        result = pipeline.generate(request, "v023")
+        self.assertEqual(result["version"], "v023")
+        with self.assertRaisesRegex(ArtPipelineError, "ya existe"):
+            pipeline.generate(request, "v023")
+        with self.assertRaisesRegex(ArtPipelineError, "formato"):
+            pipeline.generate(request, "latest")
+        self.assertEqual(client.calls, 1)
+
     def test_status_updates_only_latest_unless_version_is_selected(self):
         request = self.make_request()
         pipeline = ArtPipeline(FakeClient(), "gpt-image-2.5-flare")

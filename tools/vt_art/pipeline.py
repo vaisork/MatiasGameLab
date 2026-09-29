@@ -193,12 +193,17 @@ class ArtPipeline:
         self.client = client
         self.model = model
 
-    def generate(self, request: ArtRequest) -> dict[str, Any]:
+    def generate(self, request: ArtRequest, version: str | None = None) -> dict[str, Any]:
+        if version is not None:
+            if not re.fullmatch(r"v\d{3,}", version):
+                raise ArtPipelineError("La versión debe tener formato vNNN.")
+            if (request.output_destination / request.asset_id / version).exists():
+                raise ArtPipelineError(f"La versión {version} ya existe; no se sobrescribió.")
         prompt = build_prompt(request)
         image_bytes, usage, request_id = self.client.generate(
             prompt=prompt, model=self.model, request=request
         )
-        version_dir, version = _claim_version(request.output_destination, request.asset_id)
+        version_dir, version = _claim_version(request.output_destination, request.asset_id, version)
         ext = "jpg" if request.output_format == "jpeg" else request.output_format
         image_path = version_dir / f"{request.asset_id}_{version}.{ext}"
         _write_new_file(image_path, image_bytes)
@@ -308,9 +313,18 @@ def size_for_aspect(aspect: str) -> str:
     raise ArtPipelineError("aspect_ratio debe ser square/landscape/portrait o dimensiones válidas como 1536x864.")
 
 
-def _claim_version(root: Path, asset_id: str) -> tuple[Path, str]:
+def _claim_version(root: Path, asset_id: str, version_hint: str | None = None) -> tuple[Path, str]:
     asset_dir = root / asset_id
     asset_dir.mkdir(parents=True, exist_ok=True)
+    if version_hint is not None:
+        if not re.fullmatch(r"v\d{3,}", version_hint):
+            raise ArtPipelineError("La versión debe tener formato vNNN.")
+        candidate = asset_dir / version_hint
+        try:
+            candidate.mkdir()
+            return candidate, version_hint
+        except FileExistsError as exc:
+            raise ArtPipelineError(f"La versión {version_hint} ya existe; no se sobrescribió.") from exc
     number = 1
     while True:
         version = f"v{number:03d}"
