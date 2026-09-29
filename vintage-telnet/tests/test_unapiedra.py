@@ -48,10 +48,11 @@ class UnapiedraUnitTests(unittest.TestCase):
         )
         self.assertEqual(creature["behavior_text"], expected_behavior)
 
-    def test_unapiedra_has_no_art_in_creature_art(self):
-        """Criterio 1: Combatible sin imagen; sin asset el marco queda neutral/vacío."""
-        self.assertNotIn("unapiedra", creatures.CREATURE_ART)
-        self.assertIsNone(creatures.CREATURE_ART.get("unapiedra"))
+    def test_unapiedra_has_approved_art_in_creature_art(self):
+        """Issue #548: arte aprobado (PR #227/#178, Issue #167) ya conectado al runtime."""
+        self.assertIn("unapiedra", creatures.CREATURE_ART)
+        art = creatures.CREATURE_ART["unapiedra"]
+        self.assertEqual(art["src"], "/assets/creatures/unapiedra.webp")
 
     def test_unapiedra_relative_difficulty_is_favorable_for_level_1(self):
         """Criterio: Dificultad relativa FAVORABLE para nivel 1 sano."""
@@ -260,8 +261,8 @@ class UnapiedraServerIntegrationTests(unittest.TestCase):
     def character(self):
         return self.client.get("/api/character").json
 
-    def test_alto_terrazas_encounter_presence_and_art_fallback(self):
-        """Al salir de Khariel a alto_terrazas se encuentra Uñapiedra con marco neutral."""
+    def test_alto_terrazas_encounter_presence_and_art(self):
+        """Al salir de Khariel a alto_terrazas se encuentra Uñapiedra con su arte (#548)."""
         self.register_felaryn_and_enter_world()
         pid = self.get_player_id()
 
@@ -275,8 +276,9 @@ class UnapiedraServerIntegrationTests(unittest.TestCase):
         self.assertEqual(room_data["encounter"]["creature_id"], "unapiedra")
         self.assertEqual(room_data["encounter"]["name"], "Uñapiedra")
         self.assertIn("Uñapiedra se aplasta contra la roca", room_data["encounter"]["behavior"])
-        # Sin arte aprobado en main: el marco de arte debe ser None / marco neutral
-        self.assertIsNone(room_data.get("art"))
+        # Issue #548: el marco de combate ya muestra a Uñapiedra, no el
+        # paisaje (alto_terrazas en sí sigue sin arte de ubicación propia).
+        self.assertEqual(room_data.get("art"), creatures.CREATURE_ART["unapiedra"])
 
         # En SQLite:
         enc = store.get_encounter(self.path, pid, "alto_terrazas")

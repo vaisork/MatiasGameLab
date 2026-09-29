@@ -92,6 +92,22 @@ VISUAL_CONTEXT_ART = {
         "width": 1672,
         "height": 941,
     },
+    # Issue #548 (APPROVED-BINDINGS-01), mapping validado en
+    # REGIONAL_VISUAL_MAPPING_CANON.md (#203/#215/#487). Publicado en PR #255.
+    "zone.hoshai.paso_alto": {
+        "src": "/assets/locations/hoshai-paso-alto.webp",
+        "alt": "Paso alto interior de Hoshai: escalones y roca próxima",
+        "width": 1672,
+        "height": 941,
+    },
+    # Issue #548 (APPROVED-BINDINGS-01), mapping validado en
+    # REGIONAL_VISUAL_MAPPING_CANON.md (#203/#215/#487). Publicado en PR #259.
+    "zone.lethra.canal_bajo_islas": {
+        "src": "/assets/locations/lethra-canal-bajo-islas.webp",
+        "alt": "Canal bajo entre islas de Lethra",
+        "width": 1670,
+        "height": 942,
+    },
 }
 
 # Excepciones explicitas de VISUAL_CONTEXT_CANON.md ("Mapeo de las salas
@@ -116,6 +132,13 @@ ROOM_VISUAL_CONTEXT_OVERRIDES = {
     "valdren_arbol_descanso": "zone.edran.valdren_outskirts",
     "valdren_campos_sin_cerca": "zone.edran.valdren_outskirts",
     "valdren_vado_menor": "zone.edran.valdren_outskirts",
+    # Issue #548: mapping recomendado en REGIONAL_VISUAL_MAPPING_CANON.md.
+    "alto_escalones": "zone.hoshai.paso_alto",
+    "alto_garganta": "zone.hoshai.paso_alto",
+    "alto_cruce_alturas": "zone.hoshai.paso_alto",
+    "juncos_agua_entre_caminos": "zone.lethra.canal_bajo_islas",
+    "juncos_islas_bajas": "zone.lethra.canal_bajo_islas",
+    "juncos_canal_ancho": "zone.lethra.canal_bajo_islas",
 }
 
 _TOWN_VISUAL_CONTEXT_PREFIXES = ("valdren", "khariel", "brumak", "narevia", "velmora")

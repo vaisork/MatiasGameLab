@@ -61,6 +61,31 @@ class PublishedArtTests(unittest.TestCase):
                 self.assertEqual(room["visual_context_id"], expected)
                 self.assertEqual(room["art"], world.VISUAL_CONTEXT_ART[expected])
 
+    def test_approved_hoshai_paso_alto_art_is_used_by_its_rooms(self):
+        # Issue #548, mapping de REGIONAL_VISUAL_MAPPING_CANON.md.
+        expected = "zone.hoshai.paso_alto"
+        for room_id in ("alto_escalones", "alto_garganta", "alto_cruce_alturas"):
+            with self.subTest(room=room_id):
+                room = world.describe_room(room_id, [])
+                self.assertEqual(room["visual_context_id"], expected)
+                self.assertEqual(room["art"], world.VISUAL_CONTEXT_ART[expected])
+
+    def test_approved_lethra_canal_bajo_islas_art_is_used_by_its_rooms(self):
+        # Issue #548, mapping de REGIONAL_VISUAL_MAPPING_CANON.md.
+        expected = "zone.lethra.canal_bajo_islas"
+        for room_id in ("juncos_agua_entre_caminos", "juncos_islas_bajas", "juncos_canal_ancho"):
+            with self.subTest(room=room_id):
+                room = world.describe_room(room_id, [])
+                self.assertEqual(room["visual_context_id"], expected)
+                self.assertEqual(room["art"], world.VISUAL_CONTEXT_ART[expected])
+
+    def test_cascapedernal_and_hilaria_niebla_have_art(self):
+        # Issue #548: arte aprobado ya conectado al runtime.
+        self.assertIn("cascapedernal", creatures.CREATURE_ART)
+        self.assertIn("hilaria_niebla", creatures.CREATURE_ART)
+        for creature_id in ("cascapedernal", "hilaria_niebla"):
+            self.assertIsNotNone(creatures.get_creature(creature_id))
+
     def test_combat_frame_shows_the_creature(self):
         page = self.client.get("/").get_data(as_text=True)
         csrf = re.search(r'name="csrf" value="([^"]+)"', page)[1]

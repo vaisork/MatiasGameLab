@@ -297,6 +297,7 @@
     .species-intro{margin-bottom:12px;padding:16px;border:1px solid var(--line);border-radius:14px;background:linear-gradient(180deg,var(--shell2),var(--panel))}
     .species-intro h2{margin:0 0 6px;color:var(--gold)}
     .species-intro p{margin:0;color:#d9ccb1;line-height:1.5}
+    .species-comparison{display:block;width:100%;height:auto;aspect-ratio:1536/1024;object-fit:contain;margin-top:12px;border:1px solid var(--line);border-radius:10px;background:#0b0f16}
     .species-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
     .class-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
     .species-card{display:block;position:relative;border:1px solid #4c5a6d;border-radius:12px;background:#101722;padding:12px;cursor:pointer}
@@ -571,8 +572,8 @@
        acciones que el servidor ya autorizó para esta sala. */
     @media(max-width:640px){
       .app{padding:max(3px,env(safe-area-inset-top)) 4px max(3px,env(safe-area-inset-bottom));gap:4px}
-      .topbar-game{min-height:44px;padding:3px 8px;box-shadow:none}
-      .topbar-game .brand strong{font-size:.8rem;letter-spacing:.04em}
+      .topbar-game{min-height:34px;padding:2px 8px;box-shadow:none}
+      .topbar-game .brand strong{font-size:.74rem;letter-spacing:.04em}
       .topbar-game .status{display:none}
       .game-shell{padding:4px;gap:4px;box-shadow:none}
       .game-shell::before{width:23px;height:23px}
@@ -585,9 +586,9 @@
       .controls-swap{gap:4px}
       .controls-row{grid-template-columns:134px minmax(0,1fr);gap:5px;align-items:start}
       .dpad{grid-template-columns:repeat(3,42px);grid-template-rows:repeat(3,44px);gap:4px}
-      .context-actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:minmax(44px,auto);gap:4px;align-content:start}
+      .context-actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:minmax(40px,auto);gap:4px;align-content:start}
       .context-actions form{min-width:0}
-      .context-actions .action{height:100%;min-height:44px;padding:3px 2px;justify-content:center;text-align:center;font-size:.66rem;line-height:1.14;overflow-wrap:anywhere}
+      .context-actions .action{height:100%;min-height:40px;padding:3px 2px;justify-content:center;text-align:center;font-size:.66rem;line-height:1.14;overflow-wrap:anywhere}
       .context-actions .ui-icon{display:none}
       .context-actions .mobile-context-action{display:block!important}
       .desktop-action-label{display:none}
@@ -596,16 +597,17 @@
       .combat-panel{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px}
       .combat-panel .combat-row{display:contents}
       .combat-panel > form:first-child{grid-column:span 2}
-      .combat-panel .action{min-height:44px;height:100%;font-size:.75rem;padding:4px}
+      .combat-panel .action{min-height:40px;height:100%;font-size:.75rem;padding:4px}
       .combat-panel .action-attack{font-size:.9rem}
       .combat-panel .action-attack .ui-icon{width:19px;height:19px;flex-basis:19px}
       .commandbar input{min-height:44px}
       .tool-row{position:static;padding-top:0;gap:3px}
-      .tool-row .btn{min-height:44px;padding:3px 1px}
+      .tool-row .btn{min-height:40px;padding:3px 1px}
       .tool-row [data-shop-open]{display:none}
       .game-account-actions{display:none}
       .mobile-account-menu{display:block!important;position:fixed;top:max(4px,env(safe-area-inset-top));right:7px;z-index:12}
-      .mobile-account-menu summary{display:flex;align-items:center;justify-content:center;min-width:62px;min-height:44px;padding:3px 7px;border:1px solid var(--line);border-radius:8px;background:var(--shell);color:var(--gold);font:700 .72rem ui-sans-serif,system-ui,sans-serif;cursor:pointer;list-style:none}
+      .mobile-account-menu summary{display:flex;align-items:center;justify-content:center;width:38px;min-height:38px;padding:0;border:1px solid var(--line);border-radius:8px;background:var(--shell);color:var(--gold);cursor:pointer;list-style:none}
+      .mobile-account-menu summary .ui-icon{width:20px;height:20px;flex-basis:20px}
       .mobile-account-menu summary::-webkit-details-marker{display:none}
       .mobile-account-menu .account-actions{display:grid;gap:5px;min-width:190px;padding:7px;border:1px solid var(--line);border-radius:8px;background:var(--shell);box-shadow:0 8px 24px #000a}
       .mobile-account-menu .btn{min-height:44px;width:100%}
@@ -637,6 +639,7 @@
   <symbol id="icon-amb-tormenta" viewBox="0 0 24 24"><path d="M7 14h10a4 4 0 00.5-8A6 6 0 006 7a3.5 3.5 0 001 7z"/><path d="M12 14l-2 4h4l-2 4"/></symbol>
   <symbol id="icon-amb-viento" viewBox="0 0 24 24"><path d="M3 9h11a3 3 0 10-3-3M3 15h15a3 3 0 11-3 3"/></symbol>
   <symbol id="icon-send" viewBox="0 0 24 24"><path d="M3 11.5L21 3l-8.5 18-2-7z"/><path d="M10.5 14L21 3"/></symbol>
+  <symbol id="icon-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
 </svg>
 <div class="app">
   <header class="topbar{% if player and player.status == 'approved' and player.species and player.player_class %} topbar-game{% endif %}">
@@ -718,6 +721,9 @@
       <div class="species-intro">
         <h2>Tu viaje puede comenzar</h2>
         <p>Elige la especie de tu personaje. Cada una tiene un cuerpo y una forma natural distinta de relacionarse con el mundo; ninguna decide por ti qué camino seguirás.</p>
+        <img class="species-comparison" src="/assets/species/comparativa-especies.webp"
+             alt="Comparación de tamaño y proporciones entre las cinco especies jugables"
+             width="1536" height="1024" loading="lazy" decoding="async">
       </div>
       <form method="post" action="/species">
         <input type="hidden" name="csrf" value="{{ session.csrf }}">
@@ -1080,7 +1086,7 @@
     </div>
 
     <div class="account-actions game-account-actions" style="margin-top:8px"><form method="post" action="/characters/switch"><input type="hidden" name="csrf" value="{{ session.csrf }}"><button class="btn" type="submit">Cambiar de personaje</button></form><form method="post" action="/logout"><input type="hidden" name="csrf" value="{{ session.csrf }}"><button class="btn" type="submit">Cerrar sesión</button></form></div>
-    <details class="mobile-account-menu"><summary>Cuenta</summary><div class="account-actions"><form method="post" action="/characters/switch"><input type="hidden" name="csrf" value="{{ session.csrf }}"><button class="btn" type="submit">Cambiar de personaje</button></form><form method="post" action="/logout"><input type="hidden" name="csrf" value="{{ session.csrf }}"><button class="btn" type="submit">Cerrar sesión</button></form></div></details>
+    <details class="mobile-account-menu"><summary aria-label="Cuenta"><svg class="ui-icon" aria-hidden="true"><use href="#icon-menu"/></svg></summary><div class="account-actions"><form method="post" action="/characters/switch"><input type="hidden" name="csrf" value="{{ session.csrf }}"><button class="btn" type="submit">Cambiar de personaje</button></form><form method="post" action="/logout"><input type="hidden" name="csrf" value="{{ session.csrf }}"><button class="btn" type="submit">Cerrar sesión</button></form></div></details>
   {% endif %}
 
   <div class="footer">Vintage Telnet · servidor real · texto primero, HTML como herramienta</div>
