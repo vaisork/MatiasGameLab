@@ -12,7 +12,7 @@ from flask import (Flask, abort, g, jsonify, redirect, render_template, request,
                     session, url_for)
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from . import bosses, combat, content_parser, creatures, dm_auth, economy, encounters, items, major_fauna, npc_dialogue, population, recovery, respawn as respawn_logic, store, threats, travelers, world
+from . import bosses, combat, content_parser, creatures, dm_auth, economy, encounters, errands, items, major_fauna, npc_dialogue, population, recovery, respawn as respawn_logic, store, threats, travelers, world
 
 SAFE_RECOVERY_MESSAGE = ("En la plaza de Valdren puedes detenerte sin vigilar cada ruido del "
                           "campo. Entre el movimiento cotidiano del pueblo recuperas fuerzas "
@@ -509,6 +509,12 @@ def create_app(config=None):
                 return {"type": "buy", "target": target} if target else {"type": "invalid"}
         if lowered == "vender":
             return {"type": "sell", "target": ""}
+        if lowered == "encargos":
+            return {"type": "errands_list"}
+        for verb, action in (("aceptar encargo ", "accept"), ("registrar encargo ", "record"),
+                             ("cobrar encargo ", "claim")):
+            if lowered.startswith(verb):
+                return {"type": "errand", "action": action, "contract_id": text[len(verb):].strip()}
         for prefix in SELL_PREFIXES:
             if lowered.startswith(prefix):
                 target = text[len(prefix):].strip()
@@ -1907,6 +1913,17 @@ def create_app(config=None):
             return redirect(url_for("index"), code=303)
         if intent["type"] == "look":
             return redirect(url_for("index"), code=303)
+        if intent["type"] in ("errands_list", "errand"):
+            if intent["type"] == "errands_list":
+                message = "; ".join(f"{e['contract_id']}: {e['state']} ({e['base_payout']} sellos base)"
+                                    for e in errands.list_contracts(path, g.player["id"]))
+                ok = True
+            else:
+                ok, message, _extra = errands.act(path, g.player["id"], g.player["room"],
+                                                  intent["contract_id"], intent["action"])
+            player_now = store.player_for_token(path, session.get("token"))
+            return render_template("entry.html", player=player_now, species_list=world.SPECIES,
+                                   room=room_view(player_now["room"], player_now["id"]), error=message), (200 if ok else 400)
         if intent["type"] == "say":
             store.add_message(path, g.player["room"], g.player["id"], intent["body"])
             return redirect(url_for("index"), code=303)
@@ -2163,6 +2180,13 @@ def create_app(config=None):
                 intent="look",
                 current_room=room_view(g.player["room"], g.player["id"]),
             )
+        if kind in ("errands_list", "errand"):
+            if kind == "errands_list":
+                return jsonify(accepted=True, intent=kind, contracts=errands.list_contracts(path, g.player["id"]))
+            ok, message, extra = errands.act(path, g.player["id"], g.player["room"],
+                                             intent["contract_id"], intent["action"])
+            return jsonify(accepted=ok, intent=kind, message=message, result=extra,
+                           contracts=errands.list_contracts(path, g.player["id"])), (200 if ok else 400)
         if kind == "say":
             store.add_message(path, g.player["room"], g.player["id"], intent["body"])
             return jsonify(accepted=True, intent="say")
