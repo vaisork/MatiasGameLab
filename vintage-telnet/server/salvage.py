@@ -6,6 +6,7 @@ import uuid
 from . import store
 
 MARKET = "valdren_mercado"
+MARKETS = {f"{town}_mercado" for town in ("valdren", "khariel", "brumak", "narevia", "velmora")}
 # family: (item_key, label, valor). Exactamente una opción por familia.
 MATERIALS = {
     "mordelinde": ("salvage_mordelinde_piel", "Retazo de piel de Mordelinde", 3),
@@ -63,8 +64,8 @@ def victory_message(path, player_id, family):
 
 
 def sell(path, player_id, room_id, material_id, *, now=None):
-    if room_id != MARKET:
-        return False, "El acopio compra materiales únicamente en el Mercado de Valdren.", None
+    if room_id not in MARKETS:
+        return False, "El acopio compra materiales en los mercados de los pueblos.", None
     if not material_id:
         return False, "Elige un material de tu inventario.", None
     now = time.time() if now is None else now

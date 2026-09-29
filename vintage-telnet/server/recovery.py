@@ -26,6 +26,20 @@ SERVICE_PRICE = 18
 SERVICE_HP_FRACTION = 0.90
 
 RECOVERY_ROOM = "valdren_mercado"
+MARKET_NAMES = {f"{town}_mercado": name for town, name in (
+    ("valdren", "Valdren"), ("khariel", "Khariel"), ("brumak", "Brumak"),
+    ("narevia", "Narevia"), ("velmora", "Velmora"),
+)}
+RATION_KEYS = {f"racion_camino_{room.removesuffix('_mercado')}" for room in MARKET_NAMES}
+
+
+def ration_for_room(room_id):
+    return f"racion_camino_{room_id.removesuffix('_mercado')}" if room_id in MARKET_NAMES else None
+
+
+def ration_name(item_key):
+    item = items.get_item(item_key)
+    return item["name"] if item else RATION_NAME
 
 
 def _fold(text):
@@ -43,19 +57,28 @@ def resolve_recovery_target(text):
         _fold(SERVICE_NAME): SERVICE_ID,
         "comida caliente": SERVICE_ID,
     }
-    return aliases.get(normalized)
+    if normalized in aliases:
+        return aliases[normalized]
+    for room in MARKET_NAMES:
+        key = ration_for_room(room)
+        if normalized in (_fold(key), _fold(ration_name(key))):
+            return key
+    return None
 
 
-def catalog():
+def catalog(room_id=RECOVERY_ROOM):
+    if room_id not in MARKET_NAMES:
+        room_id = RECOVERY_ROOM
+    item_key = ration_for_room(room_id)
     return {
-        "room_id": RECOVERY_ROOM,
+        "room_id": room_id,
         "ration": {
-            "item_id": RATION_ITEM_ID,
-            "name": RATION_NAME,
+            "item_id": item_key,
+            "name": ration_name(item_key),
             "price": RATION_PRICE,
         },
         "service": {
-            "service_id": SERVICE_ID,
+            "service_id": SERVICE_ID if room_id == RECOVERY_ROOM else f"comida_caliente_{room_id}",
             "name": SERVICE_NAME,
             "price": SERVICE_PRICE,
         },
@@ -71,8 +94,10 @@ def _combat_active(db, player_id, room_id):
 
 def buy_ration(path, player_id, room_id, *, now=None, client_tx_id=None):
     """Compra una instancia persistente de la ración, atómicamente."""
-    if room_id != RECOVERY_ROOM:
-        return False, "La Ración de camino se vende en el mercado de Valdren.", None
+    item_key = ration_for_room(room_id)
+    if item_key is None:
+        return False, "La Ración de camino se vende en los mercados de los pueblos.", None
+    name = ration_name(item_key)
     now = time.time() if now is None else now
     clean_tx_id = str(client_tx_id).strip() if client_tx_id else None
 
@@ -82,16 +107,16 @@ def buy_ration(path, player_id, room_id, *, now=None, client_tx_id=None):
             return False, "No puedes comprar provisiones durante un encuentro.", None
 
         if clean_tx_id:
-            source = f"recovery:buy:{RATION_ITEM_ID}:{clean_tx_id}"
+            source = f"recovery:buy:{item_key}:{clean_tx_id}"
             existing = db.execute(
                 """SELECT balance_after FROM economy_ledger
                    WHERE player_id = ? AND source_key = ?""",
                 (player_id, source),
             ).fetchone()
             if existing:
-                return True, f"Compras {RATION_NAME} por {RATION_PRICE} sellos.", {
+                return True, f"Compras {name} por {RATION_PRICE} sellos.", {
                     "balance": existing["balance_after"],
-                    "item_id": RATION_ITEM_ID,
+                    "item_id": item_key,
                     "idempotent_replay": True,
                 }
 
@@ -112,12 +137,12 @@ def buy_ration(path, player_id, room_id, *, now=None, client_tx_id=None):
             (balance, player_id),
         )
         instance_id = store.grant_item(
-            path, player_id, RATION_ITEM_ID, connection=db
+            path, player_id, item_key, connection=db
         )
         source = (
-            f"recovery:buy:{RATION_ITEM_ID}:{clean_tx_id}"
+            f"recovery:buy:{item_key}:{clean_tx_id}"
             if clean_tx_id
-            else f"recovery:buy:{RATION_ITEM_ID}:{instance_id}"
+            else f"recovery:buy:{item_key}:{instance_id}"
         )
         db.execute(
             """INSERT INTO economy_ledger
@@ -125,9 +150,9 @@ def buy_ration(path, player_id, room_id, *, now=None, client_tx_id=None):
                VALUES (?, ?, ?, 'recovery_purchase', ?, ?)""",
             (player_id, -RATION_PRICE, balance, source, now),
         )
-        return True, f"Compras {RATION_NAME} por {RATION_PRICE} sellos.", {
+        return True, f"Compras {name} por {RATION_PRICE} sellos.", {
             "balance": balance,
-            "item_id": RATION_ITEM_ID,
+            "item_id": item_key,
             "instance_id": instance_id,
             "idempotent_replay": False,
         }
@@ -149,11 +174,10 @@ def use_ration(path, player_id, inventory_item_id):
             return False, "No puedes usar la ración durante un encuentro.", None
 
         owned = db.execute(
-            """SELECT id FROM inventory_items
-               WHERE id = ? AND player_id = ? AND item_key = ?""",
-            (inventory_item_id, player_id, RATION_ITEM_ID),
+            "SELECT id, item_key FROM inventory_items WHERE id = ? AND player_id = ?",
+            (inventory_item_id, player_id),
         ).fetchone()
-        if owned is None:
+        if owned is None or owned["item_key"] not in RATION_KEYS:
             return False, "No posees esa Ración de camino.", None
 
         hp_gain = min(
@@ -181,7 +205,7 @@ def use_ration(path, player_id, inventory_item_id):
             "DELETE FROM inventory_items WHERE id = ? AND player_id = ?",
             (inventory_item_id, player_id),
         )
-        return True, f"Consumes {RATION_NAME}.", {
+        return True, f"Consumes {ration_name(owned['item_key'])}.", {
             "consumed": True,
             "hp_current": hp_after,
             "fatigue": fatigue_after,
@@ -193,8 +217,9 @@ def use_ration(path, player_id, inventory_item_id):
 
 def use_market_service(path, player_id, room_id, *, now=None, client_tx_id=None):
     """Consume el servicio seguro del mercado sin crear objeto de inventario."""
-    if room_id != RECOVERY_ROOM:
-        return False, "La comida caliente sólo está disponible en el mercado de Valdren.", None
+    if room_id not in MARKET_NAMES:
+        return False, "La comida caliente sólo está disponible en los mercados de los pueblos.", None
+    service_id = SERVICE_ID if room_id == RECOVERY_ROOM else f"comida_caliente_{room_id}"
     now = time.time() if now is None else now
     clean_tx_id = str(client_tx_id).strip() if client_tx_id else None
 
@@ -204,7 +229,7 @@ def use_market_service(path, player_id, room_id, *, now=None, client_tx_id=None)
             return False, "No puedes usar el servicio durante un encuentro.", None
 
         if clean_tx_id:
-            source = f"recovery:service:{SERVICE_ID}:{clean_tx_id}"
+            source = f"recovery:service:{service_id}:{clean_tx_id}"
             existing = db.execute(
                 """SELECT balance_after FROM economy_ledger
                    WHERE player_id = ? AND source_key = ?""",
@@ -266,9 +291,9 @@ def use_market_service(path, player_id, room_id, *, now=None, client_tx_id=None)
             (balance, hp_after, fatigue_after, time.time(), wound_after, player_id),
         )
         source = (
-            f"recovery:service:{SERVICE_ID}:{clean_tx_id}"
+            f"recovery:service:{service_id}:{clean_tx_id}"
             if clean_tx_id
-            else f"recovery:service:{SERVICE_ID}:{uuid.uuid4()}"
+            else f"recovery:service:{service_id}:{uuid.uuid4()}"
         )
         db.execute(
             """INSERT INTO economy_ledger

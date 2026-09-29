@@ -45,6 +45,21 @@ DARO_BUYBACK = {
 
 DARO_SHOP_ROOM = "valdren_forja"
 DARO_NPC_ID = "daro_herrero"
+FORGE_SHOPS = {
+    "valdren_forja": "Taller de Daro",
+    "khariel_forja": "Forja de Khariel",
+    "brumak_forja": "Forja de Brumak",
+    "narevia_forja": "Forja de Narevia",
+    "velmora_forja": "Forja de Velmora",
+}
+
+
+def shop_for_room(room_id):
+    return FORGE_SHOPS.get(room_id)
+
+
+def _ledger_shop(room_id):
+    return "daro" if room_id == DARO_SHOP_ROOM else room_id
 
 DARO_ITEM_ALIASES = {
     "varita": "varita_aprendiz",
@@ -136,6 +151,7 @@ def buy_item_from_daro(
     item_key: str,
     now: float | None = None,
     client_tx_id: str | None = None,
+    shop_room: str = DARO_SHOP_ROOM,
 ) -> tuple[bool, str, dict | None]:
     """Compra atómicamente un objeto a Daro.
 
@@ -155,6 +171,10 @@ def buy_item_from_daro(
         now = time.time()
 
     price = DARO_CATALOG.get(item_key)
+    if shop_room not in FORGE_SHOPS:
+        return False, "No hay forja comercial en esta sala.", None
+    vendor = "Daro" if shop_room == DARO_SHOP_ROOM else FORGE_SHOPS[shop_room]
+    preposition = "a" if shop_room == DARO_SHOP_ROOM else "en"
     if price is None:
         return False, "Daro no vende ese objeto en su taller.", None
 
@@ -169,13 +189,13 @@ def buy_item_from_daro(
 
         # Comprobación de idempotencia si se proporciona client_tx_id
         if clean_tx_id:
-            expected_key = f"daro:buy:{item_key}:{clean_tx_id}"
+            expected_key = f"{_ledger_shop(shop_room)}:buy:{item_key}:{clean_tx_id}"
             existing = db.execute(
                 "SELECT balance_after FROM economy_ledger WHERE player_id = ? AND source_key = ?",
                 (player_id, expected_key),
             ).fetchone()
             if existing:
-                return True, f"Compras {catalog_item['name']} a Daro por {price} sellos.", {
+                return True, f"Compras {catalog_item['name']} {preposition} {vendor} por {price} sellos.", {
                     "balance": existing["balance_after"],
                     "item_key": item_key,
                     "name": catalog_item["name"],
@@ -207,14 +227,14 @@ def buy_item_from_daro(
             (instance_id, player_id, item_key, catalog_item["category"], store.utcnow()),
         )
 
-        ledger_source = f"daro:buy:{item_key}:{clean_tx_id}" if clean_tx_id else f"daro:buy:{item_key}:{instance_id}"
+        ledger_source = f"{_ledger_shop(shop_room)}:buy:{item_key}:{clean_tx_id}" if clean_tx_id else f"{_ledger_shop(shop_room)}:buy:{item_key}:{instance_id}"
         db.execute(
             """INSERT INTO economy_ledger (player_id, delta, balance_after, reason_code, source_key, created_at)
                VALUES (?, ?, ?, 'shop_purchase', ?, ?)""",
             (player_id, -price, new_balance, ledger_source, now),
         )
 
-        return True, f"Compras {catalog_item['name']} a Daro por {price} sellos.", {
+        return True, f"Compras {catalog_item['name']} {preposition} {vendor} por {price} sellos.", {
             "balance": new_balance,
             "instance_id": instance_id,
             "item_key": item_key,
@@ -224,7 +244,8 @@ def buy_item_from_daro(
         }
 
 
-def sell_item_to_daro(path: str, player_id: str, inventory_item_id: str, now: float | None = None) -> tuple[bool, str, dict | None]:
+def sell_item_to_daro(path: str, player_id: str, inventory_item_id: str, now: float | None = None,
+                      shop_room: str = DARO_SHOP_ROOM) -> tuple[bool, str, dict | None]:
     """Vende atómicamente un objeto de inventario a Daro.
 
     Validaciones:
@@ -242,6 +263,10 @@ def sell_item_to_daro(path: str, player_id: str, inventory_item_id: str, now: fl
     """
     if now is None:
         now = time.time()
+    if shop_room not in FORGE_SHOPS:
+        return False, "No hay forja comercial en esta sala.", None
+    vendor = "Daro" if shop_room == DARO_SHOP_ROOM else FORGE_SHOPS[shop_room]
+    preposition = "a" if shop_room == DARO_SHOP_ROOM else "en"
 
     with store.connect(path) as db:
         db.execute("BEGIN IMMEDIATE")
@@ -271,7 +296,7 @@ def sell_item_to_daro(path: str, player_id: str, inventory_item_id: str, now: fl
         # Daro solo compra las 4 armas comunes autorizadas
         resale_price = DARO_BUYBACK.get(item_key)
         if resale_price is None:
-            return False, "Daro no compra este tipo de objeto.", {"balance": current_balance}
+            return False, f"{vendor} no compra este tipo de objeto.", {"balance": current_balance}
 
         # Regla de seguridad: no dejar al personaje sin armas utilizables
         if category == "weapon":
@@ -299,13 +324,13 @@ def sell_item_to_daro(path: str, player_id: str, inventory_item_id: str, now: fl
         db.execute(
             """INSERT INTO economy_ledger (player_id, delta, balance_after, reason_code, source_key, created_at)
                VALUES (?, ?, ?, 'shop_sale', ?, ?)""",
-            (player_id, resale_price, new_balance, f"daro:sale:{item_key}:{inventory_item_id}", now),
+            (player_id, resale_price, new_balance, f"{_ledger_shop(shop_room)}:sale:{item_key}:{inventory_item_id}", now),
         )
 
         item_data = items.get_item(item_key)
         name = item_data["name"] if item_data else item_key
 
-        return True, f"Vendes {name} a Daro por {resale_price} sellos.", {
+        return True, f"Vendes {name} {preposition} {vendor} por {resale_price} sellos.", {
             "balance": new_balance,
             "item_key": item_key,
             "name": name,

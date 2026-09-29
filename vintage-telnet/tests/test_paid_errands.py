@@ -59,6 +59,22 @@ class PaidErrandsTests(unittest.TestCase):
         self.assertTrue(response.json["accepted"])
         self.assertEqual(response.json["contracts"][0]["state"], "accepted")
 
+    def test_player_can_complete_local_errand_from_visible_actions(self):
+        market = self.client.get("/").get_data(as_text=True)
+        self.assertIn("Puesto de encargos", market)
+        self.assertIn("Aceptar", market)
+        self.post("/command", {"text": "aceptar encargo valdren_recado_forja"})
+        self.assertIn("En curso", self.client.get("/").get_data(as_text=True))
+        store.move_player(self.path, self.player_id, "valdren_forja")
+        forge = self.client.get("/").get_data(as_text=True)
+        self.assertIn("Registrar trabajo", forge)
+        self.assertIn("Taller de Daro", forge)
+        self.post("/command", {"text": "registrar encargo valdren_recado_forja"})
+        store.move_player(self.path, self.player_id, errands.MARKET)
+        self.assertIn("Cobrar", self.client.get("/").get_data(as_text=True))
+        self.post("/command", {"text": "cobrar encargo valdren_recado_forja"})
+        self.assertEqual(store.character_by_player_id(self.path, self.player_id)["sellos"], 26)
+
     def test_repeat_and_expiring_window_do_not_duplicate_credit(self):
         key = "valdren_recado_forja"
         for index in range(6):
