@@ -1,5 +1,6 @@
 """RECOVERY-CONTENT-IDS-01 (#499 / #410)."""
 import re
+import sqlite3
 import tempfile
 import unittest
 from unittest.mock import patch
@@ -229,6 +230,61 @@ class RecoveryEconomyIntegrationTests(unittest.TestCase):
         self.assertEqual(blocked.status_code, 400)
         self.assertEqual(economy.get_player_balance(self.path, self.player_id), 40)
         self.assertEqual(len(self.rations()), 0)
+
+    def test_v22_inventory_migration_preserves_equipped_weapon(self):
+        with tempfile.TemporaryDirectory() as temp:
+            path = f"{temp}/migration.sqlite3"
+            store.initialize(path)
+            token = store.register(path, "legacy499", "Legacy 499", "password123")
+            player = store.player_for_token(path, token)
+            with store.connect(path) as db:
+                db.execute(
+                    "UPDATE players SET status = 'approved', species = 'humano' WHERE id = ?",
+                    (player["id"],),
+                )
+            store.set_player_class(path, player["id"], "juramentado", "espada_juramento")
+            before = dict(store.character_by_player_id(path, player["id"]))
+            equipped_id = before["equipped_weapon_id"]
+            self.assertIsNotNone(equipped_id)
+
+            raw = sqlite3.connect(path)
+            try:
+                raw.execute("PRAGMA foreign_keys = OFF")
+                raw.execute("BEGIN IMMEDIATE")
+                raw.execute("""CREATE TABLE inventory_items_v22 (
+                    id TEXT PRIMARY KEY,
+                    player_id TEXT NOT NULL REFERENCES players(id),
+                    item_key TEXT NOT NULL,
+                    category TEXT NOT NULL CHECK(category IN ('weapon', 'armor')),
+                    forge_validated INTEGER NOT NULL DEFAULT 0,
+                    acquired_at TEXT NOT NULL)""")
+                raw.execute(
+                    """INSERT INTO inventory_items_v22
+                       SELECT id, player_id, item_key, category, forge_validated, acquired_at
+                       FROM inventory_items"""
+                )
+                raw.execute("DROP TABLE inventory_items")
+                raw.execute("ALTER TABLE inventory_items_v22 RENAME TO inventory_items")
+                raw.execute("CREATE INDEX inventory_items_player ON inventory_items(player_id)")
+                raw.execute("PRAGMA user_version = 22")
+                raw.commit()
+            finally:
+                raw.close()
+
+            store.initialize(path)
+            after = dict(store.character_by_player_id(path, player["id"]))
+            self.assertEqual(after["equipped_weapon_id"], equipped_id)
+            with store.connect(path) as db:
+                self.assertEqual(
+                    db.execute("PRAGMA user_version").fetchone()[0],
+                    store.SCHEMA_VERSION,
+                )
+                self.assertEqual(db.execute("PRAGMA foreign_key_check").fetchall(), [])
+
+            ration_id = store.grant_item(path, player["id"], recovery.RATION_ITEM_ID)
+            inventory = store.list_inventory(path, player["id"])
+            ration = next(row for row in inventory if row["id"] == ration_id)
+            self.assertEqual(ration["category"], "consumable")
 
     def test_consumable_cannot_be_equipped(self):
         item_id = store.grant_item(
