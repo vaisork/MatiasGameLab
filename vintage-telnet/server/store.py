@@ -16,7 +16,7 @@ STATUSES = ("pending", "approved", "rejected", "removed")
 
 # Version de esquema que deja initialize(); ops/inventory_migration_probe.py
 # la usa para validar una migracion de prueba contra la copia de la base viva.
-SCHEMA_VERSION = 22
+SCHEMA_VERSION = 23
 
 # Cuentas con varios personajes (petición de Javier, 2026-09-25): un usuario
 # para entrar puede tener hasta 5 personajes; el nombre de cada personaje es
@@ -266,7 +266,7 @@ INVENTORY_ITEMS_TABLE = """CREATE TABLE inventory_items (
         id TEXT PRIMARY KEY,
         player_id TEXT NOT NULL REFERENCES players(id),
         item_key TEXT NOT NULL,
-        category TEXT NOT NULL CHECK(category IN ('weapon', 'armor')),
+        category TEXT NOT NULL CHECK(category IN ('weapon', 'armor', 'consumable')),
         forge_validated INTEGER NOT NULL DEFAULT 0,
         acquired_at TEXT NOT NULL)"""
 
@@ -285,12 +285,18 @@ def initialize(path):
     Path(path).parent.mkdir(parents=True, exist_ok=True)
     with connect(path) as db:
         db.execute("PRAGMA journal_mode = WAL")
-        db.execute("BEGIN IMMEDIATE")
         version = db.execute("PRAGMA user_version").fetchone()[0]
         if version not in range(0, SCHEMA_VERSION + 1):
             raise RuntimeError("Versión de base de datos no soportada; no iniciar ni degradar.")
         if version == SCHEMA_VERSION:
             return
+        # v23 amplía el CHECK de inventory_items. SQLite sólo permite cambiar
+        # foreign_keys fuera de una transacción, así que se desactiva antes
+        # de BEGIN y se valida de nuevo al terminar.
+        foreign_keys_temporarily_disabled = version <= 22
+        if foreign_keys_temporarily_disabled:
+            db.execute("PRAGMA foreign_keys = OFF")
+        db.execute("BEGIN IMMEDIATE")
         if version == 0:
             statements = [
                 """CREATE TABLE players (
@@ -457,7 +463,37 @@ def initialize(path):
             # v22: PRESENCE-CHAT-01 (#376), tabla efímera de actividad.
             db.execute(PLAYER_PRESENCE_TABLE)
             db.execute("CREATE INDEX IF NOT EXISTS player_presence_last_seen ON player_presence(last_seen_at)")
+        if version <= 22:
+            # v23: RECOVERY-CONTENT-IDS-01 (#499). Añade consumibles al
+            # inventario sin alterar IDs, equipamiento ni armas perdidas.
+            inventory_sql_row = db.execute(
+                "SELECT sql FROM sqlite_master WHERE type = 'table' AND name = 'inventory_items'"
+            ).fetchone()
+            inventory_sql = inventory_sql_row["sql"] if inventory_sql_row else ""
+            if inventory_sql and "'consumable'" not in inventory_sql:
+                db.execute("""CREATE TABLE inventory_items_v23 (
+                    id TEXT PRIMARY KEY,
+                    player_id TEXT NOT NULL REFERENCES players(id),
+                    item_key TEXT NOT NULL,
+                    category TEXT NOT NULL CHECK(category IN ('weapon', 'armor', 'consumable')),
+                    forge_validated INTEGER NOT NULL DEFAULT 0,
+                    acquired_at TEXT NOT NULL)""")
+                db.execute(
+                    """INSERT INTO inventory_items_v23
+                       (id, player_id, item_key, category, forge_validated, acquired_at)
+                       SELECT id, player_id, item_key, category, forge_validated, acquired_at
+                       FROM inventory_items"""
+                )
+                db.execute("DROP TABLE inventory_items")
+                db.execute("ALTER TABLE inventory_items_v23 RENAME TO inventory_items")
+                db.execute("CREATE INDEX inventory_items_player ON inventory_items(player_id)")
         db.execute(f"PRAGMA user_version = {SCHEMA_VERSION}")
+        if foreign_keys_temporarily_disabled:
+            db.commit()
+            db.execute("PRAGMA foreign_keys = ON")
+            violations = db.execute("PRAGMA foreign_key_check").fetchall()
+            if violations:
+                raise RuntimeError("Migración v23 dejó referencias de inventario inválidas.")
 
 
 ACCOUNTS_TABLE = """CREATE TABLE accounts (
@@ -1280,32 +1316,6 @@ def update_combat_state(path, player_id, hp_current=None, wound=None, room=None,
         db.execute(f"UPDATE players SET {', '.join(fields)} WHERE id = ?", params)
 
 
-
-FIELD_REST_EPSILON = 1e-9
-
-
-def _field_rest_status_from_row(row):
-    """Estado no mutante del presupuesto REST-01."""
-    budget_max = row["field_rest_budget_max"]
-    used = max(0.0, row["field_rest_healed"] or 0.0)
-    if budget_max is None:
-        return {"available": True, "budget_remaining": None}
-    remaining = max(0.0, float(budget_max) - used)
-    if remaining <= FIELD_REST_EPSILON:
-        remaining = 0.0
-    return {"available": remaining > 0.0, "budget_remaining": remaining}
-
-
-def field_rest_status(path, player_id):
-    """Devuelve disponibilidad/restante de REST-01 sin modificar al personaje."""
-    with connect(path) as db:
-        row = db.execute(
-            """SELECT field_rest_budget_max, field_rest_healed
-               FROM players WHERE id = ?""",
-            (player_id,),
-        ).fetchone()
-        return _field_rest_status_from_row(row) if row is not None else None
-
 def apply_field_rest(path, player_id):
     """Aplica REST-01 de forma transaccional y devuelve el resultado real.
 
@@ -1324,19 +1334,6 @@ def apply_field_rest(path, player_id):
         if row is None:
             return None
 
-        status = _field_rest_status_from_row(row)
-        if not status["available"] and status["budget_remaining"] is not None:
-            used = max(0.0, row["field_rest_healed"] or 0.0)
-            return {
-                "hp_current": row["hp_current"],
-                "fatigue": row["fatigue"],
-                "healed": 0.0,
-                "budget_remaining": 0.0,
-                "budget_max": row["field_rest_budget_max"],
-                "field_rest_healed": used,
-                "blocked": "budget_exhausted",
-            }
-
         stored_budget = row["field_rest_budget_max"]
         used = max(0.0, row["field_rest_healed"] or 0.0)
         budget_max = stored_budget
@@ -1349,8 +1346,6 @@ def apply_field_rest(path, player_id):
             budget_max = missing_hp * combat.FIELD_REST_MISSING_HP_FRACTION
 
         remaining = max(0.0, (budget_max or 0.0) - used)
-        if remaining <= FIELD_REST_EPSILON:
-            remaining = 0.0
         result = combat.rest_result(
             row["hp_current"], row["hp_max"], row["fatigue"],
             row["attr_resistencia"], row["wound"], remaining,
@@ -1483,6 +1478,8 @@ def equip_item(path, player_id, item_id):
         if lost_rec:
             return False, None, "Esa arma fue arrebatada por un jefe y no puede equiparse."
         catalog = items.get_item(item["item_key"])
+        if item["category"] not in ("weapon", "armor"):
+            return False, item["category"], "Ese objeto no se equipa; se usa o consume."
         if catalog["forge_required"] and not item["forge_validated"]:
             return False, None, "Ese objeto todavía no tiene su validación de Forja completa."
         column = "equipped_weapon_id" if item["category"] == "weapon" else "equipped_armor_id"
