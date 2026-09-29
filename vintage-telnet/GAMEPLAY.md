@@ -4243,3 +4243,82 @@ Persisten por personaje: instancia aceptada/completada/cobrada, timestamps de co
 - fauna sigue sin entregar sellos directos.
 
 **LISTO PARA DESARROLLO: SÍ.**
+
+
+## 45. Clasificación de fauna regional suplementaria — SUPPLEMENTAL-FAUNA-CLASSIFY
+
+**Estado:** CLASIFICACIÓN P2 CERRADA. **Relacionado:** #521, PR #518.
+
+Las cinco especies canónicas suplementarias se clasifican en v1 como **C0 ambiental / no combatible**.
+
+| especie | región | clasificación v1 |
+|---|---|---|
+| Pliegaviento | Hoshai | C0 ambiental |
+| Velario | Lethra | C0 ambiental |
+| Agujaumbría | Nhal | C0 ambiental |
+| Lamelón | Korven | C0 ambiental |
+| Velozanco | Edran | C0 ambiental |
+
+### 45.1 Razón mecánica
+
+Su canon cerrado describe conductas de estabilidad, forrajeo, ocultamiento o huida y no establece agresión de combate. V1 las usa para aumentar densidad ecológica y variedad perceptible sin convertir toda fauna visible en enemigo.
+
+Esta clasificación no modifica anatomía, hábitat, dieta ni conducta de PR #518.
+
+### 45.2 Comportamiento C0
+
+Estas especies pueden aparecer como presencia ambiental compatible con su hábitat.
+
+C0:
+- no inicia combate;
+- no puede ser objetivo de Atacar;
+- no tiene HP/daño/XP;
+- no entrega salvage, sellos ni loot;
+- no bloquea movimiento;
+- no consume un slot de encuentro C1/C3;
+- no activa muerte/respawn;
+- puede retirarse/desaparecer ambientalmente conforme a su conducta canónica.
+
+Si comparte una sala con un encuentro combatible, su presencia es decorativa y no participa.
+
+### 45.3 Pools y frecuencia
+
+#521 **no autoriza todavía room mapping ni encounter chance concreta**. Cada región puede incorporarlas cuando su pool ambiental C0 sea cerrado/actualizado.
+
+La clasificación C0 no concede por sí sola aparición en cualquier sala de la región: debe respetarse el microhábitat fijado por Historia.
+
+### 45.4 Interacción
+
+V1 no añade acciones especiales para estas especies.
+
+Evaluar/observar puede mostrar información permitida por contenido, pero:
+- no captura;
+- no domestica;
+- no convierte en Arcane;
+- no monta;
+- no cosecha recursos;
+- no provoca combate.
+
+Atacar una entidad C0 debe rechazarse sin crear encounter ni recompensa.
+
+### 45.5 Cambio futuro
+
+Pasar cualquiera de estas especies a C1+ requiere un contrato nuevo de Jugabilidad con justificación compatible con Historia y, como mínimo: stats, agresividad/huida, XP, pool/rooms, frecuencia y salvage explícito si corresponde.
+
+No se promueve automáticamente por arte, popularidad visual o necesidad de poblar pools.
+
+### 45.6 Tests mínimos
+
+- las cinco especies resuelven como C0;
+- ninguna puede iniciar ni recibir combate;
+- Atacar no crea encounter;
+- ninguna concede XP/sellos/salvage/loot;
+- C0 no reemplaza ni consume la tirada C1/C3;
+- presencia respeta región/microhábitat autorizado;
+- reconnect no convierte presencia ambiental en encuentro;
+- observar/evaluar no cambia clasificación;
+- coexistencia con C1 no añade objetivo ni recompensa;
+- ninguna adquiere domesticación/Arcane/montura por inferencia.
+
+**LISTO PARA DESARROLLO DE CLASIFICACIÓN: SÍ.**
+**ROOM MAPPING / FRECUENCIA: requiere contrato de pool regional correspondiente.**
