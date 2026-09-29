@@ -15,12 +15,16 @@ REGIONAL_RESPAWN_ANCHORS = {
 }
 
 
-def select_respawn_room(player_id, death_room_id):
+def select_respawn_room(player_id, death_room_id, species=None):
     """Devuelve un destino seguro sin usar Valdren como fallback global."""
     if not player_id:
         raise ValueError("player_id es obligatorio para seleccionar respawn.")
 
     region = world.get_room_region(death_room_id)
+    if species == "humano":
+        human_anchor = "valdren_centro"
+        if world.get_room(human_anchor) is not None:
+            return human_anchor
     anchor = REGIONAL_RESPAWN_ANCHORS.get(region)
     if anchor and world.get_room(anchor) is not None:
         return anchor
@@ -36,7 +40,8 @@ def apply_player_respawn(db_path, player, current_wound=None, death_room_id=None
     player = dict(player)
     player_id = player["id"]
     death_room_id = death_room_id or player.get("room")
-    destination = select_respawn_room(player_id, death_room_id)
+    species = store.get_player_species(db_path, player_id)
+    destination = select_respawn_room(player_id, death_room_id, species)
 
     state = combat.respawn_state(player["hp_max"])
     wound_after = combat.respawn_wound(
