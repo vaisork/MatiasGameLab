@@ -1,0 +1,38 @@
+name: Vintage Telnet — piloto de arte
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: vt-art-pilot
+  cancel-in-progress: false
+
+jobs:
+  generate-one-draft:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Install isolated art-pipeline dependencies
+        run: python -m pip install -r tools/vt_art/requirements-github.txt
+
+      - name: Generate one image and save it directly to Drive
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          VT_ART_DRIVE_OAUTH_JSON: ${{ secrets.VT_ART_DRIVE_OAUTH_JSON }}
+          VT_ART_DRIVE_FOLDER_ID: 1V1V60SXM7zzSZd7zcYI4SKRanWjUSJo4
+          VT_ART_MODEL: gpt-image-2.5-flare
+        run: python -m tools.vt_art.github_runner
