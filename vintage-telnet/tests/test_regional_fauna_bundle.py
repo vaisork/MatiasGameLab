@@ -17,6 +17,18 @@ PROFILES = {
 
 # room_id -> (chance, creature weights). Zeros from the approved tables are
 # asserted separately so reserved/transitional rooms cannot enter by accident.
+HOSHAI = {
+    "alto_anclajes": (0.10, (("unapiedra", 100),)),
+    "alto_escalones": (0.20, (("unapiedra", 50), ("saltacresta", 50))),
+    "alto_terraza_abandonada": (0.30, (("unapiedra", 50), ("saltacresta", 50))),
+    "alto_garganta": (0.30, (("unapiedra", 100),)),
+    "alto_cruce_alturas": (0.20, (("unapiedra", 50), ("saltacresta", 50))),
+    "alto_pinar": (0.20, (("saltacresta", 100),)),
+    "alto_descenso": (0.30, (("unapiedra", 50), ("saltacresta", 50))),
+    "alto_ultimo_risco": (0.30, (("unapiedra", 75), ("saltacresta", 25))),
+    "alto_camino_falda": (0.10, (("unapiedra", 50), ("saltacresta", 50))),
+}
+
 KORVEN = {
     "piedra_pared_anclajes": (0.10, (("cascapedernal", 100),)),
     "piedra_paso_corto": (0.20, (("cascapedernal", 60), ("colagrieta", 40))),
@@ -49,9 +61,10 @@ NHAL = {
     "sombra_raiz_alta": (0.30, (("rondamusgo", 50), ("hilaria_niebla", 50))),
     "sombra_bosque_abierto": (0.10, (("rondamusgo", 100),)),
 }
-REGIONS = {"KORVEN-01": KORVEN, "LETHRA-01": LETHRA, "NHAL-01": NHAL}
+REGIONS = {"HOSHAI-01": HOSHAI, "KORVEN-01": KORVEN, "LETHRA-01": LETHRA, "NHAL-01": NHAL}
 
 RESERVED = {
+    "HOSHAI-01": {"alto_terrazas", "alto_mirador", "alto_puente_viento", "alto_agua_fria"},
     "KORVEN-01": {"piedra_patio_exterior", "piedra_primer_monton", "piedra_abrigo_viento", "piedra_clara"},
     "LETHRA-01": {"juncos_plataformas", "juncos_pasarela_antigua", "juncos_isla_refugio",
                   "juncos_embarcadero", "juncos_suelo_firme", "juncos_entrada_veyra"},
@@ -89,7 +102,7 @@ class RegionalCreatureContractTests(unittest.TestCase):
 class RegionalPoolContractTests(unittest.TestCase):
     def test_every_pool_room_chance_and_weight_matches_approved_tables(self):
         encounters.validate_pools(encounters.RANDOM_ENCOUNTER_POOLS)
-        expected = {**KORVEN, **LETHRA, **NHAL}
+        expected = {**HOSHAI, **KORVEN, **LETHRA, **NHAL}
         edran_rooms = {
             "valdren_sendero", "valdren_camino_hundido", "valdren_parcelas_exteriores",
             "valdren_campo_rastrojo", "valdren_campos_sin_cerca",
@@ -113,7 +126,10 @@ class RegionalPoolContractTests(unittest.TestCase):
             with self.subTest(room=room_id):
                 pool = encounters.pool_for_room(room_id)
                 self.assertIsNotNone(world.get_room(room_id))
-                self.assertIsNone(world.get_room_encounter(room_id))
+                if room_id == "alto_terraza_abandonada":
+                    self.assertEqual(world.get_room_encounter(room_id), "saltacresta")
+                else:
+                    self.assertIsNone(world.get_room_encounter(room_id))
                 self.assertEqual(pool["chance"], chance)
                 self.assertEqual(pool["creatures"], list(weighted))
 
@@ -127,6 +143,7 @@ class RegionalPoolContractTests(unittest.TestCase):
 
     def test_regions_do_not_mix_families_or_admit_threats(self):
         allowed = {
+            "HOSHAI-01": {"unapiedra", "saltacresta"},
             "KORVEN-01": {"cascapedernal", "colagrieta"},
             "LETHRA-01": {"pinzajunco", "saltalodo"},
             "NHAL-01": {"rondamusgo", "hilaria_niebla"},
@@ -140,12 +157,52 @@ class RegionalPoolContractTests(unittest.TestCase):
             for cid, _weight in pool["creatures"]))
 
     def test_scripted_encounter_preempts_regional_pool_without_rng(self):
-        room_id = "piedra_hendiduras"
+        # Hoshai ya tiene Saltacresta scripted en la terraza abandonada:
+        # #313 añade la capa random, pero nunca debe eclipsar ese encuentro.
         rng = Mock()
-        with patch.dict(world.ROOM_ENCOUNTER, {room_id: "espinajo_rastrojo"}):
-            self.assertEqual(encounters.get_encounter_for_room(room_id, rng), "espinajo_rastrojo")
-        rng.assert_not_called()
+        self.assertEqual(
+            encounters.get_encounter_for_room("alto_terraza_abandonada", rng),
+            "saltacresta",
+        )
         self.assertEqual(rng.mock_calls, [])
+
+        # También protegemos la precedencia genérica sobre otro pool regional.
+        rng = Mock()
+        with patch.dict(world.ROOM_ENCOUNTER, {"piedra_hendiduras": "espinajo_rastrojo"}):
+            self.assertEqual(
+                encounters.get_encounter_for_room("piedra_hendiduras", rng),
+                "espinajo_rastrojo",
+            )
+        self.assertEqual(rng.mock_calls, [])
+
+    def test_hoshai_exact_mapping_and_zero_percent_pauses(self):
+        for room_id, (chance, weighted) in HOSHAI.items():
+            with self.subTest(room=room_id):
+                pool = encounters.pool_for_room(room_id)
+                self.assertIsNotNone(pool)
+                self.assertEqual(pool["chance"], chance)
+                self.assertEqual(pool["creatures"], list(weighted))
+                self.assertEqual(world.get_room_region(room_id), "hoshai")
+        for room_id in RESERVED["HOSHAI-01"]:
+            with self.subTest(pause=room_id):
+                self.assertIsNone(encounters.pool_for_room(room_id))
+
+    def test_hoshai_ecological_exclusions_and_c3_boundary(self):
+        active_ids = {
+            creature_id
+            for room_id in HOSHAI
+            for creature_id, _weight in encounters.pool_for_room(room_id)["creatures"]
+        }
+        self.assertEqual(active_ids, {"unapiedra", "saltacresta"})
+        self.assertNotIn("rasgacumbres", active_ids)
+        self.assertTrue(encounters.C3_THREAT_IDS.isdisjoint(active_ids))
+
+        only_unapiedra = {"alto_anclajes", "alto_garganta"}
+        only_saltacresta = {"alto_pinar"}
+        for room_id in only_unapiedra:
+            self.assertEqual(encounters.pool_for_room(room_id)["creatures"], [("unapiedra", 100)])
+        for room_id in only_saltacresta:
+            self.assertEqual(encounters.pool_for_room(room_id)["creatures"], [("saltacresta", 100)])
 
     def test_pool_selection_is_deterministic_and_respects_chance_and_weights(self):
         for region, config in REGIONS.items():
@@ -153,7 +210,10 @@ class RegionalPoolContractTests(unittest.TestCase):
                 with self.subTest(region=region, room=room_id):
                     def sample():
                         rng = random.Random(406)
-                        return [encounters.get_encounter_for_room(room_id, rng) for _ in range(5000)]
+                        # El playtest estadístico mide la capa RANDOM. Un
+                        # scripted existente se valida por separado arriba.
+                        with patch.object(world, "get_room_encounter", return_value=None):
+                            return [encounters.get_encounter_for_room(room_id, rng) for _ in range(5000)]
                     results = sample()
                     self.assertEqual(results, sample())
                     hits = [result for result in results if result is not None]
@@ -163,14 +223,19 @@ class RegionalPoolContractTests(unittest.TestCase):
                         self.assertAlmostEqual(share, weight / sum(w for _, w in weighted), delta=0.06)
 
     def test_twenty_complete_route_walks_per_region_keep_pauses_and_pacing(self):
-        route_for_region = {"KORVEN-01": "C", "LETHRA-01": "D", "NHAL-01": "E"}
+        route_for_region = {"HOSHAI-01": "B", "KORVEN-01": "C", "LETHRA-01": "D", "NHAL-01": "E"}
         for region, route_key in route_for_region.items():
             route = world.ROUTE_CHAINS[route_key][0]
             counts = []
             for walk in range(20):
                 rng = random.Random(40600 + walk)
-                count = sum(encounters.get_encounter_for_room(room_id, rng) is not None
-                            for room_id in route[1:])
+                # El ritmo del pool random se mide sin contar scripted,
+                # porque presencia scripted > random es una capa distinta.
+                with patch.object(world, "get_room_encounter", return_value=None):
+                    count = sum(
+                        encounters.get_encounter_for_room(room_id, rng) is not None
+                        for room_id in route[1:]
+                    )
                 counts.append(count)
             with self.subTest(region=region):
                 self.assertTrue(any(count == 0 for count in counts), counts)
