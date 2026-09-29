@@ -91,6 +91,11 @@ CONSUMABLES = {
         "forge_required": False,
     },
 }
+for _town, _label in (("khariel", "Khariel"), ("brumak", "Brumak"),
+                      ("narevia", "Narevia"), ("velmora", "Velmora")):
+    CONSUMABLES[f"racion_camino_{_town}"] = {
+        "name": f"Ración de camino de {_label}", "forge_required": False,
+    }
 for _key, _data in CONSUMABLES.items():
     ITEMS[_key] = {"key": _key, "category": "consumable", "normalized_name": _fold(_data["name"]), **_data}
 del _key, _data

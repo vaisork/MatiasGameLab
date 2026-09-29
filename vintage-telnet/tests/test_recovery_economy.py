@@ -99,6 +99,33 @@ class RecoveryEconomyIntegrationTests(unittest.TestCase):
         forge = self.client.get("/").get_data(as_text=True)
         self.assertIn("Taller de Daro", forge)
 
+    def test_each_town_has_usable_market_and_common_forge(self):
+        self.set_state(sellos=500, hp_current=50)
+        for town in ("khariel", "brumak", "narevia", "velmora"):
+            self.set_state(hp_current=50)
+            market = f"{town}_mercado"
+            store.move_player(self.path, self.player_id, market)
+            html = self.client.get("/").get_data(as_text=True)
+            self.assertIn("Comprar ración · 8 sellos", html)
+            self.assertIn(f'comprar Ración de camino de {town.capitalize()}', html)
+            self.assertIn("Puesto de acopio", html)
+            item_id = f"racion_camino_{town}"
+            response = self.post_json("/api/recovery/buy", {"item_id": item_id})
+            self.assertEqual(response.status_code, 200, town)
+            owned = next(row for row in store.list_inventory(self.path, self.player_id) if row["item_key"] == item_id)
+            self.assertEqual(self.post_json("/api/recovery/use", {"inventory_item_id": owned["id"]}).status_code, 200)
+            store.move_player(self.path, self.player_id, f"{town}_forja")
+            forge_html = self.client.get("/").get_data(as_text=True)
+            self.assertIn("Comercio de la forja", forge_html)
+            self.assertIn('class="action mobile-context-action" type="button" data-open="shopDialog"', forge_html)
+            catalog = self.client.get("/api/shop/daro").json
+            self.assertTrue(catalog["in_shop"])
+            self.assertEqual(len(catalog["catalog"]), 4)
+            bought = self.post_json("/api/shop/daro/buy", {"item_key": "punal_camino"})
+            self.assertEqual(bought.status_code, 200, town)
+            owned_weapon = next(row for row in store.list_inventory(self.path, self.player_id) if row["item_key"] == "punal_camino")
+            self.assertEqual(self.post_json("/api/shop/daro/sell", {"item_id": owned_weapon["id"]}).status_code, 200)
+
     def test_stable_ids_and_catalog_contract(self):
         self.assertEqual(recovery.RATION_ITEM_ID, "racion_camino_valdren")
         self.assertEqual(recovery.SERVICE_ID, "comida_caliente_valdren_mercado")

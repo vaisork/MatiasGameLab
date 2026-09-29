@@ -975,25 +975,47 @@
             <form method="post" action="/move"><input type="hidden" name="csrf" value="{{ session.csrf }}"><input type="hidden" name="direction" value="west"><button class="action" type="submit"><span class="desktop-action-label">Ir a la Forja de Daro ←</span><span class="mobile-action-label">Forja ←</span></button></form>
             <form method="post" action="/move"><input type="hidden" name="csrf" value="{{ session.csrf }}"><input type="hidden" name="direction" value="east"><button class="action" type="submit"><span class="desktop-action-label">Ir al Mercado de Valdren →</span><span class="mobile-action-label">Mercado →</span></button></form>
             {% endif %}
-            {% if room.id == 'valdren_forja' %}
+            {% if room.id in ('valdren_forja', 'khariel_forja', 'brumak_forja', 'narevia_forja', 'velmora_forja') %}
             <button class="action mobile-context-action" type="button" data-open="shopDialog" data-shop-open>Tienda</button>
             {% endif %}
-            {% if room.id == 'valdren_mercado' %}
-            <form class="mobile-context-action" method="post" action="/command"><input type="hidden" name="csrf" value="{{ session.csrf }}"><input type="hidden" name="text" value="comprar Ración de camino de Valdren"><button class="action" type="submit">Ración · 8</button></form>
+            {% if room.id in ('valdren_mercado', 'khariel_mercado', 'brumak_mercado', 'narevia_mercado', 'velmora_mercado') %}
+            <form class="mobile-context-action" method="post" action="/command"><input type="hidden" name="csrf" value="{{ session.csrf }}"><input type="hidden" name="text" value="comprar Ración de camino de {{ {'valdren_mercado':'Valdren','khariel_mercado':'Khariel','brumak_mercado':'Brumak','narevia_mercado':'Narevia','velmora_mercado':'Velmora'}[room.id] }}"><button class="action" type="submit">Ración · 8</button></form>
             <form class="mobile-context-action" method="post" action="/command"><input type="hidden" name="csrf" value="{{ session.csrf }}"><input type="hidden" name="text" value="usar Comida caliente del mercado"><button class="action" type="submit">Comida · 18</button></form>
             {% endif %}
             {% if room.npcs %}
             <button class="action mobile-context-action" type="button" data-prefill="hablar {{ room.npcs[0].id }} " aria-label="Hablar con {{ room.npcs[0].name }}">Hablar</button>
             {% endif %}
           </div>
-          {% if room.id == 'valdren_mercado' %}
+          {% if room.id in ('valdren_mercado', 'khariel_mercado', 'brumak_mercado', 'narevia_mercado', 'velmora_mercado') %}
           <section class="npc-presence" aria-labelledby="market-recovery-title">
             <h3 id="market-recovery-title">Provisiones y comida del mercado</h3>
             <p>Ración de camino: 8 sellos. La guardas y puedes usarla durante el viaje. Comida caliente: 18 sellos; se consume aquí y solo se cobra si te beneficia.</p>
             <div class="context-actions">
-              <form method="post" action="/command"><input type="hidden" name="csrf" value="{{ session.csrf }}"><input type="hidden" name="text" value="comprar Ración de camino de Valdren"><button class="action" type="submit">Comprar ración · 8 sellos</button></form>
+              <form method="post" action="/command"><input type="hidden" name="csrf" value="{{ session.csrf }}"><input type="hidden" name="text" value="comprar Ración de camino de {{ {'valdren_mercado':'Valdren','khariel_mercado':'Khariel','brumak_mercado':'Brumak','narevia_mercado':'Narevia','velmora_mercado':'Velmora'}[room.id] }}"><button class="action" type="submit">Comprar ración · 8 sellos</button></form>
               <form method="post" action="/command"><input type="hidden" name="csrf" value="{{ session.csrf }}"><input type="hidden" name="text" value="usar Comida caliente del mercado"><button class="action" type="submit">Comida caliente · 18 sellos</button></form>
             </div>
+          </section>
+          <section class="npc-presence" aria-labelledby="market-salvage-title">
+            <h3 id="market-salvage-title">Puesto de acopio</h3>
+            <p>El puesto compra materiales aprovechables de criaturas comunes. El precio de cada pieza aparece en Inventario; los sellos se acreditan al vender.</p>
+            <button class="action" type="button" data-open="inventoryDialog" data-inventory-open>Ver materiales para vender</button>
+          </section>
+          {% endif %}
+          {% if room.errands and not room.in_combat %}
+          <section class="npc-presence" aria-labelledby="errands-title">
+            <h3 id="errands-title">{{ 'Puesto de encargos' if room.id == 'valdren_mercado' else 'Trabajo de campo' }}</h3>
+            <p>{{ 'El puesto paga por recados e informes al regresar. Ninguno exige combatir.' if room.id == 'valdren_mercado' else 'Si aceptaste un encargo para este lugar, deja constancia antes de regresar.' }}</p>
+            {% for task in room.errands %}
+              {% if room.id == 'valdren_mercado' or room.id == task.destination and task.state == 'accepted' %}
+              <div class="npc-card">
+                <div><strong>{{ {'valdren_recado_forja': 'Recado para la forja', 'valdren_revision_cobertizos': 'Revisar los cobertizos', 'valdren_estado_vado': 'Informar sobre el vado'}[task.contract_id] }}</strong>
+                  <p>{{ task.base_payout }} sellos base · {{ {'available': 'Disponible', 'accepted': 'En curso', 'ready_to_claim': 'Listo para cobrar'}[task.state] }} · {{ {'valdren_forja': 'Forja de Valdren', 'valdren_cobertizos_viejos': 'Cobertizos viejos', 'valdren_vado_menor': 'Vado menor'}[task.destination] }}</p></div>
+                {% if room.id == 'valdren_mercado' and task.state != 'accepted' or room.id == task.destination and task.state == 'accepted' %}
+                <form method="post" action="/command"><input type="hidden" name="csrf" value="{{ session.csrf }}"><input type="hidden" name="text" value="{{ 'aceptar' if task.state == 'available' else 'cobrar' if task.state == 'ready_to_claim' else 'registrar' }} encargo {{ task.contract_id }}"><button class="action action-gold" type="submit">{{ 'Aceptar' if task.state == 'available' else 'Cobrar' if task.state == 'ready_to_claim' else 'Registrar trabajo' }}</button></form>
+                {% endif %}
+              </div>
+              {% endif %}
+            {% endfor %}
           </section>
           {% endif %}
           {% if room.npcs %}
@@ -1031,8 +1053,8 @@
               <span class="point-badge" data-point-badge{% if not player.pa_unspent and not player.pp_unspent %} hidden{% endif %}>{% if player.pa_unspent and player.pp_unspent %}{{ player.pa_unspent }} PA · {{ player.pp_unspent }} PP{% elif player.pa_unspent %}{{ player.pa_unspent }} PA{% elif player.pp_unspent %}{{ player.pp_unspent }} PP{% endif %}</span>
             </button>
             <button class="btn" type="button" data-open="inventoryDialog" data-inventory-open><svg class="ui-icon" aria-hidden="true"><use href="#icon-bag"/></svg>Inventario</button>
-            {% if room and room.id == 'valdren_forja' %}
-            <button class="btn" type="button" data-open="shopDialog" data-shop-open><svg class="ui-icon" aria-hidden="true"><use href="#icon-bag"/></svg>Taller de Daro</button>
+            {% if room and room.id in ('valdren_forja', 'khariel_forja', 'brumak_forja', 'narevia_forja', 'velmora_forja') %}
+            <button class="btn" type="button" data-open="shopDialog" data-shop-open><svg class="ui-icon" aria-hidden="true"><use href="#icon-bag"/></svg>{{ 'Taller de Daro' if room.id == 'valdren_forja' else 'Comercio de la forja' }}</button>
             {% endif %}
             <button class="btn" type="button" data-open="mapDialog" data-map-open><svg class="ui-icon" aria-hidden="true"><use href="#icon-map"/></svg>Mapa</button>
             <button class="btn" type="button" data-open="helpDialog"><svg class="ui-icon" aria-hidden="true"><use href="#icon-help"/></svg>Ayuda</button>
@@ -1113,7 +1135,7 @@
   </div>
 </dialog>
 <dialog id="shopDialog" aria-labelledby="shopDialogTitle">
-  <div class="modal-head"><strong id="shopDialogTitle">Taller de Daro — Valdren</strong><button class="close" data-close aria-label="Cerrar taller">×</button></div>
+  <div class="modal-head"><strong id="shopDialogTitle">Comercio de la forja</strong><button class="close" data-close aria-label="Cerrar taller">×</button></div>
   <div class="modal-body">
     <div class="shop-state">
       <div class="wallet-banner" style="background:#131d27;border:1px solid #3d4f66;padding:8px 12px;border-radius:4px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;">
@@ -1505,7 +1527,7 @@
     button.textContent = item.category === "material" ? "Vender" : item.category === "consumable" ? "Usar" : item.equipped ? "Desequipar" : "Equipar";
     if (item.category === "material" && !inSalvageMarket) {
       button.disabled = true;
-      button.title = "Se vende en el acopio del Mercado de Valdren";
+      button.title = "Se vende en el acopio de cualquier mercado de pueblo";
     }
     if (item.forge_required && !item.forge_validated && !item.equipped) {
       button.disabled = true;
@@ -1627,6 +1649,8 @@
     shopAccept.focus();
   };
   const renderShop = (shop, inventory) => {
+    const title = document.getElementById("shopDialogTitle");
+    if (title) title.textContent = shop.shop_name || "Comercio de la forja";
     updateWallet(shop.sellos);
     shopContent.replaceChildren();
     if (!shop.in_shop) {
@@ -1669,7 +1693,7 @@
     if (!catalog.length) {
       const empty = document.createElement("div");
       empty.className = "inventory-empty";
-      empty.textContent = "Daro no tiene artículos disponibles en este momento.";
+      empty.textContent = "Esta forja no tiene armas comunes disponibles en este momento.";
       buySection.appendChild(empty);
     }
     shopContent.appendChild(buySection);
@@ -1699,7 +1723,7 @@
         button.disabled = true;
         button.title = blocked;
       }
-      const meta = "Daro paga " + formatSellos(price) + (blocked ? " · " + blocked : "");
+      const meta = (shop.shop_name || "La forja") + " paga " + formatSellos(price) + (blocked ? " · " + blocked : "");
       sellSection.appendChild(shopRow(item.name + (item.equipped ? " · Equipado" : ""), meta, button));
     });
     if (!resaleItems.length) {
@@ -1722,7 +1746,7 @@
     shopContent.appendChild(loading);
     try {
       const [shopResponse, inventoryResponse] = await Promise.all([
-        fetch("/api/shop/daro", {headers: {"Accept": "application/json"}}),
+        fetch("/api/shop/forge", {headers: {"Accept": "application/json"}}),
         fetch("/api/inventory", {headers: {"Accept": "application/json"}}),
       ]);
       if (!shopResponse.ok || !inventoryResponse.ok) throw new Error("shop unavailable");
@@ -1764,7 +1788,7 @@
     const request = shopPending;
     shopAccept.disabled = true;
     try {
-      const endpoint = request.kind === "buy" ? "/api/shop/daro/buy" : "/api/shop/daro/sell";
+      const endpoint = request.kind === "buy" ? "/api/shop/forge/buy" : "/api/shop/forge/sell";
       const payload = request.kind === "buy"
         ? {item_key: request.itemKey, csrf: csrfValue}
         : {item_id: request.itemId, csrf: csrfValue};

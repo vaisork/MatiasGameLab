@@ -46,6 +46,14 @@ class SalvageRuntimeTests(unittest.TestCase):
             store.record_pve_victory(self.path, self.player_id, "cornalomo")
         self.assertEqual(len(salvage.list_materials(self.path, self.player_id)), 3)
 
+    def test_material_can_be_sold_at_another_town_market(self):
+        with patch("server.salvage.random.random", return_value=0.0):
+            store.record_pve_victory(self.path, self.player_id, "mordelinde")
+        material = salvage.list_materials(self.path, self.player_id)[0]
+        ok, _message, result = salvage.sell(self.path, self.player_id, "khariel_mercado", material["id"])
+        self.assertTrue(ok)
+        self.assertEqual(result["balance"], 23)
+
     def test_upgrade_from_v23_preserves_player_and_equipment(self):
         with store.connect(self.path) as db:
             db.execute("DROP TABLE salvage_items")
