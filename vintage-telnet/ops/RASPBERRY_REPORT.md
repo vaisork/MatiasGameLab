@@ -802,3 +802,70 @@ reinicié el servicio real, no asumí resultado de producción.
 
 No adjunto contraseñas, claves, cookies, hashes ni bases en este reporte.
 No afirmo ningún resultado de despliegue que no se ejecutó realmente.
+
+## Puesta al día — hueco de documentación esquema 9 → 24 — 2026-09-29
+
+**Nota de proceso, para quien opere la Raspberry de aquí en adelante (Claude,
+Codex, Antigravity o quien sea):** esta bitácora se quedó congelada en la
+era del esquema 9 (entrada anterior) mientras producción avanzó, sin que
+nadie la documentara aquí, hasta el **esquema 24** — quince migraciones y
+534 commits de diferencia entre `f925f59` (última entrada real) y el HEAD
+verificado hoy. No reconstruyo esas 15 migraciones commit por commit: no
+aportaría nada que el propio `git log`/`server/store.py` no digan mejor.
+Lo que sí dejo es el **punto de verificación real, de nuevo confiable**,
+para que la próxima entrega parta de un estado conocido en vez de prosa
+vieja.
+
+**Convención esperada de esta bitácora** (para que quien despliegue la siga
+sin tener que releer todo el archivo): cada despliegue real a la Raspberry
+física —lo haga quien lo haga— agrega una entrada nueva aquí con: SHA
+desplegado, resultado de pruebas aisladas, verificación de `healthz`
+(local y Funnel), jugadores preservados, y cualquier hallazgo. No se
+reescribe lo anterior, solo se agrega. Si una sesión despliega sin dejar
+entrada, el próximo operador hereda el mismo hueco que esta entrada
+acaba de cerrar.
+
+### Verificación real de hoy
+
+- **Pruebas aisladas** (`/tmp` venv limpio, HEAD `5e12ce401c66fd2eec955378539f223d8fd0c14f`
+  de `origin/main`): **761/761 OK**, `pip check` limpio. La suite creció
+  mucho desde la última entrada (228 → 761 pruebas) — nuevo contenido
+  narrativo/mundo (`test_weather.py`, `test_traveler_routines.py`,
+  `test_valdren_route_expansion.py`, `test_unapiedra.py`,
+  `test_surface_branches_topology.py`, entre otras) y la propia suite de
+  simulación de `vt-deploy` (`test_vt_deploy.py`, incluye pruebas de
+  rollback y cuarentena de release fallido).
+- **`vt_deploy.py` había cambiado** desde la última instalación en esta Pi
+  (agregó soporte `--sha` explícito, guardas de import para `fcntl`/`pwd`,
+  y su propia suite de pruebas). Reinstalado vía
+  `sudo sh install_vt_deploy_command.sh` — confirmado mensaje de dos líneas
+  correcto ("Uso normal…" / "También acepta…").
+- **Despliegue**: `sudo vt-deploy latest` corrido por Javier. Resultado:
+  producción **ya estaba** en `5e12ce401c66fd2eec955378539f223d8fd0c14f`
+  (algo/alguien desplegó ese HEAD exacto muy poco antes de este comando) —
+  `vt-deploy` lo detectó y no tocó nada, comportamiento correcto de su
+  chequeo de idempotencia.
+- **Verificación post-hecho, contra la Raspberry real**:
+  - `readlink -f /opt/vintage-telnet/current` → release
+    `5e12ce401c66fd2eec955378539f223d8fd0c14f`.
+  - `healthz` local **y** Funnel (`https://raspberrypi.tail3d212e.ts.net/`)
+    → `{"schema_version":24,"status":"ok"}` en ambos.
+  - `systemctl is-active vintage-telnet.service` → `active`.
+  - `server.admin check` → `integrity: ok`, `foreign_key_errors: 0`,
+    `schema_version: 24`.
+  - **15 jugadores** en la base viva (creció desde los 8 de la última
+    entrada — cuentas nuevas reales, no se investiga aquí quiénes son).
+
+### Contexto operativo de esta sesión
+
+Javier reportó que, mientras la capacidad de Claude/Cloud estaba agotada,
+usó **Antigravity** (Google, en una laptop de trabajo que después tuvo que
+desconectar por política de la empresa) y **Codex**, que sigue disponible;
+ambos produjeron trabajo real sobre este repo sin supervisión de esta
+sesión. También conectó **Jules** (Google AI Pro) para una prueba dirigida
+por esta sesión — ver Issue #139/#81/#190 para ese historial — pero Javier
+reporta que un uso posterior directo (fuera de GitHub, no auditable desde
+aquí) "salió muy malo"; no dejó rastro en PRs/issues que se pueda revisar.
+
+No adjunto contraseñas, claves, cookies, hashes ni bases en este reporte.
+No afirmo ningún resultado de despliegue que no se ejecutó realmente.
