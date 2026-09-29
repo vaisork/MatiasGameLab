@@ -63,7 +63,7 @@ La Image API puede tardar hasta un par de minutos con instrucciones complejas, y
 
 ## Piloto manual desde GitHub Actions
 
-El workflow `.github/workflows/vt-art-pilot.yml` se ejecuta manualmente desde `main` en un runner hospedado por GitHub. El formulario recibe una ficha aprobada de `vintage-telnet/art_requests/` y genera una sola imagen. Para el piloto Velozanco, sube también la referencia aprobada como `vintage-telnet/art_requests/references/velozanco-edran-fase1-anatomia.png`; las referencias se versionan junto a su solicitud para que el runner no dependa de Drive. El workflow abre una PR con imagen, `metadata.json` y ficha bajo `vintage-telnet/art_generations/<asset_id>/`. El estado sigue siendo `draft`; la PR no aprueba ni integra el asset al juego y no despliega. No sube imágenes a Actions artifacts.
+El workflow `.github/workflows/vt-art-pilot.yml` se ejecuta manualmente desde `main` en un runner hospedado por GitHub. El formulario recibe una ficha aprobada de `vintage-telnet/art_requests/` y genera una sola imagen. Para el piloto Velozanco, sube también la referencia aprobada como `vintage-telnet/art_requests/velozanco-edran-fase1-anatomia.png`; las referencias se versionan junto a su solicitud para que el runner no dependa de Drive. El workflow abre una PR con imagen, `metadata.json` y ficha bajo `vintage-telnet/art_generations/<asset_id>/`. El estado sigue siendo `draft`; la PR no aprueba ni integra el asset al juego y no despliega. No sube imágenes a Actions artifacts.
 
 Configuración única del repositorio, en **Settings → Secrets and variables → Actions**:
 

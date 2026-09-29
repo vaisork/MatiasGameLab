@@ -5,7 +5,7 @@
   "canonical_name": "Velozanco de Edran",
   "art_direction": "Fase 2 final usando como referencia obligatoria la Fase 1 aprobada. Mantener congelada la anatomía: cuatro patas locomotoras largas, dos apoyos anteriores cortos, torso suspendido, lámina dorsal flexible baja y cola corta bifurcada en dos filamentos rígidos.",
   "prompt": "Create one 1536x1024 landscape scene with safe center. The Velozanco is crossing an open field boundary in Edran in a strong crosswind. Show the complete creature in a low three-quarter side view: its four long locomotor legs are running, and its two short front supports are tucked but still clearly legible. Its flexible dorsal membrane is flattened by the wind. Preserve exactly the approved reference anatomy and proportions. Subordinate background only: field stubble, desaturated agricultural greens, pale wheat, blue-gray sky. Neutral daylight.",
-  "references": ["references/velozanco-edran-fase1-anatomia.png"],
+  "references": ["velozanco-edran-fase1-anatomia.png"],
   "negative_constraints": [
     "No feathers or wings",
     "Do not resemble a dinosaur or giant insect",
