@@ -360,6 +360,19 @@ CREATURE_ART = {
     "rasgacorteza": {"src": "/assets/creatures/rasgacorteza.webp",
                      "alt": "Rasgacorteza camuflado en el follaje del bosque de Nhal",
                      "width": 1536, "height": 1024},
+    # Issue #548 (APPROVED-BINDINGS-01): arte aprobado ya publicado que
+    # seguia sin conectarse al runtime. Uñapiedra rescatada en PR #227
+    # (aprobacion original PR #178, Issue #167); Cascapedernal aprobado en
+    # Issue #231 y publicado en PR #262.
+    "unapiedra": {"src": "/assets/creatures/unapiedra.webp",
+                  "alt": "Uñapiedra aplastado contra la roca en un saliente de Hoshai",
+                  "width": 1536, "height": 1024},
+    "cascapedernal": {"src": "/assets/creatures/cascapedernal.webp",
+                      "alt": "Cascapedernal encogido junto a la piedra cálida de Korven",
+                      "width": 1536, "height": 1024},
+    "hilaria_niebla": {"src": "/assets/creatures/hilaria-niebla.webp",
+                       "alt": "Hilaria de niebla entre las raíces del bosque de Nhal",
+                       "width": 1536, "height": 1024},
 }
 
 

@@ -89,7 +89,12 @@ class RegionalCreatureContractTests(unittest.TestCase):
                 self.assertEqual(creature["flee_agilidad"], agi)
                 self.assertEqual(creature["flee_percepcion"], perception)
                 self.assertTrue(creature["behavior_text"])
-                self.assertNotIn(creature_id, creatures.CREATURE_ART)
+                # Issue #548: cascapedernal e hilaria_niebla ya tienen arte
+                # aprobado conectado; el resto de esta tanda sigue sin él.
+                if creature_id in ("cascapedernal", "hilaria_niebla"):
+                    self.assertIn(creature_id, creatures.CREATURE_ART)
+                else:
+                    self.assertNotIn(creature_id, creatures.CREATURE_ART)
 
     def test_new_creatures_have_no_unapproved_special_mechanics_or_c3_status(self):
         for creature_id in PROFILES:
