@@ -1109,6 +1109,33 @@ HOME_ROOM_DESCRIPTION = (
     "dentro del mundo. La salida conduce hacia tu comunidad."
 )
 HOME_EXIT_DIRECTION = "south"
+HOME_ROOM_ART = {
+    "humano": {
+        "src": "/assets/locations/valdren-vivienda-patio.webp",
+        "alt": "Patio de una vivienda en Valdren",
+        "width": 1536, "height": 1024,
+    },
+    "felaryn": {
+        "src": "/assets/locations/khariel-vivienda-felaryn-terraza.webp",
+        "alt": "Terraza de una vivienda felaryn en Khariel",
+        "width": 1536, "height": 1024,
+    },
+    "dravak": {
+        "src": "/assets/locations/brumak-taller-domestico.webp",
+        "alt": "Interior doméstico en Brumak",
+        "width": 1536, "height": 1024,
+    },
+    "marevyn": {
+        "src": "/assets/locations/narevia-vivienda-marevyn-canal.webp",
+        "alt": "Vivienda marevyn junto al canal de Narevia",
+        "width": 1536, "height": 1024,
+    },
+    "vesperi": {
+        "src": "/assets/locations/velmora-vivienda-vesperi-raices.webp",
+        "alt": "Vivienda vesperi entre las raíces de Velmora",
+        "width": 1536, "height": 1024,
+    },
+}
 
 _HOME_SPECIES_RESOLVER = None
 
@@ -1146,9 +1173,8 @@ def get_room(room_id):
                 species = _HOME_SPECIES_RESOLVER(player_id)
             except Exception:
                 species = None
-        if not species or species not in STARTING_ROOM_BY_SPECIES:
-            species = "humano"
-        town_room = get_starting_room_for_species(species)
+        resolved_species = species if species in STARTING_ROOM_BY_SPECIES else None
+        town_room = get_starting_room_for_species(resolved_species or "humano")
         return {
             "id": room_id,
             "name": HOME_ROOM_NAME,
@@ -1156,7 +1182,7 @@ def get_room(room_id):
             "exits": {HOME_EXIT_DIRECTION: town_room},
             "is_home": True,
             "owner_player_id": player_id,
-            "species": species,
+            "species": resolved_species,
         }
     return None
 
@@ -1313,6 +1339,11 @@ def describe_room(room_id, others_present):
             "others_present": [],
         }
     visual_context_id = get_visual_context_id(room_id)
+    art = VISUAL_CONTEXT_ART.get(visual_context_id)
+    if room.get("is_home"):
+        species = room.get("species")
+        visual_context_id = f"home.{species}" if species in HOME_ROOM_ART else None
+        art = HOME_ROOM_ART.get(species)
     return {
         "id": room_id,
         "name": room["name"],
@@ -1323,6 +1354,6 @@ def describe_room(room_id, others_present):
         ],
         "others_present": others_present,
         "visual_context_id": visual_context_id,
-        "art": VISUAL_CONTEXT_ART.get(visual_context_id),
+        "art": art,
         "ambient": get_ambient(room_id),
     }

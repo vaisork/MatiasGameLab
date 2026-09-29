@@ -54,9 +54,10 @@ class NavigationTests(unittest.TestCase):
     def test_minimap_only_exposes_known_places(self):
         data = self.client.get("/api/map").json
         self.assertEqual(data["current_room"], "valdren_centro")
-        self.assertEqual([p["id"] for p in data["places"]], ["valdren_centro"])
-        self.assertTrue(data["places"][0]["current"])
-        self.assertEqual(data["places"][0]["name"], "Valdren")
+        names = {p["id"]: p["name"] for p in data["places"]}
+        self.assertEqual(names["valdren_centro"], "Valdren")
+        self.assertEqual(names[world.get_home_room_id(self._player_id())], "Tu hogar")
+        self.assertTrue(next(p for p in data["places"] if p["id"] == "valdren_centro")["current"])
         # Salidas sin explorar: solo dirección, nunca destino ni nombre.
         stubs = data["unexplored_exits"]
         self.assertEqual({s["direction"] for s in stubs}, {"north", "east", "west"})
@@ -67,6 +68,7 @@ class NavigationTests(unittest.TestCase):
         self.post("/move", dict(direction="east"))
         data = self.client.get("/api/map").json
         names = {p["id"]: p["name"] for p in data["places"]}
+        names.pop(world.get_home_room_id(self._player_id()))
         self.assertEqual(names, {"valdren_centro": "Valdren", "valdren_mercado": "Mercado de Valdren"})
         self.assertEqual(data["current_room"], "valdren_mercado")
         self.assertNotIn({"from": "valdren_centro", "direction": "east"}, data["unexplored_exits"])
@@ -115,6 +117,74 @@ class NavigationTests(unittest.TestCase):
         self.assertIn('activateTabs("[data-map-tab]", "[data-map-panel]", "mapTab", "mapPanel")', html)
         self.assertIn('activateTabs("[data-help-tab]", "[data-help-panel]", "helpTab", "helpPanel")', html)
         self.assertIn('startsWith("home:")', html)
+
+    def _player_id(self):
+        return self.client.get("/api/me").json["player"]["id"]
+
+    def test_personal_home_is_a_private_minimap_node_linked_to_species_town(self):
+        player_id = self._player_id()
+        data = self.client.get("/api/map").json
+        homes = [place for place in data["places"] if place.get("kind") == "home"]
+        self.assertEqual(len(homes), 1)
+        home = homes[0]
+        self.assertEqual(home["id"], world.get_home_room_id(player_id))
+        self.assertEqual(home["name"], "Tu hogar")
+        self.assertNotEqual(home["x"] % 1, 0)
+        self.assertEqual(data["home_links"], [{"home": home["id"], "community": "valdren_centro",
+                                                "traversed": True}])
+
+        with store.connect(self.path) as db:
+            db.execute("UPDATE players SET room = ? WHERE id = ?", (home["id"], player_id))
+        home_map = self.client.get("/api/map").json
+        home_marker = next(p for p in home_map["places"] if p.get("kind") == "home")
+        self.assertTrue(home_marker["current"])
+
+        self.assertEqual(home_map["room_names"][home["id"]], "Tu hogar")
+        template = self.client.get("/").get_data(as_text=True)
+        self.assertIn('startsWith("home:")', template)
+        self.assertIn('return "Tu hogar";', template)
+
+        for species, community_id in world.STARTING_ROOM_BY_SPECIES.items():
+            with self.subTest(species=species):
+                with store.connect(self.path) as db:
+                    db.execute("UPDATE players SET species = ? WHERE id = ?", (species, player_id))
+                species_map = self.client.get("/api/map").json
+                self.assertEqual(species_map["home_links"][0]["community"], community_id)
+                self.assertIn(community_id, {place["id"] for place in species_map["places"]})
+
+    def test_home_art_uses_approved_species_assets(self):
+        player_id = self._player_id()
+        expected = {
+            "humano": "/assets/locations/valdren-vivienda-patio.webp",
+            "felaryn": "/assets/locations/khariel-vivienda-felaryn-terraza.webp",
+            "dravak": "/assets/locations/brumak-taller-domestico.webp",
+            "marevyn": "/assets/locations/narevia-vivienda-marevyn-canal.webp",
+            "vesperi": "/assets/locations/velmora-vivienda-vesperi-raices.webp",
+        }
+        home_id = world.get_home_room_id(player_id)
+        for species, asset in expected.items():
+            with self.subTest(species=species):
+                with store.connect(self.path) as db:
+                    db.execute("UPDATE players SET species = ?, room = ? WHERE id = ?",
+                               (species, home_id, player_id))
+                room = world.describe_room(home_id, [])
+                self.assertEqual(room["art"]["src"], asset)
+                response = self.client.get(asset)
+                self.assertEqual(response.status_code, 200)
+                self.assertEqual(response.mimetype, "image/webp")
+                response.close()
+
+    def test_home_with_unresolved_species_uses_neutral_art_fallback(self):
+        player_id = self._player_id()
+        home_id = world.get_home_room_id(player_id)
+        world.set_home_species_resolver(lambda _player_id: None)
+        try:
+            room = world.describe_room(home_id, [])
+            self.assertEqual(room["name"], "Tu hogar")
+            self.assertIsNone(room["art"])
+            self.assertIsNone(room["visual_context_id"])
+        finally:
+            world.set_home_species_resolver(lambda pid: store.get_player_species(self.path, pid))
 
 
 if __name__ == "__main__":

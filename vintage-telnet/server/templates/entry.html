@@ -454,6 +454,7 @@
     .minimap-legend i{display:inline-block;width:12px;height:12px;border-radius:50%}
     .lg-here{background:#f0c75e;box-shadow:0 0 6px #f0c75e}
     .lg-known{border:2px solid #e8e1cd}
+    .lg-home{border:2px solid #f0c75e;border-radius:2px!important;transform:rotate(45deg);background:#6e5425}
     .lg-route{width:18px!important;height:0!important;border-radius:0!important;border-top:3px solid #b8914a}
     .lg-unexplored{width:18px!important;height:0!important;border-radius:0!important;border-top:2px dashed #6f7f94}
     .map-subtitle{margin:14px 0 6px;color:var(--gold);font:700 .9rem Georgia,serif}
@@ -1091,6 +1092,7 @@
         <div class="minimap-scroll" id="minimapScroll"><p class="map-empty">El mapa todavía no se ha cargado.</p></div>
         <ul class="minimap-legend" aria-label="Leyenda del mapa">
           <li><i class="lg-here"></i>Tu ubicación</li>
+          <li><i class="lg-home"></i>Tu hogar</li>
           <li><i class="lg-known"></i>Lugar conocido</li>
           <li><i class="lg-route"></i>Ruta recorrida</li>
           <li><i class="lg-unexplored"></i>Salida sin explorar</li>
@@ -1784,6 +1786,13 @@
       svg.appendChild(svgEl("line", {x1: from[0], y1: from[1], x2: from[0] + dir[0] * 34, y2: from[1] + dir[1] * 26,
         stroke: "#6f7f94", "stroke-width": 2, "stroke-dasharray": "4 4"}));
     });
+    (Array.isArray(data.home_links) ? data.home_links : []).forEach(link => {
+      const home = pos[link.home], community = pos[link.community];
+      if (!home || !community) return;
+      svg.appendChild(svgEl("line", {x1: home[0], y1: home[1], x2: community[0], y2: community[1],
+        stroke: "#f0c75e", "stroke-width": 2,
+        "stroke-dasharray": link.traversed ? "none" : "5 4", "stroke-linecap": "round"}));
+    });
     (Array.isArray(data.traversed_routes) ? data.traversed_routes : []).forEach(route => {
       const a = pos[route[0]], b = pos[route[1]];
       if (!a || !b) return;
@@ -1796,9 +1805,13 @@
       if (p.current) {
         currentPoint = [cx, cy];
         svg.appendChild(svgEl("circle", {cx, cy, r: 15, fill: "#f0c75e33"}));
-        svg.appendChild(svgEl("circle", {cx, cy, r: 9, fill: "#f0c75e", stroke: "#fff3cf", "stroke-width": 2}));
+        if (p.kind !== "home") svg.appendChild(svgEl("circle", {cx, cy, r: 9, fill: "#f0c75e", stroke: "#fff3cf", "stroke-width": 2}));
+      }
+      if (p.kind === "home") {
+        svg.appendChild(svgEl("path", {d: `M ${cx - 10} ${cy - 2} L ${cx} ${cy - 11} L ${cx + 10} ${cy - 2} V ${cy + 9} H ${cx + 3} V ${cy + 2} H ${cx - 3} V ${cy + 9} H ${cx - 10} Z`,
+          fill: p.current ? "#f0c75e" : "#6e5425", stroke: "#fff3cf", "stroke-width": 2, "stroke-linejoin": "round"}));
       } else {
-        svg.appendChild(svgEl("circle", {cx, cy, r: 7, fill: "#0c1219", stroke: "#e8e1cd", "stroke-width": 2}));
+        if (!p.current) svg.appendChild(svgEl("circle", {cx, cy, r: 7, fill: "#0c1219", stroke: "#e8e1cd", "stroke-width": 2}));
       }
       // En una fila, las etiquetas se alternan abajo/arriba (por columna par o
       // impar) para que dos lugares vecinos con nombres largos no se encimen.
