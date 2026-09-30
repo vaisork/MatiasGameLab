@@ -1,0 +1,41 @@
+{
+  "asset_id": "lamelon_korven",
+  "asset_type": "creature",
+  "target": "Borrador de fauna natural de los Pedrales de Korven para validar silueta y anatomía; no integrar a runtime.",
+  "canonical_name": "Lamelón",
+  "art_direction": "Escena de fauna con anatomía completamente visible. Un adulto muy bajo, ancho y ovalado sobre placas de roca fracturada; exactamente seis apoyos cortos en tres pares, cabeza frontal pequeña casi integrada al tronco, flancos laminares orgánicos flexibles plegados contra el sustrato y cola casi ausente. Cámara lateral tres cuartos baja. Debe sentirse como raspador estable de roca, orgánico y no agresivo, sin convertir sus láminas en alas, cuchillas o armadura.",
+  "prompt": "Create one landscape wildlife scene in the Pedrales de Korven. Show one complete adult Lamelón, 60–80 cm long, moving slowly over fractured exposed rock while scraping soft organic deposits or lichen. Its body is extremely low, broad and oval. It has exactly six short supports arranged in three pairs, with broad mineral-gripping feet. The small low frontal head is almost integrated into the trunk, with a small underside scraping mouth and small clusters of lateral ocelli. Two flexible foldable organic laminar flanks lie close to the body and rock. They are not wings, blades or armor. Tail is extremely short or visually absent. Skin is matte and organically mineral-like, never literal stone. Low three-quarter side view, full silhouette readable, neutral dry daylight. Background subordinate: fractured Korven plates, crevices, low dry terrain and wind exposure. Natural non-magical fauna.",
+  "references": [
+    "../../assets/vintage-telnet/locations/korven-corredor-placas-quebradas.webp"
+  ],
+  "negative_constraints": [
+    "No wings, flight or gliding",
+    "No blades, weapons, shell armor or metallic plates",
+    "Do not make the body literal rock, a golem, construct or magical mineral creature",
+    "Preserve exactly six short supports in three pairs",
+    "No long tail",
+    "No charging, hunting or predatory pose",
+    "No glow, runes, magic, equipment, readable text or HUD",
+    "Do not resemble a giant insect as the primary read"
+  ],
+  "aspect_ratio": "landscape",
+  "output_destination": "vintage-telnet/art_generations",
+  "status": "draft",
+  "canon_sources": [
+    "vintage-telnet/ART_WORLD_GUIDE.md",
+    "vintage-telnet/CREATURES.md",
+    "vintage-telnet/REGIONS.md",
+    "vintage-telnet/SUPPLEMENTAL_REGIONAL_FAUNA_2.md"
+  ],
+  "room_id": null,
+  "creature_id": "lamelon",
+  "species_id": null,
+  "prior_asset": null,
+  "edit_source": null,
+  "variation_of": null,
+  "notes": "Ficha de Dirección de Arte. La referencia de Korven fija contexto regional/paleta/roca, no anatomía. Una sola generación por ejecución. Su clasificación jugable sigue fuera del alcance de Arte; esta ficha no lo convierte en encounter ni combatible. No publicar ni integrar a assets/.",
+  "quality": "low",
+  "output_format": "png",
+  "output_compression": null,
+  "background": "opaque"
+}
