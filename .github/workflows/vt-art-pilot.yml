@@ -62,8 +62,11 @@ jobs:
           git commit -m "Add ${ASSET_ID} art draft ${VERSION} from run ${RUN_ID}"
           git push origin "$branch"
           metadata_path="vintage-telnet/art_generations/${ASSET_ID}/${VERSION}/metadata.json"
+          image_path=$(jq -r '.image' "$metadata_path")
           {
             echo "Generated draft for **${ASSET_ID} ${VERSION}** from its approved brief."
+            echo
+            echo "![${ASSET_ID}](https://github.com/${{ github.repository }}/raw/art-drafts/run-${RUN_ID}/${image_path})"
             echo
             if [ "$VERDICT" = "aprobado" ]; then
               echo "**Autocrítica (visión, $(jq -r '.critique.model' "$metadata_path")): APROBADO.**"
