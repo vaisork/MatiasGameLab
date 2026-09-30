@@ -1,0 +1,60 @@
+{
+  "asset_id": "velozanco_edran",
+  "generation_id": "bfe3dd8d-82b7-490d-912b-5a037c69d326",
+  "version": "v002",
+  "prompt": "Create a draft visual asset for Vintage Telnet using the supplied art direction.\n\nAsset type: creature\n\nTarget: Borrador de escena para fauna de los Llanos de Edran; no integrar a runtime.\n\nCanonical name: Velozanco de Edran\n\nArt direction: Fase 2 final usando como referencia obligatoria la Fase 1 aprobada. Mantener congelada la anatomía: cuatro patas locomotoras largas, dos apoyos anteriores cortos, torso suspendido, lámina dorsal flexible baja y cola corta bifurcada en dos filamentos rígidos.\n\nAspect ratio: 1536x1024\n\nPrompt: Create one 1536x1024 landscape scene with safe center. The Velozanco is crossing an open field boundary in Edran in a strong crosswind. Show the complete creature in a low three-quarter side view: its four long locomotor legs are running, and its two short front supports are tucked but still clearly legible. Its flexible dorsal membrane is flattened by the wind. Preserve exactly the approved reference anatomy and proportions. Subordinate background only: field stubble, desaturated agricultural greens, pale wheat, blue-gray sky. Neutral daylight.\n\nCanon sources supplied by the Art Director: Issue #522 — Dirección de Arte, comentario del 2026-09-29\n\nDo not include: No feathers or wings; Do not resemble a dinosaur or giant insect; No glow or magic; No dominant ochre or golden palette; No readable text or HUD; Do not alter the frozen six-limb 4+2 anatomy, suspended torso, dorsal membrane, or bifilament tail\n\nIDs (reference only): velozanco_edran\n\nNotes: Piloto #559/#561: una única generación. No crear variantes hasta revisión del Director de Arte.\n\nIntento anterior rechazado por autocrítica: Resemblanza a dinosaurio (postura y morfología craneal claramente terópoda); Cola demasiado larga — debía ser corta y bifilada en dos filamentos rígidos\n\nUse the attached reference images according to the art direction and constraints above.",
+  "model_id": "gpt-image-2.5-flare",
+  "parameters": {
+    "quality": "low",
+    "size": "1536x1024",
+    "output_format": "png",
+    "output_compression": null,
+    "background": "opaque",
+    "reference_files": [
+      "vintage-telnet/art_requests/velozanco-edran-fase1-anatomia.png"
+    ]
+  },
+  "timestamp_utc": "2026-09-30T09:38:15.849041+00:00",
+  "status": "draft",
+  "image": "vintage-telnet/art_generations/velozanco_edran/v002/velozanco_edran_v002.png",
+  "request_file": "vintage-telnet/art_requests/velozanco-edran-fase2.json",
+  "request_id": "req_c689fa5205c54ae0b9c3c6898e0181eb",
+  "usage": {
+    "input_tokens": 1983,
+    "input_tokens_details": {
+      "image_tokens": 1536,
+      "text_tokens": 447
+    },
+    "output_tokens": 158,
+    "total_tokens": 2141,
+    "output_tokens_details": {
+      "image_tokens": 158,
+      "text_tokens": 0
+    }
+  },
+  "cost_estimate": 0.019263,
+  "critique": {
+    "model": "gpt-5-mini",
+    "passes": false,
+    "issues": [
+      "Creature strongly resembles a dinosaur (head and overall body plan look theropod/ornithopod-like).",
+      "Overall image has a dominant ochre/golden palette (golden-brown grass and warm tones make the scene visually ochre-dominant).",
+      "Tail is too long — should be a short tail bifurcated into two rigid filaments but here the bifurcated filaments are long and extended."
+    ],
+    "reasoning": "The required six-limb anatomy, suspended torso and low dorsal membrane are present, but the design violates multiple explicit constraints. Visually the creature reads like a dinosaur because of the head shape and overall limb/torso proportions, which the brief forbids. The environment and color balance make ochre/golden tones dominant across the image, violating the palette restriction. Finally the tail is rendered as long split spikes rather than a short bifurcated tail of rigid filaments as specified.",
+    "usage": {
+      "input_tokens": 2155,
+      "input_tokens_details": {
+        "cache_write_tokens": 0,
+        "cached_tokens": 0
+      },
+      "output_tokens": 1310,
+      "output_tokens_details": {
+        "reasoning_tokens": 1088
+      },
+      "total_tokens": 3465
+    },
+    "cost_estimate": 0.003159,
+    "attempt": 2
+  }
+}
