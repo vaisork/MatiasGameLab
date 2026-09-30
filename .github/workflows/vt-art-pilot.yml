@@ -14,7 +14,7 @@ permissions:
   pull-requests: write
 
 concurrency:
-  group: vt-art-pilot
+  group: vt-art-pilot-${{ github.run_id }}
   cancel-in-progress: false
 
 jobs:
