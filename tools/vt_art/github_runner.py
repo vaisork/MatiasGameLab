@@ -47,13 +47,13 @@ def run() -> int:
             raise RuntimeError("GITHUB_RUN_NUMBER no es numérico.") from exc
     api_key = os.environ["OPENAI_API_KEY"]
     pipeline = ArtPipeline(OpenAIImageClient(api_key), model)
-    # La autocrítica es el camino por defecto. Puede reintentar una vez, así
-    # que reclama sus propias versiones por auto-incremento (v001, v002...);
+    # La autocrítica es el camino por defecto. Reintenta hasta 3 veces si falla,
+    # así que reclama sus propias versiones por auto-incremento (v001, v002...);
     # version_hint (de GITHUB_RUN_NUMBER) solo se usa si se apaga la crítica
     # explícitamente con VT_ART_CRITIC_MODEL="".
     critic_model = os.environ.get("VT_ART_CRITIC_MODEL", DEFAULT_CRITIC_MODEL).strip()
     if critic_model:
-        result = pipeline.generate_with_critique(request, OpenAIVisionCritic(api_key), critic_model)
+        result = pipeline.generate_with_critique(request, OpenAIVisionCritic(api_key), critic_model, max_attempts=4)
     else:
         result = pipeline.generate(request, version_hint)
         result["critique"] = None
