@@ -1,33 +1,35 @@
 {
   "asset_id": "velozanco_edran",
   "asset_type": "creature",
-  "target": "Borrador de escena para fauna natural no combatiente de los Llanos de Edran; no integrar a runtime.",
+  "target": "Rediseño visual autorizado de fauna natural no combatiente de los Llanos de Edran; romper por completo la lectura dinosauriana antes de integrar a runtime.",
   "canonical_name": "Velozanco de Edran",
-  "art_direction": "Fase 2 usando como referencia obligatoria la Fase 1 aprobada. Mantener congelada la anatomía 4+2, pero reforzar una silueta no dinosauriana: torso horizontal suspendido y ligero entre seis apoyos, cuatro patas locomotoras largas y finas, dos apoyos anteriores cortos claramente separados, cabeza compacta no reptiliana integrada casi directamente al torso y sin cuello largo. Lámina dorsal flexible baja, pegada por el viento. Cola corporal muy corta, terminada inmediatamente en exactamente dos filamentos rígidos cortos. Fauna ambiental, no criatura de combate. Paleta fría/neutra de Edran: verdes agrícolas apagados, gris azulado y tierra parda; trigo pálido solo como acento menor.",
-  "prompt": "Create one 1536x1024 landscape wildlife scene with safe center in the Llanos de Edran. Preserve the approved reference anatomy exactly: one complete Velozanco with SIX supports in a 4+2 plan. Four long slender locomotor legs carry a lightweight HORIZONTAL SUSPENDED TORSO; two additional short anterior supports are clearly visible as small weight-bearing legs, not arms. CRITICAL SILHOUETTE: make the animal unmistakably non-dinosaurian. Use a compact blunt non-reptilian head set almost directly into the front of the torso, virtually no visible neck, no dinosaur snout, no theropod chest, no raptor posture, and no heavy hindquarters. Distribute visual weight across all four long locomotor legs rather than emphasizing a rear pair. The low flexible dorsal membrane lies flattened close to the back by a strong crosswind and must not read as a sail, fin or wing. CRITICAL TAIL: the fleshy tail base is extremely short, ending close behind the pelvis; from that short base emerge exactly TWO SHORT rigid filaments. The complete tail assembly must remain visually short and must not form a long sweeping dinosaur tail. Show natural fast movement across an open field boundary, not an attack. Background is subordinate and COOL/NEUTRAL: muted desaturated agricultural greens, blue-gray sky, gray-brown soil, sparse pale straw accents only. Neutral overcast daylight; avoid sunset, amber light and golden fields.",
-  "references": [
-    "velozanco-edran-fase1-anatomia.png"
-  ],
+  "art_direction": "REDISEÑO VISUAL AUTORIZADO. Mantener la locomoción 4+2 y la adaptación al viento, pero abandonar la silueta previa. El Velozanco debe parecer un animal original de llanura construido alrededor de un cuerpo central bajo, ancho y suspendido, parecido en masa a una semilla o cápsula orgánica aplanada, no a un torso vertebrado con pecho, cuello y caderas. Seis apoyos nacen alrededor de la masa corporal: cuatro patas locomotoras largas y delgadas distribuidas en dos pares equilibrados y dos apoyos anteriores más cortos. Cabeza pequeña, roma y baja, parcialmente encajada bajo el borde frontal del cuerpo, sin cuello visible. Sin cola corporal reconocible: sólo dos cortos filamentos rígidos sensoriales emergen juntos del borde posterior. Sobre el lomo existe una banda membranosa blanda, baja y plegada por el viento, nunca una vela. Fauna ambiental, tímida y veloz. Paleta fría/neutra de Edran.",
+  "prompt": "Create one original alien-but-natural plains animal for Vintage Telnet, shown completely in a low three-quarter side view in the Llanos de Edran. DESIGN FROM A NEW SILHOUETTE; do not imitate the previous reference image. Start from a broad, low, flattened seed-pod-shaped CENTRAL BODY suspended above the ground. The body must read as one continuous oval/capsule mass with NO chest, NO pelvis emphasis, NO upright torso and NO visible neck. Arrange exactly SIX weight-bearing supports around this central mass: four very long, slender locomotor legs in two balanced pairs, with the front and rear pair similar in visual importance, plus two noticeably shorter auxiliary supports near the lower front quarter. All six are legs/supports, never arms. The tiny blunt head is tucked low into the underside/front rim of the central body, almost like a sensory prow: broad and rounded, no muzzle, no beak, no reptile skull, no neck. At the rear there is NO conventional fleshy tail. Instead, exactly TWO short rigid sensory filaments project directly from the rear edge of the body, each much shorter than a leg. Across the upper body lies a LOW SOFT DORSAL MEMBRANE like a flexible strip of skin pressed flat sideways by the crosswind; it is not triangular and does not rise above the body as a sail. Give the animal smooth matte hide with subtle longitudinal folds, no scales and no armor. Pose it moving laterally with all six supports clearly understandable and the body staying level, like a wind-adapted ground runner rather than a predator. Natural cautious non-combat behavior. Background subordinate: muted green-gray field margins, blue-gray overcast sky, brown-gray soil and only sparse pale straw. Cool neutral daylight. The finished silhouette should be recognizable even as a black shape: low central capsule, four balanced stilts, two short front supports, tiny tucked-under head, and two tiny rear filaments.",
+  "references": [],
   "negative_constraints": [
-    "No dinosaur silhouette: no theropod, raptor, ornithopod or reptilian head/body proportions",
-    "No long neck, long snout, heavy hindquarters or bipedal-looking posture",
-    "No long tail and no long tail filaments; fleshy tail base and exactly two terminal filaments must all be short",
-    "No feathers or wings",
-    "Do not resemble a giant insect",
-    "Do not alter the frozen six-limb 4+2 anatomy: exactly four long locomotor legs plus two short anterior supports",
-    "No dorsal sail, rigid fin or wing; membrane stays low, soft and wind-flattened",
-    "No dominant ochre, amber, yellow or golden palette; pale wheat is a minor accent only",
-    "No sunset or warm golden-hour lighting",
-    "No glow, magic, attack pose, readable text or HUD"
+    "ABSOLUTELY NO dinosaur, theropod, raptor, ornithopod, bird, lizard or reptile silhouette",
+    "No conventional vertebrate body plan with distinct chest, long neck, pelvis-heavy rear or counterbalancing tail",
+    "No visible neck; head must be tiny, blunt and tucked into the lower front edge of the body",
+    "No snout, muzzle, beak, reptilian skull, teeth or predatory face",
+    "No conventional tail; only exactly two short rigid rear sensory filaments emerging directly from the body edge",
+    "No bipedal impression and no oversized rear legs; front and rear long leg pairs must carry equal visual weight",
+    "Exactly six weight-bearing supports: four long locomotor legs plus two short anterior supports",
+    "No insect exoskeleton, segmented abdomen, antennae or arthropod head",
+    "No feathers, wings, dorsal sail, rigid fin, spikes, horns or armor",
+    "No dominant ochre, amber, yellow or golden palette; pale straw may appear only as a minor background accent",
+    "No sunset or golden-hour lighting",
+    "No attack pose, glow, magic, readable text or HUD"
   ],
   "aspect_ratio": "1536x1024",
   "output_destination": "vintage-telnet/art_generations",
   "status": "draft",
   "canon_sources": [
-    "Issue #522 — Dirección de Arte, comentario del 2026-09-29"
+    "Issue #522 — Dirección de Arte, comentario del 2026-09-29",
+    "Autorización del usuario del 2026-09-30 para cambiar sustancialmente el arte de Velozanco"
   ],
   "creature_id": "velozanco_edran",
-  "notes": "Prompt reforzado tras autocrítica visual de v002: las generaciones previas parecían dinosaurio, alargaban la cola/filamentos y dominaban la escena con ocres. Mantener la referencia anatómica aprobada. Fauna ambiental no combatiente. No publicar ni integrar a assets/.",
+  "notes": "Rediseño fuerte autorizado tras fallos repetidos de lectura dinosauriana. Se retira deliberadamente la imagen de Fase 1 como referencia porque estaba anclando las nuevas generaciones a la silueta rechazada. Se conserva la función regional C0, el esquema locomotor 4+2, la adaptación al viento y los dos filamentos posteriores, pero se reconstruye la masa corporal desde una cápsula baja no vertebrada visualmente. No publicar hasta superar autocrítica.",
+  "quality": "low",
   "output_format": "png",
   "background": "opaque"
 }
