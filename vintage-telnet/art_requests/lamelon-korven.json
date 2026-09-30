@@ -37,7 +37,7 @@
   "edit_source": null,
   "variation_of": null,
   "notes": "Ficha de Dirección de Arte. La referencia de Korven fija contexto regional/paleta/roca, no anatomía. Una sola generación por ejecución. Su clasificación jugable sigue fuera del alcance de Arte; esta ficha no lo convierte en encounter ni combatible. No publicar ni integrar a assets/.",
-  "quality": "low",
+  "quality": "high",
   "output_format": "png",
   "output_compression": null,
   "background": "opaque"

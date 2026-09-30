@@ -37,7 +37,7 @@
   "edit_source": null,
   "variation_of": null,
   "notes": "Prompt reforzado tras autocrítica visual de v002: las generaciones previas convertían las láminas sensoriales en púas rígidas. La referencia de Nhal fija únicamente ambiente, raíces, humedad y luz regional; no redefine la criatura. No publicar ni integrar a assets/.",
-  "quality": "low",
+  "quality": "high",
   "output_format": "png",
   "output_compression": null,
   "background": "opaque"
