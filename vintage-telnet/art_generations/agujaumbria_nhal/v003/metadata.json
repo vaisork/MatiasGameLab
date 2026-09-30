@@ -1,0 +1,36 @@
+{
+  "asset_id": "agujaumbria_nhal",
+  "generation_id": "50e2e23d-eaa7-4e2d-ac23-1e98f5b542f4",
+  "version": "v003",
+  "prompt": "Create a draft visual asset for Vintage Telnet using the supplied art direction.\n\nAsset type: creature\n\nTarget: Borrador de fauna natural del Bosque de Nhal para validar anatomía y lectura sensorial; no integrar a runtime.\n\nCanonical name: Agujaumbría\n\nArt direction: Escena oscura pero legible de sotobosque. Mostrar un adulto completo desplazándose pegado a una raíz grande: tronco bajo y flexible, cuatro extremidades cortas con apoyos anchos, cabeza pequeña integrada al cuello, grandes fosas sensoriales laterales, ojos reducidos, cresta dorsal sensorial formada por láminas blandas, finas, flexibles y de borde redondeado, y cola corta gruesa parcialmente prensil. Las láminas deben verse suaves y deformables: algunas dobladas, inclinadas o ligeramente caídas por el aire; ninguna termina en punta. Deben recordar pequeñas aletas de tejido flexible o lengüetas sensoriales, nunca púas, espinas, quillas rígidas, plumas ni armas. Luz natural filtrada, sin estética mágica.\n\nAspect ratio: landscape\n\nPrompt: Create one landscape wildlife scene in the deep understory of the Bosque de Nhal. Show one complete adult Agujaumbría, 70–90 cm total length, moving close alongside a large damp root and trunk structure. Its trunk is low, flexible and compact/triangular in section. It has exactly four short main limbs with broad supports and separated toes. The small head blends into the neck and has two large lateral sensory pits plus reduced eyes. CRITICAL DORSAL ANATOMY: along the back is a segmented row of thin, soft, flexible sensory lamellae made of pliable skin-like tissue. Every lamella has a broad rounded or softly squared tip, never a point. Vary their bend: some lean sideways, some curl slightly, some sag, clearly showing softness and response to air movement. They must read as harmless tactile/sensory tabs, not defensive structures. Keep visible gaps between lamellae and avoid any triangular, conical, blade-like or spike-like silhouette. The tail is short, thick and partially prehensile for stabilization. Matte fine-textured skin with small soft plates on shoulders/flanks. Low three-quarter side view, full anatomy readable despite the dim forest. Natural filtered daylight, damp roots, inclined trunks, wet rock and dense understory subordinate to the animal. Natural non-combat fauna; calm/cautious behavior, no attack pose, no magic.\n\nCanon sources supplied by the Art Director: vintage-telnet/ART_WORLD_GUIDE.md; vintage-telnet/CREATURES.md; vintage-telnet/REGIONS.md; vintage-telnet/SUPPLEMENTAL_REGIONAL_FAUNA.md\n\nDo not include: ABSOLUTELY NO pointed dorsal elements: no spikes, spines, quills, horns, blades, triangular plates or sharp tips; Dorsal lamellae must look soft, bendable and harmless, with rounded or softly squared ends; No feathers or weaponized dorsal structures; No glowing eyes, bioluminescence, magic, runes or supernatural effects; Do not add echolocation imagery or sonar effects; Preserve exactly four main limbs; do not add extra legs or wings; No long exposed tail; tail remains short, thick and stabilizing; Do not make it a heroic predator, dragon, dinosaur or giant insect; No attack pose; this is natural environmental fauna, not a combat monster; Avoid bright open clearings and dominant golden/ochre lighting; No readable text or HUD\n\nIDs (reference only): agujaumbria\n\nNotes: Prompt reforzado tras autocrítica visual de v002: las generaciones previas convertían las láminas sensoriales en púas rígidas. La referencia de Nhal fija únicamente ambiente, raíces, humedad y luz regional; no redefine la criatura. No publicar ni integrar a assets/.\n\nUse the attached reference images according to the art direction and constraints above.",
+  "model_id": "gpt-image-2.5-flare",
+  "parameters": {
+    "quality": "high",
+    "size": "1536x1024",
+    "output_format": "png",
+    "output_compression": null,
+    "background": "opaque",
+    "reference_files": [
+      "assets/vintage-telnet/locations/nhal-claro-raices-roca.webp"
+    ]
+  },
+  "timestamp_utc": "2026-09-30T23:57:11.228083+00:00",
+  "status": "draft",
+  "image": "vintage-telnet/art_generations/agujaumbria_nhal/v003/agujaumbria_nhal_v003.png",
+  "request_file": "vintage-telnet/art_requests/agujaumbria-nhal.json",
+  "request_id": "req_1a83e2aa4d244f60977028e959ef53ba",
+  "usage": {
+    "input_tokens": 2349,
+    "input_tokens_details": {
+      "image_tokens": 1508,
+      "text_tokens": 841
+    },
+    "output_tokens": 1372,
+    "total_tokens": 3721,
+    "output_tokens_details": {
+      "image_tokens": 1372,
+      "text_tokens": 0
+    }
+  },
+  "cost_estimate": 0.057429
+}
