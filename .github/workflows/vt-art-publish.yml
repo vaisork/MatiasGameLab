@@ -103,8 +103,8 @@ jobs:
                       print(f"✅ PNG guardado: {hq_file.relative_to(ROOT)}")
 
                       # Convertir a WebP
-                      subprocess.run(["apt-get", "update"], capture_output=True, check=False)
-                      subprocess.run(["apt-get", "install", "-y", "webp"], capture_output=True, check=False)
+                      subprocess.run(["apt-get", "update"], capture_output=True, check=True)
+                      subprocess.run(["apt-get", "install", "-y", "webp"], capture_output=True, check=True)
 
                       assets_dir = ROOT / "assets" / "vintage-telnet" / "creatures"
                       assets_dir.mkdir(parents=True, exist_ok=True)
@@ -114,7 +114,7 @@ jobs:
                           f.write(png_bytes)
 
                       result = subprocess.run(
-                          ["cwebp", "-q", "85", "/tmp/png_temp", "-o", str(webp_file)],
+                          ["/usr/bin/cwebp", "-q", "85", "/tmp/png_temp", "-o", str(webp_file)],
                           capture_output=True,
                       )
                       if result.returncode != 0:
