@@ -14,7 +14,7 @@ from typing import Any, Protocol
 ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_GENERATIONS = ROOT / "vintage-telnet" / "art_generations"
 ASSET_ID_RE = re.compile(r"^[a-zA-Z0-9][a-zA-Z0-9_-]{0,79}$")
-VALID_STATES = {"draft", "review", "approved", "published"}
+VALID_STATES = {"draft", "review", "approved", "rejected", "published"}
 
 
 class ArtPipelineError(Exception):

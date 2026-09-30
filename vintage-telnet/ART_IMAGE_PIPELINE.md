@@ -55,21 +55,34 @@ Desde la raíz del repositorio:
 
 Cada asset se guarda sin sobrescribir versiones anteriores en `vintage-telnet/art_generations/<asset_id>/v001/`, con imagen y `metadata.json`. Los resúmenes `batch-<id>.json` registran requests intentados, imágenes generadas, uso que la API haya devuelto, fallos y sus request IDs. No se inventa un costo si la respuesta no entrega una métrica suficiente; en ese caso `cost_estimate` queda `null`.
 
-Todo resultado inicia en `draft`. Dirección de Arte revisa visualmente y es quien decide `review` o `approved`; el comando registra la decisión explícita y nunca autoaprueba. `published` sólo registra un estado, no publica ni copia archivos. El Publicador mantiene su flujo de normalización y el Integrador decide las rutas de runtime por separado.
+Todo resultado inicia en `draft`. Dirección de Arte registra su decisión en la PR de GitHub: **Approve** cambia `metadata.json` a `approved`; **Request changes** lo cambia a `rejected`. La automatización registra esa decisión en la rama de la PR. Si la revisión se retira, el estado vuelve a `draft`. Un comentario normal no cambia el estado. El comando local también permite registrar `rejected`. `published` sólo registra un estado, no publica ni copia archivos. El Publicador mantiene su flujo de normalización y el Integrador decide las rutas de runtime por separado.
 
 `output_destination` se limita a `vintage-telnet/art_generations/`; la herramienta rechaza rutas dentro de `assets/vintage-telnet/`. La CLI local no hace commits. El workflow de GitHub Actions descrito abajo sí crea una rama y una PR de borrador para revisar el resultado; nada llega al runtime ni se despliega automáticamente.
 
 La Image API puede tardar hasta un par de minutos con instrucciones complejas, y la consistencia entre variantes requiere revisión humana. Una organización puede necesitar completar verificación antes de acceder a los modelos de imagen.
 
-## Piloto manual desde GitHub Actions
+## Operación desde Raspberry
 
-El workflow `.github/workflows/vt-art-pilot.yml` se ejecuta manualmente desde `main` en un runner hospedado por GitHub. El formulario recibe una ficha aprobada de `vintage-telnet/art_requests/` y genera una sola imagen. Para el piloto Velozanco, sube también la referencia aprobada como `vintage-telnet/art_requests/velozanco-edran-fase1-anatomia.png`; las referencias se versionan junto a su solicitud para que el runner no dependa de Drive. El workflow abre una PR con imagen, `metadata.json` y ficha bajo `vintage-telnet/art_generations/<asset_id>/`. El estado sigue siendo `draft`; la PR no aprueba ni integra el asset al juego y no despliega. No sube imágenes a Actions artifacts.
+El operador inicia cada solicitud desde la Raspberry; el chat no necesita acceso a GitHub Actions. En el checkout del repositorio, instala GitHub CLI y autentícalo con una cuenta/token que tenga permiso `Actions: write` sobre `vaisork/MatiasGameLab`. Actualiza el checkout para que el lanzador conozca la versión actual. La clave de OpenAI permanece sólo en el secret `OPENAI_API_KEY` de GitHub.
+
+```bash
+git pull --ff-only origin main
+python3 -m tools.vt_art.dispatch vintage-telnet/art_requests/velozanco-edran-fase2.json
+```
+
+El lanzador verifica la sesión de GitHub y que la ficha exista en `main`, pide confirmación escribiendo `GENERAR` y dispara exactamente una ejecución de `vt-art-pilot.yml`. No lee ni imprime credenciales. Para ejecución no interactiva admite `--yes`. No uses `vt-deploy`: este comando genera arte y no instala ni reinicia el servidor.
+
+Actions guardará el resultado en una rama y propondrá una PR de borrador. El repositorio debe permitir que Actions cree PRs en **Settings → Actions → General → Workflow permissions → Allow GitHub Actions to create and approve pull requests**. El workflow sólo crea PRs; no aprueba ninguna. Dirección de Arte revisa la PR y usa **Review changes → Approve** o **Request changes** para registrar su decisión. Un workflow de seguimiento sincroniza `approved`/`rejected` en el `metadata.json` de esa versión. Nada se integra a runtime ni se despliega.
+
+## Piloto desde GitHub Actions
+
+El workflow `.github/workflows/vt-art-pilot.yml` también puede iniciarse manualmente desde Actions. El formulario recibe una ficha de `vintage-telnet/art_requests/` y genera una sola imagen. Para el piloto Velozanco, la referencia aprobada está versionada junto a la solicitud. El workflow abre una PR con imagen, `metadata.json` y ficha bajo `vintage-telnet/art_generations/<asset_id>/`. No sube imágenes a Actions artifacts.
 
 Configuración única del repositorio, en **Settings → Secrets and variables → Actions**:
 
 - Secret `OPENAI_API_KEY`: clave de OpenAI API. No pegarla en chats, fichas, commits ni logs.
 La clave de OpenAI se usa sólo como credencial del job; no se guarda en el repositorio ni se imprime. Los borradores sí quedan públicamente visibles en la PR porque el repositorio es público. Puedes descargarlos desde GitHub y cerrar la PR/eliminar su rama para limpiar borradores; si integras la PR, los archivos quedarán en `main` hasta que los borres manualmente.
 
-Para ejecutar: abre **Actions → Vintage Telnet — piloto de arte → Run workflow**, elige `main` y selecciona la ficha aprobada. Cada ejecución factura una generación y crea una PR nueva. Revisa el resultado antes de lanzar otra generación; no hay reintentos automáticos.
+Cada ejecución factura una generación y crea una PR nueva. Revisa el resultado antes de lanzar otra generación; no hay reintentos automáticos.
 
 Este workflow está limitado al piloto de una imagen. Las futuras fichas no se ejecutan por lote; Dirección de Arte debe seleccionar y autorizar cada alcance antes de extenderlo.
