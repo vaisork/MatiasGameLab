@@ -106,7 +106,14 @@ jobs:
                       hq_file.write_bytes(png_bytes)
                       print(f"✅ PNG guardado: {hq_file.relative_to(ROOT)}")
 
-                      assets_dir = ROOT / "assets" / "vintage-telnet" / "creatures"
+                      # Decidir destino según asset_type
+                      asset_type = metadata.get("asset_type", "creature")
+                      if asset_type == "architecture":
+                          assets_subdir = "locations"
+                      else:
+                          assets_subdir = "creatures"
+
+                      assets_dir = ROOT / "assets" / "vintage-telnet" / assets_subdir
                       assets_dir.mkdir(parents=True, exist_ok=True)
                       webp_file = assets_dir / f"{asset_id}.webp"
 
