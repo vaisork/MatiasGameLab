@@ -32,7 +32,7 @@ def copy_request_to_version(request_path: Path, version_dir: Path) -> Path:
     return destination
 
 
-def run() -> int:
+def run_v2() -> int:
     if not os.environ.get("OPENAI_API_KEY", "").strip():
         raise RuntimeError("Falta el secreto OPENAI_API_KEY.")
     relative_request = os.environ.get("VT_ART_REQUEST_FILE", "").strip()
@@ -112,7 +112,7 @@ def run() -> int:
 
 if __name__ == "__main__":
     try:
-        raise SystemExit(run())
+        raise SystemExit(run_v2())
     except Exception as exc:
         # Never echo exception payloads: provider errors can carry request content.
         print(f"Fallo del piloto: {type(exc).__name__}.", file=sys.stderr)
