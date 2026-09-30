@@ -18,6 +18,7 @@ from .pipeline import (
     ROOT,
     VALID_STATES,
     _write_new_file,
+    estimate_cost_usd,
 )
 
 
@@ -72,6 +73,7 @@ def build_parser() -> argparse.ArgumentParser:
     status.add_argument("asset_id")
     status.add_argument("--set", choices=sorted(VALID_STATES), dest="state")
     status.add_argument("--version", help="Versión exacta, por ejemplo v002; sin esto se actualiza la más reciente.")
+    sub.add_parser("costs", help="Sumar el gasto real de todas las generaciones registradas hasta hoy.")
     return parser
 
 
@@ -86,6 +88,10 @@ def main(argv: list[str] | None = None) -> int:
             )
             for item in results:
                 print(f"{item['asset_id']} {item['version']}: {item['status']} · {item['image']}")
+            return 0
+
+        if args.command == "costs":
+            _print_costs(_collect_costs(DEFAULT_GENERATIONS))
             return 0
 
         model = args.model or os.environ.get("VT_ART_MODEL") or DEFAULT_MODEL
@@ -173,6 +179,8 @@ def _run_batch(
 
 def _summary_document(batch_id: str, asset_ids: list[str], attempted: int, completed: list[dict[str, Any]], failures: list[dict[str, Any]], model: str) -> dict[str, Any]:
     usage_items = [item.get("usage") for item in completed if item.get("usage")]
+    costs = [estimate_cost_usd(model, usage) for usage in usage_items]
+    known_costs = [c for c in costs if c is not None]
     return {
         "batch_id": batch_id,
         "timestamp_utc": datetime.now(timezone.utc).isoformat(),
@@ -184,7 +192,7 @@ def _summary_document(batch_id: str, asset_ids: list[str], attempted: int, compl
         "failures": failures,
         "usage": usage_items,
         "usage_totals": _sum_usage(usage_items),
-        "cost_estimate": None,
+        "cost_estimate": round(sum(known_costs), 6) if known_costs else None,
     }
 
 
@@ -236,6 +244,51 @@ def _print_summary(summary: dict[str, Any]) -> None:
         print(f"Resumen: {summary['summary_file']}")
     if not summary.get("usage"):
         print("Uso/costo exacto: la API no entregó datos de uso para este lote.")
+    elif summary.get("cost_estimate") is not None:
+        print(f"Costo real de este lote: ${summary['cost_estimate']:.4f} USD")
+
+
+def _collect_costs(generation_root: Path) -> dict[str, Any]:
+    """Recorre todo art_generations/ y calcula el gasto real. Si un
+    metadata.json viejo tiene cost_estimate en null, lo recalcula de su
+    propio usage/model_id en vez de pedir que alguien lo reescriba a mano."""
+    rows: list[dict[str, Any]] = []
+    unknown_model: list[str] = []
+    for metadata_path in sorted(generation_root.glob("*/v*/metadata.json")):
+        try:
+            data = json.loads(metadata_path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            continue
+        cost = data.get("cost_estimate")
+        if cost is None:
+            cost = estimate_cost_usd(data.get("model_id", ""), data.get("usage"))
+        if cost is None:
+            unknown_model.append(f"{data.get('asset_id')} {data.get('version')} ({data.get('model_id')})")
+        rows.append({
+            "asset_id": data.get("asset_id"),
+            "version": data.get("version"),
+            "model_id": data.get("model_id"),
+            "status": data.get("status"),
+            "cost_usd": cost,
+            "file": str(metadata_path.relative_to(ROOT)) if metadata_path.is_relative_to(ROOT) else str(metadata_path),
+        })
+    total = sum(row["cost_usd"] for row in rows if row["cost_usd"] is not None)
+    return {"rows": rows, "total_usd": round(total, 6), "unknown_model": unknown_model}
+
+
+def _print_costs(report: dict[str, Any]) -> None:
+    if not report["rows"]:
+        print("Todavía no hay generaciones registradas en art_generations/.")
+        return
+    for row in report["rows"]:
+        cost = f"${row['cost_usd']:.4f}" if row["cost_usd"] is not None else "sin precio conocido"
+        print(f"  {row['asset_id']} {row['version']} [{row['status']}]: {cost} ({row['model_id']})")
+    print(f"Generaciones registradas: {len(report['rows'])}")
+    print(f"Gasto total estimado: ${report['total_usd']:.4f} USD")
+    if report["unknown_model"]:
+        print("Sin precio conocido (no están en la tabla de tarifas, no se sumaron):")
+        for entry in report["unknown_model"]:
+            print(f"  - {entry}")
 
 
 def _sum_usage(items: list[dict[str, Any]]) -> dict[str, Any]:

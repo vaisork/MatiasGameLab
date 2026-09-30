@@ -41,6 +41,7 @@ jobs:
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           VT_ART_MODEL: gpt-image-2.5-flare
+          VT_ART_CRITIC_MODEL: gpt-5-mini
           VT_ART_REQUEST_FILE: ${{ inputs.request_file }}
           GITHUB_RUN_NUMBER: ${{ github.run_number }}
         run: python -m tools.vt_art.github_runner
@@ -51,6 +52,7 @@ jobs:
           RUN_ID: ${{ github.run_id }}
           ASSET_ID: ${{ steps.generation.outputs.asset_id }}
           VERSION: ${{ steps.generation.outputs.version }}
+          VERDICT: ${{ steps.generation.outputs.verdict }}
         run: |
           branch="art-drafts/run-${RUN_ID}"
           git config user.name "github-actions[bot]"
@@ -59,13 +61,30 @@ jobs:
           git add -f vintage-telnet/art_generations/
           git commit -m "Add ${ASSET_ID} art draft ${VERSION} from run ${RUN_ID}"
           git push origin "$branch"
-          cat > "$RUNNER_TEMP/art-draft-pr.md" <<'EOF'
-          Generated draft from the approved Velozanco Fase 2 brief.
-
-          This is a review-only draft. It is not approved or integrated into game runtime. Draft files are public because this repository is public. Remove unwanted drafts manually after review.
-          EOF
+          metadata_path="vintage-telnet/art_generations/${ASSET_ID}/${VERSION}/metadata.json"
+          {
+            echo "Generated draft for **${ASSET_ID} ${VERSION}** from its approved brief."
+            echo
+            if [ "$VERDICT" = "aprobado" ]; then
+              echo "**Autocrítica (visión, $(jq -r '.critique.model' "$metadata_path")): APROBADO.**"
+              echo
+              echo "$(jq -r '.critique.reasoning' "$metadata_path")"
+            elif [ "$VERDICT" = "NECESITA REVISIÓN" ]; then
+              echo "**Autocrítica (visión, $(jq -r '.critique.model' "$metadata_path")): NECESITA REVISIÓN.**"
+              echo
+              jq -r '.critique.issues[] | "- " + .' "$metadata_path"
+            else
+              echo "Autocrítica desactivada para esta corrida (\`VT_ART_CRITIC_MODEL\` vacío)."
+            fi
+            echo
+            echo "This is a review-only draft. It is not approved or integrated into game runtime. Draft files are public because this repository is public. Remove unwanted drafts manually after review."
+          } > "$RUNNER_TEMP/art-draft-pr.md"
+          title="Art draft: ${ASSET_ID} ${VERSION}"
+          if [ "$VERDICT" = "NECESITA REVISIÓN" ]; then
+            title="[NEEDS REVISION] ${title}"
+          fi
           gh pr create \
             --base main \
             --head "$branch" \
-            --title "Art draft: ${ASSET_ID} ${VERSION}" \
+            --title "$title" \
             --body-file "$RUNNER_TEMP/art-draft-pr.md"
