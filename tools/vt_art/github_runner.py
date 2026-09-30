@@ -89,7 +89,9 @@ def run() -> int:
             hq_path = ROOT / hq_result["image"]
             print(f"Generado PNG high-quality: {hq_path.relative_to(ROOT)}")
         except Exception as exc:
-            print(f"Advertencia: no se pudieron generar formatos adicionales: {exc}", file=sys.stderr)
+            print(f"⚠️  ERROR generando formatos adicionales: {exc}")
+            import traceback
+            traceback.print_exc()
 
     if output_file:
         with Path(output_file).open("a", encoding="utf-8") as stream:
