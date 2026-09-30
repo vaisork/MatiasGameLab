@@ -1,0 +1,60 @@
+{
+  "asset_id": "velozanco_edran",
+  "generation_id": "925b8b47-1e4c-4631-a5ff-2cbb1b551058",
+  "version": "v002",
+  "prompt": "Create a draft visual asset for Vintage Telnet using the supplied art direction.\n\nAsset type: creature\n\nTarget: Rediseño visual autorizado de fauna natural no combatiente de los Llanos de Edran; romper por completo la lectura dinosauriana antes de integrar a runtime.\n\nCanonical name: Velozanco de Edran\n\nArt direction: REDISEÑO VISUAL AUTORIZADO. Mantener la locomoción 4+2 y la adaptación al viento, pero abandonar la silueta previa. El Velozanco debe parecer un animal original de llanura construido alrededor de un cuerpo central bajo, ancho y suspendido, parecido en masa a una semilla o cápsula orgánica aplanada, no a un torso vertebrado con pecho, cuello y caderas. Seis apoyos nacen alrededor de la masa corporal: cuatro patas locomotoras largas y delgadas distribuidas en dos pares equilibrados y dos apoyos anteriores más cortos. Cabeza pequeña, roma y baja, parcialmente encajada bajo el borde frontal del cuerpo, sin cuello visible. Sin cola corporal reconocible: sólo dos cortos filamentos rígidos sensoriales emergen juntos del borde posterior. Sobre el lomo existe una banda membranosa blanda, baja y plegada por el viento, nunca una vela. Fauna ambiental, tímida y veloz. Paleta fría/neutra de Edran. CORRECCIÓN OBLIGATORIA TRAS v004: los dos apoyos anteriores cortos deben ser patas rígidas visibles que TERMINAN EN EL SUELO, con puntos de contacto inequívocos y pequeñas sombras de contacto; no pueden colgar del vientre. Los dos filamentos posteriores deben ser diminutos muñones sensoriales rígidos pegados al borde posterior, nunca prolongaciones tipo cola.\n\nAspect ratio: 1536x1024\n\nPrompt: Create one original alien-but-natural plains animal for Vintage Telnet, shown completely in a low three-quarter side view in the Llanos de Edran. DESIGN FROM A NEW SILHOUETTE; do not imitate the previous reference image. Start from a broad, low, flattened seed-pod-shaped CENTRAL BODY suspended above the ground. The body must read as one continuous oval/capsule mass with NO chest, NO pelvis emphasis, NO upright torso and NO visible neck. Arrange exactly SIX weight-bearing supports around this central mass: four very long, slender locomotor legs in two balanced pairs, with the front and rear pair similar in visual importance, plus two noticeably shorter auxiliary supports near the lower front quarter. All six are legs/supports, never arms. The tiny blunt head is tucked low into the underside/front rim of the central body, almost like a sensory prow: broad and rounded, no muzzle, no beak, no reptile skull, no neck. At the rear there is NO conventional fleshy tail. Instead, exactly TWO short rigid sensory filaments project directly from the rear edge of the body, each much shorter than a leg. Across the upper body lies a LOW SOFT DORSAL MEMBRANE like a flexible strip of skin pressed flat sideways by the crosswind; it is not triangular and does not rise above the body as a sail. Give the animal smooth matte hide with subtle longitudinal folds, no scales and no armor. Pose it moving laterally with all six supports clearly understandable and the body staying level, like a wind-adapted ground runner rather than a predator. Natural cautious non-combat behavior. Background subordinate: muted green-gray field margins, blue-gray overcast sky, brown-gray soil and only sparse pale straw. Cool neutral daylight. The finished silhouette should be recognizable even as a black shape: low central capsule, four balanced stilts, two short front supports, tiny tucked-under head, and two tiny rear filaments. CRITICAL GEOMETRY FOR NEXT ATTEMPT: show BOTH short anterior auxiliary legs fully from their attachment points to the ground. EACH of the two short front supports MUST visibly TOUCH the ground with a small foot/contact tip and a contact shadow; place them slightly separated left/right so neither is hidden by perspective or by a long leg. They are short rigid load-bearing legs, NOT dangling appendages. CRITICAL REAR: the TWO posterior sensory filaments must be TINY STUBS only, no more than roughly one-tenth of a long leg length, projecting only a very short distance from the rear body rim. They must NOT create any tail silhouette.\n\nCanon sources supplied by the Art Director: Issue #522 — Dirección de Arte, comentario del 2026-09-29; Autorización del usuario del 2026-09-30 para cambiar sustancialmente el arte de Velozanco\n\nDo not include: ABSOLUTELY NO dinosaur, theropod, raptor, ornithopod, bird, lizard or reptile silhouette; No conventional vertebrate body plan with distinct chest, long neck, pelvis-heavy rear or counterbalancing tail; No visible neck; head must be tiny, blunt and tucked into the lower front edge of the body; No snout, muzzle, beak, reptilian skull, teeth or predatory face; No conventional tail; only exactly two short rigid rear sensory filaments emerging directly from the body edge; No bipedal impression and no oversized rear legs; front and rear long leg pairs must carry equal visual weight; Exactly six weight-bearing supports: four long locomotor legs plus two short anterior supports; No insect exoskeleton, segmented abdomen, antennae or arthropod head; No feathers, wings, dorsal sail, rigid fin, spikes, horns or armor; No dominant ochre, amber, yellow or golden palette; pale straw may appear only as a minor background accent; No sunset or golden-hour lighting; No attack pose, glow, magic, readable text or HUD; No hanging front appendages: both short anterior supports must visibly reach and contact the ground; No hidden/occluded short supports: both must be separately readable with ground contact and contact shadow; Rear filaments must be tiny stubs, approximately <=10% of a long leg length; never tail-length\n\nIDs (reference only): velozanco_edran\n\nNotes: Rediseño fuerte autorizado tras fallos repetidos de lectura dinosauriana. Se retira deliberadamente la imagen de Fase 1 como referencia porque estaba anclando las nuevas generaciones a la silueta rechazada. Se conserva la función regional C0, el esquema locomotor 4+2, la adaptación al viento y los dos filamentos posteriores, pero se reconstruye la masa corporal desde una cápsula baja no vertebrada visualmente. No publicar hasta superar autocrítica. v004 narrowed the remaining failures to ground contact of both short anterior supports and excessive rear-filament length; next generation explicitly locks those geometries.\n\nIntento anterior rechazado por autocrítica: Image shows only four long legs; exactly six weight-bearing supports are required (four long + two short).; The two short anterior supports are missing or not visible as rigid legs ending on the ground with clear contact points and shadows.; Both short anterior supports are not separately readable — they must be individually visible with distinct ground-contact shadows, not hidden or hanging under the belly.; The two rear sensory filaments are too long and tail-like; they must be tiny rigid stubs roughly <=10% of a long leg length.",
+  "model_id": "gpt-image-2.5-flare",
+  "parameters": {
+    "quality": "low",
+    "size": "1536x1024",
+    "output_format": "png",
+    "output_compression": null,
+    "background": "opaque",
+    "reference_files": []
+  },
+  "timestamp_utc": "2026-09-30T23:58:05.847170+00:00",
+  "status": "draft",
+  "image": "vintage-telnet/art_generations/velozanco_edran/v002/velozanco_edran_v002.png",
+  "request_file": "vintage-telnet/art_requests/velozanco-edran-fase2.json",
+  "request_id": "req_c65df0cbabd149f18638314561593e35",
+  "usage": {
+    "input_tokens": 1519,
+    "input_tokens_details": {
+      "image_tokens": 0,
+      "text_tokens": 1519
+    },
+    "output_tokens": 158,
+    "total_tokens": 1677,
+    "output_tokens_details": {
+      "image_tokens": 158,
+      "text_tokens": 0
+    }
+  },
+  "cost_estimate": 0.012335,
+  "critique": {
+    "model": "gpt-5-mini",
+    "passes": false,
+    "issues": [
+      "Creature reads like a conventional vertebrate torso with visible chest/hip anatomy (appears as a mammal/quadruped body plan)",
+      "Hind legs are noticeably longer/visually dominant, creating a pelvis-heavy/counterbalancing impression",
+      "Rear sensory filaments are too long (visually exceed the required ~≤10% of a long leg; read like a short tail)",
+      "The two short anterior supports are too close/partially merged and are not clearly separately readable with distinct ground-contact and individual contact shadows",
+      "Head shows a small forward projection (snout-like profile) rather than an extremely tiny, blunt head tightly tucked under the front edge of the body"
+    ],
+    "reasoning": "I judged the image strictly against the brief. Although the central low, seed-like mass and a folded dorsal membrane are present and the palette is cold/neutral, the silhouette reads as a conventional vertebrate/quadruped: there are visible chest/hip regions and articulated limb joints, with the hind legs visually dominant and providing a counterbalance. The two rear filaments are longer than the brief allows and appear tail-like. The two short anterior supports are close together and partially visually merged, so they are not unambiguously separate rigid legs with distinct ground contact and shadows. The head also has a small forward projection rather than an extremely tiny blunt form tucked entirely under the body. These issues together violate the required non-vertebrate, six-support, and filament-length constraints.",
+    "usage": {
+      "input_tokens": 2650,
+      "input_tokens_details": {
+        "cache_write_tokens": 0,
+        "cached_tokens": 0
+      },
+      "output_tokens": 2237,
+      "output_tokens_details": {
+        "reasoning_tokens": 1920
+      },
+      "total_tokens": 4887
+    },
+    "cost_estimate": 0.005136,
+    "attempt": 2
+  }
+}
