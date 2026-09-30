@@ -6,10 +6,12 @@ from pathlib import Path
 import shutil
 import sys
 
+from .critique import OpenAIVisionCritic
 from .pipeline import ArtPipeline, ArtRequest, OpenAIImageClient, ROOT
 
 
 REQUEST_ROOT = ROOT / "vintage-telnet" / "art_requests"
+DEFAULT_CRITIC_MODEL = "gpt-5-mini"
 
 
 def resolve_request_path(relative_request: str) -> Path:
@@ -43,15 +45,30 @@ def run() -> int:
             version_hint = f"v{int(os.environ['GITHUB_RUN_NUMBER']):03d}"
         except ValueError as exc:
             raise RuntimeError("GITHUB_RUN_NUMBER no es numérico.") from exc
-    result = ArtPipeline(OpenAIImageClient(os.environ["OPENAI_API_KEY"]), model).generate(request, version_hint)
+    api_key = os.environ["OPENAI_API_KEY"]
+    pipeline = ArtPipeline(OpenAIImageClient(api_key), model)
+    # La autocrítica es el camino por defecto. Puede reintentar una vez, así
+    # que reclama sus propias versiones por auto-incremento (v001, v002...);
+    # version_hint (de GITHUB_RUN_NUMBER) solo se usa si se apaga la crítica
+    # explícitamente con VT_ART_CRITIC_MODEL="".
+    critic_model = os.environ.get("VT_ART_CRITIC_MODEL", DEFAULT_CRITIC_MODEL).strip()
+    if critic_model:
+        result = pipeline.generate_with_critique(request, OpenAIVisionCritic(api_key), critic_model)
+    else:
+        result = pipeline.generate(request, version_hint)
+        result["critique"] = None
     image_path = ROOT / result["image"]
     version_dir = image_path.parent
     copy_request_to_version(request_path, version_dir)
     output_file = os.environ.get("GITHUB_OUTPUT")
+    critique = result.get("critique")
+    verdict = "sin autocrítica" if critique is None else ("aprobado" if critique["passes"] else "NECESITA REVISIÓN")
     if output_file:
         with Path(output_file).open("a", encoding="utf-8") as stream:
-            stream.write(f"asset_id={request.asset_id}\nversion={result['version']}\n")
-    print(f"Generación terminada: {request.asset_id} {result['version']} (draft).")
+            stream.write(
+                f"asset_id={request.asset_id}\nversion={result['version']}\nverdict={verdict}\n"
+            )
+    print(f"Generación terminada: {request.asset_id} {result['version']} (draft, autocrítica: {verdict}).")
     print(f"Imagen y metadata: {version_dir.relative_to(ROOT)}")
     print("El workflow propondrá una PR de borrador; no aprobará ni integrará el arte al juego.")
     return 0

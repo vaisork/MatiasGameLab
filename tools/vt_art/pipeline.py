@@ -5,7 +5,7 @@ import json
 import os
 import re
 import uuid
-from dataclasses import dataclass
+from dataclasses import dataclass, replace as _dataclass_replace
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Protocol
@@ -15,6 +15,36 @@ ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_GENERATIONS = ROOT / "vintage-telnet" / "art_generations"
 ASSET_ID_RE = re.compile(r"^[a-zA-Z0-9][a-zA-Z0-9_-]{0,79}$")
 VALID_STATES = {"draft", "review", "approved", "rejected", "published"}
+
+# USD por millón de tokens. Confirmado contra developers.openai.com/api/docs
+# (2026-09-30). Un modelo ausente de esta tabla no debe hacer fallar la
+# generación: cost_estimate simplemente queda en None.
+TOKEN_PRICING_USD_PER_MILLION: dict[str, dict[str, float]] = {
+    "gpt-image-2.5-flare": {"text_input": 5.00, "image_input": 8.00, "image_output": 30.00},
+    "gpt-image-2.5-sunburst": {"text_input": 5.00, "image_input": 8.00, "image_output": 30.00},
+}
+
+
+def estimate_cost_usd(model: str, usage: dict[str, Any] | None) -> float | None:
+    """Costo real en USD a partir de la tabla de precios oficial. None si el
+    modelo o el uso no se reconocen -- nunca inventa un precio."""
+    pricing = TOKEN_PRICING_USD_PER_MILLION.get(model)
+    if not pricing or not usage:
+        return None
+    input_details = usage.get("input_tokens_details") or {}
+    output_details = usage.get("output_tokens_details") or {}
+    try:
+        text_in = float(input_details.get("text_tokens", 0) or 0)
+        image_in = float(input_details.get("image_tokens", 0) or 0)
+        image_out = float(output_details.get("image_tokens", 0) or 0)
+    except (TypeError, ValueError):
+        return None
+    cost = (
+        text_in * pricing["text_input"]
+        + image_in * pricing["image_input"]
+        + image_out * pricing["image_output"]
+    ) / 1_000_000
+    return round(cost, 6)
 
 
 class ArtPipelineError(Exception):
@@ -228,10 +258,59 @@ class ArtPipeline:
             "request_file": str(request.source_request.relative_to(ROOT)) if request.source_request.is_relative_to(ROOT) else request.source_request.name,
             "request_id": request_id,
             "usage": usage,
-            "cost_estimate": None,
+            "cost_estimate": estimate_cost_usd(self.model, usage),
         }
         _write_new_file(version_dir / "metadata.json", (json.dumps(metadata, ensure_ascii=False, indent=2) + "\n").encode())
         return metadata
+
+    def generate_with_critique(
+        self,
+        request: ArtRequest,
+        critic: Any,
+        critic_model: str,
+        max_attempts: int = 2,
+    ) -> dict[str, Any]:
+        """Genera, se autoevalúa con visión (nunca el modelo de imagen; un
+        chat/modelo de texto+visión aparte), y si no cumple reintenta una vez
+        con las fallas encontradas añadidas al encargo. Nunca borra ni
+        sobrescribe un intento anterior -- cada uno queda como su propia
+        versión en disco, con su propio metadata.json."""
+        from .critique import critique_generation  # import diferido: evita ciclo con este módulo
+
+        if max_attempts < 1:
+            raise ArtPipelineError("max_attempts debe ser al menos 1.")
+        attempts: list[dict[str, Any]] = []
+        current_request = request
+        for attempt_number in range(1, max_attempts + 1):
+            metadata = self.generate(current_request)
+            image_path = ROOT / metadata["image"]
+            result = critique_generation(
+                critic, critic_model, current_request, image_path.read_bytes(), current_request.output_format,
+            )
+            metadata["critique"] = {
+                "model": result.model,
+                "passes": result.passes,
+                "issues": list(result.issues),
+                "reasoning": result.reasoning,
+                "usage": result.usage,
+                "cost_estimate": result.cost_estimate,
+                "attempt": attempt_number,
+            }
+            _atomic_replace(
+                image_path.parent / "metadata.json",
+                (json.dumps(metadata, ensure_ascii=False, indent=2) + "\n").encode(),
+            )
+            attempts.append(metadata)
+            if result.passes or attempt_number == max_attempts:
+                break
+            extra_note = "Intento anterior rechazado por autocrítica: " + "; ".join(result.issues)
+            current_request = _dataclass_replace(
+                current_request,
+                notes=(f"{current_request.notes}\n\n{extra_note}" if current_request.notes else extra_note),
+            )
+        final = dict(attempts[-1])
+        final["attempts"] = attempts
+        return final
 
     def status(self, output_destination: Path, asset_id: str, state: str | None = None, version: str | None = None) -> list[dict[str, Any]]:
         if not ASSET_ID_RE.fullmatch(asset_id):

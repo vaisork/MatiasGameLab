@@ -84,6 +84,83 @@ class ArtPipelineTests(unittest.TestCase):
         self.assertEqual(first["status"], "draft")
         self.assertEqual(first["request_id"], "req-1")
 
+    def test_cost_estimate_uses_official_token_rates(self):
+        class PricedClient:
+            def generate(self, *, prompt, model, request):
+                usage = {
+                    "input_tokens_details": {"text_tokens": 1_000_000, "image_tokens": 0},
+                    "output_tokens_details": {"image_tokens": 1_000_000, "text_tokens": 0},
+                }
+                return b"fake image bytes", usage, "req-priced"
+        request = self.make_request()
+        pipeline = ArtPipeline(PricedClient(), "gpt-image-2.5-flare")
+        result = pipeline.generate(request)
+        self.assertAlmostEqual(result["cost_estimate"], 5.00 + 30.00)
+
+    def test_cost_estimate_is_none_for_unrecognized_model(self):
+        request = self.make_request()
+        pipeline = ArtPipeline(FakeClient(), "some-future-model")
+        result = pipeline.generate(request)
+        self.assertIsNone(result["cost_estimate"])
+
+    def test_generate_with_critique_stops_at_first_pass(self):
+        class FakeCritic:
+            def __init__(self):
+                self.calls = []
+
+            def critique(self, *, image_bytes, image_format, brief, model):
+                self.calls.append(brief)
+                return {"passes": True, "issues": [], "reasoning": "ok"}, {"input_tokens": 10, "output_tokens": 5}
+
+        request = self.make_request()
+        pipeline = ArtPipeline(FakeClient(), "gpt-image-2.5-flare")
+        critic = FakeCritic()
+        result = pipeline.generate_with_critique(request, critic, "gpt-5-mini", max_attempts=2)
+        self.assertEqual(len(critic.calls), 1)
+        self.assertEqual(len(result["attempts"]), 1)
+        self.assertTrue(result["critique"]["passes"])
+        self.assertEqual(result["version"], "v001")
+        saved = json.loads((request.output_destination / "valden_architecture" / "v001" / "metadata.json").read_text())
+        self.assertTrue(saved["critique"]["passes"])
+
+    def test_generate_with_critique_retries_once_then_stops(self):
+        class FailThenPassCritic:
+            def __init__(self):
+                self.calls = 0
+
+            def critique(self, *, image_bytes, image_format, brief, model):
+                self.calls += 1
+                if self.calls == 1:
+                    return {"passes": False, "issues": ["Has wings"], "reasoning": "bad"}, {"input_tokens": 1, "output_tokens": 1}
+                return {"passes": True, "issues": [], "reasoning": "fixed"}, {"input_tokens": 1, "output_tokens": 1}
+
+        request = self.make_request()
+        pipeline = ArtPipeline(FakeClient(), "gpt-image-2.5-flare")
+        critic = FailThenPassCritic()
+        result = pipeline.generate_with_critique(request, critic, "gpt-5-mini", max_attempts=2)
+        self.assertEqual(critic.calls, 2)
+        self.assertEqual([a["version"] for a in result["attempts"]], ["v001", "v002"])
+        self.assertTrue(result["critique"]["passes"])
+        first_metadata = json.loads((request.output_destination / "valden_architecture" / "v001" / "metadata.json").read_text())
+        self.assertFalse(first_metadata["critique"]["passes"])
+
+    def test_generate_with_critique_gives_up_after_max_attempts(self):
+        class AlwaysFailsCritic:
+            def __init__(self):
+                self.calls = 0
+
+            def critique(self, *, image_bytes, image_format, brief, model):
+                self.calls += 1
+                return {"passes": False, "issues": ["Still wrong"], "reasoning": "bad"}, {}
+
+        request = self.make_request()
+        pipeline = ArtPipeline(FakeClient(), "gpt-image-2.5-flare")
+        critic = AlwaysFailsCritic()
+        result = pipeline.generate_with_critique(request, critic, "gpt-5-mini", max_attempts=2)
+        self.assertEqual(critic.calls, 2)
+        self.assertFalse(result["critique"]["passes"])
+        self.assertEqual(len(result["attempts"]), 2)
+
     def test_explicit_version_hint_is_unique_and_never_overwrites(self):
         request = self.make_request()
         client = FakeClient()
@@ -253,6 +330,49 @@ class ArtPipelineTests(unittest.TestCase):
     def test_missing_api_key_fails_without_calling_api_or_echoing_key(self):
         with patch.dict("os.environ", {}, clear=True), patch("tools.vt_art.cli.ENV_FILE", self.root / "missing.env"):
             self.assertEqual(main(["generate", str(self.requests / "valden.json")]), 2)
+
+
+class CostsCommandTests(unittest.TestCase):
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory()
+        self.generations = Path(self.temp.name) / "art_generations"
+
+    def tearDown(self):
+        self.temp.cleanup()
+
+    def write_metadata(self, asset_id, version, model_id, usage, cost_estimate, status="draft"):
+        version_dir = self.generations / asset_id / version
+        version_dir.mkdir(parents=True)
+        (version_dir / "metadata.json").write_text(json.dumps({
+            "asset_id": asset_id, "version": version, "model_id": model_id,
+            "status": status, "usage": usage, "cost_estimate": cost_estimate,
+        }), encoding="utf-8")
+
+    def test_sums_precomputed_and_recomputes_missing_cost_estimates(self):
+        from tools.vt_art.cli import _collect_costs
+        self.write_metadata("velozanco_edran", "v001", "gpt-image-2.5-flare", {
+            "input_tokens_details": {"text_tokens": 398, "image_tokens": 1536},
+            "output_tokens_details": {"image_tokens": 158, "text_tokens": 0},
+        }, cost_estimate=None)  # como quedaron las dos piezas reales ya generadas
+        self.write_metadata("agujaumbria_nhal", "v002", "gpt-image-2.5-flare", {}, cost_estimate=0.0199)
+        report = _collect_costs(self.generations)
+        self.assertEqual(len(report["rows"]), 2)
+        self.assertGreater(report["total_usd"], 0)
+        self.assertEqual(report["unknown_model"], [])
+
+    def test_unknown_model_is_reported_not_silently_dropped(self):
+        from tools.vt_art.cli import _collect_costs
+        self.write_metadata("mystery", "v001", "some-future-model", {"input_tokens": 10}, cost_estimate=None)
+        report = _collect_costs(self.generations)
+        self.assertEqual(report["total_usd"], 0)
+        self.assertEqual(len(report["unknown_model"]), 1)
+
+    def test_empty_generations_directory_reports_nothing(self):
+        from tools.vt_art.cli import _collect_costs
+        self.generations.mkdir()
+        report = _collect_costs(self.generations)
+        self.assertEqual(report["rows"], [])
+        self.assertEqual(report["total_usd"], 0)
 
 
 if __name__ == "__main__":
