@@ -1,0 +1,43 @@
+name: VT Art — Publish Approved to Assets
+
+on:
+  schedule:
+    - cron: '0 * * * *'  # Cada hora
+  workflow_dispatch:  # Manual también
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Install cwebp
+        run: sudo apt-get update && sudo apt-get install -y webp
+
+      - name: Fetch all branches
+        run: git fetch --all
+
+      - name: Publish approved images to assets
+        run: python tools/vt_art/publish_approved.py
+
+      - name: Commit and push if changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet HEAD -- assets/vintage-telnet/creatures/; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git add assets/vintage-telnet/creatures/
+          git commit -m "vt-art: publish approved images to assets (auto)"
+          git push origin main
