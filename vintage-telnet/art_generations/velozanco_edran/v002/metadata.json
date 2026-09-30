@@ -1,0 +1,60 @@
+{
+  "asset_id": "velozanco_edran",
+  "generation_id": "8a5c03c9-1172-44f9-8bcf-a5ba5bec59d9",
+  "version": "v002",
+  "prompt": "Create a draft visual asset for Vintage Telnet using the supplied art direction.\n\nAsset type: creature\n\nTarget: Borrador de escena para fauna de los Llanos de Edran; no integrar a runtime.\n\nCanonical name: Velozanco de Edran\n\nArt direction: Fase 2 final usando como referencia obligatoria la Fase 1 aprobada. Mantener congelada la anatomía: cuatro patas locomotoras largas, dos apoyos anteriores cortos, torso suspendido, lámina dorsal flexible baja y cola corta bifurcada en dos filamentos rígidos.\n\nAspect ratio: 1536x1024\n\nPrompt: Create one 1536x1024 landscape scene with safe center. The Velozanco is crossing an open field boundary in Edran in a strong crosswind. Show the complete creature in a low three-quarter side view: its four long locomotor legs are running, and its two short front supports are tucked but still clearly legible. Its flexible dorsal membrane is flattened by the wind. Preserve exactly the approved reference anatomy and proportions. Subordinate background only: field stubble, desaturated agricultural greens, pale wheat, blue-gray sky. Neutral daylight.\n\nCanon sources supplied by the Art Director: Issue #522 — Dirección de Arte, comentario del 2026-09-29\n\nDo not include: No feathers or wings; Do not resemble a dinosaur or giant insect; No glow or magic; No dominant ochre or golden palette; No readable text or HUD; Do not alter the frozen six-limb 4+2 anatomy, suspended torso, dorsal membrane, or bifilament tail\n\nIDs (reference only): velozanco_edran\n\nNotes: Piloto #559/#561: una única generación. No crear variantes hasta revisión del Director de Arte.\n\nIntento anterior rechazado por autocrítica: Cola demasiado larga; la especificación pide una cola corta bifilada en dos filamentos rígidos.; Silueta y postura recuerdan a un dinosaurio (rasgos terópodos en cabeza, cuello y postura), debe evitar parecer un dinosaurio.; La lámina dorsal tiene crestas/espinas demasiadas pronunciadas y rígidas; debe leerse como una lámina baja y flexible.\n\nUse the attached reference images according to the art direction and constraints above.",
+  "model_id": "gpt-image-2.5-flare",
+  "parameters": {
+    "quality": "low",
+    "size": "1536x1024",
+    "output_format": "png",
+    "output_compression": null,
+    "background": "opaque",
+    "reference_files": [
+      "vintage-telnet/art_requests/velozanco-edran-fase1-anatomia.png"
+    ]
+  },
+  "timestamp_utc": "2026-09-30T09:13:15.720906+00:00",
+  "status": "draft",
+  "image": "vintage-telnet/art_generations/velozanco_edran/v002/velozanco_edran_v002.png",
+  "request_file": "vintage-telnet/art_requests/velozanco-edran-fase2.json",
+  "request_id": "req_08909ea2cd0b4147865bd616a6c3fce8",
+  "usage": {
+    "input_tokens": 2025,
+    "input_tokens_details": {
+      "image_tokens": 1536,
+      "text_tokens": 489
+    },
+    "output_tokens": 158,
+    "total_tokens": 2183,
+    "output_tokens_details": {
+      "image_tokens": 158,
+      "text_tokens": 0
+    }
+  },
+  "cost_estimate": 0.019473,
+  "critique": {
+    "model": "gpt-5-mini",
+    "passes": false,
+    "issues": [
+      "La criatura se parece claramente a un dinosaurio (perfil y proporciones recrean una silueta dinosauriana).",
+      "Cola demasiado larga — debe ser corta y terminada en dos filamentos rígidos, aquí los filamentos son excesivamente largos.",
+      "Paleta dominante ocres/dorados en la escena (campo y bandas doradas en el animal) — debe evitarse un tono ocre/dorado dominante."
+    ],
+    "reasoning": "El diseño muestra seis extremidades y una lámina dorsal baja y el torso suspendido, pero la silueta general (cabeza, cuerpo robusto, postura y proporciones de patas) recuerda a un dinosaurio. La cola está formada por dos filamentos muy largos en lugar de una cola corta bifilamentada rígida requerida. Además la imagen tiene una dominante de tonos ocres/dorados (suelo y resaltos dorados en el animal) que viola la restricción de no usar una paleta ocre/dorada dominante.",
+    "usage": {
+      "input_tokens": 2155,
+      "input_tokens_details": {
+        "cache_write_tokens": 0,
+        "cached_tokens": 0
+      },
+      "output_tokens": 1758,
+      "output_tokens_details": {
+        "reasoning_tokens": 1536
+      },
+      "total_tokens": 3913
+    },
+    "cost_estimate": 0.004055,
+    "attempt": 2
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "asset_id": "velozanco_edran",
+  "asset_type": "creature",
+  "target": "Borrador de escena para fauna de los Llanos de Edran; no integrar a runtime.",
+  "canonical_name": "Velozanco de Edran",
+  "art_direction": "Fase 2 final usando como referencia obligatoria la Fase 1 aprobada. Mantener congelada la anatomía: cuatro patas locomotoras largas, dos apoyos anteriores cortos, torso suspendido, lámina dorsal flexible baja y cola corta bifurcada en dos filamentos rígidos.",
+  "prompt": "Create one 1536x1024 landscape scene with safe center. The Velozanco is crossing an open field boundary in Edran in a strong crosswind. Show the complete creature in a low three-quarter side view: its four long locomotor legs are running, and its two short front supports are tucked but still clearly legible. Its flexible dorsal membrane is flattened by the wind. Preserve exactly the approved reference anatomy and proportions. Subordinate background only: field stubble, desaturated agricultural greens, pale wheat, blue-gray sky. Neutral daylight.",
+  "references": ["velozanco-edran-fase1-anatomia.png"],
+  "negative_constraints": [
+    "No feathers or wings",
+    "Do not resemble a dinosaur or giant insect",
+    "No glow or magic",
+    "No dominant ochre or golden palette",
+    "No readable text or HUD",
+    "Do not alter the frozen six-limb 4+2 anatomy, suspended torso, dorsal membrane, or bifilament tail"
+  ],
+  "aspect_ratio": "1536x1024",
+  "output_destination": "vintage-telnet/art_generations",
+  "status": "draft",
+  "canon_sources": ["Issue #522 — Dirección de Arte, comentario del 2026-09-29"],
+  "creature_id": "velozanco_edran",
+  "notes": "Piloto #559/#561: una única generación. No crear variantes hasta revisión del Director de Arte.",
+  "output_format": "png",
+  "background": "opaque"
+}

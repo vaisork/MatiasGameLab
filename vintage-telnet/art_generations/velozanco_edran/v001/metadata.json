@@ -1,0 +1,60 @@
+{
+  "asset_id": "velozanco_edran",
+  "generation_id": "4b8bff51-c4b2-417d-b87b-50304699747b",
+  "version": "v001",
+  "prompt": "Create a draft visual asset for Vintage Telnet using the supplied art direction.\n\nAsset type: creature\n\nTarget: Borrador de escena para fauna de los Llanos de Edran; no integrar a runtime.\n\nCanonical name: Velozanco de Edran\n\nArt direction: Fase 2 final usando como referencia obligatoria la Fase 1 aprobada. Mantener congelada la anatomía: cuatro patas locomotoras largas, dos apoyos anteriores cortos, torso suspendido, lámina dorsal flexible baja y cola corta bifurcada en dos filamentos rígidos.\n\nAspect ratio: 1536x1024\n\nPrompt: Create one 1536x1024 landscape scene with safe center. The Velozanco is crossing an open field boundary in Edran in a strong crosswind. Show the complete creature in a low three-quarter side view: its four long locomotor legs are running, and its two short front supports are tucked but still clearly legible. Its flexible dorsal membrane is flattened by the wind. Preserve exactly the approved reference anatomy and proportions. Subordinate background only: field stubble, desaturated agricultural greens, pale wheat, blue-gray sky. Neutral daylight.\n\nCanon sources supplied by the Art Director: Issue #522 — Dirección de Arte, comentario del 2026-09-29\n\nDo not include: No feathers or wings; Do not resemble a dinosaur or giant insect; No glow or magic; No dominant ochre or golden palette; No readable text or HUD; Do not alter the frozen six-limb 4+2 anatomy, suspended torso, dorsal membrane, or bifilament tail\n\nIDs (reference only): velozanco_edran\n\nNotes: Piloto #559/#561: una única generación. No crear variantes hasta revisión del Director de Arte.\n\nUse the attached reference images according to the art direction and constraints above.",
+  "model_id": "gpt-image-2.5-flare",
+  "parameters": {
+    "quality": "low",
+    "size": "1536x1024",
+    "output_format": "png",
+    "output_compression": null,
+    "background": "opaque",
+    "reference_files": [
+      "vintage-telnet/art_requests/velozanco-edran-fase1-anatomia.png"
+    ]
+  },
+  "timestamp_utc": "2026-09-30T09:12:47.537642+00:00",
+  "status": "draft",
+  "image": "vintage-telnet/art_generations/velozanco_edran/v001/velozanco_edran_v001.png",
+  "request_file": "vintage-telnet/art_requests/velozanco-edran-fase2.json",
+  "request_id": "req_52c9e2da78bc4f768536cbd6ed14aadc",
+  "usage": {
+    "input_tokens": 1934,
+    "input_tokens_details": {
+      "image_tokens": 1536,
+      "text_tokens": 398
+    },
+    "output_tokens": 158,
+    "total_tokens": 2092,
+    "output_tokens_details": {
+      "image_tokens": 158,
+      "text_tokens": 0
+    }
+  },
+  "cost_estimate": 0.019018,
+  "critique": {
+    "model": "gpt-5-mini",
+    "passes": false,
+    "issues": [
+      "Cola demasiado larga; la especificación pide una cola corta bifilada en dos filamentos rígidos.",
+      "Silueta y postura recuerdan a un dinosaurio (rasgos terópodos en cabeza, cuello y postura), debe evitar parecer un dinosaurio.",
+      "La lámina dorsal tiene crestas/espinas demasiadas pronunciadas y rígidas; debe leerse como una lámina baja y flexible."
+    ],
+    "reasoning": "La criatura cumple con la anatomía 4+2 (cuatro patas locomotoras largas y dos apoyos anteriores cortos) y el torso aparece suspendido, pero hay tres incumplimientos visibles: la cola es visiblemente larga en lugar de corta, la silueta/postura general evocan un dinosaurio por la forma de la cabeza, cuello y colocación de las patas, y la lámina dorsal muestra crestas rígidas y prominentes en vez de una lámina baja y flexible. No se observan plumas/alas, brillo mágico, texto/HUD ni una paleta dominada por ocres/dorados.",
+    "usage": {
+      "input_tokens": 2155,
+      "input_tokens_details": {
+        "cache_write_tokens": 0,
+        "cached_tokens": 0
+      },
+      "output_tokens": 1522,
+      "output_tokens_details": {
+        "reasoning_tokens": 1280
+      },
+      "total_tokens": 3677
+    },
+    "cost_estimate": 0.003583,
+    "attempt": 1
+  }
+}
