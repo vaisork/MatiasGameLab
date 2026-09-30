@@ -21,8 +21,8 @@ jobs:
         with:
           python-version: '3.13'
 
-      - name: Install cwebp
-        run: sudo apt-get update -qq && sudo apt-get install -y -qq libwebp-dev
+      - name: Install Pillow for image conversion
+        run: pip install -q Pillow
 
       - name: Fetch all art-drafts branches
         run: git fetch origin 'refs/heads/art-drafts/*:refs/remotes/origin/art-drafts/*'
@@ -32,8 +32,9 @@ jobs:
           python3 << 'PYTHON_SCRIPT'
           import json
           import subprocess
-          import shutil
           from pathlib import Path
+          from PIL import Image
+          import io
 
           ROOT = Path.cwd()
           published = []
@@ -109,18 +110,14 @@ jobs:
                       assets_dir.mkdir(parents=True, exist_ok=True)
                       webp_file = assets_dir / f"{asset_id}.webp"
 
-                      with open("/tmp/png_temp", "wb") as f:
-                          f.write(png_bytes)
-
-                      result = subprocess.run(
-                          ["/usr/bin/cwebp", "-q", "85", "/tmp/png_temp", "-o", str(webp_file)],
-                          capture_output=True,
-                      )
-                      if result.returncode != 0:
-                          print(f"❌ Falló WebP para {asset_id}")
+                      try:
+                          # Convertir PNG → WebP con Pillow
+                          png_img = Image.open(io.BytesIO(png_bytes))
+                          png_img.save(str(webp_file), "WebP", quality=85)
+                          print(f"✅ WebP creado: {webp_file.relative_to(ROOT)}")
+                      except Exception as webp_err:
+                          print(f"❌ Falló WebP para {asset_id}: {webp_err}")
                           continue
-
-                      print(f"✅ WebP creado: {webp_file.relative_to(ROOT)}")
                       published.append((asset_id, version))
 
                   except Exception as e:
