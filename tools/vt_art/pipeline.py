@@ -312,6 +312,26 @@ class ArtPipeline:
         final["attempts"] = attempts
         return final
 
+    def generate_with_params(
+        self,
+        base_request: ArtRequest,
+        quality: str | None = None,
+        output_format: str | None = None,
+        output_compression: int | None = None,
+    ) -> dict[str, Any]:
+        """Genera una imagen usando la ficha base pero con parámetros
+        sobrescritos (quality, output_format, output_compression). Usa el
+        mismo asset_id/version_hint. No ejecuta autocrítica."""
+        overrides = {}
+        if quality is not None:
+            overrides["quality"] = quality
+        if output_format is not None:
+            overrides["output_format"] = output_format
+        if output_compression is not None:
+            overrides["output_compression"] = output_compression
+        request = _dataclass_replace(base_request, **overrides)
+        return self.generate(request)
+
     def status(self, output_destination: Path, asset_id: str, state: str | None = None, version: str | None = None) -> list[dict[str, Any]]:
         if not ASSET_ID_RE.fullmatch(asset_id):
             raise ArtPipelineError("asset_id contiene caracteres no permitidos.")

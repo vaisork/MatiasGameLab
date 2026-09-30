@@ -63,6 +63,34 @@ def run() -> int:
     output_file = os.environ.get("GITHUB_OUTPUT")
     critique = result.get("critique")
     verdict = "sin autocrítica" if critique is None else ("aprobado" if critique["passes"] else "NECESITA REVISIÓN")
+
+    # Si la autocrítica aprobó, generar formatos adicionales:
+    # - WebP para assets/ (quality:low, compression:85)
+    # - PNG high para archivo maestro (quality:high)
+    if critique and critique.get("passes"):
+        try:
+            # WebP para assets/
+            webp_result = pipeline.generate_with_params(
+                request,
+                quality="low",
+                output_format="webp",
+                output_compression=85,
+            )
+            webp_path = ROOT / webp_result["image"]
+            print(f"Generado WebP: {webp_path.relative_to(ROOT)}")
+
+            # PNG high para archive (driver later)
+            hq_result = pipeline.generate_with_params(
+                request,
+                quality="high",
+                output_format="png",
+                output_compression=None,
+            )
+            hq_path = ROOT / hq_result["image"]
+            print(f"Generado PNG high-quality: {hq_path.relative_to(ROOT)}")
+        except Exception as exc:
+            print(f"Advertencia: no se pudieron generar formatos adicionales: {exc}", file=sys.stderr)
+
     if output_file:
         with Path(output_file).open("a", encoding="utf-8") as stream:
             stream.write(
