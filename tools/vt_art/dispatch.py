@@ -46,7 +46,8 @@ def dispatch(request_file: str, *, runner=_run) -> None:
 
     # Check the exact request on main before asking GitHub to start a billable run.
     request_check = runner([
-        "gh", "api", f"repos/{REPOSITORY}/contents/{request_file}",
+        "gh", "api", "--method", "GET",
+        f"repos/{REPOSITORY}/contents/{request_file}",
         "--field", "ref=main", "--jq", ".path",
     ])
     if request_check.returncode or request_check.stdout.strip() != request_file:
