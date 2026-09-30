@@ -21,6 +21,7 @@
     "No glow, magic, attack pose, readable text or HUD"
   ],
   "aspect_ratio": "1536x1024",
+  "quality": "high",
   "output_destination": "vintage-telnet/art_generations",
   "status": "draft",
   "canon_sources": [
