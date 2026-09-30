@@ -67,8 +67,11 @@ def run() -> int:
     # Si la autocrítica aprobó, generar formatos adicionales:
     # - WebP para assets/ (quality:low, compression:85)
     # - PNG high para archivo maestro (quality:high)
+    print(f"DEBUG: critique exists = {critique is not None}, passes = {critique.get('passes') if critique else 'N/A'}")
     if critique and critique.get("passes"):
+        print("DEBUG: Entrando a bloque de generación de formatos adicionales")
         try:
+            print("DEBUG: Intentando generar WebP...")
             # WebP para assets/
             webp_result = pipeline.generate_with_params(
                 request,
@@ -77,8 +80,9 @@ def run() -> int:
                 output_compression=85,
             )
             webp_path = ROOT / webp_result["image"]
-            print(f"Generado WebP: {webp_path.relative_to(ROOT)}")
+            print(f"✅ Generado WebP: {webp_path.relative_to(ROOT)}")
 
+            print("DEBUG: Intentando generar PNG high-quality...")
             # PNG high para archive (driver later)
             hq_result = pipeline.generate_with_params(
                 request,
@@ -87,11 +91,13 @@ def run() -> int:
                 output_compression=None,
             )
             hq_path = ROOT / hq_result["image"]
-            print(f"Generado PNG high-quality: {hq_path.relative_to(ROOT)}")
+            print(f"✅ Generado PNG high-quality: {hq_path.relative_to(ROOT)}")
         except Exception as exc:
-            print(f"⚠️  ERROR generando formatos adicionales: {exc}")
+            print(f"❌ ERROR generando formatos adicionales: {type(exc).__name__}: {exc}")
             import traceback
             traceback.print_exc()
+    else:
+        print("DEBUG: No entrando a bloque (critique no aprobó o no existe)")
 
     if output_file:
         with Path(output_file).open("a", encoding="utf-8") as stream:
