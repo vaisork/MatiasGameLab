@@ -1,0 +1,36 @@
+{
+  "asset_id": "lamelon_korven",
+  "generation_id": "914d45cb-4031-4da9-8100-d42fc80a0e0b",
+  "version": "v003",
+  "prompt": "Create a draft visual asset for Vintage Telnet using the supplied art direction.\n\nAsset type: creature\n\nTarget: Borrador de fauna natural de los Pedrales de Korven para validar silueta y anatomía; no integrar a runtime.\n\nCanonical name: Lamelón\n\nArt direction: Escena de fauna con anatomía completamente visible. Un adulto muy bajo, ancho y ovalado sobre placas de roca fracturada; exactamente seis apoyos cortos en tres pares, cabeza frontal pequeña casi integrada al tronco, flancos laminares orgánicos flexibles plegados contra el sustrato y cola casi ausente. Cámara lateral tres cuartos baja. Debe sentirse como raspador estable de roca, orgánico y no agresivo, sin convertir sus láminas en alas, cuchillas o armadura.\n\nAspect ratio: landscape\n\nPrompt: Create one landscape wildlife scene in the Pedrales de Korven. Show one complete adult Lamelón, 60–80 cm long, moving slowly over fractured exposed rock while scraping soft organic deposits or lichen. Its body is extremely low, broad and oval. It has exactly six short supports arranged in three pairs, with broad feet adapted to grip rock. The small low frontal head is almost integrated into the trunk, with a small underside scraping mouth and small clusters of lateral ocelli. The creature's sides feature two SOFT, FLESHY, ORGANIC LAMINAE—flexible tissue folds pressed close against the body—that hang like drooping membranes or curtains of flexible skin, not plates or shells. These laminae must read as thin, supple, living flesh, never as rigid armor or protective plating. The overall skin texture is organic, damp and fleshy—clearly living tissue, never rocky, mineral-like, stony, or golem-like. Tail is extremely short or visually absent. Low three-quarter side view, full silhouette readable, neutral dry daylight. Background subordinate: fractured Korven plates, crevices, low dry terrain and wind exposure. Natural non-magical fauna.\n\nCanon sources supplied by the Art Director: vintage-telnet/ART_WORLD_GUIDE.md; vintage-telnet/CREATURES.md; vintage-telnet/REGIONS.md; vintage-telnet/SUPPLEMENTAL_REGIONAL_FAUNA_2.md\n\nDo not include: No wings, flight or gliding; No blades, weapons, shell armor, rigid plating, spikes, quills or protective structures; Do not make the body literal rock, a golem, construct or magical mineral creature; Do not render the flanks as armor, plates, shells or rigid structures—they must appear as soft, drooping, flexible organic tissue; The laminae must NOT look hard, rigid, weapon-like or protective—render them as thin, supple, drooping membranes of flesh; Texture must be organic flesh and skin, never rocky, stony, mineral-textured, or golem-like; Preserve exactly six short supports in three pairs; No long tail; No charging, hunting or predatory pose; No glow, runes, magic, equipment, readable text or HUD; Do not resemble a giant insect as the primary read\n\nIDs (reference only): lamelon\n\nNotes: Ficha de Dirección de Arte. La referencia de Korven fija contexto regional/paleta/roca, no anatomía. Una sola generación por ejecución. Su clasificación jugable sigue fuera del alcance de Arte; esta ficha no lo convierte en encounter ni combatible. No publicar ni integrar a assets/.\n\nUse the attached reference images according to the art direction and constraints above.",
+  "model_id": "gpt-image-2.5-flare",
+  "parameters": {
+    "quality": "high",
+    "size": "1536x1024",
+    "output_format": "png",
+    "output_compression": null,
+    "background": "opaque",
+    "reference_files": [
+      "assets/vintage-telnet/locations/korven-corredor-placas-quebradas.webp"
+    ]
+  },
+  "timestamp_utc": "2026-09-30T15:37:49.691169+00:00",
+  "status": "draft",
+  "image": "vintage-telnet/art_generations/lamelon_korven/v003/lamelon_korven_v003.png",
+  "request_file": "vintage-telnet/art_requests/lamelon-korven.json",
+  "request_id": "req_287fd287e2f641079ccebddc6c20c4e8",
+  "usage": {
+    "input_tokens": 2259,
+    "input_tokens_details": {
+      "image_tokens": 1508,
+      "text_tokens": 751
+    },
+    "output_tokens": 1372,
+    "total_tokens": 3631,
+    "output_tokens_details": {
+      "image_tokens": 1372,
+      "text_tokens": 0
+    }
+  },
+  "cost_estimate": 0.056979
+}
