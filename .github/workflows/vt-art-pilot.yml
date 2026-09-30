@@ -46,25 +46,43 @@ jobs:
           GITHUB_RUN_NUMBER: ${{ github.run_number }}
         run: python -m tools.vt_art.github_runner
 
-      - name: Convert to WebP if approved
+      - name: Publish approved art to main
         if: ${{ steps.generation.outputs.verdict == 'aprobado' }}
         env:
           ASSET_ID: ${{ steps.generation.outputs.asset_id }}
           VERSION: ${{ steps.generation.outputs.version }}
         run: |
-          echo "📦 Convirtiendo PNG → WebP..."
           apt-get update && apt-get install -y webp > /dev/null 2>&1
-          png_file="vintage-telnet/art_generations/${ASSET_ID}/${VERSION}/${ASSET_ID}_${VERSION}.png"
-          webp_dest="assets/vintage-telnet/creatures/${ASSET_ID}.webp"
 
-          if [ -f "$png_file" ]; then
-            mkdir -p "assets/vintage-telnet/creatures"
-            cwebp -q 85 "$png_file" -o "$webp_dest"
-            echo "✅ WebP publicado: $webp_dest"
-            git add "$webp_dest"
-            git commit -m "Publish ${ASSET_ID} as WebP" || true
-            git push origin main || true
+          png_file="vintage-telnet/art_generations/${ASSET_ID}/${VERSION}/${ASSET_ID}_${VERSION}.png"
+
+          if [ ! -f "$png_file" ]; then
+            echo "❌ PNG no encontrado: $png_file"
+            exit 0
           fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git checkout main
+
+          # 1. PNG high-quality → art-masters/
+          mkdir -p "art-masters/${ASSET_ID}/${VERSION}"
+          cp "$png_file" "art-masters/${ASSET_ID}/${VERSION}/${ASSET_ID}_${VERSION}_hq.png"
+          git add "art-masters/${ASSET_ID}/${VERSION}/"
+          echo "✅ PNG guardado en art-masters/"
+
+          # 2. WebP → assets/
+          mkdir -p "assets/vintage-telnet/creatures"
+          cwebp -q 85 "$png_file" -o "assets/vintage-telnet/creatures/${ASSET_ID}.webp"
+          git add "assets/vintage-telnet/creatures/${ASSET_ID}.webp"
+          echo "✅ WebP publicado en assets/"
+
+          git commit -m "Publish approved art: ${ASSET_ID} ${VERSION}
+
+- PNG high-quality → art-masters/
+- WebP → assets/vintage-telnet/creatures/" || true
+          git push origin main || true
 
       - name: Generate formats and publish assets
         env:
