@@ -50,6 +50,11 @@ class RaspberryDispatchTests(unittest.TestCase):
             type("Result", (), {"returncode": 0, "stdout": "", "stderr": ""})(),
         ])
         dispatch("vintage-telnet/art_requests/creature.json", runner=runner)
+        self.assertEqual(runner.call_args_list[1], call([
+            "gh", "api", "--method", "GET",
+            "repos/vaisork/MatiasGameLab/contents/vintage-telnet/art_requests/creature.json",
+            "--field", "ref=main", "--jq", ".path",
+        ]))
         self.assertEqual(runner.call_args_list[-1], call([
             "gh", "workflow", "run", "vt-art-pilot.yml",
             "--repo", "vaisork/MatiasGameLab", "--ref", "main",
