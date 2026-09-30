@@ -1,0 +1,34 @@
+{
+  "asset_id": "valdren_forja_daro",
+  "asset_type": "architecture",
+  "target": "Forja/taller de Daro en Valdren; escena arquitectónica funcional del pueblo humano de los Llanos de Edran.",
+  "canonical_name": "Forja de Valdren — taller de Daro",
+  "art_direction": "Arquitectura humana sencilla, práctica y comunitaria de Valdren. Taller de madera y piedra nacido de un pueblo agrícola y de camino, sin monumentalidad. Debe sentirse realmente utilizable para fabricar, reparar y comerciar herramientas y armas: frente abierto o semiabierto al camino de tierra, banco de trabajo, yunque y hogar de forja integrados en una construcción modesta, con almacenamiento y reparaciones visibles de distintas épocas. Continuidad con Valdren: parcelas cercanas, cercas bajas, madera envejecida, piedra local y tránsito cotidiano.",
+  "prompt": "Create a 1536x1024 landscape architectural scene of Daro's working forge in Valdren, a small human settlement in the Llanos de Edran. Show a modest, believable workshop built from local stone foundations, weathered timber posts and simple practical roofing, opening toward a packed-earth village lane. The architecture must feel evolved from an agricultural roadside community, not designed as a heroic fantasy blacksmith shop. Include a clearly functional forge hearth, anvil/work bench area, tool racks, repair stock, charcoal or fuel storage and a small sheltered customer/work threshold, all integrated into the building rather than staged as props. Show layers of repair and reuse in beams, stonework and storage. In the surrounding glimpse, retain Valdren's open character: low fences, small plots, modest neighboring structures and broad daylight. Human scale, calm daily activity, practical circulation. Natural neutral daylight, earthy wood and stone with restrained iron and ember accents. Architecture is the subject; no heroic character portrait.",
+  "references": [
+    "assets/vintage-telnet/locations/valdren.webp",
+    "assets/vintage-telnet/locations/valdren-vivienda-patio.webp"
+  ],
+  "negative_constraints": [
+    "No monumental forge, castle, guild hall or cathedral scale",
+    "No steampunk machinery, industrial factory, pipes or modern equipment",
+    "No oversized fantasy furnace or excessive fire",
+    "No Viking, medieval-European theme-park clichés or ornate heraldry",
+    "No dominant gold/orange palette",
+    "No readable signs, text, HUD or logos",
+    "Do not make Daro or any person the main subject"
+  ],
+  "canon_sources": [
+    "vintage-telnet/SETTLEMENTS.md — Valdren",
+    "vintage-telnet/REGIONS.md — Llanos de Edran",
+    "vintage-telnet/VISUAL_CONTEXT_CANON.md — valdren_forja"
+  ],
+  "room_id": "valdren_forja",
+  "visual_context_id": "zone.valdren",
+  "aspect_ratio": "1536x1024",
+  "output_destination": "vintage-telnet/art_generations",
+  "status": "draft",
+  "quality": "low",
+  "output_format": "png",
+  "background": "opaque"
+}
