@@ -1,0 +1,56 @@
+{
+  "asset_id": "lamelon_korven",
+  "generation_id": "1bd80312-7d53-462a-a495-4c810de00c44",
+  "version": "v002",
+  "prompt": "Create a draft visual asset for Vintage Telnet using the supplied art direction.\n\nAsset type: creature\n\nTarget: Borrador de fauna natural de los Pedrales de Korven para validar silueta y anatomía; no integrar a runtime.\n\nCanonical name: Lamelón\n\nArt direction: Escena de fauna con anatomía completamente visible. Un adulto muy bajo, ancho y ovalado sobre placas de roca fracturada; exactamente seis apoyos cortos en tres pares, cabeza frontal pequeña casi integrada al tronco, flancos laminares orgánicos flexibles plegados contra el sustrato y cola casi ausente. Cámara lateral tres cuartos baja. Debe sentirse como raspador estable de roca, orgánico y no agresivo, sin convertir sus láminas en alas, cuchillas o armadura.\n\nAspect ratio: landscape\n\nPrompt: Create one landscape wildlife scene in the Pedrales de Korven. Show one complete adult Lamelón, 60–80 cm long, moving slowly over fractured exposed rock while scraping soft organic deposits or lichen. Its body is extremely low, broad and oval. It has exactly six short supports arranged in three pairs, with broad mineral-gripping feet. The small low frontal head is almost integrated into the trunk, with a small underside scraping mouth and small clusters of lateral ocelli. Two flexible foldable organic laminar flanks lie close to the body and rock. They are not wings, blades or armor. Tail is extremely short or visually absent. Skin is matte and organically mineral-like, never literal stone. Low three-quarter side view, full silhouette readable, neutral dry daylight. Background subordinate: fractured Korven plates, crevices, low dry terrain and wind exposure. Natural non-magical fauna.\n\nCanon sources supplied by the Art Director: vintage-telnet/ART_WORLD_GUIDE.md; vintage-telnet/CREATURES.md; vintage-telnet/REGIONS.md; vintage-telnet/SUPPLEMENTAL_REGIONAL_FAUNA_2.md\n\nDo not include: No wings, flight or gliding; No blades, weapons, shell armor or metallic plates; Do not make the body literal rock, a golem, construct or magical mineral creature; Preserve exactly six short supports in three pairs; No long tail; No charging, hunting or predatory pose; No glow, runes, magic, equipment, readable text or HUD; Do not resemble a giant insect as the primary read\n\nIDs (reference only): lamelon\n\nNotes: Ficha de Dirección de Arte. La referencia de Korven fija contexto regional/paleta/roca, no anatomía. Una sola generación por ejecución. Su clasificación jugable sigue fuera del alcance de Arte; esta ficha no lo convierte en encounter ni combatible. No publicar ni integrar a assets/.\n\nIntento anterior rechazado por autocrítica: Exactly six short supports in three pairs are not clearly visible; leg count is ambiguous or partially hidden.; Anatomy is not completely visible — several limbs/underside are obscured by body folds.; Body surface reads like literal rock/mineral (golem-like) rather than organic skin.; Flanks read as stiff/heavy plates (armour-like) rather than flexible organic laminae.\n\nUse the attached reference images according to the art direction and constraints above.",
+  "model_id": "gpt-image-2.5-flare",
+  "parameters": {
+    "quality": "low",
+    "size": "1536x1024",
+    "output_format": "png",
+    "output_compression": null,
+    "background": "opaque",
+    "reference_files": [
+      "assets/vintage-telnet/locations/korven-corredor-placas-quebradas.webp"
+    ]
+  },
+  "timestamp_utc": "2026-09-30T09:44:11.696344+00:00",
+  "status": "draft",
+  "image": "vintage-telnet/art_generations/lamelon_korven/v002/lamelon_korven_v002.png",
+  "request_file": "vintage-telnet/art_requests/lamelon-korven.json",
+  "request_id": "req_0df5fe75946f468ebd68ac515f06165d",
+  "usage": {
+    "input_tokens": 2195,
+    "input_tokens_details": {
+      "image_tokens": 1508,
+      "text_tokens": 687
+    },
+    "output_tokens": 158,
+    "total_tokens": 2353,
+    "output_tokens_details": {
+      "image_tokens": 158,
+      "text_tokens": 0
+    }
+  },
+  "cost_estimate": 0.020239,
+  "critique": {
+    "model": "gpt-5-mini",
+    "passes": true,
+    "issues": [],
+    "reasoning": "The image clearly matches the brief: the creature is a very low, wide oval adult positioned on fractured rock plates with a low, three-quarter side camera angle. It has exactly six short supports arranged in three visible pairs, a small frontal head that is nearly integrated into the trunk, laminar organic flanks folded against the substrate, and an almost absent tail. There are no wings, blades, weapons, glowing runes, equipment or HUD, and the creature reads as an organic, non-aggressive rock-scraper rather than a giant insect, golem, or armored/metallic construct.",
+    "usage": {
+      "input_tokens": 2248,
+      "input_tokens_details": {
+        "cache_write_tokens": 0,
+        "cached_tokens": 0
+      },
+      "output_tokens": 1039,
+      "output_tokens_details": {
+        "reasoning_tokens": 832
+      },
+      "total_tokens": 3287
+    },
+    "cost_estimate": 0.00264,
+    "attempt": 2
+  }
+}
