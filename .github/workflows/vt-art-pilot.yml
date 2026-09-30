@@ -51,38 +51,8 @@ jobs:
         env:
           ASSET_ID: ${{ steps.generation.outputs.asset_id }}
           VERSION: ${{ steps.generation.outputs.version }}
-          GH_TOKEN: ${{ github.token }}
         run: |
-          apt-get update && apt-get install -y webp > /dev/null 2>&1
-
-          png_file="vintage-telnet/art_generations/${ASSET_ID}/${VERSION}/${ASSET_ID}_${VERSION}.png"
-
-          if [ ! -f "$png_file" ]; then
-            echo "❌ PNG no encontrado: $png_file"
-            exit 0
-          fi
-
-          # Crear rama temporal para los cambios
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-          # 1. PNG high-quality → art-masters/
-          mkdir -p "art-masters/${ASSET_ID}/${VERSION}"
-          cp "$png_file" "art-masters/${ASSET_ID}/${VERSION}/${ASSET_ID}_${VERSION}_hq.png"
-          echo "✅ PNG guardado en art-masters/"
-
-          # 2. WebP → assets/
-          mkdir -p "assets/vintage-telnet/creatures"
-          cwebp -q 85 "$png_file" -o "assets/vintage-telnet/creatures/${ASSET_ID}.webp"
-          echo "✅ WebP publicado en assets/"
-
-          # Commitear en rama actual y push
-          git add "art-masters/${ASSET_ID}/${VERSION}/" "assets/vintage-telnet/creatures/${ASSET_ID}.webp"
-          git commit -m "Publish approved art: ${ASSET_ID} ${VERSION} to main
-
-- PNG high-quality → art-masters/
-- WebP → assets/vintage-telnet/creatures/" || true
-          git push origin HEAD:main || true
+          python3 -m tools.vt_art.publish_to_main "$ASSET_ID" "$VERSION"
 
       - name: Open draft pull request
         env:
