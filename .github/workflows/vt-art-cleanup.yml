@@ -1,0 +1,76 @@
+name: VT Art — Clean rejected art drafts
+
+on:
+  schedule:
+    - cron: '0 * * * *'  # Cada hora
+  workflow_dispatch:
+
+permissions:
+  pull-requests: write
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Close rejected drafts when newer approved version exists
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 << 'PYTHON_SCRIPT'
+          import subprocess
+          import json
+          import re
+          from collections import defaultdict
+
+          # Obtener todos los PRs abiertos con NEEDS REVISION
+          result = subprocess.run(
+              ["gh", "pr", "list", "--state", "open", "--search", "[NEEDS REVISION]", "--json", "number,title,headRefName"],
+              capture_output=True,
+              text=True,
+          )
+
+          rejected_prs = json.loads(result.stdout)
+
+          # Agrupar por asset_id
+          assets = defaultdict(list)
+          for pr in rejected_prs:
+              # Extraer asset_id del título: "[NEEDS REVISION] Art draft: asset_id vXXX"
+              match = re.search(r'Art draft: ([a-z_]+)', pr['title'])
+              if match:
+                  asset_id = match.group(1)
+                  assets[asset_id].append(pr)
+
+          # Para cada asset, verificar si hay versión aprobada
+          closed = 0
+          for asset_id, prs in assets.items():
+              # Buscar PRs abiertos SIN "NEEDS REVISION" para el mismo asset
+              result = subprocess.run(
+                  ["gh", "pr", "list", "--state", "open", "--search", f"Art draft: {asset_id}", "--json", "number,title"],
+                  capture_output=True,
+                  text=True,
+              )
+
+              approved = json.loads(result.stdout)
+              has_approved = any("[NEEDS REVISION]" not in pr['title'] for pr in approved)
+
+              if has_approved:
+                  # Cerrar todos los NEEDS REVISION de este asset
+                  for pr in prs:
+                      subprocess.run(
+                          ["gh", "pr", "close", str(pr['number']), "--comment",
+                           "Automática: versión más nueva aprobada. Este borrador fue superado."],
+                          capture_output=True,
+                      )
+                      print(f"✅ Cerrado PR #{pr['number']} ({asset_id})")
+                      closed += 1
+
+          if closed > 0:
+              print(f"\n✅ Limpiados {closed} borradores rechazados")
+          else:
+              print("ℹ️ No hay borradores rechazados que limpiar")
+          PYTHON_SCRIPT
