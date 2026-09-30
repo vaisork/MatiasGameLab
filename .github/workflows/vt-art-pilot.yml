@@ -46,7 +46,7 @@ jobs:
           GITHUB_RUN_NUMBER: ${{ github.run_number }}
         run: python -m tools.vt_art.github_runner
 
-      - name: Publish assets and stage for PR
+      - name: Generate formats and publish assets
         env:
           GH_TOKEN: ${{ github.token }}
           RUN_ID: ${{ github.run_id }}
