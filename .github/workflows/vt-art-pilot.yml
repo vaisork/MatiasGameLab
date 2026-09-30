@@ -84,7 +84,7 @@ jobs:
 - WebP → assets/vintage-telnet/creatures/" || true
           git push origin HEAD:main || true
 
-      - name: Generate formats and publish assets
+      - name: Open draft pull request
         env:
           GH_TOKEN: ${{ github.token }}
           RUN_ID: ${{ github.run_id }}
@@ -98,42 +98,7 @@ jobs:
           git switch --create "$branch"
           git add -f vintage-telnet/art_generations/
           git commit -m "Add ${ASSET_ID} art draft ${VERSION} from run ${RUN_ID}"
-
-          # Si está aprobado, copiar WebP a assets/ en esta rama
-          if [ "$VERDICT" = "aprobado" ]; then
-            webp_src="vintage-telnet/art_generations/${ASSET_ID}/${VERSION}/${ASSET_ID}_${VERSION}.webp"
-            if [ -f "$webp_src" ]; then
-              webp_dest="assets/vintage-telnet/creatures/${ASSET_ID}.webp"
-              mkdir -p "$(dirname "$webp_dest")"
-              cp "$webp_src" "$webp_dest"
-              git add "$webp_dest"
-              git commit -m "Publish ${ASSET_ID} as WebP to assets/"
-              echo "WebP published to: $webp_dest"
-            fi
-          fi
-
           git push origin "$branch"
-
-          # Si está aprobado, también crear/actualizar rama art-masters/ con PNG high-quality
-          if [ "$VERDICT" = "aprobado" ]; then
-            hq_src="vintage-telnet/art_generations/${ASSET_ID}/${VERSION}/${ASSET_ID}_${VERSION}.png"
-            # Buscar si existe un v001 o v002 con quality:high en metadata
-            latest_hq=$(find "vintage-telnet/art_generations/${ASSET_ID}" -name "metadata.json" -exec grep -l '"quality": "high"' {} \; | sort | tail -1)
-            if [ -n "$latest_hq" ]; then
-              hq_version=$(dirname "$latest_hq" | xargs basename)
-              hq_file="vintage-telnet/art_generations/${ASSET_ID}/${hq_version}/${ASSET_ID}_${hq_version}.png"
-              if [ -f "$hq_file" ]; then
-                git fetch origin art-masters 2>/dev/null || true
-                git switch --orphan art-masters 2>/dev/null || git switch art-masters
-                mkdir -p "art-masters/${ASSET_ID}/${hq_version}"
-                cp "$hq_file" "art-masters/${ASSET_ID}/${hq_version}/${ASSET_ID}_${hq_version}_hq.png"
-                git add "art-masters/${ASSET_ID}/${hq_version}/${ASSET_ID}_${hq_version}_hq.png"
-                git commit -m "Add ${ASSET_ID} high-quality master"
-                git push origin art-masters
-                git switch - 2>/dev/null || git switch "$branch"
-              fi
-            fi
-          fi
 
           metadata_path="vintage-telnet/art_generations/${ASSET_ID}/${VERSION}/metadata.json"
           image_path=$(jq -r '.image' "$metadata_path")
