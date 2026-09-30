@@ -21,6 +21,9 @@ jobs:
         with:
           python-version: '3.13'
 
+      - name: Install cwebp
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq libwebp-dev
+
       - name: Fetch all art-drafts branches
         run: git fetch origin 'refs/heads/art-drafts/*:refs/remotes/origin/art-drafts/*'
 
@@ -101,13 +104,6 @@ jobs:
                       hq_file = art_masters_dir / f"{asset_id}_{version}_hq.png"
                       hq_file.write_bytes(png_bytes)
                       print(f"✅ PNG guardado: {hq_file.relative_to(ROOT)}")
-
-                      # Instalar cwebp (una sola vez, sin apt-get update)
-                      subprocess.run(
-                          ["apt-get", "install", "-y", "--no-install-recommends", "webp"],
-                          capture_output=True,
-                          check=True,
-                      )
 
                       assets_dir = ROOT / "assets" / "vintage-telnet" / "creatures"
                       assets_dir.mkdir(parents=True, exist_ok=True)
