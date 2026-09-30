@@ -59,8 +59,10 @@ jobs:
           git add -f vintage-telnet/art_generations/
           git commit -m "Add ${ASSET_ID} art draft ${VERSION} from run ${RUN_ID}"
           git push origin "$branch"
-          cat > "$RUNNER_TEMP/art-draft-pr.md" <<'EOF'
-          Generated draft from the approved Velozanco Fase 2 brief.
+          cat > "$RUNNER_TEMP/art-draft-pr.md" <<EOF
+          Generated draft for ${ASSET_ID} ${VERSION}.
+
+          ![${ASSET_ID} ${VERSION}](https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/${branch}/vintage-telnet/art_generations/${ASSET_ID}/${VERSION}/${ASSET_ID}_${VERSION}.png)
 
           This is a review-only draft. It is not approved or integrated into game runtime. Draft files are public because this repository is public. Remove unwanted drafts manually after review.
           EOF
