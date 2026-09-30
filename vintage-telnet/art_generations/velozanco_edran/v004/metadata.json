@@ -1,0 +1,60 @@
+{
+  "asset_id": "velozanco_edran",
+  "generation_id": "28d7b5a4-e80f-4bd1-bf2d-53f3c9878010",
+  "version": "v004",
+  "prompt": "Create a draft visual asset for Vintage Telnet using the supplied art direction.\n\nAsset type: creature\n\nTarget: Borrador de escena para fauna natural no combatiente de los Llanos de Edran; no integrar a runtime.\n\nCanonical name: Velozanco de Edran\n\nArt direction: Fase 2 usando como referencia obligatoria la Fase 1 aprobada. Mantener congelada la anatomía 4+2, pero reforzar una silueta no dinosauriana: torso horizontal suspendido y ligero entre seis apoyos, cuatro patas locomotoras largas y finas, dos apoyos anteriores cortos claramente separados, cabeza compacta no reptiliana integrada casi directamente al torso y sin cuello largo. Lámina dorsal flexible baja, pegada por el viento. Cola corporal muy corta, terminada inmediatamente en exactamente dos filamentos rígidos cortos. Fauna ambiental, no criatura de combate. Paleta fría/neutra de Edran: verdes agrícolas apagados, gris azulado y tierra parda; trigo pálido solo como acento menor.\n\nAspect ratio: 1536x1024\n\nPrompt: Create one 1536x1024 landscape wildlife scene with safe center in the Llanos de Edran. Preserve the approved reference anatomy exactly: one complete Velozanco with SIX supports in a 4+2 plan. Four long slender locomotor legs carry a lightweight HORIZONTAL SUSPENDED TORSO; two additional short anterior supports are clearly visible as small weight-bearing legs, not arms. CRITICAL SILHOUETTE: make the animal unmistakably non-dinosaurian. Use a compact blunt non-reptilian head set almost directly into the front of the torso, virtually no visible neck, no dinosaur snout, no theropod chest, no raptor posture, and no heavy hindquarters. Distribute visual weight across all four long locomotor legs rather than emphasizing a rear pair. The low flexible dorsal membrane lies flattened close to the back by a strong crosswind and must not read as a sail, fin or wing. CRITICAL TAIL: the fleshy tail base is extremely short, ending close behind the pelvis; from that short base emerge exactly TWO SHORT rigid filaments. The complete tail assembly must remain visually short and must not form a long sweeping dinosaur tail. Show natural fast movement across an open field boundary, not an attack. Background is subordinate and COOL/NEUTRAL: muted desaturated agricultural greens, blue-gray sky, gray-brown soil, sparse pale straw accents only. Neutral overcast daylight; avoid sunset, amber light and golden fields.\n\nCanon sources supplied by the Art Director: Issue #522 — Dirección de Arte, comentario del 2026-09-29\n\nDo not include: No dinosaur silhouette: no theropod, raptor, ornithopod or reptilian head/body proportions; No long neck, long snout, heavy hindquarters or bipedal-looking posture; No long tail and no long tail filaments; fleshy tail base and exactly two terminal filaments must all be short; No feathers or wings; Do not resemble a giant insect; Do not alter the frozen six-limb 4+2 anatomy: exactly four long locomotor legs plus two short anterior supports; No dorsal sail, rigid fin or wing; membrane stays low, soft and wind-flattened; No dominant ochre, amber, yellow or golden palette; pale wheat is a minor accent only; No sunset or warm golden-hour lighting; No glow, magic, attack pose, readable text or HUD\n\nIDs (reference only): velozanco_edran\n\nNotes: Prompt reforzado tras autocrítica visual de v002: las generaciones previas parecían dinosaurio, alargaban la cola/filamentos y dominaban la escena con ocres. Mantener la referencia anatómica aprobada. Fauna ambiental no combatiente. No publicar ni integrar a assets/.\n\nIntento anterior rechazado por autocrítica: Silueta reptiliana/terópoda visible (proporciones generales recuerdan a un dinosaurio).; Cabeza con hocico alargado y rasgos reptilianos — no es una cabeza compacta integrada al torso.; Cola demasiado larga y extendida; los filamentos terminales son largos (debían ser exactamente dos filamentos cortos y terminar inmediatamente).; Lámina dorsal elevada/segmentada que parece una vela rígida en vez de una lámina baja, suave y pegada por el viento. \n\nIntento anterior rechazado por autocrítica: Tail is far too long (should be a very short body tail).; Two terminal tail filaments are long rigid spikes instead of exactly two very short filaments.; Dorsal is a raised, segmented/ridged sail rather than a low, soft, wind‑flattened membrane.; Head has reptilian/dinosaur-like snout/proportions (reads as dinosaurian) instead of a compact non‑reptilian head.; Silhouette emphasizes heavy hindquarters/theropod cues rather than a light, horizontally suspended torso between six supports.\n\nIntento anterior rechazado por autocrítica: Tail and terminal filaments are too long (should be a very short body tail ending immediately in exactly two short filaments).; Head reads as reptilian (elongated snout and scaly/reptile-like proportions) — must be a compact non-reptilian head integrated almost directly to the torso.; Dorsal shows pronounced raised ridges that read as a rigid fin/sail rather than a low, soft, wind‑flattened membrane.; Pale wheat/cream striping is too prominent as a dominant patterning accent (pale wheat must be only a minor accent).\n\nUse the attached reference images according to the art direction and constraints above.",
+  "model_id": "gpt-image-2.5-flare",
+  "parameters": {
+    "quality": "low",
+    "size": "1536x1024",
+    "output_format": "png",
+    "output_compression": null,
+    "background": "opaque",
+    "reference_files": [
+      "vintage-telnet/art_requests/velozanco-edran-fase1-anatomia.png"
+    ]
+  },
+  "timestamp_utc": "2026-09-30T16:30:28.182254+00:00",
+  "status": "draft",
+  "image": "vintage-telnet/art_generations/velozanco_edran/v004/velozanco_edran_v004.png",
+  "request_file": "vintage-telnet/art_requests/velozanco-edran-fase2.json",
+  "request_id": "req_63cafa88e9554dc1b87b38c5944b338d",
+  "usage": {
+    "input_tokens": 2734,
+    "input_tokens_details": {
+      "image_tokens": 1536,
+      "text_tokens": 1198
+    },
+    "output_tokens": 158,
+    "total_tokens": 2892,
+    "output_tokens_details": {
+      "image_tokens": 158,
+      "text_tokens": 0
+    }
+  },
+  "cost_estimate": 0.023018,
+  "critique": {
+    "model": "gpt-5-mini",
+    "passes": false,
+    "issues": [
+      "Dorsal appears as raised, segmented/rigid plates (resembles a sail) rather than a low, wind‑flattened flexible lamina.",
+      "Head/skull reads reptilian/theropod-like (scaly snout and eye placement) instead of a compact, non-reptilian head integrated directly into the torso.",
+      "The two anterior supports are too long and clawed and read as grasping forelimbs rather than short, clearly separated support pegs."
+    ],
+    "reasoning": "Overall anatomy shows six limbs and a short tail, but the image violates key silhouette and anatomy rules: the dorsal is rendered as rigid raised plates (forbidden sail/fin), the head retains reptilian/theropod visual cues instead of the required compact non-reptilian head, and the anterior supports are too large and clawed instead of short, simple supports. Fix those three elements to meet the brief.",
+    "usage": {
+      "input_tokens": 2358,
+      "input_tokens_details": {
+        "cache_write_tokens": 0,
+        "cached_tokens": 0
+      },
+      "output_tokens": 1784,
+      "output_tokens_details": {
+        "reasoning_tokens": 1536
+      },
+      "total_tokens": 4142
+    },
+    "cost_estimate": 0.004157,
+    "attempt": 4
+  }
+}
