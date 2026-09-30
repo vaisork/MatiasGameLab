@@ -1,0 +1,36 @@
+{
+  "asset_id": "pliegaviento_hoshai",
+  "generation_id": "12c474e5-6cca-4bb0-a850-683ee5786cde",
+  "version": "v003",
+  "prompt": "Create a draft visual asset for Vintage Telnet using the supplied art direction.\n\nAsset type: creature\n\nTarget: Borrador de fauna natural de la Sierra de Hoshai para revisión anatómica y ambiental; no integrar a runtime.\n\nCanonical name: Pliegaviento\n\nArt direction: Escena de fauna con lectura anatómica prioritaria. Mostrar un adulto completo sobre cornisa de roca expuesta al viento, cuerpo compacto y bajo, seis apoyos legibles (cuatro patas principales y un par anterior reducido), membranas laterales tensas usadas como estabilizadores y nunca como alas. Cámara lateral tres cuartos a baja altura, luz diurna fría/neutra, paisaje subordinado. La silueta debe comunicar agarre, estabilidad y resistencia al viento, no vuelo.\n\nAspect ratio: landscape\n\nPrompt: Create one landscape wildlife scene in the Sierra de Hoshai. Show one complete adult Pliegaviento, 55–75 cm long, on an exposed rocky ledge in strong mountain wind. Its body is compact, low and stable. It has exactly six supports: four main legs plus one reduced anterior pair associated with taut lateral stabilizing membranes. The membranes brace against gusts; they are not wings and the animal never flies or glides. Give it a wedge-shaped head, short neck, small protected lateral eyes, feet with two broad opposing toes gripping the rock, a short vertically flattened tail used for body steering, and matte leathery micro-scaled skin. Low three-quarter side view, anatomy unobscured, neutral/cool daylight. Background subordinate: Hoshai rock, elevation, sparse mountain vegetation and open wind exposure. Natural animal, no magic.\n\nCanon sources supplied by the Art Director: vintage-telnet/ART_WORLD_GUIDE.md; vintage-telnet/CREATURES.md; vintage-telnet/REGIONS.md; vintage-telnet/SUPPLEMENTAL_REGIONAL_FAUNA.md\n\nDo not include: No wings, feathers, flight or gliding; Do not resemble a dragon, bird, bat or generic fantasy lizard; Do not reduce the anatomy to four limbs; preserve exactly the canonical 4+2 six-support plan; No horns, magical glow, runes, armor or equipment; No dominant golden/ochre fantasy palette; No settlement architecture as the subject; No readable text or HUD\n\nIDs (reference only): pliegaviento\n\nNotes: Ficha de Dirección de Arte. La referencia de Hoshai fija únicamente contexto regional/paleta/terreno; la anatomía manda desde el canon escrito. Una sola generación por ejecución. No publicar ni integrar a assets/.\n\nUse the attached reference images according to the art direction and constraints above.",
+  "model_id": "gpt-image-2.5-flare",
+  "parameters": {
+    "quality": "low",
+    "size": "1536x1024",
+    "output_format": "webp",
+    "output_compression": 85,
+    "background": "opaque",
+    "reference_files": [
+      "assets/vintage-telnet/locations/hoshai-paso-alto.webp"
+    ]
+  },
+  "timestamp_utc": "2026-09-30T23:29:58.923870+00:00",
+  "status": "draft",
+  "image": "vintage-telnet/art_generations/pliegaviento_hoshai/v003/pliegaviento_hoshai_v003.webp",
+  "request_file": "vintage-telnet/art_requests/pliegaviento-hoshai.json",
+  "request_id": "req_e2863e396ceb43059855828c8848cff6",
+  "usage": {
+    "input_tokens": 2072,
+    "input_tokens_details": {
+      "image_tokens": 1508,
+      "text_tokens": 564
+    },
+    "output_tokens": 158,
+    "total_tokens": 2230,
+    "output_tokens_details": {
+      "image_tokens": 158,
+      "text_tokens": 0
+    }
+  },
+  "cost_estimate": 0.019624
+}
