@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import unittest
-from unittest.mock import patch
+from unittest.mock import call, patch
 from unittest.mock import Mock
 
 from tools.vt_art.dispatch import DispatchError, dispatch, main, validate_request_path
@@ -66,10 +66,53 @@ class RaspberryDispatchTests(unittest.TestCase):
             self.assertEqual(main(["vintage-telnet/art_requests/creature.json"]), 0)
         start.assert_not_called()
 
+    def test_old_generar_word_no_longer_confirms(self):
+        with patch("builtins.input", return_value="GENERAR"), patch("tools.vt_art.dispatch.dispatch") as start:
+            self.assertEqual(main(["vintage-telnet/art_requests/creature.json"]), 0)
+        start.assert_not_called()
+
+    def test_short_gen_word_confirms(self):
+        with patch("builtins.input", return_value="GEN"), patch("tools.vt_art.dispatch.dispatch") as start:
+            self.assertEqual(main(["vintage-telnet/art_requests/creature.json"]), 0)
+        start.assert_called_once_with("vintage-telnet/art_requests/creature.json")
+
     def test_yes_flag_starts_one_validated_request_without_an_interactive_prompt(self):
         with patch("tools.vt_art.dispatch.dispatch") as start:
             self.assertEqual(main(["vintage-telnet/art_requests/creature.json", "--yes"]), 0)
         start.assert_called_once_with("vintage-telnet/art_requests/creature.json")
+
+    def test_yes_flag_dispatches_every_file_in_order(self):
+        with patch("tools.vt_art.dispatch.dispatch") as start:
+            self.assertEqual(main([
+                "vintage-telnet/art_requests/a.json",
+                "vintage-telnet/art_requests/b.json",
+                "--yes",
+            ]), 0)
+        self.assertEqual(
+            [call.args for call in start.call_args_list],
+            [("vintage-telnet/art_requests/a.json",), ("vintage-telnet/art_requests/b.json",)],
+        )
+
+    def test_invalid_file_among_several_stops_before_dispatching_any(self):
+        with patch("tools.vt_art.dispatch.dispatch") as start:
+            code = main([
+                "vintage-telnet/art_requests/a.json",
+                "vintage-telnet/art_requests/template.json",
+                "--yes",
+            ])
+        self.assertEqual(code, 2)
+        start.assert_not_called()
+
+    def test_stops_after_first_failure_and_does_not_repeat_completed_ones(self):
+        with patch("tools.vt_art.dispatch.dispatch", side_effect=[None, DispatchError("boom")]) as start:
+            code = main([
+                "vintage-telnet/art_requests/a.json",
+                "vintage-telnet/art_requests/b.json",
+                "vintage-telnet/art_requests/c.json",
+                "--yes",
+            ])
+        self.assertEqual(code, 2)
+        self.assertEqual(start.call_count, 2)
 
 
 if __name__ == "__main__":

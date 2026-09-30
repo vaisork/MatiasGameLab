@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Dispatch one approved art request to the isolated GitHub Actions runner."""
+"""Dispatch one or more approved art requests to the isolated GitHub Actions runner."""
 from __future__ import annotations
 
 import argparse
@@ -65,24 +65,40 @@ def dispatch(request_file: str, *, runner=_run) -> None:
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
-        description="Inicia una generación individual de arte en GitHub Actions; la clave OpenAI permanece en GitHub."
+        description="Inicia una o varias generaciones de arte en GitHub Actions; la clave OpenAI permanece en GitHub."
     )
-    parser.add_argument("request_file", help="Ficha JSON que ya está en main.")
+    parser.add_argument("request_files", nargs="+", help="Una o más fichas JSON que ya están en main.")
     parser.add_argument("--yes", action="store_true", help="Confirma sin pregunta interactiva.")
     args = parser.parse_args(argv)
     try:
-        request_file = validate_request_path(args.request_file)
-        if not args.yes:
-            print(f"Se solicitará UNA generación facturable para: {request_file}")
-            if input("Escribe GENERAR para continuar: ").strip() != "GENERAR":
-                print("Cancelado; no se inició ninguna generación.")
-                return 0
-        dispatch(request_file)
+        request_files = [validate_request_path(value) for value in args.request_files]
     except DispatchError as exc:
         print(f"Error: {exc}", file=sys.stderr)
         return 2
-    print("Solicitud enviada a GitHub Actions. La clave OpenAI permanece en GitHub.")
-    print(f"Revisa la ejecución y su PR de borrador en: {RUN_URL}")
+
+    if not args.yes:
+        count = len(request_files)
+        header = "Se solicitará UNA generación facturable:" if count == 1 else f"Se solicitarán {count} generaciones facturables:"
+        print(header)
+        for request_file in request_files:
+            print(f"  - {request_file}")
+        if input("Escribe GEN para continuar: ").strip() != "GEN":
+            print("Cancelado; no se inició ninguna generación.")
+            return 0
+
+    started = 0
+    for request_file in request_files:
+        try:
+            dispatch(request_file)
+            started += 1
+        except DispatchError as exc:
+            print(f"Error en {request_file}: {exc}", file=sys.stderr)
+            if started:
+                print(f"Ya se habían iniciado {started} de {len(request_files)} antes de este error; no se repiten.", file=sys.stderr)
+            return 2
+    plural = "Una generación enviada" if started == 1 else f"{started} generaciones enviadas"
+    print(f"{plural} a GitHub Actions. La clave OpenAI permanece en GitHub.")
+    print(f"Revisa las ejecuciones y sus PR de borrador en: {RUN_URL}")
     return 0
 
 
