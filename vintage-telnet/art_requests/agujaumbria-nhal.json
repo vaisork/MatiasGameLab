@@ -3,18 +3,21 @@
   "asset_type": "creature",
   "target": "Borrador de fauna natural del Bosque de Nhal para validar anatomía y lectura sensorial; no integrar a runtime.",
   "canonical_name": "Agujaumbría",
-  "art_direction": "Escena oscura pero legible de sotobosque. Mostrar un adulto completo desplazándose pegado a una raíz grande: tronco bajo y flexible, cuatro extremidades cortas con apoyos anchos, cabeza pequeña integrada al cuello, grandes fosas sensoriales laterales, ojos reducidos, cresta dorsal segmentada de láminas finas flexibles y cola corta gruesa parcialmente prensil. La cresta debe leerse como órgano sensorial, nunca como púas, plumas o arma. Luz natural filtrada, sin estética mágica.",
-  "prompt": "Create one landscape wildlife scene in the deep understory of the Bosque de Nhal. Show one complete adult Agujaumbría, 70–90 cm total length, moving close alongside a large damp root and trunk structure. Its trunk is low, flexible and compact/triangular in section. It has exactly four short main limbs with broad supports and separated toes. The small head blends into the neck and has two large lateral sensory pits plus reduced eyes. Along the back is a segmented crest of thin flexible lamellae reacting unevenly to nearby air currents and vibration; these lamellae are sensory, not spines, feathers or weapons. The tail is short, thick and partially prehensile for stabilization. Matte fine-textured skin with small soft plates on shoulders/flanks. Low three-quarter side view, full anatomy readable despite the dim forest. Natural filtered daylight, damp roots, inclined trunks, wet rock and dense understory subordinate to the animal. No magic.",
+  "art_direction": "Escena oscura pero legible de sotobosque. Mostrar un adulto completo desplazándose pegado a una raíz grande: tronco bajo y flexible, cuatro extremidades cortas con apoyos anchos, cabeza pequeña integrada al cuello, grandes fosas sensoriales laterales, ojos reducidos, cresta dorsal sensorial formada por láminas blandas, finas, flexibles y de borde redondeado, y cola corta gruesa parcialmente prensil. Las láminas deben verse suaves y deformables: algunas dobladas, inclinadas o ligeramente caídas por el aire; ninguna termina en punta. Deben recordar pequeñas aletas de tejido flexible o lengüetas sensoriales, nunca púas, espinas, quillas rígidas, plumas ni armas. Luz natural filtrada, sin estética mágica.",
+  "prompt": "Create one landscape wildlife scene in the deep understory of the Bosque de Nhal. Show one complete adult Agujaumbría, 70–90 cm total length, moving close alongside a large damp root and trunk structure. Its trunk is low, flexible and compact/triangular in section. It has exactly four short main limbs with broad supports and separated toes. The small head blends into the neck and has two large lateral sensory pits plus reduced eyes. CRITICAL DORSAL ANATOMY: along the back is a segmented row of thin, soft, flexible sensory lamellae made of pliable skin-like tissue. Every lamella has a broad rounded or softly squared tip, never a point. Vary their bend: some lean sideways, some curl slightly, some sag, clearly showing softness and response to air movement. They must read as harmless tactile/sensory tabs, not defensive structures. Keep visible gaps between lamellae and avoid any triangular, conical, blade-like or spike-like silhouette. The tail is short, thick and partially prehensile for stabilization. Matte fine-textured skin with small soft plates on shoulders/flanks. Low three-quarter side view, full anatomy readable despite the dim forest. Natural filtered daylight, damp roots, inclined trunks, wet rock and dense understory subordinate to the animal. Natural non-combat fauna; calm/cautious behavior, no attack pose, no magic.",
   "references": [
     "../../assets/vintage-telnet/locations/nhal-claro-raices-roca.webp"
   ],
   "negative_constraints": [
-    "No spikes, quills, feathers or weaponized dorsal structures",
+    "ABSOLUTELY NO pointed dorsal elements: no spikes, spines, quills, horns, blades, triangular plates or sharp tips",
+    "Dorsal lamellae must look soft, bendable and harmless, with rounded or softly squared ends",
+    "No feathers or weaponized dorsal structures",
     "No glowing eyes, bioluminescence, magic, runes or supernatural effects",
     "Do not add echolocation imagery or sonar effects",
     "Preserve exactly four main limbs; do not add extra legs or wings",
     "No long exposed tail; tail remains short, thick and stabilizing",
     "Do not make it a heroic predator, dragon, dinosaur or giant insect",
+    "No attack pose; this is natural environmental fauna, not a combat monster",
     "Avoid bright open clearings and dominant golden/ochre lighting",
     "No readable text or HUD"
   ],
@@ -33,7 +36,7 @@
   "prior_asset": null,
   "edit_source": null,
   "variation_of": null,
-  "notes": "Ficha de Dirección de Arte. La referencia de Nhal fija únicamente ambiente, raíces, humedad y luz regional; no redefine la criatura. Una sola generación por ejecución. No publicar ni integrar a assets/.",
+  "notes": "Prompt reforzado tras autocrítica visual de v002: las generaciones previas convertían las láminas sensoriales en púas rígidas. La referencia de Nhal fija únicamente ambiente, raíces, humedad y luz regional; no redefine la criatura. No publicar ni integrar a assets/.",
   "quality": "low",
   "output_format": "png",
   "output_compression": null,
