@@ -1,0 +1,150 @@
+name: VT Art — Publish Approved to Main
+
+on:
+  schedule:
+    - cron: '0 * * * *'  # Cada hora en UTC
+  workflow_dispatch:     # Manual también
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Fetch all art-drafts branches
+        run: git fetch origin 'refs/heads/art-drafts/*:refs/remotes/origin/art-drafts/*'
+
+      - name: Find and publish approved art
+        run: |
+          python3 << 'PYTHON_SCRIPT'
+          import json
+          import subprocess
+          import shutil
+          from pathlib import Path
+
+          ROOT = Path.cwd()
+          published = []
+
+          # Obtener lista de ramas art-drafts
+          result = subprocess.run(
+              ["git", "branch", "-r", "--list", "origin/art-drafts/run-*"],
+              capture_output=True,
+              text=True,
+          )
+          branches = [b.strip().replace("origin/", "") for b in result.stdout.split("\n") if b.strip()]
+
+          for branch in sorted(branches, reverse=True):  # newest first
+              # Listar directorios en art_generations para esta rama
+              result = subprocess.run(
+                  ["git", "ls-tree", "-r", f"origin/{branch}", "vintage-telnet/art_generations/"],
+                  capture_output=True,
+                  text=True,
+              )
+
+              for line in result.stdout.split("\n"):
+                  if not line or "metadata.json" not in line:
+                      continue
+
+                  path = line.split("\t")[-1] if "\t" in line else None
+                  if not path:
+                      continue
+
+                  parts = path.split("/")
+                  if len(parts) < 4:
+                      continue
+
+                  asset_id = parts[2]
+                  version = parts[3]
+
+                  # Skip if ya publicamos este asset
+                  if any(a[0] == asset_id for a in published):
+                      continue
+
+                  # Obtener metadata
+                  try:
+                      result = subprocess.run(
+                          ["git", "show", f"origin/{branch}:{path}"],
+                          capture_output=True,
+                      )
+                      if result.returncode != 0:
+                          continue
+
+                      metadata = json.loads(result.stdout.decode())
+                      critique = metadata.get("critique", {})
+                      if not critique.get("passes"):
+                          continue
+
+                      # Obtener PNG
+                      png_path = path.replace("metadata.json", f"{asset_id}_{version}.png")
+                      result = subprocess.run(
+                          ["git", "show", f"origin/{branch}:{png_path}"],
+                          capture_output=True,
+                      )
+                      if result.returncode != 0:
+                          continue
+
+                      png_bytes = result.stdout
+
+                      # Crear directorios
+                      art_masters_dir = ROOT / "art-masters" / asset_id / version
+                      art_masters_dir.mkdir(parents=True, exist_ok=True)
+                      hq_file = art_masters_dir / f"{asset_id}_{version}_hq.png"
+                      hq_file.write_bytes(png_bytes)
+                      print(f"✅ PNG guardado: {hq_file.relative_to(ROOT)}")
+
+                      # Convertir a WebP
+                      subprocess.run(["apt-get", "update"], capture_output=True, check=False)
+                      subprocess.run(["apt-get", "install", "-y", "webp"], capture_output=True, check=False)
+
+                      assets_dir = ROOT / "assets" / "vintage-telnet" / "creatures"
+                      assets_dir.mkdir(parents=True, exist_ok=True)
+                      webp_file = assets_dir / f"{asset_id}.webp"
+
+                      with open("/tmp/png_temp", "wb") as f:
+                          f.write(png_bytes)
+
+                      result = subprocess.run(
+                          ["cwebp", "-q", "85", "/tmp/png_temp", "-o", str(webp_file)],
+                          capture_output=True,
+                      )
+                      if result.returncode != 0:
+                          print(f"❌ Falló WebP para {asset_id}")
+                          continue
+
+                      print(f"✅ WebP creado: {webp_file.relative_to(ROOT)}")
+                      published.append((asset_id, version))
+
+                  except Exception as e:
+                      print(f"❌ Error procesando {asset_id}: {e}")
+                      continue
+
+          if published:
+              # Configurar git
+              subprocess.run(["git", "config", "user.name", "github-actions[bot]"])
+              subprocess.run(["git", "config", "user.email", "41898282+github-actions[bot]@users.noreply.github.com"])
+
+              # Commitear todo
+              subprocess.run(["git", "add", "art-masters/", "assets/"])
+              result = subprocess.run(
+                  ["git", "commit", "-m", f"Publish {len(published)} approved art(s) to main"],
+                  capture_output=True,
+              )
+
+              if result.returncode == 0:
+                  subprocess.run(["git", "push", "origin", "HEAD:main"])
+                  print(f"\n✅ Publicadas {len(published)} imágenes a main")
+              else:
+                  print(f"ℹ️ Sin cambios nuevos (ya publicadas)")
+          else:
+              print("ℹ️ No hay artes aprobadas nuevas para publicar")
+          PYTHON_SCRIPT

@@ -46,14 +46,6 @@ jobs:
           GITHUB_RUN_NUMBER: ${{ github.run_number }}
         run: python -m tools.vt_art.github_runner
 
-      - name: Publish approved art to main v2
-        if: ${{ steps.generation.outputs.verdict == 'aprobado' }}
-        env:
-          ASSET_ID: ${{ steps.generation.outputs.asset_id }}
-          VERSION: ${{ steps.generation.outputs.version }}
-        run: |
-          python3 -m tools.vt_art.publish_to_main "$ASSET_ID" "$VERSION"
-
       - name: Open draft pull request
         env:
           GH_TOKEN: ${{ github.token }}
