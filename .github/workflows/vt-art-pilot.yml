@@ -51,6 +51,7 @@ jobs:
         env:
           ASSET_ID: ${{ steps.generation.outputs.asset_id }}
           VERSION: ${{ steps.generation.outputs.version }}
+          GH_TOKEN: ${{ github.token }}
         run: |
           apt-get update && apt-get install -y webp > /dev/null 2>&1
 
@@ -61,28 +62,27 @@ jobs:
             exit 0
           fi
 
+          # Crear rama temporal para los cambios
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git fetch origin main
-          git checkout main
 
           # 1. PNG high-quality → art-masters/
           mkdir -p "art-masters/${ASSET_ID}/${VERSION}"
           cp "$png_file" "art-masters/${ASSET_ID}/${VERSION}/${ASSET_ID}_${VERSION}_hq.png"
-          git add "art-masters/${ASSET_ID}/${VERSION}/"
           echo "✅ PNG guardado en art-masters/"
 
           # 2. WebP → assets/
           mkdir -p "assets/vintage-telnet/creatures"
           cwebp -q 85 "$png_file" -o "assets/vintage-telnet/creatures/${ASSET_ID}.webp"
-          git add "assets/vintage-telnet/creatures/${ASSET_ID}.webp"
           echo "✅ WebP publicado en assets/"
 
-          git commit -m "Publish approved art: ${ASSET_ID} ${VERSION}
+          # Commitear en rama actual y push
+          git add "art-masters/${ASSET_ID}/${VERSION}/" "assets/vintage-telnet/creatures/${ASSET_ID}.webp"
+          git commit -m "Publish approved art: ${ASSET_ID} ${VERSION} to main
 
 - PNG high-quality → art-masters/
 - WebP → assets/vintage-telnet/creatures/" || true
-          git push origin main || true
+          git push origin HEAD:main || true
 
       - name: Generate formats and publish assets
         env:
