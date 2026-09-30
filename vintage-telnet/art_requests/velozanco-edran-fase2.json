@@ -1,25 +1,33 @@
 {
   "asset_id": "velozanco_edran",
   "asset_type": "creature",
-  "target": "Borrador de escena para fauna de los Llanos de Edran; no integrar a runtime.",
+  "target": "Borrador de escena para fauna natural no combatiente de los Llanos de Edran; no integrar a runtime.",
   "canonical_name": "Velozanco de Edran",
-  "art_direction": "Fase 2 final usando como referencia obligatoria la Fase 1 aprobada. Mantener congelada la anatomía: cuatro patas locomotoras largas, dos apoyos anteriores cortos, torso suspendido, lámina dorsal flexible baja y cola corta bifurcada en dos filamentos rígidos.",
-  "prompt": "Create one 1536x1024 landscape scene with safe center. The Velozanco is crossing an open field boundary in Edran in a strong crosswind. Show the complete creature in a low three-quarter side view: its four long locomotor legs are running, and its two short front supports are tucked but still clearly legible. Its flexible dorsal membrane is flattened by the wind. Preserve exactly the approved reference anatomy and proportions. Subordinate background only: field stubble, desaturated agricultural greens, pale wheat, blue-gray sky. Neutral daylight.",
-  "references": ["velozanco-edran-fase1-anatomia.png"],
+  "art_direction": "Fase 2 usando como referencia obligatoria la Fase 1 aprobada. Mantener congelada la anatomía 4+2, pero reforzar una silueta no dinosauriana: torso horizontal suspendido y ligero entre seis apoyos, cuatro patas locomotoras largas y finas, dos apoyos anteriores cortos claramente separados, cabeza compacta no reptiliana integrada casi directamente al torso y sin cuello largo. Lámina dorsal flexible baja, pegada por el viento. Cola corporal muy corta, terminada inmediatamente en exactamente dos filamentos rígidos cortos. Fauna ambiental, no criatura de combate. Paleta fría/neutra de Edran: verdes agrícolas apagados, gris azulado y tierra parda; trigo pálido solo como acento menor.",
+  "prompt": "Create one 1536x1024 landscape wildlife scene with safe center in the Llanos de Edran. Preserve the approved reference anatomy exactly: one complete Velozanco with SIX supports in a 4+2 plan. Four long slender locomotor legs carry a lightweight HORIZONTAL SUSPENDED TORSO; two additional short anterior supports are clearly visible as small weight-bearing legs, not arms. CRITICAL SILHOUETTE: make the animal unmistakably non-dinosaurian. Use a compact blunt non-reptilian head set almost directly into the front of the torso, virtually no visible neck, no dinosaur snout, no theropod chest, no raptor posture, and no heavy hindquarters. Distribute visual weight across all four long locomotor legs rather than emphasizing a rear pair. The low flexible dorsal membrane lies flattened close to the back by a strong crosswind and must not read as a sail, fin or wing. CRITICAL TAIL: the fleshy tail base is extremely short, ending close behind the pelvis; from that short base emerge exactly TWO SHORT rigid filaments. The complete tail assembly must remain visually short and must not form a long sweeping dinosaur tail. Show natural fast movement across an open field boundary, not an attack. Background is subordinate and COOL/NEUTRAL: muted desaturated agricultural greens, blue-gray sky, gray-brown soil, sparse pale straw accents only. Neutral overcast daylight; avoid sunset, amber light and golden fields.",
+  "references": [
+    "velozanco-edran-fase1-anatomia.png"
+  ],
   "negative_constraints": [
+    "No dinosaur silhouette: no theropod, raptor, ornithopod or reptilian head/body proportions",
+    "No long neck, long snout, heavy hindquarters or bipedal-looking posture",
+    "No long tail and no long tail filaments; fleshy tail base and exactly two terminal filaments must all be short",
     "No feathers or wings",
-    "Do not resemble a dinosaur or giant insect",
-    "No glow or magic",
-    "No dominant ochre or golden palette",
-    "No readable text or HUD",
-    "Do not alter the frozen six-limb 4+2 anatomy, suspended torso, dorsal membrane, or bifilament tail"
+    "Do not resemble a giant insect",
+    "Do not alter the frozen six-limb 4+2 anatomy: exactly four long locomotor legs plus two short anterior supports",
+    "No dorsal sail, rigid fin or wing; membrane stays low, soft and wind-flattened",
+    "No dominant ochre, amber, yellow or golden palette; pale wheat is a minor accent only",
+    "No sunset or warm golden-hour lighting",
+    "No glow, magic, attack pose, readable text or HUD"
   ],
   "aspect_ratio": "1536x1024",
   "output_destination": "vintage-telnet/art_generations",
   "status": "draft",
-  "canon_sources": ["Issue #522 — Dirección de Arte, comentario del 2026-09-29"],
+  "canon_sources": [
+    "Issue #522 — Dirección de Arte, comentario del 2026-09-29"
+  ],
   "creature_id": "velozanco_edran",
-  "notes": "Piloto #559/#561: una única generación. No crear variantes hasta revisión del Director de Arte.",
+  "notes": "Prompt reforzado tras autocrítica visual de v002: las generaciones previas parecían dinosaurio, alargaban la cola/filamentos y dominaban la escena con ocres. Mantener la referencia anatómica aprobada. Fauna ambiental no combatiente. No publicar ni integrar a assets/.",
   "output_format": "png",
   "background": "opaque"
 }
