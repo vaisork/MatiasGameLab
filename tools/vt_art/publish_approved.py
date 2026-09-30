@@ -13,41 +13,91 @@ from __future__ import annotations
 import json
 import subprocess
 import sys
+import tempfile
 from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[2]
-GENERATIONS_DIR = ROOT / "vintage-telnet" / "art_generations"
 ASSETS_DIR = ROOT / "assets" / "vintage-telnet" / "creatures"
 
 
-def find_approved_generations() -> list[tuple[str, str, Path]]:
-    """Encontrar todos los assets con autocrítica aprobada.
+def find_approved_generations() -> list[tuple[str, str, bytes, bytes]]:
+    """Encontrar todos los assets con autocrítica aprobada en ramas art-drafts.
 
-    Returns: [(asset_id, version, metadata_path), ...]
+    Returns: [(asset_id, version, png_bytes, metadata_json_bytes), ...]
     """
     approved = []
-    for asset_dir in GENERATIONS_DIR.iterdir():
-        if not asset_dir.is_dir():
-            continue
-        asset_id = asset_dir.name
 
-        for version_dir in sorted(asset_dir.iterdir()):
-            if not version_dir.is_dir():
-                continue
-            version = version_dir.name
+    try:
+        # Obtener lista de ramas art-drafts
+        result = subprocess.run(
+            ["git", "branch", "-r", "--list", "origin/art-drafts/run-*"],
+            capture_output=True,
+            text=True,
+            cwd=ROOT,
+        )
+        branches = [b.strip().replace("origin/", "") for b in result.stdout.split("\n") if b.strip()]
 
-            metadata_path = version_dir / "metadata.json"
-            if not metadata_path.exists():
-                continue
+        for branch in sorted(branches, reverse=True):  # newest first
+            # Listar directorios en art_generations para esta rama
+            result = subprocess.run(
+                ["git", "ls-tree", "-r", f"origin/{branch}", "vintage-telnet/art_generations/"],
+                capture_output=True,
+                text=True,
+                cwd=ROOT,
+            )
 
-            try:
-                data = json.loads(metadata_path.read_text(encoding="utf-8"))
-                critique = data.get("critique", {})
-                if critique.get("passes"):
-                    approved.append((asset_id, version, metadata_path))
-            except (OSError, json.JSONDecodeError):
-                pass
+            for line in result.stdout.split("\n"):
+                if not line or "metadata.json" not in line:
+                    continue
+
+                # Extraer path y asset_id/version
+                path = line.split("\t")[-1] if "\t" in line else None
+                if not path:
+                    continue
+
+                parts = path.split("/")
+                if len(parts) < 4 or parts[0] != "vintage-telnet" or parts[1] != "art_generations":
+                    continue
+
+                asset_id = parts[2]
+                version = parts[3]
+
+                # Skip if ya procesamos este asset
+                if any(a[0] == asset_id for a in approved):
+                    continue
+
+                # Obtener metadata
+                try:
+                    result = subprocess.run(
+                        ["git", "show", f"origin/{branch}:{path}"],
+                        capture_output=True,
+                        cwd=ROOT,
+                    )
+                    if result.returncode != 0:
+                        continue
+
+                    metadata = json.loads(result.stdout.decode())
+                    critique = metadata.get("critique", {})
+                    if not critique.get("passes"):
+                        continue
+
+                    # Obtener PNG
+                    png_path = path.replace("metadata.json", f"{asset_id}_{version}.png")
+                    result = subprocess.run(
+                        ["git", "show", f"origin/{branch}:{png_path}"],
+                        capture_output=True,
+                        cwd=ROOT,
+                    )
+                    if result.returncode != 0:
+                        continue
+
+                    approved.append((asset_id, version, result.stdout, result.stdout))
+                except Exception:
+                    pass
+
+    except Exception:
+        pass
 
     return approved
 
