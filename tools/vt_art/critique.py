@@ -33,6 +33,7 @@ class CritiqueResult:
     model: str
     usage: dict[str, Any]
     cost_estimate: float | None
+    failure_category: str | None = None  # e.g., "especie_incorrecta", "anacronismo", "escala_incompatible"
 
 
 class VisionCriticClient(Protocol):
@@ -76,8 +77,21 @@ class OpenAIVisionCritic:
                             "passes": {"type": "boolean"},
                             "issues": {"type": "array", "items": {"type": "string"}},
                             "reasoning": {"type": "string"},
+                            "failure_category": {
+                                "type": ["string", "null"],
+                                "enum": [
+                                    None,
+                                    "especie_incorrecta",
+                                    "anatomia_incompatible",
+                                    "anacronismo",
+                                    "escala_incompatible",
+                                    "elemento_prohibido",
+                                    "categoria_incorrecta",
+                                    "otro_hard_failure"
+                                ]
+                            }
                         },
-                        "required": ["passes", "issues", "reasoning"],
+                        "required": ["passes", "issues", "reasoning", "failure_category"],
                         "additionalProperties": False,
                     },
                 },
@@ -97,21 +111,38 @@ class OpenAIVisionCritic:
 def build_critique_brief(request: ArtRequest) -> str:
     sections = [
         "You are reviewing ONE generated draft image against its approved art "
-        "brief for the game Vintage Telnet. Judge strictly what is visible in "
-        "the image; never judge artistic style or taste.",
+        "brief for the game Vintage Telnet. Judge STRICTLY what is visible. "
+        "Never judge artistic style—only whether the image matches the brief.",
+        f"Target: {request.target}",
         f"Canonical name: {request.canonical_name}",
         f"Art direction: {request.art_direction}",
     ]
-    if request.canon_sources:
-        sections.append("Canon sources supplied by the Art Director: " + "; ".join(request.canon_sources))
-    if request.negative_constraints:
-        sections.append("The image MUST NOT show any of: " + "; ".join(request.negative_constraints))
+
+    # Hard failures — immediate rejection, no exceptions
     sections.append(
-        "Set passes=true only if the image clearly satisfies the art "
-        "direction above and violates none of the negative constraints. "
-        "Otherwise set passes=false and list every violated constraint or "
-        "missing required element in issues, one short plain-language item "
-        "each, specific enough that someone could fix the prompt from it."
+        "HARD FAILURES (imagen RECHAZADA automáticamente si cualquiera ocurre):\n"
+        "• Especie/categoría incorrecta (ej: humano cuando debería ser Marevyn)\n"
+        "• Anatomía incompatible con la especie (patas incorrectas, estructura imposible)\n"
+        "• Objetos modernos/anacrónicos (teléfonos, plástico, electricidad, motores, vidrio industrial)\n"
+        "• Arquitectura que contradice la escala de la especie o región\n"
+        "• Cualquier elemento expresamente prohibido en las restricciones negativas\n"
+        "Si alguno ocurre: passes=false, failure_category=categoría exacta, no se aprueba bajo ninguna circunstancia."
+    )
+
+    if request.canon_sources:
+        sections.append("Canon sources: " + "; ".join(request.canon_sources))
+
+    if request.negative_constraints:
+        sections.append("The image MUST NOT show: " + "; ".join(request.negative_constraints))
+
+    sections.append(
+        "APPROVAL CRITERIA:\n"
+        "Set passes=true ONLY if:\n"
+        "1. No hard failures detected\n"
+        "2. Image clearly matches the target and art direction\n"
+        "3. All species/anatomy is correct\n"
+        "4. No anachronisms or forbidden elements\n\n"
+        "Otherwise: passes=false, list issues, specify failure_category if hard failure."
     )
     return "\n\n".join(sections)
 
@@ -129,13 +160,22 @@ def critique_generation(
     )
     if not isinstance(verdict, dict) or "passes" not in verdict:
         raise ArtPipelineError("La crítica no devolvió un veredicto reconocible.")
+
+    # Hard failure detection: if failure_category is set, passes must be false
+    failure_category = verdict.get("failure_category")
+    passes = bool(verdict.get("passes"))
+    if failure_category and passes:
+        # Fuerza rechazo si hay categoría de fallo
+        passes = False
+
     return CritiqueResult(
-        passes=bool(verdict.get("passes")),
+        passes=passes,
         issues=tuple(str(item) for item in verdict.get("issues") or ()),
         reasoning=str(verdict.get("reasoning", "")),
         model=model,
         usage=usage,
         cost_estimate=estimate_critique_cost_usd(model, usage),
+        failure_category=str(failure_category) if failure_category else None,
     )
 
 
