@@ -108,6 +108,62 @@ VISUAL_CONTEXT_ART = {
         "width": 1670,
         "height": 942,
     },
+    # Nuevos assets generados 2026-10-01: lote aprobado por Dirección de Arte
+    # Generados con gpt-image-2.5-flare + autocrítica gpt-5-mini endurecida
+    "zone.brumak.patio_recepcion": {
+        "src": "/assets/locations/brumak_patio_recepcion.webp",
+        "alt": "Patio de recepción de Brumak",
+        "width": 1536,
+        "height": 1024,
+    },
+    "zone.nhal.claro_cielo_estrecho": {
+        "src": "/assets/locations/claro_cielo_estrecho_nhal_hoshai.webp",
+        "alt": "Claro de cielo estrecho entre Nhal y Hoshai",
+        "width": 1536,
+        "height": 1024,
+    },
+    "zone.hoshai.garganta_lajas": {
+        "src": "/assets/locations/garganta_lajas_hoshai_korven.webp",
+        "alt": "Garganta de lajas entre Hoshai y Korven",
+        "width": 1536,
+        "height": 1024,
+    },
+    "zone.khariel.terraza_comunitaria": {
+        "src": "/assets/locations/khariel_terraza_comunitaria.webp",
+        "alt": "Terraza comunitaria de Khariel",
+        "width": 1536,
+        "height": 1024,
+    },
+    "zone.narevia.mercado_acuatico": {
+        "src": "/assets/locations/narevia_mercado_acuatico.webp",
+        "alt": "Mercado acuático de Narevia",
+        "width": 1536,
+        "height": 1024,
+    },
+    "zone.edran.primeros_juncos": {
+        "src": "/assets/locations/primeros_juncos_edran_lethra.webp",
+        "alt": "Primeros juncos entre Edran y Lethra",
+        "width": 1536,
+        "height": 1024,
+    },
+    "zone.valdren.forja_daro": {
+        "src": "/assets/locations/valdren_forja_daro.webp",
+        "alt": "Forja de Daro en Valdren",
+        "width": 1536,
+        "height": 1024,
+    },
+    "zone.velmora.cruce_reunion": {
+        "src": "/assets/locations/velmora_cruce_reunion.webp",
+        "alt": "Cruce de reunión de Velmora",
+        "width": 1536,
+        "height": 1024,
+    },
+    "zone.velmora.forja_taller": {
+        "src": "/assets/locations/velmora_forja_taller.webp",
+        "alt": "Forja/taller de Velmora",
+        "width": 1536,
+        "height": 1024,
+    },
 }
 
 # Excepciones explicitas de VISUAL_CONTEXT_CANON.md ("Mapeo de las salas
