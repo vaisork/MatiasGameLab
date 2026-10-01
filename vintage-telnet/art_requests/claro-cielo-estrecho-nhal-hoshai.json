@@ -1,0 +1,35 @@
+{
+  "asset_id": "claro_cielo_estrecho_nhal_hoshai",
+  "asset_type": "environment",
+  "target": "Paisaje de navegación para el Claro del Cielo Estrecho en el Paso del Dosel Alto; transición Velmora–Khariel.",
+  "canonical_name": "Claro del Cielo Estrecho",
+  "art_direction": "Paisaje de transición vertical entre el bosque cerrado de Nhal y las estribaciones de Hoshai. Un claro pequeño y alargado abre por primera vez el dosel lo suficiente para revelar una franja estrecha de cielo y cumbres lejanas. Raíces, troncos húmedos y sombra siguen dominando el primer plano; roca y aire frío empiezan a aparecer.",
+  "prompt": "Create one wide landscape environment scene of the canonical Claro del Cielo Estrecho on the Paso del Dosel Alto between Nhal and Hoshai. The viewer is climbing through a dark old forest on a steep natural slope. Massive roots hold the soil, tall trunks and dense canopy still enclose most of the frame, but directly ahead a SMALL NARROW OPENING in the canopy reveals the first clear strip of pale sky and distant mountain ridges. The opening must feel precious and limited, not a broad meadow. Near the gap, damp forest ground begins to mix with exposed cool gray rock and sparse mountain vegetation, suggesting the coming transition to Hoshai. Natural cold daylight enters through the narrow opening and softly outlines roots and trunks without magical beams. Deep forest greens, wet bark browns, blue-gray rock and pale cool sky. No people or creatures.",
+  "references": [],
+  "negative_constraints": [
+    "Do not depict a large sunny meadow or broad open valley; the sky opening stays narrow",
+    "No fantasy light shafts, glowing plants, runes or magic",
+    "No buildings, bridges, stairs, ruins or invented structures",
+    "No tropical jungle, autumn-gold forest or dominant ochre palette",
+    "Distant mountains must remain secondary; foreground is still Nhal forest",
+    "No characters, monsters, HUD or readable text"
+  ],
+  "aspect_ratio": "landscape",
+  "output_destination": "vintage-telnet/art_generations",
+  "status": "draft",
+  "canon_sources": [
+    "vintage-telnet/REGIONAL_CONNECTIONS.md — Paso del Dosel Alto / Claro del Cielo Estrecho",
+    "vintage-telnet/REGIONS.md — Bosque de Nhal / Sierra de Hoshai"
+  ],
+  "room_id": null,
+  "creature_id": null,
+  "species_id": null,
+  "prior_asset": null,
+  "edit_source": null,
+  "variation_of": null,
+  "notes": "Hito geográfico canónico. La identidad es ver por primera vez las cumbres a través de una abertura estrecha del dosel.",
+  "quality": "low",
+  "output_format": "png",
+  "output_compression": null,
+  "background": "opaque"
+}
