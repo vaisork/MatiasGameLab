@@ -1,0 +1,37 @@
+{
+  "asset_id": "saltacresta_hoshai",
+  "asset_type": "creature",
+  "target": "Borrador de fauna natural de la Sierra de Hoshai para poblar terrazas y matorral de altura; no integrar a runtime.",
+  "canonical_name": "Saltacresta",
+  "art_direction": "Fauna menor territorial de montaña. Mostrar un pequeño herbívoro adulto construido para saltos entre terrazas: cuerpo compacto y ligero, cuatro extremidades, patas traseras claramente más largas y potentes que las delanteras, pezuñas divididas visibles y postura alerta sobre roca inclinada. Debe sentirse adaptado a desnivel y altura, no como una cabra doméstica ni un ciervo en miniatura. Ambiente de Hoshai frío, rocoso y ventoso, subordinado al animal.",
+  "prompt": "Create one landscape wildlife scene in the Sierra de Hoshai. Show one complete adult Saltacresta, a small natural mountain herbivore standing on a narrow rocky terrace just before a jump. Exactly four limbs. CRITICAL SILHOUETTE: compact lightweight torso; short sturdy forelegs; dramatically longer, muscular folded hind legs built for explosive vertical and lateral jumps; clearly split cloven hooves gripping uneven stone. Keep the head compact and alert, suited to browsing low mountain shoots, without oversized horns or fantasy ornament. The animal looks toward a neighboring terrace while keeping its weight loaded over the hind legs. Natural fur in muted cold mountain tones: stone gray, dusty brown, subdued cream. Sparse high-altitude scrub, layered rock, distant drop and strong wind cues. Natural territorial fauna, not a monster and not attacking.",
+  "references": [],
+  "negative_constraints": [
+    "Exactly four limbs; no extra legs, wings or membranes",
+    "Do not depict a domestic goat, sheep, deer, antelope or rabbit; silhouette must be its own mountain fauna",
+    "No oversized horns, antlers, tusks, spikes or armor",
+    "Hind legs must be visibly longer and more powerful than forelegs",
+    "Cloven split hooves must be readable",
+    "No heroic predator pose, attack pose, magic, glow or Arcane traits",
+    "No dominant golden/ochre lighting; use cool natural mountain daylight",
+    "No readable text or HUD"
+  ],
+  "aspect_ratio": "landscape",
+  "output_destination": "vintage-telnet/art_generations",
+  "status": "draft",
+  "canon_sources": [
+    "vintage-telnet/CREATURES.md — Sierra de Hoshai / Saltacresta",
+    "vintage-telnet/REGIONS.md — Sierra de Hoshai"
+  ],
+  "room_id": null,
+  "creature_id": "saltacresta",
+  "species_id": null,
+  "prior_asset": null,
+  "edit_source": null,
+  "variation_of": null,
+  "notes": "Dirección de Arte basada únicamente en canon existente. Mantenerlo como fauna natural menor territorial; no añadir combate ni rasgos Arcane.",
+  "quality": "low",
+  "output_format": "png",
+  "output_compression": null,
+  "background": "opaque"
+}
