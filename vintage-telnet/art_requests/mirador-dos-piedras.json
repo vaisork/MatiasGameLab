@@ -1,0 +1,35 @@
+{
+  "aspect_ratio": "landscape",
+  "output_destination": "vintage-telnet/art_generations",
+  "status": "draft",
+  "room_id": null,
+  "species_id": null,
+  "prior_asset": null,
+  "edit_source": null,
+  "variation_of": null,
+  "quality": "low",
+  "output_format": "png",
+  "output_compression": null,
+  "background": "opaque",
+  "asset_id": "mirador_dos_piedras",
+  "asset_type": "environment",
+  "target": "Paisaje de navegación del Mirador de las Dos Piedras en el Paso de las Lajas.",
+  "canonical_name": "Mirador de las Dos Piedras",
+  "art_direction": "SUBJECT TYPE: LOCATION / ENVIRONMENT / LANDSCAPE — NO CREATURE. Punto alto canónico desde el que se distinguen Hoshai y Korven. La imagen debe mostrar la transición entre montaña abierta y pedrales fragmentados.",
+  "prompt": "SUBJECT TYPE: LOCATION / ENVIRONMENT / LANDSCAPE — NO CREATURE. Create a wide view from the canonical Mirador de las Dos Piedras. Two prominent natural standing rock masses frame the view without appearing carved or built. One side opens toward elevated Hoshai terraces and distant mountain lines; the other descends toward the drier fragmented stone fields and walls of Korven. A modest traveler path reaches the viewpoint. Strong clear distance, cool mountain daylight, restrained vegetation, natural geology, functional navigation landmark.",
+  "negative_constraints": [
+    "No buildings, statues, carved monoliths or invented ruins",
+    "The two stones are natural formations, not magical pillars",
+    "No creatures or characters as focal subject",
+    "No lava, crystals, runes or glow",
+    "No dominant orange/ochre palette",
+    "No readable text or HUD",
+    "CATEGORY LOCK: location/landscape only"
+  ],
+  "canon_sources": [
+    "vintage-telnet/REGIONAL_CONNECTIONS.md — Paso de las Lajas / Mirador de las Dos Piedras",
+    "vintage-telnet/REGIONS.md — Hoshai / Korven"
+  ],
+  "creature_id": null,
+  "notes": "Hito geográfico canónico."
+}

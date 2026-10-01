@@ -1,0 +1,35 @@
+{
+  "aspect_ratio": "landscape",
+  "output_destination": "vintage-telnet/art_generations",
+  "status": "draft",
+  "room_id": null,
+  "species_id": null,
+  "prior_asset": null,
+  "edit_source": null,
+  "variation_of": null,
+  "quality": "low",
+  "output_format": "png",
+  "output_compression": null,
+  "background": "opaque",
+  "asset_id": "rasgacumbres_hoshai",
+  "asset_type": "creature",
+  "target": "Amenaza superior natural de la Sierra de Hoshai; depredador mayor de montaña.",
+  "canonical_name": "Rasgacumbres",
+  "art_direction": "Gran cuadrúpedo depredador de montaña, pelaje grueso y patas delanteras extraordinariamente fuertes. Debe sentirse capaz de cazar en terreno escarpado y arrastrar presas hacia cornisas, sin magia ni anatomía de monstruo genérico.",
+  "prompt": "Create a wide wildlife scene in the Sierra de Hoshai showing one complete adult Rasgacumbres, a large natural mountain predator. Exactly four limbs. Heavy cold-weather coat, powerful shoulders and exceptionally strong forelegs built for gripping and hauling on steep rock. Hindquarters athletic but less massive than the front. Place it on a high broken terrace near a difficult cornice, alert rather than roaring. Mountain scale must make it clearly much larger and more dangerous than minor fauna. Cool gray rock, cold wind, sparse alpine scrub, restrained natural colors. Original animal silhouette, grounded anatomy, no magic.",
+  "negative_constraints": [
+    "Exactly four limbs",
+    "No wings, horns, armor, spikes or magical traits",
+    "Do not depict a literal bear, big cat, wolf or hyena; keep an original quadruped silhouette",
+    "Forequarters must be visibly stronger than hindquarters",
+    "No attack toward camera, gore or prey carcass as focal subject",
+    "No dominant golden/ochre lighting",
+    "No readable text or HUD"
+  ],
+  "canon_sources": [
+    "vintage-telnet/CREATURES.md — Sierra de Hoshai / Amenaza superior: Rasgacumbres",
+    "vintage-telnet/REGIONS.md — Sierra de Hoshai"
+  ],
+  "creature_id": "rasgacumbres",
+  "notes": "Amenaza superior canónica. Arte no define estadísticas, botín ni mecánicas."
+}

@@ -1,0 +1,36 @@
+{
+  "aspect_ratio": "landscape",
+  "output_destination": "vintage-telnet/art_generations",
+  "status": "draft",
+  "room_id": null,
+  "species_id": null,
+  "prior_asset": null,
+  "edit_source": null,
+  "variation_of": null,
+  "quality": "low",
+  "output_format": "png",
+  "output_compression": null,
+  "background": "opaque",
+  "asset_id": "orilla_velada",
+  "asset_type": "environment",
+  "target": "Arquitectura exterior del asentamiento secundario Orilla Velada, transición Lethra/Nhal.",
+  "canonical_name": "Orilla Velada",
+  "art_direction": "SUBJECT TYPE: ARCHITECTURE / SETTLEMENT — NO CREATURE. Embarcadero-refugio pequeño: último punto claramente abierto antes del bosque denso de Nhal.",
+  "prompt": "SUBJECT TYPE: ARCHITECTURE / SETTLEMENT — NO CREATURE. Create a wide exterior architectural scene of the canonical Orilla Velada. A modest sheltered landing and traveler refuge sits where open Lethra water narrows toward the dark edge of Nhal. Include only a few low practical structures, a simple landing for small boats, raised dry storage/rest surfaces and a path disappearing beneath dense canopy. The open water side remains brighter while the forest side becomes cool, humid and shadowed. Architecture is weathered, restrained and subordinate to water, roots and trees.",
+  "negative_constraints": [
+    "Do not turn it into a large port, fishing town or market",
+    "No lighthouse, castle, temple or monumental pier",
+    "No invented symbols, readable signs or ornate fantasy decoration",
+    "No magical fog, glowing water or runes",
+    "No characters or creatures as focal subject",
+    "No tropical resort aesthetic",
+    "No HUD or readable text",
+    "CATEGORY LOCK: architecture/settlement only"
+  ],
+  "canon_sources": [
+    "vintage-telnet/SETTLEMENTS.md — Orilla Velada",
+    "vintage-telnet/REGIONAL_CONNECTIONS.md — Ribera Sombría"
+  ],
+  "creature_id": null,
+  "notes": "Asentamiento secundario canónico; último refugio abierto antes de Nhal."
+}

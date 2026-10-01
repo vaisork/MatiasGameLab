@@ -1,0 +1,35 @@
+{
+  "aspect_ratio": "landscape",
+  "output_destination": "vintage-telnet/art_generations",
+  "status": "draft",
+  "room_id": null,
+  "species_id": null,
+  "prior_asset": null,
+  "edit_source": null,
+  "variation_of": null,
+  "quality": "low",
+  "output_format": "png",
+  "output_compression": null,
+  "background": "opaque",
+  "asset_id": "cuenca_polvo_quieto",
+  "asset_type": "environment",
+  "target": "Paisaje de navegación de la Cuenca del Polvo Quieto en la Senda del Viento Bajo.",
+  "canonical_name": "Cuenca del Polvo Quieto",
+  "art_direction": "SUBJECT TYPE: LOCATION / ENVIRONMENT / LANDSCAPE — NO CREATURE. Depresión amplia de transición Korven–Edran donde el viento pierde fuerza y el horizonte empieza a abrirse.",
+  "prompt": "SUBJECT TYPE: LOCATION / ENVIRONMENT / LANDSCAPE — NO CREATURE. Create a wide landscape of the canonical Cuenca del Polvo Quieto. Viewer descends from broken Korven stone into a broad shallow basin where wind-blown dust settles and the terrain begins opening toward Edran. Rock walls are lower and farther apart, scrub becomes more frequent, and a practical route crosses the quiet depression toward a widening horizon. Dust lies in sheltered patches rather than forming a storm. Neutral subdued daylight, gray-brown rock, dry muted grasses, strong sense of transition and navigable space.",
+  "negative_constraints": [
+    "No desert dunes or sandstorm",
+    "No buildings, ruins, monuments or vehicles",
+    "No creatures or characters as focal subject",
+    "No magical haze, glow, lava or crystals",
+    "No dominant golden sunset",
+    "No readable text or HUD",
+    "CATEGORY LOCK: location/landscape only"
+  ],
+  "canon_sources": [
+    "vintage-telnet/REGIONAL_CONNECTIONS.md — Senda del Viento Bajo / Cuenca del Polvo Quieto",
+    "vintage-telnet/REGIONS.md — Korven / Edran"
+  ],
+  "creature_id": null,
+  "notes": "Hito geográfico canónico."
+}

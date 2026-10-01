@@ -1,0 +1,36 @@
+{
+  "aspect_ratio": "landscape",
+  "output_destination": "vintage-telnet/art_generations",
+  "status": "draft",
+  "room_id": null,
+  "species_id": null,
+  "prior_asset": null,
+  "edit_source": null,
+  "variation_of": null,
+  "quality": "low",
+  "output_format": "png",
+  "output_compression": null,
+  "background": "opaque",
+  "asset_id": "piedra_viento_verde",
+  "asset_type": "environment",
+  "target": "Paisaje de navegación de Piedra del Viento Verde en el Paso del Dosel Alto.",
+  "canonical_name": "Piedra del Viento Verde",
+  "art_direction": "SUBJECT TYPE: LOCATION / ENVIRONMENT / LANDSCAPE — NO CREATURE. Formación natural donde aire frío de Hoshai entra en el bosque de Nhal; debe comunicar cambio de humedad, luz y altura.",
+  "prompt": "SUBJECT TYPE: LOCATION / ENVIRONMENT / LANDSCAPE — NO CREATURE. Create a wide landscape of the canonical Piedra del Viento Verde. A distinctive but entirely natural gray rock formation stands on a rising forested route where cold mountain air enters Nhal. Dense wet trunks and roots dominate the lower foreground, but wind bends leaves and exposes patches of cooler bare rock; through a constrained opening, higher Hoshai slopes are visible. The landmark should feel useful for orientation because vegetation and airflow visibly change around it. Cool pale daylight, deep greens, wet bark, blue-gray stone.",
+  "negative_constraints": [
+    "No carved standing stone, shrine, runes or monument",
+    "No magical green wind, glow or energy",
+    "No buildings or invented ruins",
+    "No characters or creatures as focal subject",
+    "No broad sunny meadow",
+    "No dominant ochre/gold",
+    "No readable text or HUD",
+    "CATEGORY LOCK: location/landscape only"
+  ],
+  "canon_sources": [
+    "vintage-telnet/REGIONAL_CONNECTIONS.md — Paso del Dosel Alto / Piedra del Viento Verde",
+    "vintage-telnet/REGIONS.md — Nhal / Hoshai"
+  ],
+  "creature_id": null,
+  "notes": "Hito geográfico canónico."
+}

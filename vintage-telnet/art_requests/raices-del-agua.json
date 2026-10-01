@@ -1,0 +1,35 @@
+{
+  "aspect_ratio": "landscape",
+  "output_destination": "vintage-telnet/art_generations",
+  "status": "draft",
+  "room_id": null,
+  "species_id": null,
+  "prior_asset": null,
+  "edit_source": null,
+  "variation_of": null,
+  "quality": "low",
+  "output_format": "png",
+  "output_compression": null,
+  "background": "opaque",
+  "asset_id": "raices_del_agua",
+  "asset_type": "environment",
+  "target": "Paisaje de navegación de Raíces del Agua en la Ribera Sombría.",
+  "canonical_name": "Raíces del Agua",
+  "art_direction": "SUBJECT TYPE: LOCATION / ENVIRONMENT / LANDSCAPE — NO CREATURE. Transición Lethra–Nhal donde grandes raíces cruzan canales poco profundos y la luz empieza a reducirse bajo el dosel.",
+  "prompt": "SUBJECT TYPE: LOCATION / ENVIRONMENT / LANDSCAPE — NO CREATURE. Create a wide landscape at the canonical Raíces del Agua. Shallow dark channels from Lethra weave beneath enormous exposed tree roots at the first dense edge of Nhal. The roots create natural crossings and obstacles without becoming architecture. Open wetland light remains visible behind, while ahead the canopy thickens and the route becomes darker and more enclosed. Wet bark, reflective water, reeds giving way to ferns and deep forest vegetation. Natural humid daylight with a clear ecological transition.",
+  "negative_constraints": [
+    "No bridges, houses, docks or carved structures",
+    "Roots are natural, not fantasy architecture",
+    "No giant magical tree, glowing plants or runes",
+    "No creatures or characters as focal subject",
+    "No tropical jungle exaggeration",
+    "No readable text or HUD",
+    "CATEGORY LOCK: location/landscape only"
+  ],
+  "canon_sources": [
+    "vintage-telnet/REGIONAL_CONNECTIONS.md — Ribera Sombría / Raíces del Agua",
+    "vintage-telnet/REGIONS.md — Lethra / Nhal"
+  ],
+  "creature_id": null,
+  "notes": "Hito geográfico canónico."
+}
