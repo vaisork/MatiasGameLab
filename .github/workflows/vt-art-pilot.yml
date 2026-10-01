@@ -63,6 +63,8 @@ jobs:
           {
             echo "Generated draft for **${ASSET_ID} ${VERSION}** from its approved brief."
             echo
+            echo "**Asset type:** `$(jq -r '.asset_type' "$metadata_path")`"
+            echo
             echo "![${ASSET_ID}](https://github.com/${{ github.repository }}/raw/art-drafts/run-${RUN_ID}/${image_path})"
             echo
             if [ "$VERDICT" = "aprobado" ]; then
