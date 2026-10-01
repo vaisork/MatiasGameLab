@@ -62,7 +62,7 @@ def main():
         print(f"  {i}) {ficha.name}")
 
     print()
-    print("Opción: T/Todas para generar todas, <número> para seleccionar, 0 para cancelar")
+    print("Opción: T/Todas para todas, <números> (ej: 1,2,3 o 1 2 3), 0 para cancelar")
     choice = input("Elige: ").strip()
 
     if choice == "0":
@@ -72,15 +72,28 @@ def main():
     if choice.upper() in ("T", "TODAS"):
         selected = fichas
     else:
-        try:
-            idx = int(choice) - 1
-            if 0 <= idx < len(fichas):
-                selected = [fichas[idx]]
-            else:
-                print("❌ Opción inválida.")
-                return 1
-        except ValueError:
+        # Aceptar múltiples números separados por comas o espacios
+        import re
+        numbers = re.findall(r'\d+', choice)
+        if not numbers:
             print("❌ Entrada inválida.")
+            return 1
+
+        selected = []
+        for num_str in numbers:
+            try:
+                idx = int(num_str) - 1
+                if 0 <= idx < len(fichas):
+                    selected.append(fichas[idx])
+                else:
+                    print(f"❌ Opción {num_str} inválida.")
+                    return 1
+            except ValueError:
+                print("❌ Entrada inválida.")
+                return 1
+
+        if not selected:
+            print("❌ No se seleccionaron fichas.")
             return 1
 
     print()
