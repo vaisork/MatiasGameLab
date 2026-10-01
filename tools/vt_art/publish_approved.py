@@ -3,10 +3,10 @@
 
 Busca todas las generaciones con autocrítica aprobada y:
 1. Convierte PNG → WebP (quality:85)
-2. Publica WebP a assets/vintage-telnet/creatures/
-3. Genera PNG high-quality y guarda en art-masters/
+2. Publica WebP a assets/vintage-telnet/{creatures|locations}/ según asset_type
+3. Genera PNG high-quality y guarda en art-masters/{creatures|locations}/
 
-No requiere OpenAI API — solo usa cwebp local.
+No requiere OpenAI API — solo usa Pillow local.
 """
 from __future__ import annotations
 
@@ -18,13 +18,12 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[2]
-ASSETS_DIR = ROOT / "assets" / "vintage-telnet" / "creatures"
 
 
-def find_approved_generations() -> list[tuple[str, str, bytes, bytes]]:
+def find_approved_generations() -> list[tuple[str, str, str, bytes]]:
     """Encontrar todos los assets con autocrítica aprobada en ramas art-drafts.
 
-    Returns: [(asset_id, version, png_bytes, metadata_json_bytes), ...]
+    Returns: [(asset_id, version, asset_type, png_bytes), ...]
     """
     approved = []
 
@@ -82,6 +81,11 @@ def find_approved_generations() -> list[tuple[str, str, bytes, bytes]]:
                     if not critique.get("passes"):
                         continue
 
+                    # Extraer asset_type de metadata (por defecto "creature" si falta)
+                    asset_type = metadata.get("asset_type", "creature")
+                    if asset_type == "environment":
+                        asset_type = "location"
+
                     # Obtener PNG
                     png_path = path.replace("metadata.json", f"{asset_id}_{version}.png")
                     result = subprocess.run(
@@ -92,7 +96,7 @@ def find_approved_generations() -> list[tuple[str, str, bytes, bytes]]:
                     if result.returncode != 0:
                         continue
 
-                    approved.append((asset_id, version, result.stdout, result.stdout))
+                    approved.append((asset_id, version, asset_type, result.stdout))
                 except Exception:
                     pass
 
@@ -126,26 +130,41 @@ def main() -> int:
     print(f"Encontradas {len(approved)} generación(es) aprobada(s):")
 
     published = 0
-    for asset_id, version, metadata_path in approved:
-        version_dir = metadata_path.parent
-        png_path = version_dir / f"{asset_id}_{version}.png"
+    for asset_id, version, asset_type, png_bytes in approved:
+        # Determinar carpeta de destino según asset_type
+        if asset_type not in ("creature", "location"):
+            asset_type = "creature"
 
-        if not png_path.exists():
-            print(f"  ⚠️  {asset_id} {version}: PNG no encontrado")
-            continue
+        assets_dir = ROOT / "assets" / "vintage-telnet" / asset_type + "s"
+        art_masters_dir = ROOT / "art-masters" / asset_type + "s"
 
-        # Convertir a WebP
-        webp_dest = ASSETS_DIR / f"{asset_id}.webp"
-        ASSETS_DIR.mkdir(parents=True, exist_ok=True)
+        assets_dir.mkdir(parents=True, exist_ok=True)
+        art_masters_dir.mkdir(parents=True, exist_ok=True)
 
-        if png_to_webp(png_path, webp_dest):
-            print(f"  ✅ {asset_id} {version}: WebP publicado a assets/")
-            published += 1
-        else:
-            print(f"  ❌ {asset_id} {version}: Falló conversión a WebP (¿cwebp instalado?)")
+        # Escribir PNG temporalmente para conversión
+        with tempfile.NamedTemporaryFile(suffix=".png", delete=False) as tmp:
+            tmp.write(png_bytes)
+            png_path = Path(tmp.name)
+
+        try:
+            # Convertir a WebP
+            webp_dest = assets_dir / f"{asset_id}.webp"
+
+            if png_to_webp(png_path, webp_dest):
+                print(f"  ✅ {asset_id} {version} ({asset_type}): WebP publicado")
+
+                # Guardar original en art-masters
+                art_masters_dest = art_masters_dir / f"{asset_id}_hq.png"
+                art_masters_dest.write_bytes(png_bytes)
+
+                published += 1
+            else:
+                print(f"  ❌ {asset_id} {version}: Falló conversión a WebP")
+        finally:
+            png_path.unlink()
 
     if published > 0:
-        print(f"\n✅ {published} imagen(es) publicada(s) a assets/")
+        print(f"\n✅ {published} imagen(es) publicada(s)")
 
     return 0
 

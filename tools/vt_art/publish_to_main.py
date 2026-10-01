@@ -28,52 +28,50 @@ def run_git(cmd: str, check: bool = True) -> str:
 
 def publish_approved_art(asset_id: str, version: str) -> int:
     """Publicar PNG aprobado a main."""
+    import json
+
     png_file = ROOT / "vintage-telnet" / "art_generations" / asset_id / version / f"{asset_id}_{version}.png"
 
     if not png_file.exists():
         print(f"❌ PNG no encontrado: {png_file}")
         return 1
 
+    # Obtener asset_type de la ficha
+    asset_type = "creature"
+    for request_file in (ROOT / "vintage-telnet" / "art_requests").glob(f"{asset_id}*.json"):
+        try:
+            with open(request_file) as f:
+                data = json.load(f)
+                asset_type = data.get("asset_type", "creature")
+                if asset_type == "environment":
+                    asset_type = "location"
+                break
+        except (json.JSONDecodeError, OSError):
+            pass
+
     try:
-        # Instalar cwebp si no existe
-        subprocess.run(
-            ["which", "cwebp"],
-            capture_output=True,
-            check=False,
-        )
-        if subprocess.run(["which", "cwebp"], capture_output=True).returncode != 0:
-            print("📦 Instalando cwebp...")
-            subprocess.run(
-                "apt-get update && apt-get install -y webp",
-                shell=True,
-                capture_output=True,
-            )
+        # Usar Pillow en lugar de cwebp (no requiere instalación)
+        from PIL import Image
 
         # Configurar git
         run_git('git config user.name "github-actions[bot]"')
         run_git('git config user.email "41898282+github-actions[bot]@users.noreply.github.com"')
 
         # 1. PNG high-quality → art-masters/
-        art_masters_dir = ROOT / "art-masters" / asset_id / version
+        art_masters_dir = ROOT / "art-masters" / (asset_type + "s")
         art_masters_dir.mkdir(parents=True, exist_ok=True)
-        hq_path = art_masters_dir / f"{asset_id}_{version}_hq.png"
+        hq_path = art_masters_dir / f"{asset_id}_hq.png"
         shutil.copy2(png_file, hq_path)
         print(f"✅ PNG guardado: {hq_path.relative_to(ROOT)}")
 
         # 2. PNG → WebP → assets/
-        assets_dir = ROOT / "assets" / "vintage-telnet" / "creatures"
+        assets_dir = ROOT / "assets" / "vintage-telnet" / (asset_type + "s")
         assets_dir.mkdir(parents=True, exist_ok=True)
         webp_path = assets_dir / f"{asset_id}.webp"
 
-        result = subprocess.run(
-            ["cwebp", "-q", "85", str(png_file), "-o", str(webp_path)],
-            capture_output=True,
-            text=True,
-        )
-        if result.returncode != 0:
-            print(f"❌ Falló conversión a WebP: {result.stderr}")
-            return 1
-
+        # Convertir con Pillow
+        img = Image.open(png_file)
+        img.save(webp_path, "WEBP", quality=85)
         print(f"✅ WebP creado: {webp_path.relative_to(ROOT)}")
 
         # 3. Commitear a main
@@ -81,8 +79,8 @@ def publish_approved_art(asset_id: str, version: str) -> int:
         run_git(
             f"""git commit -m "Publish approved art: {asset_id} {version}
 
-- PNG high-quality → art-masters/
-- WebP → assets/vintage-telnet/creatures/" """
+- PNG high-quality → art-masters/{asset_type}s/
+- WebP → assets/vintage-telnet/{asset_type}s/" """
         )
         print("✅ Commit creado")
 
@@ -94,6 +92,8 @@ def publish_approved_art(asset_id: str, version: str) -> int:
 
     except Exception as exc:
         print(f"❌ Error: {exc}")
+        import traceback
+        traceback.print_exc()
         return 1
 
 
