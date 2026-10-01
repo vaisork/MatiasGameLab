@@ -3,8 +3,8 @@
   "asset_type": "architecture",
   "target": "Arquitectura funcional para el centro/micro-salas internas de Velmora; referencia visual del contexto zone.velmora.",
   "canonical_name": "Cruce de reunión de Velmora",
-  "art_direction": "Espacio Vesperi que sólo se reconoce como centro al acercarse. Arquitectura parcialmente integrada y protegida por grandes árboles y formaciones naturales; refugios conectados por senderos discretos, texturas, pequeños reflejos y puntos de luz controlada. No ciudad élfica, no gran árbol sagrado, no arquitectura monumental.",
-  "prompt": "Create a wide architectural environment view inside canonical Velmora in the Bosque de Nhal. Show a subtle COMMUNITY CROSSING that at first looks like dense old forest, but on closer view reveals several inhabited refuges and paths converging. Low-light Vesperi architecture is partially integrated behind large trunks, roots and natural formations rather than displayed as a façade. Entrances are modest and protected; paths are indicated through repeated textures, small placed markers, restrained reflective surfaces and a few controlled low-intensity light points. Include traces of older shelters absorbed into newer construction and routes that deliberately avoid open ground. The gathering area becomes evident only near the center where several discreet paths meet. Dense canopy, muted humid materials, deep greens, bark browns and cool gray stone. Quiet, practical and inhabited, never mystical spectacle.",
+  "art_direction": "SUBJECT TYPE: ARCHITECTURE / BUILT ENVIRONMENT — NO CREATURE. Espacio Vesperi que sólo se reconoce como centro al acercarse. Arquitectura parcialmente integrada y protegida por grandes árboles y formaciones naturales; refugios conectados por senderos discretos, texturas, pequeños reflejos y puntos de luz controlada. No ciudad élfica, no gran árbol sagrado, no arquitectura monumental.",
+  "prompt": "SUBJECT TYPE: ARCHITECTURE / BUILT ENVIRONMENT — NO CREATURE. Create a wide architectural environment view inside canonical Velmora in the Bosque de Nhal. Show a subtle COMMUNITY CROSSING that at first looks like dense old forest, but on closer view reveals several inhabited refuges and paths converging. Low-light Vesperi architecture is partially integrated behind large trunks, roots and natural formations rather than displayed as a façade. Entrances are modest and protected; paths are indicated through repeated textures, small placed markers, restrained reflective surfaces and a few controlled low-intensity light points. Include traces of older shelters absorbed into newer construction and routes that deliberately avoid open ground. The gathering area becomes evident only near the center where several discreet paths meet. Dense canopy, muted humid materials, deep greens, bark browns and cool gray stone. Quiet, practical and inhabited, never mystical spectacle.",
   "references": [],
   "negative_constraints": [
     "No elven city, giant sacred tree, tree palace or fantasy woodland cathedral",
@@ -13,7 +13,9 @@
     "No broad ceremonial plaza or monumental architecture",
     "No bat motifs, wings or species-symbol clichés",
     "Keep lighting scarce and controlled, not pitch black",
-    "No readable signs, text or HUD"
+    "No readable signs, text or HUD",
+    "CATEGORY LOCK: architecture/built environment is the focal subject; no creature, animal or monster may replace it.",
+    "CANON HARD FAIL: reject modern backpacks, modern clothing/technology, generic contemporary visitors, or inhabitants/species that contradict the architecture brief. Built scale, doors, circulation and furniture must visibly support the canonical inhabitants named in this request."
   ],
   "aspect_ratio": "landscape",
   "output_destination": "vintage-telnet/art_generations",
@@ -30,7 +32,7 @@
   "prior_asset": null,
   "edit_source": null,
   "variation_of": null,
-  "notes": "Centro perceptivo, no plaza monumental. Debe sentirse como red de refugios que aprendió a encontrarse sin hacerse visible desde lejos.",
+  "notes": "Centro perceptivo, no plaza monumental. Debe sentirse como red de refugios que aprendió a encontrarse sin hacerse visible desde lejos. Regeneration batch 2026-10-01: previous draft deleted by art direction; regenerate from this hardened request and do not use the deleted draft as visual reference.",
   "quality": "low",
   "output_format": "png",
   "output_compression": null,

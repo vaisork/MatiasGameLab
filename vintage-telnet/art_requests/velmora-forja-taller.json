@@ -3,8 +3,8 @@
   "asset_type": "architecture",
   "target": "Forja/taller funcional de Velmora bajo el dosel del Bosque de Nhal, adaptado a orientación discreta y luz controlada.",
   "canonical_name": "Taller de Velmora",
-  "art_direction": "Taller Vesperi discreto y funcional integrado entre grandes raíces, árboles y formaciones naturales. La arquitectura debe poder pasarse por alto desde lejos: accesos guiados por textura, pequeños reflejos y señales físicas sutiles. Luz escasa y controlada para trabajar, nunca caverna genérica ni templo élfico. El espacio de fabricación/reparación se protege con raíces, piedra y madera oscura, con ventilación y puntos de calor contenidos para no inundar el bosque de luz.",
-  "prompt": "Create a 1536x1024 landscape architectural scene of Velmora's forge/workshop deep under the dense canopy of the Bosque de Nhal. Build a quiet functional workshop into the shelter created by massive tree roots, existing rock and dark timber additions, without carving a fantasy cave or making a tree-house. From a distance the entrance should be easy to overlook; close up, subtle repeated texture marks, small reflective markers and carefully controlled low lights reveal the route and threshold. Inside the open working zone, show believable repair and fabrication functions: compact work surfaces, tool storage, a contained low forge/heat source with ventilation, material racks and protected working niches. Keep illumination local and restrained so the surrounding forest remains dim. Architecture should feel accumulated from older refuge structures and later additions rather than designed as one ornate building. Wet roots, dark bark, muted stone, subdued metal and tiny warm work-light accents against cool forest shadow. No person as focal subject.",
+  "art_direction": "SUBJECT TYPE: ARCHITECTURE / BUILT ENVIRONMENT — NO CREATURE. Taller Vesperi discreto y funcional integrado entre grandes raíces, árboles y formaciones naturales. La arquitectura debe poder pasarse por alto desde lejos: accesos guiados por textura, pequeños reflejos y señales físicas sutiles. Luz escasa y controlada para trabajar, nunca caverna genérica ni templo élfico. El espacio de fabricación/reparación se protege con raíces, piedra y madera oscura, con ventilación y puntos de calor contenidos para no inundar el bosque de luz.",
+  "prompt": "SUBJECT TYPE: ARCHITECTURE / BUILT ENVIRONMENT — NO CREATURE. Create a 1536x1024 landscape architectural scene of Velmora's forge/workshop deep under the dense canopy of the Bosque de Nhal. Build a quiet functional workshop into the shelter created by massive tree roots, existing rock and dark timber additions, without carving a fantasy cave or making a tree-house. From a distance the entrance should be easy to overlook; close up, subtle repeated texture marks, small reflective markers and carefully controlled low lights reveal the route and threshold. Inside the open working zone, show believable repair and fabrication functions: compact work surfaces, tool storage, a contained low forge/heat source with ventilation, material racks and protected working niches. Keep illumination local and restrained so the surrounding forest remains dim. Architecture should feel accumulated from older refuge structures and later additions rather than designed as one ornate building. Wet roots, dark bark, muted stone, subdued metal and tiny warm work-light accents against cool forest shadow. No person as focal subject.",
   "references": [
     "../../assets/vintage-telnet/locations/velmora.webp",
     "../../assets/vintage-telnet/locations/velmora-vivienda-vesperi-raices.webp",
@@ -17,7 +17,9 @@
     "No glowing magic runes, bioluminescent fantasy spectacle or neon",
     "No giant furnace, industrial factory or steampunk machinery",
     "No monumental scale or ornate palace",
-    "No readable text, HUD or logos"
+    "No readable text, HUD or logos",
+    "CATEGORY LOCK: architecture/built environment is the focal subject; no creature, animal or monster may replace it.",
+    "CANON HARD FAIL: reject modern backpacks, modern clothing/technology, generic contemporary visitors, or inhabitants/species that contradict the architecture brief. Built scale, doors, circulation and furniture must visibly support the canonical inhabitants named in this request."
   ],
   "canon_sources": [
     "vintage-telnet/SETTLEMENTS.md — Velmora",
@@ -31,5 +33,6 @@
   "status": "draft",
   "quality": "low",
   "output_format": "png",
-  "background": "opaque"
+  "background": "opaque",
+  "notes": " Regeneration batch 2026-10-01: previous draft deleted by art direction; regenerate from this hardened request and do not use the deleted draft as visual reference."
 }

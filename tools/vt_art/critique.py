@@ -29,6 +29,7 @@ CRITIQUE_TOKEN_PRICING_USD_PER_MILLION: dict[str, dict[str, float]] = {
 class CritiqueResult:
     passes: bool
     issues: tuple[str, ...]
+    hard_failures: tuple[dict[str, str], ...]
     reasoning: str
     model: str
     usage: dict[str, Any]
@@ -76,6 +77,7 @@ class OpenAIVisionCritic:
                         "properties": {
                             "passes": {"type": "boolean"},
                             "issues": {"type": "array", "items": {"type": "string"}},
+                            "hard_failures": {"type":"array","items":{"type":"object","properties":{"code":{"type":"string","enum":["wrong_category","wrong_species","anatomy_mismatch","architecture_scale_mismatch","anachronism","explicit_prohibition"]},"detail":{"type":"string"}},"required":["code","detail"],"additionalProperties":False}},
                             "reasoning": {"type": "string"},
                             "failure_category": {
                                 "type": ["string", "null"],

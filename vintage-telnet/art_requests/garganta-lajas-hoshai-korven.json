@@ -3,8 +3,8 @@
   "asset_type": "environment",
   "target": "Paisaje de navegación para la Garganta de las Lajas en el Paso de las Lajas; transición Khariel–Brumak.",
   "canonical_name": "Garganta de las Lajas",
-  "art_direction": "Paisaje regional de transición donde la altura abierta de Hoshai empieza a convertirse en encierro mineral de Korven. Corredor estrecho formado por grandes placas de roca inclinadas, suelo quebrado transitable y viento canalizado. Debe comunicar compresión espacial y dirección de viaje sin parecer cueva, cañón desértico genérico ni ruina construida.",
-  "prompt": "Create one wide landscape environment scene of the canonical Garganta de las Lajas on the Paso de las Lajas between Hoshai and Korven. Viewer stands inside a narrow natural corridor formed by massive tilted slabs of layered rock leaning at different angles. A rough but traversable path continues through the center and bends out of sight. Behind and above the entrance, a small remnant of open highland sky hints at Hoshai; deeper ahead, the stone becomes drier, darker and more fragmented toward Korven. Strong wind is suggested by sparse scrub pressed sideways and mineral dust moving close to the ground. No characters or focal creature. Natural geological formation, practical travel landmark, readable depth and route direction. Cool gray and muted brown stone with restrained dry olive vegetation; neutral daylight.",
+  "art_direction": "SUBJECT TYPE: LOCATION / ENVIRONMENT / LANDSCAPE — NO CREATURE. Paisaje regional de transición donde la altura abierta de Hoshai empieza a convertirse en encierro mineral de Korven. Corredor estrecho formado por grandes placas de roca inclinadas, suelo quebrado transitable y viento canalizado. Debe comunicar compresión espacial y dirección de viaje sin parecer cueva, cañón desértico genérico ni ruina construida.",
+  "prompt": "SUBJECT TYPE: LOCATION / ENVIRONMENT / LANDSCAPE — NO CREATURE. Create one wide landscape environment scene of the canonical Garganta de las Lajas on the Paso de las Lajas between Hoshai and Korven. Viewer stands inside a narrow natural corridor formed by massive tilted slabs of layered rock leaning at different angles. A rough but traversable path continues through the center and bends out of sight. Behind and above the entrance, a small remnant of open highland sky hints at Hoshai; deeper ahead, the stone becomes drier, darker and more fragmented toward Korven. Strong wind is suggested by sparse scrub pressed sideways and mineral dust moving close to the ground. No characters or focal creature. Natural geological formation, practical travel landmark, readable depth and route direction. Cool gray and muted brown stone with restrained dry olive vegetation; neutral daylight.",
   "references": [],
   "negative_constraints": [
     "No buildings, carved stairs, statues, gates or invented ruins",
@@ -12,7 +12,8 @@
     "No monumental fantasy canyon, lava, crystals, magic or glowing elements",
     "No dominant orange/ochre desert palette",
     "No lush forest or watercourse",
-    "No characters, monsters, HUD or readable text"
+    "No characters, monsters, HUD or readable text",
+    "CATEGORY LOCK: this is a location/landscape; no creature, animal, monster or character may become the focal subject."
   ],
   "aspect_ratio": "landscape",
   "output_destination": "vintage-telnet/art_generations",
@@ -27,7 +28,7 @@
   "prior_asset": null,
   "edit_source": null,
   "variation_of": null,
-  "notes": "Hito geográfico canónico. Paisaje funcional para navegación; no añadir historia ni arquitectura no definida.",
+  "notes": "Hito geográfico canónico. Paisaje funcional para navegación; no añadir historia ni arquitectura no definida. Regeneration batch 2026-10-01: previous draft deleted by art direction; regenerate from this hardened request and do not use the deleted draft as visual reference.",
   "quality": "low",
   "output_format": "png",
   "output_compression": null,
