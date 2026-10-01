@@ -54,14 +54,14 @@ def main():
         print(f"  {i}) {ficha.name}")
 
     print()
-    print("Opción: T para generar todas, <número> para seleccionar, 0 para cancelar")
+    print("Opción: T/Todas para generar todas, <número> para seleccionar, 0 para cancelar")
     choice = input("Elige: ").strip()
 
     if choice == "0":
         print("❌ Cancelado.")
         return 0
 
-    if choice.upper() == "T":
+    if choice.upper() in ("T", "TODAS"):
         selected = fichas
     else:
         try:
@@ -74,6 +74,12 @@ def main():
         except ValueError:
             print("❌ Entrada inválida.")
             return 1
+
+    print()
+    confirmation = input("Escribe GEN para continuar: ").strip()
+    if confirmation.upper() != "GEN":
+        print("❌ Cancelado.")
+        return 0
 
     print()
     print(f"✅ Generando {len(selected)} ficha(s)...")
