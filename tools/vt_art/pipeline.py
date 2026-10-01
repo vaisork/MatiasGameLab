@@ -69,6 +69,7 @@ class ArtRequest:
     room_id: str | None = None
     creature_id: str | None = None
     species_id: str | None = None
+    visual_context_id: str | None = None
     prior_asset: Path | None = None
     edit_source: Path | None = None
     variation_of: str | None = None
@@ -146,7 +147,7 @@ class ArtRequest:
         if destination != safe_root and safe_root not in destination.parents:
             raise ArtPipelineError("output_destination debe permanecer dentro de vintage-telnet/art_generations/.")
 
-        optional_text = ("room_id", "creature_id", "species_id", "variation_of", "notes")
+        optional_text = ("room_id", "creature_id", "species_id", "visual_context_id", "variation_of", "notes")
         optional = {key: _optional_text(raw.get(key), key) for key in optional_text}
         return cls(
             asset_id=asset_id,
