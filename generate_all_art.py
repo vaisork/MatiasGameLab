@@ -11,7 +11,22 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent
+# Detectar raíz del proyecto buscando hacia arriba
+def find_project_root(start_path: Path = None) -> Path:
+    """Buscar raíz del proyecto detectando vintage-telnet/"""
+    if start_path is None:
+        start_path = Path(__file__).resolve().parent
+
+    current = start_path
+    while current != current.parent:
+        if (current / "vintage-telnet").exists():
+            return current
+        current = current.parent
+
+    # Fallback si no encuentra
+    return start_path
+
+ROOT = find_project_root()
 ART_REQUESTS_DIR = ROOT / "vintage-telnet" / "art_requests"
 ART_MASTERS_DIR = ROOT / "art-masters"  # PNG high-quality respaldo
 ASSETS_DIR = ROOT / "assets" / "vintage-telnet"  # WebP para el servidor
@@ -75,7 +90,8 @@ def main():
             from tools.vt_art.pipeline import ArtRequest, generate_with_critique
             from tools.vt_art.critique import OpenAIVisionCritic
 
-            request = ArtRequest.load(ficha_path)
+            # Cargar con ruta absoluta del proyecto
+            request = ArtRequest.load(ficha_path, project_root=ROOT)
             critic = OpenAIVisionCritic(api_key=os.getenv("OPENAI_API_KEY"))
 
             # Generar con crítica automática (máx 4 intentos)
