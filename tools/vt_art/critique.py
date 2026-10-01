@@ -93,7 +93,7 @@ class OpenAIVisionCritic:
                                 ]
                             }
                         },
-                        "required": ["passes", "issues", "reasoning", "failure_category"],
+                        "required": ["passes", "issues", "hard_failures", "reasoning", "failure_category"],
                         "additionalProperties": False,
                     },
                 },
