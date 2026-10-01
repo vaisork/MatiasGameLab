@@ -1,0 +1,35 @@
+{
+  "asset_type": "environment",
+  "aspect_ratio": "landscape",
+  "output_destination": "vintage-telnet/art_generations",
+  "status": "draft",
+  "room_id": null,
+  "creature_id": null,
+  "species_id": null,
+  "prior_asset": null,
+  "edit_source": null,
+  "variation_of": null,
+  "quality": "low",
+  "output_format": "png",
+  "output_compression": null,
+  "background": "opaque",
+  "asset_id": "boca_de_la_montana",
+  "canonical_name": "Boca de la Montaña",
+  "target": "Anclaje geográfico del ramal A del Paso del Dosel Alto.",
+  "art_direction": "SUBJECT TYPE: LOCATION / ENVIRONMENT / LANDSCAPE — NO CREATURE. Abertura rocosa parcialmente oculta por vegetación y claramente distinta de una mina. Solo se representa la boca exterior; futura mazmorra no definida.",
+  "prompt": "SUBJECT TYPE: LOCATION / ENVIRONMENT / LANDSCAPE — NO CREATURE. Create a wide exterior landscape of Boca de la Montaña on the upper Nhal–Hoshai transition. A natural rock opening sits where forest roots and vegetation cling to a steep stony slope. The entrance is irregular, weathered and partly screened by ordinary branches and foliage, but large enough to suggest a natural passage into the mountain. Its visible interior ends quickly in neutral darkness; do not reveal chambers or construction. Surrounding terrain combines wet forest roots below with colder exposed mountain rock above, making it unmistakably a transition-zone formation rather than a mine.",
+  "negative_constraints": [
+    "No mine rails, beams, cut tunnel, masonry doorway or quarry scars",
+    "Do not reveal an interior room, stairs, treasure, creature or boss clue",
+    "No runes, carvings, crystals, magical glow or portal",
+    "No skull-shaped cave or dramatic monster-mouth silhouette",
+    "No characters or creatures as focal subject",
+    "No readable text or HUD",
+    "CATEGORY LOCK: location/landscape only; geography is the primary subject."
+  ],
+  "canon_sources": [
+    "vintage-telnet/REGIONAL_CONNECTIONS.md — Paso del Dosel Alto / Ramal A: Boca de la Montaña",
+    "vintage-telnet/REGIONS.md — Nhal / Hoshai"
+  ],
+  "notes": "Fiel al anclaje canónico. No definir interior, jefe, secreto, acceso mecánico ni historia adicional."
+}
