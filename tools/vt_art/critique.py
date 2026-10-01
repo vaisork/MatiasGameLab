@@ -29,6 +29,7 @@ CRITIQUE_TOKEN_PRICING_USD_PER_MILLION: dict[str, dict[str, float]] = {
 class CritiqueResult:
     passes: bool
     issues: tuple[str, ...]
+    hard_failures: tuple[dict[str, str], ...]
     reasoning: str
     model: str
     usage: dict[str, Any]
@@ -75,9 +76,21 @@ class OpenAIVisionCritic:
                         "properties": {
                             "passes": {"type": "boolean"},
                             "issues": {"type": "array", "items": {"type": "string"}},
+                            "hard_failures": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {"type": "string", "enum": ["wrong_category", "wrong_species", "anatomy_mismatch", "architecture_scale_mismatch", "anachronism", "explicit_prohibition"]},
+                                        "detail": {"type": "string"},
+                                    },
+                                    "required": ["code", "detail"],
+                                    "additionalProperties": False,
+                                },
+                            },
                             "reasoning": {"type": "string"},
                         },
-                        "required": ["passes", "issues", "reasoning"],
+                        "required": ["passes", "issues", "hard_failures", "reasoning"],
                         "additionalProperties": False,
                     },
                 },
@@ -107,11 +120,18 @@ def build_critique_brief(request: ArtRequest) -> str:
     if request.negative_constraints:
         sections.append("The image MUST NOT show any of: " + "; ".join(request.negative_constraints))
     sections.append(
-        "Set passes=true only if the image clearly satisfies the art "
-        "direction above and violates none of the negative constraints. "
-        "Otherwise set passes=false and list every violated constraint or "
-        "missing required element in issues, one short plain-language item "
-        "each, specific enough that someone could fix the prompt from it."
+        "HARD-FAIL CHECKS ARE MANDATORY. Inspect the image explicitly for: "
+        "(1) wrong_category: the focal subject is the wrong kind of thing (for example a creature instead of a location); "
+        "(2) wrong_species: depicted inhabitants are not the canonical species or read as a generic/other species; "
+        "(3) anatomy_mismatch: visible anatomy contradicts required species/creature anatomy; "
+        "(4) architecture_scale_mismatch: built space does not visibly fit the body scale/anatomy of the culture that built it; "
+        "(5) anachronism: modern or out-of-world objects, clothing, backpacks, technology or materials appear without authorization; "
+        "(6) explicit_prohibition: anything expressly forbidden by the brief or negative constraints is visible. "
+        "For every detected hard failure, add an object to hard_failures with the exact code and a concise visible reason. "
+        "ANY hard_failure means passes MUST be false, regardless of composition, beauty, lighting or how many other requirements pass. "
+        "For architecture tied to a species, do not accept generic fantasy architecture merely because the environment matches: check that doors, passages, furniture, circulation and inhabitants visibly support the canonical body scale and anatomy. "
+        "Set passes=true only if there are ZERO hard_failures and the image clearly satisfies the art direction. "
+        "Also list ordinary non-hard missing requirements in issues, specific enough to fix the next generation."
     )
     return "\n\n".join(sections)
 
@@ -129,9 +149,18 @@ def critique_generation(
     )
     if not isinstance(verdict, dict) or "passes" not in verdict:
         raise ArtPipelineError("La crítica no devolvió un veredicto reconocible.")
+    raw_hard = verdict.get("hard_failures") or ()
+    hard_failures = tuple(
+        {"code": str(item.get("code", "")), "detail": str(item.get("detail", ""))}
+        for item in raw_hard if isinstance(item, dict)
+    )
+    # Safety invariant: the model cannot accidentally pass an image after
+    # reporting a canonical hard failure.
+    passes = bool(verdict.get("passes")) and not hard_failures
     return CritiqueResult(
-        passes=bool(verdict.get("passes")),
+        passes=passes,
         issues=tuple(str(item) for item in verdict.get("issues") or ()),
+        hard_failures=hard_failures,
         reasoning=str(verdict.get("reasoning", "")),
         model=model,
         usage=usage,
