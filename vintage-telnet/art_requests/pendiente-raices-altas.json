@@ -1,0 +1,36 @@
+{
+  "asset_type": "environment",
+  "aspect_ratio": "landscape",
+  "output_destination": "vintage-telnet/art_generations",
+  "status": "draft",
+  "room_id": null,
+  "creature_id": null,
+  "species_id": null,
+  "prior_asset": null,
+  "edit_source": null,
+  "variation_of": null,
+  "quality": "low",
+  "output_format": "png",
+  "output_compression": null,
+  "background": "opaque",
+  "asset_id": "pendiente_raices_altas",
+  "canonical_name": "Pendiente de las Raíces Altas",
+  "target": "Hito del Paso del Dosel Alto.",
+  "art_direction": "SUBJECT TYPE: LOCATION / ENVIRONMENT / LANDSCAPE — NO CREATURE. Ladera pronunciada donde raíces gruesas sujetan el suelo; debe mostrar el cambio desde bosque cerrado hacia bosque de montaña.",
+  "prompt": "SUBJECT TYPE: LOCATION / ENVIRONMENT / LANDSCAPE — NO CREATURE. Create a wide landscape of Pendiente de las Raíces Altas. A steep ascending forest slope is held together by massive but natural exposed roots crossing damp soil and rock. The traveler route picks its way upward between them without built stairs. Lower Nhal remains dark and enclosed behind; higher up, trunks thin slightly and colder mountain light reaches exposed stone. The roots must visibly stabilize the slope rather than form fantasy architecture.",
+  "negative_constraints": [
+    "No giant magical world-tree roots",
+    "No root staircase, carved steps or bridges",
+    "No glowing plants, spirits or runes",
+    "No buildings or ruins",
+    "No broad open alpine view yet",
+    "No characters or creatures as focal subject",
+    "No readable text or HUD",
+    "CATEGORY LOCK: location/landscape only"
+  ],
+  "canon_sources": [
+    "vintage-telnet/REGIONAL_CONNECTIONS.md — Paso del Dosel Alto / Pendiente de las Raíces Altas",
+    "vintage-telnet/REGIONS.md — Nhal / Hoshai"
+  ],
+  "notes": "Fiel al anclaje geográfico canónico. No definir interior, jefe, secreto ni mecánica."
+}

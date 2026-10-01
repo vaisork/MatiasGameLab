@@ -1,0 +1,35 @@
+{
+  "asset_type": "environment",
+  "aspect_ratio": "landscape",
+  "output_destination": "vintage-telnet/art_generations",
+  "status": "draft",
+  "room_id": null,
+  "creature_id": null,
+  "species_id": null,
+  "prior_asset": null,
+  "edit_source": null,
+  "variation_of": null,
+  "quality": "low",
+  "output_format": "png",
+  "output_compression": null,
+  "background": "opaque",
+  "asset_id": "zanja_piedra_hundida",
+  "canonical_name": "Zanja de la Piedra Hundida",
+  "target": "Anclaje geográfico del ramal B de la Senda del Viento Bajo.",
+  "art_direction": "SUBJECT TYPE: LOCATION / ENVIRONMENT / LANDSCAPE — NO CREATURE. Surco natural que desaparece bajo una formación rocosa. Debe sugerir continuidad física sin definir cavidad, criatura o jefe.",
+  "prompt": "SUBJECT TYPE: LOCATION / ENVIRONMENT / LANDSCAPE — NO CREATURE. Create a wide landscape of Zanja de la Piedra Hundida. A dry natural trench cuts through hard ground and narrows as it passes beneath the edge of a large collapsed rock formation. The visible gap is low, dark and physically plausible, suggesting the trench continues without showing where. Keep the main regional route discernible in the distance. Muted stone, dusty scrub, neutral daylight.",
+  "negative_constraints": [
+    "Do not reveal an interior chamber",
+    "No constructed tunnel, door, stairs or mine supports",
+    "No creature, boss sign, bones or lair dressing",
+    "No magical portal, glow, crystals or runes",
+    "No characters or creatures as focal subject",
+    "No readable text or HUD",
+    "CATEGORY LOCK: location/landscape only"
+  ],
+  "canon_sources": [
+    "vintage-telnet/REGIONAL_CONNECTIONS.md — Ramal B / Zanja de la Piedra Hundida",
+    "vintage-telnet/REGIONS.md — Korven / Edran"
+  ],
+  "notes": "Fiel al anclaje geográfico canónico. No definir interior, jefe, secreto ni mecánica."
+}

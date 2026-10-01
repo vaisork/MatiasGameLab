@@ -1,0 +1,36 @@
+{
+  "asset_type": "environment",
+  "aspect_ratio": "landscape",
+  "output_destination": "vintage-telnet/art_generations",
+  "status": "draft",
+  "room_id": null,
+  "creature_id": null,
+  "species_id": null,
+  "prior_asset": null,
+  "edit_source": null,
+  "variation_of": null,
+  "quality": "low",
+  "output_format": "png",
+  "output_compression": null,
+  "background": "opaque",
+  "asset_id": "sendero_charcos_negros",
+  "canonical_name": "Sendero de los Charcos Negros",
+  "target": "Anclaje del ramal B del Camino de la Tierra Húmeda.",
+  "art_direction": "SUBJECT TYPE: LOCATION / ENVIRONMENT / LANDSCAPE — NO CREATURE. Desvío conocido de suelo saturado y agua naturalmente oscura. Debe sentirse como mala ruta sin convertirlo en pantano mágico.",
+  "prompt": "SUBJECT TYPE: LOCATION / ENVIRONMENT / LANDSCAPE — NO CREATURE. Create a wide landscape of Sendero de los Charcos Negros branching away from the main wetland route. Saturated dark soil holds a sequence of shallow naturally black-looking pools caused by depth, mud and reflected overcast sky. A narrow uncertain footpath threads between them and disappears into wetter ground. Sparse reeds and flattened grasses show difficult footing. The main route is safer and visible behind.",
+  "negative_constraints": [
+    "No tar pits, oil, poison, glowing liquid or supernatural black water",
+    "No corpses, skeletons or monster signs",
+    "No deep swamp jungle",
+    "No invented bridge, ruins or buildings",
+    "No horror-fantasy color grading",
+    "No characters or creatures as focal subject",
+    "No readable text or HUD",
+    "CATEGORY LOCK: location/landscape only"
+  ],
+  "canon_sources": [
+    "vintage-telnet/REGIONAL_CONNECTIONS.md — Ramal B / Sendero de los Charcos Negros",
+    "vintage-telnet/REGIONS.md — Edran / Lethra"
+  ],
+  "notes": "Fiel al anclaje geográfico canónico. No definir interior, jefe, secreto ni mecánica."
+}
