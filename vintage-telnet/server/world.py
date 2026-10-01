@@ -164,6 +164,18 @@ VISUAL_CONTEXT_ART = {
         "width": 1536,
         "height": 1024,
     },
+    "zone.korven": {
+        "src": "/assets/locations/escaleras_rotas.webp",
+        "alt": "Las Escaleras Rotas",
+        "width": 1536,
+        "height": 1024,
+    },
+    "zone.nhal": {
+        "src": "/assets/locations/claro_niebla_baja.webp",
+        "alt": "Claro de la Niebla Baja",
+        "width": 1536,
+        "height": 1024,
+    },
 }
 
 # Excepciones explicitas de VISUAL_CONTEXT_CANON.md ("Mapeo de las salas
