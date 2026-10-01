@@ -32,5 +32,6 @@
     "vintage-telnet/REGIONS.md — Aguas de Lethra"
   ],
   "creature_id": "dorsalodo",
-  "notes": "Amenaza superior canónica; mantener lectura anfibia y de emboscada."
+  "notes": "Amenaza superior canónica; mantener lectura anfibia y de emboscada.",
+  "visual_context_id": "zone.lethra"
 }

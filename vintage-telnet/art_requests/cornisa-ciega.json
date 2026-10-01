@@ -32,5 +32,6 @@
     "vintage-telnet/REGIONAL_CONNECTIONS.md — Ramal B / Cornisa Ciega",
     "vintage-telnet/REGIONS.md — Hoshai / Korven"
   ],
-  "notes": "Fiel al anclaje geográfico canónico. No definir interior, jefe, secreto ni mecánica."
+  "notes": "Fiel al anclaje geográfico canónico. No definir interior, jefe, secreto ni mecánica.",
+  "visual_context_id": "zone.hoshai"
 }

@@ -32,5 +32,6 @@
     "vintage-telnet/REGIONAL_CONNECTIONS.md — Paso del Dosel Alto / Ramal B: Sendero de las Copas",
     "vintage-telnet/REGIONS.md — Nhal / Hoshai"
   ],
-  "notes": "Fiel al anclaje canónico. No definir interior, jefe, secreto, acceso mecánico ni historia adicional."
+  "notes": "Fiel al anclaje canónico. No definir interior, jefe, secreto, acceso mecánico ni historia adicional.",
+  "visual_context_id": "zone.nhal"
 }

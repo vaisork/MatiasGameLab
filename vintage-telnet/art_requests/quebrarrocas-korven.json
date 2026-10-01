@@ -33,5 +33,6 @@
     "vintage-telnet/REGIONS.md — Pedrales de Korven"
   ],
   "creature_id": "quebrarrocas",
-  "notes": "Amenaza superior canónica; el terreno desplazado funciona como señal visual."
+  "notes": "Amenaza superior canónica; el terreno desplazado funciona como señal visual.",
+  "visual_context_id": "zone.korven"
 }

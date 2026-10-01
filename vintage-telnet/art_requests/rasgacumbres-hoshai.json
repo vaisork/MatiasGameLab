@@ -32,5 +32,6 @@
     "vintage-telnet/REGIONS.md — Sierra de Hoshai"
   ],
   "creature_id": "rasgacumbres",
-  "notes": "Amenaza superior canónica. Arte no define estadísticas, botín ni mecánicas."
+  "notes": "Amenaza superior canónica. Arte no define estadísticas, botín ni mecánicas.",
+  "visual_context_id": "zone.hoshai"
 }

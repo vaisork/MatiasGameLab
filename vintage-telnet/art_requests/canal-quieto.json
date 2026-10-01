@@ -31,5 +31,6 @@
     "vintage-telnet/REGIONAL_CONNECTIONS.md — Ribera Sombría / Ramal A: Canal Quieto",
     "vintage-telnet/REGIONS.md — Lethra / Nhal"
   ],
-  "notes": "Fiel al anclaje canónico. No definir interior, jefe, secreto, acceso mecánico ni historia adicional."
+  "notes": "Fiel al anclaje canónico. No definir interior, jefe, secreto, acceso mecánico ni historia adicional.",
+  "visual_context_id": "zone.lethra.canal_bajo_islas"
 }

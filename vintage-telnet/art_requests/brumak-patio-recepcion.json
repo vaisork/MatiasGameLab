@@ -36,5 +36,6 @@
   "quality": "low",
   "output_format": "png",
   "output_compression": null,
-  "background": "opaque"
+  "background": "opaque",
+  "visual_context_id": "zone.brumak.patio_recepcion"
 }
