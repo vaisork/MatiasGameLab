@@ -1,0 +1,35 @@
+{
+  "asset_type": "environment",
+  "aspect_ratio": "landscape",
+  "output_destination": "vintage-telnet/art_generations",
+  "status": "draft",
+  "room_id": null,
+  "creature_id": null,
+  "species_id": null,
+  "prior_asset": null,
+  "edit_source": null,
+  "variation_of": null,
+  "quality": "low",
+  "output_format": "png",
+  "output_compression": null,
+  "background": "opaque",
+  "asset_id": "piedra_de_resguardo",
+  "canonical_name": "Piedra de Resguardo",
+  "target": "Hito natural del Paso de las Lajas.",
+  "art_direction": "SUBJECT TYPE: LOCATION / ENVIRONMENT / LANDSCAPE — NO CREATURE. Gran saliente rocosa que funciona como refugio natural del viento; debe ser inmediatamente legible como abrigo de viaje sin convertirse en cueva.",
+  "prompt": "SUBJECT TYPE: LOCATION / ENVIRONMENT / LANDSCAPE — NO CREATURE. Create a wide landscape of Piedra de Resguardo. A massive natural overhanging slab creates a dry wind-shadow beside the narrow regional route. Wind-driven dust and bent scrub outside contrast with calmer ground beneath the overhang. The shelter is shallow and open, with daylight visible around it; travelers could pause there but no built camp is required. Tilted layered geology ties it to the Hoshai–Korven transition.",
+  "negative_constraints": [
+    "No cave entrance or deep cavern",
+    "No constructed shelter, shrine, carvings or ruins",
+    "No campfire or permanent settlement",
+    "No magic, crystals or dramatic fantasy monolith",
+    "No characters or creatures as focal subject",
+    "No readable text or HUD",
+    "CATEGORY LOCK: location/landscape only"
+  ],
+  "canon_sources": [
+    "vintage-telnet/REGIONAL_CONNECTIONS.md — Paso de las Lajas / Piedra de Resguardo",
+    "vintage-telnet/REGIONS.md — Hoshai / Korven"
+  ],
+  "notes": "Fiel al anclaje geográfico canónico. No definir interior, jefe, secreto ni mecánica."
+}
