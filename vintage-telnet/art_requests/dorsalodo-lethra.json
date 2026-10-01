@@ -15,8 +15,8 @@
   "asset_type": "creature",
   "target": "Amenaza superior natural de las Aguas de Lethra; gran depredador anfibio.",
   "canonical_name": "Dorsalodo",
-  "art_direction": "Gran depredador anfibio largo y pesado cuya espalda rugosa se confunde con barro y vegetación. Debe leerse como animal de emboscada de canales profundos, no cocodrilo literal ni monstruo fantástico.",
-  "prompt": "Create a wide natural scene in the Aguas de Lethra showing one adult Dorsalodo partly emerging from a quiet deep channel. Long heavy amphibious body, broad low head, rough irregular back carrying wet mud and incidental plant matter as camouflage, powerful body adapted to water and muddy banks. Its outline should initially blend with the bank before becoming readable as a large predator. Reeds are flattened along a broad entry to the water and a heavy drag mark is visible. Humid muted greens, mud browns and gray water, natural overcast light.",
+  "art_direction": "SUBJECT TYPE: CREATURE / LARGE NATURAL FAUNA — CREATURE MUST BE THE PRIMARY FOCAL SUBJECT. Gran depredador anfibio largo y pesado cuya espalda rugosa se confunde con barro y vegetación. Mostrar anatomía completa y escala inequívocamente grande. Debe leerse como animal de emboscada de canales profundos, no cocodrilo literal ni monstruo fantástico.",
+  "prompt": "SUBJECT TYPE: CREATURE / LARGE NATURAL FAUNA. The Dorsalodo is the unmistakable primary focal subject and occupies roughly 45–60% of the frame. Create one wide wildlife scene in the Aguas de Lethra showing one adult Dorsalodo in low three-quarter side view, with enough of the animal out of the water to read its complete body plan and large scale. Long heavy amphibious torso, broad low head distinct from the shoulders, powerful low limbs suited to muddy banks and swimming, thick muscular tail for propulsion, and a rough irregular dorsal surface carrying only incidental wet mud, reeds and plant debris as camouflage. Its outline should initially echo a muddy bank but become clearly readable as a living predator. Flattened reeds and a broad drag trail establish its weight. Humid muted greens, mud browns, gray water, natural overcast light. Environment supports the creature and must not dominate it.",
   "negative_constraints": [
     "Do not depict a literal crocodile, alligator, hippo or giant salamander",
     "No dorsal spikes, horns, armor plates or fantasy fins",
@@ -24,7 +24,8 @@
     "No attack toward camera or gore",
     "Vegetation on back is incidental camouflage, not a growing forest",
     "No tropical ocean or beach",
-    "No readable text or HUD"
+    "No readable text or HUD",
+    "CATEGORY LOCK: creature only; the environment must remain secondary."
   ],
   "canon_sources": [
     "vintage-telnet/CREATURES.md — Aguas de Lethra / Amenaza superior: Dorsalodo",
