@@ -3014,7 +3014,10 @@ def create_app(config=None):
         # lo que hacia que el navegador recibiera application/octet-stream y
         # nunca renderizara la imagen -- se veia como "ilustracion no
         # disponible" aunque el archivo si existiera y se sirviera con 200.
-        return send_from_directory(LOCATION_ASSETS_DIR, filename, mimetype="image/webp")
+        resp = send_from_directory(LOCATION_ASSETS_DIR, filename, mimetype="image/webp")
+        resp.cache_control.max_age = 2592000  # 30 días
+        resp.cache_control.public = True
+        return resp
 
     @app.get("/assets/maps/<path:filename>")
     def map_assets(filename):
@@ -3023,18 +3026,27 @@ def create_app(config=None):
         # Raspberry Pi OS minimo) no lo reconocen por extension.
         # send_from_directory ya rechaza cualquier `filename` que intente
         # escapar de MAPS_ASSETS_DIR (traversal) con 404.
-        return send_from_directory(MAPS_ASSETS_DIR, filename, mimetype="image/webp")
+        resp = send_from_directory(MAPS_ASSETS_DIR, filename, mimetype="image/webp")
+        resp.cache_control.max_age = 2592000
+        resp.cache_control.public = True
+        return resp
 
     @app.get("/assets/species/<path:filename>")
     def species_assets(filename):
         # Fichas aprobadas de las cinco especies (pantalla de elección).
-        return send_from_directory(SPECIES_ASSETS_DIR, filename, mimetype="image/webp")
+        resp = send_from_directory(SPECIES_ASSETS_DIR, filename, mimetype="image/webp")
+        resp.cache_control.max_age = 2592000
+        resp.cache_control.public = True
+        return resp
 
     @app.get("/assets/creatures/<path:filename>")
     def creature_assets(filename):
         # Ilustraciones aprobadas de criaturas (combate). Mismas garantías que
         # map_assets: WebP explícito y send_from_directory rechaza traversal.
-        return send_from_directory(CREATURE_ASSETS_DIR, filename, mimetype="image/webp")
+        resp = send_from_directory(CREATURE_ASSETS_DIR, filename, mimetype="image/webp")
+        resp.cache_control.max_age = 2592000
+        resp.cache_control.public = True
+        return resp
 
     # --- Dungeon Master ---------------------------------------------------
 
