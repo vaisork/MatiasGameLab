@@ -1,0 +1,36 @@
+{
+  "aspect_ratio": "landscape",
+  "output_destination": "vintage-telnet/art_generations",
+  "status": "draft",
+  "room_id": null,
+  "species_id": null,
+  "prior_asset": null,
+  "edit_source": null,
+  "variation_of": null,
+  "quality": "low",
+  "output_format": "png",
+  "output_compression": null,
+  "background": "opaque",
+  "asset_id": "refugio_de_lajas",
+  "asset_type": "environment",
+  "target": "Arquitectura exterior del asentamiento secundario Refugio de Lajas, transición Hoshai/Korven.",
+  "canonical_name": "Refugio de Lajas",
+  "art_direction": "SUBJECT TYPE: ARCHITECTURE / SETTLEMENT — NO CREATURE. Pequeño puesto de descanso para viajeros, reparación básica e información del Paso de las Lajas. Debe ser claramente menor que un pueblo y adaptarse al viento y la roca.",
+  "prompt": "SUBJECT TYPE: ARCHITECTURE / SETTLEMENT — NO CREATURE. Create a wide exterior architectural scene of the canonical Refugio de Lajas, a very small traveler rest post in the Hoshai–Korven transition. A few compact practical shelters nestle against natural rock for wind protection, using restrained local stone and timber. Include a covered repair/work area and a protected resting space, but no large market or civic building. The route remains visible passing through the post. Architecture should feel accumulated for travelers and maintenance, modest in scale, weathered, functional and integrated with tilted stone terrain.",
+  "negative_constraints": [
+    "Do not turn it into a town, fortress, temple or inn complex",
+    "No monumental gates, towers or walls",
+    "No invented cultural symbols, statues or readable signs",
+    "No fantasy luxury or excessive decoration",
+    "No creatures or characters as focal subject",
+    "No dominant golden/ochre lighting",
+    "No HUD or readable text",
+    "CATEGORY LOCK: architecture/settlement only"
+  ],
+  "canon_sources": [
+    "vintage-telnet/SETTLEMENTS.md — Refugio de Lajas",
+    "vintage-telnet/REGIONAL_CONNECTIONS.md — Paso de las Lajas"
+  ],
+  "creature_id": null,
+  "notes": "Asentamiento secundario canónico; no presupone tienda, NPC fijo ni economía."
+}
