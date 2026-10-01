@@ -6,8 +6,8 @@
   "art_direction": "Arquitectura humana sencilla, práctica y comunitaria de Valdren. Taller de madera y piedra nacido de un pueblo agrícola y de camino, sin monumentalidad. Debe sentirse realmente utilizable para fabricar, reparar y comerciar herramientas y armas: frente abierto o semiabierto al camino de tierra, banco de trabajo, yunque y hogar de forja integrados en una construcción modesta, con almacenamiento y reparaciones visibles de distintas épocas. Continuidad con Valdren: parcelas cercanas, cercas bajas, madera envejecida, piedra local y tránsito cotidiano.",
   "prompt": "Create a 1536x1024 landscape architectural scene of Daro's working forge in Valdren, a small human settlement in the Llanos de Edran. Show a modest, believable workshop built from local stone foundations, weathered timber posts and simple practical roofing, opening toward a packed-earth village lane. The architecture must feel evolved from an agricultural roadside community, not designed as a heroic fantasy blacksmith shop. Include a clearly functional forge hearth, anvil/work bench area, tool racks, repair stock, charcoal or fuel storage and a small sheltered customer/work threshold, all integrated into the building rather than staged as props. Show layers of repair and reuse in beams, stonework and storage. In the surrounding glimpse, retain Valdren's open character: low fences, small plots, modest neighboring structures and broad daylight. Human scale, calm daily activity, practical circulation. Natural neutral daylight, earthy wood and stone with restrained iron and ember accents. Architecture is the subject; no heroic character portrait.",
   "references": [
-    "assets/vintage-telnet/locations/valdren.webp",
-    "assets/vintage-telnet/locations/valdren-vivienda-patio.webp"
+    "../../assets/vintage-telnet/locations/valdren.webp",
+    "../../assets/vintage-telnet/locations/valdren-vivienda-patio.webp"
   ],
   "negative_constraints": [
     "No monumental forge, castle, guild hall or cathedral scale",

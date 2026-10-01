@@ -6,9 +6,9 @@
   "art_direction": "Espacio de alimentos y comercio Marevyn que acepta el agua como parte de su organización. No es un mercado humano sobre pilotes: puestos, plataformas, embarcaderos y recorridos deben formar una sola arquitectura adaptativa entre canales, vegetación e islas pequeñas. Debe mostrar capas de mantenimiento y distintos niveles de agua, circulación tanto por pasarelas como por borde acuático y áreas de intercambio compactas sin gran plaza seca.",
   "prompt": "Create a 1536x1024 landscape architectural scene of Narevia's everyday market in the Aguas de Lethra. Design the market as an organic network of modest trading platforms, narrow elevated walkways, short docks and small island edges woven directly through freshwater channels and dense wetland vegetation. Water is a street and structural condition, not decorative scenery. Stalls and covered exchange areas should grow from the platform system at different heights, with posts showing old water marks, repaired decking and construction from different periods. Allow small mooring points and open water lanes to pass through the market. The composition must feel Marevyn and locally evolved: fluid circulation, no single dry rectangular plaza, no human town square transplanted onto stilts. Materials are weathered wood, reed/fiber screens, stone anchoring where appropriate and living vegetation integrated rather than cleared away. Soft humid daylight, green-blue water reflections and natural muted materials. Architecture and spatial organization are the subject; inhabitants may appear only as small scale figures.",
   "references": [
-    "assets/vintage-telnet/locations/narevia.webp",
-    "assets/vintage-telnet/locations/narevia-vivienda-marevyn-canal.webp",
-    "assets/vintage-telnet/locations/lethra-canal-bajo-islas.webp"
+    "../../assets/vintage-telnet/locations/narevia.webp",
+    "../../assets/vintage-telnet/locations/narevia-vivienda-marevyn-canal.webp",
+    "../../assets/vintage-telnet/locations/lethra-canal-bajo-islas.webp"
   ],
   "negative_constraints": [
     "No Venice clone, floating city, tropical resort or Southeast Asian market pastiche",
