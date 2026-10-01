@@ -1,0 +1,38 @@
+{
+  "asset_id": "brumak_patio_recepcion",
+  "asset_type": "architecture",
+  "target": "Arquitectura funcional para el centro/micro-salas internas de Brumak; referencia visual del contexto zone.brumak.",
+  "canonical_name": "Patio de recepción de Brumak",
+  "art_direction": "Zona exterior de Brumak adaptada con el tiempo para visitantes de mayor tamaño. Debe revelar el contraste entre un patio relativamente amplio y la arquitectura Dravak extremadamente compacta que lo rodea: pequeños accesos, pasajes, talleres y niveles aprovechando grietas y paredes naturales. No subterráneo, no fortaleza enana.",
+  "prompt": "Create a wide architectural environment view of a canonical visitor reception courtyard inside Brumak in the Pedrales de Korven. The courtyard is modestly wider than the settlement's interior passages because trade with larger visitors forced repeated expansions. Around it, compact Dravak architecture uses existing rock walls, shallow cavities, narrow gaps and multiple small levels with almost no wasted space. Show low adult-scale Dravak doorways, tight covered passages, tiny work patios, shelves and roof supports fitted between natural stone masses. The courtyard itself shows visible layers of enlargement and repair rather than one grand design. Keep open sky visible: Brumak is NOT an underground city. Dry fractured rock protects the settlement from wind. Architecture feels ingenious, dense, practical and mature, built for adult bodies roughly 65–75% human height.",
+  "references": [],
+  "negative_constraints": [
+    "Do not depict a dwarf fortress, mine city, underground hall or monumental stone citadel",
+    "No giant gates, throne halls, statues or fantasy forge spectacle",
+    "Keep open sky visible and use surface rock formations",
+    "Architecture must read smaller and denser than human scale without looking child-sized",
+    "No lava, glowing runes, crystals, magic or steampunk machinery",
+    "No invented heraldry or readable signage",
+    "No HUD or readable text"
+  ],
+  "aspect_ratio": "landscape",
+  "output_destination": "vintage-telnet/art_generations",
+  "status": "draft",
+  "canon_sources": [
+    "vintage-telnet/SETTLEMENTS.md — Brumak",
+    "vintage-telnet/REGIONS.md — Pedrales de Korven",
+    "vintage-telnet/ART_WORLD_GUIDE.md — Brumak",
+    "vintage-telnet/VISUAL_CONTEXT_CANON.md — zone.brumak"
+  ],
+  "room_id": "brumak_centro",
+  "creature_id": null,
+  "species_id": "dravak",
+  "prior_asset": null,
+  "edit_source": null,
+  "variation_of": null,
+  "notes": "Representa la zona históricamente adaptada para visitantes; no convierte Brumak en ciudad subterránea ni fortaleza clásica.",
+  "quality": "low",
+  "output_format": "png",
+  "output_compression": null,
+  "background": "opaque"
+}
