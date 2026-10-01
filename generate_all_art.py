@@ -1,8 +1,25 @@
 #!/usr/bin/env python3
 """
-Generador de arte local para Vintage Telnet.
-Crea dos carpetas: generated-hq/ (PNG) y generated-webp/ (WebP comprimido).
-Ejecutar: python3 generate_all_art.py
+Generador de arte local para Vintage Telnet — Paso 1 del flujo de publicación
+
+📋 FLUJO COMPLETO:
+   1. generate_all_art.py (ESTE ARCHIVO)
+      └─ Genera PNG + WebP desde fichas en vintage-telnet/art_requests/
+   2. vt-deploy (manual: sudo vt-deploy main)
+      └─ Sincroniza WebP a /opt/vintage-telnet/current/assets/
+   3. world.py (automático)
+      └─ Renderiza images en-game basándose en visual_context_id
+
+⚠️ REQUISITO: Cada ficha JSON en art_requests/ DEBE tener visual_context_id
+   para que aparezca en el juego. Ver ART_GENERATION_GUIDE.md
+
+📁 SALIDA:
+   - art-masters/{creatures,locations}/        (PNG backup de alta calidad)
+   - assets/vintage-telnet/{creatures,locations}/ (WebP para el servidor)
+
+🚀 USO:
+   ./run-art-generator.sh  (recomendado)
+   python3 generate_all_art.py  (directo)
 """
 import json
 import os

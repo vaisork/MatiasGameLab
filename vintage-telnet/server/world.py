@@ -33,11 +33,31 @@ TOWN_DESCRIPTIONS = {
     ),
 }
 
-# Arte por visual_context_id, no por room_id: varias salas de un mismo
-# pueblo/zona comparten la misma ilustracion mientras el jugador no cambie
-# de contexto (VISUAL_CONTEXT_CANON.md). Los contextos sin fila aqui todavia
-# no tienen asset aprobado y describe_room() debe devolver "art": None
-# (fallback sobrio) para ellos.
+# ⭐ PASO 3 DEL FLUJO DE ARTE: VISUAL_CONTEXT_ART
+#
+# Diccionario de imágenes de arte por zona (visual_context_id).
+# Varias salas de un mismo pueblo/zona comparten la misma ilustración
+# mientras el jugador no cambie de contexto (VISUAL_CONTEXT_CANON.md).
+#
+# FLUJO COMPLETO:
+#   1. Director de arte crea ficha en vintage-telnet/art_requests/<nombre>.json
+#      con "visual_context_id": "zone.nhal" (ej)
+#   2. ./run-art-generator.sh genera imagen
+#      → WebP guardado en assets/vintage-telnet/locations/
+#   3. sudo vt-deploy main sincroniza a /opt/vintage-telnet/current/assets/
+#   4. Este diccionario (VISUAL_CONTEXT_ART) mapea:
+#      "zone.nhal" → {"src": "/assets/locations/claro_niebla_baja.webp", ...}
+#   5. world.describe_room() lo usa para retornar la imagen en JSON
+#   6. HTML entry.html renderiza <img> y aparece en el juego
+#
+# ⚠️ AGREGAR NUEVA ENTRADA:
+#   - Asegúrate que el WebP ya existe en assets/vintage-telnet/
+#   - Incluye src, alt (descripción visible), width, height
+#   - El src DEBE corresponder al asset_id en la ficha JSON
+#   - Sin visual_context_id en la ficha → no aparece en este diccionario
+#       → no aparece en el juego
+#
+# Los contextos sin entrada aquí retornan art: None (sin imagen, fallback sobrio).
 VISUAL_CONTEXT_ART = {
     "zone.valdren": {
         "src": "/assets/locations/valdren.webp",

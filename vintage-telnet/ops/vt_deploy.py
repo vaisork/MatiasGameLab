@@ -378,7 +378,20 @@ def main(argv: list[str] | None = None) -> int:
             if after_players != before_players:
                 raise DeployError('La lista de IDs de jugadores cambió durante el despliegue.')
 
-            # Sincronizar assets locales (generados en Raspberry) con el release
+            # ⭐ PASO 2 DEL FLUJO DE ARTE: Sincronizar WebP locales al servidor
+            # Copia los assets de images que se generaron localmente (en Raspberry)
+            # al release en producción para que el servidor los sirva.
+            #
+            # FLUJO COMPLETO DE ARTE:
+            #   1. ./run-art-generator.sh en Raspberry
+            #      → genera PNG en art-masters/ + WebP en assets/vintage-telnet/
+            #   2. vt-deploy main (ESTE PASO)
+            #      → sincroniza assets/vintage-telnet/*.webp a /opt/vintage-telnet/current/
+            #   3. world.py con visual_context_id
+            #      → renderiza imagen en-game basándose en la zona
+            #
+            # ⚠️ IMPORTANTE: Las fichas de arte DEBEN tener visual_context_id
+            #    para que aparezcan. Ver vintage-telnet/art_requests/*.json
             log('Sincronizando assets locales con el release...')
             local_assets = repo / 'assets' / 'vintage-telnet'
             release_assets = project.parent / 'assets' / 'vintage-telnet'

@@ -1,0 +1,156 @@
+{
+  // ⭐ PARTE 1: IDENTIFICACIÓN
+  // Estos campos determinan dónde se guarda la imagen y cómo se referencia.
+
+  "asset_id": "claro_niebla_baja",
+  // ID único de este asset. Usado para nombre del archivo.
+  // REGLA: solo letras, números, guion bajo. Sin espacios ni caracteres especiales.
+  // Ejemplo: "claro_niebla_baja" → archivo será "claro_niebla_baja.webp"
+
+  "asset_type": "location",
+  // Tipo de asset: "location" (paisaje/zona) o "creature" (criatura).
+  // IMPORTANTE: Determina la carpeta donde se guarda.
+  //   - "location" → assets/vintage-telnet/locations/
+  //   - "creature" → assets/vintage-telnet/creatures/
+
+  "visual_context_id": "zone.nhal",
+  // ⭐⭐⭐ CRÍTICO PARA QUE APAREZCA EN JUEGO
+  // Mapea este asset a una zona del mundo.
+  // El juego busca esta entrada en world.py:VISUAL_CONTEXT_ART
+  // para saber qué imagen mostrar cuando el jugador está en esa zona.
+  //
+  // Zonas válidas (copiar exactamente):
+  //   zone.valdren, zone.valdren.forja_daro
+  //   zone.khariel, zone.khariel.terraza_comunitaria
+  //   zone.brumak, zone.brumak.patio_recepcion
+  //   zone.narevia, zone.narevia.mercado_acuatico
+  //   zone.velmora, zone.velmora.forja_taller, zone.velmora.cruce_reunion
+  //   zone.nhal, zone.nhal.claro_cielo_estrecho
+  //   zone.hoshai, zone.hoshai.garganta_lajas, zone.hoshai.paso_alto
+  //   zone.korven, zone.edran, zone.edran.primeros_juncos
+  //   zone.lethra, zone.lethra.canal_bajo_islas, zone.veyra, zone.veyra.road
+  //
+  // Ver vintage-telnet/server/world.py línea 41 para la lista actualizada.
+  // SIN ESTO → la imagen NO aparece en el juego
+  // SOLO PARA LOCATIONS. Las creatures NO tienen visual_context_id.
+
+  // ⭐ PARTE 2: DESCRIPCIÓN
+  // Información sobre qué es esta imagen en el canon del mundo.
+
+  "target": "Paisaje de navegación para el Claro de Niebla Baja; zona de Nhal",
+  // Descripción breve de qué debe mostrar la imagen.
+  // Usado por el director de arte para context.
+
+  "canonical_name": "Claro de la Niebla Baja",
+  // Nombre elegante de este lugar. Aparece como "alt" en HTML si falta en world.py.
+  // Visible en tooltips/accesibilidad.
+
+  "art_direction": "SUBJECT TYPE: LOCATION / ENVIRONMENT — NO CREATURE. Describir el lugar según la geografía de Nhal...",
+  // Instrucciones detalladas para el modelo de IA.
+  // IMPORTANTE: Ser muy específico sobre qué NO debe incluir.
+  // Ejemplo:
+  //   - "No creatures"
+  //   - "No magic or glowing effects"
+  //   - "Cool color palette" (para Nhal)
+
+  "prompt": "Create one wide landscape environment scene of the canonical Claro de Niebla Baja...",
+  // Prompt detallado para OpenAI Image API.
+  // Combinación de canonical_name + art_direction + negative_constraints.
+  // Debe ser descriptivo y muy específico.
+
+  // ⭐ PARTE 3: RESTRICCIONES VISUALES
+  // Lo que NO debe aparecer en la imagen.
+
+  "negative_constraints": [
+    "Do not depict any creatures, animals or monsters",
+    "No buildings, structures or ruins",
+    "No magical effects, glowing runes or fantasy elements",
+    "No people or characters",
+    "No readable text or HUD elements"
+  ],
+  // Lista de cosas que NUNCA deben aparecer.
+  // El modelo de IA prompts mira esta lista explícitamente.
+  // Más específicos → mejores resultados.
+
+  "references": [],
+  // Path de imágenes de referencia (ej: ["assets/existing/nhal_forest.webp"]).
+  // Opcional. Deja vacío si no hay referencias.
+
+  // ⭐ PARTE 4: CONFIGURACIÓN DE SALIDA
+  // Cómo se genera y almacena el archivo.
+
+  "aspect_ratio": "1536x1024",
+  // Resolución de salida: "1536x1024" o "landscape".
+  // 1536x1024 es estándar para Vintage Telnet (landscape 3:2).
+
+  "quality": "low",
+  // Calidad de generación OpenAI: "low", "medium", "high", "xhigh", "max"
+  // "low" = más rápido y barato
+  // "high"/"max" = mejor calidad visual, más lento y caro
+
+  "output_format": "png",
+  // Formato de salida: "png", "jpeg", "webp"
+  // PNG es recomendado (alpha channel, sin pérdida).
+  // Se convierte automáticamente a WebP para el servidor.
+
+  "background": "opaque",
+  // "opaque" = fondo sólido
+  // "transparent" = alpha channel (requiere PNG o WebP)
+
+  "output_compression": null,
+  // Para JPEG/WebP: 0-100 (calidad).
+  // null = usar default (85 para WebP).
+
+  "output_destination": "vintage-telnet/art_generations",
+  // Carpeta temporal donde se guarda mientras se genera.
+  // SIEMPRE debe ser "vintage-telnet/art_generations".
+  // Después de generar, se copia a:
+  //   - art-masters/{creatures,locations}/  (PNG backup)
+  //   - assets/vintage-telnet/{creatures,locations}/  (WebP para servidor)
+
+  "status": "draft",
+  // Estado de la ficha: "draft", "review", "approved", "rejected", "published"
+  // Siempre comienza en "draft".
+  // Cambiar manualmente después de aprobación visual/canon.
+
+  // ⭐ PARTE 5: METADATA OPCIONAL
+  "room_id": null,
+  // Room específica donde aparece (si aplica). Null = aplica a la zona entera.
+
+  "creature_id": null,
+  // ID de criatura (solo si asset_type es "creature").
+
+  "species_id": null,
+  // Especie (si corresponde).
+
+  "visual_context_id": null,
+  // ⭐ YA DEFINIDO ARRIBA. Para locations, es lo más importante.
+
+  "canonical_name": null,
+  // ⭐ YA DEFINIDO ARRIBA.
+
+  "variation_of": null,
+  // Si es una variación de otro asset, reference al asset_id original.
+
+  "canon_sources": [
+    "vintage-telnet/REGIONS.md — Nhal",
+    "vintage-telnet/VISUAL_CONTEXT_CANON.md — zone.nhal"
+  ],
+  // Donde en la documentación canon se define este lugar.
+  // Ayuda a mantener consistencia.
+
+  "notes": "Primera versión del Claro de Niebla Baja. Enfatizar la neblina baja que cubre el suelo.",
+  // Notas personales. Aparecen en el historial de cambios.
+
+  // ⭐ PARTE 6: METADATA PARA AUTOCRITIQUE
+  // (Generados automáticamente después de crear, no editar)
+
+  "prior_asset": null,
+  // Versión previa de este asset (para mejoras iterativas).
+
+  "edit_source": null,
+  // Si se editó a partir de otra imagen.
+
+  "quality": "low"
+  // Calidad esperada en generated/{asset_id}/*/metadata.json
+}
