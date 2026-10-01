@@ -42,8 +42,16 @@ def main():
     print("=" * 60)
     print()
 
-    # Listar fichas disponibles
-    fichas = sorted([f for f in ART_REQUESTS_DIR.glob("*.json") if f.name != "template.json"])
+    # Listar fichas disponibles (excluir template y las ya generadas)
+    generated_assets = set()
+    for webp in ASSETS_DIR.glob("*/*.webp"):
+        # Extraer asset_id del nombre del archivo (ej: narevia_mercado_acuatico.webp -> narevia_mercado_acuatico)
+        generated_assets.add(webp.stem)
+
+    fichas = sorted([
+        f for f in ART_REQUESTS_DIR.glob("*.json")
+        if f.name != "template.json" and f.stem not in generated_assets
+    ])
 
     if not fichas:
         print("❌ No hay fichas de arte para generar.")
