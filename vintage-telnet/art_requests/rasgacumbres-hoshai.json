@@ -15,8 +15,8 @@
   "asset_type": "creature",
   "target": "Amenaza superior natural de la Sierra de Hoshai; depredador mayor de montaña.",
   "canonical_name": "Rasgacumbres",
-  "art_direction": "Gran cuadrúpedo depredador de montaña, pelaje grueso y patas delanteras extraordinariamente fuertes. Debe sentirse capaz de cazar en terreno escarpado y arrastrar presas hacia cornisas, sin magia ni anatomía de monstruo genérico.",
-  "prompt": "Create a wide wildlife scene in the Sierra de Hoshai showing one complete adult Rasgacumbres, a large natural mountain predator. Exactly four limbs. Heavy cold-weather coat, powerful shoulders and exceptionally strong forelegs built for gripping and hauling on steep rock. Hindquarters athletic but less massive than the front. Place it on a high broken terrace near a difficult cornice, alert rather than roaring. Mountain scale must make it clearly much larger and more dangerous than minor fauna. Cool gray rock, cold wind, sparse alpine scrub, restrained natural colors. Original animal silhouette, grounded anatomy, no magic.",
+  "art_direction": "SUBJECT TYPE: CREATURE / LARGE NATURAL FAUNA — CREATURE MUST BE THE PRIMARY FOCAL SUBJECT. Gran cuadrúpedo depredador de montaña, pelaje grueso y patas delanteras extraordinariamente fuertes. Mostrar cuerpo completo y una silueta original, pesada al frente y adaptada a cornisas; no convertirlo en oso, felino o lobo.",
+  "prompt": "SUBJECT TYPE: CREATURE / LARGE NATURAL FAUNA. The Rasgacumbres is the unmistakable primary focal subject and occupies roughly 45–60% of the frame. Show one complete adult in low three-quarter side view on a steep broken Hoshai terrace. Exactly four limbs. Original mountain-predator anatomy: deep compact ribcage; short powerful neck; broad low head with forward-focused predatory attention but no exaggerated fangs; exceptionally massive shoulders and long muscular forelegs with broad gripping paws; hindquarters leaner and springy for climbing; thick weatherproof coat broken into shorter fur on the lower legs; long enough tail to balance on steep terrain without becoming feline. Pose it braced across uneven stone, looking downslope rather than roaring. A difficult cornice and displaced stones communicate scale and hauling strength. Cool gray rock, cold wind, sparse alpine scrub, neutral daylight. Environment remains subordinate to the animal.",
   "negative_constraints": [
     "Exactly four limbs",
     "No wings, horns, armor, spikes or magical traits",
@@ -24,7 +24,8 @@
     "Forequarters must be visibly stronger than hindquarters",
     "No attack toward camera, gore or prey carcass as focal subject",
     "No dominant golden/ochre lighting",
-    "No readable text or HUD"
+    "No readable text or HUD",
+    "CATEGORY LOCK: creature only; the environment must remain secondary."
   ],
   "canon_sources": [
     "vintage-telnet/CREATURES.md — Sierra de Hoshai / Amenaza superior: Rasgacumbres",
