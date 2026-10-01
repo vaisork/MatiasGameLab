@@ -1,0 +1,35 @@
+{
+  "asset_id": "primeros_juncos_edran_lethra",
+  "asset_type": "environment",
+  "target": "Paisaje de navegación para Los Primeros Juncos en el Camino de la Tierra Húmeda; transición Valdren–Narevia.",
+  "canonical_name": "Los Primeros Juncos",
+  "art_direction": "Paisaje de transformación gradual de llanura agrícola a humedal. El punto debe mostrar por primera vez juncos constantes sin haber llegado todavía al paisaje acuático pleno de Lethra: camino firme húmedo, zanjas de drenaje, hierba alta, canales pequeños y primeros grupos densos de juncos. Horizonte todavía abierto de Edran.",
+  "prompt": "Create one wide landscape environment scene of the canonical Los Primeros Juncos landmark on the Camino de la Tierra Húmeda between Edran and Lethra. The viewer is on a still-passable earthen road that has become dark and damp. Agricultural openness remains visible behind and at the far horizon, but ahead the ground gradually breaks into shallow drainage channels, wet grass and increasingly dense stands of reeds. The FIRST CONSTANT REEDS are the visual identity: several natural reed bands now accompany the route continuously rather than appearing as isolated plants. Small reflective water surfaces and soft muddy edges begin to constrain the path, but this is not yet a deep swamp. Overcast humid daylight, muted greens, gray-blue water, dark brown soil and pale dry grass accents. No people or creatures. Make the transition between ecosystems immediately readable.",
+  "references": [],
+  "negative_constraints": [
+    "Do not depict a full deep swamp, flooded jungle or open lake",
+    "No tropical mangrove, ocean, beach or exotic palms",
+    "No invented bridges, houses, docks or major structures",
+    "Keep an identifiable terrestrial route through the scene",
+    "Avoid dominant gold/amber sunset lighting",
+    "No magical fog, glowing water, ruins, characters, HUD or readable text"
+  ],
+  "aspect_ratio": "landscape",
+  "output_destination": "vintage-telnet/art_generations",
+  "status": "draft",
+  "canon_sources": [
+    "vintage-telnet/REGIONAL_CONNECTIONS.md — Camino de la Tierra Húmeda / Los Primeros Juncos",
+    "vintage-telnet/REGIONS.md — Llanos de Edran / Aguas de Lethra"
+  ],
+  "room_id": null,
+  "creature_id": null,
+  "species_id": null,
+  "prior_asset": null,
+  "edit_source": null,
+  "variation_of": null,
+  "notes": "Hito geográfico canónico. Debe leerse como transición gradual, no como frontera brusca ni humedal profundo.",
+  "quality": "low",
+  "output_format": "png",
+  "output_compression": null,
+  "background": "opaque"
+}
