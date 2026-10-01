@@ -170,9 +170,14 @@ def critique_generation(
         # Fuerza rechazo si hay categoría de fallo
         passes = False
 
+    # Convertir hard_failures a tupla de dicts
+    hard_failures_list = verdict.get("hard_failures") or []
+    hard_failures = tuple(hard_failures_list) if isinstance(hard_failures_list, list) else ()
+
     return CritiqueResult(
         passes=passes,
         issues=tuple(str(item) for item in verdict.get("issues") or ()),
+        hard_failures=hard_failures,
         reasoning=str(verdict.get("reasoning", "")),
         model=model,
         usage=usage,
