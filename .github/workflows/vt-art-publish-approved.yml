@@ -7,22 +7,28 @@ on:
 
 permissions:
   contents: write
+  pull-requests: read
 
 jobs:
   publish:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
     steps:
       - name: Checkout main
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.13'
+          cache: 'pip'
 
-      - name: Install cwebp
-        run: sudo apt-get update && sudo apt-get install -y webp
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install Pillow
 
       - name: Fetch all branches
         run: git fetch --all
@@ -34,10 +40,16 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if git diff --quiet HEAD -- assets/vintage-telnet/creatures/; then
-            echo "No changes to commit."
-            exit 0
+
+          if ! git diff --quiet HEAD -- assets/vintage-telnet/; then
+            git add assets/vintage-telnet/ art-masters/
+            git commit -m "vt-art: publish approved images to assets (auto)
+
+Automated publication of approved art assets.
+- Creatures → assets/vintage-telnet/creatures/ + art-masters/creatures/
+- Locations → assets/vintage-telnet/locations/ + art-masters/locations/"
+            git push origin main
+            echo "✅ Published approved images to main"
+          else
+            echo "ℹ️  No new approved images to publish"
           fi
-          git add assets/vintage-telnet/creatures/
-          git commit -m "vt-art: publish approved images to assets (auto)"
-          git push origin main
