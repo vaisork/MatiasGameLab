@@ -1,0 +1,35 @@
+{
+  "aspect_ratio": "landscape",
+  "output_destination": "vintage-telnet/art_generations",
+  "status": "draft",
+  "room_id": null,
+  "species_id": null,
+  "prior_asset": null,
+  "edit_source": null,
+  "variation_of": null,
+  "quality": "low",
+  "output_format": "png",
+  "output_compression": null,
+  "background": "opaque",
+  "asset_id": "vado_de_juncos",
+  "asset_type": "environment",
+  "target": "Arquitectura exterior del asentamiento secundario Vado de Juncos, transición Edran/Lethra.",
+  "canonical_name": "Vado de Juncos",
+  "art_direction": "SUBJECT TYPE: ARCHITECTURE / SETTLEMENT — NO CREATURE. Pequeño asentamiento sobre terreno alto que adapta el viaje entre camino firme, pasarela y agua.",
+  "prompt": "SUBJECT TYPE: ARCHITECTURE / SETTLEMENT — NO CREATURE. Create a wide exterior architectural scene of the canonical Vado de Juncos. A small cluster of practical shelters occupies slightly raised firm ground where an Edran road reaches Lethra wetlands. Show the transition from wagon-width earth track to simple elevated footways and water access. Structures use modest timber, stone footings and weather-resistant coverings, arranged to stay above wet ground. Reeds and shallow channels surround but do not engulf the settlement. It is a route-support hamlet, not a major village.",
+  "negative_constraints": [
+    "No large harbor, market city, palace or fortress",
+    "No invented monumental bridge",
+    "No tropical stilt-city exaggeration",
+    "No magical water, glow or fantasy ornaments",
+    "No characters or creatures as focal subject",
+    "No readable signs or HUD",
+    "CATEGORY LOCK: architecture/settlement only"
+  ],
+  "canon_sources": [
+    "vintage-telnet/SETTLEMENTS.md — Vado de Juncos",
+    "vintage-telnet/REGIONAL_CONNECTIONS.md — Camino de la Tierra Húmeda"
+  ],
+  "creature_id": null,
+  "notes": "Asentamiento secundario canónico; función de cruce y adaptación, sin economía inventada."
+}
