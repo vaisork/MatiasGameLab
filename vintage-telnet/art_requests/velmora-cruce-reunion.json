@@ -1,0 +1,38 @@
+{
+  "asset_id": "velmora_cruce_reunion",
+  "asset_type": "architecture",
+  "target": "Arquitectura funcional para el centro/micro-salas internas de Velmora; referencia visual del contexto zone.velmora.",
+  "canonical_name": "Cruce de reunión de Velmora",
+  "art_direction": "Espacio Vesperi que sólo se reconoce como centro al acercarse. Arquitectura parcialmente integrada y protegida por grandes árboles y formaciones naturales; refugios conectados por senderos discretos, texturas, pequeños reflejos y puntos de luz controlada. No ciudad élfica, no gran árbol sagrado, no arquitectura monumental.",
+  "prompt": "Create a wide architectural environment view inside canonical Velmora in the Bosque de Nhal. Show a subtle COMMUNITY CROSSING that at first looks like dense old forest, but on closer view reveals several inhabited refuges and paths converging. Low-light Vesperi architecture is partially integrated behind large trunks, roots and natural formations rather than displayed as a façade. Entrances are modest and protected; paths are indicated through repeated textures, small placed markers, restrained reflective surfaces and a few controlled low-intensity light points. Include traces of older shelters absorbed into newer construction and routes that deliberately avoid open ground. The gathering area becomes evident only near the center where several discreet paths meet. Dense canopy, muted humid materials, deep greens, bark browns and cool gray stone. Quiet, practical and inhabited, never mystical spectacle.",
+  "references": [],
+  "negative_constraints": [
+    "No elven city, giant sacred tree, tree palace or fantasy woodland cathedral",
+    "No glowing mushrooms, magical runes, fairy lights or supernatural illumination",
+    "Do not make buildings highly visible from far away",
+    "No broad ceremonial plaza or monumental architecture",
+    "No bat motifs, wings or species-symbol clichés",
+    "Keep lighting scarce and controlled, not pitch black",
+    "No readable signs, text or HUD"
+  ],
+  "aspect_ratio": "landscape",
+  "output_destination": "vintage-telnet/art_generations",
+  "status": "draft",
+  "canon_sources": [
+    "vintage-telnet/SETTLEMENTS.md — Velmora",
+    "vintage-telnet/REGIONS.md — Bosque de Nhal",
+    "vintage-telnet/ART_WORLD_GUIDE.md — Velmora",
+    "vintage-telnet/VISUAL_CONTEXT_CANON.md — zone.velmora"
+  ],
+  "room_id": "velmora_centro",
+  "creature_id": null,
+  "species_id": "vesperi",
+  "prior_asset": null,
+  "edit_source": null,
+  "variation_of": null,
+  "notes": "Centro perceptivo, no plaza monumental. Debe sentirse como red de refugios que aprendió a encontrarse sin hacerse visible desde lejos.",
+  "quality": "low",
+  "output_format": "png",
+  "output_compression": null,
+  "background": "opaque"
+}
