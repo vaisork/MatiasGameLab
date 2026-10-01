@@ -1,0 +1,37 @@
+{
+  "asset_id": "colagrieta_korven",
+  "asset_type": "creature",
+  "target": "Borrador de fauna natural de los Pedrales de Korven para poblar fisuras y cavidades; no integrar a runtime.",
+  "canonical_name": "Colagrieta",
+  "art_direction": "Reptil oportunista de fisuras. La escena debe hacer legible su especialización: cuerpo alargado y bajo, cuatro patas cortas laterales, cabeza compacta que asoma primero desde una grieta y una cola orgánica muy gruesa usada como apoyo al retroceder. Debe parecer animal de roca seca, no serpiente, dinosaurio, dragón ni lagarto tropical genérico.",
+  "prompt": "Create one landscape wildlife scene in the Pedrales de Korven. Show one complete adult Colagrieta emerging halfway from a broad horizontal rock fissure while checking the open ground before searching for food. Exactly four short lateral reptilian limbs. CRITICAL SILHOUETTE: elongated low flexible torso adapted to narrow fissures; compact wedge-like head; very thick muscular tail, especially at the base, visibly braced against the rock as a support for rapid backward retreat. Keep the belly close to stone and the limbs spread laterally. Matte dry scales in muted Korven colors: charcoal brown, dusty gray, subdued clay and sparse dull olive mottling. Fractured rock plates, deep crevice shadow and mineral dust remain subordinate. Natural opportunistic fauna, cautious rather than aggressive.",
+  "references": [],
+  "negative_constraints": [
+    "Exactly four limbs; no extra legs, wings or membranes",
+    "No snake body; all four limbs must remain clearly readable",
+    "No dinosaur, dragon, crocodile or monitor-lizard hero silhouette",
+    "No horns, dorsal sails, spikes, armor plates or fantasy ornament",
+    "Tail must be thick and supportive, not a whip, club, stinger or weapon",
+    "No bright tropical colors, glow, lava, crystals or magic",
+    "No attack pose; show cautious emergence or retreat behavior",
+    "No readable text or HUD"
+  ],
+  "aspect_ratio": "landscape",
+  "output_destination": "vintage-telnet/art_generations",
+  "status": "draft",
+  "canon_sources": [
+    "vintage-telnet/CREATURES.md — Pedrales de Korven / Colagrieta",
+    "vintage-telnet/REGIONS.md — Pedrales de Korven"
+  ],
+  "room_id": null,
+  "creature_id": "colagrieta",
+  "species_id": null,
+  "prior_asset": null,
+  "edit_source": null,
+  "variation_of": null,
+  "notes": "Dirección de Arte basada únicamente en canon existente. La cola gruesa debe comunicar apoyo y retroceso dentro de fisuras, no armamento.",
+  "quality": "low",
+  "output_format": "png",
+  "output_compression": null,
+  "background": "opaque"
+}
