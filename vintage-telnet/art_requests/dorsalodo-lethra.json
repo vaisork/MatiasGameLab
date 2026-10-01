@@ -1,0 +1,35 @@
+{
+  "aspect_ratio": "landscape",
+  "output_destination": "vintage-telnet/art_generations",
+  "status": "draft",
+  "room_id": null,
+  "species_id": null,
+  "prior_asset": null,
+  "edit_source": null,
+  "variation_of": null,
+  "quality": "low",
+  "output_format": "png",
+  "output_compression": null,
+  "background": "opaque",
+  "asset_id": "dorsalodo_lethra",
+  "asset_type": "creature",
+  "target": "Amenaza superior natural de las Aguas de Lethra; gran depredador anfibio.",
+  "canonical_name": "Dorsalodo",
+  "art_direction": "Gran depredador anfibio largo y pesado cuya espalda rugosa se confunde con barro y vegetación. Debe leerse como animal de emboscada de canales profundos, no cocodrilo literal ni monstruo fantástico.",
+  "prompt": "Create a wide natural scene in the Aguas de Lethra showing one adult Dorsalodo partly emerging from a quiet deep channel. Long heavy amphibious body, broad low head, rough irregular back carrying wet mud and incidental plant matter as camouflage, powerful body adapted to water and muddy banks. Its outline should initially blend with the bank before becoming readable as a large predator. Reeds are flattened along a broad entry to the water and a heavy drag mark is visible. Humid muted greens, mud browns and gray water, natural overcast light.",
+  "negative_constraints": [
+    "Do not depict a literal crocodile, alligator, hippo or giant salamander",
+    "No dorsal spikes, horns, armor plates or fantasy fins",
+    "No magic, glow, Arcane traits or bioluminescence",
+    "No attack toward camera or gore",
+    "Vegetation on back is incidental camouflage, not a growing forest",
+    "No tropical ocean or beach",
+    "No readable text or HUD"
+  ],
+  "canon_sources": [
+    "vintage-telnet/CREATURES.md — Aguas de Lethra / Amenaza superior: Dorsalodo",
+    "vintage-telnet/REGIONS.md — Aguas de Lethra"
+  ],
+  "creature_id": "dorsalodo",
+  "notes": "Amenaza superior canónica; mantener lectura anfibia y de emboscada."
+}
