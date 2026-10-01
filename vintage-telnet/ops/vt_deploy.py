@@ -378,6 +378,30 @@ def main(argv: list[str] | None = None) -> int:
             if after_players != before_players:
                 raise DeployError('La lista de IDs de jugadores cambió durante el despliegue.')
 
+            # Sincronizar assets locales (generados en Raspberry) con el release
+            log('Sincronizando assets locales con el release...')
+            local_assets = repo / 'assets' / 'vintage-telnet'
+            release_assets = project.parent / 'assets' / 'vintage-telnet'
+            if local_assets.exists():
+                release_assets.parent.mkdir(parents=True, exist_ok=True)
+                # Copiar creatures/
+                if (local_assets / 'creatures').exists():
+                    creatures_dst = release_assets / 'creatures'
+                    creatures_dst.mkdir(parents=True, exist_ok=True)
+                    for webp_file in (local_assets / 'creatures').glob('*.webp'):
+                        shutil.copy2(webp_file, creatures_dst / webp_file.name)
+                        log(f'  ✅ {webp_file.name} → creatures/')
+                # Copiar locations/
+                if (local_assets / 'locations').exists():
+                    locations_dst = release_assets / 'locations'
+                    locations_dst.mkdir(parents=True, exist_ok=True)
+                    for webp_file in (local_assets / 'locations').glob('*.webp'):
+                        shutil.copy2(webp_file, locations_dst / webp_file.name)
+                        log(f'  ✅ {webp_file.name} → locations/')
+                log('Assets sincronizados.')
+            else:
+                log('  (sin assets locales para sincronizar)')
+
             run(
                 [
                     str(project / '.venv/bin/python'),
