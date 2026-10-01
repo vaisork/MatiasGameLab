@@ -1,0 +1,36 @@
+{
+  "aspect_ratio": "landscape",
+  "output_destination": "vintage-telnet/art_generations",
+  "status": "draft",
+  "room_id": null,
+  "species_id": null,
+  "prior_asset": null,
+  "edit_source": null,
+  "variation_of": null,
+  "quality": "low",
+  "output_format": "png",
+  "output_compression": null,
+  "background": "opaque",
+  "asset_id": "quebrarrocas_korven",
+  "asset_type": "creature",
+  "target": "Amenaza superior natural de los Pedrales de Korven; gran criatura excavadora.",
+  "canonical_name": "Quebrarrocas",
+  "art_direction": "Bestia excavadora grande y acorazada, adaptada a empujar bloques y desplazarse bajo piedra fracturada y tierra dura. La anatomía debe comunicar excavación y empuje, no golem ni criatura hecha de roca.",
+  "prompt": "Create a wide wildlife scene in the Pedrales de Korven showing one complete adult Quebrarrocas emerging through fractured hard ground. A massive low natural burrowing beast with broad reinforced head and shoulders, powerful digging forelimbs, compact rear body and thick organic protective plates adapted to abrasion. Broken slabs around it have been physically displaced by its passage. Matte dusty organic surfaces in gray-brown mineral camouflage. It must feel like a living animal specialized for pushing stone, not stone itself. Korven remains dry, fractured and wind-worn.",
+  "negative_constraints": [
+    "No golem, living rock, crystals, lava or magic",
+    "No metal armor or manufactured equipment",
+    "No giant mole, armadillo or rhinoceros literal copy",
+    "No humanoid posture",
+    "No glowing eyes",
+    "No invented weapons, horns or drills",
+    "No dominant orange fantasy desert palette",
+    "No readable text or HUD"
+  ],
+  "canon_sources": [
+    "vintage-telnet/CREATURES.md — Pedrales de Korven / Amenaza superior: Quebrarrocas",
+    "vintage-telnet/REGIONS.md — Pedrales de Korven"
+  ],
+  "creature_id": "quebrarrocas",
+  "notes": "Amenaza superior canónica; el terreno desplazado funciona como señal visual."
+}
