@@ -1,0 +1,36 @@
+{
+  "aspect_ratio": "landscape",
+  "output_destination": "vintage-telnet/art_generations",
+  "status": "draft",
+  "room_id": null,
+  "creature_id": null,
+  "species_id": null,
+  "prior_asset": null,
+  "edit_source": null,
+  "variation_of": null,
+  "quality": "low",
+  "output_format": "png",
+  "output_compression": null,
+  "background": "opaque",
+  "asset_id": "la_orilla_partida",
+  "asset_type": "environment",
+  "target": "Paisaje de navegación de La Orilla Partida en el Camino de la Tierra Húmeda.",
+  "canonical_name": "La Orilla Partida",
+  "art_direction": "SUBJECT TYPE: LOCATION / ENVIRONMENT / LANDSCAPE — NO CREATURE. Punto donde el sendero terrestre se divide entre pasarela y terreno firme; el agua ya condiciona claramente el movimiento.",
+  "prompt": "SUBJECT TYPE: LOCATION / ENVIRONMENT / LANDSCAPE — NO CREATURE. Create a wide landscape of La Orilla Partida. A damp terrestrial route reaches a shallow wetland edge and visibly divides: one branch continues over firmer raised ground while a simple narrow wooden walkway carries the other across waterlogged terrain. Reeds, muddy channels and low water occupy more of the scene than at Los Primeros Juncos, but this is still a route transition rather than open lake. Composition must make the fork and two viable directions immediately readable.",
+  "negative_constraints": [
+    "No major bridge, dock, village or invented buildings",
+    "No deep swamp jungle",
+    "No ocean, beach or mangrove aesthetic",
+    "No magical mist, glow or fantasy ruins",
+    "No confusing maze of many paths; exactly one clear split",
+    "No characters or creatures as focal subject",
+    "No readable text or HUD",
+    "CATEGORY LOCK: location/landscape only"
+  ],
+  "canon_sources": [
+    "vintage-telnet/REGIONAL_CONNECTIONS.md — Camino de la Tierra Húmeda / La Orilla Partida",
+    "vintage-telnet/REGIONS.md — Edran / Lethra"
+  ],
+  "notes": "Hito geográfico canónico; no añadir historia no definida."
+}
