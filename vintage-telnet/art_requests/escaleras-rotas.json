@@ -1,0 +1,35 @@
+{
+  "asset_type": "environment",
+  "aspect_ratio": "landscape",
+  "output_destination": "vintage-telnet/art_generations",
+  "status": "draft",
+  "room_id": null,
+  "creature_id": null,
+  "species_id": null,
+  "prior_asset": null,
+  "edit_source": null,
+  "variation_of": null,
+  "quality": "low",
+  "output_format": "png",
+  "output_compression": null,
+  "background": "opaque",
+  "asset_id": "escaleras_rotas",
+  "canonical_name": "Las Escaleras Rotas",
+  "target": "Hito del Paso de las Lajas entre Hoshai y Korven.",
+  "art_direction": "SUBJECT TYPE: LOCATION / ENVIRONMENT / LANDSCAPE — NO CREATURE. Sucesión de terrazas naturales y peldaños antiguos reutilizados por viajeros; el origen exacto debe permanecer ambiguo.",
+  "prompt": "SUBJECT TYPE: LOCATION / ENVIRONMENT / LANDSCAPE — NO CREATURE. Create a wide travel scene of Las Escaleras Rotas. A steep sequence of irregular natural terraces is interrupted by a limited number of very old worn stone steps reused by travelers. The route descends from open Hoshai rock toward increasingly fragmented Korven terrain. Make the old steps practical, incomplete and subordinate to geology, with no clue to who made them. Cold wind, gray layered rock and sparse highland scrub.",
+  "negative_constraints": [
+    "No intact grand staircase",
+    "No temple, ruins, statues, inscriptions or invented civilization",
+    "Do not imply a definitive origin for the old steps",
+    "No magical glow or monumental fantasy architecture",
+    "No characters or creatures as focal subject",
+    "No readable text or HUD",
+    "CATEGORY LOCK: location/landscape only"
+  ],
+  "canon_sources": [
+    "vintage-telnet/REGIONAL_CONNECTIONS.md — Paso de las Lajas / Las Escaleras Rotas",
+    "vintage-telnet/REGIONS.md — Hoshai / Korven"
+  ],
+  "notes": "Fiel al anclaje geográfico canónico. No definir interior, jefe, secreto ni mecánica."
+}
