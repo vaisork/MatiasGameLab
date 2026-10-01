@@ -34,6 +34,20 @@ py -m venv .venv-art
 .venv-art\Scripts\python.exe -m pip install -r tools/vt_art/requirements.txt
 ```
 
+## Clasificación visual obligatoria
+
+Toda ficha nueva debe declarar la categoría visual de forma inequívoca tanto en sus campos como al inicio de `prompt` y `art_direction`. El nombre propio nunca basta para inferir qué se dibuja.
+
+Usar estas cabeceras:
+
+- Criatura: `SUBJECT TYPE: CREATURE / LIVING ANIMAL`
+- Paisaje o lugar: `SUBJECT TYPE: LOCATION / ENVIRONMENT / LANDSCAPE — NO CREATURE`
+- Arquitectura: `SUBJECT TYPE: ARCHITECTURE / BUILT ENVIRONMENT — NO CREATURE`
+
+Para `LOCATION` y `ARCHITECTURE`, las restricciones negativas deben prohibir explícitamente que una criatura, animal, monstruo, personaje o ser vivo se convierta en el sujeto focal. Para `CREATURE`, la ficha debe decir explícitamente que el sujeto focal es un ser vivo y que el entorno es secundario.
+
+La autocrítica debe tratar un **error de categoría** como fallo obligatorio: si una ficha LOCATION produce una criatura, si una ficha ARCHITECTURE produce una criatura como sujeto, o si una ficha CREATURE no representa al ser vivo solicitado, `passes` debe ser falso aunque composición, color o acabado sean buenos. No aprobar visualmente una generación de categoría equivocada.
+
 ## Ficha y comandos
 
 Copia `vintage-telnet/art_requests/template.json` a una ficha propia, por ejemplo `vintage-telnet/art_requests/daro-retrato.json`. Completa el canon y las decisiones visuales; esta herramienta no inventa ni aprueba esos contenidos. Las rutas de referencia se interpretan respecto a la ficha y deben apuntar a imágenes locales PNG, JPEG o WebP.
