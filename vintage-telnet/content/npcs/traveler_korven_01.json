@@ -83,5 +83,57 @@
     "Si algo raspa una carga cada vez que pasas, tarde o temprano deja de ser un detalle.",
     "No, no vendo esto. Solo intento que llegue entero.",
     "El camino parece simple hasta que tienes que cargar algo por él."
+  ],
+  "conversation_topics": {
+    "herramientas": [
+      "Las herramientas hablan claro cuando algo va mal. La gente, menos.",
+      "Un mango flojo avisa antes de romperse. Casi siempre lo ignoramos igual."
+    ],
+    "camino": [
+      "La piedra buena no necesita ser bonita; necesita dejarte pasar con la carga entera.",
+      "Hay pasos que parecen cómodos hasta que intentas cruzarlos llevando peso."
+    ],
+    "brumak": [
+      "Brumak está hecho para quien sabe aprovechar poco espacio. Los visitantes tardan en entenderlo.",
+      "En Brumak nadie presume de tener sitio de sobra. Sería desperdiciarlo."
+    ],
+    "rumores": [
+      "Las historias sobre cavidades crecen más rápido que las grietas reales.",
+      "Si alguien encontró una fortuna ahí abajo, ha hecho un trabajo excelente evitando que me entere."
+    ]
+  },
+  "followup_dialogue": [
+    {
+      "player_intent": "¿Me vendes una herramienta?",
+      "response": "No. Estas van a alguien que ya las está esperando."
+    },
+    {
+      "player_intent": "¿Qué hay en las grietas?",
+      "response": "En las que recorro, piedra, polvo y problemas pequeños. De las otras no voy a fingir conocimiento."
+    },
+    {
+      "player_intent": "¿Es peligroso?",
+      "response": "Puede serlo. También una pieza mal ajustada puede serlo. Necesito una pregunta mejor."
+    },
+    {
+      "player_intent": "¿Por qué haces tantos recados?",
+      "response": "Porque las cosas no se mueven solas y porque, cuando sí lo hacen, normalmente es peor."
+    }
+  ],
+  "return_dialogue": [
+    "Ya nos cruzamos. Espero que esta vez traigas menos preguntas imposibles.",
+    "Te recuerdo. Sigues entero, así que algo hiciste bien.",
+    "Otra vez por aquí. El camino no se arregló solo mientras te ibas."
+  ],
+  "dont_know_dialogue": [
+    "No bajo ahí. Pregunta a quien sí lo haga.",
+    "No tengo evidencia para darte una respuesta decente."
+  ],
+  "conversation_rules": [
+    "Responder desde conocimiento autorizado y experiencia directa.",
+    "Distinguir observación, creencia y rumor.",
+    "No resolver misterios ni revelar información fuera de ruta.",
+    "Reconocer al jugador en reencuentros cuando memory_hooks lo permitan.",
+    "Mantener respuestas compactas porque el personaje sigue viajando."
   ]
 }
