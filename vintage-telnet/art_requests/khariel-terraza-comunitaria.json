@@ -3,8 +3,8 @@
   "asset_type": "architecture",
   "target": "Arquitectura funcional para el centro/micro-salas internas de Khariel; referencia visual del contexto zone.khariel.",
   "canonical_name": "Terraza comunitaria de Khariel",
-  "art_direction": "Espacio comunitario Felaryn distribuido verticalmente, no plaza plana. Arquitectura de madera y piedra integrada en terrazas naturales de Hoshai, techos inclinados, apoyos y muros de contención reparados en distintas épocas, puentes cortos y senderos escalonados conectando niveles visibles entre sí. Inspiración japonesa tradicional reinterpretada, nunca reproducción literal.",
-  "prompt": "Create a wide architectural environment view inside canonical Khariel in the Sierra de Hoshai. Show a COMMUNITY TERRACE where several inhabited levels intersect visually, not a flat town square. The primary level is a modest stone terrace used for gathering, with timber-and-stone buildings fitted into the mountain edge and restrained steeply pitched roofs. Above and below it, short bridges, narrow stepped paths, retaining walls and lookout edges connect other occupied ledges. Architecture must clearly support vertical movement and long sightlines. Older retaining masonry should show repairs from different periods. Strong mountain wind, cool daylight and distant ridges reinforce altitude. Reinterpret traditional Japanese spatial discipline through Felaryn needs without copying a real shrine, temple, castle or historical street. Functional, inhabited, ordered, lightweight where possible, anchored securely to rock.",
+  "art_direction": "SUBJECT TYPE: ARCHITECTURE / BUILT ENVIRONMENT — NO CREATURE. Espacio comunitario Felaryn distribuido verticalmente, no plaza plana. Arquitectura de madera y piedra integrada en terrazas naturales de Hoshai, techos inclinados, apoyos y muros de contención reparados en distintas épocas, puentes cortos y senderos escalonados conectando niveles visibles entre sí. Inspiración japonesa tradicional reinterpretada, nunca reproducción literal.",
+  "prompt": "SUBJECT TYPE: ARCHITECTURE / BUILT ENVIRONMENT — NO CREATURE. Create a wide architectural environment view inside canonical Khariel in the Sierra de Hoshai. Show a COMMUNITY TERRACE where several inhabited levels intersect visually, not a flat town square. The primary level is a modest stone terrace used for gathering, with timber-and-stone buildings fitted into the mountain edge and restrained steeply pitched roofs. Above and below it, short bridges, narrow stepped paths, retaining walls and lookout edges connect other occupied ledges. Architecture must clearly support vertical movement and long sightlines. Older retaining masonry should show repairs from different periods. Strong mountain wind, cool daylight and distant ridges reinforce altitude. Reinterpret traditional Japanese spatial discipline through Felaryn needs without copying a real shrine, temple, castle or historical street. Functional, inhabited, ordered, lightweight where possible, anchored securely to rock.",
   "references": [],
   "negative_constraints": [
     "Do not create a single broad flat plaza",
@@ -13,7 +13,9 @@
     "No cherry-blossom cliché as primary identity",
     "No impossible floating buildings or magical supports",
     "No dominant gold/ochre palette",
-    "No readable signs, text or HUD"
+    "No readable signs, text or HUD",
+    "CATEGORY LOCK: architecture/built environment is the focal subject; no creature, animal or monster may replace it.",
+    "CANON HARD FAIL: reject modern backpacks, modern clothing/technology, generic contemporary visitors, or inhabitants/species that contradict the architecture brief. Built scale, doors, circulation and furniture must visibly support the canonical inhabitants named in this request."
   ],
   "aspect_ratio": "landscape",
   "output_destination": "vintage-telnet/art_generations",
@@ -30,7 +32,7 @@
   "prior_asset": null,
   "edit_source": null,
   "variation_of": null,
-  "notes": "Arquitectura del contexto interno de Khariel. No fija mecánicas de salto ni acceso exclusivo.",
+  "notes": "Arquitectura del contexto interno de Khariel. No fija mecánicas de salto ni acceso exclusivo. Regeneration batch 2026-10-01: previous draft deleted by art direction; regenerate from this hardened request and do not use the deleted draft as visual reference.",
   "quality": "low",
   "output_format": "png",
   "output_compression": null,
