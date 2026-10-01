@@ -292,6 +292,7 @@ class ArtPipeline:
                 "model": result.model,
                 "passes": result.passes,
                 "issues": list(result.issues),
+                "hard_failures": list(result.hard_failures),
                 "reasoning": result.reasoning,
                 "usage": result.usage,
                 "cost_estimate": result.cost_estimate,
@@ -304,7 +305,9 @@ class ArtPipeline:
             attempts.append(metadata)
             if result.passes or attempt_number == max_attempts:
                 break
-            extra_note = "Intento anterior rechazado por autocrítica: " + "; ".join(result.issues)
+            failure_details = [f"[{item['code']}] {item['detail']}" for item in result.hard_failures]
+            retry_reasons = failure_details + list(result.issues)
+            extra_note = "Intento anterior rechazado por autocrítica: " + "; ".join(retry_reasons)
             current_request = _dataclass_replace(
                 current_request,
                 notes=(f"{current_request.notes}\n\n{extra_note}" if current_request.notes else extra_note),
