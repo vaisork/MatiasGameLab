@@ -241,6 +241,7 @@ class ArtPipeline:
         generation_id = str(uuid.uuid4())
         metadata = {
             "asset_id": request.asset_id,
+            "asset_type": request.asset_type,
             "generation_id": generation_id,
             "version": version,
             "prompt": prompt,
