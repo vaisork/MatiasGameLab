@@ -1,0 +1,35 @@
+{
+  "aspect_ratio": "landscape",
+  "output_destination": "vintage-telnet/art_generations",
+  "status": "draft",
+  "room_id": null,
+  "creature_id": null,
+  "species_id": null,
+  "prior_asset": null,
+  "edit_source": null,
+  "variation_of": null,
+  "quality": "low",
+  "output_format": "png",
+  "output_compression": null,
+  "background": "opaque",
+  "asset_id": "borde_de_los_cardos",
+  "asset_type": "environment",
+  "target": "Paisaje de navegación del Borde de los Cardos en la Senda del Viento Bajo.",
+  "canonical_name": "Borde de los Cardos",
+  "art_direction": "SUBJECT TYPE: LOCATION / ENVIRONMENT / LANDSCAPE — NO CREATURE. Transición visible donde aparecen vegetación de llanura y suelo más blando al salir de Korven hacia Edran.",
+  "prompt": "SUBJECT TYPE: LOCATION / ENVIRONMENT / LANDSCAPE — NO CREATURE. Create a wide landscape at Borde de los Cardos. Broken hard Korven ground in the foreground gradually gives way to softer earth, low thistle-like field vegetation and a broader travel track. Stone walls recede and the horizon opens toward Edran. The vegetation change itself is the landmark: irregular bands of hardy cardos establish the first unmistakable plain ecology without becoming a flower field. Natural wind, subdued daylight, dusty greens, gray-browns and restrained dry purples.",
+  "negative_constraints": [
+    "No lush flower meadow",
+    "No giant fantasy thistles or poisonous magical plants",
+    "No buildings, fences or invented ruins",
+    "No golden sunset or saturated fantasy palette",
+    "No characters or creatures as focal subject",
+    "No readable text or HUD",
+    "CATEGORY LOCK: location/landscape only"
+  ],
+  "canon_sources": [
+    "vintage-telnet/REGIONAL_CONNECTIONS.md — Senda del Viento Bajo / Borde de los Cardos",
+    "vintage-telnet/REGIONS.md — Korven / Edran"
+  ],
+  "notes": "Hito geográfico canónico; no añadir historia no definida."
+}
