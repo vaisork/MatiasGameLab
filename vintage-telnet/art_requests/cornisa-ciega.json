@@ -1,0 +1,36 @@
+{
+  "asset_type": "environment",
+  "aspect_ratio": "landscape",
+  "output_destination": "vintage-telnet/art_generations",
+  "status": "draft",
+  "room_id": null,
+  "creature_id": null,
+  "species_id": null,
+  "prior_asset": null,
+  "edit_source": null,
+  "variation_of": null,
+  "quality": "low",
+  "output_format": "png",
+  "output_compression": null,
+  "background": "opaque",
+  "asset_id": "cornisa_ciega",
+  "canonical_name": "Cornisa Ciega",
+  "target": "Anclaje geográfico del ramal B del Paso de las Lajas.",
+  "art_direction": "SUBJECT TYPE: LOCATION / ENVIRONMENT / LANDSCAPE — NO CREATURE. Camino estrecho que parece terminar ante una pared con caída lateral. No revelar acceso alterno ni explicar si continúa.",
+  "prompt": "SUBJECT TYPE: LOCATION / ENVIRONMENT / LANDSCAPE — NO CREATURE. Create a wide landscape of Cornisa Ciega. A narrow traversable ledge branches from the regional route and follows a steep rock face until it appears to terminate against an unbroken wall. Beside it, a visible lateral drop makes the dead end uncomfortable but believable. Composition must preserve ambiguity: it may simply end here. Cold mountain light, layered gray stone, sparse wind-pressed growth.",
+  "negative_constraints": [
+    "No hidden door visible",
+    "No cave entrance, ladder, bridge or secret passage",
+    "Do not reveal whether the route continues",
+    "No ruins, markings, magic or treasure clues",
+    "No impossible sheer fantasy cliff",
+    "No characters or creatures as focal subject",
+    "No readable text or HUD",
+    "CATEGORY LOCK: location/landscape only"
+  ],
+  "canon_sources": [
+    "vintage-telnet/REGIONAL_CONNECTIONS.md — Ramal B / Cornisa Ciega",
+    "vintage-telnet/REGIONS.md — Hoshai / Korven"
+  ],
+  "notes": "Fiel al anclaje geográfico canónico. No definir interior, jefe, secreto ni mecánica."
+}
