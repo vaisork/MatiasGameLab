@@ -1,0 +1,38 @@
+{
+  "asset_id": "khariel_terraza_comunitaria",
+  "asset_type": "architecture",
+  "target": "Arquitectura funcional para el centro/micro-salas internas de Khariel; referencia visual del contexto zone.khariel.",
+  "canonical_name": "Terraza comunitaria de Khariel",
+  "art_direction": "Espacio comunitario Felaryn distribuido verticalmente, no plaza plana. Arquitectura de madera y piedra integrada en terrazas naturales de Hoshai, techos inclinados, apoyos y muros de contención reparados en distintas épocas, puentes cortos y senderos escalonados conectando niveles visibles entre sí. Inspiración japonesa tradicional reinterpretada, nunca reproducción literal.",
+  "prompt": "Create a wide architectural environment view inside canonical Khariel in the Sierra de Hoshai. Show a COMMUNITY TERRACE where several inhabited levels intersect visually, not a flat town square. The primary level is a modest stone terrace used for gathering, with timber-and-stone buildings fitted into the mountain edge and restrained steeply pitched roofs. Above and below it, short bridges, narrow stepped paths, retaining walls and lookout edges connect other occupied ledges. Architecture must clearly support vertical movement and long sightlines. Older retaining masonry should show repairs from different periods. Strong mountain wind, cool daylight and distant ridges reinforce altitude. Reinterpret traditional Japanese spatial discipline through Felaryn needs without copying a real shrine, temple, castle or historical street. Functional, inhabited, ordered, lightweight where possible, anchored securely to rock.",
+  "references": [],
+  "negative_constraints": [
+    "Do not create a single broad flat plaza",
+    "No literal Japanese temple, torii gate, pagoda, samurai castle or copied historical architecture",
+    "No giant monumental palace or religious monument",
+    "No cherry-blossom cliché as primary identity",
+    "No impossible floating buildings or magical supports",
+    "No dominant gold/ochre palette",
+    "No readable signs, text or HUD"
+  ],
+  "aspect_ratio": "landscape",
+  "output_destination": "vintage-telnet/art_generations",
+  "status": "draft",
+  "canon_sources": [
+    "vintage-telnet/SETTLEMENTS.md — Khariel",
+    "vintage-telnet/REGIONS.md — Sierra de Hoshai",
+    "vintage-telnet/ART_WORLD_GUIDE.md — Khariel",
+    "vintage-telnet/VISUAL_CONTEXT_CANON.md — zone.khariel"
+  ],
+  "room_id": "khariel_centro",
+  "creature_id": null,
+  "species_id": "felaryn",
+  "prior_asset": null,
+  "edit_source": null,
+  "variation_of": null,
+  "notes": "Arquitectura del contexto interno de Khariel. No fija mecánicas de salto ni acceso exclusivo.",
+  "quality": "low",
+  "output_format": "png",
+  "output_compression": null,
+  "background": "opaque"
+}
