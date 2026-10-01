@@ -3,12 +3,11 @@
   "asset_type": "creature | character | environment | architecture | object | icon",
   "target": "Describe para qué pantalla o uso se necesita",
   "canonical_name": "Nombre aprobado en el canon",
-  "art_direction": "Composición, estilo, encuadre, iluminación y acabado decididos por Dirección de Arte",
-  "prompt": "Descripción visual concreta aprobada por Dirección de Arte",
+  "art_direction": "SUBJECT TYPE: [CREATURE / LOCATION / ARCHITECTURE]. Define aquí la categoría antes de cualquier otra dirección visual. Para LOCATION/ARCHITECTURE añadir — NO CREATURE.",
+  "prompt": "SUBJECT TYPE: [CREATURE / LOCATION / ARCHITECTURE]. State explicitly what kind of subject this image depicts before the visual prompt.",
   "references": [],
   "negative_constraints": [
-    "No añadir texto legible",
-    "No inventar anatomía, arquitectura ni elementos de canon"
+    "CATEGORY LOCK: prohibit category confusion explicitly (for LOCATION/ARCHITECTURE: no creature, animal, monster, character or living focal subject)."
   ],
   "aspect_ratio": "square | landscape | portrait",
   "output_destination": "vintage-telnet/art_generations",
