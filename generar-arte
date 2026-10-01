@@ -1,0 +1,4 @@
+#!/bin/bash
+# Acceso directo para generar arte en batch
+cd "$(dirname "$0")"
+python3 generate_all_art.py
