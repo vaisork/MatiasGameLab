@@ -1,0 +1,36 @@
+{
+  "asset_type": "environment",
+  "aspect_ratio": "landscape",
+  "output_destination": "vintage-telnet/art_generations",
+  "status": "draft",
+  "room_id": null,
+  "creature_id": null,
+  "species_id": null,
+  "prior_asset": null,
+  "edit_source": null,
+  "variation_of": null,
+  "quality": "low",
+  "output_format": "png",
+  "output_compression": null,
+  "background": "opaque",
+  "asset_id": "molino_hundido",
+  "canonical_name": "Molino Hundido",
+  "target": "Anclaje del ramal A del Camino de la Tierra Húmeda.",
+  "art_direction": "SUBJECT TYPE: LOCATION / ENVIRONMENT / ARCHITECTURE — NO CREATURE. Restos visibles de una instalación de agua fuera de uso. No definir por qué fue abandonada ni inventar su interior inferior.",
+  "prompt": "SUBJECT TYPE: LOCATION / ENVIRONMENT / ARCHITECTURE — NO CREATURE. Create a wide exterior scene of Molino Hundido along a wet Edran–Lethra side channel. Show the weathered remains of a modest old water installation: part of a simple wheel structure and low masonry/timber base subsided unevenly into the bank, with water passing through and vegetation reclaiming it. The ruin is incomplete and ordinary, not monumental. Any lower access is obscured by water, mud and structure; its abandonment remains unexplained.",
+  "negative_constraints": [
+    "No intact operating mill",
+    "No large medieval millhouse or picturesque fantasy inn",
+    "No explanation of abandonment through bodies, battle damage or magic",
+    "Do not show underground interior",
+    "No runes, treasure, monsters or supernatural water",
+    "No characters or creatures as focal subject",
+    "No readable text or HUD",
+    "CATEGORY LOCK: architecture/location only"
+  ],
+  "canon_sources": [
+    "vintage-telnet/REGIONAL_CONNECTIONS.md — Ramal A / Molino Hundido",
+    "vintage-telnet/REGIONS.md — Edran / Lethra"
+  ],
+  "notes": "Fiel al anclaje geográfico canónico. No definir interior, jefe, secreto ni mecánica."
+}
