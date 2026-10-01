@@ -13,10 +13,6 @@ permissions:
   contents: write
   pull-requests: write
 
-concurrency:
-  group: vt-art-pilot-${{ github.run_id }}
-  cancel-in-progress: false
-
 jobs:
   generate-one-draft:
     if: github.ref == 'refs/heads/main'
