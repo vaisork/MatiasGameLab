@@ -1,0 +1,35 @@
+{
+  "asset_type": "environment",
+  "aspect_ratio": "landscape",
+  "output_destination": "vintage-telnet/art_generations",
+  "status": "draft",
+  "room_id": null,
+  "creature_id": null,
+  "species_id": null,
+  "prior_asset": null,
+  "edit_source": null,
+  "variation_of": null,
+  "quality": "low",
+  "output_format": "png",
+  "output_compression": null,
+  "background": "opaque",
+  "asset_id": "canal_quieto",
+  "canonical_name": "Canal Quieto",
+  "target": "Anclaje geográfico del ramal A de la Ribera Sombría.",
+  "art_direction": "SUBJECT TYPE: LOCATION / ENVIRONMENT / LANDSCAPE — NO CREATURE. Brazo de agua muy lenta que desaparece bajo vegetación y sombra. Mostrar únicamente el acceso conocido; su destino permanece sin definir.",
+  "prompt": "SUBJECT TYPE: LOCATION / ENVIRONMENT / LANDSCAPE — NO CREATURE. Create a wide exterior landscape of Canal Quieto branching from the Lethra–Nhal transition. A narrow arm of dark slow-moving water separates from the more open channel and slips beneath increasingly dense roots, low branches and shadow. Surface movement is minimal but natural, with subtle reflections and floating plant debris. The mouth of the branch is clearly navigable by a small craft at first, then becomes visually enclosed before the viewer can see where it leads. Keep brighter open Lethra water behind and cool Nhal darkness ahead.",
+  "negative_constraints": [
+    "Do not reveal a ruin, chamber, cave or destination beyond the vegetation",
+    "No sunken buildings, statues, treasure or archaeological clues",
+    "No supernatural black water, glow, mist wall or magical portal",
+    "No large dock, bridge or settlement",
+    "No characters or creatures as focal subject",
+    "No readable text or HUD",
+    "CATEGORY LOCK: location/landscape only; geography is the primary subject."
+  ],
+  "canon_sources": [
+    "vintage-telnet/REGIONAL_CONNECTIONS.md — Ribera Sombría / Ramal A: Canal Quieto",
+    "vintage-telnet/REGIONS.md — Lethra / Nhal"
+  ],
+  "notes": "Fiel al anclaje canónico. No definir interior, jefe, secreto, acceso mecánico ni historia adicional."
+}

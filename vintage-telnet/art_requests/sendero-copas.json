@@ -1,0 +1,36 @@
+{
+  "asset_type": "environment",
+  "aspect_ratio": "landscape",
+  "output_destination": "vintage-telnet/art_generations",
+  "status": "draft",
+  "room_id": null,
+  "creature_id": null,
+  "species_id": null,
+  "prior_asset": null,
+  "edit_source": null,
+  "variation_of": null,
+  "quality": "low",
+  "output_format": "png",
+  "output_compression": null,
+  "background": "opaque",
+  "asset_id": "sendero_de_las_copas",
+  "canonical_name": "Sendero de las Copas",
+  "target": "Anclaje geográfico del ramal B del Paso del Dosel Alto.",
+  "art_direction": "SUBJECT TYPE: LOCATION / ENVIRONMENT / LANDSCAPE — NO CREATURE. Desvío natural que gana altura entre troncos, roca y salientes. No definir acceso exclusivo ni destino; debe ser físicamente plausible como ruta especializada futura.",
+  "prompt": "SUBJECT TYPE: LOCATION / ENVIRONMENT / LANDSCAPE — NO CREATURE. Create a wide landscape of Sendero de las Copas. A narrow natural side route leaves the main ascending corridor and gains elevation by threading across root-held ledges, slanted trunks and exposed rock shelves beneath the upper canopy. The branch should feel demanding but physically traversable, with successive footholds and short ledges visible before it disappears higher among trunks. Lower forest is darker and wetter; elevated gaps admit colder Hoshai light and glimpses of distant slope. The name refers to moving near the higher forest canopy, not to bridges or treehouses.",
+  "negative_constraints": [
+    "No rope bridge, treehouse, constructed canopy walkway, ladders or platforms",
+    "No impossible parkour path or floating rocks",
+    "No exclusive-species mechanism, gate, lock or invented traversal device",
+    "No visible destination, dungeon, ruins or boss clues",
+    "No magical trees, glow or fantasy canopy city",
+    "No characters or creatures as focal subject",
+    "No readable text or HUD",
+    "CATEGORY LOCK: location/landscape only; geography is the primary subject."
+  ],
+  "canon_sources": [
+    "vintage-telnet/REGIONAL_CONNECTIONS.md — Paso del Dosel Alto / Ramal B: Sendero de las Copas",
+    "vintage-telnet/REGIONS.md — Nhal / Hoshai"
+  ],
+  "notes": "Fiel al anclaje canónico. No definir interior, jefe, secreto, acceso mecánico ni historia adicional."
+}

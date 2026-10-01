@@ -1,0 +1,36 @@
+{
+  "asset_type": "environment",
+  "aspect_ratio": "landscape",
+  "output_destination": "vintage-telnet/art_generations",
+  "status": "draft",
+  "room_id": null,
+  "creature_id": null,
+  "species_id": null,
+  "prior_asset": null,
+  "edit_source": null,
+  "variation_of": null,
+  "quality": "low",
+  "output_format": "png",
+  "output_compression": null,
+  "background": "opaque",
+  "asset_id": "sendero_sin_marca",
+  "canonical_name": "Sendero sin Marca",
+  "target": "Anclaje geográfico del ramal B de la Ribera Sombría.",
+  "art_direction": "SUBJECT TYPE: LOCATION / ENVIRONMENT / LANDSCAPE — NO CREATURE. Ruta aparentemente natural que carece de las señales habituales de Velmora. Debe poder pasar desapercibida y no parecer un destino conocido.",
+  "prompt": "SUBJECT TYPE: LOCATION / ENVIRONMENT / LANDSCAPE — NO CREATURE. Create a wide forest-edge landscape of Sendero sin Marca. The recognized Velmora-oriented route remains subtly readable to one side through normal path wear and understated local orientation cues, while a second much less obvious line of compressed soil and displaced vegetation slips away between roots and trunks with no marker at all. The unmarked branch should only become apparent after careful viewing: plausible enough to follow, but not presented like a dramatic secret entrance. Low humid light, wet bark, deep greens, constrained visibility and natural forest clutter.",
+  "negative_constraints": [
+    "No signpost, arrows, footprints highlighted for the viewer or readable marks",
+    "No glowing trail, secret-door effect, magical clue or cinematic spotlight",
+    "No visible boss, danger symbol, ruins or destination",
+    "Do not make the branch a wide maintained road",
+    "No characters or creatures as focal subject",
+    "No readable text or HUD",
+    "CATEGORY LOCK: location/landscape only; geography is the primary subject."
+  ],
+  "canon_sources": [
+    "vintage-telnet/REGIONAL_CONNECTIONS.md — Ribera Sombría / Ramal B: Sendero sin Marca",
+    "vintage-telnet/SETTLEMENTS.md — orientación discreta de Velmora",
+    "vintage-telnet/REGIONS.md — Nhal"
+  ],
+  "notes": "Fiel al anclaje canónico. No definir interior, jefe, secreto, acceso mecánico ni historia adicional."
+}

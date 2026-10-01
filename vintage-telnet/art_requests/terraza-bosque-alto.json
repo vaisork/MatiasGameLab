@@ -1,0 +1,35 @@
+{
+  "asset_type": "environment",
+  "aspect_ratio": "landscape",
+  "output_destination": "vintage-telnet/art_generations",
+  "status": "draft",
+  "room_id": null,
+  "creature_id": null,
+  "species_id": null,
+  "prior_asset": null,
+  "edit_source": null,
+  "variation_of": null,
+  "quality": "low",
+  "output_format": "png",
+  "output_compression": null,
+  "background": "opaque",
+  "asset_id": "terraza_bosque_alto",
+  "canonical_name": "Terraza del Bosque Alto",
+  "target": "Hito y descanso natural del Paso del Dosel Alto antes del último ascenso.",
+  "art_direction": "SUBJECT TYPE: LOCATION / ENVIRONMENT / LANDSCAPE — NO CREATURE. Punto de descanso natural elevado en la transición Nhal–Hoshai. Debe mostrar por qué el viajero puede detenerse aquí y, a la vez, que todavía falta el ascenso final.",
+  "prompt": "SUBJECT TYPE: LOCATION / ENVIRONMENT / LANDSCAPE — NO CREATURE. Create a wide navigational landscape of Terraza del Bosque Alto. A naturally level shelf interrupts a steep mountain-forest slope. Massive Nhal roots still grip damp soil and rock at the lower edge, while the upper side exposes more Hoshai stone, thinner trunks and colder open light. The terrace is broad enough for a small group to rest safely without any constructed platform. A clear route arrives from darker forest below and a steeper continuation climbs out of frame toward the mountain. Use wet bark, blue-gray rock, deep muted greens and cool daylight; the geography must explain the rest point at a glance.",
+  "negative_constraints": [
+    "No benches, camp, shelter, stairs or built platform",
+    "No broad meadow or scenic tourist overlook",
+    "No magical tree, glowing vegetation, runes or shrine",
+    "Do not show the final summit or destination",
+    "No characters or creatures as focal subject",
+    "No readable text or HUD",
+    "CATEGORY LOCK: location/landscape only; geography is the primary subject."
+  ],
+  "canon_sources": [
+    "vintage-telnet/REGIONAL_CONNECTIONS.md — Paso del Dosel Alto / Terraza del Bosque Alto",
+    "vintage-telnet/REGIONS.md — Nhal / Hoshai"
+  ],
+  "notes": "Fiel al anclaje canónico. No definir interior, jefe, secreto, acceso mecánico ni historia adicional."
+}
