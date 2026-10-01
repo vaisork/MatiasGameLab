@@ -1,0 +1,37 @@
+{
+  "asset_id": "pinzajunco_lethra",
+  "asset_type": "creature",
+  "target": "Borrador de fauna natural de las Aguas de Lethra para poblar orillas, raíces y juncales; no integrar a runtime.",
+  "canonical_name": "Pinzajunco",
+  "art_direction": "Crustáceo de agua dulce de orilla, especializado en refugios entre raíces y juncos. Cuerpo bajo y ancho, caparazón orgánico mate, múltiples patas locomotoras pequeñas y dos pinzas delanteras claramente desiguales: una mayor usada como advertencia y otra menor funcional. Debe sentirse de humedal interior, no cangrejo marino de playa ni monstruo acorazado.",
+  "prompt": "Create one landscape freshwater wildlife scene in the Aguas de Lethra. Show one complete adult Pinzajunco at the muddy edge of shallow water between exposed roots and dense reeds. CRITICAL SILHOUETTE: low broad freshwater crustacean body with a matte organic carapace, small walking legs under the body, and TWO clearly asymmetric front claws: one noticeably larger warning claw raised sideways, the other smaller claw held close to food and reeds. The asymmetry must be unmistakable but biologically natural, not monstrous. Show it beside a round burrow opening in wet mud, with cut reed bases and shallow water nearby. Palette: dark marsh brown, muted olive, gray-green and subdued shell beige. Soft humid daylight, no ocean, no beach. Natural territorial fauna, defensive warning posture only.",
+  "references": [],
+  "negative_constraints": [
+    "Two front claws must be visibly unequal in size; do not make them symmetrical",
+    "Do not depict a marine beach crab, lobster or giant monster crustacean",
+    "No enormous weapon claw larger than the body; asymmetry stays biologically plausible",
+    "No spikes, metal armor, crystal shell, glow, magic or Arcane traits",
+    "No ocean, coral, sand beach or tropical seascape",
+    "Keep the animal low at freshwater mud, roots and reeds",
+    "Defensive warning posture only; no attack scene",
+    "No readable text or HUD"
+  ],
+  "aspect_ratio": "landscape",
+  "output_destination": "vintage-telnet/art_generations",
+  "status": "draft",
+  "canon_sources": [
+    "vintage-telnet/CREATURES.md — Aguas de Lethra / Pinzajunco",
+    "vintage-telnet/REGIONS.md — Aguas de Lethra"
+  ],
+  "room_id": null,
+  "creature_id": "pinzajunco",
+  "species_id": null,
+  "prior_asset": null,
+  "edit_source": null,
+  "variation_of": null,
+  "notes": "Dirección de Arte basada únicamente en canon existente. Mantener lectura de crustáceo dulceacuícola de juncal, con pinzas desiguales y escala natural.",
+  "quality": "low",
+  "output_format": "png",
+  "output_compression": null,
+  "background": "opaque"
+}
