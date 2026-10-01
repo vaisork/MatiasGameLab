@@ -1,0 +1,36 @@
+{
+  "aspect_ratio": "landscape",
+  "output_destination": "vintage-telnet/art_generations",
+  "status": "draft",
+  "room_id": null,
+  "creature_id": null,
+  "species_id": null,
+  "prior_asset": null,
+  "edit_source": null,
+  "variation_of": null,
+  "quality": "low",
+  "output_format": "png",
+  "output_compression": null,
+  "background": "opaque",
+  "asset_id": "campos_bajos",
+  "asset_type": "environment",
+  "target": "Paisaje de navegación de Campos Bajos en el Camino de la Tierra Húmeda.",
+  "canonical_name": "Campos Bajos",
+  "art_direction": "SUBJECT TYPE: LOCATION / ENVIRONMENT / LANDSCAPE — NO CREATURE. Parcelas bajas de Edran adaptadas a crecidas ocasionales; primer cambio claro hacia terreno que retiene humedad.",
+  "prompt": "SUBJECT TYPE: LOCATION / ENVIRONMENT / LANDSCAPE — NO CREATURE. Create a wide landscape of Campos Bajos. Low agricultural plots stretch beside a firm travel road, but shallow drainage ditches, darker soil and subtle raised field edges show adaptation to occasional flooding. The Edran horizon remains broad and agricultural while moisture increases toward the route to Lethra. Crops and paths are practical and modest, with no dramatic flood. Overcast-soft natural daylight, muted field greens, damp brown earth and gray-blue sky.",
+  "negative_constraints": [
+    "No active catastrophic flood",
+    "No rice-paddy or East Asian agricultural cliché",
+    "No large farm buildings or invented settlement",
+    "No deep swamp, lake or dense reeds yet",
+    "No magical weather or golden sunset",
+    "No characters or creatures as focal subject",
+    "No readable text or HUD",
+    "CATEGORY LOCK: location/landscape only"
+  ],
+  "canon_sources": [
+    "vintage-telnet/REGIONAL_CONNECTIONS.md — Camino de la Tierra Húmeda / Campos Bajos",
+    "vintage-telnet/REGIONS.md — Edran / Lethra"
+  ],
+  "notes": "Hito geográfico canónico; no añadir historia no definida."
+}

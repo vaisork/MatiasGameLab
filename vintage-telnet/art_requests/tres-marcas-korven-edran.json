@@ -1,0 +1,35 @@
+{
+  "aspect_ratio": "landscape",
+  "output_destination": "vintage-telnet/art_generations",
+  "status": "draft",
+  "room_id": null,
+  "creature_id": null,
+  "species_id": null,
+  "prior_asset": null,
+  "edit_source": null,
+  "variation_of": null,
+  "quality": "low",
+  "output_format": "png",
+  "output_compression": null,
+  "background": "opaque",
+  "asset_id": "las_tres_marcas",
+  "asset_type": "environment",
+  "target": "Paisaje de navegación de Las Tres Marcas en la Senda del Viento Bajo.",
+  "canonical_name": "Las Tres Marcas",
+  "art_direction": "SUBJECT TYPE: LOCATION / ENVIRONMENT / LANDSCAPE — NO CREATURE. Tres bloques verticales naturales usados por viajeros como referencia de orientación durante la apertura progresiva de Korven hacia Edran.",
+  "prompt": "SUBJECT TYPE: LOCATION / ENVIRONMENT / LANDSCAPE — NO CREATURE. Create a wide view of Las Tres Marcas. Three distinct upright natural rock blocks stand at different depths beside a hard travel route descending from fragmented Korven. Beyond them the terrain begins to open toward lower scrub and the distant Edran horizon. Their spacing and silhouette make them memorable as a navigation reference, but they are untouched geology, not monuments. Wind remains channeled near the rocks and weakens toward the open land. Cool-neutral daylight, gray stone, muted dry vegetation.",
+  "negative_constraints": [
+    "No carved monoliths, statues, runes or standing-stone ritual site",
+    "No buildings or ruins",
+    "No magical alignment or glow",
+    "No dominant orange desert palette",
+    "No characters or creatures as focal subject",
+    "No readable text or HUD",
+    "CATEGORY LOCK: location/landscape only"
+  ],
+  "canon_sources": [
+    "vintage-telnet/REGIONAL_CONNECTIONS.md — Senda del Viento Bajo / Las Tres Marcas",
+    "vintage-telnet/REGIONS.md — Korven / Edran"
+  ],
+  "notes": "Hito geográfico canónico; no añadir historia no definida."
+}

@@ -1,0 +1,36 @@
+{
+  "aspect_ratio": "landscape",
+  "output_destination": "vintage-telnet/art_generations",
+  "status": "draft",
+  "room_id": null,
+  "creature_id": null,
+  "species_id": null,
+  "prior_asset": null,
+  "edit_source": null,
+  "variation_of": null,
+  "quality": "low",
+  "output_format": "png",
+  "output_compression": null,
+  "background": "opaque",
+  "asset_id": "parada_de_los_cardos",
+  "asset_type": "environment",
+  "target": "Arquitectura exterior del asentamiento secundario Parada de los Cardos, transición Korven/Edran.",
+  "canonical_name": "Parada de los Cardos",
+  "art_direction": "SUBJECT TYPE: ARCHITECTURE / SETTLEMENT — NO CREATURE. Caserío de ruta pequeño para descanso, intercambio de cargas y noticias. Debe mostrar transición entre piedra compacta y llanura abierta sin competir con Brumak o Valdren.",
+  "prompt": "SUBJECT TYPE: ARCHITECTURE / SETTLEMENT — NO CREATURE. Create a wide exterior scene of Parada de los Cardos, a tiny route hamlet where Korven gives way to Edran. Use only a handful of low practical structures around a widened road shoulder, with sheltered space for resting and transferring loads. Construction combines available stone bases with simple timber as the landscape becomes softer and more open. Hardy cardos and low plain vegetation mark the surroundings. It should feel like a useful pause on a long road, not a destination town.",
+  "negative_constraints": [
+    "No market town, fortress, temple or large inn",
+    "No monumental gates, walls or towers",
+    "No ornate cultural symbols or readable signs",
+    "No dense urban street",
+    "No dominant golden/ochre fantasy lighting",
+    "No characters or creatures as focal subject",
+    "No readable text or HUD",
+    "CATEGORY LOCK: architecture/settlement only"
+  ],
+  "canon_sources": [
+    "vintage-telnet/SETTLEMENTS.md — Parada de los Cardos",
+    "vintage-telnet/REGIONAL_CONNECTIONS.md — Senda del Viento Bajo"
+  ],
+  "notes": "Asentamiento secundario canónico; no presupone tienda, NPC fijo ni economía."
+}

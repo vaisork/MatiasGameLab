@@ -1,0 +1,36 @@
+{
+  "aspect_ratio": "landscape",
+  "output_destination": "vintage-telnet/art_generations",
+  "status": "draft",
+  "room_id": null,
+  "creature_id": null,
+  "species_id": null,
+  "prior_asset": null,
+  "edit_source": null,
+  "variation_of": null,
+  "quality": "low",
+  "output_format": "png",
+  "output_compression": null,
+  "background": "opaque",
+  "asset_id": "puente_madera_ancha",
+  "asset_type": "environment",
+  "target": "Paisaje funcional del Puente de Madera Ancha en el Camino de la Tierra Húmeda.",
+  "canonical_name": "Puente de Madera Ancha",
+  "art_direction": "SUBJECT TYPE: LOCATION / ENVIRONMENT / LANDSCAPE — NO CREATURE. Paso importante para carros y peatones antes de los humedales; puente robusto y ordinario, integrado a una ruta que empieza a humedecerse.",
+  "prompt": "SUBJECT TYPE: LOCATION / ENVIRONMENT / LANDSCAPE — NO CREATURE. Create a wide travel landscape centered on the canonical Puente de Madera Ancha. A broad, sturdy, weathered timber bridge carries a wagon-width dirt road across a modest watercourse before the true wetlands. Construction is practical, low and believable: heavy beams, simple rails only where needed, damp supports and wheel wear. Open Edran fields remain visible behind while taller wet grasses begin ahead. The bridge is infrastructure, not monumental architecture.",
+  "negative_constraints": [
+    "No covered bridge, suspension bridge, stone viaduct or fantasy bridge",
+    "No ornate carvings, banners or cultural symbols",
+    "No huge river or waterfall",
+    "No settlement attached to the bridge",
+    "No magical water or dramatic golden lighting",
+    "No characters or creatures as focal subject",
+    "No readable text or HUD",
+    "CATEGORY LOCK: location/landscape only"
+  ],
+  "canon_sources": [
+    "vintage-telnet/REGIONAL_CONNECTIONS.md — Camino de la Tierra Húmeda / Puente de Madera Ancha",
+    "vintage-telnet/REGIONS.md — Edran / Lethra"
+  ],
+  "notes": "Hito geográfico canónico; no añadir historia no definida."
+}

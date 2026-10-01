@@ -1,0 +1,36 @@
+{
+  "aspect_ratio": "landscape",
+  "output_destination": "vintage-telnet/art_generations",
+  "status": "draft",
+  "room_id": null,
+  "creature_id": null,
+  "species_id": null,
+  "prior_asset": null,
+  "edit_source": null,
+  "variation_of": null,
+  "quality": "low",
+  "output_format": "png",
+  "output_compression": null,
+  "background": "opaque",
+  "asset_id": "claro_niebla_baja",
+  "asset_type": "environment",
+  "target": "Paisaje de navegación del Claro de la Niebla Baja en la Ribera Sombría.",
+  "canonical_name": "Claro de la Niebla Baja",
+  "art_direction": "SUBJECT TYPE: LOCATION / ENVIRONMENT / LANDSCAPE — NO CREATURE. Pequeño espacio abierto de transición donde la humedad suele quedar cerca del suelo; la reducción de luz hacia Nhal debe ser evidente.",
+  "prompt": "SUBJECT TYPE: LOCATION / ENVIRONMENT / LANDSCAPE — NO CREATURE. Create a wide landscape of Claro de la Niebla Baja. A small irregular clearing interrupts the increasingly dense Nhal-edge canopy. Thin natural ground fog hugs wet soil, roots and low vegetation while trunks remain clearly visible above it. The clearing is modest, not a meadow; a route crosses it and disappears again into darker forest. Moisture from Lethra is still present, but the dominant change is reduced light and enclosed visibility. Cool gray-green daylight.",
+  "negative_constraints": [
+    "No supernatural thick fog wall",
+    "No glowing mist, spirits, runes or magical beams",
+    "No large meadow or sunny field",
+    "No buildings, ruins or shrine",
+    "No horror-monster silhouette hidden in fog",
+    "No characters or creatures as focal subject",
+    "No readable text or HUD",
+    "CATEGORY LOCK: location/landscape only"
+  ],
+  "canon_sources": [
+    "vintage-telnet/REGIONAL_CONNECTIONS.md — Ribera Sombría / Claro de la Niebla Baja",
+    "vintage-telnet/REGIONS.md — Lethra / Nhal"
+  ],
+  "notes": "Hito geográfico canónico; no añadir historia no definida."
+}

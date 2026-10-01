@@ -1,0 +1,36 @@
+{
+  "aspect_ratio": "landscape",
+  "output_destination": "vintage-telnet/art_generations",
+  "status": "draft",
+  "room_id": null,
+  "creature_id": null,
+  "species_id": null,
+  "prior_asset": null,
+  "edit_source": null,
+  "variation_of": null,
+  "quality": "low",
+  "output_format": "png",
+  "output_compression": null,
+  "background": "opaque",
+  "asset_id": "alto_de_las_raices",
+  "asset_type": "environment",
+  "target": "Arquitectura exterior del asentamiento secundario Alto de las Raíces, transición Nhal/Hoshai.",
+  "canonical_name": "Alto de las Raíces",
+  "art_direction": "SUBJECT TYPE: ARCHITECTURE / SETTLEMENT — NO CREATURE. Refugio pequeño de montaña y bosque para descanso antes del ascenso y circulación de noticias entre ambas regiones.",
+  "prompt": "SUBJECT TYPE: ARCHITECTURE / SETTLEMENT — NO CREATURE. Create a wide exterior architectural scene of Alto de las Raíces. A very small traveler refuge occupies a stable shelf where huge Nhal roots give way to exposed Hoshai stone and steeper ascent. A few compact weather-resistant shelters use timber and local stone without cutting away the dominant roots. Include a protected rest/work area and a clearly continuing uphill route. Forest shade remains below while colder open mountain light begins above. Modest, practical, integrated with terrain.",
+  "negative_constraints": [
+    "No mountain village, monastery, fortress or temple",
+    "No giant treehouse complex",
+    "No carved stairs, monumental gates or invented symbols",
+    "No magical roots, glowing lantern spectacle or runes",
+    "No broad open plaza",
+    "No characters or creatures as focal subject",
+    "No readable text or HUD",
+    "CATEGORY LOCK: architecture/settlement only"
+  ],
+  "canon_sources": [
+    "vintage-telnet/SETTLEMENTS.md — Alto de las Raíces",
+    "vintage-telnet/REGIONAL_CONNECTIONS.md — Paso del Dosel Alto"
+  ],
+  "notes": "Asentamiento secundario canónico; refugio de transición, no pueblo principal."
+}
