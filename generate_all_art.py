@@ -13,13 +13,13 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 ART_REQUESTS_DIR = ROOT / "vintage-telnet" / "art_requests"
-OUTPUT_HQ_DIR = ROOT / "generated-hq"
-OUTPUT_WEBP_DIR = ROOT / "generated-webp"
+ART_MASTERS_DIR = ROOT / "art-masters"  # PNG high-quality respaldo
+ASSETS_DIR = ROOT / "assets" / "vintage-telnet"  # WebP para el servidor
 
 # Crear carpetas si no existen
 for subdir in ["creatures", "locations"]:
-    (OUTPUT_HQ_DIR / subdir).mkdir(parents=True, exist_ok=True)
-    (OUTPUT_WEBP_DIR / subdir).mkdir(parents=True, exist_ok=True)
+    (ART_MASTERS_DIR / subdir).mkdir(parents=True, exist_ok=True)
+    (ASSETS_DIR / subdir).mkdir(parents=True, exist_ok=True)
 
 def main():
     print("=" * 60)
@@ -89,15 +89,15 @@ def main():
             # Determinar subdirectorio según asset_type
             subdir = "locations" if request.asset_type == "architecture" else "creatures"
 
-            # Guardar PNG high-quality
-            hq_path = OUTPUT_HQ_DIR / subdir / f"{request.asset_id}_hq.png"
+            # Guardar PNG high-quality en art-masters (respaldo)
+            hq_path = ART_MASTERS_DIR / subdir / f"{request.asset_id}_hq.png"
             hq_path.write_bytes(result.image_bytes)
-            print(f"  ✅ PNG: {subdir}/{hq_path.name}")
+            print(f"  ✅ PNG: art-masters/{subdir}/{hq_path.name}")
 
-            # Convertir a WebP
-            webp_path = OUTPUT_WEBP_DIR / subdir / f"{request.asset_id}.webp"
+            # Convertir a WebP y guardar en assets/ (lo que usa el servidor)
+            webp_path = ASSETS_DIR / subdir / f"{request.asset_id}.webp"
             convert_to_webp(hq_path, webp_path)
-            print(f"  ✅ WebP: {subdir}/{webp_path.name}")
+            print(f"  ✅ WebP: assets/vintage-telnet/{subdir}/{webp_path.name}")
 
             generated_assets.append({
                 "asset_id": request.asset_id,
@@ -118,8 +118,8 @@ def main():
     print("📊 Resumen")
     print("=" * 60)
     print(f"✅ Generadas: {len(generated_assets)}")
-    print(f"📁 HQ (PNG): {OUTPUT_HQ_DIR.name}/")
-    print(f"📁 WebP: {OUTPUT_WEBP_DIR.name}/")
+    print(f"📁 PNG (respaldo): art-masters/creatures/ y art-masters/locations/")
+    print(f"📁 WebP (servidor): assets/vintage-telnet/creatures/ y assets/vintage-telnet/locations/")
     print()
 
     if generated_assets:
@@ -129,7 +129,8 @@ def main():
             print(f"  - {asset['asset_id']}: {verdict}")
 
     print()
-    print("💡 Siguiente: sube las carpetas a GitHub")
+    print("💡 Próximo: los WebP están listos en assets/ para el servidor")
+    print("💡 PNG respaldo guardados en art-masters/")
     print()
 
     return 0
