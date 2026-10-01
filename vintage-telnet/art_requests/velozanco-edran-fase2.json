@@ -25,13 +25,13 @@
   ],
   "aspect_ratio": "1536x1024",
   "output_destination": "vintage-telnet/art_generations",
-  "status": "draft",
+  "status": "abandoned",
   "canon_sources": [
     "Issue #522 — Dirección de Arte, comentario del 2026-09-29",
     "Autorización del usuario del 2026-09-30 para cambiar sustancialmente el arte de Velozanco"
   ],
   "creature_id": "velozanco_edran",
-  "notes": "Rediseño fuerte autorizado tras fallos repetidos de lectura dinosauriana. Se retira deliberadamente la imagen de Fase 1 como referencia porque estaba anclando las nuevas generaciones a la silueta rechazada. Se conserva la función regional C0, el esquema locomotor 4+2, la adaptación al viento y los dos filamentos posteriores, pero se reconstruye la masa corporal desde una cápsula baja no vertebrada visualmente. No publicar hasta superar autocrítica. v004 narrowed the remaining failures to ground contact of both short anterior supports and excessive rear-filament length; next generation explicitly locks those geometries.",
+  "notes": "ABANDONADA 2026-10-01: Tras 7+ intentos de generación con gpt-image-2.5-flare, la anatomía de 6 patas no-dinosaurio sigue sin generarse correctamente. El modelo falla consistentemente en: (1) anatomía de cápsula + 6 patas balanceadas, (2) posición de cabeza tucked-under, (3) filamentos posteriores diminutos. La complejidad geométrica excede las capacidades del modelo. Revisar estrategia: puede ser necesario un prompt radicalmente diferente, un modelo diferente, o esperar mejoras futuras.",
   "quality": "low",
   "output_format": "png",
   "background": "opaque"
