@@ -93,15 +93,19 @@ def main():
 
         try:
             # Usar el pipeline del proyecto
-            from tools.vt_art.pipeline import ArtRequest, generate_with_critique
+            from tools.vt_art.pipeline import ArtRequest, ArtPipeline, OpenAIImageClient
             from tools.vt_art.critique import OpenAIVisionCritic
 
             # Cargar con ruta absoluta del proyecto
             request = ArtRequest.load(ficha_path, project_root=ROOT)
-            critic = OpenAIVisionCritic(api_key=os.getenv("OPENAI_API_KEY"))
+
+            # Crear pipeline y crítico
+            api_key = os.getenv("OPENAI_API_KEY")
+            pipeline = ArtPipeline(OpenAIImageClient(api_key), "gpt-image-2.5-flare")
+            critic = OpenAIVisionCritic(api_key=api_key)
 
             # Generar con crítica automática (máx 4 intentos)
-            result = generate_with_critique(
+            result = pipeline.generate_with_critique(
                 request=request,
                 critic=critic,
                 critic_model="gpt-5-mini",
@@ -111,9 +115,18 @@ def main():
             # Determinar subdirectorio según asset_type
             subdir = "locations" if request.asset_type == "architecture" else "creatures"
 
+            # El resultado es un dict con la ruta de imagen relativa a ROOT
+            image_rel_path = result.get("image", "")
+            if not image_rel_path:
+                raise ValueError("El pipeline no devolvió una ruta de imagen.")
+
+            image_path = ROOT / image_rel_path
+            if not image_path.exists():
+                raise FileNotFoundError(f"No existe la imagen generada: {image_path}")
+
             # Guardar PNG high-quality en art-masters (respaldo)
             hq_path = ART_MASTERS_DIR / subdir / f"{request.asset_id}_hq.png"
-            hq_path.write_bytes(result.image_bytes)
+            hq_path.write_bytes(image_path.read_bytes())
             print(f"  ✅ PNG: art-masters/{subdir}/{hq_path.name}")
 
             # Convertir a WebP y guardar en assets/ (lo que usa el servidor)
@@ -121,11 +134,12 @@ def main():
             convert_to_webp(hq_path, webp_path)
             print(f"  ✅ WebP: assets/vintage-telnet/{subdir}/{webp_path.name}")
 
+            critique = result.get("critique")
             generated_assets.append({
                 "asset_id": request.asset_id,
                 "hq": str(hq_path.relative_to(ROOT)),
                 "webp": str(webp_path.relative_to(ROOT)),
-                "verdict": result.critique.get("passes", False) if result.critique else None,
+                "verdict": critique.get("passes", False) if critique else None,
             })
 
             print()
