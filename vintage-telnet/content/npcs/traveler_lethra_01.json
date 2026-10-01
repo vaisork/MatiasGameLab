@@ -83,5 +83,57 @@
     "Las huellas en barro cuentan quién pasó. No siempre hacia dónde terminó yendo.",
     "Si buscas un paso seco, hoy tendrás que elegir entre seco y corto.",
     "No vi nada extraño bajo el agua. Eso no significa que haya mirado todo."
+  ],
+  "conversation_topics": {
+    "agua": [
+      "Mírala dos veces. La primera vez ves agua; la segunda, si cambió algo.",
+      "El agua rara vez repite exactamente la misma forma, pero sí repite patrones."
+    ],
+    "narevia": [
+      "Narevia parece tranquila cuando la miras desde tierra firme. Desde las plataformas se entiende mejor.",
+      "La gente de Narevia aprende rápido qué cosas flotan y cuáles solo prometen hacerlo."
+    ],
+    "pasarelas": [
+      "Una tabla nueva llama la atención porque todo lo demás ya tiene historia.",
+      "Si escuchas un crujido, no significa que vaya a romperse. Significa que escuchaste un crujido."
+    ],
+    "rumores": [
+      "Los rumores viajan mejor que yo. También se mojan menos.",
+      "Si alguien afirma saber qué hay bajo toda el agua, probablemente ha hablado demasiado."
+    ]
+  },
+  "followup_dialogue": [
+    {
+      "player_intent": "¿Me llevas?",
+      "response": "No soy barquera. Coincidir en una ruta no convierte esto en transporte."
+    },
+    {
+      "player_intent": "¿Hay algo debajo?",
+      "response": "Seguro que sí. Lo que no sé es si es lo que tú esperas."
+    },
+    {
+      "player_intent": "¿El agua está peligrosa?",
+      "response": "Aquí está distinta, no necesariamente peligrosa. Mira el paso antes de ponerle nombre."
+    },
+    {
+      "player_intent": "¿Por qué vuelves siempre?",
+      "response": "Porque los mismos lugares nunca están exactamente iguales. Eso basta para no aburrirme."
+    }
+  ],
+  "return_dialogue": [
+    "Te recuerdo. La última vez mirabas el agua como si esperases una respuesta escrita.",
+    "Volviste. ¿Esta vez viste algo además de reflejos?",
+    "Otra vez por aquí. El camino cambió un poco; tú también, supongo."
+  ],
+  "dont_know_dialogue": [
+    "No lo vi y el agua no me lo contó.",
+    "Eso queda más allá de donde paso."
+  ],
+  "conversation_rules": [
+    "Responder desde conocimiento autorizado y experiencia directa.",
+    "Distinguir observación, creencia y rumor.",
+    "No resolver misterios ni revelar información fuera de ruta.",
+    "Reconocer al jugador en reencuentros cuando memory_hooks lo permitan.",
+    "Mantener respuestas compactas porque el personaje sigue viajando."
   ]
 }
