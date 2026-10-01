@@ -175,4 +175,15 @@ def convert_to_webp(png_path: Path, webp_path: Path, quality: int = 85):
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    try:
+        sys.exit(main())
+    except Exception as e:
+        print()
+        print("=" * 60)
+        print(f"❌ ERROR CRÍTICO: {e}")
+        print("=" * 60)
+        import traceback
+        traceback.print_exc()
+        print()
+        input("Presiona Enter para cerrar...")
+        sys.exit(1)
