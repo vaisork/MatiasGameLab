@@ -1,0 +1,36 @@
+{
+  "aspect_ratio": "landscape",
+  "output_destination": "vintage-telnet/art_generations",
+  "status": "draft",
+  "room_id": null,
+  "creature_id": null,
+  "species_id": null,
+  "prior_asset": null,
+  "edit_source": null,
+  "variation_of": null,
+  "quality": "low",
+  "output_format": "png",
+  "output_compression": null,
+  "background": "opaque",
+  "asset_id": "cruce_carro_viejo",
+  "asset_type": "environment",
+  "target": "Paisaje de navegación del Cruce del Carro Viejo en la Senda del Viento Bajo.",
+  "canonical_name": "Cruce del Carro Viejo",
+  "art_direction": "SUBJECT TYPE: LOCATION / ENVIRONMENT / LANDSCAPE — NO CREATURE. Punto tradicional de descanso y reparación de cargas; debe leerse como cruce de ruta usado, sin inventar asentamiento permanente.",
+  "prompt": "SUBJECT TYPE: LOCATION / ENVIRONMENT / LANDSCAPE — NO CREATURE. Create a wide landscape of Cruce del Carro Viejo where a broader Edran-bound road meets a rougher regional track. Show compacted earth, wheel ruts, a practical widened shoulder for stopping loads, scattered ordinary repair traces such as worn timber blocks and stones used to brace wheels. The land is opening toward Edran but Korven rock remains behind. It must feel repeatedly used by travelers without becoming a village or ruin.",
+  "negative_constraints": [
+    "No intact wagon as heroic focal object",
+    "No inn, shop, village, shrine or permanent settlement",
+    "No readable road signs",
+    "No battlefield debris or dramatic wreck",
+    "No magic or monumental structure",
+    "No characters or creatures as focal subject",
+    "No readable text or HUD",
+    "CATEGORY LOCK: location/landscape only"
+  ],
+  "canon_sources": [
+    "vintage-telnet/REGIONAL_CONNECTIONS.md — Senda del Viento Bajo / Cruce del Carro Viejo",
+    "vintage-telnet/REGIONS.md — Korven / Edran"
+  ],
+  "notes": "Hito geográfico canónico; no añadir historia no definida."
+}
