@@ -15,8 +15,8 @@
   "asset_type": "creature",
   "target": "Amenaza superior natural de los Pedrales de Korven; gran criatura excavadora.",
   "canonical_name": "Quebrarrocas",
-  "art_direction": "Bestia excavadora grande y acorazada, adaptada a empujar bloques y desplazarse bajo piedra fracturada y tierra dura. La anatomía debe comunicar excavación y empuje, no golem ni criatura hecha de roca.",
-  "prompt": "Create a wide wildlife scene in the Pedrales de Korven showing one complete adult Quebrarrocas emerging through fractured hard ground. A massive low natural burrowing beast with broad reinforced head and shoulders, powerful digging forelimbs, compact rear body and thick organic protective plates adapted to abrasion. Broken slabs around it have been physically displaced by its passage. Matte dusty organic surfaces in gray-brown mineral camouflage. It must feel like a living animal specialized for pushing stone, not stone itself. Korven remains dry, fractured and wind-worn.",
+  "art_direction": "SUBJECT TYPE: CREATURE / LARGE NATURAL FAUNA — CREATURE MUST BE THE PRIMARY FOCAL SUBJECT. Bestia excavadora grande y acorazada, adaptada a empujar bloques y desplazarse bajo piedra fracturada y tierra dura. Mostrar cuerpo completo, escala y anatomía de excavación. Debe ser organismo vivo, no golem ni roca animada.",
+  "prompt": "SUBJECT TYPE: CREATURE / LARGE NATURAL FAUNA. The Quebrarrocas is the unmistakable primary focal subject and occupies roughly 50–65% of the frame. Show one complete adult in low three-quarter side view emerging onto the surface of the Pedrales de Korven. Massive low-slung torso; broad wedge-like head and neck integrated into extremely powerful shoulders; two enlarged digging forelimbs with broad organic claws for levering fractured ground; two shorter weight-bearing hind limbs; low center of gravity; thick organic abrasion-resistant dorsal and shoulder plates that overlap like tough hide rather than stone. Its head must have readable eyes and mouth so it remains clearly animal. Displaced slabs and a fresh shallow furrow demonstrate that it pushes through hard ground. Matte dusty gray-brown organic skin, restrained mineral camouflage. Korven is secondary: dry fractured plates, dust and wind.",
   "negative_constraints": [
     "No golem, living rock, crystals, lava or magic",
     "No metal armor or manufactured equipment",
@@ -25,7 +25,8 @@
     "No glowing eyes",
     "No invented weapons, horns or drills",
     "No dominant orange fantasy desert palette",
-    "No readable text or HUD"
+    "No readable text or HUD",
+    "CATEGORY LOCK: creature only; the environment must remain secondary."
   ],
   "canon_sources": [
     "vintage-telnet/CREATURES.md — Pedrales de Korven / Amenaza superior: Quebrarrocas",
