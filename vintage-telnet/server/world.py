@@ -196,6 +196,19 @@ VISUAL_CONTEXT_ART = {
         "width": 1536,
         "height": 1024,
     },
+    # Issue #348: fauna locations adicionales
+    "zone.hoshai": {
+        "src": "/assets/locations/cornisa_ciega.webp",
+        "alt": "Cornisa ciega de Hoshai",
+        "width": 1536,
+        "height": 1024,
+    },
+    "zone.lethra": {
+        "src": "/assets/locations/dorsalodo_lethra.webp",
+        "alt": "Habitat de Dorsalodo en Lethra",
+        "width": 1536,
+        "height": 1024,
+    },
 }
 
 # Excepciones explicitas de VISUAL_CONTEXT_CANON.md ("Mapeo de las salas
