@@ -21,7 +21,7 @@ def list_contracts(path, player_id):
             (player_id,),
         )}
     return [{"contract_id": key, "destination": dest, "base_payout": payout,
-             "state": {0: "available", 1: "accepted", 2: "ready_to_claim"}.get(flags.get(f"errand:{key}", 0), "available")}
+             "state": {0: "available", 1: "accepted", 2: "ready_to_claim", 3: "completed"}.get(flags.get(f"errand:{key}", 0), "available")}
             for key, (dest, payout, _text) in CONTRACTS.items()]
 
 
@@ -46,6 +46,8 @@ def act(path, player_id, room_id, contract_id, action, now=None):
         if room_id != expected_room:
             return False, "Debes estar en el lugar indicado para este paso.", None
         if action == "accept":
+            if state == 3:
+                return False, "Ya completaste este encargo.", None
             if state:
                 return False, "Ya tienes este encargo en curso.", None
             # La clave de cobro deriva de esta marca. Debe avanzar incluso con reloj fijo.
@@ -75,5 +77,6 @@ def act(path, player_id, room_id, contract_id, action, now=None):
         db.execute("UPDATE players SET sellos = ? WHERE id = ?", (balance, player_id))
         db.execute("""INSERT INTO economy_ledger(player_id, delta, balance_after, reason_code, source_key, created_at)
                       VALUES (?, ?, ?, ?, ?, ?)""", (player_id, payout, balance, FAMILY, source, now))
-        db.execute("UPDATE player_story_flags SET value = 0 WHERE player_id = ? AND flag = ?", (player_id, flag))
-        return True, f"Trabajo hecho. Recibes {payout} sellos.", {"state": "available", "payout": payout, "balance": balance}
+        # Mark as permanently completed (value=3) — encargos are one-time only per Issue #409
+        db.execute("UPDATE player_story_flags SET value = 3 WHERE player_id = ? AND flag = ?", (player_id, flag))
+        return True, f"Trabajo hecho. Recibes {payout} sellos.", {"state": "completed", "payout": payout, "balance": balance}
