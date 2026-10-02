@@ -218,6 +218,18 @@ VISUAL_CONTEXT_ART = {
 # como el canon autoriza para micro-salas internas futuras.
 ROOM_VISUAL_CONTEXT_OVERRIDES = {
     "vaisgard": "zone.vaisgard",
+    # Forjas especiales
+    "valdren_forja": "zone.valdren.forja_daro",
+    "velmora_forja": "zone.velmora.forja_taller",
+    "brumak_patio": "zone.brumak.patio_recepcion",
+    # Mercados especiales
+    "narevia_mercado": "zone.narevia.mercado_acuatico",
+    # Viviendas especiales (Issue #548)
+    "khariel_terraza_comunitaria": "zone.khariel.terraza_comunitaria",
+    "velmora_cruce_reunion": "zone.velmora.cruce_reunion",
+    # Rutas especiales con arte
+    "primeros_juncos": "zone.edran.primeros_juncos",
+    # Valdren outskirts routes
     "valdren_sendero": "zone.edran.valdren_outskirts",
     "valdren_camino_parcela": "zone.edran.valdren_outskirts",
     "valdren_camino_cerca": "zone.edran.valdren_outskirts",
