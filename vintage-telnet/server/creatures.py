@@ -373,6 +373,9 @@ CREATURE_ART = {
     "hilaria_niebla": {"src": "/assets/creatures/hilaria-niebla.webp",
                        "alt": "Hilaria de niebla entre las raíces del bosque de Nhal",
                        "width": 1536, "height": 1024},
+    "saltacresta_hoshai": {"src": "/assets/creatures/saltacresta_hoshai.webp",
+                           "alt": "Saltacresta observando desde la terraza abandonada de Hoshai",
+                           "width": 1536, "height": 1024},
 }
 
 
