@@ -373,7 +373,7 @@ CREATURE_ART = {
     "hilaria_niebla": {"src": "/assets/creatures/hilaria-niebla.webp",
                        "alt": "Hilaria de niebla entre las raíces del bosque de Nhal",
                        "width": 1536, "height": 1024},
-    # Note: saltacresta approved without artwork (Issue #408)
+    # Note: saltacresta approved without artwork (Issue #408) — uses neutral frame in combat
     # C3 Threats and Regional Wave Fauna (Issue #346)
     "rasgacumbres": {"src": "/assets/creatures/rasgacumbres.webp",
                      "alt": "Rasgacumbres descendiendo en picada desde las alturas de Hoshai",
