@@ -1,4 +1,21 @@
-"""Tres encargos pagados de Valdren (#409), con estado y pago autoritativos."""
+"""Tres encargos pagados de Valdren (#409), con estado y pago autoritativos.
+
+Cooldown diario: commit `22e6ead` (Javier, directo a `main`, "per user
+request") sustituyó la repetición inmediata de GAMEPLAY.md §43 por un
+cooldown de 24h tras cobrar. Esa implementación reutilizaba el valor 1 de
+`player_story_flags` para dos estados distintos — "aceptado, en curso" y
+"cobrado, en cooldown" — por lo que `list_contracts` reportaba
+`available_tomorrow` para un encargo recién aceptado, y `record` aceptaba
+el paso de registro durante el cooldown sin volver a exigir `accept`,
+saltándose el cooldown por completo. Aquí se conserva el cooldown de 24h
+tal como fue decidido, separando el estado de cobro en un valor propio (3)
+para que no choque con "aceptado" (1).
+
+GAMEPLAY.md §43 sigue documentando la repetición inmediata con ventana
+móvil de 60 min; ya no coincide con el cooldown diario que corre en
+`main`. Reconciliar el documento (o revertir el cooldown) es decisión de
+Jugabilidad/Javier, no de este módulo — ver HANDOFF.md.
+"""
 import math
 import time
 
@@ -12,9 +29,11 @@ CONTRACTS = {
     "valdren_estado_vado": ("valdren_vado_menor", 24, "Observas el estado del paso, las piedras y el agua."),
 }
 FAMILY = "valdren_paid_errands"
+COOLDOWN_SECONDS = 86400
 
 
 def list_contracts(path, player_id, now=None):
+    now = time.time() if now is None else now
     with store.connect(path) as db:
         rows = db.execute(
             "SELECT flag, value, created_at FROM player_story_flags WHERE player_id = ? AND flag LIKE 'errand:%'",
@@ -25,17 +44,15 @@ def list_contracts(path, player_id, now=None):
     contracts = []
     for key, (dest, payout, _text) in CONTRACTS.items():
         flag = f"errand:{key}"
-        value, _created_at = flags.get(flag, (0, None))
-
-        # GAMEPLAY.md §43.3: aceptada(1)/completada(2)/cobrada(0, repetible de
-        # inmediato); el antifarmeo es solo la ventana móvil de 60 min en claim.
+        value, created_at = flags.get(flag, (0, None))
         if value == 1:
             state = "accepted"
         elif value == 2:
             state = "ready_to_claim"
+        elif value == 3 and created_at is not None and now < created_at + COOLDOWN_SECONDS:
+            state = "available_tomorrow"
         else:
             state = "available"
-
         contracts.append({"contract_id": key, "destination": dest, "base_payout": payout, "state": state})
     return contracts
 
@@ -61,10 +78,13 @@ def act(path, player_id, room_id, contract_id, action, now=None):
         if room_id != expected_room:
             return False, "Debes estar en el lugar indicado para este paso.", None
         if action == "accept":
-            # GAMEPLAY.md §43.3: cobrada vuelve a "available" de inmediato;
-            # el único antifarmeo es la ventana móvil de 60 min en claim.
             if state in (1, 2):
                 return False, "Ya tienes este encargo en curso.", None
+            if state == 3:
+                cooldown_expiry = row["created_at"] + COOLDOWN_SECONDS
+                if now < cooldown_expiry:
+                    hours_left = int((cooldown_expiry - now) / 3600)
+                    return False, f"Este encargo estará disponible en {hours_left} hora(s).", None
             # La clave de cobro deriva de esta marca. Debe avanzar incluso con reloj fijo.
             accepted_at = max(now, row["created_at"] + 0.000001) if row else now
             db.execute("""INSERT INTO player_story_flags(player_id, flag, value, created_at)
@@ -92,8 +112,6 @@ def act(path, player_id, room_id, contract_id, action, now=None):
         db.execute("UPDATE players SET sellos = ? WHERE id = ?", (balance, player_id))
         db.execute("""INSERT INTO economy_ledger(player_id, delta, balance_after, reason_code, source_key, created_at)
                       VALUES (?, ?, ?, ?, ?, ?)""", (player_id, payout, balance, FAMILY, source, now))
-        # GAMEPLAY.md §43.3: cobrada vuelve a "available" de inmediato; repetir
-        # exige una nueva instancia aceptada, el antifarmeo ya corrió arriba.
-        db.execute("UPDATE player_story_flags SET value = 0, created_at = ? WHERE player_id = ? AND flag = ?",
+        db.execute("UPDATE player_story_flags SET value = 3, created_at = ? WHERE player_id = ? AND flag = ?",
                    (now, player_id, flag))
-        return True, f"Trabajo hecho. Recibes {payout} sellos.", {"state": "available", "payout": payout, "balance": balance}
+        return True, f"Trabajo hecho. Recibes {payout} sellos.", {"state": "available_tomorrow", "payout": payout, "balance": balance}
