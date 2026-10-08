@@ -1,0 +1,116 @@
+{
+ "source_delivery": "Vintage Telnet - Arte - Entrega",
+ "source_estado": {
+  "salas_publicas": 183,
+  "nuevas_imagenes_entregadas": 113,
+  "estados": {
+   "Aprobado (nuevo, pendiente de integración)": 113,
+   "Sin imagen": 62,
+   "Aprobado": 8
+  },
+  "pendientes_especificos": 62,
+  "mision": "INCOMPLETA",
+  "trabajo": "ACTIVO: lote 24 revisado; lote 25 en producción"
+ },
+ "ids": [
+  "edran_reparo",
+  "edran_sendero_juncos",
+  "edran_puente_juncos",
+  "lethra_hito_tierra",
+  "lethra_ribera_oeste"
+ ],
+ "files": [
+  {
+   "id": "edran_reparo",
+   "file": "client/art/places/edran_reparo-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "6965c9718728818f0fc72bfd08e7aab414f216498de9f5bdc3b1144b1c5b7a71"
+  },
+  {
+   "id": "edran_reparo",
+   "file": "client/art/places/edran_reparo-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "33165ebabfd87d11b12235d7a89ac4eb017ab9d106ff3e6cd9e6ff5556387303"
+  },
+  {
+   "id": "edran_sendero_juncos",
+   "file": "client/art/places/edran_sendero_juncos-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "290715858ed544c878d233da7d0138d360b36605ab906e51789a0916eb7d6126"
+  },
+  {
+   "id": "edran_sendero_juncos",
+   "file": "client/art/places/edran_sendero_juncos-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "5376b23e4444deca25b1a1035cdfe2fac4a1af44893090992e6dfc6edf227f09"
+  },
+  {
+   "id": "edran_puente_juncos",
+   "file": "client/art/places/edran_puente_juncos-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "ab9104b247a2f47e0f6c867a4ae5c5bba1818be96d4ad6777579a714596e1ad4"
+  },
+  {
+   "id": "edran_puente_juncos",
+   "file": "client/art/places/edran_puente_juncos-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "54ad740e8a90b0dc4ed699df2af958aba320bd742a4d4b756d035fd3990c7324"
+  },
+  {
+   "id": "lethra_hito_tierra",
+   "file": "client/art/places/lethra_hito_tierra-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "1cb15381e516744f5df98bd956db48e8c34fde33ad7950ae80583acf2e94ceb5"
+  },
+  {
+   "id": "lethra_hito_tierra",
+   "file": "client/art/places/lethra_hito_tierra-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "8c275603eda17e40000d201d139c0edc88d9982d2b634b48a48594a3f265a23c"
+  },
+  {
+   "id": "lethra_ribera_oeste",
+   "file": "client/art/places/lethra_ribera_oeste-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "41fd5e6beac6349268bc41ff5f83765fb5f0530b7677853201c28384a5d61fdf"
+  },
+  {
+   "id": "lethra_ribera_oeste",
+   "file": "client/art/places/lethra_ribera_oeste-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "4aef4343c0947ba8f77fe4f3cff568bc0202f8ac212d952bb069c3fad8ebae9d"
+  }
+ ],
+ "preserved_existing": 242,
+ "approval": "Aprobación artística del agente, sin revisión humana; hoja revisada por Claude"
+}

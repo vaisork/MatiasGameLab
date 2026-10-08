@@ -4157,5 +4157,191 @@
     "sustituye_archivo_aprobado": false,
     "sha256_png": "f1eb08c50065dbbec26a5b564dc85643335f1405ee8b59ef101d9d529794a771",
     "sha256_webp": "35bab25e9661127cd17e13c0014099d965449c1292904397336af7e79c7c06b9"
+  },
+  {
+    "id": "edran_reparo",
+    "nombre": "Refugio del camino",
+    "region": "edran",
+    "ruta_propuesta": "client/art/places/edran_reparo-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/edran_reparo-anime-v1-thumb.webp",
+    "png": "originales/edran_reparo-anime-v1.png",
+    "webp": "webp/edran_reparo-anime-v1.webp",
+    "miniatura": "miniaturas/edran_reparo-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "prompt": "Create one new landscape 3:2 game environment illustration, match supplied approved Vintage Telnet 2 anime background style: precise drawn contours, painted cel shading, serious believable fantasy world, natural adult proportions, weathered practical materials. No cute/chibi treatment, no exaggerated cheerful flowers, no dramatic fantasy monuments, no text overlay or UI. Flat agricultural Edran gradually becomes freshwater marsh Lethra, no mountains or sea. Soft broken-cloud daylight, restrained earthy green palette. Canon location: Refugio del camino. Medium view from under a small roadside timber and red-tile shelter with a short windbreak wall protecting EXACTLY TWO long benches. Foreground high shelf has one plain travel-water bowl and THREE small wooden message tablets, tiny markings not legible. An adult traveler mends a stocking on one bench, normal anatomy. Clear central floor. Outside southern cart road passes at a safe distance, northern route gently rises to a low threshing yard, eastern narrow trail approaches first reeds. Show fields, low relief, useful shade, no tavern/town/market or magical healing.",
+      "referenced_images": [
+        "/home/jdiaz/Escritorio/Vintage Telnet - Arte - Entrega/referencias/valdren-anime-v1.webp"
+      ],
+      "prompt_exacto_recuperado": true
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 3,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Dos bancos y tres tablillas presentes; camino separado del descanso y llanura hacia humedal. Luz más soleada que la solicitada, coherente con referencias.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "sustituye_archivo_aprobado": false,
+    "sha256_png": "018458ab44aec559ce099bb3eadfeb2581f71454ee85e78f0fabf70a3c2c7c68",
+    "sha256_webp": "6965c9718728818f0fc72bfd08e7aab414f216498de9f5bdc3b1144b1c5b7a71"
+  },
+  {
+    "id": "edran_sendero_juncos",
+    "nombre": "Sendero del Agua Oculta",
+    "region": "edran",
+    "ruta_propuesta": "client/art/places/edran_sendero_juncos-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/edran_sendero_juncos-anime-v1-thumb.webp",
+    "png": "originales/edran_sendero_juncos-anime-v1.png",
+    "webp": "webp/edran_sendero_juncos-anime-v1.webp",
+    "miniatura": "miniaturas/edran_sendero_juncos-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "prompt": "Create one new landscape 3:2 game environment illustration, match supplied approved Vintage Telnet 2 anime background style: precise drawn contours, painted cel shading, serious believable fantasy world, natural adult proportions, weathered practical materials. No cute/chibi treatment, no exaggerated cheerful flowers, no dramatic fantasy monuments, no text overlay or UI. Flat agricultural Edran gradually becomes freshwater marsh Lethra, no mountains or sea. Soft broken-cloud daylight, restrained earthy green palette. Canon location: Sendero del Agua Oculta. Eye-level directional medium-wide view along a firm raised EARTH footpath, dry continuous strip following old roots, becoming single-file among dense reeds toward east. Water remains HIDDEN behind reeds, no visible pond/stream across path. Foreground high cleared lay-by has compressed earth impressions where bundles rested, lateral darker yielding soil. Behind toward west sparse Edran grass and tiny roadside shelter roof; ahead wetland reeds increase. One adult with staff gently probes path edge, does not step into reeds. No boardwalk yet. Composition shows distance and safe way forward.",
+      "referenced_images": [
+        "/home/jdiaz/Escritorio/Vintage Telnet - Arte - Entrega/referencias/valdren-anime-v1.webp"
+      ],
+      "prompt_exacto_recuperado": true
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 3,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Agua oculta y franja firme continua; ensanche con marcas de carga y reducción a paso individual. Refugio lateral mantiene vecino próximo.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "sustituye_archivo_aprobado": false,
+    "sha256_png": "fe4b37ecb53aa655bb360d50f5a2d488b022767f19a74261ce3c020bc4f78ed8",
+    "sha256_webp": "290715858ed544c878d233da7d0138d360b36605ab906e51789a0916eb7d6126"
+  },
+  {
+    "id": "edran_puente_juncos",
+    "nombre": "Vado de Juncos",
+    "region": "edran",
+    "ruta_propuesta": "client/art/places/edran_puente_juncos-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/edran_puente_juncos-anime-v1-thumb.webp",
+    "png": "originales/edran_puente_juncos-anime-v1.png",
+    "webp": "webp/edran_puente_juncos-anime-v1.webp",
+    "miniatura": "miniaturas/edran_puente_juncos-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "prompt": "Create one new landscape 3:2 game environment illustration, match supplied approved Vintage Telnet 2 anime background style: precise drawn contours, painted cel shading, serious believable fantasy world, natural adult proportions, weathered practical materials. No cute/chibi treatment, no exaggerated cheerful flowers, no dramatic fantasy monuments, no text overlay or UI. Flat agricultural Edran gradually becomes freshwater marsh Lethra, no mountains or sea. Soft broken-cloud daylight, restrained earthy green palette. Canon location: Vado de Juncos. Low oblique medium-wide view of a modest narrow timber FOOTBRIDGE over flowing shallow freshwater, individual sturdy planks separated by small gaps, supports clearly visible FROM BANK. Stable intact bridge, not broken. West bank reed footpath; east bank gentle rise toward humid high ground, no settlement yet. Separate worn broad board on high bank for resting cargo, visibly polished by repeated loads, not a snapped plank. South side willow-lined dry-earth branch. One distant normal adult balances two containers at different heights on the HIGH bank clear of bridge center. Water covers bed stones, reeds, natural scale, no monumental arch.",
+      "referenced_images": [
+        "/home/jdiaz/Escritorio/Vintage Telnet - Arte - Entrega/referencias/valdren-anime-v1.webp",
+        "/home/jdiaz/Escritorio/Vintage Telnet - Arte - Entrega/referencias/narevia-anime-v1.webp"
+      ],
+      "prompt_exacto_recuperado": true
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 3,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Apoyos y separación de tablas legibles desde ribera; paso estable, sauces y ribera alta. Tabla de descanso resuelta como superficie lateral amplia.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "sustituye_archivo_aprobado": false,
+    "sha256_png": "3aa16df92ed72ef11c4046581c7b916296cb04c43aef6afab12ba8da12c294fe",
+    "sha256_webp": "ab9104b247a2f47e0f6c867a4ae5c5bba1818be96d4ad6777579a714596e1ad4"
+  },
+  {
+    "id": "lethra_hito_tierra",
+    "nombre": "Cruce del puente",
+    "region": "lethra",
+    "ruta_propuesta": "client/art/places/lethra_hito_tierra-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/lethra_hito_tierra-anime-v1-thumb.webp",
+    "png": "originales/lethra_hito_tierra-anime-v1.png",
+    "webp": "webp/lethra_hito_tierra-anime-v1.webp",
+    "miniatura": "miniaturas/lethra_hito_tierra-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "prompt": "Create one new landscape 3:2 game environment illustration, match supplied approved Vintage Telnet 2 anime background style: precise drawn contours, painted cel shading, serious believable fantasy world, natural adult proportions, weathered practical materials. No cute/chibi treatment, no exaggerated cheerful flowers, no dramatic fantasy monuments, no text overlay or UI. Flat agricultural Edran gradually becomes freshwater marsh Lethra, no mountains or sea. Soft broken-cloud daylight, restrained earthy green palette. Canon location: Cruce del puente. Medium landscape junction from HIGH firm earthen bank, EXACTLY TWO modest irregular marker stones, one smaller, visibly marking upper safe strip beside lower floodable ground. East path continues toward Narevia, west shows modest timber footbridge receding among reeds, south narrow branch leads toward bird backwater. Low muddy ground has old flood silt lines and interrupted footprints; continuous upper path is readable. No huge standing stones, no runes, no shrine, no three-way identical paths. Reed beds, scattered broadleaf willow, restrained cool moist tones. Human-sized scale marker stones knee to waist high, no creature or encounter frozen into scene.",
+      "referenced_images": [
+        "/home/jdiaz/Escritorio/Vintage Telnet - Arte - Entrega/referencias/narevia-anime-v1.webp"
+      ],
+      "prompt_exacto_recuperado": true
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 3,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Dos piedras de tamaño práctico; senda alta diferenciada del barro bajo y puente detrás. Detalle de crecidas discreto, sin monumento.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "sustituye_archivo_aprobado": false,
+    "sha256_png": "7f72d025675a852b6be7c66b7caf2da709577eff99184420d1df521a22bf2d4b",
+    "sha256_webp": "1cb15381e516744f5df98bd956db48e8c34fde33ad7950ae80583acf2e94ceb5"
+  },
+  {
+    "id": "lethra_ribera_oeste",
+    "nombre": "Ribera hacia Edran",
+    "region": "lethra",
+    "ruta_propuesta": "client/art/places/lethra_ribera_oeste-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/lethra_ribera_oeste-anime-v1-thumb.webp",
+    "png": "originales/lethra_ribera_oeste-anime-v1.png",
+    "webp": "webp/lethra_ribera_oeste-anime-v1.webp",
+    "miniatura": "miniaturas/lethra_ribera_oeste-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "prompt": "Create one new landscape 3:2 game environment illustration, match supplied approved Vintage Telnet 2 anime background style: precise drawn contours, painted cel shading, serious believable fantasy world, natural adult proportions, weathered practical materials. No cute/chibi treatment, no exaggerated cheerful flowers, no dramatic fantasy monuments, no text overlay or UI. Flat agricultural Edran gradually becomes freshwater marsh Lethra, no mountains or sea. Soft broken-cloud daylight, restrained earthy green palette. Canon location: Ribera hacia Edran. View looking EAST on western approach to Narevia: high grassy ground foreground gradually becomes intermittent simple timber supports/planks, closer together approaching distant modest stilt houses and freshwater canals. Common small practical reed-roof cover beside route; EXTERIOR support receives dry brown field-soil cleaned from shoes and muddy packs, INTERIOR shelf protects clean wrapped food bundles and a handcloth. A normal adult traveler brushes field soil from shoes outside, no bandit/combat. Left western grass broadens behind, no immediate Valdren or wheat town. Homes ABOVE water, no underwater houses. Adult Marevyn if included must have subtle blue-green skin HUMAN face/rounded ears no fins/gills. Distinct welcoming functional threshold under neutral daylight, not decorative festival.",
+      "referenced_images": [
+        "/home/jdiaz/Escritorio/Vintage Telnet - Arte - Entrega/referencias/narevia-anime-v1.webp"
+      ],
+      "prompt_exacto_recuperado": true
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 3,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Apoyos aumentan al entrar al pueblo; cubierta con paquetes protegidos y limpieza exterior. Escala doméstica y casas sobre agua coherentes con Narevia.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "sustituye_archivo_aprobado": false,
+    "sha256_png": "e89871a3a44ab95185369da5cb9aa9cb8caba9e856415ca580c2119712605baa",
+    "sha256_webp": "41fd5e6beac6349268bc41ff5f83765fb5f0530b7677853201c28384a5d61fdf"
   }
 ]

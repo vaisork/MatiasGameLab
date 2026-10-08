@@ -803,6 +803,38 @@ Object.assign(placeIllustrations,{
     "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
   }
 });
+Object.assign(placeIllustrations,{
+  "edran_reparo": {
+    "name": "Refugio del camino",
+    "illustration": "/client/art/places/edran_reparo-anime-v1.webp",
+    "thumbnail": "/client/art/places/edran_reparo-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "edran_sendero_juncos": {
+    "name": "Sendero del Agua Oculta",
+    "illustration": "/client/art/places/edran_sendero_juncos-anime-v1.webp",
+    "thumbnail": "/client/art/places/edran_sendero_juncos-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "edran_puente_juncos": {
+    "name": "Vado de Juncos",
+    "illustration": "/client/art/places/edran_puente_juncos-anime-v1.webp",
+    "thumbnail": "/client/art/places/edran_puente_juncos-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "lethra_hito_tierra": {
+    "name": "Cruce del puente",
+    "illustration": "/client/art/places/lethra_hito_tierra-anime-v1.webp",
+    "thumbnail": "/client/art/places/lethra_hito_tierra-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "lethra_ribera_oeste": {
+    "name": "Ribera hacia Edran",
+    "illustration": "/client/art/places/lethra_ribera_oeste-anime-v1.webp",
+    "thumbnail": "/client/art/places/lethra_ribera_oeste-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  }
+});
 export function placeArt(room){
  if(!room)return null;
  if(room.kind==='home'&&homeArtNames[room.region])return {name:room.name,illustration:`/client/art/places/${homeArtNames[room.region]}-home-anime-v1.webp`,thumbnail:`/client/art/places/${homeArtNames[room.region]}-home-thumb-v1.webp`,caption:'Representación de tu hogar. La hora, el clima y el equipo actual se consultan en el juego.'};
