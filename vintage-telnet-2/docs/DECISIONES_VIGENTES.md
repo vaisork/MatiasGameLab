@@ -1,5 +1,7 @@
 # Decisiones operativas vigentes — 2026-10-08
 
+Encargo posterior: Javier pide cinco iteraciones de coherencia al caminar. Resultado: cinco recorridos API aislados, 628 movimientos en los cinco ciclos y 374 adicionales al corregir y repetir el quinto, con cobertura de las 183 salas; eliminación de giros artificiales, separación de interiores y hogares respecto a calles. Sin modificar salidas ni desplegar. Evidencia: `review/spatial-five-cycles/REVIEW.md`.
+
 Encargo posterior: Javier autoriza corregir la geografía cartográfica de todo el juego, no sólo Valdren. Atlas fijo para 183 salas y hogares, trazados estables, privacidad del descubrimiento y concordancia HTML/3D; conservar todas las salidas, progresión y mecánicas. Informe: `review/spatial-world/REVIEW.md`. Este encargo no autoriza desplegar su nueva versión en Raspberry.
 
 Autorización posterior de despliegue: Javier pidió «Sube a raspberry». PR #657, commit f55188f, está instalado y validado; partidas y configuración privada conservadas. Registro: `review/qa/raspberry-deploy/update-20261008/DEPLOYMENT.md`. Esta autorización concreta no habilita despliegues futuros automáticos.

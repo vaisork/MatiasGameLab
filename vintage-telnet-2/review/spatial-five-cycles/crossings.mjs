@@ -1,0 +1,7 @@
+import fs from 'node:fs';import crypto from 'node:crypto';
+import {orientationMap,discoveredLayout,discoveredPaths} from '../../client/ui-data.js';
+const base=new URL('./',import.meta.url),snapshot=JSON.parse(fs.readFileSync(new URL('snapshot.json',base))),map=orientationMap(snapshot.map,snapshot.character.location),links=discoveredPaths(map,discoveredLayout(map)),rooms=new Map(map.nodes.map(n=>[n.id,n]));
+const centers=['valdren_plaza','khariel_centro','brumak_centro','narevia_centro','velmora_centro','vaisgard_mercado'].map(id=>rooms.get(id));
+const crosses=[];for(let i=0;i<links.length;i++)for(const point of links[i].crossings){const earlier=links.slice(0,i).filter(l=>l.points.some(p=>p[0]===point[0]&&p[1]===point[1])),tile=point.map(v=>v/4);crosses.push({tile,quarterTile:point,road:[links[i].from,links[i].to],otherRoads:earlier.map(l=>[l.from,l.to]),nearSettlementCenters:centers.filter(n=>Math.abs(n.position[0]-tile[0])+Math.abs(n.position[1]-tile[1])<=3).map(n=>n.id)});}
+const spatialSha256=crypto.createHash('sha256').update(fs.readFileSync(new URL('../../content/spatial.json',base))).digest('hex');
+const report={scope:'Cartographic crossings of known full-world Engine fixture; proximity is a heuristic, not physical bridges or town boundary proof',spatialSha256,count:crosses.length,crosses};fs.writeFileSync(new URL('crossings.json',base),JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));

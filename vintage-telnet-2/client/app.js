@@ -213,7 +213,7 @@ function discoveredMap(map,selected,onSelect){
   if(link.crossings.length){const id=maskPrefix+'-'+index,mask=svgNode('mask',{id,maskUnits:'userSpaceOnUse',x:0,y:0,width,height});mask.append(svgNode('rect',{x:0,y:0,width,height,fill:'white'}));for(const crossing of link.crossings){const [cx,cy]=pixel(crossing);mask.append(svgNode('circle',{cx,cy,r:6,fill:'black'}));}defs.append(mask);attrs.mask=`url(#${id})`;}
   roads.append(svgNode('path',attrs));
  });sheet.append(roads);
- const vectors={norte:[0,-1],sur:[0,1],este:[1,0],oeste:[-1,0],salir:[1,0],hogar:[-1,0]};
+ const vectors={norte:[0,-1],sur:[0,1],este:[1,0],oeste:[-1,0]};
  for(const node of map.nodes)for(const direction of node.unexplored_directions||[]){
   const vector=vectors[direction];if(!vector)continue;
   const [x,y]=point(node.id),[dx,dy]=vector;sheet.append(el('span',{class:'discovered-frontier','aria-hidden':true,style:`left:${x}px;top:${y}px;width:80px;transform:rotate(${Math.atan2(dy,dx)}rad)`}));

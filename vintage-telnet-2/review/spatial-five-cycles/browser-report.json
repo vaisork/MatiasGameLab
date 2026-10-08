@@ -1,0 +1,32 @@
+{
+  "scope": "Isolated Engine diagram fixture, not production or physical mobile gameplay. Separate API walks recorded in cycle-*.json.",
+  "abstractHomeFrontier": true,
+  "results": [
+    {
+      "width": 393,
+      "rooms": 184,
+      "roads": 197,
+      "clippedLabels": [],
+      "webgl": {
+        "width": 337,
+        "height": 456,
+        "active": true
+      },
+      "noDocumentOverflow": true,
+      "pageErrors": []
+    },
+    {
+      "width": 1440,
+      "rooms": 184,
+      "roads": 197,
+      "clippedLabels": [],
+      "webgl": {
+        "width": 504,
+        "height": 456,
+        "active": true
+      },
+      "noDocumentOverflow": true,
+      "pageErrors": []
+    }
+  ]
+}

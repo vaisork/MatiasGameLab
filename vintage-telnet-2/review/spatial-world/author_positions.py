@@ -40,6 +40,8 @@ clearances=[
  (0,'korven_plataforma_escucha','korven_almacen_entrada',1),
  (0,'korven_sala_cuidados','korven_almacen_balanzas',1),
  (0,'korven_horno_reposo','veyra_puerta_campos',1),
+ (0,'nhal_secadero_sombra','nhal_calle_hogares',1),
+ (1,'edran_parcela_vieja','valdren_fragua',1),
 ]
 for axis,low,high,gap in clearances:
  a=axes[axis];edge=(a['groups'][low],a['groups'][high]);a['edges'].add(edge);a['gaps'][edge]=gap
@@ -105,7 +107,13 @@ for reg,data in content.regions.items():
  x,y=positions[data['settlement']]
  for distance in [1,2,3]:
   candidates=[(x-distance,y+distance),(x+distance,y+distance),(x-distance,y-distance),(x+distance,y-distance)]
-  free=next((p for p in candidates if p not in taken),None)
+  def on_public_street(p):
+   for source,direction,target in straight:
+    a,b=positions[source],positions[target]
+    if a[0]==b[0]==p[0] and min(a[1],b[1])<p[1]<max(a[1],b[1]):return True
+    if a[1]==b[1]==p[1] and min(a[0],b[0])<p[0]<max(a[0],b[0]):return True
+   return False
+  free=next((p for p in candidates if p not in taken and not on_public_street(p)),None)
   if free:homes[reg]=list(free);taken.add(free);break
  assert reg in homes
 out={'version':1,'note':'Frozen schematic geography; units are room spacing, not travel distance. Exits remain authoritative.','positions':positions,'homes':homes,'bends':[{'from':a,'direction':d,'to':b,'reverse':back} for a,d,b,back in bends]}

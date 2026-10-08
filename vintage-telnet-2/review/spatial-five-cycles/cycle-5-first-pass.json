@@ -1,0 +1,115 @@
+{
+  "cycle": 5,
+  "focus": "Ruta de control independiente",
+  "movements": 374,
+  "regions": [
+    "edran",
+    "hoshai",
+    "korven",
+    "lethra",
+    "nhal",
+    "veyra"
+  ],
+  "unique_rooms": 183,
+  "home_return": true,
+  "stable_learned_roads": true,
+  "no_direction_sign_contradiction": true,
+  "geometry": {
+    "roads": 202,
+    "max_turns": 1,
+    "public_turns_over_two": 0,
+    "worst": [
+      {
+        "from": "edran_arboleda",
+        "to": "edran_sendero_regreso",
+        "turns": 1,
+        "detour_ratio": 1.0
+      },
+      {
+        "from": "edran_era",
+        "to": "edran_zanja_antigua",
+        "turns": 1,
+        "detour_ratio": 1.0
+      },
+      {
+        "from": "edran_puente_juncos",
+        "to": "edran_sauces",
+        "turns": 1,
+        "detour_ratio": 1.0
+      },
+      {
+        "from": "edran_salida_huertos",
+        "to": "valdren_graneros",
+        "turns": 1,
+        "detour_ratio": 1.0
+      },
+      {
+        "from": "edran_sendero_regreso",
+        "to": "valdren_patio_carros",
+        "turns": 1,
+        "detour_ratio": 1.0
+      },
+      {
+        "from": "korven_almacen_fondo",
+        "to": "korven_almacen_lateral",
+        "turns": 1,
+        "detour_ratio": 1.0
+      },
+      {
+        "from": "brumak_centro",
+        "to": "home:korven",
+        "turns": 0,
+        "detour_ratio": 1.0
+      },
+      {
+        "from": "brumak_centro",
+        "to": "korven_almacen_grano",
+        "turns": 0,
+        "detour_ratio": 1.0
+      },
+      {
+        "from": "brumak_centro",
+        "to": "korven_calle_fachadas",
+        "turns": 0,
+        "detour_ratio": 1.0
+      },
+      {
+        "from": "brumak_centro",
+        "to": "korven_peldanos_cortos",
+        "turns": 0,
+        "detour_ratio": 1.0
+      },
+      {
+        "from": "brumak_centro",
+        "to": "korven_taller_juntas",
+        "turns": 0,
+        "detour_ratio": 1.0
+      },
+      {
+        "from": "edran_acequia",
+        "to": "edran_estanque",
+        "turns": 0,
+        "detour_ratio": 1.0
+      },
+      {
+        "from": "edran_acequia",
+        "to": "edran_salida_huertos",
+        "turns": 0,
+        "detour_ratio": 1.0
+      },
+      {
+        "from": "edran_acequia",
+        "to": "edran_surcos",
+        "turns": 0,
+        "detour_ratio": 1.0
+      },
+      {
+        "from": "edran_arboleda",
+        "to": "edran_camino_carros",
+        "turns": 0,
+        "detour_ratio": 1.0
+      }
+    ]
+  },
+  "rejected_after_diagram_review": "El acceso al secadero atravesaba la calle de hogares de Velmora; se abrió espacio dentro de la manzana y se repitió el ciclo completo."
+}

@@ -1,3 +1,4 @@
+import './qa-map-simplicity.mjs';
 import assert from 'node:assert/strict';
 import {discoveredPaths} from './ui-data.js';
 const positions=new Map([['a',[0,0]],['blocker',[1,0]],['b',[2,0]]]);
