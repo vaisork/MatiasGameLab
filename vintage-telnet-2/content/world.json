@@ -635,6 +635,30 @@
     "dibujo_pino": {
       "flag": "korven_dibujo_aportado",
       "title": "El dibujo del pino"
+    },
+    "edran_rastro_grande": {
+      "flag": "edran_rastro_grande",
+      "title": "Pezuñas demasiado grandes"
+    },
+    "edran_conduccion_vieja": {
+      "flag": "edran_conduccion_vieja",
+      "title": "El agua que corre por debajo"
+    },
+    "hoshai_marcas_altas": {
+      "flag": "hoshai_marcas_altas",
+      "title": "Arañazos sobre las cabezas"
+    },
+    "korven_presion_abajo": {
+      "flag": "korven_presion_abajo",
+      "title": "La losa que se abrió desde abajo"
+    },
+    "lethra_rastro_largo": {
+      "flag": "lethra_rastro_largo",
+      "title": "Algo largo salió del agua"
+    },
+    "nhal_rastro_alto": {
+      "flag": "nhal_rastro_alto",
+      "title": "El árbol que se dobló sin romperse"
     }
   }
 }

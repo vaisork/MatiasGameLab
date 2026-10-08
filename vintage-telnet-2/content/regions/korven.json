@@ -39,10 +39,19 @@
           "Pequeños surcos en el polvo, como de un escarabajo. Un Escarabajo de polvo se esconde bajo una laja al verte.",
           "Un Vencejo seco pasa rozando las rocas y desaparece en una grieta alta: ahí tiene su nido.",
           "Un Saltapiedra menudo salta de laja en laja y se para a mirarte desde lejos.",
-          "Una losa enorme está partida en dos. La grieta es vieja, pero por dentro está limpia, como si algo la hubiera vuelto a abrir empujando desde abajo.",
-          "El suelo suena hueco bajo tus botas en un punto concreto. Lo pisas otra vez: hueco.",
+          {
+            "text": "Una losa enorme está partida en dos. La grieta es vieja, pero por dentro está limpia, como si algo la hubiera vuelto a abrir empujando desde abajo.",
+            "flag": "pista_losa_abierta"
+          },
+          {
+            "text": "El suelo suena hueco bajo tus botas en un punto concreto. Lo pisas otra vez: hueco.",
+            "flag": "pista_losa_abierta"
+          },
           "Un mojón caído, con las piedras desparramadas hacia el mismo lado. No las tiró el viento.",
-          "En una junta de roca hay una herramienta Dravak muy vieja, comida por el óxido. La dejas donde estaba."
+          {
+            "text": "En una junta de roca hay una herramienta Dravak muy vieja, comida por el óxido. La dejas donde estaba.",
+            "flag": "pista_herramienta_dravak"
+          }
         ],
         "empty": [
           "Sólo polvo y piedra clara.",
@@ -1025,6 +1034,21 @@
             "lluvia",
             "tormenta"
           ]
+        },
+        {
+          "id": "pista_comparar_grieta",
+          "label": "Comparar la grieta con las caras limpias",
+          "requires_flags": [
+            "pista_losa_abierta"
+          ],
+          "forbids_flags": [
+            "korven_presion_abajo"
+          ],
+          "set_flags": [
+            "korven_presion_abajo"
+          ],
+          "text": "Aquí también hay piedras partidas con la cara limpia y el polvo viejo alrededor, igual que la losa que encontraste. Todas las grietas son antiguas, pero alguien, o algo, las ha vuelto a abrir. Y todas se abrieron igual: empujadas desde abajo. Pones la mano en el suelo. Está quieto. Por ahora.",
+          "journal": "En el Cauce de piedras movidas comprobaste que las grietas viejas se vuelven a abrir empujadas desde abajo."
         }
       ],
       "wildlife_pool": [
@@ -1988,7 +2012,13 @@
       "topics": {
         "bloques": "Una cara limpia importa si recuerdas dónde estaba. Si llovió, necesito otra comparación.",
         "vibracion": "Las cargas también mueven recipientes. Primero miro qué pasó por el camino.",
-        "avisos": "Cerrar todo el cauce por una frase vaga obliga a otras personas a buscar apoyos peores."
+        "avisos": "Cerrar todo el cauce por una frase vaga obliga a otras personas a buscar apoyos peores.",
+        "grieta": {
+          "requires_flags": [
+            "pista_losa_abierta"
+          ],
+          "text": "Una losa partida no prueba nada. Una vibración tampoco. Pero si anotas dónde, cuándo y hacia qué lado se abren, un día las notas te dirán algo que una sola piedra no puede."
+        }
       },
       "day": "Recibe observaciones y compara posiciones de bloques.",
       "night": "Conserva las notas pendientes bajo cubierta.",
@@ -2028,6 +2058,12 @@
           "set_flags": [
             "encargo_korven_taza_informada"
           ]
+        },
+        "herramienta": {
+          "requires_flags": [
+            "pista_herramienta_dravak"
+          ],
+          "text": "Es trabajo Dravak, sí. Antiguo, de antes de que se repararan estas casas. Pero no te inventes un reino perdido por una herramienta oxidada: una pieza no es todo el pasado."
         }
       },
       "day": "Compara muestras bajo luz lateral.",

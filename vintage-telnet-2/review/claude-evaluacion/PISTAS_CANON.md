@@ -24,4 +24,10 @@ Regla: no todas las pistas llevan a monstruos. El mundo da pistas, no soluciones
 | Veyra | Disco de metal desconocido | Función desconocida; **no** afirmar moneda ni economía antigua | Archivo de cargas, con Nera: no coincide con los sellos actuales; el origen queda sin resolver |
 
 Aplicado: huella de Edran (sin «cuatro dedos»), tierra hundida que apunta al canal, losa con fractura vieja reabierta, barquita en lugar de barca grande y disco de metal en lugar de moneda.
-Pendiente: crear los secretos y diálogos de resolución en los lugares indicados.
+Iteración 5 (aplicado):
+- Las 16 pistas con bandera (`{"text","flag"}` en `search.traces`) guardan que el jugador las vio.
+- 6 acciones de investigación, cada una con su secreto (`world.secrets`): Prado (comparar huellas), Zanja seca (seguir la línea), Paso entre paredes (mirar a la cresta), Cauce de piedras movidas (comparar la grieta), Orilla del canal (seguir los juncos) y Raíz marcada (altura del daño).
+- 8 respuestas de personajes que sólo aparecen tras ver la pista: Nela (línea), Iria de Khariel (marcas), Oma (grieta), Taren (herramienta), Sola (amarre), Arel (talla) y Nera (disco y piedras).
+- Ninguna nombra a la fauna mayor: el jugador la deduce comparando.
+
+Pendiente: la franja donde callan los pájaros no tiene resolución propia (Raíz marcada ya trata el silencio); la barquita sigue reservada a los Marevyn, como en su secreto original.

@@ -124,3 +124,13 @@ Comprobación:
 Pruebas: 151 tests OK; QA del cliente OK.
 
 Pendiente: quedan 354 caminos sin texto de llegada; siguiente tanda, los caminos de la ruta principal dentro de cada región.
+
+## Iteración 5 — las pistas llevan a algún sitio
+
+Buscar ya no da sólo ambiente:
+- Una pista vista abre, en el lugar que la explica, una acción para investigarla y un tema nuevo con el personaje adecuado.
+- Completar la investigación cuenta como secreto y queda en el diario.
+
+El detalle está en `PISTAS_CANON.md`. La cadena entera tiene un test: buscar → bandera → acción en el Prado → secreto → la acción desaparece.
+
+Pruebas: 152 tests OK.

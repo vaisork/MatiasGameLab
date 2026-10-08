@@ -24,9 +24,18 @@
           "Una cuerda marca el barro: por aquí arrastraron una carga.",
           "Un Gorrión de ruta picotea migas en un borde del camino y no se aparta hasta el último momento.",
           "En una piedra antigua del camino hay una muesca lisa, gastada por manos que se apoyaron en ella durante muchísimos años.",
-          "Entre las piedras del suelo asoma un trozo de canal antiguo, tapado. Va hacia la ciudad, por debajo de todo.",
-          "Una piedra enorme, perfectamente cortada, sirve de banco al borde del camino. Nadie la cortó en esta época.",
-          "Entre dos piedras asoma un disco de metal con un dibujo que no reconoces. Parece una moneda, pero no se parece a ningún sello que hayas visto. Lo dejas donde estaba.",
+          {
+            "text": "Entre las piedras del suelo asoma un trozo de canal antiguo, tapado. Va hacia la ciudad, por debajo de todo.",
+            "flag": "pista_piedra_antigua"
+          },
+          {
+            "text": "Una piedra enorme, perfectamente cortada, sirve de banco al borde del camino. Nadie la cortó en esta época.",
+            "flag": "pista_piedra_antigua"
+          },
+          {
+            "text": "Entre dos piedras asoma un disco de metal con un dibujo que no reconoces. Parece una moneda, pero no se parece a ningún sello que hayas visto. Lo dejas donde estaba.",
+            "flag": "pista_disco"
+          },
           "Una Libélula clara se posa en un charco y se refleja en él como si fueran dos.",
           "Huellas de muchos carros distintos, unas encima de otras: por aquí pasa de todo."
         ],
@@ -1705,6 +1714,18 @@
             "encargo_veyra_aviso_comprobar"
           ],
           "label": "pedir que lo compruebe"
+        },
+        "disco": {
+          "requires_flags": [
+            "pista_disco"
+          ],
+          "text": "No es un sello nuestro, ni una marca de ruta que yo conozca. Lo he buscado en todas las tablillas. Lo único seguro es eso: que no sabemos qué es. Y prefiero decirlo así antes que inventármelo."
+        },
+        "piedras": {
+          "requires_flags": [
+            "pista_piedra_antigua"
+          ],
+          "text": "La ciudad está hecha sobre piedras más viejas que ella. Las usamos, las reparamos, las movemos. Pero las piedras no nos han contado quién las puso."
         }
       },
       "day": "Reordena las tablillas pendientes por ruta.",
@@ -1848,6 +1869,12 @@
             "veyra_piedra_hueco"
           ],
           "text": "¿Tú también has dejado una? Lo hacemos desde pequeños. Nadie sabe quién levantó esa pared. Así que le dejamos algo, para que sepa que seguimos aquí."
+        },
+        "talla": {
+          "requires_flags": [
+            "pista_talla"
+          ],
+          "text": "Dos líneas y un círculo... Es una marca de camino de los Vesperi, muy vieja. Yo puedo copiarla, pero copiar una marca no significa saber quién la cuida ni cómo se usa. Eso hay que preguntarlo en Velmora."
         }
       },
       "day": "Recibe recados junto al armazón.",

@@ -114,7 +114,12 @@ class Engine:
             state['events']=[event('discovery',found['text']),event('action',f"Guardas {self.content.items[found['item']]['name']} en la mochila.")]
         elif roll<.75:
             traces=search['traces'];fraction=(roll-.4)/.35 if roll>=.4 else roll/.4
-            state['events']=[event('trace',traces[min(int(fraction*len(traces)),len(traces)-1)])]
+            trace=traces[min(int(fraction*len(traces)),len(traces)-1)]
+            # A clue may remember that it was seen, so the place that explains it can offer to follow it up.
+            if isinstance(trace,dict):
+                if trace.get('flag') and trace['flag'] not in state['flags']:state['flags'].append(trace['flag'])
+                trace=trace['text']
+            state['events']=[event('trace',trace)]
         else:
             empty=search['empty'];fraction=(roll-.75)/.25
             state['events']=[event('world',empty[min(int(fraction*len(empty)),len(empty)-1)])]
