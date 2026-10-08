@@ -113,7 +113,8 @@
       ],
       "focus": [
         "activity"
-      ]
+      ],
+      "brief": "La plaza de Valdren, con su banco largo partido por una piedra."
     },
     "valdren_fragua": {
       "id": "valdren_fragua",
@@ -225,7 +226,8 @@
             }
           }
         }
-      ]
+      ],
+      "brief": "El corredor de los huertos, con su canaleta a la sombra del árbol."
     },
     "valdren_casa_semillas": {
       "id": "valdren_casa_semillas",
@@ -392,7 +394,8 @@
         }
       ],
       "dawn": "Bren abre el frente alto y retira la lona de las varas. Las ruedas guardadas permanecen a la sombra mientras el primer carro recibe luz para una prueba.",
-      "dusk": "Bren lleva las piezas pequeñas al techo bajo. El carro ocupa el centro sin moverse; las pruebas nuevas esperarán a que pueda verse la cuña."
+      "dusk": "Bren lleva las piezas pequeñas al techo bajo. El carro ocupa el centro sin moverse; las pruebas nuevas esperarán a que pueda verse la cuña.",
+      "brief": "El cobertizo de los carros y su cuerda de giro en el suelo."
     },
     "valdren_patio_carros": {
       "id": "valdren_patio_carros",
@@ -481,7 +484,8 @@
             }
           }
         }
-      ]
+      ],
+      "brief": "El paso entre los graneros: una puerta en rampa, otra a ras de suelo."
     },
     "valdren_comedor": {
       "id": "valdren_comedor",
@@ -794,7 +798,8 @@
             "tallos": "Los tallos aplastados conservan las marcas del enfrentamiento. No hay movimiento bajo ellos."
           }
         }
-      }
+      },
+      "brief": "Los surcos nuevos y los tallos viejos dejan libre el sendero entre las hileras."
     },
     "edran_lindero": {
       "id": "edran_lindero",
@@ -1916,7 +1921,8 @@
             }
           }
         }
-      ]
+      ],
+      "brief": "Tres peldaños y la cuerda fija señalan la entrada del canal bajo los campos."
     },
     "edran_canal_herramientas": {
       "id": "edran_canal_herramientas",

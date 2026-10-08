@@ -2,7 +2,7 @@
 export const speciesNames={humanos:'Humano',humano:'Humano',felaryn:'Felaryn',dravak:'Dravak',marevyn:'Marevyn',vesperi:'Vesperi'};
 export const classNames={juramentado:'Juramentado',arcano:'Arcano',sombra:'Sombra',artifice:'Artífice'};
 export const regionNames={veyra:'Cuenca de Veyra',edran:'Llanos de Edran',hoshai:'Sierra de Hoshai',korven:'Pedrales de Korven',lethra:'Aguas de Lethra',nhal:'Bosque de Nhal'};
-export const kindNames={WORLD:'Entorno',LOCATION:'Lugar',ACTION:'Tu decisión',NPC:'Voz',DIALOGUE:'Conversación',TRACE:'Señal',DANGER:'Peligro',COMBAT:'Encuentro',DAMAGE:'Daño',DISCOVERY:'Descubrimiento',REWARD:'Progreso',MEMORY:'Recuerdo',INFO:'Información',ERROR:'Aviso',CHAT:'Conversación local'};
+export const kindNames={WORLD:'Entorno',LOOK:'El lugar',LOCATION:'Lugar',ACTION:'Tu decisión',NPC:'Voz',DIALOGUE:'Conversación',TRACE:'Señal',DANGER:'Peligro',COMBAT:'Encuentro',DAMAGE:'Daño',DISCOVERY:'Descubrimiento',REWARD:'Progreso',MEMORY:'Recuerdo',INFO:'Información',ERROR:'Aviso',CHAT:'Conversación local'};
 export function events(value){return Array.isArray(value)?value.filter(event=>event&&typeof event.text==='string'&&event.text.trim()).map(event=>({kind:String(event.kind||'WORLD').toUpperCase(),text:event.text,id:event.id??null})):[];}
 export function actions(value){return Array.isArray(value)?value.filter(action=>action&&typeof action.id==='string'&&typeof action.label==='string').map(action=>({...action,disabled:Boolean(action.disabled)})):[];}
 export function list(value){if(Array.isArray(value))return value;if(value&&Array.isArray(value.items))return value.items;if(value&&Array.isArray(value.entries))return value.entries;return [];}
@@ -120,15 +120,300 @@ export const speciesPortraits=Object.fromEntries(['humano','felaryn','dravak','m
 
 export const placeIllustrations={"valdren_plaza":{"name":"Valdren","illustration":"/client/art/places/valdren-anime-v1.webp","caption":"Representación del pueblo; la hora y el clima se describen en la lectura."},"khariel_centro":{"name":"Khariel","illustration":"/client/art/places/khariel-anime-v1.webp","caption":"Representación del pueblo; la hora y el clima se describen en la lectura."},"brumak_centro":{"name":"Brumak","illustration":"/client/art/places/brumak-anime-v1.webp","caption":"Representación del pueblo; la hora y el clima se describen en la lectura."},"narevia_centro":{"name":"Narevia","illustration":"/client/art/places/narevia-anime-v1.webp","caption":"Representación del pueblo; la hora y el clima se describen en la lectura."},"velmora_centro":{"name":"Velmora","illustration":"/client/art/places/velmora-anime-v1.webp","caption":"Representación del pueblo; la hora y el clima se describen en la lectura."},"vaisgard_mercado":{"name":"Vaisgard","illustration":"/client/art/places/vaisgard-anime-v1.webp","caption":"Representación del pueblo; la hora y el clima se describen en la lectura."}};
 
+Object.assign(placeIllustrations,{
+  "veyra_plaza_rutas": {
+    "name": "Plaza de las Cinco Rutas",
+    "illustration": "/client/art/places/veyra_plaza_rutas-anime-v1.webp",
+    "thumbnail": "/client/art/places/veyra_plaza_rutas-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "veyra_barrio_cargas": {
+    "name": "Calle de los almacenes",
+    "illustration": "/client/art/places/veyra_barrio_cargas-anime-v1.webp",
+    "thumbnail": "/client/art/places/veyra_barrio_cargas-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "veyra_calle_toldos": {
+    "name": "Calle de los Toldos Remendados",
+    "illustration": "/client/art/places/veyra_calle_toldos-anime-v1.webp",
+    "thumbnail": "/client/art/places/veyra_calle_toldos-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "veyra_patio_agua": {
+    "name": "Patio del agua",
+    "illustration": "/client/art/places/veyra_patio_agua-anime-v1.webp",
+    "thumbnail": "/client/art/places/veyra_patio_agua-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "veyra_puerta_alta": {
+    "name": "Puerta del Camino Alto",
+    "illustration": "/client/art/places/veyra_puerta_alta-anime-v1.webp",
+    "thumbnail": "/client/art/places/veyra_puerta_alta-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "veyra_puerta_piedra": {
+    "name": "Puerta del camino de Korven",
+    "illustration": "/client/art/places/veyra_puerta_piedra-anime-v1.webp",
+    "thumbnail": "/client/art/places/veyra_puerta_piedra-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "veyra_puerta_sombra": {
+    "name": "Puerta del bosque",
+    "illustration": "/client/art/places/veyra_puerta_sombra-anime-v1.webp",
+    "thumbnail": "/client/art/places/veyra_puerta_sombra-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "veyra_puerta_campos": {
+    "name": "Puerta de los Campos",
+    "illustration": "/client/art/places/veyra_puerta_campos-anime-v1.webp",
+    "thumbnail": "/client/art/places/veyra_puerta_campos-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "veyra_patio_porte": {
+    "name": "Patio de los animales",
+    "illustration": "/client/art/places/veyra_patio_porte-anime-v1.webp",
+    "thumbnail": "/client/art/places/veyra_patio_porte-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "valdren_huertos": {
+    "name": "Corredor de los Huertos",
+    "illustration": "/client/art/places/valdren_huertos-anime-v1.webp",
+    "thumbnail": "/client/art/places/valdren_huertos-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "veyra_patio_senales": {
+    "name": "Patio de mensajes",
+    "illustration": "/client/art/places/veyra_patio_senales-anime-v1.webp",
+    "thumbnail": "/client/art/places/veyra_patio_senales-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "veyra_puerta_juncos": {
+    "name": "Puerta de los canales",
+    "illustration": "/client/art/places/veyra_puerta_juncos-anime-v1.webp",
+    "thumbnail": "/client/art/places/veyra_puerta_juncos-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "valdren_pozo": {
+    "name": "Pozo de las Dos Cuerdas",
+    "illustration": "/client/art/places/valdren_pozo-anime-v1.webp",
+    "thumbnail": "/client/art/places/valdren_pozo-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "valdren_patio_carros": {
+    "name": "Patio de los carros",
+    "illustration": "/client/art/places/valdren_patio_carros-anime-v1.webp",
+    "thumbnail": "/client/art/places/valdren_patio_carros-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "valdren_graneros": {
+    "name": "Paso entre los Graneros",
+    "illustration": "/client/art/places/valdren_graneros-anime-v1.webp",
+    "thumbnail": "/client/art/places/valdren_graneros-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "valdren_calle_alta": {
+    "name": "Calle de la fragua",
+    "illustration": "/client/art/places/valdren_calle_alta-anime-v1.webp",
+    "thumbnail": "/client/art/places/valdren_calle_alta-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "valdren_patio_ropa": {
+    "name": "Patio de ropa",
+    "illustration": "/client/art/places/valdren_patio_ropa-anime-v1.webp",
+    "thumbnail": "/client/art/places/valdren_patio_ropa-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "hoshai_mercado_cintas": {
+    "name": "Mercado de las cintas",
+    "illustration": "/client/art/places/hoshai_mercado_cintas-anime-v1.webp",
+    "thumbnail": "/client/art/places/hoshai_mercado_cintas-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "hoshai_patio_hogares": {
+    "name": "Patio de las casas",
+    "illustration": "/client/art/places/hoshai_patio_hogares-anime-v1.webp",
+    "thumbnail": "/client/art/places/hoshai_patio_hogares-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "korven_calle_fachadas": {
+    "name": "Calle de las casas",
+    "illustration": "/client/art/places/korven_calle_fachadas-anime-v1.webp",
+    "thumbnail": "/client/art/places/korven_calle_fachadas-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "korven_patio_lavado": {
+    "name": "Patio de lavado",
+    "illustration": "/client/art/places/korven_patio_lavado-anime-v1.webp",
+    "thumbnail": "/client/art/places/korven_patio_lavado-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "lethra_mercado_hojas": {
+    "name": "Mercado de Narevia",
+    "illustration": "/client/art/places/lethra_mercado_hojas-anime-v1.webp",
+    "thumbnail": "/client/art/places/lethra_mercado_hojas-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "lethra_muelle_vecinal": {
+    "name": "Muelle de las cestas",
+    "illustration": "/client/art/places/lethra_muelle_vecinal-anime-v1.webp",
+    "thumbnail": "/client/art/places/lethra_muelle_vecinal-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "lethra_patio_ventanas": {
+    "name": "Patio de las ventanas",
+    "illustration": "/client/art/places/lethra_patio_ventanas-anime-v1.webp",
+    "thumbnail": "/client/art/places/lethra_patio_ventanas-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "nhal_mercado_setas": {
+    "name": "Mercado de Velmora",
+    "illustration": "/client/art/places/nhal_mercado_setas-anime-v1.webp",
+    "thumbnail": "/client/art/places/nhal_mercado_setas-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "nhal_patio_relato": {
+    "name": "Patio de reuniones",
+    "illustration": "/client/art/places/nhal_patio_relato-anime-v1.webp",
+    "thumbnail": "/client/art/places/nhal_patio_relato-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "nhal_calle_hogares": {
+    "name": "Calle de las casas",
+    "illustration": "/client/art/places/nhal_calle_hogares-anime-v1.webp",
+    "thumbnail": "/client/art/places/nhal_calle_hogares-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "nhal_umbral_velmora": {
+    "name": "Entrada de Velmora",
+    "illustration": "/client/art/places/nhal_umbral_velmora-anime-v1.webp",
+    "thumbnail": "/client/art/places/nhal_umbral_velmora-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "edran_calzada": {
+    "name": "Calzada de piedra",
+    "illustration": "/client/art/places/edran_calzada-anime-v1.webp",
+    "thumbnail": "/client/art/places/edran_calzada-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "edran_casa_camino": {
+    "name": "Casa del camino",
+    "illustration": "/client/art/places/edran_casa_camino-anime-v1.webp",
+    "thumbnail": "/client/art/places/edran_casa_camino-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "edran_terraplen": {
+    "name": "Terraplén de la Subida",
+    "illustration": "/client/art/places/edran_terraplen-anime-v1.webp",
+    "thumbnail": "/client/art/places/edran_terraplen-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "edran_era": {
+    "name": "Era de los campos",
+    "illustration": "/client/art/places/edran_era-anime-v1.webp",
+    "thumbnail": "/client/art/places/edran_era-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "edran_hito_campos": {
+    "name": "Paso hacia Veyra",
+    "illustration": "/client/art/places/edran_hito_campos-anime-v1.webp",
+    "thumbnail": "/client/art/places/edran_hito_campos-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "edran_zanja_antigua": {
+    "name": "Zanja seca",
+    "illustration": "/client/art/places/edran_zanja_antigua-anime-v1.webp",
+    "thumbnail": "/client/art/places/edran_zanja_antigua-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "edran_surcos": {
+    "name": "Campo de surcos",
+    "illustration": "/client/art/places/edran_surcos-anime-v1.webp",
+    "thumbnail": "/client/art/places/edran_surcos-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "edran_acequia": {
+    "name": "Curva de la Acequia",
+    "illustration": "/client/art/places/edran_acequia-anime-v1.webp",
+    "thumbnail": "/client/art/places/edran_acequia-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "edran_salida_huertos": {
+    "name": "Salida de las Cercas Bajas",
+    "illustration": "/client/art/places/edran_salida_huertos-anime-v1.webp",
+    "thumbnail": "/client/art/places/edran_salida_huertos-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "veyra_rampa_grava": {
+    "name": "Subida de grava",
+    "illustration": "/client/art/places/veyra_rampa_grava-anime-v1.webp",
+    "thumbnail": "/client/art/places/veyra_rampa_grava-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "hoshai_estribacion": {
+    "name": "Primera subida",
+    "illustration": "/client/art/places/hoshai_estribacion-anime-v1.webp",
+    "thumbnail": "/client/art/places/hoshai_estribacion-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "hoshai_repecho_raices": {
+    "name": "Cuesta de las raíces",
+    "illustration": "/client/art/places/hoshai_repecho_raices-anime-v1.webp",
+    "thumbnail": "/client/art/places/hoshai_repecho_raices-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "hoshai_descanso_tres_piedras": {
+    "name": "Descanso de las Tres Piedras",
+    "illustration": "/client/art/places/hoshai_descanso_tres_piedras-anime-v1.webp",
+    "thumbnail": "/client/art/places/hoshai_descanso_tres_piedras-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "hoshai_pared_goteo": {
+    "name": "Pared húmeda",
+    "illustration": "/client/art/places/hoshai_pared_goteo-anime-v1.webp",
+    "thumbnail": "/client/art/places/hoshai_pared_goteo-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "hoshai_pinar_discontinuo": {
+    "name": "Pinar abierto",
+    "illustration": "/client/art/places/hoshai_pinar_discontinuo-anime-v1.webp",
+    "thumbnail": "/client/art/places/hoshai_pinar_discontinuo-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "hoshai_agua_fria": {
+    "name": "Cruce de agua fría",
+    "illustration": "/client/art/places/hoshai_agua_fria-anime-v1.webp",
+    "thumbnail": "/client/art/places/hoshai_agua_fria-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "hoshai_ladera_hitos": {
+    "name": "Ladera de las señales",
+    "illustration": "/client/art/places/hoshai_ladera_hitos-anime-v1.webp",
+    "thumbnail": "/client/art/places/hoshai_ladera_hitos-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "hoshai_cuello_roca": {
+    "name": "Paso entre paredes",
+    "illustration": "/client/art/places/hoshai_cuello_roca-anime-v1.webp",
+    "thumbnail": "/client/art/places/hoshai_cuello_roca-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "hoshai_escalones_sol": {
+    "name": "Escalones al sol",
+    "illustration": "/client/art/places/hoshai_escalones_sol-anime-v1.webp",
+    "thumbnail": "/client/art/places/hoshai_escalones_sol-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  }
+});
+
 const townArtKeys={edran:'valdren_plaza',hoshai:'khariel_centro',korven:'brumak_centro',lethra:'narevia_centro',nhal:'velmora_centro',veyra:'vaisgard_mercado'};
 const homeArtNames={edran:'valdren',hoshai:'khariel',korven:'brumak',lethra:'narevia',nhal:'velmora'};
-placeIllustrations.valdren_fragua={name:'Fragua de Valdren',illustration:'/client/art/places/valdren-fragua-anime-v1.webp',caption:'La fragua compra armas sobrantes y permite mejorar el filo; las acciones disponibles dependen de lo que llevas.'};
+placeIllustrations.valdren_fragua={name:'Fragua de Valdren',illustration:'/client/art/places/valdren-fragua-anime-v1.webp',thumbnail:'/client/art/places/valdren-fragua-anime-v1-thumb.webp',caption:'La fragua compra armas sobrantes y permite mejorar el filo; las acciones disponibles dependen de lo que llevas.'};
 export function placeArt(room){
  if(!room)return null;
  if(room.kind==='home'&&homeArtNames[room.region])return {name:room.name,illustration:`/client/art/places/${homeArtNames[room.region]}-home-anime-v1.webp`,thumbnail:`/client/art/places/${homeArtNames[room.region]}-home-thumb-v1.webp`,caption:'Representación de tu hogar. La hora, el clima y el equipo actual se consultan en el juego.'};
  if(room.id==='korven_peldanos_cortos')return {name:room.name,illustration:'/client/art/places/brumak-escalones-anime-v1.webp',thumbnail:'/client/art/places/brumak-escalones-thumb-v1.webp',caption:'Escalones bajos de Brumak. La hora y el clima actuales se describen en la lectura.'};
  const art=placeIllustrations[room.id]||(room.kind==='settlement'?placeIllustrations[townArtKeys[room.region]]:null);
- return art?{...art,thumbnail:art.illustration.replace('-anime-v1.webp','-thumb-v1.webp')}:null;
+ return art?{...art,thumbnail:art.thumbnail||art.illustration.replace('-anime-v1.webp','-thumb-v1.webp')}:null;
 }
 
 // Presentation only: preserve the resolved result and every combat number.

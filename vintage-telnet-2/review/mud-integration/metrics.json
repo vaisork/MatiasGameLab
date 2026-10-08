@@ -1,0 +1,20 @@
+{
+  "moves": 30,
+  "snapshots": 42,
+  "navigation_scene_words": {
+    "before": 2491,
+    "after": 2268,
+    "reduction_percent": 8.95
+  },
+  "changed_navigation_bases": 8,
+  "preserved": [
+    "all original descriptions",
+    "actions",
+    "exits",
+    "combat",
+    "secondary scene layers",
+    "final gameplay state (excluding presentation events)",
+    "shared world state"
+  ],
+  "scope": "Six authored summaries on revisits only; no general world rewrite."
+}

@@ -68,12 +68,14 @@ class Engine:
         for variant in room.get('states',[]):
             if world is not None and self.allowed(variant,state,world):
                 for key,value in variant.get('overrides',{}).items():
-                    if key not in ('description','dawn','day','dusk','night','rain','clear','weather','return','examine','focus'):continue
+                    if key not in ('description','brief','dawn','day','dusk','night','rain','clear','weather','return','examine','focus'):continue
+                    if key=='description' and 'brief' not in variant['overrides']:room.pop('brief',None)
                     room[key]=dict(room.get(key,{}),**value) if key=='examine' else value
         for cid,overrides in room.get('absent_creatures',{}).items():
             key=f'{location}:{cid}'
             if (world or {}).get('deaths',{}).get(key,0)>self.clock() or (world or {}).get('creature_states',{}).get(key,{}).get('stage')=='sheltered':
                 for field,value in overrides.items():
+                    if field=='description':room.pop('brief',None)
                     if field in ('description','dawn','day','dusk','night','examine'):room[field]=dict(room.get(field,{}),**value) if field=='examine' else value
         encounter=(world or {}).get('wildlife',{}).get(location)
         if encounter and encounter.get('signal') and (encounter.get('until',0)>self.clock() or f"{location}:{encounter['signal']['creature']}" in (world or {}).get('encounters',{})):
@@ -147,7 +149,7 @@ class Engine:
             people.append(person)
         return people
 
-    def narrative(self,character,world,mode='mirar',target=None):
+    def narrative(self,character,world,mode='navigation',target=None):
         state=character['state'];room=self.room(character,world);ambient=self.ambient(room,world);lines=[]
         if mode=='examinar':
             detail=room.get('examine',{}).get(target)
@@ -197,7 +199,8 @@ class Engine:
         priority=['danger']+(['memory'] if recall else [])+[key for key in authored if key in layers and key!='danger']+priority
         limit=room.get('max_layers',3)
         limit=min(8,max(1,limit)) if isinstance(limit,int) else 3
-        lines=[event('world',room['description'])];seen={room['description']}
+        description=room.get('brief',room['description']) if mode=='navigation' and visits>1 else room['description']
+        lines=[event('look' if mode=='mirar' else 'world',description)];seen={description}
         for key in priority:
             if len(lines)>=limit:break
             line=layers.get(key)

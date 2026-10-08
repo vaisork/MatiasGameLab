@@ -1,0 +1,2207 @@
+[
+ {
+  "archivo": "content/world.json",
+  "tabla": "quests",
+  "id": "valdren_recado_forja",
+  "campo": "accept_dialogue",
+  "condiciones": "Al pulsar «Aceptar» en la sala de aceptación con el NPC presente. Sustituye a accept_text en ese momento; el motor añade después la línea del pago de referencia.",
+  "texto": "Bren, el de los carros, tiene una rueda que cruje cuando el carro avanza. Tengo que hacerle una abrazadera, pero si no sé de qué lado cede la rueda, la haré a ciegas. Baja a la plaza y entra en el cobertizo de los carros, al oeste. Pregúntale a Bren por la rueda y tráeme lo que te diga: de qué lado se sale la cuña y cuánto. No tienes que arreglar nada; con la medida me basta.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/world.json",
+  "tabla": "quests",
+  "id": "valdren_recado_forja",
+  "campo": "accept_text",
+  "condiciones": "Siempre en el diario/encargos (resumen mientras está aceptado) y como narración de aceptación si el NPC no está presente.",
+  "texto": "Daro, el herrero, necesita saber de qué lado cede la rueda del carro de Bren para ajustar una abrazadera. Baja por la calle hasta la plaza y entra en el cobertizo de los carros, al oeste. Pregunta a Bren por la rueda y vuelve a la fragua con su respuesta. No hace falta reparar nada.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/world.json",
+  "tabla": "quests",
+  "id": "valdren_recado_forja",
+  "campo": "ready_text",
+  "condiciones": "Una vez, en el lugar donde se cumple la última condición; después es el resumen del encargo en estado «listo».",
+  "texto": "Ya sabes de qué lado se sale la cuña y cuánto. Vuelve a la fragua de Daro, al norte de la plaza, para darle la medida.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/world.json",
+  "tabla": "quests",
+  "id": "valdren_recado_forja",
+  "campo": "delivery_text",
+  "condiciones": "Al pulsar «Entregar». Narración del mundo; el motor la muestra aunque el NPC no esté presente.",
+  "texto": "Repites lo que dijo Bren: un dedo, en la rueda izquierda. Daro lo escribe con tiza junto a la abrazadera.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/world.json",
+  "tabla": "quests",
+  "id": "valdren_recado_forja",
+  "campo": "payment_dialogue",
+  "condiciones": "Al pulsar «Entregar», sólo si el NPC está presente; va antes de la línea de sellos.",
+  "texto": "Un dedo, lado izquierdo. Con eso ajusto la pieza a esa rueda y no gasto hierro de más. Bren tendrá su abrazadera antes de volver a cargar.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/edran.json",
+  "tabla": "npcs",
+  "id": "edran_bren",
+  "campo": "topics.rueda",
+  "condiciones": "Hablar con Bren · rueda, antes de que nadie haya fijado la cuña (sin edran_rueda_comprobada). Es la acción requerida del encargo.",
+  "texto": "Cruje cuando el carro avanza, no cuando para. Es la rueda izquierda: la cuña se sale como un dedo por fuera del aro. Si te manda Daro, dile eso: un dedo, lado izquierdo. Si quieres verlo, quédate fuera de la cuerda; yo muevo el carro despacio.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/edran.json",
+  "tabla": "npcs",
+  "id": "edran_bren",
+  "campo": "states[0].overrides.topics.rueda",
+  "condiciones": "Hablar con Bren · rueda, después de que alguien fijó la cuña (edran_rueda_comprobada, mundo).",
+  "texto": "Ya no cruje: la cuña está sujeta. Para Daro, la medida sigue siendo la misma: se salía un dedo por el lado izquierdo. Con eso puede ajustar la abrazadera. La próxima prueba la haré con el carro cargado.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/edran.json",
+  "tabla": "rooms",
+  "id": "valdren_cobertizo",
+  "campo": "examine.rueda",
+  "condiciones": "Examinar rueda en el cobertizo (antes de fijar la cuña).",
+  "texto": "La cuña de la rueda izquierda ha empezado a salirse por un extremo, como un dedo. Se nota mejor mientras el carro avanza despacio.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/world.json",
+  "tabla": "quests",
+  "id": "valdren_revision_cobertizos",
+  "campo": "accept_dialogue",
+  "condiciones": "Al pulsar «Aceptar» en la sala de aceptación con el NPC presente. Sustituye a accept_text en ese momento; el motor añade después la línea del pago de referencia.",
+  "texto": "La última carreta del día trae la harina para el pan de mañana, y a veces llega cuando ya es de noche. Si la descargan en un sitio mojado, la harina se echa a perder. Necesito saber dos cosas: si la puerta baja del paso entre los graneros está seca, y si en el cobertizo de las estacas, pasado el lindero, queda un hueco bajo techo. Mira la esquina del granero y las estacas del cobertizo, y vuelve a contármelo.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/world.json",
+  "tabla": "quests",
+  "id": "valdren_revision_cobertizos",
+  "campo": "accept_text",
+  "condiciones": "Siempre en el diario/encargos (resumen mientras está aceptado) y como narración de aceptación si el NPC no está presente.",
+  "texto": "Elva, la del comedor, espera harina en la última carreta del día. Comprueba dos sitios donde podría descargarse sin mojarse: la esquina junto a la puerta baja, en el paso entre los graneros, y las estacas del cobertizo de campo, pasado el lindero. Examina ambos y vuelve al comedor.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/world.json",
+  "tabla": "quests",
+  "id": "valdren_revision_cobertizos",
+  "campo": "ready_text",
+  "condiciones": "Una vez, en el lugar donde se cumple la última condición; después es el resumen del encargo en estado «listo».",
+  "texto": "Has visto los dos sitios. Vuelve al comedor de Elva, junto al pozo, para decirle dónde puede esperar la harina.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/world.json",
+  "tabla": "quests",
+  "id": "valdren_revision_cobertizos",
+  "campo": "delivery_text",
+  "condiciones": "Al pulsar «Entregar». Narración del mundo; el motor la muestra aunque el NPC no esté presente.",
+  "texto": "Le cuentas a Elva lo que viste en la esquina del granero y en el cobertizo de las estacas. Ella lo apunta en la lista de cargas, junto a las ollas.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/world.json",
+  "tabla": "quests",
+  "id": "valdren_revision_cobertizos",
+  "campo": "payment_dialogue",
+  "condiciones": "Al pulsar «Entregar», sólo si el NPC está presente; va antes de la línea de sellos.",
+  "texto": "Entonces ya sé dónde mandar la carreta si llega tarde. Mañana habrá pan para todos, también para quien todavía no ha vuelto.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/edran.json",
+  "tabla": "rooms",
+  "id": "valdren_graneros",
+  "campo": "examine.esquina",
+  "condiciones": "Examinar esquina mientras la salida sigue tapada (sin edran_granero_despejado). Acción requerida.",
+  "texto": "La tierra del terraplén tapa la salida del agua. Cuando llueve, el charco llega hasta la puerta baja: ahí no conviene dejar sacos hasta despejarla.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/edran.json",
+  "tabla": "rooms",
+  "id": "valdren_graneros",
+  "campo": "states[0].overrides.examine.esquina",
+  "condiciones": "Examinar esquina después de despejarla (edran_granero_despejado, mundo).",
+  "texto": "La salida queda abierta y la tierra retirada está arriba de la pendiente. La puerta baja se mantiene seca: ya se pueden dejar sacos.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/edran.json",
+  "tabla": "rooms",
+  "id": "edran_cobertizo_campo",
+  "campo": "examine.estacas",
+  "condiciones": "Examinar estacas. Acción requerida.",
+  "texto": "Las estacas cuelgan ordenadas por tamaño; los números indican medidas, no dueños. Debajo del banco queda un hueco seco y techado, con sitio para unos pocos sacos.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/world.json",
+  "tabla": "quests",
+  "id": "valdren_estado_vado",
+  "campo": "accept_dialogue",
+  "condiciones": "Al pulsar «Aceptar» en la sala de aceptación con el NPC presente. Sustituye a accept_text en ese momento; el motor añade después la línea del pago de referencia.",
+  "texto": "Mis carros cargados salen hacia Lethra y hacia Veyra, y los dos caminos cruzan agua. Antes de cargar quiero saber si los pasos aguantan. Uno es el Vado de Juncos: sal del pueblo por el este, sigue la acequia y baja por los sauces hasta el puente; mira sus apoyos desde la orilla. El otro está en el Paso hacia Veyra, al final de la calzada, al norte: mira la losa junto al poste. No te metas en el agua ni te acerques a ningún animal. Sólo mira y vuelve a contármelo.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/world.json",
+  "tabla": "quests",
+  "id": "valdren_estado_vado",
+  "campo": "accept_text",
+  "condiciones": "Siempre en el diario/encargos (resumen mientras está aceptado) y como narración de aceptación si el NPC no está presente.",
+  "texto": "Bren quiere saber si sus carros cargados pueden cruzar dos pasos de agua. Examina los apoyos del puente en el Vado de Juncos (al este, pasados la acequia y los sauces) y la losa del Paso hacia Veyra (al norte, al final de la calzada). No hace falta entrar en el agua ni enfrentarse a ninguna criatura. Después vuelve al cobertizo de los carros.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/world.json",
+  "tabla": "quests",
+  "id": "valdren_estado_vado",
+  "campo": "ready_text",
+  "condiciones": "Una vez, en el lugar donde se cumple la última condición; después es el resumen del encargo en estado «listo».",
+  "texto": "Ya has visto el puente y la losa. Vuelve al cobertizo de Bren, en Valdren, para contarle si sus carros pueden cruzar.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/world.json",
+  "tabla": "quests",
+  "id": "valdren_estado_vado",
+  "campo": "delivery_text",
+  "condiciones": "Al pulsar «Entregar». Narración del mundo; el motor la muestra aunque el NPC no esté presente.",
+  "texto": "Le explicas a Bren cómo están los apoyos del puente y la losa del poste. Él lo apunta en una tablilla y la cuelga fuera de la cuerda de giro, donde la vean los conductores.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/world.json",
+  "tabla": "quests",
+  "id": "valdren_estado_vado",
+  "campo": "payment_dialogue",
+  "condiciones": "Al pulsar «Entregar», sólo si el NPC está presente; va antes de la línea de sellos.",
+  "texto": "Bien. Con esto sé por dónde puede ir cada carro sin descargar a medio camino. Se lo diré a cada conductor antes de cargar.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/edran.json",
+  "tabla": "rooms",
+  "id": "edran_puente_juncos",
+  "campo": "examine.apoyos",
+  "condiciones": "Examinar apoyos en el Vado de Juncos. Acción requerida.",
+  "texto": "Los apoyos del puente están firmes. El agua empuja unos juncos contra uno de ellos, pero la madera no se mueve. Un carro cargado puede pasar si cruza despacio.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/edran.json",
+  "tabla": "rooms",
+  "id": "edran_hito_campos",
+  "campo": "examine.losa",
+  "condiciones": "Examinar losa en el Paso hacia Veyra. Acción requerida.",
+  "texto": "La losa tiene parches de piedras distintas. Una piedra clara, más nueva, sujeta el borde gastado: la losa ya no se mueve al pisarla.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/world.json",
+  "tabla": "quests",
+  "id": "khariel_polea",
+  "campo": "accept_dialogue",
+  "condiciones": "Al pulsar «Aceptar» en la sala de aceptación con el NPC presente. Sustituye a accept_text en ese momento; el motor añade después la línea del pago de referencia.",
+  "texto": "Me falta una polea del taller, la que usamos para subir cargas cortas por los peldaños. Ha aparecido en un campamento con una lona azul. Desde la plaza, baja dos tramos de escalones hasta la terraza de las cargas y toma el desvío del oeste. Allí acampa un viajero, Seran. Dice que la polea es suya hasta que alguien le pague un transporte. Habla con él antes de tocar nada: quiero la polea, pero también quiero saber qué cuenta reclama. Si vuelves con las dos cosas, habrás hecho el trabajo.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/world.json",
+  "tabla": "quests",
+  "id": "khariel_polea",
+  "campo": "accept_text",
+  "condiciones": "Siempre en el diario/encargos (resumen mientras está aceptado) y como narración de aceptación si el NPC no está presente.",
+  "texto": "Daren, el maestro de reparaciones, necesita recuperar la polea de su taller. Está en el campamento de la lona azul: desde la plaza, baja dos tramos hasta la terraza de las cargas y toma el desvío del oeste. Un viajero llamado Seran la retiene y reclama un pago pendiente. Habla con él, recoge la polea en las cajas del sendero sur y devuélvela al taller junto con lo que Seran reclama.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/world.json",
+  "tabla": "quests",
+  "id": "khariel_polea",
+  "campo": "ready_text",
+  "condiciones": "Una vez, en el lugar donde se cumple la última condición; después es el resumen del encargo en estado «listo».",
+  "texto": "La polea ha vuelto al banco de Daren y la cuenta de Seran queda apuntada a su lado. Puedes cerrar el encargo con Daren aquí mismo.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/world.json",
+  "tabla": "quests",
+  "id": "khariel_polea",
+  "campo": "delivery_text",
+  "condiciones": "Al pulsar «Entregar». Narración del mundo; el motor la muestra aunque el NPC no esté presente.",
+  "texto": "La polea vuelve a su gancho, encima del banco bajo. Ya pueden subir otra vez cargas cortas por los peldaños sin llevarlas a mano.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/world.json",
+  "tabla": "quests",
+  "id": "khariel_polea",
+  "campo": "payment_dialogue",
+  "condiciones": "Al pulsar «Entregar», sólo si el NPC está presente; va antes de la línea de sellos.",
+  "texto": "Gracias. La polea es del taller y vuelve a trabajar. Lo de Seran lo miraré con calma: si le debemos un transporte, se lo pagaremos.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/hoshai.json",
+  "tabla": "npcs",
+  "id": "hoshai_seran",
+  "campo": "topics.cuenta.text",
+  "condiciones": "Hablar con Seran · cuenta (fija hoshai_seran_escuchado).",
+  "texto": "Subí estas cajas hasta aquí porque me dijeron que el taller pagaría al llegar. Nadie me ha pagado. Por eso me quedé la polea: no la quiero, quiero mi pago. Si se la llevas a Daren, dile también quién la trajo y qué se me debe.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/hoshai.json",
+  "tabla": "npcs",
+  "id": "hoshai_seran",
+  "campo": "topics.acuerdo.text",
+  "condiciones": "Hablar con Seran · acuerdo (tras cuenta, sin haber peleado). Fija hoshai_polea_acordada.",
+  "texto": "Está bien. La polea está en las cajas del sendero sur; llévatela. Y llévate esta tablilla: ahí está escrita mi cuenta. Que Daren la lea. No te pido sellos a ti; te pido que no se pierda mi parte.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/hoshai.json",
+  "tabla": "rooms",
+  "id": "hoshai_campamento_lona",
+  "campo": "description",
+  "condiciones": "Descripción base del campamento (antes del acuerdo o la devolución).",
+  "texto": "Una lona azul cubre tres cajas de viaje. La terraza queda al este y un sendero corto baja al sur hasta más cajas. Seran, un viajero con un palo corto, vigila la carga y dice que la polea del taller es suya hasta que le paguen. Puedes hablar con él antes de acercarte.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/hoshai.json",
+  "tabla": "rooms",
+  "id": "hoshai_campamento_lona",
+  "campo": "signals[creature=forajido_camino].text",
+  "condiciones": "Señal del salteador en el campamento, mientras no hay acuerdo.",
+  "texto": "Seran golpea una caja con su palo corto para que no te acerques a la carga. No te corta el paso: la terraza sigue libre al este.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/hoshai.json",
+  "tabla": "rooms",
+  "id": "hoshai_campamento_lona",
+  "campo": "signals[creature=forajido_camino].dialogue",
+  "condiciones": "REQUIERE CÓDIGO: diálogo de adversario propio de esta señal (y nombre visible «Seran»), en lugar del diálogo común del Salteador de cargas.",
+  "texto": "{\"qué quieres\": \"Que me paguen el transporte. Mientras no me paguen, la polea se queda conmigo.\", \"por qué\": \"Subí estas cajas hasta aquí y nadie me pagó. No soy un ladrón: es lo único que tengo para que me escuchen.\", \"dejar paso\": \"La terraza está libre. Si quieres arreglarlo hablando, habla conmigo, no con mi palo.\"}",
+  "requiere_codigo": true
+ },
+ {
+  "archivo": "content/regions/hoshai.json",
+  "tabla": "rooms",
+  "id": "hoshai_taller_apoyos",
+  "campo": "actions[id=hoshai_entregar_polea].text",
+  "condiciones": "Acción «Devolver la polea y explicar la cuenta» con la polea en la mochila y Daren presente.",
+  "texto": "Pones la polea sobre el banco y le das a Daren la tablilla de Seran. Daren reconoce la marca del mango enseguida. Lee la cuenta despacio y la deja junto al dibujo de los escalones: «Antes de decir quién tiene razón, quiero compararlo con mis notas del transporte.»",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/world.json",
+  "tabla": "quests",
+  "id": "khariel_cornisa",
+  "campo": "accept_dialogue",
+  "condiciones": "Al pulsar «Aceptar» en la sala de aceptación con el NPC presente. Sustituye a accept_text en ese momento; el motor añade después la línea del pago de referencia.",
+  "texto": "Mando paquetes a los pueblos de abajo por la cornisa, ese camino estrecho pegado a la roca. El otro día, el observador del balcón apuntó en su cuaderno que una carga desapareció detrás de la roca, y ahora hay quien dice que la cornisa es peligrosa. Puede que sólo la perdiera de vista. Ve al balcón sobre el valle, pasado el depósito de herramientas. Mira la cornisa y deja allí una nota: que sólo pasen cargas pequeñas, o que alguien revise los apoyos antes. Luego vuelve y dímelo.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/world.json",
+  "tabla": "quests",
+  "id": "khariel_cornisa",
+  "campo": "accept_text",
+  "condiciones": "Siempre en el diario/encargos (resumen mientras está aceptado) y como narración de aceptación si el NPC no está presente.",
+  "texto": "Luma, la comerciante de cintas, envía paquetes por la cornisa del valle y ha oído que es peligrosa. Ve al balcón sobre el valle (desde la plaza: norte al patio de las casas, este al lavadero, norte al depósito; el balcón está al oeste), examina la cornisa y deja allí tu recomendación: sólo cargas pequeñas, o revisar los apoyos antes de usarla. Después vuelve al mercado y cuéntaselo a Luma.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/world.json",
+  "tabla": "quests",
+  "id": "khariel_cornisa",
+  "campo": "ready_text",
+  "condiciones": "Una vez, en el lugar donde se cumple la última condición; después es el resumen del encargo en estado «listo».",
+  "texto": "Luma ya tiene tu recomendación. Puedes cerrar el encargo con ella aquí, en el mercado.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/world.json",
+  "tabla": "quests",
+  "id": "khariel_cornisa",
+  "campo": "delivery_text",
+  "condiciones": "Al pulsar «Entregar». Narración del mundo; el motor la muestra aunque el NPC no esté presente.",
+  "texto": "Luma ata una cinta clara a la tablilla de los envíos y escribe al lado lo que recomendaste para la cornisa.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/world.json",
+  "tabla": "quests",
+  "id": "khariel_cornisa",
+  "campo": "payment_dialogue",
+  "condiciones": "Al pulsar «Entregar», sólo si el NPC está presente; va antes de la línea de sellos.",
+  "texto": "Cuando alguien vuelva a decir que la cornisa es peligrosa, le enseñaré esta nota. Es mejor que un rumor.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/hoshai.json",
+  "tabla": "npcs",
+  "id": "hoshai_luma",
+  "campo": "topics.cornisa.text",
+  "condiciones": "Hablar con Luma · cornisa, tras dejar la nota (hoshai_cornisa_decidida). Fija hoshai_cornisa_informada. Acción requerida.",
+  "texto": "Así que la viste con tus propios ojos. Eso me sirve más que lo que se oye en la plaza. Las cargas grandes seguirán por el camino principal; para lo demás, haré caso a tu nota.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/hoshai.json",
+  "tabla": "rooms",
+  "id": "hoshai_balcon_valle",
+  "campo": "examine.cornisa",
+  "condiciones": "Examinar cornisa antes de dejar la nota. Acción requerida.",
+  "texto": "La cornisa es un camino estrecho pegado a la roca. Tiene apoyos para los pies y sitio para una persona con un bulto pequeño; un carro no cabe. Detrás de la roca el camino se pierde de vista un rato y vuelve a aparecer más abajo.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/world.json",
+  "tabla": "quests",
+  "id": "velmora_recipiente",
+  "campo": "accept_dialogue",
+  "condiciones": "Al pulsar «Aceptar» en la sala de aceptación con el NPC presente. Sustituye a accept_text en ese momento; el motor añade después la línea del pago de referencia.",
+  "texto": "Elin, la artesana, dejó a reparar su recipiente pequeño en el taller de Desi y me pidió que se lo llevara. Yo no puedo dejar el puesto. Ya está arreglado y se está secando en el secadero, al lado de un juguete recién pegado. Comparten apoyo: si lo levantas mal, el juguete se cae. Habla primero con Elin, en su puerta, pasado el patio de reuniones, para saber cuál es el suyo. Luego pregunta a Desi, en el taller, cómo sacarlo. Llévaselo a Elin y vuelve a decirme que lo tiene.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/world.json",
+  "tabla": "quests",
+  "id": "velmora_recipiente",
+  "campo": "accept_text",
+  "condiciones": "Siempre en el diario/encargos (resumen mientras está aceptado) y como narración de aceptación si el NPC no está presente.",
+  "texto": "Varo, el comerciante, te pide llevar a Elin su recipiente pequeño, que se está secando en el taller de Desi junto a un juguete. Pregunta a Elin cuál es (su puerta está al este del patio de reuniones) y a Desi cómo sacarlo sin mover el apoyo del juguete (el taller está al norte del claro). Recógelo en el secadero, entrégaselo a Elin y vuelve al mercado.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/world.json",
+  "tabla": "quests",
+  "id": "velmora_recipiente",
+  "campo": "ready_text",
+  "condiciones": "Una vez, en el lugar donde se cumple la última condición; después es el resumen del encargo en estado «listo».",
+  "texto": "Elin ya tiene su recipiente y el juguete sigue secándose en su tabla. Vuelve al mercado de Velmora para contárselo a Varo.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/world.json",
+  "tabla": "quests",
+  "id": "velmora_recipiente",
+  "campo": "delivery_text",
+  "condiciones": "Al pulsar «Entregar». Narración del mundo; el motor la muestra aunque el NPC no esté presente.",
+  "texto": "Le cuentas a Varo que Elin recibió su recipiente y que el juguete sigue en su apoyo del secadero.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/world.json",
+  "tabla": "quests",
+  "id": "velmora_recipiente",
+  "campo": "payment_dialogue",
+  "condiciones": "Al pulsar «Entregar», sólo si el NPC está presente; va antes de la línea de sellos.",
+  "texto": "Bien hecho. Elin tiene lo suyo y Desi no tendrá que volver a arreglar el juguete. Así me gusta que se hagan los recados.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/nhal.json",
+  "tabla": "npcs",
+  "id": "nhal_varo",
+  "campo": "topics.recipiente",
+  "condiciones": "Hablar con Varo · recipiente, antes de completar la entrega.",
+  "texto": "Elin dejó a reparar su recipiente pequeño en el taller de Desi. Ya está arreglado, secándose al lado de un juguete. No lo cojas sin preguntar: primero habla con Elin para saber cuál es, y con Desi para saber cómo sacarlo.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/nhal.json",
+  "tabla": "npcs",
+  "id": "nhal_elin",
+  "campo": "topics.entrega.text",
+  "condiciones": "Hablar con Elin · entrega. Fija nhal_elin_recipiente_reconocido.",
+  "texto": "El pequeño, el que está en el taller, es mío. No lo confundas con el cuenco grande del patio, que es de todos. El aro y la tabla donde se seca son de Desi. Pregúntale cómo sacarlo sin tirar nada.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/nhal.json",
+  "tabla": "npcs",
+  "id": "nhal_desi",
+  "campo": "topics.apoyo.text",
+  "condiciones": "Hablar con Desi · apoyo. Fija nhal_desi_apoyo_aclarado.",
+  "texto": "Llévate sólo el recipiente. El aro y la tabla se quedan: la tabla sostiene el juguete, que todavía está húmedo. Si la mueves, la pata se tuerce y vuelta a empezar.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/nhal.json",
+  "tabla": "rooms",
+  "id": "nhal_umbral_elin",
+  "campo": "actions[id=nhal_entregar_recipiente].text",
+  "condiciones": "Acción «Devolver el recipiente a Elin» con el recipiente en la mochila y Elin presente.",
+  "texto": "Le das a Elin su recipiente pequeño. Lo gira con la mano buena y sonríe al ver la reparación. Cuando le cuentas que la tabla se quedó sosteniendo el juguete, asiente: «Bien. Que una ayuda no deje otra cosa rota detrás.»",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/world.json",
+  "tabla": "quests",
+  "id": "narevia_preparativos",
+  "campo": "accept_dialogue",
+  "condiciones": "Al pulsar «Aceptar» en la sala de aceptación con el NPC presente. Sustituye a accept_text en ese momento; el motor añade después la línea del pago de referencia.",
+  "texto": "Mira y su hermana Sola van a cenar con sus familias en la cocina vecinal. Yo llevo los cuencos, pero no sé dónde ponerlos. Mira quiere cubrir la mesa con el paño común, el que tiene costuras de toda la familia, y todavía está secándose en la plataforma. Ve a mirar las costuras: desde la plaza, entra en el taller de fibras y baja a la plataforma de secado. Decide si conviene esperar a que seque o cenar bajo la cubierta y dejarlo tendido. Cuéntaselo a Nima, en la cocina, y vuelve para decirme adónde llevo los cuencos.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/world.json",
+  "tabla": "quests",
+  "id": "narevia_preparativos",
+  "campo": "accept_text",
+  "condiciones": "Siempre en el diario/encargos (resumen mientras está aceptado) y como narración de aceptación si el NPC no está presente.",
+  "texto": "Tila lleva los cuencos para la cena de Mira y Sola en la cocina vecinal. Mira las costuras del paño común en la plataforma de secado (al sur del taller de fibras) y elige: esperar a que seque para cubrir la mesa, o cenar bajo la cubierta y dejarlo tendido. Lleva tu propuesta a Nima, en la cocina, y vuelve al mercado con Tila.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/world.json",
+  "tabla": "quests",
+  "id": "narevia_preparativos",
+  "campo": "ready_text",
+  "condiciones": "Una vez, en el lugar donde se cumple la última condición; después es el resumen del encargo en estado «listo».",
+  "texto": "Nima ya sabe dónde irán los cuencos. Vuelve al mercado de Narevia para decírselo a Tila.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/world.json",
+  "tabla": "quests",
+  "id": "narevia_preparativos",
+  "campo": "delivery_text",
+  "condiciones": "Al pulsar «Entregar». Narración del mundo; el motor la muestra aunque el NPC no esté presente.",
+  "texto": "Le dices a Tila lo que acordaste con Nima. Tila cuenta los cuencos y los pasa a la cesta de arriba, la que no se moja.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/world.json",
+  "tabla": "quests",
+  "id": "narevia_preparativos",
+  "campo": "payment_dialogue",
+  "condiciones": "Al pulsar «Entregar», sólo si el NPC está presente; va antes de la línea de sellos.",
+  "texto": "Entonces ya sé adónde ir. Llevaré los cuencos antes de que empiece la cena.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/lethra.json",
+  "tabla": "npcs",
+  "id": "lethra_nima",
+  "campo": "topics.preparativos.text",
+  "condiciones": "Hablar con Nima · preparativos, tras elegir en la plataforma (lethra_plan_elegido). Fija lethra_reunion_comunicada. Acción requerida.",
+  "texto": "Bien pensado. Apunto dónde van los cuencos, así no los movemos dos veces. Ahora le aviso a Mira para que sepa qué hacemos con el paño.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/lethra.json",
+  "tabla": "rooms",
+  "id": "lethra_plataforma_secado",
+  "campo": "examine.costuras",
+  "condiciones": "Examinar costuras en la plataforma. Acción requerida.",
+  "texto": "Distintas manos repararon el paño en distintas reuniones familiares. La costura más corta todavía está húmeda al tocarla; las demás ya secaron.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/world.json",
+  "tabla": "quests",
+  "id": "vaisgard_aviso_carga",
+  "campo": "accept_dialogue",
+  "condiciones": "Al pulsar «Aceptar» en la sala de aceptación con el NPC presente. Sustituye a accept_text en ese momento; el motor añade después la línea del pago de referencia.",
+  "texto": "Ha llegado un rumor: dicen que a Tov, la porteadora de piedra, le han robado la carga. No pienso repetirlo sin saber de dónde viene. Tov está con su carro en la puerta del camino de Korven: desde la plaza de las cinco rutas, cruza el patio de los animales hacia el oeste. Pregúntale qué pasó de verdad. Después lleva su noticia a Nera, en el archivo de cargas, aquí al lado, al este. Vuelve cuando Nera lo haya apuntado.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/world.json",
+  "tabla": "quests",
+  "id": "vaisgard_aviso_carga",
+  "campo": "accept_text",
+  "condiciones": "Siempre en el diario/encargos (resumen mientras está aceptado) y como narración de aceptación si el NPC no está presente.",
+  "texto": "Arel, la mensajera, ha oído que robaron la carga de Tov y no quiere repetirlo sin comprobarlo. Pregunta a Tov en la puerta del camino de Korven (al oeste, pasado el patio de los animales) y lleva su noticia a Nera, en el archivo de cargas, al este del patio de mensajes. Vuelve con Arel cuando Nera lo haya apuntado.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/world.json",
+  "tabla": "quests",
+  "id": "vaisgard_aviso_carga",
+  "campo": "ready_text",
+  "condiciones": "Una vez, en el lugar donde se cumple la última condición; después es el resumen del encargo en estado «listo».",
+  "texto": "Nera ya tiene apuntada la noticia de Tov. Vuelve al patio de mensajes, al oeste, para contárselo a Arel.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/world.json",
+  "tabla": "quests",
+  "id": "vaisgard_aviso_carga",
+  "campo": "delivery_text",
+  "condiciones": "Al pulsar «Entregar». Narración del mundo; el motor la muestra aunque el NPC no esté presente.",
+  "texto": "Le cuentas a Arel lo que dijo Tov y lo que apuntó Nera. Arel copia el aviso en una tablilla nueva y escribe debajo de dónde viene.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/world.json",
+  "tabla": "quests",
+  "id": "vaisgard_aviso_carga",
+  "campo": "payment_dialogue",
+  "condiciones": "Al pulsar «Entregar», sólo si el NPC está presente; va antes de la línea de sellos.",
+  "texto": "Separador roto, no robo. Eso es lo que saldrá por los caminos. Si hubiera repetido el rumor, Tov habría tenido que arreglar también su nombre.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/veyra.json",
+  "tabla": "npcs",
+  "id": "veyra_tov",
+  "campo": "topics.aviso.text",
+  "condiciones": "Hablar con Tov · aviso. Fija encargo_veyra_demora_conocida. Acción requerida.",
+  "texto": "Nadie me ha robado nada. La carga está entera, mírala. Se rompió un separador, esta tabla de aquí, y tengo que volver a colocar las piedras antes de entrar. Dile a Nera que llegaré tarde, no que he perdido la carga.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/veyra.json",
+  "tabla": "npcs",
+  "id": "veyra_nera",
+  "campo": "topics.aviso_preciso.text",
+  "condiciones": "Hablar con Nera · aviso_preciso, tras escuchar a Tov y antes de entregar. Fija encargo_veyra_aviso_entregado y _preciso.",
+  "texto": "Separador roto, carga entera, llegará tarde. Y lo dice la propia Tov. Lo apunto así, con su nombre. La carga sigue en la lista de llegadas; nadie va a hablar de robo.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/veyra.json",
+  "tabla": "npcs",
+  "id": "veyra_nera",
+  "campo": "topics.pedir_comprobacion.text",
+  "condiciones": "Hablar con Nera · pedir_comprobacion (alternativa a la anterior). Fija encargo_veyra_aviso_entregado y _comprobar.",
+  "texto": "De acuerdo, no cambio nada todavía. Dejo la carga como pendiente. Antes de tocar la lista iré a ver ese separador con Tov. Hasta entonces no está perdida: sólo tarda.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/veyra.json",
+  "tabla": "npcs",
+  "id": "veyra_nera",
+  "campo": "topics (claves)",
+  "condiciones": "Etiquetas de los botones «Nera · aviso_preciso» y «Nera · pedir_comprobacion».",
+  "texto": "{\"aviso_preciso\": \"anotar lo que dijo Tov\", \"pedir_comprobacion\": \"pedir que lo compruebe\"}",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/world.json",
+  "tabla": "quests",
+  "id": "vaisgard_toldo",
+  "campo": "accept_dialogue",
+  "condiciones": "Al pulsar «Aceptar» en la sala de aceptación con el NPC presente. Sustituye a accept_text en ese momento; el motor añade después la línea del pago de referencia.",
+  "texto": "El toldo que comparto con mi vecino se ha rasgado por una costura vieja. Cuando llueve, el agua cae justo en la puerta del taller de abajo, y ya hablan de cerrarlo. No hace falta: basta con coser bien y dejar que el agua salga hacia la calle. Primero mira la costura, para ver dónde está el daño. Después puedes ayudarme de dos maneras: traer un haz de junco (Bela, en el mercado de aquí al oeste, presta uno para esto) y lo atamos, o sujetarme las perchas mientras marco la costura, y yo la termino después sin gastar junco.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/world.json",
+  "tabla": "quests",
+  "id": "vaisgard_toldo",
+  "campo": "accept_text",
+  "condiciones": "Siempre en el diario/encargos (resumen mientras está aceptado) y como narración de aceptación si el NPC no está presente.",
+  "texto": "Seli tiene un toldo rasgado que moja la puerta del taller de abajo. Examina la costura en la calle de los toldos. Luego elige: llevarle un haz de junco (Bela, en el mercado al oeste, presta uno) para atar el desgarro, o sujetar las perchas para que Seli lo termine. El encargo se entrega aquí mismo, a Seli.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/world.json",
+  "tabla": "quests",
+  "id": "vaisgard_toldo",
+  "campo": "ready_text",
+  "condiciones": "Una vez, en el lugar donde se cumple la última condición; después es el resumen del encargo en estado «listo».",
+  "texto": "El toldo ya tiene arreglo y el agua podrá salir hacia la calle. Puedes cerrar el encargo con Seli aquí mismo.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/world.json",
+  "tabla": "quests",
+  "id": "vaisgard_toldo",
+  "campo": "delivery_text",
+  "condiciones": "Al pulsar «Entregar». Narración del mundo; el motor la muestra aunque el NPC no esté presente.",
+  "texto": "Seli tira del borde del toldo para probarlo. Esta vez, cuando llueva, el agua resbalará hacia la calle y no hacia la puerta del taller.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/world.json",
+  "tabla": "quests",
+  "id": "vaisgard_toldo",
+  "campo": "payment_dialogue",
+  "condiciones": "Al pulsar «Entregar», sólo si el NPC está presente; va antes de la línea de sellos.",
+  "texto": "El taller de abajo podrá seguir abierto. Ya les diré a los vecinos que no hacía falta cerrar nada: sólo coser bien.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/veyra.json",
+  "tabla": "rooms",
+  "id": "veyra_calle_toldos",
+  "campo": "actions[id=veyra_preparar_perchas].text",
+  "condiciones": "Acción «Preparar las perchas para que Seli termine» con Seli presente.",
+  "texto": "Sostienes las perchas mientras Seli marca con tiza dónde empieza el desgarro y por dónde debe salir el agua. Ella terminará la costura sin gastar junco. Si Bela te prestó un haz, puedes devolvérselo en el mercado.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/world.json",
+  "tabla": "quests",
+  "id": "brumak_taza",
+  "campo": "accept_dialogue",
+  "condiciones": "Al pulsar «Aceptar» en la sala de aceptación con el NPC presente. Sustituye a accept_text en ese momento; el motor añade después la línea del pago de referencia.",
+  "texto": "Quiero hacerle una taza a mi madre. La primera me salió tan pequeña que no le cabía nada; la segunda, tan grande que no la puede levantar. Antes de hacer la tercera necesito otra mirada. Pídeme las medidas, ve al horno viejo, aquí al este, y mira el recipiente torcido del banco: ahí se ve qué pasa cuando la base no va de acuerdo con el resto. Marca allí lo que recomiendas y vuelve a decírmelo.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/world.json",
+  "tabla": "quests",
+  "id": "brumak_taza",
+  "campo": "accept_text",
+  "condiciones": "Siempre en el diario/encargos (resumen mientras está aceptado) y como narración de aceptación si el NPC no está presente.",
+  "texto": "Taren, la alfarera, quiere hacer una taza para su madre que no sea ni muy pequeña ni muy pesada. Pídele las medidas, examina el recipiente torcido del horno viejo (al este) y marca allí tu recomendación: base más ligera o base más ancha. Vuelve a contárselo. Taren trabaja de día.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/world.json",
+  "tabla": "quests",
+  "id": "brumak_taza",
+  "campo": "ready_text",
+  "condiciones": "Una vez, en el lugar donde se cumple la última condición; después es el resumen del encargo en estado «listo».",
+  "texto": "Taren ya tiene tu recomendación. Puedes cerrar el encargo con ella aquí, en el rincón de las muestras.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/world.json",
+  "tabla": "quests",
+  "id": "brumak_taza",
+  "campo": "delivery_text",
+  "condiciones": "Al pulsar «Entregar». Narración del mundo; el motor la muestra aunque el NPC no esté presente.",
+  "texto": "Taren pone tu marca junto a las medidas de la mano y aparta un trozo de arcilla para la prueba.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/world.json",
+  "tabla": "quests",
+  "id": "brumak_taza",
+  "campo": "payment_dialogue",
+  "condiciones": "Al pulsar «Entregar», sólo si el NPC está presente; va antes de la línea de sellos.",
+  "texto": "Esta vez empiezo por lo que necesita mi madre, no por lo que me sale de las manos. Gracias por mirar con calma.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/korven.json",
+  "tabla": "npcs",
+  "id": "korven_taren",
+  "campo": "topics.medidas.text",
+  "condiciones": "Hablar con Taren · medidas (de día). Fija encargo_korven_taza_medida. Acción requerida.",
+  "texto": "Mira estas dos marcas: la de la izquierda es la mano de mi madre; la de la derecha, la taza grande. El aro pequeño le queda bien a la mano, eso no lo cambio. Lo que dudo es la base: más ligera, para que pese menos, o más ancha, para que no se vuelque. Mira el recipiente torcido del horno y decide tú.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/korven.json",
+  "tabla": "npcs",
+  "id": "korven_taren",
+  "campo": "topics.recomendación.text",
+  "condiciones": "Hablar con Taren · recomendación, tras marcar en el horno. Fija encargo_korven_taza_informada. Acción requerida.",
+  "texto": "Así que esto es lo que viste en el horno. Bien: no elegiste sólo por tamaño, pensaste en quien la va a usar. Haré una prueba con tu marca antes de dársela a mi madre.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/korven.json",
+  "tabla": "rooms",
+  "id": "korven_horno_reposo",
+  "campo": "actions[id=korven_recomendar_aro].label",
+  "condiciones": "Botón en el horno tras pedir las medidas.",
+  "texto": "Recomendar una base más ligera",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/korven.json",
+  "tabla": "rooms",
+  "id": "korven_horno_reposo",
+  "campo": "actions[id=korven_recomendar_aro].text",
+  "condiciones": "Al pulsar el botón anterior.",
+  "texto": "Comparas el recipiente torcido con las medidas: lo que más pesa es la base, demasiado gruesa. Marcas una base más fina y dejas el aro como está, a la medida de la mano de la madre de Taren.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/korven.json",
+  "tabla": "rooms",
+  "id": "korven_horno_reposo",
+  "campo": "actions[id=korven_recomendar_base].text",
+  "condiciones": "Al pulsar «Recomendar una base más estable».",
+  "texto": "Comparas el recipiente torcido con las medidas: se inclina porque la base es estrecha. Marcas una base un poco más ancha y dejas el aro pequeño. La taza pesará algo más, pero no se volcará.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/world.json",
+  "tabla": "creatures",
+  "id": "forajido_camino",
+  "campo": "dialogue",
+  "condiciones": "Botones «Hablar con Salteador de cargas · …» mientras está presente y no ha empezado el enfrentamiento. Común a Compuerta abierta (Edran), Campamento de la lona azul (Hoshai), Cruce de los sacos vacíos (Korven), Ribera hacia Edran (Lethra) y Subida entre árboles (Nhal). Debe valer en los cinco.",
+  "texto": "{\"qué quieres\": \"Lo que lleves en la mochila. Déjala en el suelo y sigue tu camino. No me hace falta pelear contigo.\", \"por qué\": \"Este invierno nadie me ha contratado para cargar. Cuando no hay trabajo, el camino parece fácil de cobrar. Ya sé que no está bien. Hoy no se me ocurre otra cosa.\", \"dejar paso\": \"Por donde viniste está libre. Si das la vuelta, no te sigo.\"}",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/world.json",
+  "tabla": "creatures",
+  "id": "forajido_camino",
+  "campo": "description",
+  "condiciones": "Examinar Salteador de cargas. Común a Compuerta abierta (Edran), Campamento de la lona azul (Hoshai), Cruce de los sacos vacíos (Korven), Ribera hacia Edran (Lethra) y Subida entre árboles (Nhal). Debe valer en los cinco.",
+  "texto": "Una persona con ropa de viaje gastada y un palo corto pide el equipaje a quien pasa. Se queda cerca de una salida, por si tiene que irse. Lo que hace es cosa suya: no habla por su pueblo ni por su especie.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/world.json",
+  "tabla": "creatures",
+  "id": "forajido_camino",
+  "campo": "combat_intro",
+  "condiciones": "Al elegir «Enfrentarte a Salteador de cargas».",
+  "texto": "El salteador aprieta el palo con las dos manos y se planta delante de ti. «Está bien. Si no me das la carga, la tomaré yo.» Vigila el palo.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/world.json",
+  "tabla": "creatures",
+  "id": "forajido_camino",
+  "campo": "defeat_text",
+  "condiciones": "Al vencer (antes de la línea de XP y sellos). El adversario vuelve a aparecer pasado un tiempo (world.deaths 300 s).",
+  "texto": "El salteador tropieza y suelta el palo. Levanta las manos: «¡Basta! Ya está.» Lo recoge sin volver a alzarlo y se aparta del camino.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/edran.json",
+  "tabla": "rooms",
+  "id": "edran_salida_huertos",
+  "campo": "wildlife_pool[creature=espinajo_rastrojo].text",
+  "condiciones": "Salida de las Cercas Bajas. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Algo pequeño y espinoso corre pegado a la cerca y se mete bajo una mata del borde. Desde allí asoma el hocico: es un Espinajo, y ese trozo de cerca es suyo.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/edran.json",
+  "tabla": "rooms",
+  "id": "edran_salida_huertos",
+  "campo": "wildlife_pool[creature=mordelinde].text",
+  "condiciones": "Salida de las Cercas Bajas. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Una forma baja y alargada corre junto a la acequia y se para con la cabeza hacia un hueco de la cerca. Es un Mordelinde: busca por dónde irse, no a quién morder.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/edran.json",
+  "tabla": "rooms",
+  "id": "edran_salida_huertos",
+  "campo": "wildlife_pool[creature=cornalomo].text",
+  "condiciones": "Salida de las Cercas Bajas. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Lejos, más allá de la acequia, un lomo enorme asoma sobre la hierba. Es un Cornalomo. Cada paso suyo hunde la tierra. Mejor mirarlo desde aquí.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/edran.json",
+  "tabla": "rooms",
+  "id": "edran_arboleda",
+  "campo": "wildlife_pool[creature=espinajo_rastrojo].text",
+  "condiciones": "Arboleda de los tres árboles. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Bajo las raíces levantadas del último árbol, un Espinajo escarba la tierra. Al oír tus pasos se pega al suelo con las espinas de punta y se queda quieto, vigilándote.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/edran.json",
+  "tabla": "rooms",
+  "id": "edran_arboleda",
+  "campo": "wildlife_pool[creature=mordelinde].text",
+  "condiciones": "Arboleda de los tres árboles. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Un Mordelinde sale de entre las raíces, aparta unas semillas con las manos y se queda quieto, mirando el hueco bajo la raíz más grande.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/edran.json",
+  "tabla": "rooms",
+  "id": "edran_arboleda",
+  "campo": "wildlife_pool[creature=cornalomo].text",
+  "condiciones": "Arboleda de los tres árboles. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Entre los troncos se ve, a lo lejos, un Cornalomo arrancando hierba. Es más grande que el banco de tierra entero. No se acerca al sendero.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/edran.json",
+  "tabla": "rooms",
+  "id": "edran_camino_carros",
+  "campo": "wildlife_pool[creature=espinajo_rastrojo].text",
+  "condiciones": "Camino de carros. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Un Espinajo cruza la rodada de la hondonada a toda prisa y se esconde entre las piedras bajas del borde. Las espinas le asoman por encima, quietas.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/edran.json",
+  "tabla": "rooms",
+  "id": "edran_camino_carros",
+  "campo": "wildlife_pool[creature=mordelinde].text",
+  "condiciones": "Camino de carros. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Un Mordelinde cruza la rodada alta pegado al suelo y se para junto a las piedras bajas, buscando un hueco entre ellas.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/edran.json",
+  "tabla": "rooms",
+  "id": "edran_camino_carros",
+  "campo": "wildlife_pool[creature=cornalomo].text",
+  "condiciones": "Camino de carros. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "En la hondonada, lejos de las rodadas, un Cornalomo se mueve despacio. El suelo tiembla un poco a cada paso.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/edran.json",
+  "tabla": "rooms",
+  "id": "edran_terraplen",
+  "campo": "wildlife_pool[creature=espinajo_rastrojo].text",
+  "condiciones": "Terraplén de la Subida. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Entre las raíces del terraplén, un Espinajo baja la cabeza y eriza las espinas. Se ha quedado con el ensanche de media cuesta y no parece dispuesto a compartirlo.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/edran.json",
+  "tabla": "rooms",
+  "id": "edran_terraplen",
+  "campo": "wildlife_pool[creature=mordelinde].text",
+  "condiciones": "Terraplén de la Subida. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Un Mordelinde asoma de un agujero entre las raíces del terraplén. Mira el camino, mira el agujero, y espera.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/edran.json",
+  "tabla": "rooms",
+  "id": "edran_terraplen",
+  "campo": "wildlife_pool[creature=cornalomo].text",
+  "condiciones": "Terraplén de la Subida. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Desde la media cuesta se ve un Cornalomo abajo, en el campo. Su lomo sobresale por encima de la hierba alta. Está lejos y no mira hacia el camino.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/edran.json",
+  "tabla": "rooms",
+  "id": "edran_linde_piedra",
+  "campo": "wildlife_pool[creature=espinajo_rastrojo].text",
+  "condiciones": "Paso hacia Korven. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Entre las últimas matas antes de las piedras, un Espinajo corre unos pasos y se para. Vuelve al mismo borde y se agacha con las espinas hacia ti.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/edran.json",
+  "tabla": "rooms",
+  "id": "edran_linde_piedra",
+  "campo": "wildlife_pool[creature=mordelinde].text",
+  "condiciones": "Paso hacia Korven. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Entre dos piedras, un Mordelinde aparta semillas con las manos delanteras. Al notar tus pasos, gira la cabeza hacia la grieta más cercana.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/edran.json",
+  "tabla": "rooms",
+  "id": "edran_linde_piedra",
+  "campo": "wildlife_pool[creature=cornalomo].text",
+  "condiciones": "Paso hacia Korven. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "En el prado, al sur, un Cornalomo levanta la cabeza. Sus huellas son anchas como una rueda de carro. Desde las piedras se le ve bien, y de lejos.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/edran.json",
+  "tabla": "rooms",
+  "id": "edran_sendero_juncos",
+  "campo": "wildlife_pool[creature=espinajo_rastrojo].text",
+  "condiciones": "Sendero del Agua Oculta. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Un Espinajo sale de los juncos, cruza el sendero firme y se agacha en la zona despejada. Se queda ahí, de cara a ti, con las espinas levantadas.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/edran.json",
+  "tabla": "rooms",
+  "id": "edran_sendero_juncos",
+  "campo": "wildlife_pool[creature=mordelinde].text",
+  "condiciones": "Sendero del Agua Oculta. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Un Mordelinde corre por el borde firme del sendero y se para a la entrada de los juncos, con el hocico hacia un paso entre los tallos.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/edran.json",
+  "tabla": "rooms",
+  "id": "edran_sendero_juncos",
+  "campo": "wildlife_pool[creature=cornalomo].text",
+  "condiciones": "Sendero del Agua Oculta. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Al otro lado de los juncos, un Cornalomo aplasta la hierba al pasar. Su peso se nota hasta en el agua quieta.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/edran.json",
+  "tabla": "rooms",
+  "id": "edran_parcela_vieja",
+  "campo": "wildlife_pool[creature=espinajo_rastrojo].text",
+  "condiciones": "Parcela vieja. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Junto a la piedra de la parcela, un Espinajo da vueltas cortas entre las hileras viejas y siempre regresa al mismo rincón.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/edran.json",
+  "tabla": "rooms",
+  "id": "edran_parcela_vieja",
+  "campo": "wildlife_pool[creature=mordelinde].text",
+  "condiciones": "Parcela vieja. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Un Mordelinde escarba junto a la piedra, entre los brotes. Cuando te ve, deja de comer y mira hacia el rincón seco.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/edran.json",
+  "tabla": "rooms",
+  "id": "edran_parcela_vieja",
+  "campo": "wildlife_pool[creature=cornalomo].text",
+  "condiciones": "Parcela vieja. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Más allá de la loma asoma el lomo de un Cornalomo. Va despacio y no se acerca a las hileras.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/edran.json",
+  "tabla": "rooms",
+  "id": "edran_sauces",
+  "campo": "wildlife_pool[creature=espinajo_rastrojo].text",
+  "condiciones": "Borde de los Sauces Bajos. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Un Espinajo bebe entre las raíces del sauce. Al verte, retrocede hasta la hierba y se queda agazapado, con las espinas de punta.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/edran.json",
+  "tabla": "rooms",
+  "id": "edran_sauces",
+  "campo": "wildlife_pool[creature=mordelinde].text",
+  "condiciones": "Borde de los Sauces Bajos. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Un Mordelinde corre por la orilla bajo el sauce y se para con la cabeza hacia un hueco entre las raíces. Las aves del sauce ni se mueven.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/edran.json",
+  "tabla": "rooms",
+  "id": "edran_sauces",
+  "campo": "wildlife_pool[creature=cornalomo].text",
+  "condiciones": "Borde de los Sauces Bajos. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Al otro lado del agua, un Cornalomo baja la cabeza para beber. Las aves del sauce se callan hasta que vuelve a levantarla.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/edran.json",
+  "tabla": "rooms",
+  "id": "edran_calzada",
+  "campo": "wildlife_pool[creature=espinajo_rastrojo].text",
+  "condiciones": "Calzada de piedra. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Un Espinajo cruza los cantos a saltitos y se mete en el borde de hierba. Desde allí te sigue con la mirada.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/edran.json",
+  "tabla": "rooms",
+  "id": "edran_calzada",
+  "campo": "wildlife_pool[creature=mordelinde].text",
+  "condiciones": "Calzada de piedra. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Un Mordelinde cruza los cantos a toda prisa y se para en el borde de hierba, mirando un hueco entre las piedras.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/edran.json",
+  "tabla": "rooms",
+  "id": "edran_calzada",
+  "campo": "wildlife_pool[creature=cornalomo].text",
+  "condiciones": "Calzada de piedra. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Detrás de la curva, fuera de la calzada, un Cornalomo pisa la hierba y la deja aplastada. Un carro espera a que se aleje antes de seguir subiendo.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/edran.json",
+  "tabla": "rooms",
+  "id": "edran_sendero_regreso",
+  "campo": "wildlife_pool[creature=espinajo_rastrojo].text",
+  "condiciones": "Senda de regreso. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Al pie del árbol aislado, un Espinajo husmea el barro. Cuando te acercas, se aplasta contra la tierra y eriza las espinas.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/edran.json",
+  "tabla": "rooms",
+  "id": "edran_sendero_regreso",
+  "campo": "wildlife_pool[creature=mordelinde].text",
+  "condiciones": "Senda de regreso. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Un Mordelinde aparece entre las raíces del árbol aislado, con semillas en las manos. Se queda quieto, mirando hacia un hueco bajo el tronco.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/edran.json",
+  "tabla": "rooms",
+  "id": "edran_sendero_regreso",
+  "campo": "wildlife_pool[creature=cornalomo].text",
+  "condiciones": "Senda de regreso. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Lejos, en los campos, se ve el lomo de un Cornalomo por encima de la hierba. Desde el árbol aislado parece pequeño. No lo es.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/edran.json",
+  "tabla": "rooms",
+  "id": "edran_surcos",
+  "campo": "signals[creature=espinajo_rastrojo].text",
+  "condiciones": "Señal fija del Campo de surcos (también la ven quienes buscan).",
+  "texto": "En la hilera de tallos viejos, un Espinajo corre unos pasos, se para y vuelve al mismo borde. Cuando te mira, eriza las espinas y se agacha entre los tallos.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/edran.json",
+  "tabla": "rooms",
+  "id": "edran_bajo_humedo",
+  "campo": "signals[creature=mordelinde].text",
+  "condiciones": "Señal fija de la Hondonada húmeda.",
+  "texto": "Una forma baja cruza la hierba oscura y se para en el borde del barro. El Mordelinde mira hacia un hueco entre las piedras: es la salida que vigila.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/edran.json",
+  "tabla": "rooms",
+  "id": "edran_prado",
+  "campo": "signals[creature=cornalomo].text",
+  "condiciones": "Señal fija del Prado de las Marcas Anchas.",
+  "texto": "En la zona aplastada del prado, un Cornalomo arranca hierba con calma. Cuando pisa, la tierra se hunde. Desde el sendero se le ve entero; acercarse ya es otra cosa.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/edran.json",
+  "tabla": "npcs",
+  "id": "edran_nela",
+  "campo": "topics.cuerda.text",
+  "condiciones": "Hablar con Nela · cuerda llevando una cuerda recuperada (la consume).",
+  "texto": "¡Una cuerda buena! La ato en este tramo de la escalera. Ahora hay dos apoyos: cuando vuelvas a bajar, usa el de la derecha.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/edran.json",
+  "tabla": "npcs",
+  "id": "edran_oren",
+  "campo": "topics.caja.text",
+  "condiciones": "Hablar con Oren · caja. Fija edran_caja_localizada.",
+  "texto": "La subí a la repisa cuando entró agua. La repisa queda detrás de la compuerta, al este de la bifurcación. Por eso dejé la taza en el escalón seco.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/edran.json",
+  "tabla": "npcs",
+  "id": "edran_oren",
+  "campo": "topics.ayuda.text",
+  "condiciones": "Hablar con Oren · ayuda (una vez). Fija edran_oren_orientado.",
+  "texto": "¿Nela, la del canal? Si tiene trabajo, prefiero eso a seguir aquí abajo. Recojo la manta y voy a hablar con ella.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/hoshai.json",
+  "tabla": "rooms",
+  "id": "hoshai_estribacion",
+  "campo": "wildlife_pool[creature=unapiedra].text",
+  "condiciones": "Primera subida. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Junto al arroyo, un Uñapiedra sube por una roca casi lisa. Sus uñas se agarran a bultos que tú ni ves. Se para a media altura y te mira de lado.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/hoshai.json",
+  "tabla": "rooms",
+  "id": "hoshai_estribacion",
+  "campo": "wildlife_pool[creature=rasgacumbres].text",
+  "condiciones": "Primera subida. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Muy arriba, en la sierra, una forma grande cruza una cornisa y deja caer piedrecitas. Es un Rasgacumbres. Desde aquí abajo parece pequeño.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/hoshai.json",
+  "tabla": "rooms",
+  "id": "hoshai_repecho_raices",
+  "campo": "wildlife_pool[creature=unapiedra].text",
+  "condiciones": "Cuesta de las raíces. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Un Uñapiedra trepa por la roca que asoma entre dos raíces. Cuando pasas, se aplasta contra la piedra y se queda quieto, del mismo color que ella.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/hoshai.json",
+  "tabla": "rooms",
+  "id": "hoshai_repecho_raices",
+  "campo": "wildlife_pool[creature=rasgacumbres].text",
+  "condiciones": "Cuesta de las raíces. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Por encima de los árboles inclinados, unas garras rascan la roca. Un Rasgacumbres asoma en un saliente lejano y vuelve a quedar tapado por la curva.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/hoshai.json",
+  "tabla": "rooms",
+  "id": "hoshai_pared_goteo",
+  "campo": "wildlife_pool[creature=unapiedra].text",
+  "condiciones": "Pared húmeda. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Sobre la pared húmeda, un Uñapiedra avanza por donde gotea el agua. Prueba cada saliente con una uña antes de apoyarse.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/hoshai.json",
+  "tabla": "rooms",
+  "id": "hoshai_pared_goteo",
+  "campo": "wildlife_pool[creature=rasgacumbres].text",
+  "condiciones": "Pared húmeda. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "En la ladera de enfrente, al otro lado del valle, un Rasgacumbres baja despacio entre rocas. Las piedras que suelta tardan en dejar de sonar.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/hoshai.json",
+  "tabla": "rooms",
+  "id": "hoshai_pinar_discontinuo",
+  "campo": "wildlife_pool[creature=unapiedra].text",
+  "condiciones": "Pinar abierto. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Un Uñapiedra pasa de un pino a una roca sin pisar las agujas del suelo. Se queda agarrado al lado de la piedra donde no da el viento.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/hoshai.json",
+  "tabla": "rooms",
+  "id": "hoshai_pinar_discontinuo",
+  "campo": "wildlife_pool[creature=rasgacumbres].text",
+  "condiciones": "Pinar abierto. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Desde un claro del pinar se ve, lejos y arriba, un Rasgacumbres sobre un risco. Tiene la cabeza vuelta hacia el valle, no hacia ti.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/hoshai.json",
+  "tabla": "rooms",
+  "id": "hoshai_agua_fria",
+  "campo": "wildlife_pool[creature=unapiedra].text",
+  "condiciones": "Cruce de agua fría. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "En la piedra grande que desvía el agua, un Uñapiedra bebe agarrado al borde. Cuando te acercas a la orilla, sube un palmo y espera.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/hoshai.json",
+  "tabla": "rooms",
+  "id": "hoshai_agua_fria",
+  "campo": "wildlife_pool[creature=rasgacumbres].text",
+  "condiciones": "Cruce de agua fría. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Río arriba, en las rocas, hay marcas frescas de garras. Más lejos todavía, un Rasgacumbres se mueve entre las piedras altas.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/hoshai.json",
+  "tabla": "rooms",
+  "id": "hoshai_ladera_hitos",
+  "campo": "wildlife_pool[creature=unapiedra].text",
+  "condiciones": "Ladera de las señales. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Un Uñapiedra se queda quieto encima de un grupo de piedras de señal, como si fuera una más. Sólo se le nota cuando cambia una uña de sitio.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/hoshai.json",
+  "tabla": "rooms",
+  "id": "hoshai_ladera_hitos",
+  "campo": "wildlife_pool[creature=rasgacumbres].text",
+  "condiciones": "Ladera de las señales. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Por encima del paso entre paredes, un Rasgacumbres cruza la ladera de lado. Una piedra suelta rueda desde donde pisó y se para lejos del sendero.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/hoshai.json",
+  "tabla": "rooms",
+  "id": "hoshai_cuello_roca",
+  "campo": "wildlife_pool[creature=unapiedra].text",
+  "condiciones": "Paso entre paredes. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "En la pared del paso estrecho, un Uñapiedra se pega a la roca por encima de las cabezas. Cuando alguien golpea la piedra de aviso, se queda inmóvil.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/hoshai.json",
+  "tabla": "rooms",
+  "id": "hoshai_cuello_roca",
+  "campo": "wildlife_pool[creature=rasgacumbres].text",
+  "condiciones": "Paso entre paredes. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Arriba, en el borde de las paredes, una sombra grande tapa la luz un momento. Un Rasgacumbres mira el paso desde lo alto y sigue de largo.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/hoshai.json",
+  "tabla": "rooms",
+  "id": "hoshai_escalones_sol",
+  "campo": "wildlife_pool[creature=unapiedra].text",
+  "condiciones": "Escalones al sol. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Un Uñapiedra toma el sol en un escalón tallado, lejos del canal. Al ver tus pies, se pasa al borde de una piedra nueva, sin estorbar a nadie.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/hoshai.json",
+  "tabla": "rooms",
+  "id": "hoshai_escalones_sol",
+  "campo": "wildlife_pool[creature=rasgacumbres].text",
+  "condiciones": "Escalones al sol. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Desde los escalones se ve la sierra. En una cornisa lejana, un Rasgacumbres se estira al sol. En los peldaños nadie deja de trabajar por él.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/hoshai.json",
+  "tabla": "rooms",
+  "id": "hoshai_collado_pino",
+  "campo": "wildlife_pool[creature=unapiedra].text",
+  "condiciones": "Paso del último pino. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Un Uñapiedra rodea el pino por las piedras partidas. Se para en la raíz más alta y te sigue con la mirada.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/hoshai.json",
+  "tabla": "rooms",
+  "id": "hoshai_collado_pino",
+  "campo": "wildlife_pool[creature=rasgacumbres].text",
+  "condiciones": "Paso del último pino. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Por encima del collado, un Rasgacumbres cruza una pared de roca. Cuando se detiene, sus garras dejan un rasguño claro en la piedra.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/hoshai.json",
+  "tabla": "rooms",
+  "id": "hoshai_aprisco_abierto",
+  "campo": "wildlife_pool[creature=unapiedra].text",
+  "condiciones": "Refugio del rebaño. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Un Uñapiedra se asoma por encima de la pared seca del aprisco. El rebaño no le hace caso, y él tampoco al rebaño.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/hoshai.json",
+  "tabla": "rooms",
+  "id": "hoshai_aprisco_abierto",
+  "campo": "wildlife_pool[creature=rasgacumbres].text",
+  "condiciones": "Refugio del rebaño. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "El rebaño se aprieta contra el lado protegido de la ladera. Muy arriba, un Rasgacumbres recorre la cresta. La pastora lo mira sin moverse.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/hoshai.json",
+  "tabla": "rooms",
+  "id": "hoshai_garganta_oeste",
+  "campo": "wildlife_pool[creature=unapiedra].text",
+  "condiciones": "Garganta hacia Korven. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "En la pared de la garganta, un Uñapiedra se agarra a una roca clara. Sus uñas levantan un poco de polvo.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/hoshai.json",
+  "tabla": "rooms",
+  "id": "hoshai_garganta_oeste",
+  "campo": "wildlife_pool[creature=rasgacumbres].text",
+  "condiciones": "Garganta hacia Korven. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Por encima de la garganta, un Rasgacumbres baja hasta media pared y se para. Desde el ensanchamiento sólo se ven sus patas y una lluvia de polvo.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/hoshai.json",
+  "tabla": "rooms",
+  "id": "hoshai_senda_dosel",
+  "campo": "wildlife_pool[creature=unapiedra].text",
+  "condiciones": "Senda de los árboles altos. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Un Uñapiedra sube por una roca con musgo junto al banco seco. Se mueve despacio, una pata cada vez.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/hoshai.json",
+  "tabla": "rooms",
+  "id": "hoshai_senda_dosel",
+  "campo": "wildlife_pool[creature=rasgacumbres].text",
+  "condiciones": "Senda de los árboles altos. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Entre los árboles altos se ve un trozo de montaña. Allí arriba, un Rasgacumbres cruza un paso de roca y se queda mirando el valle.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/korven.json",
+  "tabla": "rooms",
+  "id": "korven_loma_cascajo",
+  "campo": "wildlife_pool[creature=colagrieta].text",
+  "condiciones": "Loma de las piedras claras. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Del montón de cascajo asoma una cabeza alargada. El Colagrieta mira la pala y retrocede hacia una grieta, apoyándose en la cola gruesa.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/korven.json",
+  "tabla": "rooms",
+  "id": "korven_loma_cascajo",
+  "campo": "wildlife_pool[creature=cascapedernal].text",
+  "condiciones": "Loma de las piedras claras. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "En el cascajo, un Cascapedernal se recoge contra una piedra grande cuando tu sombra lo cubre. Su caparazón da un golpe seco contra la roca.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/korven.json",
+  "tabla": "rooms",
+  "id": "korven_loma_cascajo",
+  "campo": "wildlife_pool[creature=quebrarrocas].text",
+  "condiciones": "Loma de las piedras claras. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Hacia el oeste, entre las rocas del cauce, un bloque se mueve. Detrás, un Quebrarrocas sigue empujando. El polvo sube hasta la loma.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/korven.json",
+  "tabla": "rooms",
+  "id": "korven_cauce_duro",
+  "campo": "wildlife_pool[creature=colagrieta].text",
+  "condiciones": "Cauce seco. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Un Colagrieta toma el sol en una piedra del cauce. Al notar tus pasos en la arena, se mete de golpe en una junta; sólo queda fuera la punta de la cola.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/korven.json",
+  "tabla": "rooms",
+  "id": "korven_cauce_duro",
+  "campo": "wildlife_pool[creature=quebrarrocas].text",
+  "condiciones": "Cauce seco. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Cauce abajo se oye piedra contra piedra. Un Quebrarrocas aparta bloques del fondo seco, lejos del cuenco de las herramientas.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/korven.json",
+  "tabla": "rooms",
+  "id": "korven_meseta_baja",
+  "campo": "wildlife_pool[creature=colagrieta].text",
+  "condiciones": "Meseta de las dos piedras. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "A la sombra de una de las dos piedras, un Colagrieta asoma la cabeza por una fisura. Cuando la sombra se mueve, él se mueve con ella.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/korven.json",
+  "tabla": "rooms",
+  "id": "korven_meseta_baja",
+  "campo": "wildlife_pool[creature=cascapedernal].text",
+  "condiciones": "Meseta de las dos piedras. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Al pie de la otra piedra, un Cascapedernal raspa liquen. Cuando le cae tu sombra, recoge las patas y se queda pegado a la roca.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/korven.json",
+  "tabla": "rooms",
+  "id": "korven_meseta_baja",
+  "campo": "wildlife_pool[creature=quebrarrocas].text",
+  "condiciones": "Meseta de las dos piedras. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Bajo la pared de la meseta, lejos de las dos piedras, un Quebrarrocas empuja una losa con el hombro. La losa cae de lado y el golpe rebota en la roca.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/korven.json",
+  "tabla": "rooms",
+  "id": "korven_hitos_paso",
+  "campo": "wildlife_pool[creature=colagrieta].text",
+  "condiciones": "Camino de los mojones. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "En la base de un mojón, un Colagrieta saca la cabeza de un hueco. Mira la pila de piedras y vuelve a meterse.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/korven.json",
+  "tabla": "rooms",
+  "id": "korven_hitos_paso",
+  "campo": "wildlife_pool[creature=quebrarrocas].text",
+  "condiciones": "Camino de los mojones. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Lejos de los mojones, un Quebrarrocas abre paso entre rocas que nadie ha marcado. Cada empujón deja una franja de polvo nueva.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/korven.json",
+  "tabla": "rooms",
+  "id": "korven_hendidura_transito",
+  "campo": "wildlife_pool[creature=colagrieta].text",
+  "condiciones": "Paso estrecho. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Por una grieta alta del paso estrecho asoma un Colagrieta. Cuando una rueda golpea la tabla, se esconde de golpe y luego vuelve a asomar.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/korven.json",
+  "tabla": "rooms",
+  "id": "korven_hendidura_transito",
+  "campo": "wildlife_pool[creature=quebrarrocas].text",
+  "condiciones": "Paso estrecho. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Al otro lado de la pared se oye arrastrar piedra. Por un hueco alto se ve el lomo de un Quebrarrocas empujando un bloque, lejos del sendero.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/korven.json",
+  "tabla": "rooms",
+  "id": "korven_cauce_observacion",
+  "campo": "wildlife_pool[creature=colagrieta].text",
+  "condiciones": "Cauce de piedras movidas. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Entre las piedras movidas, un Colagrieta busca una grieta. Prueba una, no cabe, y prueba otra.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/korven.json",
+  "tabla": "rooms",
+  "id": "korven_cauce_observacion",
+  "campo": "wildlife_pool[creature=cascapedernal].text",
+  "condiciones": "Cauce de piedras movidas. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Bajo una piedra de cara limpia, un Cascapedernal se mete de lado. El borde del caparazón roza la roca con un golpe breve.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/korven.json",
+  "tabla": "rooms",
+  "id": "korven_cauce_observacion",
+  "campo": "wildlife_pool[creature=quebrarrocas].text",
+  "condiciones": "Cauce de piedras movidas. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Al fondo del cauce, un Quebrarrocas apoya el cuerpo contra un bloque y lo hace rodar. Así se ven las piedras de cara limpia: alguien las ha movido.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/korven.json",
+  "tabla": "rooms",
+  "id": "korven_desvio_horno",
+  "campo": "wildlife_pool[creature=colagrieta].text",
+  "condiciones": "Desvío al horno. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Entre los trozos de recipientes, un Colagrieta asoma por encima del muro corto. Cuando un fragmento cruje bajo tu pie, retrocede.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/korven.json",
+  "tabla": "rooms",
+  "id": "korven_desvio_horno",
+  "campo": "wildlife_pool[creature=cascapedernal].text",
+  "condiciones": "Desvío al horno. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Un Cascapedernal cruza la tierra quemada y se refugia bajo un fragmento grande de recipiente. El borde del caparazón asoma por un lado.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/korven.json",
+  "tabla": "rooms",
+  "id": "korven_desvio_horno",
+  "campo": "wildlife_pool[creature=quebrarrocas].text",
+  "condiciones": "Desvío al horno. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Más allá del muro corto, lejos del horno, un Quebrarrocas empuja piedras. El temblor llega hasta los fragmentos del suelo.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/korven.json",
+  "tabla": "rooms",
+  "id": "korven_meseta_relevo",
+  "campo": "wildlife_pool[creature=colagrieta].text",
+  "condiciones": "Refugio de Lajas. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Junto a la pared baja, un Colagrieta asoma entre las lajas. Mira la mesa de las notas un momento y vuelve a su hueco.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/korven.json",
+  "tabla": "rooms",
+  "id": "korven_meseta_relevo",
+  "campo": "wildlife_pool[creature=quebrarrocas].text",
+  "condiciones": "Refugio de Lajas. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Hacia la garganta, lejos del refugio, un Quebrarrocas aparta piedras bajadas de la sierra. Desde la mesa se oye cada golpe.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/korven.json",
+  "tabla": "rooms",
+  "id": "korven_senda_viento",
+  "campo": "wildlife_pool[creature=colagrieta].text",
+  "condiciones": "Senda del viento. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Con el viento llega polvo, y un Colagrieta se pega a la pared más baja: la cabeza dentro de una grieta, la cola fuera.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/korven.json",
+  "tabla": "rooms",
+  "id": "korven_senda_viento",
+  "campo": "wildlife_pool[creature=quebrarrocas].text",
+  "condiciones": "Senda del viento. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Detrás del almacén, un Quebrarrocas empuja un bloque cuesta abajo. El viento se lleva el polvo antes de que llegue a las cubiertas.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/korven.json",
+  "tabla": "rooms",
+  "id": "korven_borde_tierra",
+  "campo": "wildlife_pool[creature=colagrieta].text",
+  "condiciones": "Parada de los Cardos. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "En la zanja, un Colagrieta busca grieta entre las últimas rocas. Aquí hay más tierra que piedra y le cuesta encontrar dónde meterse.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/korven.json",
+  "tabla": "rooms",
+  "id": "korven_borde_tierra",
+  "campo": "wildlife_pool[creature=quebrarrocas].text",
+  "condiciones": "Parada de los Cardos. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Al norte, donde todavía hay bloques grandes, un Quebrarrocas empuja una roca. Desde los pastos de la parada, el ruido llega flojo.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/korven.json",
+  "tabla": "rooms",
+  "id": "korven_peldanos_cortos",
+  "campo": "wildlife_pool[creature=colagrieta].text",
+  "condiciones": "Escalones bajos. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Bajo la repisa de las cuñas, un Colagrieta saca la cabeza. Una vecina lo ve, sonríe y aparta el pie.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/korven.json",
+  "tabla": "rooms",
+  "id": "korven_peldanos_cortos",
+  "campo": "wildlife_pool[creature=quebrarrocas].text",
+  "condiciones": "Escalones bajos. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Lejos de las casas, fuera del camino, un Quebrarrocas mueve piedras en la ladera. Desde los escalones sólo se ve su polvo.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/lethra.json",
+  "tabla": "rooms",
+  "id": "lethra_ribera_seca",
+  "campo": "wildlife_pool[creature=pinzajunco].text",
+  "condiciones": "Ribera seca. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "En el borde del cauce, un Pinzajunco camina de lado con una hoja seca en la pinza grande. Al llegar a su agujero, la mete dentro.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/lethra.json",
+  "tabla": "rooms",
+  "id": "lethra_ribera_seca",
+  "campo": "wildlife_pool[creature=saltalodo].text",
+  "condiciones": "Ribera seca. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Un Saltalodo hincha la bolsa del cuello entre las hierbas de la orilla. Su llamada suena hondo, como una gota grande al caer.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/lethra.json",
+  "tabla": "rooms",
+  "id": "lethra_ribera_seca",
+  "campo": "wildlife_pool[creature=dorsalodo].text",
+  "condiciones": "Ribera seca. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "En la parte ancha del cauce, una espalda rugosa asoma del agua y vuelve a hundirse. Un Dorsalodo descansa en lo hondo; sus ondas llegan hasta la orilla.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/lethra.json",
+  "tabla": "rooms",
+  "id": "lethra_tierra_esponjosa",
+  "campo": "wildlife_pool[creature=pinzajunco].text",
+  "condiciones": "Tierra blanda. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Junto a las varas del paso estrecho, un Pinzajunco levanta la pinza mayor hacia tus pies. No retrocede: ésa es su orilla.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/lethra.json",
+  "tabla": "rooms",
+  "id": "lethra_tierra_esponjosa",
+  "campo": "wildlife_pool[creature=saltalodo].text",
+  "condiciones": "Tierra blanda. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Sobre el barro, un Saltalodo moteado infla el cuello y llama. Cuando pisas, salta a una mancha de hojas y vuelve a llamar desde allí.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/lethra.json",
+  "tabla": "rooms",
+  "id": "lethra_tierra_esponjosa",
+  "campo": "wildlife_pool[creature=dorsalodo].text",
+  "condiciones": "Tierra blanda. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Más allá, hacia el juncal, la hierba alta queda aplastada en una franja ancha. Un Dorsalodo se arrastra hacia el agua, lento y pesado.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/lethra.json",
+  "tabla": "rooms",
+  "id": "lethra_tablas_primeras",
+  "campo": "wildlife_pool[creature=saltalodo].text",
+  "condiciones": "Primeras tablas. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Bajo las tablas, un Saltalodo llama entre los apoyos. Su voz suena por todo el tramo de madera.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/lethra.json",
+  "tabla": "rooms",
+  "id": "lethra_tablas_primeras",
+  "campo": "wildlife_pool[creature=dorsalodo].text",
+  "condiciones": "Primeras tablas. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "En uno de los dos canales, el agua se levanta en una ola sin viento. Un Dorsalodo pasa por debajo, lejos de las tablas.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/lethra.json",
+  "tabla": "rooms",
+  "id": "lethra_ribera_firme",
+  "campo": "wildlife_pool[creature=pinzajunco].text",
+  "condiciones": "Ribera de las cargas. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Bajo un apoyo de madera, un Pinzajunco arrastra una hoja que se cayó de una envoltura. Nadie se la quita.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/lethra.json",
+  "tabla": "rooms",
+  "id": "lethra_ribera_firme",
+  "campo": "wildlife_pool[creature=saltalodo].text",
+  "condiciones": "Ribera de las cargas. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Un Saltalodo salta de un recipiente vacío al barro y llama una vez. Una vecina se sobresalta y luego se ríe.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/lethra.json",
+  "tabla": "rooms",
+  "id": "lethra_ribera_firme",
+  "campo": "wildlife_pool[creature=dorsalodo].text",
+  "condiciones": "Ribera de las cargas. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Lejos, donde el agua se ensancha, la espalda de un Dorsalodo asoma como una isla de barro. Quienes descargan siguen trabajando de este lado.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/lethra.json",
+  "tabla": "rooms",
+  "id": "lethra_pasarela_curva",
+  "campo": "wildlife_pool[creature=pinzajunco].text",
+  "condiciones": "Pasarela curva. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Abajo, junto a un poste de la pasarela, un Pinzajunco corta una hoja con la pinza pequeña y sujeta el resto con la grande.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/lethra.json",
+  "tabla": "rooms",
+  "id": "lethra_pasarela_curva",
+  "campo": "wildlife_pool[creature=saltalodo].text",
+  "condiciones": "Pasarela curva. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "En el agua quieta, junto a la baranda, un Saltalodo llama. Al oír tus pasos en la madera, salta a una hoja flotante.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/lethra.json",
+  "tabla": "rooms",
+  "id": "lethra_pasarela_curva",
+  "campo": "wildlife_pool[creature=dorsalodo].text",
+  "condiciones": "Pasarela curva. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "En medio del agua quieta, una ola ancha avanza hacia la orilla. Un Dorsalodo nada por debajo, sin acercarse a la pasarela.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/lethra.json",
+  "tabla": "rooms",
+  "id": "lethra_senda_elevada",
+  "campo": "wildlife_pool[creature=saltalodo].text",
+  "condiciones": "Senda sobre el agua. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Entre dos plataformas, un Saltalodo llama desde una hoja. Desde una ventana, alguien le contesta imitándolo.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/lethra.json",
+  "tabla": "rooms",
+  "id": "lethra_senda_elevada",
+  "campo": "wildlife_pool[creature=dorsalodo].text",
+  "condiciones": "Senda sobre el agua. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Por un canal ancho entre las viviendas pasa despacio una espalda rugosa: un Dorsalodo. Las vecinas suben las cestas a las ventanas mientras pasa.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/lethra.json",
+  "tabla": "rooms",
+  "id": "lethra_banco_barro",
+  "campo": "wildlife_pool[creature=pinzajunco].text",
+  "condiciones": "Banco de barro. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "En el barro firme, un Pinzajunco excava su agujero con la pinza grande. Se para y la apunta hacia ti.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/lethra.json",
+  "tabla": "rooms",
+  "id": "lethra_banco_barro",
+  "campo": "wildlife_pool[creature=saltalodo].text",
+  "condiciones": "Banco de barro. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Un Saltalodo llama desde el borde del canal profundo. Después se queda quieto, mirando las ondas.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/lethra.json",
+  "tabla": "rooms",
+  "id": "lethra_banco_barro",
+  "campo": "wildlife_pool[creature=dorsalodo].text",
+  "condiciones": "Banco de barro. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Las ondas que van contra el viento las mueve un cuerpo grande. En el canal profundo, un Dorsalodo asoma los ojos y un trozo de espalda.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/lethra.json",
+  "tabla": "rooms",
+  "id": "lethra_ribera_oeste",
+  "campo": "wildlife_pool[creature=pinzajunco].text",
+  "condiciones": "Ribera hacia Edran. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Un Pinzajunco cruza de lado por el barro, fuera de la cubierta, y arrastra un trozo de envoltura hasta su agujero.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/lethra.json",
+  "tabla": "rooms",
+  "id": "lethra_ribera_oeste",
+  "campo": "wildlife_pool[creature=saltalodo].text",
+  "condiciones": "Ribera hacia Edran. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "En el borde del barro, un Saltalodo llama hacia los pastos del oeste. Desde allí no le contesta ninguno.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/lethra.json",
+  "tabla": "rooms",
+  "id": "lethra_hito_tierra",
+  "campo": "wildlife_pool[creature=saltalodo].text",
+  "condiciones": "Cruce del puente. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Entre las dos piedras del hito, un Saltalodo infla el cuello y llama. Otro le contesta desde el terreno inundable.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/lethra.json",
+  "tabla": "rooms",
+  "id": "lethra_hito_tierra",
+  "campo": "wildlife_pool[creature=dorsalodo].text",
+  "condiciones": "Cruce del puente. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Abajo, en el terreno inundable, la hierba está aplastada en una franja ancha. Un Dorsalodo descansa en el barro, medio hundido.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/lethra.json",
+  "tabla": "rooms",
+  "id": "lethra_ribera_sombra",
+  "campo": "wildlife_pool[creature=saltalodo].text",
+  "condiciones": "Ribera sombreada. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Bajo la pasarela corta, un Saltalodo llama entre dos troncos. Su voz suena distinta debajo de los árboles.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/lethra.json",
+  "tabla": "rooms",
+  "id": "lethra_ribera_sombra",
+  "campo": "wildlife_pool[creature=dorsalodo].text",
+  "condiciones": "Ribera sombreada. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "En el canal, a la sombra, una espalda rugosa parece un tronco más. Hasta que se mueve: es un Dorsalodo.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/nhal.json",
+  "tabla": "rooms",
+  "id": "nhal_arbol_umbral",
+  "campo": "wildlife_pool[creature=rasgacorteza].text",
+  "condiciones": "Primer árbol del bosque. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Más adentro, bajo las copas, los pájaros se callan de golpe. Junto a un tronco lejano, algo con piel de corteza levanta la cabeza: un Rasgacorteza.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/nhal.json",
+  "tabla": "rooms",
+  "id": "nhal_suelo_hojas",
+  "campo": "wildlife_pool[creature=rasgacorteza].text",
+  "condiciones": "Sendero de hojas. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Hacia el este, un árbol tiene arañazos muy por encima de la altura de una persona. A su lado, quieto como otro tronco, hay un Rasgacorteza.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/nhal.json",
+  "tabla": "rooms",
+  "id": "nhal_tronco_acostado",
+  "campo": "wildlife_pool[creature=rasgacorteza].text",
+  "condiciones": "Tronco caído. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Al otro lado del tronco caído, entre los árboles, un Rasgacorteza se rasca contra la corteza. Las ramas altas tiemblan a cada movimiento.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/nhal.json",
+  "tabla": "rooms",
+  "id": "nhal_corteza_clara",
+  "campo": "wildlife_pool[creature=rasgacorteza].text",
+  "condiciones": "Árbol de corteza clara. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Lejos del árbol claro, entre troncos oscuros, un Rasgacorteza está inmóvil. Se le distingue porque los animales pequeños dan un rodeo para no pasar a su lado.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/nhal.json",
+  "tabla": "rooms",
+  "id": "nhal_corteza_clara",
+  "campo": "wildlife_pool[creature=rondamusgo].text",
+  "condiciones": "Árbol de corteza clara. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Un Rondamusgo hurga entre las hojas al pie del árbol claro. Al oírte se queda quieto, con una seta en la boca, y corre a una raíz hueca. Desde allí asoma el hocico.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/nhal.json",
+  "tabla": "rooms",
+  "id": "nhal_raices_altas",
+  "campo": "wildlife_pool[creature=rasgacorteza].text",
+  "condiciones": "Paso de las raíces altas. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Entre las raíces altas, lejos del sendero, un Rasgacorteza se separa un poco de su tronco y vuelve a pegarse a él.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/nhal.json",
+  "tabla": "rooms",
+  "id": "nhal_raices_altas",
+  "campo": "wildlife_pool[creature=rondamusgo].text",
+  "condiciones": "Paso de las raíces altas. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Un Rondamusgo sale de entre dos raíces con semillas pegadas al pelo. Al verte se para en seco y espera, sin moverse.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/nhal.json",
+  "tabla": "rooms",
+  "id": "nhal_piedras_musgo",
+  "campo": "wildlife_pool[creature=rasgacorteza].text",
+  "condiciones": "Piedras con musgo. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Detrás de las piedras, hacia el puente, se oye romperse una corteza. Un Rasgacorteza deja marcas nuevas en un árbol, muy arriba.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/nhal.json",
+  "tabla": "rooms",
+  "id": "nhal_piedras_musgo",
+  "campo": "wildlife_pool[creature=rondamusgo].text",
+  "condiciones": "Piedras con musgo. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Sobre una piedra con musgo, un Rondamusgo se confunde con la piedra. Sólo se le nota cuando se rasca y le caen semillas.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/nhal.json",
+  "tabla": "rooms",
+  "id": "nhal_helechos_bajos",
+  "campo": "wildlife_pool[creature=rasgacorteza].text",
+  "condiciones": "Sendero de helechos. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Entre los helechos altos, lejos de la franja elevada, asoma el lomo de un Rasgacorteza. No se acerca hacia los golpes de madera que llegan de las casas.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/nhal.json",
+  "tabla": "rooms",
+  "id": "nhal_umbral_velmora",
+  "campo": "wildlife_pool[creature=rasgacorteza].text",
+  "condiciones": "Entrada de Velmora. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Muy al fondo, detrás de las primeras casas, un Rasgacorteza asoma entre los troncos. La luz de las lámparas no llega hasta allí.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/nhal.json",
+  "tabla": "rooms",
+  "id": "nhal_claro_silencio",
+  "campo": "wildlife_pool[creature=rasgacorteza].text",
+  "condiciones": "Claro tranquilo. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Lejos del claro, donde los árboles se juntan, una forma grande se mueve despacio: un Rasgacorteza. Junto a la raíz sólo se oye caer alguna semilla.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/nhal.json",
+  "tabla": "rooms",
+  "id": "nhal_claro_silencio",
+  "campo": "wildlife_pool[creature=rondamusgo].text",
+  "condiciones": "Claro tranquilo. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Un Rondamusgo cruza el claro con prisa, se para junto a la raíz donde podrías sentarte y te mira. Después sigue buscando hongos.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/nhal.json",
+  "tabla": "rooms",
+  "id": "nhal_ribera_relevo",
+  "campo": "wildlife_pool[creature=rasgacorteza].text",
+  "condiciones": "Paso hacia Lethra. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Al otro lado del canal, un Rasgacorteza se apoya en un tronco grueso. Las ramas se doblan sobre el agua con su peso.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/nhal.json",
+  "tabla": "rooms",
+  "id": "nhal_senda_recipiente",
+  "campo": "wildlife_pool[creature=rasgacorteza].text",
+  "condiciones": "Senda hacia Elin. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Lejos de la casa de Elin, más allá de la cesta remendada, los pájaros dejan de cantar. Entre los troncos, un Rasgacorteza levanta la cabeza y vuelve a quedarse quieto.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/nhal.json",
+  "tabla": "rooms",
+  "id": "nhal_sendero_altura",
+  "campo": "wildlife_pool[creature=rondamusgo].text",
+  "condiciones": "Subida entre árboles. Sorteo de wildlife_pool al llegar o buscar. El animal sigue presente: se puede examinar, evaluar o enfrentar.",
+  "texto": "Un Rondamusgo baja la cuesta entre raíces con la boca llena de semillas. Al verte se mete en el descanso de raíces y espera a que pases.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/edran.json",
+  "tabla": "rooms",
+  "id": "valdren_fragua",
+  "campo": "examine.taza",
+  "condiciones": "Sólo de noche. El texto nocturno de la fragua ya menciona «una taza vacía espera en el banco»: ésa es la pista.",
+  "texto": "{\"requires_time\": [\"noche\"], \"text\": \"Por dentro, alguien dibujó con tiza un Espinajo muy redondo, con más espinas que cuerpo. Debajo hay una L.\"}",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/edran.json",
+  "tabla": "rooms",
+  "id": "valdren_fragua",
+  "campo": "actions[id=edran_secreto_lio_fragua]",
+  "condiciones": "Botón visible sólo de noche y sólo hasta encontrarlo.",
+  "texto": "{\"id\": \"edran_secreto_lio_fragua\", \"label\": \"Mirar de cerca el dibujo de la taza\", \"requires_time\": [\"noche\"], \"forbids_flags\": [\"edran_lio_dibujo_fragua\"], \"set_flags\": [\"edran_lio_dibujo_fragua\"], \"scope\": \"player\", \"text\": \"Acercas la taza a la línea roja del carbón. La tiza está más gruesa en las espinas, como si quien dibujaba hubiera tenido mucho tiempo. La L está hecha de un solo trazo.\", \"journal\": \"Un Espinajo de tiza dentro de una taza de la fragua de Daro, firmado con una L.\"}",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/edran.json",
+  "tabla": "rooms",
+  "id": "edran_cobertizo_campo",
+  "campo": "examine.banco",
+  "condiciones": "Desde la segunda visita (requires_visits min 2).",
+  "texto": "{\"requires_visits\": {\"min\": 2}, \"text\": \"En la pata del banco hay otro dibujo pequeño: un Espinajo escondido detrás de una estaca pintada. Al lado, otra L.\"}",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/edran.json",
+  "tabla": "rooms",
+  "id": "edran_cobertizo_campo",
+  "campo": "actions[id=edran_secreto_lio_banco]",
+  "condiciones": "Desde la segunda visita, hasta encontrarlo.",
+  "texto": "{\"id\": \"edran_secreto_lio_banco\", \"label\": \"Mirar el dibujo de la pata del banco\", \"requires_visits\": {\"min\": 2}, \"forbids_flags\": [\"edran_lio_dibujo_banco\"], \"set_flags\": [\"edran_lio_dibujo_banco\"], \"scope\": \"player\", \"text\": \"Te agachas. El Espinajo de la pata asoma por detrás de la estaca, igual que uno de verdad en los tallos. Quien lo hizo esperaba sentado justo aquí.\", \"journal\": \"Otro Espinajo con una L, escondido en la pata del banco del cobertizo de las estacas.\"}",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/edran.json",
+  "tabla": "rooms",
+  "id": "valdren_pozo",
+  "campo": "examine.brocal",
+  "condiciones": "De día (con luz para ver la raya).",
+  "texto": "{\"requires_time\": [\"día\"], \"text\": \"En la piedra del brocal hay un Espinajo rayado con otra piedra, asomado al pozo como si quisiera beber. Éste no se borra con la lluvia. Al lado, una L.\"}",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/edran.json",
+  "tabla": "rooms",
+  "id": "valdren_pozo",
+  "campo": "actions[id=edran_secreto_lio_pozo]",
+  "condiciones": "De día, hasta encontrarlo.",
+  "texto": "{\"id\": \"edran_secreto_lio_pozo\", \"label\": \"Seguir con el dedo el dibujo del brocal\", \"requires_time\": [\"día\"], \"forbids_flags\": [\"edran_lio_dibujo_pozo\"], \"set_flags\": [\"edran_lio_dibujo_pozo\"], \"scope\": \"player\", \"text\": \"La raya es vieja: el agua del cubo la ha suavizado. Este Espinajo es más pequeño y más torpe que los otros. Quien lo hizo dibujaba Espinajos desde hace mucho.\", \"journal\": \"El Espinajo más antiguo de la L está rayado en el brocal del pozo.\"}",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/edran.json",
+  "tabla": "npcs",
+  "id": "edran_elva",
+  "campo": "topics.dibujos",
+  "condiciones": "Hablar con Elva tras encontrar los tres dibujos.",
+  "texto": "{\"requires_flags\": [\"edran_lio_dibujo_fragua\", \"edran_lio_dibujo_banco\", \"edran_lio_dibujo_pozo\"], \"text\": \"¿Has encontrado los Espinajos de Lio? Los dibuja cuando le toca esperar. El del pozo lo hizo de pequeño, el día que no le dejaban sacar agua solo. Si has visto los tres, ya sabes cuánto espera mi Lio. No se lo cuentes a Daro: cree que el de la taza se lo dibujó a él.\", \"journal\": \"Elva te contó que los Espinajos con una L son de Lio, que los dibuja cuando espera.\"}",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/edran.json",
+  "tabla": "npcs",
+  "id": "edran_daro",
+  "campo": "topics.dibujo",
+  "condiciones": "Hablar con Daro tras ver el dibujo de la taza.",
+  "texto": "{\"requires_flags\": [\"edran_lio_dibujo_fragua\"], \"text\": \"¿El de la taza? No la lavo. Me gusta ese bicho: tiene cara de estar esperando a que alguien le dé trabajo.\"}",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/hoshai.json",
+  "tabla": "rooms",
+  "id": "hoshai_cuello_roca",
+  "campo": "examine.repisa",
+  "condiciones": "Para cualquier especie: pista.",
+  "texto": "Muy arriba, en la pared del paso, hay una repisa estrecha. Desde abajo se ven rayas en la roca. Para llegar haría falta saltar como un Felaryn.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/hoshai.json",
+  "tabla": "rooms",
+  "id": "hoshai_cuello_roca",
+  "campo": "actions[id=hoshai_secreto_repisa]",
+  "condiciones": "Sólo personajes Felaryn (requires_species), una vez.",
+  "texto": "{\"id\": \"hoshai_secreto_repisa\", \"label\": \"Saltar a la repisa alta\", \"requires_species\": [\"felaryn\"], \"forbids_flags\": [\"hoshai_marca_repisa\"], \"set_flags\": [\"hoshai_marca_repisa\"], \"scope\": \"player\", \"text\": \"Tomas impulso en la piedra plana y alcanzas la repisa de un salto. Está llena de rayas de altura: cada una tiene al lado un nombre, una cola dibujada o las dos cosas. Son marcas de los niños de Khariel, de muchos años. Con una piedra haces la tuya, un poco más arriba de lo que esperabas.\", \"journal\": \"Dejaste tu marca de altura en la repisa alta del paso entre paredes, entre las de los niños de Khariel.\"}",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/hoshai.json",
+  "tabla": "npcs",
+  "id": "hoshai_luma",
+  "campo": "topics.repisa",
+  "condiciones": "Hablar con Luma tras dejar la marca.",
+  "texto": "{\"requires_flags\": [\"hoshai_marca_repisa\"], \"text\": \"¿Subiste a la repisa del paso? Mi marca es la tercera por abajo, la de la cola torcida. No la mires mucho: entonces era muy pequeña y muy orgullosa.\"}",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/lethra.json",
+  "tabla": "rooms",
+  "id": "lethra_orilla_silente",
+  "campo": "examine.fondo",
+  "condiciones": "Sólo Marevyn. La descripción ya dice «no ves el fondo»: ésa es la pista para los demás.",
+  "texto": "{\"requires_species\": [\"marevyn\"], \"text\": \"Acercas la cara al agua y tus ojos se acostumbran enseguida. En el fondo, entre el barro, hay una barquita de juguete con la vela rota. En el casco, rayado con cuidado: SOLA.\"}",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/lethra.json",
+  "tabla": "rooms",
+  "id": "lethra_orilla_silente",
+  "campo": "actions[id=lethra_secreto_barquita]",
+  "condiciones": "Sólo Marevyn, una vez para todo el mundo (scope world).",
+  "texto": "{\"id\": \"lethra_secreto_barquita\", \"label\": \"Sacar la barquita y dejarla en la raíz\", \"requires_species\": [\"marevyn\"], \"forbids_flags\": [\"lethra_barquita_rescatada\"], \"set_flags\": [\"lethra_barquita_rescatada\"], \"scope\": \"world\", \"text\": \"Metes el brazo hasta el codo, sin moverte del borde. La barquita sale llena de barro y agua. La vacías y la dejas en la raíz seca, con la vela hacia el sol.\", \"journal\": \"Sacaste del canal una barquita de juguete con el nombre de Sola y la dejaste secando en la raíz.\"}",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/lethra.json",
+  "tabla": "rooms",
+  "id": "lethra_orilla_silente",
+  "campo": "states[+]",
+  "condiciones": "Para todos, después del rescate.",
+  "texto": "{\"requires_flags\": [\"lethra_barquita_rescatada\"], \"overrides\": {\"examine\": {\"raíces\": \"En la raíz seca hay una barquita de juguete con la vela rota. Alguien la sacó del canal; en el casco pone SOLA.\"}}}",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/lethra.json",
+  "tabla": "npcs",
+  "id": "lethra_sola",
+  "campo": "topics.barquita",
+  "condiciones": "Hablar con Sola cuando la barquita está fuera (flag de mundo).",
+  "texto": "{\"requires_flags\": [\"lethra_barquita_rescatada\"], \"text\": \"¿Mi barquita? ¡La hundió Mira! Teníamos siete y ocho años. Dijo que quería ver si flotaba con piedras dentro. No flotaba.\"}",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/lethra.json",
+  "tabla": "npcs",
+  "id": "lethra_mira",
+  "campo": "topics.barquita",
+  "condiciones": "Hablar con Mira cuando la barquita está fuera.",
+  "texto": "{\"requires_flags\": [\"lethra_barquita_rescatada\"], \"text\": \"Eso no es verdad. La hundió ella sola y luego me echó la culpa. Pregúntale por qué le rayó su nombre tan grande: era para que nadie más pudiera jugar con ella.\"}",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/nhal.json",
+  "tabla": "rooms",
+  "id": "nhal_rincon_semillas",
+  "campo": "examine.figura",
+  "condiciones": "Tras nhal_figura_firme y sólo en fase día.",
+  "texto": "{\"requires_flags\": [\"nhal_figura_firme\"], \"requires_time\": [\"día\"], \"text\": \"Entre las semillas de verdad hay una figura de corteza con forma de Rondamusgo, con una pata atada con una tira. Alguien le ha puesto tres semillas delante, como si fuera a comer.\"}",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/nhal.json",
+  "tabla": "rooms",
+  "id": "nhal_rincon_semillas",
+  "campo": "actions[id=nhal_figura_vista_semillas]",
+  "condiciones": "Tras nhal_figura_firme, en fase día, una vez.",
+  "texto": "{\"id\": \"nhal_figura_vista_semillas\", \"label\": \"Mirar la figura de corteza\", \"requires_flags\": [\"nhal_figura_firme\"], \"requires_time\": [\"día\"], \"forbids_flags\": [\"nhal_figura_vista_semillas\"], \"set_flags\": [\"nhal_figura_vista_semillas\"], \"scope\": \"player\", \"text\": \"Miras la figura sin moverla. Las tres semillas están colocadas en fila. Un poco más allá, entre las raíces, hay pelo áspero de un Rondamusgo de verdad. Parece que la han traído a conocerlo.\", \"journal\": \"Viste la figura de corteza del sobrino de Desi: entre las semillas de verdad hay una figura de corteza con f…\"}",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/nhal.json",
+  "tabla": "rooms",
+  "id": "nhal_claro_silencio",
+  "campo": "examine.figura",
+  "condiciones": "Tras nhal_figura_firme y sólo en fase atardecer.",
+  "texto": "{\"requires_flags\": [\"nhal_figura_firme\"], \"requires_time\": [\"atardecer\"], \"text\": \"Sobre la piedra del claro está la figura de corteza, mirando la abertura del cielo. Tiene al lado una hoja doblada, como una manta.\"}",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/nhal.json",
+  "tabla": "rooms",
+  "id": "nhal_claro_silencio",
+  "campo": "actions[id=nhal_figura_vista_silencio]",
+  "condiciones": "Tras nhal_figura_firme, en fase atardecer, una vez.",
+  "texto": "{\"id\": \"nhal_figura_vista_silencio\", \"label\": \"Mirar la figura de corteza\", \"requires_flags\": [\"nhal_figura_firme\"], \"requires_time\": [\"atardecer\"], \"forbids_flags\": [\"nhal_figura_vista_silencio\"], \"set_flags\": [\"nhal_figura_vista_silencio\"], \"scope\": \"player\", \"text\": \"La figura mira hacia arriba, donde la luz entra entre las hojas. Alguien la ha dejado aquí para que viera el atardecer. La hoja doblada está bien remetida por debajo.\", \"journal\": \"Viste la figura de corteza del sobrino de Desi: sobre la piedra del claro está la figura de corteza, mirando…\"}",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/nhal.json",
+  "tabla": "rooms",
+  "id": "nhal_patio_relato",
+  "campo": "examine.figura",
+  "condiciones": "Tras nhal_figura_firme y sólo en fase noche.",
+  "texto": "{\"requires_flags\": [\"nhal_figura_firme\"], \"requires_time\": [\"noche\"], \"text\": \"Bajo el banco del relato asoma la figura de corteza, de cara a donde Leris lee. Como si escuchara.\"}",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/nhal.json",
+  "tabla": "rooms",
+  "id": "nhal_patio_relato",
+  "campo": "actions[id=nhal_figura_vista_relato]",
+  "condiciones": "Tras nhal_figura_firme, en fase noche, una vez.",
+  "texto": "{\"id\": \"nhal_figura_vista_relato\", \"label\": \"Mirar la figura de corteza\", \"requires_flags\": [\"nhal_figura_firme\"], \"requires_time\": [\"noche\"], \"forbids_flags\": [\"nhal_figura_vista_relato\"], \"set_flags\": [\"nhal_figura_vista_relato\"], \"scope\": \"player\", \"text\": \"La dejas donde está. Desde aquí la figura oye entero el relato de Leris. Quien la puso eligió el mejor sitio del patio.\", \"journal\": \"Viste la figura de corteza del sobrino de Desi: bajo el banco del relato asoma la figura de corteza, de cara…\"}",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/nhal.json",
+  "tabla": "npcs",
+  "id": "nhal_desi",
+  "campo": "topics.paseo",
+  "condiciones": "Hablar con Desi tras ver la figura en los tres sitios.",
+  "texto": "{\"requires_flags\": [\"nhal_figura_vista_semillas\", \"nhal_figura_vista_silencio\", \"nhal_figura_vista_relato\"], \"text\": \"¿La has visto en el claro? ¿Y en el rincón de las semillas, y en el patio? Mi sobrino dice que la está llevando a conocer a los Rondamusgos de verdad. Todavía no ha conseguido que ninguno se quede quieto para saludarla.\"}",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/veyra.json",
+  "tabla": "rooms",
+  "id": "veyra_patio_senales",
+  "campo": "examine.hueco",
+  "condiciones": "Desde la segunda visita. El examen «armazon» ya dice «cabe una mano»: es la pista.",
+  "texto": "{\"requires_visits\": {\"min\": 2}, \"text\": \"Metes la mano entre el armazón y la pared antigua. Tocas piedrecitas lisas, muchas, de colores distintos. Alguien las ha ido dejando ahí, una a una.\"}",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/veyra.json",
+  "tabla": "rooms",
+  "id": "veyra_patio_senales",
+  "campo": "actions[id=veyra_secreto_piedra]",
+  "condiciones": "Desde la segunda visita, una vez por personaje.",
+  "texto": "{\"id\": \"veyra_secreto_piedra\", \"label\": \"Dejar una piedrecita en el hueco\", \"requires_visits\": {\"min\": 2}, \"forbids_flags\": [\"veyra_piedra_hueco\"], \"set_flags\": [\"veyra_piedra_hueco\"], \"scope\": \"player\", \"text\": \"Buscas en el suelo una piedra pequeña y lisa y la dejas con las demás, al fondo del hueco. Al sacar la mano notas que la pared antigua está fría, aunque el patio esté al sol.\", \"journal\": \"Dejaste una piedrecita en el hueco de la pared antigua del patio de mensajes.\"}",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/veyra.json",
+  "tabla": "npcs",
+  "id": "veyra_arel",
+  "campo": "topics.hueco",
+  "condiciones": "Hablar con Arel tras dejar la piedra.",
+  "texto": "{\"requires_flags\": [\"veyra_piedra_hueco\"], \"text\": \"¿Tú también has dejado una? Lo hacemos desde pequeños. Nadie sabe quién levantó esa pared. Así que le dejamos algo, para que sepa que seguimos aquí.\"}",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/korven.json",
+  "tabla": "rooms",
+  "id": "korven_meseta_relevo",
+  "campo": "examine.dibujo",
+  "condiciones": "Primeras visitas.",
+  "texto": "En el margen de una nota hay un pino dibujado, con la copa doblada por el viento.",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/korven.json",
+  "tabla": "rooms",
+  "id": "korven_meseta_relevo",
+  "campo": "states[+] (visitas ≥ 3)",
+  "condiciones": "Desde la visita 3; colocar después de los anteriores para que gane el último.",
+  "texto": "{\"requires_visits\": {\"min\": 3}, \"overrides\": {\"examine\": {\"dibujo\": \"El pino del margen tiene ahora piñas. Y raíces, sujetando un poco de tierra. Lo ha dibujado más de una mano.\"}}}",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/korven.json",
+  "tabla": "rooms",
+  "id": "korven_meseta_relevo",
+  "campo": "states[+] (visitas ≥ 5)",
+  "condiciones": "Desde la visita 5; colocar después de los anteriores para que gane el último.",
+  "texto": "{\"requires_visits\": {\"min\": 5}, \"overrides\": {\"examine\": {\"dibujo\": \"Alguien ha colgado un Uñapiedra de una rama del pino. Debajo, con otra letra, pone: «¿Quién dibuja esto?»\"}}}",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/korven.json",
+  "tabla": "rooms",
+  "id": "korven_meseta_relevo",
+  "campo": "states[+] (visitas ≥ 8)",
+  "condiciones": "Desde la visita 8; colocar después de los anteriores para que gane el último.",
+  "texto": "{\"requires_visits\": {\"min\": 8}, \"overrides\": {\"examine\": {\"dibujo\": \"Debajo de la pregunta hay respuesta, con una letra nueva: «Todos.» El pino ya casi no cabe en el margen.\"}}}",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "content/regions/korven.json",
+  "tabla": "rooms",
+  "id": "korven_meseta_relevo",
+  "campo": "actions[id=korven_secreto_dibujo]",
+  "condiciones": "Desde la visita 5, una vez por personaje.",
+  "texto": "{\"id\": \"korven_secreto_dibujo\", \"label\": \"Añadir algo al dibujo del pino\", \"requires_visits\": {\"min\": 5}, \"forbids_flags\": [\"korven_dibujo_aportado\"], \"set_flags\": [\"korven_dibujo_aportado\"], \"scope\": \"player\", \"text\": \"Buscas un hueco libre en el margen y dibujas algo pequeño junto al pino. Cuando vuelvas, quizá alguien le haya añadido algo a lo tuyo.\", \"journal\": \"Añadiste tu propio dibujo al pino del margen, en el Refugio de Lajas.\"}",
+  "requiere_codigo": false
+ },
+ {
+  "archivo": "client/app.js + server/engine.py",
+  "tabla": "snapshot",
+  "id": "journal",
+  "campo": "secretos",
+  "condiciones": "Diario: una línea «Secretos encontrados: N» calculada con los flags de los secretos de este bloque. Sin total ni lista, para no estropear la sorpresa.",
+  "texto": "Secretos encontrados: {n}. El mundo guarda más.",
+  "requiere_codigo": true
+ }
+]

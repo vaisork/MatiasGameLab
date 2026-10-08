@@ -1,0 +1,116 @@
+{
+ "renderizador actual + texto actual · día": {
+  "palabras": 3070,
+  "repetidas": 1611,
+  "combate_resuelto": true,
+  "termina_en": "valdren_plaza",
+  "eventos": 128
+ },
+ "renderizador actual + texto actual · noche": {
+  "palabras": 2978,
+  "repetidas": 1577,
+  "combate_resuelto": true,
+  "termina_en": "valdren_plaza",
+  "eventos": 128
+ },
+ "renderizador propuesto + texto actual · día": {
+  "palabras": 3021,
+  "repetidas": 1611,
+  "combate_resuelto": true,
+  "termina_en": "valdren_plaza",
+  "eventos": 155
+ },
+ "renderizador propuesto + texto actual · noche": {
+  "palabras": 2923,
+  "repetidas": 1577,
+  "combate_resuelto": true,
+  "termina_en": "valdren_plaza",
+  "eventos": 155
+ },
+ "renderizador propuesto + texto propuesto · día": {
+  "palabras": 2053,
+  "repetidas": 538,
+  "combate_resuelto": true,
+  "termina_en": "valdren_plaza",
+  "eventos": 138
+ },
+ "renderizador propuesto + texto propuesto · noche": {
+  "palabras": 2029,
+  "repetidas": 548,
+  "combate_resuelto": true,
+  "termina_en": "valdren_plaza",
+  "eventos": 140
+ },
+ "cobertura": {
+  "valdren_plaza": [
+   "asiento",
+   "espacio",
+   "girar",
+   "puertas",
+   "sobresale"
+  ],
+  "valdren_fragua": [
+   "plaza",
+   "salida",
+   "trabaja"
+  ],
+  "valdren_huertos": [
+   "salir"
+  ],
+  "valdren_casa_semillas": [
+   "algunos",
+   "cantidades",
+   "esperan",
+   "nombres",
+   "permiten",
+   "puerta",
+   "rodearlos",
+   "secarse",
+   "vuelve"
+  ],
+  "valdren_pozo": [
+   "detrás"
+  ],
+  "valdren_cobertizo": [
+   "girarlo"
+  ],
+  "valdren_patio_carros": [
+   "detiene",
+   "mover",
+   "permite",
+   "puede",
+   "volver"
+  ],
+  "valdren_graneros": [
+   "acumula",
+   "alcanza",
+   "cruza",
+   "sales"
+  ],
+  "valdren_comedor": [
+   "distintos",
+   "llegan",
+   "sirve",
+   "vueltas"
+  ],
+  "valdren_calle_alta": [
+   "estrechan"
+  ],
+  "valdren_patio_ropa": [
+   "entra",
+   "heridas",
+   "ocupa"
+  ],
+  "valdren_cuidado": [
+   "lejos",
+   "pueden",
+   "puerta",
+   "vuelve"
+  ]
+ },
+ "tests_con_parche": "OK",
+ "tests_sin_parche": "OK",
+ "cliente qa-narrative.mjs": "PASS",
+ "cliente qa-printing.mjs": "PASS",
+ "cliente qa-passive.mjs": "PASS"
+}
