@@ -5,7 +5,7 @@ SHA-256 del PDF fuente: `c9adf01be33a1a4affa2f93958fb756643dedc82d2eff3f7e96df93
 
 Transcripción de texto; se omiten portada/datos de acceso. El PDF original no se publica porque contiene información sensible. Esta versión conserva la visión, no autoriza despliegues ni reactiva tareas pausadas.
 
-Las instrucciones posteriores de Javier y `DECISIONES_VIGENTES.md` prevalecen sobre aspiraciones del prompt. En particular, bestiario 3D y animaciones siguen fuera del alcance vigente. No convertir las propuestas del documento en tareas aprobadas automáticamente.
+Las instrucciones posteriores de Javier y `DECISIONES_VIGENTES.md` prevalecen sobre aspiraciones del prompt. En particular, bestiario 3D y animaciones siguen fuera del alcance vigente. **El roster definitivo actual es Juramentado, Arcano, Sombra y Artífice; Vigía e Invocador están superseded y no deben implementarse.** No convertir las propuestas del documento en tareas aprobadas automáticamente.
 
 ## Principios
 
