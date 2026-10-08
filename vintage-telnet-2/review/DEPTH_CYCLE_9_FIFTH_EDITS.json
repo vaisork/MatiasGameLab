@@ -1,0 +1,20 @@
+[
+  {
+    "file": "hoshai.json",
+    "path": ".rooms.hoshai_garganta_oeste.return",
+    "before": "Reconoces el ensanchamiento por su pared baja y puedes esperar sin bloquear el ascenso. La vuelta hacia Hoshai devuelve primero las corrientes pequeñas, luego la vegetación; el cambio ya tiene una secuencia que puedes recordar.",
+    "after": "Reconoces el ensanchamiento por su pared baja y puedes esperar sin bloquear el ascenso. La vuelta hacia Hoshai devuelve primero las corrientes pequeñas, luego la vegetación. Al salir del tramo de polvo, una corriente cruza bajo la primera raíz."
+  },
+  {
+    "file": "hoshai.json",
+    "path": ".rooms.hoshai_senda_dosel.day",
+    "before": "Un viajero del bosque deja hojas oscuras junto al banco al sacudir su cubierta. Una habitante de Khariel pregunta por las marcas de la próxima curva antes de despedirlo. Ambos reconocen trabajos de mantenimiento distintos.",
+    "after": "Un viajero del bosque deja hojas oscuras junto al banco al sacudir su cubierta. Una habitante de Khariel pregunta por las marcas de la próxima curva antes de despedirlo. Ella señala el borde rehecho del banco; él aparta una hoja para mostrar la raíz del dibujo."
+  },
+  {
+    "file": "lethra.json",
+    "path": ".rooms.lethra_plataforma_secado.day",
+    "before": "Una vecina recoge primero las barras del lado que ya recibió sol y deja las otras abiertas. Su compañero señala una costura que aprendió de su madre. La conversación recuerda trabajo compartido mientras sigue atendiendo al paño.",
+    "after": "Una vecina recoge primero las barras del lado que ya recibió sol y deja las otras abiertas. Su compañero señala una costura que aprendió de su madre. Pasa el pulgar por aquella costura y dobla el extremo que ya está seco."
+  }
+]

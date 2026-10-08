@@ -1,0 +1,28 @@
+{
+  "phase": "framing",
+  "results": [
+    {
+      "width": 320,
+      "loaded": true,
+      "canvasesAfterDispose": 0,
+      "lateLoadDidNotRemount": true,
+      "errorPreservesProceduralFallback": true
+    },
+    {
+      "width": 393,
+      "loaded": true,
+      "canvasesAfterDispose": 0,
+      "lateLoadDidNotRemount": true,
+      "errorPreservesProceduralFallback": true
+    },
+    {
+      "width": 1100,
+      "loaded": true,
+      "canvasesAfterDispose": 0,
+      "lateLoadDidNotRemount": true,
+      "errorPreservesProceduralFallback": true
+    }
+  ],
+  "errors": [],
+  "limits": "No animation clips supplied. Visual canon requires screenshot inspection."
+}

@@ -1,0 +1,29 @@
+{
+  "scope": "Read-only intercepted snapshot, no player actions; Chrome with desktop and mobile viewports.",
+  "results": [
+    {
+      "width": 1440,
+      "height": 3,
+      "lowHealthColors": true,
+      "healthUpdates": true,
+      "hiddenOutsideCombat": true,
+      "errors": []
+    },
+    {
+      "width": 393,
+      "height": 3,
+      "lowHealthColors": true,
+      "healthUpdates": true,
+      "hiddenOutsideCombat": true,
+      "errors": []
+    },
+    {
+      "width": 320,
+      "height": 3,
+      "lowHealthColors": true,
+      "healthUpdates": true,
+      "hiddenOutsideCombat": true,
+      "errors": []
+    }
+  ]
+}

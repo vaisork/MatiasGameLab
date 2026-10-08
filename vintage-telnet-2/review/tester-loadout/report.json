@@ -1,0 +1,55 @@
+{
+  "level": 30,
+  "hp": 273.75,
+  "attributes": {
+    "fuerza": 55,
+    "resistencia": 60,
+    "agilidad": 40,
+    "percepcion": 35,
+    "intelecto": 20,
+    "voluntad": 35,
+    "destreza": 50,
+    "presencia": 20
+  },
+  "rations": 200,
+  "armorReduction": 0.35,
+  "combatSimulation": {
+    "mordelinde": {
+      "wins": 100,
+      "minimumRemainingHP": 261.75,
+      "maximumRounds": 6
+    },
+    "espinajo_rastrojo": {
+      "wins": 100,
+      "minimumRemainingHP": 248.75,
+      "maximumRounds": 6
+    },
+    "cornalomo": {
+      "wins": 100,
+      "minimumRemainingHP": 182.75,
+      "maximumRounds": 8
+    },
+    "dorsalodo": {
+      "wins": 100,
+      "minimumRemainingHP": 182.75,
+      "maximumRounds": 8
+    },
+    "rasgacumbres": {
+      "wins": 100,
+      "minimumRemainingHP": 182.75,
+      "maximumRounds": 8
+    },
+    "quebrarrocas": {
+      "wins": 100,
+      "minimumRemainingHP": 182.75,
+      "maximumRounds": 8
+    },
+    "rasgacorteza": {
+      "wins": 100,
+      "minimumRemainingHP": 182.75,
+      "maximumRounds": 8
+    }
+  },
+  "scope": "700 mechanics simulations on state copies; no claim of 700 live world encounters. No balance changes for other players. Production modified only authorized tester loadout and cleared its pending combat/attention.",
+  "backup": "/home/jdiaz/proyectos/vintage-telnet-2-nuevo/runtime/backups/before-tester-loadout-20261007-014305.sqlite3"
+}

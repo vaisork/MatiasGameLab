@@ -1,0 +1,15 @@
+/runtime/
+__pycache__/
+*.pyc
+/review/browser-artifacts/
+node_modules/
+package-lock.json
+/core
+/core.*
+.venv/
+.env
+.env.*
+*.sqlite3
+*.sqlite3-wal
+*.sqlite3-shm
+/dist/

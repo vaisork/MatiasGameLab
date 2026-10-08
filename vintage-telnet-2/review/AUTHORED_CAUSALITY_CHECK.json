@@ -1,0 +1,60 @@
+{
+  "scope": "Controlled engine fixtures; neither a journey nor human/browser evidence.",
+  "checks": [
+    {
+      "action": "hoshai_observar_nudo",
+      "controlled_hours": 72,
+      "observed_conditions": [
+        "('Noche', False)",
+        "('Noche', True)",
+        "('Día', False)",
+        "('Día', True)"
+      ]
+    },
+    {
+      "action": "korven_atribuir_cambio",
+      "controlled_hours": 72,
+      "observed_conditions": [
+        "('Noche', True)",
+        "('Noche', False)",
+        "('Día', True)",
+        "('Día', False)"
+      ]
+    },
+    {
+      "action": "nhal_atribuir_marcas",
+      "controlled_hours": 72,
+      "observed_conditions": [
+        "('Noche', False)",
+        "('Noche', True)",
+        "('Día', False)",
+        "('Día', True)"
+      ]
+    },
+    {
+      "action": "hoshai_comunicar_nudo",
+      "requires_present_scheduled_npc": true
+    },
+    {
+      "action": "korven_localizar_aviso",
+      "requires_present_scheduled_npc": true
+    },
+    {
+      "action": "lethra_llevar_invitacion",
+      "requires_present_scheduled_npc": true
+    },
+    {
+      "room": "veyra_calle_toldos",
+      "world_effect_visible_to_nonactor": "veyra_costura_acordada"
+    },
+    {
+      "room": "nhal_umbral_elin",
+      "world_effect_visible_to_nonactor": "nhal_recipiente_devuelto"
+    },
+    {
+      "room": "nhal_patio_relato",
+      "world_effect_visible_to_nonactor": "nhal_relato_ampliado"
+    }
+  ],
+  "result": "PASS"
+}

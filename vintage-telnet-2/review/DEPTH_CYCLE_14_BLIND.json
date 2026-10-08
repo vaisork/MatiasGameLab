@@ -1,0 +1,3818 @@
+{
+  "moves": 96,
+  "distinct_rooms": 42,
+  "events": [
+    {
+      "action": "mover",
+      "target": "salir",
+      "room": "narevia_centro",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Narevia ocupa una isla baja unida por pasarelas. Al norte está el camino terrestre, al este el taller, al sur el mercado y al oeste la ribera que sale hacia Edran. Los Marevyn pasan entre barcas y plataformas; los apoyos altos conservan espacio seco junto a la plaza."
+        },
+        {
+          "kind": "world",
+          "text": "Una familia reparte comida sobre la plataforma alta. Quien cuenta una visita de la otra orilla espera al final del martilleo para repetir el nombre; un niño sopla su cuenco."
+        },
+        {
+          "kind": "world",
+          "text": "Un junco amarrado vibra contra el poste de la pasarela. Las ondas cruzan los reflejos de las casas; en la plataforma alta cubren un cuenco para que no entren hojas."
+        }
+      ],
+      "seals": 20,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "sur",
+      "room": "lethra_mercado_hojas",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Las barcas traen alimentos en cestas levantadas del fondo. Los puestos separan las envolturas abiertas de las que deben conservar humedad. Huele a hierbas cortadas y madera mojada. Al norte queda la plaza; al sur está el muelle. Los vendedores preparan bultos distintos para comer cerca o viajar."
+        },
+        {
+          "kind": "world",
+          "text": "Iria apoya una mano sobre la envoltura abierta. La compradora recoge la hoja rota antes de que caiga al canal y comprueba si todavía puede usarla."
+        },
+        {
+          "kind": "world",
+          "text": "Recibe viajeros y repone el puesto sin cerrar el paso."
+        }
+      ],
+      "seals": 20,
+      "hp": 100
+    },
+    {
+      "action": "hablar",
+      "target": "lethra_nera_mercado",
+      "room": "lethra_mercado_hojas",
+      "events": [
+        {
+          "kind": "npc",
+          "text": "Tila: Traemos puñales, varitas comunes y provisiones. Compro junco para amarres, resina para proteger uniones y ramas flexibles. Las otras armas se consiguen en Vaisgard o en los talleres de camino."
+        }
+      ],
+      "seals": 20,
+      "hp": 100
+    },
+    {
+      "action": "hablar",
+      "target": "lethra_nera_mercado",
+      "room": "lethra_mercado_hojas",
+      "events": [
+        {
+          "kind": "npc",
+          "text": "Tila: Mira prepara el paño para una reunión en la cocina. Mira las costuras en la plataforma; decide si llevarlo allí o recomendar un lugar cubierto. Nima necesita la noticia antes de poner los cuencos."
+        }
+      ],
+      "seals": 20,
+      "hp": 100
+    },
+    {
+      "action": "aceptar",
+      "target": "narevia_preparativos",
+      "room": "lethra_mercado_hojas",
+      "events": [
+        {
+          "kind": "action",
+          "text": "Tila paga por comprobar el paño en la plataforma de Mira y llevar una propuesta a Nima en la cocina. Puedes elegir esperar a que seque o mantener la reunión bajo cubierta."
+        }
+      ],
+      "seals": 20,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "norte",
+      "room": "narevia_centro",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Narevia ocupa una isla baja unida por pasarelas. Al norte está el camino terrestre, al este el taller, al sur el mercado y al oeste la ribera que sale hacia Edran. Los Marevyn pasan entre barcas y plataformas; los apoyos altos conservan espacio seco junto a la plaza."
+        },
+        {
+          "kind": "world",
+          "text": "Una familia reparte comida sobre la plataforma alta. Quien cuenta una visita de la otra orilla espera al final del martilleo para repetir el nombre; un niño sopla su cuenco."
+        },
+        {
+          "kind": "world",
+          "text": "La pasarela de llegada queda entre taller y mercado. Desde la plataforma alta puedes situar la ribera occidental por el hueco entre las barcas."
+        }
+      ],
+      "seals": 20,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "este",
+      "room": "lethra_taller_fibras",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Haces de fibra esperan bajo un techo abierto hacia el canal. Los hilos secos cuelgan altos y los húmedos quedan en recipientes bajos. Una artesana los prueba con los dedos. Al oeste vuelves a la plaza; al sur está la plataforma de secado. La mesa deja escurrir el agua. Una puerta al este lleva al lugar de cuidados."
+        },
+        {
+          "kind": "world",
+          "text": "Una artesana separa dos fibras y deja una pequeña horquilla entre ellas. Su compañera prueba la tensión del trenzado con el pulgar y deshace una vuelta demasiado apretada."
+        },
+        {
+          "kind": "world",
+          "text": "Trenza y separa fibras junto al canal."
+        }
+      ],
+      "seals": 20,
+      "hp": 100
+    },
+    {
+      "action": "hablar",
+      "target": "lethra_mira",
+      "room": "lethra_taller_fibras",
+      "events": [
+        {
+          "kind": "npc",
+          "text": "Mira: Cada reunión dejó una reparación. La costura corta es de mi hermana, que ya vive en otra ribera."
+        }
+      ],
+      "seals": 20,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "sur",
+      "room": "lethra_plataforma_secado",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Los paños cuelgan sobre barras separadas para que no se toquen con el viento. Uno conserva remiendos de manos distintas. Al norte vuelves al taller; al este hay un banco para conversar. El canal estrecho corre debajo del borde y deja entrar aire por ambos lados."
+        },
+        {
+          "kind": "world",
+          "text": "Una vecina recoge primero las barras del lado que ya recibió sol y deja las otras abiertas. Su compañero señala una costura que aprendió de su madre. Pasa el pulgar por aquella costura y dobla el extremo que ya está seco."
+        }
+      ],
+      "seals": 20,
+      "hp": 100
+    },
+    {
+      "action": "examinar",
+      "target": "costuras",
+      "room": "lethra_plataforma_secado",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Distintas manos repararon el paño a lo largo de reuniones familiares."
+        }
+      ],
+      "seals": 20,
+      "hp": 100
+    },
+    {
+      "action": "lethra_elegir_cubierto",
+      "target": null,
+      "room": "lethra_plataforma_secado",
+      "events": [
+        {
+          "kind": "action",
+          "text": "Recomiendas reunir los cuencos en la cocina cubierta y dejar el paño secándose. No hace falta sostenerlo mojado sobre la comida."
+        }
+      ],
+      "seals": 20,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "este",
+      "room": "lethra_banco_conversacion",
+      "events": [
+        {
+          "kind": "world",
+          "text": "El agua lleva voces bajo el banco. Hay sitio para un recipiente y para quien espera. Al oeste vuelves a los paños; al sur está la cocina."
+        },
+        {
+          "kind": "world",
+          "text": "La habitante repasa una frase antes de decirla y luego guarda silencio para escuchar pasos. Un vecino deja un recipiente y continúa hacia la cocina. Una mujer guarda sitio con un recipiente vacío. Quien espera a su hermana mira la ventana de la cocina y pregunta si ya empezó la cena."
+        }
+      ],
+      "seals": 20,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "sur",
+      "room": "lethra_cocina_reunion",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Huele a hierbas, raíces y humo. El fuego está sobre suelo seco, lejos del canal. Los vecinos acercan sus utensilios a la mesa. Una olla vieja tiene la base reparada y el asa envuelta para no quemarse. La salida del norte vuelve al banco de conversación."
+        },
+        {
+          "kind": "world",
+          "text": "Una cocinera levanta la tapa y deja salir olor a hierbas. Alguien prueba con una cuchara, espera y acerca el cuenco a otra persona para que decida si falta sal."
+        }
+      ],
+      "seals": 20,
+      "hp": 100
+    },
+    {
+      "action": "hablar",
+      "target": "lethra_nima",
+      "room": "lethra_cocina_reunion",
+      "events": [
+        {
+          "kind": "npc",
+          "text": "Nima: Mi padre dice que estas hojas siempre amargan. Las puso él. Ahora me toca lograr que también se lo coma."
+        },
+        {
+          "kind": "discovery",
+          "text": "Nima mantiene los cuencos bajo la cubierta de la cocina."
+        }
+      ],
+      "seals": 20,
+      "hp": 100
+    },
+    {
+      "action": "hablar",
+      "target": "lethra_nima",
+      "room": "lethra_cocina_reunion",
+      "events": [
+        {
+          "kind": "npc",
+          "text": "Nima: Nima escucha tu propuesta y anota dónde reunir los cuencos. Desde la cocina llama a Mira para confirmar cómo sigue el paño."
+        },
+        {
+          "kind": "discovery",
+          "text": "Nima mantiene los cuencos bajo la cubierta de la cocina."
+        },
+        {
+          "kind": "discovery",
+          "text": "El encargo ya puede entregarse."
+        }
+      ],
+      "seals": 20,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "norte",
+      "room": "lethra_banco_conversacion",
+      "events": [
+        {
+          "kind": "world",
+          "text": "El agua lleva voces bajo el banco. Hay sitio para un recipiente y para quien espera. Al oeste vuelves a los paños; al sur está la cocina."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces el extremo del banco donde dejaron el recipiente vacío. La ventana de la cocina queda a la vista desde ese asiento."
+        },
+        {
+          "kind": "world",
+          "text": "La habitante repasa una frase antes de decirla y luego guarda silencio para escuchar pasos. Un vecino deja un recipiente y continúa hacia la cocina. Una mujer guarda sitio con un recipiente vacío. Quien espera a su hermana mira la ventana de la cocina y pregunta si ya empezó la cena."
+        }
+      ],
+      "seals": 20,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "oeste",
+      "room": "lethra_plataforma_secado",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Los paños cuelgan sobre barras separadas para que no se toquen con el viento. Uno conserva remiendos de manos distintas. Al norte vuelves al taller; al este hay un banco para conversar. El canal estrecho corre debajo del borde y deja entrar aire por ambos lados."
+        },
+        {
+          "kind": "world",
+          "text": "La costura que examinaste sigue al aire. La plataforma quedó libre de cuencos al comunicar tu propuesta de usar la cocina."
+        },
+        {
+          "kind": "world",
+          "text": "El paño sigue abierto sobre las barras. Mira señala la costura húmeda y guarda la caja: los cuencos se reunirán bajo la cubierta de la cocina."
+        }
+      ],
+      "seals": 20,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "norte",
+      "room": "lethra_taller_fibras",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Haces de fibra esperan bajo un techo abierto hacia el canal. Los hilos secos cuelgan altos y los húmedos quedan en recipientes bajos. Una artesana los prueba con los dedos. Al oeste vuelves a la plaza; al sur está la plataforma de secado. La mesa deja escurrir el agua. Una puerta al este lleva al lugar de cuidados."
+        },
+        {
+          "kind": "world",
+          "text": "Una artesana separa dos fibras y deja una pequeña horquilla entre ellas. Su compañera prueba la tensión del trenzado con el pulgar y deshace una vuelta demasiado apretada."
+        },
+        {
+          "kind": "world",
+          "text": "Los haces húmedos quedan junto al canal y las trenzas terminadas sobre la repisa. El banco donde compararon las fibras sigue entre ambos."
+        }
+      ],
+      "seals": 20,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "oeste",
+      "room": "narevia_centro",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Narevia ocupa una isla baja unida por pasarelas. Al norte está el camino terrestre, al este el taller, al sur el mercado y al oeste la ribera que sale hacia Edran. Los Marevyn pasan entre barcas y plataformas; los apoyos altos conservan espacio seco junto a la plaza."
+        },
+        {
+          "kind": "world",
+          "text": "El cuenco del niño queda vacío. Quien contaba la visita dibuja con una cuchara el lugar donde amarraron la barca; otra persona corrige la curva con el dedo."
+        },
+        {
+          "kind": "world",
+          "text": "Un junco amarrado vibra contra el poste de la pasarela. Las ondas cruzan los reflejos de las casas; en la plataforma alta cubren un cuenco para que no entren hojas."
+        }
+      ],
+      "seals": 20,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "sur",
+      "room": "lethra_mercado_hojas",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Las barcas traen alimentos en cestas levantadas del fondo. Los puestos separan las envolturas abiertas de las que deben conservar humedad. Huele a hierbas cortadas y madera mojada. Al norte queda la plaza; al sur está el muelle. Los vendedores preparan bultos distintos para comer cerca o viajar."
+        },
+        {
+          "kind": "world",
+          "text": "Iria apoya una mano sobre la envoltura abierta. La compradora recoge la hoja rota antes de que caiga al canal y comprueba si todavía puede usarla."
+        },
+        {
+          "kind": "world",
+          "text": "Las envolturas abiertas quedan cerca del agua; las de viaje, bajo el borde de la cubierta. La separación que viste permite encontrar dónde preguntar."
+        }
+      ],
+      "seals": 20,
+      "hp": 100
+    },
+    {
+      "action": "cobrar",
+      "target": "narevia_preparativos",
+      "room": "lethra_mercado_hojas",
+      "events": [
+        {
+          "kind": "reward",
+          "text": "Entregas Dónde poner los cuencos. Recibes 6 sellos."
+        }
+      ],
+      "seals": 26,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "norte",
+      "room": "narevia_centro",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Narevia ocupa una isla baja unida por pasarelas. Al norte está el camino terrestre, al este el taller, al sur el mercado y al oeste la ribera que sale hacia Edran. Los Marevyn pasan entre barcas y plataformas; los apoyos altos conservan espacio seco junto a la plaza."
+        },
+        {
+          "kind": "world",
+          "text": "El cuenco del niño queda vacío. Quien contaba la visita dibuja con una cuchara el lugar donde amarraron la barca; otra persona corrige la curva con el dedo."
+        },
+        {
+          "kind": "world",
+          "text": "Un junco amarrado vibra contra el poste de la pasarela. Las ondas cruzan los reflejos de las casas; en la plataforma alta cubren un cuenco para que no entren hojas."
+        }
+      ],
+      "seals": 26,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "norte",
+      "room": "lethra_senda_elevada",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Pasas frente a viviendas separadas por canales. Sus puertas abren a plataformas propias, fuera del camino. Al norte queda el embarcadero; al sur se oyen las voces de Narevia. Una vecina levanta comida hacia una ventana y otra devuelve un recipiente. Se llaman por sus nombres sobre el agua."
+        },
+        {
+          "kind": "world",
+          "text": "Desde una ventana bajan una cesta y desde la siguiente devuelven dos paños doblados. La vecina llama a quien espera y le pide que acerque el asa."
+        }
+      ],
+      "seals": 26,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "norte",
+      "room": "lethra_embarcadero_camino",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Bajo el techo se cambian las cargas del camino a pequeñas embarcaciones. Los bultos dejan libre el borde del agua. Al norte vuelves a la pasarela y al sur sigues hacia Narevia. Un poste marca el nivel del canal; otro guarda las tiras de las barcas esperadas."
+        },
+        {
+          "kind": "world",
+          "text": "Una encargada llama a quien espera una cesta y la recibe de mano en mano, sin lanzarla sobre el canal. Un niño identifica una tira de llegada y corre por la senda alta para avisar a su casa."
+        }
+      ],
+      "seals": 26,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "norte",
+      "room": "lethra_pasarela_curva",
+      "events": [
+        {
+          "kind": "world",
+          "text": "La pasarela rodea el agua quieta. Ves la orilla de llegada casi enfrente, pero debes seguir la curva hacia el sur para alcanzarla. Al norte queda la ribera de los recipientes. Una baranda protege el lado abierto. Más adelante asoman el techo y los postes del embarcadero."
+        },
+        {
+          "kind": "world",
+          "text": "Una vecina lleva un recipiente ancho por la curva. Se detiene en el ensanchamiento para dejar pasar a alguien y vuelve a mirar la orilla de enfrente."
+        }
+      ],
+      "seals": 26,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "norte",
+      "room": "lethra_ribera_firme",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Recipientes cerrados esperan sobre apoyos de madera, por encima del barro. Huele a fibras mojadas y comida envuelta en hojas. Al norte vuelves al cruce de canales; al sur una curva lleva a la pasarela. Quienes descargan dejan los bultos levantados mientras buscan espacio."
+        },
+        {
+          "kind": "world",
+          "text": "Dos vecinas intercambian un recipiente sin bajarlo al suelo. Una tercera reconoce por la envoltura qué debe abrirse antes. La tercera se aparta con la envoltura abierta y las otras dos vuelven a sus apoyos."
+        }
+      ],
+      "seals": 26,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "norte",
+      "room": "lethra_cruce_canales",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Un canal corre rápido junto a otro casi quieto. Las tablas llegan del norte y la senda sale al sur por tierra firme. En una pequeña plataforma junto al paso puedes mirar cómo gira una hoja. Las plantas se doblan hacia lados distintos de la corriente."
+        },
+        {
+          "kind": "world",
+          "text": "El viento empuja la hoja de lado sobre el remanso. La observadora señala una planta hundida que sigue inclinándose corriente abajo y borra el último giro de su tablilla."
+        },
+        {
+          "kind": "world",
+          "text": "Una Marevyn observa una hoja hasta que sale del remanso y anota el giro en una tablilla. Desde el apoyo seco señala dónde cambia la corriente y espera a que la hoja llegue al siguiente canal. Un viajero guarda su recipiente antes de acercarse a preguntar."
+        }
+      ],
+      "seals": 26,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "norte",
+      "room": "lethra_tablas_primeras",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Las tablas cruzan por encima del barro sobre apoyos bajos. Al norte están los juncos; al sur se separan dos canales. El agua escurre por las uniones. Algunas tablas están más gastadas que otras. Una vara de prueba cuelga a un lado, fuera del agua."
+        },
+        {
+          "kind": "world",
+          "text": "Un carpintero camina sin carga hasta la unión que debe revisar. Sus compañeros esperan sobre tierra firme. El ruido de una tabla gastada se distingue mejor cuando nadie habla ni hace vibrar todo el tramo."
+        }
+      ],
+      "seals": 26,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "norte",
+      "room": "lethra_juncal_abierto",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Los juncos se abren con el viento y dejan ver el agua. La senda vuelve al norte, hacia las raíces, y sigue al sur sobre las primeras tablas. Un desvío al oeste llega al banco de barro. Las huellas mantienen despejada una franja entre los tallos."
+        },
+        {
+          "kind": "danger",
+          "text": "Una pinza desigual se levanta al borde del agua. El Pinzajunco arrastra una hoja hacia su agujero cuando los pasos siguen por tierra."
+        },
+        {
+          "kind": "world",
+          "text": "Una artesana elige tallos secos y deja los verdes juntos para no abrir un hueco nuevo. Al atarlos, los juncos crujen con un sonido distinto del viento. Las fibras quedan junto al borde y el centro se mantiene libre para quienes pasan."
+        },
+        {
+          "kind": "discovery",
+          "text": "Añades Pinzajunco al bestiario."
+        }
+      ],
+      "seals": 26,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "norte",
+      "room": "lethra_tierra_esponjosa",
+      "events": [
+        {
+          "kind": "world",
+          "text": "El suelo firme se corta en manchas de hojas que se hunden al pisarlas. Al norte está la ribera seca; al sur, las raíces llevan al juncal. Dos varas marcan el paso estrecho para las cargas. Una rana permanece quieta sobre el barro."
+        },
+        {
+          "kind": "world",
+          "text": "Una viajera se detiene a cambiar el bulto de hombro y un acompañante deja pasar a la rana antes de seguir. La pausa produce un silencio breve, lleno de insectos que seguían sonando bajo las voces."
+        }
+      ],
+      "seals": 26,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "norte",
+      "room": "lethra_ribera_seca",
+      "events": [
+        {
+          "kind": "world",
+          "text": "El camino sigue sobre raíces, junto a un cauce cada vez más ancho. Al norte vuelves a las hondonadas de Vaisgard; al sur empiezan las hierbas húmedas. Un ave cruza hasta la otra orilla. Su vuelo deja ver cuánto terreno escondían los tallos."
+        },
+        {
+          "kind": "world",
+          "text": "Una recolectora limpia su cuchillo sobre una hoja seca y junta tallos sin raíces. Su cesta desprende un olor fresco que se distingue del barro. Al cerrar la cesta, la recolectora retira una hoja del cierre."
+        }
+      ],
+      "seals": 26,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "norte",
+      "room": "veyra_hondonada_canales",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Varios hilos de agua se reúnen en un canal. El camino sigue por la orilla alta y cruza un desagüe sobre una pasarela corta. Al norte queda Vaisgard; al sur la vegetación se vuelve más densa y empieza el camino de Lethra."
+        },
+        {
+          "kind": "world",
+          "text": "Una recolectora vacía su cesta de hierbas sobre la ribera seca. Conserva las raíces aparte para no llevar barro al mercado. Desde aquí puede ver quién llega a la pasarela y dejarle espacio antes de levantarse."
+        }
+      ],
+      "seals": 26,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "norte",
+      "room": "veyra_puerta_juncos",
+      "events": [
+        {
+          "kind": "world",
+          "text": "El canal pasa junto a una puerta lateral. Fuera, las casas dejan sitio a hondonadas de hierba alta. Una tabla permite cambiarse el calzado sin tapar el paso. Al norte vuelves a los toldos; al sur sigues el agua hacia Lethra."
+        },
+        {
+          "kind": "world",
+          "text": "Una viajera quita barro de sus recipientes antes de entrar. Otros levantan los bultos sobre el suelo; el canal pasa por debajo de la tabla donde esperan."
+        }
+      ],
+      "seals": 26,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "norte",
+      "room": "veyra_calle_toldos",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Toldos remendados cubren la calle. Cada taller ha reparado su tramo con una tela distinta. El mercado queda al oeste. Al sur sales hacia los canales; al este llega el camino del bosque, por donde entran haces de madera."
+        },
+        {
+          "kind": "world",
+          "text": "Una Marevyn sujeta el borde del toldo mientras su vecino cose. Comprueban dónde caerá el agua para no mojar el taller de abajo."
+        },
+        {
+          "kind": "world",
+          "text": "Ajusta costuras compartidas."
+        }
+      ],
+      "seals": 26,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "oeste",
+      "room": "vaisgard_mercado",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Frutas, herramientas y cestas ocupan los puestos entre muros antiguos. Un canal pequeño cruza el mercado. Al norte está la plaza de las rutas; al sur, el patio del agua. Los carros entran por el oeste y los toldos cubren la calle del este."
+        },
+        {
+          "kind": "world",
+          "text": "Una vendedora corta una fruta para mostrar el centro. Su vecina prueba un trozo y hace una mueca; ambas apartan esa cesta mientras una niña recoge la semilla del plato."
+        },
+        {
+          "kind": "world",
+          "text": "Recibe viajeros y repone el puesto sin cerrar el paso."
+        }
+      ],
+      "seals": 26,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "sur",
+      "room": "veyra_patio_agua",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Una pila recibe el agua de las calles. La parte alta guarda agua limpia; abajo se recoge la usada. Los recipientes de las casas esperan lejos del barro. Al norte vuelves al mercado. Rodeando la baranda hacia el sur llegas a la huerta. Una puerta al este lleva al lugar de cuidados."
+        },
+        {
+          "kind": "world",
+          "text": "Una mujer compara el sabor de dos vasos de agua y deja uno junto al canal. Un niño acerca la nariz al segundo; ella le señala la jarra de barro recién enjuagada."
+        }
+      ],
+      "seals": 26,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "sur",
+      "room": "veyra_huerta_baja",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Una franja de huerta ocupa el pie de las casas. Cultivan hierbas y semillas con el agua que baja por canales pequeños. Las herramientas caben en un cobertizo bajo. Al norte está el patio del agua; al sur subes a una colina abierta."
+        },
+        {
+          "kind": "world",
+          "text": "Una vecina busca pulgones bajo una hoja y deja intacta una mariquita. En el escalón, un niño cuenta las manchas rojas de un fruto antes de decidir si ya puede cogerlo."
+        }
+      ],
+      "seals": 26,
+      "hp": 100
+    },
+    {
+      "action": "observar",
+      "target": null,
+      "room": "veyra_huerta_baja",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Una vecina busca pulgones bajo una hoja y deja intacta una mariquita. En el escalón, un niño cuenta las manchas rojas de un fruto antes de decidir si ya puede cogerlo."
+        },
+        {
+          "kind": "trace",
+          "text": "Puedes colocarla para llevar agua a la parcela o dejarla correr por el canal."
+        },
+        {
+          "kind": "action",
+          "text": "Observas con atención."
+        }
+      ],
+      "seals": 26,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "norte",
+      "room": "veyra_patio_agua",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Una pila recibe el agua de las calles. La parte alta guarda agua limpia; abajo se recoge la usada. Los recipientes de las casas esperan lejos del barro. Al norte vuelves al mercado. Rodeando la baranda hacia el sur llegas a la huerta. Una puerta al este lleva al lugar de cuidados."
+        },
+        {
+          "kind": "world",
+          "text": "Una mujer compara el sabor de dos vasos de agua y deja uno junto al canal. Un niño acerca la nariz al segundo; ella le señala la jarra de barro recién enjuagada."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces el brillo gastado donde apoyaron la jarra. El agua de la calle entra por debajo; la conducción limpia queda en la parte alta."
+        }
+      ],
+      "seals": 26,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "norte",
+      "room": "vaisgard_mercado",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Frutas, herramientas y cestas ocupan los puestos entre muros antiguos. Un canal pequeño cruza el mercado. Al norte está la plaza de las rutas; al sur, el patio del agua. Los carros entran por el oeste y los toldos cubren la calle del este."
+        },
+        {
+          "kind": "world",
+          "text": "Una vendedora corta una fruta para mostrar el centro. Su vecina prueba un trozo y hace una mueca; ambas apartan esa cesta mientras una niña recoge la semilla del plato."
+        },
+        {
+          "kind": "world",
+          "text": "El canal divide otra vez tu paso entre puestos. La plaza queda detrás de las herramientas; los carros alcanzan el corredor occidental por el lado de las cestas."
+        }
+      ],
+      "seals": 26,
+      "hp": 100
+    },
+    {
+      "action": "hablar",
+      "target": "veyra_bela",
+      "room": "vaisgard_mercado",
+      "events": [
+        {
+          "kind": "npc",
+          "text": "Bela: En Vaisgard llegan las cinco rutas: aquí puedes comparar las cuatro armas comunes y comprar provisiones. Los puestos regionales ofrecen menos piezas y compran materiales para sus trabajos propios."
+        }
+      ],
+      "seals": 26,
+      "hp": 100
+    },
+    {
+      "action": "comprar",
+      "target": "provision_basica",
+      "room": "vaisgard_mercado",
+      "events": [
+        {
+          "kind": "action",
+          "text": "Adquieres Provisión de camino por 8 sellos."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "norte",
+      "room": "veyra_plaza_rutas",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Las rutas se reúnen sobre el empedrado. Las piedras antiguas sobresalen entre las casas. Al sur bajas al mercado; al norte sales hacia la sierra. Los animales descansan en el patio oeste. Al este, una mensajera organiza avisos bajo un alero."
+        },
+        {
+          "kind": "world",
+          "text": "Los patios del otro extremo se borran tras el empedrado húmedo. Bajo el alero todavía se distinguen los papeles; una voz pide que repitan el destino antes de entregar un mensaje."
+        },
+        {
+          "kind": "world",
+          "text": "La mensajera sigue con el dedo unas letras pequeñas y pregunta a una viajera si reconoce la mano. El aviso está escrito en el reverso de una cuenta vieja. En el patio oeste, un animal se rasca el cuello contra el poste hasta que su cuidadora lo aparta."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "oeste",
+      "room": "veyra_patio_porte",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Los animales descansan a la sombra, junto a un bebedero. Las cargas pasan por fuera para dejarles espacio. Hay argollas altas y bajas para sujetarlas. Al este vuelves a la plaza; al oeste sales al camino de piedra, hacia Korven."
+        },
+        {
+          "kind": "world",
+          "text": "El cuidador afloja una cincha antes de tocar el agua. Una porteadora Dravak revisa las piedras de su carga desde un asiento bajo. Ambos esperan a que el animal deje de respirar con tanta prisa."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "oeste",
+      "room": "veyra_puerta_piedra",
+      "events": [
+        {
+          "kind": "world",
+          "text": "La puerta deja atrás el patio de los animales, al este. Al oeste, el camino de Korven cruza tierra seca y piedras sueltas. Los carros llevan cargas bajas, sujetas con tablas. Las casas cercanas tienen ventanas pequeñas para frenar el polvo."
+        },
+        {
+          "kind": "world",
+          "text": "Una Dravak comprueba cada separador golpeándolo con los nudillos. Un conductor más alto se agacha para escucharla desde su nivel de trabajo. La carga no sale hasta que ambos pueden señalar la misma pieza suelta."
+        },
+        {
+          "kind": "world",
+          "text": "Comprueba separadores y prepara el paso occidental."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "oeste",
+      "room": "veyra_terraplen_roca",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Las piedras claras crujen bajo los pies. Un arroyo seco corta el camino; los carros lo cruzan por una entrada inclinada. Al este ves la puerta de Vaisgard. Al oeste, una loma oculta el siguiente tramo hacia Korven."
+        },
+        {
+          "kind": "world",
+          "text": "Una cuadrilla aparta cascajos del giro sin intentar barrer todo el camino. Su conductora deja que el carro pase vacío antes de acercar una carga. El paso seguro se verifica con ruedas, no con una promesa."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "oeste",
+      "room": "korven_loma_cascajo",
+      "events": [
+        {
+          "kind": "world",
+          "text": "La loma termina de ocultar Vaisgard. Al este puedes volver a la cuenca; al oeste, el camino baja entre rocas hacia un cauce seco. Un montón de cascajo conserva huellas de pala junto al paso. Las ruedas han dejado dos surcos en la tierra menos dura."
+        },
+        {
+          "kind": "world",
+          "text": "El polvo se pega entre las piedras y el agua deja líneas claras. El trabajador mira la bajada antes de despejar otra franja del camino."
+        },
+        {
+          "kind": "world",
+          "text": "Un trabajador baja cascajo al montón lateral y espera a que pase una carga. La pala roza la roca fija al recoger las últimas piedras sueltas."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "oeste",
+      "room": "korven_cauce_duro",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Bajas a un cauce con arena entre las piedras. Al este vuelve la loma; al oeste subes a la meseta. Un desvío al sur llega a la roca de los líquenes. Las piedras grandes ofrecen paso firme; un cuenco tallado guarda herramientas junto al borde."
+        },
+        {
+          "kind": "world",
+          "text": "El primer hilo de agua arrastra el grano claro hasta otra junta. El insecto sube por el borde seco de la piedra y queda inmóvil bajo su saliente."
+        },
+        {
+          "kind": "world",
+          "text": "El agua llena primero las juntas pequeñas. Las piedras grandes sobresalen como islas bajas. La cuidadora recoge las herramientas y revisa por dónde se puede cruzar."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "oeste",
+      "room": "korven_meseta_baja",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Dos piedras dan sombra a la meseta. Al este queda el cauce; al oeste, la pared. El desvío sur baja al horno viejo."
+        },
+        {
+          "kind": "world",
+          "text": "La lluvia golpea el tramo abierto antes de que la pared empiece a gotear. Los recipientes se apartan de una hendidura donde cae agua con polvo. Las gotas alcanzan también el centro de la sombra, entre las dos piedras."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "oeste",
+      "room": "korven_pared_sotavento",
+      "events": [
+        {
+          "kind": "world",
+          "text": "La pared corta el viento y deja un hueco ancho donde apoyar las cargas. Al este está la meseta; al oeste siguen los mojones. Una escoba descansa junto a las juntas llenas de polvo. La marca del suelo indica qué franja debe quedar libre para pasar."
+        },
+        {
+          "kind": "world",
+          "text": "El viento devuelve algunas gotas al entrante y obliga a mover la carga del apoyo exterior. La escoba retira barro de una junta que normalmente sólo reúne polvo. El corredor permanece libre aunque todos busquen el mismo refugio."
+        },
+        {
+          "kind": "world",
+          "text": "Un porteador limpia el apoyo antes de sentarse y deja la escoba donde otro podrá encontrarla. Las cargas se orientan hacia el mismo lado para poder salir sin cruzarse dentro del entrante más estrecho."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "oeste",
+      "room": "korven_hitos_paso",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Los mojones cruzan suelo duro entre huecos de la roca. Algunos llevan piedras claras arriba; otros esperan reparación. Al este vuelves a la pared y al oeste llegas al paso estrecho. Desde cada mojón puedes buscar el siguiente sin acercarte al borde."
+        },
+        {
+          "kind": "world",
+          "text": "La lluvia oscurece los mojones y reúne arena en sus bases. La revisora se sitúa donde pasan las ruedas y mira el pie de la pila antes de acercarse."
+        },
+        {
+          "kind": "world",
+          "text": "La revisora mira el siguiente mojón desde la franja de las ruedas. Retira una piedra recién añadida a la pila y la deja al lado de la cavidad."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "oeste",
+      "room": "korven_hendidura_transito",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Las cargas pasan en fila entre las paredes. Al este se ven los mojones; al oeste se abre el banco de revisión. Una tabla gastada cubre la grieta por donde se atascaría una rueda. Los huecos altos dejan pasar aire sobre el sendero en sombra."
+        },
+        {
+          "kind": "world",
+          "text": "El agua se reúne en la junta cubierta sin quedar visible desde cada entrada. La conductora prueba la tabla antes de apoyar el carro. En los muros, algunas cavidades devuelven gotas que no llegan hasta el camino."
+        },
+        {
+          "kind": "world",
+          "text": "Una conductora baja de su carro para mirar la tabla antes de entrar. El viajero que viene del oeste espera en el asiento de revisión. El carro queda quieto hasta que se oyen pasos saliendo por la entrada opuesta."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "oeste",
+      "room": "korven_asiento_revision",
+      "events": [
+        {
+          "kind": "world",
+          "text": "El camino se ensancha junto a una roca marcada por golpes. Hay un banco donde dejar la carga. Al este queda el paso estrecho; al oeste sigues hacia Brumak. La senda del norte sube a la meseta de relevo. Sobre la mesa descansa una capa fina de polvo."
+        },
+        {
+          "kind": "world",
+          "text": "La piedra mojada suena distinto. La revisora escribe que llovía cuando la golpeó y deja la carga apartada de la mesa."
+        },
+        {
+          "kind": "world",
+          "text": "La revisora compara un golpe sobre la pieza con otro sobre una base firme. Su ayudante anota la diferencia y deja la carga en el banco. Nadie continúa una prueba de apoyo mientras alguien sigue pisándolo."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "oeste",
+      "room": "korven_peldanos_cortos",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Escalones bajos y una franja para carros suben hacia las casas de Brumak. Al este vuelves al banco de revisión; al oeste entras en el patio. Una repisa guarda cuñas cerca del suelo. Las ruedas pequeñas han gastado más la piedra junto a los peldaños. Al sur, una puerta baja conduce al antiguo almacén de las cargas."
+        },
+        {
+          "kind": "world",
+          "text": "Los peldaños reciben barro que baja de las viviendas. Una habitante limpia el borde de la franja lateral antes de apoyar la rueda. Los recipientes se conservan sobre la repisa, lejos de la corriente de la escalera."
+        },
+        {
+          "kind": "world",
+          "text": "Una habitante recoloca una cuña y empuja el carro por la franja ancha. Un visitante alto espera junto a los peldaños; baja la cabeza al pasar bajo el borde de la puerta."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "pedir_permiso_brumak",
+      "target": null,
+      "room": "korven_peldanos_cortos",
+      "events": [
+        {
+          "kind": "action",
+          "text": "Ved anota tu nombre y te indica el paso. Puedes entrar y salir sin repetir el permiso."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "oeste",
+      "room": "brumak_centro",
+      "events": [
+        {
+          "kind": "world",
+          "text": "El patio de Brumak está protegido del viento. Las casas Dravak tienen puertas bajas; el paso público deja más altura. Al este está la entrada del camino, al norte el taller, al oeste el almacén y al sur las viviendas. Bancos y cargas dejan libre el giro de los carros."
+        },
+        {
+          "kind": "world",
+          "text": "Una Dravak prueba el cierre de un recipiente bajo el banco. Un niño se agacha junto a ella y vuelve a hacerlo; la tapa encaja cuando deja de apretarla de lado."
+        },
+        {
+          "kind": "world",
+          "text": "Los canales de las fachadas descargan en una junta lateral y los vecinos apartan sus bancos de ella. Las cargas entran de una en una para no llevar barro hacia las puertas bajas donde se reúnen las familias."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "oeste",
+      "room": "korven_almacen_grano",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Las cestas descansan sobre apoyos de madera. Las recién llegadas esperan delante; las abiertas quedan al fondo, con las cubiertas dobladas. Una ventana alta deja entrar aire sin sol directo. Al este vuelves al patio y al oeste sales a la senda expuesta al viento."
+        },
+        {
+          "kind": "world",
+          "text": "Las cargas mojadas esperan bajo el alero. La encargada prepara un apoyo para secar sus cubiertas, separado de las cestas del fondo."
+        },
+        {
+          "kind": "world",
+          "text": "Una encargada limpia el apoyo antes de recibir una cesta. Su compañero pregunta de qué camino llega y retira la tapa: el borde tiene polvo, el centro aún guarda humedad."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "observar",
+      "target": null,
+      "room": "korven_almacen_grano",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Una encargada limpia el apoyo antes de recibir una cesta. Su compañero pregunta de qué camino llega y retira la tapa: el borde tiene polvo, el centro aún guarda humedad."
+        },
+        {
+          "kind": "world",
+          "text": "Las cargas mojadas esperan bajo el alero. La encargada prepara un apoyo para secar sus cubiertas, separado de las cestas del fondo."
+        },
+        {
+          "kind": "trace",
+          "text": "Separan las cestas del suelo y dejan visible una humedad reciente."
+        },
+        {
+          "kind": "action",
+          "text": "Observas con atención."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "este",
+      "room": "brumak_centro",
+      "events": [
+        {
+          "kind": "world",
+          "text": "El patio de Brumak está protegido del viento. Las casas Dravak tienen puertas bajas; el paso público deja más altura. Al este está la entrada del camino, al norte el taller, al oeste el almacén y al sur las viviendas. Bancos y cargas dejan libre el giro de los carros."
+        },
+        {
+          "kind": "world",
+          "text": "Una Dravak prueba el cierre de un recipiente bajo el banco. Un niño se agacha junto a ella y vuelve a hacerlo; la tapa encaja cuando deja de apretarla de lado."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces la curva gastada por las ruedas. Las puertas bajas quedan fuera de ella; dos bancos se recogen junto al primer umbral."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "sur",
+      "room": "korven_calle_fachadas",
+      "events": [
+        {
+          "kind": "world",
+          "text": "La calle sigue junto a casas metidas en la roca. Sus puertas tienen distinta profundidad y pequeñas repisas donde esperan objetos. Al norte queda el patio de Brumak; al sur bajas a la cisterna. El paso permite cruzar sin entrar en las viviendas ni golpear sus cargas. Una puerta al este lleva al lugar de cuidados."
+        },
+        {
+          "kind": "world",
+          "text": "Las cubiertas de madera protegen sólo algunos entrantes y los vecinos comparten dónde esperar. Los objetos de repisa se guardan antes de que el agua recorra la pared. Las puertas siguen pudiendo abrir sin empujar bultos mojados."
+        },
+        {
+          "kind": "world",
+          "text": "Una vecina deja un recipiente en la repisa y ayuda a cerrar la cubierta del lado del viento. El niño devuelve una herramienta al entrante; desde dentro le agradecen el gesto."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "sur",
+      "room": "korven_cisterna_comun",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Una plataforma baja rodea la cisterna. El agua de lluvia llega por un canal separado del lugar donde se llenan los recipientes. Una vara marcada muestra el nivel. Al norte vuelves a las casas, al oeste está el patio de lavado y al este el mirador."
+        },
+        {
+          "kind": "world",
+          "text": "Una mujer baja el recipiente y escucha hasta oír el contacto con el agua. Un vecino cuenta despacio las vueltas de cuerda; se detienen al mismo tiempo."
+        },
+        {
+          "kind": "world",
+          "text": "El canal exterior recibe agua con polvo. La cuidadora sigue el tabique que lo separa de la cisterna y aparta una ramita de su salida. La vara de medida espera seca bajo la cubierta."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "oeste",
+      "room": "korven_patio_lavado",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Aquí se limpian recipientes y cubiertas. Un muro bajo separa lo recién traído de lo que ya está limpio. El agua usada sale hacia la grava. Puedes volver al este, a la cisterna, o entrar al depósito del sur. El polvo queda pegado al lado húmedo del muro."
+        },
+        {
+          "kind": "world",
+          "text": "Los cuencos reciben gotas antes de que la vecina termine de secarlos. Deja el paño bajo el saliente y el niño recoge el que había hecho girar."
+        },
+        {
+          "kind": "world",
+          "text": "El agua exterior devuelve barro hacia la franja de entrada y los vecinos apartan lo limpio. La cubierta de una carga puede esperar sin lavarse de inmediato. Los paños limpios quedan bajo la cubierta; los recipientes utilizados reciben agua del lado abierto."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "observar",
+      "target": null,
+      "room": "korven_patio_lavado",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Los cuencos reciben gotas antes de que la vecina termine de secarlos. Deja el paño bajo el saliente y el niño recoge el que había hecho girar."
+        },
+        {
+          "kind": "world",
+          "text": "El agua exterior devuelve barro hacia la franja de entrada y los vecinos apartan lo limpio. La cubierta de una carga puede esperar sin lavarse de inmediato. Los paños limpios quedan bajo la cubierta; los recipientes utilizados reciben agua del lado abierto."
+        },
+        {
+          "kind": "trace",
+          "text": "Los paños húmedos cuelgan de un lado; los doblados esperan bajo el alero del otro."
+        },
+        {
+          "kind": "action",
+          "text": "Observas con atención."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "este",
+      "room": "korven_cisterna_comun",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Una plataforma baja rodea la cisterna. El agua de lluvia llega por un canal separado del lugar donde se llenan los recipientes. Una vara marcada muestra el nivel. Al norte vuelves a las casas, al oeste está el patio de lavado y al este el mirador."
+        },
+        {
+          "kind": "world",
+          "text": "Un vecino recoge la cuerda por vueltas cortas. La última gota oscurece el borde de piedra."
+        },
+        {
+          "kind": "world",
+          "text": "Recuerdas la marca del nivel junto al brocal. La cuerda húmeda deja una línea más oscura sobre la piedra donde apoyaron el recipiente."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "norte",
+      "room": "korven_calle_fachadas",
+      "events": [
+        {
+          "kind": "world",
+          "text": "La calle sigue junto a casas metidas en la roca. Sus puertas tienen distinta profundidad y pequeñas repisas donde esperan objetos. Al norte queda el patio de Brumak; al sur bajas a la cisterna. El paso permite cruzar sin entrar en las viviendas ni golpear sus cargas. Una puerta al este lleva al lugar de cuidados."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces el escalón que baja a la cisterna. En las repisas esperan otros objetos; las puertas dejan libre el mismo corredor."
+        },
+        {
+          "kind": "world",
+          "text": "Las cubiertas de madera protegen sólo algunos entrantes y los vecinos comparten dónde esperar. Los objetos de repisa se guardan antes de que el agua recorra la pared. Las puertas siguen pudiendo abrir sin empujar bultos mojados."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "norte",
+      "room": "brumak_centro",
+      "events": [
+        {
+          "kind": "world",
+          "text": "El patio de Brumak está protegido del viento. Las casas Dravak tienen puertas bajas; el paso público deja más altura. Al este está la entrada del camino, al norte el taller, al oeste el almacén y al sur las viviendas. Bancos y cargas dejan libre el giro de los carros."
+        },
+        {
+          "kind": "world",
+          "text": "El niño devuelve el recipiente ya cerrado. En una puerta baja alguien pone agua para las dos tazas."
+        },
+        {
+          "kind": "world",
+          "text": "Los canales de las fachadas descargan en una junta lateral y los vecinos apartan sus bancos de ella. Las cargas entran de una en una para no llevar barro hacia las puertas bajas donde se reúnen las familias."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "este",
+      "room": "korven_peldanos_cortos",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Escalones bajos y una franja para carros suben hacia las casas de Brumak. Al este vuelves al banco de revisión; al oeste entras en el patio. Una repisa guarda cuñas cerca del suelo. Las ruedas pequeñas han gastado más la piedra junto a los peldaños. Al sur, una puerta baja conduce al antiguo almacén de las cargas."
+        },
+        {
+          "kind": "world",
+          "text": "Recuerdas la cuña junto al peldaño corto. Las ruedas pequeñas han dejado una línea oscura en la franja ancha que sube al patio."
+        },
+        {
+          "kind": "world",
+          "text": "Los peldaños reciben barro que baja de las viviendas. Una habitante limpia el borde de la franja lateral antes de apoyar la rueda. Los recipientes se conservan sobre la repisa, lejos de la corriente de la escalera."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "este",
+      "room": "korven_asiento_revision",
+      "events": [
+        {
+          "kind": "world",
+          "text": "El camino se ensancha junto a una roca marcada por golpes. Hay un banco donde dejar la carga. Al este queda el paso estrecho; al oeste sigues hacia Brumak. La senda del norte sube a la meseta de relevo. Sobre la mesa descansa una capa fina de polvo."
+        },
+        {
+          "kind": "world",
+          "text": "Recuerdas el golpe que compararon sobre la mesa. La nota queda junto a la pieza; el banco de descanso está separado por una franja de suelo limpia."
+        },
+        {
+          "kind": "world",
+          "text": "La piedra mojada suena distinto. La revisora escribe que llovía cuando la golpeó y deja la carga apartada de la mesa."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "este",
+      "room": "korven_hendidura_transito",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Las cargas pasan en fila entre las paredes. Al este se ven los mojones; al oeste se abre el banco de revisión. Una tabla gastada cubre la grieta por donde se atascaría una rueda. Los huecos altos dejan pasar aire sobre el sendero en sombra."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces la tabla donde apoyaron una rueda. La hendidura sigue detrás de ella; las cavidades laterales terminan en suelo quebrado."
+        },
+        {
+          "kind": "world",
+          "text": "El agua se reúne en la junta cubierta sin quedar visible desde cada entrada. La conductora prueba la tabla antes de apoyar el carro. En los muros, algunas cavidades devuelven gotas que no llegan hasta el camino."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "este",
+      "room": "korven_hitos_paso",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Los mojones cruzan suelo duro entre huecos de la roca. Algunos llevan piedras claras arriba; otros esperan reparación. Al este vuelves a la pared y al oeste llegas al paso estrecho. Desde cada mojón puedes buscar el siguiente sin acercarte al borde."
+        },
+        {
+          "kind": "world",
+          "text": "Recuerdas el mojón bajo junto a la base en revisión. Detrás se ve la pila siguiente; entre ambas, el polvo conserva la curva de las ruedas."
+        },
+        {
+          "kind": "world",
+          "text": "La lluvia oscurece los mojones y reúne arena en sus bases. La revisora se sitúa donde pasan las ruedas y mira el pie de la pila antes de acercarse."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "este",
+      "room": "korven_pared_sotavento",
+      "events": [
+        {
+          "kind": "world",
+          "text": "La pared corta el viento y deja un hueco ancho donde apoyar las cargas. Al este está la meseta; al oeste siguen los mojones. Una escoba descansa junto a las juntas llenas de polvo. La marca del suelo indica qué franja debe quedar libre para pasar."
+        },
+        {
+          "kind": "world",
+          "text": "Recuerdas la marca junto a la pared. De ese lado descansan las cargas; al otro, las huellas pasan entre la sombra y la meseta."
+        },
+        {
+          "kind": "world",
+          "text": "El viento devuelve algunas gotas al entrante y obliga a mover la carga del apoyo exterior. La escoba retira barro de una junta que normalmente sólo reúne polvo. El corredor permanece libre aunque todos busquen el mismo refugio."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "este",
+      "room": "korven_meseta_baja",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Dos piedras dan sombra a la meseta. Al este queda el cauce; al oeste, la pared. El desvío sur baja al horno viejo."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces las dos piedras del desvío. La sombra de la pared ha alcanzado una junta distinta de aquella donde descansaste."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "este",
+      "room": "korven_cauce_duro",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Bajas a un cauce con arena entre las piedras. Al este vuelve la loma; al oeste subes a la meseta. Un desvío al sur llega a la roca de los líquenes. Las piedras grandes ofrecen paso firme; un cuenco tallado guarda herramientas junto al borde."
+        },
+        {
+          "kind": "world",
+          "text": "El insecto cruza hacia la roca aún tibia. El grano claro queda en la franja que pierde luz."
+        },
+        {
+          "kind": "world",
+          "text": "Las piedras grandes siguen marcando el cruce, aunque la arena se haya movido. Reconoces el cuenco donde se guardan las herramientas."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "este",
+      "room": "korven_loma_cascajo",
+      "events": [
+        {
+          "kind": "world",
+          "text": "La loma termina de ocultar Vaisgard. Al este puedes volver a la cuenca; al oeste, el camino baja entre rocas hacia un cauce seco. Un montón de cascajo conserva huellas de pala junto al paso. Las ruedas han dejado dos surcos en la tierra menos dura."
+        },
+        {
+          "kind": "world",
+          "text": "El montón lateral tiene una franja de cascajo recién removido. Camino de la cuenca, la tierra ocupa más espacio entre las piedras antes de que aparezcan los muros."
+        },
+        {
+          "kind": "world",
+          "text": "El polvo se pega entre las piedras y el agua deja líneas claras. El trabajador mira la bajada antes de despejar otra franja del camino."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "este",
+      "room": "veyra_terraplen_roca",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Las piedras claras crujen bajo los pies. Un arroyo seco corta el camino; los carros lo cruzan por una entrada inclinada. Al este ves la puerta de Vaisgard. Al oeste, una loma oculta el siguiente tramo hacia Korven."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces la franja de piedras grandes. Después del cruce viene la loma. Las tablas rotas siguen apartadas del paso."
+        },
+        {
+          "kind": "world",
+          "text": "Una cuadrilla aparta cascajos del giro sin intentar barrer todo el camino. Su conductora deja que el carro pase vacío antes de acercar una carga. El paso seguro se verifica con ruedas, no con una promesa."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "este",
+      "room": "veyra_puerta_piedra",
+      "events": [
+        {
+          "kind": "world",
+          "text": "La puerta deja atrás el patio de los animales, al este. Al oeste, el camino de Korven cruza tierra seca y piedras sueltas. Los carros llevan cargas bajas, sujetas con tablas. Las casas cercanas tienen ventanas pequeñas para frenar el polvo."
+        },
+        {
+          "kind": "world",
+          "text": "Recuerdas el desnivel de la puerta. Antes de él quedan las cuñas del carro; del otro lado empieza el borde de piedras sueltas."
+        },
+        {
+          "kind": "world",
+          "text": "Una Dravak comprueba cada separador golpeándolo con los nudillos. Un conductor más alto se agacha para escucharla desde su nivel de trabajo. La carga no sale hasta que ambos pueden señalar la misma pieza suelta."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "este",
+      "room": "veyra_patio_porte",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Los animales descansan a la sombra, junto a un bebedero. Las cargas pasan por fuera para dejarles espacio. Hay argollas altas y bajas para sujetarlas. Al este vuelves a la plaza; al oeste sales al camino de piedra, hacia Korven."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces el rincón del bebedero. Una bestia mantiene la cabeza baja junto al agua; su carga espera al otro lado de las argollas."
+        },
+        {
+          "kind": "world",
+          "text": "El cuidador afloja una cincha antes de tocar el agua. Una porteadora Dravak revisa las piedras de su carga desde un asiento bajo. Ambos esperan a que el animal deje de respirar con tanta prisa."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "este",
+      "room": "veyra_plaza_rutas",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Las rutas se reúnen sobre el empedrado. Las piedras antiguas sobresalen entre las casas. Al sur bajas al mercado; al norte sales hacia la sierra. Los animales descansan en el patio oeste. Al este, una mensajera organiza avisos bajo un alero."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces las sogas cortas de quienes vienen de la piedra y las cubiertas anchas del campo. Junto al alero, los bultos pequeños de la sierra quedan separados de las cestas."
+        },
+        {
+          "kind": "world",
+          "text": "Los patios del otro extremo se borran tras el empedrado húmedo. Bajo el alero todavía se distinguen los papeles; una voz pide que repitan el destino antes de entregar un mensaje."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "sur",
+      "room": "vaisgard_mercado",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Frutas, herramientas y cestas ocupan los puestos entre muros antiguos. Un canal pequeño cruza el mercado. Al norte está la plaza de las rutas; al sur, el patio del agua. Los carros entran por el oeste y los toldos cubren la calle del este."
+        },
+        {
+          "kind": "world",
+          "text": "Una vendedora ofrece la última mitad de fruta a su vecina. Dos toldos bajan antes de terminar la conversación."
+        },
+        {
+          "kind": "world",
+          "text": "Recibe viajeros y repone el puesto sin cerrar el paso."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "este",
+      "room": "veyra_calle_toldos",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Toldos remendados cubren la calle. Cada taller ha reparado su tramo con una tela distinta. El mercado queda al oeste. Al sur sales hacia los canales; al este llega el camino del bosque, por donde entran haces de madera."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces la costura azul entre los dos talleres. Bajo el último desagüe están los recipientes que marcaban la vuelta hacia los canales."
+        },
+        {
+          "kind": "world",
+          "text": "Una Marevyn sujeta el borde del toldo mientras su vecino cose. Comprueban dónde caerá el agua para no mojar el taller de abajo."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "este",
+      "room": "veyra_puerta_sombra",
+      "events": [
+        {
+          "kind": "world",
+          "text": "La calle se ensancha para girar las cargas de madera. Más allá aparecen árboles separados por parcelas viejas. Al oeste quedan los toldos y las herramientas de los talleres. El camino este entra en el bosque, rumbo a Nhal."
+        },
+        {
+          "kind": "world",
+          "text": "Una Vesperi palpa dos ataduras del haz. Su vecino retira una astilla junto a la hoja inutilizada; al pasar la madera roza todavía el otro borde."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "este",
+      "room": "veyra_lindero_arboles",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Tres grupos de árboles cierran poco a poco el camino. Los carros caben al principio; después las raíces levantan el suelo. Al oeste aún ves la puerta de Vaisgard. El este entra en Nhal; un desvío sur lleva a una cantera vieja."
+        },
+        {
+          "kind": "world",
+          "text": "Un cargador recoge ramas caídas y las apila junto a la parcela. Deja libres las raíces y el paso hacia el bosque."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "sur",
+      "room": "veyra_cantera_callada",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Marcas de herramientas cubren la pared. Un bloque quedó sin sacar, bajo las raíces. El desvío termina aquí; al norte vuelves al bosque."
+        },
+        {
+          "kind": "world",
+          "text": "La lagartija se acerca al último borde iluminado. La pluma queda en sombra dentro de su hueco."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "observar",
+      "target": null,
+      "room": "veyra_cantera_callada",
+      "events": [
+        {
+          "kind": "world",
+          "text": "La lagartija se acerca al último borde iluminado. La pluma queda en sombra dentro de su hueco."
+        },
+        {
+          "kind": "trace",
+          "text": "Hay cuñas antiguas sin marca legible. Una cuña tiene el ancho de la ranura del banco; sus marcas están borradas."
+        },
+        {
+          "kind": "action",
+          "text": "Observas con atención."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "norte",
+      "room": "veyra_lindero_arboles",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Tres grupos de árboles cierran poco a poco el camino. Los carros caben al principio; después las raíces levantan el suelo. Al oeste aún ves la puerta de Vaisgard. El este entra en Nhal; un desvío sur lleva a una cantera vieja."
+        },
+        {
+          "kind": "world",
+          "text": "El primer claro deja ver otra vez la anchura de la cuenca. A un lado está la abertura quieta de la cantera; de frente sigue la senda entre hojas."
+        },
+        {
+          "kind": "world",
+          "text": "Un cargador recoge ramas caídas y las apila junto a la parcela. Deja libres las raíces y el paso hacia el bosque."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "oeste",
+      "room": "veyra_puerta_sombra",
+      "events": [
+        {
+          "kind": "world",
+          "text": "La calle se ensancha para girar las cargas de madera. Más allá aparecen árboles separados por parcelas viejas. Al oeste quedan los toldos y las herramientas de los talleres. El camino este entra en el bosque, rumbo a Nhal."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces la hoja de puerta inutilizada. La carga que sale rodea su borde; desde el bosque llega otra que espera junto a los árboles."
+        },
+        {
+          "kind": "world",
+          "text": "Una Vesperi palpa dos ataduras del haz. Su vecino retira una astilla junto a la hoja inutilizada; al pasar la madera roza todavía el otro borde."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "oeste",
+      "room": "veyra_calle_toldos",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Toldos remendados cubren la calle. Cada taller ha reparado su tramo con una tela distinta. El mercado queda al oeste. Al sur sales hacia los canales; al este llega el camino del bosque, por donde entran haces de madera."
+        },
+        {
+          "kind": "world",
+          "text": "Una Marevyn sujeta el borde del toldo mientras su vecino cose. Comprueban dónde caerá el agua para no mojar el taller de abajo."
+        },
+        {
+          "kind": "world",
+          "text": "Ajusta costuras compartidas."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "sur",
+      "room": "veyra_puerta_juncos",
+      "events": [
+        {
+          "kind": "world",
+          "text": "El canal pasa junto a una puerta lateral. Fuera, las casas dejan sitio a hondonadas de hierba alta. Una tabla permite cambiarse el calzado sin tapar el paso. Al norte vuelves a los toldos; al sur sigues el agua hacia Lethra."
+        },
+        {
+          "kind": "world",
+          "text": "El escalón seco de la puerta permite saber que has terminado el tramo bajo sin mirar atrás continuamente. Si regresas con barro, la tabla recuerda dónde detenerte antes de llevarlo al taller que mantiene el toldo vecino."
+        },
+        {
+          "kind": "world",
+          "text": "Una viajera quita barro de sus recipientes antes de entrar. Otros levantan los bultos sobre el suelo; el canal pasa por debajo de la tabla donde esperan."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "sur",
+      "room": "veyra_hondonada_canales",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Varios hilos de agua se reúnen en un canal. El camino sigue por la orilla alta y cruza un desagüe sobre una pasarela corta. Al norte queda Vaisgard; al sur la vegetación se vuelve más densa y empieza el camino de Lethra."
+        },
+        {
+          "kind": "world",
+          "text": "El desagüe pequeño termina bajo el muro. El canal largo sigue entre juncos; recuerdas la ribera alta que vuelve a los tejados."
+        },
+        {
+          "kind": "world",
+          "text": "Una recolectora vacía su cesta de hierbas sobre la ribera seca. Conserva las raíces aparte para no llevar barro al mercado. Desde aquí puede ver quién llega a la pasarela y dejarle espacio antes de levantarse."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "sur",
+      "room": "lethra_ribera_seca",
+      "events": [
+        {
+          "kind": "world",
+          "text": "El camino sigue sobre raíces, junto a un cauce cada vez más ancho. Al norte vuelves a las hondonadas de Vaisgard; al sur empiezan las hierbas húmedas. Un ave cruza hasta la otra orilla. Su vuelo deja ver cuánto terreno escondían los tallos."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces el apoyo de la recolectora junto a la bajada. La ruta alta pasa sobre el barro; junto a la madera vacía queda el borde redondo de un recipiente."
+        },
+        {
+          "kind": "world",
+          "text": "Una recolectora limpia su cuchillo sobre una hoja seca y junta tallos sin raíces. Su cesta desprende un olor fresco que se distingue del barro. Al cerrar la cesta, la recolectora retira una hoja del cierre."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "sur",
+      "room": "lethra_tierra_esponjosa",
+      "events": [
+        {
+          "kind": "world",
+          "text": "El suelo firme se corta en manchas de hojas que se hunden al pisarlas. Al norte está la ribera seca; al sur, las raíces llevan al juncal. Dos varas marcan el paso estrecho para las cargas. Una rana permanece quieta sobre el barro."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces las dos varas junto a la raíz. El cauce pasa debajo; entre ellas queda una franja estrecha de tierra más alta."
+        },
+        {
+          "kind": "world",
+          "text": "Una viajera se detiene a cambiar el bulto de hombro y un acompañante deja pasar a la rana antes de seguir. La pausa produce un silencio breve, lleno de insectos que seguían sonando bajo las voces."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "sur",
+      "room": "lethra_juncal_abierto",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Los juncos se abren con el viento y dejan ver el agua. La senda vuelve al norte, hacia las raíces, y sigue al sur sobre las primeras tablas. Un desvío al oeste llega al banco de barro. Las huellas mantienen despejada una franja entre los tallos."
+        },
+        {
+          "kind": "danger",
+          "text": "Una pinza desigual se levanta al borde del agua. El Pinzajunco arrastra una hoja hacia su agujero cuando los pasos siguen por tierra."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces la abertura del banco por los tallos cortados. El ave que oíste no se ve; desde el otro borde llega el roce de una fibra contra otra."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "sur",
+      "room": "lethra_tablas_primeras",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Las tablas cruzan por encima del barro sobre apoyos bajos. Al norte están los juncos; al sur se separan dos canales. El agua escurre por las uniones. Algunas tablas están más gastadas que otras. Una vara de prueba cuelga a un lado, fuera del agua."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces la transición entre suelo y madera por el primer travesaño visible. La unión gastada queda después de ese apoyo y conserva su sonido al pisarse. La ribera firme se ve al otro extremo, entre los primeros canales."
+        },
+        {
+          "kind": "world",
+          "text": "Un carpintero camina sin carga hasta la unión que debe revisar. Sus compañeros esperan sobre tierra firme. El ruido de una tabla gastada se distingue mejor cuando nadie habla ni hace vibrar todo el tramo."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "sur",
+      "room": "lethra_cruce_canales",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Un canal corre rápido junto a otro casi quieto. Las tablas llegan del norte y la senda sale al sur por tierra firme. En una pequeña plataforma junto al paso puedes mirar cómo gira una hoja. Las plantas se doblan hacia lados distintos de la corriente."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces el remanso junto a la lengua de barro. La hoja gira en su salida; más allá, la corriente rápida pasa detrás de la plataforma."
+        },
+        {
+          "kind": "world",
+          "text": "El viento empuja la hoja de lado sobre el remanso. La observadora señala una planta hundida que sigue inclinándose corriente abajo y borra el último giro de su tablilla."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "sur",
+      "room": "lethra_ribera_firme",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Recipientes cerrados esperan sobre apoyos de madera, por encima del barro. Huele a fibras mojadas y comida envuelta en hojas. Al norte vuelves al cruce de canales; al sur una curva lleva a la pasarela. Quienes descargan dejan los bultos levantados mientras buscan espacio."
+        },
+        {
+          "kind": "world",
+          "text": "Recuerdas el apoyo alto donde dejaron el recipiente. Después de la curva asoma la baranda de la pasarela; una franja de agua queda entre ambos."
+        },
+        {
+          "kind": "world",
+          "text": "Dos vecinas intercambian un recipiente sin bajarlo al suelo. Una tercera reconoce por la envoltura qué debe abrirse antes. La tercera se aparta con la envoltura abierta y las otras dos vuelven a sus apoyos."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "sur",
+      "room": "lethra_pasarela_curva",
+      "events": [
+        {
+          "kind": "world",
+          "text": "La pasarela rodea el agua quieta. Ves la orilla de llegada casi enfrente, pero debes seguir la curva hacia el sur para alcanzarla. Al norte queda la ribera de los recipientes. Una baranda protege el lado abierto. Más adelante asoman el techo y los postes del embarcadero."
+        },
+        {
+          "kind": "world",
+          "text": "Recuerdas el ensanchamiento donde dejaron pasar la carga. La orilla de enfrente está cerca; las tablas siguen la curva larga hacia su lado sur."
+        },
+        {
+          "kind": "world",
+          "text": "Una vecina lleva un recipiente ancho por la curva. Se detiene en el ensanchamiento para dejar pasar a alguien y vuelve a mirar la orilla de enfrente."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "sur",
+      "room": "lethra_embarcadero_camino",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Bajo el techo se cambian las cargas del camino a pequeñas embarcaciones. Los bultos dejan libre el borde del agua. Al norte vuelves a la pasarela y al sur sigues hacia Narevia. Un poste marca el nivel del canal; otro guarda las tiras de las barcas esperadas."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces el poste con la marca de nivel. Los bultos envueltos esperan junto a las tiras de las barcas; la senda alta sigue detrás de la cubierta."
+        },
+        {
+          "kind": "world",
+          "text": "Una encargada llama a quien espera una cesta y la recibe de mano en mano, sin lanzarla sobre el canal. Un niño identifica una tira de llegada y corre por la senda alta para avisar a su casa."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "sur",
+      "room": "lethra_senda_elevada",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Pasas frente a viviendas separadas por canales. Sus puertas abren a plataformas propias, fuera del camino. Al norte queda el embarcadero; al sur se oyen las voces de Narevia. Una vecina levanta comida hacia una ventana y otra devuelve un recipiente. Se llaman por sus nombres sobre el agua."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces la plataforma de aquella ventana por su borde corto. La senda continúa por fuera, junto al canal, hasta las voces de la plaza."
+        },
+        {
+          "kind": "world",
+          "text": "Desde una ventana bajan una cesta y desde la siguiente devuelven dos paños doblados. La vecina llama a quien espera y le pide que acerque el asa."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "sur",
+      "room": "narevia_centro",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Narevia ocupa una isla baja unida por pasarelas. Al norte está el camino terrestre, al este el taller, al sur el mercado y al oeste la ribera que sale hacia Edran. Los Marevyn pasan entre barcas y plataformas; los apoyos altos conservan espacio seco junto a la plaza."
+        },
+        {
+          "kind": "world",
+          "text": "La familia comparte el último cuenco. Quien cuenta la visita deja el nombre de la otra orilla para cuando calle el taller."
+        },
+        {
+          "kind": "world",
+          "text": "La pasarela de llegada queda entre taller y mercado. Desde la plataforma alta puedes situar la ribera occidental por el hueco entre las barcas."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "sur",
+      "room": "lethra_mercado_hojas",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Las barcas traen alimentos en cestas levantadas del fondo. Los puestos separan las envolturas abiertas de las que deben conservar humedad. Huele a hierbas cortadas y madera mojada. Al norte queda la plaza; al sur está el muelle. Los vendedores preparan bultos distintos para comer cerca o viajar."
+        },
+        {
+          "kind": "world",
+          "text": "Iria abre una envoltura y huele lo que contiene antes de ofrecerla. Una compradora aparta una hoja rota del borde y la guarda para remendar la suya."
+        },
+        {
+          "kind": "world",
+          "text": "Recibe viajeros y repone el puesto sin cerrar el paso."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "hablar",
+      "target": "lethra_nera_mercado",
+      "room": "lethra_mercado_hojas",
+      "events": [
+        {
+          "kind": "npc",
+          "text": "Tila: Mira prepara el paño para una reunión en la cocina. Mira las costuras en la plataforma; decide si llevarlo allí o recomendar un lugar cubierto. Nima necesita la noticia antes de poner los cuencos."
+        },
+        {
+          "kind": "discovery",
+          "text": "Tila acerca la lista de cuencos. «Nima ya recibió tu propuesta; llevaré la entrega al lugar que acordasteis.»"
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "norte",
+      "room": "narevia_centro",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Narevia ocupa una isla baja unida por pasarelas. Al norte está el camino terrestre, al este el taller, al sur el mercado y al oeste la ribera que sale hacia Edran. Los Marevyn pasan entre barcas y plataformas; los apoyos altos conservan espacio seco junto a la plaza."
+        },
+        {
+          "kind": "world",
+          "text": "La familia comparte el último cuenco. Quien cuenta la visita deja el nombre de la otra orilla para cuando calle el taller."
+        },
+        {
+          "kind": "world",
+          "text": "Un junco amarrado vibra contra el poste de la pasarela. Las ondas cruzan los reflejos de las casas; en la plataforma alta cubren un cuenco para que no entren hojas."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "este",
+      "room": "lethra_taller_fibras",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Haces de fibra esperan bajo un techo abierto hacia el canal. Los hilos secos cuelgan altos y los húmedos quedan en recipientes bajos. Una artesana los prueba con los dedos. Al oeste vuelves a la plaza; al sur está la plataforma de secado. La mesa deja escurrir el agua. Una puerta al este lleva al lugar de cuidados."
+        },
+        {
+          "kind": "world",
+          "text": "La vuelta que se deshizo queda abierta junto a la muestra. La artesana estira los dedos antes de guardar la horquilla."
+        },
+        {
+          "kind": "world",
+          "text": "Trenza y separa fibras junto al canal."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "sur",
+      "room": "lethra_plataforma_secado",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Los paños cuelgan sobre barras separadas para que no se toquen con el viento. Uno conserva remiendos de manos distintas. Al norte vuelves al taller; al este hay un banco para conversar. El canal estrecho corre debajo del borde y deja entrar aire por ambos lados."
+        },
+        {
+          "kind": "world",
+          "text": "El paño sigue abierto sobre las barras. Mira señala la costura húmeda y guarda la caja: los cuencos se reunirán bajo la cubierta de la cocina."
+        },
+        {
+          "kind": "world",
+          "text": "La costura que examinaste sigue al aire. La plataforma quedó libre de cuencos al comunicar tu propuesta de usar la cocina."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "este",
+      "room": "lethra_banco_conversacion",
+      "events": [
+        {
+          "kind": "world",
+          "text": "El agua lleva voces bajo el banco. Hay sitio para un recipiente y para quien espera. Al oeste vuelves a los paños; al sur está la cocina."
+        },
+        {
+          "kind": "world",
+          "text": "La habitante repasa una frase antes de decirla y luego guarda silencio para escuchar pasos. Un vecino deja un recipiente y continúa hacia la cocina. Una mujer guarda sitio con un recipiente vacío. Quien espera a su hermana mira la ventana de la cocina y pregunta si ya empezó la cena."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces el extremo del banco donde dejaron el recipiente vacío. La ventana de la cocina queda a la vista desde ese asiento."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "sur",
+      "room": "lethra_cocina_reunion",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Huele a hierbas, raíces y humo. El fuego está sobre suelo seco, lejos del canal. Los vecinos acercan sus utensilios a la mesa. Una olla vieja tiene la base reparada y el asa envuelta para no quemarse. La salida del norte vuelve al banco de conversación."
+        },
+        {
+          "kind": "world",
+          "text": "El caldo llega a la mesa antes que las dos hermanas. Nima prueba otro sorbo y mira hacia la ventana de su padre; la cuchara sigue sin convencerla."
+        },
+        {
+          "kind": "world",
+          "text": "Los cuencos se agrupan en el rincón cubierto que elegiste. La ventana vuelve a situar la plataforma donde dejaste secar el paño."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "observar",
+      "target": null,
+      "room": "lethra_cocina_reunion",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Nima levanta la tapa de una olla y espera a que baje el vapor antes de probar. Tras el primer sorbo frunce el rostro, pero mantiene la cuchara levantada como si todavía pudiera convencerla."
+        },
+        {
+          "kind": "world",
+          "text": "El caldo llega a la mesa antes que las dos hermanas. Nima prueba otro sorbo y mira hacia la ventana de su padre; la cuchara sigue sin convencerla."
+        },
+        {
+          "kind": "trace",
+          "text": "La base reparada tiene una unión oscura. El caldo burbujea junto a ella y al otro lado de la olla."
+        },
+        {
+          "kind": "action",
+          "text": "Observas con atención."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "norte",
+      "room": "lethra_banco_conversacion",
+      "events": [
+        {
+          "kind": "world",
+          "text": "El agua lleva voces bajo el banco. Hay sitio para un recipiente y para quien espera. Al oeste vuelves a los paños; al sur está la cocina."
+        },
+        {
+          "kind": "world",
+          "text": "La luz de la cocina deja un lado del banco visible y el otro más oscuro. Quien espera puede reconocer la llegada por la pasarela. Las voces del mercado disminuyen y el agua ocupa los huecos entre conversaciones."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces el extremo del banco donde dejaron el recipiente vacío. La ventana de la cocina queda a la vista desde ese asiento."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "oeste",
+      "room": "lethra_plataforma_secado",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Los paños cuelgan sobre barras separadas para que no se toquen con el viento. Uno conserva remiendos de manos distintas. Al norte vuelves al taller; al este hay un banco para conversar. El canal estrecho corre debajo del borde y deja entrar aire por ambos lados."
+        },
+        {
+          "kind": "world",
+          "text": "Las barras quedan vacías y permiten ver reflejos del canal entre ellas. El paño común se guarda en una caja alta. El descanso oriental conserva un banco donde puede hablarse sin pisar el espacio de secado."
+        },
+        {
+          "kind": "world",
+          "text": "La costura que examinaste sigue al aire. La plataforma quedó libre de cuencos al comunicar tu propuesta de usar la cocina."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "norte",
+      "room": "lethra_taller_fibras",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Haces de fibra esperan bajo un techo abierto hacia el canal. Los hilos secos cuelgan altos y los húmedos quedan en recipientes bajos. Una artesana los prueba con los dedos. Al oeste vuelves a la plaza; al sur está la plataforma de secado. La mesa deja escurrir el agua. Una puerta al este lleva al lugar de cuidados."
+        },
+        {
+          "kind": "world",
+          "text": "El trenzado queda suspendido de una horquilla. Una fibra suelta roza la mesa cuando el agua mueve el apoyo de abajo."
+        },
+        {
+          "kind": "world",
+          "text": "Guarda haces y prepara el trabajo siguiente."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "oeste",
+      "room": "narevia_centro",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Narevia ocupa una isla baja unida por pasarelas. Al norte está el camino terrestre, al este el taller, al sur el mercado y al oeste la ribera que sale hacia Edran. Los Marevyn pasan entre barcas y plataformas; los apoyos altos conservan espacio seco junto a la plaza."
+        },
+        {
+          "kind": "world",
+          "text": "Un cuenco queda junto a una cuchara húmeda. Desde una ventana cuentan el final de una visita; otra voz pregunta qué ocurrió con la barca."
+        },
+        {
+          "kind": "world",
+          "text": "Las casas de la otra orilla desaparecen; las voces próximas siguen llegando entre las pasarelas. Desde un umbral responden a quien pregunta por el taller, y una cuchara vuelve a sonar contra un cuenco."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "sur",
+      "room": "lethra_mercado_hojas",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Las barcas traen alimentos en cestas levantadas del fondo. Los puestos separan las envolturas abiertas de las que deben conservar humedad. Huele a hierbas cortadas y madera mojada. Al norte queda la plaza; al sur está el muelle. Los vendedores preparan bultos distintos para comer cerca o viajar."
+        },
+        {
+          "kind": "world",
+          "text": "Las hojas de los puestos dejan un olor húmedo sobre la mesa. Una vendedora cuenta dos recipientes vacíos y llama al dueño del tercero."
+        },
+        {
+          "kind": "world",
+          "text": "Mantiene una lámpara sobre el mostrador para atender a quienes llegan tarde."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "sur",
+      "room": "lethra_muelle_vecinal",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Pequeñas barcas esperan junto a apoyos de distintas alturas. Las cestas vacías se agrupan por dueño; algunas asas tienen remiendos viejos. Al norte vuelves al mercado; al este llegas al patio de ventanas. Desde otra plataforma llaman a alguien para devolverle su cesta."
+        },
+        {
+          "kind": "world",
+          "text": "Las embarcaciones se sujetan cerca de apoyos altos y las cestas pendientes quedan bajo una cubierta. El muelle guarda nombres sin pronunciarse todo el tiempo. Una llegada puede despertar a una casa sin ocupar la plaza entera."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "observar",
+      "target": null,
+      "room": "lethra_muelle_vecinal",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Las embarcaciones se sujetan cerca de apoyos altos y las cestas pendientes quedan bajo una cubierta. El muelle guarda nombres sin pronunciarse todo el tiempo. Una llegada puede despertar a una casa sin ocupar la plaza entera."
+        },
+        {
+          "kind": "trace",
+          "text": "Los remiendos conservan una identidad de uso para sus propietarios."
+        },
+        {
+          "kind": "action",
+          "text": "Observas con atención."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "norte",
+      "room": "lethra_mercado_hojas",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Las barcas traen alimentos en cestas levantadas del fondo. Los puestos separan las envolturas abiertas de las que deben conservar humedad. Huele a hierbas cortadas y madera mojada. Al norte queda la plaza; al sur está el muelle. Los vendedores preparan bultos distintos para comer cerca o viajar."
+        },
+        {
+          "kind": "world",
+          "text": "Las hojas de los puestos dejan un olor húmedo sobre la mesa. Una vendedora cuenta dos recipientes vacíos y llama al dueño del tercero."
+        },
+        {
+          "kind": "world",
+          "text": "Las envolturas abiertas quedan cerca del agua; las de viaje, bajo el borde de la cubierta. La separación que viste permite encontrar dónde preguntar."
+        }
+      ],
+      "seals": 18,
+      "hp": 100
+    }
+  ],
+  "samples": [
+    {
+      "tag": "Narevia initial market",
+      "room": "lethra_mercado_hojas",
+      "ambient": {
+        "region": "lethra",
+        "time_of_day": "Día",
+        "timestamp": 43320,
+        "weather": "Viento",
+        "weather_description": "Las hojas y envolturas se atan sin aplastar el contenido; las corrientes y las ondas de superficie dejan de parecer el mismo movimiento."
+      },
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Las barcas traen alimentos en cestas levantadas del fondo. Los puestos separan las envolturas abiertas de las que deben conservar humedad. Huele a hierbas cortadas y madera mojada. Al norte queda la plaza; al sur está el muelle. Los vendedores preparan bultos distintos para comer cerca o viajar."
+        },
+        {
+          "kind": "world",
+          "text": "Iria apoya una mano sobre la envoltura abierta. La compradora recoge la hoja rota antes de que caiga al canal y comprueba si todavía puede usarla."
+        },
+        {
+          "kind": "world",
+          "text": "Recibe viajeros y repone el puesto sin cerrar el paso."
+        }
+      ],
+      "actions": [
+        {
+          "id": "mirar",
+          "label": "Mirar"
+        },
+        {
+          "id": "observar",
+          "label": "Observar"
+        },
+        {
+          "id": "examinar",
+          "label": "Examinar envolturas",
+          "target": "envolturas"
+        },
+        {
+          "id": "examinar",
+          "label": "Examinar cestas",
+          "target": "cestas"
+        },
+        {
+          "disabled": false,
+          "id": "mover",
+          "label": "Norte · Plaza de Narevia",
+          "reason": "",
+          "target": "norte"
+        },
+        {
+          "disabled": false,
+          "id": "mover",
+          "label": "Sur · Salida por explorar",
+          "reason": "",
+          "target": "sur"
+        },
+        {
+          "id": "descansar",
+          "label": "Descansar"
+        },
+        {
+          "id": "hablar",
+          "label": "Tila · comprar",
+          "target": "lethra_nera_mercado",
+          "topic": "comprar"
+        },
+        {
+          "id": "hablar",
+          "label": "Tila · vender",
+          "target": "lethra_nera_mercado",
+          "topic": "vender"
+        },
+        {
+          "id": "hablar",
+          "label": "Tila · reunión",
+          "target": "lethra_nera_mercado",
+          "topic": "reunión"
+        },
+        {
+          "id": "hablar",
+          "label": "Tila · viajar_sin_pelear",
+          "target": "lethra_nera_mercado",
+          "topic": "viajar_sin_pelear"
+        },
+        {
+          "id": "hablar",
+          "label": "Tila · cuidados",
+          "target": "lethra_nera_mercado",
+          "topic": "cuidados"
+        },
+        {
+          "disabled": false,
+          "id": "aceptar",
+          "label": "Aceptar Dónde poner los cuencos",
+          "reason": "",
+          "target": "narevia_preparativos"
+        },
+        {
+          "id": "desequipar",
+          "label": "Guardar arma",
+          "target": "weapon"
+        },
+        {
+          "disabled": false,
+          "id": "equipar",
+          "label": "Equipar Espada de juramento",
+          "reason": "",
+          "target": "espada_juramento"
+        },
+        {
+          "cost": 8,
+          "id": "comprar",
+          "label": "Comprar Provisión de camino · 8 sellos · recupera hasta 18 vida; reduce hasta 20 fatiga",
+          "reason": "Recuperación limitada por tu vida máxima y fatiga actual. No trata heridas.",
+          "target": "provision_basica"
+        },
+        {
+          "cost": 50,
+          "disabled": true,
+          "id": "comprar",
+          "label": "Comprar Puñal de camino · 50 sellos · daño base 8",
+          "reason": "Te faltan 30 sellos.",
+          "target": "punal_camino"
+        },
+        {
+          "cost": 40,
+          "disabled": true,
+          "id": "comprar",
+          "label": "Comprar Varita de aprendiz · 40 sellos · daño base 7 · foco arcano",
+          "reason": "Te faltan 20 sellos.",
+          "target": "varita_aprendiz"
+        }
+      ],
+      "inventory": [
+        {
+          "activated": true,
+          "block": true,
+          "damage": 10,
+          "id": "espada_juramento",
+          "kind": "weapon",
+          "name": "Espada de juramento",
+          "quantity": 1
+        }
+      ],
+      "character": {
+        "attributes": {
+          "agilidad": 10,
+          "destreza": 10,
+          "fuerza": 10,
+          "intelecto": 10,
+          "percepcion": 10,
+          "presencia": 10,
+          "resistencia": 10,
+          "voluntad": 10
+        },
+        "class_id": "juramentado",
+        "combat": null,
+        "equipment": {
+          "armor": null,
+          "block": null,
+          "weapon": "espada_juramento"
+        },
+        "fatigue": 0,
+        "gender": "femenino",
+        "hp": 100,
+        "hp_max": 100.0,
+        "id": 1,
+        "level": 1,
+        "location": "lethra_mercado_hojas",
+        "name": "Prueba nocturna",
+        "pa": 0,
+        "pp": 0,
+        "seals": 20,
+        "species": "marevyn",
+        "status": "approved",
+        "wound": null,
+        "xp": 0,
+        "xp_next": 100
+      }
+    },
+    {
+      "tag": "proposal received",
+      "room": "lethra_cocina_reunion",
+      "ambient": {
+        "region": "lethra",
+        "time_of_day": "Día",
+        "timestamp": 44100,
+        "weather": "Viento",
+        "weather_description": "Las hojas y envolturas se atan sin aplastar el contenido; las corrientes y las ondas de superficie dejan de parecer el mismo movimiento."
+      },
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Huele a hierbas, raíces y humo. El fuego está sobre suelo seco, lejos del canal. Los vecinos acercan sus utensilios a la mesa. Una olla vieja tiene la base reparada y el asa envuelta para no quemarse. La salida del norte vuelve al banco de conversación."
+        },
+        {
+          "kind": "world",
+          "text": "Nima reúne los cuencos bajo la cubierta que recomendaste. Deja abierta la ventana del lado de Mira mientras el paño continúa secándose."
+        }
+      ],
+      "actions": [
+        {
+          "id": "lethra_repartir_caldo",
+          "label": "Acercar cuencos para repartir el caldo"
+        },
+        {
+          "id": "mirar",
+          "label": "Mirar"
+        },
+        {
+          "id": "observar",
+          "label": "Observar"
+        },
+        {
+          "id": "examinar",
+          "label": "Examinar olla",
+          "target": "olla"
+        },
+        {
+          "id": "examinar",
+          "label": "Examinar utensilios",
+          "target": "utensilios"
+        },
+        {
+          "disabled": false,
+          "id": "mover",
+          "label": "Norte · Banco junto al canal",
+          "reason": "",
+          "target": "norte"
+        },
+        {
+          "id": "descansar",
+          "label": "Descansar"
+        },
+        {
+          "id": "hablar",
+          "label": "Nima · caldo",
+          "target": "lethra_nima",
+          "topic": "caldo"
+        },
+        {
+          "id": "hablar",
+          "label": "Nima · mesa",
+          "target": "lethra_nima",
+          "topic": "mesa"
+        },
+        {
+          "id": "hablar",
+          "label": "Nima · preparativos",
+          "target": "lethra_nima",
+          "topic": "preparativos"
+        },
+        {
+          "id": "desequipar",
+          "label": "Guardar arma",
+          "target": "weapon"
+        },
+        {
+          "disabled": false,
+          "id": "equipar",
+          "label": "Equipar Espada de juramento",
+          "reason": "",
+          "target": "espada_juramento"
+        }
+      ],
+      "inventory": [
+        {
+          "activated": true,
+          "block": true,
+          "damage": 10,
+          "id": "espada_juramento",
+          "kind": "weapon",
+          "name": "Espada de juramento",
+          "quantity": 1
+        }
+      ],
+      "character": {
+        "attributes": {
+          "agilidad": 10,
+          "destreza": 10,
+          "fuerza": 10,
+          "intelecto": 10,
+          "percepcion": 10,
+          "presencia": 10,
+          "resistencia": 10,
+          "voluntad": 10
+        },
+        "class_id": "juramentado",
+        "combat": null,
+        "equipment": {
+          "armor": null,
+          "block": null,
+          "weapon": "espada_juramento"
+        },
+        "fatigue": 0,
+        "gender": "femenino",
+        "hp": 100,
+        "hp_max": 100.0,
+        "id": 1,
+        "level": 1,
+        "location": "lethra_cocina_reunion",
+        "name": "Prueba nocturna",
+        "pa": 0,
+        "pp": 0,
+        "seals": 20,
+        "species": "marevyn",
+        "status": "approved",
+        "wound": null,
+        "xp": 0,
+        "xp_next": 100
+      }
+    },
+    {
+      "tag": "paid Narevia",
+      "room": "lethra_mercado_hojas",
+      "ambient": {
+        "region": "lethra",
+        "time_of_day": "Día",
+        "timestamp": 44460,
+        "weather": "Viento",
+        "weather_description": "Las hojas y envolturas se atan sin aplastar el contenido; las corrientes y las ondas de superficie dejan de parecer el mismo movimiento."
+      },
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Las barcas traen alimentos en cestas levantadas del fondo. Los puestos separan las envolturas abiertas de las que deben conservar humedad. Huele a hierbas cortadas y madera mojada. Al norte queda la plaza; al sur está el muelle. Los vendedores preparan bultos distintos para comer cerca o viajar."
+        },
+        {
+          "kind": "world",
+          "text": "Iria apoya una mano sobre la envoltura abierta. La compradora recoge la hoja rota antes de que caiga al canal y comprueba si todavía puede usarla."
+        },
+        {
+          "kind": "world",
+          "text": "Las envolturas abiertas quedan cerca del agua; las de viaje, bajo el borde de la cubierta. La separación que viste permite encontrar dónde preguntar."
+        }
+      ],
+      "actions": [
+        {
+          "id": "mirar",
+          "label": "Mirar"
+        },
+        {
+          "id": "observar",
+          "label": "Observar"
+        },
+        {
+          "id": "examinar",
+          "label": "Examinar envolturas",
+          "target": "envolturas"
+        },
+        {
+          "id": "examinar",
+          "label": "Examinar cestas",
+          "target": "cestas"
+        },
+        {
+          "disabled": false,
+          "id": "mover",
+          "label": "Norte · Plaza de Narevia",
+          "reason": "",
+          "target": "norte"
+        },
+        {
+          "disabled": false,
+          "id": "mover",
+          "label": "Sur · Salida por explorar",
+          "reason": "",
+          "target": "sur"
+        },
+        {
+          "id": "descansar",
+          "label": "Descansar"
+        },
+        {
+          "id": "hablar",
+          "label": "Tila · comprar",
+          "target": "lethra_nera_mercado",
+          "topic": "comprar"
+        },
+        {
+          "id": "hablar",
+          "label": "Tila · vender",
+          "target": "lethra_nera_mercado",
+          "topic": "vender"
+        },
+        {
+          "id": "hablar",
+          "label": "Tila · reunión",
+          "target": "lethra_nera_mercado",
+          "topic": "reunión"
+        },
+        {
+          "id": "hablar",
+          "label": "Tila · viajar_sin_pelear",
+          "target": "lethra_nera_mercado",
+          "topic": "viajar_sin_pelear"
+        },
+        {
+          "id": "hablar",
+          "label": "Tila · cuidados",
+          "target": "lethra_nera_mercado",
+          "topic": "cuidados"
+        },
+        {
+          "id": "desequipar",
+          "label": "Guardar arma",
+          "target": "weapon"
+        },
+        {
+          "disabled": false,
+          "id": "equipar",
+          "label": "Equipar Espada de juramento",
+          "reason": "",
+          "target": "espada_juramento"
+        },
+        {
+          "cost": 8,
+          "id": "comprar",
+          "label": "Comprar Provisión de camino · 8 sellos · recupera hasta 18 vida; reduce hasta 20 fatiga",
+          "reason": "Recuperación limitada por tu vida máxima y fatiga actual. No trata heridas.",
+          "target": "provision_basica"
+        },
+        {
+          "cost": 50,
+          "disabled": true,
+          "id": "comprar",
+          "label": "Comprar Puñal de camino · 50 sellos · daño base 8",
+          "reason": "Te faltan 24 sellos.",
+          "target": "punal_camino"
+        },
+        {
+          "cost": 40,
+          "disabled": true,
+          "id": "comprar",
+          "label": "Comprar Varita de aprendiz · 40 sellos · daño base 7 · foco arcano",
+          "reason": "Te faltan 14 sellos.",
+          "target": "varita_aprendiz"
+        }
+      ],
+      "inventory": [
+        {
+          "activated": true,
+          "block": true,
+          "damage": 10,
+          "id": "espada_juramento",
+          "kind": "weapon",
+          "name": "Espada de juramento",
+          "quantity": 1
+        }
+      ],
+      "character": {
+        "attributes": {
+          "agilidad": 10,
+          "destreza": 10,
+          "fuerza": 10,
+          "intelecto": 10,
+          "percepcion": 10,
+          "presencia": 10,
+          "resistencia": 10,
+          "voluntad": 10
+        },
+        "class_id": "juramentado",
+        "combat": null,
+        "equipment": {
+          "armor": null,
+          "block": null,
+          "weapon": "espada_juramento"
+        },
+        "fatigue": 0,
+        "gender": "femenino",
+        "hp": 100,
+        "hp_max": 100.0,
+        "id": 1,
+        "level": 1,
+        "location": "lethra_mercado_hojas",
+        "name": "Prueba nocturna",
+        "pa": 0,
+        "pp": 0,
+        "seals": 26,
+        "species": "marevyn",
+        "status": "approved",
+        "wound": null,
+        "xp": 0,
+        "xp_next": 100
+      }
+    },
+    {
+      "tag": "Vaisgard market comparison",
+      "room": "vaisgard_mercado",
+      "ambient": {
+        "region": "veyra",
+        "time_of_day": "Día",
+        "timestamp": 45660,
+        "weather": "Niebla",
+        "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+      },
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Frutas, herramientas y cestas ocupan los puestos entre muros antiguos. Un canal pequeño cruza el mercado. Al norte está la plaza de las rutas; al sur, el patio del agua. Los carros entran por el oeste y los toldos cubren la calle del este."
+        },
+        {
+          "kind": "world",
+          "text": "Una vendedora corta una fruta para mostrar el centro. Su vecina prueba un trozo y hace una mueca; ambas apartan esa cesta mientras una niña recoge la semilla del plato."
+        },
+        {
+          "kind": "world",
+          "text": "El canal divide otra vez tu paso entre puestos. La plaza queda detrás de las herramientas; los carros alcanzan el corredor occidental por el lado de las cestas."
+        }
+      ],
+      "actions": [
+        {
+          "id": "veyra_recibir_fibra_toldo",
+          "label": "Recibir la fibra prestada para el toldo"
+        },
+        {
+          "id": "mirar",
+          "label": "Mirar"
+        },
+        {
+          "id": "observar",
+          "label": "Observar"
+        },
+        {
+          "id": "examinar",
+          "label": "Examinar canalillo",
+          "target": "canalillo"
+        },
+        {
+          "id": "examinar",
+          "label": "Examinar muros",
+          "target": "muros"
+        },
+        {
+          "disabled": false,
+          "id": "mover",
+          "label": "Norte · Salida por explorar",
+          "reason": "",
+          "target": "norte"
+        },
+        {
+          "disabled": false,
+          "id": "mover",
+          "label": "Sur · Patio del agua",
+          "reason": "",
+          "target": "sur"
+        },
+        {
+          "disabled": false,
+          "id": "mover",
+          "label": "Este · Calle de los Toldos Remendados",
+          "reason": "",
+          "target": "este"
+        },
+        {
+          "disabled": false,
+          "id": "mover",
+          "label": "Oeste · Salida por explorar",
+          "reason": "",
+          "target": "oeste"
+        },
+        {
+          "id": "descansar",
+          "label": "Descansar"
+        },
+        {
+          "id": "hablar",
+          "label": "Bela · comprar",
+          "target": "veyra_bela",
+          "topic": "comprar"
+        },
+        {
+          "id": "hablar",
+          "label": "Bela · vender",
+          "target": "veyra_bela",
+          "topic": "vender"
+        },
+        {
+          "id": "hablar",
+          "label": "Bela · cuidados",
+          "target": "veyra_bela",
+          "topic": "cuidados"
+        },
+        {
+          "id": "desequipar",
+          "label": "Guardar arma",
+          "target": "weapon"
+        },
+        {
+          "disabled": false,
+          "id": "equipar",
+          "label": "Equipar Espada de juramento",
+          "reason": "",
+          "target": "espada_juramento"
+        },
+        {
+          "cost": 8,
+          "id": "comprar",
+          "label": "Comprar Provisión de camino · 8 sellos · recupera hasta 18 vida; reduce hasta 20 fatiga",
+          "reason": "Recuperación limitada por tu vida máxima y fatiga actual. No trata heridas.",
+          "target": "provision_basica"
+        },
+        {
+          "cost": 50,
+          "disabled": true,
+          "id": "comprar",
+          "label": "Comprar Puñal de camino · 50 sellos · daño base 8",
+          "reason": "Te faltan 24 sellos.",
+          "target": "punal_camino"
+        },
+        {
+          "cost": 65,
+          "disabled": true,
+          "id": "comprar",
+          "label": "Comprar Arco de ruta · 65 sellos · daño base 9 · a distancia",
+          "reason": "Te faltan 39 sellos.",
+          "target": "arco_ruta"
+        },
+        {
+          "cost": 40,
+          "disabled": true,
+          "id": "comprar",
+          "label": "Comprar Varita de aprendiz · 40 sellos · daño base 7 · foco arcano",
+          "reason": "Te faltan 14 sellos.",
+          "target": "varita_aprendiz"
+        },
+        {
+          "cost": 85,
+          "disabled": true,
+          "id": "comprar",
+          "label": "Comprar Espada de juramento · 85 sellos · daño base 10 · permite bloquear",
+          "reason": "Te faltan 59 sellos.",
+          "target": "espada_juramento"
+        }
+      ],
+      "inventory": [
+        {
+          "activated": true,
+          "block": true,
+          "damage": 10,
+          "id": "espada_juramento",
+          "kind": "weapon",
+          "name": "Espada de juramento",
+          "quantity": 1
+        }
+      ],
+      "character": {
+        "attributes": {
+          "agilidad": 10,
+          "destreza": 10,
+          "fuerza": 10,
+          "intelecto": 10,
+          "percepcion": 10,
+          "presencia": 10,
+          "resistencia": 10,
+          "voluntad": 10
+        },
+        "class_id": "juramentado",
+        "combat": null,
+        "equipment": {
+          "armor": null,
+          "block": null,
+          "weapon": "espada_juramento"
+        },
+        "fatigue": 0,
+        "gender": "femenino",
+        "hp": 100,
+        "hp_max": 100.0,
+        "id": 1,
+        "level": 1,
+        "location": "vaisgard_mercado",
+        "name": "Prueba nocturna",
+        "pa": 0,
+        "pp": 0,
+        "seals": 26,
+        "species": "marevyn",
+        "status": "approved",
+        "wound": null,
+        "xp": 0,
+        "xp_next": 100
+      }
+    },
+    {
+      "tag": "Vaisgard purchase",
+      "room": "vaisgard_mercado",
+      "ambient": {
+        "region": "veyra",
+        "time_of_day": "Día",
+        "timestamp": 45720,
+        "weather": "Niebla",
+        "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+      },
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Frutas, herramientas y cestas ocupan los puestos entre muros antiguos. Un canal pequeño cruza el mercado. Al norte está la plaza de las rutas; al sur, el patio del agua. Los carros entran por el oeste y los toldos cubren la calle del este."
+        },
+        {
+          "kind": "world",
+          "text": "Una vendedora corta una fruta para mostrar el centro. Su vecina prueba un trozo y hace una mueca; ambas apartan esa cesta mientras una niña recoge la semilla del plato."
+        },
+        {
+          "kind": "world",
+          "text": "El canal divide otra vez tu paso entre puestos. La plaza queda detrás de las herramientas; los carros alcanzan el corredor occidental por el lado de las cestas."
+        }
+      ],
+      "actions": [
+        {
+          "id": "veyra_recibir_fibra_toldo",
+          "label": "Recibir la fibra prestada para el toldo"
+        },
+        {
+          "id": "mirar",
+          "label": "Mirar"
+        },
+        {
+          "id": "observar",
+          "label": "Observar"
+        },
+        {
+          "id": "examinar",
+          "label": "Examinar canalillo",
+          "target": "canalillo"
+        },
+        {
+          "id": "examinar",
+          "label": "Examinar muros",
+          "target": "muros"
+        },
+        {
+          "disabled": false,
+          "id": "mover",
+          "label": "Norte · Salida por explorar",
+          "reason": "",
+          "target": "norte"
+        },
+        {
+          "disabled": false,
+          "id": "mover",
+          "label": "Sur · Patio del agua",
+          "reason": "",
+          "target": "sur"
+        },
+        {
+          "disabled": false,
+          "id": "mover",
+          "label": "Este · Calle de los Toldos Remendados",
+          "reason": "",
+          "target": "este"
+        },
+        {
+          "disabled": false,
+          "id": "mover",
+          "label": "Oeste · Salida por explorar",
+          "reason": "",
+          "target": "oeste"
+        },
+        {
+          "id": "descansar",
+          "label": "Descansar"
+        },
+        {
+          "id": "hablar",
+          "label": "Bela · comprar",
+          "target": "veyra_bela",
+          "topic": "comprar"
+        },
+        {
+          "id": "hablar",
+          "label": "Bela · vender",
+          "target": "veyra_bela",
+          "topic": "vender"
+        },
+        {
+          "id": "hablar",
+          "label": "Bela · cuidados",
+          "target": "veyra_bela",
+          "topic": "cuidados"
+        },
+        {
+          "id": "desequipar",
+          "label": "Guardar arma",
+          "target": "weapon"
+        },
+        {
+          "disabled": false,
+          "id": "equipar",
+          "label": "Equipar Espada de juramento",
+          "reason": "",
+          "target": "espada_juramento"
+        },
+        {
+          "id": "usar",
+          "label": "Usar Provisión de camino",
+          "target": "provision_basica"
+        },
+        {
+          "cost": 8,
+          "id": "comprar",
+          "label": "Comprar Provisión de camino · 8 sellos · recupera hasta 18 vida; reduce hasta 20 fatiga",
+          "reason": "Recuperación limitada por tu vida máxima y fatiga actual. No trata heridas.",
+          "target": "provision_basica"
+        },
+        {
+          "cost": 50,
+          "disabled": true,
+          "id": "comprar",
+          "label": "Comprar Puñal de camino · 50 sellos · daño base 8",
+          "reason": "Te faltan 32 sellos.",
+          "target": "punal_camino"
+        },
+        {
+          "cost": 65,
+          "disabled": true,
+          "id": "comprar",
+          "label": "Comprar Arco de ruta · 65 sellos · daño base 9 · a distancia",
+          "reason": "Te faltan 47 sellos.",
+          "target": "arco_ruta"
+        },
+        {
+          "cost": 40,
+          "disabled": true,
+          "id": "comprar",
+          "label": "Comprar Varita de aprendiz · 40 sellos · daño base 7 · foco arcano",
+          "reason": "Te faltan 22 sellos.",
+          "target": "varita_aprendiz"
+        },
+        {
+          "cost": 85,
+          "disabled": true,
+          "id": "comprar",
+          "label": "Comprar Espada de juramento · 85 sellos · daño base 10 · permite bloquear",
+          "reason": "Te faltan 67 sellos.",
+          "target": "espada_juramento"
+        }
+      ],
+      "inventory": [
+        {
+          "activated": true,
+          "block": true,
+          "damage": 10,
+          "id": "espada_juramento",
+          "kind": "weapon",
+          "name": "Espada de juramento",
+          "quantity": 1
+        },
+        {
+          "description": "Comida envuelta para una pausa fuera del pueblo. Recupera una parte limitada del esfuerzo y la salud; no trata heridas.",
+          "effect": "basic_provision",
+          "id": "provision_basica",
+          "kind": "consumable",
+          "name": "Provisión de camino",
+          "price": 8,
+          "quantity": 1
+        }
+      ],
+      "character": {
+        "attributes": {
+          "agilidad": 10,
+          "destreza": 10,
+          "fuerza": 10,
+          "intelecto": 10,
+          "percepcion": 10,
+          "presencia": 10,
+          "resistencia": 10,
+          "voluntad": 10
+        },
+        "class_id": "juramentado",
+        "combat": null,
+        "equipment": {
+          "armor": null,
+          "block": null,
+          "weapon": "espada_juramento"
+        },
+        "fatigue": 0,
+        "gender": "femenino",
+        "hp": 100,
+        "hp_max": 100.0,
+        "id": 1,
+        "level": 1,
+        "location": "vaisgard_mercado",
+        "name": "Prueba nocturna",
+        "pa": 0,
+        "pp": 0,
+        "seals": 18,
+        "species": "marevyn",
+        "status": "approved",
+        "wound": null,
+        "xp": 0,
+        "xp_next": 100
+      }
+    },
+    {
+      "tag": "rock detour",
+      "room": "korven_patio_lavado",
+      "ambient": {
+        "region": "korven",
+        "time_of_day": "Día",
+        "timestamp": 46980,
+        "weather": "Lluvia",
+        "weather_description": "Las juntas reúnen agua y cambian comparaciones de polvo, color y apoyo."
+      },
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Aquí se limpian recipientes y cubiertas. Un muro bajo separa lo recién traído de lo que ya está limpio. El agua usada sale hacia la grava. Puedes volver al este, a la cisterna, o entrar al depósito del sur. El polvo queda pegado al lado húmedo del muro."
+        },
+        {
+          "kind": "world",
+          "text": "Los cuencos reciben gotas antes de que la vecina termine de secarlos. Deja el paño bajo el saliente y el niño recoge el que había hecho girar."
+        },
+        {
+          "kind": "world",
+          "text": "El agua exterior devuelve barro hacia la franja de entrada y los vecinos apartan lo limpio. La cubierta de una carga puede esperar sin lavarse de inmediato. Los paños limpios quedan bajo la cubierta; los recipientes utilizados reciben agua del lado abierto."
+        }
+      ],
+      "actions": [
+        {
+          "id": "mirar",
+          "label": "Mirar"
+        },
+        {
+          "id": "observar",
+          "label": "Observar"
+        },
+        {
+          "id": "examinar",
+          "label": "Examinar muro",
+          "target": "muro"
+        },
+        {
+          "id": "examinar",
+          "label": "Examinar grava",
+          "target": "grava"
+        },
+        {
+          "disabled": false,
+          "id": "mover",
+          "label": "Este · Cisterna común",
+          "reason": "",
+          "target": "este"
+        },
+        {
+          "disabled": false,
+          "id": "mover",
+          "label": "Sur · Salida por explorar",
+          "reason": "",
+          "target": "sur"
+        },
+        {
+          "id": "descansar",
+          "label": "Descansar"
+        },
+        {
+          "id": "desequipar",
+          "label": "Guardar arma",
+          "target": "weapon"
+        },
+        {
+          "disabled": false,
+          "id": "equipar",
+          "label": "Equipar Espada de juramento",
+          "reason": "",
+          "target": "espada_juramento"
+        },
+        {
+          "id": "usar",
+          "label": "Usar Provisión de camino",
+          "target": "provision_basica"
+        }
+      ],
+      "inventory": [
+        {
+          "activated": true,
+          "block": true,
+          "damage": 10,
+          "id": "espada_juramento",
+          "kind": "weapon",
+          "name": "Espada de juramento",
+          "quantity": 1
+        },
+        {
+          "description": "Comida envuelta para una pausa fuera del pueblo. Recupera una parte limitada del esfuerzo y la salud; no trata heridas.",
+          "effect": "basic_provision",
+          "id": "provision_basica",
+          "kind": "consumable",
+          "name": "Provisión de camino",
+          "price": 8,
+          "quantity": 1
+        }
+      ],
+      "character": {
+        "attributes": {
+          "agilidad": 10,
+          "destreza": 10,
+          "fuerza": 10,
+          "intelecto": 10,
+          "percepcion": 10,
+          "presencia": 10,
+          "resistencia": 10,
+          "voluntad": 10
+        },
+        "class_id": "juramentado",
+        "combat": null,
+        "equipment": {
+          "armor": null,
+          "block": null,
+          "weapon": "espada_juramento"
+        },
+        "fatigue": 0,
+        "gender": "femenino",
+        "hp": 100,
+        "hp_max": 100.0,
+        "id": 1,
+        "level": 1,
+        "location": "korven_patio_lavado",
+        "name": "Prueba nocturna",
+        "pa": 0,
+        "pp": 0,
+        "seals": 18,
+        "species": "marevyn",
+        "status": "approved",
+        "wound": null,
+        "xp": 0,
+        "xp_next": 100
+      }
+    },
+    {
+      "tag": "Narevia dusk return",
+      "room": "lethra_mercado_hojas",
+      "ambient": {
+        "region": "lethra",
+        "time_of_day": "Atardecer",
+        "timestamp": 70680,
+        "weather": "Viento",
+        "weather_description": "Las hojas y envolturas se atan sin aplastar el contenido; las corrientes y las ondas de superficie dejan de parecer el mismo movimiento."
+      },
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Las barcas traen alimentos en cestas levantadas del fondo. Los puestos separan las envolturas abiertas de las que deben conservar humedad. Huele a hierbas cortadas y madera mojada. Al norte queda la plaza; al sur está el muelle. Los vendedores preparan bultos distintos para comer cerca o viajar."
+        },
+        {
+          "kind": "world",
+          "text": "Iria abre una envoltura y huele lo que contiene antes de ofrecerla. Una compradora aparta una hoja rota del borde y la guarda para remendar la suya."
+        },
+        {
+          "kind": "world",
+          "text": "Recibe viajeros y repone el puesto sin cerrar el paso."
+        }
+      ],
+      "actions": [
+        {
+          "id": "mirar",
+          "label": "Mirar"
+        },
+        {
+          "id": "observar",
+          "label": "Observar"
+        },
+        {
+          "id": "examinar",
+          "label": "Examinar envolturas",
+          "target": "envolturas"
+        },
+        {
+          "id": "examinar",
+          "label": "Examinar cestas",
+          "target": "cestas"
+        },
+        {
+          "disabled": false,
+          "id": "mover",
+          "label": "Norte · Plaza de Narevia",
+          "reason": "",
+          "target": "norte"
+        },
+        {
+          "disabled": false,
+          "id": "mover",
+          "label": "Sur · Salida por explorar",
+          "reason": "",
+          "target": "sur"
+        },
+        {
+          "id": "descansar",
+          "label": "Descansar"
+        },
+        {
+          "id": "hablar",
+          "label": "Tila · comprar",
+          "target": "lethra_nera_mercado",
+          "topic": "comprar"
+        },
+        {
+          "id": "hablar",
+          "label": "Tila · vender",
+          "target": "lethra_nera_mercado",
+          "topic": "vender"
+        },
+        {
+          "id": "hablar",
+          "label": "Tila · reunión",
+          "target": "lethra_nera_mercado",
+          "topic": "reunión"
+        },
+        {
+          "id": "hablar",
+          "label": "Tila · viajar_sin_pelear",
+          "target": "lethra_nera_mercado",
+          "topic": "viajar_sin_pelear"
+        },
+        {
+          "id": "hablar",
+          "label": "Tila · cuidados",
+          "target": "lethra_nera_mercado",
+          "topic": "cuidados"
+        },
+        {
+          "id": "desequipar",
+          "label": "Guardar arma",
+          "target": "weapon"
+        },
+        {
+          "disabled": false,
+          "id": "equipar",
+          "label": "Equipar Espada de juramento",
+          "reason": "",
+          "target": "espada_juramento"
+        },
+        {
+          "id": "usar",
+          "label": "Usar Provisión de camino",
+          "target": "provision_basica"
+        },
+        {
+          "cost": 8,
+          "id": "comprar",
+          "label": "Comprar Provisión de camino · 8 sellos · recupera hasta 18 vida; reduce hasta 20 fatiga",
+          "reason": "Recuperación limitada por tu vida máxima y fatiga actual. No trata heridas.",
+          "target": "provision_basica"
+        },
+        {
+          "cost": 50,
+          "disabled": true,
+          "id": "comprar",
+          "label": "Comprar Puñal de camino · 50 sellos · daño base 8",
+          "reason": "Te faltan 32 sellos.",
+          "target": "punal_camino"
+        },
+        {
+          "cost": 40,
+          "disabled": true,
+          "id": "comprar",
+          "label": "Comprar Varita de aprendiz · 40 sellos · daño base 7 · foco arcano",
+          "reason": "Te faltan 22 sellos.",
+          "target": "varita_aprendiz"
+        }
+      ],
+      "inventory": [
+        {
+          "activated": true,
+          "block": true,
+          "damage": 10,
+          "id": "espada_juramento",
+          "kind": "weapon",
+          "name": "Espada de juramento",
+          "quantity": 1
+        },
+        {
+          "description": "Comida envuelta para una pausa fuera del pueblo. Recupera una parte limitada del esfuerzo y la salud; no trata heridas.",
+          "effect": "basic_provision",
+          "id": "provision_basica",
+          "kind": "consumable",
+          "name": "Provisión de camino",
+          "price": 8,
+          "quantity": 1
+        }
+      ],
+      "character": {
+        "attributes": {
+          "agilidad": 10,
+          "destreza": 10,
+          "fuerza": 10,
+          "intelecto": 10,
+          "percepcion": 10,
+          "presencia": 10,
+          "resistencia": 10,
+          "voluntad": 10
+        },
+        "class_id": "juramentado",
+        "combat": null,
+        "equipment": {
+          "armor": null,
+          "block": null,
+          "weapon": "espada_juramento"
+        },
+        "fatigue": 0,
+        "gender": "femenino",
+        "hp": 100,
+        "hp_max": 100.0,
+        "id": 1,
+        "level": 1,
+        "location": "lethra_mercado_hojas",
+        "name": "Prueba nocturna",
+        "pa": 0,
+        "pp": 0,
+        "seals": 18,
+        "species": "marevyn",
+        "status": "approved",
+        "wound": null,
+        "xp": 0,
+        "xp_next": 100
+      }
+    },
+    {
+      "tag": "kitchen return",
+      "room": "lethra_cocina_reunion",
+      "ambient": {
+        "region": "lethra",
+        "time_of_day": "Atardecer",
+        "timestamp": 71040,
+        "weather": "Viento",
+        "weather_description": "Las hojas y envolturas se atan sin aplastar el contenido; las corrientes y las ondas de superficie dejan de parecer el mismo movimiento."
+      },
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Huele a hierbas, raíces y humo. El fuego está sobre suelo seco, lejos del canal. Los vecinos acercan sus utensilios a la mesa. Una olla vieja tiene la base reparada y el asa envuelta para no quemarse. La salida del norte vuelve al banco de conversación."
+        },
+        {
+          "kind": "world",
+          "text": "El caldo llega a la mesa antes que las dos hermanas. Nima prueba otro sorbo y mira hacia la ventana de su padre; la cuchara sigue sin convencerla."
+        },
+        {
+          "kind": "world",
+          "text": "Los cuencos se agrupan en el rincón cubierto que elegiste. La ventana vuelve a situar la plataforma donde dejaste secar el paño."
+        }
+      ],
+      "actions": [
+        {
+          "id": "lethra_repartir_caldo",
+          "label": "Acercar cuencos para repartir el caldo"
+        },
+        {
+          "id": "mirar",
+          "label": "Mirar"
+        },
+        {
+          "id": "observar",
+          "label": "Observar"
+        },
+        {
+          "id": "examinar",
+          "label": "Examinar olla",
+          "target": "olla"
+        },
+        {
+          "id": "examinar",
+          "label": "Examinar utensilios",
+          "target": "utensilios"
+        },
+        {
+          "disabled": false,
+          "id": "mover",
+          "label": "Norte · Banco junto al canal",
+          "reason": "",
+          "target": "norte"
+        },
+        {
+          "id": "descansar",
+          "label": "Descansar"
+        },
+        {
+          "id": "hablar",
+          "label": "Nima · caldo",
+          "target": "lethra_nima",
+          "topic": "caldo"
+        },
+        {
+          "id": "hablar",
+          "label": "Nima · mesa",
+          "target": "lethra_nima",
+          "topic": "mesa"
+        },
+        {
+          "id": "hablar",
+          "label": "Nima · preparativos",
+          "target": "lethra_nima",
+          "topic": "preparativos"
+        },
+        {
+          "id": "desequipar",
+          "label": "Guardar arma",
+          "target": "weapon"
+        },
+        {
+          "disabled": false,
+          "id": "equipar",
+          "label": "Equipar Espada de juramento",
+          "reason": "",
+          "target": "espada_juramento"
+        },
+        {
+          "id": "usar",
+          "label": "Usar Provisión de camino",
+          "target": "provision_basica"
+        }
+      ],
+      "inventory": [
+        {
+          "activated": true,
+          "block": true,
+          "damage": 10,
+          "id": "espada_juramento",
+          "kind": "weapon",
+          "name": "Espada de juramento",
+          "quantity": 1
+        },
+        {
+          "description": "Comida envuelta para una pausa fuera del pueblo. Recupera una parte limitada del esfuerzo y la salud; no trata heridas.",
+          "effect": "basic_provision",
+          "id": "provision_basica",
+          "kind": "consumable",
+          "name": "Provisión de camino",
+          "price": 8,
+          "quantity": 1
+        }
+      ],
+      "character": {
+        "attributes": {
+          "agilidad": 10,
+          "destreza": 10,
+          "fuerza": 10,
+          "intelecto": 10,
+          "percepcion": 10,
+          "presencia": 10,
+          "resistencia": 10,
+          "voluntad": 10
+        },
+        "class_id": "juramentado",
+        "combat": null,
+        "equipment": {
+          "armor": null,
+          "block": null,
+          "weapon": "espada_juramento"
+        },
+        "fatigue": 0,
+        "gender": "femenino",
+        "hp": 100,
+        "hp_max": 100.0,
+        "id": 1,
+        "level": 1,
+        "location": "lethra_cocina_reunion",
+        "name": "Prueba nocturna",
+        "pa": 0,
+        "pp": 0,
+        "seals": 18,
+        "species": "marevyn",
+        "status": "approved",
+        "wound": null,
+        "xp": 0,
+        "xp_next": 100
+      }
+    },
+    {
+      "tag": "Narevia night return",
+      "room": "lethra_mercado_hojas",
+      "ambient": {
+        "region": "lethra",
+        "time_of_day": "Noche",
+        "timestamp": 83280,
+        "weather": "Niebla",
+        "weather_description": "Los reflejos desaparecen antes que las voces y las rutas se reconocen por agua, postes y uniones cercanas."
+      },
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Las barcas traen alimentos en cestas levantadas del fondo. Los puestos separan las envolturas abiertas de las que deben conservar humedad. Huele a hierbas cortadas y madera mojada. Al norte queda la plaza; al sur está el muelle. Los vendedores preparan bultos distintos para comer cerca o viajar."
+        },
+        {
+          "kind": "world",
+          "text": "Las hojas de los puestos dejan un olor húmedo sobre la mesa. Una vendedora cuenta dos recipientes vacíos y llama al dueño del tercero."
+        },
+        {
+          "kind": "world",
+          "text": "Las envolturas abiertas quedan cerca del agua; las de viaje, bajo el borde de la cubierta. La separación que viste permite encontrar dónde preguntar."
+        }
+      ],
+      "actions": [
+        {
+          "id": "mirar",
+          "label": "Mirar"
+        },
+        {
+          "id": "observar",
+          "label": "Observar"
+        },
+        {
+          "id": "examinar",
+          "label": "Examinar envolturas",
+          "target": "envolturas"
+        },
+        {
+          "id": "examinar",
+          "label": "Examinar cestas",
+          "target": "cestas"
+        },
+        {
+          "disabled": false,
+          "id": "mover",
+          "label": "Norte · Plaza de Narevia",
+          "reason": "",
+          "target": "norte"
+        },
+        {
+          "disabled": false,
+          "id": "mover",
+          "label": "Sur · Muelle de las cestas",
+          "reason": "",
+          "target": "sur"
+        },
+        {
+          "id": "descansar",
+          "label": "Descansar"
+        },
+        {
+          "id": "hablar",
+          "label": "Tila · comprar",
+          "target": "lethra_nera_mercado",
+          "topic": "comprar"
+        },
+        {
+          "id": "hablar",
+          "label": "Tila · vender",
+          "target": "lethra_nera_mercado",
+          "topic": "vender"
+        },
+        {
+          "id": "hablar",
+          "label": "Tila · reunión",
+          "target": "lethra_nera_mercado",
+          "topic": "reunión"
+        },
+        {
+          "id": "hablar",
+          "label": "Tila · viajar_sin_pelear",
+          "target": "lethra_nera_mercado",
+          "topic": "viajar_sin_pelear"
+        },
+        {
+          "id": "hablar",
+          "label": "Tila · cuidados",
+          "target": "lethra_nera_mercado",
+          "topic": "cuidados"
+        },
+        {
+          "id": "desequipar",
+          "label": "Guardar arma",
+          "target": "weapon"
+        },
+        {
+          "disabled": false,
+          "id": "equipar",
+          "label": "Equipar Espada de juramento",
+          "reason": "",
+          "target": "espada_juramento"
+        },
+        {
+          "id": "usar",
+          "label": "Usar Provisión de camino",
+          "target": "provision_basica"
+        },
+        {
+          "cost": 8,
+          "id": "comprar",
+          "label": "Comprar Provisión de camino · 8 sellos · recupera hasta 18 vida; reduce hasta 20 fatiga",
+          "reason": "Recuperación limitada por tu vida máxima y fatiga actual. No trata heridas.",
+          "target": "provision_basica"
+        },
+        {
+          "cost": 50,
+          "disabled": true,
+          "id": "comprar",
+          "label": "Comprar Puñal de camino · 50 sellos · daño base 8",
+          "reason": "Te faltan 32 sellos.",
+          "target": "punal_camino"
+        },
+        {
+          "cost": 40,
+          "disabled": true,
+          "id": "comprar",
+          "label": "Comprar Varita de aprendiz · 40 sellos · daño base 7 · foco arcano",
+          "reason": "Te faltan 22 sellos.",
+          "target": "varita_aprendiz"
+        }
+      ],
+      "inventory": [
+        {
+          "activated": true,
+          "block": true,
+          "damage": 10,
+          "id": "espada_juramento",
+          "kind": "weapon",
+          "name": "Espada de juramento",
+          "quantity": 1
+        },
+        {
+          "description": "Comida envuelta para una pausa fuera del pueblo. Recupera una parte limitada del esfuerzo y la salud; no trata heridas.",
+          "effect": "basic_provision",
+          "id": "provision_basica",
+          "kind": "consumable",
+          "name": "Provisión de camino",
+          "price": 8,
+          "quantity": 1
+        }
+      ],
+      "character": {
+        "attributes": {
+          "agilidad": 10,
+          "destreza": 10,
+          "fuerza": 10,
+          "intelecto": 10,
+          "percepcion": 10,
+          "presencia": 10,
+          "resistencia": 10,
+          "voluntad": 10
+        },
+        "class_id": "juramentado",
+        "combat": null,
+        "equipment": {
+          "armor": null,
+          "block": null,
+          "weapon": "espada_juramento"
+        },
+        "fatigue": 0,
+        "gender": "femenino",
+        "hp": 100,
+        "hp_max": 100.0,
+        "id": 1,
+        "level": 1,
+        "location": "lethra_mercado_hojas",
+        "name": "Prueba nocturna",
+        "pa": 0,
+        "pp": 0,
+        "seals": 18,
+        "species": "marevyn",
+        "status": "approved",
+        "wound": null,
+        "xp": 0,
+        "xp_next": 100
+      }
+    }
+  ],
+  "gender": "femenino"
+}

@@ -1,0 +1,26 @@
+{
+  "source": "Installed third-party distributions copied from local dependency cache; no previous game code",
+  "browser_packages": {
+    "Three.js": {
+      "version": "0.160.0",
+      "license": "MIT",
+      "source": "Existing local vendor dependency; no previous game implementation or models copied",
+      "license_file": "client/vendor/LICENSE-three.txt",
+      "loading": "On demand when a player opens a 3D view",
+      "addons": [
+        "GLTFLoader.js",
+        "BufferGeometryUtils.js"
+      ]
+    }
+  },
+  "packages": {
+    "Flask": "3.1.3",
+    "Werkzeug": "3.1.6",
+    "waitress": "3.0.2",
+    "Jinja2": "3.1.6",
+    "MarkupSafe": "3.0.3",
+    "itsdangerous": "2.2.0",
+    "click": "8.5.0",
+    "blinker": "1.9.0"
+  }
+}

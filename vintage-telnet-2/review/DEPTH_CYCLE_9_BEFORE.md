@@ -1,0 +1,11 @@
+# Ciclo9 · estilo inmersivo · ANTES
+
+La prueba ciega anterior quedó FAIL honesto en `DEPTH_BLIND_ROUTE.md`: estilo3/5 por prosa que explicaba al jugador cómo juzgar el mundo. Se conservó y reejecutó como `DEPTH_CYCLE_9_BEFORE.json`:78movimientos y10observaciones, API real con base temporal, RNG=.9 y reloj60segundos por acción. Script `scripts/depth-cycle9-editorial.py` permite repetir la ruta exacta.
+
+Inventario inicial140cadenas con contexto y rutaJSON en `DEPTH_CYCLE_9_INVENTORY.json`, seis regiones. No son140defectos: incluye negaciones geográficas, instrucciones de seguridad, reglas de cuidados y una plantilla física de carpintería que deben mantenerse. El fallo verdadero es la voz del diseñador: «la región adquiere continuidad», «no entrega automáticamente el nombre», «no era una pieza puesta sólo para variar el paisaje»; también moralizaciones sobre pertenencia, responsabilidad o utilidad que sustituyen un objeto o gesto observable.
+
+Prioridad1: return explica las intenciones del diseño en vez de recuperar una referencia del viaje. Prioridad2: day/rain interpretan una costumbre o una cautela en vez de mostrarla. Prioridad3: examine y descripciones de NPC explican qué simboliza una condición corporal o quién debe recibir mérito, en vez de detalle físico o conversación concreta.
+
+Plan autorizado: editar sólo cadenas públicas de regiones, convertir comentario en suelo, sonido, marca, gesto o recuerdo personal breve. Preservar geografía, acciones, flags, estadosC6/C8, reglas de riesgo y datos de partidas. Sin motor nuevo, sin world.json y sin sinónimos abstractos. Rejugar78, además de un recorrido largo y una NUEVA ruta ciega no retocada al final. No subir3a4por pasar pruebas técnicas.
+
+La primera pasada117campos mejoró la ruta78, pero una nueva ciega107movimientos mostró otros cierres abstractos en Korven; evidencia `DEPTH_CYCLE_9_BLIND_FAIL.json`. La segunda pasada32campos tampoco justificó cierre: la ruta nueva102movimientos/13observaciones conservaba «fuente bonita», «hace del regreso un trayecto» y «impresión bonita». Esa prueba sigue FAIL en `DEPTH_CYCLE_9_BLIND_FAIL_102.json`. Después se leyeron semánticamente TODOS los textos return de seis regiones y hogares, no sólo búsquedas por regex; una tercera pasada46campos resolvió esa familia global. Los fallos no se borraron ni se renombraron PASS.

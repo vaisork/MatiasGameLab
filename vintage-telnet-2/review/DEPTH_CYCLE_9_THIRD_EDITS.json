@@ -1,0 +1,278 @@
+[
+  {
+    "file": "nhal.json",
+    "path": "rooms.nhal_corteza_clara.return",
+    "before": "Puedes reconocer el cruce desde la vuelta ancha sin acercarte primero al barro. La corteza clara deja de ser sólo una impresión bonita: conecta la senda anterior, el apoyo alto y la continuación que aprendiste a seguir.",
+    "after": "La corteza clara vuelve a verse desde la vuelta ancha. Recuerdas el apoyo alto a su lado; detrás, la senda entra entre las raíces."
+  },
+  {
+    "file": "nhal.json",
+    "path": "rooms.nhal_helechos_bajos.day",
+    "before": "Una aprendiz recoge helechos quebrados del borde para comprobar si una carga se abrió al pasar. Los golpes del taller siguen un ritmo que termina cuando alguien levanta pieza. Trabajo humano y sonido forestal se distinguen sin separarse del todo.",
+    "after": "La aprendiz levanta un helecho quebrado junto a la senda. Del taller llegan dos golpes y una pausa; al soltar el tallo se oye el roce de las hojas."
+  },
+  {
+    "file": "nhal.json",
+    "path": "rooms.nhal_patio_relato.day",
+    "before": "La narradora lee una frase y la tacha cuando un vecino corrige el nombre del lugar. Los oyentes no son un público inmóvil. Una mujer añade dónde estaba cuando oyó aquel ruido. Elin aparta un asiento para escucharla mejor.",
+    "after": "La narradora tacha una frase cuando un vecino corrige el nombre. Una mujer añade dónde estaba al oír aquel ruido; Elin acerca un asiento y la narradora deja el lápiz sobre el cuaderno."
+  },
+  {
+    "file": "nhal.json",
+    "path": "rooms.nhal_calle_hogares.day",
+    "before": "Una vecina baja un recipiente al umbral y escucha la explicación del visitante antes de abrir. Un niño lleva el juguete reparado pegado al pecho y se detiene en su puerta para mirarlo otra vez. Las casas continúan trabajos que empezaron fuera.",
+    "after": "Una vecina escucha desde el umbral antes de abrir. Un niño lleva el juguete reparado contra el pecho; al llegar a su puerta lo separa un poco para ver girar la rueda."
+  },
+  {
+    "file": "nhal.json",
+    "path": "rooms.nhal_sendero_altura.return",
+    "before": "Reconoces el descanso donde pudo pasar la carga. La vuelta a Velmora devuelve primero árboles más juntos y luego luces entre ellos; conocer esa secuencia hace del regreso un trayecto, no una puerta de salida del bosque.",
+    "after": "Recuerdas el descanso donde pasó la carga. Camino de las casas, los árboles vuelven a juntarse; detrás de los primeros troncos se ven luces bajas."
+  },
+  {
+    "file": "hoshai.json",
+    "path": "rooms.hoshai_descanso_tres_piedras.day",
+    "before": "Una porteadora extiende su cubierta sobre la piedra baja y deja las otras libres. Revisa dónde se ha humedecido el fardo antes de continuar. Un aprendiz observa esa pausa como parte del trabajo del viaje.",
+    "after": "La porteadora extiende su cubierta sobre la piedra baja. Su aprendiz toca la esquina húmeda del fardo y la aparta del extremo seco."
+  },
+  {
+    "file": "hoshai.json",
+    "path": "rooms.hoshai_descanso_tres_piedras.night",
+    "before": "La piedra baja guarda una cuerda visible en la luz del farol. Los demás apoyos se reconocen por sus sombras cortas. Quien se sienta conserva la espalda hacia la pared y no busca el borde por curiosidad.",
+    "after": "El farol ilumina una cuerda sobre la piedra baja. Una viajera se sienta con la espalda hacia la pared; más allá de sus pies queda el borde oscuro."
+  },
+  {
+    "file": "hoshai.json",
+    "path": "rooms.hoshai_descanso_tres_piedras.return",
+    "before": "La forma triangular ya puede reconocerse desde la curva inferior. La piedra interior conserva su asiento antes del borde expuesto. El lugar parece menos extraordinario y más útil cuando recuerdas cómo continuaba el siguiente repecho.",
+    "after": "Reconoces las tres piedras desde la curva inferior. La interior tiene el borde gastado donde te sentaste; al otro lado vuelve a subir el repecho."
+  },
+  {
+    "file": "hoshai.json",
+    "path": "rooms.hoshai_agua_fria.return",
+    "before": "El escalón final te resulta familiar y puedes reconocer cuándo está ocupado. La vuelta no repite el cruce en sentido idéntico: desde arriba ves mejor la plataforma, mientras el agua sigue ocultando lo que pisa quien baja.",
+    "after": "Recuerdas el escalón final de la otra orilla. Desde arriba se ve la plataforma donde esperaron; el agua cruza delante de los apoyos inferiores."
+  },
+  {
+    "file": "hoshai.json",
+    "path": "rooms.hoshai_senda_dosel.return",
+    "before": "Puedes reconocer el banco antes de la curva y relacionarlo con quien esperó allí. Las hojas oscuras no prueban que ese viajero siga presente: son un resto de paso que la siguiente lluvia puede mover.",
+    "after": "El banco aparece antes de la curva. Recuerdas la cubierta que sacudieron allí; unas hojas oscuras siguen pegadas al borde."
+  },
+  {
+    "file": "hoshai.json",
+    "path": "rooms.hoshai_estacion_cuerda.day",
+    "before": "Una cuidadora Felaryn espera a una mensajera Vesperi para comparar las notas de ambos lados. No interpreta por ella las señales del bosque. El acuerdo empieza donde termina la confianza en una sola línea de visión.",
+    "after": "La cuidadora Felaryn espera a la mensajera Vesperi. Extienden sus notas juntas; una señala la raíz dibujada y la otra el nudo del siguiente tramo."
+  },
+  {
+    "file": "hoshai.json",
+    "path": "rooms.hoshai_estacion_cuerda.return",
+    "before": "Reconoces el cordel como punto de relevo y no como una frontera entre pueblos. Si vuelves del bosque, la dirección occidental devuelve primero el banco seco, después las viviendas y sólo entonces la plaza escalonada.",
+    "after": "Reconoces el cordel del relevo junto al banco seco. Hacia el oeste asoman las primeras viviendas; detrás de ellas queda la plaza escalonada."
+  },
+  {
+    "file": "hoshai.json",
+    "path": "rooms.hoshai_cuello_roca.day",
+    "before": "Una porteadora espera el golpe de respuesta antes de entrar con su carga. Una niña que camina delante vuelve para confirmar que la terraza está libre. La costumbre permite coordinarse sin ver a través de la roca.",
+    "after": "La porteadora espera un golpe desde el otro lado de la roca. La niña vuelve por el paso estrecho, señala la terraza libre y se aparta junto a la pared."
+  },
+  {
+    "file": "hoshai.json",
+    "path": "rooms.hoshai_deposito_comun.day",
+    "before": "La encargada revisa una tabla vacía antes de entregar otra pala. No acusa a quien todavía está usando la primera. Pide saber qué trabajo continúa abierto, para que el siguiente vecino pueda prepararse sin esperar inútilmente.",
+    "after": "La encargada mira la tabla vacía antes de entregar una pala. Pregunta dónde sigue trabajando quien tomó la primera y apunta su nombre junto al dibujo del huerto."
+  },
+  {
+    "file": "hoshai.json",
+    "path": "rooms.hoshai_deposito_comun.examine.tablas",
+    "before": "Cada marca registra una responsabilidad de préstamo, no un rango social.",
+    "after": "Una lleva el dibujo de una pala y un nombre. Al lado quedan dos marcas de devolución."
+  },
+  {
+    "file": "hoshai.json",
+    "path": "regions.hoshai.home.return",
+    "before": "El apoyo de viaje vuelve a tener sentido después de la subida: permite dejar el bulto antes de ordenar el resto. La ventana conserva una vista limitada, pero ahora puedes relacionarla con un tramo recorrido.",
+    "after": "Dejas el bulto sobre el apoyo de la entrada. Desde la ventana vuelves a ver el escalón del camino; las cuerdas quedan cerca de tu mano."
+  },
+  {
+    "file": "korven.json",
+    "path": "rooms.korven_pared_sotavento.return",
+    "before": "La marca del suelo distingue dónde descansar de dónde deben circular quienes siguen viaje. La roca no cambió, pero puedes prever cómo se reorganiza una carga dentro del abrigo cuando llegan otros antes de que te levantes.",
+    "after": "Recuerdas la marca junto a la pared. De ese lado descansan las cargas; al otro, las huellas pasan entre la sombra y la meseta."
+  },
+  {
+    "file": "korven.json",
+    "path": "rooms.brumak_centro.return",
+    "before": "El patio puede recorrerse reconociendo cada franja de trabajo. Reconoces el espacio necesario para girar un carro. Las puertas bajas quedan fuera de ese recorrido, cerca de quienes conversan al volver a casa.",
+    "after": "Reconoces la curva gastada por las ruedas. Las puertas bajas quedan fuera de ella; dos bancos se recogen junto al primer umbral."
+  },
+  {
+    "file": "korven.json",
+    "path": "rooms.korven_almacen_grano.return",
+    "before": "Reconoces las cubiertas dobladas de las cestas en uso. El almacén deja de parecer una colección de objetos disponibles; sus diferencias cuentan quién recibió una carga y qué trabajo necesita antes de abrirse para el pueblo.",
+    "after": "Reconoces las cubiertas dobladas sobre las cestas abiertas. Las cerradas esperan bajo el alero, donde dejaron una tabla para secar la última."
+  },
+  {
+    "file": "korven.json",
+    "path": "rooms.korven_deposito_cubiertas.return",
+    "before": "Reconoces el travesaño de devoluciones antes de pedir otro objeto. Una cubierta prestada conserva una relación con quien la espera: el depósito vuelve a recordar tareas compartidas aunque las telas cambien de posición.",
+    "after": "Recuerdas el travesaño de las devoluciones. La cubierta húmeda cuelga frente al hueco de aire; en su tablilla sigue el nombre de quien la tomó."
+  },
+  {
+    "file": "korven.json",
+    "path": "rooms.korven_registro_cauce.return",
+    "before": "Reconoces la tablilla de la última visita por su sitio. Las notas vecinas conservan lugares y horas distintos. El registro puede reconocer tu paso; el cauce conserva sus partes no vistas incluso después de que alguien lo haya descrito.",
+    "after": "Reconoces la tablilla por su sitio junto a la puerta. La nota de al lado tiene otra hora; por encima de ambas, el dibujo del cauce termina detrás de un bloque."
+  },
+  {
+    "file": "korven.json",
+    "path": "rooms.korven_senda_viento.return",
+    "before": "Reconoces el cobertizo como última revisión antes de salir al aire abierto. La vuelta hacia Brumak encuentra primero paredes bajas, después el rodeo del pueblo; el abrigo doméstico no aparece de golpe al dejar Edran.",
+    "after": "Reconoces el cobertizo donde ajustaron las tiras. De vuelta al pueblo aparecen primero paredes bajas y luego el rodeo junto a las casas."
+  },
+  {
+    "file": "korven.json",
+    "path": "regions.korven.home.return",
+    "before": "El umbral permite dejar fuera el polvo antes de volver a los apoyos domésticos. Las repisas conservan su altura conocida. Después del camino abierto, esta escala compacta vuelve a sentirse como una manera concreta de habitar.",
+    "after": "El polvo cae junto al umbral antes de que alcances el banco. En la repisa vuelve a verse el cuenco; la ranura deja una franja de luz sobre la mesa."
+  },
+  {
+    "file": "edran.json",
+    "path": "rooms.valdren_fragua.return",
+    "before": "Ya sabes por qué el centro de la fragua parece vacío: es el trayecto entre el hogar, la mesa y el agua. Acercarte al mostrador no implica cruzarlo.",
+    "after": "Recuerdas el banco que deja libre el centro. Desde el fuego, la franja de suelo limpio llega hasta la mesa y el recipiente de agua."
+  },
+  {
+    "file": "edran.json",
+    "path": "rooms.valdren_comedor.return",
+    "before": "Reconoces las tazas invertidas como sitios reservados. El comedor puede ofrecer abrigo sin fingir que todos los viajeros forman parte de la misma conversación.",
+    "after": "Reconoces las tazas invertidas junto a los sitios reservados. El extremo próximo al fuego tiene una silla libre; del otro llega una conversación baja."
+  },
+  {
+    "file": "edran.json",
+    "path": "rooms.edran_arboleda.return",
+    "before": "Reconoces el árbol central como lugar para detenerse y el oriental por sus raíces altas. La arboleda deja de ser un único punto de sombra.",
+    "after": "Reconoces las raíces altas del árbol oriental. El banco de tierra queda bajo el del centro; entre ambos se ve el camino de carros."
+  },
+  {
+    "file": "edran.json",
+    "path": "rooms.edran_camino_carros.return",
+    "before": "La bifurcación responde al peso y al suelo, no a dos destinos. La rodada alta continúa firme y la baja vuelve a reunirse frente al reparo.",
+    "after": "La rodada alta sigue firme sobre el borde. La baja conserva barro en el centro; ambas se juntan otra vez delante del reparo."
+  },
+  {
+    "file": "edran.json",
+    "path": "rooms.edran_prado.return",
+    "before": "Conoces la diferencia entre hierba atravesada y hierba ocupada. El prado sigue ofreciendo paso, pero no invita a confundir espacio abierto con espacio seguro.",
+    "after": "Recuerdas el sendero entre las dos bandas de hierba. Fuera de él, unas huellas profundas hunden los tallos hacia el claro del prado."
+  },
+  {
+    "file": "edran.json",
+    "path": "rooms.edran_linde_piedra.return",
+    "before": "El final de las rodadas identifica un cambio práctico entre regiones. Korven no comienza por un color nuevo: obliga a transformar cómo se lleva una carga.",
+    "after": "Recuerdas dónde terminan las rodadas. En la explanada espera el soporte estrecho que probaron antes de pasar entre los lomos de roca."
+  },
+  {
+    "file": "edran.json",
+    "path": "rooms.edran_sauces.return",
+    "before": "Reconoces el hueco de las aves por el sauce inclinado. La ribera ofrece una observación propia, sin pedir que recojas nada para justificar detenerte.",
+    "after": "El sauce inclinado vuelve a mostrar el hueco donde se posó el ave. Desde la raíz seca se oye el agua bajo las plantas del borde."
+  },
+  {
+    "file": "edran.json",
+    "path": "rooms.edran_vista_cuenca.return",
+    "before": "La ventana te devuelve una referencia de destino sin mostrarlo completo. Puedes orientarte hacia la cuenca y conservar la incertidumbre de lo que aún no has recorrido.",
+    "after": "Reconoces el hueco entre las lomas por donde viste los muros. La franja de piedra vuelve a ocultarse al acercarte al borde de la ventana."
+  },
+  {
+    "file": "edran.json",
+    "path": "rooms.edran_casa_camino.day",
+    "before": "Aren compara las tablillas de la repisa con una nota más nueva. No pregunta quién cuenta mejor una historia: quiere saber desde dónde se vio cada cosa.",
+    "after": "Aren coloca la nota nueva junto a las tablillas. Pregunta desde qué orilla vieron la rueda detenida y toca en el dibujo el punto que le señalan."
+  },
+  {
+    "file": "veyra.json",
+    "path": "rooms.veyra_calle_toldos.return",
+    "before": "Las costuras de colores ya no parecen decoración. Cada una marca una obligación compartida entre dos fachadas. La esquina que conduce a los canales se reconoce por los recipientes puestos bajo el último desagüe.",
+    "after": "Reconoces la costura azul entre los dos talleres. Bajo el último desagüe están los recipientes que marcaban la vuelta hacia los canales."
+  },
+  {
+    "file": "veyra.json",
+    "path": "rooms.veyra_patio_porte.return",
+    "before": "La fuente ocupa el mismo rincón tranquilo, aunque las cargas sean otras. Reconoces la espera como parte del viaje: aquí una demora puede indicar cuidado de una bestia, no incompetencia de un porteador.",
+    "after": "Reconoces el rincón del bebedero. Una bestia mantiene la cabeza baja junto al agua; su carga espera al otro lado de las argollas."
+  },
+  {
+    "file": "veyra.json",
+    "path": "rooms.veyra_patio_senales.return",
+    "before": "Ya distingues la ranura de urgencias del montón de recados ordinarios. Las noticias cambian, pero el trabajo de atribuir cada una a un lugar y una persona conserva una forma que puedes volver a reconocer.",
+    "after": "Recuerdas la ranura donde dejaron el recado urgente. El montón de notas del alero queda debajo, sujeto con la misma teja."
+  },
+  {
+    "file": "veyra.json",
+    "path": "rooms.veyra_patio_agua.return",
+    "before": "El brillo gastado de la piedra señala dónde apoyar una jarra sin acercarla al agua de la calle. El patio ya puede leerse como un acuerdo entre casas, no simplemente como una fuente bonita.",
+    "after": "Reconoces el brillo gastado donde apoyaron la jarra. El agua de la calle entra por debajo; la conducción limpia queda en la parte alta."
+  },
+  {
+    "file": "veyra.json",
+    "path": "rooms.veyra_huerta_baja.return",
+    "before": "El cesto puede seguir esperando, pero la tabla de riego revela si alguien ha trabajado desde tu último paso. Una franja húmeda y otra seca cuentan aquí una jornada con más precisión que el silencio del cobertizo.",
+    "after": "Recuerdas la tabla junto al bancal. De un lado, la tierra oscura alcanza la raíz; del otro, el polvo queda seco alrededor del cesto."
+  },
+  {
+    "file": "veyra.json",
+    "path": "rooms.veyra_archivo_cargas.return",
+    "before": "Puedes distinguir qué estante contiene promesas y cuál conserva llegadas. Una casilla vacía no parece ahora un tesoro desaparecido: alguien tiene que explicar primero qué se esperaba, cuándo y desde qué camino.",
+    "after": "Reconoces las dos filas de tablillas. La casilla vacía queda entre una nota de salida y otra que guarda la fecha de llegada."
+  },
+  {
+    "file": "veyra.json",
+    "path": "rooms.veyra_puerta_piedra.return",
+    "before": "La puerta reparada conserva su desnivel, pero ahora sabes por qué las cargas se detienen antes de él. Las cuñas del carro y el borde del terraplén cuentan la llegada desde Korven mejor que un letrero de distancia.",
+    "after": "Recuerdas el desnivel de la puerta. Antes de él quedan las cuñas del carro; del otro lado empieza el borde de piedras sueltas."
+  },
+  {
+    "file": "veyra.json",
+    "path": "rooms.veyra_puerta_alta.day",
+    "before": "Una porteadora reduce el ancho de un fardo sin quitarle contenido. Sus compañeros prueban cómo se moverá al ascender. Quien sólo observa la puerta puede creer que preparan mercancía; están preparando el equilibrio del viaje.",
+    "after": "La porteadora aprieta el fardo y reduce su ancho. Sus compañeros lo levantan un momento; uno vuelve a tensar la tira que se afloja del lado de la pendiente."
+  },
+  {
+    "file": "veyra.json",
+    "path": "rooms.veyra_puerta_sombra.day",
+    "before": "Una Vesperi distingue con la mano dos ataduras parecidas antes de aprobar el haz. Un vecino retira una astilla del giro de la carga. Para entrar, la madera debe caber donde antes cabían personas.",
+    "after": "Una Vesperi palpa dos ataduras del haz. Su vecino retira una astilla junto a la hoja inutilizada; al pasar la madera roza todavía el otro borde."
+  },
+  {
+    "file": "veyra.json",
+    "path": "rooms.veyra_rampa_grava.day",
+    "before": "Un viajero prueba el terreno con la punta del bastón antes de indicar a sus compañeros dónde pasar. La ciudad continúa visible entre los taludes, de modo que la pausa parece parte del camino y no un extravío.",
+    "after": "El viajero prueba el terreno con la punta del bastón. Señala un borde firme a sus compañeros; detrás de ellos, la puerta de la ciudad se ve entre los taludes."
+  },
+  {
+    "file": "lethra.json",
+    "path": "rooms.lethra_cocina_reunion.return",
+    "before": "Reconoces la fila de utensilios que deben volver a casas distintas. El regreso puede encontrar otra comida, pero conserva una relación con quienes aportaron la olla, las hierbas o el paño que viste junto al taller.",
+    "after": "Reconoces la cuchara de mango oscuro junto a la ventana. La olla reparada sigue cerca del fuego; delante queda el sitio donde dejaron las hierbas."
+  },
+  {
+    "file": "lethra.json",
+    "path": "rooms.lethra_tierra_esponjosa.return",
+    "before": "Reconoces el lugar donde conviene estrechar la carga antes de avanzar. Las huellas de la visita anterior pueden haberse borrado, pero la relación entre raíces, varas y cauce mantiene una orientación que el barro no conserva solo.",
+    "after": "Reconoces las dos varas junto a la raíz. El cauce pasa debajo; entre ellas queda una franja estrecha de tierra más alta."
+  },
+  {
+    "file": "lethra.json",
+    "path": "rooms.lethra_ribera_sombra.return",
+    "before": "Reconoces el primer cambio de sombra por las raíces y el sonido de la tabla. La vuelta al pueblo recobra reflejos abiertos después de esas hojas; la conexión con Nhal mantiene un trayecto que puedes volver a imaginar.",
+    "after": "Reconoces la tabla que crujió bajo las hojas. Camino del pueblo, el agua vuelve a reflejar cielo entre dos raíces y después junto a las plataformas."
+  },
+  {
+    "file": "lethra.json",
+    "path": "regions.lethra.home.return",
+    "before": "El apoyo lateral recibe lo mojado antes de acercarlo a las telas secas. La plataforma vuelve a ser una llegada propia, distinta de un embarcadero común. Puedes reconocer el movimiento del canal sin reconstruir cada sonido del viaje.",
+    "after": "Dejas lo mojado en el apoyo lateral. La ventana ilumina las telas secas; debajo de la plataforma se oye otra vez el agua del canal."
+  }
+]

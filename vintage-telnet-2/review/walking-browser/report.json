@@ -1,0 +1,29 @@
+{
+  "scope": "Real Chrome UI movement buttons against isolated temporary database; 12 rapid moves each width; no production player writes. Mobile viewport emulation.",
+  "results": [
+    {
+      "width": 1440,
+      "movements": 12,
+      "currentRoom": "Patio de Brumak",
+      "completionMs": 736,
+      "rereadTop": 0,
+      "errors": []
+    },
+    {
+      "width": 393,
+      "movements": 12,
+      "currentRoom": "Patio de Brumak",
+      "completionMs": 718,
+      "rereadTop": 0,
+      "errors": []
+    },
+    {
+      "width": 320,
+      "movements": 12,
+      "currentRoom": "Patio de Brumak",
+      "completionMs": 726,
+      "rereadTop": 0,
+      "errors": []
+    }
+  ]
+}

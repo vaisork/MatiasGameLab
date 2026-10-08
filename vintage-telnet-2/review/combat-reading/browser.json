@@ -1,0 +1,23 @@
+{
+  "scope": "Read-only snapshot with explicit combat presentation fixture; no player actions. Chrome desktop/mobile emulation.",
+  "results": [
+    {
+      "width": 1440,
+      "damagePreserved": true,
+      "limitationPreserved": true,
+      "errors": []
+    },
+    {
+      "width": 393,
+      "damagePreserved": true,
+      "limitationPreserved": true,
+      "errors": []
+    },
+    {
+      "width": 320,
+      "damagePreserved": true,
+      "limitationPreserved": true,
+      "errors": []
+    }
+  ]
+}

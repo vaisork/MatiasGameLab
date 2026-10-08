@@ -1,0 +1,19 @@
+{
+  "scope": "Actual Flask API, production content and browser renderer with fresh temporary SQLite and invented review credentials. No production writes.",
+  "results": [
+    {
+      "width": 393,
+      "realApiXpAndLevels": true,
+      "realApiGiftAndCorrection": true,
+      "realApiPortrait": true,
+      "noOverflow": true
+    },
+    {
+      "width": 1440,
+      "realApiXpAndLevels": true,
+      "realApiGiftAndCorrection": true,
+      "realApiPortrait": true,
+      "noOverflow": true
+    }
+  ]
+}

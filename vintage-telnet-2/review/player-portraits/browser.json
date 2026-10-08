@@ -1,0 +1,53 @@
+{
+  "scope": "Live production assets and renderer with isolated authenticated state fixtures; no production gameplay writes.",
+  "results": [
+    {
+      "name": "Senku",
+      "width": 393,
+      "personalThumbnail": true,
+      "personalEnlargement": true,
+      "imageDecoded": true,
+      "noHorizontalOverflow": true
+    },
+    {
+      "name": "Vaison",
+      "width": 393,
+      "personalThumbnail": true,
+      "personalEnlargement": true,
+      "imageDecoded": true,
+      "noHorizontalOverflow": true
+    },
+    {
+      "name": "Alivision",
+      "width": 393,
+      "personalThumbnail": true,
+      "personalEnlargement": true,
+      "imageDecoded": true,
+      "noHorizontalOverflow": true
+    },
+    {
+      "name": "Senku",
+      "width": 1440,
+      "personalThumbnail": true,
+      "personalEnlargement": true,
+      "imageDecoded": true,
+      "noHorizontalOverflow": true
+    },
+    {
+      "name": "Vaison",
+      "width": 1440,
+      "personalThumbnail": true,
+      "personalEnlargement": true,
+      "imageDecoded": true,
+      "noHorizontalOverflow": true
+    },
+    {
+      "name": "Alivision",
+      "width": 1440,
+      "personalThumbnail": true,
+      "personalEnlargement": true,
+      "imageDecoded": true,
+      "noHorizontalOverflow": true
+    }
+  ]
+}

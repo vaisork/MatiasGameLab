@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';
+import {discoveredPaths} from './ui-data.js';
+const positions=new Map([['a',[0,0]],['blocker',[1,0]],['b',[2,0]]]);
+const map={routes:[{from:'a',to:'b',direction:'este'},{from:'b',to:'a',direction:'oeste'},{from:'a',to:'hidden',direction:'sur'}]};
+const links=discoveredPaths(map,positions);assert.equal(links.length,1);
+assert.ok(links[0].points.some(p=>p[1]!==0));
+for(const [x,y] of links[0].points)assert.ok(Math.abs(x-4)>1||Math.abs(y)>1);
+assert.ok(!JSON.stringify(links).includes('hidden'));
+const bend=discoveredPaths({routes:[{from:'a',to:'b',direction:'norte'},{from:'b',to:'a',direction:'oeste'}]},positions)[0];
+assert.deepEqual(bend.points[1],[0,-2]);assert.deepEqual(bend.points.at(-2),[6,0]);
+assert.equal(bend.direction,'norte');assert.equal(bend.reverse,'oeste');
+console.log('PASS: routes avoid unrelated tiles, preserve actual endpoint directions and hide unknown destinations.');

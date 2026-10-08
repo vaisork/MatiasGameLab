@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "scope": "Real passive polling after lethal combat while reader scrolled and decision input focused",
+  "before": {
+    "top": 55,
+    "max": 291
+  },
+  "after": {
+    "top": 0,
+    "max": 637,
+    "first": "Llegas a Patio de Brumak."
+  },
+  "focus": {
+    "name": "decision",
+    "value": "mirar después"
+  },
+  "header": "Patio de Brumak",
+  "restoredLocation": "brumak_centro",
+  "hp": 60,
+  "combat": null
+}

@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "checks": [
+    "required blank masculino",
+    "profile persisted masculino",
+    "required blank femenino",
+    "profile persisted femenino",
+    "profile persisted None",
+    "purchase reason visible and no overflow 320"
+  ],
+  "pageerrors": [],
+  "scope": "Isolated 8099 accounts; real UI creation and legacy profile, 320/393px, refresh persistence; no production accounts"
+}

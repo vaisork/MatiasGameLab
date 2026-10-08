@@ -1,0 +1,2747 @@
+{
+  "stage": "pass1-before",
+  "moves": 52,
+  "actions": 74,
+  "observations": [
+    {
+      "room": "edran_salida_huertos",
+      "roll": 0,
+      "narrative": [
+        {
+          "kind": "danger",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro."
+        },
+        {
+          "kind": "world",
+          "text": "Lina sostiene la lista contra un poste de la cerca. Aparta una cesta para dejar pasar el carro de los huertos."
+        },
+        {
+          "kind": "world",
+          "text": "Una persona abre la cerca para pasar con una cesta y vuelve a apoyarla sin atarla. Su trayecto es corto; las huellas que siguen la acequia llevan carros."
+        },
+        {
+          "kind": "trace",
+          "text": "Están pensadas para guiar animales y carros. Una persona puede ver el campo entero por encima."
+        },
+        {
+          "kind": "action",
+          "text": "Observas con atención."
+        }
+      ],
+      "actions": [
+        {
+          "id": "examinar_criatura",
+          "label": "Examinar Espinajo de rastrojo",
+          "target": "espinajo_rastrojo"
+        },
+        {
+          "id": "combatir",
+          "label": "Enfrentarte a Espinajo de rastrojo",
+          "target": "espinajo_rastrojo"
+        },
+        {
+          "id": "evaluar",
+          "label": "Evaluar Espinajo de rastrojo",
+          "target": "espinajo_rastrojo"
+        }
+      ],
+      "bestiary": [
+        "espinajo_rastrojo"
+      ]
+    },
+    {
+      "room": "edran_surcos",
+      "roll": 0,
+      "narrative": [
+        {
+          "kind": "danger",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro."
+        },
+        {
+          "kind": "world",
+          "text": "La agricultora comprueba la humedad con dos dedos y cubre de nuevo el agujero. En la hilera antigua, unos tallos se doblan contra el viento aunque los demás permanezcan quietos."
+        },
+        {
+          "kind": "trace",
+          "text": "Un movimiento bajo los tallos recorre un círculo corto, sin continuar hacia el sendero. Algo mantiene allí su espacio."
+        },
+        {
+          "kind": "action",
+          "text": "Observas con atención."
+        }
+      ],
+      "actions": [
+        {
+          "id": "examinar_criatura",
+          "label": "Examinar Espinajo de rastrojo",
+          "target": "espinajo_rastrojo"
+        },
+        {
+          "id": "combatir",
+          "label": "Enfrentarte a Espinajo de rastrojo",
+          "target": "espinajo_rastrojo"
+        },
+        {
+          "id": "evaluar",
+          "label": "Evaluar Espinajo de rastrojo",
+          "target": "espinajo_rastrojo"
+        }
+      ],
+      "bestiary": [
+        "espinajo_rastrojo"
+      ]
+    },
+    {
+      "room": "edran_arboleda",
+      "roll": 0,
+      "narrative": [
+        {
+          "kind": "danger",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro."
+        },
+        {
+          "kind": "world",
+          "text": "Un viajero deja que su animal descanse fuera de la sombra más cercana al sendero. Conserva ese espacio para quienes sólo necesitan pasar."
+        },
+        {
+          "kind": "trace",
+          "text": "Las raíces levantadas se cruzan antes de bajar al camino. Un pie puede buscar tierra firme sin pisarlas."
+        },
+        {
+          "kind": "action",
+          "text": "Observas con atención."
+        }
+      ],
+      "actions": [
+        {
+          "id": "examinar_criatura",
+          "label": "Examinar Espinajo de rastrojo",
+          "target": "espinajo_rastrojo"
+        },
+        {
+          "id": "combatir",
+          "label": "Enfrentarte a Espinajo de rastrojo",
+          "target": "espinajo_rastrojo"
+        },
+        {
+          "id": "evaluar",
+          "label": "Evaluar Espinajo de rastrojo",
+          "target": "espinajo_rastrojo"
+        }
+      ],
+      "bestiary": [
+        "espinajo_rastrojo"
+      ]
+    },
+    {
+      "room": "edran_camino_carros",
+      "roll": 0,
+      "narrative": [
+        {
+          "kind": "danger",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro."
+        },
+        {
+          "kind": "world",
+          "text": "Un carro vacío utiliza la hondonada; uno cargado toma la rodada alta y avanza despacio. Sus conductores se saludan cuando pueden verse, antes de llegar al cruce."
+        },
+        {
+          "kind": "trace",
+          "text": "Las dos vuelven a encontrarse frente al cobertizo. La baja ahorra pendiente sólo cuando está seca."
+        },
+        {
+          "kind": "action",
+          "text": "Observas con atención."
+        }
+      ],
+      "actions": [
+        {
+          "id": "examinar_criatura",
+          "label": "Examinar Espinajo de rastrojo",
+          "target": "espinajo_rastrojo"
+        },
+        {
+          "id": "combatir",
+          "label": "Enfrentarte a Espinajo de rastrojo",
+          "target": "espinajo_rastrojo"
+        },
+        {
+          "id": "evaluar",
+          "label": "Evaluar Espinajo de rastrojo",
+          "target": "espinajo_rastrojo"
+        }
+      ],
+      "bestiary": [
+        "espinajo_rastrojo"
+      ]
+    },
+    {
+      "room": "edran_terraplen",
+      "roll": 0,
+      "narrative": [
+        {
+          "kind": "danger",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro."
+        },
+        {
+          "kind": "world",
+          "text": "Un porteador espera en el ensanchamiento hasta que baja un carro. Su carga está apoyada del lado del terraplén, donde no puede rodar hacia el camino."
+        },
+        {
+          "kind": "trace",
+          "text": "Las raíces sujetan parte del corte. Arrancarlas para despejar el paso debilitaría la pared."
+        },
+        {
+          "kind": "action",
+          "text": "Observas con atención."
+        }
+      ],
+      "actions": [
+        {
+          "id": "examinar_criatura",
+          "label": "Examinar Espinajo de rastrojo",
+          "target": "espinajo_rastrojo"
+        },
+        {
+          "id": "combatir",
+          "label": "Enfrentarte a Espinajo de rastrojo",
+          "target": "espinajo_rastrojo"
+        },
+        {
+          "id": "evaluar",
+          "label": "Evaluar Espinajo de rastrojo",
+          "target": "espinajo_rastrojo"
+        }
+      ],
+      "bestiary": [
+        "espinajo_rastrojo"
+      ]
+    },
+    {
+      "room": "edran_linde_piedra",
+      "roll": 0,
+      "narrative": [
+        {
+          "kind": "danger",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro."
+        },
+        {
+          "kind": "world",
+          "text": "Dos porteadores pasan sacos del carro a una estructura más estrecha. Uno sujeta el borde del paquete mientras el otro lo prueba entre los dos lomos de roca."
+        },
+        {
+          "kind": "trace",
+          "text": "Terminan junto a un suelo firme donde se puede descargar. No indican un carro perdido."
+        },
+        {
+          "kind": "action",
+          "text": "Observas con atención."
+        }
+      ],
+      "actions": [
+        {
+          "id": "examinar_criatura",
+          "label": "Examinar Espinajo de rastrojo",
+          "target": "espinajo_rastrojo"
+        },
+        {
+          "id": "combatir",
+          "label": "Enfrentarte a Espinajo de rastrojo",
+          "target": "espinajo_rastrojo"
+        },
+        {
+          "id": "evaluar",
+          "label": "Evaluar Espinajo de rastrojo",
+          "target": "espinajo_rastrojo"
+        }
+      ],
+      "bestiary": [
+        "espinajo_rastrojo",
+        "cornalomo"
+      ]
+    },
+    {
+      "room": "edran_sendero_juncos",
+      "roll": 0,
+      "narrative": [
+        {
+          "kind": "danger",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro."
+        },
+        {
+          "kind": "world",
+          "text": "Un viajero golpea suavemente el borde del sendero con una vara y busca dónde cambia su firmeza. No tantea dentro de los juncos, donde perdería de vista el paso."
+        },
+        {
+          "kind": "trace",
+          "text": "El lado oscuro cede al peso. La franja firme sigue raíces antiguas y no necesita atravesar el agua."
+        },
+        {
+          "kind": "action",
+          "text": "Observas con atención."
+        }
+      ],
+      "actions": [
+        {
+          "id": "examinar_criatura",
+          "label": "Examinar Espinajo de rastrojo",
+          "target": "espinajo_rastrojo"
+        },
+        {
+          "id": "combatir",
+          "label": "Enfrentarte a Espinajo de rastrojo",
+          "target": "espinajo_rastrojo"
+        },
+        {
+          "id": "evaluar",
+          "label": "Evaluar Espinajo de rastrojo",
+          "target": "espinajo_rastrojo"
+        }
+      ],
+      "bestiary": [
+        "espinajo_rastrojo",
+        "cornalomo"
+      ]
+    },
+    {
+      "room": "edran_parcela_vieja",
+      "roll": 0,
+      "narrative": [
+        {
+          "kind": "danger",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro."
+        },
+        {
+          "kind": "world",
+          "text": "Una persona retira una planta aislada y la lleva al borde. La hilera se mantiene alrededor de la piedra en lugar de intentar ocuparla."
+        },
+        {
+          "kind": "trace",
+          "text": "Tiene una parte expuesta y otra bajo la tierra. Arrancarla afectaría más superficie de la que muestra."
+        },
+        {
+          "kind": "action",
+          "text": "Observas con atención."
+        }
+      ],
+      "actions": [
+        {
+          "id": "examinar_criatura",
+          "label": "Examinar Espinajo de rastrojo",
+          "target": "espinajo_rastrojo"
+        },
+        {
+          "id": "combatir",
+          "label": "Enfrentarte a Espinajo de rastrojo",
+          "target": "espinajo_rastrojo"
+        },
+        {
+          "id": "evaluar",
+          "label": "Evaluar Espinajo de rastrojo",
+          "target": "espinajo_rastrojo"
+        }
+      ],
+      "bestiary": [
+        "espinajo_rastrojo",
+        "cornalomo"
+      ]
+    },
+    {
+      "room": "edran_sauces",
+      "roll": 0,
+      "narrative": [
+        {
+          "kind": "danger",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro."
+        },
+        {
+          "kind": "world",
+          "text": "Las aves cruzan entre dos ramas y regresan al mismo hueco. Sus movimientos dejan intervalos largos durante los que sólo se escucha la ribera."
+        },
+        {
+          "kind": "trace",
+          "text": "Su entrada queda sobre el agua y fuera del paso humano. Puedes observarla sin acercar las manos."
+        },
+        {
+          "kind": "action",
+          "text": "Observas con atención."
+        }
+      ],
+      "actions": [
+        {
+          "id": "examinar_criatura",
+          "label": "Examinar Espinajo de rastrojo",
+          "target": "espinajo_rastrojo"
+        },
+        {
+          "id": "combatir",
+          "label": "Enfrentarte a Espinajo de rastrojo",
+          "target": "espinajo_rastrojo"
+        },
+        {
+          "id": "evaluar",
+          "label": "Evaluar Espinajo de rastrojo",
+          "target": "espinajo_rastrojo"
+        }
+      ],
+      "bestiary": [
+        "espinajo_rastrojo",
+        "cornalomo"
+      ]
+    },
+    {
+      "room": "edran_calzada",
+      "roll": 0,
+      "narrative": [
+        {
+          "kind": "danger",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro."
+        },
+        {
+          "kind": "world",
+          "text": "Un conductor reduce el paso al llegar a la reparación más reciente. Un porteador utiliza el borde de hierba para no caminar sobre los cantos húmedos."
+        },
+        {
+          "kind": "trace",
+          "text": "Las piedras nuevas encajan entre las viejas; sus caras claras todavía conservan aristas."
+        },
+        {
+          "kind": "action",
+          "text": "Observas con atención."
+        }
+      ],
+      "actions": [
+        {
+          "id": "examinar_criatura",
+          "label": "Examinar Espinajo de rastrojo",
+          "target": "espinajo_rastrojo"
+        },
+        {
+          "id": "combatir",
+          "label": "Enfrentarte a Espinajo de rastrojo",
+          "target": "espinajo_rastrojo"
+        },
+        {
+          "id": "evaluar",
+          "label": "Evaluar Espinajo de rastrojo",
+          "target": "espinajo_rastrojo"
+        }
+      ],
+      "bestiary": [
+        "espinajo_rastrojo",
+        "cornalomo"
+      ]
+    },
+    {
+      "room": "edran_sendero_regreso",
+      "roll": 0,
+      "narrative": [
+        {
+          "kind": "danger",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro."
+        },
+        {
+          "kind": "world",
+          "text": "Una persona limpia sus botas con una rama caída y recoge después los restos fuera del paso. Un carro entra por el patio, separado de los huertos."
+        },
+        {
+          "kind": "trace",
+          "text": "La tierra bajo el árbol está compactada y conserva dos huecos de cargas apoyadas."
+        },
+        {
+          "kind": "action",
+          "text": "Observas con atención."
+        }
+      ],
+      "actions": [
+        {
+          "id": "examinar_criatura",
+          "label": "Examinar Espinajo de rastrojo",
+          "target": "espinajo_rastrojo"
+        },
+        {
+          "id": "combatir",
+          "label": "Enfrentarte a Espinajo de rastrojo",
+          "target": "espinajo_rastrojo"
+        },
+        {
+          "id": "evaluar",
+          "label": "Evaluar Espinajo de rastrojo",
+          "target": "espinajo_rastrojo"
+        }
+      ],
+      "bestiary": [
+        "espinajo_rastrojo",
+        "cornalomo"
+      ]
+    }
+  ],
+  "events": [
+    {
+      "action": "mover",
+      "target": "salir",
+      "room": "valdren_plaza",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Un banco largo cruza la plaza. Hay espacio para girar los carros sin tapar las puertas. La fragua queda al norte, los huertos al este, el pozo al sur y el cobertizo al oeste. Una piedra sobresale entre las tablas del asiento."
+        },
+        {
+          "kind": "world",
+          "text": "La vecina aparta una semilla mordida y la deja en un cuenco pequeño. Un niño intenta adivinar qué pájaro la abrió; su abuela le muestra las dos marcas del pico."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "este",
+      "room": "valdren_huertos",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "El camino pasa entre huertos, cercas bajas y puertas de cocina. Un árbol da sombra a la canaleta. Al oeste queda la plaza; al norte está la casa de semillas. Sigue al este para salir de Valdren hacia los campos."
+        },
+        {
+          "kind": "world",
+          "text": "Una familia lleva hojas a la cocina sin usar cestos: la distancia es tan corta que basta doblar el delantal. La encargada del huerto deja espacio para quienes necesitan pasar con un carro."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "este",
+      "room": "edran_salida_huertos",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Las cercas bajan y el viento llega de frente. Dejas las casas atrás. El camino este sigue hasta la acequia; por el sur vuelves entre los graneros. Los dos postes del oeste señalan la entrada a Valdren. El tramo hacia los graneros dobla junto a las cercas; no es una calle recta."
+        },
+        {
+          "kind": "danger",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro."
+        },
+        {
+          "kind": "world",
+          "text": "Una persona abre la cerca para pasar con una cesta y vuelve a apoyarla sin atarla. Su trayecto es corto; las huellas que siguen la acequia llevan carros."
+        },
+        {
+          "kind": "discovery",
+          "text": "Añades Espinajo de rastrojo al bestiario."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "observar",
+      "target": null,
+      "room": "edran_salida_huertos",
+      "narrative": [
+        {
+          "kind": "danger",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro."
+        },
+        {
+          "kind": "world",
+          "text": "Lina sostiene la lista contra un poste de la cerca. Aparta una cesta para dejar pasar el carro de los huertos."
+        },
+        {
+          "kind": "world",
+          "text": "Una persona abre la cerca para pasar con una cesta y vuelve a apoyarla sin atarla. Su trayecto es corto; las huellas que siguen la acequia llevan carros."
+        },
+        {
+          "kind": "trace",
+          "text": "Están pensadas para guiar animales y carros. Una persona puede ver el campo entero por encima."
+        },
+        {
+          "kind": "action",
+          "text": "Observas con atención."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "examinar_criatura",
+      "target": "espinajo_rastrojo",
+      "room": "edran_salida_huertos",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Las espinas sobresalen sobre un cuerpo compacto que cabe entre tallos cortados. El animal mantiene una parcela pequeña, deteniéndose y volviendo al mismo borde. Antes de cargar baja el cuerpo y orienta la defensa hacia lo que se aproxima; su espacio puede rodearse por el sendero."
+        },
+        {
+          "kind": "discovery",
+          "text": "Espinajo de rastrojo está en tu bestiario."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "este",
+      "room": "edran_acequia",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "El agua rodea una losa antes de seguir hacia Valdren. Unas hojas tapan la abertura de una zanja seca. Al oeste queda el pueblo, al norte subes al campo y al sur alcanzas el estanque. La losa permite cruzar sin mojarte."
+        },
+        {
+          "kind": "world",
+          "text": "Una rana se deja caer desde la hierba y abre dos círculos pequeños. Más abajo, una mujer libera una hoja atrapada en la rejilla con la punta de una rama."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "norte",
+      "room": "edran_surcos",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Los surcos nuevos tienen tierra clara; los viejos conservan tallos cortos. Un sendero sin sembrar llega al lindero del norte. La acequia queda al sur. Hacia el oeste puedes entrar en una parcela vieja; al este hay una zanja seca."
+        },
+        {
+          "kind": "danger",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro."
+        },
+        {
+          "kind": "world",
+          "text": "La agricultora comprueba la humedad con dos dedos y cubre de nuevo el agujero. En la hilera antigua, unos tallos se doblan contra el viento aunque los demás permanezcan quietos."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "observar",
+      "target": null,
+      "room": "edran_surcos",
+      "narrative": [
+        {
+          "kind": "danger",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro."
+        },
+        {
+          "kind": "world",
+          "text": "La agricultora comprueba la humedad con dos dedos y cubre de nuevo el agujero. En la hilera antigua, unos tallos se doblan contra el viento aunque los demás permanezcan quietos."
+        },
+        {
+          "kind": "trace",
+          "text": "Un movimiento bajo los tallos recorre un círculo corto, sin continuar hacia el sendero. Algo mantiene allí su espacio."
+        },
+        {
+          "kind": "action",
+          "text": "Observas con atención."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "examinar_criatura",
+      "target": "espinajo_rastrojo",
+      "room": "edran_surcos",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Las espinas sobresalen sobre un cuerpo compacto que cabe entre tallos cortados. El animal mantiene una parcela pequeña, deteniéndose y volviendo al mismo borde. Antes de cargar baja el cuerpo y orienta la defensa hacia lo que se aproxima; su espacio puede rodearse por el sendero."
+        },
+        {
+          "kind": "discovery",
+          "text": "Espinajo de rastrojo está en tu bestiario."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "norte",
+      "room": "edran_lindero",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Una piedra hundida separa las parcelas. Tiene una muesca llena de tierra en la cara sur. Por allí vuelves al campo. Al oeste subes a la loma; al este llegas al cobertizo, donde guardan estacas de distintos tamaños."
+        },
+        {
+          "kind": "world",
+          "text": "Una joven deja el recipiente junto a la piedra y mira dos veces la cerca. Busca una tablilla pequeña entre la hierba y las huellas del borde."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "este",
+      "room": "edran_cobertizo_campo",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "El techo cubre un banco de trabajo y una caja estrecha. En la pared, las estacas están ordenadas por tamaño y llevan números. El lindero queda al oeste, al otro lado del desnivel. Una senda al este entra en la arboleda."
+        },
+        {
+          "kind": "world",
+          "text": "Un muchacho devuelve una estaca y comprueba el número antes de colocarla. Los huecos del extremo corto indican qué piezas siguen en los campos."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "este",
+      "room": "edran_arboleda",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Tres árboles dan sombra al banco de tierra y al sendero. Las raíces del último levantan el suelo. Entre las ramas ves el camino de carros, al norte. El cobertizo queda al oeste; la senda sur rodea los campos y vuelve al pueblo."
+        },
+        {
+          "kind": "danger",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro."
+        },
+        {
+          "kind": "world",
+          "text": "Un viajero deja que su animal descanse fuera de la sombra más cercana al sendero. Conserva ese espacio para quienes sólo necesitan pasar."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "observar",
+      "target": null,
+      "room": "edran_arboleda",
+      "narrative": [
+        {
+          "kind": "danger",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro."
+        },
+        {
+          "kind": "world",
+          "text": "Un viajero deja que su animal descanse fuera de la sombra más cercana al sendero. Conserva ese espacio para quienes sólo necesitan pasar."
+        },
+        {
+          "kind": "trace",
+          "text": "Las raíces levantadas se cruzan antes de bajar al camino. Un pie puede buscar tierra firme sin pisarlas."
+        },
+        {
+          "kind": "action",
+          "text": "Observas con atención."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "examinar_criatura",
+      "target": "espinajo_rastrojo",
+      "room": "edran_arboleda",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Las espinas sobresalen sobre un cuerpo compacto que cabe entre tallos cortados. El animal mantiene una parcela pequeña, deteniéndose y volviendo al mismo borde. Antes de cargar baja el cuerpo y orienta la defensa hacia lo que se aproxima; su espacio puede rodearse por el sendero."
+        },
+        {
+          "kind": "discovery",
+          "text": "Espinajo de rastrojo está en tu bestiario."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "norte",
+      "room": "edran_camino_carros",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Dos rodadas se separan ante una subida: una pasa por arriba y la otra cruza una hondonada. Después vuelven a juntarse. La arboleda queda al sur. Sigue al norte para llegar al refugio de viajeros; las piedras bajas marcan el borde del camino."
+        },
+        {
+          "kind": "danger",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro."
+        },
+        {
+          "kind": "world",
+          "text": "Un carro vacío utiliza la hondonada; uno cargado toma la rodada alta y avanza despacio. Sus conductores se saludan cuando pueden verse, antes de llegar al cruce."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "observar",
+      "target": null,
+      "room": "edran_camino_carros",
+      "narrative": [
+        {
+          "kind": "danger",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro."
+        },
+        {
+          "kind": "world",
+          "text": "Un carro vacío utiliza la hondonada; uno cargado toma la rodada alta y avanza despacio. Sus conductores se saludan cuando pueden verse, antes de llegar al cruce."
+        },
+        {
+          "kind": "trace",
+          "text": "Las dos vuelven a encontrarse frente al cobertizo. La baja ahorra pendiente sólo cuando está seca."
+        },
+        {
+          "kind": "action",
+          "text": "Observas con atención."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "examinar_criatura",
+      "target": "espinajo_rastrojo",
+      "room": "edran_camino_carros",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Las espinas sobresalen sobre un cuerpo compacto que cabe entre tallos cortados. El animal mantiene una parcela pequeña, deteniéndose y volviendo al mismo borde. Antes de cargar baja el cuerpo y orienta la defensa hacia lo que se aproxima; su espacio puede rodearse por el sendero."
+        },
+        {
+          "kind": "discovery",
+          "text": "Espinajo de rastrojo está en tu bestiario."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "norte",
+      "room": "edran_reparo",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Un techo protege dos bancos del viento. El camino pasa por delante, lejos de quienes descansan. En la repisa hay un cuenco y tres mensajes. Al sur vuelves a los carros, al norte subes a la era; al este comienza el sendero de juncos."
+        },
+        {
+          "kind": "world",
+          "text": "Una viajera descose una costura de su media bajo la cubierta. Estira el pie al sol un momento; una hormiga atraviesa la tabla que sostiene su hilo."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "norte",
+      "room": "edran_era",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Un círculo de tierra firme sirve para trabajar el grano. Las piedras planas sujetan tablones, y un poste viejo permite ver cómo sopla el viento. El refugio queda al sur. Al norte sigue la subida; al oeste hay una zanja seca."
+        },
+        {
+          "kind": "world",
+          "text": "Un ave picotea el último grano junto al borde de la era. Al fondo alguien sacude un paño; el polvo permanece en el aire después de que termina."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "norte",
+      "room": "edran_terraplen",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "El camino sube entre tierra alta y raíces al descubierto. Las rodadas van juntas: los carros deben esperar para cruzarse. A media cuesta hay sitio para parar. La era queda al sur; al norte te espera la casa del camino."
+        },
+        {
+          "kind": "danger",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro."
+        },
+        {
+          "kind": "world",
+          "text": "Un porteador espera en el ensanchamiento hasta que baja un carro. Su carga está apoyada del lado del terraplén, donde no puede rodar hacia el camino."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "observar",
+      "target": null,
+      "room": "edran_terraplen",
+      "narrative": [
+        {
+          "kind": "danger",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro."
+        },
+        {
+          "kind": "world",
+          "text": "Un porteador espera en el ensanchamiento hasta que baja un carro. Su carga está apoyada del lado del terraplén, donde no puede rodar hacia el camino."
+        },
+        {
+          "kind": "trace",
+          "text": "Las raíces sujetan parte del corte. Arrancarlas para despejar el paso debilitaría la pared."
+        },
+        {
+          "kind": "action",
+          "text": "Observas con atención."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "examinar_criatura",
+      "target": "espinajo_rastrojo",
+      "room": "edran_terraplen",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Las espinas sobresalen sobre un cuerpo compacto que cabe entre tallos cortados. El animal mantiene una parcela pequeña, deteniéndose y volviendo al mismo borde. Antes de cargar baja el cuerpo y orienta la defensa hacia lo que se aproxima; su espacio puede rodearse por el sendero."
+        },
+        {
+          "kind": "discovery",
+          "text": "Espinajo de rastrojo está en tu bestiario."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "sur",
+      "room": "edran_era",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Un círculo de tierra firme sirve para trabajar el grano. Las piedras planas sujetan tablones, y un poste viejo permite ver cómo sopla el viento. El refugio queda al sur. Al norte sigue la subida; al oeste hay una zanja seca."
+        },
+        {
+          "kind": "world",
+          "text": "Un ave picotea el último grano junto al borde de la era. Al fondo alguien sacude un paño; el polvo permanece en el aire después de que termina."
+        },
+        {
+          "kind": "world",
+          "text": "Detrás quedan los campos y los tejados bajos que recuerdas. De frente, el camino empieza a ganar altura hacia la cuenca."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "oeste",
+      "room": "edran_zanja_antigua",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "La zanja sigue entera, pero ya no lleva agua. En el fondo crecen raíces pequeñas. Una losa marca dónde dejó de usarse. Al oeste vuelves al campo; al norte subes a la era. El agua actual pasa por otra parte de la parcela. El acceso a la era dobla en el extremo de la zanja. Al este, una escalera baja al antiguo canal cubierto. Una mujer está comprobando su entrada."
+        },
+        {
+          "kind": "world",
+          "text": "Una raíz nueva cruza el fondo seco. En la losa vertical alguien ha apoyado una herramienta mientras trabaja más arriba."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "oeste",
+      "room": "edran_surcos",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Los surcos nuevos tienen tierra clara; los viejos conservan tallos cortos. Un sendero sin sembrar llega al lindero del norte. La acequia queda al sur. Hacia el oeste puedes entrar en una parcela vieja; al este hay una zanja seca."
+        },
+        {
+          "kind": "danger",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces la tierra nueva y la banda de tallos antiguos. El sendero rodea la depresión antes de alcanzar el cobertizo que se ve al otro lado."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "norte",
+      "room": "edran_lindero",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Una piedra hundida separa las parcelas. Tiene una muesca llena de tierra en la cara sur. Por allí vuelves al campo. Al oeste subes a la loma; al este llegas al cobertizo, donde guardan estacas de distintos tamaños."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces la muesca de la piedra antigua. La cerca más nueva dobla a su lado y deja tierra abierta alrededor del pie."
+        },
+        {
+          "kind": "world",
+          "text": "Una joven deja el recipiente junto a la piedra y mira dos veces la cerca. Busca una tablilla pequeña entre la hierba y las huellas del borde."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "oeste",
+      "room": "edran_loma",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Desde la loma ves Valdren y tres parcelas a distinta altura. Una franja de pasto cortado ofrece sitio para parar. Al norte está el prado; al este bajas al lindero. El sendero sur entra en la parcela vieja."
+        },
+        {
+          "kind": "world",
+          "text": "El aire trae primero un golpe de la fragua y luego el rumor de un carro. Desde aquí puedes separar sonidos que abajo se mezclan con las conversaciones del pueblo."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "norte",
+      "room": "edran_prado",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "La hierba alta tiene una zona aplastada, con marcas demasiado anchas para ser de una persona. El sendero pasa por fuera de ella. Al sur vuelves a la loma; al oeste empieza la ladera pedregosa. Mira las señales antes de acercarte."
+        },
+        {
+          "kind": "danger",
+          "text": "Un cuerpo enorme aparta la hierba. El volumen de su lomo y la tierra hundida advierten una fuerza muy por encima de una primera formación."
+        },
+        {
+          "kind": "world",
+          "text": "Un movimiento pesado baja la hierba y vuelve a levantarla más allá. No sigue el sendero ni se acerca al cultivo: mantiene una franja propia dentro del prado."
+        },
+        {
+          "kind": "discovery",
+          "text": "Añades Cornalomo al bestiario."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "oeste",
+      "room": "edran_ladera_piedra",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Tres salientes permiten dejar cestos sin apoyarlos en la tierra. El más bajo está protegido por un arbusto; debajo hay una cuerda rota, apartada del camino. Al este vuelves al prado. Al norte subes a la linde que lleva a Korven."
+        },
+        {
+          "kind": "world",
+          "text": "Un porteador cambia su cesto del saliente alto al bajo antes de ajustar la correa. La pausa sucede fuera del sendero."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "norte",
+      "room": "edran_linde_piedra",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Las piedras aparecen cada vez más juntas. Al sur quedan el prado y los campos de Edran. El paso norte entra en Korven entre dos lomos de roca. Las rodadas terminan aquí; una explanada ofrece sitio para cambiar las cargas de apoyo."
+        },
+        {
+          "kind": "danger",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro."
+        },
+        {
+          "kind": "world",
+          "text": "Dos porteadores pasan sacos del carro a una estructura más estrecha. Uno sujeta el borde del paquete mientras el otro lo prueba entre los dos lomos de roca."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "observar",
+      "target": null,
+      "room": "edran_linde_piedra",
+      "narrative": [
+        {
+          "kind": "danger",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro."
+        },
+        {
+          "kind": "world",
+          "text": "Dos porteadores pasan sacos del carro a una estructura más estrecha. Uno sujeta el borde del paquete mientras el otro lo prueba entre los dos lomos de roca."
+        },
+        {
+          "kind": "trace",
+          "text": "Terminan junto a un suelo firme donde se puede descargar. No indican un carro perdido."
+        },
+        {
+          "kind": "action",
+          "text": "Observas con atención."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "examinar_criatura",
+      "target": "espinajo_rastrojo",
+      "room": "edran_linde_piedra",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Las espinas sobresalen sobre un cuerpo compacto que cabe entre tallos cortados. El animal mantiene una parcela pequeña, deteniéndose y volviendo al mismo borde. Antes de cargar baja el cuerpo y orienta la defensa hacia lo que se aproxima; su espacio puede rodearse por el sendero."
+        },
+        {
+          "kind": "discovery",
+          "text": "Espinajo de rastrojo está en tu bestiario."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "sur",
+      "room": "edran_ladera_piedra",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Tres salientes permiten dejar cestos sin apoyarlos en la tierra. El más bajo está protegido por un arbusto; debajo hay una cuerda rota, apartada del camino. Al este vuelves al prado. Al norte subes a la linde que lleva a Korven."
+        },
+        {
+          "kind": "world",
+          "text": "Puedes elegir apoyo según tamaño y abrigo. El apoyo bajo protege una carga pequeña; el alto deja espacio para un cesto más ancho."
+        },
+        {
+          "kind": "world",
+          "text": "Un porteador cambia su cesto del saliente alto al bajo antes de ajustar la correa. La pausa sucede fuera del sendero."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "este",
+      "room": "edran_prado",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "La hierba alta tiene una zona aplastada, con marcas demasiado anchas para ser de una persona. El sendero pasa por fuera de ella. Al sur vuelves a la loma; al oeste empieza la ladera pedregosa. Mira las señales antes de acercarte."
+        },
+        {
+          "kind": "danger",
+          "text": "Un cuerpo enorme aparta la hierba. El volumen de su lomo y la tierra hundida advierten una fuerza muy por encima de una primera formación."
+        },
+        {
+          "kind": "world",
+          "text": "Recuerdas el sendero entre las dos bandas de hierba. Fuera de él, unas huellas profundas hunden los tallos hacia el claro del prado."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "sur",
+      "room": "edran_loma",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Desde la loma ves Valdren y tres parcelas a distinta altura. Una franja de pasto cortado ofrece sitio para parar. Al norte está el prado; al este bajas al lindero. El sendero sur entra en la parcela vieja."
+        },
+        {
+          "kind": "world",
+          "text": "La loma vuelve a reunir referencias visibles: los tejados de Valdren, la curva del agua y la piedra entre parcelas. Puedes relacionar sus posiciones desde aquí, aunque todavía no hayas seguido todos esos pasos."
+        },
+        {
+          "kind": "world",
+          "text": "El aire trae primero un golpe de la fragua y luego el rumor de un carro. Desde aquí puedes separar sonidos que abajo se mezclan con las conversaciones del pueblo."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "este",
+      "room": "edran_lindero",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Una piedra hundida separa las parcelas. Tiene una muesca llena de tierra en la cara sur. Por allí vuelves al campo. Al oeste subes a la loma; al este llegas al cobertizo, donde guardan estacas de distintos tamaños."
+        },
+        {
+          "kind": "world",
+          "text": "Una joven deja el recipiente junto a la piedra y mira dos veces la cerca. Busca una tablilla pequeña entre la hierba y las huellas del borde."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces la muesca de la piedra antigua. La cerca más nueva dobla a su lado y deja tierra abierta alrededor del pie."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "sur",
+      "room": "edran_surcos",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Los surcos nuevos tienen tierra clara; los viejos conservan tallos cortos. Un sendero sin sembrar llega al lindero del norte. La acequia queda al sur. Hacia el oeste puedes entrar en una parcela vieja; al este hay una zanja seca."
+        },
+        {
+          "kind": "danger",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro."
+        },
+        {
+          "kind": "world",
+          "text": "La agricultora comprueba la humedad con dos dedos y cubre de nuevo el agujero. En la hilera antigua, unos tallos se doblan contra el viento aunque los demás permanezcan quietos."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "este",
+      "room": "edran_zanja_antigua",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "La zanja sigue entera, pero ya no lleva agua. En el fondo crecen raíces pequeñas. Una losa marca dónde dejó de usarse. Al oeste vuelves al campo; al norte subes a la era. El agua actual pasa por otra parte de la parcela. El acceso a la era dobla en el extremo de la zanja. Al este, una escalera baja al antiguo canal cubierto. Una mujer está comprobando su entrada."
+        },
+        {
+          "kind": "world",
+          "text": "Recuerdas el borde recto de la zanja. Su entrada sigue apisonada; al otro lado han crecido plantas entre las paredes de tierra."
+        },
+        {
+          "kind": "world",
+          "text": "Una raíz nueva cruza el fondo seco. En la losa vertical alguien ha apoyado una herramienta mientras trabaja más arriba."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "norte",
+      "room": "edran_era",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Un círculo de tierra firme sirve para trabajar el grano. Las piedras planas sujetan tablones, y un poste viejo permite ver cómo sopla el viento. El refugio queda al sur. Al norte sigue la subida; al oeste hay una zanja seca."
+        },
+        {
+          "kind": "world",
+          "text": "Un ave picotea el último grano junto al borde de la era. Al fondo alguien sacude un paño; el polvo permanece en el aire después de que termina."
+        },
+        {
+          "kind": "world",
+          "text": "Detrás quedan los campos y los tejados bajos que recuerdas. De frente, el camino empieza a ganar altura hacia la cuenca."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "sur",
+      "room": "edran_reparo",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Un techo protege dos bancos del viento. El camino pasa por delante, lejos de quienes descansan. En la repisa hay un cuenco y tres mensajes. Al sur vuelves a los carros, al norte subes a la era; al este comienza el sendero de juncos."
+        },
+        {
+          "kind": "world",
+          "text": "Una viajera descose una costura de su media bajo la cubierta. Estira el pie al sol un momento; una hormiga atraviesa la tabla que sostiene su hilo."
+        },
+        {
+          "kind": "world",
+          "text": "La pared corta te permite elegir un banco protegido sin bloquear la vista del camino. Las tablillas se leen aquí porque quienes las necesitan vuelven a pasar."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "este",
+      "room": "edran_sendero_juncos",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Los juncos crecen junto al sendero. El suelo firme permite avanzar sin entrar en el agua, todavía oculta. Una zona despejada tiene marcas de cargas. Al oeste vuelves al refugio; al este llegas al puente. Más adelante se pasa de uno en uno."
+        },
+        {
+          "kind": "danger",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro."
+        },
+        {
+          "kind": "world",
+          "text": "Un viajero golpea suavemente el borde del sendero con una vara y busca dónde cambia su firmeza. No tantea dentro de los juncos, donde perdería de vista el paso."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "observar",
+      "target": null,
+      "room": "edran_sendero_juncos",
+      "narrative": [
+        {
+          "kind": "danger",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro."
+        },
+        {
+          "kind": "world",
+          "text": "Un viajero golpea suavemente el borde del sendero con una vara y busca dónde cambia su firmeza. No tantea dentro de los juncos, donde perdería de vista el paso."
+        },
+        {
+          "kind": "trace",
+          "text": "El lado oscuro cede al peso. La franja firme sigue raíces antiguas y no necesita atravesar el agua."
+        },
+        {
+          "kind": "action",
+          "text": "Observas con atención."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "examinar_criatura",
+      "target": "espinajo_rastrojo",
+      "room": "edran_sendero_juncos",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Las espinas sobresalen sobre un cuerpo compacto que cabe entre tallos cortados. El animal mantiene una parcela pequeña, deteniéndose y volviendo al mismo borde. Antes de cargar baja el cuerpo y orienta la defensa hacia lo que se aproxima; su espacio puede rodearse por el sendero."
+        },
+        {
+          "kind": "discovery",
+          "text": "Espinajo de rastrojo está en tu bestiario."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "oeste",
+      "room": "edran_reparo",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Un techo protege dos bancos del viento. El camino pasa por delante, lejos de quienes descansan. En la repisa hay un cuenco y tres mensajes. Al sur vuelves a los carros, al norte subes a la era; al este comienza el sendero de juncos."
+        },
+        {
+          "kind": "world",
+          "text": "La media tiene una costura nueva. La viajera recoge el hilo que sobró y estira el pie sobre la tabla; la hormiga se desvía hacia la sombra."
+        },
+        {
+          "kind": "world",
+          "text": "La pared corta te permite elegir un banco protegido sin bloquear la vista del camino. Las tablillas se leen aquí porque quienes las necesitan vuelven a pasar."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "norte",
+      "room": "edran_era",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Un círculo de tierra firme sirve para trabajar el grano. Las piedras planas sujetan tablones, y un poste viejo permite ver cómo sopla el viento. El refugio queda al sur. Al norte sigue la subida; al oeste hay una zanja seca."
+        },
+        {
+          "kind": "world",
+          "text": "Un ave picotea el último grano junto al borde de la era. Al fondo alguien sacude un paño; el polvo permanece en el aire después de que termina."
+        },
+        {
+          "kind": "world",
+          "text": "Detrás quedan los campos y los tejados bajos que recuerdas. De frente, el camino empieza a ganar altura hacia la cuenca."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "oeste",
+      "room": "edran_zanja_antigua",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "La zanja sigue entera, pero ya no lleva agua. En el fondo crecen raíces pequeñas. Una losa marca dónde dejó de usarse. Al oeste vuelves al campo; al norte subes a la era. El agua actual pasa por otra parte de la parcela. El acceso a la era dobla en el extremo de la zanja. Al este, una escalera baja al antiguo canal cubierto. Una mujer está comprobando su entrada."
+        },
+        {
+          "kind": "world",
+          "text": "Una raíz nueva cruza el fondo seco. En la losa vertical alguien ha apoyado una herramienta mientras trabaja más arriba."
+        },
+        {
+          "kind": "world",
+          "text": "Recuerdas el borde recto de la zanja. Su entrada sigue apisonada; al otro lado han crecido plantas entre las paredes de tierra."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "oeste",
+      "room": "edran_surcos",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Los surcos nuevos tienen tierra clara; los viejos conservan tallos cortos. Un sendero sin sembrar llega al lindero del norte. La acequia queda al sur. Hacia el oeste puedes entrar en una parcela vieja; al este hay una zanja seca."
+        },
+        {
+          "kind": "danger",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro."
+        },
+        {
+          "kind": "world",
+          "text": "La agricultora comprueba la humedad con dos dedos y cubre de nuevo el agujero. En la hilera antigua, unos tallos se doblan contra el viento aunque los demás permanezcan quietos."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "oeste",
+      "room": "edran_parcela_vieja",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Dos hileras viejas terminan ante una piedra. Los brotes nuevos crecen alrededor, dejando un rincón donde sentarse sin pisarlos. Al norte subes a la loma; al este regresas al campo de surcos. Hay un rincón seco junto a la piedra."
+        },
+        {
+          "kind": "danger",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro."
+        },
+        {
+          "kind": "world",
+          "text": "Una persona retira una planta aislada y la lleva al borde. La hilera se mantiene alrededor de la piedra en lugar de intentar ocuparla."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "observar",
+      "target": null,
+      "room": "edran_parcela_vieja",
+      "narrative": [
+        {
+          "kind": "danger",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro."
+        },
+        {
+          "kind": "world",
+          "text": "Una persona retira una planta aislada y la lleva al borde. La hilera se mantiene alrededor de la piedra en lugar de intentar ocuparla."
+        },
+        {
+          "kind": "trace",
+          "text": "Tiene una parte expuesta y otra bajo la tierra. Arrancarla afectaría más superficie de la que muestra."
+        },
+        {
+          "kind": "action",
+          "text": "Observas con atención."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "examinar_criatura",
+      "target": "espinajo_rastrojo",
+      "room": "edran_parcela_vieja",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Las espinas sobresalen sobre un cuerpo compacto que cabe entre tallos cortados. El animal mantiene una parcela pequeña, deteniéndose y volviendo al mismo borde. Antes de cargar baja el cuerpo y orienta la defensa hacia lo que se aproxima; su espacio puede rodearse por el sendero."
+        },
+        {
+          "kind": "discovery",
+          "text": "Espinajo de rastrojo está en tu bestiario."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "este",
+      "room": "edran_surcos",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Los surcos nuevos tienen tierra clara; los viejos conservan tallos cortos. Un sendero sin sembrar llega al lindero del norte. La acequia queda al sur. Hacia el oeste puedes entrar en una parcela vieja; al este hay una zanja seca."
+        },
+        {
+          "kind": "danger",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces la tierra nueva y la banda de tallos antiguos. El sendero rodea la depresión antes de alcanzar el cobertizo que se ve al otro lado."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "sur",
+      "room": "edran_acequia",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "El agua rodea una losa antes de seguir hacia Valdren. Unas hojas tapan la abertura de una zanja seca. Al oeste queda el pueblo, al norte subes al campo y al sur alcanzas el estanque. La losa permite cruzar sin mojarte."
+        },
+        {
+          "kind": "world",
+          "text": "Una rana se deja caer desde la hierba y abre dos círculos pequeños. Más abajo, una mujer libera una hoja atrapada en la rejilla con la punta de una rama."
+        },
+        {
+          "kind": "world",
+          "text": "La corriente vuelve a doblar hacia la abertura tapada. Recuerdas el tramo seco que queda detrás de las hojas."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "sur",
+      "room": "edran_estanque",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Un tronco hundido divide el estanque. El agua entra bajo una raíz y sale por el sur. Al norte vuelves a la acequia; al sur están los sauces. Desde las piedras secas puedes mirar la hierba oscura del bajo oriental."
+        },
+        {
+          "kind": "world",
+          "text": "Insectos se detienen sobre la parte quieta mientras el agua sigue pasando al otro lado del tronco. Un ave baja sólo hasta el borde firme."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "sur",
+      "room": "edran_sauces",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Dos aves se esconden en el sauce. El agua corre bajo sus raíces. Al norte está el estanque; al este, el puente. La senda del puente gira alrededor del sauce y sigue la orilla."
+        },
+        {
+          "kind": "danger",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "observar",
+      "target": null,
+      "room": "edran_sauces",
+      "narrative": [
+        {
+          "kind": "danger",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro."
+        },
+        {
+          "kind": "world",
+          "text": "Las aves cruzan entre dos ramas y regresan al mismo hueco. Sus movimientos dejan intervalos largos durante los que sólo se escucha la ribera."
+        },
+        {
+          "kind": "trace",
+          "text": "Su entrada queda sobre el agua y fuera del paso humano. Puedes observarla sin acercar las manos."
+        },
+        {
+          "kind": "action",
+          "text": "Observas con atención."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "examinar_criatura",
+      "target": "espinajo_rastrojo",
+      "room": "edran_sauces",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Las espinas sobresalen sobre un cuerpo compacto que cabe entre tallos cortados. El animal mantiene una parcela pequeña, deteniéndose y volviendo al mismo borde. Antes de cargar baja el cuerpo y orienta la defensa hacia lo que se aproxima; su espacio puede rodearse por el sendero."
+        },
+        {
+          "kind": "discovery",
+          "text": "Espinajo de rastrojo está en tu bestiario."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "este",
+      "room": "edran_puente_juncos",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "El agua corre bajo las tablas separadas del puente. Sus apoyos se ven desde la orilla. Edran queda al oeste; al este cruzas hacia Lethra. Una tabla gastada marca dónde descansar una carga. Al sur puedes seguir junto a los sauces. Una marca antigua llama Vado de Juncos a este paso. El puente permite cruzarlo cuando el cauce cubre las piedras del fondo."
+        },
+        {
+          "kind": "world",
+          "text": "Una mujer cruza con dos recipientes colgados a distinta altura. Espera en el lado alto para equilibrarlos otra vez, lejos del centro del puente."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "oeste",
+      "room": "edran_sendero_juncos",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Los juncos crecen junto al sendero. El suelo firme permite avanzar sin entrar en el agua, todavía oculta. Una zona despejada tiene marcas de cargas. Al oeste vuelves al refugio; al este llegas al puente. Más adelante se pasa de uno en uno."
+        },
+        {
+          "kind": "danger",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro."
+        },
+        {
+          "kind": "world",
+          "text": "Los juncos señalan agua cercana, no una salida cualquiera del camino. Reconoces el espacio abierto como lugar para esperar antes del tramo estrecho."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "oeste",
+      "room": "edran_reparo",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Un techo protege dos bancos del viento. El camino pasa por delante, lejos de quienes descansan. En la repisa hay un cuenco y tres mensajes. Al sur vuelves a los carros, al norte subes a la era; al este comienza el sendero de juncos."
+        },
+        {
+          "kind": "world",
+          "text": "La media tiene una costura nueva. La viajera recoge el hilo que sobró y estira el pie sobre la tabla; la hormiga se desvía hacia la sombra."
+        },
+        {
+          "kind": "world",
+          "text": "La pared corta te permite elegir un banco protegido sin bloquear la vista del camino. Las tablillas se leen aquí porque quienes las necesitan vuelven a pasar."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "norte",
+      "room": "edran_era",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Un círculo de tierra firme sirve para trabajar el grano. Las piedras planas sujetan tablones, y un poste viejo permite ver cómo sopla el viento. El refugio queda al sur. Al norte sigue la subida; al oeste hay una zanja seca."
+        },
+        {
+          "kind": "world",
+          "text": "Un ave picotea el último grano junto al borde de la era. Al fondo alguien sacude un paño; el polvo permanece en el aire después de que termina."
+        },
+        {
+          "kind": "world",
+          "text": "Detrás quedan los campos y los tejados bajos que recuerdas. De frente, el camino empieza a ganar altura hacia la cuenca."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "norte",
+      "room": "edran_terraplen",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "El camino sube entre tierra alta y raíces al descubierto. Las rodadas van juntas: los carros deben esperar para cruzarse. A media cuesta hay sitio para parar. La era queda al sur; al norte te espera la casa del camino."
+        },
+        {
+          "kind": "danger",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro."
+        },
+        {
+          "kind": "world",
+          "text": "Ya sabes dónde puede esperar alguien sin obligar a un carro a detenerse en pendiente. La casa de arriba sólo se muestra después de la mitad del ascenso."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "norte",
+      "room": "edran_casa_camino",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "La casa está al final de la subida. Cerca de la puerta se dejan las cargas húmedas; la mesa ocupa un suelo más alto. Al fondo esperan mensajes para Vaisgard. Puedes descansar aquí. Al sur bajas a la era; al norte sigue la calzada."
+        },
+        {
+          "kind": "world",
+          "text": "Aren coloca la nota nueva junto a las tablillas. Pregunta desde qué orilla vieron la rueda detenida y toca en el dibujo el punto que le señalan."
+        },
+        {
+          "kind": "world",
+          "text": "Aren pregunta desde dónde se vio una carga antes de registrar el mensaje."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "norte",
+      "room": "edran_calzada",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Piedras redondeadas cubren la subida. Dos reparaciones claras destacan entre los cantos gastados. La casa queda al sur; al norte, una curva oculta el poste del camino. Las ruedas hacen ruido antes de que aparezcan los carros."
+        },
+        {
+          "kind": "danger",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro."
+        },
+        {
+          "kind": "world",
+          "text": "Un conductor reduce el paso al llegar a la reparación más reciente. Un porteador utiliza el borde de hierba para no caminar sobre los cantos húmedos."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "observar",
+      "target": null,
+      "room": "edran_calzada",
+      "narrative": [
+        {
+          "kind": "danger",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro."
+        },
+        {
+          "kind": "world",
+          "text": "Un conductor reduce el paso al llegar a la reparación más reciente. Un porteador utiliza el borde de hierba para no caminar sobre los cantos húmedos."
+        },
+        {
+          "kind": "trace",
+          "text": "Las piedras nuevas encajan entre las viejas; sus caras claras todavía conservan aristas."
+        },
+        {
+          "kind": "action",
+          "text": "Observas con atención."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "examinar_criatura",
+      "target": "espinajo_rastrojo",
+      "room": "edran_calzada",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Las espinas sobresalen sobre un cuerpo compacto que cabe entre tallos cortados. El animal mantiene una parcela pequeña, deteniéndose y volviendo al mismo borde. Antes de cargar baja el cuerpo y orienta la defensa hacia lo que se aproxima; su espacio puede rodearse por el sendero."
+        },
+        {
+          "kind": "discovery",
+          "text": "Espinajo de rastrojo está en tu bestiario."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "sur",
+      "room": "edran_casa_camino",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "La casa está al final de la subida. Cerca de la puerta se dejan las cargas húmedas; la mesa ocupa un suelo más alto. Al fondo esperan mensajes para Vaisgard. Puedes descansar aquí. Al sur bajas a la era; al norte sigue la calzada."
+        },
+        {
+          "kind": "world",
+          "text": "Las dos ventanas ofrecen referencias distintas. Puedes reconocer la era por la baja y la continuación hacia Veyra por la alta, incluso antes de volver al camino."
+        },
+        {
+          "kind": "world",
+          "text": "Aren coloca la nota nueva junto a las tablillas. Pregunta desde qué orilla vieron la rueda detenida y toca en el dibujo el punto que le señalan."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "sur",
+      "room": "edran_terraplen",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "El camino sube entre tierra alta y raíces al descubierto. Las rodadas van juntas: los carros deben esperar para cruzarse. A media cuesta hay sitio para parar. La era queda al sur; al norte te espera la casa del camino."
+        },
+        {
+          "kind": "danger",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro."
+        },
+        {
+          "kind": "world",
+          "text": "Un porteador espera en el ensanchamiento hasta que baja un carro. Su carga está apoyada del lado del terraplén, donde no puede rodar hacia el camino."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "sur",
+      "room": "edran_era",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Un círculo de tierra firme sirve para trabajar el grano. Las piedras planas sujetan tablones, y un poste viejo permite ver cómo sopla el viento. El refugio queda al sur. Al norte sigue la subida; al oeste hay una zanja seca."
+        },
+        {
+          "kind": "world",
+          "text": "Un ave picotea el último grano junto al borde de la era. Al fondo alguien sacude un paño; el polvo permanece en el aire después de que termina."
+        },
+        {
+          "kind": "world",
+          "text": "Detrás quedan los campos y los tejados bajos que recuerdas. De frente, el camino empieza a ganar altura hacia la cuenca."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "sur",
+      "room": "edran_reparo",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Un techo protege dos bancos del viento. El camino pasa por delante, lejos de quienes descansan. En la repisa hay un cuenco y tres mensajes. Al sur vuelves a los carros, al norte subes a la era; al este comienza el sendero de juncos."
+        },
+        {
+          "kind": "world",
+          "text": "La media tiene una costura nueva. La viajera recoge el hilo que sobró y estira el pie sobre la tabla; la hormiga se desvía hacia la sombra."
+        },
+        {
+          "kind": "world",
+          "text": "La pared corta te permite elegir un banco protegido sin bloquear la vista del camino. Las tablillas se leen aquí porque quienes las necesitan vuelven a pasar."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "sur",
+      "room": "edran_camino_carros",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Dos rodadas se separan ante una subida: una pasa por arriba y la otra cruza una hondonada. Después vuelven a juntarse. La arboleda queda al sur. Sigue al norte para llegar al refugio de viajeros; las piedras bajas marcan el borde del camino."
+        },
+        {
+          "kind": "danger",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro."
+        },
+        {
+          "kind": "world",
+          "text": "La rodada alta sigue firme sobre el borde. La baja conserva barro en el centro; ambas se juntan otra vez delante del reparo."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "sur",
+      "room": "edran_arboleda",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Tres árboles dan sombra al banco de tierra y al sendero. Las raíces del último levantan el suelo. Entre las ramas ves el camino de carros, al norte. El cobertizo queda al oeste; la senda sur rodea los campos y vuelve al pueblo."
+        },
+        {
+          "kind": "danger",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces las raíces altas del árbol oriental. El banco de tierra queda bajo el del centro; entre ambos se ve el camino de carros."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "sur",
+      "room": "edran_sendero_regreso",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Un árbol aislado señala la vuelta a Valdren. Desde su sombra ves el techo del cobertizo, pero no la plaza. Al oeste llegas al patio de carros; al este regresas a la arboleda. Hay sitio para quitarte barro antes de entrar al pueblo. La senda gira al rodear los campos: sus entradas no quedan enfrentadas."
+        },
+        {
+          "kind": "danger",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro."
+        },
+        {
+          "kind": "world",
+          "text": "Una persona limpia sus botas con una rama caída y recoge después los restos fuera del paso. Un carro entra por el patio, separado de los huertos."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "observar",
+      "target": null,
+      "room": "edran_sendero_regreso",
+      "narrative": [
+        {
+          "kind": "danger",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro."
+        },
+        {
+          "kind": "world",
+          "text": "Una persona limpia sus botas con una rama caída y recoge después los restos fuera del paso. Un carro entra por el patio, separado de los huertos."
+        },
+        {
+          "kind": "trace",
+          "text": "La tierra bajo el árbol está compactada y conserva dos huecos de cargas apoyadas."
+        },
+        {
+          "kind": "action",
+          "text": "Observas con atención."
+        }
+      ],
+      "hp": 100
+    },
+    {
+      "action": "examinar_criatura",
+      "target": "espinajo_rastrojo",
+      "room": "edran_sendero_regreso",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Las espinas sobresalen sobre un cuerpo compacto que cabe entre tallos cortados. El animal mantiene una parcela pequeña, deteniéndose y volviendo al mismo borde. Antes de cargar baja el cuerpo y orienta la defensa hacia lo que se aproxima; su espacio puede rodearse por el sendero."
+        },
+        {
+          "kind": "discovery",
+          "text": "Espinajo de rastrojo está en tu bestiario."
+        }
+      ],
+      "hp": 100
+    }
+  ],
+  "final": {
+    "account": {
+      "id": 1,
+      "username": "faunastory1791438254865393553"
+    },
+    "actions": [
+      {
+        "disabled": false,
+        "id": "buscar",
+        "label": "Buscar alrededor",
+        "reason": "Revisar suelo, refugios y objetos que hayan quedado en el camino."
+      },
+      {
+        "id": "examinar_criatura",
+        "label": "Examinar Espinajo de rastrojo",
+        "target": "espinajo_rastrojo"
+      },
+      {
+        "id": "combatir",
+        "label": "Enfrentarte a Espinajo de rastrojo",
+        "target": "espinajo_rastrojo"
+      },
+      {
+        "id": "mirar",
+        "label": "Mirar"
+      },
+      {
+        "id": "observar",
+        "label": "Observar"
+      },
+      {
+        "id": "examinar",
+        "label": "Examinar árbol",
+        "target": "árbol"
+      },
+      {
+        "id": "examinar",
+        "label": "Examinar techado",
+        "target": "techado"
+      },
+      {
+        "disabled": false,
+        "id": "mover",
+        "label": "Este · Arboleda de los tres árboles",
+        "reason": "",
+        "target": "este"
+      },
+      {
+        "disabled": false,
+        "id": "mover",
+        "label": "Oeste · Salida por explorar",
+        "reason": "",
+        "target": "oeste"
+      },
+      {
+        "id": "evaluar",
+        "label": "Evaluar Espinajo de rastrojo",
+        "target": "espinajo_rastrojo"
+      },
+      {
+        "id": "desequipar",
+        "label": "Guardar arma",
+        "target": "weapon"
+      },
+      {
+        "disabled": false,
+        "id": "equipar",
+        "label": "Equipar Espada de juramento",
+        "reason": "",
+        "target": "espada_juramento"
+      }
+    ],
+    "ambient": {
+      "region": "edran",
+      "time_of_day": "Día",
+      "timestamp": 43200,
+      "weather": "Despejado",
+      "weather_description": "El terreno abierto conserva referencias entre parcelas, sombras y caminos."
+    },
+    "authenticated": true,
+    "bestiary": [
+      {
+        "description": "Las espinas sobresalen sobre un cuerpo compacto que cabe entre tallos cortados. El animal mantiene una parcela pequeña, deteniéndose y volviendo al mismo borde. Antes de cargar baja el cuerpo y orienta la defensa hacia lo que se aproxima; su espacio puede rodearse por el sendero.",
+        "first_seen": 43200,
+        "id": "espinajo_rastrojo",
+        "illustration": "/client/art/bestiary/espinajo-rastrojo-anime-v1.webp",
+        "name": "Espinajo de rastrojo",
+        "status": "avistado"
+      },
+      {
+        "description": "La hierba pierde altura alrededor de un cuerpo que deja huellas profundas. La criatura ocupa el prado con un peso capaz de cambiar la forma del terreno; su lomo se ve por encima de los tallos que ocultan animales menores. La distancia permite reconocerla sin entrar en su espacio.",
+        "first_seen": 43200,
+        "id": "cornalomo",
+        "illustration": "/client/art/bestiary/cornalomo-anime-v1.webp",
+        "name": "Cornalomo",
+        "status": "avistado"
+      }
+    ],
+    "character": {
+      "attributes": {
+        "agilidad": 10,
+        "destreza": 10,
+        "fuerza": 10,
+        "intelecto": 10,
+        "percepcion": 10,
+        "presencia": 10,
+        "resistencia": 10,
+        "voluntad": 10
+      },
+      "class_id": "juramentado",
+      "combat": null,
+      "equipment": {
+        "armor": null,
+        "block": null,
+        "weapon": "espada_juramento"
+      },
+      "fatigue": 0,
+      "gender": "femenino",
+      "hp": 100,
+      "hp_max": 100.0,
+      "id": 1,
+      "level": 1,
+      "location": "edran_sendero_regreso",
+      "name": "Fauna paso 1",
+      "pa": 0,
+      "pp": 0,
+      "seals": 20,
+      "species": "humano",
+      "status": "approved",
+      "wound": null,
+      "xp": 0,
+      "xp_next": 100
+    },
+    "characters": [
+      {
+        "class_id": "juramentado",
+        "id": 1,
+        "name": "Fauna paso 1",
+        "species": "humano",
+        "status": "approved"
+      }
+    ],
+    "chat": [],
+    "inventory": [
+      {
+        "activated": true,
+        "block": true,
+        "damage": 10,
+        "id": "espada_juramento",
+        "kind": "weapon",
+        "name": "Espada de juramento",
+        "quantity": 1
+      }
+    ],
+    "journal": [],
+    "map": {
+      "edges": [
+        [
+          "home:1",
+          "valdren_plaza"
+        ],
+        [
+          "valdren_huertos",
+          "valdren_plaza"
+        ],
+        [
+          "edran_salida_huertos",
+          "valdren_huertos"
+        ],
+        [
+          "edran_acequia",
+          "edran_salida_huertos"
+        ],
+        [
+          "edran_acequia",
+          "edran_surcos"
+        ],
+        [
+          "edran_lindero",
+          "edran_surcos"
+        ],
+        [
+          "edran_cobertizo_campo",
+          "edran_lindero"
+        ],
+        [
+          "edran_arboleda",
+          "edran_cobertizo_campo"
+        ],
+        [
+          "edran_arboleda",
+          "edran_camino_carros"
+        ],
+        [
+          "edran_camino_carros",
+          "edran_reparo"
+        ],
+        [
+          "edran_era",
+          "edran_reparo"
+        ],
+        [
+          "edran_era",
+          "edran_terraplen"
+        ],
+        [
+          "edran_era",
+          "edran_zanja_antigua"
+        ],
+        [
+          "edran_surcos",
+          "edran_zanja_antigua"
+        ],
+        [
+          "edran_lindero",
+          "edran_loma"
+        ],
+        [
+          "edran_loma",
+          "edran_prado"
+        ],
+        [
+          "edran_ladera_piedra",
+          "edran_prado"
+        ],
+        [
+          "edran_ladera_piedra",
+          "edran_linde_piedra"
+        ],
+        [
+          "edran_reparo",
+          "edran_sendero_juncos"
+        ],
+        [
+          "edran_parcela_vieja",
+          "edran_surcos"
+        ],
+        [
+          "edran_acequia",
+          "edran_estanque"
+        ],
+        [
+          "edran_estanque",
+          "edran_sauces"
+        ],
+        [
+          "edran_puente_juncos",
+          "edran_sauces"
+        ],
+        [
+          "edran_puente_juncos",
+          "edran_sendero_juncos"
+        ],
+        [
+          "edran_casa_camino",
+          "edran_terraplen"
+        ],
+        [
+          "edran_calzada",
+          "edran_casa_camino"
+        ],
+        [
+          "edran_arboleda",
+          "edran_sendero_regreso"
+        ]
+      ],
+      "frontiers": [
+        {
+          "direction": "oeste",
+          "from": "edran_sendero_regreso"
+        }
+      ],
+      "nodes": [
+        {
+          "id": "home:1",
+          "kind": "home",
+          "name": "Tu casa junto al corredor",
+          "region": "edran",
+          "unexplored_directions": [],
+          "visited": true
+        },
+        {
+          "id": "valdren_plaza",
+          "kind": "settlement",
+          "name": "Plaza de Valdren",
+          "region": "edran",
+          "unexplored_directions": [
+            "norte",
+            "sur",
+            "oeste"
+          ],
+          "visited": true
+        },
+        {
+          "id": "valdren_huertos",
+          "kind": "settlement",
+          "name": "Corredor de los Huertos",
+          "region": "edran",
+          "unexplored_directions": [
+            "norte"
+          ],
+          "visited": true
+        },
+        {
+          "id": "edran_salida_huertos",
+          "kind": "road",
+          "name": "Salida de las Cercas Bajas",
+          "region": "edran",
+          "unexplored_directions": [
+            "sur"
+          ],
+          "visited": true
+        },
+        {
+          "id": "edran_acequia",
+          "kind": "landmark",
+          "name": "Curva de la Acequia",
+          "region": "edran",
+          "unexplored_directions": [],
+          "visited": true
+        },
+        {
+          "id": "edran_surcos",
+          "kind": "wilderness",
+          "name": "Campo de surcos",
+          "region": "edran",
+          "unexplored_directions": [],
+          "visited": true
+        },
+        {
+          "id": "edran_lindero",
+          "kind": "landmark",
+          "name": "Lindero de la Piedra Hundida",
+          "region": "edran",
+          "unexplored_directions": [],
+          "visited": true
+        },
+        {
+          "id": "edran_cobertizo_campo",
+          "kind": "interior",
+          "name": "Cobertizo de las Estacas Numeradas",
+          "region": "edran",
+          "unexplored_directions": [],
+          "visited": true
+        },
+        {
+          "id": "edran_arboleda",
+          "kind": "wilderness",
+          "name": "Arboleda de los tres árboles",
+          "region": "edran",
+          "unexplored_directions": [],
+          "visited": true
+        },
+        {
+          "id": "edran_camino_carros",
+          "kind": "road",
+          "name": "Camino de carros",
+          "region": "edran",
+          "unexplored_directions": [],
+          "visited": true
+        },
+        {
+          "id": "edran_reparo",
+          "kind": "interior",
+          "name": "Refugio del camino",
+          "region": "edran",
+          "unexplored_directions": [],
+          "visited": true
+        },
+        {
+          "id": "edran_era",
+          "kind": "landmark",
+          "name": "Era de los campos",
+          "region": "edran",
+          "unexplored_directions": [],
+          "visited": true
+        },
+        {
+          "id": "edran_terraplen",
+          "kind": "road",
+          "name": "Terraplén de la Subida",
+          "region": "edran",
+          "unexplored_directions": [],
+          "visited": true
+        },
+        {
+          "id": "edran_zanja_antigua",
+          "kind": "landmark",
+          "name": "Zanja seca",
+          "region": "edran",
+          "unexplored_directions": [
+            "este"
+          ],
+          "visited": true
+        },
+        {
+          "id": "edran_loma",
+          "kind": "landmark",
+          "name": "Loma del Pasto Cortado",
+          "region": "edran",
+          "unexplored_directions": [
+            "sur"
+          ],
+          "visited": true
+        },
+        {
+          "id": "edran_prado",
+          "kind": "wilderness",
+          "name": "Prado de las Marcas Anchas",
+          "region": "edran",
+          "unexplored_directions": [],
+          "visited": true
+        },
+        {
+          "id": "edran_ladera_piedra",
+          "kind": "landmark",
+          "name": "Ladera de los cestos",
+          "region": "edran",
+          "unexplored_directions": [],
+          "visited": true
+        },
+        {
+          "id": "edran_linde_piedra",
+          "kind": "road",
+          "name": "Paso hacia Korven",
+          "region": "edran",
+          "unexplored_directions": [
+            "norte"
+          ],
+          "visited": true
+        },
+        {
+          "id": "edran_sendero_juncos",
+          "kind": "road",
+          "name": "Sendero del Agua Oculta",
+          "region": "edran",
+          "unexplored_directions": [],
+          "visited": true
+        },
+        {
+          "id": "edran_parcela_vieja",
+          "kind": "wilderness",
+          "name": "Parcela vieja",
+          "region": "edran",
+          "unexplored_directions": [
+            "norte"
+          ],
+          "visited": true
+        },
+        {
+          "id": "edran_estanque",
+          "kind": "landmark",
+          "name": "Estanque del Reflejo Partido",
+          "region": "edran",
+          "unexplored_directions": [
+            "este"
+          ],
+          "visited": true
+        },
+        {
+          "id": "edran_sauces",
+          "kind": "wilderness",
+          "name": "Borde de los Sauces Bajos",
+          "region": "edran",
+          "unexplored_directions": [],
+          "visited": true
+        },
+        {
+          "id": "edran_puente_juncos",
+          "kind": "landmark",
+          "name": "Vado de Juncos",
+          "region": "edran",
+          "unexplored_directions": [
+            "este"
+          ],
+          "visited": true
+        },
+        {
+          "id": "edran_casa_camino",
+          "kind": "interior",
+          "name": "Casa del camino",
+          "region": "edran",
+          "unexplored_directions": [],
+          "visited": true
+        },
+        {
+          "id": "edran_calzada",
+          "kind": "road",
+          "name": "Calzada de piedra",
+          "region": "edran",
+          "unexplored_directions": [
+            "norte"
+          ],
+          "visited": true
+        },
+        {
+          "id": "edran_sendero_regreso",
+          "kind": "road",
+          "name": "Senda de regreso",
+          "region": "edran",
+          "unexplored_directions": [
+            "oeste"
+          ],
+          "visited": true
+        }
+      ],
+      "routes": [
+        {
+          "direction": "salir",
+          "from": "home:1",
+          "to": "valdren_plaza"
+        },
+        {
+          "direction": "hogar",
+          "from": "valdren_plaza",
+          "to": "home:1"
+        },
+        {
+          "direction": "oeste",
+          "from": "valdren_huertos",
+          "to": "valdren_plaza"
+        },
+        {
+          "direction": "este",
+          "from": "valdren_plaza",
+          "to": "valdren_huertos"
+        },
+        {
+          "direction": "oeste",
+          "from": "edran_salida_huertos",
+          "to": "valdren_huertos"
+        },
+        {
+          "direction": "este",
+          "from": "valdren_huertos",
+          "to": "edran_salida_huertos"
+        },
+        {
+          "direction": "oeste",
+          "from": "edran_acequia",
+          "to": "edran_salida_huertos"
+        },
+        {
+          "direction": "este",
+          "from": "edran_salida_huertos",
+          "to": "edran_acequia"
+        },
+        {
+          "direction": "norte",
+          "from": "edran_acequia",
+          "to": "edran_surcos"
+        },
+        {
+          "direction": "sur",
+          "from": "edran_surcos",
+          "to": "edran_acequia"
+        },
+        {
+          "direction": "sur",
+          "from": "edran_lindero",
+          "to": "edran_surcos"
+        },
+        {
+          "direction": "norte",
+          "from": "edran_surcos",
+          "to": "edran_lindero"
+        },
+        {
+          "direction": "oeste",
+          "from": "edran_cobertizo_campo",
+          "to": "edran_lindero"
+        },
+        {
+          "direction": "este",
+          "from": "edran_lindero",
+          "to": "edran_cobertizo_campo"
+        },
+        {
+          "direction": "oeste",
+          "from": "edran_arboleda",
+          "to": "edran_cobertizo_campo"
+        },
+        {
+          "direction": "este",
+          "from": "edran_cobertizo_campo",
+          "to": "edran_arboleda"
+        },
+        {
+          "direction": "norte",
+          "from": "edran_arboleda",
+          "to": "edran_camino_carros"
+        },
+        {
+          "direction": "sur",
+          "from": "edran_camino_carros",
+          "to": "edran_arboleda"
+        },
+        {
+          "direction": "norte",
+          "from": "edran_camino_carros",
+          "to": "edran_reparo"
+        },
+        {
+          "direction": "sur",
+          "from": "edran_reparo",
+          "to": "edran_camino_carros"
+        },
+        {
+          "direction": "sur",
+          "from": "edran_era",
+          "to": "edran_reparo"
+        },
+        {
+          "direction": "norte",
+          "from": "edran_reparo",
+          "to": "edran_era"
+        },
+        {
+          "direction": "norte",
+          "from": "edran_era",
+          "to": "edran_terraplen"
+        },
+        {
+          "direction": "sur",
+          "from": "edran_terraplen",
+          "to": "edran_era"
+        },
+        {
+          "direction": "oeste",
+          "from": "edran_era",
+          "to": "edran_zanja_antigua"
+        },
+        {
+          "direction": "norte",
+          "from": "edran_zanja_antigua",
+          "to": "edran_era"
+        },
+        {
+          "direction": "este",
+          "from": "edran_surcos",
+          "to": "edran_zanja_antigua"
+        },
+        {
+          "direction": "oeste",
+          "from": "edran_zanja_antigua",
+          "to": "edran_surcos"
+        },
+        {
+          "direction": "oeste",
+          "from": "edran_lindero",
+          "to": "edran_loma"
+        },
+        {
+          "direction": "este",
+          "from": "edran_loma",
+          "to": "edran_lindero"
+        },
+        {
+          "direction": "norte",
+          "from": "edran_loma",
+          "to": "edran_prado"
+        },
+        {
+          "direction": "sur",
+          "from": "edran_prado",
+          "to": "edran_loma"
+        },
+        {
+          "direction": "este",
+          "from": "edran_ladera_piedra",
+          "to": "edran_prado"
+        },
+        {
+          "direction": "oeste",
+          "from": "edran_prado",
+          "to": "edran_ladera_piedra"
+        },
+        {
+          "direction": "norte",
+          "from": "edran_ladera_piedra",
+          "to": "edran_linde_piedra"
+        },
+        {
+          "direction": "sur",
+          "from": "edran_linde_piedra",
+          "to": "edran_ladera_piedra"
+        },
+        {
+          "direction": "este",
+          "from": "edran_reparo",
+          "to": "edran_sendero_juncos"
+        },
+        {
+          "direction": "oeste",
+          "from": "edran_sendero_juncos",
+          "to": "edran_reparo"
+        },
+        {
+          "direction": "este",
+          "from": "edran_parcela_vieja",
+          "to": "edran_surcos"
+        },
+        {
+          "direction": "oeste",
+          "from": "edran_surcos",
+          "to": "edran_parcela_vieja"
+        },
+        {
+          "direction": "sur",
+          "from": "edran_acequia",
+          "to": "edran_estanque"
+        },
+        {
+          "direction": "norte",
+          "from": "edran_estanque",
+          "to": "edran_acequia"
+        },
+        {
+          "direction": "sur",
+          "from": "edran_estanque",
+          "to": "edran_sauces"
+        },
+        {
+          "direction": "norte",
+          "from": "edran_sauces",
+          "to": "edran_estanque"
+        },
+        {
+          "direction": "sur",
+          "from": "edran_puente_juncos",
+          "to": "edran_sauces"
+        },
+        {
+          "direction": "este",
+          "from": "edran_sauces",
+          "to": "edran_puente_juncos"
+        },
+        {
+          "direction": "oeste",
+          "from": "edran_puente_juncos",
+          "to": "edran_sendero_juncos"
+        },
+        {
+          "direction": "este",
+          "from": "edran_sendero_juncos",
+          "to": "edran_puente_juncos"
+        },
+        {
+          "direction": "sur",
+          "from": "edran_casa_camino",
+          "to": "edran_terraplen"
+        },
+        {
+          "direction": "norte",
+          "from": "edran_terraplen",
+          "to": "edran_casa_camino"
+        },
+        {
+          "direction": "sur",
+          "from": "edran_calzada",
+          "to": "edran_casa_camino"
+        },
+        {
+          "direction": "norte",
+          "from": "edran_casa_camino",
+          "to": "edran_calzada"
+        },
+        {
+          "direction": "sur",
+          "from": "edran_arboleda",
+          "to": "edran_sendero_regreso"
+        },
+        {
+          "direction": "este",
+          "from": "edran_sendero_regreso",
+          "to": "edran_arboleda"
+        }
+      ]
+    },
+    "narrative": [
+      {
+        "kind": "world",
+        "text": "Las espinas sobresalen sobre un cuerpo compacto que cabe entre tallos cortados. El animal mantiene una parcela pequeña, deteniéndose y volviendo al mismo borde. Antes de cargar baja el cuerpo y orienta la defensa hacia lo que se aproxima; su espacio puede rodearse por el sendero."
+      },
+      {
+        "kind": "discovery",
+        "text": "Espinajo de rastrojo está en tu bestiario."
+      }
+    ],
+    "presence": [],
+    "quests": [],
+    "room": {
+      "description": "Un árbol aislado señala la vuelta a Valdren. Desde su sombra ves el techo del cobertizo, pero no la plaza. Al oeste llegas al patio de carros; al este regresas a la arboleda. Hay sitio para quitarte barro antes de entrar al pueblo. La senda gira al rodear los campos: sus entradas no quedan enfrentadas.",
+      "exits": [
+        {
+          "direction": "este",
+          "label": "Este"
+        },
+        {
+          "direction": "oeste",
+          "label": "Oeste"
+        }
+      ],
+      "id": "edran_sendero_regreso",
+      "kind": "road",
+      "name": "Senda de regreso",
+      "npcs": [],
+      "region": "edran"
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Un árbol aislado señala la vuelta a Valdren. Desde su sombra ves el techo del cobertizo, pero no la plaza. Al oeste llegas al patio de carros; al este regresas a la arboleda. Hay sitio para quitarte barro antes de entrar al pueblo. La senda gira al rodear los campos: sus entradas no quedan enfrentadas."
+      },
+      {
+        "kind": "danger",
+        "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro."
+      },
+      {
+        "kind": "world",
+        "text": "Una persona limpia sus botas con una rama caída y recoge después los restos fuera del paso. Un carro entra por el patio, separado de los huertos."
+      }
+    ],
+    "version": 213
+  },
+  "scope": "Live API and fresh temporary DB; constant RNG rolls declared; no HP/flags edits, no mandatory fights"
+}

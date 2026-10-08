@@ -1,0 +1,141 @@
+{
+  "pairs": [
+    {
+      "room": "valdren_fragua",
+      "npc": "edran_daro",
+      "owner": [
+        {
+          "topic": "trabajo",
+          "narrative": [
+            {
+              "kind": "npc",
+              "text": "Daro: La medida que trajiste de Bren está junto a la abrazadera. Ahora puedo ajustar la pieza con esa referencia, sin añadir hierro por añadirlo."
+            }
+          ]
+        },
+        {
+          "topic": "pueblo",
+          "narrative": [
+            {
+              "kind": "npc",
+              "text": "Daro: La cuesta obliga a escuchar quién baja antes de subir. Aquí las herramientas también tienen que dejar sitio al paso."
+            }
+          ]
+        }
+      ],
+      "observer": [
+        {
+          "topic": "trabajo",
+          "narrative": [
+            {
+              "kind": "npc",
+              "text": "Daro: Una abrazadera no falla sola. Si Bren me dice de qué lado cede la carga, podré ajustarla sin añadir hierro por añadirlo."
+            }
+          ]
+        },
+        {
+          "topic": "pueblo",
+          "narrative": [
+            {
+              "kind": "npc",
+              "text": "Daro: La cuesta obliga a escuchar quién baja antes de subir. Aquí las herramientas también tienen que dejar sitio al paso."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "room": "korven_entrante_piezas",
+      "npc": "korven_taren",
+      "owner": [
+        {
+          "topic": "materiales",
+          "narrative": [
+            {
+              "kind": "npc",
+              "text": "Taren: Acepto piedras veteadas para comparar muestras y ramas flexibles para los soportes de recipientes. Las armas las revisa Beran, en el taller del pueblo."
+            },
+            {
+              "kind": "discovery",
+              "text": "Taren alinea la arcilla con tu marca. «Empiezo por esta prueba; el borde del horno sigue en las muestras.»"
+            }
+          ]
+        },
+        {
+          "topic": "horno",
+          "narrative": [
+            {
+              "kind": "npc",
+              "text": "Taren: No sé por qué cesó todo su trabajo. Sí puedo comparar este borde con el recipiente que quedó torcido."
+            }
+          ]
+        }
+      ],
+      "observer": [
+        {
+          "topic": "materiales",
+          "narrative": [
+            {
+              "kind": "npc",
+              "text": "Taren: Acepto piedras veteadas para comparar muestras y ramas flexibles para los soportes de recipientes. Las armas las revisa Beran, en el taller del pueblo."
+            }
+          ]
+        },
+        {
+          "topic": "horno",
+          "narrative": [
+            {
+              "kind": "npc",
+              "text": "Taren: No sé por qué cesó todo su trabajo. Sí puedo comparar este borde con el recipiente que quedó torcido."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "room": "lethra_mercado_hojas",
+      "npc": "lethra_nera_mercado",
+      "owner": [
+        {
+          "topic": "reunión",
+          "narrative": [
+            {
+              "kind": "npc",
+              "text": "Tila: Nima ya recibió tu propuesta. Llevaré los cuencos al rincón cubierto de la cocina; el paño puede seguir secándose en la plataforma."
+            }
+          ]
+        },
+        {
+          "topic": "comprar",
+          "narrative": [
+            {
+              "kind": "npc",
+              "text": "Tila: Traemos puñales, varitas comunes y provisiones. Compro junco para amarres, resina para proteger uniones y ramas flexibles. Las otras armas se consiguen en Vaisgard o en los talleres de camino."
+            }
+          ]
+        }
+      ],
+      "observer": [
+        {
+          "topic": "reunión",
+          "narrative": [
+            {
+              "kind": "npc",
+              "text": "Tila: Mira prepara el paño para una reunión en la cocina. Mira las costuras en la plataforma; decide si llevarlo allí o recomendar un lugar cubierto. Nima necesita la noticia antes de poner los cuencos."
+            }
+          ]
+        },
+        {
+          "topic": "comprar",
+          "narrative": [
+            {
+              "kind": "npc",
+              "text": "Tila: Traemos puñales, varitas comunes y provisiones. Compro junco para amarres, resina para proteger uniones y ramas flexibles. Las otras armas se consiguen en Vaisgard o en los talleres de camino."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "moves": 180
+}

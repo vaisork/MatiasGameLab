@@ -1,0 +1,24 @@
+{
+  "status": "PASS",
+  "results": [
+    {
+      "width": 320,
+      "actualModel": "vesperi",
+      "closedCanvas": 0,
+      "noOverflow": true,
+      "pageErrors": [],
+      "cspErrors": [],
+      "materialHintChecked": true
+    },
+    {
+      "width": 393,
+      "actualModel": "vesperi",
+      "closedCanvas": 0,
+      "noOverflow": true,
+      "pageErrors": [],
+      "cspErrors": [],
+      "materialHintChecked": false
+    }
+  ],
+  "scope": "Real UI and isolated API accounts 8099; approved static species representation, not gendered geometry"
+}

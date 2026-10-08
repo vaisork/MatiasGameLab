@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "username": "lectora1791253139069",
+  "scope": "Chromium: registration, approval, observation, 19-step real route to Lethra, preserved Mirar scroll, map overview/current position, logout/relogin, three viewport widths",
+  "limits": [
+    "Not a 20–30 minute human session",
+    "Paid quest must be reviewed separately through real travel"
+  ],
+  "hashes": {
+    "index.html": "3cd01d9cde88683115aabda3206ce43feebd81edb7313f581a4485c5b2f50c13",
+    "style.css": "23f4ed1f5409b3b5ef7acee03789a34459b63cc0671a43ae3dfbb585a81e2578",
+    "app.js": "e7e98f36ad3ed8b3dc040fab6815cb906dc765316b22dab9d718b13d7687997b",
+    "ui-data.js": "4359a50e2f1064e730ef8af558a2bf88940c8cd3e0365b8727448db03cf2af95"
+  }
+}

@@ -1,0 +1,199 @@
+{
+  "scope": "Whole new regional catalog reader audit; read-only source inspection, no browser; headings/directions checked against actual authored exits. Cardinal views/local subareas and NPC motion do not automatically require public exits. No narrative modifications. Snapshot hashes preserve scope during concurrent author corrections.",
+  "rooms_reviewed": 162,
+  "sources": {
+    "content/regions/nhal.json": "d32c3e1dd977dccab723b630d00fcf55b0e89dec5876fc674ffb3bc4e9124aa4",
+    "content/regions/hoshai.json": "24c05702a8ba90ae6f45261311ca22080663d8855fe33b7ba4d6cde15c8ea701",
+    "content/regions/korven.json": "8921c5a547e44e84d77e6cb134a7556c7999deca9b34614bd6f801214905386d",
+    "content/regions/edran.json": "0834f35cff9c1704463226fe7c4dabc5eddae137ff09d2a059961fbcb534e6c3",
+    "content/regions/veyra.json": "a077603d701c5440c0a8e8c17e9848be59ec883ad953ac7b09b4480bfe1c865c",
+    "content/regions/lethra.json": "07321a5ad4fdd3a447d74fa97437798fae26c7182d151d5ec6eb276edbcd595d"
+  },
+  "clear_incompatibilities": [
+    {
+      "source": "content/regions/nhal.json",
+      "room": "nhal_secadero_sombra",
+      "field": "description",
+      "quote": "una senda al norte alcanza viviendas más altas",
+      "quote_present": true,
+      "direction": "norte",
+      "exits": {
+        "oeste": "nhal_taller_cortezas"
+      },
+      "reason": "Promete senda norte, sólo permite volver oeste al taller.",
+      "suggestion": "Alinear el texto con la topología; si describe una vista o zona dentro de la sala, declararlo expresamente. No añadir conexiones sin decisión authored."
+    },
+    {
+      "source": "content/regions/nhal.json",
+      "room": "nhal_calle_hogares",
+      "field": "description",
+      "quote": "El secadero queda al oeste por una conexión lateral",
+      "quote_present": true,
+      "direction": "oeste",
+      "exits": {
+        "sur": "nhal_patio_relato",
+        "norte": "nhal_sendero_altura"
+      },
+      "reason": "Promete conexión lateral oeste, sólo hay sur/norte.",
+      "suggestion": "Alinear el texto con la topología; si describe una vista o zona dentro de la sala, declararlo expresamente. No añadir conexiones sin decisión authored."
+    },
+    {
+      "source": "content/regions/nhal.json",
+      "room": "nhal_mercado_setas",
+      "field": "description",
+      "quote": "Una senda occidental baja hacia el agua",
+      "quote_present": true,
+      "direction": "oeste",
+      "exits": {
+        "norte": "velmora_centro",
+        "este": "nhal_cocina_raices"
+      },
+      "reason": "Promete senda occidental; sólo hay norte al claro y este a cocina.",
+      "suggestion": "Alinear el texto con la topología; si describe una vista o zona dentro de la sala, declararlo expresamente. No añadir conexiones sin decisión authored."
+    },
+    {
+      "source": "content/regions/hoshai.json",
+      "room": "hoshai_mercado_cintas",
+      "field": "description",
+      "quote": "una entrada al norte conduce al patio de los hogares",
+      "quote_present": true,
+      "direction": "norte",
+      "exits": {
+        "oeste": "khariel_centro"
+      },
+      "reason": "Promete entrada directa norte; hay sólo oeste a plaza, desde donde se llega al patio.",
+      "suggestion": "Alinear el texto con la topología; si describe una vista o zona dentro de la sala, declararlo expresamente. No añadir conexiones sin decisión authored."
+    },
+    {
+      "source": "content/regions/korven.json",
+      "room": "korven_mirador_grietas",
+      "field": "description",
+      "quote": "Al norte vuelve una calle al patio",
+      "quote_present": true,
+      "direction": "norte",
+      "exits": {
+        "oeste": "korven_cisterna_comun",
+        "sur": "korven_cauce_observacion"
+      },
+      "reason": "Promete regreso por calle norte; hay oeste a cisterna y sur a cauce.",
+      "suggestion": "Alinear el texto con la topología; si describe una vista o zona dentro de la sala, declararlo expresamente. No añadir conexiones sin decisión authored."
+    },
+    {
+      "source": "content/regions/lethra.json",
+      "room": "lethra_muelle_vecinal",
+      "field": "description",
+      "quote": "al oeste se abre una ribera de observación",
+      "quote_present": true,
+      "direction": "oeste",
+      "exits": {
+        "norte": "lethra_mercado_hojas",
+        "este": "lethra_patio_ventanas"
+      },
+      "reason": "Promete abertura transitable hacia ribera oeste; sólo norte mercado y este patio.",
+      "suggestion": "Alinear el texto con la topología; si describe una vista o zona dentro de la sala, declararlo expresamente. No añadir conexiones sin decisión authored."
+    },
+    {
+      "source": "content/regions/lethra.json",
+      "room": "lethra_raices_observacion",
+      "field": "description",
+      "quote": "el sendero de regreso al norte se ve entre tallos",
+      "quote_present": true,
+      "direction": "norte",
+      "exits": {
+        "este": "lethra_orilla_silente"
+      },
+      "reason": "Denomina sendero de regreso norte; único regreso disponible este a orilla.",
+      "suggestion": "Alinear el texto con la topología; si describe una vista o zona dentro de la sala, declararlo expresamente. No añadir conexiones sin decisión authored."
+    },
+    {
+      "source": "content/regions/lethra.json",
+      "room": "lethra_ribera_sombra",
+      "field": "description",
+      "quote": "Una salida oriental del patio de ventanas",
+      "quote_present": true,
+      "direction": "este",
+      "exits": {
+        "sur": "lethra_patio_ventanas",
+        "norte": "lethra_relevo_raices"
+      },
+      "reason": "Indica salir del patio al este para esta ribera; en patio este conduce a cuidado de barcas, norte a esta ribera.",
+      "suggestion": "Alinear el texto con la topología; si describe una vista o zona dentro de la sala, declararlo expresamente. No añadir conexiones sin decisión authored."
+    },
+    {
+      "source": "content/regions/veyra.json",
+      "room": "veyra_puerta_piedra",
+      "field": "description",
+      "quote": "El patio de las bestias se abre al oeste por una puerta",
+      "quote_present": true,
+      "direction": "oeste",
+      "exits": {
+        "este": "veyra_patio_porte",
+        "oeste": "veyra_terraplen_roca"
+      },
+      "reason": "Dirección del patio de cargas/animales invertida: este permite volver a patio_porte, oeste sale hacia terraplén.",
+      "suggestion": "Alinear el texto con la topología; si describe una vista o zona dentro de la sala, declararlo expresamente. No añadir conexiones sin decisión authored."
+    },
+    {
+      "source": "content/regions/hoshai.json",
+      "room": "hoshai_pinar_discontinuo",
+      "field": "description",
+      "quote": "un desvío busca un abrigo sin salida",
+      "quote_present": true,
+      "direction": "oeste",
+      "exits": {
+        "sur": "hoshai_pared_goteo",
+        "norte": "hoshai_agua_fria",
+        "oeste": "hoshai_abrigo_pinas"
+      },
+      "reason": "El abrigo no es fondo de saco: ofrece este regreso y norte al collado, con ruta interregional.",
+      "suggestion": "Alinear el texto con la topología; si describe una vista o zona dentro de la sala, declararlo expresamente. No añadir conexiones sin decisión authored."
+    }
+  ],
+  "excluded_or_ambiguous_examples": [
+    {
+      "room": "hoshai_ladera_hitos",
+      "field": "description",
+      "reason": "Terraza oriental con tablilla: la tablilla es un objetivo examinar de esta misma sala. Puede ser zona local, no exige exit adicional."
+    },
+    {
+      "room": "lethra_cruce_canales",
+      "field": "description",
+      "reason": "Plataforma este permite mirar hoja: observación dentro de la sala, no promete otra habitación."
+    },
+    {
+      "room": "edran_lindero",
+      "field": "description",
+      "reason": "Pastizal al norte sólo visto; el texto declara llegar por la loma occidental. No exigir norte."
+    },
+    {
+      "room": "valdren_graneros",
+      "field": "description",
+      "reason": "Puertas norte/sur pertenecen a estructuras dentro de sala; no son salidas de recorrido."
+    },
+    {
+      "room": "nhal_claro_silencio",
+      "field": "description",
+      "reason": "Continuación este está lejos del asiento, puede corresponder a ruta principal del tronco. Requiere aclarar perspectiva, pero no incompatibilidad inequívoca."
+    },
+    {
+      "room": "edran_parcela_vieja",
+      "field": "description",
+      "reason": "Cerca sur enlaza campos; puede expresar límite compartido, no puerta o paso público."
+    },
+    {
+      "room": "korven_registro_cauce",
+      "field": "description",
+      "reason": "Abertura occidental permite mirar sin bajar: referencia visual, no salida transitable."
+    },
+    {
+      "room": "nhal_rincon_semillas",
+      "field": "night",
+      "reason": "Observadora se retira hacia oeste: movimiento de NPC, no promesa de salida para jugador; ambigüedad para revisar."
+    },
+    {
+      "room": "lethra_patio_ventanas",
+      "field": "description",
+      "reason": "Pasarela norte vuelve cerca de cocina, pero norte conduce a ribera_sombra. Cercanía física no verificable sin coordenadas; sospecha secundaria, no salida ausente."
+    }
+  ]
+}

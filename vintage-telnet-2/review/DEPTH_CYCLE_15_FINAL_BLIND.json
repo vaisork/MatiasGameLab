@@ -1,0 +1,1209 @@
+{
+  "moves": 24,
+  "actions": 33,
+  "events": [
+    {
+      "action": "mover",
+      "target": "salir",
+      "room": "brumak_centro",
+      "events": [
+        {
+          "kind": "world",
+          "text": "El patio de Brumak está protegido del viento. Las casas Dravak tienen puertas bajas; el paso público deja más altura. Al este está la entrada del camino, al norte el taller, al oeste el almacén y al sur las viviendas. Bancos y cargas dejan libre el giro de los carros."
+        },
+        {
+          "kind": "world",
+          "text": "Una Dravak prueba el cierre de un recipiente bajo el banco. Un niño se agacha junto a ella y vuelve a hacerlo; la tapa encaja cuando deja de apretarla de lado."
+        },
+        {
+          "kind": "world",
+          "text": "Los canales de las fachadas descargan en una junta lateral y los vecinos apartan sus bancos de ella. Las cargas entran de una en una para no llevar barro hacia las puertas bajas donde se reúnen las familias."
+        }
+      ],
+      "seals": 20,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "este",
+      "room": "korven_peldanos_cortos",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Escalones bajos y una franja para carros suben hacia las casas de Brumak. Al este vuelves al banco de revisión; al oeste entras en el patio. Una repisa guarda cuñas cerca del suelo. Las ruedas pequeñas han gastado más la piedra junto a los peldaños. Al sur, una puerta baja conduce al antiguo almacén de las cargas."
+        },
+        {
+          "kind": "world",
+          "text": "Los peldaños reciben barro que baja de las viviendas. Una habitante limpia el borde de la franja lateral antes de apoyar la rueda. Los recipientes se conservan sobre la repisa, lejos de la corriente de la escalera."
+        },
+        {
+          "kind": "world",
+          "text": "Una habitante recoloca una cuña y empuja el carro por la franja ancha. Un visitante alto espera junto a los peldaños; baja la cabeza al pasar bajo el borde de la puerta."
+        }
+      ],
+      "seals": 20,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "este",
+      "room": "korven_asiento_revision",
+      "events": [
+        {
+          "kind": "world",
+          "text": "El camino se ensancha junto a una roca marcada por golpes. Hay un banco donde dejar la carga. Al este queda el paso estrecho; al oeste sigues hacia Brumak. La senda del norte sube a la meseta de relevo. Sobre la mesa descansa una capa fina de polvo."
+        },
+        {
+          "kind": "world",
+          "text": "La piedra mojada suena distinto. La revisora escribe que llovía cuando la golpeó y deja la carga apartada de la mesa."
+        },
+        {
+          "kind": "world",
+          "text": "La revisora compara un golpe sobre la pieza con otro sobre una base firme. Su ayudante anota la diferencia y deja la carga en el banco. Nadie continúa una prueba de apoyo mientras alguien sigue pisándolo."
+        }
+      ],
+      "seals": 20,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "este",
+      "room": "korven_hendidura_transito",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Las cargas pasan en fila entre las paredes. Al este se ven los mojones; al oeste se abre el banco de revisión. Una tabla gastada cubre la grieta por donde se atascaría una rueda. Los huecos altos dejan pasar aire sobre el sendero en sombra."
+        },
+        {
+          "kind": "world",
+          "text": "El agua se reúne en la junta cubierta sin quedar visible desde cada entrada. La conductora prueba la tabla antes de apoyar el carro. En los muros, algunas cavidades devuelven gotas que no llegan hasta el camino."
+        },
+        {
+          "kind": "world",
+          "text": "Una conductora baja de su carro para mirar la tabla antes de entrar. El viajero que viene del oeste espera en el asiento de revisión. El carro queda quieto hasta que se oyen pasos saliendo por la entrada opuesta."
+        }
+      ],
+      "seals": 20,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "este",
+      "room": "korven_hitos_paso",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Los mojones cruzan suelo duro entre huecos de la roca. Algunos llevan piedras claras arriba; otros esperan reparación. Al este vuelves a la pared y al oeste llegas al paso estrecho. Desde cada mojón puedes buscar el siguiente sin acercarte al borde."
+        },
+        {
+          "kind": "world",
+          "text": "La lluvia oscurece los mojones y reúne arena en sus bases. La revisora se sitúa donde pasan las ruedas y mira el pie de la pila antes de acercarse."
+        },
+        {
+          "kind": "world",
+          "text": "La revisora mira el siguiente mojón desde la franja de las ruedas. Retira una piedra recién añadida a la pila y la deja al lado de la cavidad."
+        }
+      ],
+      "seals": 20,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "este",
+      "room": "korven_pared_sotavento",
+      "events": [
+        {
+          "kind": "world",
+          "text": "La pared corta el viento y deja un hueco ancho donde apoyar las cargas. Al este está la meseta; al oeste siguen los mojones. Una escoba descansa junto a las juntas llenas de polvo. La marca del suelo indica qué franja debe quedar libre para pasar."
+        },
+        {
+          "kind": "world",
+          "text": "El viento devuelve algunas gotas al entrante y obliga a mover la carga del apoyo exterior. La escoba retira barro de una junta que normalmente sólo reúne polvo. El corredor permanece libre aunque todos busquen el mismo refugio."
+        },
+        {
+          "kind": "world",
+          "text": "Un porteador limpia el apoyo antes de sentarse y deja la escoba donde otro podrá encontrarla. Las cargas se orientan hacia el mismo lado para poder salir sin cruzarse dentro del entrante más estrecho."
+        }
+      ],
+      "seals": 20,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "este",
+      "room": "korven_meseta_baja",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Dos piedras dan sombra a la meseta. Al este queda el cauce; al oeste, la pared. El desvío sur baja al horno viejo."
+        },
+        {
+          "kind": "world",
+          "text": "La lluvia golpea el tramo abierto antes de que la pared empiece a gotear. Los recipientes se apartan de una hendidura donde cae agua con polvo. Las gotas alcanzan también el centro de la sombra, entre las dos piedras."
+        }
+      ],
+      "seals": 20,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "sur",
+      "room": "korven_desvio_horno",
+      "events": [
+        {
+          "kind": "world",
+          "text": "El desvío conserva tierra quemada y fragmentos de recipientes junto a un muro corto. Al norte vuelves a la meseta; al sur está el horno viejo. Una franja clara evita pisar las piezas. Bajo la cubierta esperan trabajo sin terminar y herramientas nuevas."
+        },
+        {
+          "kind": "world",
+          "text": "La tierra quemada se vuelve oscura y las piezas brillan con agua. La alfarera cubre el fragmento que trae para no confundir su color seco con el de los restos mojados. La comparación puede esperar."
+        },
+        {
+          "kind": "world",
+          "text": "Una alfarera retira un fragmento del paso y lo compara con otro que lleva envuelto. Alinea los dos bordes sobre la tela y gira el fragmento que tiene una pared más gruesa."
+        }
+      ],
+      "seals": 20,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "sur",
+      "room": "korven_horno_reposo",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Parte de la boca del horno se ha vencido. El suelo sólo está limpio donde se revisan los restos. Un recipiente torcido espera sobre un banco. Al norte puedes volver a la meseta por el desvío; al oeste hay un hueco donde Taren compara las piezas."
+        },
+        {
+          "kind": "world",
+          "text": "La tela protege el banco mientras el agua moja los restos de la boca. La alfarera revisa que ninguna pieza caiga hacia la entrada. Coloca otra piedra sobre la cubierta y lleva las piezas secas hacia el entrante protegido."
+        },
+        {
+          "kind": "world",
+          "text": "La alfarera coloca dos bordes juntos sobre el banco y busca una diferencia de espesor. Un aprendiz deja el recipiente torcido donde puede verse completo. El borde vencido queda frente al borde recto de la otra pieza."
+        }
+      ],
+      "seals": 20,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "oeste",
+      "room": "korven_entrante_piezas",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Dos muestras esperan separadas sobre una cubierta. Taren ha dejado sitio seco para una taza grande; el extremo abierto recoge polvo del camino. Puedes mirar sin meterte entre las herramientas. La única salida va al este, hacia el horno viejo."
+        },
+        {
+          "kind": "world",
+          "text": "Las muestras mojadas quedan sobre una estera distinta. La alfarera cubre la pareja seca; una gota oscurece el borde grueso del fragmento que había dejado fuera."
+        },
+        {
+          "kind": "world",
+          "text": "Taren acerca la taza al extremo seco del asiento. El resto de las piezas permanece bajo una cubierta: quiere probar una sola cosa antes de seguir trabajando."
+        }
+      ],
+      "seals": 20,
+      "hp": 100
+    },
+    {
+      "action": "aceptar",
+      "target": "brumak_taza",
+      "room": "korven_entrante_piezas",
+      "events": [
+        {
+          "kind": "action",
+          "text": "Taren paga por comparar sus muestras y recomendar una taza manejable. Pídele las medidas, comprueba las piezas del horno junto al entrante y vuelve con una decisión sobre aro y base."
+        }
+      ],
+      "seals": 20,
+      "hp": 100
+    },
+    {
+      "action": "hablar",
+      "target": "korven_taren",
+      "room": "korven_entrante_piezas",
+      "events": [
+        {
+          "kind": "npc",
+          "text": "Taren: Taren te muestra dos marcas en su tabla. «Busco una taza manejable, no la más grande. Mira el borde de la muestra que está junto al horno y dime si conviene conservar el aro o ensanchar la base.»"
+        }
+      ],
+      "seals": 20,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "este",
+      "room": "korven_horno_reposo",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Parte de la boca del horno se ha vencido. El suelo sólo está limpio donde se revisan los restos. Un recipiente torcido espera sobre un banco. Al norte puedes volver a la meseta por el desvío; al oeste hay un hueco donde Taren compara las piezas."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces el recipiente torcido sobre el banco. Han señalado otra parte del borde para compararla. La boca del horno sigue vencida."
+        },
+        {
+          "kind": "world",
+          "text": "La tela protege el banco mientras el agua moja los restos de la boca. La alfarera revisa que ninguna pieza caiga hacia la entrada. Coloca otra piedra sobre la cubierta y lleva las piezas secas hacia el entrante protegido."
+        }
+      ],
+      "seals": 20,
+      "hp": 100
+    },
+    {
+      "action": "examinar",
+      "target": "recipiente",
+      "room": "korven_horno_reposo",
+      "events": [
+        {
+          "kind": "world",
+          "text": "El espesor cambia junto al borde vencido."
+        }
+      ],
+      "seals": 20,
+      "hp": 100
+    },
+    {
+      "action": "korven_recomendar_base",
+      "target": null,
+      "room": "korven_horno_reposo",
+      "events": [
+        {
+          "kind": "action",
+          "text": "Comparas las muestras y marcas una base un poco más ancha, manteniendo el aro pequeño. Taren podrá decidir cuánto peso acepta para que la taza no vuelque."
+        }
+      ],
+      "seals": 20,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "oeste",
+      "room": "korven_entrante_piezas",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Dos muestras esperan separadas sobre una cubierta. Taren ha dejado sitio seco para una taza grande; el extremo abierto recoge polvo del camino. Puedes mirar sin meterte entre las herramientas. La única salida va al este, hacia el horno viejo."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces las dos esteras donde separaron las muestras. El fragmento del banco queda sobre la de tiras oscuras, junto al borde desigual del recipiente."
+        },
+        {
+          "kind": "world",
+          "text": "Las muestras mojadas quedan sobre una estera distinta. La alfarera cubre la pareja seca; una gota oscurece el borde grueso del fragmento que había dejado fuera."
+        }
+      ],
+      "seals": 20,
+      "hp": 100
+    },
+    {
+      "action": "hablar",
+      "target": "korven_taren",
+      "room": "korven_entrante_piezas",
+      "events": [
+        {
+          "kind": "npc",
+          "text": "Taren: Taren compara tu recomendación con las marcas de la mano. «No has elegido sólo por tamaño. Haré una prueba antes de entregarla.»"
+        },
+        {
+          "kind": "discovery",
+          "text": "Taren prueba la estabilidad de la base que recomendaste antes de cocer otra taza."
+        },
+        {
+          "kind": "discovery",
+          "text": "El encargo ya puede entregarse."
+        }
+      ],
+      "seals": 20,
+      "hp": 100
+    },
+    {
+      "action": "cobrar",
+      "target": "brumak_taza",
+      "room": "korven_entrante_piezas",
+      "events": [
+        {
+          "kind": "reward",
+          "text": "Entregas Una taza que se pueda sostener. Recibes 8 sellos."
+        }
+      ],
+      "seals": 28,
+      "hp": 100
+    },
+    {
+      "action": "hablar",
+      "target": "korven_taren",
+      "room": "korven_entrante_piezas",
+      "events": [
+        {
+          "kind": "npc",
+          "text": "Taren: Tengo tu recomendación junto a las marcas de la mano. Ya no falta elegir entre aro y base; falta hacer la prueba y comprobar que la taza se pueda sostener."
+        },
+        {
+          "kind": "discovery",
+          "text": "Taren alinea la arcilla con tu marca. «Empiezo por esta prueba; el borde del horno sigue en las muestras.»"
+        }
+      ],
+      "seals": 28,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "este",
+      "room": "korven_horno_reposo",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Parte de la boca del horno se ha vencido. El suelo sólo está limpio donde se revisan los restos. Un recipiente torcido espera sobre un banco. Al norte puedes volver a la meseta por el desvío; al oeste hay un hueco donde Taren compara las piezas."
+        },
+        {
+          "kind": "world",
+          "text": "La tela protege el banco mientras el agua moja los restos de la boca. La alfarera revisa que ninguna pieza caiga hacia la entrada. Coloca otra piedra sobre la cubierta y lleva las piezas secas hacia el entrante protegido."
+        },
+        {
+          "kind": "world",
+          "text": "La alfarera coloca dos bordes juntos sobre el banco y busca una diferencia de espesor. Un aprendiz deja el recipiente torcido donde puede verse completo. El borde vencido queda frente al borde recto de la otra pieza."
+        }
+      ],
+      "seals": 28,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "norte",
+      "room": "korven_desvio_horno",
+      "events": [
+        {
+          "kind": "world",
+          "text": "El desvío conserva tierra quemada y fragmentos de recipientes junto a un muro corto. Al norte vuelves a la meseta; al sur está el horno viejo. Una franja clara evita pisar las piezas. Bajo la cubierta esperan trabajo sin terminar y herramientas nuevas."
+        },
+        {
+          "kind": "world",
+          "text": "El muro corto señala la vuelta a la meseta. Recuerdas el fragmento de borde grueso entre otros dos más finos; los tres siguen junto al camino."
+        },
+        {
+          "kind": "world",
+          "text": "La tierra quemada se vuelve oscura y las piezas brillan con agua. La alfarera cubre el fragmento que trae para no confundir su color seco con el de los restos mojados. La comparación puede esperar."
+        }
+      ],
+      "seals": 28,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "norte",
+      "room": "korven_meseta_baja",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Dos piedras dan sombra a la meseta. Al este queda el cauce; al oeste, la pared. El desvío sur baja al horno viejo."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces las dos piedras del desvío. La sombra de la pared ha alcanzado una junta distinta de aquella donde descansaste."
+        }
+      ],
+      "seals": 28,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "oeste",
+      "room": "korven_pared_sotavento",
+      "events": [
+        {
+          "kind": "world",
+          "text": "La pared corta el viento y deja un hueco ancho donde apoyar las cargas. Al este está la meseta; al oeste siguen los mojones. Una escoba descansa junto a las juntas llenas de polvo. La marca del suelo indica qué franja debe quedar libre para pasar."
+        },
+        {
+          "kind": "world",
+          "text": "Recuerdas la marca junto a la pared. De ese lado descansan las cargas; al otro, las huellas pasan entre la sombra y la meseta."
+        },
+        {
+          "kind": "world",
+          "text": "El viento devuelve algunas gotas al entrante y obliga a mover la carga del apoyo exterior. La escoba retira barro de una junta que normalmente sólo reúne polvo. El corredor permanece libre aunque todos busquen el mismo refugio."
+        }
+      ],
+      "seals": 28,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "oeste",
+      "room": "korven_hitos_paso",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Los mojones cruzan suelo duro entre huecos de la roca. Algunos llevan piedras claras arriba; otros esperan reparación. Al este vuelves a la pared y al oeste llegas al paso estrecho. Desde cada mojón puedes buscar el siguiente sin acercarte al borde."
+        },
+        {
+          "kind": "world",
+          "text": "Recuerdas el mojón bajo junto a la base en revisión. Detrás se ve la pila siguiente; entre ambas, el polvo conserva la curva de las ruedas."
+        },
+        {
+          "kind": "world",
+          "text": "La lluvia oscurece los mojones y reúne arena en sus bases. La revisora se sitúa donde pasan las ruedas y mira el pie de la pila antes de acercarse."
+        }
+      ],
+      "seals": 28,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "oeste",
+      "room": "korven_hendidura_transito",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Las cargas pasan en fila entre las paredes. Al este se ven los mojones; al oeste se abre el banco de revisión. Una tabla gastada cubre la grieta por donde se atascaría una rueda. Los huecos altos dejan pasar aire sobre el sendero en sombra."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces la tabla donde apoyaron una rueda. La hendidura sigue detrás de ella; las cavidades laterales terminan en suelo quebrado."
+        },
+        {
+          "kind": "world",
+          "text": "El agua se reúne en la junta cubierta sin quedar visible desde cada entrada. La conductora prueba la tabla antes de apoyar el carro. En los muros, algunas cavidades devuelven gotas que no llegan hasta el camino."
+        }
+      ],
+      "seals": 28,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "oeste",
+      "room": "korven_asiento_revision",
+      "events": [
+        {
+          "kind": "world",
+          "text": "El camino se ensancha junto a una roca marcada por golpes. Hay un banco donde dejar la carga. Al este queda el paso estrecho; al oeste sigues hacia Brumak. La senda del norte sube a la meseta de relevo. Sobre la mesa descansa una capa fina de polvo."
+        },
+        {
+          "kind": "world",
+          "text": "Recuerdas el golpe que compararon sobre la mesa. La nota queda junto a la pieza; el banco de descanso está separado por una franja de suelo limpia."
+        },
+        {
+          "kind": "world",
+          "text": "La piedra mojada suena distinto. La revisora escribe que llovía cuando la golpeó y deja la carga apartada de la mesa."
+        }
+      ],
+      "seals": 28,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "oeste",
+      "room": "korven_peldanos_cortos",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Escalones bajos y una franja para carros suben hacia las casas de Brumak. Al este vuelves al banco de revisión; al oeste entras en el patio. Una repisa guarda cuñas cerca del suelo. Las ruedas pequeñas han gastado más la piedra junto a los peldaños. Al sur, una puerta baja conduce al antiguo almacén de las cargas."
+        },
+        {
+          "kind": "world",
+          "text": "Recuerdas la cuña junto al peldaño corto. Las ruedas pequeñas han dejado una línea oscura en la franja ancha que sube al patio."
+        },
+        {
+          "kind": "world",
+          "text": "Los peldaños reciben barro que baja de las viviendas. Una habitante limpia el borde de la franja lateral antes de apoyar la rueda. Los recipientes se conservan sobre la repisa, lejos de la corriente de la escalera."
+        }
+      ],
+      "seals": 28,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "oeste",
+      "room": "brumak_centro",
+      "events": [
+        {
+          "kind": "world",
+          "text": "El patio de Brumak está protegido del viento. Las casas Dravak tienen puertas bajas; el paso público deja más altura. Al este está la entrada del camino, al norte el taller, al oeste el almacén y al sur las viviendas. Bancos y cargas dejan libre el giro de los carros."
+        },
+        {
+          "kind": "world",
+          "text": "El niño devuelve el recipiente ya cerrado. En una puerta baja alguien pone agua para las dos tazas."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces la curva gastada por las ruedas. Las puertas bajas quedan fuera de ella; dos bancos se recogen junto al primer umbral."
+        }
+      ],
+      "seals": 28,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "sur",
+      "room": "korven_calle_fachadas",
+      "events": [
+        {
+          "kind": "world",
+          "text": "La calle sigue junto a casas metidas en la roca. Sus puertas tienen distinta profundidad y pequeñas repisas donde esperan objetos. Al norte queda el patio de Brumak; al sur bajas a la cisterna. El paso permite cruzar sin entrar en las viviendas ni golpear sus cargas. Una puerta al este lleva al lugar de cuidados."
+        },
+        {
+          "kind": "world",
+          "text": "Las cubiertas de madera protegen sólo algunos entrantes y los vecinos comparten dónde esperar. Los objetos de repisa se guardan antes de que el agua recorra la pared. Las puertas siguen pudiendo abrir sin empujar bultos mojados."
+        },
+        {
+          "kind": "world",
+          "text": "Una vecina deja un recipiente en la repisa y ayuda a cerrar la cubierta del lado del viento. El niño devuelve una herramienta al entrante; desde dentro le agradecen el gesto."
+        }
+      ],
+      "seals": 28,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "sur",
+      "room": "korven_cisterna_comun",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Una plataforma baja rodea la cisterna. El agua de lluvia llega por un canal separado del lugar donde se llenan los recipientes. Una vara marcada muestra el nivel. Al norte vuelves a las casas, al oeste está el patio de lavado y al este el mirador."
+        },
+        {
+          "kind": "world",
+          "text": "Un vecino recoge la cuerda por vueltas cortas. La última gota oscurece el borde de piedra."
+        },
+        {
+          "kind": "world",
+          "text": "El canal exterior recibe agua con polvo. La cuidadora sigue el tabique que lo separa de la cisterna y aparta una ramita de su salida. La vara de medida espera seca bajo la cubierta."
+        }
+      ],
+      "seals": 28,
+      "hp": 100
+    },
+    {
+      "action": "observar",
+      "target": null,
+      "room": "korven_cisterna_comun",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Un vecino recoge la cuerda por vueltas cortas. La última gota oscurece el borde de piedra."
+        },
+        {
+          "kind": "world",
+          "text": "El canal exterior recibe agua con polvo. La cuidadora sigue el tabique que lo separa de la cisterna y aparta una ramita de su salida. La vara de medida espera seca bajo la cubierta."
+        },
+        {
+          "kind": "trace",
+          "text": "Junto a cada marca se leen una fecha y las iniciales de quien midió el agua."
+        },
+        {
+          "kind": "action",
+          "text": "Observas con atención."
+        }
+      ],
+      "seals": 28,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "norte",
+      "room": "korven_calle_fachadas",
+      "events": [
+        {
+          "kind": "world",
+          "text": "La calle sigue junto a casas metidas en la roca. Sus puertas tienen distinta profundidad y pequeñas repisas donde esperan objetos. Al norte queda el patio de Brumak; al sur bajas a la cisterna. El paso permite cruzar sin entrar en las viviendas ni golpear sus cargas. Una puerta al este lleva al lugar de cuidados."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces el escalón que baja a la cisterna. En las repisas esperan otros objetos; las puertas dejan libre el mismo corredor."
+        },
+        {
+          "kind": "world",
+          "text": "Las cubiertas de madera protegen sólo algunos entrantes y los vecinos comparten dónde esperar. Los objetos de repisa se guardan antes de que el agua recorra la pared. Las puertas siguen pudiendo abrir sin empujar bultos mojados."
+        }
+      ],
+      "seals": 28,
+      "hp": 100
+    },
+    {
+      "action": "observar",
+      "target": null,
+      "room": "korven_calle_fachadas",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Una vecina deja un recipiente en la repisa y ayuda a cerrar la cubierta del lado del viento. El niño devuelve una herramienta al entrante; desde dentro le agradecen el gesto."
+        },
+        {
+          "kind": "world",
+          "text": "Las cubiertas de madera protegen sólo algunos entrantes y los vecinos comparten dónde esperar. Los objetos de repisa se guardan antes de que el agua recorra la pared. Las puertas siguen pudiendo abrir sin empujar bultos mojados."
+        },
+        {
+          "kind": "trace",
+          "text": "Reciben objetos que deben devolverse a personas concretas, no provisiones públicas."
+        },
+        {
+          "kind": "action",
+          "text": "Observas con atención."
+        }
+      ],
+      "seals": 28,
+      "hp": 100
+    }
+  ],
+  "samples": [
+    {
+      "tag": "first encounter",
+      "room": "korven_entrante_piezas",
+      "ambient": {
+        "region": "korven",
+        "time_of_day": "Día",
+        "timestamp": 43800,
+        "weather": "Lluvia",
+        "weather_description": "Las juntas reúnen agua y cambian comparaciones de polvo, color y apoyo."
+      },
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Dos muestras esperan separadas sobre una cubierta. Taren ha dejado sitio seco para una taza grande; el extremo abierto recoge polvo del camino. Puedes mirar sin meterte entre las herramientas. La única salida va al este, hacia el horno viejo."
+        },
+        {
+          "kind": "world",
+          "text": "Las muestras mojadas quedan sobre una estera distinta. La alfarera cubre la pareja seca; una gota oscurece el borde grueso del fragmento que había dejado fuera."
+        },
+        {
+          "kind": "world",
+          "text": "Taren acerca la taza al extremo seco del asiento. El resto de las piezas permanece bajo una cubierta: quiere probar una sola cosa antes de seguir trabajando."
+        }
+      ],
+      "character": {
+        "attributes": {
+          "agilidad": 10,
+          "destreza": 10,
+          "fuerza": 10,
+          "intelecto": 10,
+          "percepcion": 10,
+          "presencia": 10,
+          "resistencia": 10,
+          "voluntad": 10
+        },
+        "class_id": "juramentado",
+        "combat": null,
+        "equipment": {
+          "armor": null,
+          "block": null,
+          "weapon": "espada_juramento"
+        },
+        "fatigue": 0,
+        "gender": "masculino",
+        "hp": 100,
+        "hp_max": 100.0,
+        "id": 1,
+        "level": 1,
+        "location": "korven_entrante_piezas",
+        "name": "Prueba nocturna",
+        "pa": 0,
+        "pp": 0,
+        "seals": 20,
+        "species": "dravak",
+        "status": "approved",
+        "wound": null,
+        "xp": 0,
+        "xp_next": 100
+      },
+      "actions": [
+        {
+          "disabled": false,
+          "id": "buscar",
+          "label": "Buscar alrededor",
+          "reason": "Revisar suelo, refugios y objetos que hayan quedado en el camino."
+        },
+        {
+          "id": "korven_separar_muestras",
+          "label": "Separar muestras según su hallazgo"
+        },
+        {
+          "id": "korven_probar_asiento",
+          "label": "Hacer sitio para probar la taza de Taren"
+        },
+        {
+          "id": "mirar",
+          "label": "Mirar"
+        },
+        {
+          "id": "observar",
+          "label": "Observar"
+        },
+        {
+          "id": "examinar",
+          "label": "Examinar estera",
+          "target": "estera"
+        },
+        {
+          "id": "examinar",
+          "label": "Examinar muestras",
+          "target": "muestras"
+        },
+        {
+          "disabled": false,
+          "id": "mover",
+          "label": "Este · Horno viejo",
+          "reason": "",
+          "target": "este"
+        },
+        {
+          "id": "hablar",
+          "label": "Taren · horno",
+          "target": "korven_taren",
+          "topic": "horno"
+        },
+        {
+          "id": "hablar",
+          "label": "Taren · muestras",
+          "target": "korven_taren",
+          "topic": "muestras"
+        },
+        {
+          "id": "hablar",
+          "label": "Taren · brumak",
+          "target": "korven_taren",
+          "topic": "brumak"
+        },
+        {
+          "id": "hablar",
+          "label": "Taren · pieza",
+          "target": "korven_taren",
+          "topic": "pieza"
+        },
+        {
+          "id": "hablar",
+          "label": "Taren · materiales",
+          "target": "korven_taren",
+          "topic": "materiales"
+        },
+        {
+          "id": "hablar",
+          "label": "Taren · medidas",
+          "target": "korven_taren",
+          "topic": "medidas"
+        },
+        {
+          "disabled": false,
+          "id": "aceptar",
+          "label": "Aceptar Una taza que se pueda sostener",
+          "reason": "",
+          "target": "brumak_taza"
+        },
+        {
+          "id": "desequipar",
+          "label": "Guardar arma",
+          "target": "weapon"
+        },
+        {
+          "disabled": false,
+          "id": "equipar",
+          "label": "Equipar Espada de juramento",
+          "reason": "",
+          "target": "espada_juramento"
+        }
+      ]
+    },
+    {
+      "tag": "paid return",
+      "room": "korven_entrante_piezas",
+      "ambient": {
+        "region": "korven",
+        "time_of_day": "Día",
+        "timestamp": 44340,
+        "weather": "Lluvia",
+        "weather_description": "Las juntas reúnen agua y cambian comparaciones de polvo, color y apoyo."
+      },
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Dos muestras esperan separadas sobre una cubierta. Taren ha dejado sitio seco para una taza grande; el extremo abierto recoge polvo del camino. Puedes mirar sin meterte entre las herramientas. La única salida va al este, hacia el horno viejo."
+        },
+        {
+          "kind": "world",
+          "text": "Taren conserva junto a las muestras tu marca de una base más ancha. Alinea un trozo de arcilla con ella antes de tocar el aro pequeño."
+        },
+        {
+          "kind": "world",
+          "text": "Las muestras mojadas quedan sobre una estera distinta. La alfarera cubre la pareja seca; una gota oscurece el borde grueso del fragmento que había dejado fuera."
+        }
+      ],
+      "character": {
+        "attributes": {
+          "agilidad": 10,
+          "destreza": 10,
+          "fuerza": 10,
+          "intelecto": 10,
+          "percepcion": 10,
+          "presencia": 10,
+          "resistencia": 10,
+          "voluntad": 10
+        },
+        "class_id": "juramentado",
+        "combat": null,
+        "equipment": {
+          "armor": null,
+          "block": null,
+          "weapon": "espada_juramento"
+        },
+        "fatigue": 0,
+        "gender": "masculino",
+        "hp": 100,
+        "hp_max": 100.0,
+        "id": 1,
+        "level": 1,
+        "location": "korven_entrante_piezas",
+        "name": "Prueba nocturna",
+        "pa": 0,
+        "pp": 0,
+        "seals": 28,
+        "species": "dravak",
+        "status": "approved",
+        "wound": null,
+        "xp": 0,
+        "xp_next": 100
+      },
+      "actions": [
+        {
+          "disabled": false,
+          "id": "buscar",
+          "label": "Buscar alrededor",
+          "reason": "Revisar suelo, refugios y objetos que hayan quedado en el camino."
+        },
+        {
+          "id": "korven_separar_muestras",
+          "label": "Separar muestras según su hallazgo"
+        },
+        {
+          "id": "korven_probar_asiento",
+          "label": "Hacer sitio para probar la taza de Taren"
+        },
+        {
+          "id": "mirar",
+          "label": "Mirar"
+        },
+        {
+          "id": "observar",
+          "label": "Observar"
+        },
+        {
+          "id": "examinar",
+          "label": "Examinar estera",
+          "target": "estera"
+        },
+        {
+          "id": "examinar",
+          "label": "Examinar muestras",
+          "target": "muestras"
+        },
+        {
+          "id": "examinar",
+          "label": "Examinar recomendación",
+          "target": "recomendación"
+        },
+        {
+          "disabled": false,
+          "id": "mover",
+          "label": "Este · Horno viejo",
+          "reason": "",
+          "target": "este"
+        },
+        {
+          "id": "hablar",
+          "label": "Taren · horno",
+          "target": "korven_taren",
+          "topic": "horno"
+        },
+        {
+          "id": "hablar",
+          "label": "Taren · muestras",
+          "target": "korven_taren",
+          "topic": "muestras"
+        },
+        {
+          "id": "hablar",
+          "label": "Taren · brumak",
+          "target": "korven_taren",
+          "topic": "brumak"
+        },
+        {
+          "id": "hablar",
+          "label": "Taren · pieza",
+          "target": "korven_taren",
+          "topic": "pieza"
+        },
+        {
+          "id": "hablar",
+          "label": "Taren · materiales",
+          "target": "korven_taren",
+          "topic": "materiales"
+        },
+        {
+          "id": "hablar",
+          "label": "Taren · medidas",
+          "target": "korven_taren",
+          "topic": "medidas"
+        },
+        {
+          "id": "hablar",
+          "label": "Taren · recomendación",
+          "target": "korven_taren",
+          "topic": "recomendación"
+        },
+        {
+          "id": "desequipar",
+          "label": "Guardar arma",
+          "target": "weapon"
+        },
+        {
+          "disabled": false,
+          "id": "equipar",
+          "label": "Equipar Espada de juramento",
+          "reason": "",
+          "target": "espada_juramento"
+        }
+      ]
+    },
+    {
+      "tag": "cistern dusk",
+      "room": "korven_cisterna_comun",
+      "ambient": {
+        "region": "korven",
+        "time_of_day": "Atardecer",
+        "timestamp": 69120,
+        "weather": "Lluvia",
+        "weather_description": "Las juntas reúnen agua y cambian comparaciones de polvo, color y apoyo."
+      },
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Una plataforma baja rodea la cisterna. El agua de lluvia llega por un canal separado del lugar donde se llenan los recipientes. Una vara marcada muestra el nivel. Al norte vuelves a las casas, al oeste está el patio de lavado y al este el mirador."
+        },
+        {
+          "kind": "world",
+          "text": "Un vecino recoge la cuerda por vueltas cortas. La última gota oscurece el borde de piedra."
+        },
+        {
+          "kind": "world",
+          "text": "El canal exterior recibe agua con polvo. La cuidadora sigue el tabique que lo separa de la cisterna y aparta una ramita de su salida. La vara de medida espera seca bajo la cubierta."
+        }
+      ],
+      "character": {
+        "attributes": {
+          "agilidad": 10,
+          "destreza": 10,
+          "fuerza": 10,
+          "intelecto": 10,
+          "percepcion": 10,
+          "presencia": 10,
+          "resistencia": 10,
+          "voluntad": 10
+        },
+        "class_id": "juramentado",
+        "combat": null,
+        "equipment": {
+          "armor": null,
+          "block": null,
+          "weapon": "espada_juramento"
+        },
+        "fatigue": 0,
+        "gender": "masculino",
+        "hp": 100,
+        "hp_max": 100.0,
+        "id": 1,
+        "level": 1,
+        "location": "korven_cisterna_comun",
+        "name": "Prueba nocturna",
+        "pa": 0,
+        "pp": 0,
+        "seals": 28,
+        "species": "dravak",
+        "status": "approved",
+        "wound": null,
+        "xp": 0,
+        "xp_next": 100
+      },
+      "actions": [
+        {
+          "disabled": false,
+          "id": "buscar",
+          "label": "Buscar alrededor",
+          "reason": "Revisar suelo, refugios y objetos que hayan quedado en el camino."
+        },
+        {
+          "id": "mirar",
+          "label": "Mirar"
+        },
+        {
+          "id": "observar",
+          "label": "Observar"
+        },
+        {
+          "id": "examinar",
+          "label": "Examinar vara",
+          "target": "vara"
+        },
+        {
+          "id": "examinar",
+          "label": "Examinar canal",
+          "target": "canal"
+        },
+        {
+          "disabled": false,
+          "id": "mover",
+          "label": "Norte · Calle de las casas",
+          "reason": "",
+          "target": "norte"
+        },
+        {
+          "disabled": false,
+          "id": "mover",
+          "label": "Oeste · Salida por explorar",
+          "reason": "",
+          "target": "oeste"
+        },
+        {
+          "disabled": false,
+          "id": "mover",
+          "label": "Este · Salida por explorar",
+          "reason": "",
+          "target": "este"
+        },
+        {
+          "id": "desequipar",
+          "label": "Guardar arma",
+          "target": "weapon"
+        },
+        {
+          "disabled": false,
+          "id": "equipar",
+          "label": "Equipar Espada de juramento",
+          "reason": "",
+          "target": "espada_juramento"
+        }
+      ]
+    },
+    {
+      "tag": "final trail",
+      "room": "korven_calle_fachadas",
+      "ambient": {
+        "region": "korven",
+        "time_of_day": "Atardecer",
+        "timestamp": 69240,
+        "weather": "Lluvia",
+        "weather_description": "Las juntas reúnen agua y cambian comparaciones de polvo, color y apoyo."
+      },
+      "scene": [
+        {
+          "kind": "world",
+          "text": "La calle sigue junto a casas metidas en la roca. Sus puertas tienen distinta profundidad y pequeñas repisas donde esperan objetos. Al norte queda el patio de Brumak; al sur bajas a la cisterna. El paso permite cruzar sin entrar en las viviendas ni golpear sus cargas. Una puerta al este lleva al lugar de cuidados."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces el escalón que baja a la cisterna. En las repisas esperan otros objetos; las puertas dejan libre el mismo corredor."
+        },
+        {
+          "kind": "world",
+          "text": "Las cubiertas de madera protegen sólo algunos entrantes y los vecinos comparten dónde esperar. Los objetos de repisa se guardan antes de que el agua recorra la pared. Las puertas siguen pudiendo abrir sin empujar bultos mojados."
+        }
+      ],
+      "character": {
+        "attributes": {
+          "agilidad": 10,
+          "destreza": 10,
+          "fuerza": 10,
+          "intelecto": 10,
+          "percepcion": 10,
+          "presencia": 10,
+          "resistencia": 10,
+          "voluntad": 10
+        },
+        "class_id": "juramentado",
+        "combat": null,
+        "equipment": {
+          "armor": null,
+          "block": null,
+          "weapon": "espada_juramento"
+        },
+        "fatigue": 0,
+        "gender": "masculino",
+        "hp": 100,
+        "hp_max": 100.0,
+        "id": 1,
+        "level": 1,
+        "location": "korven_calle_fachadas",
+        "name": "Prueba nocturna",
+        "pa": 0,
+        "pp": 0,
+        "seals": 28,
+        "species": "dravak",
+        "status": "approved",
+        "wound": null,
+        "xp": 0,
+        "xp_next": 100
+      },
+      "actions": [
+        {
+          "id": "mirar",
+          "label": "Mirar"
+        },
+        {
+          "id": "observar",
+          "label": "Observar"
+        },
+        {
+          "id": "examinar",
+          "label": "Examinar repisas",
+          "target": "repisas"
+        },
+        {
+          "id": "examinar",
+          "label": "Examinar cubiertas",
+          "target": "cubiertas"
+        },
+        {
+          "disabled": false,
+          "id": "mover",
+          "label": "Norte · Patio de Brumak",
+          "reason": "",
+          "target": "norte"
+        },
+        {
+          "disabled": false,
+          "id": "mover",
+          "label": "Sur · Cisterna común",
+          "reason": "",
+          "target": "sur"
+        },
+        {
+          "disabled": false,
+          "id": "mover",
+          "label": "Este · Salida por explorar",
+          "reason": "",
+          "target": "este"
+        },
+        {
+          "id": "descansar",
+          "label": "Descansar"
+        },
+        {
+          "id": "desequipar",
+          "label": "Guardar arma",
+          "target": "weapon"
+        },
+        {
+          "disabled": false,
+          "id": "equipar",
+          "label": "Equipar Espada de juramento",
+          "reason": "",
+          "target": "espada_juramento"
+        }
+      ]
+    }
+  ]
+}

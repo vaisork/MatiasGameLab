@@ -1,0 +1,135 @@
+{
+  "width": 1440,
+  "checks": [
+    {
+      "destination": "narevia_centro",
+      "name": "Plaza de Narevia",
+      "npcs": [],
+      "actions": [
+        "mirar",
+        "observar",
+        "examinar",
+        "examinar",
+        "mover",
+        "mover",
+        "mover",
+        "mover",
+        "descansar",
+        "desequipar",
+        "equipar"
+      ],
+      "edges": 0,
+      "xp": 0,
+      "seals": 20
+    },
+    {
+      "destination": "valdren_fragua",
+      "name": "Fragua de Daro",
+      "npcs": [
+        "Daro"
+      ],
+      "actions": [
+        "mirar",
+        "observar",
+        "examinar",
+        "examinar",
+        "mover",
+        "descansar",
+        "hablar",
+        "hablar",
+        "hablar",
+        "hablar",
+        "hablar",
+        "aceptar",
+        "desequipar",
+        "afinar",
+        "equipar",
+        "comprar",
+        "comprar",
+        "comprar",
+        "comprar"
+      ],
+      "edges": 0,
+      "xp": 0,
+      "seals": 20
+    },
+    {
+      "destination": "lethra_mercado_hojas",
+      "name": "Mercado de Narevia",
+      "npcs": [
+        "Tila"
+      ],
+      "actions": [
+        "mirar",
+        "observar",
+        "examinar",
+        "examinar",
+        "mover",
+        "mover",
+        "descansar",
+        "hablar",
+        "hablar",
+        "hablar",
+        "hablar",
+        "hablar",
+        "aceptar",
+        "desequipar",
+        "equipar",
+        "comprar",
+        "comprar",
+        "comprar"
+      ],
+      "edges": 0,
+      "xp": 0,
+      "seals": 20
+    },
+    {
+      "destination": "edran_canal_entrada",
+      "name": "Entrada del canal cubierto",
+      "npcs": [
+        "Nela"
+      ],
+      "actions": [
+        "mirar",
+        "observar",
+        "mover",
+        "mover",
+        "mover",
+        "descansar",
+        "hablar",
+        "hablar",
+        "hablar",
+        "desequipar",
+        "equipar"
+      ],
+      "edges": 0,
+      "xp": 0,
+      "seals": 20
+    },
+    {
+      "destination": "korven_almacen_entrada",
+      "name": "Puerta del almacén viejo",
+      "npcs": [
+        "Ruma"
+      ],
+      "actions": [
+        "mirar",
+        "observar",
+        "mover",
+        "mover",
+        "mover",
+        "descansar",
+        "hablar",
+        "hablar",
+        "hablar",
+        "hablar",
+        "desequipar",
+        "equipar"
+      ],
+      "edges": 0,
+      "xp": 0,
+      "seals": 20
+    }
+  ],
+  "pageErrors": []
+}

@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "scope": "Paid real errand → actual combat material → browser confirmed honing → duplicate request no double billing → reconnect; human warning/retreat and peaceful dungeon bypass",
+  "dialogs": [
+    "Afinar esta pieza una vez por 12 sellos y el material indicado: +1 daño. No activa ni valida Forja."
+  ],
+  "damageBefore": 10,
+  "damageAfter": 11,
+  "damageVisible": true,
+  "sealsBefore": 26,
+  "sealsAfter": 14,
+  "reconnected": "valdren_fragua",
+  "peacefulDestination": "edran_canal_repisa"
+}

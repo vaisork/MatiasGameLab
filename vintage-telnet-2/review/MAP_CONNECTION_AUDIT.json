@@ -1,0 +1,93 @@
+{
+  "rooms": 162,
+  "exits": 344,
+  "missing_destinations": [],
+  "one_way_connections": [],
+  "non_opposite_exits": [
+    {
+      "from": "valdren_patio_carros",
+      "direction": "sur",
+      "to": "edran_sendero_regreso",
+      "return_directions": [
+        "oeste"
+      ]
+    },
+    {
+      "from": "valdren_graneros",
+      "direction": "este",
+      "to": "edran_salida_huertos",
+      "return_directions": [
+        "sur"
+      ]
+    },
+    {
+      "from": "edran_salida_huertos",
+      "direction": "sur",
+      "to": "valdren_graneros",
+      "return_directions": [
+        "este"
+      ]
+    },
+    {
+      "from": "edran_arboleda",
+      "direction": "sur",
+      "to": "edran_sendero_regreso",
+      "return_directions": [
+        "este"
+      ]
+    },
+    {
+      "from": "edran_era",
+      "direction": "oeste",
+      "to": "edran_zanja_antigua",
+      "return_directions": [
+        "norte"
+      ]
+    },
+    {
+      "from": "edran_puente_juncos",
+      "direction": "sur",
+      "to": "edran_sauces",
+      "return_directions": [
+        "este"
+      ]
+    },
+    {
+      "from": "edran_zanja_antigua",
+      "direction": "norte",
+      "to": "edran_era",
+      "return_directions": [
+        "oeste"
+      ]
+    },
+    {
+      "from": "edran_sauces",
+      "direction": "este",
+      "to": "edran_puente_juncos",
+      "return_directions": [
+        "sur"
+      ]
+    },
+    {
+      "from": "edran_sendero_regreso",
+      "direction": "este",
+      "to": "edran_arboleda",
+      "return_directions": [
+        "sur"
+      ]
+    },
+    {
+      "from": "edran_sendero_regreso",
+      "direction": "oeste",
+      "to": "valdren_patio_carros",
+      "return_directions": [
+        "sur"
+      ]
+    }
+  ],
+  "notes": [
+    "Five pairs have different departure and return compass directions: roads bend, not tunnels.",
+    "All authored exits have a return connection.",
+    "Map remains a discovered schematic, not a geographic scale map."
+  ]
+}

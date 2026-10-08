@@ -1,0 +1,11 @@
+{
+  "socket": "enabled",
+  "localhost_8083": "HTTP 200",
+  "browser": "Google Chrome via Playwright",
+  "isolated_review_server": "127.0.0.1:8097",
+  "live_player_data_modified": false,
+  "limits": [
+    "Chromium emulation, not physical Android",
+    "Not a 20\u201330 minute human session"
+  ]
+}

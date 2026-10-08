@@ -1,0 +1,10 @@
+{
+  "scope": "Authored reading review baseline; not browser or executed API journey evidence",
+  "files": {
+    "content/regions/veyra.json": "29f21ad857d22c300c0ae88066e3ac02004d56afb6207d6f04263e3e6aacaae3",
+    "content/regions/hoshai.json": "bccf78159ad10f0d4235d4a6aa79483c0da94580d23f41a6859544e8626dfce8",
+    "content/regions/korven.json": "c465592b8bb91392a2d3ee18286277887ecbf9f7530094485fdb17b9883f9997",
+    "content/regions/lethra.json": "212177a1c54239f5d51626335c959facadb58653eef47a28c5f49c57fa2c6e57",
+    "content/regions/nhal.json": "2e864b3b16bd2e4d8c65fbabfe91fb8eed8b304cc2bd78a5ab63a88964a78133"
+  }
+}

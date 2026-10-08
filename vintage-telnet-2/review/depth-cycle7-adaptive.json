@@ -1,0 +1,234 @@
+{
+  "moves": 40,
+  "fixtures": "DM-approved accounts; level8/attributes20 seeded only temporary Store; ordinary class equipment",
+  "cases": [
+    {
+      "creature": "rasgacumbres",
+      "source": "authored dynamic wildlife_pool",
+      "class": "artifice",
+      "room": "hoshai_estribacion",
+      "evaluation": [
+        {
+          "kind": "danger",
+          "text": "Rasgacumbres: Abrumador para tu primera formación. Ocupa el paso alto. Conviene conservar espacio para retroceder antes del contacto. El Rasgacumbres desplaza el peso hacia una pata delantera y prepara un zarpazo lateral. Puedes interrumpirlo, esquivar o huir; una guardia frontal no cubre ese ángulo."
+        }
+      ],
+      "withdrawal": [
+        {
+          "kind": "action",
+          "text": "Retrocedes por el paso alto sin acercarte más. El Rasgacumbres permanece en su territorio."
+        }
+      ],
+      "prepared": {
+        "accuracy": 65,
+        "frontal": false,
+        "id": "zarpazo_lateral",
+        "interruptible": true,
+        "name": "Zarpazo lateral",
+        "tell": "El Rasgacumbres desplaza el peso hacia una pata delantera y prepara un zarpazo lateral. Puedes interrumpirlo, esquivar o huir; una guardia frontal no cubre ese ángulo."
+      },
+      "startNarrative": [
+        {
+          "kind": "danger",
+          "text": "El Rasgacumbres baja de la cornisa y clava las patas en tu camino. Las marcas de sus garras muestran una fuerza muy superior a la tuya. Puedes apartarte antes del contacto."
+        },
+        {
+          "kind": "danger",
+          "text": "El Rasgacumbres desplaza el peso hacia una pata delantera y prepara un zarpazo lateral. Puedes interrumpirlo, esquivar o huir; una guardia frontal no cubre ese ángulo."
+        }
+      ],
+      "capability": {
+        "disabled": false,
+        "id": "capacidad",
+        "label": "Tiro de Interrupción",
+        "reason": "Un disparo acertado corta la carga o reduce su precisión."
+      },
+      "choice": "capacidad",
+      "damage": 20.0,
+      "response": [
+        {
+          "kind": "action",
+          "text": "Usas Tiro de Interrupción. Disparas hacia Zarpazo lateral. El impacto decidirá si consigues interrumpirlo."
+        },
+        {
+          "kind": "combat",
+          "text": "Tu golpe alcanza a Rasgacumbres: 9 de daño."
+        },
+        {
+          "kind": "combat",
+          "text": "Tu disparo interrumpe Zarpazo lateral."
+        },
+        {
+          "kind": "combat",
+          "text": "Rasgacumbres te alcanza: 20 de daño."
+        }
+      ],
+      "escaped": true
+    },
+    {
+      "creature": "quebrarrocas",
+      "source": "authored dynamic wildlife_pool",
+      "class": "artifice",
+      "room": "korven_loma_cascajo",
+      "evaluation": [
+        {
+          "kind": "danger",
+          "text": "Quebrarrocas: Abrumador para tu primera formación. Su peso domina el terreno de piedra. Mantener distancia evita entrar en su alcance. El Quebrarrocas afirma el cuerpo contra los bloques y prepara un empuje frontal. El impulso ya está anclado: puedes cubrirte, esquivar o huir, pero no interrumpirlo."
+        }
+      ],
+      "withdrawal": [
+        {
+          "kind": "action",
+          "text": "Te apartas del terreno que ocupa. El Quebrarrocas conserva su espacio entre las piedras."
+        }
+      ],
+      "prepared": {
+        "accuracy": 65,
+        "frontal": true,
+        "id": "empuje_anclado",
+        "interruptible": false,
+        "name": "Empuje anclado",
+        "tell": "El Quebrarrocas afirma el cuerpo contra los bloques y prepara un empuje frontal. El impulso ya está anclado: puedes cubrirte, esquivar o huir, pero no interrumpirlo."
+      },
+      "startNarrative": [
+        {
+          "kind": "danger",
+          "text": "El Quebrarrocas empuja un bloque y abre espacio entre las piedras. Tu equipo inicial no basta para detener esa fuerza. Todavía puedes volver por la senda."
+        },
+        {
+          "kind": "danger",
+          "text": "El Quebrarrocas afirma el cuerpo contra los bloques y prepara un empuje frontal. El impulso ya está anclado: puedes cubrirte, esquivar o huir, pero no interrumpirlo."
+        }
+      ],
+      "capability": {
+        "disabled": false,
+        "id": "capacidad",
+        "label": "Tiro de Interrupción",
+        "reason": "Un disparo acertado corta la carga o reduce su precisión."
+      },
+      "choice": "defender",
+      "damage": 0.0,
+      "response": [
+        {
+          "kind": "combat",
+          "text": "La respuesta de Quebrarrocas pasa sin alcanzarte."
+        }
+      ],
+      "escaped": true
+    },
+    {
+      "creature": "dorsalodo",
+      "source": "authored static signal",
+      "class": "artifice",
+      "room": "lethra_ribera_seca",
+      "evaluation": [
+        {
+          "kind": "danger",
+          "text": "Dorsalodo: Abrumador para tu primera formación. El movimiento del agua revela cuánto espacio ocupa entre los juncos. Dejar libre ese paso permite retroceder. El Dorsalodo extiende el cuerpo entre los juncos para barrer de lado. Su peso ya domina el paso: la guardia frontal y la interrupción no sirven; todavía puedes esquivar o huir."
+        }
+      ],
+      "withdrawal": [
+        {
+          "kind": "action",
+          "text": "Dejas libre el paso entre los juncos. El Dorsalodo vuelve hacia el agua mientras recuperas distancia."
+        }
+      ],
+      "prepared": {
+        "accuracy": 65,
+        "frontal": false,
+        "id": "barrido_pesado",
+        "interruptible": false,
+        "name": "Barrido pesado",
+        "tell": "El Dorsalodo extiende el cuerpo entre los juncos para barrer de lado. Su peso ya domina el paso: la guardia frontal y la interrupción no sirven; todavía puedes esquivar o huir."
+      },
+      "startNarrative": [
+        {
+          "kind": "danger",
+          "text": "El Dorsalodo abre un paso ancho entre los juncos. El agua se mueve bajo todo su cuerpo. Es demasiado fuerte para tu primera formación; aún puedes retirarte."
+        },
+        {
+          "kind": "danger",
+          "text": "El Dorsalodo extiende el cuerpo entre los juncos para barrer de lado. Su peso ya domina el paso: la guardia frontal y la interrupción no sirven; todavía puedes esquivar o huir."
+        }
+      ],
+      "capability": {
+        "disabled": false,
+        "id": "capacidad",
+        "label": "Tiro de Interrupción",
+        "reason": "Un disparo acertado corta la carga o reduce su precisión."
+      },
+      "choice": "defender",
+      "damage": 0.0,
+      "response": [
+        {
+          "kind": "combat",
+          "text": "La respuesta de Dorsalodo pasa sin alcanzarte."
+        }
+      ],
+      "escaped": true
+    },
+    {
+      "creature": "rasgacorteza",
+      "source": "authored static signal",
+      "class": "artifice",
+      "room": "nhal_arbol_umbral",
+      "evaluation": [
+        {
+          "kind": "danger",
+          "text": "Rasgacorteza: Abrumador para tu primera formación. Las ramas dobladas muestran su alcance junto al tronco. Puedes salir de ese espacio antes del contacto. El Rasgacorteza separa las patas del tronco y reúne fuerza para un golpe frontal. Puedes interrumpir esa preparación, cubrirte, esquivar o huir."
+        }
+      ],
+      "withdrawal": [
+        {
+          "kind": "action",
+          "text": "Te apartas del tronco y de las ramas dobladas. El Rasgacorteza permanece junto a la corteza."
+        }
+      ],
+      "prepared": {
+        "accuracy": 65,
+        "frontal": true,
+        "id": "golpe_desde_tronco",
+        "interruptible": true,
+        "name": "Golpe desde el tronco",
+        "tell": "El Rasgacorteza separa las patas del tronco y reúne fuerza para un golpe frontal. Puedes interrumpir esa preparación, cubrirte, esquivar o huir."
+      },
+      "startNarrative": [
+        {
+          "kind": "danger",
+          "text": "El Rasgacorteza se separa del tronco y deja ver el tamaño de su cuerpo. Las ramas altas se doblan bajo su peso. Puedes retroceder antes de entrar en su alcance."
+        },
+        {
+          "kind": "danger",
+          "text": "El Rasgacorteza separa las patas del tronco y reúne fuerza para un golpe frontal. Puedes interrumpir esa preparación, cubrirte, esquivar o huir."
+        }
+      ],
+      "capability": {
+        "disabled": false,
+        "id": "capacidad",
+        "label": "Tiro de Interrupción",
+        "reason": "Un disparo acertado corta la carga o reduce su precisión."
+      },
+      "choice": "capacidad",
+      "damage": 20.0,
+      "response": [
+        {
+          "kind": "action",
+          "text": "Usas Tiro de Interrupción. Disparas hacia Golpe desde el tronco. El impacto decidirá si consigues interrumpirlo."
+        },
+        {
+          "kind": "combat",
+          "text": "Tu golpe alcanza a Rasgacorteza: 9 de daño."
+        },
+        {
+          "kind": "combat",
+          "text": "Tu disparo interrumpe Golpe desde el tronco."
+        },
+        {
+          "kind": "combat",
+          "text": "Rasgacorteza te alcanza: 20 de daño."
+        }
+      ],
+      "escaped": true
+    }
+  ]
+}

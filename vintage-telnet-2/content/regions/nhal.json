@@ -1,0 +1,1521 @@
+{
+  "version": 1,
+  "regions": {
+    "nhal": {
+      "id": "nhal",
+      "name": "Bosque de Nhal",
+      "identity": "Bajo el dosel, distancia y dirección se leen por referencias próximas, voces atribuidas y cambios de suelo. Velmora mantiene luz discreta, conocimiento compartido y una vida que no transforma cada sombra en amenaza.",
+      "settlement": "velmora_centro",
+      "species": "vesperi",
+      "weather": {
+        "lluvia": "El dosel retrasa y concentra gotas; un apoyo puede mojarse después de que el cielo ya parezca tranquilo.",
+        "niebla": "Las referencias próximas conservan sentido y las lejanas pierden atribución; las voces ayudan sin sustituir todas las marcas.",
+        "viento": "Las hojas altas producen ruido que cambia qué conversaciones y señales cercanas pueden distinguirse."
+      },
+      "source": "Vintage_Telnet_Prompt_Actualizado.pdf — canon geográfico y especies; ampliación textual nueva autorizada 2026-10-05",
+      "home": {
+        "name": "Hogar bajo las copas de Velmora",
+        "introduction": "Tu hogar tiene una entrada de espera fuera de la puerta y una mesa interior iluminada por una lámpara protegida. Las raíces pasan junto a la construcción sin ocupar el lugar de descanso. Una abertura recibe aire y sonidos del bosque, mientras una cubierta recoge el goteo de hojas altas lejos del umbral. La poca luz no es un secreto impuesto a quien vive aquí: permite distinguir lo cercano y elegir dónde atender una tarea. La salida te lleva al claro de Velmora, no a una historia ya decidida.",
+        "description": "El hogar conserva una franja de paso entre mesa, estante y descanso. La lámpara puede orientarse hacia lo que preparas sin llenar de reflejos la abertura exterior. Junto al umbral queda sitio para una carga con hojas adheridas, separada de los objetos de casa. Las raíces cercanas organizan el borde del suelo y el claro de Velmora permanece fuera. Aquí puedes escuchar el bosque sin que cada sonido te obligue a abandonar la habitación.",
+        "day": "Las copas dejan entrar claridad por manchas y una de ellas alcanza el estante. Los sonidos del taller llegan con pausas. La lámpara puede seguir siendo útil para una tarea cercana aunque fuera ya haya día.",
+        "night": "La abertura exterior se vuelve oscura. La lámpara ilumina la mesa y tus manos; del claro todavía llegan voces.",
+        "rain": "El goteo llega desde hojas altas y continúa después de perder fuerza sobre el techo. La cubierta lo lleva lejos del umbral. Puedes separar la carga húmeda sin narrar agua cayendo dentro de tu hogar privado.",
+        "clear": "La abertura permite comparar una raíz cercana con la marca del acceso al claro. El bosque sigue sombreado incluso con cielo limpio. Preparar la salida necesita referencias próximas, no esperar que el sol atraviese todas las copas.",
+        "return": "Dejas las hojas de la carga junto al umbral. Desde la mesa vuelves a oír las voces del claro y el roce de la puerta conocida.",
+        "examine": {
+          "lampara": "Se orienta hacia tareas cercanas y conserva protección alrededor de la luz.",
+          "umbral": "La entrada de espera permite una visita sin volver pública la habitación."
+        }
+      },
+      "search": {
+        "finds": [
+          {
+            "item": "rama_flexible",
+            "text": "Bajo la hojarasca encuentras una rama caída que todavía se dobla sin romperse."
+          }
+        ],
+        "traces": [
+          "La corteza tiene un arañazo reciente. Unos granos quedaron junto a la raíz.",
+          "Encuentras una huella antigua, pero no basta para saber qué la dejó."
+        ],
+        "empty": [
+          "Revisas bajo la hojarasca. Sólo aparecen hojas húmedas y tierra.",
+          "Buscas con cuidado. Esta vez no encuentras nada para llevar."
+        ]
+      }
+    }
+  },
+  "rooms": {
+    "nhal_arbol_umbral": {
+      "id": "nhal_arbol_umbral",
+      "name": "Primer árbol del bosque",
+      "region": "nhal",
+      "kind": "road",
+      "description": "Dos raíces grandes rodean el paso bajo el primer árbol. Al oeste sigue entrando luz desde la cuenca; al este se juntan las copas. Una marca sobre madera caída señala el camino. La sombra se corta en manchas sobre el suelo húmedo.",
+      "day": "Una recolectora aparta una rama del paso y escucha antes de levantar otra. Se oyen aves bajo las copas, aunque sólo una se muestra entre las hojas.",
+      "night": "La luz de la cuenca permanece entre raíces occidentales y desaparece al avanzar hacia las copas. La marca cercana necesita un farol dirigido al suelo. Las copas dejan caer sombras enteras sobre la senda interior.",
+      "rain": "Las gotas que llegaron de la cuenca se vuelven caídas lentas de hojas altas. La tierra se oscurece por manchas, no de una vez. La recolectora guarda lo seco bajo una raíz antes de seguir trabajando.",
+      "clear": "",
+      "return": "Reconoces las raíces que dejan entrar luz de la cuenca. Reconoces la marca del umbral y la dirección de salida. Los sonidos que llegan de más adentro conservan distancias que aún no puedes situar.",
+      "examine": {
+        "marca": "Está en madera caída, separada del árbol vivo.",
+        "raíces": "Enmarcan el paso y conservan suelo; dejan una abertura bajo el tronco."
+      },
+      "exits": {
+        "este": "nhal_suelo_hojas",
+        "oeste": "veyra_lindero_arboles"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [],
+      "actions": [],
+      "wildlife_pool": [
+        {
+          "creature": "rondamusgo",
+          "text": "La primera raíz del bosque tiene musgo aplastado y pelo adherido. Un rastro de semillas pasa bajo ella, sin seguir las marcas de los viajeros.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "rasgacorteza",
+          "text": "Los animales pequeños han dejado de moverse. Junto a un tronco, el Rasgacorteza levanta la cabeza.",
+          "persistent_trace": false
+        }
+      ]
+    },
+    "nhal_suelo_hojas": {
+      "id": "nhal_suelo_hojas",
+      "name": "Sendero de hojas",
+      "region": "nhal",
+      "kind": "road",
+      "description": "La senda cruza hojas de distintos colores. Las que pisan las cargas están rotas; a los lados siguen enteras. Al oeste vuelves al primer árbol y al este encuentras un tronco caído. Un animal pequeño busca bajo una raíz y se queda quieto al oírte.",
+      "day": "Una observadora espera a que el animal salga de la raíz antes de acercar su cuaderno. El animal vuelve a ocultarse con una semilla; queda la cáscara sobre una hoja entera.",
+      "night": "Las hojas enteras dejan de distinguirse por color, pero el tronco acostado sigue cortando el paso lateral. Bajo la raíz cruje una cáscara. La observadora cierra el cuaderno y escucha antes de mover el pie.",
+      "rain": "El agua adhiere hojas entre sí y vuelve más legible la franja pisada. El animal busca un hueco más seco bajo la raíz. Una huella vieja se conserva de manera distinta según el suelo que cubría.",
+      "clear": "",
+      "return": "El tronco acostado sigue junto a la franja de hojas rotas. En el hueco donde viste al animal queda una cáscara nueva.",
+      "examine": {
+        "hojas": "Las rotas se concentran en la ruta; las enteras cubren también depresiones pequeñas.",
+        "raíz": "En el hueco quedan cáscaras abiertas y dos semillas mordidas."
+      },
+      "exits": {
+        "oeste": "nhal_arbol_umbral",
+        "este": "nhal_tronco_acostado"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [],
+      "actions": [],
+      "wildlife_pool": [
+        {
+          "creature": "rondamusgo",
+          "text": "Una franja de hojas removidas llega hasta una raíz. Entre las hojas altas se engancharon pelo áspero y semillas que no cayeron del árbol cercano.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "rasgacorteza",
+          "text": "Los animales pequeños han dejado de moverse. Junto a un tronco, el Rasgacorteza levanta la cabeza.",
+          "persistent_trace": false
+        }
+      ],
+      "dawn": "Las hojas guardan gotas que aún no han caído del dosel. El animal empuja una cáscara fuera del hueco y vuelve a esconderse cuando una gota golpea la raíz.",
+      "dusk": "La raíz ya está en sombra. Una semilla rueda entre las hojas rotas y se detiene en la franja pisada; desde el hueco asoma un hocico, inmóvil un momento.",
+      "weather": {
+        "niebla": "El tronco caído pierde su extremo entre los árboles. Cerca, las gotas dibujan la raíz y el borde del hueco; el animal recoge una semilla sin salir de ese pequeño círculo visible.",
+        "viento": "Las hojas altas se rozan sobre la senda. Una hoja entera gira sin avanzar entre dos raíces; bajo ella cruje una cáscara que el ruido del dosel casi tapa."
+      }
+    },
+    "nhal_tronco_acostado": {
+      "id": "nhal_tronco_acostado",
+      "name": "Tronco caído",
+      "region": "nhal",
+      "kind": "road",
+      "description": "Un tronco caído obliga a rodear su base. Pequeños hongos crecen entre los restos de la copa. Al oeste vuelves por las hojas; al este sigues hacia el árbol claro. Un desvío al norte entra en un claro tranquilo. El camino pisa el lado más firme del tronco.",
+      "day": "Una recolectora separa hongos y deja los de pie oscuro sobre el tronco. Su acompañante se aparta hacia la vuelta ancha cuando oye llegar una carga.",
+      "night": "El farol cambia las sombras de la copa caída. Las hojas rotas permiten seguir la vuelta alrededor del tronco. Los hongos quedan apagados junto al suelo.",
+      "rain": "La corteza del tronco recibe agua y se vuelve lisa del lado donde parece más fácil subir. La recolectora continúa por la vuelta ancha. El bosque ofrece un rodeo conocido antes que una prueba innecesaria de equilibrio.",
+      "clear": "",
+      "return": "La vuelta sur permite anticipar la corteza clara que viene después. El tronco sigue caído y los hongos ocupan otro tramo de madera. La franja de tránsito mantiene hojas rotas entre superficies que todavía conservan humedad.",
+      "examine": {
+        "tronco": "El rodeo preserva paso sin retirar toda la madera que sostiene hongos e insectos.",
+        "hongos": "Los de pie oscuro crecen apretados contra la madera húmeda; los de sombrero claro quedan más separados."
+      },
+      "exits": {
+        "oeste": "nhal_suelo_hojas",
+        "este": "nhal_corteza_clara",
+        "norte": "nhal_claro_silencio"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [],
+      "actions": [],
+      "wildlife_pool": [
+        {
+          "creature": "rondamusgo",
+          "text": "La cara baja del tronco guarda un mechón húmedo. Unas semillas se han quedado en la madera podrida, donde el musgo conserva la marca del roce.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "rasgacorteza",
+          "text": "Los animales pequeños han dejado de moverse. Junto a un tronco, el Rasgacorteza levanta la cabeza.",
+          "persistent_trace": false
+        }
+      ]
+    },
+    "nhal_corteza_clara": {
+      "id": "nhal_corteza_clara",
+      "name": "Árbol de corteza clara",
+      "region": "nhal",
+      "kind": "road",
+      "description": "La corteza pálida de un árbol ancho permite reconocer el cruce entre las sombras. Al oeste vuelves al tronco; al este sigues entre raíces altas. Un desvío al norte lleva a una raíz marcada. Hay sitio para detenerte junto al árbol sin tapar el paso.",
+      "day": "Una cuidadora revisa el apoyo junto al barro. Después vuelve unos pasos por la senda para comprobar que el árbol claro puede verse desde allí.",
+      "night": "La corteza clara conserva una diferencia pequeña frente a los troncos vecinos. La cuidadora termina su revisión antes de alejarse. Un farol alcanza la corteza próxima; detrás, los troncos continúan oscuros.",
+      "rain": "La hondonada recoge agua y la ruta alta conserva hojas firmes junto a raíces. La marca separada del tronco se gira hacia esa entrada. El árbol mantiene su color, pero la tarea de elegir apoyo sigue cambiando.",
+      "clear": "",
+      "return": "La corteza clara vuelve a verse desde la vuelta ancha. Recuerdas el apoyo alto a su lado; detrás, la senda entra entre las raíces.",
+      "examine": {
+        "marca": "La marca queda del lado alto de la raíz, sobre la tierra que conserva firmeza.",
+        "hondonada": "Recoge agua entre raíces y puede ocultar las huellas de visitas anteriores."
+      },
+      "exits": {
+        "oeste": "nhal_tronco_acostado",
+        "este": "nhal_raices_altas",
+        "norte": "nhal_raiz_marcada"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [],
+      "actions": [],
+      "wildlife_pool": [
+        {
+          "creature": "rondamusgo",
+          "text": "Pelo áspero con musgo adherido queda entre hojas; varias semillas fueron transportadas hasta una raíz.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "rasgacorteza",
+          "text": "Los animales pequeños han dejado de moverse. Junto a un tronco, el Rasgacorteza levanta la cabeza.",
+          "persistent_trace": false
+        }
+      ]
+    },
+    "nhal_raices_altas": {
+      "id": "nhal_raices_altas",
+      "name": "Paso de las raíces altas",
+      "region": "nhal",
+      "kind": "road",
+      "description": "Las raíces levantan el suelo a ambos lados del sendero. Entre ellas se ven trozos de corteza y agua baja. Al oeste queda el árbol claro; al este empiezan las piedras con musgo. Una nota protegida espera en una repisa, fuera del paso de las cargas.",
+      "day": "Una viajera Vesperi lee la nota desde el lado de la repisa y deja pasar a una carga. Se acerca a la raíz para comprobar quién pasó antes de señalar una marca. Después pregunta quién revisó el suelo más adelante.",
+      "night": "La nota recibe una luz breve y vuelve a cubrirse. Los huecos laterales quedan oscuros; detrás, una viajera pide que la esperen.",
+      "rain": "Las raíces desvían gotas hacia la franja central y humedecen un apoyo que ayer estaba seco. La repisa protege la nota por arriba, pero necesita que se retire agua del borde. La lectura del suelo precede a la del mensaje.",
+      "clear": "",
+      "return": "Recuerdas la repisa donde dejaron la nota. La raíz alta sigue separando el paso de los huecos oscuros de abajo.",
+      "examine": {
+        "repisa": "Su nota tiene procedencia y condición de revisión.",
+        "huecos": "Entre las raíces se ven entradas bajas. Las hojas tapan el suelo del fondo."
+      },
+      "exits": {
+        "oeste": "nhal_corteza_clara",
+        "este": "nhal_piedras_musgo"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [],
+      "actions": [],
+      "wildlife_pool": [
+        {
+          "creature": "rondamusgo",
+          "text": "Pelo áspero con musgo adherido queda entre hojas; varias semillas fueron transportadas hasta una raíz.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "rasgacorteza",
+          "text": "Los animales pequeños han dejado de moverse. Junto a un tronco, el Rasgacorteza levanta la cabeza.",
+          "persistent_trace": false
+        }
+      ]
+    },
+    "nhal_piedras_musgo": {
+      "id": "nhal_piedras_musgo",
+      "name": "Piedras con musgo",
+      "region": "nhal",
+      "kind": "road",
+      "description": "El musgo cubre las piedras salvo donde se pisan. Un hilo de agua oscurece sus juntas. Al oeste vuelves a las raíces; al este está el puente. El desvío norte llega al rincón de semillas. Junto al camino hay semillas caídas y pequeñas marcas distintas de las ruedas.",
+      "day": "Un animal pequeño transporta una semilla hasta la base de una piedra y desaparece bajo hojas. Una vecina retira el pie de esa franja y espera antes de continuar.",
+      "night": "El musgo pierde relieve y la franja gastada refleja mejor la luz húmeda. Las semillas se confunden con hojas. Un roce breve continúa bajo la raíz, se detiene y deja otra vez audible el puente cercano.",
+      "rain": "El agua alcanza juntas que antes sólo tenían humedad y deja parte de la franja gastada bajo una película lisa. La vecina espera cerca de una piedra alta. El musgo no ofrece el mismo apoyo que el tramo pisado.",
+      "clear": "",
+      "return": "Las piedras mantienen su relación con el puente aunque las semillas hayan cambiado de sitio. Reconoces la franja gastada entre musgo húmedo. Bajo una raíz queda otra hoja removida, fuera de los apoyos por donde pasan las cargas.",
+      "examine": {
+        "musgo": "La interrupción corresponde al paso frecuente, no a una marca dibujada por alguien.",
+        "semillas": "Forman restos de transporte animal; no señalan dónde guardar una carga."
+      },
+      "exits": {
+        "oeste": "nhal_raices_altas",
+        "este": "nhal_puente_bajo",
+        "norte": "nhal_rincon_semillas"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [],
+      "actions": [
+        {
+          "id": "nhal_quedarse_quieto",
+          "label": "Detenerte antes de las raíces",
+          "requires_time": [
+            "día"
+          ],
+          "forbids_flags": [
+            "nhal_semilla_rondamusgo"
+          ],
+          "set_flags": [
+            "nhal_semilla_rondamusgo"
+          ],
+          "scope": "player",
+          "text": "Dejas de avanzar cuando el Rondamusgo se inmoviliza. Tras unos instantes vuelve a buscar bajo las hojas. Una semilla se desprende de su pelo antes de que corra a la raíz hueca; su paso ha cambiado un rincón pequeño del bosque.",
+          "journal": "Vi cómo una semilla salió del pelo de un Rondamusgo junto a una raíz hueca."
+        }
+      ],
+      "dawn": "El musgo conserva gotas y una pequeña criatura deja de moverse cuando llegan pasos. Pasado el ruido, una hoja vuelve a levantarse junto a la raíz.",
+      "dusk": "El movimiento bajo las hojas se vuelve más difícil de seguir. Una semilla queda enganchada en un mechón, cerca del hueco donde la criatura regresa.",
+      "wildlife_pool": [
+        {
+          "creature": "rondamusgo",
+          "text": "Pelo áspero con musgo adherido queda entre hojas; varias semillas fueron transportadas hasta una raíz.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "rasgacorteza",
+          "text": "Los animales pequeños han dejado de moverse. Junto a un tronco, el Rasgacorteza levanta la cabeza.",
+          "persistent_trace": false
+        }
+      ]
+    },
+    "nhal_puente_bajo": {
+      "id": "nhal_puente_bajo",
+      "name": "Puente entre árboles",
+      "region": "nhal",
+      "kind": "landmark",
+      "description": "El puente cruza un cauce estrecho entre dos árboles. Sus tablas dejan espacio alrededor de los troncos y apoyos que pueden revisarse desde tierra. Al oeste están las piedras de musgo; al este, los helechos. Una piedra permite avisar con un golpe antes de pasar una carga.",
+      "day": "Dos vecinos comparan la tabla central. Quien espera sobre la piedra de aviso cruza cuando ambos recogen sus manos y herramientas.",
+      "night": "La corriente se oye antes de distinguir el corte del terreno. Las tablas conservan continuidad bajo el farol y los apoyos laterales quedan oscuros. Un golpe sobre la piedra de aviso se extingue entre ambos troncos.",
+      "rain": "El cauce empieza a reunir hojas que un vecino aparta desde el apoyo exterior. La tabla central recibe barro de las cargas. Revisar paso y agua son tareas relacionadas, pero ninguna se resuelve fingiendo que la otra no existe.",
+      "clear": "",
+      "return": "Reconoces la piedra de aviso y la tabla gastada del centro. Bajo ella el cauce sigue entre los dos troncos, más estrecho del lado de las raíces.",
+      "examine": {
+        "apoyos": "Se revisa tierra debajo sin clavar la estructura en los árboles vivos.",
+        "aviso": "Anuncia una carga próxima; no declara que toda la ruta esté despejada."
+      },
+      "exits": {
+        "oeste": "nhal_piedras_musgo",
+        "este": "nhal_helechos_bajos"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [],
+      "actions": []
+    },
+    "nhal_helechos_bajos": {
+      "id": "nhal_helechos_bajos",
+      "name": "Sendero de helechos",
+      "region": "nhal",
+      "kind": "road",
+      "description": "Los helechos tapan el terreno bajo, pero la senda sigue sobre una franja elevada. Al oeste vuelves al puente; al este empiezan las casas. Un desvío al sur baja al cauce sombreado. Se oyen golpes de madera. Una pequeña cubierta protege la marca del camino.",
+      "day": "La aprendiz levanta un helecho quebrado junto a la senda. Del taller llegan dos golpes y una pausa; al soltar el tallo se oye el roce de las hojas.",
+      "night": "Los golpes de madera cesan y la senda recupera otros sonidos pequeños. La corteza protegida sigue mostrando una marca cercana. Los helechos vuelven poco legibles sus entradas laterales, aunque la franja elevada continúe hacia el pueblo.",
+      "rain": "Los helechos devuelven agua sobre las mangas al rozarlos. La aprendiz aparta hojas que cubrieron una raíz de paso y deja intacto el resto. El techo mínimo conserva seca la marca que confirma la continuación oriental.",
+      "clear": "",
+      "return": "Reconoces la pequeña cubierta donde empezaste a oír el taller. Si hoy no hay golpes, se oyen roces entre los helechos.",
+      "examine": {
+        "helechos": "Algunos se quebraron junto a la anchura de una carga, no en una entrada de animal grande.",
+        "corteza": "La marca permanece cerca del apoyo útil y fuera de tallos que cambian de posición."
+      },
+      "exits": {
+        "oeste": "nhal_puente_bajo",
+        "este": "nhal_umbral_velmora",
+        "sur": "nhal_agua_sombreada"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [],
+      "actions": [],
+      "wildlife_pool": [
+        {
+          "creature": "rondamusgo",
+          "text": "Los helechos bajos conservan un arco de tallos doblados. Bajo ellos hay pelo áspero y dos semillas, separados de las huellas de los porteadores.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "rasgacorteza",
+          "text": "Los animales pequeños han dejado de moverse. Junto a un tronco, el Rasgacorteza levanta la cabeza.",
+          "persistent_trace": false
+        }
+      ]
+    },
+    "nhal_umbral_velmora": {
+      "id": "nhal_umbral_velmora",
+      "name": "Entrada de Velmora",
+      "region": "nhal",
+      "kind": "road",
+      "description": "Las primeras casas aparecen entre árboles, con luces cerca de cada tarea. Al oeste queda la senda de helechos; al este entras en Velmora. Una mesa junto al camino permite esperar mientras pasa una carga. Las lámparas Vesperi iluminan los apoyos sin deslumbrar a quien llega.",
+      "day": "Una vecina termina de limpiar la mesa antes de recibir una carga del puente. Otra pregunta a quién se la entregará y acerca un banco para escuchar la respuesta.",
+      "night": "Las luces encajadas distinguen mesa, raíces y acceso a la plaza. Las viviendas conservan sombras entre ellas. El pueblo se vuelve legible sin iluminar todo el dosel ni exigir que otros cuerpos vean como sus habitantes.",
+      "rain": "La carga espera bajo una cubierta corta mientras se limpia barro del recipiente exterior. Los vecinos comparten el resguardo sin cerrar la senda. El agua sigue cayendo de hojas altas entre viviendas que aprendieron a recibirla.",
+      "clear": "",
+      "return": "La mesa conserva la mancha de la carga que dejaron al llegar. Detrás del banco aparece el primer claro entre las viviendas.",
+      "examine": {
+        "luces": "Las pantallas dejan luz sobre los bancos; entre las casas quedan tramos oscuros.",
+        "mesa": "Permite recibir cargas sin ocupar la circulación hacia la plaza."
+      },
+      "exits": {
+        "oeste": "nhal_helechos_bajos",
+        "este": "velmora_centro"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [],
+      "actions": [],
+      "wildlife_pool": [
+        {
+          "creature": "rondamusgo",
+          "text": "Un mechón con musgo roza la pata de la mesa de espera. La marca continúa hacia las raíces exteriores, lejos de las luces de las casas.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "rasgacorteza",
+          "text": "Los animales pequeños han dejado de moverse. Junto a un tronco, el Rasgacorteza levanta la cabeza.",
+          "persistent_trace": false
+        }
+      ]
+    },
+    "velmora_centro": {
+      "id": "velmora_centro",
+      "name": "Claro de Velmora",
+      "region": "nhal",
+      "kind": "settlement",
+      "description": "Velmora ocupa un claro entre los árboles. Las casas y bancos dejan sitio a las raíces. Al oeste está la entrada, al norte el taller, al sur el mercado y al este el patio del relato. Las voces llegan de cerca; los árboles ocultan parte de cada grupo.",
+      "day": "Una vecina sostiene un juguete mientras otro habitante pasa un cordel por la rueda. El niño cuenta cómo se soltó y espera a que termine el golpe del taller para mostrarlo.",
+      "night": "En un patio termina un relato. Una voz repite la última frase para alguien que acaba de llegar; desde otra vivienda se oye recoger la mesa.",
+      "rain": "Los recipientes se recogen bajo la mesa cubierta y los bancos más bajos se apartan del goteo de raíces. Un vecino limpia la entrada del taller. La actividad cambia de disposición antes de que alguien diga que empezó a llover.",
+      "clear": "",
+      "return": "Los golpes del taller permiten situar el borde norte del claro. Al otro lado de la mesa, la entrada al patio del relato se distingue entre dos raíces.",
+      "examine": {
+        "raíces": "Las raíces sobresalen entre los bancos. La tierra pisada rodea sus arcos y se estrecha junto a las casas.",
+        "mesa": "Recibe objetos comunitarios, no pertenencias privadas de cualquier vivienda."
+      },
+      "exits": {
+        "oeste": "nhal_umbral_velmora",
+        "norte": "nhal_taller_cortezas",
+        "sur": "nhal_mercado_setas",
+        "este": "nhal_patio_relato"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [],
+      "actions": [],
+      "dawn": "El cordel del juguete espera sobre la mesa. Un niño llega con la rueda y pregunta quién puede ayudarle.",
+      "dusk": "La rueda vuelve a girar entre las manos del niño. En el patio cercano empieza un relato.",
+      "weather": {
+        "niebla": "El borde del claro se pierde antes que las mesas próximas. Quien cuenta el relato se acerca al banco y baja la voz; desde una casa responde alguien a quien todavía no puedes ver.",
+        "viento": "El dosel cruje sobre las casas y tapa el final de una frase. La vecina espera, repite las últimas palabras y sujeta el cordel suelto del juguete contra la mesa."
+      },
+      "states": [
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_weather": [
+            "viento"
+          ],
+          "overrides": {
+            "day": "El dosel tapa la explicación del niño. La vecina espera a que cese el ruido, vuelve a preguntar y sujeta el cordel contra la mesa."
+          }
+        },
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_visits": {
+            "min": 3
+          },
+          "overrides": {
+            "day": "La rueda vuelve a girar en manos del niño. La vecina recoge el cordel sobrante y escucha cuando él pregunta qué ocurrirá si vuelve a tirar demasiado."
+          }
+        },
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_weather": [
+            "viento"
+          ],
+          "requires_visits": {
+            "min": 3
+          },
+          "overrides": {
+            "day": "El niño espera a que calle el dosel para mostrar la rueda reparada. La vecina le pide que tire despacio del cordel; ambos miran cómo gira."
+          }
+        }
+      ],
+      "focus": [
+        "activity"
+      ]
+    },
+    "nhal_taller_cortezas": {
+      "id": "nhal_taller_cortezas",
+      "name": "Taller de madera",
+      "region": "nhal",
+      "kind": "interior",
+      "description": "El aire entra por el lado abierto del taller. Un banco reúne recipientes en reparación y otro piezas para los techos. Hay marcas de cuchillo donde trabaja la artesana. Al sur vuelves al claro; al este está el secadero. Las tablas dejan huecos para las raíces.",
+      "day": "Desi mueve una rueda pequeña sobre la mesa y escucha el punto donde raspa. Frota ese borde con un paño; a su lado alguien ordena dos botones de madera.",
+      "night": "El paño queda sobre una rueda quieta. Una casa cercana devuelve una tos y luego el cierre de una puerta.",
+      "rain": "Las piezas del exterior esperan en el secadero y la artesana conserva un banco limpio para recipientes. El agua entra por hojas cercanas, así que mueve una lámpara antes de acercar su mano. La rutina exige pequeñas correcciones concretas.",
+      "clear": "",
+      "return": "Reconoces las marcas de cuchillo del banco. Los recipientes terminados dejan huecos entre las piezas que todavía esperan reparación.",
+      "examine": {
+        "bancos": "La separación mantiene polvo de cubiertas lejos de recipientes.",
+        "tablas": "Las tablas dejan huecos alrededor de las raíces; dos bordes nuevos rodean la más gruesa."
+      },
+      "exits": {
+        "sur": "velmora_centro",
+        "este": "nhal_secadero_sombra"
+      },
+      "arrivals": {},
+      "npcs": [
+        "nhal_desi"
+      ],
+      "signals": [],
+      "actions": [
+        {
+          "id": "nhal_sujetar_figura",
+          "label": "Sostener la figura de corteza para Desi",
+          "requires_npc": "nhal_desi",
+          "forbids_flags": [
+            "nhal_figura_firme"
+          ],
+          "set_flags": [
+            "nhal_figura_firme"
+          ],
+          "scope": "world",
+          "text": "Mantienes el cuerpo de corteza mientras Desi fija una tira alrededor de la tercera pata. Al soltarlo, la figura se sostiene. Un niño llega hasta la puerta, la mira y pregunta si también correrá al verlo. Desi deja la respuesta para él, acercándole la pieza.",
+          "journal": "La figura de corteza se sostiene y pasó a las manos del niño que esperaba junto a la puerta."
+        }
+      ],
+      "states": [
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_weather": [
+            "lluvia"
+          ],
+          "overrides": {
+            "day": "Desi recoge la rueda antes de que le llegue el goteo retrasado del dosel. Prueba otra vez el borde bajo techo y aparta el paño húmedo."
+          }
+        },
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_visits": {
+            "min": 3
+          },
+          "overrides": {
+            "day": "La rueda ya no raspa en el mismo borde. Desi la pasa por la mesa hacia quien ordenaba los botones y le pide que escuche la siguiente vuelta."
+          }
+        },
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_weather": [
+            "lluvia"
+          ],
+          "requires_visits": {
+            "min": 3
+          },
+          "overrides": {
+            "day": "La rueda corregida gira bajo la cubierta. Desi retira el paño mojado y pide otra escucha; el goteo sobre el techo obliga a esperar antes de probarla."
+          }
+        },
+        {
+          "requires_flags": [
+            "nhal_figura_firme"
+          ],
+          "overrides": {
+            "day": "Una tira de corteza queda en la mesa donde se sujetó la pata. Desde la casa llega el golpe pequeño de una figura apoyada y levantada otra vez.",
+            "examine": {
+              "corteza": "La tira sobrante conserva la curva que se utilizó para sujetar una pata pequeña. La figura ya está en la casa vecina."
+            }
+          }
+        }
+      ],
+      "focus": [
+        "activity"
+      ]
+    },
+    "nhal_secadero_sombra": {
+      "id": "nhal_secadero_sombra",
+      "name": "Secadero del taller",
+      "region": "nhal",
+      "kind": "landmark",
+      "description": "Una franja de luz cae sobre un juguete y un recipiente reparado. Los apoyos cambian de sitio para que se sequen. Al oeste vuelves al taller.",
+      "day": "La encargada gira el juguete cuando la luz abandona uno de sus lados. Un niño espera sin tocarlo y pregunta por la reparación. La encargada le acerca el juguete a la parte seca: podrá llevarlo cuando ese lado deje de ceder al tocarlo.",
+      "night": "La encargada recoge las piezas que necesitan otro día. El recipiente queda bajo la cubierta; en el banco donde estuvo el niño se apagan las últimas manchas de luz.",
+      "rain": "La humedad obliga a separar más las piezas y a cubrir sólo la zona que recibe goteo. La encargada cambia el orden de devolución. Un objeto que podía secarse hoy quizá necesite esperar sin que nadie haya incumplido su cuidado.",
+      "clear": "",
+      "return": "Recuerdas el apoyo donde giraron el juguete. En la madera queda su marca redonda, junto a una pieza que espera secarse.",
+      "examine": {
+        "juguete": "El corte reparado necesita secarse antes de volver a moverse.",
+        "apoyos": "Pueden trasladarse para seguir la franja de luz sin cambiar la senda pública."
+      },
+      "exits": {
+        "oeste": "nhal_taller_cortezas"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [],
+      "actions": [
+        {
+          "id": "nhal_preparar_recipiente",
+          "label": "Separar el recipiente sin mover el apoyo",
+          "text": "Levantas el recipiente del aro y dejas la tabla sujetando el juguete. Lo envuelves para llevarlo a Elin.",
+          "requires_flags": [
+            "nhal_elin_recipiente_reconocido",
+            "nhal_desi_apoyo_aclarado"
+          ],
+          "give_items": {
+            "recipiente_elin": 1
+          },
+          "set_flags": [
+            "nhal_recipiente_preparado"
+          ],
+          "forbids_flags": [
+            "nhal_recipiente_preparado"
+          ]
+        }
+      ],
+      "states": [
+        {
+          "requires_flags": [
+            "nhal_recipiente_preparado"
+          ],
+          "overrides": {
+            "description": "El aro del recipiente quedó libre cuando recogiste la pieza de Elin. La tabla sigue sosteniendo el juguete en la franja de luz. Al oeste vuelves al taller; los apoyos conservan espacio para secarse.",
+            "day": "La encargada gira el juguete sobre la tabla que dejaste. Al lado, el aro vacío guarda la forma del recipiente que llevaste.",
+            "night": "La tabla del juguete queda bajo cubierta. El aro vacío conserva el sitio donde separaste el recipiente de Elin.",
+            "return": "El aro vacío y la tabla ocupada recuerdan qué separaste y qué dejaste secándose. El taller sigue al oeste.",
+            "examine": {
+              "apoyos": "La tabla sigue bajo el juguete; el aro quedó libre al recoger el recipiente pequeño de Elin."
+            },
+            "dawn": "La encargada levanta el borde de la cubierta para tocar la tabla del juguete. La madera sigue húmeda; deja abierto el lado que recibe la primera luz. El aro vacío queda junto al banco.",
+            "dusk": "La franja de luz se retira del juguete. La encargada acerca la tabla al apoyo cubierto y vuelve a tocar su borde antes de dejarla allí. El aro vacío queda separado, junto a la salida del taller."
+          }
+        }
+      ]
+    },
+    "nhal_mercado_setas": {
+      "id": "nhal_mercado_setas",
+      "name": "Mercado de Velmora",
+      "region": "nhal",
+      "kind": "settlement",
+      "description": "Las cestas esperan bajo cubiertas separadas, con pasillos de suelo firme entre las raíces. Las hojas que llegan con los alimentos se revisan en una mesa. Al norte vuelves al claro de Velmora; al este entras en la cocina. El olor cambia junto a cada cesta abierta. Una puerta al oeste lleva al lugar de cuidados.",
+      "day": "Una vendedora corta el pie de una seta y muestra la parte firme. Su vecina retira otra que se ha abierto demasiado; guardan los recortes en un cuenco distinto.",
+      "night": "El cuenco de recortes espera bajo la mesa. Una voz llama desde una vivienda y el último puesto recoge sus hojas.",
+      "rain": "Las hojas de revisión se recogen lejos del goteo y las cestas se elevan sobre apoyos secos. La vendedora cambia de pasillo para recibir una carga. El mercado funciona dentro del bosque sin poder ordenar toda su agua.",
+      "clear": "",
+      "return": "El banco donde viste abrir una cesta queda bajo la parte más baja de la cubierta. Su olor alcanza el paso antes de que puedas ver el contenido.",
+      "examine": {
+        "cestas": "Las cerradas necesitan destinatario o revisión, no están disponibles por quedar a la vista.",
+        "hojas": "Las hojas húmedas tienen olor terroso. Una conserva un borde amarillo y gotas entre los pliegues."
+      },
+      "exits": {
+        "norte": "velmora_centro",
+        "este": "nhal_cocina_raices",
+        "oeste": "nhal_sala_cuidados"
+      },
+      "arrivals": {},
+      "npcs": [
+        "nhal_varo"
+      ],
+      "signals": [],
+      "actions": [],
+      "shop": [
+        "provision_basica",
+        "arco_ruta",
+        "varita_aprendiz"
+      ],
+      "buyer": "nhal_varo",
+      "buy_items": [
+        "rama_flexible",
+        "semillas_camino",
+        "resina_pino"
+      ],
+      "states": [
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_weather": [
+            "niebla"
+          ],
+          "overrides": {
+            "day": "La vendedora acerca la seta cortada a la mesa próxima para mostrar su interior. El borde del puesto vecino se ha borrado; le pide su opinión en voz baja."
+          }
+        }
+      ],
+      "focus": [
+        "people"
+      ],
+      "dawn": "La mesa recibe las primeras hojas húmedas. La vendedora limpia tierra del pie de una seta.",
+      "dusk": "El cuenco de recortes queda bajo la mesa. Dos vecinas comparan las setas que llevarán a casa."
+    },
+    "nhal_cocina_raices": {
+      "id": "nhal_cocina_raices",
+      "name": "Cocina del bosque",
+      "region": "nhal",
+      "kind": "interior",
+      "description": "El fuego arde sobre una base seca. Los recipientes limpios esperan junto a la ventana y los sucios se reciben aparte. Al oeste está el mercado; al norte, el patio del relato. Una persona remueve la comida mientras otra cose una manga. El humo sale por una abertura del techo.",
+      "day": "Una mujer pela una raíz y aparta el extremo duro. Otra prueba el caldo y busca en el cuenco la hoja que lo vuelve amargo.",
+      "night": "El caldo deja olor cerca de la entrada. Se oye recoger una cuchara y soplar las brasas; una cáscara cruje bajo la mesa.",
+      "rain": "Las prendas mojadas esperan fuera de la mesa y el techo se ajusta para sacar humo sin recibir todo el agua. La cocinera cambia el banco del vecino que cose. La lluvia modifica también cómo se comparte un espacio seco.",
+      "clear": "",
+      "return": "Recuerdas el asiento junto a la raíz. En el borde de la mesa queda la marca redonda del cuenco que acercaron mientras probaban el caldo.",
+      "examine": {
+        "techo": "La abertura saca humo y se ajusta cuando entra agua.",
+        "mesas": "Separan tierra de alimentos y conservan sitio para recibir a quien llega."
+      },
+      "exits": {
+        "oeste": "nhal_mercado_setas",
+        "norte": "nhal_patio_relato"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [],
+      "actions": [],
+      "states": [
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_weather": [
+            "viento"
+          ],
+          "overrides": {
+            "day": "El humo vuelve hacia la mesa cuando el dosel mueve el aire. La mujer tapa el caldo un momento; su compañera lleva las cáscaras al lado protegido de la entrada."
+          }
+        }
+      ],
+      "focus": [
+        "activity"
+      ]
+    },
+    "nhal_patio_relato": {
+      "id": "nhal_patio_relato",
+      "name": "Patio de reuniones",
+      "region": "nhal",
+      "kind": "settlement",
+      "description": "Bancos distintos rodean una mesa bajo una cubierta corta. Al oeste vuelves al claro, al sur está la cocina, al norte las casas y al este la senda de Elin. Un recipiente reparado guarda hojas con recuerdos. Leris busca un nombre en su cuaderno y deja una línea vacía.",
+      "day": "La narradora tacha una frase cuando un vecino corrige el nombre. Una mujer añade dónde estaba al oír aquel ruido; Elin acerca un asiento y la narradora deja el lápiz sobre el cuaderno.",
+      "night": "Los bancos bajo cubierta reciben más personas y los bordes se quedan vacíos. La narradora guarda la hoja incompleta antes de terminar. El relato puede continuar otro día sin forzar una revelación para cerrar la velada.",
+      "rain": "Las hojas se pasan hacia el centro seco y un vecino recoge los bancos exteriores. La narradora cambia de tono para hacerse oír entre gotas. La reunión conserva su pregunta pendiente, aunque hoy no pueda extenderse fuera de la cubierta.",
+      "clear": "",
+      "return": "El asiento que acercaron junto al borde te permite reconocer el pequeño círculo. En el cuaderno queda la línea que la narradora dejó sin completar.",
+      "examine": {
+        "hoja": "Falta la voz de quien recibió el recipiente al otro lado del bosque.",
+        "recipiente": "La grieta tiene una costura oscura. El borde está gastado junto al asa."
+      },
+      "exits": {
+        "oeste": "velmora_centro",
+        "sur": "nhal_cocina_raices",
+        "norte": "nhal_calle_hogares",
+        "este": "nhal_senda_recipiente"
+      },
+      "arrivals": {},
+      "npcs": [
+        "nhal_leris"
+      ],
+      "signals": [],
+      "actions": [
+        {
+          "id": "nhal_ampliar_relato",
+          "label": "Atribuir al relato la voz de Elin",
+          "text": "Leris pregunta quién dijo cada detalle y añade la entrega de comida, el apoyo y la mano ocupada. La reparación conserva su sitio en la hoja. El raspón queda unido a la voz de Elin y a aquella cena fría.",
+          "set_flags": [
+            "nhal_relato_ampliado"
+          ],
+          "requires_flags": [
+            "nhal_voz_escuchada"
+          ],
+          "forbids_flags": [
+            "nhal_relato_ampliado"
+          ],
+          "scope": "world",
+          "journal": "El patio conserva la versión de Elin junto a la reparación conocida.",
+          "requires_npc": "nhal_leris"
+        }
+      ],
+      "memories": [
+        {
+          "requires_flags": [
+            "nhal_relato_ampliado"
+          ],
+          "text": "La hoja conserva ahora la voz de Elin junto a la de quien reparó el recipiente. Leris no cerró el relato con una hazaña: añadió una entrega de comida y una mano ocupada."
+        },
+        {
+          "requires_flags": [
+            "nhal_recipiente_devuelto"
+          ],
+          "text": "El recipiente remendado está disponible para la próxima reunión. Su regreso permite otro uso, en vez de dejarlo para siempre como objeto de una historia."
+        }
+      ],
+      "states": [
+        {
+          "requires_flags": [
+            "nhal_relato_ampliado"
+          ],
+          "overrides": {
+            "description": "Los bancos rodean la mesa del relato. Al oeste está el claro, al sur la cocina, al norte las casas y al este la senda de Elin. Leris conserva las tachaduras y la frase que faltaba: una comida fría y una mano ocupada junto a una puerta.",
+            "examine": {
+              "hoja": "La hoja incorpora la voz atribuida de Elin junto a la reparación que otras personas recuerdan."
+            }
+          }
+        }
+      ]
+    },
+    "nhal_calle_hogares": {
+      "id": "nhal_calle_hogares",
+      "name": "Calle de las casas",
+      "region": "nhal",
+      "kind": "settlement",
+      "description": "Las casas se reparten en pequeños niveles entre los árboles. Sus entradas dejan sitio para las raíces y para esperar antes de llamar. Al sur vuelves al patio; al norte subes hacia el Dosel Alto. Las luces muestran una reparación o una comida, sin iluminar todo el interior.",
+      "day": "Una vecina escucha desde el umbral antes de abrir. Un niño lleva el juguete reparado contra el pecho; al llegar a su puerta lo separa un poco para ver girar la rueda.",
+      "night": "Una puerta permanece abierta para una visita esperada. La casa vecina apaga su lámpara; al fondo otra luz se mueve sobre una mesa.",
+      "rain": "Los visitantes esperan bajo aleros pequeños y los recipientes se acercan a las puertas. Una vecina ajusta su lámpara al brillo de la madera mojada. Los visitantes dejan libres las puertas y esperan bajo el alero hasta que alguien los llama.",
+      "clear": "",
+      "return": "Reconoces el umbral donde esperaste. La voz de aquella casa vuelve a cruzar la calle; delante de la entrada queda el banco estrecho.",
+      "examine": {
+        "umbrales": "Ofrecen lugar de espera fuera de viviendas privadas.",
+        "luces": "Se orientan a tareas y pueden cambiar aunque la casa siga ocupada."
+      },
+      "exits": {
+        "sur": "nhal_patio_relato",
+        "norte": "nhal_sendero_altura"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [],
+      "actions": []
+    },
+    "nhal_claro_silencio": {
+      "id": "nhal_claro_silencio",
+      "name": "Claro tranquilo",
+      "region": "nhal",
+      "kind": "wilderness",
+      "description": "Una raíz ofrece asiento bajo los árboles. En la tierra queda una hoja doblada. Puedes parar aquí. La única senda vuelve al sur, hacia el tronco.",
+      "day": "Una semilla cae sobre una hoja ancha. El tallo cede, recupera su altura y deja la semilla en la tierra; no se oye otra cosa junto al claro.",
+      "night": "Una gota toca la tierra entre las hojas. El claro vuelve a guardar silencio.",
+      "rain": "El claro recibe agua directa y la piedra deja de ofrecer el mismo descanso seco. Las hojas pequeñas giran hacia una depresión lateral. La pausa puede terminar por una razón material sencilla, sin que el tiempo anuncie un castigo.",
+      "clear": "",
+      "return": "La copa caída sigue marcando el regreso al sur. La piedra conserva el sitio donde te detuviste, con otras hojas junto al borde. Puedes sentarte un momento y dejar que los sonidos encuentren su propia distancia.",
+      "examine": {
+        "piedra": "Su lado alto ofrece asiento mientras no reciba lluvia directa.",
+        "cielo": "La abertura muestra luz sin permitir ver fuera del bosque."
+      },
+      "exits": {
+        "sur": "nhal_tronco_acostado"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [],
+      "actions": [],
+      "max_layers": 2,
+      "wildlife_pool": [
+        {
+          "creature": "rondamusgo",
+          "text": "Pelo áspero con musgo adherido queda entre hojas; varias semillas fueron transportadas hasta una raíz.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "rasgacorteza",
+          "text": "Los animales pequeños han dejado de moverse. Junto a un tronco, el Rasgacorteza levanta la cabeza.",
+          "persistent_trace": false
+        }
+      ],
+      "states": [
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_weather": [
+            "lluvia"
+          ],
+          "overrides": {
+            "day": "Las gotas inclinan la hoja ancha hasta que la semilla cae. El tallo queda doblado bajo otra gota y sólo recupera su altura cuando ésta termina de escurrir."
+          }
+        }
+      ],
+      "focus": [
+        "activity"
+      ],
+      "dawn": "Una gota queda suspendida en la hoja ancha. Al desprenderse deja moverse el tallo.",
+      "dusk": "La semilla se pierde en la sombra del suelo. Una hoja roza otra y vuelve a quedarse quieta."
+    },
+    "nhal_agua_sombreada": {
+      "id": "nhal_agua_sombreada",
+      "name": "Cauce bajo los árboles",
+      "region": "nhal",
+      "kind": "wilderness",
+      "description": "El agua retiene hojas entre las raíces. Al norte subes a la senda de helechos; al sur sigues junto al canal hacia Lethra. Desde un apoyo natural puedes mirar unos hilos bajos tendidos cerca de la corriente. Entre dos raíces, los hilos dejan libre el camino.",
+      "day": "Una araña permanece junto a los hilos y se mueve cuando una gota queda suspendida en ellos. La observadora mantiene distancia para no hacer caer hojas sobre la tela. Otra gota llega por debajo de una raíz.",
+      "night": "Los hilos desaparecen antes que el cauce deje de oírse. La observadora sube hacia los helechos sin buscar otra señal para justificar su visita. El agua conserva actividad propia, aunque la noche limite lo que puedes distinguir.",
+      "rain": "Las gotas vencen algunos hilos y la araña se recoge junto a la raíz. Una hoja retenida desvía la corriente; otro hilo se estira sobre el agua.",
+      "clear": "",
+      "return": "Vuelves al apoyo natural entre raíces. Desde él puedes mirar el borde de los hilos sin hacer caer hojas sobre la corriente.",
+      "examine": {
+        "hilos": {
+          "text": "La tela permanece baja cerca de raíces, sin cerrar la ribera completa.",
+          "requires_time": [
+            "día"
+          ]
+        },
+        "hojas": "Algunas desvían una corriente pequeña mientras otras siguen retenidas."
+      },
+      "exits": {
+        "norte": "nhal_helechos_bajos",
+        "sur": "nhal_ribera_relevo"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [
+        {
+          "creature": "hilaria_niebla",
+          "text": "Una tela baja ocupa el espacio húmedo entre raíces, fuera de la franja de tránsito.",
+          "requires_time": [
+            "día"
+          ]
+        }
+      ],
+      "actions": []
+    },
+    "nhal_ribera_relevo": {
+      "id": "nhal_ribera_relevo",
+      "name": "Paso hacia Lethra",
+      "region": "nhal",
+      "kind": "road",
+      "description": "Árboles y raíces acompañan el canal hasta una plataforma común. Al norte vuelve la ribera hacia Velmora; al sur empieza el tramo de Lethra. Dos notas comparan apoyos de madera y niveles de agua de ambos lados. La sombra del dosel alcanza parte del canal.",
+      "day": "Una mensajera pregunta por el nivel del agua en Lethra. Su compañero aparta hojas del apoyo mientras ella revisa el borde de la plataforma.",
+      "night": "Las notas están cubiertas y una luz baja queda en la plataforma. La mensajera anota su llegada; el tramo oscuro tendrá que esperar a ser revisado.",
+      "rain": "La lluvia borra algunos reflejos y vuelve más útil comparar las notas del nivel. Las raíces reciben agua desde arriba, distinta de la que circula por el canal. El mantenimiento necesita ver ambos movimientos para decidir dónde esperar.",
+      "clear": "",
+      "return": "Reconoces las dos notas, una del humedal y otra del bosque. Las marcas siguen indicando qué apoyo revisó cada persona.",
+      "examine": {
+        "notas": "Cada una mantiene autor, lado de llegada y condición de agua.",
+        "plataforma": "El apoyo se revisa desde la ribera; no permite cruzar directamente el canal."
+      },
+      "exits": {
+        "norte": "nhal_agua_sombreada",
+        "sur": "lethra_relevo_raices"
+      },
+      "arrivals": {
+        "lethra_relevo_raices": "La sombra alcanza ahora las dos orillas. Una marca pintada en la cara seca de una raíz permite seguir sin confundir el canal con la senda.",
+        "nhal_agua_sombreada": "El canal se ensancha al salir de las raíces bajas. En la plataforma compartida puedes ver hasta las tablas claras del relevo siguiente."
+      },
+      "npcs": [],
+      "signals": [],
+      "actions": [],
+      "wildlife_pool": [
+        {
+          "creature": "rondamusgo",
+          "text": "Una hebra de pelo con musgo queda en la raíz que toca el canal. En el barro del otro lado se ven semillas caídas antes de que el agua las cubra.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "rasgacorteza",
+          "text": "Los animales pequeños han dejado de moverse. Junto a un tronco, el Rasgacorteza levanta la cabeza.",
+          "persistent_trace": false
+        }
+      ]
+    },
+    "nhal_sendero_altura": {
+      "id": "nhal_sendero_altura",
+      "name": "Subida entre árboles",
+      "region": "nhal",
+      "kind": "road",
+      "description": "La senda gana pendiente y los árboles empiezan a separarse. Al sur vuelves a las casas de Velmora; al norte subes a una roca entre las copas. Un descanso de raíces permite esperar a quien baja con carga. Detrás quedan las luces de las viviendas.",
+      "day": "Una viajera recoge su cubierta para que no enganche en las raíces del ascenso. El vecino que espera en el descanso señala el extremo que aún arrastra sobre el suelo.",
+      "night": "Las luces de las casas se pierden entre árboles, más abajo. El farol ilumina la raíz del descanso y se apaga antes del borde cubierto.",
+      "rain": "El agua baja por la franja empinada y deposita hojas sobre el apoyo inferior. La viajera cambia dónde espera mientras revisa su cubierta. El bosque conserva sombra, pero la pendiente empieza a decidir cómo se mueve la lluvia.",
+      "clear": "",
+      "return": "Recuerdas el descanso donde pasó la carga. Camino de las casas, los árboles vuelven a juntarse; detrás de los primeros troncos se ven luces bajas.",
+      "examine": {
+        "borde": "Las hojas cubren una caída corta que no forma parte del descanso.",
+        "raíces": "El apoyo interior mantiene espacio para dejar pasar una carga."
+      },
+      "exits": {
+        "sur": "nhal_calle_hogares",
+        "norte": "nhal_roca_entre_copas"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [],
+      "actions": [
+        {
+          "id": "nhal_rodeo_visible_conocido",
+          "label": "Conocer el rodeo para evitar la parada",
+          "text": "Recorres el borde visible entre las raíces, sin entrar bajo el alero donde alguien podría cortarte el paso. Reconoces un rodeo que puedes utilizar al regresar. No has eliminado a nadie del bosque.",
+          "set_flags": [
+            "nhal_rodeo_visible_conocido"
+          ],
+          "forbids_flags": [
+            "nhal_rodeo_visible_conocido"
+          ],
+          "journal": "Recorres el borde visible entre las raíces, sin entrar bajo el alero donde alguien podría cortarte el paso. Reconoces un rodeo que puedes utilizar al regresar. No has eliminado a nadie del bosque."
+        }
+      ],
+      "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Una persona sale del lado oscuro del sendero y exige tu mochila. Lleva un palo corto; el camino de vuelta a las casas sigue abierto al sur.",
+          "persistent_trace": false,
+          "forbids_flags": [
+            "nhal_rodeo_visible_conocido"
+          ]
+        },
+        {
+          "creature": "rondamusgo",
+          "text": "Pelo áspero con musgo adherido queda entre hojas; varias semillas fueron transportadas hasta una raíz.",
+          "persistent_trace": false
+        }
+      ],
+      "memories": [
+        {
+          "requires_flags": [
+            "nhal_rodeo_visible_conocido"
+          ],
+          "text": "Reconoces el borde que permite evitar la parada sin cambiar de ruta regional."
+        }
+      ]
+    },
+    "nhal_roca_entre_copas": {
+      "id": "nhal_roca_entre_copas",
+      "name": "Roca entre los árboles",
+      "region": "nhal",
+      "kind": "landmark",
+      "description": "Una roca ancha permite mirar entre las copas hacia una ladera de Hoshai. Al sur bajas hacia Velmora; al norte llegas al relevo. Hay sitio para observar lejos del borde. Los árboles tapan partes del camino, incluso desde aquí arriba.",
+      "day": "Un Felaryn mira la ladera lejana y después pregunta por el apoyo cercano que no podía ver desde arriba. Una cuidadora Vesperi explica la marca del siguiente tronco. La viajera de bosque señala una raíz cercana; la de montaña busca el hueco que permite ver la ladera siguiente.",
+      "night": "La vista de ladera desaparece y los troncos cercanos conservan referencias con luz baja. El viajero guarda sus notas de altura. La roca sigue ofreciendo apoyo, aunque hoy su principal utilidad sea esperar a otra persona.",
+      "rain": "El agua corre sobre la roca y reúne hojas del dosel en la parte exterior. La cuidadora mantiene libre el apoyo interior. La observación de la ladera cambia mientras las marcas cercanas todavía pueden comprobarse.",
+      "clear": "",
+      "return": "Reconoces el apoyo de la roca y los árboles que tapaban la ladera. El relevo sigue al norte; por el sur vuelves a bajar hacia las casas.",
+      "examine": {
+        "apoyo": "El interior conserva suelo fuera de la franja que recibe hojas arrastradas.",
+        "ladera": "Se ve una sección, no el camino completo hasta Khariel."
+      },
+      "exits": {
+        "sur": "nhal_sendero_altura",
+        "norte": "nhal_relevo_altura"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [],
+      "actions": []
+    },
+    "nhal_relevo_altura": {
+      "id": "nhal_relevo_altura",
+      "name": "Alto de las Raíces",
+      "region": "nhal",
+      "kind": "landmark",
+      "description": "Bajo una cubierta se guardan notas de la ruta. Un cordel fuera del camino marca los apoyos para las cargas. Al sur bajas hacia Velmora; al oeste sigues hacia Hoshai. Dos árboles tapan pronto la senda. Una cuidadora extiende una nota y otra mira las marcas cercanas. Una talla sencilla identifica el Alto de las Raíces. Dos apoyos bajo la cubierta sirven para descansar antes de tomar el paso hacia la sierra.",
+      "day": "Una cuidadora alisa una nota y seca con la manga el rincón que se había mojado. Su compañera dibuja una raíz al margen y pregunta dónde termina su curva.",
+      "night": "Entre los dos árboles se oye moverse una rama. La talla del relevo recoge una luz pequeña; las notas permanecen bajo la cubierta.",
+      "rain": "Las notas se abren de una en una para mantenerlas secas. Una habla de nieve en Hoshai; aquí las gotas caen entre las raíces.",
+      "clear": "",
+      "return": "Reconoces el cordel y la cubierta de las notas. Al bajar hacia el sur vuelven a juntarse las raíces y las hojas sobre la senda.",
+      "examine": {
+        "cuerda": "Registra disposición de cargas y se mantiene fuera de la ruta.",
+        "fundas": "Cada funda lleva el nombre de un tramo y la hora de la última observación."
+      },
+      "exits": {
+        "sur": "nhal_roca_entre_copas",
+        "oeste": "hoshai_estacion_cuerda"
+      },
+      "arrivals": {
+        "nhal_roca_entre_copas": "El último tramo de bosque desemboca en dos árboles altos. Bajo su cubierta, las notas distinguen los apoyos de raíz de las piedras del camino de montaña.",
+        "hoshai_estacion_cuerda": "El cordel de la sierra termina en un apoyo de raíz. Más allá de la cubierta, las marcas continúan en caras de corteza que reciben muy poca luz."
+      },
+      "npcs": [],
+      "signals": [],
+      "actions": [],
+      "states": [
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_weather": [
+            "niebla"
+          ],
+          "overrides": {
+            "day": "La raíz dibujada todavía se ve en el suelo próximo, pero su extremo se pierde. Las dos cuidadoras comparan la nota con ese tramo y esperan antes de añadir la curva."
+          }
+        }
+      ],
+      "focus": [
+        "activity"
+      ]
+    },
+    "nhal_senda_recipiente": {
+      "id": "nhal_senda_recipiente",
+      "name": "Senda hacia Elin",
+      "region": "nhal",
+      "kind": "road",
+      "description": "La senda sale del patio hacia una casa de trabajo. Al oeste vuelves a las voces de la reunión; al este está la puerta de Elin. Una cesta remendada espera junto al umbral. Su tira señala el recipiente prestado que debe volver al patio.",
+      "day": "Una artesana detiene el corte al oír pasos y deja la pieza en un hueco del banco. Mira la tira del recipiente y pregunta quién la ató.",
+      "night": "El umbral conserva una luz pequeña y el corte de madera ya terminó. La cesta permanece del lado público para una devolución acordada. Las voces del patio llegan incompletas y no permiten saber cómo concluyó su relato.",
+      "rain": "La cesta se recoge bajo el umbral y la tira se mantiene lejos de la madera mojada. La artesana cubre la pieza de trabajo. El recipiente espera cubierto en el apoyo alto. Elin podrá recogerlo cuando el paso deje de recibir agua.",
+      "clear": "",
+      "return": "La tira de tela señala el mismo apoyo fuera del barro. Puedes situar el umbral de Elin desde aquí, aunque las raíces oculten la puerta.",
+      "examine": {
+        "tira": "La tira lleva el nombre de quien espera la devolución y sigue atada al asa.",
+        "cesta": "Su asa remendada pertenece al trabajo cotidiano de quien recibe visitantes."
+      },
+      "exits": {
+        "oeste": "nhal_patio_relato",
+        "este": "nhal_umbral_elin"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [],
+      "actions": [],
+      "wildlife_pool": [
+        {
+          "creature": "rondamusgo",
+          "text": "Junto a la tira de tela, una semilla se ha prendido al pelo áspero que quedó en la corteza. Los rastros siguen por debajo del apoyo de paso.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "rasgacorteza",
+          "text": "Los animales pequeños han dejado de moverse. Junto a un tronco, el Rasgacorteza levanta la cabeza.",
+          "persistent_trace": false
+        }
+      ]
+    },
+    "nhal_umbral_elin": {
+      "id": "nhal_umbral_elin",
+      "name": "Puerta de Elin",
+      "region": "nhal",
+      "kind": "landmark",
+      "description": "Elin trabaja junto a la puerta abierta. El recipiente reparado descansa sobre un apoyo y tiene un raspón que no figura en el relato del patio. Un banco permite escuchar sin entrar en la casa. La salida del oeste vuelve a la senda, junto a la cesta remendada.",
+      "day": "La artesana mira el raspón y se ríe: recuerda la sopa que acabó sobre su manga cuando prestó el recipiente. Apoya una mano en el banco y señala la abolladura del asa.",
+      "night": "La artesana guarda la madera de trabajo y recibe una conversación breve en el banco exterior. La puerta no queda abierta por obligación. Si la visita continúa, alguien deberá volver al patio con lo que realmente escuchó.",
+      "rain": "El recipiente se acerca al interior del umbral y el banco queda bajo el alero. La artesana señala el raspón; una gota toca el borde antes de que termine de contarlo.",
+      "clear": "",
+      "return": "Reconoces el raspón del apoyo junto a la entrada. La voz de Elin llega desde el lado del recipiente; el patio del relato queda detrás de la senda.",
+      "examine": {
+        "raspón": "El recipiente golpeó un apoyo durante una entrega de comida.",
+        "banco": "Permite una visita sin cruzar la puerta privada de la casa."
+      },
+      "exits": {
+        "oeste": "nhal_senda_recipiente"
+      },
+      "arrivals": {},
+      "npcs": [
+        "nhal_elin"
+      ],
+      "signals": [],
+      "actions": [
+        {
+          "id": "nhal_escuchar_elin",
+          "label": "Escuchar la parte de Elin",
+          "text": "Elin señala el raspón y cuenta cómo recibió comida con una mano ocupada. La cena llegó fría y el recipiente golpeó un apoyo. Se ríe al recordar que siguió sosteniendo la puerta mientras alguien le pedía la olla.",
+          "set_flags": [
+            "nhal_voz_escuchada"
+          ],
+          "requires_flags": [],
+          "forbids_flags": [
+            "nhal_voz_escuchada"
+          ],
+          "scope": "player",
+          "journal": "Elin recibió la comida fría y produjo el raspón al sostener también la puerta.",
+          "requires_npc": "nhal_elin"
+        },
+        {
+          "id": "nhal_devolver_recipiente",
+          "label": "Acordar la devolución del recipiente",
+          "text": "Elin entrega el recipiente y anota a qué patio debe volver. Leris lo recibe sobre el apoyo de las reuniones. El umbral de Elin queda libre para otra pieza de trabajo y la próxima comida tiene dónde repartirse.",
+          "set_flags": [
+            "nhal_recipiente_devuelto"
+          ],
+          "requires_flags": [
+            "nhal_relato_ampliado"
+          ],
+          "forbids_flags": [
+            "nhal_recipiente_devuelto"
+          ],
+          "scope": "world",
+          "journal": "El recipiente vuelve al uso compartido en el patio.",
+          "requires_npc": "nhal_elin"
+        },
+        {
+          "id": "nhal_entregar_recipiente",
+          "label": "Devolver el recipiente a Elin",
+          "text": "Elin recibe su recipiente pequeño y escucha por qué dejaste la tabla en el secadero. «Así ninguna ayuda deja otra cosa rota detrás.»",
+          "requires_items": {
+            "recipiente_elin": 1
+          },
+          "consume_items": {
+            "recipiente_elin": 1
+          },
+          "set_flags": [
+            "nhal_entrega_elin_completada"
+          ],
+          "forbids_flags": [
+            "nhal_entrega_elin_completada"
+          ],
+          "requires_npc": "nhal_elin"
+        }
+      ],
+      "memories": [
+        {
+          "requires_flags": [
+            "nhal_recipiente_devuelto"
+          ],
+          "text": "El apoyo del recipiente permanece vacío. Elin conserva espacio para su trabajo y recuerda que el objeto volvió al patio, no que alguien lo tomó como premio."
+        }
+      ],
+      "states": [
+        {
+          "requires_flags": [
+            "nhal_recipiente_devuelto"
+          ],
+          "overrides": {
+            "description": "Elin prepara una pieza de madera junto a la puerta abierta. El apoyo del recipiente está vacío: ya volvió al patio. Un banco queda fuera, cerca de las herramientas. La salida del oeste vuelve a la senda. La cesta remendada sigue marcando el camino.",
+            "day": "Elin vuelve una pieza sobre el apoyo adaptado y prueba un borde con los dedos. La tarea avanza por gestos pequeños. El recipiente ya volvió al patio, dejando lugar para este trabajo junto a la puerta.",
+            "rain": "Elin acerca la madera al interior del umbral y mueve el banco bajo el alero. El apoyo vacío permanece fuera del goteo. Entre golpes de lluvia puede escucharse su respuesta sin entrar en la casa privada.",
+            "examine": {
+              "raspón": "El recipiente con el raspón volvió al patio. En su apoyo queda ahora madera de otro trabajo; Elin conserva el recuerdo de la entrega de comida."
+            },
+            "clear": "Elin vuelve una pieza sobre el apoyo adaptado y prueba un borde con los dedos. La tarea avanza por gestos pequeños. El recipiente ya volvió al patio, dejando lugar para este trabajo junto a la puerta."
+          }
+        },
+        {
+          "requires_flags": [
+            "nhal_entrega_elin_completada"
+          ],
+          "overrides": {
+            "description": "Elin trabaja junto a la puerta abierta. El recipiente pequeño que devolviste queda junto a la cesta remendada. El apoyo del recipiente del relato ocupa el otro lado. Un banco espera fuera de la puerta. Al oeste vuelves a la senda.",
+            "day": "Elin comprueba el borde del recipiente pequeño que trajiste antes de apoyar otra pieza de madera. Desde el patio llega la voz de quien continúa el relato.",
+            "return": "El recipiente pequeño del taller vuelve a verse junto a la cesta. El apoyo del relato queda separado, al otro lado del banco.",
+            "examine": {
+              "recipiente": "El recipiente pequeño del taller descansa junto a la cesta. La tabla sigue sosteniendo el juguete y el aro vacío queda en el secadero."
+            }
+          }
+        }
+      ],
+      "dawn": "Elin descubre un recipiente que quedó frío. Se ríe al reconocer qué parte del relato hizo olvidar a todos que aún faltaba comer.",
+      "dusk": "Elin coloca un asiento cerca de la puerta. La comida se reparte en porciones menores, para que quien llegue tarde pueda sentarse sin pedir que empiece otra cena."
+    },
+    "nhal_rincon_semillas": {
+      "id": "nhal_rincon_semillas",
+      "name": "Rincón de semillas",
+      "region": "nhal",
+      "kind": "wilderness",
+      "description": "Entre las raíces quedan semillas, restos de comida y tierra removida. Un cuadrúpedo pequeño ha dejado pelo áspero pegado al musgo. Una semilla rueda sobre las hojas y se detiene junto a otra mordida. La senda del sur vuelve a las piedras del camino.",
+      "day": "El animal transporta una semilla unos pasos y se queda inmóvil cuando llega una sombra nueva. Una observadora espera fuera de las raíces. Entre sus patas queda otra cáscara recién abierta.",
+      "night": "Las semillas pierden detalle bajo las hojas. La observadora vuelve por el sendero occidental; desde el refugio llega un crujido breve.",
+      "rain": "Las semillas se juntan en una depresión y el animal busca refugio algo más alto. La lluvia mueve parte del musgo adherido a las hojas. Observar el cambio no vuelve inútil lo aprendido sobre su transporte de alimento.",
+      "clear": "",
+      "return": "Reconoces el rincón por el pelo adherido a la raíz. Algunas semillas quedan ahora sobre una hoja distinta, fuera del hueco donde miraste antes.",
+      "examine": {
+        "pelo": "Pelo áspero con musgo y hojas adheridas, compatible con una fauna pequeña del bosque.",
+        "semillas": "Algunas fueron transportadas por animales y otras se reunieron con agua."
+      },
+      "exits": {
+        "sur": "nhal_piedras_musgo"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [
+        {
+          "creature": "rondamusgo",
+          "text": "Pelo áspero con musgo adherido queda entre hojas; varias semillas fueron transportadas hasta una raíz.",
+          "requires_time": [
+            "día"
+          ]
+        }
+      ],
+      "actions": []
+    },
+    "nhal_raiz_marcada": {
+      "id": "nhal_raiz_marcada",
+      "name": "Raíz marcada",
+      "region": "nhal",
+      "kind": "wilderness",
+      "description": "Una raíz gruesa tiene la corteza recién rota, más clara que el resto. Las hojas aplastadas y los arrastres siguen hacia árboles muy juntos. Puedes detenerte sobre tierra firme sin pisar las marcas. La única senda vuelve al sur, hacia el árbol de corteza clara.",
+      "day": "Una cuidadora compara la corteza clara con un dibujo antiguo de la raíz. Sigue con el dedo las hojas aplastadas que salen de la senda y terminan bajo el árbol.",
+      "night": "La corteza rota pierde su color claro en la oscuridad. La cuidadora guarda el dibujo. Al sur aún se distingue la senda de regreso.",
+      "rain": "El agua oscurece corteza nueva y vieja, dejando más útil la comparación de hojas aplastadas. La cuidadora registra esa limitación junto al dibujo. La lluvia no borra todos los indicios ni autoriza conclusiones más amplias.",
+      "clear": "",
+      "return": "Reconoces la tierra firme junto a la raíz. Puedes mirar las marcas desde allí sin pisar las hojas aplastadas.",
+      "examine": {
+        "corteza": {
+          "text": "Las marcas tienen altura y anchura mayores que roces del animal pequeño.",
+          "requires_time": [
+            "día"
+          ],
+          "forbids_weather": [
+            "lluvia",
+            "tormenta"
+          ]
+        },
+        "hojas": "La franja aplastada se aparta de la senda. Al fondo, las hojas vuelven a cubrir el suelo entre dos raíces."
+      },
+      "exits": {
+        "sur": "nhal_corteza_clara"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [
+        {
+          "creature": "rasgacorteza",
+          "text": "Corteza recién rota y hojas aplastadas muestran un paso mayor que el de la fauna pequeña.",
+          "requires_time": [
+            "día"
+          ]
+        }
+      ],
+      "actions": [
+        {
+          "id": "nhal_atribuir_marcas",
+          "label": "Registrar la comparación de la raíz",
+          "text": "La cuidadora conserva tu comparación junto al dibujo y señala la condición de luz y suelo. El aviso distingue marcas mayores de roces pequeños sin identificar una criatura que nadie ha visto aquí.",
+          "set_flags": [
+            "nhal_marcas_registradas"
+          ],
+          "requires_flags": [],
+          "forbids_flags": [
+            "nhal_marcas_registradas"
+          ],
+          "scope": "world",
+          "journal": "Las marcas de raíz tienen una comparación atribuida y una condición registrada.",
+          "requires_time": [
+            "día"
+          ],
+          "forbids_weather": [
+            "lluvia",
+            "tormenta"
+          ]
+        }
+      ],
+      "memories": [
+        {
+          "requires_flags": [
+            "nhal_marcas_registradas"
+          ],
+          "text": "El dibujo incluye la condición de tu observación. La siguiente persona puede comparar desde suelo firme sin recibir una identidad de criatura que nunca se avistó."
+        }
+      ]
+    },
+    "nhal_sala_cuidados": {
+      "id": "nhal_sala_cuidados",
+      "name": "Cuarto de cuidados de Velmora",
+      "region": "nhal",
+      "kind": "interior",
+      "safe": true,
+      "description": "La luz de una ventana lateral alcanza la mesa sin deslumbrar el asiento. El suelo de madera queda libre de raíces y cargas. Al este vuelves al mercado; los paños limpios están apartados de las hojas que traen las capas.",
+      "exits": {
+        "este": "nhal_mercado_setas"
+      },
+      "npcs": [
+        "nhal_sira"
+      ],
+      "signals": [],
+      "actions": [],
+      "recovery_service": true,
+      "recovery_npc": "nhal_sira",
+      "day": "Sira acerca la lámpara a la mesa y pregunta por el golpe antes de abrir la caja de paños.",
+      "night": "Sira mantiene una lámpara y paños limpios preparados para quien llegue de noche.",
+      "rain": "La ropa mojada queda junto a la puerta, apartada del asiento y de los paños.",
+      "clear": "La puerta deja entrar aire sin acercar el polvo a la mesa.",
+      "return": "Sira te indica el asiento libre y pregunta cómo siguieron las heridas durante el camino.",
+      "examine": {
+        "cuidados": "El servicio cuesta dieciocho sellos. Recupera hasta el noventa por ciento de vitalidad, reduce un grado de herida y renueva el margen para descansar. No sustituye la decisión de evitar otra pelea."
+      },
+      "source": "Ampliación original autorizada: recuperación local del contrato existente"
+    }
+  },
+  "npcs": {
+    "nhal_leris": {
+      "id": "nhal_leris",
+      "name": "Leris",
+      "species": "vesperi",
+      "role": "narradora y reparadora de recipientes",
+      "home_room": "nhal_patio_relato",
+      "description": "Lleva hojas corregidas y no esconde las tachaduras. Cuando alguien aporta un detalle nuevo deja que termine, aunque la frase que esperaba leer quede peor.",
+      "topics": {
+        "relato": "Elin recibió el recipiente después. Si no la escuchamos, sólo contaremos la mitad del viaje.",
+        "raspon": "Sé cómo se reparó, pero no cómo se hizo. La diferencia cabe en una pregunta sencilla.",
+        "velmora": "Recordar juntos no obliga a que todos hayamos visto lo mismo."
+      },
+      "day": "Reúne voces y prepara hojas para una conversación.",
+      "night": "Lee historias incompletas bajo cubierta y guarda lo pendiente.",
+      "memory": {
+        "nhal_voz_escuchada": "Leris sabe que escuchaste a Elin, pero espera que atribuyas la observación antes de escribirla.",
+        "nhal_relato_ampliado": "Leris lee ahora el raspón como parte de una entrega de comida. El relato ganó una persona y un gesto, no una hazaña inventada.",
+        "hallazgo:rama_flexible": "Reconoce lo que llevas: «Rama flexible. Es de por aquí; mira el suelo cuando vuelvas a pasar.»"
+      }
+    },
+    "nhal_elin": {
+      "id": "nhal_elin",
+      "name": "Elin",
+      "species": "vesperi",
+      "role": "artesana de madera y antigua receptora del recipiente",
+      "home_room": "nhal_umbral_elin",
+      "description": "Después de una lesión de trabajo mueve una mano más despacio. Acerca los apoyos del banco y recuerda riéndose la comida que recibió.",
+      "topics": {
+        "recipiente": "Lo golpeé yo al recibirlo. Quería sostener comida y puerta con la misma mano; ninguna de las dos tareas tuvo paciencia.",
+        "leris": "Cuenta bien cuando deja lugar para lo que no vio. Dile que la cena estuvo fría y aun así fue buena.",
+        "madera": "Un apoyo nuevo puede devolver un uso sin prometer que el cuerpo volverá a ser idéntico.",
+        "entrega": {
+          "text": "Elin señala un recipiente pequeño del taller. «Es distinto del que usamos para repartir comida en el patio. El aro es mío; la tabla la prestó Desi. Pregúntale cómo retirarlo sin dejar otra pieza en el suelo.»",
+          "set_flags": [
+            "nhal_elin_recipiente_reconocido"
+          ]
+        }
+      },
+      "day": "Prepara piezas sobre apoyos adaptados.",
+      "night": "Guarda herramientas y recibe visitas breves en el umbral.",
+      "memory": {
+        "nhal_voz_escuchada": "Elin recuerda que escuchaste la parte doméstica del viaje, incluida la cena que llegó fría.",
+        "hallazgo:rama_flexible": "Reconoce lo que llevas: «Rama flexible. Es de por aquí; mira el suelo cuando vuelvas a pasar.»",
+        "nhal_entrega_elin_completada": "Elin conserva el recipiente reparado junto a su puerta y recuerda que respetaste el apoyo del taller."
+      },
+      "states": [
+        {
+          "requires_flags": [
+            "nhal_entrega_elin_completada"
+          ],
+          "overrides": {
+            "topics": {
+              "entrega": "El recipiente que trajiste queda junto a mi puerta. Desi conserva su tabla y el aro en el taller; pude recibirlo sin dejar las otras piezas sin apoyo."
+            }
+          }
+        }
+      ]
+    },
+    "nhal_desi": {
+      "id": "nhal_desi",
+      "name": "Desi",
+      "species": "vesperi",
+      "role": "reparadora de piezas domésticas",
+      "home_room": "nhal_taller_cortezas",
+      "description": "Desi intenta sostener una figura de corteza sobre tres apoyos. Al soltarla, una pata corta vuelve a caer. Se detiene a escuchar pasos pequeños que llegan desde una casa próxima.",
+      "topics": {
+        "figura": "Mi sobrino pidió un Rondamusgo que pudiera quedarse quieto. El de verdad tampoco quiso, así que quizá éste ya sea bastante parecido.",
+        "pata": "Las otras dos se sujetan. La tercera necesita que alguien mantenga el cuerpo mientras coloco la tira; hacerlo con una mano me deja otra vez al principio.",
+        "apoyo": {
+          "text": "«El aro puede llevarse. La tabla debe quedarse hasta que seque el juguete. Levanta el recipiente, no todo el apoyo.»",
+          "set_flags": [
+            "nhal_desi_apoyo_aclarado"
+          ]
+        }
+      },
+      "world_memory": {
+        "nhal_figura_firme": "Le ha hecho una madriguera con mi cesta. Tendré que pedir permiso para guardar las herramientas."
+      },
+      "states": [
+        {
+          "requires_flags": [
+            "nhal_figura_firme"
+          ],
+          "overrides": {
+            "description": "Desi recoge las tiras sobrantes de corteza. La figura ya no ocupa la mesa; desde una casa llegan pasos pequeños que la siguen llevando de un sitio a otro."
+          }
+        }
+      ],
+      "memory": {
+        "hallazgo:rama_flexible": "Reconoce lo que llevas: «Rama flexible. Es de por aquí; mira el suelo cuando vuelvas a pasar.»"
+      }
+    },
+    "nhal_varo": {
+      "id": "nhal_varo",
+      "name": "Varo",
+      "species": "vesperi",
+      "home_room": "nhal_mercado_setas",
+      "role": "comerciante de camino",
+      "description": "Varo comprueba si las ramas conservan flexibilidad antes de acercarlas al montón de resina. Las provisiones quedan bajo otra cubierta, lejos de las armas.",
+      "topics": {
+        "comprar": "Trabajo con arcos, varitas comunes y provisiones. Las ramas flexibles sirven para aros, las semillas para comparar cultivos y la resina para las uniones. El mercado de Vaisgard reúne más tipos de armas.",
+        "vender": "La mochila muestra únicamente los materiales que necesita este puesto y el precio antes de vender. Conserva lo que vayas a usar en un encargo o en el afinado.",
+        "recipiente": "Elin espera un recipiente, pero Leris no sabe quién lo dejó junto al secadero. Pregunta a ambos y mira el apoyo; importa devolverlo con una explicación, no acusar a quien vive más cerca.",
+        "viajar_sin_pelear": "Desde el pueblo, pasa por la calle de hogares y sube un tramo: allí empieza el sendero de altura. A veces alguien exige equipaje junto al alero. Puedes enfrentarte, volver por donde llegaste o conocer el borde visible para evitar esa parada. No confundas a una persona con la fauna del bosque.",
+        "cuidados": "El lugar de cuidados está junto a Mercado de Velmora. Cuesta dieciocho sellos y atiende heridas, no sólo hambre. Está cerca del pueblo: no hace falta cruzar otras regiones."
+      },
+      "memory": {
+        "encargo_pagado:velmora_recipiente": "Varo mira hacia el umbral de Elin. «El recipiente llegó. Desi conserva la tabla bajo el juguete.»",
+        "nhal_entrega_elin_completada": "Varo agradece que preguntaras antes de mover las piezas: el taller y Elin pudieron seguir trabajando.",
+        "nhal_rodeo_visible_conocido": "Recuerda que conoces el borde exterior para evitar la parada. «Puedes elegir tus peleas; nadie te paga por quedarte atrapado.»"
+      },
+      "day": "Varo levanta una cubierta para mostrar el tamaño de una provisión y vuelve a cerrarla cuando caen hojas. Los arcos esperan donde las raíces dejan un apoyo firme.",
+      "night": "Varo baja la lámpara para ver una unión de madera. La cubierta de los alimentos permanece cerrada hasta que alguien pide preparar su salida.",
+      "states": [
+        {
+          "requires_flags": [
+            "nhal_entrega_elin_completada"
+          ],
+          "overrides": {
+            "topics": {
+              "recipiente": "Elin conserva el recipiente que llevaste. Desi mantuvo la tabla y el aro en el apoyo del taller. Ya no hace falta mover esa pieza del secadero."
+            }
+          }
+        }
+      ]
+    },
+    "nhal_sira": {
+      "id": "nhal_sira",
+      "name": "Sira",
+      "species": "vesperi",
+      "role": "cuidadora de viajeros",
+      "home_room": "nhal_sala_cuidados",
+      "description": "Sira acerca la lámpara a la mesa y pregunta por el golpe antes de abrir la caja de paños.",
+      "topics": {
+        "atención": "La recuperación cuesta dieciocho sellos: atendemos un grado de herida, quitamos la fatiga y recuperamos vitalidad hasta el noventa por ciento. Después vuelves a disponer de margen para descansar. No necesitas comprar un arma ni ganar una pelea para pedir cuidados.",
+        "salida": "Puedes volver por la misma puerta. Si no puedes pagar ahora, descansa lo que permita tu estado y evita entrar otra vez en peligro; una retirada no borra tu progreso.",
+        "descansar": "Descansar requiere un lugar seguro y usa un margen limitado. La provisión ayuda a recuperar fuerzas; los cuidados sirven para las heridas y para renovar ese margen. Mira tu estado antes de gastar."
+      },
+      "memory": {},
+      "day": "Sira acerca la lámpara a la mesa y pregunta por el golpe antes de abrir la caja de paños.",
+      "night": "Sira prepara una lámpara y recibe a quien necesite atención."
+    }
+  },
+  "stories": {
+    "nhal_recipiente": {
+      "id": "nhal_recipiente",
+      "title": "La mano del otro lado",
+      "premise": "Una historia compartida gana precisión cuando incluye a quien recibió el objeto, no sólo a quien lo reparó.",
+      "steps": [
+        {
+          "flag": "nhal_voz_escuchada",
+          "text": "Elin cuenta la entrega de comida."
+        },
+        {
+          "flag": "nhal_relato_ampliado",
+          "text": "Leris conserva la atribución de esa voz."
+        },
+        {
+          "flag": "nhal_recipiente_devuelto",
+          "text": "El recipiente vuelve al uso común."
+        }
+      ],
+      "source": "Historia íntegramente nueva autorizada para Velmora y Vesperi del PDF."
+    },
+    "nhal_figura": {
+      "id": "nhal_figura",
+      "title": "Un Rondamusgo que se quede quieto",
+      "premise": "Desi termina un regalo con una ayuda breve. El niño transforma después su uso sin que la historia tenga que entregar un objeto al jugador.",
+      "steps": [
+        "nhal_figura_firme"
+      ],
+      "source": "Historia original nueva autorizada"
+    }
+  }
+}

@@ -1,0 +1,86 @@
+[
+  {
+    "file": "hoshai.json",
+    "path": ".rooms.hoshai_repecho_raices.night",
+    "before": "Las raíces oscuras cruzan el sendero como líneas que el farol no explica de inmediato. Los viajeros bajan la carga antes de discutir la curva. La montaña deja poco lugar para corregir un giro a destiempo.",
+    "after": "Las raíces oscuras cruzan el sendero como líneas que el farol no explica de inmediato. Los viajeros bajan la carga antes de discutir la curva. El borde queda a un paso de la curva y el fardo casi roza la raíz más alta."
+  },
+  {
+    "file": "hoshai.json",
+    "path": ".rooms.hoshai_garganta_oeste.rain",
+    "before": "El agua se reúne en pequeñas juntas antes de desaparecer entre cascajos occidentales. Las cubiertas mojan una carga que enseguida recoge polvo. La transición exige revisar el apoyo y el envoltorio, no elegir cuál región parece más amable.",
+    "after": "El agua se reúne en pequeñas juntas antes de desaparecer entre cascajos occidentales. Las cubiertas mojan una carga que enseguida recoge polvo. Una viajera levanta la tela mojada y limpia el polvo que se pegó al apoyo."
+  },
+  {
+    "file": "korven.json",
+    "path": ".rooms.korven_meseta_baja.rain",
+    "before": "La lluvia golpea el tramo abierto antes de que la pared empiece a gotear. Los recipientes se apartan de una hendidura donde cae agua con polvo. La sombra no equivale a un techo cuando cambia el tiempo.",
+    "after": "La lluvia golpea el tramo abierto antes de que la pared empiece a gotear. Los recipientes se apartan de una hendidura donde cae agua con polvo. Las gotas alcanzan también el centro de la sombra, entre las dos piedras."
+  },
+  {
+    "file": "korven.json",
+    "path": ".rooms.korven_hendidura_transito.day",
+    "before": "Una conductora baja de su carro para mirar la tabla antes de entrar. El viajero que viene del oeste espera en el asiento de revisión. Las cargas no prueban cuál puede imponerse al estrechamiento.",
+    "after": "Una conductora baja de su carro para mirar la tabla antes de entrar. El viajero que viene del oeste espera en el asiento de revisión. El carro queda quieto hasta que se oyen pasos saliendo por la entrada opuesta."
+  },
+  {
+    "file": "korven.json",
+    "path": ".rooms.korven_desvio_horno.day",
+    "before": "Una alfarera retira un fragmento del paso y lo compara con otro que lleva envuelto. No busca una reliquia de fundadores desconocidos. Quiere saber qué trabajo quedó mal acabado antes de decidir si reparará un recipiente parecido.",
+    "after": "Una alfarera retira un fragmento del paso y lo compara con otro que lleva envuelto. Alinea los dos bordes sobre la tela y gira el fragmento que tiene una pared más gruesa."
+  },
+  {
+    "file": "edran.json",
+    "path": ".rooms.valdren_graneros.return",
+    "before": "Las puertas a distinta altura explican qué almacén recibe primero una carga mojada. La esquina tapada es pequeña; su efecto se extiende hasta el paso entero.",
+    "after": "Reconoces la puerta baja del almacén. El agua se reúne delante de ella y deja una línea de barro hasta la esquina tapada."
+  },
+  {
+    "file": "edran.json",
+    "path": ".rooms.edran_salida_huertos.return",
+    "before": "La curva junto a la acequia deja de parecer un desvío casual. Mantiene los carros fuera del huerto húmedo y permite entrar al campo desde un borde firme.",
+    "after": "Reconoces la curva junto a la acequia. Las rodadas rodean el huerto húmedo y llegan al campo por el borde firme."
+  },
+  {
+    "file": "edran.json",
+    "path": ".rooms.edran_acequia.return",
+    "before": "Puedes comparar la corriente con el tramo seco. Ya no buscas una pérdida invisible: el agua está tomando la abertura equivocada delante de tus ojos.",
+    "after": "La corriente vuelve a doblar hacia la abertura tapada. Recuerdas el tramo seco que queda detrás de las hojas."
+  },
+  {
+    "file": "edran.json",
+    "path": ".rooms.edran_calzada.return",
+    "before": "La reparación clara sitúa la curva aunque el hito siga oculto. El camino cambia de superficie antes de llegar al cambio de región.",
+    "after": "La reparación clara sitúa la curva aunque el hito siga oculto. Tras la curva, la hierba vuelve a crecer entre piedras separadas."
+  },
+  {
+    "file": "veyra.json",
+    "path": ".rooms.veyra_cantera_callada.examine.banco",
+    "before": "Hay cuñas antiguas sin marca legible. Su presencia demuestra extracción, no quién ordenó hacerla.",
+    "after": "Hay cuñas antiguas sin marca legible. Una cuña tiene el ancho de la ranura del banco; sus marcas están borradas."
+  },
+  {
+    "file": "lethra.json",
+    "path": ".rooms.lethra_ribera_seca.day",
+    "before": "Una recolectora limpia su cuchillo sobre una hoja seca y junta tallos sin raíces. Su cesta desprende un olor fresco que se distingue del barro. La ribera conserva una jornada propia aunque nadie te dirija la palabra.",
+    "after": "Una recolectora limpia su cuchillo sobre una hoja seca y junta tallos sin raíces. Su cesta desprende un olor fresco que se distingue del barro. Al cerrar la cesta, la recolectora retira una hoja del cierre."
+  },
+  {
+    "file": "lethra.json",
+    "path": ".rooms.lethra_ribera_firme.day",
+    "before": "Dos vecinas intercambian un recipiente sin bajarlo al suelo. Una tercera reconoce por la envoltura qué debe abrirse antes. La operación dura poco y deja libre la senda, como una conversación que ya conoce su turno.",
+    "after": "Dos vecinas intercambian un recipiente sin bajarlo al suelo. Una tercera reconoce por la envoltura qué debe abrirse antes. La tercera se aparta con la envoltura abierta y las otras dos vuelven a sus apoyos."
+  },
+  {
+    "file": "lethra.json",
+    "path": ".rooms.lethra_taller_fibras.actions.0.text",
+    "before": "Mira señala la costura corta de su hermana Sola y recuerda una reunión bajo lluvia. El objeto gana una relación con personas que todavía viven y trabajan en la región.",
+    "after": "Mira señala la costura corta de su hermana Sola y recuerda una reunión bajo lluvia. Mira pone el dedo sobre dos puntadas torcidas y sonríe al recordar quién las hizo."
+  },
+  {
+    "file": "lethra.json",
+    "path": ".rooms.lethra_hito_tierra.rain",
+    "before": "El agua reaparece abajo y confirma por qué los hitos se colocaron fuera de esa franja. La senda alta sigue visible mientras las huellas inferiores se borran. No hace falta esperar a quedar atrapado para comprender su diferencia.",
+    "after": "El agua reaparece abajo y confirma por qué los hitos se colocaron fuera de esa franja. La senda alta sigue visible mientras las huellas inferiores se borran. Una rama pasa flotando por debajo de la piedra menor."
+  }
+]

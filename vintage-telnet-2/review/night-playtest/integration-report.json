@@ -1,0 +1,298 @@
+{
+  "status": "PASS",
+  "scope": "Real API travel with temporary database and deterministic noon clock/RNG; regional search, local sale, purchase and gate-enabled traversal",
+  "events": [
+    {
+      "walk_to": "hoshai_escalones_sol",
+      "steps": 1
+    },
+    {
+      "walk_to": "hoshai_mercado_cintas",
+      "steps": 2
+    },
+    {
+      "commerce": "regional finding → local sale → provision purchase",
+      "seals": 14
+    },
+    {
+      "walk_to": "hoshai_balcon_valle",
+      "steps": 5
+    },
+    {
+      "walk_to": "hoshai_mercado_cintas",
+      "steps": 5
+    },
+    {
+      "local_quest": "cornice decision communicated to Luma",
+      "paid": 6
+    },
+    {
+      "walk_to": "hoshai_taller_apoyos",
+      "steps": 2
+    },
+    {
+      "walk_to": "hoshai_campamento_lona",
+      "steps": 4
+    },
+    {
+      "walk_to": "hoshai_cajas_camino",
+      "steps": 1
+    },
+    {
+      "walk_to": "hoshai_taller_apoyos",
+      "steps": 5
+    },
+    {
+      "local_quest": "Seran peaceful agreement → recovered pulley → Daren delivery",
+      "paid": 8,
+      "seals": 28
+    },
+    {
+      "walk_to": "edran_canal_entrada",
+      "steps": 24
+    },
+    {
+      "dungeon_actions": [
+        {
+          "id": "mirar",
+          "target": null,
+          "label": "Mirar"
+        },
+        {
+          "id": "observar",
+          "target": null,
+          "label": "Observar"
+        },
+        {
+          "id": "mover",
+          "target": "oeste",
+          "label": "Oeste · Zanja seca"
+        },
+        {
+          "id": "mover",
+          "target": "este",
+          "label": "Este · Salida por explorar"
+        },
+        {
+          "id": "mover",
+          "target": "sur",
+          "label": "Sur · Salida por explorar"
+        },
+        {
+          "id": "descansar",
+          "target": null,
+          "label": "Descansar"
+        },
+        {
+          "id": "hablar",
+          "target": "edran_nela",
+          "label": "Nela · canal"
+        },
+        {
+          "id": "hablar",
+          "target": "edran_nela",
+          "label": "Nela · personas"
+        },
+        {
+          "id": "hablar",
+          "target": "edran_nela",
+          "label": "Nela · materiales"
+        },
+        {
+          "id": "desequipar",
+          "target": "weapon",
+          "label": "Guardar arma"
+        },
+        {
+          "id": "equipar",
+          "target": "punal_camino",
+          "label": "Equipar Puñal de camino"
+        },
+        {
+          "id": "usar",
+          "target": "provision_basica",
+          "label": "Usar Provisión de camino"
+        }
+      ]
+    },
+    {
+      "walk_to": "edran_canal_refugio",
+      "steps": 2
+    },
+    {
+      "walk_to": "edran_canal_compuerta",
+      "steps": 2
+    },
+    {
+      "human_combat": "resolved alive, not added to bestiary",
+      "hp": 85
+    },
+    {
+      "walk_to": "edran_canal_repisa",
+      "steps": 1
+    },
+    {
+      "walk_to": "edran_canal_entrada",
+      "steps": 3
+    },
+    {
+      "dungeon": "Nela dialogue → Oren clue → human combat → box recovery → provision reward"
+    },
+    {
+      "walk_to": "nhal_mercado_setas",
+      "steps": 19
+    },
+    {
+      "walk_to": "nhal_umbral_elin",
+      "steps": 4
+    },
+    {
+      "walk_to": "nhal_taller_cortezas",
+      "steps": 4
+    },
+    {
+      "walk_to": "nhal_secadero_sombra",
+      "steps": 1
+    },
+    {
+      "walk_to": "nhal_umbral_elin",
+      "steps": 5
+    },
+    {
+      "walk_to": "nhal_mercado_setas",
+      "steps": 4
+    },
+    {
+      "local_quest": "Elin recipient returned without removing toy support",
+      "paid": 8
+    },
+    {
+      "walk_to": "lethra_mercado_hojas",
+      "steps": 10
+    },
+    {
+      "walk_to": "lethra_plataforma_secado",
+      "steps": 3
+    },
+    {
+      "walk_to": "lethra_cocina_reunion",
+      "steps": 2
+    },
+    {
+      "walk_to": "lethra_mercado_hojas",
+      "steps": 5
+    },
+    {
+      "local_quest": "Drying cloth decision communicated to Nima",
+      "paid": 6
+    },
+    {
+      "walk_to": "veyra_patio_senales",
+      "steps": 16
+    },
+    {
+      "walk_to": "veyra_puerta_piedra",
+      "steps": 3
+    },
+    {
+      "walk_to": "veyra_archivo_cargas",
+      "steps": 4
+    },
+    {
+      "walk_to": "veyra_patio_senales",
+      "steps": 1
+    },
+    {
+      "local_quest": "Tov witnessed delay → Nera accurate provenance → Arel report",
+      "paid": 6
+    },
+    {
+      "walk_to": "veyra_calle_toldos",
+      "steps": 3
+    },
+    {
+      "walk_to": "vaisgard_mercado",
+      "steps": 1
+    },
+    {
+      "walk_to": "veyra_calle_toldos",
+      "steps": 1
+    },
+    {
+      "local_quest": "No ghost material on rejected action; real loan unsellable, consumed once by canopy repair",
+      "paid": 6
+    },
+    {
+      "walk_to": "korven_entrante_piezas",
+      "steps": 11
+    },
+    {
+      "walk_to": "korven_horno_reposo",
+      "steps": 1
+    },
+    {
+      "walk_to": "korven_entrante_piezas",
+      "steps": 1
+    },
+    {
+      "local_quest": "Measured mug → kiln comparison → base recommendation → Taren delivery",
+      "paid": 8
+    },
+    {
+      "walk_to": "hoshai_mercado_cintas",
+      "steps": 21
+    },
+    {
+      "walk_to": "hoshai_taller_apoyos",
+      "steps": 2
+    },
+    {
+      "walk_to": "nhal_mercado_setas",
+      "steps": 11
+    },
+    {
+      "walk_to": "lethra_mercado_hojas",
+      "steps": 10
+    },
+    {
+      "walk_to": "veyra_patio_senales",
+      "steps": 16
+    },
+    {
+      "walk_to": "veyra_calle_toldos",
+      "steps": 3
+    },
+    {
+      "walk_to": "korven_entrante_piezas",
+      "steps": 11
+    },
+    {
+      "local_quest_persistence": "seven paid quests remain closed after relogin; repeat claims rejected without extra seals",
+      "balance": 62
+    },
+    {
+      "walk_to": "veyra_calle_toldos",
+      "steps": 15
+    },
+    {
+      "walk_to": "vaisgard_mercado",
+      "steps": 1
+    },
+    {
+      "walk_to": "veyra_calle_toldos",
+      "steps": 1
+    },
+    {
+      "walk_to": "vaisgard_mercado",
+      "steps": 1
+    },
+    {
+      "walk_to": "veyra_calle_toldos",
+      "steps": 1
+    },
+    {
+      "alternate_loan_branch": "Second real account chooses supports without consuming loan, returns exactly one unused reed to Bela; repeated return rejected; paid once",
+      "paid": 6
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "scope": "Structural authored catalog, flag-to-observable-condition audit; not literary approval",
+  "counts": {
+    "regions": 6,
+    "rooms": 162,
+    "npcs": 21,
+    "creatures": 15,
+    "stories": 12,
+    "items": 3,
+    "quests": 3
+  },
+  "unconsumed_flags": {},
+  "image_assets": []
+}

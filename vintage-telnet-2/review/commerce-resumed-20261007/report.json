@@ -1,0 +1,18 @@
+{
+  "result": [
+    {
+      "width": 320,
+      "visibleDamage": true,
+      "visibleRecovery": true,
+      "purchaseWorked": true,
+      "errors": []
+    },
+    {
+      "width": 393,
+      "visibleDamage": true,
+      "visibleRecovery": true,
+      "purchaseWorked": true,
+      "errors": []
+    }
+  ]
+}

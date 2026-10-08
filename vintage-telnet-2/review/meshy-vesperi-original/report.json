@@ -1,0 +1,13 @@
+{
+  "phase": "original",
+  "results": [
+    {
+      "width": 320,
+      "loaded": true,
+      "canvasesAfterDispose": 0,
+      "scope": "Visual source comparison only"
+    }
+  ],
+  "errors": [],
+  "limits": "No animation clips supplied. Visual canon requires screenshot inspection."
+}

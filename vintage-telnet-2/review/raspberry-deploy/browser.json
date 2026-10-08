@@ -1,0 +1,29 @@
+{
+  "scope": "Real Chrome accessing public Tailscale Funnel on Raspberry, anonymous entry and separate DM login, no production mutations or invented authenticated gameplay",
+  "results": [
+    {
+      "width": 1440,
+      "publicGameHttp": 200,
+      "directorSeparate": true,
+      "modelAndNewArtHttp": 200,
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "width": 393,
+      "publicGameHttp": 200,
+      "directorSeparate": true,
+      "modelAndNewArtHttp": 200,
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "width": 320,
+      "publicGameHttp": 200,
+      "directorSeparate": true,
+      "modelAndNewArtHttp": 200,
+      "overflow": false,
+      "errors": []
+    }
+  ]
+}

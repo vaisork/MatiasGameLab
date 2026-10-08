@@ -1,0 +1,41 @@
+{
+  "scope": "Real browser against isolated HTTP server 8098; new level1 characters; material found through ordinary search; no production writes or seeded inventory. Isolated clock advances 30 minutes per case to renew shared search stock.",
+  "results": [
+    {
+      "width": 1440,
+      "materialVisible": true,
+      "dialog": "Afinar Espada de juramento: daño base 10 → 11. Coste: 12 sellos y 1 Piedra veteada. Sólo una vez por pieza. No activa ni valida Forja.",
+      "cancelPreservesState": true,
+      "acceptedCost": 12,
+      "damageBefore": 10,
+      "damageAfter": 11,
+      "materialConsumed": 1,
+      "repeatOfferRemoved": true,
+      "errors": []
+    },
+    {
+      "width": 393,
+      "materialVisible": true,
+      "dialog": "Afinar Espada de juramento: daño base 10 → 11. Coste: 12 sellos y 1 Piedra veteada. Sólo una vez por pieza. No activa ni valida Forja.",
+      "cancelPreservesState": true,
+      "acceptedCost": 12,
+      "damageBefore": 10,
+      "damageAfter": 11,
+      "materialConsumed": 1,
+      "repeatOfferRemoved": true,
+      "errors": []
+    },
+    {
+      "width": 320,
+      "materialVisible": true,
+      "dialog": "Afinar Espada de juramento: daño base 10 → 11. Coste: 12 sellos y 1 Piedra veteada. Sólo una vez por pieza. No activa ni valida Forja.",
+      "cancelPreservesState": true,
+      "acceptedCost": 12,
+      "damageBefore": 10,
+      "damageAfter": 11,
+      "materialConsumed": 1,
+      "repeatOfferRemoved": true,
+      "errors": []
+    }
+  ]
+}

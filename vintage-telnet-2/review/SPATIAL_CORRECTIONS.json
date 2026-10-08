@@ -1,0 +1,103 @@
+{
+  "scope": "Author correction record; independent recheck still required",
+  "findings": [
+    {
+      "room": "nhal_secadero_sombra",
+      "original_issue": "una senda al norte alcanza viviendas más altas",
+      "removed": true,
+      "current_description": "El secadero oriental recibe una franja de luz por una abertura que no permanece igual durante todo el día. Los objetos se colocan según qué parte necesita aire o calor, sobre apoyos pequeños que pueden moverse. La salida vuelve al taller del oeste. Por encima del techado se ven viviendas más altas entre las copas. Un recipiente remendado espera junto a un juguete de madera. Las dos piezas tienen dueños distintos y una misma necesidad de volver al uso, aunque una parezca menos importante a quien mira desde fuera.",
+      "exits": {
+        "oeste": "nhal_taller_cortezas"
+      }
+    },
+    {
+      "room": "nhal_calle_hogares",
+      "original_issue": "El secadero queda al oeste por una conexión lateral",
+      "removed": true,
+      "current_description": "Las viviendas al norte del patio se sitúan en niveles pequeños entre árboles, con entradas que dejan libres raíces y paso. Los umbrales públicos reciben visitas antes de alcanzar las puertas privadas. Una luz junto a cada tarea permite distinguir una reparación de una comida sin mostrar todo el interior. Al sur se vuelve al patio del relato; una senda norte sale hacia el Dosel Alto. Desde cada umbral se distinguen los próximos; entre las viviendas, los árboles mantienen franjas oscuras.",
+      "exits": {
+        "sur": "nhal_patio_relato",
+        "norte": "nhal_sendero_altura"
+      }
+    },
+    {
+      "room": "nhal_mercado_setas",
+      "original_issue": "Una senda occidental baja hacia el agua",
+      "removed": true,
+      "current_description": "El mercado al sur del claro reúne cestas bajo cubiertas separadas, dejando pasillos de suelo firme entre raíces. Las hojas que llegan con alimentos se apartan sobre una mesa de revisión; las cestas abiertas quedan detrás de las personas que las cuidan. La salida norte vuelve al claro de Velmora; al este se entra en la cocina de raíces y otra oriental conduce a una cocina común. Los olores permiten distinguir tareas, pero no garantizan que toda seta observada en el bosque pueda comerse. Aquí preguntar forma parte del abastecimiento.",
+      "exits": {
+        "norte": "velmora_centro",
+        "este": "nhal_cocina_raices"
+      }
+    },
+    {
+      "room": "hoshai_mercado_cintas",
+      "original_issue": "una entrada al norte conduce al patio de los hogares",
+      "removed": true,
+      "current_description": "El mercado oriental se instala entre muros bajos que cortan el viento sin tapar la vista. Los puestos tienen barras donde se prueban ataduras y superficies estrechas para repartir comida en bultos pequeños. La plaza queda al oeste; la salida occidental vuelve al patio de Khariel, desde donde se alcanza el patio de los hogares. Las cintas de colores no distinguen familias enemigas: recuerdan qué envoltorio debe abrirse primero y cuál conviene mantener seco hasta llegar al siguiente descanso.",
+      "exits": {
+        "oeste": "khariel_centro"
+      }
+    },
+    {
+      "room": "korven_mirador_grietas",
+      "original_issue": "Al norte vuelve una calle al patio",
+      "removed": true,
+      "current_description": "El lado oriental de la cisterna se abre hacia un mirador bajo, protegido por un borde de piedra. Brumak queda detrás y los pedrales aparecen como plataformas cortadas por hendiduras. Una franja oscura cruza el terreno exterior sin mostrar su profundidad. Al oeste se vuelve a la cisterna por un paso corto; al sur se alcanza un cauce de observación. El lugar sirve para relacionar movimientos lejanos con entradas del pueblo, no para declarar seguro lo que parece plano desde arriba.",
+      "exits": {
+        "oeste": "korven_cisterna_comun",
+        "sur": "korven_cauce_observacion"
+      }
+    },
+    {
+      "room": "lethra_muelle_vecinal",
+      "original_issue": "al oeste se abre una ribera de observación",
+      "removed": true,
+      "current_description": "El muelle continúa al sur del mercado y reúne apoyos de altura distinta junto a pequeñas embarcaciones. Las cestas vacías esperan agrupadas por dueño, con asas reparadas que resultan reconocibles para quienes viven aquí. Una senda oriental conduce a viviendas y el regreso norte conduce al mercado y el paso oriental entra en el patio de ventanas. El agua no separa todo contacto: se oyen nombres de una plataforma a otra, y las devoluciones mantienen relaciones que no caben en una simple operación de compra.",
+      "exits": {
+        "norte": "lethra_mercado_hojas",
+        "este": "lethra_patio_ventanas"
+      }
+    },
+    {
+      "room": "lethra_raices_observacion",
+      "original_issue": "el sendero de regreso al norte se ve entre tallos",
+      "removed": true,
+      "current_description": "Las raíces forman una plataforma natural separada del canal por una franja de barro intacto. La salida vuelve al este hacia la orilla de la entrada ancha; desde ella se alcanza el sendero principal, visible entre tallos. Desde aquí pueden compararse cambios sin poner los pies donde pasó algo pesado. Una tira de tela guarda una nota de observación atribuida. No marca una propiedad ni declara cerrado el humedal: recuerda qué parte se vio y cuál sigue por debajo del agua.",
+      "exits": {
+        "este": "lethra_orilla_silente"
+      }
+    },
+    {
+      "room": "lethra_ribera_sombra",
+      "original_issue": "Una salida oriental del patio de ventanas",
+      "removed": true,
+      "current_description": "Una salida septentrional del patio de ventanas rodea el pueblo y alcanza un canal con árboles cada vez más juntos. La ribera conserva el agua a un lado y raíces al otro. Hacia el norte continúa la Ribera Sombría; hacia el sur se regresa a plataformas de Narevia. Una pasarela corta cruza un brazo menor entre dos troncos. Las hojas oscuras empiezan a cubrir los reflejos y el lugar cambia de sonido antes de cerrarse del todo en bosque.",
+      "exits": {
+        "sur": "lethra_patio_ventanas",
+        "norte": "lethra_relevo_raices"
+      }
+    },
+    {
+      "room": "veyra_puerta_piedra",
+      "original_issue": "El patio de las bestias se abre al oeste por una puerta",
+      "removed": true,
+      "current_description": "El patio de las bestias se abre al este por una puerta sin arco, reforzada con piezas que no tienen el mismo color. Afuera el camino cruza una franja de tierra desnuda y busca un terraplén de roca. Las cargas descansan en carros bajos; sus separadores de madera importan tanto como las ruedas. Las casas próximas reducen sus ventanas del lado del polvo. Todavía estás en la cuenca, pero el trabajo de transportar piedra ya ha cambiado la escala del lugar.",
+      "exits": {
+        "este": "veyra_patio_porte",
+        "oeste": "veyra_terraplen_roca"
+      }
+    },
+    {
+      "room": "hoshai_pinar_discontinuo",
+      "original_issue": "un desvío busca un abrigo sin salida",
+      "removed": true,
+      "current_description": "El sendero sale de la pared y atraviesa árboles que no alcanzan a formar un bosque cerrado. Entre troncos queda una vista irregular del valle, partida por rocas y laderas. Hacia el norte, las raíces se apartan de una corriente fría; hacia el oeste, un desvío occidental lleva al abrigo de piñas, desde donde continúa una senda al collado. Las piñas se acumulan donde el viento no puede arrastrarlas, mientras el centro del camino mantiene una tierra fina y pisada.",
+      "exits": {
+        "sur": "hoshai_pared_goteo",
+        "norte": "hoshai_agua_fria",
+        "oeste": "hoshai_abrigo_pinas"
+      }
+    }
+  ]
+}

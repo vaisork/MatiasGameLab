@@ -1,0 +1,19 @@
+{
+  "steps": 90,
+  "movement": 87,
+  "knownNodes": 44,
+  "bestiary": [
+    "saltacresta",
+    "rondamusgo",
+    "hilaria_niebla",
+    "pinzajunco",
+    "espinajo_rastrojo",
+    "mordelinde"
+  ],
+  "errors": [],
+  "selectionDoesNotMove": true,
+  "manualPlannerPresent": true,
+  "contextLostProvoked": true,
+  "manualPlannerMoved": true,
+  "panExercised": true
+}

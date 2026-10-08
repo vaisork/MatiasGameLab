@@ -1,0 +1,37 @@
+{
+  "status": "PASS",
+  "scope": "Six HTTP assets; no place image network before click; actual Khariel and known-map modal; Escape/Close/backdrop; 320/393/1440 without overflow; unvisited discovered node fixture hides art",
+  "assets": [
+    {
+      "id": "valdren_plaza",
+      "status": 200
+    },
+    {
+      "id": "khariel_centro",
+      "status": 200
+    },
+    {
+      "id": "brumak_centro",
+      "status": 200
+    },
+    {
+      "id": "narevia_centro",
+      "status": 200
+    },
+    {
+      "id": "velmora_centro",
+      "status": 200
+    },
+    {
+      "id": "vaisgard_mercado",
+      "status": 200
+    }
+  ],
+  "widths": [
+    320,
+    393,
+    1440
+  ],
+  "placeRequestsAfterClick": 1,
+  "fixtureLimit": "Unvisited discovered Valdren node injected only into isolated browser response, not persisted into game database"
+}

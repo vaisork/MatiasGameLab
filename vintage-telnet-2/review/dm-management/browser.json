@@ -1,0 +1,69 @@
+{
+  "scope": "Actual renderer in Chrome with controlled API fixtures. No real player mutations. Player art routes fulfill actual workspace WebP bytes because local server has stale asset whitelist; production asset serving checked separately. All visible portrait/gallery images decoded before screenshots. Tests response-loss replay by aborting the first grant request.",
+  "results": [
+    {
+      "width": 1440,
+      "confirmCancellationNoPost": true,
+      "normalXpPayload": true,
+      "retainsManagementPanel": true,
+      "networkRetrySameRequestId": true,
+      "pendingIntentSurvivesReload": true,
+      "pendingStorageClearedAfterSuccess": true,
+      "otherChangesBlockedUntilRetry": true,
+      "healTravelPortraitCorrection": true,
+      "currentPortraitVisible": true,
+      "currentAndGalleryImagesDecoded": true,
+      "portraitThumbnailRadios": true,
+      "otherPlayerImagesCollapsed": true,
+      "fichaAndHistory": true,
+      "noOverflow": true,
+      "noBrowserErrors": true
+    },
+    {
+      "width": 393,
+      "confirmCancellationNoPost": true,
+      "normalXpPayload": true,
+      "retainsManagementPanel": true,
+      "networkRetrySameRequestId": true,
+      "pendingIntentSurvivesReload": true,
+      "pendingStorageClearedAfterSuccess": true,
+      "otherChangesBlockedUntilRetry": true,
+      "healTravelPortraitCorrection": true,
+      "currentPortraitVisible": true,
+      "currentAndGalleryImagesDecoded": true,
+      "portraitThumbnailRadios": true,
+      "otherPlayerImagesCollapsed": true,
+      "fichaAndHistory": true,
+      "noOverflow": true,
+      "noBrowserErrors": true
+    },
+    {
+      "width": 320,
+      "confirmCancellationNoPost": true,
+      "normalXpPayload": true,
+      "retainsManagementPanel": true,
+      "networkRetrySameRequestId": true,
+      "pendingIntentSurvivesReload": true,
+      "pendingStorageClearedAfterSuccess": true,
+      "otherChangesBlockedUntilRetry": true,
+      "healTravelPortraitCorrection": true,
+      "currentPortraitVisible": true,
+      "currentAndGalleryImagesDecoded": true,
+      "portraitThumbnailRadios": true,
+      "otherPlayerImagesCollapsed": true,
+      "fichaAndHistory": true,
+      "noOverflow": true,
+      "noBrowserErrors": true
+    },
+    {
+      "width": 320,
+      "manyPlayers": 31,
+      "pagination12": true,
+      "searchByAccount": true,
+      "backPreservesPageAndSearch": true,
+      "onlySelectedControls": true,
+      "pendingSubmenu": true,
+      "noOverflow": true
+    }
+  ]
+}

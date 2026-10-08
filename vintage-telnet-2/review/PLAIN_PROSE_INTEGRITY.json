@@ -1,0 +1,56 @@
+[
+  {
+    "region": "edran",
+    "rooms": 38,
+    "mean_words": 39.3,
+    "min_words": 22,
+    "max_words": 45,
+    "mechanical_invariants": "PASS",
+    "sha256": "7b4c3648639de812c205cad6916c097270ff11234202158503781923fe0ff63e"
+  },
+  {
+    "region": "hoshai",
+    "rooms": 26,
+    "mean_words": 43.1,
+    "min_words": 25,
+    "max_words": 48,
+    "mechanical_invariants": "PASS",
+    "sha256": "bc9065629fbf69ee6cbdcc95023755207be97a1dc24060434bca1a655fceed87"
+  },
+  {
+    "region": "korven",
+    "rooms": 26,
+    "mean_words": 43.4,
+    "min_words": 23,
+    "max_words": 50,
+    "mechanical_invariants": "PASS",
+    "sha256": "167cc7b932f9615c792f4064fca5be1c66452ee83ea9993e1ee14650fb84e303"
+  },
+  {
+    "region": "lethra",
+    "rooms": 26,
+    "mean_words": 43.7,
+    "min_words": 25,
+    "max_words": 49,
+    "mechanical_invariants": "PASS",
+    "sha256": "f375b881cc6ed123c4170fb28728862d0055ec5096310c2a50e56c8f71c16de7"
+  },
+  {
+    "region": "nhal",
+    "rooms": 26,
+    "mean_words": 44.5,
+    "min_words": 26,
+    "max_words": 50,
+    "mechanical_invariants": "PASS",
+    "sha256": "5d8065c4a27e3440e878dbc72b3f8f3dc9a4bcf44ffd9533e7a4a3fa3b73a3ca"
+  },
+  {
+    "region": "veyra",
+    "rooms": 20,
+    "mean_words": 38.3,
+    "min_words": 23,
+    "max_words": 44,
+    "mechanical_invariants": "PASS",
+    "sha256": "06dd94460ce3a988cb27486367cbd17d49ac222fe8cd6c2ecf3a4c4cb1cd3cfc"
+  }
+]

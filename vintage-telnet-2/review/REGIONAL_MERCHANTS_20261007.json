@@ -1,0 +1,3105 @@
+[
+  {
+    "type": "step",
+    "room": "korven_peldanos_cortos",
+    "ambient": {
+      "region": "korven",
+      "time_of_day": "Día",
+      "timestamp": 43320,
+      "weather": "Lluvia",
+      "weather_description": "Las juntas reúnen agua y cambian comparaciones de polvo, color y apoyo."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Escalones bajos y una franja para carros suben hacia las casas de Brumak. Al este vuelves al banco de revisión; al oeste entras en el patio. Una repisa guarda cuñas cerca del suelo. Las ruedas pequeñas han gastado más la piedra junto a los peldaños. Al sur, una puerta baja conduce al antiguo almacén de las cargas."
+      },
+      {
+        "kind": "world",
+        "text": "Los peldaños reciben barro que baja de las viviendas. Una habitante limpia el borde de la franja lateral antes de apoyar la rueda. Los recipientes se conservan sobre la repisa, lejos de la corriente de la escalera."
+      },
+      {
+        "kind": "world",
+        "text": "Una habitante recoloca una cuña y empuja el carro por la franja ancha. Un visitante alto espera junto a los peldaños; baja la cabeza al pasar bajo el borde de la puerta."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "korven_asiento_revision",
+    "ambient": {
+      "region": "korven",
+      "time_of_day": "Día",
+      "timestamp": 43380,
+      "weather": "Lluvia",
+      "weather_description": "Las juntas reúnen agua y cambian comparaciones de polvo, color y apoyo."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "El camino se ensancha junto a una roca marcada por golpes. Hay un banco donde dejar la carga. Al este queda el paso estrecho; al oeste sigues hacia Brumak. La senda del norte sube a la meseta de relevo. Sobre la mesa descansa una capa fina de polvo."
+      },
+      {
+        "kind": "world",
+        "text": "La piedra mojada suena distinto. La revisora escribe que llovía cuando la golpeó y deja la carga apartada de la mesa."
+      },
+      {
+        "kind": "world",
+        "text": "La revisora compara un golpe sobre la pieza con otro sobre una base firme. Su ayudante anota la diferencia y deja la carga en el banco. Nadie continúa una prueba de apoyo mientras alguien sigue pisándolo."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "korven_meseta_relevo",
+    "ambient": {
+      "region": "korven",
+      "time_of_day": "Día",
+      "timestamp": 43440,
+      "weather": "Lluvia",
+      "weather_description": "Las juntas reúnen agua y cambian comparaciones de polvo, color y apoyo."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "En la meseta se mezclan piedras claras y restos bajados de la sierra. Una cubierta guarda notas de ambos caminos. Al norte subes por la garganta hacia Hoshai; al sur vuelves al banco de revisión. Las cargas esperan junto a una pared baja, sin bloquear el giro. La cubierta del Refugio de Lajas protege una mesa y dos apoyos de descanso; al partir, cada viajero devuelve la piedra que sujetaba su nota."
+      },
+      {
+        "kind": "world",
+        "text": "Una viajera aplasta con una piedra el rincón de su nota. Su compañero dibuja al margen el aspecto del último pino; ella añade una rama que él había olvidado."
+      },
+      {
+        "kind": "world",
+        "text": "La meseta levanta la vista hacia la abertura de la garganta. Junto a las notas del refugio hay agujas de pino que no crecieron entre estos pedrales."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "hoshai_garganta_oeste",
+    "ambient": {
+      "region": "hoshai",
+      "time_of_day": "Día",
+      "timestamp": 43500,
+      "weather": "Nieve",
+      "weather_description": "Las viviendas despejan escalones y separan las cargas del suelo frío; el ascenso conserva nieve donde no llega el sol."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las paredes de la garganta van perdiendo vegetación. El aire trae polvo de las piedras claras que aparecen más abajo. Al este regresas a las lajas; al sur llegas a la meseta de Korven. Un ensanchamiento permite que dos cargas se crucen sin rozar la pared."
+      },
+      {
+        "kind": "world",
+        "text": "El polvo claro sigue contigo al entrar en la garganta. Por encima de la pared aparece una copa de pino; el aire cambia de olor antes de que alcances el árbol."
+      },
+      {
+        "kind": "world",
+        "text": "Una viajera sacude agujas del pinar antes de revisar el polvo sobre sus cubiertas. Otros esperan en el ensanchamiento a que ascienda una carga."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "hoshai_hombro_lajas",
+    "ambient": {
+      "region": "hoshai",
+      "time_of_day": "Día",
+      "timestamp": 43560,
+      "weather": "Nieve",
+      "weather_description": "Las viviendas despejan escalones y separan las cargas del suelo frío; el ascenso conserva nieve donde no llega el sol."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "El sendero dobla entre lajas inclinadas hacia una hondonada. Su brillo puede hacerlas parecer planas. Al este vuelves al aprisco; al oeste bajas hacia la garganta. Una tablilla recoge noticias de los viajeros. Detrás aún se alcanza a ver el pino del collado."
+      },
+      {
+        "kind": "world",
+        "text": "Un mensajero lee la última marca de revisión y mira la garganta. Su compañero espera lejos de las lajas inclinadas y aprieta la correa que llevaba suelta."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "hoshai_aprisco_abierto",
+    "ambient": {
+      "region": "hoshai",
+      "time_of_day": "Día",
+      "timestamp": 43620,
+      "weather": "Nieve",
+      "weather_description": "Las viviendas despejan escalones y separan las cargas del suelo frío; el ascenso conserva nieve donde no llega el sol."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Piedras sueltas guían al rebaño hacia el lado protegido de la ladera. Un recipiente espera en un hueco seco. Al sur está el collado del pino; al oeste sigue el sendero hacia las lajas. La pastora deja espacio para que los animales puedan moverse."
+      },
+      {
+        "kind": "world",
+        "text": "La pastora revisa un apoyo vencido antes de llamar al rebaño. Su ayudante retira el recipiente de la abertura; dos animales pasan junto a la piedra y vuelven la cabeza hacia el agua."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "hoshai_collado_pino",
+    "ambient": {
+      "region": "hoshai",
+      "time_of_day": "Día",
+      "timestamp": 43680,
+      "weather": "Nieve",
+      "weather_description": "Las viviendas despejan escalones y separan las cargas del suelo frío; el ascenso conserva nieve donde no llega el sol."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Un pino aislado crece entre piedras partidas, con la copa doblada por el viento. Sus raíces sujetan un poco de tierra. Al sur baja la senda al abrigo; al norte llegas al aprisco. Entre las marcas de los viajeros hay huellas que rodean el árbol."
+      },
+      {
+        "kind": "world",
+        "text": "Una pastora recoge lana atrapada en una rama baja sin perseguir al rebaño entre las piedras. Se queda donde puede ver el aprisco."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "hoshai_abrigo_pinas",
+    "ambient": {
+      "region": "hoshai",
+      "time_of_day": "Día",
+      "timestamp": 43740,
+      "weather": "Nieve",
+      "weather_description": "Las viviendas despejan escalones y separan las cargas del suelo frío; el ascenso conserva nieve donde no llega el sol."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Piñas secas se acumulan junto a la pared. Una raíz ofrece sitio para dejar la carga. Al este vuelves al pinar; al norte subes al collado."
+      },
+      {
+        "kind": "world",
+        "text": "Una piña cruje bajo el peso de un ave pequeña. Dentro del abrigo, una viajera lee una nota que ha doblado muchas veces y alisa el mismo rincón."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "hoshai_pinar_discontinuo",
+    "ambient": {
+      "region": "hoshai",
+      "time_of_day": "Día",
+      "timestamp": 43800,
+      "weather": "Nieve",
+      "weather_description": "Las viviendas despejan escalones y separan las cargas del suelo frío; el ascenso conserva nieve donde no llega el sol."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Los pinos dejan claros desde los que se ve el valle. Al sur vuelve el camino de la pared; al norte corre agua fría. Un desvío al oeste lleva al abrigo de piñas y al collado. Las piñas se acumulan donde el viento no las alcanza."
+      },
+      {
+        "kind": "world",
+        "text": "Un pájaro golpea dos veces el tronco de un pino. La siguiente respuesta llega desde más arriba; entre ambos sonidos se oye caer una aguja sobre la roca."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "hoshai_agua_fria",
+    "ambient": {
+      "region": "hoshai",
+      "time_of_day": "Día",
+      "timestamp": 43860,
+      "weather": "Nieve",
+      "weather_description": "Las viviendas despejan escalones y separan las cargas del suelo frío; el ascenso conserva nieve donde no llega el sol."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Una corriente fría atraviesa el sendero. Al sur quedan los pinos; al norte, unos escalones de roca suben hacia los hitos. Una piedra grande desvía parte del agua. Puedes dejar la carga en el lado seco antes de escoger dónde pisar."
+      },
+      {
+        "kind": "world",
+        "text": "Una Felaryn cruza ligera y vuelve a indicar el apoyo final desde la otra orilla. Un compañero permanece en la plataforma hasta tener libre el sitio de llegada. La viajera espera al otro lado y vuelve a tender la mano cuando llega el segundo recipiente."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "hoshai_ladera_hitos",
+    "ambient": {
+      "region": "hoshai",
+      "time_of_day": "Día",
+      "timestamp": 43920,
+      "weather": "Nieve",
+      "weather_description": "Las viviendas despejan escalones y separan las cargas del suelo frío; el ascenso conserva nieve donde no llega el sol."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "El sendero recorre una ladera abierta entre la corriente baja y el cuello de roca. Al sur queda la corriente y al norte se estrecha el paso entre dos paredes. Dos grupos de piedras marcan las curvas: uno sigue el camino y otro el borde que se revisa tras el deshielo. Una tablilla cercana explica la diferencia."
+      },
+      {
+        "kind": "world",
+        "text": "El agua queda por debajo de los hitos. En lo alto, el sendero desaparece entre dos paredes donde las cargas tendrán que pasar en fila."
+      },
+      {
+        "kind": "world",
+        "text": "Una cuidadora repasa la tablilla mientras su aprendiz devuelve piedras al grupo del borde. Señala las señales del camino a la viajera que pregunta; luego toca la marca de revisión."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "hoshai_cuello_roca",
+    "ambient": {
+      "region": "hoshai",
+      "time_of_day": "Día",
+      "timestamp": 43980,
+      "weather": "Nieve",
+      "weather_description": "Las viviendas despejan escalones y separan las cargas del suelo frío; el ascenso conserva nieve donde no llega el sol."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las paredes se acercan tanto que las cargas deben pasar en fila. Al sur puedes esperar en la ladera; al norte se abre una terraza. Hay una piedra plana en cada extremo: los viajeros golpean madera contra ella para avisar antes de entrar."
+      },
+      {
+        "kind": "world",
+        "text": "La porteadora espera un golpe desde el otro lado de la roca. La niña vuelve por el paso estrecho, señala la terraza libre y se aparta junto a la pared."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "hoshai_terraza_cargas",
+    "ambient": {
+      "region": "hoshai",
+      "time_of_day": "Día",
+      "timestamp": 44040,
+      "weather": "Nieve",
+      "weather_description": "Las viviendas despejan escalones y separan las cargas del suelo frío; el ascenso conserva nieve donde no llega el sol."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "El paso estrecho desemboca en una terraza ancha. Al sur queda el cuello de roca; al norte suben los escalones de Khariel. Un sendero al este lleva al mirador. Las cargas descansan abiertas, con sus cuerdas lejos del borde. Un techo del pueblo asoma sobre la subida. Una lona al oeste señala un campamento junto al camino; se puede llegar sin bajar por toda la sierra."
+      },
+      {
+        "kind": "world",
+        "text": "Dos comerciantes redistribuyen los paquetes. Un acompañante se endereza al recibir menos peso de un lado; el aprendiz enrolla la cuerda que quedó suelta."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "hoshai_escalones_sol",
+    "ambient": {
+      "region": "hoshai",
+      "time_of_day": "Día",
+      "timestamp": 44100,
+      "weather": "Nieve",
+      "weather_description": "Las viviendas despejan escalones y separan las cargas del suelo frío; el ascenso conserva nieve donde no llega el sol."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Escalones de tamaños distintos enlazan la terraza baja con las casas: unos están tallados y otros reparados con piedras nuevas. Al sur está la terraza de cargas; al norte llegas a Khariel. Un canal corre al lado de los peldaños. Las reparaciones dejan apoyos para pies humanos y Felaryn."
+      },
+      {
+        "kind": "world",
+        "text": "Los últimos peldaños levantan tu vista por encima de las cargas. La rampa de la plaza ofrece un paso más ancho al final de la subida."
+      },
+      {
+        "kind": "world",
+        "text": "Un albañil prueba el escalón reparado desde dos alturas. Una viajera espera a que recoja la herramienta antes de subir."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "khariel_centro",
+    "ambient": {
+      "region": "hoshai",
+      "time_of_day": "Día",
+      "timestamp": 44160,
+      "weather": "Nieve",
+      "weather_description": "Las viviendas despejan escalones y separan las cargas del suelo frío; el ascenso conserva nieve donde no llega el sol."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "La plaza de Khariel ocupa dos terrazas unidas por escalones y una rampa. El camino baja al sur; al oeste está el taller, al este el mercado y al norte las viviendas. Los bancos dejan sitio para las colas Felaryn y para apoyar cargas."
+      },
+      {
+        "kind": "world",
+        "text": "Los jóvenes siguen con el dedo las pisadas que atraviesan la nieve de la terraza. Uno recupera la nuez junto al muro, donde el hielo todavía cubre la rampa."
+      },
+      {
+        "kind": "world",
+        "text": "Las pisadas han abierto dos franjas en la nieve de los escalones. La rampa conserva hielo junto al muro en sombra; una vecina golpea sus suelas antes de entrar por una puerta lateral."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "hoshai_patio_hogares",
+    "ambient": {
+      "region": "hoshai",
+      "time_of_day": "Día",
+      "timestamp": 44220,
+      "weather": "Nieve",
+      "weather_description": "Las viviendas despejan escalones y separan las cargas del suelo frío; el ascenso conserva nieve donde no llega el sol."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las puertas de las casas se reparten entre escalones y pequeños descansos. La plaza queda al sur, el lavadero al este y la senda del bosque al norte. Los recipientes esperan junto a los muros. Para visitar una casa, hay un umbral donde llamar sin bloquear el paso."
+      },
+      {
+        "kind": "world",
+        "text": "Una familia recoge ropa de una cuerda que cruza por encima de los descansos. Los menores ayudan desde el nivel bajo y los adultos suben los recipientes. Las cargas grandes utilizan la rampa y dejan los peldaños libres para quienes llevan sólo un recipiente."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "hoshai_senda_dosel",
+    "ambient": {
+      "region": "hoshai",
+      "time_of_day": "Día",
+      "timestamp": 44280,
+      "weather": "Nieve",
+      "weather_description": "Las viviendas despejan escalones y separan las cargas del suelo frío; el ascenso conserva nieve donde no llega el sol."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "La senda baja entre árboles altos y rodea un pequeño valle. Al sur vuelves a las viviendas de Khariel; al este alcanzas la estación del cordel. La plaza desaparece tras la primera curva. Un banco seco permite esperar sin dejar la carga sobre las raíces mojadas."
+      },
+      {
+        "kind": "world",
+        "text": "Un viajero del bosque deja hojas oscuras junto al banco al sacudir su cubierta. Una habitante de Khariel pregunta por las marcas de la próxima curva antes de despedirlo. Ella señala el borde rehecho del banco; él aparta una hoja para mostrar la raíz del dibujo."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "hoshai_estacion_cuerda",
+    "ambient": {
+      "region": "hoshai",
+      "time_of_day": "Día",
+      "timestamp": 44340,
+      "weather": "Nieve",
+      "weather_description": "Las viviendas despejan escalones y separan las cargas del suelo frío; el ascenso conserva nieve donde no llega el sol."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Un cordel une dos árboles fuera del sendero. Sus marcas señalan dónde apoyar las cargas; bajo una cubierta se guardan notas del camino. Al oeste vuelves hacia Khariel. Al este, los troncos se juntan y la ruta entra en el Dosel Alto de Nhal."
+      },
+      {
+        "kind": "world",
+        "text": "La cuidadora Felaryn espera a la mensajera Vesperi. Extienden sus notas juntas; una señala la raíz dibujada y la otra el nudo del siguiente tramo."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "nhal_relevo_altura",
+    "ambient": {
+      "region": "nhal",
+      "time_of_day": "Día",
+      "timestamp": 44400,
+      "weather": "Niebla",
+      "weather_description": "Las referencias próximas conservan sentido y las lejanas pierden atribución; las voces ayudan sin sustituir todas las marcas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Bajo una cubierta se guardan notas de la ruta. Un cordel fuera del camino marca los apoyos para las cargas. Al sur bajas hacia Velmora; al oeste sigues hacia Hoshai. Dos árboles tapan pronto la senda. Una cuidadora extiende una nota y otra mira las marcas cercanas. Una talla sencilla identifica el Alto de las Raíces. Dos apoyos bajo la cubierta sirven para descansar antes de tomar el paso hacia la sierra."
+      },
+      {
+        "kind": "world",
+        "text": "La raíz dibujada todavía se ve en el suelo próximo, pero su extremo se pierde. Las dos cuidadoras comparan la nota con ese tramo y esperan antes de añadir la curva."
+      },
+      {
+        "kind": "world",
+        "text": "El cordel de la sierra termina en un apoyo de raíz. Más allá de la cubierta, las marcas continúan en caras de corteza que reciben muy poca luz."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "nhal_roca_entre_copas",
+    "ambient": {
+      "region": "nhal",
+      "time_of_day": "Día",
+      "timestamp": 44460,
+      "weather": "Niebla",
+      "weather_description": "Las referencias próximas conservan sentido y las lejanas pierden atribución; las voces ayudan sin sustituir todas las marcas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Una roca ancha permite mirar entre las copas hacia una ladera de Hoshai. Al sur bajas hacia Velmora; al norte llegas al relevo. Hay sitio para observar lejos del borde. Los árboles tapan partes del camino, incluso desde aquí arriba."
+      },
+      {
+        "kind": "world",
+        "text": "Un Felaryn mira la ladera lejana y después pregunta por el apoyo cercano que no podía ver desde arriba. Una cuidadora Vesperi explica la marca del siguiente tronco. La viajera de bosque señala una raíz cercana; la de montaña busca el hueco que permite ver la ladera siguiente."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "nhal_sendero_altura",
+    "ambient": {
+      "region": "nhal",
+      "time_of_day": "Día",
+      "timestamp": 44520,
+      "weather": "Niebla",
+      "weather_description": "Las referencias próximas conservan sentido y las lejanas pierden atribución; las voces ayudan sin sustituir todas las marcas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "La senda gana pendiente y los árboles empiezan a separarse. Al sur vuelves a las casas de Velmora; al norte subes a una roca entre las copas. Un descanso de raíces permite esperar a quien baja con carga. Detrás quedan las luces de las viviendas."
+      },
+      {
+        "kind": "world",
+        "text": "Una viajera recoge su cubierta para que no enganche en las raíces del ascenso. El vecino que espera en el descanso señala el extremo que aún arrastra sobre el suelo."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "nhal_calle_hogares",
+    "ambient": {
+      "region": "nhal",
+      "time_of_day": "Día",
+      "timestamp": 44580,
+      "weather": "Niebla",
+      "weather_description": "Las referencias próximas conservan sentido y las lejanas pierden atribución; las voces ayudan sin sustituir todas las marcas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las casas se reparten en pequeños niveles entre los árboles. Sus entradas dejan sitio para las raíces y para esperar antes de llamar. Al sur vuelves al patio; al norte subes hacia el Dosel Alto. Las luces muestran una reparación o una comida, sin iluminar todo el interior."
+      },
+      {
+        "kind": "world",
+        "text": "Una vecina escucha desde el umbral antes de abrir. Un niño lleva el juguete reparado contra el pecho; al llegar a su puerta lo separa un poco para ver girar la rueda."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "nhal_patio_relato",
+    "ambient": {
+      "region": "nhal",
+      "time_of_day": "Día",
+      "timestamp": 44640,
+      "weather": "Niebla",
+      "weather_description": "Las referencias próximas conservan sentido y las lejanas pierden atribución; las voces ayudan sin sustituir todas las marcas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Bancos distintos rodean una mesa bajo una cubierta corta. Al oeste vuelves al claro, al sur está la cocina, al norte las casas y al este la senda de Elin. Un recipiente reparado guarda hojas con recuerdos. Leris busca un nombre en su cuaderno y deja una línea vacía."
+      },
+      {
+        "kind": "world",
+        "text": "La narradora tacha una frase cuando un vecino corrige el nombre. Una mujer añade dónde estaba al oír aquel ruido; Elin acerca un asiento y la narradora deja el lápiz sobre el cuaderno."
+      },
+      {
+        "kind": "world",
+        "text": "Reúne voces y prepara hojas para una conversación."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "velmora_centro",
+    "ambient": {
+      "region": "nhal",
+      "time_of_day": "Día",
+      "timestamp": 44700,
+      "weather": "Niebla",
+      "weather_description": "Las referencias próximas conservan sentido y las lejanas pierden atribución; las voces ayudan sin sustituir todas las marcas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Velmora ocupa un claro entre los árboles. Las casas y bancos dejan sitio a las raíces. Al oeste está la entrada, al norte el taller, al sur el mercado y al este el patio del relato. Las voces llegan de cerca; los árboles ocultan parte de cada grupo."
+      },
+      {
+        "kind": "world",
+        "text": "Una vecina sostiene un juguete mientras otro habitante pasa un cordel por la rueda. El niño cuenta cómo se soltó y espera a que termine el golpe del taller para mostrarlo."
+      },
+      {
+        "kind": "world",
+        "text": "El borde del claro se pierde antes que las mesas próximas. Quien cuenta el relato se acerca al banco y baja la voz; desde una casa responde alguien a quien todavía no puedes ver."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "nhal_mercado_setas",
+    "ambient": {
+      "region": "nhal",
+      "time_of_day": "Día",
+      "timestamp": 44760,
+      "weather": "Niebla",
+      "weather_description": "Las referencias próximas conservan sentido y las lejanas pierden atribución; las voces ayudan sin sustituir todas las marcas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las cestas esperan bajo cubiertas separadas, con pasillos de suelo firme entre las raíces. Las hojas que llegan con los alimentos se revisan en una mesa. Al norte vuelves al claro de Velmora; al este entras en la cocina. El olor cambia junto a cada cesta abierta. Una puerta al oeste lleva al lugar de cuidados."
+      },
+      {
+        "kind": "world",
+        "text": "Varo levanta una cubierta para mostrar el tamaño de una provisión y vuelve a cerrarla cuando caen hojas. Los arcos esperan donde las raíces dejan un apoyo firme."
+      },
+      {
+        "kind": "world",
+        "text": "La vendedora acerca la seta cortada a la mesa próxima para mostrar su interior. El borde del puesto vecino se ha borrado; le pide su opinión en voz baja."
+      }
+    ]
+  },
+  {
+    "type": "observation",
+    "room": "nhal_mercado_setas",
+    "ambient": {
+      "region": "nhal",
+      "time_of_day": "Día",
+      "timestamp": 44820,
+      "weather": "Niebla",
+      "weather_description": "Las referencias próximas conservan sentido y las lejanas pierden atribución; las voces ayudan sin sustituir todas las marcas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las cestas esperan bajo cubiertas separadas, con pasillos de suelo firme entre las raíces. Las hojas que llegan con los alimentos se revisan en una mesa. Al norte vuelves al claro de Velmora; al este entras en la cocina. El olor cambia junto a cada cesta abierta. Una puerta al oeste lleva al lugar de cuidados."
+      },
+      {
+        "kind": "world",
+        "text": "Varo levanta una cubierta para mostrar el tamaño de una provisión y vuelve a cerrarla cuando caen hojas. Los arcos esperan donde las raíces dejan un apoyo firme."
+      },
+      {
+        "kind": "world",
+        "text": "La vendedora acerca la seta cortada a la mesa próxima para mostrar su interior. El borde del puesto vecino se ha borrado; le pide su opinión en voz baja."
+      }
+    ],
+    "observe": [
+      {
+        "kind": "world",
+        "text": "Varo comprueba si las ramas conservan flexibilidad antes de acercarlas al montón de resina. Las provisiones quedan bajo otra cubierta, lejos de las armas."
+      },
+      {
+        "kind": "world",
+        "text": "La vendedora acerca la seta cortada a la mesa próxima para mostrar su interior. El borde del puesto vecino se ha borrado; le pide su opinión en voz baja."
+      },
+      {
+        "kind": "trace",
+        "text": "Las cerradas necesitan destinatario o revisión, no están disponibles por quedar a la vista."
+      },
+      {
+        "kind": "action",
+        "text": "Observas con atención."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "velmora_centro",
+    "ambient": {
+      "region": "nhal",
+      "time_of_day": "Día",
+      "timestamp": 44880,
+      "weather": "Niebla",
+      "weather_description": "Las referencias próximas conservan sentido y las lejanas pierden atribución; las voces ayudan sin sustituir todas las marcas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Velmora ocupa un claro entre los árboles. Las casas y bancos dejan sitio a las raíces. Al oeste está la entrada, al norte el taller, al sur el mercado y al este el patio del relato. Las voces llegan de cerca; los árboles ocultan parte de cada grupo."
+      },
+      {
+        "kind": "world",
+        "text": "Una vecina sostiene un juguete mientras otro habitante pasa un cordel por la rueda. El niño cuenta cómo se soltó y espera a que termine el golpe del taller para mostrarlo."
+      },
+      {
+        "kind": "world",
+        "text": "Los golpes del taller permiten situar el borde norte del claro. Al otro lado de la mesa, la entrada al patio del relato se distingue entre dos raíces."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "nhal_patio_relato",
+    "ambient": {
+      "region": "nhal",
+      "time_of_day": "Día",
+      "timestamp": 44940,
+      "weather": "Niebla",
+      "weather_description": "Las referencias próximas conservan sentido y las lejanas pierden atribución; las voces ayudan sin sustituir todas las marcas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Bancos distintos rodean una mesa bajo una cubierta corta. Al oeste vuelves al claro, al sur está la cocina, al norte las casas y al este la senda de Elin. Un recipiente reparado guarda hojas con recuerdos. Leris busca un nombre en su cuaderno y deja una línea vacía."
+      },
+      {
+        "kind": "world",
+        "text": "El asiento que acercaron junto al borde te permite reconocer el pequeño círculo. En el cuaderno queda la línea que la narradora dejó sin completar."
+      },
+      {
+        "kind": "world",
+        "text": "La narradora tacha una frase cuando un vecino corrige el nombre. Una mujer añade dónde estaba al oír aquel ruido; Elin acerca un asiento y la narradora deja el lápiz sobre el cuaderno."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "nhal_calle_hogares",
+    "ambient": {
+      "region": "nhal",
+      "time_of_day": "Día",
+      "timestamp": 45000,
+      "weather": "Niebla",
+      "weather_description": "Las referencias próximas conservan sentido y las lejanas pierden atribución; las voces ayudan sin sustituir todas las marcas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las casas se reparten en pequeños niveles entre los árboles. Sus entradas dejan sitio para las raíces y para esperar antes de llamar. Al sur vuelves al patio; al norte subes hacia el Dosel Alto. Las luces muestran una reparación o una comida, sin iluminar todo el interior."
+      },
+      {
+        "kind": "world",
+        "text": "Reconoces el umbral donde esperaste. La voz de aquella casa vuelve a cruzar la calle; delante de la entrada queda el banco estrecho."
+      },
+      {
+        "kind": "world",
+        "text": "Una vecina escucha desde el umbral antes de abrir. Un niño lleva el juguete reparado contra el pecho; al llegar a su puerta lo separa un poco para ver girar la rueda."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "nhal_sendero_altura",
+    "ambient": {
+      "region": "nhal",
+      "time_of_day": "Día",
+      "timestamp": 45060,
+      "weather": "Niebla",
+      "weather_description": "Las referencias próximas conservan sentido y las lejanas pierden atribución; las voces ayudan sin sustituir todas las marcas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "La senda gana pendiente y los árboles empiezan a separarse. Al sur vuelves a las casas de Velmora; al norte subes a una roca entre las copas. Un descanso de raíces permite esperar a quien baja con carga. Detrás quedan las luces de las viviendas."
+      },
+      {
+        "kind": "world",
+        "text": "Recuerdas el descanso donde pasó la carga. Camino de las casas, los árboles vuelven a juntarse; detrás de los primeros troncos se ven luces bajas."
+      },
+      {
+        "kind": "world",
+        "text": "Una viajera recoge su cubierta para que no enganche en las raíces del ascenso. El vecino que espera en el descanso señala el extremo que aún arrastra sobre el suelo."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "nhal_roca_entre_copas",
+    "ambient": {
+      "region": "nhal",
+      "time_of_day": "Día",
+      "timestamp": 45120,
+      "weather": "Niebla",
+      "weather_description": "Las referencias próximas conservan sentido y las lejanas pierden atribución; las voces ayudan sin sustituir todas las marcas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Una roca ancha permite mirar entre las copas hacia una ladera de Hoshai. Al sur bajas hacia Velmora; al norte llegas al relevo. Hay sitio para observar lejos del borde. Los árboles tapan partes del camino, incluso desde aquí arriba."
+      },
+      {
+        "kind": "world",
+        "text": "Reconoces el apoyo de la roca y los árboles que tapaban la ladera. El relevo sigue al norte; por el sur vuelves a bajar hacia las casas."
+      },
+      {
+        "kind": "world",
+        "text": "Un Felaryn mira la ladera lejana y después pregunta por el apoyo cercano que no podía ver desde arriba. Una cuidadora Vesperi explica la marca del siguiente tronco. La viajera de bosque señala una raíz cercana; la de montaña busca el hueco que permite ver la ladera siguiente."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "nhal_relevo_altura",
+    "ambient": {
+      "region": "nhal",
+      "time_of_day": "Día",
+      "timestamp": 45180,
+      "weather": "Niebla",
+      "weather_description": "Las referencias próximas conservan sentido y las lejanas pierden atribución; las voces ayudan sin sustituir todas las marcas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Bajo una cubierta se guardan notas de la ruta. Un cordel fuera del camino marca los apoyos para las cargas. Al sur bajas hacia Velmora; al oeste sigues hacia Hoshai. Dos árboles tapan pronto la senda. Una cuidadora extiende una nota y otra mira las marcas cercanas. Una talla sencilla identifica el Alto de las Raíces. Dos apoyos bajo la cubierta sirven para descansar antes de tomar el paso hacia la sierra."
+      },
+      {
+        "kind": "world",
+        "text": "La raíz dibujada todavía se ve en el suelo próximo, pero su extremo se pierde. Las dos cuidadoras comparan la nota con ese tramo y esperan antes de añadir la curva."
+      },
+      {
+        "kind": "world",
+        "text": "Reconoces el cordel y la cubierta de las notas. Al bajar hacia el sur vuelven a juntarse las raíces y las hojas sobre la senda."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "hoshai_estacion_cuerda",
+    "ambient": {
+      "region": "hoshai",
+      "time_of_day": "Día",
+      "timestamp": 45240,
+      "weather": "Nieve",
+      "weather_description": "Las viviendas despejan escalones y separan las cargas del suelo frío; el ascenso conserva nieve donde no llega el sol."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Un cordel une dos árboles fuera del sendero. Sus marcas señalan dónde apoyar las cargas; bajo una cubierta se guardan notas del camino. Al oeste vuelves hacia Khariel. Al este, los troncos se juntan y la ruta entra en el Dosel Alto de Nhal."
+      },
+      {
+        "kind": "world",
+        "text": "Reconoces el cordel del relevo junto al banco seco. Hacia el oeste asoman las primeras viviendas; detrás de ellas queda la plaza escalonada."
+      },
+      {
+        "kind": "world",
+        "text": "La cuidadora Felaryn espera a la mensajera Vesperi. Extienden sus notas juntas; una señala la raíz dibujada y la otra el nudo del siguiente tramo."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "hoshai_senda_dosel",
+    "ambient": {
+      "region": "hoshai",
+      "time_of_day": "Día",
+      "timestamp": 45300,
+      "weather": "Nieve",
+      "weather_description": "Las viviendas despejan escalones y separan las cargas del suelo frío; el ascenso conserva nieve donde no llega el sol."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "La senda baja entre árboles altos y rodea un pequeño valle. Al sur vuelves a las viviendas de Khariel; al este alcanzas la estación del cordel. La plaza desaparece tras la primera curva. Un banco seco permite esperar sin dejar la carga sobre las raíces mojadas."
+      },
+      {
+        "kind": "world",
+        "text": "El banco aparece antes de la curva. Recuerdas la cubierta que sacudieron allí; unas hojas oscuras siguen pegadas al borde."
+      },
+      {
+        "kind": "world",
+        "text": "Un viajero del bosque deja hojas oscuras junto al banco al sacudir su cubierta. Una habitante de Khariel pregunta por las marcas de la próxima curva antes de despedirlo. Ella señala el borde rehecho del banco; él aparta una hoja para mostrar la raíz del dibujo."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "hoshai_patio_hogares",
+    "ambient": {
+      "region": "hoshai",
+      "time_of_day": "Día",
+      "timestamp": 45360,
+      "weather": "Nieve",
+      "weather_description": "Las viviendas despejan escalones y separan las cargas del suelo frío; el ascenso conserva nieve donde no llega el sol."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las puertas de las casas se reparten entre escalones y pequeños descansos. La plaza queda al sur, el lavadero al este y la senda del bosque al norte. Los recipientes esperan junto a los muros. Para visitar una casa, hay un umbral donde llamar sin bloquear el paso."
+      },
+      {
+        "kind": "world",
+        "text": "La rampa de los recipientes y el umbral junto al lavadero te resultan familiares. Desde ese descanso vuelve a verse la salida hacia el bosque."
+      },
+      {
+        "kind": "world",
+        "text": "Una familia recoge ropa de una cuerda que cruza por encima de los descansos. Los menores ayudan desde el nivel bajo y los adultos suben los recipientes. Las cargas grandes utilizan la rampa y dejan los peldaños libres para quienes llevan sólo un recipiente."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "khariel_centro",
+    "ambient": {
+      "region": "hoshai",
+      "time_of_day": "Día",
+      "timestamp": 45420,
+      "weather": "Nieve",
+      "weather_description": "Las viviendas despejan escalones y separan las cargas del suelo frío; el ascenso conserva nieve donde no llega el sol."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "La plaza de Khariel ocupa dos terrazas unidas por escalones y una rampa. El camino baja al sur; al oeste está el taller, al este el mercado y al norte las viviendas. Los bancos dejan sitio para las colas Felaryn y para apoyar cargas."
+      },
+      {
+        "kind": "world",
+        "text": "Los jóvenes siguen con el dedo las pisadas que atraviesan la nieve de la terraza. Uno recupera la nuez junto al muro, donde el hielo todavía cubre la rampa."
+      },
+      {
+        "kind": "world",
+        "text": "La rampa que usaste llega a la terraza de las casas; los escalones bajan hacia las cargas. Puedes escoger el nivel antes de cruzar la plaza."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "hoshai_mercado_cintas",
+    "ambient": {
+      "region": "hoshai",
+      "time_of_day": "Día",
+      "timestamp": 45480,
+      "weather": "Nieve",
+      "weather_description": "Las viviendas despejan escalones y separan las cargas del suelo frío; el ascenso conserva nieve donde no llega el sol."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Entre muros que cortan el viento, los puestos ofrecen comida envuelta y cintas para las cargas. Puedes probar una atadura sobre las barras. El paso hacia la plaza vuelve al oeste. Los colores de las cintas indican qué bulto abrir primero y cuál mantener seco. Una puerta al este lleva al lugar de cuidados."
+      },
+      {
+        "kind": "world",
+        "text": "Luma prueba una cinta sobre la barra antes de envolver una provisión. Cuando el viento llega por la plaza, sujeta el extremo libre con una piedra."
+      },
+      {
+        "kind": "world",
+        "text": "Luma compara una cinta teñida con otra ya lavada. Una clienta anuda ambas al mismo dedo y las mira a la luz antes de escoger."
+      }
+    ]
+  },
+  {
+    "type": "observation",
+    "room": "hoshai_mercado_cintas",
+    "ambient": {
+      "region": "hoshai",
+      "time_of_day": "Día",
+      "timestamp": 45540,
+      "weather": "Nieve",
+      "weather_description": "Las viviendas despejan escalones y separan las cargas del suelo frío; el ascenso conserva nieve donde no llega el sol."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Entre muros que cortan el viento, los puestos ofrecen comida envuelta y cintas para las cargas. Puedes probar una atadura sobre las barras. El paso hacia la plaza vuelve al oeste. Los colores de las cintas indican qué bulto abrir primero y cuál mantener seco. Una puerta al este lleva al lugar de cuidados."
+      },
+      {
+        "kind": "world",
+        "text": "Luma prueba una cinta sobre la barra antes de envolver una provisión. Cuando el viento llega por la plaza, sujeta el extremo libre con una piedra."
+      },
+      {
+        "kind": "world",
+        "text": "Luma compara una cinta teñida con otra ya lavada. Una clienta anuda ambas al mismo dedo y las mira a la luz antes de escoger."
+      }
+    ],
+    "observe": [
+      {
+        "kind": "world",
+        "text": "Luma distingue las cargas por sus ataduras. Deja arcos y puñales junto al muro protegido del viento; la resina y las cuerdas esperan cerca de las barras de prueba."
+      },
+      {
+        "kind": "world",
+        "text": "Luma compara una cinta teñida con otra ya lavada. Una clienta anuda ambas al mismo dedo y las mira a la luz antes de escoger."
+      },
+      {
+        "kind": "trace",
+        "text": "Las cintas azules cierran envoltorios largos; las claras rodean paquetes cortos."
+      },
+      {
+        "kind": "action",
+        "text": "Observas con atención."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "khariel_centro",
+    "ambient": {
+      "region": "hoshai",
+      "time_of_day": "Día",
+      "timestamp": 45600,
+      "weather": "Nieve",
+      "weather_description": "Las viviendas despejan escalones y separan las cargas del suelo frío; el ascenso conserva nieve donde no llega el sol."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "La plaza de Khariel ocupa dos terrazas unidas por escalones y una rampa. El camino baja al sur; al oeste está el taller, al este el mercado y al norte las viviendas. Los bancos dejan sitio para las colas Felaryn y para apoyar cargas."
+      },
+      {
+        "kind": "world",
+        "text": "Los jóvenes siguen con el dedo las pisadas que atraviesan la nieve de la terraza. Uno recupera la nuez junto al muro, donde el hielo todavía cubre la rampa."
+      },
+      {
+        "kind": "world",
+        "text": "Las pisadas han abierto dos franjas en la nieve de los escalones. La rampa conserva hielo junto al muro en sombra; una vecina golpea sus suelas antes de entrar por una puerta lateral."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "hoshai_escalones_sol",
+    "ambient": {
+      "region": "hoshai",
+      "time_of_day": "Día",
+      "timestamp": 45660,
+      "weather": "Nieve",
+      "weather_description": "Las viviendas despejan escalones y separan las cargas del suelo frío; el ascenso conserva nieve donde no llega el sol."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Escalones de tamaños distintos enlazan la terraza baja con las casas: unos están tallados y otros reparados con piedras nuevas. Al sur está la terraza de cargas; al norte llegas a Khariel. Un canal corre al lado de los peldaños. Las reparaciones dejan apoyos para pies humanos y Felaryn."
+      },
+      {
+        "kind": "world",
+        "text": "La pieza reparada rompe el dibujo de la roca y permite reconocer un punto de la subida. El muro superior anuncia el acceso a Khariel. Una franja de grava queda detrás del peldaño donde esperan las cargas."
+      },
+      {
+        "kind": "world",
+        "text": "Al dejar la plaza, el canal acompaña el descenso. Desde el primer peldaño ya ves las cuerdas tendidas en la terraza inferior."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "hoshai_terraza_cargas",
+    "ambient": {
+      "region": "hoshai",
+      "time_of_day": "Día",
+      "timestamp": 45720,
+      "weather": "Nieve",
+      "weather_description": "Las viviendas despejan escalones y separan las cargas del suelo frío; el ascenso conserva nieve donde no llega el sol."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "El paso estrecho desemboca en una terraza ancha. Al sur queda el cuello de roca; al norte suben los escalones de Khariel. Un sendero al este lleva al mirador. Las cargas descansan abiertas, con sus cuerdas lejos del borde. Un techo del pueblo asoma sobre la subida. Una lona al oeste señala un campamento junto al camino; se puede llegar sin bajar por toda la sierra."
+      },
+      {
+        "kind": "world",
+        "text": "El techo de Khariel mantiene su posición sobre los escalones del norte. La terraza conserva sitio para abrir cargas y repartirlas antes de subir. Desde el mismo apoyo puedes reconocer la vuelta que alcanza el cuello de roca."
+      },
+      {
+        "kind": "world",
+        "text": "Dos comerciantes redistribuyen los paquetes. Un acompañante se endereza al recibir menos peso de un lado; el aprendiz enrolla la cuerda que quedó suelta."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "hoshai_cuello_roca",
+    "ambient": {
+      "region": "hoshai",
+      "time_of_day": "Día",
+      "timestamp": 45780,
+      "weather": "Nieve",
+      "weather_description": "Las viviendas despejan escalones y separan las cargas del suelo frío; el ascenso conserva nieve donde no llega el sol."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las paredes se acercan tanto que las cargas deben pasar en fila. Al sur puedes esperar en la ladera; al norte se abre una terraza. Hay una piedra plana en cada extremo: los viajeros golpean madera contra ella para avisar antes de entrar."
+      },
+      {
+        "kind": "world",
+        "text": "La piedra de aviso aparece antes del estrechamiento. Del otro lado, la abertura de la terraza permite reconocer dónde termina el paso en fila."
+      },
+      {
+        "kind": "world",
+        "text": "La porteadora espera un golpe desde el otro lado de la roca. La niña vuelve por el paso estrecho, señala la terraza libre y se aparta junto a la pared."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "hoshai_ladera_hitos",
+    "ambient": {
+      "region": "hoshai",
+      "time_of_day": "Día",
+      "timestamp": 45840,
+      "weather": "Nieve",
+      "weather_description": "Las viviendas despejan escalones y separan las cargas del suelo frío; el ascenso conserva nieve donde no llega el sol."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "El sendero recorre una ladera abierta entre la corriente baja y el cuello de roca. Al sur queda la corriente y al norte se estrecha el paso entre dos paredes. Dos grupos de piedras marcan las curvas: uno sigue el camino y otro el borde que se revisa tras el deshielo. Una tablilla cercana explica la diferencia."
+      },
+      {
+        "kind": "world",
+        "text": "La tablilla vuelve a distinguir el grupo del sendero del grupo del borde. Más abajo se oye la corriente antes de verla entre las piedras."
+      },
+      {
+        "kind": "world",
+        "text": "La roca deja de cerrarse a tus lados. Más abajo, una línea oscura de agua corta la ladera antes del pinar."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "hoshai_agua_fria",
+    "ambient": {
+      "region": "hoshai",
+      "time_of_day": "Día",
+      "timestamp": 45900,
+      "weather": "Nieve",
+      "weather_description": "Las viviendas despejan escalones y separan las cargas del suelo frío; el ascenso conserva nieve donde no llega el sol."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Una corriente fría atraviesa el sendero. Al sur quedan los pinos; al norte, unos escalones de roca suben hacia los hitos. Una piedra grande desvía parte del agua. Puedes dejar la carga en el lado seco antes de escoger dónde pisar."
+      },
+      {
+        "kind": "world",
+        "text": "Recuerdas el escalón final de la otra orilla. Desde arriba se ve la plataforma donde esperaron; el agua cruza delante de los apoyos inferiores."
+      },
+      {
+        "kind": "world",
+        "text": "Una Felaryn cruza ligera y vuelve a indicar el apoyo final desde la otra orilla. Un compañero permanece en la plataforma hasta tener libre el sitio de llegada. La viajera espera al otro lado y vuelve a tender la mano cuando llega el segundo recipiente."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "hoshai_pinar_discontinuo",
+    "ambient": {
+      "region": "hoshai",
+      "time_of_day": "Día",
+      "timestamp": 45960,
+      "weather": "Nieve",
+      "weather_description": "Las viviendas despejan escalones y separan las cargas del suelo frío; el ascenso conserva nieve donde no llega el sol."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Los pinos dejan claros desde los que se ve el valle. Al sur vuelve el camino de la pared; al norte corre agua fría. Un desvío al oeste lleva al abrigo de piñas y al collado. Las piñas se acumulan donde el viento no las alcanza."
+      },
+      {
+        "kind": "world",
+        "text": "Un pájaro golpea dos veces el tronco de un pino. La siguiente respuesta llega desde más arriba; entre ambos sonidos se oye caer una aguja sobre la roca."
+      },
+      {
+        "kind": "world",
+        "text": "El grupo de piñas junto a la roca marca el desvío que recuerdas. Al norte se oye el agua fría; por el otro claro vuelve el camino de la pared."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "hoshai_pared_goteo",
+    "ambient": {
+      "region": "hoshai",
+      "time_of_day": "Día",
+      "timestamp": 46020,
+      "weather": "Nieve",
+      "weather_description": "Las viviendas despejan escalones y separan las cargas del suelo frío; el ascenso conserva nieve donde no llega el sol."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "La pared queda a tu izquierda al subir, con el valle abierto al otro lado. El sendero une las tres piedras del sur con el pinar del norte. En los huecos de la roca cabe una carga. El barro conserva marcas de manos junto al goteo."
+      },
+      {
+        "kind": "world",
+        "text": "Una viajera deja pasar a quienes descienden junto al entrante mayor. Su compañero toca la pared; retira la mano mojada y prueba el saliente de al lado."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "hoshai_descanso_tres_piedras",
+    "ambient": {
+      "region": "hoshai",
+      "time_of_day": "Día",
+      "timestamp": 46080,
+      "weather": "Nieve",
+      "weather_description": "Las viviendas despejan escalones y separan las cargas del suelo frío; el ascenso conserva nieve donde no llega el sol."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Tres piedras grandes ofrecen asiento en mitad de la subida. El repecho queda al sur; al norte sigue el camino junto a una pared. Desde aquí ves dos curvas del ascenso. Unas cuerdas descansan sobre una piedra pequeña, apartadas del paso."
+      },
+      {
+        "kind": "world",
+        "text": "La porteadora extiende su cubierta sobre la piedra baja. Su aprendiz toca la esquina húmeda del fardo y la aparta del extremo seco."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "hoshai_repecho_raices",
+    "ambient": {
+      "region": "hoshai",
+      "time_of_day": "Día",
+      "timestamp": 46140,
+      "weather": "Nieve",
+      "weather_description": "Las viviendas despejan escalones y separan las cargas del suelo frío; el ascenso conserva nieve donde no llega el sol."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "La cuesta pasa entre raíces descubiertas y árboles inclinados. Puedes volver al arroyo por el sur o seguir al descanso del norte. La curva esconde lo que viene después. Entre dos troncos hay sitio para apoyar un bulto sin tapar el sendero."
+      },
+      {
+        "kind": "world",
+        "text": "Desde el descanso bajas a una curva húmeda. Entre las raíces vuelve a oírse el arroyo, aunque todavía no puedes verlo."
+      },
+      {
+        "kind": "world",
+        "text": "Dos viajeros esperan en huecos diferentes mientras una carga desciende. Un Felaryn mira por encima del bulto para anticipar la curva, pero sigue indicando apoyos cercanos a quien no puede ver desde su altura."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "hoshai_estribacion",
+    "ambient": {
+      "region": "hoshai",
+      "time_of_day": "Día",
+      "timestamp": 46200,
+      "weather": "Nieve",
+      "weather_description": "Las viviendas despejan escalones y separan las cargas del suelo frío; el ascenso conserva nieve donde no llega el sol."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "La pendiente enlaza la grava de la cuenca con los pastos cortos de la sierra. Al sur queda la rampa de Vaisgard; al norte, una pendiente con raíces. Un arroyo cruza delante de ti. Hay espacio para dejar la carga antes de pasar sobre las piedras redondas."
+      },
+      {
+        "kind": "world",
+        "text": "Una pastora recoge una cuerda del arroyo y deja libre la entrada al ascenso. Su compañero espera con las bestias en terreno ancho, sin exigirles girar donde el camino ya empieza a estrecharse."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_rampa_grava",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 46260,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "La grava sube desde la ciudad. Los carros pueden parar a un lado para ajustar las cargas. Unas piedras arrastradas llenan la hondonada que el camino rodea. Al sur quedan las últimas casas; al norte comienzan las laderas de Hoshai."
+      },
+      {
+        "kind": "world",
+        "text": "El viajero prueba el terreno con la punta del bastón. Señala un borde firme a sus compañeros; detrás de ellos, la puerta de la ciudad se ve entre los taludes."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_puerta_alta",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 46320,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "El suelo empieza a subir antes de cruzar la puerta. Los viajeros ajustan sus cargas en una plataforma lateral. Algunos regresan con capas gruesas de la sierra. Al sur vuelves a la plaza; la rampa norte lleva hacia Hoshai."
+      },
+      {
+        "kind": "world",
+        "text": "La porteadora aprieta el fardo y reduce su ancho. Sus compañeros lo levantan un momento; uno vuelve a tensar la tira que se afloja del lado de la pendiente."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_plaza_rutas",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 46380,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las rutas se reúnen sobre el empedrado. Las piedras antiguas sobresalen entre las casas. Al sur bajas al mercado; al norte sales hacia la sierra. Los animales descansan en el patio oeste. Al este, una mensajera organiza avisos bajo un alero."
+      },
+      {
+        "kind": "world",
+        "text": "Los patios del otro extremo se borran tras el empedrado húmedo. Bajo el alero todavía se distinguen los papeles; una voz pide que repitan el destino antes de entregar un mensaje."
+      },
+      {
+        "kind": "world",
+        "text": "La mensajera sigue con el dedo unas letras pequeñas y pregunta a una viajera si reconoce la mano. El aviso está escrito en el reverso de una cuenta vieja. En el patio oeste, un animal se rasca el cuello contra el poste hasta que su cuidadora lo aparta."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "vaisgard_mercado",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 46440,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Frutas, herramientas y cestas ocupan los puestos entre muros antiguos. Un canal pequeño cruza el mercado. Al norte está la plaza de las rutas; al sur, el patio del agua. Los carros entran por el oeste y los toldos cubren la calle del este."
+      },
+      {
+        "kind": "world",
+        "text": "Bela aparta una cesta para dejar pasar un carro y vuelve a colocar las piezas por tamaño. Un viajero compara un mango con el que trae de su pueblo."
+      },
+      {
+        "kind": "world",
+        "text": "Una vendedora corta una fruta para mostrar el centro. Su vecina prueba un trozo y hace una mueca; ambas apartan esa cesta mientras una niña recoge la semilla del plato."
+      }
+    ]
+  },
+  {
+    "type": "observation",
+    "room": "vaisgard_mercado",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 46500,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Frutas, herramientas y cestas ocupan los puestos entre muros antiguos. Un canal pequeño cruza el mercado. Al norte está la plaza de las rutas; al sur, el patio del agua. Los carros entran por el oeste y los toldos cubren la calle del este."
+      },
+      {
+        "kind": "world",
+        "text": "Bela aparta una cesta para dejar pasar un carro y vuelve a colocar las piezas por tamaño. Un viajero compara un mango con el que trae de su pueblo."
+      },
+      {
+        "kind": "world",
+        "text": "Una vendedora corta una fruta para mostrar el centro. Su vecina prueba un trozo y hace una mueca; ambas apartan esa cesta mientras una niña recoge la semilla del plato."
+      }
+    ],
+    "observe": [
+      {
+        "kind": "world",
+        "text": "Bela abre espacio entre los viajeros de las cinco rutas. Compara las armas sobre el mismo mostrador y deja los alimentos aparte para que ninguna hoja alcance las envolturas."
+      },
+      {
+        "kind": "world",
+        "text": "Una vendedora corta una fruta para mostrar el centro. Su vecina prueba un trozo y hace una mueca; ambas apartan esa cesta mientras una niña recoge la semilla del plato."
+      },
+      {
+        "kind": "trace",
+        "text": "La pendiente lleva el agua hacia el patio sur. Una tabla móvil permite atravesarlo con ruedas sin volcar las cestas."
+      },
+      {
+        "kind": "action",
+        "text": "Observas con atención."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_calle_toldos",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 46560,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Toldos remendados cubren la calle. Cada taller ha reparado su tramo con una tela distinta. El mercado queda al oeste. Al sur sales hacia los canales; al este llega el camino del bosque, por donde entran haces de madera."
+      },
+      {
+        "kind": "world",
+        "text": "Una Marevyn sujeta el borde del toldo mientras su vecino cose. Comprueban dónde caerá el agua para no mojar el taller de abajo."
+      },
+      {
+        "kind": "world",
+        "text": "Ajusta costuras compartidas."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_puerta_juncos",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 46620,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "El canal pasa junto a una puerta lateral. Fuera, las casas dejan sitio a hondonadas de hierba alta. Una tabla permite cambiarse el calzado sin tapar el paso. Al norte vuelves a los toldos; al sur sigues el agua hacia Lethra."
+      },
+      {
+        "kind": "world",
+        "text": "Una viajera quita barro de sus recipientes antes de entrar. Otros levantan los bultos sobre el suelo; el canal pasa por debajo de la tabla donde esperan."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_hondonada_canales",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 46680,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Varios hilos de agua se reúnen en un canal. El camino sigue por la orilla alta y cruza un desagüe sobre una pasarela corta. Al norte queda Vaisgard; al sur la vegetación se vuelve más densa y empieza el camino de Lethra."
+      },
+      {
+        "kind": "world",
+        "text": "Una recolectora vacía su cesta de hierbas sobre la ribera seca. Conserva las raíces aparte para no llevar barro al mercado. Desde aquí puede ver quién llega a la pasarela y dejarle espacio antes de levantarse."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "lethra_ribera_seca",
+    "ambient": {
+      "region": "lethra",
+      "time_of_day": "Día",
+      "timestamp": 46740,
+      "weather": "Viento",
+      "weather_description": "Las hojas y envolturas se atan sin aplastar el contenido; las corrientes y las ondas de superficie dejan de parecer el mismo movimiento."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "El camino sigue sobre raíces, junto a un cauce cada vez más ancho. Al norte vuelves a las hondonadas de Vaisgard; al sur empiezan las hierbas húmedas. Un ave cruza hasta la otra orilla. Su vuelo deja ver cuánto terreno escondían los tallos."
+      },
+      {
+        "kind": "world",
+        "text": "Una recolectora limpia su cuchillo sobre una hoja seca y junta tallos sin raíces. Su cesta desprende un olor fresco que se distingue del barro. Al cerrar la cesta, la recolectora retira una hoja del cierre."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "lethra_tierra_esponjosa",
+    "ambient": {
+      "region": "lethra",
+      "time_of_day": "Día",
+      "timestamp": 46800,
+      "weather": "Viento",
+      "weather_description": "Las hojas y envolturas se atan sin aplastar el contenido; las corrientes y las ondas de superficie dejan de parecer el mismo movimiento."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "El suelo firme se corta en manchas de hojas que se hunden al pisarlas. Al norte está la ribera seca; al sur, las raíces llevan al juncal. Dos varas marcan el paso estrecho para las cargas. Una rana permanece quieta sobre el barro."
+      },
+      {
+        "kind": "world",
+        "text": "Una viajera se detiene a cambiar el bulto de hombro y un acompañante deja pasar a la rana antes de seguir. La pausa produce un silencio breve, lleno de insectos que seguían sonando bajo las voces."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "lethra_juncal_abierto",
+    "ambient": {
+      "region": "lethra",
+      "time_of_day": "Día",
+      "timestamp": 46860,
+      "weather": "Viento",
+      "weather_description": "Las hojas y envolturas se atan sin aplastar el contenido; las corrientes y las ondas de superficie dejan de parecer el mismo movimiento."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Los juncos se abren con el viento y dejan ver el agua. La senda vuelve al norte, hacia las raíces, y sigue al sur sobre las primeras tablas. Un desvío al oeste llega al banco de barro. Las huellas mantienen despejada una franja entre los tallos."
+      },
+      {
+        "kind": "danger",
+        "text": "Una pinza desigual se levanta al borde del agua. El Pinzajunco arrastra una hoja hacia su agujero cuando los pasos siguen por tierra."
+      },
+      {
+        "kind": "world",
+        "text": "Una artesana elige tallos secos y deja los verdes juntos para no abrir un hueco nuevo. Al atarlos, los juncos crujen con un sonido distinto del viento. Las fibras quedan junto al borde y el centro se mantiene libre para quienes pasan."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "lethra_tablas_primeras",
+    "ambient": {
+      "region": "lethra",
+      "time_of_day": "Día",
+      "timestamp": 46920,
+      "weather": "Viento",
+      "weather_description": "Las hojas y envolturas se atan sin aplastar el contenido; las corrientes y las ondas de superficie dejan de parecer el mismo movimiento."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las tablas cruzan por encima del barro sobre apoyos bajos. Al norte están los juncos; al sur se separan dos canales. El agua escurre por las uniones. Algunas tablas están más gastadas que otras. Una vara de prueba cuelga a un lado, fuera del agua."
+      },
+      {
+        "kind": "world",
+        "text": "Un carpintero camina sin carga hasta la unión que debe revisar. Sus compañeros esperan sobre tierra firme. El ruido de una tabla gastada se distingue mejor cuando nadie habla ni hace vibrar todo el tramo."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "lethra_cruce_canales",
+    "ambient": {
+      "region": "lethra",
+      "time_of_day": "Día",
+      "timestamp": 46980,
+      "weather": "Viento",
+      "weather_description": "Las hojas y envolturas se atan sin aplastar el contenido; las corrientes y las ondas de superficie dejan de parecer el mismo movimiento."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Un canal corre rápido junto a otro casi quieto. Las tablas llegan del norte y la senda sale al sur por tierra firme. En una pequeña plataforma junto al paso puedes mirar cómo gira una hoja. Las plantas se doblan hacia lados distintos de la corriente."
+      },
+      {
+        "kind": "world",
+        "text": "El viento empuja la hoja de lado sobre el remanso. La observadora señala una planta hundida que sigue inclinándose corriente abajo y borra el último giro de su tablilla."
+      },
+      {
+        "kind": "world",
+        "text": "Una Marevyn observa una hoja hasta que sale del remanso y anota el giro en una tablilla. Desde el apoyo seco señala dónde cambia la corriente y espera a que la hoja llegue al siguiente canal. Un viajero guarda su recipiente antes de acercarse a preguntar."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "lethra_ribera_firme",
+    "ambient": {
+      "region": "lethra",
+      "time_of_day": "Día",
+      "timestamp": 47040,
+      "weather": "Viento",
+      "weather_description": "Las hojas y envolturas se atan sin aplastar el contenido; las corrientes y las ondas de superficie dejan de parecer el mismo movimiento."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Recipientes cerrados esperan sobre apoyos de madera, por encima del barro. Huele a fibras mojadas y comida envuelta en hojas. Al norte vuelves al cruce de canales; al sur una curva lleva a la pasarela. Quienes descargan dejan los bultos levantados mientras buscan espacio."
+      },
+      {
+        "kind": "world",
+        "text": "Dos vecinas intercambian un recipiente sin bajarlo al suelo. Una tercera reconoce por la envoltura qué debe abrirse antes. La tercera se aparta con la envoltura abierta y las otras dos vuelven a sus apoyos."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "lethra_pasarela_curva",
+    "ambient": {
+      "region": "lethra",
+      "time_of_day": "Día",
+      "timestamp": 47100,
+      "weather": "Viento",
+      "weather_description": "Las hojas y envolturas se atan sin aplastar el contenido; las corrientes y las ondas de superficie dejan de parecer el mismo movimiento."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "La pasarela rodea el agua quieta. Ves la orilla de llegada casi enfrente, pero debes seguir la curva hacia el sur para alcanzarla. Al norte queda la ribera de los recipientes. Una baranda protege el lado abierto. Más adelante asoman el techo y los postes del embarcadero."
+      },
+      {
+        "kind": "world",
+        "text": "Una vecina lleva un recipiente ancho por la curva. Se detiene en el ensanchamiento para dejar pasar a alguien y vuelve a mirar la orilla de enfrente."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "lethra_embarcadero_camino",
+    "ambient": {
+      "region": "lethra",
+      "time_of_day": "Día",
+      "timestamp": 47160,
+      "weather": "Viento",
+      "weather_description": "Las hojas y envolturas se atan sin aplastar el contenido; las corrientes y las ondas de superficie dejan de parecer el mismo movimiento."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Bajo el techo se cambian las cargas del camino a pequeñas embarcaciones. Los bultos dejan libre el borde del agua. Al norte vuelves a la pasarela y al sur sigues hacia Narevia. Un poste marca el nivel del canal; otro guarda las tiras de las barcas esperadas."
+      },
+      {
+        "kind": "world",
+        "text": "Una encargada llama a quien espera una cesta y la recibe de mano en mano, sin lanzarla sobre el canal. Un niño identifica una tira de llegada y corre por la senda alta para avisar a su casa."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "lethra_senda_elevada",
+    "ambient": {
+      "region": "lethra",
+      "time_of_day": "Día",
+      "timestamp": 47220,
+      "weather": "Viento",
+      "weather_description": "Las hojas y envolturas se atan sin aplastar el contenido; las corrientes y las ondas de superficie dejan de parecer el mismo movimiento."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Pasas frente a viviendas separadas por canales. Sus puertas abren a plataformas propias, fuera del camino. Al norte queda el embarcadero; al sur se oyen las voces de Narevia. Una vecina levanta comida hacia una ventana y otra devuelve un recipiente. Se llaman por sus nombres sobre el agua."
+      },
+      {
+        "kind": "world",
+        "text": "Desde una ventana bajan una cesta y desde la siguiente devuelven dos paños doblados. La vecina llama a quien espera y le pide que acerque el asa."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "narevia_centro",
+    "ambient": {
+      "region": "lethra",
+      "time_of_day": "Día",
+      "timestamp": 47280,
+      "weather": "Viento",
+      "weather_description": "Las hojas y envolturas se atan sin aplastar el contenido; las corrientes y las ondas de superficie dejan de parecer el mismo movimiento."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Narevia ocupa una isla baja unida por pasarelas. Al norte está el camino terrestre, al este el taller, al sur el mercado y al oeste la ribera que sale hacia Edran. Los Marevyn pasan entre barcas y plataformas; los apoyos altos conservan espacio seco junto a la plaza."
+      },
+      {
+        "kind": "world",
+        "text": "Una familia reparte comida sobre la plataforma alta. Quien cuenta una visita de la otra orilla espera al final del martilleo para repetir el nombre; un niño sopla su cuenco."
+      },
+      {
+        "kind": "world",
+        "text": "Un junco amarrado vibra contra el poste de la pasarela. Las ondas cruzan los reflejos de las casas; en la plataforma alta cubren un cuenco para que no entren hojas."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "lethra_mercado_hojas",
+    "ambient": {
+      "region": "lethra",
+      "time_of_day": "Día",
+      "timestamp": 47340,
+      "weather": "Viento",
+      "weather_description": "Las hojas y envolturas se atan sin aplastar el contenido; las corrientes y las ondas de superficie dejan de parecer el mismo movimiento."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las barcas traen alimentos en cestas levantadas del fondo. Los puestos separan las envolturas abiertas de las que deben conservar humedad. Huele a hierbas cortadas y madera mojada. Al norte queda la plaza; al sur está el muelle. Los vendedores preparan bultos distintos para comer cerca o viajar."
+      },
+      {
+        "kind": "world",
+        "text": "Tila levanta una cesta del fondo de la barca antes de abrir su envoltura. Las provisiones de viaje quedan en el apoyo seco; lo que se comerá cerca conserva su cubierta húmeda."
+      },
+      {
+        "kind": "world",
+        "text": "Iria apoya una mano sobre la envoltura abierta. La compradora recoge la hoja rota antes de que caiga al canal y comprueba si todavía puede usarla."
+      }
+    ]
+  },
+  {
+    "type": "observation",
+    "room": "lethra_mercado_hojas",
+    "ambient": {
+      "region": "lethra",
+      "time_of_day": "Día",
+      "timestamp": 47400,
+      "weather": "Viento",
+      "weather_description": "Las hojas y envolturas se atan sin aplastar el contenido; las corrientes y las ondas de superficie dejan de parecer el mismo movimiento."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las barcas traen alimentos en cestas levantadas del fondo. Los puestos separan las envolturas abiertas de las que deben conservar humedad. Huele a hierbas cortadas y madera mojada. Al norte queda la plaza; al sur está el muelle. Los vendedores preparan bultos distintos para comer cerca o viajar."
+      },
+      {
+        "kind": "world",
+        "text": "Tila levanta una cesta del fondo de la barca antes de abrir su envoltura. Las provisiones de viaje quedan en el apoyo seco; lo que se comerá cerca conserva su cubierta húmeda."
+      },
+      {
+        "kind": "world",
+        "text": "Iria apoya una mano sobre la envoltura abierta. La compradora recoge la hoja rota antes de que caiga al canal y comprueba si todavía puede usarla."
+      }
+    ],
+    "observe": [
+      {
+        "kind": "world",
+        "text": "Tila comprueba el junco por su extremo seco y separa las ramas de las cestas húmedas. Los puñales y las varitas esperan sobre una tabla elevada."
+      },
+      {
+        "kind": "world",
+        "text": "Iria apoya una mano sobre la envoltura abierta. La compradora recoge la hoja rota antes de que caiga al canal y comprueba si todavía puede usarla."
+      },
+      {
+        "kind": "trace",
+        "text": "La hoja exterior protege la interior según la duración del viaje."
+      },
+      {
+        "kind": "action",
+        "text": "Observas con atención."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "lethra_muelle_vecinal",
+    "ambient": {
+      "region": "lethra",
+      "time_of_day": "Noche",
+      "timestamp": 82860,
+      "weather": "Niebla",
+      "weather_description": "Los reflejos desaparecen antes que las voces y las rutas se reconocen por agua, postes y uniones cercanas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Pequeñas barcas esperan junto a apoyos de distintas alturas. Las cestas vacías se agrupan por dueño; algunas asas tienen remiendos viejos. Al norte vuelves al mercado; al este llegas al patio de ventanas. Desde otra plataforma llaman a alguien para devolverle su cesta."
+      },
+      {
+        "kind": "world",
+        "text": "Las embarcaciones se sujetan cerca de apoyos altos y las cestas pendientes quedan bajo una cubierta. El muelle guarda nombres sin pronunciarse todo el tiempo. Una llegada puede despertar a una casa sin ocupar la plaza entera."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "lethra_patio_ventanas",
+    "ambient": {
+      "region": "lethra",
+      "time_of_day": "Noche",
+      "timestamp": 82920,
+      "weather": "Niebla",
+      "weather_description": "Los reflejos desaparecen antes que las voces y las rutas se reconocen por agua, postes y uniones cercanas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las ventanas se miran sobre un patio estrecho con agua entre las casas. Puedes volver al muelle por el oeste, salir a la ribera sombreada al norte o visitar las barcas en reparación al este. Junto a las entradas queda sitio para llamar y esperar una respuesta."
+      },
+      {
+        "kind": "world",
+        "text": "Las ventanas iluminadas muestran manos y recipientes antes que rostros completos. Una llamada espera respuesta desde la entrada pública. El canal mantiene separados los hogares aun cuando sus reflejos parecen reunirse sobre la misma superficie."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "lethra_ribera_sombra",
+    "ambient": {
+      "region": "lethra",
+      "time_of_day": "Noche",
+      "timestamp": 82980,
+      "weather": "Niebla",
+      "weather_description": "Los reflejos desaparecen antes que las voces y las rutas se reconocen por agua, postes y uniones cercanas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "El canal queda a un lado y las raíces al otro. Al sur vuelves al patio de Narevia; al norte sigues hacia el bosque. Una pasarela corta cruza entre dos troncos. Las hojas empiezan a tapar los reflejos, mientras los árboles crecen cada vez más juntos."
+      },
+      {
+        "kind": "world",
+        "text": "Las raíces se confunden con el canal. La pasarela suena hueca cuando alguien llega. Las voces de Narevia se oyen cada vez más lejos."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "lethra_relevo_raices",
+    "ambient": {
+      "region": "lethra",
+      "time_of_day": "Noche",
+      "timestamp": 83040,
+      "weather": "Niebla",
+      "weather_description": "Los reflejos desaparecen antes que las voces y las rutas se reconocen por agua, postes y uniones cercanas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "El canal se estrecha entre raíces que sostienen una plataforma. En una pared de tablas hay notas de la pasarela y del nivel del agua. Al sur vuelves a la ribera sombreada; al norte entras en Nhal. Las marcas del camino empiezan a quedar bajo los árboles. Este relevo de agua y bosque se conoce como Orilla Velada. La cubierta de tablas permite esperar sin bajar al barro ni ocupar la pasarela."
+      },
+      {
+        "kind": "world",
+        "text": "El agua toca una raíz bajo la plataforma. Un hilo corto se ve junto al poste; la cubierta tarda en soltar su última gota."
+      },
+      {
+        "kind": "world",
+        "text": "El reflejo abierto del canal se rompe en franjas bajo las raíces. Una cubierta de tablas guarda las notas donde acaba la luz de la ribera."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "nhal_ribera_relevo",
+    "ambient": {
+      "region": "nhal",
+      "time_of_day": "Noche",
+      "timestamp": 83100,
+      "weather": "Lluvia",
+      "weather_description": "El dosel retrasa y concentra gotas; un apoyo puede mojarse después de que el cielo ya parezca tranquilo."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Árboles y raíces acompañan el canal hasta una plataforma común. Al norte vuelve la ribera hacia Velmora; al sur empieza el tramo de Lethra. Dos notas comparan apoyos de madera y niveles de agua de ambos lados. La sombra del dosel alcanza parte del canal."
+      },
+      {
+        "kind": "world",
+        "text": "La sombra alcanza ahora las dos orillas. Una marca pintada en la cara seca de una raíz permite seguir sin confundir el canal con la senda."
+      },
+      {
+        "kind": "world",
+        "text": "La lluvia borra algunos reflejos y vuelve más útil comparar las notas del nivel. Las raíces reciben agua desde arriba, distinta de la que circula por el canal. El mantenimiento necesita ver ambos movimientos para decidir dónde esperar."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "nhal_agua_sombreada",
+    "ambient": {
+      "region": "nhal",
+      "time_of_day": "Noche",
+      "timestamp": 83160,
+      "weather": "Lluvia",
+      "weather_description": "El dosel retrasa y concentra gotas; un apoyo puede mojarse después de que el cielo ya parezca tranquilo."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "El agua retiene hojas entre las raíces. Al norte subes a la senda de helechos; al sur sigues junto al canal hacia Lethra. Desde un apoyo natural puedes mirar unos hilos bajos tendidos cerca de la corriente. Entre dos raíces, los hilos dejan libre el camino."
+      },
+      {
+        "kind": "world",
+        "text": "Las gotas vencen algunos hilos y la araña se recoge junto a la raíz. Una hoja retenida desvía la corriente; otro hilo se estira sobre el agua."
+      },
+      {
+        "kind": "world",
+        "text": "Los hilos desaparecen antes que el cauce deje de oírse. La observadora sube hacia los helechos sin buscar otra señal para justificar su visita. El agua conserva actividad propia, aunque la noche limite lo que puedes distinguir."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "nhal_helechos_bajos",
+    "ambient": {
+      "region": "nhal",
+      "time_of_day": "Noche",
+      "timestamp": 83220,
+      "weather": "Lluvia",
+      "weather_description": "El dosel retrasa y concentra gotas; un apoyo puede mojarse después de que el cielo ya parezca tranquilo."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Los helechos tapan el terreno bajo, pero la senda sigue sobre una franja elevada. Al oeste vuelves al puente; al este empiezan las casas. Un desvío al sur baja al cauce sombreado. Se oyen golpes de madera. Una pequeña cubierta protege la marca del camino."
+      },
+      {
+        "kind": "world",
+        "text": "Los helechos devuelven agua sobre las mangas al rozarlos. La aprendiz aparta hojas que cubrieron una raíz de paso y deja intacto el resto. El techo mínimo conserva seca la marca que confirma la continuación oriental."
+      },
+      {
+        "kind": "world",
+        "text": "Los golpes de madera cesan y la senda recupera otros sonidos pequeños. La corteza protegida sigue mostrando una marca cercana. Los helechos vuelven poco legibles sus entradas laterales, aunque la franja elevada continúe hacia el pueblo."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "nhal_umbral_velmora",
+    "ambient": {
+      "region": "nhal",
+      "time_of_day": "Noche",
+      "timestamp": 83280,
+      "weather": "Lluvia",
+      "weather_description": "El dosel retrasa y concentra gotas; un apoyo puede mojarse después de que el cielo ya parezca tranquilo."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las primeras casas aparecen entre árboles, con luces cerca de cada tarea. Al oeste queda la senda de helechos; al este entras en Velmora. Una mesa junto al camino permite esperar mientras pasa una carga. Las lámparas Vesperi iluminan los apoyos sin deslumbrar a quien llega."
+      },
+      {
+        "kind": "world",
+        "text": "La carga espera bajo una cubierta corta mientras se limpia barro del recipiente exterior. Los vecinos comparten el resguardo sin cerrar la senda. El agua sigue cayendo de hojas altas entre viviendas que aprendieron a recibirla."
+      },
+      {
+        "kind": "world",
+        "text": "Las luces encajadas distinguen mesa, raíces y acceso a la plaza. Las viviendas conservan sombras entre ellas. El pueblo se vuelve legible sin iluminar todo el dosel ni exigir que otros cuerpos vean como sus habitantes."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "velmora_centro",
+    "ambient": {
+      "region": "nhal",
+      "time_of_day": "Noche",
+      "timestamp": 83340,
+      "weather": "Lluvia",
+      "weather_description": "El dosel retrasa y concentra gotas; un apoyo puede mojarse después de que el cielo ya parezca tranquilo."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Velmora ocupa un claro entre los árboles. Las casas y bancos dejan sitio a las raíces. Al oeste está la entrada, al norte el taller, al sur el mercado y al este el patio del relato. Las voces llegan de cerca; los árboles ocultan parte de cada grupo."
+      },
+      {
+        "kind": "world",
+        "text": "En un patio termina un relato. Una voz repite la última frase para alguien que acaba de llegar; desde otra vivienda se oye recoger la mesa."
+      },
+      {
+        "kind": "world",
+        "text": "Los recipientes se recogen bajo la mesa cubierta y los bancos más bajos se apartan del goteo de raíces. Un vecino limpia la entrada del taller. La actividad cambia de disposición antes de que alguien diga que empezó a llover."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "nhal_mercado_setas",
+    "ambient": {
+      "region": "nhal",
+      "time_of_day": "Noche",
+      "timestamp": 83400,
+      "weather": "Lluvia",
+      "weather_description": "El dosel retrasa y concentra gotas; un apoyo puede mojarse después de que el cielo ya parezca tranquilo."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las cestas esperan bajo cubiertas separadas, con pasillos de suelo firme entre las raíces. Las hojas que llegan con los alimentos se revisan en una mesa. Al norte vuelves al claro de Velmora; al este entras en la cocina. El olor cambia junto a cada cesta abierta. Una puerta al oeste lleva al lugar de cuidados."
+      },
+      {
+        "kind": "world",
+        "text": "Varo baja la lámpara para ver una unión de madera. La cubierta de los alimentos permanece cerrada hasta que alguien pide preparar su salida."
+      },
+      {
+        "kind": "world",
+        "text": "El banco donde viste abrir una cesta queda bajo la parte más baja de la cubierta. Su olor alcanza el paso antes de que puedas ver el contenido."
+      }
+    ]
+  },
+  {
+    "type": "observation",
+    "room": "nhal_mercado_setas",
+    "ambient": {
+      "region": "nhal",
+      "time_of_day": "Noche",
+      "timestamp": 83460,
+      "weather": "Lluvia",
+      "weather_description": "El dosel retrasa y concentra gotas; un apoyo puede mojarse después de que el cielo ya parezca tranquilo."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las cestas esperan bajo cubiertas separadas, con pasillos de suelo firme entre las raíces. Las hojas que llegan con los alimentos se revisan en una mesa. Al norte vuelves al claro de Velmora; al este entras en la cocina. El olor cambia junto a cada cesta abierta. Una puerta al oeste lleva al lugar de cuidados."
+      },
+      {
+        "kind": "world",
+        "text": "Varo baja la lámpara para ver una unión de madera. La cubierta de los alimentos permanece cerrada hasta que alguien pide preparar su salida."
+      },
+      {
+        "kind": "world",
+        "text": "El banco donde viste abrir una cesta queda bajo la parte más baja de la cubierta. Su olor alcanza el paso antes de que puedas ver el contenido."
+      }
+    ],
+    "observe": [
+      {
+        "kind": "world",
+        "text": "Varo comprueba si las ramas conservan flexibilidad antes de acercarlas al montón de resina. Las provisiones quedan bajo otra cubierta, lejos de las armas."
+      },
+      {
+        "kind": "world",
+        "text": "El cuenco de recortes espera bajo la mesa. Una voz llama desde una vivienda y el último puesto recoge sus hojas."
+      },
+      {
+        "kind": "world",
+        "text": "Las hojas de revisión se recogen lejos del goteo y las cestas se elevan sobre apoyos secos. La vendedora cambia de pasillo para recibir una carga. El mercado funciona dentro del bosque sin poder ordenar toda su agua."
+      },
+      {
+        "kind": "trace",
+        "text": "Las hojas húmedas tienen olor terroso. Una conserva un borde amarillo y gotas entre los pliegues."
+      },
+      {
+        "kind": "action",
+        "text": "Observas con atención."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "velmora_centro",
+    "ambient": {
+      "region": "nhal",
+      "time_of_day": "Noche",
+      "timestamp": 83520,
+      "weather": "Lluvia",
+      "weather_description": "El dosel retrasa y concentra gotas; un apoyo puede mojarse después de que el cielo ya parezca tranquilo."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Velmora ocupa un claro entre los árboles. Las casas y bancos dejan sitio a las raíces. Al oeste está la entrada, al norte el taller, al sur el mercado y al este el patio del relato. Las voces llegan de cerca; los árboles ocultan parte de cada grupo."
+      },
+      {
+        "kind": "world",
+        "text": "En un patio termina un relato. Una voz repite la última frase para alguien que acaba de llegar; desde otra vivienda se oye recoger la mesa."
+      },
+      {
+        "kind": "world",
+        "text": "Los recipientes se recogen bajo la mesa cubierta y los bancos más bajos se apartan del goteo de raíces. Un vecino limpia la entrada del taller. La actividad cambia de disposición antes de que alguien diga que empezó a llover."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "nhal_patio_relato",
+    "ambient": {
+      "region": "nhal",
+      "time_of_day": "Noche",
+      "timestamp": 83580,
+      "weather": "Lluvia",
+      "weather_description": "El dosel retrasa y concentra gotas; un apoyo puede mojarse después de que el cielo ya parezca tranquilo."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Bancos distintos rodean una mesa bajo una cubierta corta. Al oeste vuelves al claro, al sur está la cocina, al norte las casas y al este la senda de Elin. Un recipiente reparado guarda hojas con recuerdos. Leris busca un nombre en su cuaderno y deja una línea vacía."
+      },
+      {
+        "kind": "world",
+        "text": "Las hojas se pasan hacia el centro seco y un vecino recoge los bancos exteriores. La narradora cambia de tono para hacerse oír entre gotas. La reunión conserva su pregunta pendiente, aunque hoy no pueda extenderse fuera de la cubierta."
+      },
+      {
+        "kind": "world",
+        "text": "Los bancos bajo cubierta reciben más personas y los bordes se quedan vacíos. La narradora guarda la hoja incompleta antes de terminar. El relato puede continuar otro día sin forzar una revelación para cerrar la velada."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "nhal_calle_hogares",
+    "ambient": {
+      "region": "nhal",
+      "time_of_day": "Noche",
+      "timestamp": 83640,
+      "weather": "Lluvia",
+      "weather_description": "El dosel retrasa y concentra gotas; un apoyo puede mojarse después de que el cielo ya parezca tranquilo."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las casas se reparten en pequeños niveles entre los árboles. Sus entradas dejan sitio para las raíces y para esperar antes de llamar. Al sur vuelves al patio; al norte subes hacia el Dosel Alto. Las luces muestran una reparación o una comida, sin iluminar todo el interior."
+      },
+      {
+        "kind": "world",
+        "text": "Los visitantes esperan bajo aleros pequeños y los recipientes se acercan a las puertas. Una vecina ajusta su lámpara al brillo de la madera mojada. Los visitantes dejan libres las puertas y esperan bajo el alero hasta que alguien los llama."
+      },
+      {
+        "kind": "world",
+        "text": "Una puerta permanece abierta para una visita esperada. La casa vecina apaga su lámpara; al fondo otra luz se mueve sobre una mesa."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "nhal_sendero_altura",
+    "ambient": {
+      "region": "nhal",
+      "time_of_day": "Noche",
+      "timestamp": 83700,
+      "weather": "Lluvia",
+      "weather_description": "El dosel retrasa y concentra gotas; un apoyo puede mojarse después de que el cielo ya parezca tranquilo."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "La senda gana pendiente y los árboles empiezan a separarse. Al sur vuelves a las casas de Velmora; al norte subes a una roca entre las copas. Un descanso de raíces permite esperar a quien baja con carga. Detrás quedan las luces de las viviendas."
+      },
+      {
+        "kind": "world",
+        "text": "El agua baja por la franja empinada y deposita hojas sobre el apoyo inferior. La viajera cambia dónde espera mientras revisa su cubierta. El bosque conserva sombra, pero la pendiente empieza a decidir cómo se mueve la lluvia."
+      },
+      {
+        "kind": "world",
+        "text": "Las luces de las casas se pierden entre árboles, más abajo. El farol ilumina la raíz del descanso y se apaga antes del borde cubierto."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "nhal_roca_entre_copas",
+    "ambient": {
+      "region": "nhal",
+      "time_of_day": "Noche",
+      "timestamp": 83760,
+      "weather": "Lluvia",
+      "weather_description": "El dosel retrasa y concentra gotas; un apoyo puede mojarse después de que el cielo ya parezca tranquilo."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Una roca ancha permite mirar entre las copas hacia una ladera de Hoshai. Al sur bajas hacia Velmora; al norte llegas al relevo. Hay sitio para observar lejos del borde. Los árboles tapan partes del camino, incluso desde aquí arriba."
+      },
+      {
+        "kind": "world",
+        "text": "El agua corre sobre la roca y reúne hojas del dosel en la parte exterior. La cuidadora mantiene libre el apoyo interior. La observación de la ladera cambia mientras las marcas cercanas todavía pueden comprobarse."
+      },
+      {
+        "kind": "world",
+        "text": "La vista de ladera desaparece y los troncos cercanos conservan referencias con luz baja. El viajero guarda sus notas de altura. La roca sigue ofreciendo apoyo, aunque hoy su principal utilidad sea esperar a otra persona."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "nhal_relevo_altura",
+    "ambient": {
+      "region": "nhal",
+      "time_of_day": "Noche",
+      "timestamp": 83820,
+      "weather": "Lluvia",
+      "weather_description": "El dosel retrasa y concentra gotas; un apoyo puede mojarse después de que el cielo ya parezca tranquilo."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Bajo una cubierta se guardan notas de la ruta. Un cordel fuera del camino marca los apoyos para las cargas. Al sur bajas hacia Velmora; al oeste sigues hacia Hoshai. Dos árboles tapan pronto la senda. Una cuidadora extiende una nota y otra mira las marcas cercanas. Una talla sencilla identifica el Alto de las Raíces. Dos apoyos bajo la cubierta sirven para descansar antes de tomar el paso hacia la sierra."
+      },
+      {
+        "kind": "world",
+        "text": "Entre los dos árboles se oye moverse una rama. La talla del relevo recoge una luz pequeña; las notas permanecen bajo la cubierta."
+      },
+      {
+        "kind": "world",
+        "text": "El último tramo de bosque desemboca en dos árboles altos. Bajo su cubierta, las notas distinguen los apoyos de raíz de las piedras del camino de montaña."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "hoshai_estacion_cuerda",
+    "ambient": {
+      "region": "hoshai",
+      "time_of_day": "Noche",
+      "timestamp": 83880,
+      "weather": "Lluvia",
+      "weather_description": "El agua busca raíces, canales y paredes; los apoyos no se mojan de la misma manera."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Un cordel une dos árboles fuera del sendero. Sus marcas señalan dónde apoyar las cargas; bajo una cubierta se guardan notas del camino. Al oeste vuelves hacia Khariel. Al este, los troncos se juntan y la ruta entra en el Dosel Alto de Nhal."
+      },
+      {
+        "kind": "world",
+        "text": "La cubierta protege las notas, pero los árboles descargan agua sobre la senda. Las dos cuidadoras miran los apoyos cercanos antes de recomendar un tramo."
+      },
+      {
+        "kind": "world",
+        "text": "Las marcas del cordel quedan oscuras. La cubierta de notas está cerrada; debajo hay sitio para apoyar un farol. La senda sigue al este entre los árboles."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "hoshai_senda_dosel",
+    "ambient": {
+      "region": "hoshai",
+      "time_of_day": "Noche",
+      "timestamp": 83940,
+      "weather": "Lluvia",
+      "weather_description": "El agua busca raíces, canales y paredes; los apoyos no se mojan de la misma manera."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "La senda baja entre árboles altos y rodea un pequeño valle. Al sur vuelves a las viviendas de Khariel; al este alcanzas la estación del cordel. La plaza desaparece tras la primera curva. Un banco seco permite esperar sin dejar la carga sobre las raíces mojadas."
+      },
+      {
+        "kind": "world",
+        "text": "Las hojas amplias del descenso devuelven gotas más pesadas que las agujas del pinar. El viajero mantiene su carga lejos de las raíces húmedas. La llegada del bosque se siente también en cómo cae el agua sobre el sendero."
+      },
+      {
+        "kind": "world",
+        "text": "Las viviendas desaparecen al doblar y el dosel reúne una oscuridad más pareja que el valle abierto. El banco sigue ofreciendo apoyo seco. Las voces dejan de propagarse en línea recta entre los troncos."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "hoshai_patio_hogares",
+    "ambient": {
+      "region": "hoshai",
+      "time_of_day": "Noche",
+      "timestamp": 84000,
+      "weather": "Lluvia",
+      "weather_description": "El agua busca raíces, canales y paredes; los apoyos no se mojan de la misma manera."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las puertas de las casas se reparten entre escalones y pequeños descansos. La plaza queda al sur, el lavadero al este y la senda del bosque al norte. Los recipientes esperan junto a los muros. Para visitar una casa, hay un umbral donde llamar sin bloquear el paso."
+      },
+      {
+        "kind": "world",
+        "text": "Los vecinos recogen las cuerdas de ropa contra los muros. El agua alcanza el borde bajo de la rampa; un recipiente sube de mano en mano hasta la puerta."
+      },
+      {
+        "kind": "world",
+        "text": "Las voces salen por rendijas antes de que se abran puertas. Una lámpara señala el umbral de espera, separándolo de los pasos domésticos. Quien llega con preguntas puede llamar sin entrar en la casa de alguien."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "khariel_centro",
+    "ambient": {
+      "region": "hoshai",
+      "time_of_day": "Noche",
+      "timestamp": 84060,
+      "weather": "Lluvia",
+      "weather_description": "El agua busca raíces, canales y paredes; los apoyos no se mojan de la misma manera."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "La plaza de Khariel ocupa dos terrazas unidas por escalones y una rampa. El camino baja al sur; al oeste está el taller, al este el mercado y al norte las viviendas. Los bancos dejan sitio para las colas Felaryn y para apoyar cargas."
+      },
+      {
+        "kind": "world",
+        "text": "En la terraza superior alguien practica dos notas con un silbato. Una ventana se abre y una voz pide la melodía entera; abajo se oyen pasos recién llegados."
+      },
+      {
+        "kind": "world",
+        "text": "Los habitantes apartan los asientos del agua que baja por los escalones y despejan la rampa para las cargas. Las capas mojadas se cuelgan bajo un techo común, lejos de las herramientas que esperan en el taller."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "hoshai_mercado_cintas",
+    "ambient": {
+      "region": "hoshai",
+      "time_of_day": "Noche",
+      "timestamp": 84120,
+      "weather": "Lluvia",
+      "weather_description": "El agua busca raíces, canales y paredes; los apoyos no se mojan de la misma manera."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Entre muros que cortan el viento, los puestos ofrecen comida envuelta y cintas para las cargas. Puedes probar una atadura sobre las barras. El paso hacia la plaza vuelve al oeste. Los colores de las cintas indican qué bulto abrir primero y cuál mantener seco. Una puerta al este lleva al lugar de cuidados."
+      },
+      {
+        "kind": "world",
+        "text": "Luma acerca el farol a los nudos que debe revisar. El muro protege la llama; las piezas listas quedan separadas de las que aún necesitan una atadura."
+      },
+      {
+        "kind": "world",
+        "text": "Reconoces las barras donde probaste una atadura. Las cintas del borde exterior quedan junto al paso que vuelve a la plaza."
+      }
+    ]
+  },
+  {
+    "type": "observation",
+    "room": "hoshai_mercado_cintas",
+    "ambient": {
+      "region": "hoshai",
+      "time_of_day": "Noche",
+      "timestamp": 84180,
+      "weather": "Lluvia",
+      "weather_description": "El agua busca raíces, canales y paredes; los apoyos no se mojan de la misma manera."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Entre muros que cortan el viento, los puestos ofrecen comida envuelta y cintas para las cargas. Puedes probar una atadura sobre las barras. El paso hacia la plaza vuelve al oeste. Los colores de las cintas indican qué bulto abrir primero y cuál mantener seco. Una puerta al este lleva al lugar de cuidados."
+      },
+      {
+        "kind": "world",
+        "text": "Luma acerca el farol a los nudos que debe revisar. El muro protege la llama; las piezas listas quedan separadas de las que aún necesitan una atadura."
+      },
+      {
+        "kind": "world",
+        "text": "Reconoces las barras donde probaste una atadura. Las cintas del borde exterior quedan junto al paso que vuelve a la plaza."
+      }
+    ],
+    "observe": [
+      {
+        "kind": "world",
+        "text": "Luma distingue las cargas por sus ataduras. Deja arcos y puñales junto al muro protegido del viento; la resina y las cuerdas esperan cerca de las barras de prueba."
+      },
+      {
+        "kind": "world",
+        "text": "Las cintas recogidas dejan ver las marcas de sol en la mesa. Desde las viviendas llega olor a comida y la voz de alguien que llama por su nombre."
+      },
+      {
+        "kind": "world",
+        "text": "Los paquetes se separan del muro, donde el agua baja sin verse desde delante. La comerciante cambia una cinta húmeda por otra seca y muestra cómo puede colgarse fuera del bulto sin mojar lo que protege."
+      },
+      {
+        "kind": "trace",
+        "text": "Permiten probar una carga antes de salir del mercado."
+      },
+      {
+        "kind": "action",
+        "text": "Observas con atención."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "khariel_centro",
+    "ambient": {
+      "region": "hoshai",
+      "time_of_day": "Noche",
+      "timestamp": 84240,
+      "weather": "Lluvia",
+      "weather_description": "El agua busca raíces, canales y paredes; los apoyos no se mojan de la misma manera."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "La plaza de Khariel ocupa dos terrazas unidas por escalones y una rampa. El camino baja al sur; al oeste está el taller, al este el mercado y al norte las viviendas. Los bancos dejan sitio para las colas Felaryn y para apoyar cargas."
+      },
+      {
+        "kind": "world",
+        "text": "En la terraza superior alguien practica dos notas con un silbato. Una ventana se abre y una voz pide la melodía entera; abajo se oyen pasos recién llegados."
+      },
+      {
+        "kind": "world",
+        "text": "La rampa que usaste llega a la terraza de las casas; los escalones bajan hacia las cargas. Puedes escoger el nivel antes de cruzar la plaza."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "hoshai_escalones_sol",
+    "ambient": {
+      "region": "hoshai",
+      "time_of_day": "Noche",
+      "timestamp": 84300,
+      "weather": "Lluvia",
+      "weather_description": "El agua busca raíces, canales y paredes; los apoyos no se mojan de la misma manera."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Escalones de tamaños distintos enlazan la terraza baja con las casas: unos están tallados y otros reparados con piedras nuevas. Al sur está la terraza de cargas; al norte llegas a Khariel. Un canal corre al lado de los peldaños. Las reparaciones dejan apoyos para pies humanos y Felaryn."
+      },
+      {
+        "kind": "world",
+        "text": "Al dejar la plaza, el canal acompaña el descenso. Desde el primer peldaño ya ves las cuerdas tendidas en la terraza inferior."
+      },
+      {
+        "kind": "world",
+        "text": "El canal lateral reúne agua que resbala de las piezas reparadas. El albañil revisa el hueco inferior sin retirarlo en pleno tránsito. Una marca de barro revela qué peldaño están evitando las cargas más anchas."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "hoshai_terraza_cargas",
+    "ambient": {
+      "region": "hoshai",
+      "time_of_day": "Noche",
+      "timestamp": 84360,
+      "weather": "Lluvia",
+      "weather_description": "El agua busca raíces, canales y paredes; los apoyos no se mojan de la misma manera."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "El paso estrecho desemboca en una terraza ancha. Al sur queda el cuello de roca; al norte suben los escalones de Khariel. Un sendero al este lleva al mirador. Las cargas descansan abiertas, con sus cuerdas lejos del borde. Un techo del pueblo asoma sobre la subida. Una lona al oeste señala un campamento junto al camino; se puede llegar sin bajar por toda la sierra."
+      },
+      {
+        "kind": "world",
+        "text": "Los viajeros vuelven las cubiertas con el lado seco hacia los paquetes y dejan escapar el agua por el borde exterior. Las cuerdas mojadas se separan de las de repuesto para no llevar humedad a toda la carga."
+      },
+      {
+        "kind": "world",
+        "text": "Una ventana lejana permanece visible cuando los escalones ya no lo están. Los comerciantes cubren los paquetes y acercan sus luces a las cuerdas. La casa parece más cercana justamente cuando conviene mirar el suelo."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "hoshai_cuello_roca",
+    "ambient": {
+      "region": "hoshai",
+      "time_of_day": "Noche",
+      "timestamp": 84420,
+      "weather": "Lluvia",
+      "weather_description": "El agua busca raíces, canales y paredes; los apoyos no se mojan de la misma manera."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las paredes se acercan tanto que las cargas deben pasar en fila. Al sur puedes esperar en la ladera; al norte se abre una terraza. Hay una piedra plana en cada extremo: los viajeros golpean madera contra ella para avisar antes de entrar."
+      },
+      {
+        "kind": "world",
+        "text": "El agua corre pegada a la pared oriental y reduce el apoyo de ese lado. Los viajeros mantienen el anuncio antes de cruzar; cubrirse de la lluvia no da permiso para ocupar el cuello desde ambas entradas."
+      },
+      {
+        "kind": "world",
+        "text": "Los golpes se oyen completos entre las paredes y pierden fuerza al salir a la ladera. Quien no recibe respuesta deja la carga fuera y mira el primer apoyo. Una luz se acerca desde el otro extremo y vuelve a oírse el paso de una carga."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "hoshai_ladera_hitos",
+    "ambient": {
+      "region": "hoshai",
+      "time_of_day": "Noche",
+      "timestamp": 84480,
+      "weather": "Lluvia",
+      "weather_description": "El agua busca raíces, canales y paredes; los apoyos no se mojan de la misma manera."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "El sendero recorre una ladera abierta entre la corriente baja y el cuello de roca. Al sur queda la corriente y al norte se estrecha el paso entre dos paredes. Dos grupos de piedras marcan las curvas: uno sigue el camino y otro el borde que se revisa tras el deshielo. Una tablilla cercana explica la diferencia."
+      },
+      {
+        "kind": "world",
+        "text": "La roca deja de cerrarse a tus lados. Más abajo, una línea oscura de agua corta la ladera antes del pinar."
+      },
+      {
+        "kind": "world",
+        "text": "El agua marca una línea entre los dos grupos de piedras. La cuidadora espera a que pase una carga y se arrodilla junto a la base que empieza a hundirse."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "hoshai_agua_fria",
+    "ambient": {
+      "region": "hoshai",
+      "time_of_day": "Noche",
+      "timestamp": 84540,
+      "weather": "Lluvia",
+      "weather_description": "El agua busca raíces, canales y paredes; los apoyos no se mojan de la misma manera."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Una corriente fría atraviesa el sendero. Al sur quedan los pinos; al norte, unos escalones de roca suben hacia los hitos. Una piedra grande desvía parte del agua. Puedes dejar la carga en el lado seco antes de escoger dónde pisar."
+      },
+      {
+        "kind": "world",
+        "text": "La corriente alcanza el segundo escalón y arrastra agujas del pinar. Los viajeros alzan los bultos sobre la plataforma seca mientras observan el paso. La otra orilla sigue cerca, pero su apoyo útil se ha estrechado."
+      },
+      {
+        "kind": "world",
+        "text": "El agua tapa los sonidos del pinar. Las luces de ambas orillas dejan ver los escalones próximos; en medio, los reflejos se rompen sobre la corriente."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "hoshai_pinar_discontinuo",
+    "ambient": {
+      "region": "hoshai",
+      "time_of_day": "Noche",
+      "timestamp": 84600,
+      "weather": "Lluvia",
+      "weather_description": "El agua busca raíces, canales y paredes; los apoyos no se mojan de la misma manera."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Los pinos dejan claros desde los que se ve el valle. Al sur vuelve el camino de la pared; al norte corre agua fría. Un desvío al oeste lleva al abrigo de piñas y al collado. Las piñas se acumulan donde el viento no las alcanza."
+      },
+      {
+        "kind": "world",
+        "text": "El pino más próximo roza la roca. El olor de las agujas llega antes de que puedas distinguir su franja oscura en el suelo."
+      },
+      {
+        "kind": "world",
+        "text": "Las agujas mojadas oscurecen la tierra y amortiguan el paso de las cargas. La recolectora deja en tierra las piñas abiertas y lleva sólo las que aún conservan semillas. Bajo los árboles siguen cayendo gotas cuando el claro se despeja."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "hoshai_pared_goteo",
+    "ambient": {
+      "region": "hoshai",
+      "time_of_day": "Noche",
+      "timestamp": 84660,
+      "weather": "Lluvia",
+      "weather_description": "El agua busca raíces, canales y paredes; los apoyos no se mojan de la misma manera."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "La pared queda a tu izquierda al subir, con el valle abierto al otro lado. El sendero une las tres piedras del sur con el pinar del norte. En los huecos de la roca cabe una carga. El barro conserva marcas de manos junto al goteo."
+      },
+      {
+        "kind": "world",
+        "text": "Recuerdas el entrante donde apoyaron una carga. Las marcas de manos se concentran bajo el saliente; más arriba la pared queda lisa y mojada."
+      },
+      {
+        "kind": "world",
+        "text": "La pared devuelve varios hilos de agua que antes eran gotas. Los viajeros protegen la carga del lado interior, pero dejan el apoyo de la mano libre; una cubierta mal puesta impediría reconocer la superficie húmeda."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "hoshai_descanso_tres_piedras",
+    "ambient": {
+      "region": "hoshai",
+      "time_of_day": "Noche",
+      "timestamp": 84720,
+      "weather": "Lluvia",
+      "weather_description": "El agua busca raíces, canales y paredes; los apoyos no se mojan de la misma manera."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Tres piedras grandes ofrecen asiento en mitad de la subida. El repecho queda al sur; al norte sigue el camino junto a una pared. Desde aquí ves dos curvas del ascenso. Unas cuerdas descansan sobre una piedra pequeña, apartadas del paso."
+      },
+      {
+        "kind": "world",
+        "text": "El farol ilumina una cuerda sobre la piedra baja. Una viajera se sienta con la espalda hacia la pared; más allá de sus pies queda el borde oscuro."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "hoshai_repecho_raices",
+    "ambient": {
+      "region": "hoshai",
+      "time_of_day": "Noche",
+      "timestamp": 84780,
+      "weather": "Lluvia",
+      "weather_description": "El agua busca raíces, canales y paredes; los apoyos no se mojan de la misma manera."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "La cuesta pasa entre raíces descubiertas y árboles inclinados. Puedes volver al arroyo por el sur o seguir al descanso del norte. La curva esconde lo que viene después. Entre dos troncos hay sitio para apoyar un bulto sin tapar el sendero."
+      },
+      {
+        "kind": "world",
+        "text": "Reconoces el hueco usado para dejar pasar la carga. La curva sigue ocultando el descanso, pero ya puedes anticipar dónde esperar y distinguir una raíz firme de la que sostiene el borde del terreno."
+      },
+      {
+        "kind": "world",
+        "text": "Desde el descanso bajas a una curva húmeda. Entre las raíces vuelve a oírse el arroyo, aunque todavía no puedes verlo."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "hoshai_estribacion",
+    "ambient": {
+      "region": "hoshai",
+      "time_of_day": "Noche",
+      "timestamp": 84840,
+      "weather": "Lluvia",
+      "weather_description": "El agua busca raíces, canales y paredes; los apoyos no se mojan de la misma manera."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "La pendiente enlaza la grava de la cuenca con los pastos cortos de la sierra. Al sur queda la rampa de Vaisgard; al norte, una pendiente con raíces. Un arroyo cruza delante de ti. Hay espacio para dejar la carga antes de pasar sobre las piedras redondas."
+      },
+      {
+        "kind": "world",
+        "text": "El cambio entre pasto y grava te anuncia el ascenso antes de verlo completo. Si bajas desde la sierra, este ensanchamiento devuelve espacio a las cargas y permite escuchar otra vez voces que no llegan desde arriba."
+      },
+      {
+        "kind": "world",
+        "text": "El arroyo crece hacia la banda de pasto pisado. La pastora aparta a las bestias antes de que se mezclen sus huellas con la corriente. La entrada firme continúa junto al talud, no por el centro brillante."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_rampa_grava",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Noche",
+      "timestamp": 84900,
+      "weather": "Lluvia",
+      "weather_description": "Los desagües reúnen el agua de calles altas y obligan a repartir refugios sin mezclar cargas y herramientas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "La grava sube desde la ciudad. Los carros pueden parar a un lado para ajustar las cargas. Unas piedras arrastradas llenan la hondonada que el camino rodea. Al sur quedan las últimas casas; al norte comienzan las laderas de Hoshai."
+      },
+      {
+        "kind": "world",
+        "text": "Ahora distingues el descansadero de la hondonada por su acceso lateral. Reconoces el descanso antes del segundo tramo. Desde allí se mantiene a la vista el borde por donde llegan las cargas."
+      },
+      {
+        "kind": "world",
+        "text": "El arroyo oculto se hace audible bajo las piedras. Una corriente corta cruza la rampa sin borrar la dirección general. Las huellas profundas del descansadero aconsejan apoyar las cargas sobre el borde firme en vez del centro."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_puerta_alta",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Noche",
+      "timestamp": 84960,
+      "weather": "Lluvia",
+      "weather_description": "Los desagües reúnen el agua de calles altas y obligan a repartir refugios sin mezclar cargas y herramientas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "El suelo empieza a subir antes de cruzar la puerta. Los viajeros ajustan sus cargas en una plataforma lateral. Algunos regresan con capas gruesas de la sierra. Al sur vuelves a la plaza; la rampa norte lleva hacia Hoshai."
+      },
+      {
+        "kind": "world",
+        "text": "La plataforma lateral aparece antes de que el suelo cambie de empedrado a grava. La rampa se ve por encima de las cargas, junto al muro exterior."
+      },
+      {
+        "kind": "world",
+        "text": "La grava devuelve agua por franjas y deja libres algunos apoyos. Los viajeros eligen dónde plantar el pie antes de volver a cargar. Una cubierta demasiado suelta golpea el muro y recuerda que arriba también habrá viento."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_plaza_rutas",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Noche",
+      "timestamp": 85020,
+      "weather": "Lluvia",
+      "weather_description": "Los desagües reúnen el agua de calles altas y obligan a repartir refugios sin mezclar cargas y herramientas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las rutas se reúnen sobre el empedrado. Las piedras antiguas sobresalen entre las casas. Al sur bajas al mercado; al norte sales hacia la sierra. Los animales descansan en el patio oeste. Al este, una mensajera organiza avisos bajo un alero."
+      },
+      {
+        "kind": "world",
+        "text": "Reconoces las sogas cortas de quienes vienen de la piedra y las cubiertas anchas del campo. Junto al alero, los bultos pequeños de la sierra quedan separados de las cestas."
+      },
+      {
+        "kind": "world",
+        "text": "El abanico de juntas recoge hilos de agua. Los mensajeros protegen sus papeles debajo del alero oriental y dejan las esquinas libres para los carros; las capas mojadas se sacuden siempre fuera de ese refugio."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "vaisgard_mercado",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Noche",
+      "timestamp": 85080,
+      "weather": "Lluvia",
+      "weather_description": "Los desagües reúnen el agua de calles altas y obligan a repartir refugios sin mezclar cargas y herramientas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Frutas, herramientas y cestas ocupan los puestos entre muros antiguos. Un canal pequeño cruza el mercado. Al norte está la plaza de las rutas; al sur, el patio del agua. Los carros entran por el oeste y los toldos cubren la calle del este."
+      },
+      {
+        "kind": "world",
+        "text": "Bela orienta la lámpara hacia las piezas que alguien quiere comparar. Al otro lado del canal, los puestos cerrados dejan sitio a las cargas de quienes llegan tarde."
+      },
+      {
+        "kind": "world",
+        "text": "El canal divide otra vez tu paso entre puestos. La plaza queda detrás de las herramientas; los carros alcanzan el corredor occidental por el lado de las cestas."
+      }
+    ]
+  },
+  {
+    "type": "observation",
+    "room": "vaisgard_mercado",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Noche",
+      "timestamp": 85140,
+      "weather": "Lluvia",
+      "weather_description": "Los desagües reúnen el agua de calles altas y obligan a repartir refugios sin mezclar cargas y herramientas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Frutas, herramientas y cestas ocupan los puestos entre muros antiguos. Un canal pequeño cruza el mercado. Al norte está la plaza de las rutas; al sur, el patio del agua. Los carros entran por el oeste y los toldos cubren la calle del este."
+      },
+      {
+        "kind": "world",
+        "text": "Bela orienta la lámpara hacia las piezas que alguien quiere comparar. Al otro lado del canal, los puestos cerrados dejan sitio a las cargas de quienes llegan tarde."
+      },
+      {
+        "kind": "world",
+        "text": "El canal divide otra vez tu paso entre puestos. La plaza queda detrás de las herramientas; los carros alcanzan el corredor occidental por el lado de las cestas."
+      }
+    ],
+    "observe": [
+      {
+        "kind": "world",
+        "text": "Bela abre espacio entre los viajeros de las cinco rutas. Compara las armas sobre el mismo mostrador y deja los alimentos aparte para que ninguna hoja alcance las envolturas."
+      },
+      {
+        "kind": "world",
+        "text": "Un vendedor recoge las últimas cestas. Entre los muros se oyen pasos y una discusión sobre quién olvidó devolver una cuchara."
+      },
+      {
+        "kind": "world",
+        "text": "El agua corre por las esquinas de los toldos hacia el canalillo. Los vendedores levantan del suelo sus cajas y comparten los huecos secos; las cargas recién llegadas permanecen cerradas hasta poder sacudir sus cubiertas."
+      },
+      {
+        "kind": "trace",
+        "text": "Las bases son más antiguas que los cobertizos. Ninguna inscripción permite atribuirlas a un fundador."
+      },
+      {
+        "kind": "action",
+        "text": "Observas con atención."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_calle_toldos",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Noche",
+      "timestamp": 85200,
+      "weather": "Lluvia",
+      "weather_description": "Los desagües reúnen el agua de calles altas y obligan a repartir refugios sin mezclar cargas y herramientas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Toldos remendados cubren la calle. Cada taller ha reparado su tramo con una tela distinta. El mercado queda al oeste. Al sur sales hacia los canales; al este llega el camino del bosque, por donde entran haces de madera."
+      },
+      {
+        "kind": "world",
+        "text": "Reconoces la costura azul entre los dos talleres. Bajo el último desagüe están los recipientes que marcaban la vuelta hacia los canales."
+      },
+      {
+        "kind": "world",
+        "text": "Una costura vencida vierte agua sobre la entrada de un taller. Sus vecinos recogen el borde con una pértiga y lo desvían hacia la calle; la reparación necesita acuerdo antes que materiales nuevos."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_puerta_juncos",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Noche",
+      "timestamp": 85260,
+      "weather": "Lluvia",
+      "weather_description": "Los desagües reúnen el agua de calles altas y obligan a repartir refugios sin mezclar cargas y herramientas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "El canal pasa junto a una puerta lateral. Fuera, las casas dejan sitio a hondonadas de hierba alta. Una tabla permite cambiarse el calzado sin tapar el paso. Al norte vuelves a los toldos; al sur sigues el agua hacia Lethra."
+      },
+      {
+        "kind": "world",
+        "text": "El escalón seco de la puerta permite saber que has terminado el tramo bajo sin mirar atrás continuamente. Si regresas con barro, la tabla recuerda dónde detenerte antes de llevarlo al taller que mantiene el toldo vecino."
+      },
+      {
+        "kind": "world",
+        "text": "Los desagües traen ramas que un vecino aparta con un gancho. El camino exterior refleja el cielo entre huellas oscuras. Los bultos se cambian de lado para no arrastrar cubiertas por el borde del canal."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_hondonada_canales",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Noche",
+      "timestamp": 85320,
+      "weather": "Lluvia",
+      "weather_description": "Los desagües reúnen el agua de calles altas y obligan a repartir refugios sin mezclar cargas y herramientas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Varios hilos de agua se reúnen en un canal. El camino sigue por la orilla alta y cruza un desagüe sobre una pasarela corta. Al norte queda Vaisgard; al sur la vegetación se vuelve más densa y empieza el camino de Lethra."
+      },
+      {
+        "kind": "world",
+        "text": "El desagüe pequeño termina bajo el muro. El canal largo sigue entre juncos; recuerdas la ribera alta que vuelve a los tejados."
+      },
+      {
+        "kind": "world",
+        "text": "Los desagües secundarios crecen primero y la pasarela recibe salpicaduras desde abajo. La recolectora abandona el punto de selección y vuelve a la ribera alta; deja un lugar de trabajo, no una cesta olvidada para el viajero."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "lethra_ribera_seca",
+    "ambient": {
+      "region": "lethra",
+      "time_of_day": "Noche",
+      "timestamp": 85380,
+      "weather": "Niebla",
+      "weather_description": "Los reflejos desaparecen antes que las voces y las rutas se reconocen por agua, postes y uniones cercanas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "El camino sigue sobre raíces, junto a un cauce cada vez más ancho. Al norte vuelves a las hondonadas de Vaisgard; al sur empiezan las hierbas húmedas. Un ave cruza hasta la otra orilla. Su vuelo deja ver cuánto terreno escondían los tallos."
+      },
+      {
+        "kind": "world",
+        "text": "Reconoces el apoyo de la recolectora junto a la bajada. La ruta alta pasa sobre el barro; junto a la madera vacía queda el borde redondo de un recipiente."
+      },
+      {
+        "kind": "world",
+        "text": "Las hierbas ocultan el agua antes que las estrellas desaparezcan sobre el cauce. La recolectora ya se marchó y dejó el apoyo vacío. Un chapoteo lejano se propaga sin señalar exactamente dónde comienza la otra orilla."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "lethra_tierra_esponjosa",
+    "ambient": {
+      "region": "lethra",
+      "time_of_day": "Noche",
+      "timestamp": 85440,
+      "weather": "Niebla",
+      "weather_description": "Los reflejos desaparecen antes que las voces y las rutas se reconocen por agua, postes y uniones cercanas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "El suelo firme se corta en manchas de hojas que se hunden al pisarlas. Al norte está la ribera seca; al sur, las raíces llevan al juncal. Dos varas marcan el paso estrecho para las cargas. Una rana permanece quieta sobre el barro."
+      },
+      {
+        "kind": "world",
+        "text": "Reconoces las dos varas junto a la raíz. El cauce pasa debajo; entre ellas queda una franja estrecha de tierra más alta."
+      },
+      {
+        "kind": "world",
+        "text": "Las varas marcan el paso sobre hojas oscuras. Un farol ilumina la siguiente; fuera de ese círculo se oye un insecto y el roce del agua."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "lethra_juncal_abierto",
+    "ambient": {
+      "region": "lethra",
+      "time_of_day": "Noche",
+      "timestamp": 85500,
+      "weather": "Niebla",
+      "weather_description": "Los reflejos desaparecen antes que las voces y las rutas se reconocen por agua, postes y uniones cercanas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Los juncos se abren con el viento y dejan ver el agua. La senda vuelve al norte, hacia las raíces, y sigue al sur sobre las primeras tablas. Un desvío al oeste llega al banco de barro. Las huellas mantienen despejada una franja entre los tallos."
+      },
+      {
+        "kind": "danger",
+        "text": "Una pinza desigual se levanta al borde del agua. El Pinzajunco arrastra una hoja hacia su agujero cuando los pasos siguen por tierra."
+      },
+      {
+        "kind": "world",
+        "text": "Reconoces la abertura del banco por los tallos cortados. El ave que oíste no se ve; desde el otro borde llega el roce de una fibra contra otra."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "lethra_tablas_primeras",
+    "ambient": {
+      "region": "lethra",
+      "time_of_day": "Noche",
+      "timestamp": 85560,
+      "weather": "Niebla",
+      "weather_description": "Los reflejos desaparecen antes que las voces y las rutas se reconocen por agua, postes y uniones cercanas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las tablas cruzan por encima del barro sobre apoyos bajos. Al norte están los juncos; al sur se separan dos canales. El agua escurre por las uniones. Algunas tablas están más gastadas que otras. Una vara de prueba cuelga a un lado, fuera del agua."
+      },
+      {
+        "kind": "world",
+        "text": "Reconoces la transición entre suelo y madera por el primer travesaño visible. La unión gastada queda después de ese apoyo y conserva su sonido al pisarse. La ribera firme se ve al otro extremo, entre los primeros canales."
+      },
+      {
+        "kind": "world",
+        "text": "Las uniones interrumpen el reflejo del farol sobre las tablas. El barro queda negro debajo y no permite medir profundidad. El carpintero guardó sus herramientas, pero la vara sigue indicando dónde puede empezar una revisión prudente."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "lethra_cruce_canales",
+    "ambient": {
+      "region": "lethra",
+      "time_of_day": "Noche",
+      "timestamp": 85620,
+      "weather": "Niebla",
+      "weather_description": "Los reflejos desaparecen antes que las voces y las rutas se reconocen por agua, postes y uniones cercanas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Un canal corre rápido junto a otro casi quieto. Las tablas llegan del norte y la senda sale al sur por tierra firme. En una pequeña plataforma junto al paso puedes mirar cómo gira una hoja. Las plantas se doblan hacia lados distintos de la corriente."
+      },
+      {
+        "kind": "world",
+        "text": "Reconoces el remanso junto a la lengua de barro. La hoja gira en su salida; más allá, la corriente rápida pasa detrás de la plataforma."
+      },
+      {
+        "kind": "world",
+        "text": "La hoja desaparece antes de llegar al siguiente canal. La observadora deja de anotar y escucha: el rumor de la corriente rápida continúa bajo el apoyo seco."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "lethra_ribera_firme",
+    "ambient": {
+      "region": "lethra",
+      "time_of_day": "Noche",
+      "timestamp": 85680,
+      "weather": "Niebla",
+      "weather_description": "Los reflejos desaparecen antes que las voces y las rutas se reconocen por agua, postes y uniones cercanas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Recipientes cerrados esperan sobre apoyos de madera, por encima del barro. Huele a fibras mojadas y comida envuelta en hojas. Al norte vuelves al cruce de canales; al sur una curva lleva a la pasarela. Quienes descargan dejan los bultos levantados mientras buscan espacio."
+      },
+      {
+        "kind": "world",
+        "text": "Recuerdas el apoyo alto donde dejaron el recipiente. Después de la curva asoma la baranda de la pasarela; una franja de agua queda entre ambos."
+      },
+      {
+        "kind": "world",
+        "text": "Los apoyos vacíos se distinguen por los travesaños bajo el farol. El olor de comida llega desde más lejos, junto a la curva. Las voces domésticas aparecen antes de que puedan verse los primeros hogares de Narevia."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "lethra_pasarela_curva",
+    "ambient": {
+      "region": "lethra",
+      "time_of_day": "Noche",
+      "timestamp": 85740,
+      "weather": "Niebla",
+      "weather_description": "Los reflejos desaparecen antes que las voces y las rutas se reconocen por agua, postes y uniones cercanas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "La pasarela rodea el agua quieta. Ves la orilla de llegada casi enfrente, pero debes seguir la curva hacia el sur para alcanzarla. Al norte queda la ribera de los recipientes. Una baranda protege el lado abierto. Más adelante asoman el techo y los postes del embarcadero."
+      },
+      {
+        "kind": "world",
+        "text": "Recuerdas el ensanchamiento donde dejaron pasar la carga. La orilla de enfrente está cerca; las tablas siguen la curva larga hacia su lado sur."
+      },
+      {
+        "kind": "world",
+        "text": "Los postes reflejan fragmentos de farol y pueden parecer una línea más directa que la pasarela. La curva se sigue por tablas y uniones. El techo del embarcadero deja de ayudar a leer cada apoyo cercano."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "lethra_embarcadero_camino",
+    "ambient": {
+      "region": "lethra",
+      "time_of_day": "Noche",
+      "timestamp": 85800,
+      "weather": "Niebla",
+      "weather_description": "Los reflejos desaparecen antes que las voces y las rutas se reconocen por agua, postes y uniones cercanas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Bajo el techo se cambian las cargas del camino a pequeñas embarcaciones. Los bultos dejan libre el borde del agua. Al norte vuelves a la pasarela y al sur sigues hacia Narevia. Un poste marca el nivel del canal; otro guarda las tiras de las barcas esperadas."
+      },
+      {
+        "kind": "world",
+        "text": "Reconoces el poste con la marca de nivel. Los bultos envueltos esperan junto a las tiras de las barcas; la senda alta sigue detrás de la cubierta."
+      },
+      {
+        "kind": "world",
+        "text": "Las tiras de las barcas están guardadas bajo el techo. Una luz queda lejos del borde. Un vecino espera un traslado tardío, con la carga fuera del paso."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "lethra_senda_elevada",
+    "ambient": {
+      "region": "lethra",
+      "time_of_day": "Noche",
+      "timestamp": 85860,
+      "weather": "Niebla",
+      "weather_description": "Los reflejos desaparecen antes que las voces y las rutas se reconocen por agua, postes y uniones cercanas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Pasas frente a viviendas separadas por canales. Sus puertas abren a plataformas propias, fuera del camino. Al norte queda el embarcadero; al sur se oyen las voces de Narevia. Una vecina levanta comida hacia una ventana y otra devuelve un recipiente. Se llaman por sus nombres sobre el agua."
+      },
+      {
+        "kind": "world",
+        "text": "Reconoces la plataforma de aquella ventana por su borde corto. La senda continúa por fuera, junto al canal, hasta las voces de la plaza."
+      },
+      {
+        "kind": "world",
+        "text": "Las ventanas se iluminan por separado y sus reflejos no dibujan otra senda sobre el canal. Los recipientes se recogen en plataformas propias. La plaza sigue audible al sur, aunque las conversaciones de las casas se vuelvan más breves."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "narevia_centro",
+    "ambient": {
+      "region": "lethra",
+      "time_of_day": "Noche",
+      "timestamp": 85920,
+      "weather": "Niebla",
+      "weather_description": "Los reflejos desaparecen antes que las voces y las rutas se reconocen por agua, postes y uniones cercanas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Narevia ocupa una isla baja unida por pasarelas. Al norte está el camino terrestre, al este el taller, al sur el mercado y al oeste la ribera que sale hacia Edran. Los Marevyn pasan entre barcas y plataformas; los apoyos altos conservan espacio seco junto a la plaza."
+      },
+      {
+        "kind": "world",
+        "text": "Un cuenco queda junto a una cuchara húmeda. Desde una ventana cuentan el final de una visita; otra voz pregunta qué ocurrió con la barca."
+      },
+      {
+        "kind": "world",
+        "text": "La pasarela de llegada queda entre taller y mercado. Desde la plataforma alta puedes situar la ribera occidental por el hueco entre las barcas."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "lethra_mercado_hojas",
+    "ambient": {
+      "region": "lethra",
+      "time_of_day": "Noche",
+      "timestamp": 85980,
+      "weather": "Niebla",
+      "weather_description": "Los reflejos desaparecen antes que las voces y las rutas se reconocen por agua, postes y uniones cercanas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las barcas traen alimentos en cestas levantadas del fondo. Los puestos separan las envolturas abiertas de las que deben conservar humedad. Huele a hierbas cortadas y madera mojada. Al norte queda la plaza; al sur está el muelle. Los vendedores preparan bultos distintos para comer cerca o viajar."
+      },
+      {
+        "kind": "world",
+        "text": "Tila espera a que se detenga el reflejo del farol para revisar una unión con resina. Las cestas recién llegadas quedan elevadas, separadas de las provisiones preparadas."
+      },
+      {
+        "kind": "world",
+        "text": "Las envolturas abiertas quedan cerca del agua; las de viaje, bajo el borde de la cubierta. La separación que viste permite encontrar dónde preguntar."
+      }
+    ]
+  },
+  {
+    "type": "observation",
+    "room": "lethra_mercado_hojas",
+    "ambient": {
+      "region": "lethra",
+      "time_of_day": "Noche",
+      "timestamp": 86040,
+      "weather": "Niebla",
+      "weather_description": "Los reflejos desaparecen antes que las voces y las rutas se reconocen por agua, postes y uniones cercanas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las barcas traen alimentos en cestas levantadas del fondo. Los puestos separan las envolturas abiertas de las que deben conservar humedad. Huele a hierbas cortadas y madera mojada. Al norte queda la plaza; al sur está el muelle. Los vendedores preparan bultos distintos para comer cerca o viajar."
+      },
+      {
+        "kind": "world",
+        "text": "Tila espera a que se detenga el reflejo del farol para revisar una unión con resina. Las cestas recién llegadas quedan elevadas, separadas de las provisiones preparadas."
+      },
+      {
+        "kind": "world",
+        "text": "Las envolturas abiertas quedan cerca del agua; las de viaje, bajo el borde de la cubierta. La separación que viste permite encontrar dónde preguntar."
+      }
+    ],
+    "observe": [
+      {
+        "kind": "world",
+        "text": "Tila comprueba el junco por su extremo seco y separa las ramas de las cestas húmedas. Los puñales y las varitas esperan sobre una tabla elevada."
+      },
+      {
+        "kind": "world",
+        "text": "Las hojas de los puestos dejan un olor húmedo sobre la mesa. Una vendedora cuenta dos recipientes vacíos y llama al dueño del tercero."
+      },
+      {
+        "kind": "trace",
+        "text": "Se levantan del fondo para no mojarse con agua que entró en la embarcación."
+      },
+      {
+        "kind": "action",
+        "text": "Observas con atención."
+      }
+    ]
+  }
+]

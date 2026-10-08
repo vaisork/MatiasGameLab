@@ -1,0 +1,2441 @@
+{
+  "version": 1,
+  "regions": {
+    "edran": {
+      "id": "edran",
+      "name": "Llanos de Edran",
+      "identity": "Campos abiertos al sudoeste de Veyra. Valdren se reconoce por cómo reparte agua, mantiene cargas y conserva pequeñas reservas entre cosechas.",
+      "settlement": "valdren_plaza",
+      "species": "humano",
+      "source": "Canon del PDF; escenas y sucesos originales escritos 2026-10-05",
+      "weather": {
+        "lluvia": "La pendiente reparte agua entre parcelas y vuelve importantes los bordes firmes.",
+        "viento": "La tierra abierta permite oír carros antes de verlos.",
+        "despejado": "El terreno abierto conserva referencias entre parcelas, sombras y caminos."
+      },
+      "home": {
+        "name": "Tu casa junto al corredor",
+        "description": "Tu banco de trabajo está bajo la ventana del huerto. La cama y el estante quedan al otro lado del cuarto. En la entrada hay sitio para dejar las botas mojadas. La puerta sale a la plaza de Valdren; puedes preparar aquí tu próxima salida.",
+        "day": "Por la ventana llega la conversación de quienes atraviesan el corredor con recipientes. La luz permite revisar una correa sobre el banco sin encender el hogar.",
+        "night": "El huerto ya no muestra sus plantas, pero la cocina vecina conserva un olor reconocible. La puerta cerrada separa la casa de las conversaciones de la plaza.",
+        "rain": "Las gotas alcanzan el borde exterior del umbral. El banco y la cama quedan lejos de esa franja; puedes secar tus botas sin mover todo el cuarto.",
+        "examine": {
+          "banco": "En el banco puedes revisar y ordenar tu equipo antes de salir.",
+          "ventana": "Mira al huerto. Puedes oír el corredor, pero no conocer desde aquí quién está en la plaza."
+        }
+      },
+      "search": {
+        "finds": [
+          {
+            "item": "semillas_camino",
+            "text": "Entre los terrones encuentras una vaina con semillas secas."
+          }
+        ],
+        "traces": [
+          "Los tallos cortados tienen marcas recientes de dientes.",
+          "Encuentras una huella antigua, pero no basta para saber qué la dejó."
+        ],
+        "empty": [
+          "Revisas los surcos. Sólo encuentras tierra y raíces.",
+          "Buscas con cuidado. Esta vez no encuentras nada para llevar."
+        ]
+      }
+    }
+  },
+  "rooms": {
+    "valdren_plaza": {
+      "id": "valdren_plaza",
+      "name": "Plaza de Valdren",
+      "region": "edran",
+      "kind": "settlement",
+      "description": "Un banco largo cruza la plaza. Hay espacio para girar los carros sin tapar las puertas. La fragua queda al norte, los huertos al este, el pozo al sur y el cobertizo al oeste. Una piedra sobresale entre las tablas del asiento.",
+      "day": "La vecina aparta una semilla mordida y la deja en un cuenco pequeño. Un niño intenta adivinar qué pájaro la abrió; su abuela le muestra las dos marcas del pico.",
+      "night": "La piedra del banco queda tibia junto al cuenco tapado. De una casa llega el golpe de una cuchara y luego una risa breve.",
+      "rain": "Los vecinos encajan tablillas bajo las patas del banco para impedir que se hunda. Una niña empuja con el zapato el agua retenida ante una puerta, sin tocar los montones de semillas.",
+      "clear": "",
+      "examine": {
+        "banco": "Tiene reparaciones de maderas distintas. Unas sujetan peso; otras sólo evitan que la ropa roce una astilla.",
+        "piedra": "Su cara superior está lisa por el uso. No hay marca de propiedad ni inscripción de un fundador."
+      },
+      "exits": {
+        "norte": "valdren_calle_alta",
+        "este": "valdren_huertos",
+        "sur": "valdren_pozo",
+        "oeste": "valdren_cobertizo"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [],
+      "actions": [],
+      "return": "Reconoces el extremo del banco por la piedra que obliga a interrumpirlo. La fragua queda detrás de las casas más altas; el corredor de huertos ofrece una salida distinta, orientada al campo.",
+      "weather": {
+        "viento": "El cuenco del banco traquetea bajo su tapa. La lámpara oscila junto al corredor y su luz pasa de las tablas al suelo; en las casas, alguien encaja una contraventana."
+      },
+      "dawn": "Un gallo llama detrás de las casas. La vecina sacude las migas del banco antes de extender el paño.",
+      "dusk": "La última semilla vuelve al cuenco. El niño pregunta si mañana vendrá el mismo pájaro.",
+      "states": [
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_weather": [
+            "lluvia"
+          ],
+          "overrides": {
+            "day": "La niña empuja con su zapato el agua de una puerta. La vecina guarda las semillas bajo el paño y le pide que deje seco el escalón."
+          }
+        },
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_visits": {
+            "min": 3
+          },
+          "overrides": {
+            "day": "El niño acerca otra semilla al cuenco de las mordidas. Su abuela la gira entre los dedos y le enseña que esta abertura sólo tiene una marca."
+          }
+        },
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_weather": [
+            "lluvia"
+          ],
+          "requires_visits": {
+            "min": 3
+          },
+          "overrides": {
+            "day": "Bajo el paño, el niño compara otra semilla con la del cuenco. Su abuela retira con un dedo el agua que le llegó a la cáscara antes de girarla."
+          }
+        }
+      ],
+      "focus": [
+        "activity"
+      ]
+    },
+    "valdren_fragua": {
+      "id": "valdren_fragua",
+      "name": "Fragua de Daro",
+      "region": "edran",
+      "kind": "interior",
+      "description": "Daro trabaja entre el fuego y un barreño de agua. Las piezas terminadas esperan junto a la puerta; las herramientas calientes quedan al fondo. El centro está libre para pasar. La salida sur baja por la calle hacia la plaza.",
+      "day": "Daro comprueba el sonido de dos piezas sobre el yunque. Una devuelve un golpe claro; la otra, más corta, queda apartada junto a una marca de tiza.",
+      "night": "El carbón conserva una línea roja bajo la ceniza. Una taza vacía espera en el banco; la puerta del taller deja salir olor a hierro frío.",
+      "rain": "La lluvia alcanza las piezas del umbral. Daro las acerca a una repisa, pero mantiene despejado el camino al agua; quienes vienen a buscar algo esperan bajo el alero exterior.",
+      "clear": "",
+      "examine": {
+        "abrazadera": "El desgaste está concentrado en un lado. Daro pide conocer qué sujeta antes de fabricar otra igual.",
+        "tiza": "Las piezas marcadas necesitan una comprobación de quien las encargó. Una marca no significa que estén defectuosas."
+      },
+      "exits": {
+        "sur": "valdren_calle_alta"
+      },
+      "arrivals": {},
+      "npcs": [
+        "edran_daro"
+      ],
+      "signals": [],
+      "actions": [],
+      "return": "Recuerdas el banco que deja libre el centro. Desde el fuego, la franja de suelo limpio llega hasta la mesa y el recipiente de agua.",
+      "weather": {
+        "viento": "El aire entra por el umbral y obliga a Daro a proteger las piezas recién retiradas del hogar. La cuesta devuelve el golpe de una puerta de madera."
+      },
+      "dawn": "Daro descubre el carbón guardado y acerca una brasa pequeña. Todavía puedes oír la calle entre dos golpes.",
+      "dusk": "Una pieza recién acabada pierde su rojo. Daro deja la tenaza sobre el banco y estira los dedos.",
+      "forge_service": "edran_daro",
+      "shop": [
+        "espada_juramento",
+        "varita_aprendiz",
+        "punal_camino",
+        "arco_ruta"
+      ],
+      "honing_material": "fibra_espinajo",
+      "states": [
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_weather": [
+            "viento"
+          ],
+          "overrides": {
+            "day": "Daro cierra la hoja del lado del campo cuando una ráfaga aviva el carbón. Sujeta con la tenaza la pieza que había apartado y vuelve a escuchar su sonido."
+          }
+        },
+        {
+          "requires_flags": [
+            "encargo_pagado:valdren_recado_forja"
+          ],
+          "overrides": {
+            "day": "Daro compara la medida que trajiste de Bren con una marca de tiza en la abrazadera. La pieza sigue sobre el banco, lejos de las herramientas calientes.",
+            "return": "La marca de tiza junto a la abrazadera recuerda la medida que llevaste desde el cobertizo. La puerta de la plaza sigue al sur.",
+            "examine": {
+              "tiza": "Daro anotó junto a la pieza la medida que trajiste de Bren. Aún puede compararla antes de ajustar el hierro."
+            }
+          }
+        }
+      ],
+      "focus": [
+        "activity"
+      ]
+    },
+    "valdren_huertos": {
+      "id": "valdren_huertos",
+      "name": "Corredor de los Huertos",
+      "region": "edran",
+      "kind": "settlement",
+      "description": "El camino pasa entre huertos, cercas bajas y puertas de cocina. Un árbol da sombra a la canaleta. Al oeste queda la plaza; al norte está la casa de semillas. Sigue al este para salir de Valdren hacia los campos.",
+      "day": "Una familia lleva hojas a la cocina sin usar cestos: la distancia es tan corta que basta doblar el delantal. La encargada del huerto deja espacio para quienes necesitan pasar con un carro.",
+      "night": "Los accesos quedan cerrados con cuerdas bajas. La cocina de la izquierda mantiene una ventana abierta para sacar calor. El olor de comida señala el pueblo mejor que la luz.",
+      "rain": "El agua de los huertos llega a la canaleta y empieza a superar su borde en una curva. Un haz de raíces sostiene un tapón de hojas justamente antes de la salida.",
+      "clear": "",
+      "examine": {
+        "canaleta": "Un tapón de hojas desvía el agua hacia el huerto pequeño. Puede retirarse sin excavar ni cambiar la pendiente.",
+        "cuerda": "Las cuerdas evitan que entren animales durante la noche. No cierran el corredor público."
+      },
+      "exits": {
+        "oeste": "valdren_plaza",
+        "norte": "valdren_casa_semillas",
+        "este": "edran_salida_huertos"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [],
+      "actions": [],
+      "return": "Los postes desiguales te permiten localizar la plaza sin ver el banco. También reconoces la curva donde la canaleta debe recoger el agua de los dos lados.",
+      "memories": [
+        {
+          "requires_flags": [
+            "edran_acequia_abierta"
+          ],
+          "text": "La canaleta reparte ahora el agua sin desbordar la curva. Las hojas retiradas de la acequia han quedado lejos de su entrada."
+        }
+      ],
+      "states": [
+        {
+          "requires_flags": [
+            "edran_acequia_abierta"
+          ],
+          "overrides": {
+            "rain": "El agua de los dos huertos llega a la curva y continúa por la canaleta. La reparación exterior permite cruzar el corredor sin añadir tablas ante cada acceso.",
+            "examine": {
+              "canaleta": "La curva recibe corriente sin superar el borde. El reparto de la acequia sigue funcionando fuera del pueblo."
+            }
+          }
+        }
+      ]
+    },
+    "valdren_casa_semillas": {
+      "id": "valdren_casa_semillas",
+      "name": "Casa de semillas",
+      "region": "edran",
+      "kind": "interior",
+      "description": "Iria guarda semillas en recipientes con nombres y cantidades. Algunos lotes esperan a secarse junto a la ventana; los sacos vacíos cuelgan al fondo. Los estantes bajos permiten hablar sin rodearlos. La puerta sur vuelve a los huertos.",
+      "day": "Iria pesa dos recipientes con la misma balanza y anota qué volverá después de la cosecha. Pide que cada nombre se lea en voz alta antes de guardar la tablilla.",
+      "night": "Las tablillas del día descansan juntas sobre la mesa. Sólo una conserva el peso sin nombre. La ventana queda entreabierta para no encerrar humedad con las semillas nuevas.",
+      "rain": "La ventana se cierra por la mitad y se extiende un paño bajo los recipientes recientes. El espacio libre evita tener que mezclar semillas secas con las que han llegado mojadas.",
+      "clear": "",
+      "examine": {
+        "tablilla": "Dice «dos cuencos» y no indica a quién pertenecen. Iria no quiere asignarlos por una suposición.",
+        "estantes": "Las separaciones responden a cuándo se guardó cada lote, no a cuánto vale."
+      },
+      "exits": {
+        "sur": "valdren_huertos"
+      },
+      "arrivals": {},
+      "npcs": [
+        "edran_iria"
+      ],
+      "signals": [],
+      "actions": [
+        {
+          "id": "edran_aclarar_cuenta",
+          "label": "Mostrar a Iria dónde apareció la tablilla",
+          "text": "Cuentas a Iria dónde estaba la tablilla. Lio confirma que la usó al recoger los recipientes de Elva. Iria anota ambos nombres y da por aclarada la cuenta.",
+          "set_flags": [
+            "edran_cuenta_aclarada"
+          ],
+          "requires_flags": [
+            "edran_tablilla_hallada"
+          ],
+          "forbids_flags": [
+            "edran_cuenta_aclarada"
+          ],
+          "scope": "world",
+          "journal": "La tablilla de dos cuencos ya tiene nombres confirmados. Iria la guarda junto a la cuenta de Elva.",
+          "requires_npc": "edran_iria"
+        }
+      ],
+      "return": "Puedes distinguir préstamo, reserva y secado por su ubicación. La tablilla sin nombre permanece en la mesa; moverla a un estante borraría la diferencia que Iria necesita aclarar.",
+      "memories": [
+        {
+          "requires_flags": [
+            "edran_cuenta_aclarada"
+          ],
+          "text": "La tablilla de dos cuencos ya tiene nombres confirmados. Iria la guarda junto a la cuenta de Elva."
+        }
+      ],
+      "states": [
+        {
+          "requires_flags": [
+            "edran_cuenta_aclarada"
+          ],
+          "overrides": {
+            "night": "Las tablillas del día descansan juntas sobre la mesa. La cuenta de dos cuencos queda en el estante de Elva, con los nombres confirmados. La ventana conserva aire para las semillas que todavía esperan secarse.",
+            "examine": {
+              "tablilla": "La cuenta confirma los dos recipientes de Elva recogidos por Lio. La nota conserva dónde apareció la tablilla para explicar cómo se aclaró."
+            }
+          }
+        }
+      ],
+      "dawn": "Iria abre la ventana y deja en la mesa sólo las tablillas que necesitan respuesta. Los lotes recientes permanecen separados hasta comprobar su humedad.",
+      "dusk": "Iria agrupa las cuentas que ha leído con sus dueños. Los recipientes sin confirmar no se guardan por simple cansancio; conservan su sitio de espera."
+    },
+    "valdren_pozo": {
+      "id": "valdren_pozo",
+      "name": "Pozo de las Dos Cuerdas",
+      "region": "edran",
+      "kind": "settlement",
+      "description": "Una cuerda nueva baja al pozo. La vieja está enrollada en una clavija, gastada por el uso. Quienes esperan se quedan detrás de las piedras del borde. Al norte vuelves a la plaza; al sur llegas al comedor.",
+      "day": "Una vecina llena recipientes pequeños antes que el suyo grande. Los coloca a la sombra del tejadillo y deja la cuerda preparada para la persona siguiente.",
+      "night": "El cubo queda boca abajo junto al brocal. La cuerda nueva se recoge sobre el travesaño para impedir que toque tierra; la vieja sigue en su clavija.",
+      "rain": "El tejadillo gotea sobre los recipientes vacíos. La línea de piedras impide que quienes buscan refugio se acerquen demasiado al brocal mojado.",
+      "clear": "",
+      "examine": {
+        "cuerda vieja": "El desgaste permite reconocer dónde rozaba el antiguo travesaño. Aún serviría para atar cargas, pero no para bajar a alguien.",
+        "piedras": "Dejan espacio para sacar el cubo sin que los que esperan reciban un golpe."
+      },
+      "exits": {
+        "norte": "valdren_plaza",
+        "sur": "valdren_comedor"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [],
+      "actions": [],
+      "return": "Reconoces la cuerda de reserva en su clavija. La línea de piedras sigue desde el borde seco hasta el último sitio de espera."
+    },
+    "valdren_cobertizo": {
+      "id": "valdren_cobertizo",
+      "name": "Cobertizo de los carros",
+      "region": "edran",
+      "kind": "interior",
+      "description": "Bren guarda los carros con las varas hacia el patio. Bajo el techo bajo hay ruedas desmontadas; en la parte alta cabe un carro entero. Una cuerda marca el espacio para girarlo. La plaza queda al este y el patio al sur.",
+      "day": "Bren hace avanzar un carro vacío y escucha un crujido que desaparece al volver. Pide una segunda persona para observar la rueda desde fuera de su recorrido.",
+      "night": "Las varas quedan juntas, cubiertas con una lona corta. Una rueda desmontada proyecta sobre la pared una sombra mayor que el carro al que pertenecía.",
+      "rain": "Bren coloca recipientes bajo dos goteras. Las piezas sueltas se trasladan al techo bajo; el carro completo queda en el centro, con espacio para comprobarlo.",
+      "clear": "",
+      "examine": {
+        "rueda": "La cuña mantiene el aro apretado, pero ha empezado a salir por un extremo. Puede comprobarse mientras el carro avanza lentamente.",
+        "cuerda": "Marca el recorrido de giro. No separa piezas de distintos propietarios."
+      },
+      "exits": {
+        "este": "valdren_plaza",
+        "sur": "valdren_patio_carros"
+      },
+      "arrivals": {},
+      "npcs": [
+        "edran_bren"
+      ],
+      "signals": [],
+      "actions": [
+        {
+          "id": "edran_comprobar_rueda",
+          "label": "Observar la rueda mientras Bren mueve el carro",
+          "text": "Ves cómo se mueve la cuña y avisas a Bren. Detiene el carro y la sujeta. La rueda ya puede girar sin que se salga la pieza.",
+          "set_flags": [
+            "edran_rueda_comprobada"
+          ],
+          "requires_flags": [],
+          "forbids_flags": [
+            "edran_rueda_comprobada"
+          ],
+          "scope": "world",
+          "journal": "La cuña vuelve a quedar sujeta. Bren puede probar el carro sin escuchar el crujido de antes.",
+          "requires_time": [
+            "día"
+          ],
+          "requires_npc": "edran_bren"
+        }
+      ],
+      "return": "Ahora sabes dónde esperar sin obligar a Bren a interrumpir una prueba. El crujido procede del carro alto, no de las ruedas almacenadas contra la pared.",
+      "memories": [
+        {
+          "requires_flags": [
+            "edran_rueda_comprobada"
+          ],
+          "text": "La cuña vuelve a quedar sujeta. Bren puede probar el carro sin escuchar el crujido de antes."
+        }
+      ],
+      "states": [
+        {
+          "requires_flags": [
+            "edran_rueda_comprobada"
+          ],
+          "overrides": {
+            "day": "Bren hace avanzar el carro y observa la cuña que volvió a fijar. La rueda conserva su giro sin el crujido; puede preparar una carga en el patio antes de decidir que el trabajo terminó.",
+            "examine": {
+              "rueda": "La cuña queda fijada en su lugar. La comprobación explica qué pieza se movía; la rueda entera sigue siendo la misma."
+            }
+          }
+        },
+        {
+          "requires_flags": [
+            "encargo_pagado:valdren_estado_vado"
+          ],
+          "overrides": {
+            "day": "Bren sitúa tus noticias del puente y del hito sobre una tablilla apoyada fuera de la cuerda. Señala los dos cruces antes de volver al carro.",
+            "return": "La tablilla de los dos cruces recuerda tu regreso desde el puente y el hito. La cuerda conserva el giro libre del carro."
+          }
+        }
+      ],
+      "dawn": "Bren abre el frente alto y retira la lona de las varas. Las ruedas guardadas permanecen a la sombra mientras el primer carro recibe luz para una prueba.",
+      "dusk": "Bren lleva las piezas pequeñas al techo bajo. El carro ocupa el centro sin moverse; las pruebas nuevas esperarán a que pueda verse la cuña."
+    },
+    "valdren_patio_carros": {
+      "id": "valdren_patio_carros",
+      "name": "Patio de los carros",
+      "region": "edran",
+      "kind": "settlement",
+      "description": "Una carga de sacos espera en el patio. La ligera pendiente puede mover un carro sin calzar; un madero detiene las ruedas. El cobertizo queda al norte, los graneros al este. La senda sur permite volver hacia la arboleda.",
+      "day": "Un ayudante de Bren desplaza un saco y pide que nadie sujete el carro mientras observa si vuelve a inclinarse. Una mujer recoge las semillas que han caído bajo la plataforma.",
+      "night": "Los carros quedan apoyados contra el madero inferior. El patio, libre de gente, muestra dos inclinaciones distintas: una lleva al pozo; otra al paso de graneros.",
+      "rain": "Los surcos del este se llenan primero. Quienes preparan una carga colocan los pies sobre las piedras de la plataforma para no hundirla con su propio peso.",
+      "clear": "",
+      "examine": {
+        "plataforma": "Las piedras bajo ella distribuyen el peso y dejan ver humedad antes de que toque los sacos.",
+        "madero": "Una marca reciente señala que una rueda lo golpeó. No está roto, pero necesita mantenerse en su posición."
+      },
+      "exits": {
+        "norte": "valdren_cobertizo",
+        "este": "valdren_graneros",
+        "sur": "edran_sendero_regreso"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [],
+      "actions": [],
+      "return": "Ahora ves la pendiente junto al pozo. El madero que frenó la rueda tiene una marca fresca debajo del borde."
+    },
+    "valdren_graneros": {
+      "id": "valdren_graneros",
+      "name": "Paso entre los Graneros",
+      "region": "edran",
+      "kind": "settlement",
+      "description": "El paso cruza entre dos graneros. Una puerta se alcanza por una rampa; la otra está a ras del suelo. En una esquina se acumula tierra por encima de las marcas de agua. Al oeste está el patio; al este sales hacia los campos.",
+      "day": "Una almacenista cuenta sacos por sus nudos, sin abrirlos. Un muchacho espera con una tablilla hasta que la almacenista termina de comprobar el granero alto.",
+      "night": "Las dos puertas quedan atravesadas por barras. El terraplén alto permite ver por encima de la cerca oriental; el otro lado permanece pegado al suelo oscuro.",
+      "rain": "Un hilo de agua queda retenido en la esquina con tierra. El umbral bajo aún está seco, pero una pala se ha dejado apoyada junto a la pared.",
+      "clear": "",
+      "examine": {
+        "nudos": "La almacenista distingue lotes por la manera de cerrar los sacos. Las tablillas confirman la cuenta; no la sustituyen.",
+        "esquina": "La tierra procede de arreglar el terraplén. Basta despejar la salida antigua para que el agua siga su camino."
+      },
+      "exits": {
+        "oeste": "valdren_patio_carros",
+        "este": "edran_salida_huertos"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [],
+      "actions": [
+        {
+          "id": "edran_despejar_granero",
+          "label": "Despejar la salida de agua del granero",
+          "text": "Retiras la tierra que tapa la salida. El agua corre por fuera del granero y deja de acumularse en la puerta. La almacenista te indica dónde poner la tierra para que no vuelva.",
+          "set_flags": [
+            "edran_granero_despejado"
+          ],
+          "requires_flags": [],
+          "forbids_flags": [
+            "edran_granero_despejado"
+          ],
+          "scope": "world",
+          "journal": "La esquina del granero tiene una salida de agua visible. El umbral bajo permanece separado de la tierra apartada.",
+          "requires_time": [
+            "día"
+          ]
+        }
+      ],
+      "return": "Reconoces la puerta baja del almacén. El agua se reúne delante de ella y deja una línea de barro hasta la esquina tapada.",
+      "memories": [
+        {
+          "requires_flags": [
+            "edran_granero_despejado"
+          ],
+          "text": "La esquina del granero tiene una salida de agua visible. El umbral bajo permanece separado de la tierra apartada."
+        }
+      ],
+      "states": [
+        {
+          "requires_flags": [
+            "edran_granero_despejado"
+          ],
+          "overrides": {
+            "description": "El paso entre los graneros ya no retiene agua en la esquina baja. La salida está despejada y la tierra retirada queda aparte. Las marcas antiguas siguen en la pared. Al oeste llegas al patio; al este sales hacia los campos.",
+            "rain": "El hilo de agua atraviesa la esquina despejada y continúa fuera del paso. La almacenista puede alcanzar la puerta baja sin poner una tabla sobre el umbral.",
+            "examine": {
+              "esquina": "La salida queda abierta. La tierra retirada se ha colocado arriba de la pendiente, lejos de la corriente."
+            }
+          }
+        }
+      ]
+    },
+    "valdren_comedor": {
+      "id": "valdren_comedor",
+      "name": "Comedor de Elva",
+      "region": "edran",
+      "kind": "interior",
+      "description": "Elva sirve junto al fuego, en una mesa hecha con tres tableros distintos. Las ollas quedan cerca del extremo estrecho. En el estante hay tazas vueltas para quienes aún no llegan. La puerta norte vuelve al pozo.",
+      "day": "Elva parte una hogaza y recoge la miga que cae junto al plato. Dos comensales discuten cuál de las semillas tostadas sabe más dulce; uno vuelve a probar antes de responder.",
+      "night": "La conversación baja cuando alguien bosteza. Elva deja un paño sobre la hogaza; un plato recién lavado brilla cerca de la puerta.",
+      "rain": "Las capas mojadas quedan junto a la puerta, lejos del pan. Elva acerca un asiento al hogar para quien ha llegado del campo y no consigue secarse las manos.",
+      "clear": "",
+      "examine": {
+        "tazas": "Una taza pequeña tiene una raya en la base. Quien la utiliza siempre la deja cerca de la ventana.",
+        "provisiones": "Se preparan para comer durante el viaje. No sustituyen el descanso ni el cuidado de una herida seria."
+      },
+      "exits": {
+        "norte": "valdren_pozo"
+      },
+      "arrivals": {},
+      "npcs": [
+        "edran_elva"
+      ],
+      "signals": [],
+      "actions": [
+        {
+          "id": "edran_preparar_taza",
+          "label": "Dejar un sitio listo para Lio",
+          "text": "Dejas un paño bajo la taza pequeña. Elva la acerca a la ventana: Lio volverá con las manos frías del pozo. Te hace sitio en la mesa para esperarlo.",
+          "requires_npc": "edran_elva",
+          "set_flags": [
+            "edran_sitio_lio"
+          ],
+          "forbids_flags": [
+            "edran_sitio_lio"
+          ],
+          "scope": "world",
+          "journal": "La taza pequeña espera sobre un paño junto a la ventana. Hay otro asiento a su lado."
+        }
+      ],
+      "return": "Reconoces las tazas invertidas junto a los sitios reservados. El extremo próximo al fuego tiene una silla libre; del otro llega una conversación baja.",
+      "shop": [
+        "provision_basica"
+      ],
+      "buyer": "edran_elva",
+      "memories": [
+        {
+          "requires_flags": [
+            "edran_mensaje_aclarado"
+          ],
+          "text": "La taza pequeña sigue junto a la ventana. Elva guarda una porción caliente para Lio, ahora que ha recibido la noticia aclarada."
+        }
+      ],
+      "states": [
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_weather": [
+            "lluvia"
+          ],
+          "overrides": {
+            "day": "Una viajera seca sus manos antes de partir la hogaza. Elva acerca el cuenco caliente y recoge con un paño el agua que llega desde la puerta."
+          }
+        },
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_visits": {
+            "min": 3
+          },
+          "overrides": {
+            "day": "La hogaza ya tiene un extremo vacío. Un comensal recoge con la miga que queda la última semilla tostada y la acerca a quien todavía intenta elegir."
+          }
+        },
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_weather": [
+            "lluvia"
+          ],
+          "requires_visits": {
+            "min": 3
+          },
+          "overrides": {
+            "day": "La viajera ya ha secado las manos. Parte el extremo de la hogaza y ofrece un trozo; Elva deja el paño húmedo cerca de la puerta."
+          }
+        },
+        {
+          "requires_flags": [
+            "edran_sitio_lio"
+          ],
+          "overrides": {
+            "examine": {
+              "tazas": "La taza pequeña tiene un paño doblado debajo. A su lado queda un asiento dispuesto para acompañar a Lio cuando llegue."
+            },
+            "night": "Dos sitios permanecen preparados junto a la ventana. Elva conserva caliente una porción y acerca el otro asiento al hogar para quien decida esperar."
+          }
+        },
+        {
+          "requires_flags": [
+            "encargo_pagado:valdren_revision_cobertizos"
+          ],
+          "overrides": {
+            "day": "Elva guarda tus noticias del paso de graneros y del cobertizo de campo junto a la lista de cargas. Después acerca una olla al extremo estrecho de la mesa.",
+            "return": "La lista junto a las ollas conserva las dos ubicaciones que comprobaste. Elva dejó espacio para anotar cuándo llegue una carga tardía."
+          }
+        }
+      ],
+      "dawn": "Elva levanta el paño de la masa. Una taza tibia espera junto a la ventana, todavía sin abrir.",
+      "dusk": "Alguien lleva una hogaza a la mesa larga. Los asientos se acercan cuando llega la primera olla.",
+      "focus": [
+        "activity"
+      ]
+    },
+    "edran_salida_huertos": {
+      "id": "edran_salida_huertos",
+      "name": "Salida de las Cercas Bajas",
+      "region": "edran",
+      "kind": "road",
+      "description": "Las cercas bajan y el viento llega de frente. Dejas las casas atrás. El camino este sigue hasta la acequia; por el sur vuelves entre los graneros. Los dos postes del oeste señalan la entrada a Valdren. El tramo hacia los graneros dobla junto a las cercas; no es una calle recta.",
+      "day": "Una persona abre la cerca para pasar con una cesta y vuelve a apoyarla sin atarla. Su trayecto es corto; las huellas que siguen la acequia llevan carros.",
+      "night": "La luz de la cocina alcanza el último huerto, pero termina antes de la curva. Más allá puedes orientarte por la línea baja de las cercas y el sonido del agua.",
+      "rain": "La casa desagua hacia el huerto oscuro. El camino conserva una franja firme junto a la cerca izquierda, donde las ruedas no han abierto surcos.",
+      "clear": "",
+      "examine": {
+        "cercas": "Están pensadas para guiar animales y carros. Una persona puede ver el campo entero por encima.",
+        "huellas": "Los pasos cortos cruzan hacia el huerto; las ruedas continúan por la curva."
+      },
+      "exits": {
+        "oeste": "valdren_huertos",
+        "este": "edran_acequia",
+        "sur": "valdren_graneros"
+      },
+      "arrivals": {},
+      "npcs": [
+        "edran_lina"
+      ],
+      "signals": [],
+      "actions": [
+        {
+          "id": "pedir_permiso_valdren",
+          "label": "Presentarte y pedir entrada",
+          "text": "Lina anota tu nombre al margen de la lista de cargas. «Listo. Deja la cerca apoyada al pasar.» Puedes entrar y salir sin repetir el permiso.",
+          "set_flags": [
+            "permiso_valdren"
+          ],
+          "forbids_flags": [
+            "permiso_valdren"
+          ],
+          "requires_npc": "edran_lina",
+          "journal": "Te presentaste al llegar a Valdren. La entrada queda autorizada."
+        }
+      ],
+      "return": "Reconoces la curva junto a la acequia. Las rodadas rodean el huerto húmedo y llegan al campo por el borde firme.",
+      "wildlife_pool": [
+        {
+          "creature": "espinajo_rastrojo",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "mordelinde",
+          "text": "Una forma baja cruza entre raíces y se detiene con la cabeza orientada al borde. No persigue la sombra que pasa sobre el agua.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "cornalomo",
+          "text": "Un cuerpo enorme aparta la hierba. El volumen de su lomo y la tierra hundida advierten una fuerza muy por encima de una primera formación.",
+          "persistent_trace": false
+        }
+      ],
+      "exit_requirements": {
+        "oeste": {
+          "requires_flags": [
+            "permiso_valdren"
+          ],
+          "text": "Lina te pide presentarte antes de entrar. Puedes solicitar permiso aquí; la salida al camino sigue libre."
+        }
+      },
+      "states": [
+        {
+          "requires_flags": [
+            "permiso_valdren"
+          ],
+          "overrides": {
+            "return": "Lina reconoce tu paso y vuelve a sujetar la lista contra el poste. Las ruedas siguen la curva de la acequia; tu entrada ya está anotada."
+          }
+        }
+      ]
+    },
+    "edran_acequia": {
+      "id": "edran_acequia",
+      "name": "Curva de la Acequia",
+      "region": "edran",
+      "kind": "landmark",
+      "description": "El agua rodea una losa antes de seguir hacia Valdren. Unas hojas tapan la abertura de una zanja seca. Al oeste queda el pueblo, al norte subes al campo y al sur alcanzas el estanque. La losa permite cruzar sin mojarte.",
+      "day": "Una rana se deja caer desde la hierba y abre dos círculos pequeños. Más abajo, una mujer libera una hoja atrapada en la rejilla con la punta de una rama.",
+      "night": "La acequia se oye bajo la hierba. Un insecto roza el agua junto a la rejilla; los círculos se pierden antes de llegar a la curva.",
+      "rain": "La acequia sube hasta las hojas enganchadas. El terraplén continúa seco mientras el agua empieza a correr por el camino de regreso al huerto.",
+      "clear": "",
+      "examine": {
+        "hojas": "Se han trabado alrededor de una raíz suelta. Retirarlas devolvería el agua al paso lateral sin aumentar su caudal.",
+        "losa": "Su inclinación ofrece apoyo al pie del lado del pueblo y queda más resbaladiza hacia la corriente."
+      },
+      "exits": {
+        "oeste": "edran_salida_huertos",
+        "norte": "edran_surcos",
+        "sur": "edran_estanque"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [],
+      "actions": [
+        {
+          "id": "edran_despejar_acequia",
+          "label": "Retirar las hojas de la abertura",
+          "text": "Sujetas la raíz y apartas las hojas. El agua entra en la zanja lateral. El charco junto a la cerca empieza a bajar.",
+          "set_flags": [
+            "edran_acequia_abierta"
+          ],
+          "requires_flags": [],
+          "forbids_flags": [
+            "edran_acequia_abierta"
+          ],
+          "scope": "world",
+          "journal": "La abertura lateral conduce agua al terraplén. El huerto conserva corriente sin recibir toda la crecida.",
+          "requires_time": [
+            "día"
+          ]
+        }
+      ],
+      "return": "La corriente vuelve a doblar hacia la abertura tapada. Recuerdas el tramo seco que queda detrás de las hojas.",
+      "memories": [
+        {
+          "requires_flags": [
+            "edran_acequia_abierta"
+          ],
+          "text": "La abertura lateral conduce agua al terraplén. El huerto conserva corriente sin recibir toda la crecida."
+        }
+      ],
+      "states": [
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_weather": [
+            "viento"
+          ],
+          "overrides": {
+            "day": "Una hoja vuelve contra el borde de la rejilla aunque el agua siga su curso. La mujer la recoge y la deja entre la hierba, fuera de la corriente."
+          }
+        },
+        {
+          "requires_flags": [
+            "edran_acequia_abierta"
+          ],
+          "overrides": {
+            "description": "El agua se reparte entre Valdren y la zanja lateral. La abertura está limpia; las hojas retiradas quedan fuera de la corriente. La losa sigue firme para cruzar. Al oeste queda el pueblo, al norte el campo y al sur el estanque.",
+            "day": "La corriente alcanza el terraplén y desaparece entre dos raíces. Desde el lado del huerto llega agua suficiente sin amontonarse en la curva.",
+            "rain": "La crecida utiliza ahora las dos continuaciones. Las hojas retiradas quedan fuera del alcance del agua y el camino occidental conserva su borde firme.",
+            "examine": {
+              "hojas": "Las hojas retiradas se secan lejos de la corriente. La abertura sigue visible; no hace falta volver a despejarla.",
+              "losa": "La losa conserva una inclinación que ofrece apoyo al lado del pueblo. El agua pasa por debajo sin cubrir ese borde."
+            }
+          }
+        }
+      ],
+      "focus": [
+        "activity"
+      ]
+    },
+    "edran_surcos": {
+      "id": "edran_surcos",
+      "name": "Campo de surcos",
+      "region": "edran",
+      "kind": "wilderness",
+      "description": "Los surcos nuevos tienen tierra clara; los viejos conservan tallos cortos. Un sendero sin sembrar llega al lindero del norte. La acequia queda al sur. Hacia el oeste puedes entrar en una parcela vieja; al este hay una zanja seca.",
+      "day": "La agricultora comprueba la humedad con dos dedos y cubre de nuevo el agujero. En la hilera antigua, unos tallos se doblan contra el viento aunque los demás permanezcan quietos.",
+      "night": "La tierra clara refleja el poco cielo disponible. Los tallos antiguos forman una banda oscura al norte; entrar en ella dejaría de ser seguir el sendero.",
+      "rain": "El agua une los agujeros de las hileras nuevas. El sendero sin sembrar conserva pequeños puntos firmes junto a las raíces viejas.",
+      "clear": "",
+      "examine": {
+        "tallos": "Un movimiento bajo los tallos recorre un círculo corto, sin continuar hacia el sendero. Algo mantiene allí su espacio.",
+        "tierra": "La humedad cambia entre hileras. La parcela baja recibe el agua antes que la del norte."
+      },
+      "exits": {
+        "sur": "edran_acequia",
+        "norte": "edran_lindero",
+        "oeste": "edran_parcela_vieja",
+        "este": "edran_zanja_antigua"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [
+        {
+          "creature": "espinajo_rastrojo",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro."
+        }
+      ],
+      "actions": [],
+      "return": "Reconoces la tierra nueva y la banda de tallos antiguos. El sendero rodea la depresión antes de alcanzar el cobertizo que se ve al otro lado.",
+      "dawn": "La tierra mantiene frío bajo la superficie. Una agricultora espera junto al sendero antes de entrar a los surcos nuevos; las hojas conservan gotas sin corriente.",
+      "dusk": "Las herramientas vuelven hacia el pueblo por la franja sin sembrar. En los tallos antiguos el movimiento bajo continúa cuando los pasos humanos ya se alejan.",
+      "absent_creatures": {
+        "espinajo_rastrojo": {
+          "day": "La agricultora comprueba la humedad con dos dedos y cubre de nuevo el agujero. En la hilera antigua quedan tallos aplastados; ya no se mueven contra el viento.",
+          "examine": {
+            "tallos": "Los tallos aplastados conservan las marcas del enfrentamiento. No hay movimiento bajo ellos."
+          }
+        }
+      }
+    },
+    "edran_lindero": {
+      "id": "edran_lindero",
+      "name": "Lindero de la Piedra Hundida",
+      "region": "edran",
+      "kind": "landmark",
+      "description": "Una piedra hundida separa las parcelas. Tiene una muesca llena de tierra en la cara sur. Por allí vuelves al campo. Al oeste subes a la loma; al este llegas al cobertizo, donde guardan estacas de distintos tamaños.",
+      "day": "Una joven deja el recipiente junto a la piedra y mira dos veces la cerca. Busca una tablilla pequeña entre la hierba y las huellas del borde.",
+      "night": "La cerca sirve para orientar el paso, pero la piedra es casi invisible. El pastizal del norte se oye cuando el viento mueve sus hierbas más altas.",
+      "rain": "El agua limpia una parte de la muesca y deposita tierra en la otra. La cerca reciente detiene hojas que antes cruzaban libremente entre las parcelas.",
+      "clear": "",
+      "examine": {
+        "muesca": "El roce es ancho y desigual. En el borde quedan fibras aplastadas por las cargas.",
+        "cerca": "Se aparta para dejar libre un paso pequeño entre la piedra y la parcela oriental."
+      },
+      "exits": {
+        "sur": "edran_surcos",
+        "oeste": "edran_loma",
+        "este": "edran_cobertizo_campo"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [],
+      "actions": [
+        {
+          "id": "edran_hallar_tablilla",
+          "label": "Leer la tablilla junto al paso",
+          "text": "Lees la tablilla y la dejas a la vista. Tiene la marca de dos cuencos, pero ningún nombre. Una astilla del borde coincide con el tamaño de la caja.",
+          "set_flags": [
+            "edran_tablilla_hallada"
+          ],
+          "requires_flags": [
+            "edran_caja_observada"
+          ],
+          "forbids_flags": [
+            "edran_tablilla_hallada"
+          ],
+          "scope": "player",
+          "journal": "Has visto una tablilla de dos cuencos junto al paso del lindero. Su marca no basta para asignarle un propietario.",
+          "requires_time": [
+            "día"
+          ]
+        }
+      ],
+      "return": "Reconoces la muesca de la piedra antigua. La cerca más nueva dobla a su lado y deja tierra abierta alrededor del pie.",
+      "memories": [
+        {
+          "requires_flags": [
+            "edran_tablilla_hallada"
+          ],
+          "text": "Has visto una tablilla de dos cuencos junto al paso del lindero. Su marca no basta para asignarle un propietario."
+        }
+      ]
+    },
+    "edran_loma": {
+      "id": "edran_loma",
+      "name": "Loma del Pasto Cortado",
+      "region": "edran",
+      "kind": "landmark",
+      "description": "Desde la loma ves Valdren y tres parcelas a distinta altura. Una franja de pasto cortado ofrece sitio para parar. Al norte está el prado; al este bajas al lindero. El sendero sur entra en la parcela vieja.",
+      "day": "El aire trae primero un golpe de la fragua y luego el rumor de un carro. Desde aquí puedes separar sonidos que abajo se mezclan con las conversaciones del pueblo.",
+      "night": "Las casas pierden su forma, pero dos luces bajas mantienen el lugar de Valdren. La ruta de carros se vuelve una interrupción oscura en la hierba clara.",
+      "rain": "La hierba cortada se pega al suelo. Desde el borde oriental ves cómo el agua ocupa la depresión antes de alcanzar los surcos del campo bajo.",
+      "clear": "",
+      "examine": {
+        "parcelas": "La parcela más baja recibe agua de dos lados. La cerca nueva no explica por sí sola su humedad.",
+        "ruta": "Las ruedas continúan hacia una casa aislada antes de buscar la subida a Veyra."
+      },
+      "exits": {
+        "este": "edran_lindero",
+        "norte": "edran_prado",
+        "sur": "edran_parcela_vieja"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [],
+      "actions": [],
+      "return": "La loma vuelve a reunir referencias visibles: los tejados de Valdren, la curva del agua y la piedra entre parcelas. Puedes relacionar sus posiciones desde aquí, aunque todavía no hayas seguido todos esos pasos.",
+      "weather": {
+        "viento": "El viento trae los golpes de la fragua antes que las voces del pueblo. La franja cortada permite sentarte por debajo del borde que recibe las ráfagas."
+      },
+      "dawn": "Una claridad baja dibuja primero los techos de Valdren. El campo aún conserva sombra y el camino de carros se reconoce por el aire sobre sus rodadas.",
+      "dusk": "Las parcelas pierden detalle de abajo hacia arriba. Desde la loma llegan conversaciones del regreso; las casas conservan luz cuando la acequia empieza a desaparecer."
+    },
+    "edran_cobertizo_campo": {
+      "id": "edran_cobertizo_campo",
+      "name": "Cobertizo de las Estacas Numeradas",
+      "region": "edran",
+      "kind": "interior",
+      "description": "El techo cubre un banco de trabajo y una caja estrecha. En la pared, las estacas están ordenadas por tamaño y llevan números. El lindero queda al oeste, al otro lado del desnivel. Una senda al este entra en la arboleda.",
+      "day": "Un muchacho devuelve una estaca y comprueba el número antes de colocarla. Los huecos del extremo corto indican qué piezas siguen en los campos.",
+      "night": "Las estacas más claras destacan bajo el techo. La mitad abierta deja oír la hierba sin que el viento alcance directamente el banco.",
+      "rain": "El agua entra por el lado abierto y termina en una depresión hecha a propósito. La caja vacía permanece elevada sobre el banco.",
+      "clear": "",
+      "examine": {
+        "caja": "Tiene divisiones para tablillas de cuenta. El borde muestra una astilla ausente; las piezas enteras cabrían entre dos separaciones.",
+        "estacas": "Los números señalan tamaños que pueden reemplazarse. No identifican dueños de parcelas."
+      },
+      "exits": {
+        "oeste": "edran_lindero",
+        "este": "edran_arboleda"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [],
+      "actions": [
+        {
+          "id": "edran_leer_caja",
+          "label": "Comparar la caja con las marcas del sendero",
+          "text": "El hueco del borde tiene la forma de la astilla que viste en la tablilla. Las divisiones de la caja sirven para cuentas, no para las estacas de la pared.",
+          "set_flags": [
+            "edran_caja_observada"
+          ],
+          "requires_flags": [],
+          "forbids_flags": [
+            "edran_caja_observada"
+          ],
+          "scope": "player",
+          "journal": "Sabes que la caja guarda tablillas pequeñas, distintas de las estacas que identifican tamaños."
+        }
+      ],
+      "return": "Recuerdas la estaca numerada que faltaba en la pared. El hueco sigue entre dos herramientas con barro seco en el mango.",
+      "memories": [
+        {
+          "requires_flags": [
+            "edran_caja_observada"
+          ],
+          "text": "Sabes que la caja guarda tablillas pequeñas, distintas de las estacas que identifican tamaños."
+        }
+      ]
+    },
+    "edran_arboleda": {
+      "id": "edran_arboleda",
+      "name": "Arboleda de los tres árboles",
+      "region": "edran",
+      "kind": "wilderness",
+      "description": "Tres árboles dan sombra al banco de tierra y al sendero. Las raíces del último levantan el suelo. Entre las ramas ves el camino de carros, al norte. El cobertizo queda al oeste; la senda sur rodea los campos y vuelve al pueblo.",
+      "day": "Un viajero deja que su animal descanse fuera de la sombra más cercana al sendero. Conserva ese espacio para quienes sólo necesitan pasar.",
+      "night": "Las tres copas se funden en una mancha, pero las raíces siguen separando sus lugares. El camino de carros se oye a través del hueco que de día permite verlo.",
+      "rain": "Cada copa deja caer el agua de una manera distinta. Bajo el árbol central permanece seco un asiento de tierra del tamaño justo para dos personas.",
+      "clear": "",
+      "examine": {
+        "raíces": "Las raíces levantadas se cruzan antes de bajar al camino. Un pie puede buscar tierra firme sin pisarlas.",
+        "banco": "La tierra está compactada por descansos breves. Alguien ha quitado las piedras de su superficie."
+      },
+      "exits": {
+        "oeste": "edran_cobertizo_campo",
+        "norte": "edran_camino_carros",
+        "sur": "edran_sendero_regreso"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [],
+      "actions": [],
+      "return": "Reconoces las raíces altas del árbol oriental. El banco de tierra queda bajo el del centro; entre ambos se ve el camino de carros.",
+      "wildlife_pool": [
+        {
+          "creature": "espinajo_rastrojo",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "mordelinde",
+          "text": "Una forma baja cruza entre raíces y se detiene con la cabeza orientada al borde. No persigue la sombra que pasa sobre el agua.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "cornalomo",
+          "text": "Un cuerpo enorme aparta la hierba. El volumen de su lomo y la tierra hundida advierten una fuerza muy por encima de una primera formación.",
+          "persistent_trace": false
+        }
+      ]
+    },
+    "edran_camino_carros": {
+      "id": "edran_camino_carros",
+      "name": "Camino de carros",
+      "region": "edran",
+      "kind": "road",
+      "description": "Dos rodadas se separan ante una subida: una pasa por arriba y la otra cruza una hondonada. Después vuelven a juntarse. La arboleda queda al sur. Sigue al norte para llegar al refugio de viajeros; las piedras bajas marcan el borde del camino.",
+      "day": "Un carro vacío utiliza la hondonada; uno cargado toma la rodada alta y avanza despacio. Sus conductores se saludan cuando pueden verse, antes de llegar al cruce.",
+      "night": "La rodada alta conserva mejor el contraste con la tierra. La hondonada corta el sonido de los pasos y oculta el borde de la parcela.",
+      "rain": "La rodada derecha se convierte en un hilo de agua. Los carros buscan la izquierda y dejan el centro libre para quienes van a pie.",
+      "clear": "",
+      "examine": {
+        "rodadas": "Las dos vuelven a encontrarse frente al cobertizo. La baja ahorra pendiente sólo cuando está seca.",
+        "piedras": "Delimitan el tránsito respecto a la tierra recién trabajada. No impiden el paso público."
+      },
+      "exits": {
+        "sur": "edran_arboleda",
+        "norte": "edran_reparo"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [],
+      "actions": [],
+      "return": "La rodada alta sigue firme sobre el borde. La baja conserva barro en el centro; ambas se juntan otra vez delante del reparo.",
+      "wildlife_pool": [
+        {
+          "creature": "espinajo_rastrojo",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "mordelinde",
+          "text": "Una forma baja cruza entre raíces y se detiene con la cabeza orientada al borde. No persigue la sombra que pasa sobre el agua.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "cornalomo",
+          "text": "Un cuerpo enorme aparta la hierba. El volumen de su lomo y la tierra hundida advierten una fuerza muy por encima de una primera formación.",
+          "persistent_trace": false
+        }
+      ]
+    },
+    "edran_reparo": {
+      "id": "edran_reparo",
+      "name": "Refugio del camino",
+      "region": "edran",
+      "kind": "interior",
+      "description": "Un techo protege dos bancos del viento. El camino pasa por delante, lejos de quienes descansan. En la repisa hay un cuenco y tres mensajes. Al sur vuelves a los carros, al norte subes a la era; al este comienza el sendero de juncos.",
+      "day": "Una viajera descose una costura de su media bajo la cubierta. Estira el pie al sol un momento; una hormiga atraviesa la tabla que sostiene su hilo.",
+      "night": "Un grillo suena junto al poste. En la tabla queda un hilo corto; más allá del abrigo se oyen ruedas y después sólo hierba.",
+      "rain": "Los viajeros dejan el suelo central libre para escurrir sus capas. Las tablillas permanecen en la repisa alta; nadie las ofrece como combustible para secarse.",
+      "clear": "",
+      "examine": {
+        "tablillas": "Una anuncia una rueda revisada; otra pide noticia de una carga retrasada. El tercer mensaje no tiene destinatario claro.",
+        "cuenco": "Está disponible para agua de viaje. No lleva una marca que prometa un servicio de curación."
+      },
+      "exits": {
+        "sur": "edran_camino_carros",
+        "norte": "edran_era",
+        "este": "edran_sendero_juncos"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [],
+      "actions": [],
+      "return": "La pared corta te permite elegir un banco protegido sin bloquear la vista del camino. Las tablillas se leen aquí porque quienes las necesitan vuelven a pasar.",
+      "memories": [
+        {
+          "requires_flags": [
+            "edran_mensaje_aclarado"
+          ],
+          "text": "Una tablilla nueva explica el retraso de la carga. La nota anterior sigue al lado, para que quien la leyó pueda reconocer la corrección."
+        }
+      ],
+      "weather": {
+        "viento": "El frente abierto deja pasar ruido del camino mientras la pared corta protege los bancos. Las tablillas permanecen sujetas bajo una piedra en la repisa."
+      },
+      "dawn": "Un viajero sacude el banco antes de apoyar su carga. El cuenco vacío indica que nadie ha traído agua todavía; el camino empieza a recibir pasos.",
+      "dusk": "Los viajeros preguntan dónde quieren pasar la noche antes de añadir otra distancia. Una carga queda contra la pared corta y deja el frente libre.",
+      "states": [
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_weather": [
+            "lluvia"
+          ],
+          "overrides": {
+            "day": "La viajera recoge el hilo antes de que las gotas alcancen la tabla. Se cambia de extremo y continúa cosiendo mientras el agua gotea del remiendo de la cubierta."
+          }
+        },
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_visits": {
+            "min": 3
+          },
+          "overrides": {
+            "day": "La media tiene una costura nueva. La viajera recoge el hilo que sobró y estira el pie sobre la tabla; la hormiga se desvía hacia la sombra."
+          }
+        },
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_weather": [
+            "lluvia"
+          ],
+          "requires_visits": {
+            "min": 3
+          },
+          "overrides": {
+            "day": "La media cosida queda bajo la cubierta. La viajera prueba el zapato en el extremo seco y retira con un dedo el hilo que quedó suelto."
+          }
+        }
+      ],
+      "focus": [
+        "activity"
+      ]
+    },
+    "edran_era": {
+      "id": "edran_era",
+      "name": "Era de los campos",
+      "region": "edran",
+      "kind": "landmark",
+      "description": "Un círculo de tierra firme sirve para trabajar el grano. Las piedras planas sujetan tablones, y un poste viejo permite ver cómo sopla el viento. El refugio queda al sur. Al norte sigue la subida; al oeste hay una zanja seca.",
+      "day": "Un ave picotea el último grano junto al borde de la era. Al fondo alguien sacude un paño; el polvo permanece en el aire después de que termina.",
+      "night": "El borde de la era conserva claridad. Un ratón sale hasta una espiga rota y la arrastra de vuelta a la hierba.",
+      "rain": "La tierra firme no absorbe el agua enseguida. Los tablones se retiran de los pequeños charcos para que no se hinchen antes del próximo trabajo.",
+      "clear": "",
+      "examine": {
+        "poste": "La madera conserva agujeros de un techo ligero que se desmontaba después del trabajo.",
+        "piedras": "Sujetaban tablones desmontables cuando se trabajaba en la era. El suelo más gastado queda entre ellas."
+      },
+      "exits": {
+        "sur": "edran_reparo",
+        "norte": "edran_terraplen",
+        "oeste": "edran_zanja_antigua"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [],
+      "actions": [],
+      "return": "Detrás quedan los campos y los tejados bajos que recuerdas. De frente, el camino empieza a ganar altura hacia la cuenca.",
+      "weather": {
+        "viento": "Las partes ligeras del grano cruzan el círculo y se depositan contra una piedra. Quien trabaja cambia de sitio cuando el poste deja de vibrar en la misma dirección."
+      },
+      "states": [
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_weather": [
+            "viento"
+          ],
+          "overrides": {
+            "day": "El paño se vuelve hacia quien lo sacude y deja polvo sobre su manga. El ave se agacha detrás del borde de la era antes de volver al grano."
+          }
+        }
+      ],
+      "focus": [
+        "activity"
+      ]
+    },
+    "edran_terraplen": {
+      "id": "edran_terraplen",
+      "name": "Terraplén de la Subida",
+      "region": "edran",
+      "kind": "road",
+      "description": "El camino sube entre tierra alta y raíces al descubierto. Las rodadas van juntas: los carros deben esperar para cruzarse. A media cuesta hay sitio para parar. La era queda al sur; al norte te espera la casa del camino.",
+      "day": "Un porteador espera en el ensanchamiento hasta que baja un carro. Su carga está apoyada del lado del terraplén, donde no puede rodar hacia el camino.",
+      "night": "La pendiente se nota antes de verse. El corte de raíces devuelve pasos y crujidos, mientras el campo abierto detrás apenas devuelve sonido.",
+      "rain": "El agua desciende por una rodada y deja la otra libre. El ensanchamiento necesita cuidado: recoge tierra suelta de la pared superior.",
+      "clear": "",
+      "examine": {
+        "raíces": "Las raíces sujetan parte del corte. Arrancarlas para despejar el paso debilitaría la pared.",
+        "ensanchamiento": "Hay una piedra de apoyo del lado alto, útil para colocar una carga que no debe deslizarse."
+      },
+      "exits": {
+        "sur": "edran_era",
+        "norte": "edran_casa_camino"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [],
+      "actions": [],
+      "return": "Ya sabes dónde puede esperar alguien sin obligar a un carro a detenerse en pendiente. La casa de arriba sólo se muestra después de la mitad del ascenso.",
+      "weather": {
+        "viento": "La pared de raíces corta el aire en la parte baja. Una carga apoyada en el ensanchamiento queda más protegida que quien sube por el centro."
+      },
+      "wildlife_pool": [
+        {
+          "creature": "espinajo_rastrojo",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "mordelinde",
+          "text": "Una forma baja cruza entre raíces y se detiene con la cabeza orientada al borde. No persigue la sombra que pasa sobre el agua.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "cornalomo",
+          "text": "Un cuerpo enorme aparta la hierba. El volumen de su lomo y la tierra hundida advierten una fuerza muy por encima de una primera formación.",
+          "persistent_trace": false
+        }
+      ]
+    },
+    "edran_casa_camino": {
+      "id": "edran_casa_camino",
+      "name": "Casa del camino",
+      "region": "edran",
+      "kind": "interior",
+      "description": "La casa está al final de la subida. Cerca de la puerta se dejan las cargas húmedas; la mesa ocupa un suelo más alto. Al fondo esperan mensajes para Vaisgard. Puedes descansar aquí. Al sur bajas a la era; al norte sigue la calzada.",
+      "day": "Aren coloca la nota nueva junto a las tablillas. Pregunta desde qué orilla vieron la rueda detenida y toca en el dibujo el punto que le señalan.",
+      "night": "Una lámpara ilumina la mesa elevada y deja oscuro el espacio de cargas. Las tablillas siguen ordenadas por destino, no por el momento de llegada de cada viajero.",
+      "rain": "Las cargas mojadas se quedan en el suelo bajo. Una línea de agua termina antes del escalón; la mesa puede seguir utilizándose sin trasladar cada mensaje.",
+      "clear": "",
+      "examine": {
+        "nota": "Describe una carga detenida para reparar una rueda. No dice que haya desaparecido ni que alguien la esté reteniendo.",
+        "escalón": "Eleva la mesa por encima de la humedad de la entrada y permite separar descanso de descarga."
+      },
+      "exits": {
+        "sur": "edran_terraplen",
+        "norte": "edran_calzada"
+      },
+      "arrivals": {},
+      "npcs": [
+        "edran_aren"
+      ],
+      "signals": [],
+      "actions": [
+        {
+          "id": "edran_leer_nota",
+          "label": "Leer de dónde procede la noticia",
+          "text": "La nota habla de una rueda que están reparando junto a Valdren. Lees también la última línea: la palabra «perdida» se añadió en otra tablilla.",
+          "set_flags": [
+            "edran_nota_leida"
+          ],
+          "requires_flags": [],
+          "forbids_flags": [
+            "edran_nota_leida"
+          ],
+          "scope": "player",
+          "journal": "Conoces el lugar de la carga detenida y la diferencia entre la observación original y el rumor."
+        },
+        {
+          "id": "edran_corregir_mensaje",
+          "label": "Aclarar la noticia con lo visto en el cobertizo",
+          "text": "Explicas a Aren qué viste con Bren. Corrige el mensaje para Elva: el carro se retrasó por la reparación y Lio seguía en el pueblo. Guarda la nota vieja junto a la nueva.",
+          "set_flags": [
+            "edran_mensaje_aclarado"
+          ],
+          "requires_flags": [
+            "edran_nota_leida",
+            "participated:edran_rueda_comprobada"
+          ],
+          "forbids_flags": [
+            "edran_mensaje_aclarado"
+          ],
+          "scope": "world",
+          "journal": "La repisa conserva una corrección: la carga sigue en Valdren y su rueda fue revisada.",
+          "requires_npc": "edran_aren"
+        }
+      ],
+      "return": "Las dos ventanas ofrecen referencias distintas. Puedes reconocer la era por la baja y la continuación hacia Veyra por la alta, incluso antes de volver al camino.",
+      "memories": [
+        {
+          "requires_flags": [
+            "edran_nota_leida"
+          ],
+          "text": "Conoces el lugar de la carga detenida y la diferencia entre la observación original y el rumor."
+        },
+        {
+          "requires_flags": [
+            "edran_mensaje_aclarado"
+          ],
+          "text": "La repisa conserva una corrección: la carga sigue en Valdren y su rueda fue revisada."
+        }
+      ],
+      "states": [
+        {
+          "requires_flags": [
+            "edran_mensaje_aclarado"
+          ],
+          "overrides": {
+            "day": "Aren coloca juntas las dos versiones de la noticia. La corrección explica dónde sigue la carga y por qué se detuvo. Quien toma un mensaje puede leer también lo que cambió.",
+            "examine": {
+              "nota": "La nota nueva dice «detenida para revisar una rueda». Aren conserva la versión que decía «perdida» a su lado, con una referencia a la corrección."
+            }
+          }
+        }
+      ],
+      "dawn": "Aren acerca las notas a la ventana alta y comprueba sus destinos. Los primeros viajeros no encuentran mensajes mezclados con las cargas del suelo bajo.",
+      "dusk": "Aren termina una nota mientras aún puede leer sin lámpara. Pregunta si quien sale llegará a Valdren antes de que se enfríe la comida."
+    },
+    "edran_hito_campos": {
+      "id": "edran_hito_campos",
+      "name": "Paso hacia Veyra",
+      "region": "edran",
+      "kind": "landmark",
+      "description": "Un poste y una losa señalan el camino. Los campos de Edran quedan atrás, hacia el sur. Al norte, tres piedras cruzan un arroyo antes de la puerta de Veyra. Un desvío al este ofrece una vista de la cuenca.",
+      "day": "Un carro deja una marca de barro sobre la primera piedra del cauce. El conductor comprueba que la carga siga fija antes de entrar en la ladera.",
+      "night": "Las piedras del cauce retienen una claridad tenue. La puerta de Veyra no se ve desde este punto; su dirección depende del camino que sube tras el agua.",
+      "rain": "El cauce cubre los bordes de las piedras, aunque mantiene visibles sus centros. El poste queda en suelo alto, donde puede esperar alguien sin cortar el paso.",
+      "clear": "",
+      "examine": {
+        "losa": "Sus reparaciones reúnen piedras distintas. Una piedra clara encaja bajo el borde gastado de la losa.",
+        "poste": "No tiene un nombre de propietario. Orienta hacia el camino alto y deja libre el cruce del cauce."
+      },
+      "exits": {
+        "sur": "edran_calzada",
+        "este": "edran_vista_cuenca",
+        "norte": "veyra_puerta_campos"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [],
+      "actions": [],
+      "return": "Has cruzado del cultivo cercano a una ruta mantenida entre lugares. Detrás siguen las últimas cercas; delante, las reparaciones del cauce y la ladera conducen hacia Veyra.",
+      "dawn": "Las piedras del cauce aparecen una a una con la luz. Un carro espera arriba mientras su conductor comprueba el primer apoyo sin entrar al agua.",
+      "dusk": "Quienes vienen de Veyra reducen el paso antes del cauce. El hito conserva su contorno cuando las últimas parcelas se confunden hacia Valdren."
+    },
+    "edran_prado": {
+      "id": "edran_prado",
+      "name": "Prado de las Marcas Anchas",
+      "region": "edran",
+      "kind": "wilderness",
+      "description": "La hierba alta tiene una zona aplastada, con marcas demasiado anchas para ser de una persona. El sendero pasa por fuera de ella. Al sur vuelves a la loma; al oeste empieza la ladera pedregosa. Mira las señales antes de acercarte.",
+      "day": "Un movimiento pesado baja la hierba y vuelve a levantarla más allá. No sigue el sendero ni se acerca al cultivo: mantiene una franja propia dentro del prado.",
+      "night": "El sendero ofrece una línea reconocible, mientras el resto de la hierba oculta sus interrupciones. El roce pesado se oye demasiado cerca para atribuirlo al viento.",
+      "rain": "Las marcas anchas retienen agua y muestran la diferencia entre un paso humano y una huella profunda. El sendero bordea ambas sin entrar en ellas.",
+      "clear": "",
+      "examine": {
+        "marcas": "Las huellas y los tallos aplastados señalan un animal grande. Rodear su espacio permite continuar sin probar su tolerancia.",
+        "sendero": "Permanece estrecho porque quienes conocen el lugar evitan extenderlo hacia la hierba ocupada."
+      },
+      "exits": {
+        "sur": "edran_loma",
+        "oeste": "edran_ladera_piedra"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [
+        {
+          "creature": "cornalomo",
+          "text": "Un cuerpo enorme aparta la hierba. El volumen de su lomo y la tierra hundida advierten una fuerza muy por encima de una primera formación."
+        }
+      ],
+      "actions": [],
+      "return": "Recuerdas el sendero entre las dos bandas de hierba. Fuera de él, unas huellas profundas hunden los tallos hacia el claro del prado.",
+      "weather": {
+        "viento": "Las hierbas altas se inclinan juntas salvo donde el peso del Cornalomo las mantiene aplastadas. La dirección del aire hace más visible ese espacio ocupado."
+      }
+    },
+    "edran_linde_piedra": {
+      "id": "edran_linde_piedra",
+      "name": "Paso hacia Korven",
+      "region": "edran",
+      "kind": "road",
+      "description": "Las piedras aparecen cada vez más juntas. Al sur quedan el prado y los campos de Edran. El paso norte entra en Korven entre dos lomos de roca. Las rodadas terminan aquí; una explanada ofrece sitio para cambiar las cargas de apoyo.",
+      "day": "Dos porteadores pasan sacos del carro a una estructura más estrecha. Uno sujeta el borde del paquete mientras el otro lo prueba entre los dos lomos de roca.",
+      "night": "La tierra clara termina en manchas de piedra oscura. Puedes oír voces que llegan del paso norte sin distinguir aún a quienes las llevan.",
+      "rain": "La tierra retiene agua entre piedras mientras los lomos altos ofrecen apoyo firme. Las marcas de rueda se borran antes que los puntos de paso a pie.",
+      "clear": "",
+      "examine": {
+        "rodadas": "Terminan junto a un suelo firme donde se puede descargar. No indican un carro perdido.",
+        "costura": "Las piedras forman una abertura continua hacia el norte, aunque no permite ver todo el trayecto de una vez."
+      },
+      "exits": {
+        "sur": "edran_ladera_piedra",
+        "norte": "korven_borde_tierra"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [],
+      "actions": [],
+      "return": "Recuerdas dónde terminan las rodadas. En la explanada espera el soporte estrecho que probaron antes de pasar entre los lomos de roca.",
+      "wildlife_pool": [
+        {
+          "creature": "espinajo_rastrojo",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "mordelinde",
+          "text": "Una forma baja cruza entre raíces y se detiene con la cabeza orientada al borde. No persigue la sombra que pasa sobre el agua.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "cornalomo",
+          "text": "Un cuerpo enorme aparta la hierba. El volumen de su lomo y la tierra hundida advierten una fuerza muy por encima de una primera formación.",
+          "persistent_trace": false
+        }
+      ]
+    },
+    "edran_sendero_juncos": {
+      "id": "edran_sendero_juncos",
+      "name": "Sendero del Agua Oculta",
+      "region": "edran",
+      "kind": "road",
+      "description": "Los juncos crecen junto al sendero. El suelo firme permite avanzar sin entrar en el agua, todavía oculta. Una zona despejada tiene marcas de cargas. Al oeste vuelves al refugio; al este llegas al puente. Más adelante se pasa de uno en uno.",
+      "day": "Un viajero golpea suavemente el borde del sendero con una vara y busca dónde cambia su firmeza. No tantea dentro de los juncos, donde perdería de vista el paso.",
+      "night": "El roce de los juncos cubre por momentos el sonido del agua. El terreno abierto queda detrás como último sitio donde dos personas pueden pasar juntas.",
+      "rain": "La tierra firme se reduce a una franja, pero conserva continuidad. El agua corre entre raíces del lado bajo sin cruzar todavía el sendero.",
+      "clear": "",
+      "examine": {
+        "suelo": "El lado oscuro cede al peso. La franja firme sigue raíces antiguas y no necesita atravesar el agua.",
+        "cargas": "Las marcas están sobre el suelo alto. Quienes pasan por aquí conocen dónde una pausa no se convierte en atasco."
+      },
+      "exits": {
+        "oeste": "edran_reparo",
+        "este": "edran_puente_juncos"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [],
+      "actions": [],
+      "return": "Los juncos señalan agua cercana, no una salida cualquiera del camino. Reconoces el espacio abierto como lugar para esperar antes del tramo estrecho.",
+      "weather": {
+        "viento": "Los juncos se rozan por encima del sendero y tapan el sonido de la corriente. La tierra firme conserva la continuidad que el oído pierde."
+      },
+      "wildlife_pool": [
+        {
+          "creature": "espinajo_rastrojo",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "mordelinde",
+          "text": "Una forma baja cruza entre raíces y se detiene con la cabeza orientada al borde. No persigue la sombra que pasa sobre el agua.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "cornalomo",
+          "text": "Un cuerpo enorme aparta la hierba. El volumen de su lomo y la tierra hundida advierten una fuerza muy por encima de una primera formación.",
+          "persistent_trace": false
+        }
+      ]
+    },
+    "edran_puente_juncos": {
+      "id": "edran_puente_juncos",
+      "name": "Vado de Juncos",
+      "region": "edran",
+      "kind": "landmark",
+      "description": "El agua corre bajo las tablas separadas del puente. Sus apoyos se ven desde la orilla. Edran queda al oeste; al este cruzas hacia Lethra. Una tabla gastada marca dónde descansar una carga. Al sur puedes seguir junto a los sauces. Una marca antigua llama Vado de Juncos a este paso. El puente permite cruzarlo cuando el cauce cubre las piedras del fondo.",
+      "day": "Una mujer cruza con dos recipientes colgados a distinta altura. Espera en el lado alto para equilibrarlos otra vez, lejos del centro del puente.",
+      "night": "El agua se oye por los huecos entre tablas. La ribera oriental conserva el contorno de una subida; la occidental vuelve a esconderse entre juncos.",
+      "rain": "Las tablas dejan pasar la lluvia y el cauce se ensancha bajo ellas. Los apoyos continúan visibles; la marca lateral queda más oscura por la humedad.",
+      "clear": "",
+      "examine": {
+        "apoyos": "Se ven desde la ribera para que pueda revisarse su estado sin desmontar el piso.",
+        "marca": "El desgaste procede de apoyar cargas mientras se ajustan recipientes, no de una tabla a punto de romperse."
+      },
+      "exits": {
+        "oeste": "edran_sendero_juncos",
+        "este": "lethra_hito_tierra",
+        "sur": "edran_sauces"
+      },
+      "arrivals": {
+        "lethra_hito_tierra": "Desde la tierra alta ves los apoyos expuestos del puente. Del otro lado empiezan sauces y una senda que permite seguir por suelo seco hacia los campos."
+      },
+      "npcs": [],
+      "signals": [],
+      "actions": [],
+      "return": "Recuerdas la tabla de espera en el lado alto. Los juncos rozan los apoyos del puente; enfrente vuelve a verse la subida hacia las plataformas.",
+      "weather": {
+        "viento": "Las cuerdas de los recipientes se mueven antes de que el viento se note en las tablas. El lado alto permite detener una carga fuera del centro del puente."
+      },
+      "dawn": "Las tablas conservan humedad. Una persona prueba el lado alto con una carga pequeña; el cauce empieza a mostrar sus apoyos entre los primeros reflejos.",
+      "dusk": "El cruce recibe pasos de vuelta. Dos recipientes se apoyan en la ribera alta mientras la luz se retira del centro del puente."
+    },
+    "valdren_calle_alta": {
+      "id": "valdren_calle_alta",
+      "name": "Calle de la fragua",
+      "region": "edran",
+      "kind": "settlement",
+      "description": "La calle sube desde la plaza hasta la fragua. Dos casas estrechan el paso; una conserva la marca de su tejado antiguo. Desde arriba ves el banco largo. Al oeste hay un patio con ropa tendida. La plaza queda al sur y Daro al norte.",
+      "day": "Una vecina limpia el borde antiguo de su pared para preparar una reparación. El sonido de la fragua llega por el espacio entre tejados.",
+      "night": "Las chimeneas se recortan a alturas distintas. Un hogar apagado enfría la calle más que el paso abierto al patio.",
+      "rain": "La pared antigua recibe un hilo de agua bajo el tejado nuevo. La vecina ha dejado un recipiente en la esquina, sin cerrar el paso.",
+      "clear": "",
+      "examine": {
+        "pared": "La marca corresponde a una casa que creció conservando su parte baja.",
+        "chimeneas": "Sus alturas separan dos hogares que desde la plaza parecen un solo edificio."
+      },
+      "exits": {
+        "sur": "valdren_plaza",
+        "norte": "valdren_fragua",
+        "oeste": "valdren_patio_ropa"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [],
+      "actions": [],
+      "return": "Reconoces el tejado viejo por su línea quebrada. La casa que añadieron al lado queda un peldaño más alta, camino de la fragua."
+    },
+    "valdren_patio_ropa": {
+      "id": "valdren_patio_ropa",
+      "name": "Patio de ropa",
+      "region": "edran",
+      "kind": "settlement",
+      "description": "Dos cuerdas sostienen paños de trabajo y ropa limpia. Una tina ocupa el suelo firme; junto a la pared queda un paso seco. Al este vuelves a la calle. La puerta oeste entra en la estancia donde atienden las heridas.",
+      "day": "Una mujer cambia los paños de cuerda cuando dejan de gotear. No mezcla los usados para limpiar herramientas con los que cubren una mesa de cuidado.",
+      "night": "Las cuerdas vacías conservan pinzas que golpean despacio. La tina queda tapada para que no recoja hojas durante la noche.",
+      "rain": "Los paños se llevan bajo un alero corto. La pared mantiene una franja seca suficiente para cruzar hasta la estancia de cuidado.",
+      "clear": "",
+      "examine": {
+        "paños": "Algunos tienen manchas de aceite que no deben pasar a una mesa donde se atiende una herida.",
+        "tina": "La tapa protege agua limpia. No se utiliza para lavar piezas de la fragua."
+      },
+      "exits": {
+        "este": "valdren_calle_alta",
+        "oeste": "valdren_cuidado"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [],
+      "actions": [],
+      "return": "Las dos alturas de cuerda te permiten distinguir usos sin tocar nada. El recorrido junto a la pared sigue libre aunque el patio esté lleno de trabajo."
+    },
+    "valdren_cuidado": {
+      "id": "valdren_cuidado",
+      "name": "Casa de cuidados",
+      "region": "edran",
+      "kind": "interior",
+      "description": "Una cama corta está junto a la ventana. En la mesa hay paños limpios, agua tapada y recipientes separados de la comida. Aquí pueden atender tus heridas lejos del polvo del trabajo. La puerta este vuelve al patio de ropa.",
+      "day": "Sena recoge un paño usado y pide que quien espera mantenga las manos fuera de la mesa. La atención empieza por escuchar dónde se recibió el golpe.",
+      "night": "Una lámpara baja ilumina el asiento y no la cara de quien descansa. Sena deja agua cubierta al alcance, sin mover los recipientes limpios.",
+      "rain": "Las capas quedan fuera, bajo el alero del patio. La cama conserva distancia respecto a la ventana para que la humedad no alcance los paños.",
+      "clear": "",
+      "examine": {
+        "mesa": "Los recipientes usados se separan antes de atender a otra persona.",
+        "ventana": "La altura deja entrar aire sin exponer directamente la cama a quienes cruzan el patio."
+      },
+      "exits": {
+        "este": "valdren_patio_ropa"
+      },
+      "arrivals": {},
+      "npcs": [
+        "edran_sena"
+      ],
+      "signals": [],
+      "actions": [],
+      "return": "Reconoces el asiento de espera y la mesa limpia. Sena guarda paños secos junto a la ventana, separados del lugar donde se dejan las capas del camino.",
+      "recovery_service": true,
+      "buyer": "edran_sena"
+    },
+    "edran_estanque": {
+      "id": "edran_estanque",
+      "name": "Estanque del Reflejo Partido",
+      "region": "edran",
+      "kind": "landmark",
+      "description": "Un tronco hundido divide el estanque. El agua entra bajo una raíz y sale por el sur. Al norte vuelves a la acequia; al sur están los sauces. Desde las piedras secas puedes mirar la hierba oscura del bajo oriental.",
+      "day": "Insectos se detienen sobre la parte quieta mientras el agua sigue pasando al otro lado del tronco. Un ave baja sólo hasta el borde firme.",
+      "night": "La corriente conserva un brillo quebrado alrededor del tronco. El terreno oriental pierde sus límites antes que el borde de piedras donde estás.",
+      "rain": "La marca del borde queda cerca del nivel del agua. La salida sur mantiene corriente y evita que el estanque suba igual por todas partes.",
+      "clear": "",
+      "examine": {
+        "marca": "Es una referencia de crecida para quienes mantienen la acequia.",
+        "tronco": "Divide agua lenta y corriente. Sacarlo cambiaría un refugio pequeño sin despejar la salida."
+      },
+      "exits": {
+        "norte": "edran_acequia",
+        "este": "edran_bajo_humedo",
+        "sur": "edran_sauces"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [],
+      "actions": [],
+      "return": "Recuerdas la marca del nivel en el poste. El agua entra junto al pasto y sale por la abertura del lado opuesto, donde una hoja gira antes de seguir.",
+      "focus": [
+        "weather",
+        "activity",
+        "return"
+      ],
+      "max_layers": 2
+    },
+    "edran_bajo_humedo": {
+      "id": "edran_bajo_humedo",
+      "name": "Hondonada húmeda",
+      "region": "edran",
+      "kind": "wilderness",
+      "description": "La hierba oscura crece sobre barro húmedo. Puedes mirar desde las piedras sin entrar. La única salida vuelve al estanque, al oeste.",
+      "day": "Un roce bajo recorre la hierba y se detiene antes de llegar al centro mojado. La franja alta permanece libre de ese movimiento.",
+      "night": "La humedad se nota en el aire antes de poder distinguir los pequeños canales. El borde alto conserva el camino de regreso.",
+      "rain": "Los canales se unen y la rama empieza a flotar de un extremo. La franja oriental sigue por encima del agua, aunque se vuelve más estrecha.",
+      "clear": "",
+      "examine": {
+        "rama": "Su extremo ligero flota cuando sube el agua. No es un puente.",
+        "canales": "Las corrientes pequeñas rodean raíces y desembocan en la salida del estanque."
+      },
+      "exits": {
+        "oeste": "edran_estanque"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [
+        {
+          "creature": "mordelinde",
+          "text": "Una forma baja cruza entre raíces y se detiene con la cabeza orientada al borde. No persigue la sombra que pasa sobre el agua."
+        }
+      ],
+      "actions": [
+        {
+          "id": "edran_esperar_mordelinde",
+          "label": "Esperar fuera de la entrada de la madriguera",
+          "text": "Esperas en el borde, dejando libre el agujero. El Mordelinde escucha y sigue sacando una raíz. Al caer una hoja, se esconde otra vez. No necesitas acercarte más para verlo.",
+          "set_flags": [
+            "edran_madriguera_reconocida"
+          ],
+          "forbids_flags": [
+            "edran_madriguera_reconocida"
+          ],
+          "requires_time": [
+            "día"
+          ],
+          "scope": "player",
+          "journal": "Reconozco la entrada del Mordelinde y el espacio que necesita para volver a ella."
+        }
+      ],
+      "return": "Reconoces las piedras secas del borde. Desde allí puedes mirar sin hundirte en el barro; el estanque sigue al oeste.",
+      "memories": [
+        {
+          "requires_flags": [
+            "edran_madriguera_reconocida"
+          ],
+          "text": "La raíz hueca señala la entrada que observaste desde el borde alto. Puedes dejarle su espacio sin apartarte del sendero."
+        }
+      ]
+    },
+    "edran_parcela_vieja": {
+      "id": "edran_parcela_vieja",
+      "name": "Parcela vieja",
+      "region": "edran",
+      "kind": "wilderness",
+      "description": "Dos hileras viejas terminan ante una piedra. Los brotes nuevos crecen alrededor, dejando un rincón donde sentarse sin pisarlos. Al norte subes a la loma; al este regresas al campo de surcos. Hay un rincón seco junto a la piedra.",
+      "day": "Una persona retira una planta aislada y la lleva al borde. La hilera se mantiene alrededor de la piedra en lugar de intentar ocuparla.",
+      "night": "Las hileras se distinguen por sus interrupciones. La piedra devuelve más frío que la tierra del rincón donde puedes detenerte.",
+      "rain": "La piedra divide el agua en dos pequeños recorridos. Los brotes del arco quedan por encima de ambos, como si alguien hubiera previsto esa separación.",
+      "clear": "",
+      "examine": {
+        "piedra": "Tiene una parte expuesta y otra bajo la tierra. Arrancarla afectaría más superficie de la que muestra.",
+        "rincón": "Se conserva libre para dejar herramientas o descansar sin usar las hileras como asiento."
+      },
+      "exits": {
+        "norte": "edran_loma",
+        "este": "edran_surcos"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [],
+      "actions": [],
+      "return": "El arco de plantas nuevas vuelve a rodear la piedra. Entre los tallos secos queda el sendero que seguiste para salir al campo.",
+      "wildlife_pool": [
+        {
+          "creature": "espinajo_rastrojo",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "mordelinde",
+          "text": "Una forma baja cruza entre raíces y se detiene con la cabeza orientada al borde. No persigue la sombra que pasa sobre el agua.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "cornalomo",
+          "text": "Un cuerpo enorme aparta la hierba. El volumen de su lomo y la tierra hundida advierten una fuerza muy por encima de una primera formación.",
+          "persistent_trace": false
+        }
+      ]
+    },
+    "edran_zanja_antigua": {
+      "id": "edran_zanja_antigua",
+      "name": "Zanja seca",
+      "region": "edran",
+      "kind": "landmark",
+      "description": "La zanja sigue entera, pero ya no lleva agua. En el fondo crecen raíces pequeñas. Una losa marca dónde dejó de usarse. Al oeste vuelves al campo; al norte subes a la era. El agua actual pasa por otra parte de la parcela. El acceso a la era dobla en el extremo de la zanja. Al este, una escalera baja al antiguo canal cubierto. Una mujer está comprobando su entrada.",
+      "day": "Una raíz nueva cruza el fondo seco. En la losa vertical alguien ha apoyado una herramienta mientras trabaja más arriba.",
+      "night": "La zanja oscura parece más profunda de lo que es. La losa vertical conserva el límite para no poner el pie donde el fondo cambia.",
+      "rain": "Pequeños charcos ocupan tramos sin conectarlos. La pendiente sigue ahí, pero la entrada cerrada impide que la zanja vuelva a conducir toda la corriente.",
+      "clear": "",
+      "examine": {
+        "entrada": "La tierra está apisonada para impedir que entre agua. No es una obstrucción recién caída.",
+        "losa": "La losa queda junto a la antigua salida del agua, ahora cerrada con tierra apisonada."
+      },
+      "exits": {
+        "oeste": "edran_surcos",
+        "norte": "edran_era",
+        "este": "edran_canal_entrada"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [],
+      "actions": [],
+      "return": "Recuerdas el borde recto de la zanja. Su entrada sigue apisonada; al otro lado han crecido plantas entre las paredes de tierra."
+    },
+    "edran_sauces": {
+      "id": "edran_sauces",
+      "name": "Borde de los Sauces Bajos",
+      "region": "edran",
+      "kind": "wilderness",
+      "description": "Dos aves se esconden en el sauce. El agua corre bajo sus raíces. Al norte está el estanque; al este, el puente. La senda del puente gira alrededor del sauce y sigue la orilla.",
+      "day": "Las aves cruzan entre dos ramas y regresan al mismo hueco. Sus movimientos dejan intervalos largos durante los que sólo se escucha la ribera.",
+      "night": "Las ramas rozan el agua y hacen difícil separar corriente de vegetación. El sendero de tierra continúa sin meterse bajo el sauce inclinado.",
+      "rain": "Las raíces altas siguen secas mientras el barro cubre los huecos. El sauce joven descarga gotas sobre el agua, lejos del sendero.",
+      "clear": "",
+      "examine": {
+        "hueco": "Su entrada queda sobre el agua y fuera del paso humano. Puedes observarla sin acercar las manos.",
+        "raíces": "Mantienen pequeños apoyos secos, pero no forman un camino hacia la otra ribera."
+      },
+      "exits": {
+        "norte": "edran_estanque",
+        "este": "edran_puente_juncos"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [],
+      "actions": [],
+      "return": "El sauce inclinado vuelve a mostrar el hueco donde se posó el ave. Desde la raíz seca se oye el agua bajo las plantas del borde.",
+      "focus": [
+        "activity",
+        "weather",
+        "return"
+      ],
+      "max_layers": 2,
+      "dawn": "Las dos aves cruzan varias veces hacia el hueco del sauce. Entre un viaje y otro, las hojas más cercanas al agua permanecen quietas.",
+      "dusk": "Las aves regresan al hueco y sus vuelos se hacen más cortos. La ribera pierde voces antes de perder el sonido del agua.",
+      "wildlife_pool": [
+        {
+          "creature": "espinajo_rastrojo",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "mordelinde",
+          "text": "Una forma baja cruza entre raíces y se detiene con la cabeza orientada al borde. No persigue la sombra que pasa sobre el agua.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "cornalomo",
+          "text": "Un cuerpo enorme aparta la hierba. El volumen de su lomo y la tierra hundida advierten una fuerza muy por encima de una primera formación.",
+          "persistent_trace": false
+        }
+      ]
+    },
+    "edran_calzada": {
+      "id": "edran_calzada",
+      "name": "Calzada de piedra",
+      "region": "edran",
+      "kind": "road",
+      "description": "Piedras redondeadas cubren la subida. Dos reparaciones claras destacan entre los cantos gastados. La casa queda al sur; al norte, una curva oculta el poste del camino. Las ruedas hacen ruido antes de que aparezcan los carros.",
+      "day": "Un conductor reduce el paso al llegar a la reparación más reciente. Un porteador utiliza el borde de hierba para no caminar sobre los cantos húmedos.",
+      "night": "Las piedras más altas ofrecen una referencia continua al norte. El sonido de una rueda sube por la calzada antes que su luz.",
+      "rain": "Los cantos antiguos brillan y los nuevos absorben parte del agua. La franja de hierba ofrece apoyo, pero no espacio para dos carros.",
+      "clear": "",
+      "examine": {
+        "reparaciones": "Las piedras nuevas encajan entre las viejas; sus caras claras todavía conservan aristas.",
+        "canto": "La hilera norte permite seguir el borde cuando la tierra sur queda cubierta de hierba."
+      },
+      "exits": {
+        "sur": "edran_casa_camino",
+        "norte": "edran_hito_campos"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [],
+      "actions": [],
+      "return": "La reparación clara sitúa la curva aunque el hito siga oculto. Tras la curva, la hierba vuelve a crecer entre piedras separadas.",
+      "wildlife_pool": [
+        {
+          "creature": "espinajo_rastrojo",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "mordelinde",
+          "text": "Una forma baja cruza entre raíces y se detiene con la cabeza orientada al borde. No persigue la sombra que pasa sobre el agua.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "cornalomo",
+          "text": "Un cuerpo enorme aparta la hierba. El volumen de su lomo y la tierra hundida advierten una fuerza muy por encima de una primera formación.",
+          "persistent_trace": false
+        }
+      ]
+    },
+    "edran_vista_cuenca": {
+      "id": "edran_vista_cuenca",
+      "name": "Mirador de la cuenca",
+      "region": "edran",
+      "kind": "landmark",
+      "description": "Los muros de Vaisgard asoman entre dos lomas. Están lejos. Al oeste vuelves al paso de Edran. Al este, un camino ancho cruza los pastos hasta la vega de Vaisgard.",
+      "day": "Una carga se mueve lentamente sobre el camino lejano. Su dirección permite reconocer la subida, pero no quién la lleva ni qué trae.",
+      "night": "Una luz aparece y desaparece detrás del lomo siguiente. Los muros quedan oscuros; entre ellos se pierde el último reflejo.",
+      "rain": "La lluvia oculta los muros lejanos. Sólo ves la ladera cercana y el camino que vuelve al oeste. El camino del este continúa por la parte alta de los pastos.",
+      "clear": "",
+      "examine": {
+        "muros": "Desde aquí se ve una franja larga de piedra. Las entradas quedan detrás del lomo y no se distinguen.",
+        "hierba": "La franja corta permite detenerse fuera del camino sin ocupar una parcela cultivada."
+      },
+      "exits": {
+        "oeste": "edran_hito_campos",
+        "este": "veyra_pastos_exteriores"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [],
+      "actions": [],
+      "return": "Reconoces el hueco entre las lomas por donde viste los muros. La franja de piedra vuelve a ocultarse al acercarte al borde de la ventana.",
+      "weather": {
+        "viento": "El aire despeja parte de la ladera y vuelve a ocultarla con tierra fina. Los muros mantienen su distancia; el camino cercano sigue dando una referencia mejor."
+      },
+      "focus": [
+        "weather",
+        "activity",
+        "return"
+      ],
+      "max_layers": 2
+    },
+    "edran_ladera_piedra": {
+      "id": "edran_ladera_piedra",
+      "name": "Ladera de los cestos",
+      "region": "edran",
+      "kind": "landmark",
+      "description": "Tres salientes permiten dejar cestos sin apoyarlos en la tierra. El más bajo está protegido por un arbusto; debajo hay una cuerda rota, apartada del camino. Al este vuelves al prado. Al norte subes a la linde que lleva a Korven.",
+      "day": "Un porteador cambia su cesto del saliente alto al bajo antes de ajustar la correa. La pausa sucede fuera del sendero.",
+      "night": "El saliente bajo conserva abrigo bajo el arbusto. Los otros dos reciben el viento y pueden reconocerse por su borde claro.",
+      "rain": "Los dos salientes altos se mojan; el bajo deja espacio protegido para una carga pequeña. La cuerda recogida permanece fuera del barro del paso.",
+      "clear": "",
+      "examine": {
+        "cuerda": "Está gastada donde sostenía peso. Dejarla recogida evita que alguien confunda un resto con una sujeción segura.",
+        "salientes": "Los salientes tienen roces redondeados y restos de fibra donde descansan los cestos."
+      },
+      "exits": {
+        "este": "edran_prado",
+        "norte": "edran_linde_piedra"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [],
+      "actions": [],
+      "return": "Puedes elegir apoyo según tamaño y abrigo. El apoyo bajo protege una carga pequeña; el alto deja espacio para un cesto más ancho."
+    },
+    "edran_sendero_regreso": {
+      "id": "edran_sendero_regreso",
+      "name": "Senda de regreso",
+      "region": "edran",
+      "kind": "road",
+      "description": "Un árbol aislado señala la vuelta a Valdren. Desde su sombra ves el techo del cobertizo, pero no la plaza. Al oeste llegas al patio de carros; al este regresas a la arboleda. Hay sitio para quitarte barro antes de entrar al pueblo. La senda gira al rodear los campos: sus entradas no quedan enfrentadas.",
+      "day": "Una persona limpia sus botas con una rama caída y recoge después los restos fuera del paso. Un carro entra por el patio, separado de los huertos.",
+      "night": "El techo del cobertizo se reconoce por una luz bajo su borde. El árbol ofrece un punto de orientación cuando la plaza todavía no aparece.",
+      "rain": "El suelo compacto forma un charco pequeño junto al tronco. Puedes detenerte del lado alto sin llevar toda esa agua al patio.",
+      "clear": "",
+      "examine": {
+        "árbol": "La tierra bajo el árbol está compactada y conserva dos huecos de cargas apoyadas.",
+        "techado": "El techo bajo pertenece a las ruedas almacenadas; la parte alta permite trabajar con un carro completo."
+      },
+      "exits": {
+        "este": "edran_arboleda",
+        "oeste": "valdren_patio_carros"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [],
+      "actions": [],
+      "return": "Reconoces los tejados desde este lado del campo. Al acercarte se oye la fragua; el sendero entra entre la cerca baja y las últimas casas.",
+      "wildlife_pool": [
+        {
+          "creature": "espinajo_rastrojo",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "mordelinde",
+          "text": "Una forma baja cruza entre raíces y se detiene con la cabeza orientada al borde. No persigue la sombra que pasa sobre el agua.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "cornalomo",
+          "text": "Un cuerpo enorme aparta la hierba. El volumen de su lomo y la tierra hundida advierten una fuerza muy por encima de una primera formación.",
+          "persistent_trace": false
+        }
+      ]
+    },
+    "edran_canal_entrada": {
+      "id": "edran_canal_entrada",
+      "name": "Entrada del canal cubierto",
+      "region": "edran",
+      "kind": "interior",
+      "description": "Tres escalones bajan desde la zanja occidental. Al este empieza el canal bajo los campos; al sur hay una cámara de herramientas. Las dos entradas tienen altura suficiente para caminar agachado. Una cuerda fija permite regresar sin depender de la luz.",
+      "exits": {
+        "oeste": "edran_zanja_antigua",
+        "este": "edran_canal_bifurcacion",
+        "sur": "edran_canal_herramientas"
+      },
+      "day": "La luz de la zanja alcanza los tres peldaños. Nela deja el barro de sus botas fuera de la cuerda que sirve para volver.",
+      "night": "El último peldaño recibe luz del farol de Nela; después se distingue la cuerda antes que el suelo.",
+      "rain": "El agua baja por un lado de los peldaños. La cuerda queda en el otro, lejos de las gotas que entran de la zanja.",
+      "clear": "",
+      "return": "La cuerda te devuelve a los mismos tres peldaños. Desde aquí se vuelve a oír el campo.",
+      "examine": {
+        "cuerda": "Está fijada junto al lado seco de los peldaños. Lleva hasta la salida, no hasta el fondo del canal."
+      },
+      "npcs": [
+        "edran_nela"
+      ],
+      "signals": [],
+      "actions": [
+        {
+          "id": "edran_devolver_caja",
+          "label": "Devolver la caja a Nela",
+          "text": "Nela cuenta las cuñas y deja una junto a la toma que necesita reparación. Te entrega una provisión para el camino. El canal podrá revisarse sin volver a bajar hasta el fondo.",
+          "requires_npc": "edran_nela",
+          "requires_items": {
+            "caja_cunas": 1
+          },
+          "consume_items": {
+            "caja_cunas": 1
+          },
+          "give_items": {
+            "provision_basica": 1
+          },
+          "set_flags": [
+            "edran_caja_recuperada"
+          ],
+          "forbids_flags": [
+            "edran_caja_recuperada"
+          ],
+          "journal": "Nela recibió la caja. Conservas su confianza y una provisión."
+        }
+      ],
+      "source": "Ampliación original autorizada: campaña nocturna",
+      "states": [
+        {
+          "requires_flags": [
+            "edran_caja_recuperada"
+          ],
+          "overrides": {
+            "day": "Nela separa una cuña de la caja que devolviste y la compara con la toma de agua. El resto queda envuelto junto a su tablilla.",
+            "night": "La caja que devolviste queda sobre el apoyo junto a la escalera. Nela acerca el farol para contar las cuñas sin bajar otra vez hasta la repisa.",
+            "return": "La caja de cuñas junto a la tablilla recuerda tu regreso desde el ramal del este. La cuerda permanece atada a la escalera.",
+            "examine": {
+              "cuñas": "Nela separó una cuña para revisar la toma. La caja que trajiste conserva las otras en su tela."
+            }
+          }
+        }
+      ]
+    },
+    "edran_canal_herramientas": {
+      "id": "edran_canal_herramientas",
+      "name": "Cámara de herramientas",
+      "region": "edran",
+      "kind": "interior",
+      "description": "Una mesa estrecha conserva marcas de barro seco. El canal queda al norte. En la pared oriental, un agujero deja escuchar agua al otro lado, pero no permite pasar.",
+      "exits": {
+        "norte": "edran_canal_entrada"
+      },
+      "day": "Un hilo de claridad entra por la puerta norte. Sobre la mesa, el barro seco conserva la forma de una herramienta que ya retiraron.",
+      "night": "El agujero de la pared devuelve el sonido del agua. A través de la puerta norte se ve una franja débil de luz.",
+      "rain": "El agua del otro lado golpea más alto en el agujero. La mesa permanece seca; no hay corriente cruzando esta cámara.",
+      "clear": "",
+      "return": "La marca vacía sobre la mesa te permite reconocer la cámara antes de mirar la puerta norte.",
+      "examine": {
+        "marcas": "Una línea de agua antigua queda por debajo de la mesa. Las marcas recientes no alcanzan el primer peldaño.",
+        "mesa": "El barro conserva un hueco alargado; la herramienta que apoyó allí ya no está.",
+        "agujero": "Deja pasar el sonido del canal, pero es demasiado estrecho para una mano con equipo."
+      },
+      "npcs": [],
+      "signals": [],
+      "actions": [],
+      "source": "Ampliación original autorizada: campaña nocturna"
+    },
+    "edran_canal_bifurcacion": {
+      "id": "edran_canal_bifurcacion",
+      "name": "Bifurcación del canal",
+      "region": "edran",
+      "kind": "interior",
+      "description": "El canal continúa al este bajo una compuerta abierta. Al sur, un escalón seco entra en una cámara donde alguien ha dejado una taza. La escalera de salida queda al oeste. Hay huellas de botas, no de una criatura.",
+      "exits": {
+        "oeste": "edran_canal_entrada",
+        "este": "edran_canal_compuerta",
+        "sur": "edran_canal_refugio"
+      },
+      "day": "Un reflejo llega desde la compuerta oriental. Las huellas de botas se separan aquí: unas siguen el agua y otras suben al escalón del refugio.",
+      "night": "La taza del refugio roza una vez la piedra. El ruido viene del sur; al oeste queda la cuerda de regreso.",
+      "rain": "Una línea de hojas avanza hacia la compuerta. El escalón del refugio queda por encima del agua que las arrastra.",
+      "clear": "",
+      "return": "Reconoces el escalón del sur y la vuelta hacia la cuerda. Las huellas no señalan todas el mismo destino.",
+      "examine": {
+        "huellas": "Las suelas dejaron barro junto al escalón. No son rastros de garras.",
+        "escalón": "Sube hacia el refugio y mantiene la manta separada del agua del canal."
+      },
+      "npcs": [],
+      "signals": [],
+      "actions": [],
+      "source": "Ampliación original autorizada: campaña nocturna"
+    },
+    "edran_canal_refugio": {
+      "id": "edran_canal_refugio",
+      "name": "Refugio junto al canal",
+      "region": "edran",
+      "kind": "interior",
+      "description": "Una manta está doblada contra la pared. Oren sostiene una taza vacía sin levantarse. La única salida vuelve al norte, hacia la bifurcación. No te cierra el paso.",
+      "exits": {
+        "norte": "edran_canal_bifurcacion"
+      },
+      "day": "Oren pasa un dedo por el borde de la taza. La manta queda detrás de sus botas, sobre la parte seca del suelo.",
+      "night": "Oren acerca la taza al pecho cuando oye pasos. La claridad de la bifurcación alcanza sólo el umbral.",
+      "rain": "Las gotas se oyen fuera del refugio. Oren retira las botas del borde húmedo sin ocupar la salida.",
+      "clear": "",
+      "return": "La taza y la manta te permiten reconocer el refugio. Oren deja libre el paso a la bifurcación.",
+      "examine": {
+        "taza": "Está vacía; Oren la deja en el suelo para escucharte.",
+        "manta": "Permanece doblada contra la pared seca; no bloquea la entrada."
+      },
+      "npcs": [
+        "edran_oren"
+      ],
+      "signals": [],
+      "actions": [],
+      "source": "Ampliación original autorizada: campaña nocturna",
+      "states": [
+        {
+          "requires_flags": [
+            "edran_oren_orientado"
+          ],
+          "overrides": {
+            "description": "Oren tiene la manta recogida sobre las rodillas. La taza espera junto a sus botas. El escalón seco queda libre y la única salida vuelve al norte, hacia la bifurcación.",
+            "day": "Oren ajusta el pliegue de la manta para llevarla sin que roce el suelo. Mira la salida mientras prepara sus cosas.",
+            "night": "Oren sujeta la manta recogida y busca la taza junto a sus botas. Desde el umbral se distingue la vuelta a la bifurcación.",
+            "return": "Oren conserva la manta recogida; ya sabe que Nela espera junto a la escalera.",
+            "examine": {
+              "manta": "Oren la tiene doblada sobre las rodillas, lista para llevarla hasta la entrada."
+            }
+          }
+        }
+      ]
+    },
+    "edran_canal_compuerta": {
+      "id": "edran_canal_compuerta",
+      "name": "Compuerta abierta",
+      "region": "edran",
+      "kind": "interior",
+      "description": "La hoja de madera permanece encajada contra la pared norte. Puedes volver al oeste o pasar al este hasta la repisa. La franja de paso queda entre la madera y la pared opuesta.",
+      "exits": {
+        "oeste": "edran_canal_bifurcacion",
+        "este": "edran_canal_repisa"
+      },
+      "day": "El agua refleja la cara inferior de la madera. El hueco por donde se pasa queda junto a la pared opuesta.",
+      "night": "La compuerta cruje cuando cambia la corriente. Su borde no se ha movido del apoyo que deja libre el paso.",
+      "rain": "La corriente arrastra hojas contra la madera. El borde pegado a la pared opuesta sigue siendo el tramo de paso.",
+      "clear": "",
+      "return": "El crujido vuelve a venir de la madera, no de una puerta nueva. La repisa queda al este y la bifurcación al oeste.",
+      "examine": {
+        "madera": "La hoja está encajada contra el muro norte. No hace falta empujarla para pasar.",
+        "borde": "La franja junto a la pared opuesta conecta con la repisa; puedes mantener distancia de quien ocupa la compuerta."
+      },
+      "npcs": [],
+      "signals": [
+        {
+          "creature": "forajido_camino",
+          "text": "Un salteador golpea el suelo con un palo. Te exige parte de tu carga. No ha cortado la salida occidental."
+        }
+      ],
+      "actions": [
+        {
+          "id": "edran_rodeo_compuerta",
+          "label": "Pasar por el borde sin provocarlo",
+          "text": "Te mantienes junto a la pared opuesta y atraviesas el tramo sin entregar tu mochila. El hombre no abandona su sitio. La salida sigue libre.",
+          "next": "edran_canal_repisa",
+          "set_flags": [
+            "edran_compuerta_rodeada"
+          ]
+        }
+      ],
+      "source": "Ampliación original autorizada: campaña nocturna",
+      "states": [
+        {
+          "requires_flags": [
+            "victoria:edran_canal_compuerta:forajido_camino"
+          ],
+          "overrides": {
+            "return": "Reconoces la franja donde te enfrentaste al hombre del palo. El golpe de agua detrás de la madera vuelve a situar la repisa al este."
+          }
+        },
+        {
+          "requires_flags": [
+            "edran_compuerta_rodeada"
+          ],
+          "overrides": {
+            "return": "El borde de la pared opuesta es el que utilizaste para rodear la compuerta. El hueco oriental desemboca de nuevo ante la repisa."
+          }
+        }
+      ]
+    },
+    "edran_canal_repisa": {
+      "id": "edran_canal_repisa",
+      "name": "Repisa de las cuñas",
+      "region": "edran",
+      "kind": "interior",
+      "description": "El canal termina ante una pared de piedra. Una caja pequeña descansa sobre una repisa seca. El regreso queda al oeste, a través de la compuerta. No hay un túnel hacia otro pueblo.",
+      "exits": {
+        "oeste": "edran_canal_compuerta"
+      },
+      "day": "Una abertura alta ilumina la piedra de la repisa. El canal termina debajo; no se prolonga tras la pared.",
+      "night": "El sonido del agua vuelve desde la pared cerrada. La franja seca de la repisa queda por encima de ese eco.",
+      "rain": "El agua golpea el muro bajo la repisa y vuelve hacia la compuerta. No alcanza la superficie alta donde se guarda lo seco.",
+      "clear": "",
+      "return": "La pared cerrada confirma el final del canal. El regreso sigue por la misma compuerta.",
+      "examine": {
+        "pared": "No hay una abertura al otro lado: el agua vuelve desde este muro.",
+        "repisa": "La superficie alta conserva marcas de apoyo y queda fuera de la corriente."
+      },
+      "npcs": [],
+      "signals": [],
+      "actions": [
+        {
+          "id": "edran_recoger_caja",
+          "label": "Recoger la caja de cuñas",
+          "text": "La caja pesa poco. Las cuñas siguen envueltas en una tela; la guardas para devolverla a Nela.",
+          "give_items": {
+            "caja_cunas": 1
+          },
+          "set_flags": [
+            "edran_caja_recogida"
+          ],
+          "forbids_flags": [
+            "edran_caja_recogida"
+          ],
+          "journal": "Recuperaste la caja al final del canal. Nela espera en la entrada."
+        }
+      ],
+      "source": "Ampliación original autorizada: campaña nocturna",
+      "states": [
+        {
+          "requires_flags": [
+            "edran_caja_recogida"
+          ],
+          "overrides": {
+            "description": "El canal termina ante una pared de piedra. La repisa quedó vacía donde recogiste la caja de cuñas; una marca rectangular conserva el borde seco. El regreso queda al oeste, a través de la compuerta. La pared cierra el fondo del canal.",
+            "return": "La marca rectangular permite reconocer dónde levantaste la caja. La línea antigua de crecida sigue por debajo de la repisa.",
+            "examine": {
+              "repisa": "El rectángulo seco quedó bajo la caja que llevaste. Las cuñas salieron envueltas, por encima de la marca de crecida."
+            }
+          }
+        }
+      ]
+    }
+  },
+  "npcs": {
+    "edran_daro": {
+      "id": "edran_daro",
+      "name": "Daro",
+      "species": "humano",
+      "role": "herrero",
+      "home_room": "valdren_fragua",
+      "description": "Daro mantiene libre el trayecto entre el hogar y el agua. Antes de repetir una pieza pregunta qué hizo fallar la anterior.",
+      "topics": {
+        "trabajo": "Una abrazadera no falla sola. Si Bren me dice de qué lado cede la carga, podré ajustarla sin añadir hierro por añadirlo.",
+        "pueblo": "La cuesta obliga a escuchar quién baja antes de subir. Aquí las herramientas también tienen que dejar sitio al paso.",
+        "rueda": {
+          "requires_flags": [
+            "edran_rueda_comprobada"
+          ],
+          "text": "Bren ya puede decirme dónde trabaja la cuña. Esa observación vale más que pedir otra rueda sin saber qué le ocurre."
+        },
+        "armas": "Las varitas me llegan de talleres de Veyra. El puñal y la espada los preparo aquí; los arcos entran con los viajeros. Una hoja de Hoshai se busca en Khariel, y un martillo de Korven en Brumak.",
+        "reparación": "Una pieza quebrada en un suceso necesita una comprobación aparte. La arreglo por ocho sellos. Te la devolveré guardada: antes de salir, decide qué llevarás en la mano.",
+        "afinado": "Puedo afinar una pieza común una vez por doce sellos y una fibra de Espinajo para fijar el mango. Ganará un punto de daño. Revisa qué arma llevas antes de encargarlo; no transforma una pieza en otra."
+      },
+      "memory": {
+        "hallazgo:semillas_camino": "Reconoce lo que llevas: «Semillas secas. Es de por aquí; mira el suelo cuando vuelvas a pasar.»",
+        "encargo_pagado:valdren_recado_forja": "Daro señala la tiza junto a la abrazadera. «Es la medida que trajiste de Bren. Ahora puedo comparar la pieza.»"
+      },
+      "day": "Daro separa una pieza para quien necesita comprobarla antes de recogerla.",
+      "night": "Daro revisa medidas junto a las piezas frías, dejando apagado el hogar.",
+      "states": [
+        {
+          "requires_flags": [
+            "encargo_pagado:valdren_recado_forja"
+          ],
+          "overrides": {
+            "topics": {
+              "trabajo": "La medida que trajiste de Bren está junto a la abrazadera. Ahora puedo ajustar la pieza con esa referencia, sin añadir hierro por añadirlo."
+            }
+          }
+        }
+      ]
+    },
+    "edran_iria": {
+      "id": "edran_iria",
+      "name": "Iria",
+      "species": "humano",
+      "role": "guardiana de semillas",
+      "home_room": "valdren_casa_semillas",
+      "description": "Iria usa tablillas que pueden borrarse, pero lee cada nombre antes de aceptar que una cuenta ha terminado.",
+      "topics": {
+        "semillas": "Guardamos poco de cada lote para poder volver a empezar. No confundas lo que espera secarse con lo que ya puede prestarse.",
+        "tablilla": "Hay dos cuencos sin nombre. Una persona dice haberlos dejado; otra recuerda haberlos recibido. Necesito escuchar ambas cosas antes de decidir.",
+        "agua": {
+          "requires_flags": [
+            "edran_acequia_abierta"
+          ],
+          "text": "El huerto pequeño ya no recibe toda el agua. La parcela alta también tiene su parte; se nota antes de que crezca una sola hoja."
+        }
+      },
+      "memory": {
+        "hallazgo:semillas_camino": "Reconoce lo que llevas: «Semillas secas. Es de por aquí; mira el suelo cuando vuelvas a pasar.»"
+      },
+      "day": "Iria lee el nombre de un recipiente antes de colocarlo en el estante.",
+      "night": "Iria compara las tablillas del día con los recipientes que aún esperan nombre.",
+      "states": [
+        {
+          "requires_flags": [
+            "edran_cuenta_aclarada"
+          ],
+          "overrides": {
+            "topics": {
+              "tablilla": "Los dos cuencos ya tienen los nombres de quienes los dejaron y recogieron. La tablilla está junto a la cuenta de Elva; ya puedo distinguir lo prestado de lo recibido."
+            }
+          }
+        }
+      ]
+    },
+    "edran_bren": {
+      "id": "edran_bren",
+      "name": "Bren",
+      "species": "humano",
+      "role": "cuidador de carros",
+      "home_room": "valdren_cobertizo",
+      "description": "Bren escucha un carro mientras lo mueve. No acepta que alguien se coloque dentro de su giro para ayudarle a mirar.",
+      "topics": {
+        "rueda": "El crujido sólo aparece al avanzar. Mira desde fuera de la cuerda; yo moveré el carro despacio.",
+        "carga": "Que un carro vacío pueda pasar no demuestra que pase cargado. El patio nos permite comprobar la inclinación antes del camino.",
+        "noticias": {
+          "requires_flags": [
+            "edran_nota_leida"
+          ],
+          "text": "La carga retrasada es ésta. Su rueda está aquí, delante de ti. No quiero que en Vaisgard la llamen perdida."
+        }
+      },
+      "memory": {
+        "hallazgo:semillas_camino": "Reconoce lo que llevas: «Semillas secas. Es de por aquí; mira el suelo cuando vuelvas a pasar.»",
+        "encargo_pagado:valdren_estado_vado": "Bren te muestra los dos cruces en su tablilla. «Tus noticias del puente y del hito saldrán con el próximo carro.»"
+      },
+      "day": "Bren mantiene la cuerda de giro fuera del alcance de quienes miran.",
+      "night": "Bren deja las pruebas para la luz del día y ordena las piezas junto a la pared.",
+      "states": [
+        {
+          "requires_flags": [
+            "edran_rueda_comprobada"
+          ],
+          "overrides": {
+            "topics": {
+              "rueda": "La cuña ya está sujeta y la rueda gira sin aquel crujido. La siguiente prueba será con carga; el paso de un carro vacío no basta."
+            }
+          }
+        }
+      ]
+    },
+    "edran_elva": {
+      "id": "edran_elva",
+      "name": "Elva",
+      "species": "humano",
+      "role": "anfitriona",
+      "home_room": "valdren_comedor",
+      "description": "Elva separa provisiones de camino de platos para comer sentado. Las tazas invertidas guardan sitio para quienes todavía faltan.",
+      "topics": {
+        "mesa": "Un retraso no me dice cuánto tardará alguien. Su taza espera hasta que llega noticia, no hasta que me impaciento.",
+        "camino": "Puedo preparar comida de viaje. Para cuidar una herida necesitas la estancia de Sena, al otro lado del patio.",
+        "taza": "La pequeña es de Lio. Suele traer cuentas de los graneros. Mi hermano Aren escribe desde la casa del camino; ojalá pregunte por Lio antes de preguntar por los sacos.",
+        "noticia": {
+          "requires_flags": [
+            "edran_mensaje_aclarado"
+          ],
+          "text": "Ya sé dónde se detuvo la carga. Lio se entretuvo ayudando con la rueda. Voy a dejarle la taza junto a la ventana: cuando llegue podrá explicar él cuánto tardó."
+        }
+      },
+      "memory": {
+        "hallazgo:semillas_camino": "Reconoce lo que llevas: «Semillas secas. Es de por aquí; mira el suelo cuando vuelvas a pasar.»",
+        "encargo_pagado:valdren_revision_cobertizos": "Elva toca la lista de cargas. «Anoté tu comprobación de los dos espacios; queda aquí para quien llegue tarde.»"
+      },
+      "day": "Elva guarda una taza invertida para quien todavía no ha llegado.",
+      "night": "Elva deja un extremo de la mesa dispuesto para los últimos viajeros."
+    },
+    "edran_sena": {
+      "id": "edran_sena",
+      "name": "Sena",
+      "species": "humano",
+      "role": "cuidadora",
+      "home_room": "valdren_cuidado",
+      "description": "Sena mantiene los paños limpios separados de las capas de camino. Escucha antes de pedir que alguien descubra una herida.",
+      "topics": {
+        "cuidado": "El descanso ayuda, pero no limpia una herida ni devuelve todo lo perdido. Aquí podemos atenderla sin mezclarla con el polvo del camino.",
+        "patio": "Los paños de herramientas se quedan en la cuerda baja. Los nuestros pasan a la alta cuando dejan de gotear.",
+        "hallazgos": "Compro las semillas sueltas para comparar los campos y las fibras para pequeños amarres. Abre tu mochila aquí: el precio aparece antes de vender. La caja de Nela no está en venta."
+      },
+      "memory": {
+        "hallazgo:semillas_camino": "Reconoce lo que llevas: «Semillas secas. Es de por aquí; mira el suelo cuando vuelvas a pasar.»"
+      },
+      "day": "Sena cambia el paño de la mesa antes de atender a otra persona.",
+      "night": "Sena conserva una lámpara baja y un asiento libre cerca de la puerta."
+    },
+    "edran_aren": {
+      "id": "edran_aren",
+      "name": "Aren",
+      "species": "humano",
+      "role": "lector de mensajes",
+      "home_room": "edran_casa_camino",
+      "description": "Aren ordena mensajes por destino y pregunta desde dónde se vio lo que cuentan. Deja espacio entre dos notas y vuelve a preguntar la hora.",
+      "topics": {
+        "nota": "Elva es mi hermana. Ha reservado una taza para Lio y alguien le dijo que la carga se había perdido. Esta nota sólo describe una rueda detenida. Quiero que reciba noticia de la persona, además del carro.",
+        "Vaisgard": "La ruta sigue por la calzada, el hito y la puerta de los campos. Los muros aparecerán antes de que puedas reconocer sus trabajos.",
+        "correccion": {
+          "requires_flags": [
+            "edran_mensaje_aclarado"
+          ],
+          "text": "Elva tendrá la nota nueva. Puede dejar la taza preparada sin preguntarse si el carro arrastró a Lio lejos del pueblo. La primera tablilla se queda aquí; corregirla no borra que circuló."
+        }
+      },
+      "memory": {
+        "hallazgo:semillas_camino": "Reconoce lo que llevas: «Semillas secas. Es de por aquí; mira el suelo cuando vuelvas a pasar.»"
+      },
+      "day": "Aren pregunta desde dónde se vio una carga antes de registrar el mensaje.",
+      "night": "Aren lee junto a la lámpara; las cargas del suelo bajo permanecen cerradas."
+    },
+    "edran_nela": {
+      "id": "edran_nela",
+      "name": "Nela",
+      "species": "humano",
+      "role": "cuidadora del canal",
+      "home_room": "edran_canal_entrada",
+      "description": "Nela lleva botas embarradas y una tablilla donde anota cuánto sube el agua. Mantiene una cuerda atada a la escalera.",
+      "topics": {
+        "canal": "Este canal llevaba agua a los campos. Ahora usamos la cámara sur para las herramientas. La repisa de las cuñas está al fondo del ramal este; si el agua pasa tus tobillos, vuelve por la cuerda.",
+        "personas": "Hay gente durmiendo detrás de la compuerta. No todos buscan pelea. Pregunta primero; una herramienta perdida no vale una herida.",
+        "materiales": "Sena compra los hallazgos en el lugar de cuidados de Valdren. Las semillas permiten comparar los cultivos; las fibras sirven para pequeños amarres.",
+        "cuerda": {
+          "requires_items": {
+            "cuerda_recuperada": 1
+          },
+          "consume_items": {
+            "cuerda_recuperada": 1
+          },
+          "set_flags": [
+            "edran_cuerda_entregada"
+          ],
+          "forbids_flags": [
+            "edran_cuerda_entregada"
+          ],
+          "text": "Nela prueba la cuerda y refuerza el tramo de la escalera. «Ahora tenemos dos apoyos. Cuando bajes de nuevo, usa el que queda a la derecha.»"
+        }
+      },
+      "memory": {
+        "edran_caja_recuperada": "Nela levanta la caja que devolviste. «Mañana podremos reparar la toma sin pedir prestadas las cuñas.»",
+        "edran_cuerda_entregada": "La segunda cuerda que trajiste sigue atada al apoyo derecho."
+      },
+      "day": "Nela lleva botas embarradas y una tablilla donde anota cuánto sube el agua. Mantiene una cuerda atada a la escalera.",
+      "night": "Nela lleva botas embarradas y una tablilla donde anota cuánto sube el agua. Mantiene una cuerda atada a la escalera.",
+      "states": [
+        {
+          "requires_flags": [
+            "edran_caja_recuperada"
+          ],
+          "overrides": {
+            "topics": {
+              "canal": "Las cuñas que devolviste están junto a la toma. Ya no necesitas buscar esa caja en la repisa. Si vuelves al canal, usa la cuerda de la escalera y deja libre el escalón del refugio."
+            }
+          }
+        }
+      ]
+    },
+    "edran_oren": {
+      "id": "edran_oren",
+      "name": "Oren",
+      "species": "humano",
+      "role": "viajero sin carga",
+      "home_room": "edran_canal_refugio",
+      "description": "Tiene los cordones rotos y una venda limpia en la mano. Deja la taza en el suelo para escucharte.",
+      "topics": {
+        "caja": {
+          "text": "«La subí a la repisa cuando entró agua. La repisa queda detrás de la compuerta, al este de la bifurcación; por eso dejé la taza en el escalón seco.»",
+          "set_flags": [
+            "edran_caja_localizada"
+          ]
+        },
+        "camino": "Perdí el carro en el cruce. Un hombre exige un pago a quien lleva equipaje, pero puedes salir por donde entraste. Si te amenaza, no necesitas quedarte.",
+        "ayuda": {
+          "text": "Le indicas dónde espera Nela. Oren recoge la manta y promete pedirle trabajo, en vez de seguir aquí abajo.",
+          "set_flags": [
+            "edran_oren_orientado"
+          ],
+          "forbids_flags": [
+            "edran_oren_orientado"
+          ]
+        }
+      },
+      "memory": {
+        "edran_oren_orientado": "Oren ya tiene la manta recogida. «Gracias por hablarme sin sacar el arma.»"
+      },
+      "day": "Tiene los cordones rotos y una venda limpia en la mano. Deja la taza en el suelo para escucharte.",
+      "night": "Tiene los cordones rotos y una venda limpia en la mano. Deja la taza en el suelo para escucharte."
+    },
+    "edran_lina": {
+      "id": "edran_lina",
+      "name": "Lina",
+      "species": "humano",
+      "role": "recibe a los viajeros",
+      "home_room": "edran_salida_huertos",
+      "description": "Lina sostiene la lista contra un poste de la cerca. Aparta una cesta para dejar pasar el carro de los huertos.",
+      "topics": {
+        "entrada": "Dime tu nombre y lo anoto junto a quienes llegan hoy. Así sabemos a quién avisar si una carga se retrasa. Entrar no cuesta sellos; basta con presentarte una vez.",
+        "peligro": "Si llegas herido, pide cuidados. Puedo guardar la nota hasta que vuelvas."
+      },
+      "memory": {
+        "permiso_valdren": "Lina encuentra tu nombre en la lista. «Ya te conozco. Pasa; hoy dejamos libre el borde para los carros.»"
+      },
+      "day": "Lina compara los nombres de la lista con las cestas que llegan de los huertos.",
+      "night": "Lina acerca la lista al farol del poste. Deja libre el paso para una carga tardía.",
+      "states": [
+        {
+          "requires_flags": [
+            "permiso_valdren"
+          ],
+          "overrides": {
+            "topics": {
+              "entrada": "Tu nombre ya está en la lista. Pasa; hoy dejamos libre el borde para los carros."
+            }
+          }
+        }
+      ]
+    }
+  },
+  "stories": {
+    "edran_dos_cuencos": {
+      "id": "edran_dos_cuencos",
+      "title": "Dos cuencos sin nombre",
+      "premise": "Una cuenta incompleta pide averiguar usos y escuchar a quienes la hicieron, no buscar un culpable.",
+      "steps": [
+        "edran_caja_observada",
+        "edran_tablilla_hallada",
+        "edran_cuenta_aclarada"
+      ],
+      "source": "Ampliación original autorizada"
+    },
+    "edran_carga_detenida": {
+      "id": "edran_carga_detenida",
+      "title": "La carga que no se perdió",
+      "premise": "Aren necesita que su hermana Elva sepa dónde está Lio. Una noticia de carros incompleta alimentó una preocupación doméstica; aclararla conserva tanto la verdad como el sitio de alguien en la mesa.",
+      "steps": [
+        "edran_nota_leida",
+        "edran_rueda_comprobada",
+        "edran_mensaje_aclarado"
+      ],
+      "source": "Ampliación original autorizada"
+    },
+    "edran_canal_caja": {
+      "id": "edran_canal_caja",
+      "title": "La caja sobre el agua",
+      "premise": "Nela necesita sus cuñas; Oren conoce el lugar donde quedaron. Puedes recuperarlas evitando un salteador o enfrentándote a él.",
+      "steps": [
+        "edran_caja_localizada",
+        "edran_caja_recogida",
+        "edran_caja_recuperada"
+      ],
+      "source": "Ampliación original autorizada"
+    }
+  }
+}

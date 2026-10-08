@@ -1,0 +1,62 @@
+{
+  "phase": "before",
+  "results": [
+    {
+      "width": 393,
+      "clockMode": "isolated controlled clock +10s",
+      "searchReasonBefore": "Ya revisaste este lugar. Puedes buscar de nuevo en 61 s.",
+      "searchReasonAfter": "Ya revisaste este lugar. Puedes buscar de nuevo en 51 s.",
+      "room": "edran_surcos",
+      "before": {
+        "canvasToken": "8710d58e-f5cd-49ee-8994-5e4672983eab",
+        "labels": [
+          {
+            "name": "Tu casa junto al corredor",
+            "left": "75.298px",
+            "top": "100.702px"
+          },
+          {
+            "name": "Plaza de Valdren",
+            "left": "87.0598px",
+            "top": "170.787px"
+          },
+          {
+            "name": "Curva de la Acequia",
+            "left": "261.851px",
+            "top": "264.112px"
+          },
+          {
+            "name": "Campo de surcos · Aquí",
+            "left": "265px",
+            "top": "225.135px"
+          }
+        ],
+        "compass": "↑"
+      },
+      "after": {
+        "canvasToken": "1462e7a5-f4da-436b-93b7-7a0ca90f8887",
+        "labels": [
+          {
+            "name": "Tu casa junto al corredor",
+            "left": "72px",
+            "top": "149.453px"
+          },
+          {
+            "name": "Plaza de Valdren",
+            "left": "98.6192px",
+            "top": "188.343px"
+          },
+          {
+            "name": "Campo de surcos · Aquí",
+            "left": "257.759px",
+            "top": "169.877px"
+          }
+        ],
+        "compass": "↑"
+      },
+      "projectionChanged": true,
+      "canvasReplaced": true,
+      "errors": []
+    }
+  ]
+}

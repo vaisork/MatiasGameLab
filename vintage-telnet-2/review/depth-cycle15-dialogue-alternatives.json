@@ -1,0 +1,3904 @@
+{
+  "moves": 89,
+  "checks": [
+    {
+      "npc": "hoshai_luma",
+      "topic": "cornisa",
+      "stage": "first_report",
+      "available": true,
+      "room": "hoshai_mercado_cintas",
+      "narrative": [
+        {
+          "kind": "npc",
+          "text": "Luma: Luma escucha tu recomendación y reserva las cargas voluminosas para el camino principal. «Me sirve saber qué viste y qué prefieres que revisemos.»"
+        },
+        {
+          "kind": "discovery",
+          "text": "Luma mantiene las entregas de esa cornisa pendientes de revisión."
+        },
+        {
+          "kind": "discovery",
+          "text": "El encargo ya puede entregarse."
+        }
+      ]
+    },
+    {
+      "npc": "hoshai_luma",
+      "topic": "cornisa",
+      "stage": "paid",
+      "available": true,
+      "room": "hoshai_mercado_cintas",
+      "narrative": [
+        {
+          "kind": "npc",
+          "text": "Luma: Tu pedido de revisión quedó anotado. Antes de enviar una carga por la cornisa, comprobaremos el borde; mientras tanto, las voluminosas seguirán por el camino principal."
+        },
+        {
+          "kind": "discovery",
+          "text": "Luma señala la nota que trajiste del balcón. «Las cargas grandes van por el camino principal.»"
+        }
+      ]
+    },
+    {
+      "npc": "korven_taren",
+      "topic": "medidas",
+      "stage": "initial",
+      "available": true,
+      "room": "korven_entrante_piezas",
+      "narrative": [
+        {
+          "kind": "npc",
+          "text": "Taren: Taren te muestra dos marcas en su tabla. «Busco una taza manejable, no la más grande. Mira el borde de la muestra que está junto al horno y dime si conviene conservar el aro o ensanchar la base.»"
+        }
+      ]
+    },
+    {
+      "npc": "korven_taren",
+      "topic": "recomendación",
+      "stage": "first_report",
+      "available": true,
+      "room": "korven_entrante_piezas",
+      "narrative": [
+        {
+          "kind": "npc",
+          "text": "Taren: Taren compara tu recomendación con las marcas de la mano. «No has elegido sólo por tamaño. Haré una prueba antes de entregarla.»"
+        },
+        {
+          "kind": "discovery",
+          "text": "Taren conserva tu marca de una base más ligera y un aro pequeño."
+        },
+        {
+          "kind": "discovery",
+          "text": "El encargo ya puede entregarse."
+        }
+      ]
+    },
+    {
+      "npc": "korven_taren",
+      "topic": "recomendación",
+      "stage": "paid",
+      "available": true,
+      "room": "korven_entrante_piezas",
+      "narrative": [
+        {
+          "kind": "npc",
+          "text": "Taren: La prueba conservará el aro que recomendaste. Compararé el agarre con las marcas de la mano antes de dar la taza por terminada."
+        },
+        {
+          "kind": "discovery",
+          "text": "Taren alinea la arcilla con tu marca. «Empiezo por esta prueba; el borde del horno sigue en las muestras.»"
+        }
+      ]
+    },
+    {
+      "npc": "veyra_seli",
+      "topic": "reparación",
+      "stage": "initial",
+      "available": true,
+      "room": "veyra_calle_toldos",
+      "narrative": [
+        {
+          "kind": "npc",
+          "text": "Seli: Primero mira la costura vieja. Si llevas el junco de Bela, puedes sujetar el desgarro sin cerrar el desagüe. También puedes revisar las perchas y dejar el trabajo preparado para que yo termine."
+        }
+      ]
+    },
+    {
+      "npc": "veyra_seli",
+      "topic": "reparación",
+      "stage": "paid",
+      "available": true,
+      "room": "veyra_calle_toldos",
+      "narrative": [
+        {
+          "kind": "npc",
+          "text": "Seli: La atadura que hiciste sujeta el desgarro sin tapar el desagüe. Cuando pase agua, revisaré ese borde."
+        },
+        {
+          "kind": "discovery",
+          "text": "Seli prueba el borde que ayudaste a sostener. «Puedo recoger la pértiga. El agua tiene salida hacia la calle.»"
+        }
+      ]
+    },
+    {
+      "npc": "veyra_tov",
+      "topic": "aviso",
+      "stage": "initial",
+      "available": true,
+      "room": "veyra_puerta_piedra",
+      "narrative": [
+        {
+          "kind": "npc",
+          "text": "Tov: «Mi carga está entera. Se ha roto un separador; necesito recolocarla antes de entrar. Dile a Nera que llegaré tarde, no que se ha perdido.»"
+        }
+      ]
+    },
+    {
+      "npc": "veyra_nera",
+      "topic": "cargas",
+      "stage": "resolved",
+      "available": true,
+      "room": "veyra_archivo_cargas",
+      "narrative": [
+        {
+          "kind": "npc",
+          "text": "Nera: La llegada sigue pendiente de comprobación. Antes de cambiarla en la lista hablaré con Tov sobre el separador; no hay noticia de robo."
+        },
+        {
+          "kind": "discovery",
+          "text": "La llegada de Tov sigue pendiente de una comprobación directa."
+        }
+      ]
+    },
+    {
+      "npc": "veyra_tov",
+      "topic": "aviso",
+      "stage": "paid",
+      "available": true,
+      "room": "veyra_puerta_piedra",
+      "narrative": [
+        {
+          "kind": "npc",
+          "text": "Tov: Nera puede comprobar aquí mismo el separador. Mantengo la carga junto a la puerta hasta dejarla bien sujeta."
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "id": "mover",
+      "target": "salir",
+      "actor": "worker",
+      "room": "valdren_plaza",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Un banco largo cruza la plaza. Hay espacio para girar los carros sin tapar las puertas. La fragua queda al norte, los huertos al este, el pozo al sur y el cobertizo al oeste. Una piedra sobresale entre las tablas del asiento."
+        },
+        {
+          "kind": "world",
+          "text": "La vecina aparta una semilla mordida y la deja en un cuenco pequeño. Un niño intenta adivinar qué pájaro la abrió; su abuela le muestra las dos marcas del pico."
+        }
+      ],
+      "seals": 20
+    },
+    {
+      "id": "mover",
+      "target": "este",
+      "actor": "worker",
+      "room": "valdren_huertos",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "El camino pasa entre huertos, cercas bajas y puertas de cocina. Un árbol da sombra a la canaleta. Al oeste queda la plaza; al norte está la casa de semillas. Sigue al este para salir de Valdren hacia los campos."
+        },
+        {
+          "kind": "world",
+          "text": "Una familia lleva hojas a la cocina sin usar cestos: la distancia es tan corta que basta doblar el delantal. La encargada del huerto deja espacio para quienes necesitan pasar con un carro."
+        }
+      ],
+      "seals": 20
+    },
+    {
+      "id": "mover",
+      "target": "este",
+      "actor": "worker",
+      "room": "edran_salida_huertos",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Las cercas bajan y el viento llega de frente. Dejas las casas atrás. El camino este sigue hasta la acequia; por el sur vuelves entre los graneros. Los dos postes del oeste señalan la entrada a Valdren. El tramo hacia los graneros dobla junto a las cercas; no es una calle recta."
+        },
+        {
+          "kind": "danger",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro."
+        },
+        {
+          "kind": "world",
+          "text": "Una persona abre la cerca para pasar con una cesta y vuelve a apoyarla sin atarla. Su trayecto es corto; las huellas que siguen la acequia llevan carros."
+        },
+        {
+          "kind": "discovery",
+          "text": "Añades Espinajo de rastrojo al bestiario."
+        }
+      ],
+      "seals": 20
+    },
+    {
+      "id": "mover",
+      "target": "este",
+      "actor": "worker",
+      "room": "edran_acequia",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "El agua rodea una losa antes de seguir hacia Valdren. Unas hojas tapan la abertura de una zanja seca. Al oeste queda el pueblo, al norte subes al campo y al sur alcanzas el estanque. La losa permite cruzar sin mojarte."
+        },
+        {
+          "kind": "world",
+          "text": "Una rana se deja caer desde la hierba y abre dos círculos pequeños. Más abajo, una mujer libera una hoja atrapada en la rejilla con la punta de una rama."
+        }
+      ],
+      "seals": 20
+    },
+    {
+      "id": "mover",
+      "target": "norte",
+      "actor": "worker",
+      "room": "edran_surcos",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Los surcos nuevos tienen tierra clara; los viejos conservan tallos cortos. Un sendero sin sembrar llega al lindero del norte. La acequia queda al sur. Hacia el oeste puedes entrar en una parcela vieja; al este hay una zanja seca."
+        },
+        {
+          "kind": "danger",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro."
+        },
+        {
+          "kind": "world",
+          "text": "La agricultora comprueba la humedad con dos dedos y cubre de nuevo el agujero. En la hilera antigua, unos tallos se doblan contra el viento aunque los demás permanezcan quietos."
+        }
+      ],
+      "seals": 20
+    },
+    {
+      "id": "mover",
+      "target": "este",
+      "actor": "worker",
+      "room": "edran_zanja_antigua",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "La zanja sigue entera, pero ya no lleva agua. En el fondo crecen raíces pequeñas. Una losa marca dónde dejó de usarse. Al oeste vuelves al campo; al norte subes a la era. El agua actual pasa por otra parte de la parcela. El acceso a la era dobla en el extremo de la zanja. Al este, una escalera baja al antiguo canal cubierto. Una mujer está comprobando su entrada."
+        },
+        {
+          "kind": "world",
+          "text": "Una raíz nueva cruza el fondo seco. En la losa vertical alguien ha apoyado una herramienta mientras trabaja más arriba."
+        }
+      ],
+      "seals": 20
+    },
+    {
+      "id": "mover",
+      "target": "norte",
+      "actor": "worker",
+      "room": "edran_era",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Un círculo de tierra firme sirve para trabajar el grano. Las piedras planas sujetan tablones, y un poste viejo permite ver cómo sopla el viento. El refugio queda al sur. Al norte sigue la subida; al oeste hay una zanja seca."
+        },
+        {
+          "kind": "world",
+          "text": "Un ave picotea el último grano junto al borde de la era. Al fondo alguien sacude un paño; el polvo permanece en el aire después de que termina."
+        }
+      ],
+      "seals": 20
+    },
+    {
+      "id": "mover",
+      "target": "norte",
+      "actor": "worker",
+      "room": "edran_terraplen",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "El camino sube entre tierra alta y raíces al descubierto. Las rodadas van juntas: los carros deben esperar para cruzarse. A media cuesta hay sitio para parar. La era queda al sur; al norte te espera la casa del camino."
+        },
+        {
+          "kind": "danger",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro."
+        },
+        {
+          "kind": "world",
+          "text": "Un porteador espera en el ensanchamiento hasta que baja un carro. Su carga está apoyada del lado del terraplén, donde no puede rodar hacia el camino."
+        }
+      ],
+      "seals": 20
+    },
+    {
+      "id": "mover",
+      "target": "norte",
+      "actor": "worker",
+      "room": "edran_casa_camino",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "La casa está al final de la subida. Cerca de la puerta se dejan las cargas húmedas; la mesa ocupa un suelo más alto. Al fondo esperan mensajes para Vaisgard. Puedes descansar aquí. Al sur bajas a la era; al norte sigue la calzada."
+        },
+        {
+          "kind": "world",
+          "text": "Aren coloca la nota nueva junto a las tablillas. Pregunta desde qué orilla vieron la rueda detenida y toca en el dibujo el punto que le señalan."
+        },
+        {
+          "kind": "world",
+          "text": "Aren pregunta desde dónde se vio una carga antes de registrar el mensaje."
+        }
+      ],
+      "seals": 20
+    },
+    {
+      "id": "mover",
+      "target": "norte",
+      "actor": "worker",
+      "room": "edran_calzada",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Piedras redondeadas cubren la subida. Dos reparaciones claras destacan entre los cantos gastados. La casa queda al sur; al norte, una curva oculta el poste del camino. Las ruedas hacen ruido antes de que aparezcan los carros."
+        },
+        {
+          "kind": "danger",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro."
+        },
+        {
+          "kind": "world",
+          "text": "Un conductor reduce el paso al llegar a la reparación más reciente. Un porteador utiliza el borde de hierba para no caminar sobre los cantos húmedos."
+        }
+      ],
+      "seals": 20
+    },
+    {
+      "id": "mover",
+      "target": "norte",
+      "actor": "worker",
+      "room": "edran_hito_campos",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Un poste y una losa señalan el camino. Los campos de Edran quedan atrás, hacia el sur. Al norte, tres piedras cruzan un arroyo antes de la puerta de Veyra. Un desvío al este ofrece una vista de la cuenca."
+        },
+        {
+          "kind": "world",
+          "text": "Un carro deja una marca de barro sobre la primera piedra del cauce. El conductor comprueba que la carga siga fija antes de entrar en la ladera."
+        }
+      ],
+      "seals": 20
+    },
+    {
+      "id": "mover",
+      "target": "norte",
+      "actor": "worker",
+      "room": "veyra_puerta_campos",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Un arco bajo abre el camino hacia Edran. Las ruedas han pulido su suelo. A los lados ajustan los sacos antes de bajar entre las primeras cercas. Al este puedes volver al mercado por los almacenes; al sur sales a los campos."
+        },
+        {
+          "kind": "world",
+          "text": "Los carros que entran se apartan para que salgan los vacíos. Una guardiana mira el suelo debajo de una carga: si algo pierde semillas, habrá que sujetarlo antes de bajar hacia los cultivos."
+        }
+      ],
+      "seals": 20
+    },
+    {
+      "id": "mover",
+      "target": "este",
+      "actor": "worker",
+      "room": "veyra_barrio_cargas",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Los carros pasan entre almacenes y escaleras que suben a las viviendas. Una raya pintada en una piedra marca dónde parar sin tapar las puertas. Al este llegas al mercado; al oeste sales por la puerta que lleva a Edran."
+        },
+        {
+          "kind": "world",
+          "text": "Dos ayudantes hacen girar un carro por separado: uno mira las ruedas y el otro el alero. Una vecina espera con su jarra hasta que le dejan libre la escalera, sin abandonar su sitio."
+        }
+      ],
+      "seals": 20
+    },
+    {
+      "id": "mover",
+      "target": "este",
+      "actor": "worker",
+      "room": "vaisgard_mercado",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Frutas, herramientas y cestas ocupan los puestos entre muros antiguos. Un canal pequeño cruza el mercado. Al norte está la plaza de las rutas; al sur, el patio del agua. Los carros entran por el oeste y los toldos cubren la calle del este."
+        },
+        {
+          "kind": "world",
+          "text": "Una vendedora corta una fruta para mostrar el centro. Su vecina prueba un trozo y hace una mueca; ambas apartan esa cesta mientras una niña recoge la semilla del plato."
+        },
+        {
+          "kind": "world",
+          "text": "Recibe viajeros y repone el puesto sin cerrar el paso."
+        }
+      ],
+      "seals": 20
+    },
+    {
+      "id": "mover",
+      "target": "norte",
+      "actor": "worker",
+      "room": "veyra_plaza_rutas",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Las rutas se reúnen sobre el empedrado. Las piedras antiguas sobresalen entre las casas. Al sur bajas al mercado; al norte sales hacia la sierra. Los animales descansan en el patio oeste. Al este, una mensajera organiza avisos bajo un alero."
+        },
+        {
+          "kind": "world",
+          "text": "Los patios del otro extremo se borran tras el empedrado húmedo. Bajo el alero todavía se distinguen los papeles; una voz pide que repitan el destino antes de entregar un mensaje."
+        },
+        {
+          "kind": "world",
+          "text": "La mensajera sigue con el dedo unas letras pequeñas y pregunta a una viajera si reconoce la mano. El aviso está escrito en el reverso de una cuenta vieja. En el patio oeste, un animal se rasca el cuello contra el poste hasta que su cuidadora lo aparta."
+        }
+      ],
+      "seals": 20
+    },
+    {
+      "id": "mover",
+      "target": "norte",
+      "actor": "worker",
+      "room": "veyra_puerta_alta",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "El suelo empieza a subir antes de cruzar la puerta. Los viajeros ajustan sus cargas en una plataforma lateral. Algunos regresan con capas gruesas de la sierra. Al sur vuelves a la plaza; la rampa norte lleva hacia Hoshai."
+        },
+        {
+          "kind": "world",
+          "text": "La porteadora aprieta el fardo y reduce su ancho. Sus compañeros lo levantan un momento; uno vuelve a tensar la tira que se afloja del lado de la pendiente."
+        }
+      ],
+      "seals": 20
+    },
+    {
+      "id": "mover",
+      "target": "norte",
+      "actor": "worker",
+      "room": "veyra_rampa_grava",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "La grava sube desde la ciudad. Los carros pueden parar a un lado para ajustar las cargas. Unas piedras arrastradas llenan la hondonada que el camino rodea. Al sur quedan las últimas casas; al norte comienzan las laderas de Hoshai."
+        },
+        {
+          "kind": "world",
+          "text": "El viajero prueba el terreno con la punta del bastón. Señala un borde firme a sus compañeros; detrás de ellos, la puerta de la ciudad se ve entre los taludes."
+        }
+      ],
+      "seals": 20
+    },
+    {
+      "id": "mover",
+      "target": "norte",
+      "actor": "worker",
+      "room": "hoshai_estribacion",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "La pendiente enlaza la grava de la cuenca con los pastos cortos de la sierra. Al sur queda la rampa de Vaisgard; al norte, una pendiente con raíces. Un arroyo cruza delante de ti. Hay espacio para dejar la carga antes de pasar sobre las piedras redondas."
+        },
+        {
+          "kind": "danger",
+          "text": "Un Saltacresta tantea las piedras redondas del arroyo. Cruza por el borde donde el agua deja de espumar y se detiene en el pasto."
+        },
+        {
+          "kind": "world",
+          "text": "Una pastora recoge una cuerda del arroyo y deja libre la entrada al ascenso. Su compañero espera con las bestias en terreno ancho, sin exigirles girar donde el camino ya empieza a estrecharse."
+        },
+        {
+          "kind": "discovery",
+          "text": "Añades Saltacresta al bestiario."
+        }
+      ],
+      "seals": 20
+    },
+    {
+      "id": "mover",
+      "target": "norte",
+      "actor": "worker",
+      "room": "hoshai_repecho_raices",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "La cuesta pasa entre raíces descubiertas y árboles inclinados. Puedes volver al arroyo por el sur o seguir al descanso del norte. La curva esconde lo que viene después. Entre dos troncos hay sitio para apoyar un bulto sin tapar el sendero."
+        },
+        {
+          "kind": "danger",
+          "text": "Dos pisadas menudas quedan sobre una raíz húmeda. El Saltacresta está más arriba, recogido en el hueco seco de un tronco inclinado."
+        },
+        {
+          "kind": "world",
+          "text": "La grava queda abajo; las raíces forman ahora los bordes de cada apoyo. Tras la curva se distingue una de las piedras del descanso."
+        }
+      ],
+      "seals": 20
+    },
+    {
+      "id": "mover",
+      "target": "norte",
+      "actor": "worker",
+      "room": "hoshai_descanso_tres_piedras",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Tres piedras grandes ofrecen asiento en mitad de la subida. El repecho queda al sur; al norte sigue el camino junto a una pared. Desde aquí ves dos curvas del ascenso. Unas cuerdas descansan sobre una piedra pequeña, apartadas del paso."
+        },
+        {
+          "kind": "world",
+          "text": "La porteadora extiende su cubierta sobre la piedra baja. Su aprendiz toca la esquina húmeda del fardo y la aparta del extremo seco."
+        }
+      ],
+      "seals": 20
+    },
+    {
+      "id": "mover",
+      "target": "norte",
+      "actor": "worker",
+      "room": "hoshai_pared_goteo",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "La pared queda a tu izquierda al subir, con el valle abierto al otro lado. El sendero une las tres piedras del sur con el pinar del norte. En los huecos de la roca cabe una carga. El barro conserva marcas de manos junto al goteo."
+        },
+        {
+          "kind": "danger",
+          "text": "Una gota golpea junto al hocico del Saltacresta. Sacude la cabeza y se desplaza al entrante seco, lejos del paso de las cargas."
+        },
+        {
+          "kind": "world",
+          "text": "Una viajera deja pasar a quienes descienden junto al entrante mayor. Su compañero toca la pared; retira la mano mojada y prueba el saliente de al lado."
+        }
+      ],
+      "seals": 20
+    },
+    {
+      "id": "mover",
+      "target": "norte",
+      "actor": "worker",
+      "room": "hoshai_pinar_discontinuo",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Los pinos dejan claros desde los que se ve el valle. Al sur vuelve el camino de la pared; al norte corre agua fría. Un desvío al oeste lleva al abrigo de piñas y al collado. Las piñas se acumulan donde el viento no las alcanza."
+        },
+        {
+          "kind": "danger",
+          "text": "Una piña rueda desde un apoyo bajo. Detrás asoman las patas del Saltacresta, que espera entre dos troncos antes de cruzar el claro."
+        },
+        {
+          "kind": "world",
+          "text": "Un pájaro golpea dos veces el tronco de un pino. La siguiente respuesta llega desde más arriba; entre ambos sonidos se oye caer una aguja sobre la roca."
+        }
+      ],
+      "seals": 20
+    },
+    {
+      "id": "mover",
+      "target": "norte",
+      "actor": "worker",
+      "room": "hoshai_agua_fria",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Una corriente fría atraviesa el sendero. Al sur quedan los pinos; al norte, unos escalones de roca suben hacia los hitos. Una piedra grande desvía parte del agua. Puedes dejar la carga en el lado seco antes de escoger dónde pisar."
+        },
+        {
+          "kind": "danger",
+          "text": "El Saltacresta extiende las patas sobre la piedra que divide la corriente. La salpicadura alcanza su apoyo inferior; recoge una pata y espera."
+        },
+        {
+          "kind": "world",
+          "text": "Una Felaryn cruza ligera y vuelve a indicar el apoyo final desde la otra orilla. Un compañero permanece en la plataforma hasta tener libre el sitio de llegada. La viajera espera al otro lado y vuelve a tender la mano cuando llega el segundo recipiente."
+        }
+      ],
+      "seals": 20
+    },
+    {
+      "id": "mover",
+      "target": "norte",
+      "actor": "worker",
+      "room": "hoshai_ladera_hitos",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "El sendero recorre una ladera abierta entre la corriente baja y el cuello de roca. Al sur queda la corriente y al norte se estrecha el paso entre dos paredes. Dos grupos de piedras marcan las curvas: uno sigue el camino y otro el borde que se revisa tras el deshielo. Una tablilla cercana explica la diferencia."
+        },
+        {
+          "kind": "danger",
+          "text": "Un Saltacresta se afirma en una laja por encima de los hitos. Desde el sendero ves su sombra pequeña antes de distinguir el cuerpo."
+        },
+        {
+          "kind": "world",
+          "text": "El agua queda por debajo de los hitos. En lo alto, el sendero desaparece entre dos paredes donde las cargas tendrán que pasar en fila."
+        }
+      ],
+      "seals": 20
+    },
+    {
+      "id": "mover",
+      "target": "norte",
+      "actor": "worker",
+      "room": "hoshai_cuello_roca",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Las paredes se acercan tanto que las cargas deben pasar en fila. Al sur puedes esperar en la ladera; al norte se abre una terraza. Hay una piedra plana en cada extremo: los viajeros golpean madera contra ella para avisar antes de entrar."
+        },
+        {
+          "kind": "danger",
+          "text": "En una repisa alta del cuello, el Saltacresta queda inmóvil al oír el golpe de aviso. Sólo baja cuando el estrechamiento vuelve a estar libre."
+        },
+        {
+          "kind": "world",
+          "text": "La porteadora espera un golpe desde el otro lado de la roca. La niña vuelve por el paso estrecho, señala la terraza libre y se aparta junto a la pared."
+        }
+      ],
+      "seals": 20
+    },
+    {
+      "id": "mover",
+      "target": "norte",
+      "actor": "worker",
+      "room": "hoshai_terraza_cargas",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "El paso estrecho desemboca en una terraza ancha. Al sur queda el cuello de roca; al norte suben los escalones de Khariel. Un sendero al este lleva al mirador. Las cargas descansan abiertas, con sus cuerdas lejos del borde. Un techo del pueblo asoma sobre la subida. Una lona al oeste señala un campamento junto al camino; se puede llegar sin bajar por toda la sierra."
+        },
+        {
+          "kind": "world",
+          "text": "Dos comerciantes redistribuyen los paquetes. Un acompañante se endereza al recibir menos peso de un lado; el aprendiz enrolla la cuerda que quedó suelta."
+        }
+      ],
+      "seals": 20
+    },
+    {
+      "id": "mover",
+      "target": "norte",
+      "actor": "worker",
+      "room": "hoshai_escalones_sol",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Escalones de tamaños distintos enlazan la terraza baja con las casas: unos están tallados y otros reparados con piedras nuevas. Al sur está la terraza de cargas; al norte llegas a Khariel. Un canal corre al lado de los peldaños. Las reparaciones dejan apoyos para pies humanos y Felaryn."
+        },
+        {
+          "kind": "danger",
+          "text": "Un Saltacresta cruza por detrás del peldaño reparado. La franja de grava le permite evitar las botas y salir hacia el canal lateral."
+        },
+        {
+          "kind": "world",
+          "text": "Los últimos peldaños levantan tu vista por encima de las cargas. La rampa de la plaza ofrece un paso más ancho al final de la subida."
+        }
+      ],
+      "seals": 20
+    },
+    {
+      "id": "mover",
+      "target": "norte",
+      "actor": "worker",
+      "room": "khariel_centro",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "La plaza de Khariel ocupa dos terrazas unidas por escalones y una rampa. El camino baja al sur; al oeste está el taller, al este el mercado y al norte las viviendas. Los bancos dejan sitio para las colas Felaryn y para apoyar cargas."
+        },
+        {
+          "kind": "world",
+          "text": "Los jóvenes siguen con el dedo las pisadas que atraviesan la nieve de la terraza. Uno recupera la nuez junto al muro, donde el hielo todavía cubre la rampa."
+        },
+        {
+          "kind": "world",
+          "text": "Las pisadas han abierto dos franjas en la nieve de los escalones. La rampa conserva hielo junto al muro en sombra; una vecina golpea sus suelas antes de entrar por una puerta lateral."
+        }
+      ],
+      "seals": 20
+    },
+    {
+      "id": "mover",
+      "target": "este",
+      "actor": "worker",
+      "room": "hoshai_mercado_cintas",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Entre muros que cortan el viento, los puestos ofrecen comida envuelta y cintas para las cargas. Puedes probar una atadura sobre las barras. La única salida vuelve al oeste, a la plaza. Los colores de las cintas indican qué bulto abrir primero y cuál mantener seco. Una puerta al este lleva al lugar de cuidados."
+        },
+        {
+          "kind": "world",
+          "text": "Luma compara una cinta teñida con otra ya lavada. Una clienta anuda ambas al mismo dedo y las mira a la luz antes de escoger."
+        },
+        {
+          "kind": "world",
+          "text": "Recibe viajeros y repone el puesto sin cerrar el paso."
+        }
+      ],
+      "seals": 20
+    },
+    {
+      "id": "aceptar",
+      "target": "khariel_cornisa",
+      "actor": "worker",
+      "room": "hoshai_mercado_cintas",
+      "narrative": [
+        {
+          "kind": "action",
+          "text": "Luma necesita una recomendación de la cornisa. Revisa el balcón junto al depósito y decide si recomendar cargas pequeñas o una revisión previa. Son unos pocos pasos dentro de Khariel."
+        }
+      ],
+      "seals": 20
+    },
+    {
+      "id": "mover",
+      "target": "oeste",
+      "actor": "worker",
+      "room": "khariel_centro",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "La plaza de Khariel ocupa dos terrazas unidas por escalones y una rampa. El camino baja al sur; al oeste está el taller, al este el mercado y al norte las viviendas. Los bancos dejan sitio para las colas Felaryn y para apoyar cargas."
+        },
+        {
+          "kind": "world",
+          "text": "Los jóvenes siguen con el dedo las pisadas que atraviesan la nieve de la terraza. Uno recupera la nuez junto al muro, donde el hielo todavía cubre la rampa."
+        },
+        {
+          "kind": "world",
+          "text": "La rampa que usaste llega a la terraza de las casas; los escalones bajan hacia las cargas. Puedes escoger el nivel antes de cruzar la plaza."
+        }
+      ],
+      "seals": 20
+    },
+    {
+      "id": "mover",
+      "target": "norte",
+      "actor": "worker",
+      "room": "hoshai_patio_hogares",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Las puertas de las casas se reparten entre escalones y pequeños descansos. La plaza queda al sur, el lavadero al este y la senda del bosque al norte. Los recipientes esperan junto a los muros. Para visitar una casa, hay un umbral donde llamar sin bloquear el paso."
+        },
+        {
+          "kind": "world",
+          "text": "Una familia recoge ropa de una cuerda que cruza por encima de los descansos. Los menores ayudan desde el nivel bajo y los adultos suben los recipientes. Las cargas grandes utilizan la rampa y dejan los peldaños libres para quienes llevan sólo un recipiente."
+        }
+      ],
+      "seals": 20
+    },
+    {
+      "id": "mover",
+      "target": "este",
+      "actor": "worker",
+      "room": "hoshai_lavadero_roca",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "El agua fría cae en una pila estrecha y sigue cuesta abajo. Las piedras del borde sostienen ropa y recipientes. Al oeste vuelves a las viviendas; una escalera al norte lleva al depósito. Las prendas limpias cuelgan altas, lejos del barro que llega con los viajeros."
+        },
+        {
+          "kind": "world",
+          "text": "La vecina rompe la película de hielo del borde con un palo. Enjuaga sólo la manga y vuelve a frotarse las manos; los niños recogen la hoja del agua abierta."
+        }
+      ],
+      "seals": 20
+    },
+    {
+      "id": "mover",
+      "target": "norte",
+      "actor": "worker",
+      "room": "hoshai_deposito_comun",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Bajo el alero esperan herramientas mojadas. Dentro, cada tarea tiene su estante y una tablilla indica quién tomó prestada la pieza que falta. La escalera del sur baja al lavadero; al oeste puedes salir al balcón. El suelo de entrada conserva gotas y serrín."
+        },
+        {
+          "kind": "world",
+          "text": "La encargada mira la tabla vacía antes de entregar una pala. Pregunta dónde sigue trabajando quien tomó la primera y apunta su nombre junto al dibujo del huerto."
+        }
+      ],
+      "seals": 20
+    },
+    {
+      "id": "mover",
+      "target": "oeste",
+      "actor": "worker",
+      "room": "hoshai_balcon_valle",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "El camino aparece y desaparece entre las laderas. Una roca oculta el cruce frío. El banco está lejos del borde. Al este vuelves al depósito."
+        },
+        {
+          "kind": "world",
+          "text": "Un observador compara el movimiento de dos cargas con un momento anotado en su cuaderno. No presume saber quién las lleva desde tan lejos. Espera una señal en la terraza para distinguir avance de pausa."
+        }
+      ],
+      "seals": 20
+    },
+    {
+      "id": "examinar",
+      "target": "cornisa",
+      "actor": "worker",
+      "room": "hoshai_balcon_valle",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Oculta el paso frío incluso con buena luz."
+        }
+      ],
+      "seals": 20
+    },
+    {
+      "id": "hoshai_pedir_revision",
+      "target": null,
+      "actor": "worker",
+      "room": "hoshai_balcon_valle",
+      "narrative": [
+        {
+          "kind": "action",
+          "text": "Dejas una nota para comprobar los apoyos antes de mandar cargas por la cornisa. No declaras cerrada toda la ruta."
+        }
+      ],
+      "seals": 20
+    },
+    {
+      "id": "mover",
+      "target": "este",
+      "actor": "worker",
+      "room": "hoshai_deposito_comun",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Bajo el alero esperan herramientas mojadas. Dentro, cada tarea tiene su estante y una tablilla indica quién tomó prestada la pieza que falta. La escalera del sur baja al lavadero; al oeste puedes salir al balcón. El suelo de entrada conserva gotas y serrín."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces la tablilla del estante vacío. La escalera del lavadero queda al sur; el balcón vuelve a abrirse al otro lado del depósito."
+        },
+        {
+          "kind": "world",
+          "text": "La encargada mira la tabla vacía antes de entregar una pala. Pregunta dónde sigue trabajando quien tomó la primera y apunta su nombre junto al dibujo del huerto."
+        }
+      ],
+      "seals": 20
+    },
+    {
+      "id": "mover",
+      "target": "sur",
+      "actor": "worker",
+      "room": "hoshai_lavadero_roca",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "El agua fría cae en una pila estrecha y sigue cuesta abajo. Las piedras del borde sostienen ropa y recipientes. Al oeste vuelves a las viviendas; una escalera al norte lleva al depósito. Las prendas limpias cuelgan altas, lejos del barro que llega con los viajeros."
+        },
+        {
+          "kind": "world",
+          "text": "La vecina rompe la película de hielo del borde con un palo. Enjuaga sólo la manga y vuelve a frotarse las manos; los niños recogen la hoja del agua abierta."
+        },
+        {
+          "kind": "world",
+          "text": "La pila inferior tiene el borde gastado que viste al llegar. La escalera del depósito sigue por encima del agua que baja hacia las casas."
+        }
+      ],
+      "seals": 20
+    },
+    {
+      "id": "mover",
+      "target": "oeste",
+      "actor": "worker",
+      "room": "hoshai_patio_hogares",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Las puertas de las casas se reparten entre escalones y pequeños descansos. La plaza queda al sur, el lavadero al este y la senda del bosque al norte. Los recipientes esperan junto a los muros. Para visitar una casa, hay un umbral donde llamar sin bloquear el paso."
+        },
+        {
+          "kind": "world",
+          "text": "La rampa de los recipientes y el umbral junto al lavadero te resultan familiares. Desde ese descanso vuelve a verse la salida hacia el bosque."
+        },
+        {
+          "kind": "world",
+          "text": "Una familia recoge ropa de una cuerda que cruza por encima de los descansos. Los menores ayudan desde el nivel bajo y los adultos suben los recipientes. Las cargas grandes utilizan la rampa y dejan los peldaños libres para quienes llevan sólo un recipiente."
+        }
+      ],
+      "seals": 20
+    },
+    {
+      "id": "mover",
+      "target": "sur",
+      "actor": "worker",
+      "room": "khariel_centro",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "La plaza de Khariel ocupa dos terrazas unidas por escalones y una rampa. El camino baja al sur; al oeste está el taller, al este el mercado y al norte las viviendas. Los bancos dejan sitio para las colas Felaryn y para apoyar cargas."
+        },
+        {
+          "kind": "world",
+          "text": "Los jóvenes siguen con el dedo las pisadas que atraviesan la nieve de la terraza. Uno recupera la nuez junto al muro, donde el hielo todavía cubre la rampa."
+        },
+        {
+          "kind": "world",
+          "text": "Las pisadas han abierto dos franjas en la nieve de los escalones. La rampa conserva hielo junto al muro en sombra; una vecina golpea sus suelas antes de entrar por una puerta lateral."
+        }
+      ],
+      "seals": 20
+    },
+    {
+      "id": "mover",
+      "target": "este",
+      "actor": "worker",
+      "room": "hoshai_mercado_cintas",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Entre muros que cortan el viento, los puestos ofrecen comida envuelta y cintas para las cargas. Puedes probar una atadura sobre las barras. La única salida vuelve al oeste, a la plaza. Los colores de las cintas indican qué bulto abrir primero y cuál mantener seco. Una puerta al este lleva al lugar de cuidados."
+        },
+        {
+          "kind": "world",
+          "text": "Luma compara una cinta teñida con otra ya lavada. Una clienta anuda ambas al mismo dedo y las mira a la luz antes de escoger."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces las barras donde probaste una atadura. Las cintas del borde exterior quedan junto al paso que vuelve a la plaza."
+        }
+      ],
+      "seals": 20
+    },
+    {
+      "id": "hablar",
+      "target": "hoshai_luma",
+      "topic": "cornisa",
+      "actor": "worker",
+      "room": "hoshai_mercado_cintas",
+      "narrative": [
+        {
+          "kind": "npc",
+          "text": "Luma: Luma escucha tu recomendación y reserva las cargas voluminosas para el camino principal. «Me sirve saber qué viste y qué prefieres que revisemos.»"
+        },
+        {
+          "kind": "discovery",
+          "text": "Luma mantiene las entregas de esa cornisa pendientes de revisión."
+        },
+        {
+          "kind": "discovery",
+          "text": "El encargo ya puede entregarse."
+        }
+      ],
+      "seals": 20
+    },
+    {
+      "id": "cobrar",
+      "target": "khariel_cornisa",
+      "actor": "worker",
+      "room": "hoshai_mercado_cintas",
+      "narrative": [
+        {
+          "kind": "reward",
+          "text": "Entregas Una recomendación para las cargas. Recibes 6 sellos."
+        }
+      ],
+      "seals": 26
+    },
+    {
+      "id": "hablar",
+      "target": "hoshai_luma",
+      "topic": "cornisa",
+      "actor": "worker",
+      "room": "hoshai_mercado_cintas",
+      "narrative": [
+        {
+          "kind": "npc",
+          "text": "Luma: Tu pedido de revisión quedó anotado. Antes de enviar una carga por la cornisa, comprobaremos el borde; mientras tanto, las voluminosas seguirán por el camino principal."
+        },
+        {
+          "kind": "discovery",
+          "text": "Luma señala la nota que trajiste del balcón. «Las cargas grandes van por el camino principal.»"
+        }
+      ],
+      "seals": 26
+    },
+    {
+      "id": "mover",
+      "target": "oeste",
+      "actor": "worker",
+      "room": "khariel_centro",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "La plaza de Khariel ocupa dos terrazas unidas por escalones y una rampa. El camino baja al sur; al oeste está el taller, al este el mercado y al norte las viviendas. Los bancos dejan sitio para las colas Felaryn y para apoyar cargas."
+        },
+        {
+          "kind": "world",
+          "text": "Los jóvenes siguen con el dedo las pisadas que atraviesan la nieve de la terraza. Uno recupera la nuez junto al muro, donde el hielo todavía cubre la rampa."
+        },
+        {
+          "kind": "world",
+          "text": "Las pisadas han abierto dos franjas en la nieve de los escalones. La rampa conserva hielo junto al muro en sombra; una vecina golpea sus suelas antes de entrar por una puerta lateral."
+        }
+      ],
+      "seals": 26
+    },
+    {
+      "id": "mover",
+      "target": "sur",
+      "actor": "worker",
+      "room": "hoshai_escalones_sol",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Escalones de tamaños distintos enlazan la terraza baja con las casas: unos están tallados y otros reparados con piedras nuevas. Al sur está la terraza de cargas; al norte llegas a Khariel. Un canal corre al lado de los peldaños. Las reparaciones dejan apoyos para pies humanos y Felaryn."
+        },
+        {
+          "kind": "danger",
+          "text": "Un Saltacresta cruza por detrás del peldaño reparado. La franja de grava le permite evitar las botas y salir hacia el canal lateral."
+        },
+        {
+          "kind": "world",
+          "text": "La pieza reparada rompe el dibujo de la roca y permite reconocer un punto de la subida. El muro superior anuncia el acceso a Khariel. Una franja de grava queda detrás del peldaño donde esperan las cargas."
+        }
+      ],
+      "seals": 26
+    },
+    {
+      "id": "mover",
+      "target": "sur",
+      "actor": "worker",
+      "room": "hoshai_terraza_cargas",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "El paso estrecho desemboca en una terraza ancha. Al sur queda el cuello de roca; al norte suben los escalones de Khariel. Un sendero al este lleva al mirador. Las cargas descansan abiertas, con sus cuerdas lejos del borde. Un techo del pueblo asoma sobre la subida. Una lona al oeste señala un campamento junto al camino; se puede llegar sin bajar por toda la sierra."
+        },
+        {
+          "kind": "world",
+          "text": "El techo de Khariel mantiene su posición sobre los escalones del norte. La terraza conserva sitio para abrir cargas y repartirlas antes de subir. Desde el mismo apoyo puedes reconocer la vuelta que alcanza el cuello de roca."
+        },
+        {
+          "kind": "world",
+          "text": "Dos comerciantes redistribuyen los paquetes. Un acompañante se endereza al recibir menos peso de un lado; el aprendiz enrolla la cuerda que quedó suelta."
+        }
+      ],
+      "seals": 26
+    },
+    {
+      "id": "mover",
+      "target": "sur",
+      "actor": "worker",
+      "room": "hoshai_cuello_roca",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Las paredes se acercan tanto que las cargas deben pasar en fila. Al sur puedes esperar en la ladera; al norte se abre una terraza. Hay una piedra plana en cada extremo: los viajeros golpean madera contra ella para avisar antes de entrar."
+        },
+        {
+          "kind": "danger",
+          "text": "En una repisa alta del cuello, el Saltacresta queda inmóvil al oír el golpe de aviso. Sólo baja cuando el estrechamiento vuelve a estar libre."
+        },
+        {
+          "kind": "world",
+          "text": "La piedra de aviso aparece antes del estrechamiento. Del otro lado, la abertura de la terraza permite reconocer dónde termina el paso en fila."
+        }
+      ],
+      "seals": 26
+    },
+    {
+      "id": "mover",
+      "target": "sur",
+      "actor": "worker",
+      "room": "hoshai_ladera_hitos",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "El sendero recorre una ladera abierta entre la corriente baja y el cuello de roca. Al sur queda la corriente y al norte se estrecha el paso entre dos paredes. Dos grupos de piedras marcan las curvas: uno sigue el camino y otro el borde que se revisa tras el deshielo. Una tablilla cercana explica la diferencia."
+        },
+        {
+          "kind": "danger",
+          "text": "Un Saltacresta se afirma en una laja por encima de los hitos. Desde el sendero ves su sombra pequeña antes de distinguir el cuerpo."
+        },
+        {
+          "kind": "world",
+          "text": "La tablilla vuelve a distinguir el grupo del sendero del grupo del borde. Más abajo se oye la corriente antes de verla entre las piedras."
+        }
+      ],
+      "seals": 26
+    },
+    {
+      "id": "mover",
+      "target": "sur",
+      "actor": "worker",
+      "room": "hoshai_agua_fria",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Una corriente fría atraviesa el sendero. Al sur quedan los pinos; al norte, unos escalones de roca suben hacia los hitos. Una piedra grande desvía parte del agua. Puedes dejar la carga en el lado seco antes de escoger dónde pisar."
+        },
+        {
+          "kind": "danger",
+          "text": "El Saltacresta extiende las patas sobre la piedra que divide la corriente. La salpicadura alcanza su apoyo inferior; recoge una pata y espera."
+        },
+        {
+          "kind": "world",
+          "text": "Recuerdas el escalón final de la otra orilla. Desde arriba se ve la plataforma donde esperaron; el agua cruza delante de los apoyos inferiores."
+        }
+      ],
+      "seals": 26
+    },
+    {
+      "id": "mover",
+      "target": "sur",
+      "actor": "worker",
+      "room": "hoshai_pinar_discontinuo",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Los pinos dejan claros desde los que se ve el valle. Al sur vuelve el camino de la pared; al norte corre agua fría. Un desvío al oeste lleva al abrigo de piñas y al collado. Las piñas se acumulan donde el viento no las alcanza."
+        },
+        {
+          "kind": "danger",
+          "text": "Una piña rueda desde un apoyo bajo. Detrás asoman las patas del Saltacresta, que espera entre dos troncos antes de cruzar el claro."
+        },
+        {
+          "kind": "world",
+          "text": "Un pájaro golpea dos veces el tronco de un pino. La siguiente respuesta llega desde más arriba; entre ambos sonidos se oye caer una aguja sobre la roca."
+        }
+      ],
+      "seals": 26
+    },
+    {
+      "id": "mover",
+      "target": "oeste",
+      "actor": "worker",
+      "room": "hoshai_abrigo_pinas",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Piñas secas se acumulan junto a la pared. Una raíz ofrece sitio para dejar la carga. Al este vuelves al pinar; al norte subes al collado."
+        },
+        {
+          "kind": "world",
+          "text": "Una piña cruje bajo el peso de un ave pequeña. Dentro del abrigo, una viajera lee una nota que ha doblado muchas veces y alisa el mismo rincón."
+        }
+      ],
+      "seals": 26
+    },
+    {
+      "id": "mover",
+      "target": "norte",
+      "actor": "worker",
+      "room": "hoshai_collado_pino",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Un pino aislado crece entre piedras partidas, con la copa doblada por el viento. Sus raíces sujetan un poco de tierra. Al sur baja la senda al abrigo; al norte llegas al aprisco. Entre las marcas de los viajeros hay huellas que rodean el árbol."
+        },
+        {
+          "kind": "danger",
+          "text": "El Saltacresta rodea el pino por las raíces que sujetan tierra. Al llegar a piedra desnuda alza la cabeza; su huella termina junto al tronco."
+        },
+        {
+          "kind": "world",
+          "text": "Una pastora recoge lana atrapada en una rama baja sin perseguir al rebaño entre las piedras. Se queda donde puede ver el aprisco."
+        }
+      ],
+      "seals": 26
+    },
+    {
+      "id": "mover",
+      "target": "norte",
+      "actor": "worker",
+      "room": "hoshai_aprisco_abierto",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Piedras sueltas guían al rebaño hacia el lado protegido de la ladera. Un recipiente espera en un hueco seco. Al sur está el collado del pino; al oeste sigue el sendero hacia las lajas. La pastora deja espacio para que los animales puedan moverse."
+        },
+        {
+          "kind": "danger",
+          "text": "Algo pequeño se recoge junto a la pared seca del aprisco. Es un Saltacresta; deja pasar al rebaño antes de saltar a la ladera."
+        },
+        {
+          "kind": "world",
+          "text": "La pastora revisa un apoyo vencido antes de llamar al rebaño. Su ayudante retira el recipiente de la abertura; dos animales pasan junto a la piedra y vuelven la cabeza hacia el agua."
+        }
+      ],
+      "seals": 26
+    },
+    {
+      "id": "mover",
+      "target": "oeste",
+      "actor": "worker",
+      "room": "hoshai_hombro_lajas",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "El sendero dobla entre lajas inclinadas hacia una hondonada. Su brillo puede hacerlas parecer planas. Al este vuelves al aprisco; al oeste bajas hacia la garganta. Una tablilla recoge noticias de los viajeros. Detrás aún se alcanza a ver el pino del collado."
+        },
+        {
+          "kind": "world",
+          "text": "Un mensajero lee la última marca de revisión y mira la garganta. Su compañero espera lejos de las lajas inclinadas y aprieta la correa que llevaba suelta."
+        }
+      ],
+      "seals": 26
+    },
+    {
+      "id": "mover",
+      "target": "oeste",
+      "actor": "worker",
+      "room": "hoshai_garganta_oeste",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Las paredes de la garganta van perdiendo vegetación. El aire trae polvo de las piedras claras que aparecen más abajo. Al este regresas a las lajas; al sur llegas a la meseta de Korven. Un ensanchamiento permite que dos cargas se crucen sin rozar la pared."
+        },
+        {
+          "kind": "danger",
+          "text": "Polvo claro resbala de una cornisa cuando el Saltacresta cambia de apoyo. La roca lo oculta después del segundo salto."
+        },
+        {
+          "kind": "world",
+          "text": "Las últimas agujas de pino quedan atrapadas en una grieta. El polvo que llega desde abajo se pega a ellas antes de alcanzar tus botas."
+        }
+      ],
+      "seals": 26
+    },
+    {
+      "id": "mover",
+      "target": "sur",
+      "actor": "worker",
+      "room": "korven_meseta_relevo",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "En la meseta se mezclan piedras claras y restos bajados de la sierra. Una cubierta guarda notas de ambos caminos. Al norte subes por la garganta hacia Hoshai; al sur vuelves al banco de revisión. Las cargas esperan junto a una pared baja, sin bloquear el giro. La cubierta del Refugio de Lajas protege una mesa y dos apoyos de descanso; al partir, cada viajero devuelve la piedra que sujetaba su nota."
+        },
+        {
+          "kind": "danger",
+          "text": "Bajo la pared del refugio, un Cascapedernal retira las patas. Su caparazón queda entre cascajos claros y una aguja de pino traída por el agua."
+        },
+        {
+          "kind": "world",
+          "text": "Una viajera aplasta con una piedra el rincón de su nota. Su compañero dibuja al margen el aspecto del último pino; ella añade una rama que él había olvidado."
+        },
+        {
+          "kind": "discovery",
+          "text": "Añades Cascapedernal al bestiario."
+        }
+      ],
+      "seals": 26
+    },
+    {
+      "id": "mover",
+      "target": "sur",
+      "actor": "worker",
+      "room": "korven_asiento_revision",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "El camino se ensancha junto a una roca marcada por golpes. Hay un banco donde dejar la carga. Al este queda el paso estrecho; al oeste sigues hacia Brumak. La senda del norte sube a la meseta de relevo. Sobre la mesa descansa una capa fina de polvo."
+        },
+        {
+          "kind": "world",
+          "text": "La piedra mojada suena distinto. La revisora escribe que llovía cuando la golpeó y deja la carga apartada de la mesa."
+        },
+        {
+          "kind": "world",
+          "text": "La revisora compara un golpe sobre la pieza con otro sobre una base firme. Su ayudante anota la diferencia y deja la carga en el banco. Nadie continúa una prueba de apoyo mientras alguien sigue pisándolo."
+        }
+      ],
+      "seals": 26
+    },
+    {
+      "id": "mover",
+      "target": "este",
+      "actor": "worker",
+      "room": "korven_hendidura_transito",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Las cargas pasan en fila entre las paredes. Al este se ven los mojones; al oeste se abre el banco de revisión. Una tabla gastada cubre la grieta por donde se atascaría una rueda. Los huecos altos dejan pasar aire sobre el sendero en sombra."
+        },
+        {
+          "kind": "danger",
+          "text": "El Cascapedernal se mete de lado en una hendidura del corredor. El borde del caparazón roza la roca y produce un golpe breve."
+        },
+        {
+          "kind": "world",
+          "text": "El agua se reúne en la junta cubierta sin quedar visible desde cada entrada. La conductora prueba la tabla antes de apoyar el carro. En los muros, algunas cavidades devuelven gotas que no llegan hasta el camino."
+        }
+      ],
+      "seals": 26
+    },
+    {
+      "id": "mover",
+      "target": "este",
+      "actor": "worker",
+      "room": "korven_hitos_paso",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Los mojones cruzan suelo duro entre huecos de la roca. Algunos llevan piedras claras arriba; otros esperan reparación. Al este vuelves a la pared y al oeste llegas al paso estrecho. Desde cada mojón puedes buscar el siguiente sin acercarte al borde."
+        },
+        {
+          "kind": "danger",
+          "text": "La sombra del hito descubre un borde moteado. El Cascapedernal se recoge contra la base y deja al descubierto la piedra raspada donde estaba."
+        },
+        {
+          "kind": "world",
+          "text": "La lluvia oscurece los mojones y reúne arena en sus bases. La revisora se sitúa donde pasan las ruedas y mira el pie de la pila antes de acercarse."
+        }
+      ],
+      "seals": 26
+    },
+    {
+      "id": "mover",
+      "target": "este",
+      "actor": "worker",
+      "room": "korven_pared_sotavento",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "La pared corta el viento y deja un hueco ancho donde apoyar las cargas. Al este está la meseta; al oeste siguen los mojones. Una escoba descansa junto a las juntas llenas de polvo. La marca del suelo indica qué franja debe quedar libre para pasar."
+        },
+        {
+          "kind": "world",
+          "text": "El viento devuelve algunas gotas al entrante y obliga a mover la carga del apoyo exterior. La escoba retira barro de una junta que normalmente sólo reúne polvo. El corredor permanece libre aunque todos busquen el mismo refugio."
+        },
+        {
+          "kind": "world",
+          "text": "Un porteador limpia el apoyo antes de sentarse y deja la escoba donde otro podrá encontrarla. Las cargas se orientan hacia el mismo lado para poder salir sin cruzarse dentro del entrante más estrecho."
+        }
+      ],
+      "seals": 26
+    },
+    {
+      "id": "mover",
+      "target": "este",
+      "actor": "worker",
+      "room": "korven_meseta_baja",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Dos piedras dan sombra a la meseta. Al este queda el cauce; al oeste, la pared. El desvío sur baja al horno viejo."
+        },
+        {
+          "kind": "danger",
+          "text": "Un pequeño caparazón moteado se aparta hacia una junta de roca al cambiar la sombra."
+        }
+      ],
+      "seals": 26
+    },
+    {
+      "id": "mover",
+      "target": "sur",
+      "actor": "worker",
+      "room": "korven_desvio_horno",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "El desvío conserva tierra quemada y fragmentos de recipientes junto a un muro corto. Al norte vuelves a la meseta; al sur está el horno viejo. Una franja clara evita pisar las piezas. Bajo la cubierta esperan trabajo sin terminar y herramientas nuevas."
+        },
+        {
+          "kind": "danger",
+          "text": "Un pequeño caparazón moteado se aparta hacia una junta de roca al cambiar la sombra."
+        },
+        {
+          "kind": "world",
+          "text": "La tierra quemada se vuelve oscura y las piezas brillan con agua. La alfarera cubre el fragmento que trae para no confundir su color seco con el de los restos mojados. La comparación puede esperar."
+        }
+      ],
+      "seals": 26
+    },
+    {
+      "id": "mover",
+      "target": "sur",
+      "actor": "worker",
+      "room": "korven_horno_reposo",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Parte de la boca del horno se ha vencido. El suelo sólo está limpio donde se revisan los restos. Un recipiente torcido espera sobre un banco. Al norte puedes volver a la meseta por el desvío; al oeste hay un hueco donde Taren compara las piezas."
+        },
+        {
+          "kind": "world",
+          "text": "La tela protege el banco mientras el agua moja los restos de la boca. La alfarera revisa que ninguna pieza caiga hacia la entrada. Coloca otra piedra sobre la cubierta y lleva las piezas secas hacia el entrante protegido."
+        },
+        {
+          "kind": "world",
+          "text": "La alfarera coloca dos bordes juntos sobre el banco y busca una diferencia de espesor. Un aprendiz deja el recipiente torcido donde puede verse completo. El borde vencido queda frente al borde recto de la otra pieza."
+        }
+      ],
+      "seals": 26
+    },
+    {
+      "id": "mover",
+      "target": "oeste",
+      "actor": "worker",
+      "room": "korven_entrante_piezas",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Dos muestras esperan separadas sobre una cubierta. Taren ha dejado sitio seco para una taza grande; el extremo abierto recoge polvo del camino. Puedes mirar sin meterte entre las herramientas. La única salida va al este, hacia el horno viejo."
+        },
+        {
+          "kind": "world",
+          "text": "Las muestras mojadas quedan sobre una estera distinta. La alfarera cubre la pareja seca; una gota oscurece el borde grueso del fragmento que había dejado fuera."
+        },
+        {
+          "kind": "world",
+          "text": "Taren acerca la taza al extremo seco del asiento. El resto de las piezas permanece bajo una cubierta: quiere probar una sola cosa antes de seguir trabajando."
+        }
+      ],
+      "seals": 26
+    },
+    {
+      "id": "aceptar",
+      "target": "brumak_taza",
+      "actor": "worker",
+      "room": "korven_entrante_piezas",
+      "narrative": [
+        {
+          "kind": "action",
+          "text": "Taren paga por comparar sus muestras y recomendar una taza manejable. Pídele las medidas, comprueba las piezas del horno junto al entrante y vuelve con una decisión sobre aro y base."
+        }
+      ],
+      "seals": 26
+    },
+    {
+      "id": "hablar",
+      "target": "korven_taren",
+      "topic": "medidas",
+      "actor": "worker",
+      "room": "korven_entrante_piezas",
+      "narrative": [
+        {
+          "kind": "npc",
+          "text": "Taren: Taren te muestra dos marcas en su tabla. «Busco una taza manejable, no la más grande. Mira el borde de la muestra que está junto al horno y dime si conviene conservar el aro o ensanchar la base.»"
+        }
+      ],
+      "seals": 26
+    },
+    {
+      "id": "mover",
+      "target": "este",
+      "actor": "worker",
+      "room": "korven_horno_reposo",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Parte de la boca del horno se ha vencido. El suelo sólo está limpio donde se revisan los restos. Un recipiente torcido espera sobre un banco. Al norte puedes volver a la meseta por el desvío; al oeste hay un hueco donde Taren compara las piezas."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces el recipiente torcido sobre el banco. Han señalado otra parte del borde para compararla. La boca del horno sigue vencida."
+        },
+        {
+          "kind": "world",
+          "text": "La tela protege el banco mientras el agua moja los restos de la boca. La alfarera revisa que ninguna pieza caiga hacia la entrada. Coloca otra piedra sobre la cubierta y lleva las piezas secas hacia el entrante protegido."
+        }
+      ],
+      "seals": 26
+    },
+    {
+      "id": "examinar",
+      "target": "recipiente",
+      "actor": "worker",
+      "room": "korven_horno_reposo",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "El espesor cambia junto al borde vencido."
+        }
+      ],
+      "seals": 26
+    },
+    {
+      "id": "korven_recomendar_aro",
+      "target": null,
+      "actor": "worker",
+      "room": "korven_horno_reposo",
+      "narrative": [
+        {
+          "kind": "action",
+          "text": "Comparas las muestras y marcas una base menos gruesa. El aro conserva el tamaño que Taren quería para la mano de su madre."
+        }
+      ],
+      "seals": 26
+    },
+    {
+      "id": "mover",
+      "target": "oeste",
+      "actor": "worker",
+      "room": "korven_entrante_piezas",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Dos muestras esperan separadas sobre una cubierta. Taren ha dejado sitio seco para una taza grande; el extremo abierto recoge polvo del camino. Puedes mirar sin meterte entre las herramientas. La única salida va al este, hacia el horno viejo."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces las dos esteras donde separaron las muestras. El fragmento del banco queda sobre la de tiras oscuras, junto al borde desigual del recipiente."
+        },
+        {
+          "kind": "world",
+          "text": "Las muestras mojadas quedan sobre una estera distinta. La alfarera cubre la pareja seca; una gota oscurece el borde grueso del fragmento que había dejado fuera."
+        }
+      ],
+      "seals": 26
+    },
+    {
+      "id": "hablar",
+      "target": "korven_taren",
+      "topic": "recomendación",
+      "actor": "worker",
+      "room": "korven_entrante_piezas",
+      "narrative": [
+        {
+          "kind": "npc",
+          "text": "Taren: Taren compara tu recomendación con las marcas de la mano. «No has elegido sólo por tamaño. Haré una prueba antes de entregarla.»"
+        },
+        {
+          "kind": "discovery",
+          "text": "Taren conserva tu marca de una base más ligera y un aro pequeño."
+        },
+        {
+          "kind": "discovery",
+          "text": "El encargo ya puede entregarse."
+        }
+      ],
+      "seals": 26
+    },
+    {
+      "id": "cobrar",
+      "target": "brumak_taza",
+      "actor": "worker",
+      "room": "korven_entrante_piezas",
+      "narrative": [
+        {
+          "kind": "reward",
+          "text": "Entregas Una taza que se pueda sostener. Recibes 8 sellos."
+        }
+      ],
+      "seals": 34
+    },
+    {
+      "id": "hablar",
+      "target": "korven_taren",
+      "topic": "recomendación",
+      "actor": "worker",
+      "room": "korven_entrante_piezas",
+      "narrative": [
+        {
+          "kind": "npc",
+          "text": "Taren: La prueba conservará el aro que recomendaste. Compararé el agarre con las marcas de la mano antes de dar la taza por terminada."
+        },
+        {
+          "kind": "discovery",
+          "text": "Taren alinea la arcilla con tu marca. «Empiezo por esta prueba; el borde del horno sigue en las muestras.»"
+        }
+      ],
+      "seals": 34
+    },
+    {
+      "id": "mover",
+      "target": "este",
+      "actor": "worker",
+      "room": "korven_horno_reposo",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Parte de la boca del horno se ha vencido. El suelo sólo está limpio donde se revisan los restos. Un recipiente torcido espera sobre un banco. Al norte puedes volver a la meseta por el desvío; al oeste hay un hueco donde Taren compara las piezas."
+        },
+        {
+          "kind": "world",
+          "text": "La tela protege el banco mientras el agua moja los restos de la boca. La alfarera revisa que ninguna pieza caiga hacia la entrada. Coloca otra piedra sobre la cubierta y lleva las piezas secas hacia el entrante protegido."
+        },
+        {
+          "kind": "world",
+          "text": "La alfarera coloca dos bordes juntos sobre el banco y busca una diferencia de espesor. Un aprendiz deja el recipiente torcido donde puede verse completo. El borde vencido queda frente al borde recto de la otra pieza."
+        }
+      ],
+      "seals": 34
+    },
+    {
+      "id": "mover",
+      "target": "norte",
+      "actor": "worker",
+      "room": "korven_desvio_horno",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "El desvío conserva tierra quemada y fragmentos de recipientes junto a un muro corto. Al norte vuelves a la meseta; al sur está el horno viejo. Una franja clara evita pisar las piezas. Bajo la cubierta esperan trabajo sin terminar y herramientas nuevas."
+        },
+        {
+          "kind": "danger",
+          "text": "Un pequeño caparazón moteado se aparta hacia una junta de roca al cambiar la sombra."
+        },
+        {
+          "kind": "world",
+          "text": "El muro corto señala la vuelta a la meseta. Recuerdas el fragmento de borde grueso entre otros dos más finos; los tres siguen junto al camino."
+        }
+      ],
+      "seals": 34
+    },
+    {
+      "id": "mover",
+      "target": "norte",
+      "actor": "worker",
+      "room": "korven_meseta_baja",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Dos piedras dan sombra a la meseta. Al este queda el cauce; al oeste, la pared. El desvío sur baja al horno viejo."
+        },
+        {
+          "kind": "danger",
+          "text": "Un pequeño caparazón moteado se aparta hacia una junta de roca al cambiar la sombra."
+        }
+      ],
+      "seals": 34
+    },
+    {
+      "id": "mover",
+      "target": "este",
+      "actor": "worker",
+      "room": "korven_cauce_duro",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Bajas a un cauce con arena entre las piedras. Al este vuelve la loma; al oeste subes a la meseta. Un desvío al sur llega a la roca de los líquenes. Las piedras grandes ofrecen paso firme; un cuenco tallado guarda herramientas junto al borde."
+        },
+        {
+          "kind": "danger",
+          "text": "En el fondo duro del cauce, un Cascapedernal avanza sobre una veta clara. Al cubrirlo tu sombra se recoge en el desnivel de la piedra."
+        },
+        {
+          "kind": "world",
+          "text": "El primer hilo de agua arrastra el grano claro hasta otra junta. El insecto sube por el borde seco de la piedra y queda inmóvil bajo su saliente."
+        }
+      ],
+      "seals": 34
+    },
+    {
+      "id": "mover",
+      "target": "este",
+      "actor": "worker",
+      "room": "korven_loma_cascajo",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "La loma termina de ocultar Vaisgard. Al este puedes volver a la cuenca; al oeste, el camino baja entre rocas hacia un cauce seco. Un montón de cascajo conserva huellas de pala junto al paso. Las ruedas han dejado dos surcos en la tierra menos dura."
+        },
+        {
+          "kind": "danger",
+          "text": "Un pequeño caparazón moteado se aparta hacia una junta de roca al cambiar la sombra."
+        },
+        {
+          "kind": "world",
+          "text": "El polvo se pega entre las piedras y el agua deja líneas claras. El trabajador mira la bajada antes de despejar otra franja del camino."
+        }
+      ],
+      "seals": 34
+    },
+    {
+      "id": "mover",
+      "target": "este",
+      "actor": "worker",
+      "room": "veyra_terraplen_roca",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Las piedras claras crujen bajo los pies. Un arroyo seco corta el camino; los carros lo cruzan por una entrada inclinada. Al este ves la puerta de Vaisgard. Al oeste, una loma oculta el siguiente tramo hacia Korven."
+        },
+        {
+          "kind": "world",
+          "text": "Una cuadrilla aparta cascajos del giro sin intentar barrer todo el camino. Su conductora deja que el carro pase vacío antes de acercar una carga. El paso seguro se verifica con ruedas, no con una promesa."
+        }
+      ],
+      "seals": 34
+    },
+    {
+      "id": "mover",
+      "target": "este",
+      "actor": "worker",
+      "room": "veyra_puerta_piedra",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "La puerta deja atrás el patio de los animales, al este. Al oeste, el camino de Korven cruza tierra seca y piedras sueltas. Los carros llevan cargas bajas, sujetas con tablas. Las casas cercanas tienen ventanas pequeñas para frenar el polvo."
+        },
+        {
+          "kind": "world",
+          "text": "Una Dravak comprueba cada separador golpeándolo con los nudillos. Un conductor más alto se agacha para escucharla desde su nivel de trabajo. La carga no sale hasta que ambos pueden señalar la misma pieza suelta."
+        },
+        {
+          "kind": "world",
+          "text": "Comprueba separadores y prepara el paso occidental."
+        }
+      ],
+      "seals": 34
+    },
+    {
+      "id": "mover",
+      "target": "este",
+      "actor": "worker",
+      "room": "veyra_patio_porte",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Los animales descansan a la sombra, junto a un bebedero. Las cargas pasan por fuera para dejarles espacio. Hay argollas altas y bajas para sujetarlas. Al este vuelves a la plaza; al oeste sales al camino de piedra, hacia Korven."
+        },
+        {
+          "kind": "world",
+          "text": "El cuidador afloja una cincha antes de tocar el agua. Una porteadora Dravak revisa las piedras de su carga desde un asiento bajo. Ambos esperan a que el animal deje de respirar con tanta prisa."
+        }
+      ],
+      "seals": 34
+    },
+    {
+      "id": "mover",
+      "target": "este",
+      "actor": "worker",
+      "room": "veyra_plaza_rutas",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Las rutas se reúnen sobre el empedrado. Las piedras antiguas sobresalen entre las casas. Al sur bajas al mercado; al norte sales hacia la sierra. Los animales descansan en el patio oeste. Al este, una mensajera organiza avisos bajo un alero."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces las sogas cortas de quienes vienen de la piedra y las cubiertas anchas del campo. Junto al alero, los bultos pequeños de la sierra quedan separados de las cestas."
+        },
+        {
+          "kind": "world",
+          "text": "Los patios del otro extremo se borran tras el empedrado húmedo. Bajo el alero todavía se distinguen los papeles; una voz pide que repitan el destino antes de entregar un mensaje."
+        }
+      ],
+      "seals": 34
+    },
+    {
+      "id": "mover",
+      "target": "sur",
+      "actor": "worker",
+      "room": "vaisgard_mercado",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Frutas, herramientas y cestas ocupan los puestos entre muros antiguos. Un canal pequeño cruza el mercado. Al norte está la plaza de las rutas; al sur, el patio del agua. Los carros entran por el oeste y los toldos cubren la calle del este."
+        },
+        {
+          "kind": "world",
+          "text": "Una vendedora corta una fruta para mostrar el centro. Su vecina prueba un trozo y hace una mueca; ambas apartan esa cesta mientras una niña recoge la semilla del plato."
+        },
+        {
+          "kind": "world",
+          "text": "El canal divide otra vez tu paso entre puestos. La plaza queda detrás de las herramientas; los carros alcanzan el corredor occidental por el lado de las cestas."
+        }
+      ],
+      "seals": 34
+    },
+    {
+      "id": "mover",
+      "target": "este",
+      "actor": "worker",
+      "room": "veyra_calle_toldos",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Toldos remendados cubren la calle. Cada taller ha reparado su tramo con una tela distinta. El mercado queda al oeste. Al sur sales hacia los canales; al este llega el camino del bosque, por donde entran haces de madera."
+        },
+        {
+          "kind": "world",
+          "text": "Una Marevyn sujeta el borde del toldo mientras su vecino cose. Comprueban dónde caerá el agua para no mojar el taller de abajo."
+        },
+        {
+          "kind": "world",
+          "text": "Ajusta costuras compartidas."
+        }
+      ],
+      "seals": 34
+    },
+    {
+      "id": "hablar",
+      "target": "veyra_seli",
+      "topic": "reparación",
+      "actor": "worker",
+      "room": "veyra_calle_toldos",
+      "narrative": [
+        {
+          "kind": "npc",
+          "text": "Seli: Primero mira la costura vieja. Si llevas el junco de Bela, puedes sujetar el desgarro sin cerrar el desagüe. También puedes revisar las perchas y dejar el trabajo preparado para que yo termine."
+        }
+      ],
+      "seals": 34
+    },
+    {
+      "id": "aceptar",
+      "target": "vaisgard_toldo",
+      "actor": "worker",
+      "room": "veyra_calle_toldos",
+      "narrative": [
+        {
+          "kind": "action",
+          "text": "Seli paga por comprobar la costura y ayudar a sujetar el toldo. Puedes utilizar junco —Bela presta un haz una sola vez— o preparar las perchas para que Seli termine sin gastar material."
+        }
+      ],
+      "seals": 34
+    },
+    {
+      "id": "examinar",
+      "target": "costura",
+      "actor": "worker",
+      "room": "veyra_calle_toldos",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "El desgarro está en una unión vieja, no en un corte reciente. Apuntar el daño evitaría que se culpara al taller vecino."
+        }
+      ],
+      "seals": 34
+    },
+    {
+      "id": "mover",
+      "target": "oeste",
+      "actor": "worker",
+      "room": "vaisgard_mercado",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Frutas, herramientas y cestas ocupan los puestos entre muros antiguos. Un canal pequeño cruza el mercado. Al norte está la plaza de las rutas; al sur, el patio del agua. Los carros entran por el oeste y los toldos cubren la calle del este."
+        },
+        {
+          "kind": "world",
+          "text": "La cesta apartada conserva la fruta abierta. La niña ha puesto su semilla en un pliegue de hoja; la vendedora le muestra cuál de los dos lados debe quedar arriba."
+        },
+        {
+          "kind": "world",
+          "text": "Recibe viajeros y repone el puesto sin cerrar el paso."
+        }
+      ],
+      "seals": 34
+    },
+    {
+      "id": "veyra_recibir_fibra_toldo",
+      "target": null,
+      "actor": "worker",
+      "room": "vaisgard_mercado",
+      "narrative": [
+        {
+          "kind": "action",
+          "text": "Bela te presta un haz de junco para llevar a Seli. No es un regalo del puesto: la fibra corresponde a la reparación del toldo."
+        }
+      ],
+      "seals": 34
+    },
+    {
+      "id": "mover",
+      "target": "este",
+      "actor": "worker",
+      "room": "veyra_calle_toldos",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Toldos remendados cubren la calle. Cada taller ha reparado su tramo con una tela distinta. El mercado queda al oeste. Al sur sales hacia los canales; al este llega el camino del bosque, por donde entran haces de madera."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces la costura azul entre los dos talleres. Bajo el último desagüe están los recipientes que marcaban la vuelta hacia los canales."
+        },
+        {
+          "kind": "world",
+          "text": "Una Marevyn sujeta el borde del toldo mientras su vecino cose. Comprueban dónde caerá el agua para no mojar el taller de abajo."
+        }
+      ],
+      "seals": 34
+    },
+    {
+      "id": "veyra_atar_toldo_prestado",
+      "target": null,
+      "actor": "worker",
+      "room": "veyra_calle_toldos",
+      "narrative": [
+        {
+          "kind": "action",
+          "text": "Seli utiliza el junco para sujetar la costura vieja y deja libre el borde por donde sale el agua. La fibra prestada queda trabajando en el toldo."
+        },
+        {
+          "kind": "discovery",
+          "text": "El encargo ya puede entregarse."
+        }
+      ],
+      "seals": 34
+    },
+    {
+      "id": "cobrar",
+      "target": "vaisgard_toldo",
+      "actor": "worker",
+      "room": "veyra_calle_toldos",
+      "narrative": [
+        {
+          "kind": "reward",
+          "text": "Entregas Reparar sin cerrar el agua. Recibes 6 sellos."
+        }
+      ],
+      "seals": 40
+    },
+    {
+      "id": "hablar",
+      "target": "veyra_seli",
+      "topic": "reparación",
+      "actor": "worker",
+      "room": "veyra_calle_toldos",
+      "narrative": [
+        {
+          "kind": "npc",
+          "text": "Seli: La atadura que hiciste sujeta el desgarro sin tapar el desagüe. Cuando pase agua, revisaré ese borde."
+        },
+        {
+          "kind": "discovery",
+          "text": "Seli prueba el borde que ayudaste a sostener. «Puedo recoger la pértiga. El agua tiene salida hacia la calle.»"
+        }
+      ],
+      "seals": 40
+    },
+    {
+      "id": "mover",
+      "target": "oeste",
+      "actor": "worker",
+      "room": "vaisgard_mercado",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Frutas, herramientas y cestas ocupan los puestos entre muros antiguos. Un canal pequeño cruza el mercado. Al norte está la plaza de las rutas; al sur, el patio del agua. Los carros entran por el oeste y los toldos cubren la calle del este."
+        },
+        {
+          "kind": "world",
+          "text": "La cesta apartada conserva la fruta abierta. La niña ha puesto su semilla en un pliegue de hoja; la vendedora le muestra cuál de los dos lados debe quedar arriba."
+        },
+        {
+          "kind": "world",
+          "text": "Recibe viajeros y repone el puesto sin cerrar el paso."
+        }
+      ],
+      "seals": 40
+    },
+    {
+      "id": "mover",
+      "target": "norte",
+      "actor": "worker",
+      "room": "veyra_plaza_rutas",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Las rutas se reúnen sobre el empedrado. Las piedras antiguas sobresalen entre las casas. Al sur bajas al mercado; al norte sales hacia la sierra. Los animales descansan en el patio oeste. Al este, una mensajera organiza avisos bajo un alero."
+        },
+        {
+          "kind": "world",
+          "text": "Los patios del otro extremo se borran tras el empedrado húmedo. Bajo el alero todavía se distinguen los papeles; una voz pide que repitan el destino antes de entregar un mensaje."
+        },
+        {
+          "kind": "world",
+          "text": "La mensajera sigue con el dedo unas letras pequeñas y pregunta a una viajera si reconoce la mano. El aviso está escrito en el reverso de una cuenta vieja. En el patio oeste, un animal se rasca el cuello contra el poste hasta que su cuidadora lo aparta."
+        }
+      ],
+      "seals": 40
+    },
+    {
+      "id": "mover",
+      "target": "este",
+      "actor": "worker",
+      "room": "veyra_patio_senales",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Las tablillas de mensajes cuelgan protegidas bajo un alero. Una mensajera las separa por lugar de origen y pide los nombres completos. Puedes leer sentado sin tapar el paso. Al oeste está la plaza; al este, el archivo de cargas."
+        },
+        {
+          "kind": "world",
+          "text": "La mensajera no distingue el gesto de quien espera al otro extremo. Le pide que repita el nombre y escribe la letra que faltaba bajo el alero próximo."
+        },
+        {
+          "kind": "world",
+          "text": "Recibe recados junto al armazón."
+        }
+      ],
+      "seals": 40
+    },
+    {
+      "id": "aceptar",
+      "target": "vaisgard_aviso_carga",
+      "actor": "worker",
+      "room": "veyra_patio_senales",
+      "narrative": [
+        {
+          "kind": "action",
+          "text": "Arel paga por escuchar a Tov junto a la puerta de piedra y llevar a Nera un aviso con su procedencia. Puedes registrar lo que Tov dijo o pedir una comprobación; ninguna opción debe inventar un robo."
+        }
+      ],
+      "seals": 40
+    },
+    {
+      "id": "mover",
+      "target": "oeste",
+      "actor": "worker",
+      "room": "veyra_plaza_rutas",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Las rutas se reúnen sobre el empedrado. Las piedras antiguas sobresalen entre las casas. Al sur bajas al mercado; al norte sales hacia la sierra. Los animales descansan en el patio oeste. Al este, una mensajera organiza avisos bajo un alero."
+        },
+        {
+          "kind": "world",
+          "text": "Los patios del otro extremo se borran tras el empedrado húmedo. Bajo el alero todavía se distinguen los papeles; una voz pide que repitan el destino antes de entregar un mensaje."
+        },
+        {
+          "kind": "world",
+          "text": "La mensajera sigue con el dedo unas letras pequeñas y pregunta a una viajera si reconoce la mano. El aviso está escrito en el reverso de una cuenta vieja. En el patio oeste, un animal se rasca el cuello contra el poste hasta que su cuidadora lo aparta."
+        }
+      ],
+      "seals": 40
+    },
+    {
+      "id": "mover",
+      "target": "oeste",
+      "actor": "worker",
+      "room": "veyra_patio_porte",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Los animales descansan a la sombra, junto a un bebedero. Las cargas pasan por fuera para dejarles espacio. Hay argollas altas y bajas para sujetarlas. Al este vuelves a la plaza; al oeste sales al camino de piedra, hacia Korven."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces el rincón del bebedero. Una bestia mantiene la cabeza baja junto al agua; su carga espera al otro lado de las argollas."
+        },
+        {
+          "kind": "world",
+          "text": "El cuidador afloja una cincha antes de tocar el agua. Una porteadora Dravak revisa las piedras de su carga desde un asiento bajo. Ambos esperan a que el animal deje de respirar con tanta prisa."
+        }
+      ],
+      "seals": 40
+    },
+    {
+      "id": "mover",
+      "target": "oeste",
+      "actor": "worker",
+      "room": "veyra_puerta_piedra",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "La puerta deja atrás el patio de los animales, al este. Al oeste, el camino de Korven cruza tierra seca y piedras sueltas. Los carros llevan cargas bajas, sujetas con tablas. Las casas cercanas tienen ventanas pequeñas para frenar el polvo."
+        },
+        {
+          "kind": "world",
+          "text": "Recuerdas el desnivel de la puerta. Antes de él quedan las cuñas del carro; del otro lado empieza el borde de piedras sueltas."
+        },
+        {
+          "kind": "world",
+          "text": "Una Dravak comprueba cada separador golpeándolo con los nudillos. Un conductor más alto se agacha para escucharla desde su nivel de trabajo. La carga no sale hasta que ambos pueden señalar la misma pieza suelta."
+        }
+      ],
+      "seals": 40
+    },
+    {
+      "id": "hablar",
+      "target": "veyra_tov",
+      "topic": "aviso",
+      "actor": "worker",
+      "room": "veyra_puerta_piedra",
+      "narrative": [
+        {
+          "kind": "npc",
+          "text": "Tov: «Mi carga está entera. Se ha roto un separador; necesito recolocarla antes de entrar. Dile a Nera que llegaré tarde, no que se ha perdido.»"
+        }
+      ],
+      "seals": 40
+    },
+    {
+      "id": "mover",
+      "target": "este",
+      "actor": "worker",
+      "room": "veyra_patio_porte",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Los animales descansan a la sombra, junto a un bebedero. Las cargas pasan por fuera para dejarles espacio. Hay argollas altas y bajas para sujetarlas. Al este vuelves a la plaza; al oeste sales al camino de piedra, hacia Korven."
+        },
+        {
+          "kind": "world",
+          "text": "El cuidador afloja una cincha antes de tocar el agua. Una porteadora Dravak revisa las piedras de su carga desde un asiento bajo. Ambos esperan a que el animal deje de respirar con tanta prisa."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces el rincón del bebedero. Una bestia mantiene la cabeza baja junto al agua; su carga espera al otro lado de las argollas."
+        }
+      ],
+      "seals": 40
+    },
+    {
+      "id": "mover",
+      "target": "este",
+      "actor": "worker",
+      "room": "veyra_plaza_rutas",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Las rutas se reúnen sobre el empedrado. Las piedras antiguas sobresalen entre las casas. Al sur bajas al mercado; al norte sales hacia la sierra. Los animales descansan en el patio oeste. Al este, una mensajera organiza avisos bajo un alero."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces las sogas cortas de quienes vienen de la piedra y las cubiertas anchas del campo. Junto al alero, los bultos pequeños de la sierra quedan separados de las cestas."
+        },
+        {
+          "kind": "world",
+          "text": "Los patios del otro extremo se borran tras el empedrado húmedo. Bajo el alero todavía se distinguen los papeles; una voz pide que repitan el destino antes de entregar un mensaje."
+        }
+      ],
+      "seals": 40
+    },
+    {
+      "id": "mover",
+      "target": "este",
+      "actor": "worker",
+      "room": "veyra_patio_senales",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Las tablillas de mensajes cuelgan protegidas bajo un alero. Una mensajera las separa por lugar de origen y pide los nombres completos. Puedes leer sentado sin tapar el paso. Al oeste está la plaza; al este, el archivo de cargas."
+        },
+        {
+          "kind": "world",
+          "text": "La mensajera no distingue el gesto de quien espera al otro extremo. Le pide que repita el nombre y escribe la letra que faltaba bajo el alero próximo."
+        },
+        {
+          "kind": "world",
+          "text": "Recuerdas la ranura donde dejaron el recado urgente. El montón de notas del alero queda debajo, sujeto con la misma teja."
+        }
+      ],
+      "seals": 40
+    },
+    {
+      "id": "mover",
+      "target": "este",
+      "actor": "worker",
+      "room": "veyra_archivo_cargas",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Las cargas pendientes tienen sus tablillas cerca de la puerta; las entregadas, al fondo. La mesa está gastada por las cajas. Sales al oeste."
+        },
+        {
+          "kind": "world",
+          "text": "La archivera compara la marca de una caja con su tablilla. El ayudante pregunta dónde guardarla: cerca de la puerta si sigue pendiente, al fondo si ya fue entregada."
+        },
+        {
+          "kind": "world",
+          "text": "Reordena las tablillas pendientes por ruta."
+        }
+      ],
+      "seals": 40
+    },
+    {
+      "id": "hablar",
+      "target": "veyra_nera",
+      "topic": "pedir_comprobacion",
+      "actor": "worker",
+      "room": "veyra_archivo_cargas",
+      "narrative": [
+        {
+          "kind": "npc",
+          "text": "Nera: Pides a Nera que confirme con Tov antes de mover la lista. Nera deja la carga como pendiente de comprobación; no la declara perdida."
+        },
+        {
+          "kind": "discovery",
+          "text": "La llegada de Tov sigue pendiente de una comprobación directa."
+        },
+        {
+          "kind": "discovery",
+          "text": "El encargo ya puede entregarse."
+        }
+      ],
+      "seals": 40
+    },
+    {
+      "id": "hablar",
+      "target": "veyra_nera",
+      "topic": "cargas",
+      "actor": "worker",
+      "room": "veyra_archivo_cargas",
+      "narrative": [
+        {
+          "kind": "npc",
+          "text": "Nera: La llegada sigue pendiente de comprobación. Antes de cambiarla en la lista hablaré con Tov sobre el separador; no hay noticia de robo."
+        },
+        {
+          "kind": "discovery",
+          "text": "La llegada de Tov sigue pendiente de una comprobación directa."
+        }
+      ],
+      "seals": 40
+    },
+    {
+      "id": "mover",
+      "target": "oeste",
+      "actor": "worker",
+      "room": "veyra_patio_senales",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Las tablillas de mensajes cuelgan protegidas bajo un alero. Una mensajera las separa por lugar de origen y pide los nombres completos. Puedes leer sentado sin tapar el paso. Al oeste está la plaza; al este, el archivo de cargas."
+        },
+        {
+          "kind": "world",
+          "text": "El nombre queda visible en el pliegue nuevo. La mensajera responde en voz alta a quien espera al otro extremo y guarda la nota bajo su capa."
+        },
+        {
+          "kind": "world",
+          "text": "Recibe recados junto al armazón."
+        }
+      ],
+      "seals": 40
+    },
+    {
+      "id": "cobrar",
+      "target": "vaisgard_aviso_carga",
+      "actor": "worker",
+      "room": "veyra_patio_senales",
+      "narrative": [
+        {
+          "kind": "reward",
+          "text": "Entregas Una demora sin inventar un robo. Recibes 6 sellos."
+        }
+      ],
+      "seals": 46
+    },
+    {
+      "id": "mover",
+      "target": "oeste",
+      "actor": "worker",
+      "room": "veyra_plaza_rutas",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Las rutas se reúnen sobre el empedrado. Las piedras antiguas sobresalen entre las casas. Al sur bajas al mercado; al norte sales hacia la sierra. Los animales descansan en el patio oeste. Al este, una mensajera organiza avisos bajo un alero."
+        },
+        {
+          "kind": "world",
+          "text": "Los patios del otro extremo se borran tras el empedrado húmedo. Bajo el alero todavía se distinguen los papeles; una voz pide que repitan el destino antes de entregar un mensaje."
+        },
+        {
+          "kind": "world",
+          "text": "La mensajera sigue con el dedo unas letras pequeñas y pregunta a una viajera si reconoce la mano. El aviso está escrito en el reverso de una cuenta vieja. En el patio oeste, un animal se rasca el cuello contra el poste hasta que su cuidadora lo aparta."
+        }
+      ],
+      "seals": 46
+    },
+    {
+      "id": "mover",
+      "target": "oeste",
+      "actor": "worker",
+      "room": "veyra_patio_porte",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Los animales descansan a la sombra, junto a un bebedero. Las cargas pasan por fuera para dejarles espacio. Hay argollas altas y bajas para sujetarlas. Al este vuelves a la plaza; al oeste sales al camino de piedra, hacia Korven."
+        },
+        {
+          "kind": "world",
+          "text": "El cuidador afloja una cincha antes de tocar el agua. Una porteadora Dravak revisa las piedras de su carga desde un asiento bajo. Ambos esperan a que el animal deje de respirar con tanta prisa."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces el rincón del bebedero. Una bestia mantiene la cabeza baja junto al agua; su carga espera al otro lado de las argollas."
+        }
+      ],
+      "seals": 46
+    },
+    {
+      "id": "mover",
+      "target": "oeste",
+      "actor": "worker",
+      "room": "veyra_puerta_piedra",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "La puerta deja atrás el patio de los animales, al este. Al oeste, el camino de Korven cruza tierra seca y piedras sueltas. Los carros llevan cargas bajas, sujetas con tablas. Las casas cercanas tienen ventanas pequeñas para frenar el polvo."
+        },
+        {
+          "kind": "world",
+          "text": "Una Dravak comprueba cada separador golpeándolo con los nudillos. Un conductor más alto se agacha para escucharla desde su nivel de trabajo. La carga no sale hasta que ambos pueden señalar la misma pieza suelta."
+        },
+        {
+          "kind": "world",
+          "text": "Comprueba separadores y prepara el paso occidental."
+        }
+      ],
+      "seals": 46
+    },
+    {
+      "id": "hablar",
+      "target": "veyra_tov",
+      "topic": "aviso",
+      "actor": "worker",
+      "room": "veyra_puerta_piedra",
+      "narrative": [
+        {
+          "kind": "npc",
+          "text": "Tov: Nera puede comprobar aquí mismo el separador. Mantengo la carga junto a la puerta hasta dejarla bien sujeta."
+        }
+      ],
+      "seals": 46
+    }
+  ],
+  "final": {
+    "account": {
+      "id": 3,
+      "username": "dialogue151791321122471790837choices"
+    },
+    "actions": [
+      {
+        "disabled": false,
+        "id": "buscar",
+        "label": "Buscar alrededor",
+        "reason": "Revisar suelo, refugios y objetos que hayan quedado en el camino."
+      },
+      {
+        "id": "veyra_anotar_demora",
+        "label": "Preguntar por la demora de Tov"
+      },
+      {
+        "id": "mirar",
+        "label": "Mirar"
+      },
+      {
+        "id": "observar",
+        "label": "Observar"
+      },
+      {
+        "id": "examinar",
+        "label": "Examinar separadores",
+        "target": "separadores"
+      },
+      {
+        "id": "examinar",
+        "label": "Examinar ventanas",
+        "target": "ventanas"
+      },
+      {
+        "disabled": false,
+        "id": "mover",
+        "label": "Este · Patio de los animales",
+        "reason": "",
+        "target": "este"
+      },
+      {
+        "disabled": false,
+        "id": "mover",
+        "label": "Oeste · Camino de piedra",
+        "reason": "",
+        "target": "oeste"
+      },
+      {
+        "id": "hablar",
+        "label": "Tov · carga",
+        "target": "veyra_tov",
+        "topic": "carga"
+      },
+      {
+        "id": "hablar",
+        "label": "Tov · demora",
+        "target": "veyra_tov",
+        "topic": "demora"
+      },
+      {
+        "id": "hablar",
+        "label": "Tov · brumak",
+        "target": "veyra_tov",
+        "topic": "brumak"
+      },
+      {
+        "id": "hablar",
+        "label": "Tov · aviso",
+        "target": "veyra_tov",
+        "topic": "aviso"
+      },
+      {
+        "id": "desequipar",
+        "label": "Guardar arma",
+        "target": "weapon"
+      },
+      {
+        "disabled": false,
+        "id": "equipar",
+        "label": "Equipar Espada de juramento",
+        "reason": "",
+        "target": "espada_juramento"
+      }
+    ],
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 43200,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "authenticated": true,
+    "bestiary": [
+      {
+        "description": "Las espinas sobresalen sobre un cuerpo compacto que cabe entre tallos cortados. El animal mantiene una parcela pequeña, deteniéndose y volviendo al mismo borde. Antes de cargar baja el cuerpo y orienta la defensa hacia lo que se aproxima; su espacio puede rodearse por el sendero.",
+        "first_seen": 43200,
+        "id": "espinajo_rastrojo",
+        "illustration": "/client/art/bestiary/espinajo-rastrojo-anime-v1.webp",
+        "name": "Espinajo de rastrojo",
+        "status": "avistado"
+      },
+      {
+        "description": "La criatura aprovecha cambios de nivel que un carro no puede seguir. Un apoyo pequeño y el movimiento de la vegetación permiten distinguir su paso del desprendimiento de una piedra.",
+        "first_seen": 43200,
+        "id": "saltacresta",
+        "illustration": "/client/art/bestiary/saltacresta-anime-v1.webp",
+        "name": "Saltacresta",
+        "status": "avistado"
+      },
+      {
+        "description": "Un caparazón oscuro se recoge contra la piedra, cerca de superficies raspadas de liquen. Cuando la sombra de una persona cruza demasiado cerca, el borde produce un golpe seco. La hendidura que utiliza es mucho más estrecha que su contorno aparente.",
+        "first_seen": 43200,
+        "id": "cascapedernal",
+        "name": "Cascapedernal",
+        "status": "avistado"
+      }
+    ],
+    "character": {
+      "attributes": {
+        "agilidad": 10,
+        "destreza": 10,
+        "fuerza": 10,
+        "intelecto": 10,
+        "percepcion": 10,
+        "presencia": 10,
+        "resistencia": 10,
+        "voluntad": 10
+      },
+      "class_id": "juramentado",
+      "combat": null,
+      "equipment": {
+        "armor": null,
+        "block": null,
+        "weapon": "espada_juramento"
+      },
+      "fatigue": 0,
+      "gender": "masculino",
+      "hp": 100,
+      "hp_max": 100.0,
+      "id": 3,
+      "level": 1,
+      "location": "veyra_puerta_piedra",
+      "name": "Revisión choices",
+      "pa": 0,
+      "pp": 0,
+      "seals": 46,
+      "species": "humano",
+      "status": "approved",
+      "wound": null,
+      "xp": 0,
+      "xp_next": 100
+    },
+    "characters": [
+      {
+        "class_id": "juramentado",
+        "id": 3,
+        "name": "Revisión choices",
+        "species": "humano",
+        "status": "approved"
+      }
+    ],
+    "chat": [],
+    "inventory": [
+      {
+        "activated": true,
+        "block": true,
+        "damage": 10,
+        "id": "espada_juramento",
+        "kind": "weapon",
+        "name": "Espada de juramento",
+        "quantity": 1
+      }
+    ],
+    "journal": [],
+    "map": {
+      "edges": [
+        [
+          "home:3",
+          "valdren_plaza"
+        ],
+        [
+          "valdren_huertos",
+          "valdren_plaza"
+        ],
+        [
+          "edran_salida_huertos",
+          "valdren_huertos"
+        ],
+        [
+          "edran_acequia",
+          "edran_salida_huertos"
+        ],
+        [
+          "edran_acequia",
+          "edran_surcos"
+        ],
+        [
+          "edran_surcos",
+          "edran_zanja_antigua"
+        ],
+        [
+          "edran_era",
+          "edran_zanja_antigua"
+        ],
+        [
+          "edran_era",
+          "edran_terraplen"
+        ],
+        [
+          "edran_casa_camino",
+          "edran_terraplen"
+        ],
+        [
+          "edran_calzada",
+          "edran_casa_camino"
+        ],
+        [
+          "edran_calzada",
+          "edran_hito_campos"
+        ],
+        [
+          "edran_hito_campos",
+          "veyra_puerta_campos"
+        ],
+        [
+          "veyra_barrio_cargas",
+          "veyra_puerta_campos"
+        ],
+        [
+          "vaisgard_mercado",
+          "veyra_barrio_cargas"
+        ],
+        [
+          "vaisgard_mercado",
+          "veyra_plaza_rutas"
+        ],
+        [
+          "veyra_plaza_rutas",
+          "veyra_puerta_alta"
+        ],
+        [
+          "veyra_puerta_alta",
+          "veyra_rampa_grava"
+        ],
+        [
+          "hoshai_estribacion",
+          "veyra_rampa_grava"
+        ],
+        [
+          "hoshai_estribacion",
+          "hoshai_repecho_raices"
+        ],
+        [
+          "hoshai_descanso_tres_piedras",
+          "hoshai_repecho_raices"
+        ],
+        [
+          "hoshai_descanso_tres_piedras",
+          "hoshai_pared_goteo"
+        ],
+        [
+          "hoshai_pared_goteo",
+          "hoshai_pinar_discontinuo"
+        ],
+        [
+          "hoshai_agua_fria",
+          "hoshai_pinar_discontinuo"
+        ],
+        [
+          "hoshai_agua_fria",
+          "hoshai_ladera_hitos"
+        ],
+        [
+          "hoshai_cuello_roca",
+          "hoshai_ladera_hitos"
+        ],
+        [
+          "hoshai_cuello_roca",
+          "hoshai_terraza_cargas"
+        ],
+        [
+          "hoshai_escalones_sol",
+          "hoshai_terraza_cargas"
+        ],
+        [
+          "hoshai_escalones_sol",
+          "khariel_centro"
+        ],
+        [
+          "hoshai_mercado_cintas",
+          "khariel_centro"
+        ],
+        [
+          "hoshai_patio_hogares",
+          "khariel_centro"
+        ],
+        [
+          "hoshai_lavadero_roca",
+          "hoshai_patio_hogares"
+        ],
+        [
+          "hoshai_deposito_comun",
+          "hoshai_lavadero_roca"
+        ],
+        [
+          "hoshai_balcon_valle",
+          "hoshai_deposito_comun"
+        ],
+        [
+          "hoshai_abrigo_pinas",
+          "hoshai_pinar_discontinuo"
+        ],
+        [
+          "hoshai_abrigo_pinas",
+          "hoshai_collado_pino"
+        ],
+        [
+          "hoshai_aprisco_abierto",
+          "hoshai_collado_pino"
+        ],
+        [
+          "hoshai_aprisco_abierto",
+          "hoshai_hombro_lajas"
+        ],
+        [
+          "hoshai_garganta_oeste",
+          "hoshai_hombro_lajas"
+        ],
+        [
+          "hoshai_garganta_oeste",
+          "korven_meseta_relevo"
+        ],
+        [
+          "korven_asiento_revision",
+          "korven_meseta_relevo"
+        ],
+        [
+          "korven_asiento_revision",
+          "korven_hendidura_transito"
+        ],
+        [
+          "korven_hendidura_transito",
+          "korven_hitos_paso"
+        ],
+        [
+          "korven_hitos_paso",
+          "korven_pared_sotavento"
+        ],
+        [
+          "korven_meseta_baja",
+          "korven_pared_sotavento"
+        ],
+        [
+          "korven_desvio_horno",
+          "korven_meseta_baja"
+        ],
+        [
+          "korven_desvio_horno",
+          "korven_horno_reposo"
+        ],
+        [
+          "korven_entrante_piezas",
+          "korven_horno_reposo"
+        ],
+        [
+          "korven_cauce_duro",
+          "korven_meseta_baja"
+        ],
+        [
+          "korven_cauce_duro",
+          "korven_loma_cascajo"
+        ],
+        [
+          "korven_loma_cascajo",
+          "veyra_terraplen_roca"
+        ],
+        [
+          "veyra_puerta_piedra",
+          "veyra_terraplen_roca"
+        ],
+        [
+          "veyra_patio_porte",
+          "veyra_puerta_piedra"
+        ],
+        [
+          "veyra_patio_porte",
+          "veyra_plaza_rutas"
+        ],
+        [
+          "vaisgard_mercado",
+          "veyra_calle_toldos"
+        ],
+        [
+          "veyra_patio_senales",
+          "veyra_plaza_rutas"
+        ],
+        [
+          "veyra_archivo_cargas",
+          "veyra_patio_senales"
+        ]
+      ],
+      "frontiers": [],
+      "nodes": [
+        {
+          "id": "home:3",
+          "kind": "home",
+          "name": "Tu casa junto al corredor",
+          "region": "edran",
+          "unexplored_directions": [],
+          "visited": true
+        },
+        {
+          "id": "valdren_plaza",
+          "kind": "settlement",
+          "name": "Plaza de Valdren",
+          "region": "edran",
+          "unexplored_directions": [
+            "norte",
+            "sur",
+            "oeste"
+          ],
+          "visited": true
+        },
+        {
+          "id": "valdren_huertos",
+          "kind": "settlement",
+          "name": "Corredor de los Huertos",
+          "region": "edran",
+          "unexplored_directions": [
+            "norte"
+          ],
+          "visited": true
+        },
+        {
+          "id": "edran_salida_huertos",
+          "kind": "road",
+          "name": "Salida de las Cercas Bajas",
+          "region": "edran",
+          "unexplored_directions": [
+            "sur"
+          ],
+          "visited": true
+        },
+        {
+          "id": "edran_acequia",
+          "kind": "landmark",
+          "name": "Curva de la Acequia",
+          "region": "edran",
+          "unexplored_directions": [
+            "sur"
+          ],
+          "visited": true
+        },
+        {
+          "id": "edran_surcos",
+          "kind": "wilderness",
+          "name": "Campo de surcos",
+          "region": "edran",
+          "unexplored_directions": [
+            "norte",
+            "oeste"
+          ],
+          "visited": true
+        },
+        {
+          "id": "edran_zanja_antigua",
+          "kind": "landmark",
+          "name": "Zanja seca",
+          "region": "edran",
+          "unexplored_directions": [
+            "este"
+          ],
+          "visited": true
+        },
+        {
+          "id": "edran_era",
+          "kind": "landmark",
+          "name": "Era de los campos",
+          "region": "edran",
+          "unexplored_directions": [
+            "sur"
+          ],
+          "visited": true
+        },
+        {
+          "id": "edran_terraplen",
+          "kind": "road",
+          "name": "Terraplén de la Subida",
+          "region": "edran",
+          "unexplored_directions": [],
+          "visited": true
+        },
+        {
+          "id": "edran_casa_camino",
+          "kind": "interior",
+          "name": "Casa del camino",
+          "region": "edran",
+          "unexplored_directions": [],
+          "visited": true
+        },
+        {
+          "id": "edran_calzada",
+          "kind": "road",
+          "name": "Calzada de piedra",
+          "region": "edran",
+          "unexplored_directions": [],
+          "visited": true
+        },
+        {
+          "id": "edran_hito_campos",
+          "kind": "landmark",
+          "name": "Paso hacia Veyra",
+          "region": "edran",
+          "unexplored_directions": [
+            "este"
+          ],
+          "visited": true
+        },
+        {
+          "id": "veyra_puerta_campos",
+          "kind": "landmark",
+          "name": "Puerta de los Campos",
+          "region": "veyra",
+          "unexplored_directions": [],
+          "visited": true
+        },
+        {
+          "id": "veyra_barrio_cargas",
+          "kind": "settlement",
+          "name": "Calle de los almacenes",
+          "region": "veyra",
+          "unexplored_directions": [],
+          "visited": true
+        },
+        {
+          "id": "vaisgard_mercado",
+          "kind": "settlement",
+          "name": "Mercado de Vaisgard",
+          "region": "veyra",
+          "unexplored_directions": [
+            "sur"
+          ],
+          "visited": true
+        },
+        {
+          "id": "veyra_plaza_rutas",
+          "kind": "settlement",
+          "name": "Plaza de las Cinco Rutas",
+          "region": "veyra",
+          "unexplored_directions": [],
+          "visited": true
+        },
+        {
+          "id": "veyra_puerta_alta",
+          "kind": "landmark",
+          "name": "Puerta del Camino Alto",
+          "region": "veyra",
+          "unexplored_directions": [],
+          "visited": true
+        },
+        {
+          "id": "veyra_rampa_grava",
+          "kind": "road",
+          "name": "Subida de grava",
+          "region": "veyra",
+          "unexplored_directions": [],
+          "visited": true
+        },
+        {
+          "id": "hoshai_estribacion",
+          "kind": "road",
+          "name": "Primera subida",
+          "region": "hoshai",
+          "unexplored_directions": [],
+          "visited": true
+        },
+        {
+          "id": "hoshai_repecho_raices",
+          "kind": "road",
+          "name": "Cuesta de las raíces",
+          "region": "hoshai",
+          "unexplored_directions": [],
+          "visited": true
+        },
+        {
+          "id": "hoshai_descanso_tres_piedras",
+          "kind": "landmark",
+          "name": "Descanso de las Tres Piedras",
+          "region": "hoshai",
+          "unexplored_directions": [],
+          "visited": true
+        },
+        {
+          "id": "hoshai_pared_goteo",
+          "kind": "road",
+          "name": "Pared húmeda",
+          "region": "hoshai",
+          "unexplored_directions": [],
+          "visited": true
+        },
+        {
+          "id": "hoshai_pinar_discontinuo",
+          "kind": "road",
+          "name": "Pinar abierto",
+          "region": "hoshai",
+          "unexplored_directions": [],
+          "visited": true
+        },
+        {
+          "id": "hoshai_agua_fria",
+          "kind": "road",
+          "name": "Cruce de agua fría",
+          "region": "hoshai",
+          "unexplored_directions": [],
+          "visited": true
+        },
+        {
+          "id": "hoshai_ladera_hitos",
+          "kind": "road",
+          "name": "Ladera de las señales",
+          "region": "hoshai",
+          "unexplored_directions": [],
+          "visited": true
+        },
+        {
+          "id": "hoshai_cuello_roca",
+          "kind": "road",
+          "name": "Paso entre paredes",
+          "region": "hoshai",
+          "unexplored_directions": [],
+          "visited": true
+        },
+        {
+          "id": "hoshai_terraza_cargas",
+          "kind": "landmark",
+          "name": "Terraza de las cargas",
+          "region": "hoshai",
+          "unexplored_directions": [
+            "este",
+            "oeste"
+          ],
+          "visited": true
+        },
+        {
+          "id": "hoshai_escalones_sol",
+          "kind": "road",
+          "name": "Escalones al sol",
+          "region": "hoshai",
+          "unexplored_directions": [],
+          "visited": true
+        },
+        {
+          "id": "khariel_centro",
+          "kind": "settlement",
+          "name": "Plaza de Khariel",
+          "region": "hoshai",
+          "unexplored_directions": [
+            "oeste"
+          ],
+          "visited": true
+        },
+        {
+          "id": "hoshai_mercado_cintas",
+          "kind": "settlement",
+          "name": "Mercado de las cintas",
+          "region": "hoshai",
+          "unexplored_directions": [
+            "este"
+          ],
+          "visited": true
+        },
+        {
+          "id": "hoshai_patio_hogares",
+          "kind": "settlement",
+          "name": "Patio de las casas",
+          "region": "hoshai",
+          "unexplored_directions": [
+            "norte"
+          ],
+          "visited": true
+        },
+        {
+          "id": "hoshai_lavadero_roca",
+          "kind": "landmark",
+          "name": "Lavadero de roca",
+          "region": "hoshai",
+          "unexplored_directions": [],
+          "visited": true
+        },
+        {
+          "id": "hoshai_deposito_comun",
+          "kind": "interior",
+          "name": "Depósito de herramientas",
+          "region": "hoshai",
+          "unexplored_directions": [],
+          "visited": true
+        },
+        {
+          "id": "hoshai_balcon_valle",
+          "kind": "landmark",
+          "name": "Balcón sobre el valle",
+          "region": "hoshai",
+          "unexplored_directions": [],
+          "visited": true
+        },
+        {
+          "id": "hoshai_abrigo_pinas",
+          "kind": "landmark",
+          "name": "Refugio de las piñas",
+          "region": "hoshai",
+          "unexplored_directions": [],
+          "visited": true
+        },
+        {
+          "id": "hoshai_collado_pino",
+          "kind": "wilderness",
+          "name": "Paso del último pino",
+          "region": "hoshai",
+          "unexplored_directions": [],
+          "visited": true
+        },
+        {
+          "id": "hoshai_aprisco_abierto",
+          "kind": "wilderness",
+          "name": "Refugio del rebaño",
+          "region": "hoshai",
+          "unexplored_directions": [],
+          "visited": true
+        },
+        {
+          "id": "hoshai_hombro_lajas",
+          "kind": "landmark",
+          "name": "Camino de las lajas",
+          "region": "hoshai",
+          "unexplored_directions": [],
+          "visited": true
+        },
+        {
+          "id": "hoshai_garganta_oeste",
+          "kind": "road",
+          "name": "Garganta hacia Korven",
+          "region": "hoshai",
+          "unexplored_directions": [],
+          "visited": true
+        },
+        {
+          "id": "korven_meseta_relevo",
+          "kind": "road",
+          "name": "Refugio de Lajas",
+          "region": "korven",
+          "unexplored_directions": [],
+          "visited": true
+        },
+        {
+          "id": "korven_asiento_revision",
+          "kind": "landmark",
+          "name": "Banco de revisión",
+          "region": "korven",
+          "unexplored_directions": [
+            "oeste"
+          ],
+          "visited": true
+        },
+        {
+          "id": "korven_hendidura_transito",
+          "kind": "road",
+          "name": "Paso estrecho",
+          "region": "korven",
+          "unexplored_directions": [],
+          "visited": true
+        },
+        {
+          "id": "korven_hitos_paso",
+          "kind": "road",
+          "name": "Camino de los mojones",
+          "region": "korven",
+          "unexplored_directions": [],
+          "visited": true
+        },
+        {
+          "id": "korven_pared_sotavento",
+          "kind": "landmark",
+          "name": "Pared que corta el viento",
+          "region": "korven",
+          "unexplored_directions": [],
+          "visited": true
+        },
+        {
+          "id": "korven_meseta_baja",
+          "kind": "road",
+          "name": "Meseta de las dos piedras",
+          "region": "korven",
+          "unexplored_directions": [],
+          "visited": true
+        },
+        {
+          "id": "korven_desvio_horno",
+          "kind": "road",
+          "name": "Desvío al horno",
+          "region": "korven",
+          "unexplored_directions": [],
+          "visited": true
+        },
+        {
+          "id": "korven_horno_reposo",
+          "kind": "landmark",
+          "name": "Horno viejo",
+          "region": "korven",
+          "unexplored_directions": [],
+          "visited": true
+        },
+        {
+          "id": "korven_entrante_piezas",
+          "kind": "landmark",
+          "name": "Rincón de las muestras",
+          "region": "korven",
+          "unexplored_directions": [],
+          "visited": true
+        },
+        {
+          "id": "korven_cauce_duro",
+          "kind": "road",
+          "name": "Cauce seco",
+          "region": "korven",
+          "unexplored_directions": [
+            "sur"
+          ],
+          "visited": true
+        },
+        {
+          "id": "korven_loma_cascajo",
+          "kind": "road",
+          "name": "Loma de las piedras claras",
+          "region": "korven",
+          "unexplored_directions": [],
+          "visited": true
+        },
+        {
+          "id": "veyra_terraplen_roca",
+          "kind": "road",
+          "name": "Camino de piedra",
+          "region": "veyra",
+          "unexplored_directions": [],
+          "visited": true
+        },
+        {
+          "id": "veyra_puerta_piedra",
+          "kind": "landmark",
+          "name": "Puerta del camino de Korven",
+          "region": "veyra",
+          "unexplored_directions": [],
+          "visited": true
+        },
+        {
+          "id": "veyra_patio_porte",
+          "kind": "settlement",
+          "name": "Patio de los animales",
+          "region": "veyra",
+          "unexplored_directions": [],
+          "visited": true
+        },
+        {
+          "id": "veyra_calle_toldos",
+          "kind": "settlement",
+          "name": "Calle de los Toldos Remendados",
+          "region": "veyra",
+          "unexplored_directions": [
+            "sur",
+            "este"
+          ],
+          "visited": true
+        },
+        {
+          "id": "veyra_patio_senales",
+          "kind": "settlement",
+          "name": "Patio de mensajes",
+          "region": "veyra",
+          "unexplored_directions": [],
+          "visited": true
+        },
+        {
+          "id": "veyra_archivo_cargas",
+          "kind": "interior",
+          "name": "Archivo de cargas",
+          "region": "veyra",
+          "unexplored_directions": [],
+          "visited": true
+        }
+      ],
+      "routes": [
+        {
+          "direction": "salir",
+          "from": "home:3",
+          "to": "valdren_plaza"
+        },
+        {
+          "direction": "hogar",
+          "from": "valdren_plaza",
+          "to": "home:3"
+        },
+        {
+          "direction": "oeste",
+          "from": "valdren_huertos",
+          "to": "valdren_plaza"
+        },
+        {
+          "direction": "este",
+          "from": "valdren_plaza",
+          "to": "valdren_huertos"
+        },
+        {
+          "direction": "oeste",
+          "from": "edran_salida_huertos",
+          "to": "valdren_huertos"
+        },
+        {
+          "direction": "este",
+          "from": "valdren_huertos",
+          "to": "edran_salida_huertos"
+        },
+        {
+          "direction": "oeste",
+          "from": "edran_acequia",
+          "to": "edran_salida_huertos"
+        },
+        {
+          "direction": "este",
+          "from": "edran_salida_huertos",
+          "to": "edran_acequia"
+        },
+        {
+          "direction": "norte",
+          "from": "edran_acequia",
+          "to": "edran_surcos"
+        },
+        {
+          "direction": "sur",
+          "from": "edran_surcos",
+          "to": "edran_acequia"
+        },
+        {
+          "direction": "este",
+          "from": "edran_surcos",
+          "to": "edran_zanja_antigua"
+        },
+        {
+          "direction": "oeste",
+          "from": "edran_zanja_antigua",
+          "to": "edran_surcos"
+        },
+        {
+          "direction": "oeste",
+          "from": "edran_era",
+          "to": "edran_zanja_antigua"
+        },
+        {
+          "direction": "norte",
+          "from": "edran_zanja_antigua",
+          "to": "edran_era"
+        },
+        {
+          "direction": "norte",
+          "from": "edran_era",
+          "to": "edran_terraplen"
+        },
+        {
+          "direction": "sur",
+          "from": "edran_terraplen",
+          "to": "edran_era"
+        },
+        {
+          "direction": "sur",
+          "from": "edran_casa_camino",
+          "to": "edran_terraplen"
+        },
+        {
+          "direction": "norte",
+          "from": "edran_terraplen",
+          "to": "edran_casa_camino"
+        },
+        {
+          "direction": "sur",
+          "from": "edran_calzada",
+          "to": "edran_casa_camino"
+        },
+        {
+          "direction": "norte",
+          "from": "edran_casa_camino",
+          "to": "edran_calzada"
+        },
+        {
+          "direction": "norte",
+          "from": "edran_calzada",
+          "to": "edran_hito_campos"
+        },
+        {
+          "direction": "sur",
+          "from": "edran_hito_campos",
+          "to": "edran_calzada"
+        },
+        {
+          "direction": "norte",
+          "from": "edran_hito_campos",
+          "to": "veyra_puerta_campos"
+        },
+        {
+          "direction": "sur",
+          "from": "veyra_puerta_campos",
+          "to": "edran_hito_campos"
+        },
+        {
+          "direction": "oeste",
+          "from": "veyra_barrio_cargas",
+          "to": "veyra_puerta_campos"
+        },
+        {
+          "direction": "este",
+          "from": "veyra_puerta_campos",
+          "to": "veyra_barrio_cargas"
+        },
+        {
+          "direction": "oeste",
+          "from": "vaisgard_mercado",
+          "to": "veyra_barrio_cargas"
+        },
+        {
+          "direction": "este",
+          "from": "veyra_barrio_cargas",
+          "to": "vaisgard_mercado"
+        },
+        {
+          "direction": "norte",
+          "from": "vaisgard_mercado",
+          "to": "veyra_plaza_rutas"
+        },
+        {
+          "direction": "sur",
+          "from": "veyra_plaza_rutas",
+          "to": "vaisgard_mercado"
+        },
+        {
+          "direction": "norte",
+          "from": "veyra_plaza_rutas",
+          "to": "veyra_puerta_alta"
+        },
+        {
+          "direction": "sur",
+          "from": "veyra_puerta_alta",
+          "to": "veyra_plaza_rutas"
+        },
+        {
+          "direction": "norte",
+          "from": "veyra_puerta_alta",
+          "to": "veyra_rampa_grava"
+        },
+        {
+          "direction": "sur",
+          "from": "veyra_rampa_grava",
+          "to": "veyra_puerta_alta"
+        },
+        {
+          "direction": "sur",
+          "from": "hoshai_estribacion",
+          "to": "veyra_rampa_grava"
+        },
+        {
+          "direction": "norte",
+          "from": "veyra_rampa_grava",
+          "to": "hoshai_estribacion"
+        },
+        {
+          "direction": "norte",
+          "from": "hoshai_estribacion",
+          "to": "hoshai_repecho_raices"
+        },
+        {
+          "direction": "sur",
+          "from": "hoshai_repecho_raices",
+          "to": "hoshai_estribacion"
+        },
+        {
+          "direction": "sur",
+          "from": "hoshai_descanso_tres_piedras",
+          "to": "hoshai_repecho_raices"
+        },
+        {
+          "direction": "norte",
+          "from": "hoshai_repecho_raices",
+          "to": "hoshai_descanso_tres_piedras"
+        },
+        {
+          "direction": "norte",
+          "from": "hoshai_descanso_tres_piedras",
+          "to": "hoshai_pared_goteo"
+        },
+        {
+          "direction": "sur",
+          "from": "hoshai_pared_goteo",
+          "to": "hoshai_descanso_tres_piedras"
+        },
+        {
+          "direction": "norte",
+          "from": "hoshai_pared_goteo",
+          "to": "hoshai_pinar_discontinuo"
+        },
+        {
+          "direction": "sur",
+          "from": "hoshai_pinar_discontinuo",
+          "to": "hoshai_pared_goteo"
+        },
+        {
+          "direction": "sur",
+          "from": "hoshai_agua_fria",
+          "to": "hoshai_pinar_discontinuo"
+        },
+        {
+          "direction": "norte",
+          "from": "hoshai_pinar_discontinuo",
+          "to": "hoshai_agua_fria"
+        },
+        {
+          "direction": "norte",
+          "from": "hoshai_agua_fria",
+          "to": "hoshai_ladera_hitos"
+        },
+        {
+          "direction": "sur",
+          "from": "hoshai_ladera_hitos",
+          "to": "hoshai_agua_fria"
+        },
+        {
+          "direction": "sur",
+          "from": "hoshai_cuello_roca",
+          "to": "hoshai_ladera_hitos"
+        },
+        {
+          "direction": "norte",
+          "from": "hoshai_ladera_hitos",
+          "to": "hoshai_cuello_roca"
+        },
+        {
+          "direction": "norte",
+          "from": "hoshai_cuello_roca",
+          "to": "hoshai_terraza_cargas"
+        },
+        {
+          "direction": "sur",
+          "from": "hoshai_terraza_cargas",
+          "to": "hoshai_cuello_roca"
+        },
+        {
+          "direction": "sur",
+          "from": "hoshai_escalones_sol",
+          "to": "hoshai_terraza_cargas"
+        },
+        {
+          "direction": "norte",
+          "from": "hoshai_terraza_cargas",
+          "to": "hoshai_escalones_sol"
+        },
+        {
+          "direction": "norte",
+          "from": "hoshai_escalones_sol",
+          "to": "khariel_centro"
+        },
+        {
+          "direction": "sur",
+          "from": "khariel_centro",
+          "to": "hoshai_escalones_sol"
+        },
+        {
+          "direction": "oeste",
+          "from": "hoshai_mercado_cintas",
+          "to": "khariel_centro"
+        },
+        {
+          "direction": "este",
+          "from": "khariel_centro",
+          "to": "hoshai_mercado_cintas"
+        },
+        {
+          "direction": "sur",
+          "from": "hoshai_patio_hogares",
+          "to": "khariel_centro"
+        },
+        {
+          "direction": "norte",
+          "from": "khariel_centro",
+          "to": "hoshai_patio_hogares"
+        },
+        {
+          "direction": "oeste",
+          "from": "hoshai_lavadero_roca",
+          "to": "hoshai_patio_hogares"
+        },
+        {
+          "direction": "este",
+          "from": "hoshai_patio_hogares",
+          "to": "hoshai_lavadero_roca"
+        },
+        {
+          "direction": "sur",
+          "from": "hoshai_deposito_comun",
+          "to": "hoshai_lavadero_roca"
+        },
+        {
+          "direction": "norte",
+          "from": "hoshai_lavadero_roca",
+          "to": "hoshai_deposito_comun"
+        },
+        {
+          "direction": "este",
+          "from": "hoshai_balcon_valle",
+          "to": "hoshai_deposito_comun"
+        },
+        {
+          "direction": "oeste",
+          "from": "hoshai_deposito_comun",
+          "to": "hoshai_balcon_valle"
+        },
+        {
+          "direction": "este",
+          "from": "hoshai_abrigo_pinas",
+          "to": "hoshai_pinar_discontinuo"
+        },
+        {
+          "direction": "oeste",
+          "from": "hoshai_pinar_discontinuo",
+          "to": "hoshai_abrigo_pinas"
+        },
+        {
+          "direction": "norte",
+          "from": "hoshai_abrigo_pinas",
+          "to": "hoshai_collado_pino"
+        },
+        {
+          "direction": "sur",
+          "from": "hoshai_collado_pino",
+          "to": "hoshai_abrigo_pinas"
+        },
+        {
+          "direction": "sur",
+          "from": "hoshai_aprisco_abierto",
+          "to": "hoshai_collado_pino"
+        },
+        {
+          "direction": "norte",
+          "from": "hoshai_collado_pino",
+          "to": "hoshai_aprisco_abierto"
+        },
+        {
+          "direction": "oeste",
+          "from": "hoshai_aprisco_abierto",
+          "to": "hoshai_hombro_lajas"
+        },
+        {
+          "direction": "este",
+          "from": "hoshai_hombro_lajas",
+          "to": "hoshai_aprisco_abierto"
+        },
+        {
+          "direction": "este",
+          "from": "hoshai_garganta_oeste",
+          "to": "hoshai_hombro_lajas"
+        },
+        {
+          "direction": "oeste",
+          "from": "hoshai_hombro_lajas",
+          "to": "hoshai_garganta_oeste"
+        },
+        {
+          "direction": "sur",
+          "from": "hoshai_garganta_oeste",
+          "to": "korven_meseta_relevo"
+        },
+        {
+          "direction": "norte",
+          "from": "korven_meseta_relevo",
+          "to": "hoshai_garganta_oeste"
+        },
+        {
+          "direction": "norte",
+          "from": "korven_asiento_revision",
+          "to": "korven_meseta_relevo"
+        },
+        {
+          "direction": "sur",
+          "from": "korven_meseta_relevo",
+          "to": "korven_asiento_revision"
+        },
+        {
+          "direction": "este",
+          "from": "korven_asiento_revision",
+          "to": "korven_hendidura_transito"
+        },
+        {
+          "direction": "oeste",
+          "from": "korven_hendidura_transito",
+          "to": "korven_asiento_revision"
+        },
+        {
+          "direction": "este",
+          "from": "korven_hendidura_transito",
+          "to": "korven_hitos_paso"
+        },
+        {
+          "direction": "oeste",
+          "from": "korven_hitos_paso",
+          "to": "korven_hendidura_transito"
+        },
+        {
+          "direction": "este",
+          "from": "korven_hitos_paso",
+          "to": "korven_pared_sotavento"
+        },
+        {
+          "direction": "oeste",
+          "from": "korven_pared_sotavento",
+          "to": "korven_hitos_paso"
+        },
+        {
+          "direction": "oeste",
+          "from": "korven_meseta_baja",
+          "to": "korven_pared_sotavento"
+        },
+        {
+          "direction": "este",
+          "from": "korven_pared_sotavento",
+          "to": "korven_meseta_baja"
+        },
+        {
+          "direction": "norte",
+          "from": "korven_desvio_horno",
+          "to": "korven_meseta_baja"
+        },
+        {
+          "direction": "sur",
+          "from": "korven_meseta_baja",
+          "to": "korven_desvio_horno"
+        },
+        {
+          "direction": "sur",
+          "from": "korven_desvio_horno",
+          "to": "korven_horno_reposo"
+        },
+        {
+          "direction": "norte",
+          "from": "korven_horno_reposo",
+          "to": "korven_desvio_horno"
+        },
+        {
+          "direction": "este",
+          "from": "korven_entrante_piezas",
+          "to": "korven_horno_reposo"
+        },
+        {
+          "direction": "oeste",
+          "from": "korven_horno_reposo",
+          "to": "korven_entrante_piezas"
+        },
+        {
+          "direction": "oeste",
+          "from": "korven_cauce_duro",
+          "to": "korven_meseta_baja"
+        },
+        {
+          "direction": "este",
+          "from": "korven_meseta_baja",
+          "to": "korven_cauce_duro"
+        },
+        {
+          "direction": "este",
+          "from": "korven_cauce_duro",
+          "to": "korven_loma_cascajo"
+        },
+        {
+          "direction": "oeste",
+          "from": "korven_loma_cascajo",
+          "to": "korven_cauce_duro"
+        },
+        {
+          "direction": "este",
+          "from": "korven_loma_cascajo",
+          "to": "veyra_terraplen_roca"
+        },
+        {
+          "direction": "oeste",
+          "from": "veyra_terraplen_roca",
+          "to": "korven_loma_cascajo"
+        },
+        {
+          "direction": "oeste",
+          "from": "veyra_puerta_piedra",
+          "to": "veyra_terraplen_roca"
+        },
+        {
+          "direction": "este",
+          "from": "veyra_terraplen_roca",
+          "to": "veyra_puerta_piedra"
+        },
+        {
+          "direction": "oeste",
+          "from": "veyra_patio_porte",
+          "to": "veyra_puerta_piedra"
+        },
+        {
+          "direction": "este",
+          "from": "veyra_puerta_piedra",
+          "to": "veyra_patio_porte"
+        },
+        {
+          "direction": "este",
+          "from": "veyra_patio_porte",
+          "to": "veyra_plaza_rutas"
+        },
+        {
+          "direction": "oeste",
+          "from": "veyra_plaza_rutas",
+          "to": "veyra_patio_porte"
+        },
+        {
+          "direction": "este",
+          "from": "vaisgard_mercado",
+          "to": "veyra_calle_toldos"
+        },
+        {
+          "direction": "oeste",
+          "from": "veyra_calle_toldos",
+          "to": "vaisgard_mercado"
+        },
+        {
+          "direction": "oeste",
+          "from": "veyra_patio_senales",
+          "to": "veyra_plaza_rutas"
+        },
+        {
+          "direction": "este",
+          "from": "veyra_plaza_rutas",
+          "to": "veyra_patio_senales"
+        },
+        {
+          "direction": "oeste",
+          "from": "veyra_archivo_cargas",
+          "to": "veyra_patio_senales"
+        },
+        {
+          "direction": "este",
+          "from": "veyra_patio_senales",
+          "to": "veyra_archivo_cargas"
+        }
+      ]
+    },
+    "narrative": [
+      {
+        "kind": "npc",
+        "text": "Tov: Nera puede comprobar aquí mismo el separador. Mantengo la carga junto a la puerta hasta dejarla bien sujeta."
+      }
+    ],
+    "presence": [],
+    "quests": [
+      {
+        "id": "khariel_cornisa",
+        "name": "Una recomendación para las cargas",
+        "paid_amount": 6,
+        "return_room_name": "Mercado de las cintas",
+        "reward": 6,
+        "reward_current": 6,
+        "status": "paid",
+        "summary": "Entregaste este encargo."
+      },
+      {
+        "id": "brumak_taza",
+        "name": "Una taza que se pueda sostener",
+        "paid_amount": 8,
+        "return_room_name": "Rincón de las muestras",
+        "reward": 8,
+        "reward_current": 8,
+        "status": "paid",
+        "summary": "Entregaste este encargo."
+      },
+      {
+        "id": "vaisgard_toldo",
+        "name": "Reparar sin cerrar el agua",
+        "paid_amount": 6,
+        "return_room_name": "Calle de los Toldos Remendados",
+        "reward": 6,
+        "reward_current": 6,
+        "status": "paid",
+        "summary": "Entregaste este encargo."
+      },
+      {
+        "id": "vaisgard_aviso_carga",
+        "name": "Una demora sin inventar un robo",
+        "paid_amount": 6,
+        "return_room_name": "Patio de mensajes",
+        "reward": 6,
+        "reward_current": 6,
+        "status": "paid",
+        "summary": "Entregaste este encargo."
+      }
+    ],
+    "room": {
+      "description": "La puerta deja atrás el patio de los animales, al este. Al oeste, el camino de Korven cruza tierra seca y piedras sueltas. Los carros llevan cargas bajas, sujetas con tablas. Las casas cercanas tienen ventanas pequeñas para frenar el polvo.",
+      "exits": [
+        {
+          "direction": "este",
+          "label": "Este"
+        },
+        {
+          "direction": "oeste",
+          "label": "Oeste"
+        }
+      ],
+      "id": "veyra_puerta_piedra",
+      "kind": "landmark",
+      "name": "Puerta del camino de Korven",
+      "npcs": [
+        {
+          "description": "Trabaja desde el nivel de los separadores y lleva una tabla de repuesto atada al carro, fuera de la carga. Su voz no intenta competir con las ruedas.",
+          "id": "veyra_tov",
+          "name": "Tov",
+          "role": "porteadora de piedra",
+          "topics": [
+            "carga",
+            "demora",
+            "brumak",
+            "aviso"
+          ]
+        }
+      ],
+      "region": "veyra"
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "La puerta deja atrás el patio de los animales, al este. Al oeste, el camino de Korven cruza tierra seca y piedras sueltas. Los carros llevan cargas bajas, sujetas con tablas. Las casas cercanas tienen ventanas pequeñas para frenar el polvo."
+      },
+      {
+        "kind": "world",
+        "text": "Una Dravak comprueba cada separador golpeándolo con los nudillos. Un conductor más alto se agacha para escucharla desde su nivel de trabajo. La carga no sale hasta que ambos pueden señalar la misma pieza suelta."
+      },
+      {
+        "kind": "world",
+        "text": "Comprueba separadores y prepara el paso occidental."
+      }
+    ],
+    "version": 1292
+  }
+}

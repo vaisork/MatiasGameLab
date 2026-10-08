@@ -1,0 +1,65 @@
+{
+  "scope": "Read-only production state copy intercepted in browser; no player actions or data writes.",
+  "results": [
+    {
+      "width": 1440,
+      "scale": 0.85,
+      "nodeWidth": 98.5999755859375,
+      "fontSize": 11.049999999999999,
+      "viewportWidth": 510,
+      "viewportHeight": 468,
+      "selectedVisible": true,
+      "overflow": false,
+      "errors": [],
+      "currentCentered": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "width": 1100,
+      "scale": 0.85,
+      "nodeWidth": 98.5999755859375,
+      "fontSize": 11.049999999999999,
+      "viewportWidth": 510,
+      "viewportHeight": 468,
+      "selectedVisible": true,
+      "overflow": false,
+      "errors": [],
+      "currentCentered": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "width": 393,
+      "scale": 0.85,
+      "nodeWidth": 98.60000610351562,
+      "fontSize": 11.049999999999999,
+      "viewportWidth": 343,
+      "viewportHeight": 468,
+      "selectedVisible": true,
+      "overflow": false,
+      "errors": [],
+      "currentCentered": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "width": 320,
+      "scale": 0.85,
+      "nodeWidth": 98.60000610351562,
+      "fontSize": 11.049999999999999,
+      "viewportWidth": 282,
+      "viewportHeight": 468,
+      "selectedVisible": true,
+      "overflow": false,
+      "errors": [],
+      "currentCentered": {
+        "x": 0,
+        "y": 0
+      }
+    }
+  ]
+}

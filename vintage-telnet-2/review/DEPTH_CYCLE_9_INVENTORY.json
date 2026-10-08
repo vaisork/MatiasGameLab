@@ -1,0 +1,702 @@
+[
+  {
+    "file": "content/regions/nhal.json",
+    "path": "regions.nhal.home.night",
+    "text": "La abertura exterior se vuelve oscura y la lámpara conserva mesa y manos legibles. Algunas voces del claro siguen despiertas. La quietud del descanso no exige que todo Velmora termine su jornada a la vez."
+  },
+  {
+    "file": "content/regions/nhal.json",
+    "path": "regions.nhal.home.return",
+    "text": "Las hojas de la carga quedan junto al umbral antes de acercarte a la mesa. La luz vuelve a orientarse hacia una tarea conocida. El regreso reúne sonidos familiares sin convertir en propia toda la vida del bosque."
+  },
+  {
+    "file": "content/regions/nhal.json",
+    "path": "regions.nhal.search.traces.1",
+    "text": "Encuentras una huella antigua, pero no basta para saber qué la dejó."
+  },
+  {
+    "file": "content/regions/nhal.json",
+    "path": "rooms.nhal_arbol_umbral.return",
+    "text": "Reconoces las raíces que dejan entrar luz de la cuenca. Reconoces la marca del umbral y la dirección de salida. Los sonidos que llegan de más adentro conservan distancias que aún no puedes situar."
+  },
+  {
+    "file": "content/regions/nhal.json",
+    "path": "rooms.nhal_suelo_hojas.return",
+    "text": "Reconocer el tronco acostado permite comparar la franja pisada aunque las hojas hayan cambiado. El pequeño animal puede no volver; su ausencia no deja el lugar vacío, porque el suelo sigue mostrando una continuidad de trabajo y vida."
+  },
+  {
+    "file": "content/regions/nhal.json",
+    "path": "rooms.nhal_tronco_acostado.examine.hongos",
+    "text": "Se observan sin convertir cada especie en alimento seguro."
+  },
+  {
+    "file": "content/regions/nhal.json",
+    "path": "rooms.nhal_raices_altas.return",
+    "text": "Reconoces la repisa sin confundirla con un sitio de provisiones. El paso puede recorrerse mediante apoyos conocidos y aún conservar huecos no explorados. La memoria de la ruta no exige abrir cada sombra a los lados."
+  },
+  {
+    "file": "content/regions/nhal.json",
+    "path": "rooms.nhal_raices_altas.examine.huecos",
+    "text": "Se ven entradas naturales, pero no continuidad de sendero ni suelo completo detrás."
+  },
+  {
+    "file": "content/regions/nhal.json",
+    "path": "rooms.nhal_piedras_musgo.day",
+    "text": "Un animal pequeño transporta una semilla hasta la base de una piedra y desaparece bajo hojas. Una vecina mantiene su pie fuera de esa franja. La ruta puede seguir avanzando mientras una tarea ajena continúa cerca."
+  },
+  {
+    "file": "content/regions/nhal.json",
+    "path": "rooms.nhal_puente_bajo.night",
+    "text": "La corriente se oye antes de distinguir el corte del terreno. Las tablas conservan continuidad bajo el farol y los apoyos laterales quedan oscuros. Un golpe sobre la piedra de aviso se extingue entre ambos troncos."
+  },
+  {
+    "file": "content/regions/nhal.json",
+    "path": "rooms.nhal_puente_bajo.return",
+    "text": "Reconoces la piedra de aviso y la tabla donde se concentra el tránsito. El puente sigue pequeño, pero la vuelta lo sitúa como parte de un cauce real: no era una pieza puesta sólo para variar el paisaje."
+  },
+  {
+    "file": "content/regions/nhal.json",
+    "path": "rooms.nhal_umbral_velmora.day",
+    "text": "Una vecina termina de limpiar la mesa de espera antes de recibir una carga del puente. Otra pregunta a quién se la entregará. La entrada da tiempo para reconocer personas sin hacer de cada visitante una interrupción urgente."
+  },
+  {
+    "file": "content/regions/nhal.json",
+    "path": "rooms.nhal_umbral_velmora.return",
+    "text": "La mesa permite recordar una llegada anterior y reconocer dónde esperar antes de buscar destinatarios. El umbral no tiene que mostrar a la misma vecina para conservar su uso; la plaza empieza después de esa pausa compartida."
+  },
+  {
+    "file": "content/regions/nhal.json",
+    "path": "rooms.velmora_centro.examine.raíces",
+    "text": "Se mantienen pasos alrededor de ellas; la plaza no necesita un suelo uniforme."
+  },
+  {
+    "file": "content/regions/nhal.json",
+    "path": "rooms.velmora_centro.weather.niebla",
+    "text": "El borde del claro se pierde antes que las mesas próximas. Quien cuenta el relato se acerca al banco y baja la voz; desde una casa responde alguien a quien todavía no puedes ver."
+  },
+  {
+    "file": "content/regions/nhal.json",
+    "path": "rooms.nhal_secadero_sombra.night",
+    "text": "La luz prestada desaparece y la encargada recoge las piezas que necesitan otro día. El recipiente permanece en un apoyo protegido. El niño ya volvió a su casa y el secadero no añade otra aparición para reemplazarlo."
+  },
+  {
+    "file": "content/regions/nhal.json",
+    "path": "rooms.nhal_mercado_setas.examine.hojas",
+    "text": "Su olor ayuda a percibir el ambiente sin convertirlo en una regla de alimento seguro."
+  },
+  {
+    "file": "content/regions/nhal.json",
+    "path": "rooms.nhal_calle_hogares.night",
+    "text": "Las luces domésticas se recogen de manera distinta según lo que sigue ocurriendo. Una puerta permanece abierta para una visita esperada y otra deja sólo el umbral legible. La calle mantiene circulación sin exigir una única hora de cierre."
+  },
+  {
+    "file": "content/regions/nhal.json",
+    "path": "rooms.nhal_calle_hogares.return",
+    "text": "Reconoces el umbral donde esperaste y la diferencia entre visita y tránsito. La memoria del barrio permite preguntar por una persona concreta; conocer su entrada no entrega lo que está haciendo en una habitación que nunca viste."
+  },
+  {
+    "file": "content/regions/nhal.json",
+    "path": "rooms.nhal_sendero_altura.day",
+    "text": "Una viajera recoge su cubierta para que no enganche en las raíces del ascenso. Un vecino observa la carga desde el descanso y deja espacio. La altura exige otra disposición de las manos antes de volver abierto el paisaje."
+  },
+  {
+    "file": "content/regions/nhal.json",
+    "path": "rooms.nhal_umbral_elin.rain",
+    "text": "El recipiente se acerca al interior del umbral y el banco se mueve bajo el alero. La artesana explica el raspón mientras espera que afloje el agua. El relato tiene una ocasión doméstica, sin necesitar un acontecimiento extraordinario."
+  },
+  {
+    "file": "content/regions/nhal.json",
+    "path": "rooms.nhal_rincon_semillas.night",
+    "text": "Las semillas pierden detalle y el refugio bajo hojas no muestra quién lo ocupa. La observadora regresa por el sendero occidental. El lugar sigue teniendo vida aunque la noche no ofrezca una aparición que pueda confirmarse."
+  },
+  {
+    "file": "content/regions/nhal.json",
+    "path": "rooms.nhal_rincon_semillas.return",
+    "text": "Reconoces el rincón sin pedir que el animal repita su gesto. Las semillas pueden haberse movido y el pelo permanecer adherido; la memoria permite leer una actividad que continúa con independencia de tus llegadas."
+  },
+  {
+    "file": "content/regions/nhal.json",
+    "path": "rooms.nhal_raiz_marcada.examine.hojas",
+    "text": "La franja aplastada sale del lugar de observación, sin convertirse por ello en sendero público."
+  },
+  {
+    "file": "content/regions/nhal.json",
+    "path": "npcs.nhal_leris.topics.velmora",
+    "text": "Recordar juntos no obliga a que todos hayamos visto lo mismo."
+  },
+  {
+    "file": "content/regions/nhal.json",
+    "path": "npcs.nhal_elin.description",
+    "text": "Tiene una mano más lenta después de una lesión de trabajo y adapta sus apoyos sin convertirla en emblema de valor. Recuerda con humor la comida que recibió."
+  },
+  {
+    "file": "content/regions/nhal.json",
+    "path": "npcs.nhal_varo.topics.cuidados",
+    "text": "El lugar de cuidados está junto a Mercado de Velmora. Cuesta dieciocho sellos y atiende heridas, no sólo hambre. Está cerca del pueblo: no hace falta cruzar otras regiones."
+  },
+  {
+    "file": "content/regions/nhal.json",
+    "path": "npcs.nhal_sira.topics.atención",
+    "text": "La recuperación cuesta dieciocho sellos: atendemos un grado de herida, quitamos la fatiga y recuperamos vitalidad hasta el noventa por ciento. Después vuelves a disponer de margen para descansar. No necesitas comprar un arma ni ganar una pelea para pedir cuidados."
+  },
+  {
+    "file": "content/regions/nhal.json",
+    "path": "npcs.nhal_sira.topics.salida",
+    "text": "Puedes volver por la misma puerta. Si no puedes pagar ahora, descansa lo que permita tu estado y evita entrar otra vez en peligro; una retirada no borra tu progreso."
+  },
+  {
+    "file": "content/regions/nhal.json",
+    "path": "stories.nhal_recipiente.premise",
+    "text": "Una historia compartida gana precisión cuando incluye a quien recibió el objeto, no sólo a quien lo reparó."
+  },
+  {
+    "file": "content/regions/hoshai.json",
+    "path": "regions.hoshai.home.examine.rampa",
+    "text": "La entrada permite mover bultos y recibir visitantes sin exigir que todos salten los peldaños."
+  },
+  {
+    "file": "content/regions/hoshai.json",
+    "path": "regions.hoshai.search.traces.1",
+    "text": "Encuentras una huella antigua, pero no basta para saber qué la dejó."
+  },
+  {
+    "file": "content/regions/hoshai.json",
+    "path": "rooms.hoshai_estribacion.day",
+    "text": "Una pastora recoge una cuerda del arroyo y deja libre la entrada al ascenso. Su compañero espera con las bestias en terreno ancho, sin exigirles girar donde el camino ya empieza a estrecharse."
+  },
+  {
+    "file": "content/regions/hoshai.json",
+    "path": "rooms.hoshai_repecho_raices.day",
+    "text": "Dos viajeros esperan en huecos diferentes mientras una carga desciende. Un Felaryn mira por encima del bulto para anticipar la curva, pero sigue indicando apoyos cercanos a quien no puede ver desde su altura."
+  },
+  {
+    "file": "content/regions/hoshai.json",
+    "path": "rooms.hoshai_repecho_raices.arrivals.hoshai_descanso_tres_piedras",
+    "text": "Desde el descanso bajas a una curva húmeda. Entre las raíces vuelve a oírse el arroyo, aunque todavía no puedes verlo."
+  },
+  {
+    "file": "content/regions/hoshai.json",
+    "path": "rooms.hoshai_pared_goteo.examine.saliente",
+    "text": "Cubre un trecho de camino; no convierte la cornisa en una cueva."
+  },
+  {
+    "file": "content/regions/hoshai.json",
+    "path": "rooms.hoshai_pinar_discontinuo.return",
+    "text": "Reconoces el desvío al abrigo por el grupo de piñas reunidas contra una roca, no por un sonido ocasional. El agua fría queda al norte y el camino vuelve a presentarse como una continuidad entre claros."
+  },
+  {
+    "file": "content/regions/hoshai.json",
+    "path": "rooms.hoshai_agua_fria.night",
+    "text": "El agua corta los sonidos que llegan del pinar. Las luces se detienen en ambas orillas para no ocultar los escalones con sus reflejos. Cruzar de noche sigue exigiendo ver dónde se termina, no sólo dónde se empieza."
+  },
+  {
+    "file": "content/regions/hoshai.json",
+    "path": "rooms.hoshai_ladera_hitos.rain",
+    "text": "El agua marca una línea entre ambos grupos y vuelve visible la pendiente del borde. La cuidadora espera a que pase una carga antes de comprobar las piedras. Su trabajo no debe convertir la revisión en un obstáculo nuevo."
+  },
+  {
+    "file": "content/regions/hoshai.json",
+    "path": "rooms.khariel_centro.examine.rampa",
+    "text": "No es una ruta inferior: permite subir objetos que no deben saltarse."
+  },
+  {
+    "file": "content/regions/hoshai.json",
+    "path": "rooms.hoshai_taller_apoyos.description",
+    "text": "El taller huele a serrín. Hay herramientas grandes junto a un banco bajo y piezas pequeñas en los estantes. Un dibujo señala qué escalones necesitan reparación. La puerta del este vuelve a la plaza. Sobre el banco, una plantilla gastada espera junto a una pieza recién cortada."
+  },
+  {
+    "file": "content/regions/hoshai.json",
+    "path": "rooms.hoshai_taller_apoyos.return",
+    "text": "El dibujo de los escalones permite situar la pieza que viste sobre el banco. La plantilla gastada sigue junto al borde limpio de trabajo."
+  },
+  {
+    "file": "content/regions/hoshai.json",
+    "path": "rooms.hoshai_taller_apoyos.examine.banco",
+    "text": "Sus alturas diferentes permiten trabajar sobre piezas sin exigir una sola postura."
+  },
+  {
+    "file": "content/regions/hoshai.json",
+    "path": "rooms.hoshai_lavadero_roca.examine.pila",
+    "text": "El agua continúa hacia abajo; las prendas no deben obstruir su paso."
+  },
+  {
+    "file": "content/regions/hoshai.json",
+    "path": "rooms.hoshai_balcon_valle.rain",
+    "text": "Las cortinas de lluvia borran una ladera y dejan otra visible. El observador marca qué parte no puede seguir leyendo. La ruta no ha desaparecido, pero sus notas deben distinguir observación de expectativa."
+  },
+  {
+    "file": "content/regions/hoshai.json",
+    "path": "rooms.hoshai_balcon_valle.actions.0.label",
+    "text": "Recomendar la cornisa sólo para cargas pequeñas"
+  },
+  {
+    "file": "content/regions/hoshai.json",
+    "path": "rooms.hoshai_balcon_valle.states.1.overrides.return",
+    "text": "Tu nota pide revisar la cornisa antes de enviar cargas. La roca sigue tapando el cruce frío; desde este banco no puedes comprobar sus apoyos inferiores."
+  },
+  {
+    "file": "content/regions/hoshai.json",
+    "path": "rooms.hoshai_balcon_valle.states.1.overrides.examine.cornisa",
+    "text": "Tu nota pide revisar la cornisa antes de enviar cargas. La roca sigue tapando el cruce frío; desde este banco no puedes comprobar sus apoyos inferiores."
+  },
+  {
+    "file": "content/regions/hoshai.json",
+    "path": "rooms.hoshai_aprisco_abierto.day",
+    "text": "La pastora revisa un apoyo vencido antes de llamar al rebaño. Una ayudante mantiene el recipiente lejos del paso. El trabajo consiste en reunir sin encerrar a todos contra el mismo borde de piedra."
+  },
+  {
+    "file": "content/regions/hoshai.json",
+    "path": "rooms.hoshai_aprisco_abierto.return",
+    "text": "Reconoces la salida amplia que no debe cerrarse al recomponer el aprisco. Una piedra fuera de lugar puede importar más que las muchas que siguen quietas, porque cambia la manera en que el rebaño vuelve hacia el agua."
+  },
+  {
+    "file": "content/regions/hoshai.json",
+    "path": "rooms.hoshai_hombro_lajas.day",
+    "text": "Un mensajero lee la última marca de revisión y mira la garganta antes de seguir. Su compañero espera lejos de las lajas inclinadas. La noticia sirve para decidir una preparación, no para saltarse el camino."
+  },
+  {
+    "file": "content/regions/hoshai.json",
+    "path": "npcs.hoshai_iria.topics.hitos",
+    "text": "Los del borde registran un cambio; los del camino permiten continuar. Confundirlos fabrica un atajo que nadie construyó."
+  },
+  {
+    "file": "content/regions/hoshai.json",
+    "path": "npcs.hoshai_daren.description",
+    "text": "Su banco tiene dos alturas y sus herramientas se gastan sobre peldaños antes que sobre armas. Pregunta cómo llega una carga, no sólo qué se rompió."
+  },
+  {
+    "file": "content/regions/hoshai.json",
+    "path": "npcs.hoshai_luma.topics.cuidados",
+    "text": "El lugar de cuidados está junto a Mercado de las cintas. Cuesta dieciocho sellos y atiende heridas, no sólo hambre. Está cerca del pueblo: no hace falta cruzar otras regiones."
+  },
+  {
+    "file": "content/regions/hoshai.json",
+    "path": "npcs.hoshai_seran.memory.hoshai_polea_acordada",
+    "text": "Seran baja el palo al reconocerte. «Recuerda explicar la cuenta, no sólo llevar la pieza.»"
+  },
+  {
+    "file": "content/regions/hoshai.json",
+    "path": "npcs.hoshai_ena.topics.atención",
+    "text": "La recuperación cuesta dieciocho sellos: atendemos un grado de herida, quitamos la fatiga y recuperamos vitalidad hasta el noventa por ciento. Después vuelves a disponer de margen para descansar. No necesitas comprar un arma ni ganar una pelea para pedir cuidados."
+  },
+  {
+    "file": "content/regions/hoshai.json",
+    "path": "npcs.hoshai_ena.topics.salida",
+    "text": "Puedes volver por la misma puerta. Si no puedes pagar ahora, descansa lo que permita tu estado y evita entrar otra vez en peligro; una retirada no borra tu progreso."
+  },
+  {
+    "file": "content/regions/hoshai.json",
+    "path": "stories.hoshai_revision.premise",
+    "text": "Una unión no puede declararse revisada por una mirada incompleta."
+  },
+  {
+    "file": "content/regions/hoshai.json",
+    "path": "stories.hoshai_cinta.premise",
+    "text": "Yesa intenta recordar y cargar todo a la vez. Compartir una pausa o sostener un paquete permite un regreso sin convertirlo en una inspección."
+  },
+  {
+    "file": "content/regions/korven.json",
+    "path": "regions.korven.home.description",
+    "text": "El entrante mantiene mesa y banco lejos de la corriente de aire de la puerta. Los recipientes se guardan sobre una repisa y los bultos encuentran sitio en un apoyo del lado exterior. La ranura alta deja salir polvo fino sin abrir toda la pared. El umbral conduce al patio de Brumak, donde empieza la vida compartida; dentro queda una escala doméstica que no necesita aumentar para tener profundidad propia."
+  },
+  {
+    "file": "content/regions/korven.json",
+    "path": "regions.korven.home.rain",
+    "text": "El agua recorre la pared exterior y sigue una junta apartada del umbral. Un bulto mojado puede esperar en su apoyo sin llevar barro a la mesa. La piedra protege sin hacer desaparecer el cambio del tiempo."
+  },
+  {
+    "file": "content/regions/korven.json",
+    "path": "regions.korven.search.traces.1",
+    "text": "Encuentras una huella antigua, pero no basta para saber qué la dejó."
+  },
+  {
+    "file": "content/regions/korven.json",
+    "path": "rooms.korven_hitos_paso.rain",
+    "text": "La lluvia oscurece piedras de colores diferentes y reúne arena alrededor de las bases. La revisora mira desde el mismo apoyo que usará la próxima carga. No basta con que la pila siga en pie."
+  },
+  {
+    "file": "content/regions/korven.json",
+    "path": "rooms.korven_hitos_paso.return",
+    "text": "Puedes seguir la relación entre mojones sin buscar el más alto. Una base en revisión te recuerda que la ruta pertenece a un trabajo continuo; no todas las modificaciones del paisaje son descubrimientos ni señales de un enemigo."
+  },
+  {
+    "file": "content/regions/korven.json",
+    "path": "rooms.korven_hendidura_transito.examine.tabla",
+    "text": "No cierra un acceso inferior; mantiene la continuidad sobre una junta del camino."
+  },
+  {
+    "file": "content/regions/korven.json",
+    "path": "rooms.korven_taller_juntas.rain",
+    "text": "Las piezas húmedas se apoyan fuera del banco de medida hasta que se limpia el barro. La maestra no toma una marca oscura por una fisura. La puerta protegida permite seguir trabajando sin negar que cambió el material."
+  },
+  {
+    "file": "content/regions/korven.json",
+    "path": "rooms.korven_cisterna_comun.return",
+    "text": "Reconoces dónde puede apoyarse un recipiente sin contaminar la medida. La marca del nivel permite recordar una diferencia real entre visitas; el agua visible deja de ser una decoración estable que el viaje no tiene que respetar."
+  },
+  {
+    "file": "content/regions/korven.json",
+    "path": "rooms.korven_deposito_cubiertas.night",
+    "text": "Las tablas de préstamo se recogen cerca de la puerta y la encargada deja libre un travesaño para devoluciones tardías. Nadie añade una cubierta mojada al montón seco sólo por haber vuelto después del cierre."
+  },
+  {
+    "file": "content/regions/korven.json",
+    "path": "rooms.korven_deposito_cubiertas.examine.travesanos",
+    "text": "Las cubiertas se separan para que el centro pueda secarse, no sólo su borde."
+  },
+  {
+    "file": "content/regions/korven.json",
+    "path": "rooms.korven_desvio_horno.return",
+    "text": "El muro corto orienta la vuelta hacia la meseta. Los fragmentos conservan diferencias que ya puedes reconocer, pero volver no basta para saber por qué se abandonó todo el trabajo del horno."
+  },
+  {
+    "file": "content/regions/korven.json",
+    "path": "rooms.korven_meseta_relevo.rain",
+    "text": "El agua que baja de la garganta trae agujas entre cascajos secos. La encargada anota su procedencia y mueve las cargas del giro. La mezcla de restos anuncia continuidad con la sierra sin borrar la identidad del pedral."
+  },
+  {
+    "file": "content/regions/korven.json",
+    "path": "rooms.korven_borde_tierra.examine.raíces",
+    "text": "Sujetan tierra y no deben retirarse al mantener el borde del paso."
+  },
+  {
+    "file": "content/regions/korven.json",
+    "path": "npcs.korven_taren.topics.recomendación.text",
+    "text": "Taren compara tu recomendación con las marcas de la mano. «No has elegido sólo por tamaño. Haré una prueba antes de entregarla.»"
+  },
+  {
+    "file": "content/regions/korven.json",
+    "path": "npcs.korven_taren.memory.korven_error_descrito",
+    "text": "Taren conserva la descripción atribuida del espesor desigual junto al recipiente, sin convertirla en explicación de todo el abandono."
+  },
+  {
+    "file": "content/regions/korven.json",
+    "path": "npcs.korven_ved.topics.peligro",
+    "text": "Si llegas herido, pide ayuda. Este registro no debería impedir que una persona se recupere."
+  },
+  {
+    "file": "content/regions/korven.json",
+    "path": "npcs.korven_beran.topics.afinado",
+    "text": "Puedo afinar una pieza común una vez por doce sellos y una piedra veteada para trabajar el filo. La mejora añade un punto de daño; no convierte tu arma en otra ni le da poderes."
+  },
+  {
+    "file": "content/regions/korven.json",
+    "path": "npcs.korven_neru.topics.atención",
+    "text": "La recuperación cuesta dieciocho sellos: atendemos un grado de herida, quitamos la fatiga y recuperamos vitalidad hasta el noventa por ciento. Después vuelves a disponer de margen para descansar. No necesitas comprar un arma ni ganar una pelea para pedir cuidados."
+  },
+  {
+    "file": "content/regions/korven.json",
+    "path": "npcs.korven_neru.topics.salida",
+    "text": "Puedes volver por la misma puerta. Si no puedes pagar ahora, descansa lo que permita tu estado y evita entrar otra vez en peligro; una retirada no borra tu progreso."
+  },
+  {
+    "file": "content/regions/korven.json",
+    "path": "stories.korven_aviso.premise",
+    "text": "Una observación precisa permite cuidar un paso sin convertir todo el terreno en rumor."
+  },
+  {
+    "file": "content/regions/korven.json",
+    "path": "stories.korven_horno.premise",
+    "text": "Entender un fallo pequeño no obliga a inventar el motivo del abandono de una instalación."
+  },
+  {
+    "file": "content/regions/edran.json",
+    "path": "regions.edran.search.traces.1",
+    "text": "Encuentras una huella antigua, pero no basta para saber qué la dejó."
+  },
+  {
+    "file": "content/regions/edran.json",
+    "path": "rooms.valdren_fragua.examine.tiza",
+    "text": "Las piezas marcadas necesitan una comprobación de quien las encargó. Una marca no significa que estén defectuosas."
+  },
+  {
+    "file": "content/regions/edran.json",
+    "path": "rooms.edran_salida_huertos.description",
+    "text": "Las cercas bajan y el viento llega de frente. Dejas las casas atrás. El camino este sigue hasta la acequia; por el sur vuelves entre los graneros. Los dos postes del oeste señalan la entrada a Valdren. El tramo hacia los graneros dobla junto a las cercas; no es una calle recta."
+  },
+  {
+    "file": "content/regions/edran.json",
+    "path": "rooms.edran_lindero.actions.0.journal",
+    "text": "Has visto una tablilla de dos cuencos junto al paso del lindero. Su marca no basta para asignarle un propietario."
+  },
+  {
+    "file": "content/regions/edran.json",
+    "path": "rooms.edran_lindero.memories.0.text",
+    "text": "Has visto una tablilla de dos cuencos junto al paso del lindero. Su marca no basta para asignarle un propietario."
+  },
+  {
+    "file": "content/regions/edran.json",
+    "path": "rooms.edran_terraplen.day",
+    "text": "Un porteador espera en el ensanchamiento hasta que baja un carro. Su carga está apoyada del lado del terraplén, donde no puede rodar hacia el camino."
+  },
+  {
+    "file": "content/regions/edran.json",
+    "path": "rooms.edran_terraplen.examine.ensanchamiento",
+    "text": "Hay una piedra de apoyo del lado alto, útil para colocar una carga que no debe deslizarse."
+  },
+  {
+    "file": "content/regions/edran.json",
+    "path": "rooms.edran_linde_piedra.day",
+    "text": "Dos porteadores trasladan sacos de un carro a una estructura más estrecha. Antes de avanzar comprueban dónde cabrá la carga, no sólo cuánto pesa."
+  },
+  {
+    "file": "content/regions/edran.json",
+    "path": "rooms.edran_sendero_juncos.rain",
+    "text": "La tierra firme se reduce a una franja, pero conserva continuidad. El agua corre entre raíces del lado bajo sin cruzar todavía el sendero."
+  },
+  {
+    "file": "content/regions/edran.json",
+    "path": "rooms.edran_sendero_juncos.examine.suelo",
+    "text": "El lado oscuro cede al peso. La franja firme sigue raíces antiguas y no necesita atravesar el agua."
+  },
+  {
+    "file": "content/regions/edran.json",
+    "path": "rooms.edran_sendero_juncos.examine.cargas",
+    "text": "Las marcas están sobre el suelo alto. Quienes pasan por aquí conocen dónde una pausa no se convierte en atasco."
+  },
+  {
+    "file": "content/regions/edran.json",
+    "path": "rooms.edran_sendero_juncos.weather.viento",
+    "text": "Los juncos se rozan por encima del sendero y tapan el sonido de la corriente. La tierra firme conserva la continuidad que el oído pierde."
+  },
+  {
+    "file": "content/regions/edran.json",
+    "path": "rooms.edran_puente_juncos.return",
+    "text": "Reconoces el sitio de espera en el lado alto. El puente conecta dos formas de usar el terreno sin exigir que una persona se detenga sobre el agua."
+  },
+  {
+    "file": "content/regions/edran.json",
+    "path": "rooms.valdren_patio_ropa.examine.paños",
+    "text": "Algunos tienen manchas de aceite que no deben pasar a una mesa donde se atiende una herida."
+  },
+  {
+    "file": "content/regions/edran.json",
+    "path": "rooms.edran_bajo_humedo.actions.0.text",
+    "text": "Esperas en el borde, dejando libre el agujero. El Mordelinde escucha y sigue sacando una raíz. Al caer una hoja, se esconde otra vez. No necesitas acercarte más para verlo."
+  },
+  {
+    "file": "content/regions/edran.json",
+    "path": "rooms.edran_parcela_vieja.return",
+    "text": "El arco de plantas nuevas revela una adaptación que antes podía parecer descuido. La parcela tiene continuidad sin imponer líneas rectas al terreno."
+  },
+  {
+    "file": "content/regions/edran.json",
+    "path": "rooms.edran_zanja_antigua.examine.entrada",
+    "text": "La tierra está apisonada para impedir que entre agua. No es una obstrucción recién caída."
+  },
+  {
+    "file": "content/regions/edran.json",
+    "path": "rooms.edran_vista_cuenca.night",
+    "text": "Una luz aislada aparece y desaparece detrás del lomo siguiente. No basta para convertir la cuenca entera en un lugar conocido."
+  },
+  {
+    "file": "content/regions/edran.json",
+    "path": "rooms.edran_vista_cuenca.examine.muros",
+    "text": "Desde esta distancia sólo se distingue continuidad de piedra. No hay detalle suficiente para conocer sus entradas."
+  },
+  {
+    "file": "content/regions/edran.json",
+    "path": "rooms.edran_sendero_regreso.return",
+    "text": "La senda ofrece una entrada distinta a Valdren. Volver no exige desandar cada lugar: puedes reconocer el pueblo por el trabajo que se aproxima desde este lado."
+  },
+  {
+    "file": "content/regions/edran.json",
+    "path": "rooms.edran_canal_herramientas.day",
+    "text": "Una franja de luz deja ver las marcas de barro de la mesa. Por el agujero oriental llega un goteo que no puedes seguir con la vista."
+  },
+  {
+    "file": "content/regions/edran.json",
+    "path": "npcs.edran_aren.topics.nota",
+    "text": "Elva es mi hermana. Ha reservado una taza para Lio y alguien le dijo que la carga se había perdido. Esta nota sólo describe una rueda detenida. Quiero que reciba noticia de la persona, además del carro."
+  },
+  {
+    "file": "content/regions/edran.json",
+    "path": "npcs.edran_oren.topics.camino",
+    "text": "Perdí el carro en el cruce. Un hombre exige un pago a quien lleva equipaje, pero puedes salir por donde entraste. Si te amenaza, no necesitas quedarte."
+  },
+  {
+    "file": "content/regions/edran.json",
+    "path": "npcs.edran_lina.topics.peligro",
+    "text": "Si llegas herido, pide ayuda. Este registro no debería impedir que una persona se recupere."
+  },
+  {
+    "file": "content/regions/veyra.json",
+    "path": "regions.veyra.search.traces.1",
+    "text": "Encuentras una huella antigua, pero no basta para saber qué la dejó."
+  },
+  {
+    "file": "content/regions/veyra.json",
+    "path": "rooms.veyra_colina_vista.night",
+    "text": "Las luces de las entradas dibujan una ciudad más pequeña que sus muros. Fuera de ellas sólo algunas cargas llevan farol. La distancia hacia los pueblos no puede adivinarse siguiendo un punto luminoso."
+  },
+  {
+    "file": "content/regions/veyra.json",
+    "path": "rooms.veyra_puerta_piedra.rain",
+    "text": "El polvo se convierte en una costra oscura junto a la puerta. Los separadores mojados se revisan de nuevo porque las cargas no deben apoyarse unas contra otras. El agua desaparece pronto entre piedras del terraplén."
+  },
+  {
+    "file": "content/regions/veyra.json",
+    "path": "rooms.veyra_lindero_arboles.return",
+    "text": "Reconocer la primera franja te devuelve la anchura de la cuenca antes de ver su puerta. La cantera lateral no sustituye la ruta oriental: su abertura conduce hacia piedra quieta, mientras el bosque mantiene su continuidad de hojas."
+  },
+  {
+    "file": "content/regions/veyra.json",
+    "path": "npcs.veyra_tov.memory.veyra_demora_aclarada",
+    "text": "Tov ya no necesita defenderse del rumor: alguien dejó en el archivo la causa real de su demora."
+  },
+  {
+    "file": "content/regions/veyra.json",
+    "path": "npcs.veyra_seli.topics.reparación",
+    "text": "Primero mira la costura vieja. Si llevas el junco de Bela, puedes sujetar el desgarro sin cerrar el desagüe. También puedes revisar las perchas y dejar el trabajo preparado para que yo termine."
+  },
+  {
+    "file": "content/regions/veyra.json",
+    "path": "npcs.veyra_bela.topics.cuidados",
+    "text": "El lugar de cuidados está junto a Patio del agua. Cuesta dieciocho sellos y atiende heridas, no sólo hambre. Está cerca del pueblo: no hace falta cruzar otras regiones."
+  },
+  {
+    "file": "content/regions/veyra.json",
+    "path": "npcs.veyra_doma.topics.atención",
+    "text": "La recuperación cuesta dieciocho sellos: atendemos un grado de herida, quitamos la fatiga y recuperamos vitalidad hasta el noventa por ciento. Después vuelves a disponer de margen para descansar. No necesitas comprar un arma ni ganar una pelea para pedir cuidados."
+  },
+  {
+    "file": "content/regions/veyra.json",
+    "path": "npcs.veyra_doma.topics.salida",
+    "text": "Puedes volver por la misma puerta. Si no puedes pagar ahora, descansa lo que permita tu estado y evita entrar otra vez en peligro; una retirada no borra tu progreso."
+  },
+  {
+    "file": "content/regions/lethra.json",
+    "path": "regions.lethra.home.clear",
+    "text": "La plataforma deja ver su altura sobre el agua y el paso hacia Narevia mantiene apoyos próximos. El aire seca una fibra junto a la ventana; observarla permite preparar objetos sin negar la humedad del canal."
+  },
+  {
+    "file": "content/regions/lethra.json",
+    "path": "regions.lethra.search.traces.1",
+    "text": "Encuentras una huella antigua, pero no basta para saber qué la dejó."
+  },
+  {
+    "file": "content/regions/lethra.json",
+    "path": "rooms.lethra_juncal_abierto.return",
+    "text": "Puedes encontrar la abertura del banco sin buscar el ave que oíste. El juncal conserva su forma general y otros tallos cortados; volver añade una relación entre tareas y senda, no una aparición que tenga que repetirse."
+  },
+  {
+    "file": "content/regions/lethra.json",
+    "path": "rooms.lethra_tablas_primeras.rain",
+    "text": "El agua desaparece por las juntas y deja una película sobre la madera. El carpintero aparta una tabla de repuesto del barro. La pasarela mantiene continuidad mientras la revisión se concentra en la unión más gastada."
+  },
+  {
+    "file": "content/regions/lethra.json",
+    "path": "rooms.lethra_cruce_canales.return",
+    "text": "Puedes identificar el remanso por su relación con la lengua de barro y no sólo por parecer quieto. La vuelta aporta una pregunta nueva: qué cambió en su salida desde tu observación, sin suponer que todo canal se mueve igual."
+  },
+  {
+    "file": "content/regions/lethra.json",
+    "path": "rooms.lethra_ribera_firme.return",
+    "text": "Reconoces qué apoyos pueden esperar una carga sin ocupar la senda. La curva ya se relaciona con la pasarela siguiente; la región adquiere continuidad a través de operaciones pequeñas, no sólo de grandes hitos de paisaje."
+  },
+  {
+    "file": "content/regions/lethra.json",
+    "path": "rooms.lethra_ribera_firme.examine.envolturas",
+    "text": "Las dobles conservan comida que todavía no debe abrirse."
+  },
+  {
+    "file": "content/regions/lethra.json",
+    "path": "rooms.lethra_pasarela_curva.return",
+    "text": "La orilla cercana deja de parecer un atajo disponible. Recuerdas el ensanchamiento de la curva y puedes esperar allí sin obligar a otra carga a retroceder; la arquitectura del paso ya forma parte de tu memoria del agua."
+  },
+  {
+    "file": "content/regions/lethra.json",
+    "path": "rooms.lethra_embarcadero_camino.rain",
+    "text": "Los bultos mojados esperan en el lado exterior de la cubierta mientras los secos se trasladan. La encargada compara el agua con la marca del poste antes de usar el apoyo más bajo. Llegar no significa descargar todo de inmediato."
+  },
+  {
+    "file": "content/regions/lethra.json",
+    "path": "rooms.lethra_embarcadero_camino.return",
+    "text": "El poste de nivel permite comparar la llegada de hoy con la anterior. Ya puedes reconocer qué bulto espera un traslado y cuál debe seguir por la senda; el pueblo deja de parecer accesible por cualquier borde del agua."
+  },
+  {
+    "file": "content/regions/lethra.json",
+    "path": "rooms.lethra_senda_elevada.day",
+    "text": "Las ventanas reciben cestas y devuelven paños doblados entre quienes se conocen. Una vecina pide que la senda quede libre antes de pasar una carga. El pueblo prepara su jornada mediante intercambios visibles desde el camino."
+  },
+  {
+    "file": "content/regions/lethra.json",
+    "path": "rooms.lethra_senda_elevada.return",
+    "text": "Las plataformas privadas se reconocen mejor después de una vuelta. Puedes mantener la continuidad hacia la plaza sin confundir una ventana iluminada con una invitación a entrar; el hogar de alguien sigue teniendo un límite visible."
+  },
+  {
+    "file": "content/regions/lethra.json",
+    "path": "rooms.lethra_senda_elevada.examine.plataformas",
+    "text": "Las de las puertas son domésticas; la senda pública conserva su continuidad por fuera."
+  },
+  {
+    "file": "content/regions/lethra.json",
+    "path": "rooms.lethra_cuidado_barcas.examine.piezas",
+    "text": "Los recambios cuentan reparaciones sucesivas y no deben confundirse con daños nuevos."
+  },
+  {
+    "file": "content/regions/lethra.json",
+    "path": "rooms.lethra_banco_barro.night",
+    "text": "El canal conserva sonidos leves y pierde la dirección visible de las ondas. La observadora regresa hacia el juncal sin buscar una aparición para cerrar su nota. El barro del banco sigue ofreciendo el apoyo del regreso."
+  },
+  {
+    "file": "content/regions/lethra.json",
+    "path": "rooms.lethra_banco_barro.return",
+    "text": "Recuerdas qué franja de tallos estaba aplastada antes de esta visita. Esa memoria permite comparar el banco sin acercarte al canal. Una onda nueva sigue necesitando observación; no entrega automáticamente el nombre de lo que se mueve debajo."
+  },
+  {
+    "file": "content/regions/lethra.json",
+    "path": "rooms.lethra_orilla_silente.return",
+    "text": "La entrada ancha puede reconocerse sin repetir el acercamiento hasta su borde. Comparar tallos y arrastres vuelve la visita útil incluso cuando no hay una aparición; recordar el apoyo de raíces ofrece una alternativa de observación."
+  },
+  {
+    "file": "content/regions/lethra.json",
+    "path": "rooms.lethra_raices_observacion.night",
+    "text": "La nota pierde legibilidad y la cuidadora la guarda bajo una cubierta cercana. El apoyo firme sigue ahí, pero el canal no muestra detalles suficientes para la misma comparación. La vuelta puede hacerse por el sendero que ya conoces."
+  },
+  {
+    "file": "content/regions/lethra.json",
+    "path": "rooms.lethra_ribera_oeste.day",
+    "text": "Una viajera de campo sacude su capa lejos de las envolturas de comida. Un vecino de Narevia le ofrece el apoyo exterior sin interrumpir el paso. La cortesía consiste primero en reconocer qué necesita mantenerse limpio."
+  },
+  {
+    "file": "content/regions/lethra.json",
+    "path": "rooms.lethra_ribera_oeste.return",
+    "text": "Puedes reconocer la cubierta por la separación entre trabajo sucio y envolturas protegidas. Volver desde Edran devolverá primero esa operación de llegada y sólo después los canales de Narevia que viste desde la plaza."
+  },
+  {
+    "file": "content/regions/lethra.json",
+    "path": "rooms.lethra_ribera_oeste.wildlife_pool.0.text",
+    "text": "Una persona con un palo corto espera junto a la cubierta de la ribera y pide tu equipaje. El suelo está firme; la vuelta al pueblo queda al este. No necesitas entrar en el agua."
+  },
+  {
+    "file": "content/regions/lethra.json",
+    "path": "rooms.lethra_relevo_raices.rain",
+    "text": "El cuidador compara agua con una marca de la plataforma mientras la mensajera revisa una raíz que sostiene la tabla. La lluvia añade tareas en ambos lados. La nota del canal no puede aprobar por sí sola el sendero forestal."
+  },
+  {
+    "file": "content/regions/lethra.json",
+    "path": "rooms.lethra_escucha_aves.rain",
+    "text": "Las aves se recogen entre plantas altas y el borde de alimentación queda bajo gotas. Las hojas giran más deprisa cerca de una entrada de agua. El lugar cambia su actividad sin necesitar una tormenta dramática ni una criatura nueva."
+  },
+  {
+    "file": "content/regions/lethra.json",
+    "path": "npcs.lethra_mira.memory.lethra_invitacion_llevada",
+    "text": "Mira sabe que Sola recibió la invitación. Puede preparar su lugar sin convertir la espera en preocupación."
+  },
+  {
+    "file": "content/regions/lethra.json",
+    "path": "npcs.lethra_nera_mercado.topics.cuidados",
+    "text": "El lugar de cuidados está junto a Taller de fibras. Cuesta dieciocho sellos y atiende heridas, no sólo hambre. Está cerca del pueblo: no hace falta cruzar otras regiones."
+  },
+  {
+    "file": "content/regions/lethra.json",
+    "path": "npcs.lethra_ume.topics.atención",
+    "text": "La recuperación cuesta dieciocho sellos: atendemos un grado de herida, quitamos la fatiga y recuperamos vitalidad hasta el noventa por ciento. Después vuelves a disponer de margen para descansar. No necesitas comprar un arma ni ganar una pelea para pedir cuidados."
+  },
+  {
+    "file": "content/regions/lethra.json",
+    "path": "npcs.lethra_ume.topics.salida",
+    "text": "Puedes volver por la misma puerta. Si no puedes pagar ahora, descansa lo que permita tu estado y evita entrar otra vez en peligro; una retirada no borra tu progreso."
+  }
+]

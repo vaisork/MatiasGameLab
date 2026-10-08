@@ -1,0 +1,26 @@
+{
+  "scope": "Read-only saved discovered map snapshot: 110 known places, no player actions. Real Chrome desktop/mobile viewport emulation.",
+  "results": [
+    {
+      "width": 1440,
+      "total": 110,
+      "fullyVisible": 110,
+      "scale": 0.11474558670820353,
+      "errors": []
+    },
+    {
+      "width": 393,
+      "total": 110,
+      "fullyVisible": 110,
+      "scale": 0.08246618106139438,
+      "errors": []
+    },
+    {
+      "width": 320,
+      "total": 110,
+      "fullyVisible": 110,
+      "scale": 0.06659729448491156,
+      "errors": []
+    }
+  ]
+}

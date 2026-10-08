@@ -1,0 +1,271 @@
+{
+  "account": {
+    "id": 1,
+    "username": "isolatedart"
+  },
+  "actions": [
+    {
+      "disabled": false,
+      "id": "buscar",
+      "label": "Buscar alrededor",
+      "reason": "Revisar suelo, refugios y objetos que hayan quedado en el camino."
+    },
+    {
+      "id": "examinar_criatura",
+      "label": "Examinar Rasgacumbres",
+      "target": "rasgacumbres"
+    },
+    {
+      "id": "acercarse",
+      "label": "Observar de cerca a Rasgacumbres",
+      "target": "rasgacumbres"
+    },
+    {
+      "id": "mirar",
+      "label": "Mirar"
+    },
+    {
+      "id": "observar",
+      "label": "Observar"
+    },
+    {
+      "id": "examinar",
+      "label": "Examinar peldaños",
+      "target": "peldaños"
+    },
+    {
+      "id": "examinar",
+      "label": "Examinar canal",
+      "target": "canal"
+    },
+    {
+      "disabled": false,
+      "id": "mover",
+      "label": "Sur · Salida por explorar",
+      "reason": "",
+      "target": "sur"
+    },
+    {
+      "disabled": false,
+      "id": "mover",
+      "label": "Norte · Plaza de Khariel",
+      "reason": "",
+      "target": "norte"
+    },
+    {
+      "id": "evaluar",
+      "label": "Evaluar Rasgacumbres",
+      "target": "rasgacumbres"
+    },
+    {
+      "id": "desequipar",
+      "label": "Guardar arma",
+      "target": "weapon"
+    },
+    {
+      "disabled": false,
+      "id": "equipar",
+      "label": "Equipar Puñal de camino",
+      "reason": "",
+      "target": "punal_camino"
+    }
+  ],
+  "ambient": {
+    "region": "hoshai",
+    "time_of_day": "Día",
+    "timestamp": 43200,
+    "weather": "Nieve",
+    "weather_description": "Las viviendas despejan escalones y separan las cargas del suelo frío; el ascenso conserva nieve donde no llega el sol."
+  },
+  "authenticated": true,
+  "bestiary": [
+    {
+      "description": "Las señales de altura anuncian una amenaza muy superior a la fauna del camino. Mirar el terreno alterado desde un apoyo seguro permite comprender la diferencia sin convertir la observación en un combate.",
+      "first_seen": 43200,
+      "id": "rasgacumbres",
+      "illustration": "/client/art/bestiary/rasgacumbres-anime-v2.webp",
+      "name": "Rasgacumbres",
+      "status": "avistado"
+    }
+  ],
+  "character": {
+    "attributes": {
+      "agilidad": 10,
+      "destreza": 10,
+      "fuerza": 10,
+      "intelecto": 10,
+      "percepcion": 10,
+      "presencia": 10,
+      "resistencia": 10,
+      "voluntad": 10
+    },
+    "class_id": "sombra",
+    "combat": null,
+    "equipment": {
+      "armor": null,
+      "block": null,
+      "weapon": "punal_camino"
+    },
+    "fatigue": 0,
+    "hp": 100,
+    "hp_max": 100.0,
+    "id": 1,
+    "level": 1,
+    "location": "hoshai_escalones_sol",
+    "name": "Arte temporal",
+    "pa": 0,
+    "pp": 0,
+    "seals": 20,
+    "species": "felaryn",
+    "status": "approved",
+    "wound": null,
+    "xp": 0,
+    "xp_next": 100
+  },
+  "characters": [
+    {
+      "class_id": "sombra",
+      "id": 1,
+      "name": "Arte temporal",
+      "species": "felaryn",
+      "status": "approved"
+    }
+  ],
+  "chat": [],
+  "inventory": [
+    {
+      "activated": true,
+      "damage": 8,
+      "id": "punal_camino",
+      "kind": "weapon",
+      "name": "Puñal de camino",
+      "quantity": 1
+    }
+  ],
+  "journal": [],
+  "map": {
+    "edges": [
+      [
+        "home:1",
+        "khariel_centro"
+      ],
+      [
+        "hoshai_escalones_sol",
+        "khariel_centro"
+      ]
+    ],
+    "frontiers": [
+      {
+        "direction": "sur",
+        "from": "hoshai_escalones_sol"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "home:1",
+        "kind": "home",
+        "name": "Hogar sobre el descanso de Khariel",
+        "region": "hoshai",
+        "unexplored_directions": [],
+        "visited": true
+      },
+      {
+        "id": "khariel_centro",
+        "kind": "settlement",
+        "name": "Plaza de Khariel",
+        "region": "hoshai",
+        "unexplored_directions": [
+          "oeste",
+          "este",
+          "norte"
+        ],
+        "visited": true
+      },
+      {
+        "id": "hoshai_escalones_sol",
+        "kind": "road",
+        "name": "Escalones al sol",
+        "region": "hoshai",
+        "unexplored_directions": [
+          "sur"
+        ],
+        "visited": true
+      }
+    ],
+    "routes": [
+      {
+        "direction": "salir",
+        "from": "home:1",
+        "to": "khariel_centro"
+      },
+      {
+        "direction": "hogar",
+        "from": "khariel_centro",
+        "to": "home:1"
+      },
+      {
+        "direction": "norte",
+        "from": "hoshai_escalones_sol",
+        "to": "khariel_centro"
+      },
+      {
+        "direction": "sur",
+        "from": "khariel_centro",
+        "to": "hoshai_escalones_sol"
+      }
+    ]
+  },
+  "narrative": [
+    {
+      "kind": "world",
+      "text": "Escalones de tamaños distintos enlazan la terraza baja con las casas: unos están tallados y otros reparados con piedras nuevas. Al sur está la terraza de cargas; al norte llegas a Khariel. Un canal corre al lado de los peldaños. Las reparaciones dejan apoyos para pies humanos y Felaryn."
+    },
+    {
+      "kind": "danger",
+      "text": "Ves marcas profundas de garras. Más arriba, un Rasgacumbres se mueve entre las rocas; puedes mantener la distancia."
+    },
+    {
+      "kind": "world",
+      "text": "Al dejar la plaza, el canal acompaña el descenso. Desde el primer peldaño ya ves las cuerdas tendidas en la terraza inferior."
+    },
+    {
+      "kind": "discovery",
+      "text": "Añades Rasgacumbres al bestiario."
+    }
+  ],
+  "presence": [],
+  "quests": [],
+  "room": {
+    "description": "Escalones de tamaños distintos enlazan la terraza baja con las casas: unos están tallados y otros reparados con piedras nuevas. Al sur está la terraza de cargas; al norte llegas a Khariel. Un canal corre al lado de los peldaños. Las reparaciones dejan apoyos para pies humanos y Felaryn.",
+    "exits": [
+      {
+        "direction": "sur",
+        "label": "Sur"
+      },
+      {
+        "direction": "norte",
+        "label": "Norte"
+      }
+    ],
+    "id": "hoshai_escalones_sol",
+    "kind": "road",
+    "name": "Escalones al sol",
+    "npcs": [],
+    "region": "hoshai"
+  },
+  "scene": [
+    {
+      "kind": "world",
+      "text": "Escalones de tamaños distintos enlazan la terraza baja con las casas: unos están tallados y otros reparados con piedras nuevas. Al sur está la terraza de cargas; al norte llegas a Khariel. Un canal corre al lado de los peldaños. Las reparaciones dejan apoyos para pies humanos y Felaryn."
+    },
+    {
+      "kind": "danger",
+      "text": "Ves marcas profundas de garras. Más arriba, un Rasgacumbres se mueve entre las rocas; puedes mantener la distancia."
+    },
+    {
+      "kind": "world",
+      "text": "Al dejar la plaza, el canal acompaña el descenso. Desde el primer peldaño ya ves las cuerdas tendidas en la terraza inferior."
+    }
+  ],
+  "version": 5
+}

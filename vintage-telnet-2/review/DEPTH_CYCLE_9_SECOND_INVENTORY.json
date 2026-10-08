@@ -1,0 +1,548 @@
+[
+  [
+    "nhal",
+    "nhal_arbol_umbral",
+    "rain",
+    "Las gotas que llegaron de la cuenca se vuelven caídas lentas de hojas altas. La tierra se oscurece por manchas, no de una vez. La recolectora guarda lo seco bajo una raíz antes de seguir trabajando."
+  ],
+  [
+    "nhal",
+    "nhal_raices_altas",
+    "night",
+    "Las raíces ofrecen líneas cercanas, mientras los huecos laterales pierden profundidad visible. La nota recibe una luz breve y vuelve a cubrirse. Las voces se mantienen bajas para escuchar a quien llega detrás, no porque todo ruido convoque peligro."
+  ],
+  [
+    "nhal",
+    "velmora_centro",
+    "return",
+    "Los golpes del taller permiten situar el borde norte del claro. Al otro lado de la mesa, la entrada al patio del relato se distingue entre dos raíces."
+  ],
+  [
+    "nhal",
+    "nhal_secadero_sombra",
+    "day",
+    "La encargada gira el juguete cuando la luz abandona uno de sus lados. Un niño espera sin tocarlo y pregunta por la reparación. La encargada le acerca el juguete a la parte seca: podrá llevarlo cuando ese lado deje de ceder al tocarlo."
+  ],
+  [
+    "nhal",
+    "nhal_secadero_sombra",
+    "return",
+    "Reconoces el apoyo del juguete aunque ya esté vacío. Si volvió a su dueño, el secadero puede ofrecer otro trabajo sin perder la historia de esa espera; el lugar conserva memoria mediante usos que llegan a concluir."
+  ],
+  [
+    "nhal",
+    "nhal_agua_sombreada",
+    "rain",
+    "Las gotas vencen algunos hilos y la araña se recoge cerca de la raíz. Las hojas retenidas alteran una pequeña corriente. La lluvia cambia el trabajo del animal sin hacer que toda tela rota signifique amenaza o pérdida."
+  ],
+  [
+    "nhal",
+    "nhal_agua_sombreada",
+    "return",
+    "Vuelves al apoyo natural entre raíces. Desde él puedes mirar el borde de los hilos sin hacer caer hojas sobre la corriente."
+  ],
+  [
+    "nhal",
+    "nhal_sendero_altura",
+    "night",
+    "Las luces domésticas quedan más abajo y se pierden entre árboles. El descanso se distingue por raíces cercanas, no por el borde cubierto. Un farol acompaña el ascenso sin prometer una vista completa del Dosel Alto."
+  ],
+  [
+    "hoshai",
+    "hoshai_estribacion",
+    "day",
+    "Una pastora recoge una cuerda del arroyo y deja libre la entrada al ascenso. Su compañero espera con las bestias en terreno ancho, sin exigirles girar donde el camino ya empieza a estrecharse."
+  ],
+  [
+    "hoshai",
+    "hoshai_estribacion",
+    "rain",
+    "El arroyo crece hacia la banda de pasto pisado. La pastora aparta a las bestias antes de que se mezclen sus huellas con la corriente. La entrada firme continúa junto al talud, no por el centro brillante."
+  ],
+  [
+    "hoshai",
+    "hoshai_pinar_discontinuo",
+    "description",
+    "Los pinos dejan claros desde los que se ve el valle. Al sur vuelve el camino de la pared; al norte corre agua fría. Un desvío al oeste lleva al abrigo de piñas y al collado. Las piñas se acumulan donde el viento no las alcanza."
+  ],
+  [
+    "hoshai",
+    "hoshai_pinar_discontinuo",
+    "return",
+    "El grupo de piñas junto a la roca marca el desvío que recuerdas. Al norte se oye el agua fría; por el otro claro vuelve el camino de la pared."
+  ],
+  [
+    "hoshai",
+    "hoshai_terraza_cargas",
+    "description",
+    "El paso estrecho desemboca en una terraza ancha. Al sur queda el cuello de roca; al norte suben los escalones de Khariel. Un sendero al este lleva al mirador. Las cargas descansan abiertas, con sus cuerdas lejos del borde. Un techo del pueblo asoma sobre la subida. Una lona al oeste señala un campamento junto al camino; se puede llegar sin bajar por toda la sierra."
+  ],
+  [
+    "hoshai",
+    "hoshai_terraza_cargas",
+    "day",
+    "Dos comerciantes redistribuyen paquetes para que ninguno de sus acompañantes cargue un solo lado. Un aprendiz recoge las cuerdas sobrantes antes de que otro viaje salga del cuello. La terraza sirve de encuentro, no de almacén permanente."
+  ],
+  [
+    "hoshai",
+    "hoshai_terraza_cargas",
+    "rain",
+    "Los viajeros vuelven las cubiertas con el lado seco hacia los paquetes y dejan escapar el agua por el borde exterior. Las cuerdas mojadas se separan de las de repuesto para no llevar humedad a toda la carga."
+  ],
+  [
+    "hoshai",
+    "hoshai_taller_apoyos",
+    "day",
+    "Daren pasa una mano por una pieza y encuentra una astilla. La quita con una herramienta pequeña y deja que su aprendiz repita el gesto en el otro extremo."
+  ],
+  [
+    "hoshai",
+    "hoshai_mercado_cintas",
+    "description",
+    "Entre muros que cortan el viento, los puestos ofrecen comida envuelta y cintas para las cargas. Puedes probar una atadura sobre las barras. La única salida vuelve al oeste, a la plaza. Los colores de las cintas indican qué bulto abrir primero y cuál mantener seco. Una puerta al este lleva al lugar de cuidados; la atención está separada del trabajo y del tránsito."
+  ],
+  [
+    "hoshai",
+    "hoshai_patio_hogares",
+    "rain",
+    "Las cuerdas de ropa se retiran hacia los muros y dejan la rampa libre. Los vecinos suben recipientes antes de que el agua alcance su descanso. La protección de una puerta no tiene por qué cerrar el patio entero."
+  ],
+  [
+    "hoshai",
+    "hoshai_caseta_revision",
+    "description",
+    "La caseta está pegada a la roca, con la puerta protegida del viento. Dentro hay tiras de repuesto y tablillas con dibujos del nudo. Las herramientas se guardan junto a la entrada. El camino del sur vuelve al mirador y, desde allí, a la terraza."
+  ],
+  [
+    "hoshai",
+    "hoshai_aprisco_abierto",
+    "return",
+    "Recuerdas la abertura ancha por donde pasó el rebaño. El apoyo vencido queda a un lado; las huellas se reúnen detrás, camino del agua."
+  ],
+  [
+    "hoshai",
+    "hoshai_hombro_lajas",
+    "description",
+    "El sendero dobla entre lajas inclinadas hacia una hondonada. Su brillo puede hacerlas parecer planas. Al este vuelves al aprisco; al oeste bajas hacia la garganta. Una tablilla recoge noticias de los viajeros. Detrás aún se alcanza a ver el pino del collado."
+  ],
+  [
+    "hoshai",
+    "hoshai_campamento_lona",
+    "night",
+    "Un farol permite reconocer el camino de regreso a la terraza."
+  ],
+  [
+    "korven",
+    "korven_loma_cascajo",
+    "return",
+    "El montón lateral tiene una franja de cascajo recién removido. Camino de la cuenca, la tierra ocupa más espacio entre las piedras antes de que aparezcan los muros."
+  ],
+  [
+    "korven",
+    "korven_pared_sotavento",
+    "night",
+    "El resguardo conserva silencio mientras la meseta devuelve sonidos de cargas distantes. Las luces se mantienen lejos de la pared para no dejar todo el paso en sombras. Los apoyos bajos siguen siendo útiles para cuerpos distintos."
+  ],
+  [
+    "korven",
+    "korven_hitos_paso",
+    "day",
+    "Una revisora compara el siguiente mojón desde el suelo del paso, no desde lo alto de su carga. Retira una piedra añadida que lo hacía visible desde una cavidad engañosa. El mantenimiento también puede consistir en quitar."
+  ],
+  [
+    "korven",
+    "korven_asiento_revision",
+    "description",
+    "El camino se ensancha junto a una roca marcada por golpes. Hay un banco donde dejar la carga. Al este queda el paso estrecho; al oeste sigues hacia Brumak. La senda del norte sube a la meseta de relevo. Sobre la mesa descansa una capa fina de polvo."
+  ],
+  [
+    "korven",
+    "korven_asiento_revision",
+    "night",
+    "Los golpes se interrumpen para no confundir la revisión con sonidos del camino. Una cubierta protege la nota pendiente. Quien llega tarde reconoce el banco disponible, pero no deduce por silencio que la piedra haya sido aprobada."
+  ],
+  [
+    "korven",
+    "korven_almacen_grano",
+    "day",
+    "Una encargada limpia el apoyo antes de recibir una cesta. Su compañero pregunta de qué camino llega y retira la tapa: el borde tiene polvo, el centro aún guarda humedad."
+  ],
+  [
+    "korven",
+    "korven_calle_fachadas",
+    "description",
+    "La calle sigue junto a casas metidas en la roca. Sus puertas tienen distinta profundidad y pequeñas repisas donde esperan objetos. Al norte queda el patio de Brumak; al sur bajas a la cisterna. El paso permite cruzar sin entrar en las viviendas ni golpear sus cargas. Una puerta al este lleva al lugar de cuidados; la atención está separada del trabajo y del tránsito."
+  ],
+  [
+    "korven",
+    "korven_calle_fachadas",
+    "day",
+    "Una vecina deja un recipiente en la repisa mientras ayuda a cerrar una cubierta del lado del viento. Un niño devuelve una herramienta al entrante correcto. La calle enseña pertenencias por relaciones visibles, no por nombres pegados a todo."
+  ],
+  [
+    "korven",
+    "korven_cisterna_comun",
+    "rain",
+    "El canal exterior recibe agua con polvo y la cuidadora comprueba la separación con la cisterna. No celebra toda lluvia como abastecimiento directo. Una cubierta protege el apoyo limpio donde reposa la vara de medida."
+  ],
+  [
+    "korven",
+    "korven_deposito_cubiertas",
+    "day",
+    "La encargada comprueba una cubierta desde el borde hasta el centro antes de pasarla a la franja seca. Un vecino pregunta por su préstamo anterior. La respuesta depende del objeto, no de cuánto tiempo lleva conversando con ella."
+  ],
+  [
+    "korven",
+    "korven_deposito_cubiertas",
+    "rain",
+    "Las devoluciones ocupan toda la franja húmeda y la encargada abre el segundo hueco de aire. Prestar una cubierta seca exige decidir a qué trabajo puede servir ahora, no fingir que la lluvia aumenta las reservas."
+  ],
+  [
+    "korven",
+    "korven_mirador_grietas",
+    "night",
+    "El borde sigue visible con la luz de la cisterna, mientras las plataformas exteriores se juntan en una sola masa. La observadora recoge sus notas. Un sonido desde una grieta no permite medir su profundidad."
+  ],
+  [
+    "korven",
+    "korven_cauce_observacion",
+    "description",
+    "El cauce está lleno de piedras movidas. Algunas tienen una cara limpia; otras conservan polvo viejo donde estuvieron apoyadas. Un bloque ocupa el borde del paso. Al norte subes al mirador y al este llegas a la plataforma donde se escuchan los movimientos del suelo."
+  ],
+  [
+    "korven",
+    "korven_cauce_observacion",
+    "rain",
+    "El agua borra polvo de varias caras y vuelve menos clara la señal de movimiento. La revisora registra la lluvia antes de interpretar la diferencia. La prudencia no consiste en llamar recién movida a cada piedra mojada."
+  ],
+  [
+    "korven",
+    "korven_plataforma_escucha",
+    "day",
+    "La revisora espera a que termine el paso de una carga antes de mirar el recipiente. Un ayudante escribe qué sonido acompañó el movimiento. La señal necesita una causa posible, una comparación que pueda repetirse desde el mismo apoyo."
+  ],
+  [
+    "korven",
+    "korven_plataforma_escucha",
+    "rain",
+    "Las gotas hacen moverse el recipiente y la revisora lo retira hasta encontrar una comparación útil. El agua impide usar la misma señal de la jornada seca. El registro anota esa limitación en vez de ocultarla."
+  ],
+  [
+    "korven",
+    "korven_entrante_piezas",
+    "rain",
+    "Las muestras mojadas quedan sobre otra estera y la alfarera mantiene cubierta la pareja seca. El lugar no pierde toda utilidad, pero cambia qué puede compararse. La lluvia no autoriza una conclusión más rápida sobre el horno."
+  ],
+  [
+    "korven",
+    "korven_roca_cascaron",
+    "description",
+    "Una roca cubierta de líquenes queda al final del desvío. Cerca de su base hay marcas de roce. Un caparazón moteado se aparta hacia una grieta estrecha. Puedes observar desde fuera del cascajo. El camino de regreso está al norte, sobre el cauce seco."
+  ],
+  [
+    "korven",
+    "korven_almacen_entrada",
+    "night",
+    "Un farol colgado junto a la entrada señala el camino de vuelta. Los rincones siguen oscuros."
+  ],
+  [
+    "korven",
+    "korven_almacen_balanzas",
+    "night",
+    "Un farol colgado junto a la entrada señala el camino de vuelta. Los rincones siguen oscuros."
+  ],
+  [
+    "korven",
+    "korven_almacen_cruce",
+    "night",
+    "Un farol colgado junto a la entrada señala el camino de vuelta. Los rincones siguen oscuros."
+  ],
+  [
+    "korven",
+    "korven_almacen_lateral",
+    "night",
+    "Un farol colgado junto a la entrada señala el camino de vuelta. Los rincones siguen oscuros."
+  ],
+  [
+    "korven",
+    "korven_almacen_fondo",
+    "description",
+    "Una placa de balanza está apoyada contra un saco. Tiene tres muescas en el borde. El paso norte vuelve al cruce; el oriental conecta con el pasillo lateral. Las paredes no tienen otras salidas."
+  ],
+  [
+    "korven",
+    "korven_almacen_fondo",
+    "night",
+    "Un farol colgado junto a la entrada señala el camino de vuelta. Los rincones siguen oscuros."
+  ],
+  [
+    "edran",
+    "valdren_huertos",
+    "day",
+    "Una familia lleva hojas a la cocina sin usar cestos: la distancia es tan corta que basta doblar el delantal. La encargada del huerto deja espacio para quienes necesitan pasar con un carro."
+  ],
+  [
+    "edran",
+    "valdren_cobertizo",
+    "return",
+    "Ahora sabes dónde esperar sin obligar a Bren a interrumpir una prueba. El crujido procede del carro alto, no de las ruedas almacenadas contra la pared."
+  ],
+  [
+    "edran",
+    "edran_acequia",
+    "rain",
+    "La acequia sube hasta las hojas enganchadas. El terraplén continúa seco mientras el agua empieza a correr por el camino de regreso al huerto."
+  ],
+  [
+    "edran",
+    "edran_surcos",
+    "return",
+    "Ahora diferencias tierra nueva, tallos antiguos y sendero sin sembrar antes de avanzar. El cobertizo queda al otro lado de una depresión; la distancia no se mide sólo mirándolo."
+  ],
+  [
+    "edran",
+    "edran_loma",
+    "dawn",
+    "Una claridad baja dibuja primero los techos de Valdren. El campo aún conserva sombra y el camino de carros se reconoce por el aire sobre sus rodadas."
+  ],
+  [
+    "edran",
+    "edran_arboleda",
+    "description",
+    "Tres árboles dan sombra al banco de tierra y al sendero. Las raíces del último levantan el suelo. Entre las ramas ves el camino de carros, al norte. El cobertizo queda al oeste; la senda sur rodea los campos y vuelve al pueblo."
+  ],
+  [
+    "edran",
+    "edran_arboleda",
+    "night",
+    "Las tres copas se funden en una mancha, pero las raíces siguen separando sus lugares. El camino de carros se oye a través del hueco que de día permite verlo."
+  ],
+  [
+    "edran",
+    "edran_casa_camino",
+    "night",
+    "Una lámpara ilumina la mesa elevada y deja oscuro el espacio de cargas. Las tablillas siguen ordenadas por destino, no por el momento de llegada de cada viajero."
+  ],
+  [
+    "edran",
+    "edran_linde_piedra",
+    "description",
+    "Las piedras aparecen cada vez más juntas. Al sur quedan el prado y los campos de Edran. El paso norte entra en Korven entre dos lomos de roca. Las rodadas terminan aquí; una explanada ofrece sitio para cambiar las cargas de apoyo."
+  ],
+  [
+    "edran",
+    "edran_linde_piedra",
+    "day",
+    "Dos porteadores trasladan sacos de un carro a una estructura más estrecha. Antes de avanzar comprueban dónde cabrá la carga, no sólo cuánto pesa."
+  ],
+  [
+    "edran",
+    "edran_linde_piedra",
+    "night",
+    "La tierra clara termina en manchas de piedra oscura. Puedes oír voces que llegan del paso norte sin distinguir aún a quienes las llevan."
+  ],
+  [
+    "edran",
+    "edran_puente_juncos",
+    "description",
+    "El agua corre bajo las tablas separadas del puente. Sus apoyos se ven desde la orilla. Edran queda al oeste; al este cruzas hacia Lethra. Una tabla gastada marca dónde descansar una carga. Al sur puedes seguir junto a los sauces. Una marca antigua llama Vado de Juncos a este paso. El puente permite cruzarlo cuando el cauce cubre las piedras del fondo."
+  ],
+  [
+    "edran",
+    "edran_puente_juncos",
+    "night",
+    "El agua se oye por los huecos entre tablas. La ribera oriental conserva el contorno de una subida; la occidental vuelve a esconderse entre juncos."
+  ],
+  [
+    "edran",
+    "edran_puente_juncos",
+    "return",
+    "Reconoces el sitio de espera en el lado alto. El puente conecta dos formas de usar el terreno sin exigir que una persona se detenga sobre el agua."
+  ],
+  [
+    "edran",
+    "valdren_calle_alta",
+    "return",
+    "Reconoces el tejado viejo por su línea quebrada. La casa que añadieron al lado queda un peldaño más alta, camino de la fragua."
+  ],
+  [
+    "edran",
+    "valdren_patio_ropa",
+    "return",
+    "Las dos alturas de cuerda te permiten distinguir usos sin tocar nada. El recorrido junto a la pared sigue libre aunque el patio esté lleno de trabajo."
+  ],
+  [
+    "edran",
+    "edran_bajo_humedo",
+    "night",
+    "La humedad se nota en el aire antes de poder distinguir los pequeños canales. El borde alto conserva el camino de regreso."
+  ],
+  [
+    "edran",
+    "edran_canal_entrada",
+    "night",
+    "Un farol colgado junto a la entrada señala el camino de vuelta. Los rincones siguen oscuros."
+  ],
+  [
+    "edran",
+    "edran_canal_herramientas",
+    "night",
+    "Un farol colgado junto a la entrada señala el camino de vuelta. Los rincones siguen oscuros."
+  ],
+  [
+    "edran",
+    "edran_canal_bifurcacion",
+    "description",
+    "El canal continúa al este bajo una compuerta abierta. Al sur, un escalón seco entra en una cámara donde alguien ha dejado una taza. La escalera de salida queda al oeste. Hay huellas de botas, no de una criatura."
+  ],
+  [
+    "edran",
+    "edran_canal_bifurcacion",
+    "night",
+    "Un farol colgado junto a la entrada señala el camino de vuelta. Los rincones siguen oscuros."
+  ],
+  [
+    "edran",
+    "edran_canal_bifurcacion",
+    "clear",
+    "Una hoja se ha detenido en la unión de los ramales; el paso conserva una franja seca."
+  ],
+  [
+    "edran",
+    "edran_canal_refugio",
+    "night",
+    "Un farol colgado junto a la entrada señala el camino de vuelta. Los rincones siguen oscuros."
+  ],
+  [
+    "edran",
+    "edran_canal_compuerta",
+    "night",
+    "Un farol colgado junto a la entrada señala el camino de vuelta. Los rincones siguen oscuros."
+  ],
+  [
+    "edran",
+    "edran_canal_repisa",
+    "night",
+    "Un farol colgado junto a la entrada señala el camino de vuelta. Los rincones siguen oscuros."
+  ],
+  [
+    "veyra",
+    "veyra_plaza_rutas",
+    "night",
+    "El centro queda libre, pero las entradas no desaparecen en la oscuridad. Cada patio mantiene una luz baja junto al umbral. Las conversaciones se trasladan hacia los muros, donde se puede oír sin estorbar."
+  ],
+  [
+    "veyra",
+    "veyra_calle_toldos",
+    "description",
+    "Toldos remendados cubren la calle. Cada taller ha reparado su tramo con una tela distinta. El mercado queda al oeste. Al sur sales hacia los canales; al este llega el camino del bosque, por donde entran haces de madera."
+  ],
+  [
+    "veyra",
+    "veyra_patio_porte",
+    "description",
+    "Los animales descansan a la sombra, junto a un bebedero. Las cargas pasan por fuera para dejarles espacio. Hay argollas altas y bajas para sujetarlas. Al este vuelves a la plaza; al oeste sales al camino de piedra, hacia Korven."
+  ],
+  [
+    "veyra",
+    "veyra_puerta_piedra",
+    "description",
+    "La puerta deja atrás el patio de los animales, al este. Al oeste, el camino de Korven cruza tierra seca y piedras sueltas. Los carros llevan cargas bajas, sujetas con tablas. Las casas cercanas tienen ventanas pequeñas para frenar el polvo."
+  ],
+  [
+    "veyra",
+    "veyra_puerta_piedra",
+    "rain",
+    "El polvo se convierte en una costra oscura junto a la puerta. Los separadores mojados se revisan de nuevo porque las cargas no deben apoyarse unas contra otras. El agua desaparece pronto entre piedras del terraplén."
+  ],
+  [
+    "veyra",
+    "veyra_rampa_grava",
+    "night",
+    "Las luces de la puerta quedan cuesta abajo. Con un farol puedes ver las piedras cercanas, pero no el terreno detrás de la siguiente loma."
+  ],
+  [
+    "veyra",
+    "veyra_rampa_grava",
+    "rain",
+    "El arroyo oculto se hace audible bajo las piedras. Una corriente corta cruza la rampa sin borrar la dirección general. Las huellas profundas del descansadero aconsejan apoyar las cargas sobre el borde firme en vez del centro."
+  ],
+  [
+    "veyra",
+    "veyra_hondonada_canales",
+    "description",
+    "Varios hilos de agua se reúnen en un canal. El camino sigue por la orilla alta y cruza un desagüe sobre una pasarela corta. Al norte queda Vaisgard; al sur la vegetación se vuelve más densa y empieza el camino de Lethra."
+  ],
+  [
+    "lethra",
+    "lethra_ribera_seca",
+    "return",
+    "El apoyo de la recolectora permite reconocer el inicio de la región incluso si está vacío. Reconoces la ruta alta y la bajada donde se apoyan recipientes. El espacio sigue dispuesto para el trabajo cuando las personas ya se han ido."
+  ],
+  [
+    "lethra",
+    "lethra_tierra_esponjosa",
+    "description",
+    "El suelo firme se corta en manchas de hojas que se hunden al pisarlas. Al norte está la ribera seca; al sur, las raíces llevan al juncal. Dos varas marcan el paso estrecho para las cargas. Una rana permanece quieta sobre el barro."
+  ],
+  [
+    "lethra",
+    "lethra_tierra_esponjosa",
+    "day",
+    "Una viajera se detiene a cambiar el bulto de hombro y un acompañante deja pasar a la rana antes de seguir. La pausa produce un silencio breve, lleno de insectos que seguían sonando bajo las voces."
+  ],
+  [
+    "lethra",
+    "lethra_tierra_esponjosa",
+    "night",
+    "El suelo firme deja de distinguirse por color y las varas adquieren mayor importancia. Los insectos ocupan el sonido de la senda. Un farol muestra apoyos cercanos sin volver sólida toda la franja cubierta de hojas."
+  ],
+  [
+    "lethra",
+    "lethra_cruce_canales",
+    "night",
+    "La corriente rápida conserva un rumor y el remanso devuelve reflejos más quietos. Las plantas dejan de mostrar su inclinación. Una luz sobre la plataforma ayuda a ver lo cercano, pero no descubre el fondo de ninguno de los canales."
+  ],
+  [
+    "lethra",
+    "lethra_cruce_canales",
+    "rain",
+    "Las gotas dibujan movimiento en el remanso y dificultan comparar la hoja con su giro habitual. La observadora mira el borde de plantas en vez de seguir una superficie agitada. El canal rápido reúne agua primero."
+  ],
+  [
+    "lethra",
+    "lethra_ribera_firme",
+    "rain",
+    "La ribera recoge agua entre apoyos y los vecinos cambian sus recipientes a los más altos. Las envolturas se mantienen cerradas durante el traslado. El trabajo cotidiano sigue, pero ahora necesita manos que sostengan en vez de sólo recibir."
+  ],
+  [
+    "lethra",
+    "lethra_banco_conversacion",
+    "day",
+    "La habitante repasa una frase antes de decirla y luego guarda silencio para escuchar pasos. Un vecino deja un recipiente y continúa hacia la cocina. Una mujer guarda sitio con un recipiente vacío. Quien espera a su hermana mira la ventana de la cocina y pregunta si ya empezó la cena."
+  ],
+  [
+    "lethra",
+    "lethra_banco_conversacion",
+    "rain",
+    "Una cubierta corta protege el centro del banco, pero las personas se acercan para no mojar los recipientes. La habitante conserva su frase y deja sitio a alguien más. La espera cambia de postura, no de destinatario."
+  ],
+  [
+    "lethra",
+    "lethra_cocina_reunion",
+    "dawn",
+    "Nima deja la olla preparada y separa hojas sobre un paño. Una mano desde la ventana vecina añade un puñado antes de que ella pueda protestar."
+  ],
+  [
+    "lethra",
+    "lethra_mercado_hojas",
+    "description",
+    "Las barcas traen alimentos en cestas levantadas del fondo. Los puestos separan las envolturas abiertas de las que deben conservar humedad. Huele a hierbas cortadas y madera mojada. Al norte queda la plaza; al sur está el muelle. Los vendedores preparan bultos distintos para comer cerca o viajar."
+  ],
+  [
+    "lethra",
+    "lethra_ribera_oeste",
+    "rain",
+    "El barro de las cargas se mezcla sobre el apoyo exterior y los viajeros mantienen los paquetes bajo la cubierta interior. Las hierbas occidentales retienen agua distinta del canal; la transición no desaparece durante el chaparrón."
+  ]
+]

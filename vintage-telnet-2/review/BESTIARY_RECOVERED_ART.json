@@ -1,0 +1,32 @@
+[
+  {
+    "id": "cornalomo",
+    "source": "/home/jdiaz/proyectos/vintage-telnet-2/assets/vintage-telnet/creatures/cornalomo-anime-v1.webp",
+    "asset": "client/art/bestiary/cornalomo-anime-v1.webp",
+    "sha256": "259dca75f2a8ba90db8dc9b6304349d340b02883ffdc6068b5b3edcfe6c6ac03"
+  },
+  {
+    "id": "cascapedernal",
+    "source": "/home/jdiaz/proyectos/vintage-telnet-2/assets/vintage-telnet/creatures/cascapedernal-anime-v1.webp",
+    "asset": "client/art/bestiary/cascapedernal-anime-v1.webp",
+    "sha256": "e90198f7b45543c3557542339f880a177207250787460379ebb812609e7b16e9"
+  },
+  {
+    "id": "dorsalodo",
+    "source": "/home/jdiaz/proyectos/vintage-telnet-2/assets/vintage-telnet/creatures/dorsalodo-anime-v2.webp",
+    "asset": "client/art/bestiary/dorsalodo-anime-v2.webp",
+    "sha256": "39b70293421510a68f6caebdd510b1921f9598af26cb1f738a59cbcd299f8fd2"
+  },
+  {
+    "id": "hilaria_niebla",
+    "source": "/home/jdiaz/proyectos/vintage-telnet-2/assets/vintage-telnet/creatures/hilaria-anime-v1.webp",
+    "asset": "client/art/bestiary/hilaria-anime-v1.webp",
+    "sha256": "81f8f9457b3db9c4e526338129e03ecb83b9683bc36a7b690fa4c9ddbda7eb36"
+  },
+  {
+    "id": "rasgacorteza",
+    "source": "/home/jdiaz/proyectos/vintage-telnet-2/assets/vintage-telnet/creatures/rasgacorteza-anime-v2.webp",
+    "asset": "client/art/bestiary/rasgacorteza-anime-v2.webp",
+    "sha256": "1eb346bd1cd38033f14ce9511f713033453a24b950e9e494ad4d8c4ee2270b60"
+  }
+]

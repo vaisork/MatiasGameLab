@@ -1,0 +1,22 @@
+{
+  "tool": "gltf-transform4.5.1",
+  "steps": [
+    "resize --width 1024 --height 1024"
+  ],
+  "assets": [
+    {
+      "path": "/home/jdiaz/Escritorio/Vintage Telnet - Meshy/marevyn.glb",
+      "bytes": 21545624,
+      "sha256": "8fd8f1c3f12d47f4a3e6ea5cd6cdd33b710947d79faaeb633bfafafc87410999",
+      "triangles": 3803,
+      "animations": 0
+    },
+    {
+      "path": "client/models/species/marevyn.glb",
+      "bytes": 619060,
+      "sha256": "02f2ff3b5143615f21940818d7efa5898bf41f1bfa9ae188a5e2d2d92330d440",
+      "triangles": 3803,
+      "animations": 0
+    }
+  ]
+}

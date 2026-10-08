@@ -1,0 +1,10 @@
+Validated 2026-10-06 after resumption
+Command: env PYTHONPATH=runtime/python-deps python3 -m unittest discover -s tests
+Ran 90 tests in 34.132s
+OK
+Scope: current engine, transport, persistence, multiplayer, content, power identity, tactical preparation, visit guards and narrative priorities.
+Editorial cycle9 continues; this result does not certify final content quality or production deployment.
+
+Checkpoint C12–C15/gender/Vesperi: unittest discover97 PASS41.076s; backendfocal33 PASS16.612s; browserreportsgender/vesperi-ui-final/bestiary-species-regression. Historical90/94 results do not replace97 current scope.
+
+C16–C18 delivery: unittest99 PASS40.085s; API-recovery96moves122records PASS; commerce110moves131records PASS; C18paired129moves22talks PASS; browser40moves320/393+errorlocal; QAprinting29/passive4/syntax PASS.

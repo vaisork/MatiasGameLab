@@ -1,0 +1,17 @@
+{
+  "before": {
+    "top": 45,
+    "height": 280,
+    "scroll": 510
+  },
+  "after": {
+    "top": 45,
+    "height": 280,
+    "scroll": 510
+  },
+  "actualJourneySteps": 19,
+  "viewport": {
+    "width": 393,
+    "height": 750
+  }
+}
