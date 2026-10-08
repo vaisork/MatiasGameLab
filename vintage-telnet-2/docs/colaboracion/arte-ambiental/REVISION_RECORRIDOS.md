@@ -21,3 +21,39 @@ Revisado en vaisgard-valdren-completo.jpg. Cambio legible de arcos y almacenes a
 Revisión posterior de Vaisgard–Valdren: surcos corregidos a tierra clara; secuencia completa regenerada e inspeccionada. La discontinuidad del mercado aprobado se mantiene documentada.
 
 Lote 9, Veyra–Hoshai: hoja regional inspeccionada junto a Khariel y hogar aprobado. Línea anime/materiales conservados; primeros tramos rebajados a colinas y laderas, raíces con lectura diferente a Nhal. No aprueba aún llegada completa a Khariel.
+
+## Vaisgard–Khariel: 15 habitaciones
+
+Hoja completa inspeccionada. La grava sale de colinas bajas y pasa a pastos, raíces y escalas de altura. Se alternan enclaves abiertos, pared, pinar, agua, señales y estrechamiento; las casas reaparecen sobre la terraza antes de los escalones. Correcciones: acantilados prematuros, huellas simbólicas, hitos indistinguibles y cargas junto al borde. El centro aprobado aporta panorama mayor; conserva su imagen sin reemplazo. Evaluación visual del agente, no validación humana.
+
+Lote 12: hoja de entrada a Korven inspeccionada con Vaisgard y Brumak aprobados. Cambio progresivo a matorral, roderas, arena y roca fracturada; dos grandes piedras distinguen meseta. La ruta completa aún requiere aprobación del paso y banco.
+
+## Vaisgard–Brumak: revisión completa con reserva
+
+Se inspeccionaron las 14 vistas y lotes 12–13. Terreno pasa de cuenca seca a loma, arena de cauce, meseta, reparo, mojones, sombra estrecha y banco; cargas y madera reaparecen antes del pueblo. La imagen antigua aprobada de peldaños introduce montañas alpinas y pinos y rompe la identidad regional. No se cambia el archivo. Preparar alternativa para revisar sustitución; esta reserva impide afirmar continuidad plena de toda la ruta.
+
+Lote 14 de entrada a Lethra inspeccionado junto a Vaisgard y Narevia: raíces, barro, hojas hundidas y juncos progresivos; composiciones abiertas se cierran antes de tablas.
+
+Corrección de revisión: la ampliación de brumak-escalones-anime-v1.webp muestra roca seca y vegetación local. Se retira la clasificación previa de fondo alpino y la propuesta de sustitución basada en esa miniatura. No hay sustitución pendiente por ese motivo. La ruta Vaisgard–Brumak queda revisada sin esa reserva.
+
+## Vaisgard–Narevia: 14 habitaciones
+
+Ruta completa y lote 15 inspeccionados junto a referencia aprobada. Canales urbanos dan paso a suelo firme, hojas blandas, juncos y primeras tablas; corrientes/remanso distinguen cruce; apoyos de carga y curva anticipan muelle y viviendas. Agua, madera y vegetación consistentes. Vara elevada tras corrección. Cargas y comida siguen sus usos sin resolver misiones.
+
+Lote 16 inspeccionado: arbolado cierra progresivamente el lindero; árbol raíz, hojas y tronco ofrecen hitos distintos; no se copiaron viviendas al tramo deshabitado.
+
+## Vaisgard–Velmora: revisión de tono
+
+Recorrido completo inspeccionado tras el lote 17. El bosque interior pierde el exceso de sol y decoración, mientras la ciudad y Velmora retienen actividad y luz propias. Los hitos del viaje son visibles. Pendiente suavizar el salto de luz entre tronco acostado y corteza clara; no requiere sustituir la referencia aprobada del pueblo.
+
+Brumak–Valdren: hoja y ruta completas revisadas, transición de roca a suelo y campos coherente. Casas altas retiradas. Vaisgard–Velmora: tronco corregido y recorrido nuevamente inspeccionado, pendiente anterior de luz resuelto.
+
+Khariel–Velmora: diez habitaciones inspeccionadas en secuencia y contacto, relieve pequeño de senda corregido, transición de vegetación y construcciones coherente.
+
+Velmora–Narevia: once habitaciones y hoja del lote 20 inspeccionadas. El dosel se abre al humedal y las plataformas respetan continuidad del canal.
+
+Canal de Edran: trayecto zanja–entrada–bifurcación–compuerta–repisa y ramas a herramientas/refugio inspeccionados. Secuencias guardadas en canal-edran-1/2/3.jpg. Materiales húmedos y penumbra coherentes; techo cambia de arcos a refuerzos planos entre cámaras. Escala modesta, entradas legibles.
+
+## Lote 23 — trabajos de Nhal
+
+Revisadas tres secuencias canónicas: patio–senda–umbral, centro–taller–secadero y mercado–cocina–patio. La puerta de la senda ahora está abierta; el taller deja holgura alrededor de las raíces; secadero conserva juguete sobre tabla móvil y recipiente sobre aro. Madera oscura, raíz viva y escala doméstica mantienen continuidad. Hojas en recorridos/nhal-*.jpg. Luz cálida localizada coherente con Velmora; no define el interior inquietante del bosque.

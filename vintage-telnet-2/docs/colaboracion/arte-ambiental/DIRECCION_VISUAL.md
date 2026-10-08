@@ -23,6 +23,12 @@ Primero completar cobertura base. Variantes útiles posteriores: lluvia en calle
 
 Vaisgard aprobado incluye relieve muy marcado al fondo. No se sustituye esa imagen: las nuevas vistas usan cuenca baja y sierra distante conforme al canon. Se conserva lenguaje de piedra y madera, sin propagar relieve montañoso a toda Veyra.
 
-La vista de escalones de Brumak recuerda terrazas amplias de Hoshai. Conservarla; en nuevas aproximaciones usar entrantes bajos y roca irregular, sin ampliar monumentalidad.
+La vista aprobada de escalones de Brumak muestra escalera baja, rampa para carros y roca seca. Se conserva; las aproximaciones comparten roca irregular y puertas bajas.
 
 Las 183 salas públicas y las cinco plantillas de hogar son inventarios distintos. Los ids de hogares pertenecen a partidas privadas y no se exportan.
+
+Corrección de revisión: la ampliación de brumak-escalones-anime-v1.webp muestra roca seca y vegetación local. Se retira la clasificación previa de fondo alpino y la propuesta de sustitución basada en esa miniatura. No hay sustitución pendiente por ese motivo. La ruta Vaisgard–Brumak queda revisada sin esa reserva.
+
+## Ajuste de tono autorizado — 8 de octubre de 2026
+
+El creador precisa: anime fantástico, no anime tierno. El mundo debe admitir lugares sobrios y tétricos conforme al canon. Evitar luz dorada, flores decorativas y acogimiento por defecto; mantener contraste legible, materiales desgastados, penumbra y tensión donde la habitación lo indique. No convertir campos habitados en horror ni inventar ruinas o monstruos. Revisar especialmente Nhal y lugares abandonados. El lote 17 se corrige antes de aprobación: reducir el exceso de sol y decoración floral manteniendo sus hitos y continuidad. El arte existente aprobado se conserva.

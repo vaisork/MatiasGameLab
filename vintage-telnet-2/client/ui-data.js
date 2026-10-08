@@ -705,6 +705,104 @@ Object.assign(placeIllustrations,{
   }
 });
 
+Object.assign(placeIllustrations,{
+  "valdren_cobertizo": {
+    "name": "Cobertizo de los carros",
+    "illustration": "/client/art/places/valdren_cobertizo-anime-v1.webp",
+    "thumbnail": "/client/art/places/valdren_cobertizo-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "valdren_comedor": {
+    "name": "Comedor de Elva",
+    "illustration": "/client/art/places/valdren_comedor-anime-v1.webp",
+    "thumbnail": "/client/art/places/valdren_comedor-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "edran_canal_entrada": {
+    "name": "Entrada del canal cubierto",
+    "illustration": "/client/art/places/edran_canal_entrada-anime-v1.webp",
+    "thumbnail": "/client/art/places/edran_canal_entrada-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "edran_canal_bifurcacion": {
+    "name": "Bifurcación del canal",
+    "illustration": "/client/art/places/edran_canal_bifurcacion-anime-v1.webp",
+    "thumbnail": "/client/art/places/edran_canal_bifurcacion-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "edran_canal_compuerta": {
+    "name": "Compuerta abierta",
+    "illustration": "/client/art/places/edran_canal_compuerta-anime-v1.webp",
+    "thumbnail": "/client/art/places/edran_canal_compuerta-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "edran_canal_herramientas": {
+    "name": "Cámara de herramientas",
+    "illustration": "/client/art/places/edran_canal_herramientas-anime-v1.webp",
+    "thumbnail": "/client/art/places/edran_canal_herramientas-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "edran_canal_refugio": {
+    "name": "Refugio junto al canal",
+    "illustration": "/client/art/places/edran_canal_refugio-anime-v1.webp",
+    "thumbnail": "/client/art/places/edran_canal_refugio-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "edran_canal_repisa": {
+    "name": "Repisa de las cuñas",
+    "illustration": "/client/art/places/edran_canal_repisa-anime-v1.webp",
+    "thumbnail": "/client/art/places/edran_canal_repisa-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "veyra_archivo_cargas": {
+    "name": "Archivo de cargas",
+    "illustration": "/client/art/places/veyra_archivo_cargas-anime-v1.webp",
+    "thumbnail": "/client/art/places/veyra_archivo_cargas-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "valdren_casa_semillas": {
+    "name": "Casa de semillas",
+    "illustration": "/client/art/places/valdren_casa_semillas-anime-v1.webp",
+    "thumbnail": "/client/art/places/valdren_casa_semillas-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "valdren_cuidado": {
+    "name": "Casa de cuidados",
+    "illustration": "/client/art/places/valdren_cuidado-anime-v1.webp",
+    "thumbnail": "/client/art/places/valdren_cuidado-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "nhal_umbral_elin": {
+    "name": "Puerta de Elin",
+    "illustration": "/client/art/places/nhal_umbral_elin-anime-v1.webp",
+    "thumbnail": "/client/art/places/nhal_umbral_elin-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "nhal_senda_recipiente": {
+    "name": "Senda hacia Elin",
+    "illustration": "/client/art/places/nhal_senda_recipiente-anime-v1.webp",
+    "thumbnail": "/client/art/places/nhal_senda_recipiente-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "nhal_taller_cortezas": {
+    "name": "Taller de madera",
+    "illustration": "/client/art/places/nhal_taller_cortezas-anime-v1.webp",
+    "thumbnail": "/client/art/places/nhal_taller_cortezas-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "nhal_secadero_sombra": {
+    "name": "Secadero del taller",
+    "illustration": "/client/art/places/nhal_secadero_sombra-anime-v1.webp",
+    "thumbnail": "/client/art/places/nhal_secadero_sombra-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "nhal_cocina_raices": {
+    "name": "Cocina del bosque",
+    "illustration": "/client/art/places/nhal_cocina_raices-anime-v1.webp",
+    "thumbnail": "/client/art/places/nhal_cocina_raices-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  }
+});
 export function placeArt(room){
  if(!room)return null;
  if(room.kind==='home'&&homeArtNames[room.region])return {name:room.name,illustration:`/client/art/places/${homeArtNames[room.region]}-home-anime-v1.webp`,thumbnail:`/client/art/places/${homeArtNames[room.region]}-home-thumb-v1.webp`,caption:'Representación de tu hogar. La hora, el clima y el equipo actual se consultan en el juego.'};

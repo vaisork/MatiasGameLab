@@ -7,3 +7,5 @@
 Propuesta para Codex principal: asignar `thumbnail` explícito a la entrada `valdren_fragua`, apuntando al archivo actual. No requiere generar ni sustituir la ilustración. No se aplicó parche.
 
 Todas las nuevas entradas propuestas incluyen miniatura explícita para evitar depender de sustituciones de nombre.
+
+Corrección de revisión: la ampliación de brumak-escalones-anime-v1.webp muestra roca seca y vegetación local. Se retira la clasificación previa de fondo alpino y la propuesta de sustitución basada en esa miniatura. No hay sustitución pendiente por ese motivo. La ruta Vaisgard–Brumak queda revisada sin esa reserva.
