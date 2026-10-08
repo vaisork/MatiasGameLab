@@ -1,0 +1,325 @@
+{
+ "source_delivery": "Vintage Telnet - Arte - Entrega",
+ "source_estado": {
+  "salas_publicas": 183,
+  "nuevas_imagenes_entregadas": 108,
+  "estados": {
+   "Aprobado (nuevo, pendiente de integración)": 108,
+   "Sin imagen": 67,
+   "Aprobado": 8
+  },
+  "pendientes_especificos": 67,
+  "mision": "INCOMPLETA",
+  "trabajo": "ACTIVO: autorización de reanudación; lote Nhal revisado, siguiente transición Edran–Lethra"
+ },
+ "ids": [
+  "valdren_cobertizo",
+  "valdren_comedor",
+  "edran_canal_entrada",
+  "edran_canal_bifurcacion",
+  "edran_canal_compuerta",
+  "edran_canal_herramientas",
+  "edran_canal_refugio",
+  "edran_canal_repisa",
+  "veyra_archivo_cargas",
+  "valdren_casa_semillas",
+  "valdren_cuidado",
+  "nhal_umbral_elin",
+  "nhal_senda_recipiente",
+  "nhal_taller_cortezas",
+  "nhal_secadero_sombra",
+  "nhal_cocina_raices"
+ ],
+ "files": [
+  {
+   "id": "valdren_cobertizo",
+   "file": "client/art/places/valdren_cobertizo-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "c8059c1d67372f41d150b16c14c86fad7c495a6bf8307854c3970e1edf097057"
+  },
+  {
+   "id": "valdren_cobertizo",
+   "file": "client/art/places/valdren_cobertizo-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "0fd511ecac1951497c2c822dd7d5684e42c2b37ef54a59f1864af46e26cf7e07"
+  },
+  {
+   "id": "valdren_comedor",
+   "file": "client/art/places/valdren_comedor-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "294febe58344a009ba9d721a653aa015b9a839acb56a39f61683ef43296f810f"
+  },
+  {
+   "id": "valdren_comedor",
+   "file": "client/art/places/valdren_comedor-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "486c64d4c03a32f1fdce8eb2928f60d31e2db5bf99d70f9527e2f9840db8e1d5"
+  },
+  {
+   "id": "edran_canal_entrada",
+   "file": "client/art/places/edran_canal_entrada-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "8785804cc715b2723a57b5620d27e9ff8c4c23392a656ea86c14a3f0dac42bf6"
+  },
+  {
+   "id": "edran_canal_entrada",
+   "file": "client/art/places/edran_canal_entrada-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "a2312cacddc1fc607c019ec1bb78c7a7fe47f1b3db6c12002f982a00eb063309"
+  },
+  {
+   "id": "edran_canal_bifurcacion",
+   "file": "client/art/places/edran_canal_bifurcacion-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "ec4a05137135b916980802f7280e13bfa2d3bcc1bb62170e41eb511d7ff23698"
+  },
+  {
+   "id": "edran_canal_bifurcacion",
+   "file": "client/art/places/edran_canal_bifurcacion-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "e42d178916d7016693d1a7fb88910159486508f251555b2c7078d15cf4fd84e0"
+  },
+  {
+   "id": "edran_canal_compuerta",
+   "file": "client/art/places/edran_canal_compuerta-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "d592dc6d1e44deca4e832215a49d8b7bafb52c049c54a0bb750e852c17d1df25"
+  },
+  {
+   "id": "edran_canal_compuerta",
+   "file": "client/art/places/edran_canal_compuerta-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "3d4e61531d01455eab50658bb1d33750b146d38e0b9a017ff85b2a937dd45aba"
+  },
+  {
+   "id": "edran_canal_herramientas",
+   "file": "client/art/places/edran_canal_herramientas-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "8d307742e4ab5e169d73d209eab1441de35ef5978bde4d7537a1e44f48599ee4"
+  },
+  {
+   "id": "edran_canal_herramientas",
+   "file": "client/art/places/edran_canal_herramientas-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "00812f87860f10c25dc5e764f220d007399ccf940f11477809b5c003a04f0b65"
+  },
+  {
+   "id": "edran_canal_refugio",
+   "file": "client/art/places/edran_canal_refugio-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "ea88f1bdb69bcf6941527a3c1531e277a35e96115cb79bfb646de2903cfa6029"
+  },
+  {
+   "id": "edran_canal_refugio",
+   "file": "client/art/places/edran_canal_refugio-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "dc3d0b28c72a29941a0f10596dcc21efc1c100d21cb17e535ea1cea508fcdbb7"
+  },
+  {
+   "id": "edran_canal_repisa",
+   "file": "client/art/places/edran_canal_repisa-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "6b6a39e21d5423af9c97e939db9164176011db7deacc5f3c432ba7868dc8549e"
+  },
+  {
+   "id": "edran_canal_repisa",
+   "file": "client/art/places/edran_canal_repisa-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "dec3483978f72392276ea26769a25c65398adb06751779b0b7047e1d4764deaf"
+  },
+  {
+   "id": "veyra_archivo_cargas",
+   "file": "client/art/places/veyra_archivo_cargas-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "0da0bd7b7cf198395fa40fcdd926e345413091aa9d0ff29dfd4775e391b581ea"
+  },
+  {
+   "id": "veyra_archivo_cargas",
+   "file": "client/art/places/veyra_archivo_cargas-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "7567daab9182a05ef106162da762dbc036081a7c0fa4a14ec55093d670d140ab"
+  },
+  {
+   "id": "valdren_casa_semillas",
+   "file": "client/art/places/valdren_casa_semillas-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "330b9b52e21e542c8730c317e92d37a52779acba93ac58b552076c8a473c022f"
+  },
+  {
+   "id": "valdren_casa_semillas",
+   "file": "client/art/places/valdren_casa_semillas-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "d07922c2b55e67fdc1bb2a1917c3326c2b73a7c046f25cd9cedd0f9fbccd2550"
+  },
+  {
+   "id": "valdren_cuidado",
+   "file": "client/art/places/valdren_cuidado-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "1e966466a129b9028a47705d4f0a7659590b770625cca007c92e9b5b435bdf56"
+  },
+  {
+   "id": "valdren_cuidado",
+   "file": "client/art/places/valdren_cuidado-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "15c8d4c7941864c1fa9952f568d509e7a9683812f87cd98d51c9468d55e32e85"
+  },
+  {
+   "id": "nhal_umbral_elin",
+   "file": "client/art/places/nhal_umbral_elin-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "65a6fce9f9a6006e6526fdf26d725dae76611cfa21376bb4f15cb01b90b6fb80"
+  },
+  {
+   "id": "nhal_umbral_elin",
+   "file": "client/art/places/nhal_umbral_elin-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "21d48fa4dedc3f3dab40855b89af98b7354c62fc4c908281400e19828e89812e"
+  },
+  {
+   "id": "nhal_senda_recipiente",
+   "file": "client/art/places/nhal_senda_recipiente-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "bd7afa01ffa97ca24120e55a43fda17a4780bad3d178c344eeac0c4b8c14c58f"
+  },
+  {
+   "id": "nhal_senda_recipiente",
+   "file": "client/art/places/nhal_senda_recipiente-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "8744cfdd276275bbf2a4d450a6594c83403de53047ea1f217ab3745c579c3db6"
+  },
+  {
+   "id": "nhal_taller_cortezas",
+   "file": "client/art/places/nhal_taller_cortezas-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "e4e700998b65b06f93c88e35e8733ead227de3b33b6e33c5d2f5490611a074c0"
+  },
+  {
+   "id": "nhal_taller_cortezas",
+   "file": "client/art/places/nhal_taller_cortezas-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "4633230e96dd2db15cf9fa54cfb32c87e4003e821249d7753a7adc50dff5b433"
+  },
+  {
+   "id": "nhal_secadero_sombra",
+   "file": "client/art/places/nhal_secadero_sombra-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "ee76c4a9f93f98125b8601a3e957cceedf463c99e023b42455bc52c1f5683fa5"
+  },
+  {
+   "id": "nhal_secadero_sombra",
+   "file": "client/art/places/nhal_secadero_sombra-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "10b189c1ea05a9beed8d8f2e9c890654f88eab7264a767de4457ed00128365b2"
+  },
+  {
+   "id": "nhal_cocina_raices",
+   "file": "client/art/places/nhal_cocina_raices-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "35bab25e9661127cd17e13c0014099d965449c1292904397336af7e79c7c06b9"
+  },
+  {
+   "id": "nhal_cocina_raices",
+   "file": "client/art/places/nhal_cocina_raices-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "bee71233c1ab6d38bbecf1b444a2028704d4435439906d71fc99f8680a6a07a9"
+  }
+ ],
+ "preserved_existing": 210,
+ "approval": "Aprobación artística del agente, sin revisión humana"
+}

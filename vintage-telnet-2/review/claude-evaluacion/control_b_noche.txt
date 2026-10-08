@@ -1,0 +1,123 @@
+[LUGAR] Hogar en el entrante de Brumak
+[world] Tu hogar se recoge en un entrante de piedra que conserva aire fresco mientras el patio exterior recibe polvo. La puerta baja queda junto a un umbral donde puede esperar una visita sin bloquear el paso público. Dentro, los objetos se alcanzan desde apoyos cortos y un corredor deja sitio para mover cargas compactas. Una ranura alta ventila la habitación. Antes de pensar en ruinas o expediciones, el lugar te recuerda algo más cercano: vivir aquí consiste en aprovechar el espacio que la roca realmente ofrece.
+[world] Una luz del patio alcanza el umbral y no ilumina toda la habitación. El banco queda en quietud mientras las conversaciones exteriores se acercan a viviendas. La ranura mantiene aire incluso después de cerrar la puerta.
+[salidas] salir
+=== Hogar → Brumak
+> salir
+[LUGAR] Patio de Brumak
+[world] El patio de Brumak está protegido del viento por la roca que lo rodea, y aquí dentro el aire se calma. Las casas Dravak tienen puertas bajas, pero el paso público deja altura de sobra para cualquiera. Se oye trabajo de piedra en algún sitio: golpes cortos y precisos. Los bancos y las cargas se colocan sin tapar el giro de los carros. Alrededor se reparten el taller, el almacén y las casas.
+[world] En una puerta baja aparecen dos tazas. Sus dueños hablan sentados en el umbral; al fondo del patio alguien bosteza antes de despedirse.
+[salidas] este, norte, oeste, sur, regresar a tu hogar
+[world] Una piedrecita se suelta de la pared y rebota por el patio. En una puerta baja alguien se asoma, escucha y vuelve a cerrar.
+=== → korven_meseta_relevo
+> este
+[LUGAR] Escalones bajos
+[world] Escalones bajos y anchos, junto a una franja lisa para carros, suben hacia las casas de Brumak. Las ruedas pequeñas han gastado más la piedra junto a los peldaños, dejando una línea brillante. Una repisa guarda cuñas cerca del suelo, a mano. A un lado, una puerta baja da al antiguo almacén de las cargas.
+[world] Las luces se colocan junto a los cambios de nivel y no en lo alto de una fachada. El carro tardío se anuncia desde el asiento de revisión. La franja lateral permanece reconocible hasta alcanzar los primeros muros.
+[world] Ved coloca la lámpara a la altura de la tablilla. La luz alcanza el primer peldaño y el borde de la franja para carros.
+[salidas] este, oeste, sur
+> este
+[LUGAR] Banco de revisión
+[world] El camino se ensancha junto a una roca grande marcada de golpes, de tanto probar piezas contra ella. Hay un banco para dejar la carga y una mesa con una capa fina de polvo, donde se comparan piezas con cuidado. Se oye el golpeteo de quien revisa algo. Desde aquí sigue el camino a Brumak, y una senda sube a una meseta donde paran los viajeros de la sierra.
+[world] Los golpes cesan. Una cubierta protege la nota pendiente; quien llega con farol pone su carga en el banco separado y mira la pieza sobre la mesa.
+[salidas] este, oeste, norte
+> norte
+[LUGAR] Refugio de Lajas
+[world] Una meseta donde se mezclan piedras claras de Korven y restos oscuros bajados de la sierra de Hoshai. Una cubierta protege una mesa y dos apoyos de descanso, y guarda notas de los dos caminos. Al irse, cada viajero devuelve la piedra que sujetaba su nota. Las cargas esperan junto a una pared baja. El viento de la montaña baja frío.
+[world] La cubierta golpea una vez y se aquieta. Una piedra sostiene dos notas sobre la mesa; el resto del abrigo queda en silencio.
+[world] La meseta levanta la vista hacia la abertura de la garganta. Junto a las notas del refugio hay agujas de pino que no crecieron entre estos pedrales.
+[salidas] sur, norte
+> buscar alrededor
+[world] El viento ha borrado cualquier pisada.
+=== → hoshai_garganta_oeste
+> norte
+[LUGAR] Garganta hacia Korven
+[world] Las paredes de la garganta pierden plantas hacia el sur, y el aire trae polvo de piedras claras: por ahí abajo empieza Korven. El eco repite tus pasos. Un ensanche permite que dos cargas se crucen sin rozar la roca. Hace calor seco, distinto del frío de arriba.
+[world] El polvo claro sigue contigo al entrar en la garganta. Por encima de la pared aparece una copa de pino; el aire cambia de olor antes de que alcances el árbol.
+[world] El agua se reúne en pequeñas juntas antes de desaparecer entre cascajos occidentales. Las cubiertas mojan una carga que enseguida recoge polvo. Una viajera levanta la tela mojada y limpia el polvo que se pegó al apoyo.
+[salidas] este, sur
+> buscar alrededor
+[trace] Una Mariposa fría se posa en tu manga, quieta, como si quisiera calentarse, y se va.
+=== → hoshai_hombro_lajas
+> este
+[LUGAR] Camino de las lajas
+[world] El sendero dobla entre lajas de piedra inclinadas; a primera vista pueden parecer planas, y no lo son: hay que pisar con cuidado. Una tablilla recoge noticias de los viajeros. Al este todavía se ve el pino del collado, pequeño; al oeste, el camino baja a la garganta que lleva a Korven.
+[world] El agua dibuja líneas nuevas sobre las lajas y destaca su inclinación hacia la hondonada. Los viajeros revisan las cubiertas antes de salir del abrigo de la sierra. La piedra seca del oeste aún queda más allá de la garganta.
+[world] El farol se refleja en las lajas y oculta sus pendientes. El mensajero marca su llegada en la tablilla. La garganta queda oscura más adelante.
+[salidas] este, oeste
+> buscar alrededor
+[trace] Una roca del tamaño de una puerta ha rodado hace poco por la ladera. Arriba, en la cresta, quedan marcas que no son de viento.
+=== → hoshai_aprisco_abierto
+> este
+[LUGAR] Refugio del rebaño
+[world] Piedras sueltas forman muros bajos que guían al rebaño hacia el lado protegido de la ladera. En un hueco seco espera un recipiente para el agua. Hay espacio para que los animales se muevan sin chocar. Se oyen balidos y el tintineo de alguna campanilla. Hacia el oeste, el sendero sigue por unas lajas.
+[trace] Un Uñapiedra se asoma por encima de la pared seca del aprisco. El rebaño no le hace caso, y él tampoco al rebaño.
+[salidas] sur, oeste
+[discovery] Añades Uñapiedra al bestiario.
+> buscar alrededor
+[trace] Una Mariposa fría se posa en tu manga, quieta, como si quisiera calentarse, y se va.
+=== → hoshai_collado_pino
+> sur
+[LUGAR] Paso del último pino
+[world] Un pino solo crece entre piedras partidas, con la copa doblada por el viento hacia un lado, como si se estuviera agachando. Sus raíces sujetan un poco de tierra en medio de la roca. Alrededor del árbol, las huellas de los viajeros dan la vuelta: todo el mundo lo rodea, como si lo saludara. Aquí arriba el viento no para.
+[world] La copa devuelve agua a un solo lado y deja el otro expuesto al viento. La pastora no reúne allí al rebaño: el pequeño suelo de las raíces soporta al árbol, no una estancia prolongada de muchas bestias.
+[salidas] sur, norte
+> buscar alrededor
+[world] El viento se lleva cualquier huella antes de que puedas leerla.
+=== → hoshai_abrigo_pinas
+> sur
+[LUGAR] Refugio de las piñas
+[world] Un abrigo natural junto a una pared de roca, donde las piñas secas se amontonan hasta las rodillas. La resina deja los dedos pegajosos si tocas una piña. Una raíz gruesa deja sitio para dejar la carga y sentarse al resguardo del viento. Desde aquí, la senda sube hacia el collado.
+[world] Se oyen agujas arrastradas fuera de la cubierta. Una piña rueda hasta el poste y se queda allí; el abrigo guarda una franja de suelo quieto.
+[salidas] este, norte
+> buscar alrededor
+[discovery] En una rama caída encuentras resina seca. Recoges un trozo sin herir el árbol.
+[action] Guardas Resina de pino en la mochila.
+> este
+[LUGAR] Pinar abierto
+[world] Un pinar abierto, con claros desde los que se ve todo el valle. Huele fuerte a resina, y las agujas secas crujen bajo los pies como una alfombra. Las piñas se amontonan donde el viento no llega. A veces un Pico gris golpea un tronco con el pico. Un desvío entre los pinos lleva hacia un abrigo de piñas y, más arriba, al collado.
+[danger] Desde un claro del pinar se ve, lejos y arriba, un Rasgacumbres sobre un risco. Tiene la cabeza vuelta hacia el valle, no hacia ti.
+[world] El pino más próximo roza la roca. El olor de las agujas llega antes de que puedas distinguir su franja oscura en el suelo.
+[salidas] sur, norte, oeste
+[discovery] Añades Rasgacumbres al bestiario.
+> norte
+[LUGAR] Cruce de agua fría
+[world] Una corriente de agua helada cruza el sendero, tan fría que duelen los dedos si los metes. Baja de la nieve de arriba, rápida y ruidosa. Una piedra grande desvía parte del agua; en el lado seco se puede dejar la carga antes de elegir con cuidado dónde pisar. Al otro lado, unos escalones de roca siguen subiendo.
+[trace] El Saltacresta extiende las patas sobre la piedra que divide la corriente. La salpicadura alcanza su apoyo inferior; recoge una pata y espera.
+[world] La corriente alcanza el segundo escalón y arrastra agujas del pinar. Los viajeros alzan los bultos sobre la plataforma seca mientras observan el paso. La otra orilla sigue cerca, pero su apoyo útil se ha estrechado.
+[salidas] sur, norte
+[discovery] Añades Saltacresta al bestiario.
+> norte
+[LUGAR] Ladera de las señales
+[world] Una ladera abierta y ventosa, entre la corriente de abajo y un paso de roca estrecho de arriba. Dos grupos de piedras amontonadas marcan las curvas: uno señala el camino y el otro, el borde que se revisa después del deshielo, cuando la tierra se mueve. Una tablilla cercana explica la diferencia para quien no la conozca. Desde aquí, el valle se ve pequeño.
+[world] El agua queda por debajo de los hitos. En lo alto, el sendero desaparece entre dos paredes donde las cargas tendrán que pasar en fila.
+[world] El agua marca una línea entre los dos grupos de piedras. La cuidadora espera a que pase una carga y se arrodilla junto a la base que empieza a hundirse.
+[salidas] sur, norte
+> norte
+[LUGAR] Paso entre paredes
+[world] Las paredes de roca se acercan tanto que sólo cabe una carga cada vez; el cielo es una franja estrecha allá arriba. En cada extremo hay una piedra plana, gastada de golpes: antes de entrar, se golpea con un palo para avisar a quien venga del otro lado, y se espera respuesta. Los golpes resuenan entre las paredes. Hace frío, y la roca suda gotas.
+[world] El agua corre pegada a la pared oriental y reduce el apoyo de ese lado. Los viajeros mantienen el anuncio antes de cruzar; cubrirse de la lluvia no da permiso para ocupar el cuello desde ambas entradas.
+[world] Los golpes se oyen completos entre las paredes y pierden fuerza al salir a la ladera. Quien no recibe respuesta deja la carga fuera y mira el primer apoyo. Una luz se acerca desde el otro extremo y vuelve a oírse el paso de una carga.
+[salidas] sur, norte
+> norte
+[LUGAR] Terraza de las cargas
+[world] El paso estrecho se abre de golpe a una terraza ancha y abierta al cielo, y el viento vuelve a soplar. Aquí las cargas se abren y se reparten, con las cuerdas lejos del borde, que cae en picado. Por encima de la subida asoma el primer techo de Khariel, de tejas oscuras. A un lado, una lona azul marca un campamento; al otro, un sendero lleva a un mirador.
+[world] Los viajeros vuelven las cubiertas con el lado seco hacia los paquetes y dejan escapar el agua por el borde exterior. Las cuerdas mojadas se separan de las de repuesto para no llevar humedad a toda la carga.
+[world] Una ventana lejana permanece visible cuando los escalones ya no lo están. Los comerciantes cubren los paquetes y acercan sus luces a las cuerdas. La casa parece más cercana justamente cuando conviene mirar el suelo.
+[salidas] sur, norte, este, oeste
+> norte
+[LUGAR] Escalones al sol
+[world] Escalones de tamaños distintos suben de la terraza a las casas de Khariel, orientados hacia donde sale el sol: guardan su calor hasta bien entrada la tarde. Unos están tallados en la roca hace mucho; otros, arreglados con piedras nuevas y más claras. Las reparaciones dejan apoyos para pies humanos y para pies Felaryn, que pisan de puntillas. A un lado baja un canal de agua que canturrea.
+[trace] Un Saltacresta cruza por detrás del peldaño reparado. La franja de grava le permite evitar las botas y salir hacia el canal lateral.
+[world] Los últimos peldaños levantan tu vista por encima de las cargas. La rampa de la plaza ofrece un paso más ancho al final de la subida.
+[salidas] sur, norte
+> norte
+[LUGAR] Plaza de Khariel
+[world] La plaza de Khariel ocupa dos terrazas unidas por escalones y una rampa, para que suba quien salta y quien no. Los bancos tienen hueco detrás para las colas Felaryn y sitio para apoyar cargas. Desde aquí se ve todo el valle, y el viento trae olor a comida de las casas. Alrededor se reparten el taller, el mercado de las cintas y el patio de las casas.
+[world] En la terraza superior alguien practica dos notas con un silbato. Una ventana se abre y una voz pide la melodía entera; abajo se oyen pasos recién llegados.
+[world] Los habitantes apartan los asientos del agua que baja por los escalones y despejan la rampa para las cargas. Las capas mojadas se cuelgan bajo un techo común, lejos de las herramientas que esperan en el taller.
+[salidas] sur, oeste, este, norte
+[world] Desde la terraza alta, el silbato prueba otra vez sus dos notas. Una ventana se cierra, sin enfado.
+[world] Alguien llama a otro por su nombre desde la terraza alta, y le contestan desde la baja.
+> mirar al sur
+[world] Escalones de piedra bajan hacia una terraza ancha. Más abajo, el valle entero, y el vacío.

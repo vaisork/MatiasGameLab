@@ -36,13 +36,22 @@
         ],
         "traces": [
           "Una piedra volcada tiene tierra húmeda debajo. Algo la movió hace poco.",
-          "Encuentras una huella antigua, pero no basta para saber qué la dejó."
+          "Pequeños surcos en el polvo, como de un escarabajo. Un Escarabajo de polvo se esconde bajo una laja al verte.",
+          "Un Vencejo seco pasa rozando las rocas y desaparece en una grieta alta: ahí tiene su nido.",
+          "Un Saltapiedra menudo salta de laja en laja y se para a mirarte desde lejos.",
+          "Una losa enorme está partida en dos. La grieta es vieja, pero por dentro está limpia, como si algo la hubiera vuelto a abrir empujando desde abajo.",
+          "El suelo suena hueco bajo tus botas en un punto concreto. Lo pisas otra vez: hueco.",
+          "Un mojón caído, con las piedras desparramadas hacia el mismo lado. No las tiró el viento.",
+          "En una junta de roca hay una herramienta Dravak muy vieja, comida por el óxido. La dejas donde estaba."
         ],
         "empty": [
-          "Revisas las grietas. Las piedras están demasiado sueltas para seguir hurgando.",
-          "Buscas con cuidado. Esta vez no encuentras nada para llevar."
+          "Sólo polvo y piedra clara.",
+          "Levantas un par de lajas. Nada debajo.",
+          "El viento ha borrado cualquier pisada.",
+          "Un ruido seco lejos, y luego silencio. Nada más."
         ]
-      }
+      },
+      "entry": "Entras en los pedrales de Korven. Todo es piedra clara, viento y polvo fino; aquí la gente vive dentro de la roca."
     }
   },
   "rooms": {
@@ -53,7 +62,7 @@
       "kind": "road",
       "description": "Desde esta loma ya no se ve Vaisgard: la cuenca verde queda al este, y al oeste todo es piedra clara. El camino baja entre rocas hacia un cauce seco. Junto al paso hay un montón de cascajo con huellas de pala, y las ruedas han dejado dos surcos profundos donde la tierra es más blanda. El viento es seco y trae polvo que hace toser.",
       "day": "Un trabajador baja cascajo al montón lateral y espera a que pase una carga. La pala roza la roca fija al recoger las últimas piedras sueltas.",
-      "night": "El cascajo claro recibe la luz del farol y vuelve difícil leer el relieve. La depresión occidental parece más cerca de lo que está. El montón lateral sigue sirviendo para reconocer dónde se abandona la loma.",
+      "night": "El cascajo claro refleja la luz del farol y no deja ver los desniveles. La hondonada del oeste parece más cerca de lo que está. El montón de piedras de al lado sigue marcando dónde se baja de la loma.",
       "rain": "El polvo se pega entre las piedras y el agua deja líneas claras. El trabajador mira la bajada antes de despejar otra franja del camino.",
       "clear": "",
       "return": "El montón lateral tiene una franja de cascajo recién removido. Camino de la cuenca, la tierra ocupa más espacio entre las piedras antes de que aparezcan los muros.",
@@ -65,7 +74,9 @@
         "oeste": "korven_cauce_duro",
         "este": "veyra_terraplen_roca"
       },
-      "arrivals": {},
+      "arrivals": {
+        "veyra_terraplen_roca": "Subes la loma y, al llegar arriba, Vaisgard desaparece a tu espalda. Al oeste ya sólo se ve piedra clara, y el viento trae polvo fino."
+      },
       "npcs": [],
       "signals": [],
       "actions": [],
@@ -112,7 +123,7 @@
       "npcs": [],
       "signals": [],
       "actions": [],
-      "dawn": "La sombra llena la junta. El insecto permanece bajo el borde hasta que le llega una franja de luz.",
+      "dawn": "La sombra llena la grieta. El insecto se queda quieto bajo el borde hasta que le llega un rayo de luz.",
       "dusk": "El insecto cruza hacia la roca aún tibia. El grano claro queda en la franja que pierde luz.",
       "wildlife_pool": [
         {
@@ -157,9 +168,9 @@
       "description": "Una meseta pelada, plana y amplia, donde sólo dos piedras grandes dan algo de sombra. El viento trae un polvo fino que se mete en los ojos y entre los dientes. El cielo parece más grande aquí. Desde la meseta, un desvío baja hacia un horno viejo, y hacia el otro lado se alza una pared de roca.",
       "day": "Una viajera traslada su carga cuando la sombra de la pared deja de cubrirla. Su compañero comprueba la cubierta sin gastar agua en quitar todo el polvo. La pausa se adapta a la luz, no al nombre del sitio.",
       "night": "La pared se pierde al fondo de la meseta. Los viajeros acercan los faroles a las cargas para seguir la huella del carro.",
-      "rain": "La lluvia golpea el tramo abierto antes de que la pared empiece a gotear. Los recipientes se apartan de una hendidura donde cae agua con polvo. Las gotas alcanzan también el centro de la sombra, entre las dos piedras.",
+      "rain": "La lluvia golpea primero el tramo abierto, y luego la pared empieza a gotear. Los recipientes se apartan de una grieta por donde cae agua con polvo. Ni siquiera en la sombra, entre las dos piedras, se está seco.",
       "clear": "",
-      "return": "Reconoces las dos piedras del desvío. La sombra de la pared ha alcanzado una junta distinta de aquella donde descansaste.",
+      "return": "La sombra de la pared ha avanzado: ahora toca una junta distinta de la otra vez.",
       "examine": {
         "piedras": "Se ven desde el cauce y desde la pared, permitiendo reconocer el desvío.",
         "hendidura": "Recoge polvo y agua sobre el lado donde suele detenerse una carga."
@@ -173,7 +184,6 @@
       "npcs": [],
       "signals": [],
       "actions": [],
-      "max_layers": 2,
       "wildlife_pool": [
         {
           "creature": "cascapedernal",
@@ -212,10 +222,10 @@
       "kind": "landmark",
       "description": "Una pared de roca alta corta el viento de golpe, y detrás de ella el aire se queda quieto y tibio. Hay un hueco ancho donde apoyar las cargas y descansar. Junto a las juntas llenas de polvo descansa una escoba, y una marca pintada en el suelo indica qué franja debe quedar libre para pasar. Aquí se oye por fin tu propia respiración.",
       "day": "Un porteador limpia el apoyo antes de sentarse y deja la escoba donde otro podrá encontrarla. Las cargas se orientan hacia el mismo lado para poder salir sin cruzarse dentro del entrante más estrecho.",
-      "night": "La meseta devuelve un golpe lejano. Dentro del entrante se ve un cuenco sobre el apoyo bajo; la lámpara deja una sombra estrecha junto a la pared.",
-      "rain": "El viento devuelve algunas gotas al entrante y obliga a mover la carga del apoyo exterior. La escoba retira barro de una junta que normalmente sólo reúne polvo. El corredor permanece libre aunque todos busquen el mismo refugio.",
+      "night": "De lejos, la meseta trae un golpe. Dentro del hueco de la pared hay un cuenco sobre el apoyo bajo, y la lámpara dibuja una sombra estrecha.",
+      "rain": "El viento mete algunas gotas en el hueco y obliga a mover la carga de fuera. Una escoba quita barro de una grieta que normalmente sólo tiene polvo. Aunque todos buscan refugio, el paso queda libre.",
       "clear": "",
-      "return": "Recuerdas la marca junto a la pared. De ese lado descansan las cargas; al otro, las huellas pasan entre la sombra y la meseta.",
+      "return": "La marca del suelo separa el sitio de las cargas del paso libre.",
       "examine": {
         "marca": "Delimita el corredor común, no el sitio de una familia.",
         "escoba": "Su mango corto sirve para limpiar juntas desde los apoyos bajos."
@@ -229,7 +239,7 @@
       "signals": [],
       "actions": [],
       "dawn": "La junta inferior guarda frío. Una viajera calienta las manos alrededor de un cuenco y acerca el oído al silbido que llega desde la meseta.",
-      "dusk": "La piedra devuelve el calor acumulado. Alguien apoya la espalda un momento; una pequeña sombra cruza la junta donde queda polvo.",
+      "dusk": "La piedra suelta el calor de todo el día. Alguien apoya la espalda un momento, y una sombra pequeña cruza la grieta llena de polvo.",
       "weather": {
         "viento": "La escoba permanece quieta dentro del entrante. Fuera, el polvo roza la pared con un siseo seco; dos viajeros esperan a que baje para distinguir el siguiente mojón."
       },
@@ -242,10 +252,10 @@
       "kind": "road",
       "description": "Una fila de mojones de piedra cruza el suelo duro, entre huecos de la roca. Algunos llevan una piedra clara encima, como un sombrero; otros esperan arreglo y tienen piedras caídas a los pies. Desde cada mojón se ve el siguiente, así que no hace falta acercarse al borde. El polvo cruje bajo las botas.",
       "day": "La revisora mira el siguiente mojón desde la franja de las ruedas. Retira una piedra recién añadida a la pila y la deja al lado de la cavidad.",
-      "night": "El farol alcanza un mojón a la vez. Los viajeros caminan despacio, buscando las piedras claras del siguiente antes de avanzar.",
+      "night": "El farol sólo ilumina un mojón cada vez. Los viajeros caminan despacio, buscando las piedras claras del siguiente antes de avanzar.",
       "rain": "La lluvia oscurece los mojones y reúne arena en sus bases. La revisora se sitúa donde pasan las ruedas y mira el pie de la pila antes de acercarse.",
       "clear": "",
-      "return": "Recuerdas el mojón bajo junto a la base en revisión. Detrás se ve la pila siguiente; entre ambas, el polvo conserva la curva de las ruedas.",
+      "return": "El mojón bajo espera todavía su revisión. Entre él y la pila siguiente, el polvo guarda la curva de las ruedas.",
       "examine": {
         "mojones": "El siguiente debe verse desde el apoyo útil, no desde la cavidad lateral.",
         "piedra suelta": "Fue añadida sin registrar; su altura puede atraer hacia un punto incorrecto."
@@ -284,10 +294,10 @@
       "kind": "road",
       "description": "Un paso estrecho entre dos paredes de roca altas, donde las cargas van en fila y los hombros casi rozan la piedra. Una tabla gastada tapa una grieta en la que se atascaría una rueda. Por unos huecos altos entra aire y algo de luz sobre el sendero en sombra. Hace fresco, y cada sonido rebota.",
       "day": "Una conductora baja de su carro para mirar la tabla antes de entrar. El viajero que viene del oeste espera en el asiento de revisión. El carro queda quieto hasta que se oyen pasos saliendo por la entrada opuesta.",
-      "night": "La hendidura devuelve la respiración y el ruido de las ruedas. El farol alcanza la tabla gastada; en las cavidades laterales sólo se ve el borde de la roca.",
-      "rain": "El agua se reúne en la junta cubierta sin quedar visible desde cada entrada. La conductora prueba la tabla antes de apoyar el carro. En los muros, algunas cavidades devuelven gotas que no llegan hasta el camino.",
+      "night": "En la grieta suena el eco de tu respiración y de las ruedas. El farol ilumina la tabla gastada; en los huecos de los lados sólo se ve el borde de la roca.",
+      "rain": "El agua se junta debajo de la tabla, donde no se ve desde las entradas. La conductora prueba la tabla antes de pasar el carro. De algunos huecos de la pared caen gotas que no llegan al camino.",
       "clear": "",
-      "return": "Reconoces la tabla donde apoyaron una rueda. La hendidura sigue detrás de ella; las cavidades laterales terminan en suelo quebrado.",
+      "return": "La tabla gastada tapa la grieta. A los lados, las cavidades terminan en suelo quebrado.",
       "examine": {
         "tabla": "Su centro está gastado por las ruedas. Los dos extremos apoyan sobre roca, a ambos lados de una junta.",
         "cavidades": "Dos no tienen apoyo a la misma altura que el sendero."
@@ -326,10 +336,10 @@
       "kind": "landmark",
       "description": "El camino se ensancha junto a una roca grande marcada de golpes, de tanto probar piezas contra ella. Hay un banco para dejar la carga y una mesa con una capa fina de polvo, donde se comparan piezas con cuidado. Se oye el golpeteo de quien revisa algo. Desde aquí sigue el camino a Brumak, y una senda sube a una meseta donde paran los viajeros de la sierra.",
       "day": "La revisora compara un golpe sobre la pieza con otro sobre una base firme. Su ayudante anota la diferencia y deja la carga en el banco. Nadie continúa una prueba de apoyo mientras alguien sigue pisándolo.",
-      "night": "Los golpes cesan. Una cubierta protege la nota pendiente; quien llega con farol pone su carga en el banco separado y mira la pieza sobre la mesa.",
+      "night": "Los golpes se callan. Una cubierta protege la nota pendiente; quien llega con farol deja su carga en el banco de al lado y mira la pieza de la mesa.",
       "rain": "La piedra mojada suena distinto. La revisora escribe que llovía cuando la golpeó y deja la carga apartada de la mesa.",
       "clear": "",
-      "return": "Recuerdas el golpe que compararon sobre la mesa. La nota queda junto a la pieza; el banco de descanso está separado por una franja de suelo limpia.",
+      "return": "La nota del golpe está junto a la pieza. El banco de descanso está separado por una franja de suelo limpia.",
       "examine": {
         "pieza": "Un extremo de la pieza tiene polvo seco; el otro conserva una marca húmeda sobre el apoyo.",
         "nota": "Una marca de agua diferencia prueba en seco de prueba mojada."
@@ -417,7 +427,7 @@
       "night": "En una puerta baja aparecen dos tazas. Sus dueños hablan sentados en el umbral; al fondo del patio alguien bosteza antes de despedirse.",
       "rain": "Los canales de las fachadas descargan en una junta lateral y los vecinos apartan sus bancos de ella. Las cargas entran de una en una para no llevar barro hacia las puertas bajas donde se reúnen las familias.",
       "clear": "",
-      "return": "Reconoces la curva gastada por las ruedas. Las puertas bajas quedan fuera de ella; dos bancos se recogen junto al primer umbral.",
+      "return": "La curva gastada por las ruedas cruza el patio otra vez delante de ti. Las puertas bajas quedan fuera de ella.",
       "examine": {
         "nichos": "Protegen luces y mantienen libre el paso a alturas diferentes.",
         "junta": "Recoge desagües de las viviendas antes de sacarlos del patio."
@@ -428,12 +438,17 @@
         "oeste": "korven_almacen_grano",
         "sur": "korven_calle_fachadas"
       },
-      "arrivals": {},
+      "arrivals": {
+        "korven_taller_juntas": "Dejas los golpes cortos del taller y sales al patio. La roca que lo rodea corta el viento, y de repente todo está más tranquilo.",
+        "korven_almacen_grano": "Sales del almacén con olor a grano seco en la ropa. Fuera, el patio de Brumak te recibe protegido por la roca.",
+        "korven_calle_fachadas": "Al final de la calle de casas metidas en la roca, el pasillo se ensancha y entras en el patio de Brumak, abierto y en calma.",
+        "korven_peldanos_cortos": "Subes los escalones bajos, uno detrás de otro, siguiendo la línea brillante que han dejado las ruedas. Arriba se abre el patio de Brumak."
+      },
       "npcs": [],
       "signals": [],
       "actions": [],
       "dawn": "Dos tazas llegan al umbral bajo. Una Dravak se sienta para beber antes de revisar el cierre del recipiente.",
-      "dusk": "El niño devuelve el recipiente ya cerrado. En una puerta baja alguien pone agua para las dos tazas.",
+      "dusk": "El niño devuelve el recipiente ya cerrado. En una puerta baja alguien sirve agua en las dos tazas.",
       "states": [
         {
           "requires_time": [
@@ -557,7 +572,8 @@
             "noche"
           ]
         }
-      ]
+      ],
+      "max_layers": 4
     },
     "korven_taller_juntas": {
       "id": "korven_taller_juntas",
@@ -649,7 +665,7 @@
       "night": "Las cestas abiertas se cubren primero y la encargada revisa que ninguna apoye directamente en el suelo. Una luz cerca de la puerta permite recibir una llegada tardía sin recorrer a oscuras todos los estantes.",
       "rain": "Las cargas mojadas esperan bajo el alero. La encargada prepara un apoyo para secar sus cubiertas, separado de las cestas del fondo.",
       "clear": "",
-      "return": "Reconoces las cubiertas dobladas sobre las cestas abiertas. Las cerradas esperan bajo el alero, donde dejaron una tabla para secar la última.",
+      "return": "Reconoces las cubiertas dobladas sobre las cestas abiertas. Las cerradas esperan bajo el alero.",
       "examine": {
         "apoyos": "Separan las cestas del suelo y dejan visible una humedad reciente.",
         "cubiertas": "La doblez identifica qué cesta ya está en uso."
@@ -671,10 +687,10 @@
       "kind": "settlement",
       "description": "Una calle de casas metidas en la roca, como si la montaña las hubiera abrazado. Cada puerta tiene distinta profundidad, y junto a ellas hay repisas pequeñas donde esperan objetos: una taza, una herramienta, una piedra bonita. El paso es ancho: se puede cruzar sin entrar en ninguna casa ni rozar sus cargas. Una puerta da al lugar de cuidados.",
       "day": "Una vecina deja un recipiente en la repisa y ayuda a cerrar la cubierta del lado del viento. El niño devuelve una herramienta al entrante; desde dentro le agradecen el gesto.",
-      "night": "Las conversaciones se acercan a las puertas y dejan la calle central quieta. Una luz señala el escalón de la cisterna. Quien llama permanece junto al umbral. La puerta se abre apenas lo suficiente para recibir una voz conocida.",
+      "night": "Las conversaciones se meten en las casas y la calle se queda quieta. Una luz marca el escalón de la cisterna. Quien llama espera en el umbral, y la puerta se abre apenas una rendija para una voz conocida.",
       "rain": "Las cubiertas de madera protegen sólo algunos entrantes y los vecinos comparten dónde esperar. Los objetos de repisa se guardan antes de que el agua recorra la pared. Las puertas siguen pudiendo abrir sin empujar bultos mojados.",
       "clear": "",
-      "return": "Reconoces el escalón que baja a la cisterna. En las repisas esperan otros objetos; las puertas dejan libre el mismo corredor.",
+      "return": "En las repisas hay otros objetos que la última vez. Las puertas dejan libre el mismo corredor.",
       "examine": {
         "repisas": "Reciben objetos que deben devolverse a personas concretas, no provisiones públicas.",
         "cubiertas": "Las añadidas de madera se revisan en el lado donde entra el viento."
@@ -745,7 +761,8 @@
             "night": "Dentro de una de las casas, alguien canta muy bajito. La piedra lleva el sonido hasta la calle."
           }
         }
-      ]
+      ],
+      "max_layers": 4
     },
     "korven_cisterna_comun": {
       "id": "korven_cisterna_comun",
@@ -754,10 +771,10 @@
       "kind": "landmark",
       "description": "Una plataforma baja de piedra rodea la cisterna del pueblo, un pozo ancho y oscuro. El agua de lluvia llega por un canal aparte, lejos del sitio donde se llenan los recipientes, para no mezclarla con el polvo. Una vara con marcas muestra cuánta agua queda. Si te asomas, el aire de dentro sube húmedo y fresco, un regalo en esta tierra seca.",
       "day": "Una mujer baja el recipiente y escucha hasta oír el contacto con el agua. Un vecino cuenta despacio las vueltas de cuerda; se detienen al mismo tiempo.",
-      "night": "Una cuerda roza el borde y queda quieta. El agua devuelve un sonido más hondo que los pasos que se alejan del brocal.",
-      "rain": "El canal exterior recibe agua con polvo. La cuidadora sigue el tabique que lo separa de la cisterna y aparta una ramita de su salida. La vara de medida espera seca bajo la cubierta.",
+      "night": "Una cuerda roza el borde y se queda quieta. Al caer algo, el agua suena hondo, mucho más hondo que los pasos que se alejan.",
+      "rain": "Por el canal de fuera baja agua con polvo. La cuidadora sigue el muro que lo separa de la cisterna y quita una ramita de la salida. La vara de medir espera seca bajo la cubierta.",
       "clear": "",
-      "return": "Recuerdas la marca del nivel junto al brocal. La cuerda húmeda deja una línea más oscura sobre la piedra donde apoyaron el recipiente.",
+      "return": "La marca del nivel junto al brocal no ha cambiado mucho. La cuerda húmeda deja una línea más oscura en la piedra.",
       "examine": {
         "vara": "Junto a cada marca se leen una fecha y las iniciales de quien midió el agua.",
         "canal": "El agua de las paredes lleva polvo y no entra directamente en la cisterna."
@@ -873,9 +890,9 @@
       "description": "Aquí se limpian recipientes y cubiertas. Un muro bajo separa lo que llega sucio de lo que ya está limpio, y nadie confunde un lado con el otro. El agua usada sale hacia la grava, haciendo regueros. El polvo se queda pegado al lado húmedo del muro, formando dibujos. Se oye frotar y enjuagar.",
       "day": "Una vecina frota una mancha en el fondo de un cuenco. El niño a su lado intenta hacerlo girar con dos dedos sobre la piedra mojada.",
       "night": "Dos cuencos boca abajo guardan gotas en el borde. Bajo la puerta más cercana se ve luz y el movimiento breve de una sombra.",
-      "rain": "El agua exterior devuelve barro hacia la franja de entrada y los vecinos apartan lo limpio. La cubierta de una carga puede esperar sin lavarse de inmediato. Los paños limpios quedan bajo la cubierta; los recipientes utilizados reciben agua del lado abierto.",
+      "rain": "El agua de fuera trae barro a la entrada, y los vecinos apartan lo limpio. Los paños limpios se quedan bajo la cubierta; los recipientes usados se lavan con el agua que cae por el lado abierto.",
       "clear": "",
-      "return": "Reconoces el muro que separa los recipientes limpios. El lado húmedo vuelve a recibir el polvo de quienes llegan del camino.",
+      "return": "El muro de los recipientes limpios vuelve a tener polvo en su lado húmedo: han llegado más viajeros del camino.",
       "examine": {
         "muro": "Los paños húmedos cuelgan de un lado; los doblados esperan bajo el alero del otro.",
         "grava": "Recibe el agua de lavado fuera de la plataforma de la cisterna."
@@ -904,7 +921,8 @@
       "focus": [
         "activity"
       ],
-      "brief": "El patio de lavado y su muro bajo."
+      "brief": "El patio de lavado y su muro bajo.",
+      "max_layers": 4
     },
     "korven_deposito_cubiertas": {
       "id": "korven_deposito_cubiertas",
@@ -916,7 +934,7 @@
       "night": "La encargada recoge las tablas de préstamo junto a la puerta. Deja libre un travesaño para devoluciones tardías y otro para la cubierta mojada.",
       "rain": "Las devoluciones llenan la franja húmeda. La encargada abre el segundo hueco de aire y sacude una cubierta; del centro cae agua sobre la tabla inferior.",
       "clear": "",
-      "return": "Recuerdas el travesaño de las devoluciones. La cubierta húmeda cuelga frente al hueco de aire; en su tablilla sigue el nombre de quien la tomó.",
+      "return": "La cubierta húmeda cuelga frente al hueco de aire; en su tablilla sigue el nombre de quien la tomó.",
       "examine": {
         "tablas": "Registran préstamos para trabajos concretos.",
         "travesanos": "Las cubiertas cuelgan separadas. Una gota resbala desde el centro de la más gruesa hasta el borde."
@@ -938,9 +956,9 @@
       "description": "Un mirador protegido por un borde bajo de piedra. Delante se extienden plataformas de roca cortadas por grietas, como un plato roto, y una franja oscura tan honda que no se le ve el fondo. Si tiras una piedrecita, tarda en sonar. Brumak queda al oeste, tras la pared. El viento silba al pasar por las grietas.",
       "day": "La observadora ve una nube de polvo junto al camino. Espera a que aparezca una carga para saber si la levantó un viajero.",
       "night": "La luz de la cisterna ilumina el borde próximo. Las plataformas exteriores se juntan en una masa oscura; desde una grieta llega el golpe de una piedra y la observadora recoge sus notas.",
-      "rain": "El agua oscurece las plataformas y borra la nube de polvo. La observadora apunta lo que ya no alcanza a ver desde el borde.",
+      "rain": "El agua oscurece las plataformas y se lleva la nube de polvo. La observadora apunta lo que ya no puede ver desde el borde.",
       "clear": "",
-      "return": "Reconoces el tramo de camino que cruzaste junto a las piedras partidas. La grieta lejana sigue oculta detrás de un bloque grande.",
+      "return": "La grieta lejana se esconde detrás de un bloque grande, como la otra vez.",
       "examine": {
         "franja": "Su oscuridad indica un corte del terreno, no una puerta vista desde lejos.",
         "notas": "Una causa sin confirmar se mantiene separada de las cargas identificadas."
@@ -963,9 +981,9 @@
       "description": "Un cauce lleno de piedras que alguien o algo ha movido. Algunas muestran una cara limpia, recién expuesta; otras conservan el polvo viejo donde estuvieron apoyadas durante años. Un bloque grande ocupa el borde del paso. Cerca hay una plataforma donde se escucha cómo se mueve el suelo. Todo está muy quieto.",
       "day": "Una revisora mira las caras limpias de los bloques y busca una piedra que recuerda de su último paso. Su compañero espera fuera del cauce.",
       "night": "Las sombras impiden distinguir la cara limpia del polvo viejo. La revisora deja una nota junto a la entrada y se queda fuera de los bloques.",
-      "rain": "El agua limpia el polvo de varias caras. La revisora busca el bloque que anotó antes y señala la mancha que aún conserva bajo el saliente.",
+      "rain": "La lluvia lava el polvo de varias piedras. La revisora busca el bloque que apuntó y señala la mancha que todavía queda bajo el saliente.",
       "clear": "",
-      "return": "Reconoces la entrada del cauce y la posición del bloque más cercano. Las caras limpias conservan diferencias con el polvo de alrededor. El sendero del mirador permanece detrás, ofreciendo un regreso antes de bajar entre las piedras.",
+      "return": "Recuerdas la posición del bloque más cercano. Las caras limpias destacan contra el polvo de alrededor.",
       "examine": {
         "caras": {
           "text": "Una limpia bajo polvo viejo puede indicar cambio de apoyo; la lluvia exige otra comparación.",
@@ -1035,10 +1053,10 @@
       "kind": "landmark",
       "description": "Una plataforma de roca firme, lejos de los bloques del cauce. En una junta descansa un recipiente vacío: cuando el suelo se mueve, aunque sea poco, tiembla y tintinea. Los Dravak lo usan para escuchar la tierra. Las cargas que pasan cerca también lo hacen temblar. Hay que quedarse muy quieto para notarlo.",
       "day": "La revisora espera a que pase la carga. El recipiente deja de temblar; el ayudante anota el último sonido de las ruedas y vuelve a escucharlo desde la plataforma.",
-      "night": "El recipiente conserva su borde visible bajo una luz pequeña. Los sonidos del pueblo llegan con pausas mayores y permiten distinguir una carga que ya pasó. Después de una pausa se oye grava desde la pared occidental. La oscuridad oculta la altura de donde procede.",
+      "night": "Una luz pequeña deja ver el borde del recipiente. Los sonidos del pueblo llegan con pausas largas. En una de ellas se oye grava cayendo por la pared del oeste, pero la oscuridad no deja ver desde qué altura.",
       "rain": "Las gotas hacen temblar el recipiente. La revisora lo retira de la junta, seca su borde y señala el techo al ayudante antes de guardar la nota.",
       "clear": "",
-      "return": "Reconoces la junta y el recipiente vacío. Puedes mirar si se mueve como antes; las cargas cercanas aún hacen vibrar la plataforma.",
+      "return": "El recipiente vacío descansa en su junta. Puedes mirar si se mueve como antes.",
       "examine": {
         "recipiente": "Puede vibrar por cargas o golpes próximos; no distingue especies.",
         "junta": "Su apoyo es firme y repetible mientras no llegue agua a la superficie."
@@ -1061,9 +1079,9 @@
       "description": "Bajo una cubierta baja se guardan tablillas en fundas de cuero. Cada nota dice dónde cambió el terreno, quién lo vio y qué tiempo hacía ese día. Por una abertura se ve el cauce sin tener que bajar. Aquí se guarda la memoria del suelo.",
       "day": "La encargada pregunta si llovía cuando se movió el recipiente. Su compañero busca la nota que dice dónde estaba el bloque.",
       "night": "Las fundas están cerradas. Bajo la cubierta queda una tablilla para anotar una llegada tardía y lo que pudo verse desde el camino.",
-      "rain": "La mesa conserva una franja seca para abrir fundas y otra donde esperan las recién llegadas. La encargada registra primero la lluvia. Comparar un bloque mojado con polvo seco necesita que esa diferencia quede escrita.",
+      "rain": "En la mesa queda una parte seca para abrir las fundas y otra donde esperan las recién llegadas. La encargada apunta primero que llueve: una piedra mojada no se parece a una seca.",
       "clear": "",
-      "return": "Reconoces la tablilla por su sitio junto a la puerta. La nota de al lado tiene otra hora; por encima de ambas, el dibujo del cauce termina detrás de un bloque.",
+      "return": "Hay una nota nueva junto a la de la puerta, con otra hora. El dibujo del cauce termina detrás de un bloque.",
       "examine": {
         "fundas": "La fecha y la condición permanecen junto a la observación.",
         "abertura": "Muestra el cauce desde arriba, sin revelar la cavidad inferior."
@@ -1112,7 +1130,7 @@
       "kind": "road",
       "description": "Un desvío de tierra quemada y oscura, con trozos de recipientes rotos junto a un muro corto. Una franja clara marca por dónde pisar sin romper las piezas que quedan. Bajo una cubierta esperan trabajos sin terminar y herramientas nuevas. La ceniza vieja se levanta a cada paso. Más abajo está el horno viejo.",
       "day": "Una alfarera retira un fragmento del paso y lo compara con otro que lleva envuelto. Alinea los dos bordes sobre la tela y gira el fragmento que tiene una pared más gruesa.",
-      "night": "El horno no conserva calor ni luz y su abertura parece más profunda de lo que es. La ruta de Brumak sigue audible desde el norte. El silencio deja oír un roce de hojas contra el muro corto.",
+      "night": "El horno está frío y oscuro, y su boca parece más honda de lo que es. Desde el norte se oye el camino de Brumak. En el silencio, unas hojas rozan el muro.",
       "rain": "La tierra quemada se vuelve oscura y las piezas brillan con agua. La alfarera cubre el fragmento que trae para no confundir su color seco con el de los restos mojados. La comparación puede esperar.",
       "clear": "",
       "return": "El muro corto señala la vuelta a la meseta. Recuerdas el fragmento de borde grueso entre otros dos más finos; los tres siguen junto al camino.",
@@ -1154,10 +1172,10 @@
       "kind": "landmark",
       "description": "Un horno viejo y grande, con parte de la boca hundida hacia dentro. El suelo sólo está limpio donde se revisan los restos. Sobre un banco espera un recipiente torcido, con un lado más grueso que el otro. Todavía huele un poco a quemado, aunque hace mucho que nadie lo enciende. A un lado hay un rincón donde se comparan las piezas.",
       "day": "La alfarera coloca dos bordes juntos sobre el banco y busca una diferencia de espesor. Un aprendiz deja el recipiente torcido donde puede verse completo. El borde vencido queda frente al borde recto de la otra pieza.",
-      "night": "El banco queda cubierto con una tela y la boca del horno sin luz. El recipiente torcido permanece en su apoyo, fuera del tránsito. Las herramientas permanecen recogidas y la mesa queda cubierta hasta que vuelva la alfarera.",
+      "night": "Una tela tapa el banco y la boca del horno está apagada. El recipiente torcido sigue en su apoyo, fuera del paso. Las herramientas están recogidas hasta que vuelva la alfarera.",
       "rain": "La tela protege el banco mientras el agua moja los restos de la boca. La alfarera revisa que ninguna pieza caiga hacia la entrada. Coloca otra piedra sobre la cubierta y lleva las piezas secas hacia el entrante protegido.",
       "clear": "",
-      "return": "Reconoces el recipiente torcido sobre el banco. Han señalado otra parte del borde para compararla. La boca del horno sigue vencida.",
+      "return": "Han señalado otra parte del borde del recipiente torcido para compararla. La boca del horno, vencida.",
       "examine": {
         "recipiente": "El espesor cambia junto al borde vencido.",
         "boca": "Falta una sección de soporte; reconstruirla necesita más que recoger fragmentos."
@@ -1217,11 +1235,11 @@
       "region": "korven",
       "kind": "landmark",
       "description": "Un rincón al abrigo, junto al horno. Dos muestras de barro cocido esperan separadas sobre una cubierta, cada una con su etiqueta. En el extremo seco del asiento queda sitio para una taza grande. El lado abierto recoge el polvo del camino. Se puede mirar sin meterse entre las herramientas.",
-      "day": "Taren acerca la taza al extremo seco del asiento. El resto de las piezas permanece bajo una cubierta: quiere probar una sola cosa antes de seguir trabajando.",
-      "night": "La piedra plana recibe luz lateral y deja visibles los espesores. Las muestras de color esperan cubiertas en la estera. Una nota recuerda qué parte falta comparar; la puerta de Taren permanece cerrada al otro lado del horno.",
+      "day": "Taren deja su taza en la punta seca del asiento. Las demás piezas están tapadas: quiere probar una sola cosa antes de seguir.",
+      "night": "La luz llega de lado a la piedra plana y deja ver el grosor de cada pieza. Las muestras de color esperan tapadas en la estera. Una nota dice qué falta comparar; la puerta de Taren, al otro lado del horno, está cerrada.",
       "rain": "Las muestras mojadas quedan sobre una estera distinta. La alfarera cubre la pareja seca; una gota oscurece el borde grueso del fragmento que había dejado fuera.",
       "clear": "",
-      "return": "Reconoces las dos esteras donde separaron las muestras. El fragmento del banco queda sobre la de tiras oscuras, junto al borde desigual del recipiente.",
+      "return": "Las dos esteras separan las muestras. El fragmento queda sobre la de tiras oscuras.",
       "examine": {
         "estera": "Cada grupo descansa sobre un paño marcado con el lugar donde apareció.",
         "muestras": "Sus espesores pueden compararse; sus colores necesitan estar bajo la misma condición."
@@ -1348,7 +1366,7 @@
       "night": "La cubierta golpea una vez y se aquieta. Una piedra sostiene dos notas sobre la mesa; el resto del abrigo queda en silencio.",
       "rain": "El agua trae agujas de pino entre los cascajos de la garganta. La encargada anota lo que quedó en la junta y acerca la carga a la pared baja.",
       "clear": "",
-      "return": "Reconoces la pared donde esperan las cargas. Las notas siguen separadas por camino: una llega de Hoshai y otra de los pedrales.",
+      "return": "Las notas están separadas por camino: unas llegan de Hoshai y otras de los pedrales.",
       "examine": {
         "noticias": "Se atribuyen al tramo visto, no a una región completa.",
         "restos": "Las agujas llegaron desde arriba junto con el agua de la garganta.",
@@ -1454,10 +1472,10 @@
       "kind": "road",
       "description": "Las paredes de Brumak se van quedando bajas y el viento empieza a golpear las cargas sin piedad, tirando de las cubiertas. Un cobertizo abierto sirve para ajustarlas y recuperar el aliento. Entre las piedras aparecen las primeras franjas de tierra y alguna hierba: el camino baja hacia Edran.",
       "day": "Un viajero ajusta las tiras del lado protegido mientras su compañera sujeta el borde que golpea el aire. Al salir del cobertizo, la cubierta vuelve a tensarse sobre sus manos.",
-      "night": "Las fachadas quedan invisibles y el cobertizo conserva apenas un techo bajo sobre la luz. Las tiras flojas golpean antes de que se vea mover la cubierta. Escuchar ese detalle ayuda más que mirar un horizonte apagado.",
+      "night": "Las casas no se ven, y el cobertizo es sólo un techo bajo sobre una luz. Las tiras flojas golpean antes de que veas moverse la cubierta: aquí sirve más escuchar que mirar.",
       "rain": "El viento lleva agua bajo un lado del cobertizo y cambia el sitio donde se ajustan las tiras. Los viajeros evitan mojar el contenido al revisar el borde. La ruta de los llanos continúa más allá de la lluvia cercana.",
       "clear": "",
-      "return": "Reconoces el cobertizo donde ajustaron las tiras. De vuelta al pueblo aparecen primero paredes bajas y luego el rodeo junto a las casas.",
+      "return": "El cobertizo abierto espera para ajustar las tiras antes de que el viento las suelte.",
       "examine": {
         "tiras": "Las de sotavento sujetan el borde que más tiende a levantarse.",
         "paredes": "Pierden altura hacia el suroeste, preparando la transición al terreno abierto."
@@ -1496,7 +1514,7 @@
       "kind": "road",
       "description": "Aquí la tierra ya ocupa más sitio que la piedra, y crecen pastos bajos y cardos con flores moradas. Una zanja recoge la arena que trae el viento. Junto a ella, una cubierta remendada marca la Parada de los Cardos: debajo hay una tabla para sentarse y un gancho para secar una correa. Más allá empieza la linde de Edran.",
       "day": "Una cuidadora saca arena de la zanja y deja las raíces del pasto en su borde. Su compañero espera; después apoya la carga junto a la tabla del refugio.",
-      "night": "El pasto se escucha antes de verse cuando el viento mueve sus hojas entre las rocas. La zanja permanece oscura junto al paso. Una luz cercana permite distinguir la franja de tránsito de la tierra que se conserva.",
+      "night": "El pasto se oye antes de verse, cuando el viento lo mueve entre las rocas. La zanja es una raya negra junto al paso. Una luz cercana separa el camino de la tierra que no se pisa.",
       "rain": "El agua deja arena en la zanja y humedece la tierra fina sin cubrirla por completo. La cuidadora comprueba qué parte queda retenida. Los viajeros eligen apoyos de piedra para no abrir nuevas huellas en el pequeño suelo.",
       "clear": "",
       "return": "Puedes reconocer la franja donde el pasto mantiene tierra entre las rocas. Reconoces las plantas del terreno retenido antes de alcanzar los lomos de piedra. Las rodadas vuelven a reunirse del lado de Edran.",
@@ -1544,11 +1562,11 @@
       "region": "korven",
       "kind": "wilderness",
       "description": "Al final del desvío, una roca grande cubierta de líquenes verdes y naranjas, como manchas de pintura. Cerca de su base hay marcas de roce. Un caparazón moteado se aparta hacia una grieta estrecha cuando te acercas. Se puede observar desde fuera del cascajo sin molestarlo.",
-      "day": "Un insecto de caparazón se inmoviliza cuando pasa una sombra y después busca una junta lateral. Una observadora permanece quieta fuera del cascajo. El insecto cabe entero en la junta; sólo quedan fuera las antenas.",
+      "day": "Un insecto de caparazón se queda quieto cuando pasa una sombra, y luego se mete en una grieta. Una observadora no se mueve. El insecto cabe entero; sólo le asoman las antenas.",
       "night": "Las grietas se pierden en la oscuridad. La observadora guarda la lupa; ya no se distingue el movimiento pequeño junto al líquen.",
       "rain": "Las costras se oscurecen y el insecto busca un apoyo fuera del agua reunida en la base. La observadora describe el cambio de posición sin tocarlo. El suelo mojado permite ver huellas que el polvo seco ocultaba.",
       "clear": "",
-      "return": "Reconoces la junta donde se apartó el animal. La piedra tiene otra zona raspada de liquen; en el fondo de la hendidura no se distingue el caparazón.",
+      "return": "La piedra tiene otra zona raspada de liquen. En el fondo de la hendidura no se distingue el caparazón.",
       "examine": {
         "costras": "Los líquenes forman costras pálidas adheridas a la piedra; entre ellas asoma una junta oscura.",
         "roces": "Las marcas pequeñas siguen juntas, lejos de huellas de rueda."
@@ -1577,10 +1595,10 @@
       "kind": "road",
       "description": "Escalones bajos y anchos, junto a una franja lisa para carros, suben hacia las casas de Brumak. Las ruedas pequeñas han gastado más la piedra junto a los peldaños, dejando una línea brillante. Una repisa guarda cuñas cerca del suelo, a mano. A un lado, una puerta baja da al antiguo almacén de las cargas.",
       "day": "Una habitante recoloca una cuña y empuja el carro por la franja ancha. Un visitante alto espera junto a los peldaños; baja la cabeza al pasar bajo el borde de la puerta.",
-      "night": "Las luces se colocan junto a los cambios de nivel y no en lo alto de una fachada. El carro tardío se anuncia desde el asiento de revisión. La franja lateral permanece reconocible hasta alcanzar los primeros muros.",
-      "rain": "Los peldaños reciben barro que baja de las viviendas. Una habitante limpia el borde de la franja lateral antes de apoyar la rueda. Los recipientes se conservan sobre la repisa, lejos de la corriente de la escalera.",
+      "night": "Las luces están en cada cambio de nivel, no en lo alto de las casas. Desde el banco de revisión se oye llegar el último carro. La franja lisa del lado se ve hasta los primeros muros.",
+      "rain": "Por los peldaños baja barro de las casas. Una vecina limpia el borde de la franja lisa antes de subir la rueda. Los recipientes esperan en la repisa, lejos del agua que baja.",
       "clear": "",
-      "return": "Recuerdas la cuña junto al peldaño corto. Las ruedas pequeñas han dejado una línea oscura en la franja ancha que sube al patio.",
+      "return": "Recuerdas la cuña junto al peldaño corto. Las ruedas pequeñas han oscurecido un poco más la franja ancha.",
       "examine": {
         "cuñas": "Se comparten para impedir que una rueda retroceda mientras se cambia de apoyo.",
         "repisa": "Desde el asiento bajo se alcanza la repisa sin levantarse; quedan dos herramientas sobre ella."
@@ -1782,7 +1800,7 @@
       "night": "La mesa queda fuera de la luz del farol de entrada. Sus dos brazos se reconocen por el borde de madera, no por las sombras del suelo.",
       "rain": "El agua se oye junto a la puerta del almacén. Aquí la mesa sigue seca, bajo la ranura alta.",
       "clear": "",
-      "return": "Reconoces los dos brazos sobre la mesa. La única puerta vuelve al este, junto a Ruma.",
+      "return": "Los dos brazos cruzan la mesa. La única puerta da al este, donde está Ruma.",
       "examine": {
         "balanza": "Falta una placa de la balanza. Para comparar un saco pequeño hay que llevarlo a la otra mesa.",
         "mesa": "Su altura permite pesar un saco pequeño sin apoyarlo en el suelo."
@@ -1819,7 +1837,7 @@
         "sur": "korven_almacen_fondo",
         "este": "korven_almacen_lateral"
       },
-      "day": "El polvo conserva dos rayas hacia el pasillo oriental. Los sacos dejan una franja libre hacia la entrada norte.",
+      "day": "En el polvo hay dos rayas que van hacia el pasillo del este. Los sacos dejan libre un paso hasta la entrada norte.",
       "night": "Un hilo de luz llega por el corredor norte. Al este, las rayas se pierden antes de doblar detrás de los sacos.",
       "rain": "El viento mueve un saco vacío cerca de la entrada. Aquí el suelo permanece seco y las rayas de arrastre siguen visibles.",
       "clear": "",
@@ -1859,7 +1877,7 @@
         "sur": "korven_almacen_fondo"
       },
       "day": "Una franja de luz llega desde el depósito. El cordel sujeta los sacos altos y deja libre el hueco por debajo.",
-      "night": "El cordel se distingue al rozarlo con la manga. Siguiéndolo sin tirar se conserva el paso hacia el depósito sur.",
+      "night": "El cordel se nota al rozarlo con la manga. Si lo sigues sin tirar, te lleva hasta el depósito del sur.",
       "rain": "La lluvia se escucha a través de la carga apilada. Los sacos de este pasillo no tienen manchas nuevas de agua.",
       "clear": "",
       "return": "El cordel sigue sujeto a la misma pila. Reconoces el hueco que une el cruce con el depósito.",
@@ -1884,8 +1902,8 @@
         "este": "korven_almacen_lateral"
       },
       "day": "La luz termina contra el muro del depósito. Junto al saco, tres muescas interrumpen el polvo de la zona de apoyo.",
-      "night": "El muro devuelve el roce de las suelas. Los pasos conocidos quedan al norte y al este; en la oscuridad se distinguen sus bordes antes que el fondo.",
-      "rain": "Una gota cae de una cubierta que trajeron mojada. El resto del suelo conserva polvo seco alrededor del saco.",
+      "night": "El muro devuelve el roce de tus suelas. Las salidas que conoces están al norte y al este; en la oscuridad se ven sus bordes antes que el fondo.",
+      "rain": "Cae una gota de una cubierta que trajeron mojada. Alrededor del saco, el polvo sigue seco.",
       "clear": "",
       "return": "El saco de las tres marcas te sitúa al fondo del almacén. El pasillo lateral vuelve a quedar al este.",
       "examine": {

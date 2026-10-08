@@ -1,0 +1,250 @@
+[LUGAR] Tu casa junto al corredor
+[world] Tu banco de trabajo está bajo la ventana del huerto. La cama y el estante quedan al otro lado del cuarto. En la entrada hay sitio para dejar las botas mojadas. La puerta sale a la plaza de Valdren; puedes preparar aquí tu próxima salida.
+[world] Por la ventana llega la conversación de quienes atraviesan el corredor con recipientes. La luz permite revisar una correa sobre el banco sin encender el hogar.
+[salidas] salir
+=== Hogar → Valdren
+> salir
+[LUGAR] Plaza de Valdren
+[world] La plaza de Valdren es el corazón del pueblo: un espacio de tierra apisonada entre casas bajas de piedra y madera, con sitio de sobra para que un carro gire sin tapar ninguna puerta. Un banco largo la cruza de lado a lado, pero no es recto: lo interrumpe una piedra vieja que asoma entre las tablas. Quien lo construyó prefirió rodearla antes que arrancarla, y ahora los niños se suben a ella como si fuera un trono. Huele a pan recién sacado del horno. Calle arriba se oye el martillo de la fragua.
+[world] La vecina aparta una semilla mordida y la deja en un cuenco pequeño. Un niño intenta adivinar qué pájaro la abrió; su abuela le muestra las dos marcas del pico.
+[world] El cuenco del banco traquetea bajo su tapa. La lámpara oscila junto al corredor y su luz pasa de las tablas al suelo; en las casas, alguien encaja una contraventana.
+[salidas] norte, este, sur, oeste, regresar a tu hogar
+[world] Desde la fragua llegan tres golpes de martillo, una pausa, y otros tres.
+[world] Una ventana se abre y alguien sacude un mantel. Caen migas y bajan dos Gorriones de ruta a por ellas.
+> mirar al norte
+[world] Una calle corta sube empinada entre casas apretadas. Al final, entre los tejados, asoma la chimenea de una fragua.
+=== Valdren → campos → Vado de Juncos (transición Edran → Lethra)
+> este
+[LUGAR] Corredor de los Huertos
+[world] Un camino de tierra blanda serpentea entre huertos pequeños, cercas bajas y puertas de cocina que dan directamente a las verduras. Una canaleta de madera corre junto al camino, llevando agua a cada parcela, a la sombra de un árbol viejo de ramas anchas. Las cercas son tan bajas que se puede saludar por encima. Hacia el norte asoma el tejado de la casa de semillas; hacia el este, las cercas se abren y empieza el campo.
+[world] Una familia lleva hojas a la cocina sin usar cestos: la distancia es tan corta que basta doblar el delantal. La encargada del huerto deja espacio para quienes necesitan pasar con un carro.
+[salidas] oeste, norte, este
+> este
+[LUGAR] Salida de las Cercas Bajas
+[world] Aquí se acaban las casas. Las cercas bajan hasta la altura de la rodilla y el viento del campo llega de frente, oliendo a hierba y a tierra removida. Dos postes de madera, uno a cada lado, marcan la entrada de Valdren: quien vuelve de lejos los busca con la vista. Un camino sigue la acequia hacia los campos abiertos; otro dobla junto a las cercas, sin ir recto, camino de los graneros. Al oeste, el pueblo suena a voces y a martillo; al este, sólo a viento.
+[world] Una persona abre la cerca para pasar con una cesta y vuelve a apoyarla sin atarla. Su trayecto es corto; las huellas que siguen la acequia llevan carros.
+[world] Lina compara los nombres de la lista con las cestas que llegan de los huertos.
+[salidas] oeste, este, sur
+> este
+[LUGAR] Curva de la Acequia
+[world] El agua de la acequia baja tranquila y hace una curva alrededor de una losa plana y ancha, puesta ahí a propósito para cruzar sin mojarse los pies. Después sigue hacia Valdren, sonando bajito entre las piedras. Junto a la curva, un montón de hojas tapa la boca de una zanja seca, como si alguien la hubiera escondido. Por un lado sube el campo de surcos; por el otro, entre los juncos, brilla la superficie de un estanque.
+[world] Una hoja vuelve contra el borde de la rejilla aunque el agua siga su curso. La mujer la recoge y la deja entre la hierba, fuera de la corriente.
+[salidas] oeste, norte, sur
+> observar
+[trace] Se han trabado alrededor de una raíz suelta. Retirarlas devolvería el agua al paso lateral sin aumentar su caudal.
+[action] Observas con atención.
+> sur
+[LUGAR] Estanque del Reflejo Partido
+[world] Un estanque redondo, rodeado de piedras secas donde sentarse. Un tronco hundido lo parte en dos: de un lado el agua está quieta y refleja el cielo como un espejo; del otro, la corriente pasa y rompe el reflejo en pedazos. Por eso lo llaman el estanque del reflejo partido. El agua entra bajo una raíz y sale por el otro lado. Desde las piedras se ve, más allá, la hierba oscura de una hondonada.
+[world] Insectos se detienen sobre la parte quieta mientras el agua sigue pasando al otro lado del tronco. Un ave baja sólo hasta el borde firme.
+[salidas] norte, este, sur
+> sur
+[LUGAR] Borde de los Sauces Bajos
+[world] Un sauce inclinado echa sus ramas largas sobre la orilla, como una cortina verde que roza el agua. Dos aves se esconden entre sus hojas y, de vez en cuando, se oye su aleteo. El agua corre bajo sus raíces, que se agarran con fuerza a la orilla. La senda no se mete bajo el árbol: lo rodea despacio y sigue el agua. Bajo el sauce la luz es verde y el aire, más fresco. La senda oriental gira al norte hacia el puente.
+[world] Las aves cruzan entre dos ramas y regresan al mismo hueco. Sus movimientos dejan intervalos largos durante los que sólo se escucha la ribera.
+[salidas] norte, este
+> este
+[LUGAR] Vado de Juncos
+[world] Un puente de tablas separadas cruza el agua; por los huecos entre ellas se ve la corriente pasar por debajo. Sus apoyos se pueden revisar desde la orilla. Una marca antigua, grabada en un poste, le da nombre: Vado de Juncos. Cuando el agua sube y cubre las piedras del fondo, el puente es la única forma de pasar. En el lado alto, una tabla gastada sirve para apoyar la carga. Al otro lado empieza Lethra, y el aire ya huele distinto, a río y a barro.
+[world] Las cuerdas de los recipientes se mueven antes de que el viento se note en las tablas. El lado alto permite detener una carga fuera del centro del puente.
+[world] Una mujer cruza con dos recipientes colgados a distinta altura. Espera en el lado alto para equilibrarlos otra vez, lejos del centro del puente.
+[salidas] oeste, este, sur
+> examinar apoyos
+[world] Los apoyos del puente están firmes. El agua empuja unos juncos contra uno de ellos, pero la madera no se mueve. Un carro cargado puede pasar si cruza despacio.
+=== Lethra → Narevia (comercio)
+> este
+[LUGAR] Cruce del puente
+[world] Dos piedras marcan la franja alta junto al terreno que se inunda. En el suelo de abajo siguen las marcas de las crecidas, como rayas en un tronco. Al este queda la senda de Narevia; al oeste, un puente cruza hacia Edran, y un desvío al sur lleva a un remanso donde se oyen aves.
+[world] Las tablas quedan atrás, pero las crecidas siguen marcadas a la altura de tus tobillos. Las dos piedras señalan terreno que el agua todavía no cubre.
+[world] Una cuidadora comprueba que las piedras puedan verse desde la senda alta y retira una rama del apoyo menor. Un viajero compara sus zapatos con el barro de abajo antes de escoger por dónde continuará.
+[salidas] este, sur, oeste
+> este
+[LUGAR] Ribera hacia Edran
+[world] Hacia el oeste, los apoyos de madera se separan y el barro deja paso a la tierra seca de los llanos: este camino une Narevia con Edran. Bajo una cubierta común se pueden ajustar las envolturas y sacudirse el agua. Al este se oyen las voces del pueblo sobre el agua.
+[world] Una viajera de campo sacude su capa lejos de las envolturas de comida. Un vecino le señala el apoyo exterior y le acerca un paño para las manos.
+[salidas] este, oeste
+> este
+[LUGAR] Plaza de Narevia
+[world] Narevia ocupa una isla baja unida por pasarelas, y todo parece flotar. Los Marevyn pasan entre barcas y plataformas con una facilidad que da envidia; algunos saltan al agua y salen por el otro lado. Los apoyos altos dejan un sitio seco junto a la plaza. Huele a agua, a pescado asado y a madera. Desde aquí se reparten el taller, el mercado, el camino de tierra y la ribera que sale hacia Edran.
+[world] El niño mira hacia la otra orilla, que ya no distingue. Quien cuenta la visita señala una voz que llega desde allí y espera a que responda antes de seguir.
+[world] Las casas de la otra orilla desaparecen; las voces próximas siguen llegando entre las pasarelas. Desde un umbral responden a quien pregunta por el taller, y una cuchara vuelve a sonar contra un cuenco.
+[salidas] norte, este, sur, oeste
+[world] Alguien se tira al agua desde una plataforma con un chapuzón y sale por el otro lado riendo.
+[world] Un pescado salta en el canal y vuelve a caer; un niño lo señala, pero ya no está.
+> sur
+[LUGAR] Mercado de Narevia
+[world] Las barcas traen la comida en cestas levantadas del fondo, y la descargan directamente en los puestos. Se separan las envolturas abiertas, para comer cerca, de las que se guardan húmedas para el viaje. Huele a hierbas cortadas, a fruta y a madera mojada. Se oye regatear y reír. Más allá está el muelle.
+[world] Una vendedora abre una envoltura y huele lo que contiene antes de ofrecerla. Una compradora aparta una hoja rota del borde y la guarda para remendar la suya.
+[world] Tila levanta una cesta del fondo de la barca antes de abrir su envoltura. Las provisiones de viaje quedan en el apoyo seco; lo que se comerá cerca conserva su cubierta húmeda.
+[salidas] norte, sur
+> Comprar Provisión de camino · 8 sellos · recupera hasta 18 vida; reduce hasta 20 fatiga
+[action] Pagas 8 sellos por Provisión de camino y lo guardas con tus pertenencias. Te quedan 12 sellos.
+=== Exploración y encuentro
+> norte
+[LUGAR] Plaza de Narevia
+[world] La plaza de Narevia, en su isla de pasarelas.
+[world] Las casas de la otra orilla desaparecen; las voces próximas siguen llegando entre las pasarelas. Desde un umbral responden a quien pregunta por el taller, y una cuchara vuelve a sonar contra un cuenco.
+[world] El niño mira hacia la otra orilla, que ya no distingue. Quien cuenta la visita señala una voz que llega desde allí y espera a que responda antes de seguir.
+[world] La pasarela de llegada queda entre taller y mercado. Desde la plataforma alta puedes situar la ribera occidental por el hueco entre las barcas.
+[salidas] norte, este, sur, oeste
+> norte
+[LUGAR] Senda sobre el agua
+[world] Una senda elevada pasa frente a viviendas separadas por canales. Cada puerta da a su propia plataforma, fuera del camino, con macetas y redes colgadas. La gente se llama por su nombre de una casa a otra, por encima del agua, y se pasan cosas con cestas atadas a cuerdas. Al sur ya se oyen las voces de Narevia.
+[world] Desde una ventana bajan una cesta y desde la siguiente devuelven dos paños doblados. La vecina llama a quien espera y le pide que acerque el asa.
+[salidas] norte, sur
+> norte
+[LUGAR] Embarcadero del camino
+[world] Bajo un techo de juncos, las cargas del camino pasan de los hombros a barcas pequeñas que se balancean. Los bultos se dejan lejos del borde del agua. Un poste con rayas marca el nivel del canal; otro guarda las tiras de las barcas que se esperan. Desde aquí, la senda sigue hacia Narevia.
+[world] Una encargada llama a quien espera una cesta y la recibe de mano en mano, sin lanzarla sobre el canal. Un niño identifica una tira de llegada y corre por la senda alta para avisar a su casa.
+[salidas] norte, sur
+> norte
+[LUGAR] Pasarela curva
+[world] Una pasarela de madera con baranda rodea un agua tan quieta que parece un espejo. La orilla de llegada parece estar justo enfrente, a un salto, pero hay que seguir toda la curva para alcanzarla. Tus pasos suenan huecos sobre las tablas. Hacia el sur asoman el techo y los postes de un embarcadero.
+[world] Una vecina lleva un recipiente ancho por la curva. Se detiene en el ensanchamiento para dejar pasar a alguien y vuelve a mirar la orilla de enfrente.
+[salidas] norte, sur
+> norte
+[LUGAR] Ribera de las cargas
+[world] Recipientes cerrados esperan sobre apoyos de madera, por encima del barro, para que no se mojen. Quienes descargan dejan los bultos levantados mientras buscan sitio, y se oyen voces que se llaman de un apoyo a otro. Una curva lleva a una pasarela.
+[trace] Un Saltalodo salta de un recipiente vacío al barro y llama una vez. Una vecina se sobresalta y luego se ríe.
+[world] Dos vecinas intercambian un recipiente sin bajarlo al suelo. Una tercera reconoce por la envoltura qué debe abrirse antes. La tercera se aparta con la envoltura abierta y las otras dos vuelven a sus apoyos.
+[salidas] norte, sur
+[discovery] Añades Saltalodo al bestiario.
+> norte
+[LUGAR] Cruce de canales
+[world] Dos canales corren juntos: uno rápido, que hace ruido y espuma, y otro casi quieto, donde flotan hojas. Las plantas de la orilla se doblan hacia lados distintos, cada una con su corriente. En una plataforma pequeña junto al paso se puede mirar cómo gira una hoja en el remanso, dando vueltas sin decidirse. Aquí se acaban las tablas y sigue la tierra firme.
+[world] La hoja desaparece antes de llegar al siguiente canal. La observadora deja de anotar y escucha: el rumor de la corriente rápida continúa bajo el apoyo seco.
+[world] Una Marevyn observa una hoja hasta que sale del remanso y anota el giro en una tablilla. Desde el apoyo seco señala dónde cambia la corriente y espera a que la hoja llegue al siguiente canal. Un viajero guarda su recipiente antes de acercarse a preguntar.
+[salidas] norte, sur
+> norte
+[LUGAR] Primeras tablas
+[world] Las primeras tablas del camino cruzan por encima del barro, sobre apoyos bajos que crujen un poco al pisar. El agua escurre por las uniones y brilla entre las rendijas. Algunas tablas están más gastadas que otras: se nota por dónde pisa más la gente. A un lado cuelga una vara de prueba, fuera del agua.
+[world] Un carpintero camina sin carga hasta la unión que debe revisar. Sus compañeros esperan sobre tierra firme. El ruido de una tabla gastada se distingue mejor cuando nadie habla ni hace vibrar todo el tramo.
+[salidas] norte, sur
+> norte
+[LUGAR] Paso entre los juncos
+[world] Los juncos, más altos que tú, se abren con el viento y dejan ver el agua brillando entre ellos; luego se cierran otra vez. Las pisadas mantienen despejada una franja entre los tallos. Se oye un susurro continuo, como si el juncal hablara. Al sur empiezan las primeras tablas, y un desvío lleva a un banco de barro.
+[trace] Una pinza desigual se levanta al borde del agua. El Pinzajunco arrastra una hoja hacia su agujero cuando los pasos siguen por tierra.
+[world] Una artesana elige tallos secos y deja los verdes juntos para no abrir un hueco nuevo. Al atarlos, los juncos crujen con un sonido distinto del viento. Las fibras quedan junto al borde y el centro se mantiene libre para quienes pasan.
+[salidas] norte, sur, oeste
+[discovery] Añades Pinzajunco al bestiario.
+> buscar alrededor
+[trace] Un poste de amarre está doblado hacia el canal. La madera está sana: algo tiró de él desde el agua.
+> sur
+[LUGAR] Primeras tablas
+[world] Las primeras tablas sobre el barro.
+[world] Ya conoces el sonido de la unión gastada al pisarla.
+[world] Un carpintero camina sin carga hasta la unión que debe revisar. Sus compañeros esperan sobre tierra firme. El ruido de una tabla gastada se distingue mejor cuando nadie habla ni hace vibrar todo el tramo.
+[salidas] norte, sur
+> sur
+[LUGAR] Cruce de canales
+[world] El cruce de canales, uno rápido y otro quieto.
+[world] Una Marevyn observa una hoja hasta que sale del remanso y anota el giro en una tablilla. Desde el apoyo seco señala dónde cambia la corriente y espera a que la hoja llegue al siguiente canal. Un viajero guarda su recipiente antes de acercarse a preguntar.
+[world] En la salida del remanso gira una hoja; más allá corre el canal rápido.
+[world] La hoja desaparece antes de llegar al siguiente canal. La observadora deja de anotar y escucha: el rumor de la corriente rápida continúa bajo el apoyo seco.
+[salidas] norte, sur
+> sur
+[LUGAR] Ribera de las cargas
+[world] La ribera de las cargas, con sus recipientes en alto.
+[trace] Un Saltalodo salta de un recipiente vacío al barro y llama una vez. Una vecina se sobresalta y luego se ríe.
+[world] Recuerdas el apoyo alto donde se dejan los recipientes. La baranda de la pasarela asoma tras la curva.
+[world] Dos vecinas intercambian un recipiente sin bajarlo al suelo. Una tercera reconoce por la envoltura qué debe abrirse antes. La tercera se aparta con la envoltura abierta y las otras dos vuelven a sus apoyos.
+[salidas] norte, sur
+> sur
+[LUGAR] Pasarela curva
+[world] La pasarela curva que rodea el agua quieta.
+[world] La orilla de enfrente parece cerca, pero la curva es igual de larga.
+[world] Una vecina lleva un recipiente ancho por la curva. Se detiene en el ensanchamiento para dejar pasar a alguien y vuelve a mirar la orilla de enfrente.
+[salidas] norte, sur
+> sur
+[LUGAR] Embarcadero del camino
+[world] El embarcadero del camino, bajo su techo.
+[world] El poste de la marca de nivel tiene otra raya. Los bultos envueltos esperan junto a las tiras de las barcas.
+[world] Una encargada llama a quien espera una cesta y la recibe de mano en mano, sin lanzarla sobre el canal. Un niño identifica una tira de llegada y corre por la senda alta para avisar a su casa.
+[salidas] norte, sur
+> sur
+[LUGAR] Senda sobre el agua
+[world] La senda sobre el agua, entre casas y canales.
+[world] Sobre el canal, la plataforma de aquella ventana, la del borde corto.
+[world] Desde una ventana bajan una cesta y desde la siguiente devuelven dos paños doblados. La vecina llama a quien espera y le pide que acerque el asa.
+[salidas] norte, sur
+> sur
+[LUGAR] Plaza de Narevia
+[world] La plaza de Narevia, en su isla de pasarelas.
+[world] El niño ha terminado su cuenco. Una voz responde desde la orilla oculta y quien contaba la visita corrige con la cuchara el dibujo del amarre.
+[world] Las casas de la otra orilla desaparecen; las voces próximas siguen llegando entre las pasarelas. Desde un umbral responden a quien pregunta por el taller, y una cuchara vuelve a sonar contra un cuenco.
+[world] La pasarela de llegada queda entre taller y mercado. Desde la plataforma alta puedes situar la ribera occidental por el hueco entre las barcas.
+[salidas] norte, este, sur, oeste
+> oeste
+[LUGAR] Ribera hacia Edran
+[world] La ribera hacia Edran, con su cubierta común.
+[danger] Una persona con un palo corto espera junto a la cubierta de la ribera y pide tu equipaje. El suelo está firme; la vuelta al pueblo queda al este. No necesitas entrar en el agua.
+[world] En la cubierta cuelga el paño del apoyo exterior. Bajo techo, las envolturas limpias.
+[world] Una viajera de campo sacude su capa lejos de las envolturas de comida. Un vecino le señala el apoyo exterior y le acerca un paño para las manos.
+[salidas] este, oeste
+> mirar
+[look] Hacia el oeste, los apoyos de madera se separan y el barro deja paso a la tierra seca de los llanos: este camino une Narevia con Edran. Bajo una cubierta común se pueden ajustar las envolturas y sacudirse el agua. Al este se oyen las voces del pueblo sobre el agua.
+> Hablar con Salteador de cargas · qué quieres
+[npc] Salteador de cargas: Lo que lleves en la mochila. Déjala en el suelo y sigue tu camino. No me hace falta pelear contigo.
+[world] Mantienes la distancia. Hablar no te obliga a combatir; las salidas siguen siendo una opción.
+=== Combate
+> enfrentarte
+[danger] El salteador aprieta el palo con las dos manos y se planta delante de ti. «Está bien. Si no me das la carga, la tomaré yo.» Vigila el palo.
+[combat] Último tajo, firme y limpio. Salteador de cargas ya no puede seguir: 10 de daño.
+[world] El salteador tropieza y suelta el palo. Levanta las manos: «¡Basta! Ya está.» Lo recoge sin volver a alzarlo y se aparta del camino.
+[reward] Vences a Salteador de cargas. Ganas 12 XP y 4 sellos.
+=== Regreso
+> oeste
+[LUGAR] Cruce del puente
+[world] El cruce del puente, entre dos piedras.
+[world] Recuerdas la marca del agua en las dos piedras. Al oeste, la senda rodea los sauces antes de llegar al puente.
+[world] Una cuidadora comprueba que las piedras puedan verse desde la senda alta y retira una rama del apoyo menor. Un viajero compara sus zapatos con el barro de abajo antes de escoger por dónde continuará.
+[salidas] este, sur, oeste
+> oeste
+[LUGAR] Vado de Juncos
+[world] El Vado de Juncos y su puente de tablas.
+[world] Las cuerdas de los recipientes se mueven antes de que el viento se note en las tablas. El lado alto permite detener una carga fuera del centro del puente.
+[world] Una mujer cruza con dos recipientes colgados a distinta altura. Espera en el lado alto para equilibrarlos otra vez, lejos del centro del puente.
+[world] La tabla de espera del lado alto, gastada por tantas cargas. Los juncos rozan los apoyos del puente.
+[salidas] oeste, este, sur
+> sur
+[LUGAR] Borde de los Sauces Bajos
+[world] El borde de los sauces bajos.
+[danger] Un Espinajo bebe entre las raíces del sauce. Al verte, retrocede hasta la hierba y se queda agazapado, con las espinas de punta.
+[world] Las aves cruzan entre dos ramas y regresan al mismo hueco. Sus movimientos dejan intervalos largos durante los que sólo se escucha la ribera.
+[world] El sauce inclinado vuelve a mostrar el hueco donde se posó el ave. Desde la raíz seca se oye el agua bajo las plantas del borde.
+[salidas] norte, este
+[discovery] Añades Espinajo de rastrojo al bestiario.
+> norte
+[LUGAR] Estanque del Reflejo Partido
+[world] El estanque del reflejo partido por un tronco.
+[world] Insectos se detienen sobre la parte quieta mientras el agua sigue pasando al otro lado del tronco. Un ave baja sólo hasta el borde firme.
+[world] En el poste, la marca del nivel. El agua entra junto al pasto y sale por el lado opuesto, donde una hoja gira antes de seguir.
+[salidas] norte, este, sur
+> norte
+[LUGAR] Curva de la Acequia
+[world] La curva de la acequia, con su losa para cruzar.
+[world] Una hoja vuelve contra el borde de la rejilla aunque el agua siga su curso. La mujer la recoge y la deja entre la hierba, fuera de la corriente.
+[world] La corriente vuelve a doblar hacia la abertura tapada. Recuerdas el tramo seco que queda detrás de las hojas.
+[salidas] oeste, norte, sur
+> oeste
+[LUGAR] Salida de las Cercas Bajas
+[world] La salida de las cercas bajas, con sus dos postes y el viento de frente.
+[danger] Una forma baja y alargada corre junto a la acequia y se para con la cabeza hacia un hueco de la cerca. Es un Mordelinde: busca por dónde irse, no a quién morder.
+[world] Ya sabes leer esta salida: las rodadas rodean el huerto húmedo y buscan el campo por el borde firme.
+[world] Una persona abre la cerca para pasar con una cesta y vuelve a apoyarla sin atarla. Su trayecto es corto; las huellas que siguen la acequia llevan carros.
+[world] Lina está aquí.
+[salidas] oeste, este, sur
+[discovery] Añades Mordelinde al bestiario.
+> oeste
+[LUGAR] Corredor de los Huertos
+[world] El corredor de los huertos, con su canaleta a la sombra del árbol.
+[world] Los postes desiguales te permiten localizar la plaza sin ver el banco. También reconoces la curva donde la canaleta debe recoger el agua de los dos lados.
+[world] Una familia lleva hojas a la cocina sin usar cestos: la distancia es tan corta que basta doblar el delantal. La encargada del huerto deja espacio para quienes necesitan pasar con un carro.
+[salidas] oeste, norte, este
+> oeste
+[LUGAR] Plaza de Valdren
+[world] La plaza de Valdren, con su banco largo partido por una piedra.
+[world] El cuenco del banco traquetea bajo su tapa. La lámpara oscila junto al corredor y su luz pasa de las tablas al suelo; en las casas, alguien encaja una contraventana.
+[world] La vecina aparta una semilla mordida y la deja en un cuenco pequeño. Un niño intenta adivinar qué pájaro la abrió; su abuela le muestra las dos marcas del pico.
+[world] Ya sabes orientarte aquí: la calle que sube lleva al golpe de la fragua; el corredor de los huertos, al campo.
+[salidas] norte, este, sur, oeste, regresar a tu hogar

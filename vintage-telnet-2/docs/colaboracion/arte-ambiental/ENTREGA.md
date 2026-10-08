@@ -26,7 +26,7 @@ Las imágenes no incluyen estado temporal jugable. `placeArt` resuelve una únic
 - `ANOTACIONES_NARRATIVAS.md`: propuestas autorizadas para diferenciar 22 calles o plazas; no modifica narración.
 - `Obsidian/`: notas enlazadas por id, región, hogar y recorrido. Abrir la carpeta completa de entrega como vault y entrar a `Obsidian/Indice`; así también funcionan los embeds de WebP. No se verificó en la aplicación Obsidian.
 - `hojas-contacto/`: referencias por región y comparación de lotes.
-- `recorridos/`: ocho rutas canónicas verificadas en grafo; las largas siguen pendientes de cobertura visual. Las secuencias cortas entregadas se revisan por separado.
+- `recorridos/`: ocho rutas canónicas verificadas en grafo; cobertura y revisión actual de cada una en rutas-canonicas.json. Las secuencias cortas se revisan por separado.
 
 ## Lote 1
 
@@ -48,6 +48,10 @@ Consultar `ESTADO.json` para conteos actuales, y `DEFECTOS_INTEGRACION.md` para 
 
 ## Cobertura actual automatizada
 
-47 vistas nuevas revisadas por el agente; 128 habitaciones pendientes de vista específica. Las 22 calles y patios con fondo compartido inicial ya tienen arte propio y anotaciones narrativas. Misión incompleta.
+108 vistas nuevas revisadas por el agente; 67 habitaciones pendientes de vista específica. Las 22 calles y patios con fondo compartido inicial ya tienen arte propio y anotaciones narrativas. Misión incompleta.
 
 Recorridos completos: consultar `recorridos/rutas-canonicas.json` y `REVISION_RECORRIDOS.md`; los demás continúan pendientes. Sólo los archivos listados en `evaluaciones.json` están propuestos para integrar. Los descartes no se integran.
+
+## Reanudación autorizada — 8 octubre 2026
+
+La pausa previa queda revocada por el usuario. 108 escenarios nuevos revisados, 8 existentes respetados y 67 pendientes. Último lote: senda del recipiente corregida, taller, secadero y cocina de Nhal. Producción activa, sin integración en el proyecto principal.

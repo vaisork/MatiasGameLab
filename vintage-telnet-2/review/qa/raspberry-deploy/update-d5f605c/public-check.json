@@ -1,0 +1,18 @@
+{
+  "checked_at_utc": "2026-10-08T20:26:07.043447+00:00",
+  "checks": [
+    {
+      "url": "https://raspberrypi.tail3d212e.ts.net/",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 1511
+    },
+    {
+      "url": "https://raspberrypi.tail3d212e.ts.net/dm",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 1511
+    }
+  ],
+  "scope": "GET anónimo HTTPS; sin sesión ni datos de jugadores"
+}
