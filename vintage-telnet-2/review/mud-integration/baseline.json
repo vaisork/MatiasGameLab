@@ -1,0 +1,4493 @@
+{
+  "moves": 30,
+  "rows": [
+    {
+      "label": "mover:salir",
+      "movement": true,
+      "room": "valdren_plaza",
+      "name": "Plaza de Valdren",
+      "description": "Un banco largo cruza la plaza. Hay espacio para girar los carros sin tapar las puertas. La fragua queda al norte, los huertos al este, el pozo al sur y el cobertizo al oeste. Una piedra sobresale entre las tablas del asiento.",
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Un banco largo cruza la plaza. Hay espacio para girar los carros sin tapar las puertas. La fragua queda al norte, los huertos al este, el pozo al sur y el cobertizo al oeste. Una piedra sobresale entre las tablas del asiento."
+        },
+        {
+          "kind": "world",
+          "text": "La vecina aparta una semilla mordida y la deja en un cuenco pequeño. Un niño intenta adivinar qué pájaro la abrió; su abuela le muestra las dos marcas del pico."
+        }
+      ],
+      "actions": [
+        {
+          "id": "mirar",
+          "label": "Mirar"
+        },
+        {
+          "id": "observar",
+          "label": "Observar"
+        },
+        {
+          "id": "examinar",
+          "target": "banco",
+          "label": "Examinar banco"
+        },
+        {
+          "id": "examinar",
+          "target": "piedra",
+          "label": "Examinar piedra"
+        },
+        {
+          "id": "mover",
+          "target": "norte",
+          "label": "Norte · Salida por explorar",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "este",
+          "label": "Este · Salida por explorar",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "sur",
+          "label": "Sur · Salida por explorar",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "oeste",
+          "label": "Oeste · Salida por explorar",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "hogar",
+          "label": "Regresar a tu hogar"
+        },
+        {
+          "id": "descansar",
+          "label": "Descansar",
+          "disabled": true,
+          "reason": "Ya estás sin fatiga y con toda tu vitalidad."
+        },
+        {
+          "id": "desequipar",
+          "target": "weapon",
+          "label": "Guardar arma"
+        },
+        {
+          "id": "equipar",
+          "target": "espada_juramento",
+          "label": "Equipar Espada de juramento",
+          "disabled": false,
+          "reason": ""
+        }
+      ],
+      "exits": [
+        {
+          "direction": "norte",
+          "label": "Norte"
+        },
+        {
+          "direction": "este",
+          "label": "Este"
+        },
+        {
+          "direction": "sur",
+          "label": "Sur"
+        },
+        {
+          "direction": "oeste",
+          "label": "Oeste"
+        }
+      ],
+      "combat": null,
+      "words": 72
+    },
+    {
+      "label": "mover:oeste",
+      "movement": true,
+      "room": "valdren_cobertizo",
+      "name": "Cobertizo de los carros",
+      "description": "Bren guarda los carros con las varas hacia el patio. Bajo el techo bajo hay ruedas desmontadas; en la parte alta cabe un carro entero. Una cuerda marca el espacio para girarlo. La plaza queda al este y el patio al sur.",
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Bren guarda los carros con las varas hacia el patio. Bajo el techo bajo hay ruedas desmontadas; en la parte alta cabe un carro entero. Una cuerda marca el espacio para girarlo. La plaza queda al este y el patio al sur."
+        },
+        {
+          "kind": "world",
+          "text": "Bren hace avanzar un carro vacío y escucha un crujido que desaparece al volver. Pide una segunda persona para observar la rueda desde fuera de su recorrido."
+        },
+        {
+          "kind": "world",
+          "text": "Bren mantiene la cuerda de giro fuera del alcance de quienes miran."
+        }
+      ],
+      "actions": [
+        {
+          "id": "edran_comprobar_rueda",
+          "label": "Observar la rueda mientras Bren mueve el carro"
+        },
+        {
+          "id": "mirar",
+          "label": "Mirar"
+        },
+        {
+          "id": "observar",
+          "label": "Observar"
+        },
+        {
+          "id": "examinar",
+          "target": "rueda",
+          "label": "Examinar rueda"
+        },
+        {
+          "id": "examinar",
+          "target": "cuerda",
+          "label": "Examinar cuerda"
+        },
+        {
+          "id": "mover",
+          "target": "este",
+          "label": "Este · Plaza de Valdren",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "sur",
+          "label": "Sur · Salida por explorar",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "descansar",
+          "label": "Descansar",
+          "disabled": true,
+          "reason": "Ya estás sin fatiga y con toda tu vitalidad."
+        },
+        {
+          "id": "hablar",
+          "target": "edran_bren",
+          "topic": "rueda",
+          "label": "Bren · rueda"
+        },
+        {
+          "id": "hablar",
+          "target": "edran_bren",
+          "topic": "carga",
+          "label": "Bren · carga"
+        },
+        {
+          "id": "aceptar",
+          "target": "valdren_estado_vado",
+          "label": "Aceptar Traer noticia del cruce de agua",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "desequipar",
+          "target": "weapon",
+          "label": "Guardar arma"
+        },
+        {
+          "id": "equipar",
+          "target": "espada_juramento",
+          "label": "Equipar Espada de juramento",
+          "disabled": false,
+          "reason": ""
+        }
+      ],
+      "exits": [
+        {
+          "direction": "este",
+          "label": "Este"
+        },
+        {
+          "direction": "sur",
+          "label": "Sur"
+        }
+      ],
+      "combat": null,
+      "words": 81
+    },
+    {
+      "label": "mover:este",
+      "movement": true,
+      "room": "valdren_plaza",
+      "name": "Plaza de Valdren",
+      "description": "Un banco largo cruza la plaza. Hay espacio para girar los carros sin tapar las puertas. La fragua queda al norte, los huertos al este, el pozo al sur y el cobertizo al oeste. Una piedra sobresale entre las tablas del asiento.",
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Un banco largo cruza la plaza. Hay espacio para girar los carros sin tapar las puertas. La fragua queda al norte, los huertos al este, el pozo al sur y el cobertizo al oeste. Una piedra sobresale entre las tablas del asiento."
+        },
+        {
+          "kind": "world",
+          "text": "La vecina aparta una semilla mordida y la deja en un cuenco pequeño. Un niño intenta adivinar qué pájaro la abrió; su abuela le muestra las dos marcas del pico."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces el extremo del banco por la piedra que obliga a interrumpirlo. La fragua queda detrás de las casas más altas; el corredor de huertos ofrece una salida distinta, orientada al campo."
+        }
+      ],
+      "actions": [
+        {
+          "id": "mirar",
+          "label": "Mirar"
+        },
+        {
+          "id": "observar",
+          "label": "Observar"
+        },
+        {
+          "id": "examinar",
+          "target": "banco",
+          "label": "Examinar banco"
+        },
+        {
+          "id": "examinar",
+          "target": "piedra",
+          "label": "Examinar piedra"
+        },
+        {
+          "id": "mover",
+          "target": "norte",
+          "label": "Norte · Salida por explorar",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "este",
+          "label": "Este · Salida por explorar",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "sur",
+          "label": "Sur · Salida por explorar",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "oeste",
+          "label": "Oeste · Cobertizo de los carros",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "hogar",
+          "label": "Regresar a tu hogar"
+        },
+        {
+          "id": "descansar",
+          "label": "Descansar",
+          "disabled": true,
+          "reason": "Ya estás sin fatiga y con toda tu vitalidad."
+        },
+        {
+          "id": "desequipar",
+          "target": "weapon",
+          "label": "Guardar arma"
+        },
+        {
+          "id": "equipar",
+          "target": "espada_juramento",
+          "label": "Equipar Espada de juramento",
+          "disabled": false,
+          "reason": ""
+        }
+      ],
+      "exits": [
+        {
+          "direction": "norte",
+          "label": "Norte"
+        },
+        {
+          "direction": "este",
+          "label": "Este"
+        },
+        {
+          "direction": "sur",
+          "label": "Sur"
+        },
+        {
+          "direction": "oeste",
+          "label": "Oeste"
+        }
+      ],
+      "combat": null,
+      "words": 104
+    },
+    {
+      "label": "mover:este",
+      "movement": true,
+      "room": "valdren_huertos",
+      "name": "Corredor de los Huertos",
+      "description": "El camino pasa entre huertos, cercas bajas y puertas de cocina. Un árbol da sombra a la canaleta. Al oeste queda la plaza; al norte está la casa de semillas. Sigue al este para salir de Valdren hacia los campos.",
+      "scene": [
+        {
+          "kind": "world",
+          "text": "El camino pasa entre huertos, cercas bajas y puertas de cocina. Un árbol da sombra a la canaleta. Al oeste queda la plaza; al norte está la casa de semillas. Sigue al este para salir de Valdren hacia los campos."
+        },
+        {
+          "kind": "world",
+          "text": "Una familia lleva hojas a la cocina sin usar cestos: la distancia es tan corta que basta doblar el delantal. La encargada del huerto deja espacio para quienes necesitan pasar con un carro."
+        }
+      ],
+      "actions": [
+        {
+          "id": "mirar",
+          "label": "Mirar"
+        },
+        {
+          "id": "observar",
+          "label": "Observar"
+        },
+        {
+          "id": "examinar",
+          "target": "canaleta",
+          "label": "Examinar canaleta"
+        },
+        {
+          "id": "examinar",
+          "target": "cuerda",
+          "label": "Examinar cuerda"
+        },
+        {
+          "id": "mover",
+          "target": "oeste",
+          "label": "Oeste · Plaza de Valdren",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "norte",
+          "label": "Norte · Salida por explorar",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "este",
+          "label": "Este · Salida por explorar",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "descansar",
+          "label": "Descansar",
+          "disabled": true,
+          "reason": "Ya estás sin fatiga y con toda tu vitalidad."
+        },
+        {
+          "id": "desequipar",
+          "target": "weapon",
+          "label": "Guardar arma"
+        },
+        {
+          "id": "equipar",
+          "target": "espada_juramento",
+          "label": "Equipar Espada de juramento",
+          "disabled": false,
+          "reason": ""
+        }
+      ],
+      "exits": [
+        {
+          "direction": "oeste",
+          "label": "Oeste"
+        },
+        {
+          "direction": "norte",
+          "label": "Norte"
+        },
+        {
+          "direction": "este",
+          "label": "Este"
+        }
+      ],
+      "combat": null,
+      "words": 73
+    },
+    {
+      "label": "mover:norte",
+      "movement": true,
+      "room": "valdren_casa_semillas",
+      "name": "Casa de semillas",
+      "description": "Iria guarda semillas en recipientes con nombres y cantidades. Algunos lotes esperan a secarse junto a la ventana; los sacos vacíos cuelgan al fondo. Los estantes bajos permiten hablar sin rodearlos. La puerta sur vuelve a los huertos.",
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Iria guarda semillas en recipientes con nombres y cantidades. Algunos lotes esperan a secarse junto a la ventana; los sacos vacíos cuelgan al fondo. Los estantes bajos permiten hablar sin rodearlos. La puerta sur vuelve a los huertos."
+        },
+        {
+          "kind": "world",
+          "text": "Iria pesa dos recipientes con la misma balanza y anota qué volverá después de la cosecha. Pide que cada nombre se lea en voz alta antes de guardar la tablilla."
+        },
+        {
+          "kind": "world",
+          "text": "Iria lee el nombre de un recipiente antes de colocarlo en el estante."
+        }
+      ],
+      "actions": [
+        {
+          "id": "mirar",
+          "label": "Mirar"
+        },
+        {
+          "id": "observar",
+          "label": "Observar"
+        },
+        {
+          "id": "examinar",
+          "target": "tablilla",
+          "label": "Examinar tablilla"
+        },
+        {
+          "id": "examinar",
+          "target": "estantes",
+          "label": "Examinar estantes"
+        },
+        {
+          "id": "mover",
+          "target": "sur",
+          "label": "Sur · Corredor de los Huertos",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "descansar",
+          "label": "Descansar",
+          "disabled": true,
+          "reason": "Ya estás sin fatiga y con toda tu vitalidad."
+        },
+        {
+          "id": "hablar",
+          "target": "edran_iria",
+          "topic": "semillas",
+          "label": "Iria · semillas"
+        },
+        {
+          "id": "hablar",
+          "target": "edran_iria",
+          "topic": "tablilla",
+          "label": "Iria · tablilla"
+        },
+        {
+          "id": "desequipar",
+          "target": "weapon",
+          "label": "Guardar arma"
+        },
+        {
+          "id": "equipar",
+          "target": "espada_juramento",
+          "label": "Equipar Espada de juramento",
+          "disabled": false,
+          "reason": ""
+        }
+      ],
+      "exits": [
+        {
+          "direction": "sur",
+          "label": "Sur"
+        }
+      ],
+      "combat": null,
+      "words": 81
+    },
+    {
+      "label": "mover:sur",
+      "movement": true,
+      "room": "valdren_huertos",
+      "name": "Corredor de los Huertos",
+      "description": "El camino pasa entre huertos, cercas bajas y puertas de cocina. Un árbol da sombra a la canaleta. Al oeste queda la plaza; al norte está la casa de semillas. Sigue al este para salir de Valdren hacia los campos.",
+      "scene": [
+        {
+          "kind": "world",
+          "text": "El camino pasa entre huertos, cercas bajas y puertas de cocina. Un árbol da sombra a la canaleta. Al oeste queda la plaza; al norte está la casa de semillas. Sigue al este para salir de Valdren hacia los campos."
+        },
+        {
+          "kind": "world",
+          "text": "Los postes desiguales te permiten localizar la plaza sin ver el banco. También reconoces la curva donde la canaleta debe recoger el agua de los dos lados."
+        },
+        {
+          "kind": "world",
+          "text": "Una familia lleva hojas a la cocina sin usar cestos: la distancia es tan corta que basta doblar el delantal. La encargada del huerto deja espacio para quienes necesitan pasar con un carro."
+        }
+      ],
+      "actions": [
+        {
+          "id": "mirar",
+          "label": "Mirar"
+        },
+        {
+          "id": "observar",
+          "label": "Observar"
+        },
+        {
+          "id": "examinar",
+          "target": "canaleta",
+          "label": "Examinar canaleta"
+        },
+        {
+          "id": "examinar",
+          "target": "cuerda",
+          "label": "Examinar cuerda"
+        },
+        {
+          "id": "mover",
+          "target": "oeste",
+          "label": "Oeste · Plaza de Valdren",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "norte",
+          "label": "Norte · Casa de semillas",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "este",
+          "label": "Este · Salida por explorar",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "descansar",
+          "label": "Descansar",
+          "disabled": true,
+          "reason": "Ya estás sin fatiga y con toda tu vitalidad."
+        },
+        {
+          "id": "desequipar",
+          "target": "weapon",
+          "label": "Guardar arma"
+        },
+        {
+          "id": "equipar",
+          "target": "espada_juramento",
+          "label": "Equipar Espada de juramento",
+          "disabled": false,
+          "reason": ""
+        }
+      ],
+      "exits": [
+        {
+          "direction": "oeste",
+          "label": "Oeste"
+        },
+        {
+          "direction": "norte",
+          "label": "Norte"
+        },
+        {
+          "direction": "este",
+          "label": "Este"
+        }
+      ],
+      "combat": null,
+      "words": 100
+    },
+    {
+      "label": "mover:este",
+      "movement": true,
+      "room": "edran_salida_huertos",
+      "name": "Salida de las Cercas Bajas",
+      "description": "Las cercas bajan y el viento llega de frente. Dejas las casas atrás. El camino este sigue hasta la acequia; por el sur vuelves entre los graneros. Los dos postes del oeste señalan la entrada a Valdren. El tramo hacia los graneros dobla junto a las cercas; no es una calle recta.",
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Las cercas bajan y el viento llega de frente. Dejas las casas atrás. El camino este sigue hasta la acequia; por el sur vuelves entre los graneros. Los dos postes del oeste señalan la entrada a Valdren. El tramo hacia los graneros dobla junto a las cercas; no es una calle recta."
+        },
+        {
+          "kind": "world",
+          "text": "Una persona abre la cerca para pasar con una cesta y vuelve a apoyarla sin atarla. Su trayecto es corto; las huellas que siguen la acequia llevan carros."
+        },
+        {
+          "kind": "world",
+          "text": "Lina compara los nombres de la lista con las cestas que llegan de los huertos."
+        }
+      ],
+      "actions": [
+        {
+          "id": "buscar",
+          "label": "Buscar alrededor",
+          "disabled": false,
+          "reason": "Revisar suelo, refugios y objetos que hayan quedado en el camino."
+        },
+        {
+          "id": "pedir_permiso_valdren",
+          "label": "Presentarte y pedir entrada"
+        },
+        {
+          "id": "mirar",
+          "label": "Mirar"
+        },
+        {
+          "id": "observar",
+          "label": "Observar"
+        },
+        {
+          "id": "examinar",
+          "target": "cercas",
+          "label": "Examinar cercas"
+        },
+        {
+          "id": "examinar",
+          "target": "huellas",
+          "label": "Examinar huellas"
+        },
+        {
+          "id": "mover",
+          "target": "oeste",
+          "label": "Oeste · Corredor de los Huertos",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "este",
+          "label": "Este · Salida por explorar",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "sur",
+          "label": "Sur · Salida por explorar",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "hablar",
+          "target": "edran_lina",
+          "topic": "entrada",
+          "label": "Lina · entrada"
+        },
+        {
+          "id": "hablar",
+          "target": "edran_lina",
+          "topic": "peligro",
+          "label": "Lina · peligro"
+        },
+        {
+          "id": "desequipar",
+          "target": "weapon",
+          "label": "Guardar arma"
+        },
+        {
+          "id": "equipar",
+          "target": "espada_juramento",
+          "label": "Equipar Espada de juramento",
+          "disabled": false,
+          "reason": ""
+        }
+      ],
+      "exits": [
+        {
+          "direction": "oeste",
+          "label": "Oeste"
+        },
+        {
+          "direction": "este",
+          "label": "Este"
+        },
+        {
+          "direction": "sur",
+          "label": "Sur"
+        }
+      ],
+      "combat": null,
+      "words": 95
+    },
+    {
+      "label": "mover:sur",
+      "movement": true,
+      "room": "valdren_graneros",
+      "name": "Paso entre los Graneros",
+      "description": "El paso cruza entre dos graneros. Una puerta se alcanza por una rampa; la otra está a ras del suelo. En una esquina se acumula tierra por encima de las marcas de agua. Al oeste está el patio; al este sales hacia los campos.",
+      "scene": [
+        {
+          "kind": "world",
+          "text": "El paso cruza entre dos graneros. Una puerta se alcanza por una rampa; la otra está a ras del suelo. En una esquina se acumula tierra por encima de las marcas de agua. Al oeste está el patio; al este sales hacia los campos."
+        },
+        {
+          "kind": "world",
+          "text": "Una almacenista cuenta sacos por sus nudos, sin abrirlos. Un muchacho espera con una tablilla hasta que la almacenista termina de comprobar el granero alto."
+        }
+      ],
+      "actions": [
+        {
+          "id": "edran_despejar_granero",
+          "label": "Despejar la salida de agua del granero"
+        },
+        {
+          "id": "mirar",
+          "label": "Mirar"
+        },
+        {
+          "id": "observar",
+          "label": "Observar"
+        },
+        {
+          "id": "examinar",
+          "target": "nudos",
+          "label": "Examinar nudos"
+        },
+        {
+          "id": "examinar",
+          "target": "esquina",
+          "label": "Examinar esquina"
+        },
+        {
+          "id": "mover",
+          "target": "oeste",
+          "label": "Oeste · Salida por explorar",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "este",
+          "label": "Este · Salida de las Cercas Bajas",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "descansar",
+          "label": "Descansar",
+          "disabled": true,
+          "reason": "Ya estás sin fatiga y con toda tu vitalidad."
+        },
+        {
+          "id": "desequipar",
+          "target": "weapon",
+          "label": "Guardar arma"
+        },
+        {
+          "id": "equipar",
+          "target": "espada_juramento",
+          "label": "Equipar Espada de juramento",
+          "disabled": false,
+          "reason": ""
+        }
+      ],
+      "exits": [
+        {
+          "direction": "oeste",
+          "label": "Oeste"
+        },
+        {
+          "direction": "este",
+          "label": "Este"
+        }
+      ],
+      "combat": null,
+      "words": 69
+    },
+    {
+      "label": "examinar:esquina",
+      "movement": false,
+      "room": "valdren_graneros",
+      "name": "Paso entre los Graneros",
+      "description": "El paso cruza entre dos graneros. Una puerta se alcanza por una rampa; la otra está a ras del suelo. En una esquina se acumula tierra por encima de las marcas de agua. Al oeste está el patio; al este sales hacia los campos.",
+      "scene": [
+        {
+          "kind": "world",
+          "text": "El paso cruza entre dos graneros. Una puerta se alcanza por una rampa; la otra está a ras del suelo. En una esquina se acumula tierra por encima de las marcas de agua. Al oeste está el patio; al este sales hacia los campos."
+        },
+        {
+          "kind": "world",
+          "text": "Una almacenista cuenta sacos por sus nudos, sin abrirlos. Un muchacho espera con una tablilla hasta que la almacenista termina de comprobar el granero alto."
+        }
+      ],
+      "actions": [
+        {
+          "id": "edran_despejar_granero",
+          "label": "Despejar la salida de agua del granero"
+        },
+        {
+          "id": "mirar",
+          "label": "Mirar"
+        },
+        {
+          "id": "observar",
+          "label": "Observar"
+        },
+        {
+          "id": "examinar",
+          "target": "nudos",
+          "label": "Examinar nudos"
+        },
+        {
+          "id": "examinar",
+          "target": "esquina",
+          "label": "Examinar esquina"
+        },
+        {
+          "id": "mover",
+          "target": "oeste",
+          "label": "Oeste · Salida por explorar",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "este",
+          "label": "Este · Salida de las Cercas Bajas",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "descansar",
+          "label": "Descansar",
+          "disabled": true,
+          "reason": "Ya estás sin fatiga y con toda tu vitalidad."
+        },
+        {
+          "id": "desequipar",
+          "target": "weapon",
+          "label": "Guardar arma"
+        },
+        {
+          "id": "equipar",
+          "target": "espada_juramento",
+          "label": "Equipar Espada de juramento",
+          "disabled": false,
+          "reason": ""
+        }
+      ],
+      "exits": [
+        {
+          "direction": "oeste",
+          "label": "Oeste"
+        },
+        {
+          "direction": "este",
+          "label": "Este"
+        }
+      ],
+      "combat": null,
+      "words": 69
+    },
+    {
+      "label": "edran_despejar_granero:None",
+      "movement": false,
+      "room": "valdren_graneros",
+      "name": "Paso entre los Graneros",
+      "description": "El paso entre los graneros ya no retiene agua en la esquina baja. La salida está despejada y la tierra retirada queda aparte. Las marcas antiguas siguen en la pared. Al oeste llegas al patio; al este sales hacia los campos.",
+      "scene": [
+        {
+          "kind": "world",
+          "text": "El paso entre los graneros ya no retiene agua en la esquina baja. La salida está despejada y la tierra retirada queda aparte. Las marcas antiguas siguen en la pared. Al oeste llegas al patio; al este sales hacia los campos."
+        },
+        {
+          "kind": "discovery",
+          "text": "La esquina del granero tiene una salida de agua visible. El umbral bajo permanece separado de la tierra apartada."
+        },
+        {
+          "kind": "world",
+          "text": "Una almacenista cuenta sacos por sus nudos, sin abrirlos. Un muchacho espera con una tablilla hasta que la almacenista termina de comprobar el granero alto."
+        }
+      ],
+      "actions": [
+        {
+          "id": "mirar",
+          "label": "Mirar"
+        },
+        {
+          "id": "observar",
+          "label": "Observar"
+        },
+        {
+          "id": "examinar",
+          "target": "nudos",
+          "label": "Examinar nudos"
+        },
+        {
+          "id": "examinar",
+          "target": "esquina",
+          "label": "Examinar esquina"
+        },
+        {
+          "id": "mover",
+          "target": "oeste",
+          "label": "Oeste · Salida por explorar",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "este",
+          "label": "Este · Salida de las Cercas Bajas",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "descansar",
+          "label": "Descansar",
+          "disabled": true,
+          "reason": "Ya estás sin fatiga y con toda tu vitalidad."
+        },
+        {
+          "id": "desequipar",
+          "target": "weapon",
+          "label": "Guardar arma"
+        },
+        {
+          "id": "equipar",
+          "target": "espada_juramento",
+          "label": "Equipar Espada de juramento",
+          "disabled": false,
+          "reason": ""
+        }
+      ],
+      "exits": [
+        {
+          "direction": "oeste",
+          "label": "Oeste"
+        },
+        {
+          "direction": "este",
+          "label": "Este"
+        }
+      ],
+      "combat": null,
+      "words": 85
+    },
+    {
+      "label": "mover:oeste",
+      "movement": true,
+      "room": "valdren_patio_carros",
+      "name": "Patio de los carros",
+      "description": "Una carga de sacos espera en el patio. La ligera pendiente puede mover un carro sin calzar; un madero detiene las ruedas. El cobertizo queda al norte, los graneros al este. La senda sur permite volver hacia la arboleda.",
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Una carga de sacos espera en el patio. La ligera pendiente puede mover un carro sin calzar; un madero detiene las ruedas. El cobertizo queda al norte, los graneros al este. La senda sur permite volver hacia la arboleda."
+        },
+        {
+          "kind": "world",
+          "text": "Un ayudante de Bren desplaza un saco y pide que nadie sujete el carro mientras observa si vuelve a inclinarse. Una mujer recoge las semillas que han caído bajo la plataforma."
+        }
+      ],
+      "actions": [
+        {
+          "id": "mirar",
+          "label": "Mirar"
+        },
+        {
+          "id": "observar",
+          "label": "Observar"
+        },
+        {
+          "id": "examinar",
+          "target": "plataforma",
+          "label": "Examinar plataforma"
+        },
+        {
+          "id": "examinar",
+          "target": "madero",
+          "label": "Examinar madero"
+        },
+        {
+          "id": "mover",
+          "target": "norte",
+          "label": "Norte · Cobertizo de los carros",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "este",
+          "label": "Este · Paso entre los Graneros",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "sur",
+          "label": "Sur · Salida por explorar",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "descansar",
+          "label": "Descansar",
+          "disabled": true,
+          "reason": "Ya estás sin fatiga y con toda tu vitalidad."
+        },
+        {
+          "id": "desequipar",
+          "target": "weapon",
+          "label": "Guardar arma"
+        },
+        {
+          "id": "equipar",
+          "target": "espada_juramento",
+          "label": "Equipar Espada de juramento",
+          "disabled": false,
+          "reason": ""
+        }
+      ],
+      "exits": [
+        {
+          "direction": "norte",
+          "label": "Norte"
+        },
+        {
+          "direction": "este",
+          "label": "Este"
+        },
+        {
+          "direction": "sur",
+          "label": "Sur"
+        }
+      ],
+      "combat": null,
+      "words": 70
+    },
+    {
+      "label": "mover:norte",
+      "movement": true,
+      "room": "valdren_cobertizo",
+      "name": "Cobertizo de los carros",
+      "description": "Bren guarda los carros con las varas hacia el patio. Bajo el techo bajo hay ruedas desmontadas; en la parte alta cabe un carro entero. Una cuerda marca el espacio para girarlo. La plaza queda al este y el patio al sur.",
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Bren guarda los carros con las varas hacia el patio. Bajo el techo bajo hay ruedas desmontadas; en la parte alta cabe un carro entero. Una cuerda marca el espacio para girarlo. La plaza queda al este y el patio al sur."
+        },
+        {
+          "kind": "world",
+          "text": "Ahora sabes dónde esperar sin obligar a Bren a interrumpir una prueba. El crujido procede del carro alto, no de las ruedas almacenadas contra la pared."
+        },
+        {
+          "kind": "world",
+          "text": "Bren hace avanzar un carro vacío y escucha un crujido que desaparece al volver. Pide una segunda persona para observar la rueda desde fuera de su recorrido."
+        }
+      ],
+      "actions": [
+        {
+          "id": "edran_comprobar_rueda",
+          "label": "Observar la rueda mientras Bren mueve el carro"
+        },
+        {
+          "id": "mirar",
+          "label": "Mirar"
+        },
+        {
+          "id": "observar",
+          "label": "Observar"
+        },
+        {
+          "id": "examinar",
+          "target": "rueda",
+          "label": "Examinar rueda"
+        },
+        {
+          "id": "examinar",
+          "target": "cuerda",
+          "label": "Examinar cuerda"
+        },
+        {
+          "id": "mover",
+          "target": "este",
+          "label": "Este · Plaza de Valdren",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "sur",
+          "label": "Sur · Patio de los carros",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "descansar",
+          "label": "Descansar",
+          "disabled": true,
+          "reason": "Ya estás sin fatiga y con toda tu vitalidad."
+        },
+        {
+          "id": "hablar",
+          "target": "edran_bren",
+          "topic": "rueda",
+          "label": "Bren · rueda"
+        },
+        {
+          "id": "hablar",
+          "target": "edran_bren",
+          "topic": "carga",
+          "label": "Bren · carga"
+        },
+        {
+          "id": "aceptar",
+          "target": "valdren_estado_vado",
+          "label": "Aceptar Traer noticia del cruce de agua",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "desequipar",
+          "target": "weapon",
+          "label": "Guardar arma"
+        },
+        {
+          "id": "equipar",
+          "target": "espada_juramento",
+          "label": "Equipar Espada de juramento",
+          "disabled": false,
+          "reason": ""
+        }
+      ],
+      "exits": [
+        {
+          "direction": "este",
+          "label": "Este"
+        },
+        {
+          "direction": "sur",
+          "label": "Sur"
+        }
+      ],
+      "combat": null,
+      "words": 95
+    },
+    {
+      "label": "mover:sur",
+      "movement": true,
+      "room": "valdren_patio_carros",
+      "name": "Patio de los carros",
+      "description": "Una carga de sacos espera en el patio. La ligera pendiente puede mover un carro sin calzar; un madero detiene las ruedas. El cobertizo queda al norte, los graneros al este. La senda sur permite volver hacia la arboleda.",
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Una carga de sacos espera en el patio. La ligera pendiente puede mover un carro sin calzar; un madero detiene las ruedas. El cobertizo queda al norte, los graneros al este. La senda sur permite volver hacia la arboleda."
+        },
+        {
+          "kind": "world",
+          "text": "Ahora ves la pendiente junto al pozo. El madero que frenó la rueda tiene una marca fresca debajo del borde."
+        },
+        {
+          "kind": "world",
+          "text": "Un ayudante de Bren desplaza un saco y pide que nadie sujete el carro mientras observa si vuelve a inclinarse. Una mujer recoge las semillas que han caído bajo la plataforma."
+        }
+      ],
+      "actions": [
+        {
+          "id": "mirar",
+          "label": "Mirar"
+        },
+        {
+          "id": "observar",
+          "label": "Observar"
+        },
+        {
+          "id": "examinar",
+          "target": "plataforma",
+          "label": "Examinar plataforma"
+        },
+        {
+          "id": "examinar",
+          "target": "madero",
+          "label": "Examinar madero"
+        },
+        {
+          "id": "mover",
+          "target": "norte",
+          "label": "Norte · Cobertizo de los carros",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "este",
+          "label": "Este · Paso entre los Graneros",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "sur",
+          "label": "Sur · Salida por explorar",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "descansar",
+          "label": "Descansar",
+          "disabled": true,
+          "reason": "Ya estás sin fatiga y con toda tu vitalidad."
+        },
+        {
+          "id": "desequipar",
+          "target": "weapon",
+          "label": "Guardar arma"
+        },
+        {
+          "id": "equipar",
+          "target": "espada_juramento",
+          "label": "Equipar Espada de juramento",
+          "disabled": false,
+          "reason": ""
+        }
+      ],
+      "exits": [
+        {
+          "direction": "norte",
+          "label": "Norte"
+        },
+        {
+          "direction": "este",
+          "label": "Este"
+        },
+        {
+          "direction": "sur",
+          "label": "Sur"
+        }
+      ],
+      "combat": null,
+      "words": 90
+    },
+    {
+      "label": "mover:sur",
+      "movement": true,
+      "room": "edran_sendero_regreso",
+      "name": "Senda de regreso",
+      "description": "Un árbol aislado señala la vuelta a Valdren. Desde su sombra ves el techo del cobertizo, pero no la plaza. Al oeste llegas al patio de carros; al este regresas a la arboleda. Hay sitio para quitarte barro antes de entrar al pueblo. La senda gira al rodear los campos: sus entradas no quedan enfrentadas.",
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Un árbol aislado señala la vuelta a Valdren. Desde su sombra ves el techo del cobertizo, pero no la plaza. Al oeste llegas al patio de carros; al este regresas a la arboleda. Hay sitio para quitarte barro antes de entrar al pueblo. La senda gira al rodear los campos: sus entradas no quedan enfrentadas."
+        },
+        {
+          "kind": "world",
+          "text": "Una persona limpia sus botas con una rama caída y recoge después los restos fuera del paso. Un carro entra por el patio, separado de los huertos."
+        }
+      ],
+      "actions": [
+        {
+          "id": "buscar",
+          "label": "Buscar alrededor",
+          "disabled": false,
+          "reason": "Revisar suelo, refugios y objetos que hayan quedado en el camino."
+        },
+        {
+          "id": "mirar",
+          "label": "Mirar"
+        },
+        {
+          "id": "observar",
+          "label": "Observar"
+        },
+        {
+          "id": "examinar",
+          "target": "árbol",
+          "label": "Examinar árbol"
+        },
+        {
+          "id": "examinar",
+          "target": "techado",
+          "label": "Examinar techado"
+        },
+        {
+          "id": "mover",
+          "target": "este",
+          "label": "Este · Salida por explorar",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "oeste",
+          "label": "Oeste · Patio de los carros",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "desequipar",
+          "target": "weapon",
+          "label": "Guardar arma"
+        },
+        {
+          "id": "equipar",
+          "target": "espada_juramento",
+          "label": "Equipar Espada de juramento",
+          "disabled": false,
+          "reason": ""
+        }
+      ],
+      "exits": [
+        {
+          "direction": "este",
+          "label": "Este"
+        },
+        {
+          "direction": "oeste",
+          "label": "Oeste"
+        }
+      ],
+      "combat": null,
+      "words": 82
+    },
+    {
+      "label": "mover:este",
+      "movement": true,
+      "room": "edran_arboleda",
+      "name": "Arboleda de los tres árboles",
+      "description": "Tres árboles dan sombra al banco de tierra y al sendero. Las raíces del último levantan el suelo. Entre las ramas ves el camino de carros, al norte. El cobertizo queda al oeste; la senda sur rodea los campos y vuelve al pueblo.",
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Tres árboles dan sombra al banco de tierra y al sendero. Las raíces del último levantan el suelo. Entre las ramas ves el camino de carros, al norte. El cobertizo queda al oeste; la senda sur rodea los campos y vuelve al pueblo."
+        },
+        {
+          "kind": "world",
+          "text": "Un viajero deja que su animal descanse fuera de la sombra más cercana al sendero. Conserva ese espacio para quienes sólo necesitan pasar."
+        }
+      ],
+      "actions": [
+        {
+          "id": "buscar",
+          "label": "Buscar alrededor",
+          "disabled": false,
+          "reason": "Revisar suelo, refugios y objetos que hayan quedado en el camino."
+        },
+        {
+          "id": "mirar",
+          "label": "Mirar"
+        },
+        {
+          "id": "observar",
+          "label": "Observar"
+        },
+        {
+          "id": "examinar",
+          "target": "raíces",
+          "label": "Examinar raíces"
+        },
+        {
+          "id": "examinar",
+          "target": "banco",
+          "label": "Examinar banco"
+        },
+        {
+          "id": "mover",
+          "target": "oeste",
+          "label": "Oeste · Salida por explorar",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "norte",
+          "label": "Norte · Salida por explorar",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "sur",
+          "label": "Sur · Senda de regreso",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "desequipar",
+          "target": "weapon",
+          "label": "Guardar arma"
+        },
+        {
+          "id": "equipar",
+          "target": "espada_juramento",
+          "label": "Equipar Espada de juramento",
+          "disabled": false,
+          "reason": ""
+        }
+      ],
+      "exits": [
+        {
+          "direction": "oeste",
+          "label": "Oeste"
+        },
+        {
+          "direction": "norte",
+          "label": "Norte"
+        },
+        {
+          "direction": "sur",
+          "label": "Sur"
+        }
+      ],
+      "combat": null,
+      "words": 66
+    },
+    {
+      "label": "mover:oeste",
+      "movement": true,
+      "room": "edran_cobertizo_campo",
+      "name": "Cobertizo de las Estacas Numeradas",
+      "description": "El techo cubre un banco de trabajo y una caja estrecha. En la pared, las estacas están ordenadas por tamaño y llevan números. El lindero queda al oeste, al otro lado del desnivel. Una senda al este entra en la arboleda.",
+      "scene": [
+        {
+          "kind": "world",
+          "text": "El techo cubre un banco de trabajo y una caja estrecha. En la pared, las estacas están ordenadas por tamaño y llevan números. El lindero queda al oeste, al otro lado del desnivel. Una senda al este entra en la arboleda."
+        },
+        {
+          "kind": "world",
+          "text": "Un muchacho devuelve una estaca y comprueba el número antes de colocarla. Los huecos del extremo corto indican qué piezas siguen en los campos."
+        }
+      ],
+      "actions": [
+        {
+          "id": "edran_leer_caja",
+          "label": "Comparar la caja con las marcas del sendero"
+        },
+        {
+          "id": "mirar",
+          "label": "Mirar"
+        },
+        {
+          "id": "observar",
+          "label": "Observar"
+        },
+        {
+          "id": "examinar",
+          "target": "caja",
+          "label": "Examinar caja"
+        },
+        {
+          "id": "examinar",
+          "target": "estacas",
+          "label": "Examinar estacas"
+        },
+        {
+          "id": "mover",
+          "target": "oeste",
+          "label": "Oeste · Salida por explorar",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "este",
+          "label": "Este · Arboleda de los tres árboles",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "descansar",
+          "label": "Descansar",
+          "disabled": true,
+          "reason": "Ya estás sin fatiga y con toda tu vitalidad."
+        },
+        {
+          "id": "desequipar",
+          "target": "weapon",
+          "label": "Guardar arma"
+        },
+        {
+          "id": "equipar",
+          "target": "espada_juramento",
+          "label": "Equipar Espada de juramento",
+          "disabled": false,
+          "reason": ""
+        }
+      ],
+      "exits": [
+        {
+          "direction": "oeste",
+          "label": "Oeste"
+        },
+        {
+          "direction": "este",
+          "label": "Este"
+        }
+      ],
+      "combat": null,
+      "words": 65
+    },
+    {
+      "label": "mover:oeste",
+      "movement": true,
+      "room": "edran_lindero",
+      "name": "Lindero de la Piedra Hundida",
+      "description": "Una piedra hundida separa las parcelas. Tiene una muesca llena de tierra en la cara sur. Por allí vuelves al campo. Al oeste subes a la loma; al este llegas al cobertizo, donde guardan estacas de distintos tamaños.",
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Una piedra hundida separa las parcelas. Tiene una muesca llena de tierra en la cara sur. Por allí vuelves al campo. Al oeste subes a la loma; al este llegas al cobertizo, donde guardan estacas de distintos tamaños."
+        },
+        {
+          "kind": "world",
+          "text": "Una joven deja el recipiente junto a la piedra y mira dos veces la cerca. Busca una tablilla pequeña entre la hierba y las huellas del borde."
+        }
+      ],
+      "actions": [
+        {
+          "id": "buscar",
+          "label": "Buscar alrededor",
+          "disabled": false,
+          "reason": "Revisar suelo, refugios y objetos que hayan quedado en el camino."
+        },
+        {
+          "id": "mirar",
+          "label": "Mirar"
+        },
+        {
+          "id": "observar",
+          "label": "Observar"
+        },
+        {
+          "id": "examinar",
+          "target": "muesca",
+          "label": "Examinar muesca"
+        },
+        {
+          "id": "examinar",
+          "target": "cerca",
+          "label": "Examinar cerca"
+        },
+        {
+          "id": "mover",
+          "target": "sur",
+          "label": "Sur · Salida por explorar",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "oeste",
+          "label": "Oeste · Salida por explorar",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "este",
+          "label": "Este · Cobertizo de las Estacas Numeradas",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "desequipar",
+          "target": "weapon",
+          "label": "Guardar arma"
+        },
+        {
+          "id": "equipar",
+          "target": "espada_juramento",
+          "label": "Equipar Espada de juramento",
+          "disabled": false,
+          "reason": ""
+        }
+      ],
+      "exits": [
+        {
+          "direction": "sur",
+          "label": "Sur"
+        },
+        {
+          "direction": "oeste",
+          "label": "Oeste"
+        },
+        {
+          "direction": "este",
+          "label": "Este"
+        }
+      ],
+      "combat": null,
+      "words": 65
+    },
+    {
+      "label": "mover:sur",
+      "movement": true,
+      "room": "edran_surcos",
+      "name": "Campo de surcos",
+      "description": "Los surcos nuevos tienen tierra clara; los viejos conservan tallos cortos. Un sendero sin sembrar llega al lindero del norte. La acequia queda al sur. Hacia el oeste puedes entrar en una parcela vieja; al este hay una zanja seca.",
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Los surcos nuevos tienen tierra clara; los viejos conservan tallos cortos. Un sendero sin sembrar llega al lindero del norte. La acequia queda al sur. Hacia el oeste puedes entrar en una parcela vieja; al este hay una zanja seca."
+        },
+        {
+          "kind": "danger",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro."
+        },
+        {
+          "kind": "world",
+          "text": "La agricultora comprueba la humedad con dos dedos y cubre de nuevo el agujero. En la hilera antigua, unos tallos se doblan contra el viento aunque los demás permanezcan quietos."
+        }
+      ],
+      "actions": [
+        {
+          "id": "buscar",
+          "label": "Buscar alrededor",
+          "disabled": false,
+          "reason": "Revisar suelo, refugios y objetos que hayan quedado en el camino."
+        },
+        {
+          "id": "examinar_criatura",
+          "target": "espinajo_rastrojo",
+          "label": "Examinar Espinajo de rastrojo"
+        },
+        {
+          "id": "combatir",
+          "target": "espinajo_rastrojo",
+          "label": "Enfrentarte a Espinajo de rastrojo"
+        },
+        {
+          "id": "mirar",
+          "label": "Mirar"
+        },
+        {
+          "id": "observar",
+          "label": "Observar"
+        },
+        {
+          "id": "examinar",
+          "target": "tallos",
+          "label": "Examinar tallos"
+        },
+        {
+          "id": "examinar",
+          "target": "tierra",
+          "label": "Examinar tierra"
+        },
+        {
+          "id": "mover",
+          "target": "sur",
+          "label": "Sur · Salida por explorar",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "norte",
+          "label": "Norte · Lindero de la Piedra Hundida",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "oeste",
+          "label": "Oeste · Salida por explorar",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "este",
+          "label": "Este · Salida por explorar",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "evaluar",
+          "target": "espinajo_rastrojo",
+          "label": "Evaluar Espinajo de rastrojo"
+        },
+        {
+          "id": "desequipar",
+          "target": "weapon",
+          "label": "Guardar arma"
+        },
+        {
+          "id": "equipar",
+          "target": "espada_juramento",
+          "label": "Equipar Espada de juramento",
+          "disabled": false,
+          "reason": ""
+        }
+      ],
+      "exits": [
+        {
+          "direction": "sur",
+          "label": "Sur"
+        },
+        {
+          "direction": "norte",
+          "label": "Norte"
+        },
+        {
+          "direction": "oeste",
+          "label": "Oeste"
+        },
+        {
+          "direction": "este",
+          "label": "Este"
+        }
+      ],
+      "combat": null,
+      "words": 95
+    },
+    {
+      "label": "examinar:tallos",
+      "movement": false,
+      "room": "edran_surcos",
+      "name": "Campo de surcos",
+      "description": "Los surcos nuevos tienen tierra clara; los viejos conservan tallos cortos. Un sendero sin sembrar llega al lindero del norte. La acequia queda al sur. Hacia el oeste puedes entrar en una parcela vieja; al este hay una zanja seca.",
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Los surcos nuevos tienen tierra clara; los viejos conservan tallos cortos. Un sendero sin sembrar llega al lindero del norte. La acequia queda al sur. Hacia el oeste puedes entrar en una parcela vieja; al este hay una zanja seca."
+        },
+        {
+          "kind": "danger",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro."
+        },
+        {
+          "kind": "world",
+          "text": "La agricultora comprueba la humedad con dos dedos y cubre de nuevo el agujero. En la hilera antigua, unos tallos se doblan contra el viento aunque los demás permanezcan quietos."
+        }
+      ],
+      "actions": [
+        {
+          "id": "buscar",
+          "label": "Buscar alrededor",
+          "disabled": false,
+          "reason": "Revisar suelo, refugios y objetos que hayan quedado en el camino."
+        },
+        {
+          "id": "examinar_criatura",
+          "target": "espinajo_rastrojo",
+          "label": "Examinar Espinajo de rastrojo"
+        },
+        {
+          "id": "combatir",
+          "target": "espinajo_rastrojo",
+          "label": "Enfrentarte a Espinajo de rastrojo"
+        },
+        {
+          "id": "mirar",
+          "label": "Mirar"
+        },
+        {
+          "id": "observar",
+          "label": "Observar"
+        },
+        {
+          "id": "examinar",
+          "target": "tallos",
+          "label": "Examinar tallos"
+        },
+        {
+          "id": "examinar",
+          "target": "tierra",
+          "label": "Examinar tierra"
+        },
+        {
+          "id": "mover",
+          "target": "sur",
+          "label": "Sur · Salida por explorar",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "norte",
+          "label": "Norte · Lindero de la Piedra Hundida",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "oeste",
+          "label": "Oeste · Salida por explorar",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "este",
+          "label": "Este · Salida por explorar",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "evaluar",
+          "target": "espinajo_rastrojo",
+          "label": "Evaluar Espinajo de rastrojo"
+        },
+        {
+          "id": "desequipar",
+          "target": "weapon",
+          "label": "Guardar arma"
+        },
+        {
+          "id": "equipar",
+          "target": "espada_juramento",
+          "label": "Equipar Espada de juramento",
+          "disabled": false,
+          "reason": ""
+        }
+      ],
+      "exits": [
+        {
+          "direction": "sur",
+          "label": "Sur"
+        },
+        {
+          "direction": "norte",
+          "label": "Norte"
+        },
+        {
+          "direction": "oeste",
+          "label": "Oeste"
+        },
+        {
+          "direction": "este",
+          "label": "Este"
+        }
+      ],
+      "combat": null,
+      "words": 95
+    },
+    {
+      "label": "observar:None",
+      "movement": false,
+      "room": "edran_surcos",
+      "name": "Campo de surcos",
+      "description": "Los surcos nuevos tienen tierra clara; los viejos conservan tallos cortos. Un sendero sin sembrar llega al lindero del norte. La acequia queda al sur. Hacia el oeste puedes entrar en una parcela vieja; al este hay una zanja seca.",
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Los surcos nuevos tienen tierra clara; los viejos conservan tallos cortos. Un sendero sin sembrar llega al lindero del norte. La acequia queda al sur. Hacia el oeste puedes entrar en una parcela vieja; al este hay una zanja seca."
+        },
+        {
+          "kind": "danger",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro."
+        },
+        {
+          "kind": "world",
+          "text": "La agricultora comprueba la humedad con dos dedos y cubre de nuevo el agujero. En la hilera antigua, unos tallos se doblan contra el viento aunque los demás permanezcan quietos."
+        }
+      ],
+      "actions": [
+        {
+          "id": "buscar",
+          "label": "Buscar alrededor",
+          "disabled": false,
+          "reason": "Revisar suelo, refugios y objetos que hayan quedado en el camino."
+        },
+        {
+          "id": "examinar_criatura",
+          "target": "espinajo_rastrojo",
+          "label": "Examinar Espinajo de rastrojo"
+        },
+        {
+          "id": "combatir",
+          "target": "espinajo_rastrojo",
+          "label": "Enfrentarte a Espinajo de rastrojo"
+        },
+        {
+          "id": "mirar",
+          "label": "Mirar"
+        },
+        {
+          "id": "observar",
+          "label": "Observar"
+        },
+        {
+          "id": "examinar",
+          "target": "tallos",
+          "label": "Examinar tallos"
+        },
+        {
+          "id": "examinar",
+          "target": "tierra",
+          "label": "Examinar tierra"
+        },
+        {
+          "id": "mover",
+          "target": "sur",
+          "label": "Sur · Salida por explorar",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "norte",
+          "label": "Norte · Lindero de la Piedra Hundida",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "oeste",
+          "label": "Oeste · Salida por explorar",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "este",
+          "label": "Este · Salida por explorar",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "evaluar",
+          "target": "espinajo_rastrojo",
+          "label": "Evaluar Espinajo de rastrojo"
+        },
+        {
+          "id": "desequipar",
+          "target": "weapon",
+          "label": "Guardar arma"
+        },
+        {
+          "id": "equipar",
+          "target": "espada_juramento",
+          "label": "Equipar Espada de juramento",
+          "disabled": false,
+          "reason": ""
+        }
+      ],
+      "exits": [
+        {
+          "direction": "sur",
+          "label": "Sur"
+        },
+        {
+          "direction": "norte",
+          "label": "Norte"
+        },
+        {
+          "direction": "oeste",
+          "label": "Oeste"
+        },
+        {
+          "direction": "este",
+          "label": "Este"
+        }
+      ],
+      "combat": null,
+      "words": 95
+    },
+    {
+      "label": "mirar:None",
+      "movement": false,
+      "room": "edran_surcos",
+      "name": "Campo de surcos",
+      "description": "Los surcos nuevos tienen tierra clara; los viejos conservan tallos cortos. Un sendero sin sembrar llega al lindero del norte. La acequia queda al sur. Hacia el oeste puedes entrar en una parcela vieja; al este hay una zanja seca.",
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Los surcos nuevos tienen tierra clara; los viejos conservan tallos cortos. Un sendero sin sembrar llega al lindero del norte. La acequia queda al sur. Hacia el oeste puedes entrar en una parcela vieja; al este hay una zanja seca."
+        },
+        {
+          "kind": "danger",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro."
+        },
+        {
+          "kind": "world",
+          "text": "La agricultora comprueba la humedad con dos dedos y cubre de nuevo el agujero. En la hilera antigua, unos tallos se doblan contra el viento aunque los demás permanezcan quietos."
+        }
+      ],
+      "actions": [
+        {
+          "id": "buscar",
+          "label": "Buscar alrededor",
+          "disabled": false,
+          "reason": "Revisar suelo, refugios y objetos que hayan quedado en el camino."
+        },
+        {
+          "id": "examinar_criatura",
+          "target": "espinajo_rastrojo",
+          "label": "Examinar Espinajo de rastrojo"
+        },
+        {
+          "id": "combatir",
+          "target": "espinajo_rastrojo",
+          "label": "Enfrentarte a Espinajo de rastrojo"
+        },
+        {
+          "id": "mirar",
+          "label": "Mirar"
+        },
+        {
+          "id": "observar",
+          "label": "Observar"
+        },
+        {
+          "id": "examinar",
+          "target": "tallos",
+          "label": "Examinar tallos"
+        },
+        {
+          "id": "examinar",
+          "target": "tierra",
+          "label": "Examinar tierra"
+        },
+        {
+          "id": "mover",
+          "target": "sur",
+          "label": "Sur · Salida por explorar",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "norte",
+          "label": "Norte · Lindero de la Piedra Hundida",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "oeste",
+          "label": "Oeste · Salida por explorar",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "este",
+          "label": "Este · Salida por explorar",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "evaluar",
+          "target": "espinajo_rastrojo",
+          "label": "Evaluar Espinajo de rastrojo"
+        },
+        {
+          "id": "desequipar",
+          "target": "weapon",
+          "label": "Guardar arma"
+        },
+        {
+          "id": "equipar",
+          "target": "espada_juramento",
+          "label": "Equipar Espada de juramento",
+          "disabled": false,
+          "reason": ""
+        }
+      ],
+      "exits": [
+        {
+          "direction": "sur",
+          "label": "Sur"
+        },
+        {
+          "direction": "norte",
+          "label": "Norte"
+        },
+        {
+          "direction": "oeste",
+          "label": "Oeste"
+        },
+        {
+          "direction": "este",
+          "label": "Este"
+        }
+      ],
+      "combat": null,
+      "words": 95
+    },
+    {
+      "label": "mover:este",
+      "movement": true,
+      "room": "edran_zanja_antigua",
+      "name": "Zanja seca",
+      "description": "La zanja sigue entera, pero ya no lleva agua. En el fondo crecen raíces pequeñas. Una losa marca dónde dejó de usarse. Al oeste vuelves al campo; al norte subes a la era. El agua actual pasa por otra parte de la parcela. El acceso a la era dobla en el extremo de la zanja. Al este, una escalera baja al antiguo canal cubierto. Una mujer está comprobando su entrada.",
+      "scene": [
+        {
+          "kind": "world",
+          "text": "La zanja sigue entera, pero ya no lleva agua. En el fondo crecen raíces pequeñas. Una losa marca dónde dejó de usarse. Al oeste vuelves al campo; al norte subes a la era. El agua actual pasa por otra parte de la parcela. El acceso a la era dobla en el extremo de la zanja. Al este, una escalera baja al antiguo canal cubierto. Una mujer está comprobando su entrada."
+        },
+        {
+          "kind": "world",
+          "text": "Una raíz nueva cruza el fondo seco. En la losa vertical alguien ha apoyado una herramienta mientras trabaja más arriba."
+        }
+      ],
+      "actions": [
+        {
+          "id": "buscar",
+          "label": "Buscar alrededor",
+          "disabled": false,
+          "reason": "Revisar suelo, refugios y objetos que hayan quedado en el camino."
+        },
+        {
+          "id": "mirar",
+          "label": "Mirar"
+        },
+        {
+          "id": "observar",
+          "label": "Observar"
+        },
+        {
+          "id": "examinar",
+          "target": "entrada",
+          "label": "Examinar entrada"
+        },
+        {
+          "id": "examinar",
+          "target": "losa",
+          "label": "Examinar losa"
+        },
+        {
+          "id": "mover",
+          "target": "oeste",
+          "label": "Oeste · Campo de surcos",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "norte",
+          "label": "Norte · Salida por explorar",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "este",
+          "label": "Este · Salida por explorar",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "desequipar",
+          "target": "weapon",
+          "label": "Guardar arma"
+        },
+        {
+          "id": "equipar",
+          "target": "espada_juramento",
+          "label": "Equipar Espada de juramento",
+          "disabled": false,
+          "reason": ""
+        }
+      ],
+      "exits": [
+        {
+          "direction": "oeste",
+          "label": "Oeste"
+        },
+        {
+          "direction": "norte",
+          "label": "Norte"
+        },
+        {
+          "direction": "este",
+          "label": "Este"
+        }
+      ],
+      "combat": null,
+      "words": 90
+    },
+    {
+      "label": "mover:este",
+      "movement": true,
+      "room": "edran_canal_entrada",
+      "name": "Entrada del canal cubierto",
+      "description": "Tres escalones bajan desde la zanja occidental. Al este empieza el canal bajo los campos; al sur hay una cámara de herramientas. Las dos entradas tienen altura suficiente para caminar agachado. Una cuerda fija permite regresar sin depender de la luz.",
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Tres escalones bajan desde la zanja occidental. Al este empieza el canal bajo los campos; al sur hay una cámara de herramientas. Las dos entradas tienen altura suficiente para caminar agachado. Una cuerda fija permite regresar sin depender de la luz."
+        },
+        {
+          "kind": "world",
+          "text": "La luz de la zanja alcanza los tres peldaños. Nela deja el barro de sus botas fuera de la cuerda que sirve para volver."
+        },
+        {
+          "kind": "world",
+          "text": "Nela lleva botas embarradas y una tablilla donde anota cuánto sube el agua. Mantiene una cuerda atada a la escalera."
+        }
+      ],
+      "actions": [
+        {
+          "id": "mirar",
+          "label": "Mirar"
+        },
+        {
+          "id": "observar",
+          "label": "Observar"
+        },
+        {
+          "id": "examinar",
+          "target": "cuerda",
+          "label": "Examinar cuerda"
+        },
+        {
+          "id": "mover",
+          "target": "oeste",
+          "label": "Oeste · Zanja seca",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "este",
+          "label": "Este · Salida por explorar",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "sur",
+          "label": "Sur · Salida por explorar",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "descansar",
+          "label": "Descansar",
+          "disabled": true,
+          "reason": "Ya estás sin fatiga y con toda tu vitalidad."
+        },
+        {
+          "id": "hablar",
+          "target": "edran_nela",
+          "topic": "canal",
+          "label": "Nela · canal"
+        },
+        {
+          "id": "hablar",
+          "target": "edran_nela",
+          "topic": "personas",
+          "label": "Nela · personas"
+        },
+        {
+          "id": "hablar",
+          "target": "edran_nela",
+          "topic": "materiales",
+          "label": "Nela · materiales"
+        },
+        {
+          "id": "desequipar",
+          "target": "weapon",
+          "label": "Guardar arma"
+        },
+        {
+          "id": "equipar",
+          "target": "espada_juramento",
+          "label": "Equipar Espada de juramento",
+          "disabled": false,
+          "reason": ""
+        }
+      ],
+      "exits": [
+        {
+          "direction": "oeste",
+          "label": "Oeste"
+        },
+        {
+          "direction": "este",
+          "label": "Este"
+        },
+        {
+          "direction": "sur",
+          "label": "Sur"
+        }
+      ],
+      "combat": null,
+      "words": 85
+    },
+    {
+      "label": "mover:sur",
+      "movement": true,
+      "room": "edran_canal_herramientas",
+      "name": "Cámara de herramientas",
+      "description": "Una mesa estrecha conserva marcas de barro seco. El canal queda al norte. En la pared oriental, un agujero deja escuchar agua al otro lado, pero no permite pasar.",
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Una mesa estrecha conserva marcas de barro seco. El canal queda al norte. En la pared oriental, un agujero deja escuchar agua al otro lado, pero no permite pasar."
+        },
+        {
+          "kind": "world",
+          "text": "Un hilo de claridad entra por la puerta norte. Sobre la mesa, el barro seco conserva la forma de una herramienta que ya retiraron."
+        }
+      ],
+      "actions": [
+        {
+          "id": "mirar",
+          "label": "Mirar"
+        },
+        {
+          "id": "observar",
+          "label": "Observar"
+        },
+        {
+          "id": "examinar",
+          "target": "marcas",
+          "label": "Examinar marcas"
+        },
+        {
+          "id": "examinar",
+          "target": "mesa",
+          "label": "Examinar mesa"
+        },
+        {
+          "id": "examinar",
+          "target": "agujero",
+          "label": "Examinar agujero"
+        },
+        {
+          "id": "mover",
+          "target": "norte",
+          "label": "Norte · Entrada del canal cubierto",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "descansar",
+          "label": "Descansar",
+          "disabled": true,
+          "reason": "Ya estás sin fatiga y con toda tu vitalidad."
+        },
+        {
+          "id": "desequipar",
+          "target": "weapon",
+          "label": "Guardar arma"
+        },
+        {
+          "id": "equipar",
+          "target": "espada_juramento",
+          "label": "Equipar Espada de juramento",
+          "disabled": false,
+          "reason": ""
+        }
+      ],
+      "exits": [
+        {
+          "direction": "norte",
+          "label": "Norte"
+        }
+      ],
+      "combat": null,
+      "words": 53
+    },
+    {
+      "label": "mover:norte",
+      "movement": true,
+      "room": "edran_canal_entrada",
+      "name": "Entrada del canal cubierto",
+      "description": "Tres escalones bajan desde la zanja occidental. Al este empieza el canal bajo los campos; al sur hay una cámara de herramientas. Las dos entradas tienen altura suficiente para caminar agachado. Una cuerda fija permite regresar sin depender de la luz.",
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Tres escalones bajan desde la zanja occidental. Al este empieza el canal bajo los campos; al sur hay una cámara de herramientas. Las dos entradas tienen altura suficiente para caminar agachado. Una cuerda fija permite regresar sin depender de la luz."
+        },
+        {
+          "kind": "world",
+          "text": "La cuerda te devuelve a los mismos tres peldaños. Desde aquí se vuelve a oír el campo."
+        },
+        {
+          "kind": "world",
+          "text": "La luz de la zanja alcanza los tres peldaños. Nela deja el barro de sus botas fuera de la cuerda que sirve para volver."
+        }
+      ],
+      "actions": [
+        {
+          "id": "mirar",
+          "label": "Mirar"
+        },
+        {
+          "id": "observar",
+          "label": "Observar"
+        },
+        {
+          "id": "examinar",
+          "target": "cuerda",
+          "label": "Examinar cuerda"
+        },
+        {
+          "id": "mover",
+          "target": "oeste",
+          "label": "Oeste · Zanja seca",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "este",
+          "label": "Este · Salida por explorar",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "sur",
+          "label": "Sur · Cámara de herramientas",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "descansar",
+          "label": "Descansar",
+          "disabled": true,
+          "reason": "Ya estás sin fatiga y con toda tu vitalidad."
+        },
+        {
+          "id": "hablar",
+          "target": "edran_nela",
+          "topic": "canal",
+          "label": "Nela · canal"
+        },
+        {
+          "id": "hablar",
+          "target": "edran_nela",
+          "topic": "personas",
+          "label": "Nela · personas"
+        },
+        {
+          "id": "hablar",
+          "target": "edran_nela",
+          "topic": "materiales",
+          "label": "Nela · materiales"
+        },
+        {
+          "id": "desequipar",
+          "target": "weapon",
+          "label": "Guardar arma"
+        },
+        {
+          "id": "equipar",
+          "target": "espada_juramento",
+          "label": "Equipar Espada de juramento",
+          "disabled": false,
+          "reason": ""
+        }
+      ],
+      "exits": [
+        {
+          "direction": "oeste",
+          "label": "Oeste"
+        },
+        {
+          "direction": "este",
+          "label": "Este"
+        },
+        {
+          "direction": "sur",
+          "label": "Sur"
+        }
+      ],
+      "combat": null,
+      "words": 82
+    },
+    {
+      "label": "mover:este",
+      "movement": true,
+      "room": "edran_canal_bifurcacion",
+      "name": "Bifurcación del canal",
+      "description": "El canal continúa al este bajo una compuerta abierta. Al sur, un escalón seco entra en una cámara donde alguien ha dejado una taza. La escalera de salida queda al oeste. Hay huellas de botas, no de una criatura.",
+      "scene": [
+        {
+          "kind": "world",
+          "text": "El canal continúa al este bajo una compuerta abierta. Al sur, un escalón seco entra en una cámara donde alguien ha dejado una taza. La escalera de salida queda al oeste. Hay huellas de botas, no de una criatura."
+        },
+        {
+          "kind": "world",
+          "text": "Un reflejo llega desde la compuerta oriental. Las huellas de botas se separan aquí: unas siguen el agua y otras suben al escalón del refugio."
+        }
+      ],
+      "actions": [
+        {
+          "id": "mirar",
+          "label": "Mirar"
+        },
+        {
+          "id": "observar",
+          "label": "Observar"
+        },
+        {
+          "id": "examinar",
+          "target": "huellas",
+          "label": "Examinar huellas"
+        },
+        {
+          "id": "examinar",
+          "target": "escalón",
+          "label": "Examinar escalón"
+        },
+        {
+          "id": "mover",
+          "target": "oeste",
+          "label": "Oeste · Entrada del canal cubierto",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "este",
+          "label": "Este · Salida por explorar",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "sur",
+          "label": "Sur · Salida por explorar",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "descansar",
+          "label": "Descansar",
+          "disabled": true,
+          "reason": "Ya estás sin fatiga y con toda tu vitalidad."
+        },
+        {
+          "id": "desequipar",
+          "target": "weapon",
+          "label": "Guardar arma"
+        },
+        {
+          "id": "equipar",
+          "target": "espada_juramento",
+          "label": "Equipar Espada de juramento",
+          "disabled": false,
+          "reason": ""
+        }
+      ],
+      "exits": [
+        {
+          "direction": "oeste",
+          "label": "Oeste"
+        },
+        {
+          "direction": "este",
+          "label": "Este"
+        },
+        {
+          "direction": "sur",
+          "label": "Sur"
+        }
+      ],
+      "combat": null,
+      "words": 64
+    },
+    {
+      "label": "mover:sur",
+      "movement": true,
+      "room": "edran_canal_refugio",
+      "name": "Refugio junto al canal",
+      "description": "Una manta está doblada contra la pared. Oren sostiene una taza vacía sin levantarse. La única salida vuelve al norte, hacia la bifurcación. No te cierra el paso.",
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Una manta está doblada contra la pared. Oren sostiene una taza vacía sin levantarse. La única salida vuelve al norte, hacia la bifurcación. No te cierra el paso."
+        },
+        {
+          "kind": "world",
+          "text": "Oren pasa un dedo por el borde de la taza. La manta queda detrás de sus botas, sobre la parte seca del suelo."
+        },
+        {
+          "kind": "world",
+          "text": "Tiene los cordones rotos y una venda limpia en la mano. Deja la taza en el suelo para escucharte."
+        }
+      ],
+      "actions": [
+        {
+          "id": "mirar",
+          "label": "Mirar"
+        },
+        {
+          "id": "observar",
+          "label": "Observar"
+        },
+        {
+          "id": "examinar",
+          "target": "taza",
+          "label": "Examinar taza"
+        },
+        {
+          "id": "examinar",
+          "target": "manta",
+          "label": "Examinar manta"
+        },
+        {
+          "id": "mover",
+          "target": "norte",
+          "label": "Norte · Bifurcación del canal",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "descansar",
+          "label": "Descansar",
+          "disabled": true,
+          "reason": "Ya estás sin fatiga y con toda tu vitalidad."
+        },
+        {
+          "id": "hablar",
+          "target": "edran_oren",
+          "topic": "caja",
+          "label": "Oren · caja"
+        },
+        {
+          "id": "hablar",
+          "target": "edran_oren",
+          "topic": "camino",
+          "label": "Oren · camino"
+        },
+        {
+          "id": "hablar",
+          "target": "edran_oren",
+          "topic": "ayuda",
+          "label": "Oren · ayuda"
+        },
+        {
+          "id": "desequipar",
+          "target": "weapon",
+          "label": "Guardar arma"
+        },
+        {
+          "id": "equipar",
+          "target": "espada_juramento",
+          "label": "Equipar Espada de juramento",
+          "disabled": false,
+          "reason": ""
+        }
+      ],
+      "exits": [
+        {
+          "direction": "norte",
+          "label": "Norte"
+        }
+      ],
+      "combat": null,
+      "words": 70
+    },
+    {
+      "label": "hablar:oren",
+      "movement": false,
+      "room": "edran_canal_refugio",
+      "name": "Refugio junto al canal",
+      "description": "Una manta está doblada contra la pared. Oren sostiene una taza vacía sin levantarse. La única salida vuelve al norte, hacia la bifurcación. No te cierra el paso.",
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Una manta está doblada contra la pared. Oren sostiene una taza vacía sin levantarse. La única salida vuelve al norte, hacia la bifurcación. No te cierra el paso."
+        },
+        {
+          "kind": "world",
+          "text": "Oren pasa un dedo por el borde de la taza. La manta queda detrás de sus botas, sobre la parte seca del suelo."
+        },
+        {
+          "kind": "world",
+          "text": "Tiene los cordones rotos y una venda limpia en la mano. Deja la taza en el suelo para escucharte."
+        }
+      ],
+      "actions": [
+        {
+          "id": "mirar",
+          "label": "Mirar"
+        },
+        {
+          "id": "observar",
+          "label": "Observar"
+        },
+        {
+          "id": "examinar",
+          "target": "taza",
+          "label": "Examinar taza"
+        },
+        {
+          "id": "examinar",
+          "target": "manta",
+          "label": "Examinar manta"
+        },
+        {
+          "id": "mover",
+          "target": "norte",
+          "label": "Norte · Bifurcación del canal",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "descansar",
+          "label": "Descansar",
+          "disabled": true,
+          "reason": "Ya estás sin fatiga y con toda tu vitalidad."
+        },
+        {
+          "id": "hablar",
+          "target": "edran_oren",
+          "topic": "caja",
+          "label": "Oren · caja"
+        },
+        {
+          "id": "hablar",
+          "target": "edran_oren",
+          "topic": "camino",
+          "label": "Oren · camino"
+        },
+        {
+          "id": "hablar",
+          "target": "edran_oren",
+          "topic": "ayuda",
+          "label": "Oren · ayuda"
+        },
+        {
+          "id": "desequipar",
+          "target": "weapon",
+          "label": "Guardar arma"
+        },
+        {
+          "id": "equipar",
+          "target": "espada_juramento",
+          "label": "Equipar Espada de juramento",
+          "disabled": false,
+          "reason": ""
+        }
+      ],
+      "exits": [
+        {
+          "direction": "norte",
+          "label": "Norte"
+        }
+      ],
+      "combat": null,
+      "words": 70
+    },
+    {
+      "label": "mover:norte",
+      "movement": true,
+      "room": "edran_canal_bifurcacion",
+      "name": "Bifurcación del canal",
+      "description": "El canal continúa al este bajo una compuerta abierta. Al sur, un escalón seco entra en una cámara donde alguien ha dejado una taza. La escalera de salida queda al oeste. Hay huellas de botas, no de una criatura.",
+      "scene": [
+        {
+          "kind": "world",
+          "text": "El canal continúa al este bajo una compuerta abierta. Al sur, un escalón seco entra en una cámara donde alguien ha dejado una taza. La escalera de salida queda al oeste. Hay huellas de botas, no de una criatura."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces el escalón del sur y la vuelta hacia la cuerda. Las huellas no señalan todas el mismo destino."
+        },
+        {
+          "kind": "world",
+          "text": "Un reflejo llega desde la compuerta oriental. Las huellas de botas se separan aquí: unas siguen el agua y otras suben al escalón del refugio."
+        }
+      ],
+      "actions": [
+        {
+          "id": "mirar",
+          "label": "Mirar"
+        },
+        {
+          "id": "observar",
+          "label": "Observar"
+        },
+        {
+          "id": "examinar",
+          "target": "huellas",
+          "label": "Examinar huellas"
+        },
+        {
+          "id": "examinar",
+          "target": "escalón",
+          "label": "Examinar escalón"
+        },
+        {
+          "id": "mover",
+          "target": "oeste",
+          "label": "Oeste · Entrada del canal cubierto",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "este",
+          "label": "Este · Salida por explorar",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "sur",
+          "label": "Sur · Refugio junto al canal",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "descansar",
+          "label": "Descansar",
+          "disabled": true,
+          "reason": "Ya estás sin fatiga y con toda tu vitalidad."
+        },
+        {
+          "id": "desequipar",
+          "target": "weapon",
+          "label": "Guardar arma"
+        },
+        {
+          "id": "equipar",
+          "target": "espada_juramento",
+          "label": "Equipar Espada de juramento",
+          "disabled": false,
+          "reason": ""
+        }
+      ],
+      "exits": [
+        {
+          "direction": "oeste",
+          "label": "Oeste"
+        },
+        {
+          "direction": "este",
+          "label": "Este"
+        },
+        {
+          "direction": "sur",
+          "label": "Sur"
+        }
+      ],
+      "combat": null,
+      "words": 83
+    },
+    {
+      "label": "mover:oeste",
+      "movement": true,
+      "room": "edran_canal_entrada",
+      "name": "Entrada del canal cubierto",
+      "description": "Tres escalones bajan desde la zanja occidental. Al este empieza el canal bajo los campos; al sur hay una cámara de herramientas. Las dos entradas tienen altura suficiente para caminar agachado. Una cuerda fija permite regresar sin depender de la luz.",
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Tres escalones bajan desde la zanja occidental. Al este empieza el canal bajo los campos; al sur hay una cámara de herramientas. Las dos entradas tienen altura suficiente para caminar agachado. Una cuerda fija permite regresar sin depender de la luz."
+        },
+        {
+          "kind": "world",
+          "text": "La luz de la zanja alcanza los tres peldaños. Nela deja el barro de sus botas fuera de la cuerda que sirve para volver."
+        },
+        {
+          "kind": "world",
+          "text": "Nela lleva botas embarradas y una tablilla donde anota cuánto sube el agua. Mantiene una cuerda atada a la escalera."
+        }
+      ],
+      "actions": [
+        {
+          "id": "mirar",
+          "label": "Mirar"
+        },
+        {
+          "id": "observar",
+          "label": "Observar"
+        },
+        {
+          "id": "examinar",
+          "target": "cuerda",
+          "label": "Examinar cuerda"
+        },
+        {
+          "id": "mover",
+          "target": "oeste",
+          "label": "Oeste · Zanja seca",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "este",
+          "label": "Este · Bifurcación del canal",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "sur",
+          "label": "Sur · Cámara de herramientas",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "descansar",
+          "label": "Descansar",
+          "disabled": true,
+          "reason": "Ya estás sin fatiga y con toda tu vitalidad."
+        },
+        {
+          "id": "hablar",
+          "target": "edran_nela",
+          "topic": "canal",
+          "label": "Nela · canal"
+        },
+        {
+          "id": "hablar",
+          "target": "edran_nela",
+          "topic": "personas",
+          "label": "Nela · personas"
+        },
+        {
+          "id": "hablar",
+          "target": "edran_nela",
+          "topic": "materiales",
+          "label": "Nela · materiales"
+        },
+        {
+          "id": "desequipar",
+          "target": "weapon",
+          "label": "Guardar arma"
+        },
+        {
+          "id": "equipar",
+          "target": "espada_juramento",
+          "label": "Equipar Espada de juramento",
+          "disabled": false,
+          "reason": ""
+        }
+      ],
+      "exits": [
+        {
+          "direction": "oeste",
+          "label": "Oeste"
+        },
+        {
+          "direction": "este",
+          "label": "Este"
+        },
+        {
+          "direction": "sur",
+          "label": "Sur"
+        }
+      ],
+      "combat": null,
+      "words": 85
+    },
+    {
+      "label": "mover:oeste",
+      "movement": true,
+      "room": "edran_zanja_antigua",
+      "name": "Zanja seca",
+      "description": "La zanja sigue entera, pero ya no lleva agua. En el fondo crecen raíces pequeñas. Una losa marca dónde dejó de usarse. Al oeste vuelves al campo; al norte subes a la era. El agua actual pasa por otra parte de la parcela. El acceso a la era dobla en el extremo de la zanja. Al este, una escalera baja al antiguo canal cubierto. Una mujer está comprobando su entrada.",
+      "scene": [
+        {
+          "kind": "world",
+          "text": "La zanja sigue entera, pero ya no lleva agua. En el fondo crecen raíces pequeñas. Una losa marca dónde dejó de usarse. Al oeste vuelves al campo; al norte subes a la era. El agua actual pasa por otra parte de la parcela. El acceso a la era dobla en el extremo de la zanja. Al este, una escalera baja al antiguo canal cubierto. Una mujer está comprobando su entrada."
+        },
+        {
+          "kind": "world",
+          "text": "Recuerdas el borde recto de la zanja. Su entrada sigue apisonada; al otro lado han crecido plantas entre las paredes de tierra."
+        },
+        {
+          "kind": "world",
+          "text": "Una raíz nueva cruza el fondo seco. En la losa vertical alguien ha apoyado una herramienta mientras trabaja más arriba."
+        }
+      ],
+      "actions": [
+        {
+          "id": "buscar",
+          "label": "Buscar alrededor",
+          "disabled": false,
+          "reason": "Revisar suelo, refugios y objetos que hayan quedado en el camino."
+        },
+        {
+          "id": "mirar",
+          "label": "Mirar"
+        },
+        {
+          "id": "observar",
+          "label": "Observar"
+        },
+        {
+          "id": "examinar",
+          "target": "entrada",
+          "label": "Examinar entrada"
+        },
+        {
+          "id": "examinar",
+          "target": "losa",
+          "label": "Examinar losa"
+        },
+        {
+          "id": "mover",
+          "target": "oeste",
+          "label": "Oeste · Campo de surcos",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "norte",
+          "label": "Norte · Salida por explorar",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "este",
+          "label": "Este · Entrada del canal cubierto",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "desequipar",
+          "target": "weapon",
+          "label": "Guardar arma"
+        },
+        {
+          "id": "equipar",
+          "target": "espada_juramento",
+          "label": "Equipar Espada de juramento",
+          "disabled": false,
+          "reason": ""
+        }
+      ],
+      "exits": [
+        {
+          "direction": "oeste",
+          "label": "Oeste"
+        },
+        {
+          "direction": "norte",
+          "label": "Norte"
+        },
+        {
+          "direction": "este",
+          "label": "Este"
+        }
+      ],
+      "combat": null,
+      "words": 112
+    },
+    {
+      "label": "mover:oeste",
+      "movement": true,
+      "room": "edran_surcos",
+      "name": "Campo de surcos",
+      "description": "Los surcos nuevos tienen tierra clara; los viejos conservan tallos cortos. Un sendero sin sembrar llega al lindero del norte. La acequia queda al sur. Hacia el oeste puedes entrar en una parcela vieja; al este hay una zanja seca.",
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Los surcos nuevos tienen tierra clara; los viejos conservan tallos cortos. Un sendero sin sembrar llega al lindero del norte. La acequia queda al sur. Hacia el oeste puedes entrar en una parcela vieja; al este hay una zanja seca."
+        },
+        {
+          "kind": "danger",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces la tierra nueva y la banda de tallos antiguos. El sendero rodea la depresión antes de alcanzar el cobertizo que se ve al otro lado."
+        }
+      ],
+      "actions": [
+        {
+          "id": "buscar",
+          "label": "Buscar alrededor",
+          "disabled": false,
+          "reason": "Revisar suelo, refugios y objetos que hayan quedado en el camino."
+        },
+        {
+          "id": "examinar_criatura",
+          "target": "espinajo_rastrojo",
+          "label": "Examinar Espinajo de rastrojo"
+        },
+        {
+          "id": "combatir",
+          "target": "espinajo_rastrojo",
+          "label": "Enfrentarte a Espinajo de rastrojo"
+        },
+        {
+          "id": "mirar",
+          "label": "Mirar"
+        },
+        {
+          "id": "observar",
+          "label": "Observar"
+        },
+        {
+          "id": "examinar",
+          "target": "tallos",
+          "label": "Examinar tallos"
+        },
+        {
+          "id": "examinar",
+          "target": "tierra",
+          "label": "Examinar tierra"
+        },
+        {
+          "id": "mover",
+          "target": "sur",
+          "label": "Sur · Salida por explorar",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "norte",
+          "label": "Norte · Lindero de la Piedra Hundida",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "oeste",
+          "label": "Oeste · Salida por explorar",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "este",
+          "label": "Este · Zanja seca",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "evaluar",
+          "target": "espinajo_rastrojo",
+          "label": "Evaluar Espinajo de rastrojo"
+        },
+        {
+          "id": "desequipar",
+          "target": "weapon",
+          "label": "Guardar arma"
+        },
+        {
+          "id": "equipar",
+          "target": "espada_juramento",
+          "label": "Equipar Espada de juramento",
+          "disabled": false,
+          "reason": ""
+        }
+      ],
+      "exits": [
+        {
+          "direction": "sur",
+          "label": "Sur"
+        },
+        {
+          "direction": "norte",
+          "label": "Norte"
+        },
+        {
+          "direction": "oeste",
+          "label": "Oeste"
+        },
+        {
+          "direction": "este",
+          "label": "Este"
+        }
+      ],
+      "combat": null,
+      "words": 91
+    },
+    {
+      "label": "combatir:espinajo_rastrojo",
+      "movement": false,
+      "room": "edran_surcos",
+      "name": "Campo de surcos",
+      "description": "Los surcos nuevos tienen tierra clara; los viejos conservan tallos cortos. Un sendero sin sembrar llega al lindero del norte. La acequia queda al sur. Hacia el oeste puedes entrar en una parcela vieja; al este hay una zanja seca.",
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Los surcos nuevos tienen tierra clara; los viejos conservan tallos cortos. Un sendero sin sembrar llega al lindero del norte. La acequia queda al sur. Hacia el oeste puedes entrar en una parcela vieja; al este hay una zanja seca."
+        },
+        {
+          "kind": "danger",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces la tierra nueva y la banda de tallos antiguos. El sendero rodea la depresión antes de alcanzar el cobertizo que se ve al otro lado."
+        }
+      ],
+      "actions": [
+        {
+          "id": "atacar",
+          "label": "Mantener ataque básico"
+        },
+        {
+          "id": "capacidad",
+          "label": "Guardia Comprometida",
+          "disabled": false,
+          "reason": "Reduce el daño del próximo golpe que te alcance."
+        },
+        {
+          "id": "huir",
+          "label": "Intentar huir"
+        },
+        {
+          "id": "defender",
+          "target": "esquivar",
+          "label": "Esquivar",
+          "reason": "Tus atributos y estado actuales no dan ventaja a la esquiva."
+        },
+        {
+          "id": "defender",
+          "target": "resistir",
+          "label": "Resistir",
+          "reason": "Tu resistencia y estado actuales no reducen el daño con esta defensa."
+        },
+        {
+          "id": "defender",
+          "target": "bloquear",
+          "label": "Bloquear",
+          "reason": "Reduce el daño recibido un 24%."
+        }
+      ],
+      "exits": [
+        {
+          "direction": "sur",
+          "label": "Sur"
+        },
+        {
+          "direction": "norte",
+          "label": "Norte"
+        },
+        {
+          "direction": "oeste",
+          "label": "Oeste"
+        },
+        {
+          "direction": "este",
+          "label": "Este"
+        }
+      ],
+      "combat": {
+        "creature": "espinajo_rastrojo",
+        "combatant_kind": "animal",
+        "name": "Espinajo de rastrojo",
+        "round": 0,
+        "next_round": 43235,
+        "prepared": true,
+        "prepared_action": {
+          "id": "embestida_territorial",
+          "name": "Embestida territorial",
+          "accuracy": 60,
+          "interruptible": true,
+          "frontal": true
+        },
+        "hp": 40,
+        "hp_max": 40,
+        "cooldown": 0,
+        "intervention_pending": false
+      },
+      "words": 91
+    },
+    {
+      "label": "combat_round",
+      "movement": false,
+      "room": "edran_surcos",
+      "name": "Campo de surcos",
+      "description": "Los surcos nuevos tienen tierra clara; los viejos conservan tallos cortos. Un sendero sin sembrar llega al lindero del norte. La acequia queda al sur. Hacia el oeste puedes entrar en una parcela vieja; al este hay una zanja seca.",
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Los surcos nuevos tienen tierra clara; los viejos conservan tallos cortos. Un sendero sin sembrar llega al lindero del norte. La acequia queda al sur. Hacia el oeste puedes entrar en una parcela vieja; al este hay una zanja seca."
+        },
+        {
+          "kind": "danger",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces la tierra nueva y la banda de tallos antiguos. El sendero rodea la depresión antes de alcanzar el cobertizo que se ve al otro lado."
+        }
+      ],
+      "actions": [
+        {
+          "id": "atacar",
+          "label": "Mantener ataque básico"
+        },
+        {
+          "id": "capacidad",
+          "label": "Guardia Comprometida",
+          "disabled": false,
+          "reason": "Reduce el daño del próximo golpe que te alcance."
+        },
+        {
+          "id": "huir",
+          "label": "Intentar huir"
+        },
+        {
+          "id": "defender",
+          "target": "esquivar",
+          "label": "Esquivar",
+          "reason": "Tus atributos y estado actuales no dan ventaja a la esquiva."
+        },
+        {
+          "id": "defender",
+          "target": "resistir",
+          "label": "Resistir",
+          "reason": "Tu resistencia y estado actuales no reducen el daño con esta defensa."
+        },
+        {
+          "id": "defender",
+          "target": "bloquear",
+          "label": "Bloquear",
+          "reason": "Reduce el daño recibido un 24%."
+        }
+      ],
+      "exits": [
+        {
+          "direction": "sur",
+          "label": "Sur"
+        },
+        {
+          "direction": "norte",
+          "label": "Norte"
+        },
+        {
+          "direction": "oeste",
+          "label": "Oeste"
+        },
+        {
+          "direction": "este",
+          "label": "Este"
+        }
+      ],
+      "combat": {
+        "creature": "espinajo_rastrojo",
+        "combatant_kind": "animal",
+        "name": "Espinajo de rastrojo",
+        "round": 1,
+        "next_round": 43239,
+        "prepared": false,
+        "prepared_action": null,
+        "hp": 7,
+        "hp_max": 40,
+        "cooldown": 0,
+        "intervention_pending": false
+      },
+      "words": 91
+    },
+    {
+      "label": "combat_round",
+      "movement": false,
+      "room": "edran_surcos",
+      "name": "Campo de surcos",
+      "description": "Los surcos nuevos tienen tierra clara; los viejos conservan tallos cortos. Un sendero sin sembrar llega al lindero del norte. La acequia queda al sur. Hacia el oeste puedes entrar en una parcela vieja; al este hay una zanja seca.",
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Los surcos nuevos tienen tierra clara; los viejos conservan tallos cortos. Un sendero sin sembrar llega al lindero del norte. La acequia queda al sur. Hacia el oeste puedes entrar en una parcela vieja; al este hay una zanja seca."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces la tierra nueva y la banda de tallos antiguos. El sendero rodea la depresión antes de alcanzar el cobertizo que se ve al otro lado."
+        },
+        {
+          "kind": "world",
+          "text": "La agricultora comprueba la humedad con dos dedos y cubre de nuevo el agujero. En la hilera antigua quedan tallos aplastados; ya no se mueven contra el viento."
+        }
+      ],
+      "actions": [
+        {
+          "id": "buscar",
+          "label": "Buscar alrededor",
+          "disabled": false,
+          "reason": "Revisar suelo, refugios y objetos que hayan quedado en el camino."
+        },
+        {
+          "id": "mirar",
+          "label": "Mirar"
+        },
+        {
+          "id": "observar",
+          "label": "Observar"
+        },
+        {
+          "id": "examinar",
+          "target": "tallos",
+          "label": "Examinar tallos"
+        },
+        {
+          "id": "examinar",
+          "target": "tierra",
+          "label": "Examinar tierra"
+        },
+        {
+          "id": "mover",
+          "target": "sur",
+          "label": "Sur · Salida por explorar",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "norte",
+          "label": "Norte · Lindero de la Piedra Hundida",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "oeste",
+          "label": "Oeste · Salida por explorar",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "este",
+          "label": "Este · Zanja seca",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "desequipar",
+          "target": "weapon",
+          "label": "Guardar arma"
+        },
+        {
+          "id": "equipar",
+          "target": "espada_juramento",
+          "label": "Equipar Espada de juramento",
+          "disabled": false,
+          "reason": ""
+        }
+      ],
+      "exits": [
+        {
+          "direction": "sur",
+          "label": "Sur"
+        },
+        {
+          "direction": "norte",
+          "label": "Norte"
+        },
+        {
+          "direction": "oeste",
+          "label": "Oeste"
+        },
+        {
+          "direction": "este",
+          "label": "Este"
+        }
+      ],
+      "combat": null,
+      "words": 94
+    },
+    {
+      "label": "mover:sur",
+      "movement": true,
+      "room": "edran_acequia",
+      "name": "Curva de la Acequia",
+      "description": "El agua rodea una losa antes de seguir hacia Valdren. Unas hojas tapan la abertura de una zanja seca. Al oeste queda el pueblo, al norte subes al campo y al sur alcanzas el estanque. La losa permite cruzar sin mojarte.",
+      "scene": [
+        {
+          "kind": "world",
+          "text": "El agua rodea una losa antes de seguir hacia Valdren. Unas hojas tapan la abertura de una zanja seca. Al oeste queda el pueblo, al norte subes al campo y al sur alcanzas el estanque. La losa permite cruzar sin mojarte."
+        },
+        {
+          "kind": "world",
+          "text": "Una rana se deja caer desde la hierba y abre dos círculos pequeños. Más abajo, una mujer libera una hoja atrapada en la rejilla con la punta de una rama."
+        }
+      ],
+      "actions": [
+        {
+          "id": "buscar",
+          "label": "Buscar alrededor",
+          "disabled": false,
+          "reason": "Revisar suelo, refugios y objetos que hayan quedado en el camino."
+        },
+        {
+          "id": "edran_despejar_acequia",
+          "label": "Retirar las hojas de la abertura"
+        },
+        {
+          "id": "mirar",
+          "label": "Mirar"
+        },
+        {
+          "id": "observar",
+          "label": "Observar"
+        },
+        {
+          "id": "examinar",
+          "target": "hojas",
+          "label": "Examinar hojas"
+        },
+        {
+          "id": "examinar",
+          "target": "losa",
+          "label": "Examinar losa"
+        },
+        {
+          "id": "mover",
+          "target": "oeste",
+          "label": "Oeste · Salida de las Cercas Bajas",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "norte",
+          "label": "Norte · Campo de surcos",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "sur",
+          "label": "Sur · Salida por explorar",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "desequipar",
+          "target": "weapon",
+          "label": "Guardar arma"
+        },
+        {
+          "id": "equipar",
+          "target": "espada_juramento",
+          "label": "Equipar Espada de juramento",
+          "disabled": false,
+          "reason": ""
+        }
+      ],
+      "exits": [
+        {
+          "direction": "oeste",
+          "label": "Oeste"
+        },
+        {
+          "direction": "norte",
+          "label": "Norte"
+        },
+        {
+          "direction": "sur",
+          "label": "Sur"
+        }
+      ],
+      "combat": null,
+      "words": 71
+    },
+    {
+      "label": "mover:oeste",
+      "movement": true,
+      "room": "edran_salida_huertos",
+      "name": "Salida de las Cercas Bajas",
+      "description": "Las cercas bajan y el viento llega de frente. Dejas las casas atrás. El camino este sigue hasta la acequia; por el sur vuelves entre los graneros. Los dos postes del oeste señalan la entrada a Valdren. El tramo hacia los graneros dobla junto a las cercas; no es una calle recta.",
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Las cercas bajan y el viento llega de frente. Dejas las casas atrás. El camino este sigue hasta la acequia; por el sur vuelves entre los graneros. Los dos postes del oeste señalan la entrada a Valdren. El tramo hacia los graneros dobla junto a las cercas; no es una calle recta."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces la curva junto a la acequia. Las rodadas rodean el huerto húmedo y llegan al campo por el borde firme."
+        },
+        {
+          "kind": "world",
+          "text": "Una persona abre la cerca para pasar con una cesta y vuelve a apoyarla sin atarla. Su trayecto es corto; las huellas que siguen la acequia llevan carros."
+        }
+      ],
+      "actions": [
+        {
+          "id": "buscar",
+          "label": "Buscar alrededor",
+          "disabled": false,
+          "reason": "Revisar suelo, refugios y objetos que hayan quedado en el camino."
+        },
+        {
+          "id": "pedir_permiso_valdren",
+          "label": "Presentarte y pedir entrada"
+        },
+        {
+          "id": "mirar",
+          "label": "Mirar"
+        },
+        {
+          "id": "observar",
+          "label": "Observar"
+        },
+        {
+          "id": "examinar",
+          "target": "cercas",
+          "label": "Examinar cercas"
+        },
+        {
+          "id": "examinar",
+          "target": "huellas",
+          "label": "Examinar huellas"
+        },
+        {
+          "id": "mover",
+          "target": "oeste",
+          "label": "Oeste · Corredor de los Huertos",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "este",
+          "label": "Este · Curva de la Acequia",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "sur",
+          "label": "Sur · Paso entre los Graneros",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "hablar",
+          "target": "edran_lina",
+          "topic": "entrada",
+          "label": "Lina · entrada"
+        },
+        {
+          "id": "hablar",
+          "target": "edran_lina",
+          "topic": "peligro",
+          "label": "Lina · peligro"
+        },
+        {
+          "id": "desequipar",
+          "target": "weapon",
+          "label": "Guardar arma"
+        },
+        {
+          "id": "equipar",
+          "target": "espada_juramento",
+          "label": "Equipar Espada de juramento",
+          "disabled": false,
+          "reason": ""
+        }
+      ],
+      "exits": [
+        {
+          "direction": "oeste",
+          "label": "Oeste"
+        },
+        {
+          "direction": "este",
+          "label": "Este"
+        },
+        {
+          "direction": "sur",
+          "label": "Sur"
+        }
+      ],
+      "combat": null,
+      "words": 101
+    },
+    {
+      "label": "mover:oeste",
+      "movement": true,
+      "room": "valdren_huertos",
+      "name": "Corredor de los Huertos",
+      "description": "El camino pasa entre huertos, cercas bajas y puertas de cocina. Un árbol da sombra a la canaleta. Al oeste queda la plaza; al norte está la casa de semillas. Sigue al este para salir de Valdren hacia los campos.",
+      "scene": [
+        {
+          "kind": "world",
+          "text": "El camino pasa entre huertos, cercas bajas y puertas de cocina. Un árbol da sombra a la canaleta. Al oeste queda la plaza; al norte está la casa de semillas. Sigue al este para salir de Valdren hacia los campos."
+        },
+        {
+          "kind": "world",
+          "text": "Una familia lleva hojas a la cocina sin usar cestos: la distancia es tan corta que basta doblar el delantal. La encargada del huerto deja espacio para quienes necesitan pasar con un carro."
+        },
+        {
+          "kind": "world",
+          "text": "Los postes desiguales te permiten localizar la plaza sin ver el banco. También reconoces la curva donde la canaleta debe recoger el agua de los dos lados."
+        }
+      ],
+      "actions": [
+        {
+          "id": "mirar",
+          "label": "Mirar"
+        },
+        {
+          "id": "observar",
+          "label": "Observar"
+        },
+        {
+          "id": "examinar",
+          "target": "canaleta",
+          "label": "Examinar canaleta"
+        },
+        {
+          "id": "examinar",
+          "target": "cuerda",
+          "label": "Examinar cuerda"
+        },
+        {
+          "id": "mover",
+          "target": "oeste",
+          "label": "Oeste · Plaza de Valdren",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "norte",
+          "label": "Norte · Casa de semillas",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "este",
+          "label": "Este · Salida de las Cercas Bajas",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "descansar",
+          "label": "Descansar · +2.4 vida · −8 fatiga",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "desequipar",
+          "target": "weapon",
+          "label": "Guardar arma"
+        },
+        {
+          "id": "equipar",
+          "target": "espada_juramento",
+          "label": "Equipar Espada de juramento",
+          "disabled": false,
+          "reason": ""
+        }
+      ],
+      "exits": [
+        {
+          "direction": "oeste",
+          "label": "Oeste"
+        },
+        {
+          "direction": "norte",
+          "label": "Norte"
+        },
+        {
+          "direction": "este",
+          "label": "Este"
+        }
+      ],
+      "combat": null,
+      "words": 100
+    },
+    {
+      "label": "mover:oeste",
+      "movement": true,
+      "room": "valdren_plaza",
+      "name": "Plaza de Valdren",
+      "description": "Un banco largo cruza la plaza. Hay espacio para girar los carros sin tapar las puertas. La fragua queda al norte, los huertos al este, el pozo al sur y el cobertizo al oeste. Una piedra sobresale entre las tablas del asiento.",
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Un banco largo cruza la plaza. Hay espacio para girar los carros sin tapar las puertas. La fragua queda al norte, los huertos al este, el pozo al sur y el cobertizo al oeste. Una piedra sobresale entre las tablas del asiento."
+        },
+        {
+          "kind": "world",
+          "text": "El niño acerca otra semilla al cuenco de las mordidas. Su abuela la gira entre los dedos y le enseña que esta abertura sólo tiene una marca."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces el extremo del banco por la piedra que obliga a interrumpirlo. La fragua queda detrás de las casas más altas; el corredor de huertos ofrece una salida distinta, orientada al campo."
+        }
+      ],
+      "actions": [
+        {
+          "id": "mirar",
+          "label": "Mirar"
+        },
+        {
+          "id": "observar",
+          "label": "Observar"
+        },
+        {
+          "id": "examinar",
+          "target": "banco",
+          "label": "Examinar banco"
+        },
+        {
+          "id": "examinar",
+          "target": "piedra",
+          "label": "Examinar piedra"
+        },
+        {
+          "id": "mover",
+          "target": "norte",
+          "label": "Norte · Salida por explorar",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "este",
+          "label": "Este · Corredor de los Huertos",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "sur",
+          "label": "Sur · Salida por explorar",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "oeste",
+          "label": "Oeste · Cobertizo de los carros",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "hogar",
+          "label": "Regresar a tu hogar"
+        },
+        {
+          "id": "descansar",
+          "label": "Descansar · +2.4 vida · −8 fatiga",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "desequipar",
+          "target": "weapon",
+          "label": "Guardar arma"
+        },
+        {
+          "id": "equipar",
+          "target": "espada_juramento",
+          "label": "Equipar Espada de juramento",
+          "disabled": false,
+          "reason": ""
+        }
+      ],
+      "exits": [
+        {
+          "direction": "norte",
+          "label": "Norte"
+        },
+        {
+          "direction": "este",
+          "label": "Este"
+        },
+        {
+          "direction": "sur",
+          "label": "Sur"
+        },
+        {
+          "direction": "oeste",
+          "label": "Oeste"
+        }
+      ],
+      "combat": null,
+      "words": 101
+    },
+    {
+      "label": "night",
+      "movement": false,
+      "room": "valdren_plaza",
+      "name": "Plaza de Valdren",
+      "description": "Un banco largo cruza la plaza. Hay espacio para girar los carros sin tapar las puertas. La fragua queda al norte, los huertos al este, el pozo al sur y el cobertizo al oeste. Una piedra sobresale entre las tablas del asiento.",
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Un banco largo cruza la plaza. Hay espacio para girar los carros sin tapar las puertas. La fragua queda al norte, los huertos al este, el pozo al sur y el cobertizo al oeste. Una piedra sobresale entre las tablas del asiento."
+        },
+        {
+          "kind": "world",
+          "text": "La piedra del banco queda tibia junto al cuenco tapado. De una casa llega el golpe de una cuchara y luego una risa breve."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces el extremo del banco por la piedra que obliga a interrumpirlo. La fragua queda detrás de las casas más altas; el corredor de huertos ofrece una salida distinta, orientada al campo."
+        }
+      ],
+      "actions": [
+        {
+          "id": "mirar",
+          "label": "Mirar"
+        },
+        {
+          "id": "observar",
+          "label": "Observar"
+        },
+        {
+          "id": "examinar",
+          "target": "banco",
+          "label": "Examinar banco"
+        },
+        {
+          "id": "examinar",
+          "target": "piedra",
+          "label": "Examinar piedra"
+        },
+        {
+          "id": "mover",
+          "target": "norte",
+          "label": "Norte · Salida por explorar",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "este",
+          "label": "Este · Corredor de los Huertos",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "sur",
+          "label": "Sur · Salida por explorar",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "oeste",
+          "label": "Oeste · Cobertizo de los carros",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "hogar",
+          "label": "Regresar a tu hogar"
+        },
+        {
+          "id": "descansar",
+          "label": "Descansar · +2.4 vida · −8 fatiga",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "desequipar",
+          "target": "weapon",
+          "label": "Guardar arma"
+        },
+        {
+          "id": "equipar",
+          "target": "espada_juramento",
+          "label": "Equipar Espada de juramento",
+          "disabled": false,
+          "reason": ""
+        }
+      ],
+      "exits": [
+        {
+          "direction": "norte",
+          "label": "Norte"
+        },
+        {
+          "direction": "este",
+          "label": "Este"
+        },
+        {
+          "direction": "sur",
+          "label": "Sur"
+        },
+        {
+          "direction": "oeste",
+          "label": "Oeste"
+        }
+      ],
+      "combat": null,
+      "words": 98
+    },
+    {
+      "label": "rain",
+      "movement": false,
+      "room": "valdren_plaza",
+      "name": "Plaza de Valdren",
+      "description": "Un banco largo cruza la plaza. Hay espacio para girar los carros sin tapar las puertas. La fragua queda al norte, los huertos al este, el pozo al sur y el cobertizo al oeste. Una piedra sobresale entre las tablas del asiento.",
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Un banco largo cruza la plaza. Hay espacio para girar los carros sin tapar las puertas. La fragua queda al norte, los huertos al este, el pozo al sur y el cobertizo al oeste. Una piedra sobresale entre las tablas del asiento."
+        },
+        {
+          "kind": "world",
+          "text": "Bajo el paño, el niño compara otra semilla con la del cuenco. Su abuela retira con un dedo el agua que le llegó a la cáscara antes de girarla."
+        },
+        {
+          "kind": "world",
+          "text": "Los vecinos encajan tablillas bajo las patas del banco para impedir que se hunda. Una niña empuja con el zapato el agua retenida ante una puerta, sin tocar los montones de semillas."
+        }
+      ],
+      "actions": [
+        {
+          "id": "mirar",
+          "label": "Mirar"
+        },
+        {
+          "id": "observar",
+          "label": "Observar"
+        },
+        {
+          "id": "examinar",
+          "target": "banco",
+          "label": "Examinar banco"
+        },
+        {
+          "id": "examinar",
+          "target": "piedra",
+          "label": "Examinar piedra"
+        },
+        {
+          "id": "mover",
+          "target": "norte",
+          "label": "Norte · Salida por explorar",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "este",
+          "label": "Este · Corredor de los Huertos",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "sur",
+          "label": "Sur · Salida por explorar",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "oeste",
+          "label": "Oeste · Cobertizo de los carros",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "hogar",
+          "label": "Regresar a tu hogar"
+        },
+        {
+          "id": "descansar",
+          "label": "Descansar · +2.4 vida · −8 fatiga",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "desequipar",
+          "target": "weapon",
+          "label": "Guardar arma"
+        },
+        {
+          "id": "equipar",
+          "target": "espada_juramento",
+          "label": "Equipar Espada de juramento",
+          "disabled": false,
+          "reason": ""
+        }
+      ],
+      "exits": [
+        {
+          "direction": "norte",
+          "label": "Norte"
+        },
+        {
+          "direction": "este",
+          "label": "Este"
+        },
+        {
+          "direction": "sur",
+          "label": "Sur"
+        },
+        {
+          "direction": "oeste",
+          "label": "Oeste"
+        }
+      ],
+      "combat": null,
+      "words": 103
+    },
+    {
+      "label": "wind",
+      "movement": false,
+      "room": "valdren_plaza",
+      "name": "Plaza de Valdren",
+      "description": "Un banco largo cruza la plaza. Hay espacio para girar los carros sin tapar las puertas. La fragua queda al norte, los huertos al este, el pozo al sur y el cobertizo al oeste. Una piedra sobresale entre las tablas del asiento.",
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Un banco largo cruza la plaza. Hay espacio para girar los carros sin tapar las puertas. La fragua queda al norte, los huertos al este, el pozo al sur y el cobertizo al oeste. Una piedra sobresale entre las tablas del asiento."
+        },
+        {
+          "kind": "world",
+          "text": "El niño acerca otra semilla al cuenco de las mordidas. Su abuela la gira entre los dedos y le enseña que esta abertura sólo tiene una marca."
+        },
+        {
+          "kind": "world",
+          "text": "El cuenco del banco traquetea bajo su tapa. La lámpara oscila junto al corredor y su luz pasa de las tablas al suelo; en las casas, alguien encaja una contraventana."
+        }
+      ],
+      "actions": [
+        {
+          "id": "mirar",
+          "label": "Mirar"
+        },
+        {
+          "id": "observar",
+          "label": "Observar"
+        },
+        {
+          "id": "examinar",
+          "target": "banco",
+          "label": "Examinar banco"
+        },
+        {
+          "id": "examinar",
+          "target": "piedra",
+          "label": "Examinar piedra"
+        },
+        {
+          "id": "mover",
+          "target": "norte",
+          "label": "Norte · Salida por explorar",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "este",
+          "label": "Este · Corredor de los Huertos",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "sur",
+          "label": "Sur · Salida por explorar",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "oeste",
+          "label": "Oeste · Cobertizo de los carros",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "mover",
+          "target": "hogar",
+          "label": "Regresar a tu hogar"
+        },
+        {
+          "id": "descansar",
+          "label": "Descansar · +2.4 vida · −8 fatiga",
+          "disabled": false,
+          "reason": ""
+        },
+        {
+          "id": "desequipar",
+          "target": "weapon",
+          "label": "Guardar arma"
+        },
+        {
+          "id": "equipar",
+          "target": "espada_juramento",
+          "label": "Equipar Espada de juramento",
+          "disabled": false,
+          "reason": ""
+        }
+      ],
+      "exits": [
+        {
+          "direction": "norte",
+          "label": "Norte"
+        },
+        {
+          "direction": "este",
+          "label": "Este"
+        },
+        {
+          "direction": "sur",
+          "label": "Sur"
+        },
+        {
+          "direction": "oeste",
+          "label": "Oeste"
+        }
+      ],
+      "combat": null,
+      "words": 99
+    }
+  ],
+  "state": {
+    "species": "humano",
+    "class_id": "juramentado",
+    "location": "valdren_plaza",
+    "home": "review-home",
+    "level": 1,
+    "xp": 14,
+    "pa": 0,
+    "pp": 0,
+    "attributes": {
+      "fuerza": 55,
+      "resistencia": 10,
+      "agilidad": 10,
+      "percepcion": 10,
+      "intelecto": 10,
+      "voluntad": 10,
+      "destreza": 50,
+      "presencia": 10
+    },
+    "hp": 92.0,
+    "fatigue": 8.0,
+    "wound": null,
+    "seals": 20,
+    "inventory": [
+      {
+        "id": "espada_juramento",
+        "name": "Espada de juramento",
+        "kind": "weapon",
+        "damage": 10,
+        "block": true,
+        "activated": true,
+        "quantity": 1
+      },
+      {
+        "id": "fibra_espinajo",
+        "name": "Fibra de rastrojo aprovechable",
+        "description": "Fibra firme que puede utilizarse en ataduras sencillas. Elva reúne pequeñas cantidades para el trabajo del pueblo.",
+        "kind": "material",
+        "sell_price": 4,
+        "quantity": 1
+      }
+    ],
+    "equipment": {
+      "weapon": "espada_juramento",
+      "armor": null,
+      "block": null
+    },
+    "flags": [
+      "participated:edran_granero_despejado",
+      "edran_caja_localizada",
+      "victoria:edran_surcos:espinajo_rastrojo"
+    ],
+    "visited": [
+      "review-home",
+      "valdren_plaza",
+      "valdren_cobertizo",
+      "valdren_huertos",
+      "valdren_casa_semillas",
+      "edran_salida_huertos",
+      "valdren_graneros",
+      "valdren_patio_carros",
+      "edran_sendero_regreso",
+      "edran_arboleda",
+      "edran_cobertizo_campo",
+      "edran_lindero",
+      "edran_surcos",
+      "edran_zanja_antigua",
+      "edran_canal_entrada",
+      "edran_canal_herramientas",
+      "edran_canal_bifurcacion",
+      "edran_canal_refugio",
+      "edran_acequia"
+    ],
+    "known": [
+      "review-home",
+      "valdren_plaza",
+      "valdren_cobertizo",
+      "valdren_huertos",
+      "valdren_casa_semillas",
+      "edran_salida_huertos",
+      "valdren_graneros",
+      "valdren_patio_carros",
+      "edran_sendero_regreso",
+      "edran_arboleda",
+      "edran_cobertizo_campo",
+      "edran_lindero",
+      "edran_surcos",
+      "edran_zanja_antigua",
+      "edran_canal_entrada",
+      "edran_canal_herramientas",
+      "edran_canal_bifurcacion",
+      "edran_canal_refugio",
+      "edran_acequia"
+    ],
+    "routes": [
+      [
+        "review-home",
+        "valdren_plaza"
+      ],
+      [
+        "valdren_cobertizo",
+        "valdren_plaza"
+      ],
+      [
+        "valdren_huertos",
+        "valdren_plaza"
+      ],
+      [
+        "valdren_casa_semillas",
+        "valdren_huertos"
+      ],
+      [
+        "edran_salida_huertos",
+        "valdren_huertos"
+      ],
+      [
+        "edran_salida_huertos",
+        "valdren_graneros"
+      ],
+      [
+        "valdren_graneros",
+        "valdren_patio_carros"
+      ],
+      [
+        "valdren_cobertizo",
+        "valdren_patio_carros"
+      ],
+      [
+        "edran_sendero_regreso",
+        "valdren_patio_carros"
+      ],
+      [
+        "edran_arboleda",
+        "edran_sendero_regreso"
+      ],
+      [
+        "edran_arboleda",
+        "edran_cobertizo_campo"
+      ],
+      [
+        "edran_cobertizo_campo",
+        "edran_lindero"
+      ],
+      [
+        "edran_lindero",
+        "edran_surcos"
+      ],
+      [
+        "edran_surcos",
+        "edran_zanja_antigua"
+      ],
+      [
+        "edran_canal_entrada",
+        "edran_zanja_antigua"
+      ],
+      [
+        "edran_canal_entrada",
+        "edran_canal_herramientas"
+      ],
+      [
+        "edran_canal_bifurcacion",
+        "edran_canal_entrada"
+      ],
+      [
+        "edran_canal_bifurcacion",
+        "edran_canal_refugio"
+      ],
+      [
+        "edran_acequia",
+        "edran_surcos"
+      ],
+      [
+        "edran_acequia",
+        "edran_salida_huertos"
+      ]
+    ],
+    "bestiary": {
+      "espinajo_rastrojo": {
+        "id": "espinajo_rastrojo",
+        "name": "Espinajo de rastrojo",
+        "description": "Las espinas sobresalen sobre un cuerpo compacto que cabe entre tallos cortados. El animal mantiene una parcela pequeña, deteniéndose y volviendo al mismo borde. Antes de cargar baja el cuerpo y orienta la defensa hacia lo que se aproxima; su espacio puede rodearse por el sendero.",
+        "first_seen": 43217,
+        "status": "encontrado"
+      }
+    },
+    "journal": [
+      "La esquina del granero tiene una salida de agua visible. El umbral bajo permanece separado de la tierra apartada."
+    ],
+    "visits": {
+      "review-home": 1,
+      "valdren_plaza": 3,
+      "valdren_cobertizo": 2,
+      "valdren_huertos": 3,
+      "valdren_casa_semillas": 1,
+      "edran_salida_huertos": 2,
+      "valdren_graneros": 1,
+      "valdren_patio_carros": 2,
+      "edran_sendero_regreso": 1,
+      "edran_arboleda": 1,
+      "edran_cobertizo_campo": 1,
+      "edran_lindero": 1,
+      "edran_surcos": 2,
+      "edran_zanja_antigua": 2,
+      "edran_canal_entrada": 3,
+      "edran_canal_herramientas": 1,
+      "edran_canal_bifurcacion": 2,
+      "edran_canal_refugio": 1,
+      "edran_acequia": 1
+    },
+    "last_room": "valdren_huertos",
+    "combat": null,
+    "victories": [
+      "espinajo"
+    ],
+    "rest_budget": null,
+    "quests": {},
+    "ledger": [],
+    "last_active": 43243,
+    "events": [
+      {
+        "kind": "world",
+        "text": "Un banco largo cruza la plaza. Hay espacio para girar los carros sin tapar las puertas. La fragua queda al norte, los huertos al este, el pozo al sur y el cobertizo al oeste. Una piedra sobresale entre las tablas del asiento."
+      },
+      {
+        "kind": "world",
+        "text": "El niño acerca otra semilla al cuenco de las mordidas. Su abuela la gira entre los dedos y le enseña que esta abertura sólo tiene una marca."
+      },
+      {
+        "kind": "world",
+        "text": "Reconoces el extremo del banco por la piedra que obliga a interrumpirlo. La fragua queda detrás de las casas más altas; el corredor de huertos ofrece una salida distinta, orientada al campo."
+      }
+    ],
+    "arrival": true,
+    "observations": {
+      "edran_surcos": 1
+    }
+  },
+  "world": {
+    "version": 0,
+    "flags": [
+      "edran_granero_despejado"
+    ],
+    "deaths": {
+      "edran_surcos:espinajo_rastrojo": 43540
+    },
+    "encounters": {},
+    "wildlife": {
+      "edran_salida_huertos": {
+        "signal": null,
+        "until": 43506
+      },
+      "edran_sendero_regreso": {
+        "signal": null,
+        "until": 43513
+      },
+      "edran_arboleda": {
+        "signal": null,
+        "until": 43514
+      }
+    },
+    "creature_states": {}
+  }
+}

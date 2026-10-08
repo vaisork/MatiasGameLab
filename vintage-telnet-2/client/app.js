@@ -70,7 +70,7 @@ function restoreReadingPosition(position){
 
 function syncTerminal(){
  const visit=history.at(-1)?.visit??null,changed=visit!==readingVisit;if(changed){resetTerminal();readingVisit=visit;}
- const visible=visit===null?history:history.filter(event=>event.visit===visit);
+ const visible=(visit===null?history:history.filter(event=>event.visit===visit)).filter(event=>event.kind!=='LOCATION');
  const keys=new Set(visible.map(event=>event.key));for(const [key,item] of printed){if(!keys.has(key)){item.node.remove();printed.delete(key);}}
  for(const event of visible){if(printed.has(event.key))continue;const text=combatReading(event);
   const output=el('span',{'aria-hidden':true}),node=el('p',{class:`event event-${event.kind.toLowerCase()}`,hidden:true,role:'group','aria-label':text},el('span',{class:'event-kind','aria-hidden':true},kindNames[event.kind]||'Mundo'),output);

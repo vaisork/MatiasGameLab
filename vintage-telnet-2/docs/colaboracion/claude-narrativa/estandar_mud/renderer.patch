@@ -1,0 +1,61 @@
+--- a/server/engine.py
++++ b/server/engine.py
+@@ -78,7 +78,7 @@
+         for variant in room.get('states',[]):
+             if world is not None and self.allowed(variant,state,world):
+                 for key,value in variant.get('overrides',{}).items():
+-                    if key not in ('description','dawn','day','dusk','night','rain','clear','weather','return','examine','focus'):continue
++                    if key not in ('description','brief','dawn','day','dusk','night','rain','clear','weather','return','examine','focus'):continue
+                     room[key]=dict(room.get(key,{}),**value) if key=='examine' else value
+         for cid,overrides in room.get('absent_creatures',{}).items():
+             key=f'{location}:{cid}'
+@@ -192,9 +192,10 @@
+         memories=[i for i in room.get('memories',[]) if self.allowed(i,state,world)]
+         if memories:layers['memory']=event('discovery',memories[-1]['text'])
+         elif state['visits'].get(room['id'],0)>1 and room.get('return'):layers['return']=event('world',room['return'])
+-        for npc in self.people(room,state,world,ambient):
++        present=self.people(room,state,world,ambient);people_line=None
++        for npc in present:
+             activity=npc.get(phase_key) or npc.get('night' if phase_key=='night' else 'day')
+-            if activity:layers['people']=event('world',activity);break
++            if activity:people_line=event('world',activity);break
+         for signal in room.get('signals',[]):
+             if self.allowed(signal,state,world) and signal_present(signal,room,world,self.clock()):layers['danger']=event('danger',signal['text']);break
+         visits=state['visits'].get(room['id'],0)
+@@ -207,6 +208,19 @@
+         priority=['danger']+(['memory'] if recall else [])+[key for key in authored if key in layers and key!='danger']+priority
+         limit=room.get('max_layers',3)
+         limit=min(8,max(1,limit)) if isinstance(limit,int) else 3
++        brief=room.get('brief') if state.get('arrival') and visits>1 else None
++        if brief:
++            # Modo breve clásico: la seña del lugar y un solo detalle vivo que cambia de una visita a otra.
++            lines=[event('world',brief)];options=[]
++            for key in priority:
++                if key in layers and key not in options:options.append(key)
++            chosen='danger' if 'danger' in layers else options[visits%len(options)] if options else None
++            if chosen:lines.append(layers[chosen])
++            # Un recuerdo puede nombrar a alguien sin que esté; sólo una capa del presente lo hace innecesario.
++            names=[npc['name'] for npc in present]
++            if names and not (chosen in ('activity','weather','arrival') and any(name in layers[chosen]['text'] for name in names)):
++                lines.append(event('world',' y '.join(names)+(' está aquí.' if len(names)==1 else ' están aquí.')))
++            return lines
+         lines=[event('world',room['description'])];seen={room['description']}
+         for key in priority:
+             if len(lines)>=limit:break
+@@ -214,6 +228,7 @@
+             if line and line['text'] not in seen:
+                 lines.append(line);seen.add(line['text'])
+             if len(lines)>=limit:break
++        if people_line and people_line['text'] not in seen and not any(npc['name'] in line['text'] for npc in present for line in lines):lines.append(people_line)
+         return lines
+
+     @staticmethod
+@@ -614,7 +629,7 @@
+             state['events']=[event('chat','Envías tu mensaje a quienes están aquí.')];return
+         candidate=next((a for a in candidates if a['id']==action and a.get('target')==target and (a.get('topic') is None or a.get('topic')==intent.get('topic'))),None)
+         if not candidate or candidate.get('disabled'):raise RuleError((candidate or {}).get('reason') or 'Esa acción no está disponible en tu situación actual.',409)
+-        state['events']=[]
++        state['events']=[];state['arrival']=False
+         if state['combat']:
+             combat=state['combat']
+             if combat.get('intervention'):raise RuleError('Ya has decidido tu intervención para esta ronda.',409)

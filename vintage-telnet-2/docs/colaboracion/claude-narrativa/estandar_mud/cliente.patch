@@ -1,0 +1,11 @@
+--- a/client/ui-data.js
++++ b/client/ui-data.js
+@@ -22,7 +22,7 @@
+   if(!scene.length&&snapshot.room.description)scene.push({kind:'WORLD',text:snapshot.room.description});
+   const current=new Set(scene.map(stamp)),moved=this.room!==snapshot.room.id,feedbackKey=JSON.stringify(reply.map(stamp));
+   const additions=[];
+-  if(moved){this.visit++;additions.push({kind:'LOCATION',text:(this.room===null?'Estás en ':'Llegas a ')+snapshot.room.name+'.'});if(this.region&&snapshot.room.region&&this.region!==snapshot.room.region)additions.push({kind:'DISCOVERY',text:'Entras en '+(regionNames[snapshot.room.region]||snapshot.room.region)+'.'});additions.push(...scene);}
++  if(moved){this.visit++;additions.push({kind:'LOCATION',text:(this.room===null?'Estás en ':'Llegas a ')+snapshot.room.name+'.'});if(this.region&&snapshot.room.region&&this.region!==snapshot.room.region)additions.push({kind:'DISCOVERY',text:'Entras en '+(regionNames[snapshot.room.region]||snapshot.room.region)+'.'});additions.push(...scene);const exits=list(snapshot.actions).filter(a=>a.id==='mover'&&a.target!=='hogar').map(a=>{const name=String(a.label||'').split(' · ')[1];return name&&name!=='Salida por explorar'?`${a.target} (${name})`:a.target;});if(exits.length)additions.push({kind:'INFO',text:'Salidas: '+exits.join(', ')+'.'});}
+   // Existing scene details are already in the journal, including explicit observations.
+   else if(!explicit)additions.push(...scene.filter(e=>!this.scene.has(stamp(e))));
+   if(explicit||feedbackKey!==this.feedback)additions.push(...reply.filter(e=>!current.has(stamp(e))));

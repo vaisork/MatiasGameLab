@@ -1,0 +1,155 @@
+[location] Estás en Plaza de Valdren.
+[world] Un banco largo cruza la plaza. Hay espacio para girar los carros sin tapar las puertas. La fragua queda al norte, los huertos al este, el pozo al sur y el cobertizo al oeste. Una piedra sobresale entre las tablas del asiento.
+[world] La vecina aparta una semilla mordida y la deja en un cuenco pequeño. Un niño intenta adivinar qué pájaro la abrió; su abuela le muestra las dos marcas del pico.
+[world] El cuenco del banco traquetea bajo su tapa. La lámpara oscila junto al corredor y su luz pasa de las tablas al suelo; en las casas, alguien encaja una contraventana.
+[info] Salidas: norte, este, sur, oeste.
+[location] Llegas a Calle de la fragua.
+[world] La calle sube desde la plaza hasta la fragua. Dos casas estrechan el paso; una conserva la marca de su tejado antiguo. Desde arriba ves el banco largo. Al oeste hay un patio con ropa tendida. La plaza queda al sur y Daro al norte.
+[world] Una vecina limpia el borde antiguo de su pared para preparar una reparación. El sonido de la fragua llega por el espacio entre tejados.
+[info] Salidas: sur (Plaza de Valdren), norte, oeste.
+[location] Llegas a Fragua de Daro.
+[world] Daro trabaja entre el fuego y un barreño de agua. Las piezas terminadas esperan junto a la puerta; las herramientas calientes quedan al fondo. El centro está libre para pasar. La salida sur baja por la calle hacia la plaza.
+[world] Daro cierra la hoja del lado del campo cuando una ráfaga aviva el carbón. Sujeta con la tenaza la pieza que había apartado y vuelve a escuchar su sonido.
+[world] El aire entra por el umbral y obliga a Daro a proteger las piezas recién retiradas del hogar. La cuesta devuelve el golpe de una puerta de madera.
+[info] Salidas: sur (Calle de la fragua).
+[location] Llegas a Calle de la fragua.
+[world] La calle sube desde la plaza hasta la fragua. Dos casas estrechan el paso; una conserva la marca de su tejado antiguo. Desde arriba ves el banco largo. Al oeste hay un patio con ropa tendida. La plaza queda al sur y Daro al norte.
+[world] Reconoces el tejado viejo por su línea quebrada. La casa que añadieron al lado queda un peldaño más alta, camino de la fragua.
+[world] Una vecina limpia el borde antiguo de su pared para preparar una reparación. El sonido de la fragua llega por el espacio entre tejados.
+[info] Salidas: sur (Plaza de Valdren), norte (Fragua de Daro), oeste.
+[location] Llegas a Patio de ropa.
+[world] Dos cuerdas sostienen paños de trabajo y ropa limpia. Una tina ocupa el suelo firme; junto a la pared queda un paso seco. Al este vuelves a la calle. La puerta oeste entra en la estancia donde atienden las heridas.
+[world] Una mujer cambia los paños de cuerda cuando dejan de gotear. No mezcla los usados para limpiar herramientas con los que cubren una mesa de cuidado.
+[info] Salidas: este (Calle de la fragua), oeste.
+[location] Llegas a Casa de cuidados.
+[world] Una cama corta está junto a la ventana. En la mesa hay paños limpios, agua tapada y recipientes separados de la comida. Aquí pueden atender tus heridas lejos del polvo del trabajo. La puerta este vuelve al patio de ropa.
+[world] Sena recoge un paño usado y pide que quien espera mantenga las manos fuera de la mesa. La atención empieza por escuchar dónde se recibió el golpe.
+[info] Salidas: este (Patio de ropa).
+[location] Llegas a Patio de ropa.
+[world] Dos cuerdas sostienen paños de trabajo y ropa limpia. Una tina ocupa el suelo firme; junto a la pared queda un paso seco. Al este vuelves a la calle. La puerta oeste entra en la estancia donde atienden las heridas.
+[world] Las dos alturas de cuerda te permiten distinguir usos sin tocar nada. El recorrido junto a la pared sigue libre aunque el patio esté lleno de trabajo.
+[world] Una mujer cambia los paños de cuerda cuando dejan de gotear. No mezcla los usados para limpiar herramientas con los que cubren una mesa de cuidado.
+[info] Salidas: este (Calle de la fragua), oeste (Casa de cuidados).
+[location] Llegas a Calle de la fragua.
+[world] La calle sube desde la plaza hasta la fragua. Dos casas estrechan el paso; una conserva la marca de su tejado antiguo. Desde arriba ves el banco largo. Al oeste hay un patio con ropa tendida. La plaza queda al sur y Daro al norte.
+[world] Una vecina limpia el borde antiguo de su pared para preparar una reparación. El sonido de la fragua llega por el espacio entre tejados.
+[world] Reconoces el tejado viejo por su línea quebrada. La casa que añadieron al lado queda un peldaño más alta, camino de la fragua.
+[info] Salidas: sur (Plaza de Valdren), norte (Fragua de Daro), oeste (Patio de ropa).
+[location] Llegas a Plaza de Valdren.
+[world] Un banco largo cruza la plaza. Hay espacio para girar los carros sin tapar las puertas. La fragua queda al norte, los huertos al este, el pozo al sur y el cobertizo al oeste. Una piedra sobresale entre las tablas del asiento.
+[world] La vecina aparta una semilla mordida y la deja en un cuenco pequeño. Un niño intenta adivinar qué pájaro la abrió; su abuela le muestra las dos marcas del pico.
+[world] Reconoces el extremo del banco por la piedra que obliga a interrumpirlo. La fragua queda detrás de las casas más altas; el corredor de huertos ofrece una salida distinta, orientada al campo.
+[info] Salidas: norte (Calle de la fragua), este, sur, oeste.
+[location] Llegas a Pozo de las Dos Cuerdas.
+[world] Una cuerda nueva baja al pozo. La vieja está enrollada en una clavija, gastada por el uso. Quienes esperan se quedan detrás de las piedras del borde. Al norte vuelves a la plaza; al sur llegas al comedor.
+[world] Una vecina llena recipientes pequeños antes que el suyo grande. Los coloca a la sombra del tejadillo y deja la cuerda preparada para la persona siguiente.
+[info] Salidas: norte (Plaza de Valdren), sur.
+[location] Llegas a Comedor de Elva.
+[world] Elva sirve junto al fuego, en una mesa hecha con tres tableros distintos. Las ollas quedan cerca del extremo estrecho. En el estante hay tazas vueltas para quienes aún no llegan. La puerta norte vuelve al pozo.
+[world] Elva parte una hogaza y recoge la miga que cae junto al plato. Dos comensales discuten cuál de las semillas tostadas sabe más dulce; uno vuelve a probar antes de responder.
+[info] Salidas: norte (Pozo de las Dos Cuerdas).
+[location] Llegas a Pozo de las Dos Cuerdas.
+[world] Una cuerda nueva baja al pozo. La vieja está enrollada en una clavija, gastada por el uso. Quienes esperan se quedan detrás de las piedras del borde. Al norte vuelves a la plaza; al sur llegas al comedor.
+[world] Reconoces la cuerda de reserva en su clavija. La línea de piedras sigue desde el borde seco hasta el último sitio de espera.
+[world] Una vecina llena recipientes pequeños antes que el suyo grande. Los coloca a la sombra del tejadillo y deja la cuerda preparada para la persona siguiente.
+[info] Salidas: norte (Plaza de Valdren), sur (Comedor de Elva).
+[location] Llegas a Plaza de Valdren.
+[world] Un banco largo cruza la plaza. Hay espacio para girar los carros sin tapar las puertas. La fragua queda al norte, los huertos al este, el pozo al sur y el cobertizo al oeste. Una piedra sobresale entre las tablas del asiento.
+[world] El niño acerca otra semilla al cuenco de las mordidas. Su abuela la gira entre los dedos y le enseña que esta abertura sólo tiene una marca.
+[world] El cuenco del banco traquetea bajo su tapa. La lámpara oscila junto al corredor y su luz pasa de las tablas al suelo; en las casas, alguien encaja una contraventana.
+[info] Salidas: norte (Calle de la fragua), este, sur (Pozo de las Dos Cuerdas), oeste.
+[location] Llegas a Corredor de los Huertos.
+[world] El camino pasa entre huertos, cercas bajas y puertas de cocina. Un árbol da sombra a la canaleta. Al oeste queda la plaza; al norte está la casa de semillas. Sigue al este para salir de Valdren hacia los campos.
+[world] Una familia lleva hojas a la cocina sin usar cestos: la distancia es tan corta que basta doblar el delantal. La encargada del huerto deja espacio para quienes necesitan pasar con un carro.
+[info] Salidas: oeste (Plaza de Valdren), norte, este.
+[location] Llegas a Casa de semillas.
+[world] Iria guarda semillas en recipientes con nombres y cantidades. Algunos lotes esperan a secarse junto a la ventana; los sacos vacíos cuelgan al fondo. Los estantes bajos permiten hablar sin rodearlos. La puerta sur vuelve a los huertos.
+[world] Iria pesa dos recipientes con la misma balanza y anota qué volverá después de la cosecha. Pide que cada nombre se lea en voz alta antes de guardar la tablilla.
+[info] Salidas: sur (Corredor de los Huertos).
+[location] Llegas a Corredor de los Huertos.
+[world] El camino pasa entre huertos, cercas bajas y puertas de cocina. Un árbol da sombra a la canaleta. Al oeste queda la plaza; al norte está la casa de semillas. Sigue al este para salir de Valdren hacia los campos.
+[world] Los postes desiguales te permiten localizar la plaza sin ver el banco. También reconoces la curva donde la canaleta debe recoger el agua de los dos lados.
+[world] Una familia lleva hojas a la cocina sin usar cestos: la distancia es tan corta que basta doblar el delantal. La encargada del huerto deja espacio para quienes necesitan pasar con un carro.
+[info] Salidas: oeste (Plaza de Valdren), norte (Casa de semillas), este.
+[location] Llegas a Plaza de Valdren.
+[world] Un banco largo cruza la plaza. Hay espacio para girar los carros sin tapar las puertas. La fragua queda al norte, los huertos al este, el pozo al sur y el cobertizo al oeste. Una piedra sobresale entre las tablas del asiento.
+[world] El niño acerca otra semilla al cuenco de las mordidas. Su abuela la gira entre los dedos y le enseña que esta abertura sólo tiene una marca.
+[world] El cuenco del banco traquetea bajo su tapa. La lámpara oscila junto al corredor y su luz pasa de las tablas al suelo; en las casas, alguien encaja una contraventana.
+[info] Salidas: norte (Calle de la fragua), este (Corredor de los Huertos), sur (Pozo de las Dos Cuerdas), oeste.
+[location] Llegas a Cobertizo de los carros.
+[world] Bren guarda los carros con las varas hacia el patio. Bajo el techo bajo hay ruedas desmontadas; en la parte alta cabe un carro entero. Una cuerda marca el espacio para girarlo. La plaza queda al este y el patio al sur.
+[world] Bren hace avanzar un carro vacío y escucha un crujido que desaparece al volver. Pide una segunda persona para observar la rueda desde fuera de su recorrido.
+[info] Salidas: este (Plaza de Valdren), sur.
+[location] Llegas a Patio de los carros.
+[world] Una carga de sacos espera en el patio. La ligera pendiente puede mover un carro sin calzar; un madero detiene las ruedas. El cobertizo queda al norte, los graneros al este. La senda sur permite volver hacia la arboleda.
+[world] Un ayudante de Bren desplaza un saco y pide que nadie sujete el carro mientras observa si vuelve a inclinarse. Una mujer recoge las semillas que han caído bajo la plataforma.
+[info] Salidas: norte (Cobertizo de los carros), este, sur.
+[location] Llegas a Paso entre los Graneros.
+[world] El paso cruza entre dos graneros. Una puerta se alcanza por una rampa; la otra está a ras del suelo. En una esquina se acumula tierra por encima de las marcas de agua. Al oeste está el patio; al este sales hacia los campos.
+[world] Una almacenista cuenta sacos por sus nudos, sin abrirlos. Un muchacho espera con una tablilla hasta que la almacenista termina de comprobar el granero alto.
+[info] Salidas: oeste (Patio de los carros), este.
+[location] Llegas a Patio de los carros.
+[world] Una carga de sacos espera en el patio. La ligera pendiente puede mover un carro sin calzar; un madero detiene las ruedas. El cobertizo queda al norte, los graneros al este. La senda sur permite volver hacia la arboleda.
+[world] Ahora ves la pendiente junto al pozo. El madero que frenó la rueda tiene una marca fresca debajo del borde.
+[world] Un ayudante de Bren desplaza un saco y pide que nadie sujete el carro mientras observa si vuelve a inclinarse. Una mujer recoge las semillas que han caído bajo la plataforma.
+[info] Salidas: norte (Cobertizo de los carros), este (Paso entre los Graneros), sur.
+[location] Llegas a Cobertizo de los carros.
+[world] Bren guarda los carros con las varas hacia el patio. Bajo el techo bajo hay ruedas desmontadas; en la parte alta cabe un carro entero. Una cuerda marca el espacio para girarlo. La plaza queda al este y el patio al sur.
+[world] Ahora sabes dónde esperar sin obligar a Bren a interrumpir una prueba. El crujido procede del carro alto, no de las ruedas almacenadas contra la pared.
+[world] Bren hace avanzar un carro vacío y escucha un crujido que desaparece al volver. Pide una segunda persona para observar la rueda desde fuera de su recorrido.
+[info] Salidas: este (Plaza de Valdren), sur (Patio de los carros).
+[location] Llegas a Plaza de Valdren.
+[world] Un banco largo cruza la plaza. Hay espacio para girar los carros sin tapar las puertas. La fragua queda al norte, los huertos al este, el pozo al sur y el cobertizo al oeste. Una piedra sobresale entre las tablas del asiento.
+[world] El niño acerca otra semilla al cuenco de las mordidas. Su abuela la gira entre los dedos y le enseña que esta abertura sólo tiene una marca.
+[world] Reconoces el extremo del banco por la piedra que obliga a interrumpirlo. La fragua queda detrás de las casas más altas; el corredor de huertos ofrece una salida distinta, orientada al campo.
+[info] Salidas: norte (Calle de la fragua), este (Corredor de los Huertos), sur (Pozo de las Dos Cuerdas), oeste (Cobertizo de los carros).
+[location] Llegas a Calle de la fragua.
+[world] La calle sube desde la plaza hasta la fragua. Dos casas estrechan el paso; una conserva la marca de su tejado antiguo. Desde arriba ves el banco largo. Al oeste hay un patio con ropa tendida. La plaza queda al sur y Daro al norte.
+[world] Una vecina limpia el borde antiguo de su pared para preparar una reparación. El sonido de la fragua llega por el espacio entre tejados.
+[world] Reconoces el tejado viejo por su línea quebrada. La casa que añadieron al lado queda un peldaño más alta, camino de la fragua.
+[info] Salidas: sur (Plaza de Valdren), norte (Fragua de Daro), oeste (Patio de ropa).
+[location] Llegas a Fragua de Daro.
+[world] Daro trabaja entre el fuego y un barreño de agua. Las piezas terminadas esperan junto a la puerta; las herramientas calientes quedan al fondo. El centro está libre para pasar. La salida sur baja por la calle hacia la plaza.
+[world] Daro cierra la hoja del lado del campo cuando una ráfaga aviva el carbón. Sujeta con la tenaza la pieza que había apartado y vuelve a escuchar su sonido.
+[world] Recuerdas el banco que deja libre el centro. Desde el fuego, la franja de suelo limpio llega hasta la mesa y el recipiente de agua.
+[info] Salidas: sur (Calle de la fragua).
+[location] Llegas a Calle de la fragua.
+[world] La calle sube desde la plaza hasta la fragua. Dos casas estrechan el paso; una conserva la marca de su tejado antiguo. Desde arriba ves el banco largo. Al oeste hay un patio con ropa tendida. La plaza queda al sur y Daro al norte.
+[world] Reconoces el tejado viejo por su línea quebrada. La casa que añadieron al lado queda un peldaño más alta, camino de la fragua.
+[world] Una vecina limpia el borde antiguo de su pared para preparar una reparación. El sonido de la fragua llega por el espacio entre tejados.
+[info] Salidas: sur (Plaza de Valdren), norte (Fragua de Daro), oeste (Patio de ropa).
+[location] Llegas a Plaza de Valdren.
+[world] Un banco largo cruza la plaza. Hay espacio para girar los carros sin tapar las puertas. La fragua queda al norte, los huertos al este, el pozo al sur y el cobertizo al oeste. Una piedra sobresale entre las tablas del asiento.
+[world] El niño acerca otra semilla al cuenco de las mordidas. Su abuela la gira entre los dedos y le enseña que esta abertura sólo tiene una marca.
+[world] El cuenco del banco traquetea bajo su tapa. La lámpara oscila junto al corredor y su luz pasa de las tablas al suelo; en las casas, alguien encaja una contraventana.
+[info] Salidas: norte (Calle de la fragua), este (Corredor de los Huertos), sur (Pozo de las Dos Cuerdas), oeste (Cobertizo de los carros).
+[trace] Tiene reparaciones de maderas distintas. Unas sujetan peso; otras sólo evitan que la ropa roce una astilla.
+[action] Observas con atención.
+[world] Tiene reparaciones de maderas distintas. Unas sujetan peso; otras sólo evitan que la ropa roce una astilla.
+[location] Llegas a Corredor de los Huertos.
+[world] El camino pasa entre huertos, cercas bajas y puertas de cocina. Un árbol da sombra a la canaleta. Al oeste queda la plaza; al norte está la casa de semillas. Sigue al este para salir de Valdren hacia los campos.
+[world] Una familia lleva hojas a la cocina sin usar cestos: la distancia es tan corta que basta doblar el delantal. La encargada del huerto deja espacio para quienes necesitan pasar con un carro.
+[world] Los postes desiguales te permiten localizar la plaza sin ver el banco. También reconoces la curva donde la canaleta debe recoger el agua de los dos lados.
+[info] Salidas: oeste (Plaza de Valdren), norte (Casa de semillas), este.
+[location] Llegas a Salida de las Cercas Bajas.
+[world] Las cercas bajan y el viento llega de frente. Dejas las casas atrás. El camino este sigue hasta la acequia; por el sur vuelves entre los graneros. Los dos postes del oeste señalan la entrada a Valdren. El tramo hacia los graneros dobla junto a las cercas; no es una calle recta.
+[danger] Un cuerpo enorme aparta la hierba. El volumen de su lomo y la tierra hundida advierten una fuerza muy por encima de una primera formación.
+[world] Una persona abre la cerca para pasar con una cesta y vuelve a apoyarla sin atarla. Su trayecto es corto; las huellas que siguen la acequia llevan carros.
+[world] Lina compara los nombres de la lista con las cestas que llegan de los huertos.
+[info] Salidas: oeste (Corredor de los Huertos), este, sur (Paso entre los Graneros).
+[discovery] Añades Cornalomo al bestiario.
+[discovery] Añades Espinajo de rastrojo al bestiario.
+[danger] Al decidir enfrentarte, el Espinajo se mete bajo los tallos, cambia de posición y vuelve a asomar orientado hacia ti. Baja el cuerpo para cargar. Las espinas se mueven con él: ahora tienes que responder a su preparación.
+[combat] Tu golpe alcanza a Espinajo de rastrojo: 9 de daño.
+[reward] Vences a Espinajo de rastrojo. Ganas 14 XP; este enfrentamiento no entrega sellos.
+[reward] Recuperas una unidad de Fibra de rastrojo aprovechable.
+[location] Llegas a Corredor de los Huertos.
+[world] El camino pasa entre huertos, cercas bajas y puertas de cocina. Un árbol da sombra a la canaleta. Al oeste queda la plaza; al norte está la casa de semillas. Sigue al este para salir de Valdren hacia los campos.
+[world] Una familia lleva hojas a la cocina sin usar cestos: la distancia es tan corta que basta doblar el delantal. La encargada del huerto deja espacio para quienes necesitan pasar con un carro.
+[world] Los postes desiguales te permiten localizar la plaza sin ver el banco. También reconoces la curva donde la canaleta debe recoger el agua de los dos lados.
+[info] Salidas: oeste (Plaza de Valdren), norte (Casa de semillas), este (Salida de las Cercas Bajas).
+[location] Llegas a Plaza de Valdren.
+[world] Un banco largo cruza la plaza. Hay espacio para girar los carros sin tapar las puertas. La fragua queda al norte, los huertos al este, el pozo al sur y el cobertizo al oeste. Una piedra sobresale entre las tablas del asiento.
+[world] El niño acerca otra semilla al cuenco de las mordidas. Su abuela la gira entre los dedos y le enseña que esta abertura sólo tiene una marca.
+[world] El cuenco del banco traquetea bajo su tapa. La lámpara oscila junto al corredor y su luz pasa de las tablas al suelo; en las casas, alguien encaja una contraventana.
+[info] Salidas: norte (Calle de la fragua), este (Corredor de los Huertos), sur (Pozo de las Dos Cuerdas), oeste (Cobertizo de los carros).

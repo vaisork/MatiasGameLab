@@ -32,7 +32,7 @@ s.resetTerminal();assert.equal(s.printed.size,0);assert.equal(s.terminalFeed.chi
 /* Old scene never waits ahead of a new arrival, but stays in the journal. */
 history.length=0;history.push({key:'v1',visit:1,kind:'WORLD',text:'OLD'.repeat(100)});reduced=false;s.syncTerminal();tick();
 history.push({key:'v2',visit:2,kind:'LOCATION',text:'Llegas al puente.'},{key:'v3',visit:2,kind:'WORLD',text:'Agua bajo las tablas.'});s.syncTerminal();
-assert.equal(s.printed.has('v1'),false);assert.equal(s.printed.get('v2').output.textContent,'Llegas al puente.');assert.equal(history.length,3);assert.equal(s.printed.size,2);tick();assert.equal(s.printed.get('v3').at,4);
+assert.equal(s.printed.has('v1'),false);assert.equal(s.printed.has('v2'),false);assert.equal(history.length,3);assert.equal(s.printed.size,1);tick();assert.equal(s.printed.get('v3').at,4);
 context.travelPaceUntil=Date.now()+5000;tick();assert.equal(s.printed.get('v3').at,16);
 assert.match(source,/main\.replaceChildren\(context,reading,choices,localPeople\(state\),recent\);if\(visitChanged\)\{terminalFeed.scrollTop=0;following=true;\}else restoreReadingPosition\(readingPosition\);if\(instantReading\(\)&&!visitChanged\)followTerminal\(\)/);
 // Live combat replies bypass unfinished scenery without changing its queue.
@@ -43,5 +43,5 @@ assert.equal(s.printed.get('urgent').output.textContent,'Prepara un zarpazo late
 assert.equal(s.printed.get('urgent').node.hidden,false);
 assert.equal(s.printed.get('v3').at,16);
 assert.equal(s.terminalFeed.scrollTop,0);
-s.syncTerminal();assert.equal(s.printed.size,3);
-console.log(JSON.stringify({checks:34,scope:'Real renderer queue against technical DOM/timers: current-visit priority, immediate arrival, adaptive walking pace, archived older visits, progressive ordering, stable sync, detach/resume, skip, reread scroll, prune, reduced motion, reset',limits:['No browser','No visual or focus approval']}));
+s.syncTerminal();assert.equal(s.printed.size,2);
+console.log(JSON.stringify({checks:34,scope:'Real renderer queue against technical DOM/timers: current-visit priority, location retained in journal without duplicate terminal heading, adaptive walking pace, archived older visits, progressive ordering, stable sync, detach/resume, skip, reread scroll, prune, reduced motion, reset',limits:['No browser','No visual or focus approval']}));

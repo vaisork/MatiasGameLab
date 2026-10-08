@@ -1,0 +1,1826 @@
+[
+  {
+    "id": "veyra_plaza_rutas",
+    "nombre": "Plaza de las Cinco Rutas",
+    "region": "veyra",
+    "ruta_propuesta": "client/art/places/veyra_plaza_rutas-anime-v1.webp",
+    "png": "originales/veyra_plaza_rutas-anime-v1.png",
+    "webp": "webp/veyra_plaza_rutas-anime-v1.webp",
+    "tipo": "Nueva vista específica; sustituye únicamente fallback compartido, conserva original del mercado",
+    "justificacion": "Diferencia cruce abierto y preparación del viaje frente a comercio del mercado.",
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 4,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente; sin revisión humana",
+    "critica": "Primera versión confundía plaza con mercado y acercaba Hoshai. Corregida. La vista mantiene arcos de referencia; no representa plano exacto.",
+    "integracion": "Añadir entrada explícita a placeIllustrations por id. No se ha modificado ui-data.js. Sin variante hora/clima.",
+    "prompt": {
+      "initial": "Use case: illustration-story. Create ONE new landscape 3:2 game environment illustration for Vintage Telnet 2, Plaza de las Cinco Rutas, room veyra_plaza_rutas. Reference image is STYLE and architectural continuity ONLY, not edit target. Match its fine anime outlines, hand-painted cel-shaded background, warm worn limestone, practical timber repairs, muted canvas colors and natural clear daylight, commercial children's fantasy quality. Canon: routes meet on worn paving; ancient stones project between ordinary houses. Market is downhill south, upward north exit toward Hoshai. West a side courtyard shelters pack animals and water trough; east messenger works beneath a modest awning. Street-level medium-wide composition, paved plaza main focus, houses and reused old masonry arches establish Vaisgard; mountain ridges faint in northward distance, no royal palace or religious symbols. Small distant clothed people secondary, mostly human faces. Show distinct ordinary junction and practical loading space, not another crowded market. No text, legible writing, UI, borders, map, combat, enormous new monuments. Builders of old stones unknown. Save resulting PNG locally and report path.",
+      "correction": "Edit target Image 1: Plaza de las Cinco Rutas in Vintage Telnet. Preserve anime style, fine outlines, warm worn masonry, daylight, paving, practical timber and framing. Correct only environmental canon: replace looming steep mountain immediately behind houses with very low distant blue Hoshai ridges beyond rolling basin hills; Vaisgard is in low-hill Veyra, not mountainside Khariel. Remove merchandise stalls and piled goods from right awning, replace with messenger desk and a few protected blank wooden message tablets, one modest clothed messenger. Reduce traders in plaza, show clear wide paved intersection. Keep pack animals and trough at left. Unknown ancient builders, no religious emblems, no readable text. No new monuments.",
+      "referenced_images_initial": [
+        "referencias/vaisgard-anime-v1.webp"
+      ],
+      "referenced_images_correction": [
+        "proceso/descartes/veyra_plaza_rutas-primera-version-NO-INTEGRAR.png"
+      ]
+    },
+    "miniatura": "miniaturas/veyra_plaza_rutas-anime-v1-thumb.webp",
+    "ruta_miniatura_propuesta": "client/art/places/veyra_plaza_rutas-anime-v1-thumb.webp",
+    "imagen_previa": "/client/art/places/vaisgard-anime-v1.webp",
+    "sustituye_archivo_aprobado": false,
+    "referencia_aprobada": "referencias/vaisgard-anime-v1.webp",
+    "sha256_png": "94ac555abea0cd474d9837aaeb5f992c7a06061a7938c5f0f2eaebf7ae0e5e94",
+    "sha256_webp": "5431d117bdb8592664723282b0c9aa1e0dfc62051ea3ade044487d72d22f2f73"
+  },
+  {
+    "id": "veyra_barrio_cargas",
+    "nombre": "Calle de los almacenes",
+    "region": "veyra",
+    "ruta_propuesta": "client/art/places/veyra_barrio_cargas-anime-v1.webp",
+    "png": "originales/veyra_barrio_cargas-anime-v1.png",
+    "webp": "webp/veyra_barrio_cargas-anime-v1.webp",
+    "tipo": "Nueva vista específica; reemplaza fallback general sólo para este id",
+    "justificacion": "Identidad propia de habitación y continuidad de materiales con Vaisgard.",
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 4,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 4,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente; sin revisión humana",
+    "critica": "Almacenes abajo y viviendas arriba, calle despejada, trabajo con sacos. Marca de parada poco visible; detalles menores quedan a la lectura.",
+    "integracion": "Entrada explícita por id en placeIllustrations, aún no integrada. Sin variantes automáticas de hora/clima.",
+    "prompt": {
+      "initial": "Use case: illustration-story. ONE new landscape 3:2 environmental game asset for Vintage Telnet 2. Reference image only establishes approved fine anime linework, rich hand-painted cel shading, warm weathered limestone, terracotta roofs, practical timber repairs, muted canvas and ordinary natural sunlight. Match style, do not copy its market composition. Canon scene: Calle de los almacenes, Vaisgard: wide cart passage between ancient stone warehouses on ground floor and practical timber staircases to modest upper homes. A simple painted line on one stone marks where to stop without blocking doors. Empty central passage, two modest workers adjust sacks at margins. Toward west warm low fences and low rolling agricultural hills beyond a small distant arch, no mountainside. Medium street view, worn wheel-polished floor. No merchant stalls. Veyra is a low rolling hill basin, ancient builders UNKNOWN. Few distant clothed human-faced residents secondary to architecture. Welcoming children's fantasy commercial game background. No readable text, UI, map, border, emblems, combat, palace, dramatic peaks immediately behind city. Distinct practical inhabited space, believable scale.",
+      "referenced_images_initial": [
+        "referencias/vaisgard-anime-v1.webp"
+      ]
+    },
+    "miniatura": "miniaturas/veyra_barrio_cargas-anime-v1-thumb.webp",
+    "ruta_miniatura_propuesta": "client/art/places/veyra_barrio_cargas-anime-v1-thumb.webp",
+    "imagen_previa": "/client/art/places/vaisgard-anime-v1.webp",
+    "sustituye_archivo_aprobado": false,
+    "referencia_aprobada": "referencias/vaisgard-anime-v1.webp",
+    "sha256_png": "6e0592a99b1cfb00bebc79414a3537471183ad6232f716d98c7adc33d733718e",
+    "sha256_webp": "8fcce8ea3193e06960256c7a34a5a41e71621e41119552a54b3dd96728be0dea"
+  },
+  {
+    "id": "veyra_calle_toldos",
+    "nombre": "Calle de los Toldos Remendados",
+    "region": "veyra",
+    "ruta_propuesta": "client/art/places/veyra_calle_toldos-anime-v1.webp",
+    "png": "originales/veyra_calle_toldos-anime-v1.png",
+    "webp": "webp/veyra_calle_toldos-anime-v1.webp",
+    "tipo": "Nueva vista específica; reemplaza fallback general sólo para este id",
+    "justificacion": "Identidad propia de habitación y continuidad de materiales con Vaisgard.",
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 4,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 4,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente; sin revisión humana",
+    "critica": "Costuras y paños distintos, talleres y canal pequeño. Fondo escalonado hereda arquitectura aprobada; no ampliar esas pendientes en periferia.",
+    "integracion": "Entrada explícita por id en placeIllustrations, aún no integrada. Sin variantes automáticas de hora/clima.",
+    "prompt": {
+      "initial": "Use case: illustration-story. ONE new landscape 3:2 environmental game asset for Vintage Telnet 2. Reference image only establishes approved fine anime linework, rich hand-painted cel shading, warm weathered limestone, terracotta roofs, practical timber repairs, muted canvas and ordinary natural sunlight. Match style, do not copy its market composition. Canon scene: Calle de los Toldos Remendados, Vaisgard: modest practical workshops line a narrower street under connected patched canvas awnings, each segment different muted cloth and visible seams. A small gutter drains runoff beside paving. Few baskets of woodworking tools and tied timber bundles toward eastern forestward end; a discreet southern opening carries water toward canals. Medium human-eye-level view, no crowded market or monumental new structure. Veyra is a low rolling hill basin, ancient builders UNKNOWN. Few distant clothed human-faced residents secondary to architecture. Welcoming children's fantasy commercial game background. No readable text, UI, map, border, emblems, combat, palace, dramatic peaks immediately behind city. Distinct practical inhabited space, believable scale.",
+      "referenced_images_initial": [
+        "referencias/vaisgard-anime-v1.webp"
+      ]
+    },
+    "miniatura": "miniaturas/veyra_calle_toldos-anime-v1-thumb.webp",
+    "ruta_miniatura_propuesta": "client/art/places/veyra_calle_toldos-anime-v1-thumb.webp",
+    "imagen_previa": "/client/art/places/vaisgard-anime-v1.webp",
+    "sustituye_archivo_aprobado": false,
+    "referencia_aprobada": "referencias/vaisgard-anime-v1.webp",
+    "sha256_png": "b7701401e3cf03e4cdaf4a476701fa2e11ac5ff4e05b9ec7ae23d6c41d50c499",
+    "sha256_webp": "7039a198cab3b932ec3be7ca7b72eecd1e8fadf839b0e532526696eff9998e2c"
+  },
+  {
+    "id": "veyra_patio_agua",
+    "nombre": "Patio del agua",
+    "region": "veyra",
+    "ruta_propuesta": "client/art/places/veyra_patio_agua-anime-v1.webp",
+    "png": "originales/veyra_patio_agua-anime-v1.png",
+    "webp": "webp/veyra_patio_agua-anime-v1.webp",
+    "tipo": "Nueva vista específica; reemplaza fallback general sólo para este id",
+    "justificacion": "Identidad propia de habitación y continuidad de materiales con Vaisgard.",
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 4,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 4,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente; sin revisión humana",
+    "critica": "Pila alta y recogida baja legibles; recipientes protegidos y huerta. Puerta de cuidados no rotulada; orientación exacta permanece en narración.",
+    "integracion": "Entrada explícita por id en placeIllustrations, aún no integrada. Sin variantes automáticas de hora/clima.",
+    "prompt": {
+      "initial": "Use case: illustration-story. ONE new landscape 3:2 environmental game asset for Vintage Telnet 2. Reference image only establishes approved fine anime linework, rich hand-painted cel shading, warm weathered limestone, terracotta roofs, practical timber repairs, muted canvas and ordinary natural sunlight. Match style, do not copy its market composition. Canon scene: Patio del agua, Vaisgard: small domestic stone courtyard, stepped water infrastructure: clean water basin higher, used water collected below, household vessels kept off mud behind simple practical railing. To north a modest passage returns toward market, south visible narrow herbs garden below ordinary homes. East low plain doorway for care room. Medium-wide scene, water system clear but not gigantic fountain. No fantasy waterfall. Veyra is a low rolling hill basin, ancient builders UNKNOWN. Few distant clothed human-faced residents secondary to architecture. Welcoming children's fantasy commercial game background. No readable text, UI, map, border, emblems, combat, palace, dramatic peaks immediately behind city. Distinct practical inhabited space, believable scale.",
+      "referenced_images_initial": [
+        "referencias/vaisgard-anime-v1.webp"
+      ]
+    },
+    "miniatura": "miniaturas/veyra_patio_agua-anime-v1-thumb.webp",
+    "ruta_miniatura_propuesta": "client/art/places/veyra_patio_agua-anime-v1-thumb.webp",
+    "imagen_previa": "/client/art/places/vaisgard-anime-v1.webp",
+    "sustituye_archivo_aprobado": false,
+    "referencia_aprobada": "referencias/vaisgard-anime-v1.webp",
+    "sha256_png": "8d00a46d6ba9398425ff8b3ec91a5bd98990fc8f8b97d900ba18132302b53c0d",
+    "sha256_webp": "65fc78c792c4cfdae781ba45ada5fe96b6efbe7c76b3019c82013b688212ab3a"
+  },
+  {
+    "id": "veyra_puerta_alta",
+    "nombre": "Puerta del Camino Alto",
+    "region": "veyra",
+    "ruta_propuesta": "client/art/places/veyra_puerta_alta-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/veyra_puerta_alta-anime-v1-thumb.webp",
+    "png": "originales/veyra_puerta_alta-anime-v1.png",
+    "webp": "webp/veyra_puerta_alta-anime-v1.webp",
+    "miniatura": "miniaturas/veyra_puerta_alta-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "initial": "Use case: illustration-story. ONE new landscape 3:2 game environment asset, Vintage Telnet 2. Image references are STYLE and CONTINUITY only. Match approved fine anime ink outlines and hand-painted cel-shaded warm stone, terracotta, timber repairs, restrained colorful fabrics, daylight and believable everyday scale. Canon: Puerta del Camino Alto: ordinary reused old stone opening, paving rises before threshold; modest lateral platform for adjusting travel loads. Look north outside toward initial gravel ramp and the first slopes of Hoshai, distant blue mountains still far. A few travelers with practical thicker capes small and secondary. Foreground city paving, middle arch and platform, background uphill gravel, NOT a mountain town. Veyra low rolling basin, ancient builders unknown. DISTINCT composition adapted to terrain and transition, no text, signs, labels, UI, border, map, fighting, crowns, religious symbols or invented monuments. Children and teen friendly commercial fantasy game quality. Residents small, practical covered clothing, human faces.",
+      "referenced_images_initial": [
+        "referencias/vaisgard-anime-v1.webp",
+        "originales/veyra_barrio_cargas-anime-v1.png"
+      ]
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 3,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Plataforma lateral, ajuste de cargas, empedrado que sube y grava después del umbral. Sierra distante coherente. Arco todavía dominante; evitar repetir esta composición en rutas exteriores.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "imagen_previa": null,
+    "sustituye_archivo_aprobado": false,
+    "referencia_aprobada": "referencias/vaisgard-anime-v1.webp",
+    "sha256_png": "1bf47c14ed2f10cc6a02436a172349d27a1c1dc13bdce13fd8d66dbde9f58506",
+    "sha256_webp": "88fe833667bda2d19926815644a64e25df432fb107f8c450c5d27ca7d86f0995"
+  },
+  {
+    "id": "veyra_puerta_piedra",
+    "nombre": "Puerta del camino de Korven",
+    "region": "veyra",
+    "ruta_propuesta": "client/art/places/veyra_puerta_piedra-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/veyra_puerta_piedra-anime-v1-thumb.webp",
+    "png": "originales/veyra_puerta_piedra-anime-v1.png",
+    "webp": "webp/veyra_puerta_piedra-anime-v1.webp",
+    "miniatura": "miniaturas/veyra_puerta_piedra-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "initial": "Use case: illustration-story. ONE new landscape 3:2 game environment asset, Vintage Telnet 2. Image references are STYLE and CONTINUITY only. Match approved fine anime ink outlines and hand-painted cel-shaded warm stone, terracotta, timber repairs, restrained colorful fabrics, daylight and believable everyday scale. Canon: Puerta del camino de Korven: view west through a practical old stone doorway, foreground margin of pack-animal courtyard, nearby homes have SMALL windows shielding dust. Outside dry soil becomes scattered pale stones toward Korven, no tall mountain immediate. One LOW compact cart with modest load secured by wooden boards, ordinary human worker secondary. Direction and increasingly stony ground main subject. Veyra low rolling basin, ancient builders unknown. DISTINCT composition adapted to terrain and transition, no text, signs, labels, UI, border, map, fighting, crowns, religious symbols or invented monuments. Children and teen friendly commercial fantasy game quality. Residents small, practical covered clothing, human faces.",
+      "referenced_images_initial": [
+        "referencias/vaisgard-anime-v1.webp",
+        "originales/veyra_barrio_cargas-anime-v1.png"
+      ]
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 3,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Tierra seca y roca creciente, carga relativamente baja sujeta con tablas y paisaje sin sierra inmediata. Escala del arco grande frente al carro; vista representativa, no plano exacto. Reducir fachadas y aumentar fractura de roca conforme se avance hacia Korven.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "imagen_previa": null,
+    "sustituye_archivo_aprobado": false,
+    "referencia_aprobada": "referencias/vaisgard-anime-v1.webp",
+    "sha256_png": "61038f9e47e54a73b709a8da184cf1e400cc321b042f619155d3e88b16c39f34",
+    "sha256_webp": "4cb82903065605115c4bc9df77961aa88788fe937778ef129db354968d4c5b63"
+  },
+  {
+    "id": "veyra_puerta_sombra",
+    "nombre": "Puerta del bosque",
+    "region": "veyra",
+    "ruta_propuesta": "client/art/places/veyra_puerta_sombra-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/veyra_puerta_sombra-anime-v1-thumb.webp",
+    "png": "originales/veyra_puerta_sombra-anime-v1.png",
+    "webp": "webp/veyra_puerta_sombra-anime-v1.webp",
+    "miniatura": "miniaturas/veyra_puerta_sombra-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "initial": "Use case: illustration-story. ONE new landscape 3:2 game environment asset, Vintage Telnet 2. Image references are STYLE and CONTINUITY only. Match approved fine anime ink outlines and hand-painted cel-shaded warm stone, terracotta, timber repairs, restrained colorful fabrics, daylight and believable everyday scale. Canon: Puerta del bosque: wider ordinary old city exit with turning space for tied timber loads, edge of patched workshop awnings at left. View east out toward old field plots interrupted by three separated groups of broadleaf trees; roots begin farther away, woods slowly close path toward Nhal. Do not begin with dense ancient dark forest at city threshold. A small modest timber load parked at margin, no merchant stalls. Veyra low rolling basin, ancient builders unknown. DISTINCT composition adapted to terrain and transition, no text, signs, labels, UI, border, map, fighting, crowns, religious symbols or invented monuments. Children and teen friendly commercial fantasy game quality. Residents small, practical covered clothing, human faces.",
+      "correction": "Edit Image 1 environmental canon ONLY while preserving approved anime fine outlines, hand-painted cel shading, warm stone, timber repairs, daylight and overall frame. This is Puerta del bosque, NOT a fortified gate toward farming plains. Remove crenellations and watchtower above arch; replace with ordinary low repaired stone and timber workshop frontage without military architecture. Replace entire right-side open agricultural panorama beyond city with old small field plots and THREE progressively closer groups of broadleaf trees leading into a visibly deep woodland in the EAST distance. Keep near threshold open enough for timber turning, roots begin in middle distance. No distant mountain ridge in this direction. Replace sacks/cart load at right with tied cut timber logs, keep worker and modest cart. Main subject environmental transition from city workshop margins to sparse woodland then denser Nhal, no instant giant forest at foreground. No text, UI, new monuments.",
+      "referenced_images_initial": [
+        "referencias/vaisgard-anime-v1.webp",
+        "originales/veyra_barrio_cargas-anime-v1.png"
+      ],
+      "referenced_images_correction": [
+        "proceso/descartes/veyra_puerta_sombra-primera-version-NO-INTEGRAR.png"
+      ]
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 3,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Corregida primera versión: retiradas almenas y torre, sustituidos campos abiertos por parcelas pequeñas y grupos de árboles que cierran el fondo; carga de madera identificable. Transición al bosque legible. No plano exacto de orientación.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "imagen_previa": null,
+    "sustituye_archivo_aprobado": false,
+    "referencia_aprobada": "referencias/vaisgard-anime-v1.webp",
+    "sha256_png": "e76141ae33b50ba05097bed06ef8e770604ff3d3ba593eca97a587f65a40c45b",
+    "sha256_webp": "7dc9e9a5567cbb272779e1f92921259e4fce4d0f6bb6f6242b2a788e63552315"
+  },
+  {
+    "id": "veyra_puerta_campos",
+    "nombre": "Puerta de los Campos",
+    "region": "veyra",
+    "ruta_propuesta": "client/art/places/veyra_puerta_campos-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/veyra_puerta_campos-anime-v1-thumb.webp",
+    "png": "originales/veyra_puerta_campos-anime-v1.png",
+    "webp": "webp/veyra_puerta_campos-anime-v1.webp",
+    "miniatura": "miniaturas/veyra_puerta_campos-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "initial": "Use case: illustration-story. ONE new landscape 3:2 game environment asset, Vintage Telnet 2. Image references are STYLE and CONTINUITY only. Match approved fine anime ink outlines and hand-painted cel-shaded warm stone, terracotta, timber repairs, restrained colorful fabrics, daylight and believable everyday scale. Canon: Puerta de los Campos: LOW old weathered stone arch with wheel-polished threshold. View from warehouse-side city passage outward into Edran: sacks adjusted beside arch, first low fences and an open descending agricultural road. City masonry gives way gradually to golden-green cultivated low land and broad horizon. No high walls, gatehouse castle or dramatic mountain. Veyra low rolling basin, ancient builders unknown. DISTINCT composition adapted to terrain and transition, no text, signs, labels, UI, border, map, fighting, crowns, religious symbols or invented monuments. Children and teen friendly commercial fantasy game quality. Residents small, practical covered clothing, human faces.",
+      "correction": "Edit Image 1: Puerta de los Campos Vintage Telnet. Preserve entire approved anime style, clear daylight, warm masonry, timber, low rolling cultivated horizon, descending road and practical sacks. Correct specifically the arch SCALE: canon describes a LOW arch, not a monumental city gate. Bring arch apex down to approximately 2.8 metres clearance, enough for low loaded carts but visibly close above adult heads; sides modest thicker reused stones. Slightly step the camera farther back to show low lintel/arch and more paved threshold without cropping it at top. No castle or tall defensive architecture. Keep human sizes, houses and all terrain continuity; add no text, UI or new monuments.",
+      "referenced_images_initial": [
+        "referencias/vaisgard-anime-v1.webp",
+        "originales/veyra_barrio_cargas-anime-v1.png"
+      ],
+      "referenced_images_correction": [
+        "proceso/descartes/veyra_puerta_campos-primera-version-NO-INTEGRAR.png"
+      ]
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 3,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Corrección aplicada al arco: altura reducida respecto al descarte, umbral bajo frente a viviendas y salida descendente hacia cercas y campos. Se conserva horizonte abierto y carga a los lados. Originalidad limitada por encuadre de puerta; escala puntuada 3, no perfecta.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "imagen_previa": null,
+    "sustituye_archivo_aprobado": false,
+    "referencia_aprobada": "referencias/vaisgard-anime-v1.webp",
+    "sha256_png": "2e947b1267edd4eb897ec1921c7fde09643b5ea7f2643cd5513a413bc892bfc0",
+    "sha256_webp": "504f3cbb1e05b7152ae27a67b4e550c8b357156aaffec1a514f48e4ae2296099"
+  },
+  {
+    "id": "veyra_patio_porte",
+    "nombre": "Patio de los animales",
+    "region": "veyra",
+    "ruta_propuesta": "client/art/places/veyra_patio_porte-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/veyra_patio_porte-anime-v1-thumb.webp",
+    "png": "originales/veyra_patio_porte-anime-v1.png",
+    "webp": "webp/veyra_patio_porte-anime-v1.webp",
+    "miniatura": "miniaturas/veyra_patio_porte-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "initial": "Use case: illustration-story. Create ONE new landscape 3:2 game environment for Vintage Telnet 2. Input image is approved STYLE and regional ARCHITECTURE reference only; do not reuse its composition. Match fine anime outlines, rich painted cel shading, warm natural daylight, believable useful materials, children's commercial fantasy quality. Canon scene: Patio de los animales. A sheltered stone SIDE COURTYARD, oblique medium view across a shady pack-animal rest area. Two ordinary pack animals beside modest drinking trough, high and low metal tether rings fixed to repaired posts. Outer strip of paving reserved for moving loads, central animal space clear. Small water bucket accessible to travelers. EAST opening toward public plaza and WEST ordinary doorway toward dry stone road of Korven. Compose across courtyard, NOT a central road vanishing beneath giant arch. Distinct clear spatial hierarchy and scale, residents distant and secondary, practical clothed ordinary HUMAN faces. Ancient Vaisgard builders unknown. No readable writing, symbols, UI, border, map, fighting, religious iconography or invented royal monuments.",
+      "referenced_images_initial": [
+        "referencias/vaisgard-anime-v1.webp"
+      ]
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 4,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 4,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Bebedero, argollas altas y bajas, sombra y espacio de animales diferenciados del tránsito. Dos animales de carga legibles; composición oblicua evita otra calle centrada. Equipaje todavía sobre animales: imagen representativa, no descanso descargado obligatorio.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "imagen_previa": "/client/art/places/vaisgard-anime-v1.webp",
+    "sustituye_archivo_aprobado": false,
+    "referencia_aprobada": "referencias/vaisgard-anime-v1.webp",
+    "sha256_png": "3469da5fa918172ad467f17c634bc3a7353c705dc155e1742c6189f7fc5d2b53",
+    "sha256_webp": "43e4af947635b4f2bd2814915e87b69d9d0f989a53e4cd572688963af479d9a1"
+  },
+  {
+    "id": "valdren_huertos",
+    "nombre": "Corredor de los Huertos",
+    "region": "edran",
+    "ruta_propuesta": "client/art/places/valdren_huertos-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/valdren_huertos-anime-v1-thumb.webp",
+    "png": "originales/valdren_huertos-anime-v1.png",
+    "webp": "webp/valdren_huertos-anime-v1.webp",
+    "miniatura": "miniaturas/valdren_huertos-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "initial": "Use case: illustration-story. Create ONE new landscape 3:2 game environment for Vintage Telnet 2. Input image is approved STYLE and regional ARCHITECTURE reference only; do not reuse its composition. Match fine anime outlines, rich painted cel shading, warm natural daylight, believable useful materials, children's commercial fantasy quality. Canon scene: Corredor de los Huertos in VALDREN, human agricultural community in open Edran plains. Ground-level medium-wide side-diagonal path between kitchen doors of modest timber-frame stone houses and cultivated kitchen gardens with low fences. ONE tree shades a narrow irrigation gutter beside small garden, loose leaves visible in gutter without making scene a quest solution. Low night cords fence animal access but public corridor stays open. West glimpse of market square beyond houses, east homes gradually thin toward open fields; north modest unlabelled seed-house doorway. No monumental ancient city arches, no mountains, no castle. Distinct clear spatial hierarchy and scale, residents distant and secondary, practical clothed ordinary HUMAN faces. Ancient Vaisgard builders unknown. No readable writing, symbols, UI, border, map, fighting, religious iconography or invented royal monuments.",
+      "referenced_images_initial": [
+        "referencias/valdren-anime-v1.webp"
+      ]
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 4,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 4,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Huertos y cocina, cercas bajas, árbol sobre canaleta y corredor libre. Madera y piedra modestos, llanura abierta coincide con Valdren aprobado. Vegetación algo abundante; no extender esa densidad a terrenos de surcos y rastrojo. Canaleta en vista base, estados reparados siguen en lectura.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "imagen_previa": "/client/art/places/valdren-anime-v1.webp",
+    "sustituye_archivo_aprobado": false,
+    "referencia_aprobada": "referencias/valdren-anime-v1.webp",
+    "sha256_png": "f33ac827007457ac8da9c16319a33867ab5d613dcef13228e3ecc4bbad9cbb4c",
+    "sha256_webp": "24ff1f79d4ebbaf7429ebab21109c6cae1a50367e50a55243a3408b26452e808"
+  },
+  {
+    "id": "veyra_patio_senales",
+    "nombre": "Patio de mensajes",
+    "region": "veyra",
+    "ruta_propuesta": "client/art/places/veyra_patio_senales-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/veyra_patio_senales-anime-v1-thumb.webp",
+    "png": "originales/veyra_patio_senales-anime-v1.png",
+    "webp": "webp/veyra_patio_senales-anime-v1.webp",
+    "miniatura": "miniaturas/veyra_patio_senales-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "initial": "Use case: illustration-story. Create ONE new landscape 3:2 game environment for Vintage Telnet 2. Input image is approved STYLE and regional ARCHITECTURE reference only; do not reuse its composition. Match fine anime outlines, rich painted cel shading, warm natural daylight, believable useful materials, children's commercial fantasy quality. Canon scene: Patio de mensajes. Quiet small sheltered yard, medium intimate oblique view of messenger working beneath practical timber eaves. Blank wooden message tablets hanging on NEW horizontal supports with a hand-width gap from OLD stone wall; small seat set aside so reader does not block passage. West glimpse of ordinary plaza, east low archive door. Weathered warm masonry, no wall of readable text, no massive marketplace, no giant arch or mountains. Distinct clear spatial hierarchy and scale, residents distant and secondary, practical clothed ordinary HUMAN faces. Ancient Vaisgard builders unknown. No readable writing, symbols, UI, border, map, fighting, religious iconography or invented royal monuments.",
+      "correction": "Edit Image 1 only the STANDING messenger sorting wooden tablets. Canon says UNA MENSAJERA, Arel, Vesperi woman. Make that standing figure a modest clothed adult WOMAN with mostly human face/body, slightly large attentive eyes, modest specialized ears (not elf points), subtly muted cool skin and slightly longer arms. Keep same practical covered travel clothing palette and natural tablet-sorting pose. No wings, bat muzzle, vampire traits or animal face. Preserve seated reader, entire architecture, wooden tablet support, lighting, colors, framing, anime style. Tablets remain blank without readable text.",
+      "referenced_images_initial": [
+        "referencias/vaisgard-anime-v1.webp"
+      ],
+      "referenced_images_correction": [
+        "proceso/descartes/veyra_patio_senales-primera-version-NO-INTEGRAR.png"
+      ]
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 4,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 4,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Mensajera corregida a mujer de rasgos humanos y atributos Vesperi discretos. Tablillas y soportes nuevos separados de muro antiguo, asiento fuera del paso y archivo visible. Láminas sin texto legible: la lectura conserva remitentes y contenido.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "imagen_previa": "/client/art/places/vaisgard-anime-v1.webp",
+    "sustituye_archivo_aprobado": false,
+    "referencia_aprobada": "referencias/vaisgard-anime-v1.webp",
+    "sha256_png": "128ff311f082695e0951630b737893b2928f467fa7e8b48f63cff338da98a8ab",
+    "sha256_webp": "6989e84d3c6d06ff16ae063d602b50689e711b7b3d5142f6d39cb89b60deff9c"
+  },
+  {
+    "id": "veyra_puerta_juncos",
+    "nombre": "Puerta de los canales",
+    "region": "veyra",
+    "ruta_propuesta": "client/art/places/veyra_puerta_juncos-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/veyra_puerta_juncos-anime-v1-thumb.webp",
+    "png": "originales/veyra_puerta_juncos-anime-v1.png",
+    "webp": "webp/veyra_puerta_juncos-anime-v1.webp",
+    "miniatura": "miniaturas/veyra_puerta_juncos-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "initial": "Use case: illustration-story. Create ONE new landscape 3:2 game environment for Vintage Telnet 2. Input image is approved STYLE and regional ARCHITECTURE reference only; do not reuse its composition. Match fine anime outlines, rich painted cel shading, warm natural daylight, believable useful materials, children's commercial fantasy quality. Canon scene: Puerta de los canales. Modest SIDE EXIT with narrow open drainage channel alongside it. Three-quarter view follows the water diagonally out of city: repaired canvas workshop shade and last ordinary houses give way to damp hollows of TALL GRASS and initial reeds toward Lethra. Dry wooden board at margin for changing footwear without blocking path, removed twigs piled away from drain. Foreground paving gradually yields to earthen high bank, NO large monumental arch dominating image and NO immediate stilt town. Distinct clear spatial hierarchy and scale, residents distant and secondary, practical clothed ordinary HUMAN faces. Ancient Vaisgard builders unknown. No readable writing, symbols, UI, border, map, fighting, religious iconography or invented royal monuments.",
+      "correction": "Edit ONLY DISTANT BACKGROUND terrain of Image 1, Puerta de los canales in Veyra basin. Remove tall steep rocky mountain walls and mountainous skyline behind city. Replace with LOW rounded rolling green hills and a modest distant low horizon. Keep old city houses, reused arches, warm limestone, fore/middle-ground canal, small side door, cloth awnings, tall grasses and reeds, footwear board, workers, daylight, colors, framing and fine anime painted style exactly unchanged. Veyra is a basin of low hills, not Khariel on mountain cliffs. No added words or interface.",
+      "referenced_images_initial": [
+        "referencias/vaisgard-anime-v1.webp"
+      ],
+      "referenced_images_correction": [
+        "proceso/descartes/veyra_puerta_juncos-primera-version-NO-INTEGRAR.png"
+      ]
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 4,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 4,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Relieve corregido: colinas bajas sustituyen paredes montañosas. Puerta lateral, canal, casas que ceden a hierba alta y tabla de calzado. Perspectiva diagonal y humedad distintivas frente a otras puertas. Canal desemboca visualmente al exterior; no implica acceso a destinos no descubiertos.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "imagen_previa": null,
+    "sustituye_archivo_aprobado": false,
+    "referencia_aprobada": "referencias/vaisgard-anime-v1.webp",
+    "sha256_png": "3fcc0cf91a91b9ce23ad1025a7db6bcea0305ebce009f2de3beb8a7e6ffe9e45",
+    "sha256_webp": "95ba08d810da37fb1da5eadf0198314f08b6507f07eb7c857b0bf61f5791f223"
+  },
+  {
+    "id": "valdren_pozo",
+    "nombre": "Pozo de las Dos Cuerdas",
+    "region": "edran",
+    "ruta_propuesta": "client/art/places/valdren_pozo-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/valdren_pozo-anime-v1-thumb.webp",
+    "png": "originales/valdren_pozo-anime-v1.png",
+    "webp": "webp/valdren_pozo-anime-v1.webp",
+    "miniatura": "miniaturas/valdren_pozo-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "initial": "Use case: illustration-story. ONE new landscape 3:2 game environment for Vintage Telnet 2, canonical room valdren_pozo. Reference images define approved anime STYLE and VALDREN architecture continuity, not composition. Fine crisp anime outlines, rich painted cel shading, modest timber-frame stone houses and terracotta roofs, warm clear everyday daylight, low fences and flat agricultural horizon. Canon scene: Pozo de las Dos Cuerdas. Small village watering place, oblique medium-wide view. NEW rope descends into modest round stone well under practical wooden crossbeam; OLD worn rope coiled on a peg visibly separate. People wait behind a few edge stones leaving clear room to draw bucket. Modest half-timber-and-stone houses, north glimpse of busy square, south plain doorway towards Elva dining house. TWO ropes are distinct functional objects, not two ropes both descending. Few distant ordinary humans in practical covered clothes secondary to environment, children's commercial fantasy quality, believable useful scale. Avoid repeated center-path composition. No readable text, signs, UI, borders, map, royalty, religious imagery, fighting or invented monuments.",
+      "referenced_images_initial": [
+        "referencias/valdren-anime-v1.webp",
+        "originales/valdren_huertos-anime-v1.png"
+      ]
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 4,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 4,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Cuerda activa separada de cuerda vieja enrollada; espera fuera del borde y espacio para cubo. Pozo recuerda la referencia de plaza sin repetir encuadre. Arquitectura y horizonte coherentes.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "imagen_previa": "/client/art/places/valdren-anime-v1.webp",
+    "sustituye_archivo_aprobado": false,
+    "referencia_aprobada": "referencias/valdren-anime-v1.webp",
+    "sha256_png": "29e778c52f291c04855d571c26055ffe1614bb4f4ec2b3510d08a100b3e56494",
+    "sha256_webp": "c988b90efe8ab23022efec2d968e770f34fa3e91aa4e0b9577b59053fc029f42"
+  },
+  {
+    "id": "valdren_patio_carros",
+    "nombre": "Patio de los carros",
+    "region": "edran",
+    "ruta_propuesta": "client/art/places/valdren_patio_carros-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/valdren_patio_carros-anime-v1-thumb.webp",
+    "png": "originales/valdren_patio_carros-anime-v1.png",
+    "webp": "webp/valdren_patio_carros-anime-v1.webp",
+    "miniatura": "miniaturas/valdren_patio_carros-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "initial": "Use case: illustration-story. ONE new landscape 3:2 game environment for Vintage Telnet 2, canonical room valdren_patio_carros. Reference images define approved anime STYLE and VALDREN architecture continuity, not composition. Fine crisp anime outlines, rich painted cel shading, modest timber-frame stone houses and terracotta roofs, warm clear everyday daylight, low fences and flat agricultural horizon. Canon scene: Patio de los carros. Wide practical loading courtyard with a VERY SLIGHT sloping dirt-and-stone surface, a modest cart of sacks secured by clearly visible timber wheel chock. Raised loading platform distributes weight on supporting stones; sacks dry above ground. North open timber cart shed, east low granary fronts, south open return lane towards a distant small grove. Compose side-on across cart and slope, not another centered main street. No accident or dramatic sliding cart. Few distant ordinary humans in practical covered clothes secondary to environment, children's commercial fantasy quality, believable useful scale. Avoid repeated center-path composition. No readable text, signs, UI, borders, map, royalty, religious imagery, fighting or invented monuments.",
+      "referenced_images_initial": [
+        "referencias/valdren-anime-v1.webp",
+        "originales/valdren_huertos-anime-v1.png"
+      ]
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 4,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 4,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Carga de sacos y calzo legible, plataforma elevada y patio inclinado de escala práctica. Composición lateral distingue circulación de plaza y paso de graneros.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "imagen_previa": "/client/art/places/valdren-anime-v1.webp",
+    "sustituye_archivo_aprobado": false,
+    "referencia_aprobada": "referencias/valdren-anime-v1.webp",
+    "sha256_png": "4888644c765ea51a23ec639d974585bf96417bdebc953b5d8099b0fbf5abff82",
+    "sha256_webp": "ab643c3409cb8dbfb3cc98f1e6181d4e25bcdef8d0b2e18419fb3bcf305d61d8"
+  },
+  {
+    "id": "valdren_graneros",
+    "nombre": "Paso entre los Graneros",
+    "region": "edran",
+    "ruta_propuesta": "client/art/places/valdren_graneros-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/valdren_graneros-anime-v1-thumb.webp",
+    "png": "originales/valdren_graneros-anime-v1.png",
+    "webp": "webp/valdren_graneros-anime-v1.webp",
+    "miniatura": "miniaturas/valdren_graneros-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "initial": "Use case: illustration-story. ONE new landscape 3:2 game environment for Vintage Telnet 2, canonical room valdren_graneros. Reference images define approved anime STYLE and VALDREN architecture continuity, not composition. Fine crisp anime outlines, rich painted cel shading, modest timber-frame stone houses and terracotta roofs, warm clear everyday daylight, low fences and flat agricultural horizon. Canon scene: Paso entre los Graneros. Medium street-level view across TWO functional modest timber-and-stone granaries. One door reached by low loading RAMP, other door FLUSH WITH GROUND, visibly different. Slight soil accumulation in one corner over old faint water stain; tied grain sacks at side. West courtyard edge, east low fences and fields. No massive city arch, no castle, no endless unrelated market. Grain storage and two access heights are main readable anchors. Few distant ordinary humans in practical covered clothes secondary to environment, children's commercial fantasy quality, believable useful scale. Avoid repeated center-path composition. No readable text, signs, UI, borders, map, royalty, religious imagery, fighting or invented monuments.",
+      "referenced_images_initial": [
+        "referencias/valdren-anime-v1.webp",
+        "originales/valdren_huertos-anime-v1.png"
+      ]
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 3,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 4,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Dos puertas a alturas distintas, acceso por rampa y a ras de suelo. Rampa más elevada de lo sugerido inicialmente; canon no fija altura. Manchas de agua discretas; narración conserva causalidad.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "imagen_previa": "/client/art/places/valdren-anime-v1.webp",
+    "sustituye_archivo_aprobado": false,
+    "referencia_aprobada": "referencias/valdren-anime-v1.webp",
+    "sha256_png": "fdc4e492f6e5668e206702bd52183dfa75363ecc755a27e1352a9d6387c20a98",
+    "sha256_webp": "0b84410f71ade27e6ea4546180b8c1a94b0e146c67dff9e9b38947f70e680877"
+  },
+  {
+    "id": "valdren_calle_alta",
+    "nombre": "Calle de la fragua",
+    "region": "edran",
+    "ruta_propuesta": "client/art/places/valdren_calle_alta-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/valdren_calle_alta-anime-v1-thumb.webp",
+    "png": "originales/valdren_calle_alta-anime-v1.png",
+    "webp": "webp/valdren_calle_alta-anime-v1.webp",
+    "miniatura": "miniaturas/valdren_calle_alta-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "initial": "Use case: illustration-story. ONE new landscape 3:2 game environment for Vintage Telnet 2, canonical room valdren_calle_alta. Reference images define approved anime STYLE and VALDREN architecture continuity, not composition. Fine crisp anime outlines, rich painted cel shading, modest timber-frame stone houses and terracotta roofs, warm clear everyday daylight, low fences and flat agricultural horizon. Canon scene: Calle de la fragua. A SHORT MODEST incline rises from village square towards Daro's practical forge entrance. TWO simple timber-frame-and-stone houses narrow public passage; on one wall a faint old roofline trace below current roof shows extension keeping lower wall. TWO chimney heights distinct, modest forge smoke localized. Long public bench visible lower down toward square, west small opening with hanging laundry. Human village on otherwise flat Edran, no steep mountains, no ancient city gate. Oblique view from upper side looking along short incline; house roofline and forge endpoint readable. Few distant ordinary humans in practical covered clothes secondary to environment, children's commercial fantasy quality, believable useful scale. Avoid repeated center-path composition. No readable text, signs, UI, borders, map, royalty, religious imagery, fighting or invented monuments.",
+      "referenced_images_initial": [
+        "referencias/valdren-anime-v1.webp",
+        "originales/valdren_huertos-anime-v1.png"
+      ]
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 4,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 4,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Pendiente corta entre casas, dos chimeneas, huella del tejado antiguo y fragua al extremo. Banco y ropa enlazan vecinos. La pendiente local no convierte Edran en sierra.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "imagen_previa": "/client/art/places/valdren-anime-v1.webp",
+    "sustituye_archivo_aprobado": false,
+    "referencia_aprobada": "referencias/valdren-anime-v1.webp",
+    "sha256_png": "68a775fbae551bcdcad2e78fe49f509d149cb138a666d1df646f22a50c545a63",
+    "sha256_webp": "1420ad011a35a2386b9d0ab0300a814eb30961cc11755d9ef8873223ec8ecb90"
+  },
+  {
+    "id": "valdren_patio_ropa",
+    "nombre": "Patio de ropa",
+    "region": "edran",
+    "ruta_propuesta": "client/art/places/valdren_patio_ropa-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/valdren_patio_ropa-anime-v1-thumb.webp",
+    "png": "originales/valdren_patio_ropa-anime-v1.png",
+    "webp": "webp/valdren_patio_ropa-anime-v1.webp",
+    "miniatura": "miniaturas/valdren_patio_ropa-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "initial": "Use case: illustration-story. ONE new landscape 3:2 game environment for Vintage Telnet 2, canonical room valdren_patio_ropa. Reference images define approved anime STYLE and VALDREN architecture continuity, not composition. Fine crisp anime outlines, rich painted cel shading, modest timber-frame stone houses and terracotta roofs, warm clear everyday daylight, low fences and flat agricultural horizon. Canon scene: Patio de ropa. Intimate side courtyard, medium oblique view, TWO ropes carry separate practical work rags and clean clothes. Small LIDDED wooden water tub on firm ground, DRY path beside plain house wall. West low clean care-room door, east glimpse back towards forge street. Laundry and separation of clean cloth from oily work rags main focus, no injured people or gore, no hospital grandeur, no central road or old city monumental arch. Few distant ordinary humans in practical covered clothes secondary to environment, children's commercial fantasy quality, believable useful scale. Avoid repeated center-path composition. No readable text, signs, UI, borders, map, royalty, religious imagery, fighting or invented monuments.",
+      "referenced_images_initial": [
+        "referencias/valdren-anime-v1.webp",
+        "originales/valdren_huertos-anime-v1.png"
+      ]
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 4,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 4,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Dos cuerdas distinguen paños de trabajo y ropa limpia; tina tapada, paso seco y puerta de cuidados. Escala más próxima justificada por tarea doméstica. Texturas muy ricas; mantener ritmo con vistas exteriores abiertas.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "imagen_previa": "/client/art/places/valdren-anime-v1.webp",
+    "sustituye_archivo_aprobado": false,
+    "referencia_aprobada": "referencias/valdren-anime-v1.webp",
+    "sha256_png": "baae64eb757b8aa690b05e0d5fcb89e2b2229c23fa1ad7a3dc038a0f859d153a",
+    "sha256_webp": "bfcbd6d0140855543e92b1263f2c67b3e5eb601c6adee864bfe93bd66b9ddeee"
+  },
+  {
+    "id": "hoshai_mercado_cintas",
+    "nombre": "Mercado de las cintas",
+    "region": "hoshai",
+    "ruta_propuesta": "client/art/places/hoshai_mercado_cintas-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/hoshai_mercado_cintas-anime-v1-thumb.webp",
+    "png": "originales/hoshai_mercado_cintas-anime-v1.png",
+    "webp": "webp/hoshai_mercado_cintas-anime-v1.webp",
+    "miniatura": "miniaturas/hoshai_mercado_cintas-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "initial": "Use case: illustration-story. ONE new landscape 3:2 game environment for Vintage Telnet 2, hoshai_mercado_cintas. Reference image ONLY defines approved regional materials and fine anime outlines, painted cel shading, natural clear daylight and commercial child-friendly fantasy quality. Do not repeat reference composition. Canon scene: Mercado de las cintas, KHARIEL in Hoshai. Modest sheltered market corner BETWEEN stone walls that break mountain wind, food wrapped in practical packages, BLUE ribbons binding LONG bundles and PALE ribbons around SHORT bundles. A practical test bar where an adult Felaryn checks one load. West ordinary terrace passage towards plaza, east low care-room door. Medium oblique view into sheltered task area, no enormous canyon as main subject. Surrounding steep slopes and alpine distance visible only through small opening. Stone terraces and practical timber, no Japanese roofs, pagodas or torii. Few Felaryn secondary: largely human faces and human bodies, cat ears and tails only, strong digitigrade legs, ordinary adult human height, practical modest clothes. Readable useful scale, lived-in environment. No readable text, signs, labels, UI, frame, map, fighting, royal monuments, religious imagery, invented founder symbols. Regional architecture and terrain must remain distinct from other villages.",
+      "referenced_images_initial": [
+        "referencias/khariel-anime-v1.webp"
+      ]
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 4,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 4,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Ataduras azules y claras con bultos distintos, barras y mercado entre paredes. Altura visible sin dominar la tarea. Felaryn mantiene rostro humano, orejas y cola; sin arquitectura japonesa.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "imagen_previa": "/client/art/places/khariel-anime-v1.webp",
+    "sustituye_archivo_aprobado": false,
+    "referencia_aprobada": "referencias/khariel-anime-v1.webp",
+    "sha256_png": "fd414b805c0456181f43ab664744f315fc0dd5b3c04c452cdfda5866664fa10c",
+    "sha256_webp": "4c6d407620f17dfa99d0b1f6634691d86555a3c0b3b43d40ef643d7b06d9b484"
+  },
+  {
+    "id": "hoshai_patio_hogares",
+    "nombre": "Patio de las casas",
+    "region": "hoshai",
+    "ruta_propuesta": "client/art/places/hoshai_patio_hogares-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/hoshai_patio_hogares-anime-v1-thumb.webp",
+    "png": "originales/hoshai_patio_hogares-anime-v1.png",
+    "webp": "webp/hoshai_patio_hogares-anime-v1.webp",
+    "miniatura": "miniaturas/hoshai_patio_hogares-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "initial": "Use case: illustration-story. ONE new landscape 3:2 game environment for Vintage Telnet 2, hoshai_patio_hogares. Reference image ONLY defines approved regional materials and fine anime outlines, painted cel shading, natural clear daylight and commercial child-friendly fantasy quality. Do not repeat reference composition. Canon scene: Patio de las casas, KHARIEL. Modest houses entered from irregular small stone stairs and short level landings on hillside. Door leaves fold close to walls leaving walking space open; vessels beside walls, one DRY doorstep where a visitor can wait without blocking passage. South opening toward town plaza, east hint of rocky wash area, north path begins near TALL TREES rather than open sky only. Medium wide view ACROSS staggered household thresholds, architecture main subject, no vast palace or bridge panorama. Mountain heights present but houses ordinary. Few small distant mostly-human Felaryn with cat ears and tails, no feline muzzles or furry bodies; covered daily clothes. No Japanese architecture. Readable useful scale, lived-in environment. No readable text, signs, labels, UI, frame, map, fighting, royal monuments, religious imagery, invented founder symbols. Regional architecture and terrain must remain distinct from other villages.",
+      "referenced_images_initial": [
+        "referencias/khariel-anime-v1.webp"
+      ]
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 4,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 4,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Umbrales domésticos entre peldaños y descansos, recipientes junto a muros, plaza abajo. Composición cercana a viviendas frente a mercado amplio de referencia. Árbol alto introduce senda; no plano exacto.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "imagen_previa": "/client/art/places/khariel-anime-v1.webp",
+    "sustituye_archivo_aprobado": false,
+    "referencia_aprobada": "referencias/khariel-anime-v1.webp",
+    "sha256_png": "72dbc8c522db65d0f7d877c77dd7340a013929ae72e9957230744e481e94c183",
+    "sha256_webp": "ff26c4d0c7e100b9ba63232015d6261be537e8b40acc0058d591078e6e50f164"
+  },
+  {
+    "id": "korven_calle_fachadas",
+    "nombre": "Calle de las casas",
+    "region": "korven",
+    "ruta_propuesta": "client/art/places/korven_calle_fachadas-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/korven_calle_fachadas-anime-v1-thumb.webp",
+    "png": "originales/korven_calle_fachadas-anime-v1.png",
+    "webp": "webp/korven_calle_fachadas-anime-v1.webp",
+    "miniatura": "miniaturas/korven_calle_fachadas-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "initial": "Use case: illustration-story. ONE new landscape 3:2 game environment for Vintage Telnet 2, korven_calle_fachadas. Reference image ONLY defines approved regional materials and fine anime outlines, painted cel shading, natural clear daylight and commercial child-friendly fantasy quality. Do not repeat reference composition. Canon scene: Calle de las casas, BRUMAK. ABOVE-GROUND sheltered outdoor passage beside low modest thick stone homes tucked into irregular BOULDER RECESSES. Low doorways at distinctly different recess depths, small practical shelves outside for objects awaiting return to their owners, repaired timber covers on windy side. Passage tall enough for human visitors, north opens toward trading courtyard, south modest descent toward cistern, east plain low care-room door. Medium lateral perspective emphasizing rock alcoves and household shelves, NOT stairs across tall terrace city, NO underground dwarf mine, fortress, industrial factory or mountain palace. A few small compact Dravak residents about 70% human height, mostly HUMAN faces with limited small stone patches on cheeks/forearms; modest clothes, no bearded dwarf stereotype. Readable useful scale, lived-in environment. No readable text, signs, labels, UI, frame, map, fighting, royal monuments, religious imagery, invented founder symbols. Regional architecture and terrain must remain distinct from other villages.",
+      "referenced_images_initial": [
+        "referencias/brumak-anime-v1.webp"
+      ]
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 4,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Casas entre roca fracturada, puertas hundidas y repisas. Pasaje suficiente para visitantes y residentes compactos con placas discretas. Composición recuerda patio aprobado: originalidad 3; cambia intimidad y profundidad de fachadas.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "imagen_previa": "/client/art/places/brumak-anime-v1.webp",
+    "sustituye_archivo_aprobado": false,
+    "referencia_aprobada": "referencias/brumak-anime-v1.webp",
+    "sha256_png": "4a3edd98e7d16f49285286431ded31b006a61c6dc868e388467fbd9f8167907d",
+    "sha256_webp": "ee9febdcca4515df0c41cfd9e066afe44a808d18b1c75362e4f7fc490130c9d5"
+  },
+  {
+    "id": "korven_patio_lavado",
+    "nombre": "Patio de lavado",
+    "region": "korven",
+    "ruta_propuesta": "client/art/places/korven_patio_lavado-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/korven_patio_lavado-anime-v1-thumb.webp",
+    "png": "originales/korven_patio_lavado-anime-v1.png",
+    "webp": "webp/korven_patio_lavado-anime-v1.webp",
+    "miniatura": "miniaturas/korven_patio_lavado-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "initial": "Use case: illustration-story. ONE new landscape 3:2 game environment for Vintage Telnet 2, korven_patio_lavado. Reference image ONLY defines approved regional materials and fine anime outlines, painted cel shading, natural clear daylight and commercial child-friendly fantasy quality. Do not repeat reference composition. Canon scene: Patio de lavado, BRUMAK. Small ABOVE-GROUND sheltered rocky cleaning yard. LOW STONE dividing wall clearly separates recently brought dusty containers and covers from clean ones. DAMP cloths hang on one side, folded clean cloths dry under modest timber eaves on other. USED wash water runs out toward gravel AWAY from eastern cistern platform, dust sticks locally to wet wall side; south ordinary storage doorway. Medium oblique view across clean/dirty work areas, dry surrounding fractured pale stone and sparse sage vegetation, no green marsh. A couple distant compact human-faced Dravak with small forearm stone patches, practical covered clothing. No underground civilization or palace. Readable useful scale, lived-in environment. No readable text, signs, labels, UI, frame, map, fighting, royal monuments, religious imagery, invented founder symbols. Regional architecture and terrain must remain distinct from other villages.",
+      "referenced_images_initial": [
+        "referencias/brumak-anime-v1.webp"
+      ]
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 4,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 4,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Muro separa recipientes traídos de limpios, paños húmedos y doblados, escorrentía sale a grava. Patio sobre superficie, roca seca y vegetación escasa distinguen Korven. Mayor presencia de agua local justificada por lavado.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "imagen_previa": "/client/art/places/brumak-anime-v1.webp",
+    "sustituye_archivo_aprobado": false,
+    "referencia_aprobada": "referencias/brumak-anime-v1.webp",
+    "sha256_png": "4d19f627cf9b34a08784d7e634f27f812ebe1e2bd7189b30d6332aee73a6cb0d",
+    "sha256_webp": "0ae1f6af784a67ad55fafa1f1486636713b5d04fa9eab7339bf32838bdbb0191"
+  },
+  {
+    "id": "lethra_mercado_hojas",
+    "nombre": "Mercado de Narevia",
+    "region": "lethra",
+    "ruta_propuesta": "client/art/places/lethra_mercado_hojas-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/lethra_mercado_hojas-anime-v1-thumb.webp",
+    "png": "originales/lethra_mercado_hojas-anime-v1.png",
+    "webp": "webp/lethra_mercado_hojas-anime-v1.webp",
+    "miniatura": "miniaturas/lethra_mercado_hojas-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "initial": "Use case: illustration-story. ONE new landscape 3:2 game environment for Vintage Telnet 2, canonical room lethra_mercado_hojas. Reference image ONLY establishes approved regional style/materials: fine anime outlines, beautifully painted cel-shaded backgrounds, child's fantasy commercial game quality, practical lived-in details. Do not reuse composition. Canon scene: Mercado de Narevia: airy modest timber stalls over fresh water. Small arriving boats hold food baskets RAISED above boat floor so seeped water cannot wet them. Market table separates opened leaf food wrappers from closed wrappers that preserve moisture; bundles for eating nearby and traveling distinct. North boardwalk to plaza, south lower mooring platforms. Medium oblique view across tables and one boat, no sea palace or underwater city. Few small Marevyn: mostly human faces/bodies, subtle blue-green skin, ordinary rounded HUMAN ears, no fins, gills or fish tails. Readable scale, composition and regional identity. No readable text, typography, UI, borders, map, fighting, crowns, religious symbols or invented monuments. Match neighbor geography and keep environmental artwork representative, no explicit secret-route diagrams.",
+      "referenced_images_initial": [
+        "referencias/narevia-anime-v1.webp"
+      ]
+    },
+    "evaluacion": {
+      "Canon": 3,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 4,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Envolturas abiertas y cerradas reconocibles, barca con cestas, puestos sobre agua. Elevación de cestas sobre fondo de barca sólo implícita; no aprobar como esquema de carga. Composición cercana al pueblo aprobado: originalidad 3, canon 3 por detalle poco visible.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "imagen_previa": "/client/art/places/narevia-anime-v1.webp",
+    "sustituye_archivo_aprobado": false,
+    "referencia_aprobada": "referencias/narevia-anime-v1.webp",
+    "sha256_png": "143db38b5317047281330e1986ff3337321867bfaf64221d9c9c37c75e843c8d",
+    "sha256_webp": "90eac3c92902bf2bc60133a9c2ef867008fcdae88fe861ab8702b9641a3e258f"
+  },
+  {
+    "id": "lethra_muelle_vecinal",
+    "nombre": "Muelle de las cestas",
+    "region": "lethra",
+    "ruta_propuesta": "client/art/places/lethra_muelle_vecinal-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/lethra_muelle_vecinal-anime-v1-thumb.webp",
+    "png": "originales/lethra_muelle_vecinal-anime-v1.png",
+    "webp": "webp/lethra_muelle_vecinal-anime-v1.webp",
+    "miniatura": "miniaturas/lethra_muelle_vecinal-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "initial": "Use case: illustration-story. ONE new landscape 3:2 game environment for Vintage Telnet 2, canonical room lethra_muelle_vecinal. Reference image ONLY establishes approved regional style/materials: fine anime outlines, beautifully painted cel-shaded backgrounds, child's fantasy commercial game quality, practical lived-in details. Do not reuse composition. Canon scene: Muelle de las cestas: small practical timber dock over clear wetland channels, boats tied to posts of visibly different heights, EMPTY baskets grouped into distinct owner piles with a few old handle patches. Ropes secure boats and do NOT cross water as pedestrian bridges. North modest market boardwalk, east side platform toward narrow household courtyard. Medium broad low-angle view across working docks and boats, water and functional moorings dominant, not another market. Few small human-faced blue-green Marevyn with ordinary rounded human ears, covered practical clothes, no gills or fins. Readable scale, composition and regional identity. No readable text, typography, UI, borders, map, fighting, crowns, religious symbols or invented monuments. Match neighbor geography and keep environmental artwork representative, no explicit secret-route diagrams.",
+      "referenced_images_initial": [
+        "referencias/narevia-anime-v1.webp"
+      ]
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 4,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 4,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Amarres a alturas distintas, pequeñas barcas y agrupaciones de cestas vacías. Menos comercio y más agua libre frente al mercado. Cuerdas sujetan barcas, no sustituyen pasarelas.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "imagen_previa": "/client/art/places/narevia-anime-v1.webp",
+    "sustituye_archivo_aprobado": false,
+    "referencia_aprobada": "referencias/narevia-anime-v1.webp",
+    "sha256_png": "5014d1e58c701a812c4a2e53120aa54b268c6cb9cb74e2eb78f04cc3be0425a6",
+    "sha256_webp": "9a0c61b7c2f4417a3f73f07156c456e18f661cbf3bf532c998730d6a278ba24b"
+  },
+  {
+    "id": "lethra_patio_ventanas",
+    "nombre": "Patio de las ventanas",
+    "region": "lethra",
+    "ruta_propuesta": "client/art/places/lethra_patio_ventanas-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/lethra_patio_ventanas-anime-v1-thumb.webp",
+    "png": "originales/lethra_patio_ventanas-anime-v1.png",
+    "webp": "webp/lethra_patio_ventanas-anime-v1.webp",
+    "miniatura": "miniaturas/lethra_patio_ventanas-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "initial": "Use case: illustration-story. ONE new landscape 3:2 game environment for Vintage Telnet 2, canonical room lethra_patio_ventanas. Reference image ONLY establishes approved regional style/materials: fine anime outlines, beautifully painted cel-shaded backgrounds, child's fantasy commercial game quality, practical lived-in details. Do not reuse composition. Canon scene: Patio de las ventanas: NARROW intimate household yard above water, two modest airy wood houses face windows toward each other with channel water between their supports. Small waiting landings outside private doors leave room for a visitor without stepping inside. West short boardwalk to dock, north bank begins shady vegetation, east discreet glimpse of boats supported in DRY repair area. Compose laterally across facing windows and water; fewer goods and less bustle than market. Lethra reeds and warm wetland trees, blue-green reflections, ordinary modest roofs. Small secondary human-faced Marevyn, subtle blue-green skin and rounded HUMAN ears; no fins, gills or underwater architecture. Readable scale, composition and regional identity. No readable text, typography, UI, borders, map, fighting, crowns, religious symbols or invented monuments. Match neighbor geography and keep environmental artwork representative, no explicit secret-route diagrams.",
+      "referenced_images_initial": [
+        "referencias/narevia-anime-v1.webp"
+      ]
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 4,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 4,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Ventanas enfrentadas sobre canal estrecho, apoyos de espera y plataformas privadas. Composición lateral íntima distinta de muelle. No es plano de conexiones: circulación completa continúa en lectura.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "imagen_previa": "/client/art/places/narevia-anime-v1.webp",
+    "sustituye_archivo_aprobado": false,
+    "referencia_aprobada": "referencias/narevia-anime-v1.webp",
+    "sha256_png": "77d6dffab926b09fa9dd7c0b3ae2ace44ac90e0fbfffc8a180845843366277f5",
+    "sha256_webp": "5bef6ba504db9a05b9b44f2c076a662628a5f3632deb429722ffe4b7b26e3a16"
+  },
+  {
+    "id": "nhal_mercado_setas",
+    "nombre": "Mercado de Velmora",
+    "region": "nhal",
+    "ruta_propuesta": "client/art/places/nhal_mercado_setas-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/nhal_mercado_setas-anime-v1-thumb.webp",
+    "png": "originales/nhal_mercado_setas-anime-v1.png",
+    "webp": "webp/nhal_mercado_setas-anime-v1.webp",
+    "miniatura": "miniaturas/nhal_mercado_setas-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "initial": "Use case: illustration-story. ONE new landscape 3:2 game environment for Vintage Telnet 2, canonical room nhal_mercado_setas. Reference image ONLY establishes approved regional style/materials: fine anime outlines, beautifully painted cel-shaded backgrounds, child's fantasy commercial game quality, practical lived-in details. Do not reuse composition. Canon scene: Mercado de Velmora: quiet modest food baskets under SEPARATE small canvas-and-timber covers, firm low paths weave among real large forest ROOTS. Work table for inspecting wet food leaves, one folded leaf with yellow edge and droplets; closed baskets stay grouped apart from open baskets, no readable labels. North glimpse of inhabited forest clearing, east practical low kitchen doorway, west care-room door. Medium oblique focus on task and baskets, dark leafy canopy and moss around edges, warm lamps ONLY at tasks, natural diffuse woodland light. Few small Vesperi with mostly human faces, somewhat large eyes and modest specialized ears, slightly long arms, muted cool skin; no wings or bat muzzles, no elf palace or giant mushroom houses. Readable scale, composition and regional identity. No readable text, typography, UI, borders, map, fighting, crowns, religious symbols or invented monuments. Match neighbor geography and keep environmental artwork representative, no explicit secret-route diagrams.",
+      "referenced_images_initial": [
+        "referencias/velmora-anime-v1.webp"
+      ]
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 4,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 4,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Cubiertas separadas, cestas cerradas y abiertas, revisión de hojas sobre mesa. Suelo firme entre raíces y dosel dominante. Luces cálidas de tarea; evita mercado urbano soleado.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "imagen_previa": "/client/art/places/velmora-anime-v1.webp",
+    "sustituye_archivo_aprobado": false,
+    "referencia_aprobada": "referencias/velmora-anime-v1.webp",
+    "sha256_png": "c8c1bb5a32e3d7508e45937a007f1e815839462bb539e34a42353f949915cad2",
+    "sha256_webp": "4a4e5a8eed3608724cb6efc7cbfe7775515328616448114b72ec036389c84370"
+  },
+  {
+    "id": "nhal_patio_relato",
+    "nombre": "Patio de reuniones",
+    "region": "nhal",
+    "ruta_propuesta": "client/art/places/nhal_patio_relato-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/nhal_patio_relato-anime-v1-thumb.webp",
+    "png": "originales/nhal_patio_relato-anime-v1.png",
+    "webp": "webp/nhal_patio_relato-anime-v1.webp",
+    "miniatura": "miniaturas/nhal_patio_relato-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "initial": "Use case: illustration-story. ONE new landscape 3:2 game environment for Vintage Telnet 2, canonical room nhal_patio_relato. Reference image ONLY establishes approved regional style/materials: fine anime outlines, beautifully painted cel-shaded backgrounds, child's fantasy commercial game quality, practical lived-in details. Do not reuse composition. Canon scene: Patio de reuniones in Velmora: benches of DIFFERENT heights/shapes around ONE modest table under SHORT practical timber cover among mossy roots. Small repaired everyday container with a dark stitched seam at crack and worn rim near handle stores a few blank memory leaves, not glowing magic. Leris, an adult Vesperi WOMAN with mostly human face, somewhat large eyes, modest specialized ears, slightly long arms and practical covered forest clothes, searches a small open notebook with no readable writing; figure secondary to gathering area. West clearing, south low kitchen door, north household path, east narrow path toward Elin, not all marked graphically. Medium cross-courtyard view, cool canopy shade, small warm task lamps. No gothicism, supernatural mystery, wings or bat face. Readable scale, composition and regional identity. No readable text, typography, UI, borders, map, fighting, crowns, religious symbols or invented monuments. Match neighbor geography and keep environmental artwork representative, no explicit secret-route diagrams.",
+      "referenced_images_initial": [
+        "referencias/velmora-anime-v1.webp"
+      ]
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 4,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 4,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Mesa y bancos distintos bajo cubierta corta; recipiente con reparación visible y narradora con cuaderno. Escala doméstica, sin misterio mágico. Escritura no legible; recuerdos y causalidad siguen en narración.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "imagen_previa": "/client/art/places/velmora-anime-v1.webp",
+    "sustituye_archivo_aprobado": false,
+    "referencia_aprobada": "referencias/velmora-anime-v1.webp",
+    "sha256_png": "d833d545ef60ecde73cb312ce59eb99b931f2c83cae33559b4b4b33fc2c6fc9d",
+    "sha256_webp": "49e5e4fc336861210032a1efbd125501679320a45064a30b83b796aa402b3a02"
+  },
+  {
+    "id": "nhal_calle_hogares",
+    "nombre": "Calle de las casas",
+    "region": "nhal",
+    "ruta_propuesta": "client/art/places/nhal_calle_hogares-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/nhal_calle_hogares-anime-v1-thumb.webp",
+    "png": "originales/nhal_calle_hogares-anime-v1.png",
+    "webp": "webp/nhal_calle_hogares-anime-v1.webp",
+    "miniatura": "miniaturas/nhal_calle_hogares-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "initial": "Use case: illustration-story. ONE new landscape 3:2 game environment for Vintage Telnet 2, canonical room nhal_calle_hogares. Reference image ONLY establishes approved regional style/materials: fine anime outlines, beautifully painted cel-shaded backgrounds, child's fantasy commercial game quality, practical lived-in details. Do not reuse composition. Canon scene: Calle de las casas in Velmora: modest timber-and-stone homes at SMALL uneven levels between real forest trunks and roots. Doors leave root growth and waiting spaces free. Low shielded lamps light a small repair bench or food table behind an opening WITHOUT lighting every interior. South return towards gathering patio, north path gradually rises and spaces between trees begin opening toward higher forest. Medium diagonal view across household doorways and levels, NOT a central postcard path below a huge arch, no city towers or tree-palace. Dense low-light leafy canopy, moss and understory, warm restrained task lamps. Few small secondary Vesperi with mostly human faces/bodies, somewhat large eyes, modest ears and slightly long arms, cool muted skin; no wings, vampires or monster limbs. Readable scale, composition and regional identity. No readable text, typography, UI, borders, map, fighting, crowns, religious symbols or invented monuments. Match neighbor geography and keep environmental artwork representative, no explicit secret-route diagrams.",
+      "referenced_images_initial": [
+        "referencias/velmora-anime-v1.webp"
+      ]
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 4,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Entradas a pequeños niveles entre árboles, espera fuera de vivienda y luces sobre labores. Parte de interiores queda en sombra. Composición de paso recuerda mercado pero cambia función doméstica.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "imagen_previa": "/client/art/places/velmora-anime-v1.webp",
+    "sustituye_archivo_aprobado": false,
+    "referencia_aprobada": "referencias/velmora-anime-v1.webp",
+    "sha256_png": "98c5990594e3339572986b68268fe29f0bcbfde9db936c71e22d4cf85dc294f4",
+    "sha256_webp": "22364f3fdda98441c83fefacb7760b3885c0aaa775d4e3f2572399766e2f9c38"
+  },
+  {
+    "id": "nhal_umbral_velmora",
+    "nombre": "Entrada de Velmora",
+    "region": "nhal",
+    "ruta_propuesta": "client/art/places/nhal_umbral_velmora-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/nhal_umbral_velmora-anime-v1-thumb.webp",
+    "png": "originales/nhal_umbral_velmora-anime-v1.png",
+    "webp": "webp/nhal_umbral_velmora-anime-v1.webp",
+    "miniatura": "miniaturas/nhal_umbral_velmora-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "initial": "Use case: illustration-story. ONE new landscape 3:2 game environment for Vintage Telnet 2, canonical room nhal_umbral_velmora. Reference image ONLY establishes approved regional style/materials: fine anime outlines, beautifully painted cel-shaded backgrounds, child's fantasy commercial game quality, practical lived-in details. Do not reuse composition. Canon scene: Entrada de Velmora: view arriving from FERN trail in forest, FIRST two or three modest houses emerge among trees farther ahead. A small practical reception table BESIDE path allows waiting when load passes. Shielded Vesperi lamps cast light on table and footing, not into arriving traveler's eyes; DARK GAPS remain between houses. Foreground ferns and roots, middle first table/houses, beyond restrained inhabited forest clearing. Wide low ground-level arrival view, forest still dominates, more open than inner market but no bright sunny farmland. Natural cool leafy canopy shade and localized warm lamps, no magical glow fog, gothic gate, giant root arch, elf palace or castle. No characters in foreground; tiny distant mostly-human Vesperi optional, covered practical clothes, no wings or bat faces. Readable scale, composition and regional identity. No readable text, typography, UI, borders, map, fighting, crowns, religious symbols or invented monuments. Match neighbor geography and keep environmental artwork representative, no explicit secret-route diagrams.",
+      "referenced_images_initial": [
+        "referencias/velmora-anime-v1.webp"
+      ]
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 4,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 4,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Helechos y raíces dominan llegada, primeras casas adelante y mesa lateral. Luces de tarea y huecos de sombra anuncian comunidad. Evita puerta monumental; continuidad con claro y mercado.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "imagen_previa": null,
+    "sustituye_archivo_aprobado": false,
+    "referencia_aprobada": "referencias/velmora-anime-v1.webp",
+    "sha256_png": "2a5a34acff22fa34542a56f6e63550e9a9a0a0353ba8f51b91657301f8e49f06",
+    "sha256_webp": "4f45912676d7a516a32e4da7a0fa7ea1778ab80f41def8ed7dd770c4ef363c29"
+  },
+  {
+    "id": "edran_calzada",
+    "nombre": "Calzada de piedra",
+    "region": "edran",
+    "ruta_propuesta": "client/art/places/edran_calzada-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/edran_calzada-anime-v1-thumb.webp",
+    "png": "originales/edran_calzada-anime-v1.png",
+    "webp": "webp/edran_calzada-anime-v1.webp",
+    "miniatura": "miniaturas/edran_calzada-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "initial": "Use case: illustration-story. ONE new 3:2 landscape game environment for Vintage Telnet 2, edran_calzada. References ONLY set approved fine anime linework, painted cel-shaded quality, rural materials, palette and continuity between Veyra exit and Valdren. Do NOT copy their buildings or compositions into places without them. Canon scene: Calzada de piedra. Short gently rising rural stone road surfaced with WORN ROUNDED stones, TWO clear repaired patches of lighter newer ANGULAR stones fitting among old cobbles. On northern curve the roadside post is HIDDEN beyond bend, do not depict visible post. South modest roadside house is distant at end of descent; cultivated open Edran surroundings, low grassy edges and broad agricultural horizon, no cliffs or mountain terraces. Medium ground-level view emphasizing paving and two repair patches without filling frame with close-up stones; road direction and gentle distance readable, no city gateway or forest canopy. Natural clear daylight consistent with neighboring scenes, children's commercial fantasy game, believable practical scale and clear direction. Major natural terrain low farmland, NOT mountain country. No text, labels, UI, border, map, combat, religious symbols, royal monuments or invented settlement.",
+      "referenced_images_initial": [
+        "referencias/valdren-anime-v1.webp",
+        "originales/veyra_puerta_campos-anime-v1.png"
+      ]
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 4,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Calzada rural con cantos redondeados y reparaciones más claras y angulares. Curva no muestra poste, casas distantes y horizonte agrícola. La dirección cardinal exacta queda en lectura; no aprobar como plano.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "sustituye_archivo_aprobado": false,
+    "sha256_png": "933855dc494cdee1bf87ec1ee6979bb31aacfa4874b8e4115da19aade8e99798",
+    "sha256_webp": "788e34ae409343d6b3a5d45484a2c2bf2c44b3bc9c7a569021d7621371804bc2"
+  },
+  {
+    "id": "edran_casa_camino",
+    "nombre": "Casa del camino",
+    "region": "edran",
+    "ruta_propuesta": "client/art/places/edran_casa_camino-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/edran_casa_camino-anime-v1-thumb.webp",
+    "png": "originales/edran_casa_camino-anime-v1.png",
+    "webp": "webp/edran_casa_camino-anime-v1.webp",
+    "miniatura": "miniaturas/edran_casa_camino-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "initial": "Use case: illustration-story. ONE new 3:2 landscape game environment for Vintage Telnet 2, edran_casa_camino. References ONLY set approved fine anime linework, painted cel-shaded quality, rural materials, palette and continuity between Veyra exit and Valdren. Do NOT copy their buildings or compositions into places without them. Canon scene: Casa del camino. SMALL modest roadside REST HOUSE INTERIOR at upper end of gentle rural rise, Edran. Practical timber beams, plaster and stone like Valdren approved. Wet loads stand NEAR DOOR on low damp entrance area; ONE step raises a clean table and rest area clearly above damp floor. Blank folded message papers for Vaisgard at back, a short bench and ordinary resting traveler secondary. North doorway glimpse of stone road, south opposite opening leads down towards earthen rise and threshing area. Medium oblique interior view, side daylight, warm calm shelter, not grand inn, palace, city shop or dungeon. No readable writing, no beds full of invented belongings. Natural clear daylight consistent with neighboring scenes, children's commercial fantasy game, believable practical scale and clear direction. Major natural terrain low farmland, NOT mountain country. No text, labels, UI, border, map, combat, religious symbols, royal monuments or invented settlement.",
+      "referenced_images_initial": [
+        "referencias/valdren-anime-v1.webp",
+        "originales/veyra_puerta_campos-anime-v1.png"
+      ]
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 4,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 4,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Entrada húmeda y mesa elevada por un escalón, descanso separado de descarga y mensajes al fondo. Interior modesto con luz lateral conserva materiales de Valdren. Figuras representan actividad, no retratos de NPC exactos.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "sustituye_archivo_aprobado": false,
+    "sha256_png": "cf344e9399f61266990b835fee30957315fe418e49bd369e6b51b3b306e30351",
+    "sha256_webp": "4ceecca7bbad0edbe7af33cc1ccbb87652c726c9828e891fffa0ad1933020447"
+  },
+  {
+    "id": "edran_terraplen",
+    "nombre": "Terraplén de la Subida",
+    "region": "edran",
+    "ruta_propuesta": "client/art/places/edran_terraplen-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/edran_terraplen-anime-v1-thumb.webp",
+    "png": "originales/edran_terraplen-anime-v1.png",
+    "webp": "webp/edran_terraplen-anime-v1.webp",
+    "miniatura": "miniaturas/edran_terraplen-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "initial": "Use case: illustration-story. ONE new 3:2 landscape game environment for Vintage Telnet 2, edran_terraplen. References ONLY set approved fine anime linework, painted cel-shaded quality, rural materials, palette and continuity between Veyra exit and Valdren. Do NOT copy their buildings or compositions into places without them. Canon scene: Terraplén de la Subida. Narrow CART RUTS run close together through a modest rural earth-bank rise; carts cannot pass each other within narrow stretch. Exposed real roots hold a LOW cut earth bank, not a rocky cliff. Halfway a small widening allows a single load to rest on ONE support stone at high side. South broader threshing ground glimpsed below, north small roadside house at upper end. Wide THREE-QUARTER side view shows shallow height and passing constraint without making giant mountain pass. Edran fields and ordinary low horizon beyond, grass not dense forest, no monumental stone walls. Natural clear daylight consistent with neighboring scenes, children's commercial fantasy game, believable practical scale and clear direction. Major natural terrain low farmland, NOT mountain country. No text, labels, UI, border, map, combat, religious symbols, royal monuments or invented settlement.",
+      "referenced_images_initial": [
+        "referencias/valdren-anime-v1.webp",
+        "originales/veyra_puerta_campos-anime-v1.png"
+      ]
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 4,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 4,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 3
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Rodadas juntas, carros esperando y raíces sostienen corte de tierra. Desnivel local sin montaña; casa arriba y campos abajo mantienen avance. Apartadero sólo sugerido por curva más ancha: utilidad 3 para ese detalle.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "sustituye_archivo_aprobado": false,
+    "sha256_png": "e9694c4099589fc08aede82adda902ee0d70c88ef0514a3971d8b128b9437db1",
+    "sha256_webp": "a49f814ab40499138cac98ef32c6fc3bd0a22785ce3b8f2c04121d01e249971d"
+  },
+  {
+    "id": "edran_era",
+    "nombre": "Era de los campos",
+    "region": "edran",
+    "ruta_propuesta": "client/art/places/edran_era-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/edran_era-anime-v1-thumb.webp",
+    "png": "originales/edran_era-anime-v1.png",
+    "webp": "webp/edran_era-anime-v1.webp",
+    "miniatura": "miniaturas/edran_era-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "initial": "Use case: illustration-story. ONE new 3:2 landscape game environment for Vintage Telnet 2, edran_era. References ONLY set approved fine anime linework, painted cel-shaded quality, rural materials, palette and continuity between Veyra exit and Valdren. Do NOT copy their buildings or compositions into places without them. Canon scene: Era de los campos. Broad CIRCULAR FIRM EARTH THRESHING FLOOR in agricultural Edran, a few FLAT STONES securing removable modest planks and ONE OLD practical POST with small former roof fixing holes, tiny tied strip indicates wind if needed but not a flag emblem. More worn earth between stones, modest grain work materials secondary. North short earth-bank rise continues uphill; south distant small wooden road shelter; west dry ditch hinted at field edge. WIDE landscape ACROSS circle rather than centered path, cultivated parcels and open flat horizon, sparse workers very small optional. No fortified settlement, castle, giant standing stones or windmill as main subject. Natural clear daylight consistent with neighboring scenes, children's commercial fantasy game, believable practical scale and clear direction. Major natural terrain low farmland, NOT mountain country. No text, labels, UI, border, map, combat, religious symbols, royal monuments or invented settlement.",
+      "referenced_images_initial": [
+        "referencias/valdren-anime-v1.webp",
+        "originales/veyra_puerta_campos-anime-v1.png"
+      ]
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 4,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 4,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Círculo firme de trabajo de grano, piedras y tablones removibles, poste viejo con cinta sin emblema. Vista abierta contrasta con terraplén e interior. Escala y horizonte reconocibles de Edran.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "sustituye_archivo_aprobado": false,
+    "sha256_png": "73e9a0140a7fdf236a74ecc6b001198d7a4165b801439ae4af243c4b8d209c08",
+    "sha256_webp": "463c752ae34dce96bbd325211cdb90c072cb2f83320a80774172f9d43f3fa07b"
+  },
+  {
+    "id": "edran_hito_campos",
+    "nombre": "Paso hacia Veyra",
+    "region": "edran",
+    "ruta_propuesta": "client/art/places/edran_hito_campos-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/edran_hito_campos-anime-v1-thumb.webp",
+    "png": "originales/edran_hito_campos-anime-v1.png",
+    "webp": "webp/edran_hito_campos-anime-v1.webp",
+    "miniatura": "miniaturas/edran_hito_campos-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "initial": "Use case: illustration-story. ONE new 3:2 landscape game environment for Vintage Telnet 2, edran_hito_campos. References ONLY set approved fine anime linework, painted cel-shaded quality, rural materials, palette and continuity between Veyra exit and Valdren. Do NOT copy their buildings or compositions into places without them. Canon scene: Paso hacia Veyra. Small working roadside WAYMARK made of ONE weathered practical POST and a low repaired stone SLAB, not giant monument. A pale newer stone fits under worn slab edge. Fields of Edran lie to SOUTH, NORTH three modest stepping stones cross a small stream BEFORE distant low ordinary gateway of Veyra; small EAST side branch offers basin view. Ground-level WIDE oblique landscape looking across waymark and stream toward very distant reused city outline; grassy agricultural foreground, low hills, broad horizon. No writing on post, no shrine, no compass map, no close city stalls. Geography transition from city basin into open agricultural lowlands. Natural clear daylight consistent with neighboring scenes, children's commercial fantasy game, believable practical scale and clear direction. Major natural terrain low farmland, NOT mountain country. No text, labels, UI, border, map, combat, religious symbols, royal monuments or invented settlement.",
+      "correction": "Edit Image 1 ONLY the stream crossing and invented gate posts. Canon for Paso hacia Veyra says EXACTLY THREE stepping stones cross a small stream before the city gate. Replace the long chain of many stepping stones with exactly THREE modest BROAD FLAT stepping stones spanning the narrow shallow stream, each clearly separated by water; riverbank edge rocks may remain but must not form extra crossing steps. Remove the TWO freestanding tower-like gate pillars in middle-distance farmland: they are not canonical extra fortifications. The city gateway should be only a modest low old stone opening at edge of distant Vaisgard houses, unobtrusive, not a separate invented town gate. Preserve foreground weathered post and repaired low slab, fields, clear daylight, blue distant low hills, city skyline, framing, fine anime outlines and painted style. No text or new symbols.",
+      "referenced_images_initial": [
+        "referencias/valdren-anime-v1.webp",
+        "originales/veyra_puerta_campos-anime-v1.png"
+      ],
+      "referenced_images_correction": [
+        "proceso/descartes/edran_hito_campos-primera-version-NO-INTEGRAR.png"
+      ]
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 4,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 4,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Corregido cruce a tres piedras anchas claramente separadas por agua; retiradas dos torres añadidas. Poste y losa reparada conservados, ciudad distante y campo abierto. Perspectiva representativa, no mide distancias reales entre nodos.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "sustituye_archivo_aprobado": false,
+    "sha256_png": "805794dbd913442d85114c617e75d78fff35964f15605bb62c055d6daa32bd6d",
+    "sha256_webp": "a5fb3f748f80e9ce2f2980e2cb52ea5a308c06f69e18177c64ca886c0277b485"
+  },
+  {
+    "id": "edran_zanja_antigua",
+    "nombre": "Zanja seca",
+    "region": "edran",
+    "ruta_propuesta": "client/art/places/edran_zanja_antigua-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/edran_zanja_antigua-anime-v1-thumb.webp",
+    "png": "originales/edran_zanja_antigua-anime-v1.png",
+    "webp": "webp/edran_zanja_antigua-anime-v1.webp",
+    "miniatura": "miniaturas/edran_zanja_antigua-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "initial": "Use case: illustration-story. ONE new 3:2 landscape environment game asset for Vintage Telnet 2, canonical room edran_zanja_antigua. Input references only define approved fine anime linework, painted cel-shaded daylight, warm farm materials and Edran/Valdren continuity. Do NOT transplant their buildings into fields without houses. Canon: Zanja seca. A SMALL old dry irrigation ditch, INTACT and no longer carrying water, tiny roots grow on bottom. ONE modest stone slab marks old outlet deliberately SEALED with COMPACTED EARTH, not a fresh cave-in. Current irrigation water passes elsewhere in field, outside dry ditch. West cultivated furrows, north footpath BENDS at ditch end towards threshing floor, east SHORT modest stairs descend to an OLD COVERED IRRIGATION CHANNEL entry under soil. One distant practical HUMAN WOMAN checking this entry, no weapons, no magical dungeon temple. Medium diagonal landscape following ditch, field remains flat and open; small stone infrastructure only, not monumental ruins. Natural clear daylight matching travel sequence. Believable everyday scale, distinctive environmental composition, child-friendly commercial fantasy quality. No readable text, UI, frame, map, combat, crowns, religious symbols or invented monuments. This scene must show progress through farmland toward Valdren.",
+      "referenced_images_initial": [
+        "referencias/valdren-anime-v1.webp",
+        "originales/edran_era-anime-v1.png"
+      ]
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 3,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Zanja seca y entrada corta identificables; raíces pequeñas. El fondo añade una torre rural sin función definida: no usar como nuevo hito canónico.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "sustituye_archivo_aprobado": false,
+    "sha256_png": "84eaba1ab68498dd8056a1cebdbd94e22ed6532de6cecb9c3e1b4db4bb0287ab",
+    "sha256_webp": "065374efa96c04d7b6c4df4a3134959ad879583a6e206230e6d96751bb96d467"
+  },
+  {
+    "id": "edran_surcos",
+    "nombre": "Campo de surcos",
+    "region": "edran",
+    "ruta_propuesta": "client/art/places/edran_surcos-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/edran_surcos-anime-v1-thumb.webp",
+    "png": "originales/edran_surcos-anime-v1.png",
+    "webp": "webp/edran_surcos-anime-v1.webp",
+    "miniatura": "miniaturas/edran_surcos-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "initial": "Use case: illustration-story. ONE new 3:2 landscape environment game asset for Vintage Telnet 2, canonical room edran_surcos. Input references only define approved fine anime linework, painted cel-shaded daylight, warm farm materials and Edran/Valdren continuity. Do NOT transplant their buildings into fields without houses. Canon: Campo de surcos. WIDE open lowland cultivated field: NEW furrows of LIGHT fresh earth next to OLD rows with SHORT CUT STUBBLE, distinctly different soil and vegetation within same field. One narrow UNSOWN WALK STRIP leads towards small northern field boundary. South irrigation channel hint, west older plot, east small dry ditch farther away. No creature appears: only habitat, no battle. Composition ACROSS rows on diagonal with open agricultural horizon and few distant modest rural roofs, NOT another dirt path between identical fences. Ground variation and crop stage main focus; no mountains or dense forest. Natural clear daylight matching travel sequence. Believable everyday scale, distinctive environmental composition, child-friendly commercial fantasy quality. No readable text, UI, frame, map, combat, crowns, religious symbols or invented monuments. This scene must show progress through farmland toward Valdren.",
+      "referenced_images_initial": [
+        "referencias/valdren-anime-v1.webp",
+        "originales/edran_era-anime-v1.png"
+      ],
+      "correction": "Edit this Edran field image keeping fine anime style, composition, roofs, flat horizon, vegetation and natural daylight. Correct ONE canonical detail: newly opened furrows on RIGHT must be noticeably LIGHT fresh earth, pale ochre sandy soil, contrasted with older LEFT rows of short golden cut stubble. Preserve furrow geometry and unsown walking strip. Do not change crop stages, add creatures or buildings.",
+      "referenced_images_correction": [
+        "proceso/descartes/edran_surcos-primera-version-NO-INTEGRAR.png"
+      ]
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 3,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Corregida tierra nueva a tono claro canónico; rastrojo viejo conserva textura y franja sin sembrar sigue visible.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "sustituye_archivo_aprobado": false,
+    "sha256_png": "10b2616ddf8b722426508f0518f9cd42622b3673bec10eaab03353689de9f1a5",
+    "sha256_webp": "eff9a6ec53d50fc6a21d6e160efa872dc25aa3d58b5191ce79b0b1e9f5be12cb"
+  },
+  {
+    "id": "edran_acequia",
+    "nombre": "Curva de la Acequia",
+    "region": "edran",
+    "ruta_propuesta": "client/art/places/edran_acequia-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/edran_acequia-anime-v1-thumb.webp",
+    "png": "originales/edran_acequia-anime-v1.png",
+    "webp": "webp/edran_acequia-anime-v1.webp",
+    "miniatura": "miniaturas/edran_acequia-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "initial": "Use case: illustration-story. ONE new 3:2 landscape environment game asset for Vintage Telnet 2, canonical room edran_acequia. Input references only define approved fine anime linework, painted cel-shaded daylight, warm farm materials and Edran/Valdren continuity. Do NOT transplant their buildings into fields without houses. Canon: Curva de la Acequia. Small clear flowing irrigation channel wraps around ONE LOW flat stone SLAB used to CROSS without wet feet, then continues towards nearby Valdren. A few LEAVES caught near a LOOSE ROOT partly block a SMALL SIDE OUTLET to dry ditch; do not make entire main channel blocked. West modest village roofs/cultivated gardens approaching, north field gently above, south edge of small pond hinted through low willows. Medium oblique view of channel bend and practical foot slab; water modest freshwater canal, not river gorge or ornate bridge. Cultivated Edran, low fences, mostly open daylight. Representative BASE state before outlet repair, no event action. Natural clear daylight matching travel sequence. Believable everyday scale, distinctive environmental composition, child-friendly commercial fantasy quality. No readable text, UI, frame, map, combat, crowns, religious symbols or invented monuments. This scene must show progress through farmland toward Valdren.",
+      "referenced_images_initial": [
+        "referencias/valdren-anime-v1.webp",
+        "originales/edran_era-anime-v1.png"
+      ]
+    },
+    "evaluacion": {
+      "Canon": 3,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 3,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Curva, losa y salida lateral con hojas visibles; caudal principal sigue abierto. La raíz suelta queda poco explícita.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "sustituye_archivo_aprobado": false,
+    "sha256_png": "f6f51928ca11c9106c7485fab36ca22c28a367c3e07c59e93a18d9aa5e672f31",
+    "sha256_webp": "2521e1251baf965734af37a555a6aee3c1675594308e0fbc8dcecbc22b4adec0"
+  },
+  {
+    "id": "edran_salida_huertos",
+    "nombre": "Salida de las Cercas Bajas",
+    "region": "edran",
+    "ruta_propuesta": "client/art/places/edran_salida_huertos-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/edran_salida_huertos-anime-v1-thumb.webp",
+    "png": "originales/edran_salida_huertos-anime-v1.png",
+    "webp": "webp/edran_salida_huertos-anime-v1.webp",
+    "miniatura": "miniaturas/edran_salida_huertos-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "initial": "Use case: illustration-story. ONE new 3:2 landscape environment game asset for Vintage Telnet 2, canonical room edran_salida_huertos. Input references only define approved fine anime linework, painted cel-shaded daylight, warm farm materials and Edran/Valdren continuity. Do NOT transplant their buildings into fields without houses. Canon: Salida de las Cercas Bajas. Rural approach to VALDREN: LOW fences below adult eye line, TWO modest weathered POSTS at WEST frame entry towards village kitchen gardens and scattered ordinary half-timber houses, no roofed city gateway. Looking across low fence bend, EAST path continues to irrigation canal; SOUTH lane curves beside fences to TWO granaries, explicitly NOT a straight street. Distinct short footmarks cross towards gardens, wheel ruts continue around curve. Open crop country and wind hinted by grass, houses gradually return into view. WIDE three-quarter landscape, no giant stone arch, castle, dramatic mountains or town square stalls. Natural clear daylight matching travel sequence. Believable everyday scale, distinctive environmental composition, child-friendly commercial fantasy quality. No readable text, UI, frame, map, combat, crowns, religious symbols or invented monuments. This scene must show progress through farmland toward Valdren.",
+      "referenced_images_initial": [
+        "referencias/valdren-anime-v1.webp",
+        "originales/edran_era-anime-v1.png"
+      ]
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 3,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Cercas bajas, dos postes y giro hacia dos graneros legibles; progresión gradual a casas de Valdren.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "sustituye_archivo_aprobado": false,
+    "sha256_png": "4a99cdeeaa910a409970986004ab200060e9b2190cb8e956dd7eb6ee07dd532b",
+    "sha256_webp": "4d55e5d4690da1d3d5319a56be8e3404b7cf35a240dd91fa9e61741e41e828ae"
+  },
+  {
+    "id": "veyra_rampa_grava",
+    "nombre": "Subida de grava",
+    "region": "veyra",
+    "ruta_propuesta": "client/art/places/veyra_rampa_grava-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/veyra_rampa_grava-anime-v1-thumb.webp",
+    "png": "originales/veyra_rampa_grava-anime-v1.png",
+    "webp": "webp/veyra_rampa_grava-anime-v1.webp",
+    "miniatura": "miniaturas/veyra_rampa_grava-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "initial": "One new 3:2 landscape commercial fantasy anime game ENVIRONMENT for Vintage Telnet 2, room veyra_rampa_grava. Match supplied approved fine anime outlines, rich painted cel shading, practical stone/timber materials, natural clear DAY light, child-friendly world. Reference Khariel indicates final region/style, NOT buildings to copy into wilderness; city gate reference anchors departure. Subida de grava: gravel ramp ascending out of Vaisgard basin toward NORTH Hoshai foothills. LAST modest city houses and approved stone gateway small DOWNHILL SOUTH background. Path curves around shallow depression filled with water-rounded washed stones; a firm side resting strip WITHOUT loose gravel allows travelers to adjust bundles. Broad low pasture hills becoming distant mountain foothills, NOT already high cliff canyon. Wide eye-height view uphill with two modest cartloads paused sideways safely. Gravel transition replaces urban cobbles. Progressive climb toward Khariel; Hoshai northern pine/rock mountains DISTINCT from dry fractured Korven and dense-root Nhal. Ordinary usable walking scale; geographic features primary, humans secondary with HUMAN faces. No town buildings unless explicitly described, no Japanese architecture, no giant ancient temple, text, UI, map, frame, combat or monsters.",
+      "correction": "Keep fine anime style, warm daylight, carts, broad gravel ramp and side bundle resting strip. CORRECT geography: this is still low-hill VEYRA basin. Completely replace steep cliffs and close alpine peak wall with LOW rolling green foothills; snowy distant Hoshai range may appear TINY pale on far horizon only. City downhill LEFT is Vaisgard, ordinary houses on LOW basin terrain beside ONE modest worn gate, NOT houses clinging up cliff. Depression right contains washed ROUND STONES and ONLY a thin half-hidden trickle, NOT deep pond. Road climbs modestly and curves around depression. Avoid copying Khariel's cliff city. Landscape calm early ascent.",
+      "referenced_images_initial": [
+        "referencias/khariel-anime-v1.webp",
+        "originales/veyra_puerta_alta-anime-v1.png"
+      ],
+      "referenced_images_correction": [
+        "proceso/descartes/veyra_rampa_grava-primera-version-NO-INTEGRAR.png"
+      ]
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 3,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Corregido salto geográfico: ciudad y rampa sobre colinas bajas; piedras lavadas en hondonada, espacio de cargas. La arquitectura lejana es orientativa, no plano.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "sustituye_archivo_aprobado": false,
+    "sha256_png": "be03b46788bdfc97cbcae9949b47a18348659704ff620070522060e6682a9937",
+    "sha256_webp": "eb08ac14e202204d1b4b9a8068eec62056e0a5ab530ae545a0ecbf79a150bd95"
+  },
+  {
+    "id": "hoshai_estribacion",
+    "nombre": "Primera subida",
+    "region": "hoshai",
+    "ruta_propuesta": "client/art/places/hoshai_estribacion-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/hoshai_estribacion-anime-v1-thumb.webp",
+    "png": "originales/hoshai_estribacion-anime-v1.png",
+    "webp": "webp/hoshai_estribacion-anime-v1.webp",
+    "miniatura": "miniaturas/hoshai_estribacion-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "initial": "One new 3:2 landscape commercial fantasy anime game ENVIRONMENT for Vintage Telnet 2, room hoshai_estribacion. Match supplied approved fine anime outlines, rich painted cel shading, practical stone/timber materials, natural clear DAY light, child-friendly world. Reference Khariel indicates final region/style, NOT buildings to copy into wilderness; city gate reference anchors departure. Primera subida: rising gravel joins SHORT mountain pasture. SMALL stream crosses foreground with round wet stones and FIRM bank alongside slope; broad dry grassy waiting space for bundles BEFORE narrowing climb north. SOUTH downhill basin distant; north roots begin under leaning trees. ONE distant human shepherdess holds coiled rope beside waiting ordinary pack animals, no invented creature. Early foothill altitude, modest slopes, distant mountains higher than the previous ramp. Progressive climb toward Khariel; Hoshai northern pine/rock mountains DISTINCT from dry fractured Korven and dense-root Nhal. Ordinary usable walking scale; geographic features primary, humans secondary with HUMAN faces. No town buildings unless explicitly described, no Japanese architecture, no giant ancient temple, text, UI, map, frame, combat or monsters.",
+      "correction": "Keep anime style, stream crossing, woman with rope, animals waiting and ascending track. LOWER viewpoint and adjacent terrain substantially: FIRST foothill pasture at edge of low Vaisgard basin, not high mountain cliff. Replace deep left precipice/lake/waterfalls/town with wide LOW green valley and agricultural basin beyond gentle foothills, no buildings except tiny distant rooftops. Far snowy ridges remain SMALL pale horizon. Right incline roots/leaning trees begins to narrow, grounded slope without exposed sheer precipice. Stream shallow nearby crossing and broad dry grassy load waiting space. Keep progressive modest early altitude.",
+      "referenced_images_initial": [
+        "referencias/khariel-anime-v1.webp",
+        "originales/veyra_puerta_alta-anime-v1.png"
+      ],
+      "referenced_images_correction": [
+        "proceso/descartes/hoshai_estribacion-primera-version-NO-INTEGRAR.png"
+      ]
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 3,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Pastos, cruce y espera distinguen primera subida. Corregidos lago y precipicios prematuros; cordillera permanece lejana.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "sustituye_archivo_aprobado": false,
+    "sha256_png": "4dba4425a343f62909f8adc9d5e4975aa4fc7c7ccb356db3c71d0af8fb229e1a",
+    "sha256_webp": "7073a4a1b87127014c646f4355869e91f9deb2dd805502cf54dbb4d0c7dd6c23"
+  },
+  {
+    "id": "hoshai_repecho_raices",
+    "nombre": "Cuesta de las raíces",
+    "region": "hoshai",
+    "ruta_propuesta": "client/art/places/hoshai_repecho_raices-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/hoshai_repecho_raices-anime-v1-thumb.webp",
+    "png": "originales/hoshai_repecho_raices-anime-v1.png",
+    "webp": "webp/hoshai_repecho_raices-anime-v1.webp",
+    "miniatura": "miniaturas/hoshai_repecho_raices-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "initial": "One new 3:2 landscape commercial fantasy anime game ENVIRONMENT for Vintage Telnet 2, room hoshai_repecho_raices. Match supplied approved fine anime outlines, rich painted cel shading, practical stone/timber materials, natural clear DAY light, child-friendly world. Reference Khariel indicates final region/style, NOT buildings to copy into wilderness; city gate reference anchors departure. Cuesta de las raíces: STEEP hillside trail curves uphill between exposed roots and leaning trees, curvature HIDES next rest. Pocket between TWO trunks holds a bundle without blocking path. South lower stream no longer visible; NORTH around bend partial glimpse one rest stone, not complete destination. TWO distant human travelers in separate pockets let one descending pack through; landscape primary. Medium diagonal upward view, firmer roots vs worn shiny root, valley only partial openings. Not dense Nhal forest. Progressive climb toward Khariel; Hoshai northern pine/rock mountains DISTINCT from dry fractured Korven and dense-root Nhal. Ordinary usable walking scale; geographic features primary, humans secondary with HUMAN faces. No town buildings unless explicitly described, no Japanese architecture, no giant ancient temple, text, UI, map, frame, combat or monsters.",
+      "correction": "Keep anime forest-root hillside style and walking scale, practical bundle pocket beside trunks. Make uphill trail TURN SHARPLY around right-hand leaning pine/root bank so next rest is HIDDEN; no straight open flight of constructed stairs. Replace formal stone steps and little upright constructed pillar with ROOTS and natural uneven earth/stone footholds. At most ONE partial NATURAL sitting boulder visible at far bend. Travelers waiting on two separate SIDE pockets, descending load passing on center. Lower dramatic distant peaks and valley into middle-elevation wooded foothills, NO lake, waterfalls or settlements. Roots climbing distinct from dense enclosed Nhal.",
+      "referenced_images_initial": [
+        "referencias/khariel-anime-v1.webp",
+        "originales/veyra_puerta_alta-anime-v1.png"
+      ],
+      "referenced_images_correction": [
+        "proceso/descartes/hoshai_repecho_raices-primera-version-NO-INTEGRAR.png"
+      ]
+    },
+    "evaluacion": {
+      "Canon": 3,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 3,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Curva ocultada por tronco y raíces, cargas laterales. Se redujeron escalones construidos y relieve; los apoyos siguen algo regulares.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "sustituye_archivo_aprobado": false,
+    "sha256_png": "0e589ab6fcb382d12470b034ff3e65e421f5083b0d9d4d0d72e21e4329f79859",
+    "sha256_webp": "eb7677ea287ad5e02921cd94f65412f2d9f60d7563f2eafdec5758e7f5945bfb"
+  },
+  {
+    "id": "hoshai_descanso_tres_piedras",
+    "nombre": "Descanso de las Tres Piedras",
+    "region": "hoshai",
+    "ruta_propuesta": "client/art/places/hoshai_descanso_tres_piedras-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/hoshai_descanso_tres_piedras-anime-v1-thumb.webp",
+    "png": "originales/hoshai_descanso_tres_piedras-anime-v1.png",
+    "webp": "webp/hoshai_descanso_tres_piedras-anime-v1.webp",
+    "miniatura": "miniaturas/hoshai_descanso_tres_piedras-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "initial": "One new 3:2 landscape commercial fantasy anime game ENVIRONMENT for Vintage Telnet 2, room hoshai_descanso_tres_piedras. Match supplied approved fine anime outlines, rich painted cel shading, practical stone/timber materials, natural clear DAY light, child-friendly world. Reference Khariel indicates final region/style, NOT buildings to copy into wilderness; city gate reference anchors departure. Descanso de las Tres Piedras: EXACTLY THREE LARGE natural sitting boulders halfway up mountain trail, PLUS ONE SMALL LOW stone bearing coiled ropes clear of passage. Rocky mountain wall at interior LEFT, open valley outside RIGHT; see TWO successive curves BELOW of previous root ascent, north route continues beside wall. ONE adult human woman porter sets canvas bundle on small low stone, small scale background, not portrait. Elevated wide terrace-sized natural stop, no constructed plaza, no chairs, no shrine, no arches. All THREE large boulders visibly distinct; fourth small stone NOT same size. Progressive climb toward Khariel; Hoshai northern pine/rock mountains DISTINCT from dry fractured Korven and dense-root Nhal. Ordinary usable walking scale; geographic features primary, humans secondary with HUMAN faces. No town buildings unless explicitly described, no Japanese architecture, no giant ancient temple, text, UI, map, frame, combat or monsters.",
+      "correction": "Keep THREE large sitting boulders, fourth much smaller rope stone, porter woman, anime daylight and left rock wall. CORRECT extravagant background: this is HALF climb, only view TWO curves of the previous root trail BELOW through pine slope. Remove invented deep lake, waterfalls, settlements and enormous gorge. Replace with gradually descending pine foothills and far low Veyra basin, high mountains only tiny pale farther horizon. Terrain usable broad natural rest edge modestly above slopes, not sheer cliff megascale. Boulders seat height for adult, very largest no higher than adult waist. Preserve distinct stop with clear load resting stone and usable trail.",
+      "referenced_images_initial": [
+        "referencias/khariel-anime-v1.webp",
+        "originales/veyra_puerta_alta-anime-v1.png"
+      ],
+      "referenced_images_correction": [
+        "proceso/descartes/hoshai_descanso_tres_piedras-primera-version-NO-INTEGRAR.png"
+      ]
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 3,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Tres asientos y piedra pequeña con cuerdas reconocibles; dos curvas abajo. Corregidos lago y monumentales acantilados.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "sustituye_archivo_aprobado": false,
+    "sha256_png": "c4ceb681c74719dceb511779de992901985e26f058ca24731242084bd643f9be",
+    "sha256_webp": "c94bf0e7fbacb5678c3c3f2310921564496bef8949948c3fb106b88ba366fc36"
+  },
+  {
+    "id": "hoshai_pared_goteo",
+    "nombre": "Pared húmeda",
+    "region": "hoshai",
+    "ruta_propuesta": "client/art/places/hoshai_pared_goteo-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/hoshai_pared_goteo-anime-v1-thumb.webp",
+    "png": "originales/hoshai_pared_goteo-anime-v1.png",
+    "webp": "webp/hoshai_pared_goteo-anime-v1.webp",
+    "miniatura": "miniaturas/hoshai_pared_goteo-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "initial": "ONE new 3:2 landscape game ENVIRONMENT illustration for Vintage Telnet 2 canonical hoshai_pared_goteo. Match reference fine fantasy anime outlines, painted cel shading, natural clear day, muted functional clothes if any, light warm mountain stone and rich pine greens. Reference depicts previous stop: use shared geography/material/light, NOT repeat its boulders or people. Pared húmeda: medium walking-height view climbing with WET ROCK WALL LEFT and open pine foothill VALLEY RIGHT. Thin drips even clear weather, modest mud HANDPRINTS of varied palm heights beneath projecting ledge. Rock recess big enough to set one pack while a person stands against wall. Path north continues toward first open pine stand, south THREE resting boulders only tiny corner hint. NOT cave portal. Hands are old mud marks, no magic. Low safe natural edge at human scale, no railings unless sparse, no giant lake or waterfall. Maintain progressive Hoshai ascent with practical HUMAN walking scale. No monuments, settlements, giant snow wall immediately behind, Japanese architecture, religious/magical symbols, combat, monsters, captions, frames, UI or map.",
+      "referenced_images_initial": [
+        "originales/hoshai_descanso_tres_piedras-anime-v1.png"
+      ],
+      "correction": "Edit the supplied environment preserving anime linework/daylight/left dripping wall/right valley/path and recess. Correct HANDPRINTS: current handprints are exaggerated giant graphic symbols. Replace with SUBTLE weathered uneven smeared muddy palm-and-finger contact marks, REAL adult palm size about 10cm and whole hand 18cm, different heights at waist/chest level. Only 4-5 faint partial marks, not a ritual mural, not dark perfect icons. Slight wet rock streaks obscure parts of marks. Keep water drips physically modest, everyday hiking support.",
+      "referenced_images_correction": [
+        "proceso/descartes/hoshai_pared_goteo-primera-version-NO-INTEGRAR.png"
+      ]
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 3,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Goteo, pared izquierda y entrante diferenciados; corregidas huellas simbólicas grandes a marcas parciales. Escala exacta de marca queda orientativa.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "sustituye_archivo_aprobado": false,
+    "sha256_png": "e580dd0608a7a572bca46bfdf9a35a6d2caffc26b54adba29d1d0dccdf0a5287",
+    "sha256_webp": "c0d6527dfccf91fff7ff56ee773c22400b3bd1a131211fc856fcbca09640e894"
+  },
+  {
+    "id": "hoshai_pinar_discontinuo",
+    "nombre": "Pinar abierto",
+    "region": "hoshai",
+    "ruta_propuesta": "client/art/places/hoshai_pinar_discontinuo-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/hoshai_pinar_discontinuo-anime-v1-thumb.webp",
+    "png": "originales/hoshai_pinar_discontinuo-anime-v1.png",
+    "webp": "webp/hoshai_pinar_discontinuo-anime-v1.webp",
+    "miniatura": "miniaturas/hoshai_pinar_discontinuo-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "initial": "ONE new 3:2 landscape game ENVIRONMENT illustration for Vintage Telnet 2 canonical hoshai_pinar_discontinuo. Match reference fine fantasy anime outlines, painted cel shading, natural clear day, muted functional clothes if any, light warm mountain stone and rich pine greens. Reference depicts previous stop: use shared geography/material/light, NOT repeat its boulders or people. Pinar abierto: mountain pine stand with LARGE gaps revealing green valley through trees; dry needles on ground, collected PINE CONES in sheltered lee beside rock; western narrow fork visible by cone pile, main path continues NORTH toward a small cold-water stream heard but only tiny glint. Wide calmer view under pine crowns, fewer tall trunks than dense Nhal, hillside not flatfield, no houses. No animals necessary. Maintain previous light stone and pine roots, middle altitude. Maintain progressive Hoshai ascent with practical HUMAN walking scale. No monuments, settlements, giant snow wall immediately behind, Japanese architecture, religious/magical symbols, combat, monsters, captions, frames, UI or map.",
+      "referenced_images_initial": [
+        "originales/hoshai_descanso_tres_piedras-anime-v1.png"
+      ]
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 3,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Claros del pinar y depósito de piñas identificables. Cruce bifurcado legible; corriente norte no visible, se deja a lectura.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "sustituye_archivo_aprobado": false,
+    "sha256_png": "1e0406bb378dc81b40c7b0418f44abaecb02790ba62b296155ae198ca0f4bfc6",
+    "sha256_webp": "aa7f54499b3fd1173e578270a1e681603ad5c7eae28eabd08472ddf22cbd8ae0"
+  },
+  {
+    "id": "hoshai_agua_fria",
+    "nombre": "Cruce de agua fría",
+    "region": "hoshai",
+    "ruta_propuesta": "client/art/places/hoshai_agua_fria-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/hoshai_agua_fria-anime-v1-thumb.webp",
+    "png": "originales/hoshai_agua_fria-anime-v1.png",
+    "webp": "webp/hoshai_agua_fria-anime-v1.webp",
+    "miniatura": "miniaturas/hoshai_agua_fria-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "initial": "ONE new 3:2 landscape game ENVIRONMENT illustration for Vintage Telnet 2 canonical hoshai_agua_fria. Match reference fine fantasy anime outlines, painted cel shading, natural clear day, muted functional clothes if any, light warm mountain stone and rich pine greens. Reference depicts previous stop: use shared geography/material/light, NOT repeat its boulders or people. Cruce de agua fría: SMALL COLD STREAM crosses trail, LARGE natural boulder DIVERTS part of flow. DRY side rock platform allows load preparation BEFORE crossing; opposite bank steps climb north towards cairn slope, southern pines behind. Medium oblique close environment of splashing water and firm foot supports, actual crossing no constructed bridge. ONE distant human traveler waits on dry platform; no fantastical creatures or species portraits. Water less than knee deep, no gorge/lake/giantfalls. Maintain progressive Hoshai ascent with practical HUMAN walking scale. No monuments, settlements, giant snow wall immediately behind, Japanese architecture, religious/magical symbols, combat, monsters, captions, frames, UI or map.",
+      "referenced_images_initial": [
+        "originales/hoshai_descanso_tres_piedras-anime-v1.png"
+      ]
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 3,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Piedra desvía agua, plataforma seca y escalones opuestos visibles; conserva paisaje de ascenso.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "sustituye_archivo_aprobado": false,
+    "sha256_png": "5449da4a36857d0e97e8314b8d1c13d92de25ead1179e799eb32e76a48aa3313",
+    "sha256_webp": "2e6b3a741ced6356308ee1c967ea2876ddab779abfc6669ac9c900e190afd3e3"
+  },
+  {
+    "id": "hoshai_ladera_hitos",
+    "nombre": "Ladera de las señales",
+    "region": "hoshai",
+    "ruta_propuesta": "client/art/places/hoshai_ladera_hitos-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/hoshai_ladera_hitos-anime-v1-thumb.webp",
+    "png": "originales/hoshai_ladera_hitos-anime-v1.png",
+    "webp": "webp/hoshai_ladera_hitos-anime-v1.webp",
+    "miniatura": "miniaturas/hoshai_ladera_hitos-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "initial": "ONE new 3:2 landscape game ENVIRONMENT illustration for Vintage Telnet 2 canonical hoshai_ladera_hitos. Match reference fine fantasy anime outlines, painted cel shading, natural clear day, muted functional clothes if any, light warm mountain stone and rich pine greens. Reference depicts previous stop: use shared geography/material/light, NOT repeat its boulders or people. Ladera de las señales: OPEN ascending mountain slope above previous stream, north trail becomes narrow BETWEEN TWO natural rock walls. EXACT TWO groups of small cairn stones near bends: path group has opening toward next foothold; boundary-review group CLOSED LINE following slope edge. Nearby small practical wood TABLET with simple nonletter diagram of slope and exposed root, no writing. Wide view uphill to rocky neck, valley distant and small, no nearby town yet. One tiny human groundskeeper rearranges cairn at side, not shrine. Maintain progressive Hoshai ascent with practical HUMAN walking scale. No monuments, settlements, giant snow wall immediately behind, Japanese architecture, religious/magical symbols, combat, monsters, captions, frames, UI or map.",
+      "referenced_images_initial": [
+        "originales/hoshai_descanso_tres_piedras-anime-v1.png"
+      ],
+      "correction": "Preserve landscape, practical tablet drawing, person, path and anime style. Correct distinct TWO stone-marker systems: LEFT trail markers should be a small OPEN pair with opening aligned toward NEXT FOOTSTEP. RIGHT edge-review markers should be LOW little stones arranged as CLOSED LINE along slope boundary; do NOT use repeated identical tall stacked cairns for both. Replace right-hand five cairn towers with a continuous low row of fist/boot-sized upright boundary stones following rim. Person revises LEFT open trail-marker pair. Tablet diagram stays no readable text. Goal visually different uses, not decorative cairn avenue.",
+      "referenced_images_correction": [
+        "proceso/descartes/hoshai_ladera_hitos-primera-version-NO-INTEGRAR.png"
+      ]
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 3,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Corregida confusión: pares abiertos de camino frente a fila baja cerrada de borde; tablilla de esquema sin letras.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "sustituye_archivo_aprobado": false,
+    "sha256_png": "6e58502c16b9abb25dfae56593e5d60e57d38902c6f6d7f0e360724ba6818e16",
+    "sha256_webp": "69c2d19aac72521baeff8c9d0c8ecf97336c1d9f5ebfded8472b3023683365d4"
+  },
+  {
+    "id": "hoshai_cuello_roca",
+    "nombre": "Paso entre paredes",
+    "region": "hoshai",
+    "ruta_propuesta": "client/art/places/hoshai_cuello_roca-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/hoshai_cuello_roca-anime-v1-thumb.webp",
+    "png": "originales/hoshai_cuello_roca-anime-v1.png",
+    "webp": "webp/hoshai_cuello_roca-anime-v1.webp",
+    "miniatura": "miniaturas/hoshai_cuello_roca-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "initial": "One new 3:2 landscape commercial fantasy anime ENVIRONMENT game asset for Vintage Telnet 2 canonical room hoshai_cuello_roca. Match approved reference fine outlines, painted cel shading, practical warm light stone, pine greens, natural clear DAY, children's game quality. Paso entre paredes. Natural mountain rock walls approach so narrow that loaded travelers pass SINGLE FILE. View FROM SOUTH waiting slope THROUGH neck to modest wider north terrace beyond, no buildings in sight yet. ONE FLAT natural signalling stone at NEAR entry with worn WOODEN knocking stick resting on it; another far flat stone small at other end. Eastern wall faint trickle reduces usable band, clear day notstorm. Medium enclosing composition near human-eye height, gentle visual tension through narrowness, not dungeon/temple/giant gorge. A distant ordinary human porter waits OUTSIDE neck, no action blocking view. Hoshai northern mountain ascent continuous; HUMAN scale and faces, no Japan, magic/religious monuments, battle, creatures, UI, frame, text or maps. References define style/geography only; invent no new landmark.",
+      "referenced_images_initial": [
+        "originales/hoshai_descanso_tres_piedras-anime-v1.png",
+        "referencias/khariel-anime-v1.webp"
+      ]
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 3,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Paso en fila, piedra de aviso con madera y otra piedra al fondo; pared oriental húmeda y salida abierta.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "sustituye_archivo_aprobado": false,
+    "sha256_png": "e6e1d10115bad78f7e31ec9d1e031bc8f49de29f49eed65cc4d2705b34c6dd03",
+    "sha256_webp": "2963d2b21eafd905879df97d4db7241577d3113cacdb5078ea4fb756ec3663aa"
+  },
+  {
+    "id": "hoshai_escalones_sol",
+    "nombre": "Escalones al sol",
+    "region": "hoshai",
+    "ruta_propuesta": "client/art/places/hoshai_escalones_sol-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/hoshai_escalones_sol-anime-v1-thumb.webp",
+    "png": "originales/hoshai_escalones_sol-anime-v1.png",
+    "webp": "webp/hoshai_escalones_sol-anime-v1.webp",
+    "miniatura": "miniaturas/hoshai_escalones_sol-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "initial": "One new 3:2 landscape commercial fantasy anime ENVIRONMENT game asset for Vintage Telnet 2 canonical room hoshai_escalones_sol. Match approved reference fine outlines, painted cel shading, practical warm light stone, pine greens, natural clear DAY, children's game quality. Escalones al sol. Arrival Khariel: irregular staircase partly CUT from rock and partly repaired with NEW LIGHT STONES. Small SIDE DRAINAGE CHANNEL follows steps, NOT middle water. NORTH steps finish at Khariel limestone terraces/timber railings, first modest house fronts and broader plaza ramp glimpse, do not copy full market. SOUTH below glimpses broad load terrace and coiled ropes. Distinct old/new step pieces with sufficient varied feet support. One tiny human mason beside TOOL clear of path, no species closeups. Medium low view UPWARD with town architecture returning, high mountain landscape very distant pale, scale believable. Hoshai northern mountain ascent continuous; HUMAN scale and faces, no Japan, magic/religious monuments, battle, creatures, UI, frame, text or maps. References define style/geography only; invent no new landmark.",
+      "referenced_images_initial": [
+        "originales/hoshai_descanso_tres_piedras-anime-v1.png",
+        "referencias/khariel-anime-v1.webp"
+      ]
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 3,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Peldaños viejos y claros de reparación, canal lateral, primeras casas. Escala y arquitectura alineadas con Khariel aprobado. Vista lejana orientativa.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "sustituye_archivo_aprobado": false,
+    "sha256_png": "acfb4a5d9f0fa17e43cfc2ba9ce21855bfc985ac1c42f488334a24bfca64783e",
+    "sha256_webp": "94c73775942c3db00790d615242cae262dee09ee8de1567a3916505be9105c89"
+  }
+]
