@@ -1,0 +1,761 @@
+{
+ "source_delivery": "Vintage Telnet - Arte - Entrega",
+ "source_estado": {
+  "salas_publicas": 183,
+  "nuevas_imagenes_entregadas": 152,
+  "estados": {
+   "Aprobado (nuevo, pendiente de integración)": 152,
+   "Sin imagen": 23,
+   "Aprobado": 8
+  },
+  "pendientes_especificos": 23,
+  "mision": "INCOMPLETA"
+ },
+ "ids": [
+  "edran_cobertizo_campo",
+  "edran_arboleda",
+  "edran_sendero_regreso",
+  "edran_camino_carros",
+  "nhal_sala_cuidados",
+  "nhal_claro_silencio",
+  "nhal_raiz_marcada",
+  "nhal_rincon_semillas",
+  "korven_sala_cuidados",
+  "lethra_sala_cuidados",
+  "veyra_sala_cuidados",
+  "hoshai_sala_cuidados",
+  "hoshai_taller_apoyos",
+  "hoshai_lavadero_roca",
+  "hoshai_deposito_comun",
+  "hoshai_balcon_valle",
+  "hoshai_caseta_revision",
+  "hoshai_mirador_nudo",
+  "hoshai_abrigo_pinas",
+  "hoshai_collado_pino",
+  "hoshai_aprisco_abierto",
+  "hoshai_hombro_lajas",
+  "hoshai_garganta_oeste",
+  "korven_meseta_relevo",
+  "hoshai_campamento_lona",
+  "hoshai_cajas_camino",
+  "korven_almacen_entrada",
+  "korven_taller_juntas",
+  "korven_deposito_cubiertas",
+  "korven_almacen_cruce",
+  "korven_almacen_balanzas",
+  "korven_almacen_fondo",
+  "korven_almacen_lateral",
+  "korven_cisterna_comun",
+  "korven_mirador_grietas",
+  "korven_cauce_observacion",
+  "korven_plataforma_escucha",
+  "korven_registro_cauce",
+  "korven_roca_cascaron"
+ ],
+ "files": [
+  {
+   "id": "edran_cobertizo_campo",
+   "file": "client/art/places/edran_cobertizo_campo-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "dc997ceb55052a0e9a7005ac5c5c598fee8f035d4f54c41a12901a0c20d17530"
+  },
+  {
+   "id": "edran_cobertizo_campo",
+   "file": "client/art/places/edran_cobertizo_campo-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "bd23e99f98c9937a3cdc71df1a7e6aee0738febf15de321f7fa3946496f08f07"
+  },
+  {
+   "id": "edran_arboleda",
+   "file": "client/art/places/edran_arboleda-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "810ea8febb53d3c910eaf6ab31e69afb5e5d364445351cc4d6a07ad67bf71882"
+  },
+  {
+   "id": "edran_arboleda",
+   "file": "client/art/places/edran_arboleda-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "ba159d91a7c8ff0c58a957409d20cd67029a7886c5072bcabc0ee23bea9cb140"
+  },
+  {
+   "id": "edran_sendero_regreso",
+   "file": "client/art/places/edran_sendero_regreso-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "ceed901ead433618f569ea5a5ba58258ecadece09badb9745d8d17404fcbe8e8"
+  },
+  {
+   "id": "edran_sendero_regreso",
+   "file": "client/art/places/edran_sendero_regreso-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "41f7f990d76765dd7187db647cdd524cbf7dff29e86aef912119f4f30d167be7"
+  },
+  {
+   "id": "edran_camino_carros",
+   "file": "client/art/places/edran_camino_carros-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "6dc44169b8abb9c9bdf2ac194b97e2125bc46f0b88d3b07576aaccaec57496d4"
+  },
+  {
+   "id": "edran_camino_carros",
+   "file": "client/art/places/edran_camino_carros-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "dba04d2c415c189c70eb672f053e92e84c89c783c2acf5cf310ff062de642b8d"
+  },
+  {
+   "id": "nhal_sala_cuidados",
+   "file": "client/art/places/nhal_sala_cuidados-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "339b2d074f5245055d8c1b0ff25944893b4273d3c8b0c56383f4064af4c26e58"
+  },
+  {
+   "id": "nhal_sala_cuidados",
+   "file": "client/art/places/nhal_sala_cuidados-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "fdd83e71e93322cfce6a0a9bcb6258010e3b805612be19d7dda4936d793b7721"
+  },
+  {
+   "id": "nhal_claro_silencio",
+   "file": "client/art/places/nhal_claro_silencio-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "c7cbe127c29eb3f6d697defa7a983ca9053049659b5521494072686620407fa7"
+  },
+  {
+   "id": "nhal_claro_silencio",
+   "file": "client/art/places/nhal_claro_silencio-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "77fe231c336cb8db97f49ac00b10454a46f4aad20e3608a4081048ac6a3f5c19"
+  },
+  {
+   "id": "nhal_raiz_marcada",
+   "file": "client/art/places/nhal_raiz_marcada-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "5bb0b743e8ff96ff85d7a0b10bcf671c15aff214ae43afd3ff74139819522649"
+  },
+  {
+   "id": "nhal_raiz_marcada",
+   "file": "client/art/places/nhal_raiz_marcada-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "4455ef47888b02cf4472e9b1a5443ef7d9b55fc897f6eef4439c25823382aef1"
+  },
+  {
+   "id": "nhal_rincon_semillas",
+   "file": "client/art/places/nhal_rincon_semillas-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "f9463360e2dcf2367369f391c8e87b22cd9709fa654f9cbe13fa3ed2f8ac606f"
+  },
+  {
+   "id": "nhal_rincon_semillas",
+   "file": "client/art/places/nhal_rincon_semillas-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "65267babf7edd22a44db3eec535122648989ae48cc77348587ae720c99b784cf"
+  },
+  {
+   "id": "korven_sala_cuidados",
+   "file": "client/art/places/korven_sala_cuidados-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "413d42a83ca50926b586f4fc94b7cc65195c04b3dbdc198584e562f75e38e7b3"
+  },
+  {
+   "id": "korven_sala_cuidados",
+   "file": "client/art/places/korven_sala_cuidados-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "c173b32a92f90d7f1422cfddb150900e6ce9869ec2f3fac417af2aa1f6c158a0"
+  },
+  {
+   "id": "lethra_sala_cuidados",
+   "file": "client/art/places/lethra_sala_cuidados-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "5d7ff67eb83a164001faa7935368e4aedf9a57669e698b6f8576549d6a1f212b"
+  },
+  {
+   "id": "lethra_sala_cuidados",
+   "file": "client/art/places/lethra_sala_cuidados-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "9f3d1c127a58b8184a7b5dda4a8cb28cacca328208144303c2453345eda78c47"
+  },
+  {
+   "id": "veyra_sala_cuidados",
+   "file": "client/art/places/veyra_sala_cuidados-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "34b1195590907fc2511c9c42cb963ceb8903cbc97b12f5aaf66d1e3f0ca3bb97"
+  },
+  {
+   "id": "veyra_sala_cuidados",
+   "file": "client/art/places/veyra_sala_cuidados-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "a96eeefdfcb38fdc117784a5cf7b75555a5ca9e516e33feb287aaab9d5bec918"
+  },
+  {
+   "id": "hoshai_sala_cuidados",
+   "file": "client/art/places/hoshai_sala_cuidados-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "d0144d795c235739db3de955b6ed25f4be5135817abd6ac5d8f3aed0e70fd572"
+  },
+  {
+   "id": "hoshai_sala_cuidados",
+   "file": "client/art/places/hoshai_sala_cuidados-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "761787d00025cc64fe5a167a3eab0522bd5501477c79d1e5a5d3a8eb51d91f94"
+  },
+  {
+   "id": "hoshai_taller_apoyos",
+   "file": "client/art/places/hoshai_taller_apoyos-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "7c04e68239ddd1a4d31f713f5a6129d3213d55470cb40c5bab50d909e7555d8c"
+  },
+  {
+   "id": "hoshai_taller_apoyos",
+   "file": "client/art/places/hoshai_taller_apoyos-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "5b61bfbfd92bfeb88ede3edf678433a54290a74aae3f5789ac08dd29830ff983"
+  },
+  {
+   "id": "hoshai_lavadero_roca",
+   "file": "client/art/places/hoshai_lavadero_roca-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "4586f6ec238dfd5863f56579b9390747154fb3d96fbd93f4c933bed0ad888db9"
+  },
+  {
+   "id": "hoshai_lavadero_roca",
+   "file": "client/art/places/hoshai_lavadero_roca-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "33c03686bd05cd014f6a00378671c65d74ddfb462f8eb8c2f466995a6d9bd5c8"
+  },
+  {
+   "id": "hoshai_deposito_comun",
+   "file": "client/art/places/hoshai_deposito_comun-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "33f310b76bbe2cb9340b584fedd7d02b80f7005b88d61798c1f5d37b7b2444da"
+  },
+  {
+   "id": "hoshai_deposito_comun",
+   "file": "client/art/places/hoshai_deposito_comun-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "f74b7d3d1bf5a621e12d016021e08e5e28d0013d2bba05349b2d139d24ea965b"
+  },
+  {
+   "id": "hoshai_balcon_valle",
+   "file": "client/art/places/hoshai_balcon_valle-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "30fdf04c73ebecb1e08ff18d90313121521093302343b537265dd95fac705cb1"
+  },
+  {
+   "id": "hoshai_balcon_valle",
+   "file": "client/art/places/hoshai_balcon_valle-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "c13757603cb2a7ff3deabdf61eebfe22448ab121da8596e7bfb0e7d8a8e2bf66"
+  },
+  {
+   "id": "hoshai_caseta_revision",
+   "file": "client/art/places/hoshai_caseta_revision-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "9ca16398e43d84625ad3c76065c9fc60208d5ed8f81931505e30950ef44f8af8"
+  },
+  {
+   "id": "hoshai_caseta_revision",
+   "file": "client/art/places/hoshai_caseta_revision-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "7f678b3034f6be1974d06192377a186d4c6cfb4258567445a1478bd429523af3"
+  },
+  {
+   "id": "hoshai_mirador_nudo",
+   "file": "client/art/places/hoshai_mirador_nudo-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "c185a635d93630388eca1cb3c1e3643832f199d6cc01bb900193b6bc140b2e86"
+  },
+  {
+   "id": "hoshai_mirador_nudo",
+   "file": "client/art/places/hoshai_mirador_nudo-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "18e634df3a08adf3dcecfe981c391feee8a4fe43a807b947496769736784b0ae"
+  },
+  {
+   "id": "hoshai_abrigo_pinas",
+   "file": "client/art/places/hoshai_abrigo_pinas-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "95e403ef19a9843e64836d1d22299adda6415ec5d76bd9d5bda9dcf5d0720a26"
+  },
+  {
+   "id": "hoshai_abrigo_pinas",
+   "file": "client/art/places/hoshai_abrigo_pinas-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "62ec9e2de6967c45b6d6049a6203bcc28dd6936f49c067a29276746de12a132f"
+  },
+  {
+   "id": "hoshai_collado_pino",
+   "file": "client/art/places/hoshai_collado_pino-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "68880f4a6532ba156f3aad47d9024f9bdc80bef579bface0408b9d4e151020d6"
+  },
+  {
+   "id": "hoshai_collado_pino",
+   "file": "client/art/places/hoshai_collado_pino-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "29d04f0a4dbcdebe5d8001a303f9b5a74292ca65d6450a0f85c3f3186a44f2aa"
+  },
+  {
+   "id": "hoshai_aprisco_abierto",
+   "file": "client/art/places/hoshai_aprisco_abierto-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "ce4175cd210ee0abcb3a811c8fb83612846a0ead65bdcd09d3c9637534c92181"
+  },
+  {
+   "id": "hoshai_aprisco_abierto",
+   "file": "client/art/places/hoshai_aprisco_abierto-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "16dc4fceb891ede472865dc4de61f181708625687c8357513cf1282b49e09006"
+  },
+  {
+   "id": "hoshai_hombro_lajas",
+   "file": "client/art/places/hoshai_hombro_lajas-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "586188d9ddc1eae10fcb3bc7e4a38b5fe5019e4dc0b9be3918f9b5957725a712"
+  },
+  {
+   "id": "hoshai_hombro_lajas",
+   "file": "client/art/places/hoshai_hombro_lajas-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "290ed551ef661658fcce005a89019fe005ca922673af3e09070e74b9f0f1965d"
+  },
+  {
+   "id": "hoshai_garganta_oeste",
+   "file": "client/art/places/hoshai_garganta_oeste-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "f776d1b12dbcef9c81e9a25c93ee4517f4ffb36612fb42ffecf89c98c73f2589"
+  },
+  {
+   "id": "hoshai_garganta_oeste",
+   "file": "client/art/places/hoshai_garganta_oeste-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "3ccded87cd54a50c3da8f2e0d612d59e295ee661927cc028d0ffb6941531a677"
+  },
+  {
+   "id": "korven_meseta_relevo",
+   "file": "client/art/places/korven_meseta_relevo-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "474ee74d7b3d6f83d6308a3ca10ced32c9eac1e6e7f4d4c662a8a6356b41487d"
+  },
+  {
+   "id": "korven_meseta_relevo",
+   "file": "client/art/places/korven_meseta_relevo-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "403203b57ae839a7d1b47fe5e0fe3aa9b4b8a0f9dd9a44dd2adc281d89bff5b2"
+  },
+  {
+   "id": "hoshai_campamento_lona",
+   "file": "client/art/places/hoshai_campamento_lona-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "4f80f8dff97af3dd116bf269900c9c9cd31381aba56c1e80a4d6ed6fb53e41fc"
+  },
+  {
+   "id": "hoshai_campamento_lona",
+   "file": "client/art/places/hoshai_campamento_lona-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "e09b5f6ab0f974112c793afc5f432e3690deaaa2c248c1dc0bb4128ac2833498"
+  },
+  {
+   "id": "hoshai_cajas_camino",
+   "file": "client/art/places/hoshai_cajas_camino-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "c6d98de1626a51d8882263ff2ecf1d4a4d2e20ce588a1763d0da23a5c1baed34"
+  },
+  {
+   "id": "hoshai_cajas_camino",
+   "file": "client/art/places/hoshai_cajas_camino-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "0b2f1402443e0ee7daaf4b8944bc1a227bef206d1042c5b73748ebddffa369ac"
+  },
+  {
+   "id": "korven_almacen_entrada",
+   "file": "client/art/places/korven_almacen_entrada-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "bbc0749250fb1e14fdad3fd8ee783edd2ba34e4771db3358c444c1b66ff27391"
+  },
+  {
+   "id": "korven_almacen_entrada",
+   "file": "client/art/places/korven_almacen_entrada-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "249dd138d30d8c65ce1bec77375132f2adcc5827bbf77a8ca235ae1db4172786"
+  },
+  {
+   "id": "korven_taller_juntas",
+   "file": "client/art/places/korven_taller_juntas-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "d8929a2f3e63bd33ab8ceee70dbb2b064b9a463b0050d438c1af776aea693c1a"
+  },
+  {
+   "id": "korven_taller_juntas",
+   "file": "client/art/places/korven_taller_juntas-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "c60cef4787a18c9d9b0463ffcabc614eea2543a46c210a17233881d503681dc1"
+  },
+  {
+   "id": "korven_deposito_cubiertas",
+   "file": "client/art/places/korven_deposito_cubiertas-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "4082079ff2c266158ded823a2d452b0ea22e13eb1dec4d7959f32789610a118c"
+  },
+  {
+   "id": "korven_deposito_cubiertas",
+   "file": "client/art/places/korven_deposito_cubiertas-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "fb946eb27c9bcfbf22a2229b476e76dbfd62b1f5a1524599e42b257feb64bf74"
+  },
+  {
+   "id": "korven_almacen_cruce",
+   "file": "client/art/places/korven_almacen_cruce-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "8316af5970a704741272ff7936f4ee8465f892be8734892e40a25b7bfcbae219"
+  },
+  {
+   "id": "korven_almacen_cruce",
+   "file": "client/art/places/korven_almacen_cruce-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "2db44060f29267e61e657446734d2addc0334fe53cca1a9906e5108ed3c5d37d"
+  },
+  {
+   "id": "korven_almacen_balanzas",
+   "file": "client/art/places/korven_almacen_balanzas-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "a56647eb9fd5825ecacdb47d0eee0d99ca11317dc380e640c1b50936d63587cf"
+  },
+  {
+   "id": "korven_almacen_balanzas",
+   "file": "client/art/places/korven_almacen_balanzas-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "acb98bb16d0f82d5efef51a6d8d9c8c431ad29461a82dd91f108aabeae8c3849"
+  },
+  {
+   "id": "korven_almacen_fondo",
+   "file": "client/art/places/korven_almacen_fondo-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "42b7d6f4342a381f8357d61053f2e9ef50e535e36e4cc840466d3d7f9ffdb949"
+  },
+  {
+   "id": "korven_almacen_fondo",
+   "file": "client/art/places/korven_almacen_fondo-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "7aa87d86e814c66b5f974f85883551d3c523ae7da39995a6cd643360de8048c5"
+  },
+  {
+   "id": "korven_almacen_lateral",
+   "file": "client/art/places/korven_almacen_lateral-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "1faaed46ef27fdc9633dbac091a72618a1cd9da03f8fe17efbbf809c3ccc36c9"
+  },
+  {
+   "id": "korven_almacen_lateral",
+   "file": "client/art/places/korven_almacen_lateral-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "5a8343097f2c9f8fb165c51ec74ecb591c1fc7f19ac1cfac5cd48b19165b48a9"
+  },
+  {
+   "id": "korven_cisterna_comun",
+   "file": "client/art/places/korven_cisterna_comun-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "ba5ce176964c30a11a94020fec423abdced1c1741675777d5012d46320de24f9"
+  },
+  {
+   "id": "korven_cisterna_comun",
+   "file": "client/art/places/korven_cisterna_comun-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "1c4143de6b4aced78beb1948b7fafd9fdbe0df3e54b3bda52307db1973c0c741"
+  },
+  {
+   "id": "korven_mirador_grietas",
+   "file": "client/art/places/korven_mirador_grietas-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "c662cf68a578101ab8c229e811db36daf6d3d903dd839c42778e0a97111b2bf0"
+  },
+  {
+   "id": "korven_mirador_grietas",
+   "file": "client/art/places/korven_mirador_grietas-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "4be2d2206447600e0ebe1a9515332b1ca32109b9fea54b6f148b419e3f88f71d"
+  },
+  {
+   "id": "korven_cauce_observacion",
+   "file": "client/art/places/korven_cauce_observacion-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "bff43b4581a3b0d2b77e21b8e4a0b2e8b2eec73ea851b7106dc7ae7eb49f70d9"
+  },
+  {
+   "id": "korven_cauce_observacion",
+   "file": "client/art/places/korven_cauce_observacion-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "bfd0b009ff6b1c3693fd78de169cd5a4894f0cf713690f034237dcc17c76bb6f"
+  },
+  {
+   "id": "korven_plataforma_escucha",
+   "file": "client/art/places/korven_plataforma_escucha-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "8d113c99eb761cc0f88a79fb40ce00dcf41acb2164d039b430bdc0b53a7053bf"
+  },
+  {
+   "id": "korven_plataforma_escucha",
+   "file": "client/art/places/korven_plataforma_escucha-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "a28d17ed9d149b15fa4e311af0c6170e27845098b5cafcf4f535b04034578c9e"
+  },
+  {
+   "id": "korven_registro_cauce",
+   "file": "client/art/places/korven_registro_cauce-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "b4921598d96afb3209e59408c3a3c3db5158f8cc4ceca8f47764f4a1ca20a209"
+  },
+  {
+   "id": "korven_registro_cauce",
+   "file": "client/art/places/korven_registro_cauce-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "6e1e3c3b683a1644ab1ef25c1aee781b7292d174c9620726139208d7a7b58c6d"
+  },
+  {
+   "id": "korven_roca_cascaron",
+   "file": "client/art/places/korven_roca_cascaron-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "c9318996dd2b0d1191d20c4cf4dbfb0c96330a7761ed2de898af0380d996196a"
+  },
+  {
+   "id": "korven_roca_cascaron",
+   "file": "client/art/places/korven_roca_cascaron-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "f37447d12a551ba941dd3f29d6a9b68a93a370a5bb9bafe7cd9f2eab1901b69a"
+  }
+ ],
+ "preserved_existing": 252,
+ "approval": "Aprobación artística del agente, sin revisión humana; hojas revisadas por Claude"
+}

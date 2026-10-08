@@ -1,12 +1,11 @@
 {
   "salas_publicas": 183,
-  "nuevas_imagenes_entregadas": 113,
+  "nuevas_imagenes_entregadas": 152,
   "estados": {
-    "Aprobado (nuevo, pendiente de integración)": 113,
-    "Sin imagen": 62,
+    "Aprobado (nuevo, pendiente de integración)": 152,
+    "Sin imagen": 23,
     "Aprobado": 8
   },
-  "pendientes_especificos": 62,
-  "mision": "INCOMPLETA",
-  "trabajo": "ACTIVO: lote 24 revisado; lote 25 en producción"
+  "pendientes_especificos": 23,
+  "mision": "INCOMPLETA"
 }

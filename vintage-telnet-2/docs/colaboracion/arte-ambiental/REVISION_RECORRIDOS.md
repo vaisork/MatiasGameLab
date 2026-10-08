@@ -61,3 +61,27 @@ Revisadas tres secuencias canónicas: patio–senda–umbral, centro–taller–
 ## Lote 24 — Edran a Narevia
 
 Ruta real revisada: edran_reparo → edran_sendero_juncos → edran_puente_juncos → lethra_hito_tierra → lethra_ribera_oeste → narevia_centro. Hoja: recorridos/edran-lethra-narevia.jpg. Los campos y teja desaparecen gradualmente; juncos primero ocultan el agua, luego se ve el cauce y finalmente crecen los apoyos del pueblo. Hitos modestos y tramo alto contrastan con suelo inundable. Escala, sauces y paleta continua. No sustitución de referencias aprobadas.
+
+## Lote 25 — vuelta a Valdren y conexión hasta Narevia
+
+Revisadas recorridos/valdren-vuelta-campos.jpg (5 lugares) y recorridos/valdren-campos-hasta-narevia.jpg (10 lugares). Cada enlace comprobado en exits. Tres árboles y cobertizo ligan el lindero al retorno; curva oculta la plaza. Camino de carros corregido para mostrar reunión de ruta alta y baja ante el refugio. Las casas se pierden antes del humedal y aparecen de nuevo como plataformas de Narevia. Arquitectura doméstica consistente; vistas no pretenden fijar orientación de cámara global.
+
+## Lote 26 — últimos rincones de Nhal
+
+Cuatro ramas reales revisadas: tronco–claro, corteza–raíz, piedras–semillas y mercado–cuidados. Hojas nhal-tronco-claro.jpg, nhal-corteza-raiz.jpg, nhal-piedras-semillas.jpg y nhal-mercado-cuidados.jpg. Fondo de bosque y raíz mantiene continuidad, escala próxima reservada a indicios. Contrastes sobrios sin monstruo fijo. El claro combina raíz de descripción y piedra de examine/return; el rincón usa salida sur de exits, aunque night menciona oeste. Divergencias de texto anotadas, no modificadas.
+
+## Lote 27 — cuidados regionales
+
+Contacto compara cuatro servicios con referencias aprobadas. Revisados accesos patio de agua–cuidados, mercado de cintas–cuidados y calle de Brumak–cuidados. Narevia queda a la espera de completar taller vecino, aunque su vista individual ya está revisada. Puerta baja de Vaisgard y cajas cerradas de Khariel corregidas antes de aprobar. No se modificó la mecánica de recuperación.
+
+## Lote 28 — oficios de Khariel
+
+Tres secuencias reales revisadas, hojas khariel-lavadero-deposito-balcon.jpg, khariel-terraza-nudo-caseta.jpg y khariel-plaza-taller.jpg. Lavadero asciende al depósito, valle reaparece desde balcón. Cuerda y caseta conservan piedra, desnivel y escala; desgaste corregido a una vuelta del nudo. No se representa polea devuelta ni revisión completada.
+
+## Lote 29 — descenso Hoshai a Korven
+
+Recorrido de ocho lugares revisado en hoshai-descenso-a-korven.jpg. Vegetación disminuye, última copa doblada permanece reconocible detrás, roca cambia de gris a clara y terreno se abre en refugio. Ramal terraza–lona–cajas revisado en hoshai-terraza-lona-polea.jpg. La polea requiere selección futura después de recogida; motor actual ofrece vista fija. Todas las habitaciones públicas de Hoshai ya tienen vista específica.
+
+## Lote 30 — almacén viejo de Brumak
+
+Revisadas brumak-almacen-rodeo-retirada.jpg y brumak-entrada-pesaje.jpg. Entrada clara desciende a cruce; pasillo estrecho rodea sacos atados; muro cierra fondo; vuelta restituye luz exterior. Puertas interiores corregidas antes de aprobar y placa ahora tiene exactamente tres muescas. Vistas iniciales de placa requieren futuras variantes según recogida/devolución. Hojas de plaza–taller y patio–cubiertas disponibles como ramas adicionales.

@@ -48,6 +48,6 @@ Consultar `ESTADO.json` para conteos actuales, y `DEFECTOS_INTEGRACION.md` para 
 
 ## Cobertura actual automatizada
 
-113 vistas nuevas revisadas por el agente; 62 habitaciones pendientes de vista específica. Las 22 calles y patios con fondo compartido inicial ya tienen arte propio y anotaciones narrativas. Misión incompleta.
+152 vistas nuevas revisadas por el agente; 23 habitaciones pendientes de vista específica. Las 22 calles y patios con fondo compartido inicial ya tienen arte propio y anotaciones narrativas. Misión incompleta.
 
 Recorridos completos: consultar `recorridos/rutas-canonicas.json` y `REVISION_RECORRIDOS.md`; los demás continúan pendientes. Sólo los archivos listados en `evaluaciones.json` están propuestos para integrar. Los descartes no se integran.
