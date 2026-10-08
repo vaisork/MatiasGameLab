@@ -6,9 +6,13 @@
 
 Este archivo conserva ideas sin activarlas. No autoriza cambios de mundo, clases, criaturas, tecnología, progresión, mapas, narrativa, arte ni código. Cualquier desarrollo requiere decisión posterior explícita y contraste con `docs/DECISIONES_VIGENTES.md`, `AGENTS.md` y el contenido jugable actual.
 
-## 1. Los arcanes
+## 1. Númenes (antes «Arcanes»; distintos de la clase Arcano)
 
-La clase **Arcano** ya forma parte del roster vigente de VT2 (Juramentado, Arcano, Sombra, Artífice). Preservar como tema futuro la profundización de **los arcanes**: su conocimiento, prácticas, tradición y lugar en las culturas del mundo. No se presupone una facción, sociedad secreta, sistema de magia nuevo ni clase adicional. Antes de concretar, aclarar con el creador y su hijo qué imaginaban exactamente al hablar de «los arcanes».
+**Decisión de nomenclatura del 2026-10-08:** el creador autoriza renombrar a los seres históricamente llamados **Arcanes** como **Númenes** para distinguirlos de la clase jugable **Arcano**. El nombre anterior se conserva como alias documental de búsqueda, no como nombre recomendado en textos nuevos.
+
+**Fuente histórica:** `vintage-telnet/ARCANES.md` (Historiador 1); complementos en `vintage-telnet/GAMEPLAY.md` §21 y `vintage-telnet/CONFIRMED_IDEAS.md`. Son seres de apariencia animal familiar con una anomalía imposible y personalidad propia, potenciales compañeros vinculados al jugador. Se conservan las ocho formas originales, el derecho del jugador a elegir el nombre individual y el concepto histórico de hasta tres compañeros y hogar, sujeto a revisión de Jugabilidad para VT2. **No son una clase ni animales comunes.**
+
+El cambio es **terminológico y documental**, no autoriza implementar el sistema, migrar datos, alterar código ni introducir Númenes en encuentros actuales. Cuando se reactive, reconciliar el canon de VT1 con el VT2 vigente antes de redactar contratos.
 
 ## 2. Aparición futura de dragones
 
