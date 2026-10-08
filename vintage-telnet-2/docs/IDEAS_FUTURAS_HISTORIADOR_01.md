@@ -14,13 +14,13 @@ Este archivo conserva ideas sin activarlas. No autoriza cambios de mundo, clases
 
 El cambio es **terminológico y documental**, no autoriza implementar el sistema, migrar datos, alterar código ni introducir Númenes en encuentros actuales. Cuando se reactive, reconciliar el canon de VT1 con el VT2 vigente antes de redactar contratos.
 
-## 2. Aparición futura de dragones
+## 2. Dragones — canon histórico RESERVADO, no idea genérica
 
-Preservar la idea de que **en algún momento puedan aparecer dragones**. Su existencia, naturaleza, cantidad, territorio, relación con fauna mayor, cronología y papel narrativo permanecen **sin decidir**. No introducir rastros, rumores presentados como hechos, arte, encuentros ni referencias canónicas hasta autorización expresa. Una criatura peligrosa no equivale automáticamente a un jefe; se mantiene la distinción histórica entre especie e individuo excepcional.
+**Fuente histórica reservada:** `vintage-telnet/SECRETS.md` (Historiador 1). Allí ya existe un desarrollo de canon secreto sobre dragones y descubrimiento futuro. **No copiar sus detalles a este documento público ni exponerlos en resúmenes para jugadores.** No confundir «todavía no implementado en VT2» con «nunca definido»: antes de cualquier trabajo, el Historiador autorizado deberá consultar la fuente reservada, contrastarla con VT2 y decidir con el creador qué conservar. No activar pistas, encuentros ni implementación sin autorización.
 
-## 3. Una sociedad tecnológica
+## 3. Civilización o especie tecnológicamente avanzada con magia
 
-Preservar la idea de desarrollar **una sociedad tecnológica**. No definir todavía si es contemporánea, antigua, oculta, distante o futura; tampoco su localización, nivel tecnológico, especie, origen o relación con las regiones conocidas. No atribuirle la construcción de Vaisgard ni explicar con ella ruinas o misterios existentes: el origen del núcleo antiguo de Vaisgard sigue desconocido.
+**Fuente histórica:** `vintage-telnet/FUTURE_IDEAS.md` (Historiador 1). La idea original propone una civilización **o especie** con tecnología avanzada **combinada con la magia del mundo**. El registro original indica expresamente que no debe aparecer ni desarrollarse en la experiencia inicial. Su naturaleza, origen, localización, nivel tecnológico y relación con los pueblos actuales permanecen sin definir. No vincularla por inferencia con la construcción del núcleo antiguo de Vaisgard.
 
 ## Regla de reactivación
 
