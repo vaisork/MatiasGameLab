@@ -51,7 +51,7 @@
       "name": "Ribera seca",
       "region": "lethra",
       "kind": "road",
-      "description": "El camino sigue sobre raíces, junto a un cauce que se va ensanchando y oscureciendo. Detrás quedan las hondonadas de Vaisgard; por delante empiezan las hierbas húmedas y el olor a agua. Un ave cruza volando a la otra orilla, y con su vuelo se ve cuánto terreno escondían los tallos altos. El suelo todavía está seco, pero no por mucho.",
+      "description": "El camino sigue sobre raíces, junto a un cauce que se va ensanchando y oscureciendo. Al norte quedan las hondonadas de Vaisgard; al sur empiezan las hierbas húmedas y el olor a agua. Un ave cruza volando a la otra orilla, y con su vuelo se ve cuánto terreno escondían los tallos altos. El suelo todavía está seco, pero no por mucho.",
       "day": "Una recolectora limpia su cuchillo sobre una hoja seca y junta tallos sin raíces. Su cesta desprende un olor fresco que se distingue del barro. Al cerrar la cesta, la recolectora retira una hoja del cierre.",
       "night": "Las hierbas ocultan el agua antes que las estrellas desaparezcan sobre el cauce. La recolectora ya se marchó y dejó el apoyo vacío. Un chapoteo lejano se propaga sin señalar exactamente dónde comienza la otra orilla.",
       "rain": "La ribera mantiene una franja firme mientras las pequeñas bajadas se llenan de agua. Las plantas altas se inclinan con el peso de las gotas. El olor del barro sube antes de que cambie la anchura del camino.",
@@ -93,7 +93,7 @@
       "name": "Tierra blanda",
       "region": "lethra",
       "kind": "road",
-      "description": "El suelo firme se corta en manchas de hojas que se hunden al pisarlas, como una esponja, y sale un poco de agua. Dos varas clavadas marcan el paso estrecho por donde pueden ir las cargas sin hundirse. Una rana te mira desde el barro sin moverse. Más adelante, las raíces llevan al juncal.",
+      "description": "El suelo firme se corta en manchas de hojas que se hunden al pisarlas, como una esponja, y sale un poco de agua. Dos varas clavadas marcan el paso estrecho por donde pueden ir las cargas sin hundirse. Una rana te mira desde el barro sin moverse. Al sur, las raíces llevan al juncal.",
       "day": "Una viajera se detiene a cambiar el bulto de hombro y un acompañante deja pasar a la rana antes de seguir. La pausa produce un silencio breve, lleno de insectos que seguían sonando bajo las voces.",
       "night": "Las varas marcan el paso sobre hojas oscuras. Un farol ilumina la siguiente; fuera de ese círculo se oye un insecto y el roce del agua.",
       "rain": "Las hojas flotan sobre depresiones pequeñas y el camino firme queda más estrecho. Una viajera prueba el apoyo junto a las raíces antes de cargar. La rana salta bajo las hojas y deja un círculo de agua que se deshace entre raíces.",
@@ -135,7 +135,7 @@
       "name": "Paso entre los juncos",
       "region": "lethra",
       "kind": "road",
-      "description": "Los juncos, más altos que tú, se abren con el viento y dejan ver el agua brillando entre ellos; luego se cierran otra vez. Las pisadas mantienen despejada una franja entre los tallos. Se oye un susurro continuo, como si el juncal hablara. Por delante empiezan las primeras tablas, y un desvío lleva a un banco de barro.",
+      "description": "Los juncos, más altos que tú, se abren con el viento y dejan ver el agua brillando entre ellos; luego se cierran otra vez. Las pisadas mantienen despejada una franja entre los tallos. Se oye un susurro continuo, como si el juncal hablara. Al sur empiezan las primeras tablas, y un desvío lleva a un banco de barro.",
       "day": "Una artesana elige tallos secos y deja los verdes juntos para no abrir un hueco nuevo. Al atarlos, los juncos crujen con un sonido distinto del viento. Las fibras quedan junto al borde y el centro se mantiene libre para quienes pasan.",
       "night": "Los juncos tapan el agua. Al oeste, la tierra firme señala el paso al banco de barro. Un ave llama entre los tallos; no alcanzas a verla.",
       "rain": "Los juncos pesan más y se inclinan sobre la franja de tránsito. La artesana recoge su haz alto para que no arrastre barro. Las aberturas del viento ya no muestran lo mismo, aunque la primera tabla siga al sur.",
@@ -163,7 +163,14 @@
       "echoes": [
         "Una rana salta de un junco a otro y el tallo se dobla bajo su peso.",
         "El viento abre los juncos y por un momento se ve brillar el agua; luego se cierran otra vez.",
-        "Un Picojunco camina despacio entre los tallos, levantando mucho las patas."
+        {
+          "text": "Un Picojunco camina despacio entre los tallos, levantando mucho las patas.",
+          "requires_time": [
+            "amanecer",
+            "día",
+            "atardecer"
+          ]
+        }
       ]
     },
     "lethra_tablas_primeras": {
@@ -286,7 +293,7 @@
       "name": "Pasarela curva",
       "region": "lethra",
       "kind": "road",
-      "description": "Una pasarela de madera con baranda rodea un agua tan quieta que parece un espejo. La orilla de llegada parece estar justo enfrente, a un salto, pero hay que seguir toda la curva para alcanzarla. Tus pasos suenan huecos sobre las tablas. Más adelante asoman el techo y los postes de un embarcadero.",
+      "description": "Una pasarela de madera con baranda rodea un agua tan quieta que parece un espejo. La orilla de llegada parece estar justo enfrente, a un salto, pero hay que seguir toda la curva para alcanzarla. Tus pasos suenan huecos sobre las tablas. Hacia el sur asoman el techo y los postes de un embarcadero.",
       "day": "Una vecina lleva un recipiente ancho por la curva. Se detiene en el ensanchamiento para dejar pasar a alguien y vuelve a mirar la orilla de enfrente.",
       "night": "Los postes reflejan fragmentos de farol y pueden parecer una línea más directa que la pasarela. La curva se sigue por tablas y uniones. El techo del embarcadero deja de ayudar a leer cada apoyo cercano.",
       "rain": "El agua golpea los postes y devuelve pequeñas salpicaduras hacia la baranda. Las plantas bajo la curva retienen restos que llegan del remanso. Los viajeros miran si alguna rama alcanzó una unión antes de pisarla.",
@@ -410,7 +417,7 @@
       "name": "Senda sobre el agua",
       "region": "lethra",
       "kind": "road",
-      "description": "Una senda elevada pasa frente a viviendas separadas por canales. Cada puerta da a su propia plataforma, fuera del camino, con macetas y redes colgadas. La gente se llama por su nombre de una casa a otra, por encima del agua, y se pasan cosas con cestas atadas a cuerdas. Por delante ya se oyen las voces de Narevia.",
+      "description": "Una senda elevada pasa frente a viviendas separadas por canales. Cada puerta da a su propia plataforma, fuera del camino, con macetas y redes colgadas. La gente se llama por su nombre de una casa a otra, por encima del agua, y se pasan cosas con cestas atadas a cuerdas. Al sur ya se oyen las voces de Narevia.",
       "day": "Desde una ventana bajan una cesta y desde la siguiente devuelven dos paños doblados. La vecina llama a quien espera y le pide que acerque el asa.",
       "night": "Las ventanas se iluminan por separado y sus reflejos no dibujan otra senda sobre el canal. Los recipientes se recogen en plataformas propias. La plaza sigue audible al sur, aunque las conversaciones de las casas se vuelvan más breves.",
       "rain": "Los vecinos acercan las plataformas móviles a sus puertas y sujetan recipientes que estaban esperando. La senda pública continúa elevada sobre las corrientes pequeñas. Las viviendas responden a la lluvia sin intentar cerrar todos los canales.",
@@ -624,13 +631,33 @@
       "look": {
         "norte": "Una senda elevada sale sobre el agua, entre casas con plataformas propias.",
         "este": "Un taller con el techo abierto al canal; se ven hilos colgados como cortinas.",
-        "sur": "Barcas que descargan cestas directamente en los puestos. Huele a fruta y a madera mojada.",
+        "sur": "Puestos sobre plataformas, con barcas amarradas al lado: el mercado.",
         "oeste": "Los apoyos de madera se separan y el barro deja paso a tierra seca: por ahí se va hacia los campos de Edran."
       },
       "echoes": [
-        "Una barca pasa bajo una pasarela y quien rema se agacha justo a tiempo.",
-        "Alguien se tira al agua desde una plataforma con un chapuzón y sale por el otro lado riendo.",
-        "Un pescado salta en el canal y vuelve a caer; un niño lo señala, pero ya no está."
+        {
+          "text": "Una barca pasa bajo una pasarela y quien rema se agacha justo a tiempo.",
+          "requires_time": [
+            "amanecer",
+            "día",
+            "atardecer"
+          ]
+        },
+        {
+          "text": "Alguien se tira al agua desde una plataforma con un chapuzón y sale por el otro lado riendo.",
+          "requires_time": [
+            "amanecer",
+            "día",
+            "atardecer"
+          ]
+        },
+        "Un pescado salta en el canal y vuelve a caer; un niño lo señala, pero ya no está.",
+        {
+          "text": "Una barca con un farol en la proa pasa despacio bajo las pasarelas. Su luz recorre el agua y desaparece tras una casa.",
+          "requires_time": [
+            "noche"
+          ]
+        }
       ]
     },
     "lethra_taller_fibras": {
@@ -930,7 +957,7 @@
       "region": "lethra",
       "kind": "settlement",
       "description": "Las barcas traen la comida en cestas levantadas del fondo, y la descargan directamente en los puestos. Se separan las envolturas abiertas, para comer cerca, de las que se guardan húmedas para el viaje. Huele a hierbas cortadas, a fruta y a madera mojada. Se oye regatear y reír. Más allá está el muelle.",
-      "day": "Iria abre una envoltura y huele lo que contiene antes de ofrecerla. Una compradora aparta una hoja rota del borde y la guarda para remendar la suya.",
+      "day": "Una vendedora abre una envoltura y huele lo que contiene antes de ofrecerla. Una compradora aparta una hoja rota del borde y la guarda para remendar la suya.",
       "night": "Las hojas de los puestos dejan un olor húmedo sobre la mesa. Una vendedora cuenta dos recipientes vacíos y llama al dueño del tercero.",
       "rain": "Los vendedores levantan las cestas y retiran hojas salpicadas de agua sucia. Las barcas esperan lejos de las pasarelas hasta que quede sitio para descargar.",
       "clear": "",
@@ -1024,7 +1051,7 @@
             "viento"
           ],
           "overrides": {
-            "day": "Iria apoya una mano sobre la envoltura abierta. La compradora recoge la hoja rota antes de que caiga al canal y comprueba si todavía puede usarla."
+            "day": "La vendedora apoya una mano sobre la envoltura abierta. La compradora recoge la hoja rota antes de que caiga al canal y comprueba si todavía puede usarla."
           }
         }
       ],
@@ -1033,8 +1060,22 @@
       ],
       "brief": "El mercado de Narevia, entre barcas y cestas.",
       "echoes": [
-        "Una barca nueva llega al mercado y alguien grita «¡fruta fresca!» antes de amarrarla.",
-        "Una clienta huele una envoltura, arruga la nariz y elige otra.",
+        {
+          "text": "Una barca nueva llega al mercado y alguien grita «¡fruta fresca!» antes de amarrarla.",
+          "requires_time": [
+            "amanecer",
+            "día",
+            "atardecer"
+          ]
+        },
+        {
+          "text": "Una clienta huele una envoltura, arruga la nariz y elige otra.",
+          "requires_time": [
+            "amanecer",
+            "día",
+            "atardecer"
+          ]
+        },
         "El agua golpea suavemente los postes del puesto: chap, chap."
       ]
     },
@@ -1411,7 +1452,7 @@
       "name": "Ribera hacia Edran",
       "region": "lethra",
       "kind": "road",
-      "description": "Los apoyos de madera se separan a medida que te alejas de Narevia, y el barro deja paso a la tierra seca de los llanos: este camino sale hacia Edran. Bajo una cubierta común se pueden ajustar las envolturas y sacudirse el agua. Detrás todavía se oyen las voces del pueblo sobre el agua.",
+      "description": "Hacia el oeste, los apoyos de madera se separan y el barro deja paso a la tierra seca de los llanos: este camino une Narevia con Edran. Bajo una cubierta común se pueden ajustar las envolturas y sacudirse el agua. Al este se oyen las voces del pueblo sobre el agua.",
       "day": "Una viajera de campo sacude su capa lejos de las envolturas de comida. Un vecino le señala el apoyo exterior y le acerca un paño para las manos.",
       "night": "Las luces del pueblo se reflejan al este mientras el terreno occidental absorbe la oscuridad. La cubierta conserva un lugar de espera. Un viaje puede terminar su preparación sin fingir que conoce toda la Tierra Húmeda.",
       "rain": "El barro cae de las cargas sobre el apoyo exterior. Bajo la cubierta interior quedan los paquetes; una gota rueda desde la hierba occidental hasta la tabla de entrada.",
@@ -1477,7 +1518,7 @@
       "name": "Cruce del puente",
       "region": "lethra",
       "kind": "road",
-      "description": "Dos piedras marcan la franja alta junto al terreno que se inunda. En el suelo de abajo siguen las marcas de las crecidas, como rayas en un tronco. Detrás queda la senda de Narevia; por delante, un puente cruza hacia Edran, y un desvío lleva a un remanso donde se oyen aves.",
+      "description": "Dos piedras marcan la franja alta junto al terreno que se inunda. En el suelo de abajo siguen las marcas de las crecidas, como rayas en un tronco. Al este queda la senda de Narevia; al oeste, un puente cruza hacia Edran, y un desvío al sur lleva a un remanso donde se oyen aves.",
       "day": "Una cuidadora comprueba que las piedras puedan verse desde la senda alta y retira una rama del apoyo menor. Un viajero compara sus zapatos con el barro de abajo antes de escoger por dónde continuará.",
       "night": "Las piedras sólo se ven de cerca; el terreno bajo queda oscuro. Se oye un ave en el remanso del sur. La cuidadora deja su marca junto al apoyo alto.",
       "rain": "El agua reaparece abajo y confirma por qué los hitos se colocaron fuera de esa franja. La senda alta sigue visible mientras las huellas inferiores se borran. Una rama pasa flotando por debajo de la piedra menor.",
@@ -1518,7 +1559,7 @@
       "brief": "El cruce del puente, entre dos piedras.",
       "look": {
         "este": "Una ribera con apoyos de madera lleva hacia las voces de un pueblo sobre el agua.",
-        "sur": "Un remanso tranquilo. Se oye llamar a un ave, y otra que le contesta.",
+        "sur": "Un remanso tranquilo entre juncos, con una raíz seca en la orilla.",
         "oeste": "Un puente de tablas cruza el agua hacia tierra más seca: el camino de Edran."
       }
     },

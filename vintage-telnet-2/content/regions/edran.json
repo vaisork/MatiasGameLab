@@ -160,15 +160,48 @@
       ],
       "brief": "La plaza de Valdren, con su banco largo partido por una piedra.",
       "look": {
-        "norte": "Una calle corta sube empinada entre casas apretadas. Al final se oye un martillo, y a veces sale humo entre los tejados.",
+        "norte": "Una calle corta sube empinada entre casas apretadas. Al final, entre los tejados, asoma la chimenea de una fragua.",
         "este": "Un camino de tierra se mete entre huertos y cercas bajas. Más allá, las cercas se abren y empieza el campo.",
-        "sur": "Hay un patio de piedra con un tejadillo en medio. Se oye una cuerda que sube y baja, y el golpe de un cubo.",
+        "sur": "Hay un patio de piedra con un tejadillo en medio y dos cuerdas colgando sobre un brocal.",
         "oeste": "Un cobertizo grande de tablas oscuras deja asomar las varas de un carro. Huele a grasa y a madera."
       },
       "echoes": [
-        "Un perro cruza la plaza al trote, olfatea la piedra del banco y sigue su camino como si tuviera prisa.",
-        "Desde la fragua llegan tres golpes de martillo, una pausa, y otros tres.",
-        "Una ventana se abre y alguien sacude un mantel. Caen migas y bajan dos Gorriones de ruta a por ellas."
+        {
+          "text": "Un perro cruza la plaza al trote, olfatea la piedra del banco y sigue su camino como si tuviera prisa.",
+          "requires_time": [
+            "amanecer",
+            "día",
+            "atardecer"
+          ]
+        },
+        {
+          "text": "Desde la fragua llegan tres golpes de martillo, una pausa, y otros tres.",
+          "requires_time": [
+            "amanecer",
+            "día",
+            "atardecer"
+          ]
+        },
+        {
+          "text": "Una ventana se abre y alguien sacude un mantel. Caen migas y bajan dos Gorriones de ruta a por ellas.",
+          "requires_time": [
+            "amanecer",
+            "día",
+            "atardecer"
+          ]
+        },
+        {
+          "text": "Un gato cruza la plaza vacía y se sienta un momento en la piedra del banco, como si fuera suya.",
+          "requires_time": [
+            "noche"
+          ]
+        },
+        {
+          "text": "En una casa se apaga la última vela. La plaza queda a oscuras y sólo se oye el pozo, lejos.",
+          "requires_time": [
+            "noche"
+          ]
+        }
       ]
     },
     "valdren_fragua": {
@@ -979,7 +1012,7 @@
       "name": "Salida de las Cercas Bajas",
       "region": "edran",
       "kind": "road",
-      "description": "Aquí se acaban las casas. Las cercas bajan hasta la altura de la rodilla y el viento del campo llega de frente, oliendo a hierba y a tierra removida. Dos postes de madera, uno a cada lado, marcan la entrada de Valdren: quien vuelve de lejos los busca con la vista. Un camino sigue la acequia hacia los campos abiertos; otro dobla junto a las cercas, sin ir recto, camino de los graneros. Detrás, el pueblo suena a voces y a martillo; delante, sólo a viento.",
+      "description": "Aquí se acaban las casas. Las cercas bajan hasta la altura de la rodilla y el viento del campo llega de frente, oliendo a hierba y a tierra removida. Dos postes de madera, uno a cada lado, marcan la entrada de Valdren: quien vuelve de lejos los busca con la vista. Un camino sigue la acequia hacia los campos abiertos; otro dobla junto a las cercas, sin ir recto, camino de los graneros. Al oeste, el pueblo suena a voces y a martillo; al este, sólo a viento.",
       "day": "Una persona abre la cerca para pasar con una cesta y vuelve a apoyarla sin atarla. Su trayecto es corto; las huellas que siguen la acequia llevan carros.",
       "night": "La luz de la cocina alcanza el último huerto, pero termina antes de la curva. Más allá puedes orientarte por la línea baja de las cercas y el sonido del agua.",
       "rain": "La casa desagua hacia el huerto oscuro. El camino conserva una franja firme junto a la cerca izquierda, donde las ruedas no han abierto surcos.",
@@ -1290,9 +1323,29 @@
       },
       "brief": "El campo de surcos: tierra clara y tallos viejos.",
       "echoes": [
-        "Un Ala parda se posa en un surco nuevo, picotea algo y sale volando con un gusano en el pico.",
+        {
+          "text": "Un Ala parda se posa en un surco nuevo, picotea algo y sale volando con un gusano en el pico.",
+          "requires_time": [
+            "amanecer",
+            "día",
+            "atardecer"
+          ]
+        },
         "El viento mueve los tallos viejos y suenan como papel arrugado.",
-        "A lo lejos, la agricultora se endereza, se estira la espalda y vuelve a agacharse."
+        {
+          "text": "A lo lejos, la agricultora se endereza, se estira la espalda y vuelve a agacharse.",
+          "requires_time": [
+            "amanecer",
+            "día",
+            "atardecer"
+          ]
+        },
+        {
+          "text": "Un Grillo campana suena entre los tallos viejos; otro le contesta desde el lindero.",
+          "requires_time": [
+            "noche"
+          ]
+        }
       ]
     },
     "edran_lindero": {
@@ -1493,7 +1546,14 @@
       ],
       "brief": "La arboleda de los tres árboles y su banco de tierra.",
       "echoes": [
-        "Una Liebre corta asoma entre las raíces del árbol del medio, te mira y desaparece de un salto en la hierba.",
+        {
+          "text": "Una Liebre corta asoma entre las raíces del árbol del medio, te mira y desaparece de un salto en la hierba.",
+          "requires_time": [
+            "amanecer",
+            "día",
+            "atardecer"
+          ]
+        },
         "Cae una hoja, despacio, dando vueltas, hasta posarse en el banco de tierra.",
         "El viento hace crujir las tres copas a la vez, como si hablaran entre ellas."
       ]
@@ -1503,7 +1563,7 @@
       "name": "Camino de carros",
       "region": "edran",
       "kind": "road",
-      "description": "Un camino de tierra marcado por las ruedas. Ante una pequeña subida, las rodadas se separan en dos: una pasa por arriba, firme y seca; la otra baja por una hondonada donde siempre queda algo de barro. Más adelante vuelven a juntarse, como dos amigos que se han peleado y hacen las paces. Unas piedras bajas marcan el borde para que nadie se salga. Hacia el norte se adivina el techo de un refugio para viajeros.",
+      "description": "Un camino de tierra marcado por las ruedas. Ante una pequeña subida, las rodadas se separan en dos: una pasa por arriba, firme y seca; la otra baja por una hondonada donde siempre queda algo de barro. Pasada la subida vuelven a juntarse, como dos amigos que se han peleado y hacen las paces. Unas piedras bajas marcan el borde para que nadie se salga. Hacia el norte se adivina el techo de un refugio para viajeros.",
       "day": "Un carro vacío utiliza la hondonada; uno cargado toma la rodada alta y avanza despacio. Sus conductores se saludan cuando pueden verse, antes de llegar al cruce.",
       "night": "La rodada alta conserva mejor el contraste con la tierra. La hondonada corta el sonido de los pasos y oculta el borde de la parcela.",
       "rain": "La rodada derecha se convierte en un hilo de agua. Los carros buscan la izquierda y dejan el centro libre para quienes van a pie.",
@@ -1682,7 +1742,7 @@
       "name": "Era de los campos",
       "region": "edran",
       "kind": "landmark",
-      "description": "Un círculo grande de tierra apisonada, dura y lisa como una mesa, donde se trabaja el grano después de la cosecha. Alrededor, piedras planas sujetan unos tablones para que el viento no se los lleve. En el borde se levanta un poste viejo: mirando cómo se mueve el polvo a su alrededor se sabe de dónde sopla el viento. Detrás quedan los campos; delante, el camino empieza a subir. La senda occidental gira al sur hasta el extremo de la zanja.",
+      "description": "Un círculo grande de tierra apisonada, dura y lisa como una mesa, donde se trabaja el grano después de la cosecha. Alrededor, piedras planas sujetan unos tablones para que el viento no se los lleve. En el borde se levanta un poste viejo: mirando cómo se mueve el polvo a su alrededor se sabe de dónde sopla el viento. Al sur quedan los campos; al norte, el camino empieza a subir. La senda occidental gira al sur hasta el extremo de la zanja.",
       "day": "Un ave picotea el último grano junto al borde de la era. Al fondo alguien sacude un paño; el polvo permanece en el aire después de que termina.",
       "night": "El borde de la era conserva claridad. Un ratón sale hasta una espiga rota y la arrastra de vuelta a la hierba.",
       "rain": "La tierra firme no absorbe el agua enseguida. Los tablones se retiran de los pequeños charcos para que no se hinchen antes del próximo trabajo.",
@@ -1861,7 +1921,7 @@
       "name": "Paso hacia Veyra",
       "region": "edran",
       "kind": "landmark",
-      "description": "Un poste de madera y una losa de piedra marcan el sitio donde terminan los campos de Edran. Más allá, el terreno cambia: menos cercas, más piedra, más viento. Delante, tres piedras puestas en fila cruzan un arroyo, una detrás de otra, hacia la puerta de Veyra, que todavía no se ve. El agua suena fría al pasar entre ellas. A un lado, un desvío lleva a un mirador desde el que se ve toda la cuenca.",
+      "description": "Un poste de madera y una losa de piedra marcan el sitio donde terminan los campos de Edran. Más allá, el terreno cambia: menos cercas, más piedra, más viento. Al norte, tres piedras puestas en fila cruzan un arroyo, una tras otra, hacia la puerta de Veyra, que todavía no se ve. El agua suena fría al pasar entre ellas. A un lado, un desvío lleva a un mirador desde el que se ve toda la cuenca.",
       "day": "Un carro deja una marca de barro sobre la primera piedra del cauce. El conductor comprueba que la carga siga fija antes de entrar en la ladera.",
       "night": "Las piedras del cauce retienen una claridad tenue. La puerta de Veyra no se ve desde este punto; su dirección depende del camino que sube tras el agua.",
       "rain": "El cauce cubre los bordes de las piedras, aunque mantiene visibles sus centros. El poste queda en suelo alto, donde puede esperar alguien sin cortar el paso.",
@@ -2030,7 +2090,7 @@
       "name": "Sendero del Agua Oculta",
       "region": "edran",
       "kind": "road",
-      "description": "Un sendero de tierra firme se abre paso entre juncos más altos que una persona. El agua se oye muy cerca, corriendo, pero no se ve: los juncos la esconden. Los tallos susurran al rozarse. Hay una zona despejada con marcas de cargas, donde todavía caben dos personas juntas. Más adelante el paso se estrecha y hay que ir de uno en uno, rozando los tallos con los hombros.",
+      "description": "Un sendero de tierra firme se abre paso entre juncos más altos que una persona. El agua se oye muy cerca, corriendo, pero no se ve: los juncos la esconden. Los tallos susurran al rozarse. Hay una zona despejada con marcas de cargas, donde todavía caben dos personas juntas. Hacia el puente, el paso se estrecha y hay que ir de uno en uno, rozando los tallos con los hombros.",
       "day": "Un viajero golpea suavemente el borde del sendero con una vara y busca dónde cambia su firmeza. No tantea dentro de los juncos, donde perdería de vista el paso.",
       "night": "El roce de los juncos cubre por momentos el sonido del agua. El terreno abierto queda detrás como último sitio donde dos personas pueden pasar juntas.",
       "rain": "La tierra firme se reduce a una franja, pero conserva continuidad. El agua corre entre raíces del lado bajo sin cruzar todavía el sendero.",
@@ -2276,7 +2336,14 @@
       "max_layers": 2,
       "brief": "El estanque del reflejo partido por un tronco.",
       "echoes": [
-        "Una Libélula clara se queda quieta sobre la mitad tranquila del estanque, como si estuviera pintada.",
+        {
+          "text": "Una Libélula clara se queda quieta sobre la mitad tranquila del estanque, como si estuviera pintada.",
+          "requires_time": [
+            "amanecer",
+            "día",
+            "atardecer"
+          ]
+        },
         "Un pez asoma la boca en la superficie, hace un círculo y desaparece.",
         "Una hoja llega flotando por la corriente, choca con el tronco hundido y se queda allí, atrapada."
       ]

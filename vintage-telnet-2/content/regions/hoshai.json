@@ -51,7 +51,7 @@
       "name": "Primera subida",
       "region": "hoshai",
       "kind": "road",
-      "description": "Aquí termina la grava de la cuenca y empiezan los pastos cortos de la sierra, verdes y duros. Detrás queda la rampa de Vaisgard; por delante, la montaña se levanta de golpe. Un arroyo frío cruza el camino saltando sobre piedras redondas, y antes de pasarlo hay un ensanche para dejar la carga y tomar aliento. El aire ya es otro: más fino, más frío.",
+      "description": "Aquí termina la grava de la cuenca y empiezan los pastos cortos de la sierra, verdes y duros. Al sur queda la rampa de Vaisgard; al norte, la montaña se levanta de golpe. Un arroyo frío cruza el camino saltando sobre piedras redondas, y antes de pasarlo hay un ensanche para dejar la carga y tomar aliento. El aire ya es otro: más fino, más frío.",
       "day": "Una pastora recoge una cuerda del arroyo y deja libre la entrada al ascenso. Su compañero espera con las bestias en terreno ancho, sin exigirles girar donde el camino ya empieza a estrecharse.",
       "night": "La ciudad conserva un resplandor al sur, pero la pendiente norte lo oculta en cuanto avanzas. El arroyo permite reconocer el pie del ascenso por su sonido; no revela cómo cruzar cada piedra cercana.",
       "rain": "El arroyo crece hacia la banda de pasto pisado. La pastora aparta a las bestias antes de que se mezclen sus huellas con la corriente. La entrada firme continúa junto al talud, no por el centro brillante.",
@@ -272,7 +272,14 @@
       "brief": "El pinar abierto y sus claros sobre el valle.",
       "echoes": [
         "Una piña cae de lo alto y rebota en una roca con un ruido seco.",
-        "El Pico gris vuelve a golpear el tronco: toc, toc, toc.",
+        {
+          "text": "El Pico gris vuelve a golpear el tronco: toc, toc, toc.",
+          "requires_time": [
+            "amanecer",
+            "día",
+            "atardecer"
+          ]
+        },
         "El viento pasa entre los pinos y suena como agua lejana."
       ]
     },
@@ -509,10 +516,10 @@
         }
       ],
       "look": {
-        "sur": "Dos paredes de roca se juntan tanto que sólo cabe una carga. Se oye un golpe de aviso.",
+        "sur": "Dos paredes de roca se juntan tanto que sólo cabe una carga. En la entrada hay una piedra plana para avisar.",
         "norte": "Escalones al sol suben hacia los tejados oscuros de un pueblo.",
         "este": "Un saliente de roca se asoma a un barranco. Una cuerda cruza el vacío.",
-        "oeste": "Una lona azul tapa unas cajas junto al camino. Alguien vigila al lado."
+        "oeste": "Una lona azul tapa unas cajas junto al camino."
       }
     },
     "hoshai_escalones_sol": {
@@ -722,14 +729,34 @@
       "brief": "La plaza de Khariel, en dos terrazas con rampa.",
       "look": {
         "sur": "Escalones de piedra bajan hacia una terraza ancha. Más abajo, el valle entero, y el vacío.",
-        "oeste": "Una puerta de la que sale olor a serrín y ruido de herramientas.",
+        "oeste": "Una puerta de taller, con virutas de madera en el umbral.",
         "este": "Entre muros que cortan el viento ondean cintas de colores, como banderas pequeñas.",
-        "norte": "Puertas repartidas entre escalones y descansos, una encima de otra. Se oyen voces y platos."
+        "norte": "Puertas repartidas entre escalones y descansos, una encima de otra."
       },
       "echoes": [
-        "Una ráfaga de viento hace volar una cinta de colores desde el mercado; un joven Felaryn salta y la atrapa al vuelo.",
+        {
+          "text": "Una ráfaga de viento hace volar una cinta de colores desde el mercado; un joven Felaryn salta y la atrapa al vuelo.",
+          "requires_time": [
+            "amanecer",
+            "día",
+            "atardecer"
+          ]
+        },
         "Alguien llama a otro por su nombre desde la terraza alta, y le contestan desde la baja.",
-        "Un niño baja la rampa corriendo con los brazos abiertos, como si volara."
+        {
+          "text": "Un niño baja la rampa corriendo con los brazos abiertos, como si volara.",
+          "requires_time": [
+            "amanecer",
+            "día",
+            "atardecer"
+          ]
+        },
+        {
+          "text": "Desde la terraza alta, el silbato prueba otra vez sus dos notas. Una ventana se cierra, sin enfado.",
+          "requires_time": [
+            "noche"
+          ]
+        }
       ]
     },
     "hoshai_taller_apoyos": {
@@ -1203,9 +1230,29 @@
       ],
       "brief": "El balcón sobre el valle, con su banco lejos del borde.",
       "echoes": [
-        "Un ave grande planea sobre el valle sin mover las alas, subiendo con el aire caliente.",
-        "Muy abajo, una carga minúscula aparece en el camino, se esconde tras la roca y vuelve a aparecer.",
-        "Una nube pasa por debajo del balcón. Por un momento, el valle desaparece."
+        {
+          "text": "Un ave grande planea sobre el valle sin mover las alas, subiendo con el aire caliente.",
+          "requires_time": [
+            "amanecer",
+            "día",
+            "atardecer"
+          ]
+        },
+        {
+          "text": "Muy abajo, una carga minúscula aparece en el camino, se esconde tras la roca y vuelve a aparecer.",
+          "requires_time": [
+            "amanecer",
+            "día",
+            "atardecer"
+          ]
+        },
+        "Una nube pasa por debajo del balcón. Por un momento, el valle desaparece.",
+        {
+          "text": "Muy abajo, en el valle, una luz se enciende y se apaga. Luego, otra, más lejos.",
+          "requires_time": [
+            "noche"
+          ]
+        }
       ]
     },
     "hoshai_mirador_nudo": {
@@ -1524,7 +1571,7 @@
       "name": "Camino de las lajas",
       "region": "hoshai",
       "kind": "landmark",
-      "description": "El sendero dobla entre lajas de piedra inclinadas; con el brillo del sol pueden parecer planas, y no lo son: hay que pisar con cuidado. Una tablilla recoge noticias de los viajeros. Detrás todavía se ve el pino del collado, pequeño; por delante, el camino baja a la garganta que lleva a Korven.",
+      "description": "El sendero dobla entre lajas de piedra inclinadas; con el brillo del sol pueden parecer planas, y no lo son: hay que pisar con cuidado. Una tablilla recoge noticias de los viajeros. Al este todavía se ve el pino del collado, pequeño; al oeste, el camino baja a la garganta que lleva a Korven.",
       "day": "Un mensajero lee la última marca de revisión y mira la garganta. Su compañero espera lejos de las lajas inclinadas y aprieta la correa que llevaba suelta.",
       "night": "El farol se refleja en las lajas y oculta sus pendientes. El mensajero marca su llegada en la tablilla. La garganta queda oscura más adelante.",
       "rain": "El agua dibuja líneas nuevas sobre las lajas y destaca su inclinación hacia la hondonada. Los viajeros revisan las cubiertas antes de salir del abrigo de la sierra. La piedra seca del oeste aún queda más allá de la garganta.",
@@ -1549,7 +1596,7 @@
       "name": "Garganta hacia Korven",
       "region": "hoshai",
       "kind": "road",
-      "description": "Las paredes de la garganta van perdiendo plantas a medida que bajas, y el aire empieza a traer polvo de piedras claras: abajo empieza Korven. El eco repite tus pasos. Un ensanche permite que dos cargas se crucen sin rozar la roca. Hace calor seco, distinto del frío de arriba.",
+      "description": "Las paredes de la garganta pierden plantas hacia el sur, y el aire trae polvo de piedras claras: por ahí abajo empieza Korven. El eco repite tus pasos. Un ensanche permite que dos cargas se crucen sin rozar la roca. Hace calor seco, distinto del frío de arriba.",
       "day": "Una viajera sacude agujas del pinar antes de revisar el polvo sobre sus cubiertas. Otros esperan en el ensanchamiento a que ascienda una carga.",
       "night": "El aire mueve polvo que el farol vuelve visible demasiado cerca de los ojos. Los viajeros reducen el paso hasta reconocer el ensanchamiento. El hombro de la sierra queda atrás sin conservar su vista nocturna sobre el camino.",
       "rain": "El agua se reúne en pequeñas juntas antes de desaparecer entre cascajos occidentales. Las cubiertas mojan una carga que enseguida recoge polvo. Una viajera levanta la tela mojada y limpia el polvo que se pegó al apoyo.",
@@ -1636,7 +1683,7 @@
       "name": "Parada del cordel",
       "region": "hoshai",
       "kind": "landmark",
-      "description": "Un cordel une dos árboles fuera del sendero; sus nudos y marcas dicen dónde apoyar las cargas. Bajo una cubierta se guardan notas del camino, protegidas de la lluvia. Detrás quedan las casas de Khariel. Por delante, los troncos se juntan y la luz se oscurece: por ahí la ruta entra en el Dosel Alto de Nhal.",
+      "description": "Un cordel une dos árboles fuera del sendero; sus nudos y marcas dicen dónde apoyar las cargas. Bajo una cubierta se guardan notas del camino, protegidas de la lluvia. Al oeste quedan las casas de Khariel. Al este, los troncos se juntan y la luz se oscurece: por ahí la ruta entra en el Dosel Alto de Nhal.",
       "day": "La cuidadora Felaryn espera a la mensajera Vesperi. Extienden sus notas juntas; una señala la raíz dibujada y la otra el nudo del siguiente tramo.",
       "night": "Las marcas del cordel quedan oscuras. La cubierta de notas está cerrada; debajo hay sitio para apoyar un farol. La senda sigue al este entre los árboles.",
       "rain": "La cubierta protege las notas, pero los árboles descargan agua sobre la senda. Las dos cuidadoras miran los apoyos cercanos antes de recomendar un tramo.",

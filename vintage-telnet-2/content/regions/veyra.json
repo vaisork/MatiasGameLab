@@ -204,14 +204,34 @@
       "brief": "El mercado de Vaisgard, partido por su canal pequeño.",
       "look": {
         "norte": "El empedrado se abre en una plaza grande donde se cruza gente de todas partes. Se ven capas de montaña y carretas de piedra.",
-        "sur": "Se oye agua corriendo sin parar. Hay una pila de piedra y gente con jarras.",
-        "este": "Una calle cubierta de toldos de colores, tan juntos que la luz llega azul y roja. Se oyen martillos pequeños.",
-        "oeste": "Una calle de almacenes con escaleras por fuera. Pasan carros despacio, cargados de sacos."
+        "sur": "Una pila de piedra con una baranda alrededor, y el ruido del agua que no para nunca.",
+        "este": "Una calle cubierta de toldos de colores, tan juntos que la luz llega azul y roja.",
+        "oeste": "Una calle de almacenes con escaleras de piedra por fuera de las casas."
       },
       "echoes": [
-        "Una vendedora grita el precio de las manzanas; la de enfrente grita uno más bajo; las dos se ríen.",
-        "Un niño se escapa entre los puestos con una fruta en la mano. Nadie lo persigue: era suya.",
-        "El canal pequeño trae una hoja que gira sobre sí misma y desaparece bajo un puesto."
+        {
+          "text": "Una vendedora grita el precio de las manzanas; la de enfrente grita uno más bajo; las dos se ríen.",
+          "requires_time": [
+            "amanecer",
+            "día",
+            "atardecer"
+          ]
+        },
+        {
+          "text": "Un niño se escapa entre los puestos con una fruta en la mano. Nadie lo persigue: era suya.",
+          "requires_time": [
+            "amanecer",
+            "día",
+            "atardecer"
+          ]
+        },
+        "El canal pequeño trae una hoja que gira sobre sí misma y desaparece bajo un puesto.",
+        {
+          "text": "Un vendedor rezagado ata la lona de su puesto y se va silbando. Entre los muros, el canal pequeño sigue sonando.",
+          "requires_time": [
+            "noche"
+          ]
+        }
       ]
     },
     "veyra_plaza_rutas": {
@@ -304,15 +324,42 @@
         }
       ],
       "look": {
-        "sur": "Puestos, cestas y voces: el mercado, apretado entre muros viejos.",
+        "sur": "Puestos y toldos apretados entre muros viejos: el mercado.",
         "norte": "El suelo empieza a subir hacia una puerta. Más allá, lejos y azul, se ve la sierra.",
-        "oeste": "Un patio con animales de carga a la sombra, junto a un bebedero. Huele a paja.",
-        "este": "Un alero con tablillas colgadas que se mueven con el aire. Alguien lee sentado en un banco."
+        "oeste": "Un patio con argollas en el muro y un bebedero de piedra para los animales de carga.",
+        "este": "Un alero con tablillas colgadas que se mueven con el aire, y un banco debajo."
       },
       "echoes": [
-        "Llega una carreta de piedra y su conductor saluda a otro que se va con cestas vacías.",
-        "Un mensajero lee en voz alta un aviso, y un grupo de viajeros se acerca a escuchar.",
-        "Una paloma se posa en una de las piedras antiguas, se esponja y se queda dormida al sol."
+        {
+          "text": "Llega una carreta de piedra y su conductor saluda a otro que se va con cestas vacías.",
+          "requires_time": [
+            "amanecer",
+            "día",
+            "atardecer"
+          ]
+        },
+        {
+          "text": "Un mensajero lee en voz alta un aviso, y un grupo de viajeros se acerca a escuchar.",
+          "requires_time": [
+            "amanecer",
+            "día",
+            "atardecer"
+          ]
+        },
+        {
+          "text": "Un Gorrión de ruta se posa en una de las piedras antiguas, se esponja y se queda dormido al sol.",
+          "requires_time": [
+            "amanecer",
+            "día",
+            "atardecer"
+          ]
+        },
+        {
+          "text": "Por el camino de la sierra baja un farol. Se detiene en el borde de la plaza y se apaga: alguien ha llegado.",
+          "requires_time": [
+            "noche"
+          ]
+        }
       ]
     },
     "veyra_calle_toldos": {
@@ -827,7 +874,7 @@
       "name": "Huerta bajo las Escaleras",
       "region": "veyra",
       "kind": "wilderness",
-      "description": "Una franja de huerta se esconde al pie de las casas, regada por canales pequeños que bajan de la calle. Crecen hierbas de olor, semillas y alguna verdura, en bancales estrechos entre piedras. Las herramientas se guardan en un cobertizo bajo. Arriba se oye la ciudad; aquí abajo, sólo el agua y algún insecto. Por detrás, el terreno sube hacia una colina abierta.",
+      "description": "Una franja de huerta se esconde al pie de las casas, regada por canales pequeños que bajan de la calle. Crecen hierbas de olor, semillas y alguna verdura, en bancales estrechos entre piedras. Las herramientas se guardan en un cobertizo bajo. Arriba se oye la ciudad; aquí abajo, sólo el agua y algún insecto. Al sur, el terreno sube hacia una colina abierta.",
       "day": "Una vecina busca pulgones bajo una hoja y deja intacta una mariquita. En el escalón, un niño cuenta las manchas rojas de un fruto antes de decidir si ya puede cogerlo.",
       "night": "Las hojas rozan el último escalón. Algo roe bajo el bancal y cesa cuando se abre una puerta encima de la huerta.",
       "rain": "El agua del talud lleva arena hacia el primer bancal. La hortelana protege los brotes con una estera inclinada y abre una zanja de desvío, evitando que la corriente de la calle se confunda con el riego.",
@@ -909,7 +956,7 @@
       "name": "Colina de las Procedencias",
       "region": "veyra",
       "kind": "landmark",
-      "description": "Desde lo alto de esta colina se ve toda la cuenca, como un mapa de verdad: Vaisgard detrás, con sus muros viejos, y por delante caminos que se van entre campos, roca y árboles hacia los cinco pueblos. La sierra azulea a lo lejos. El viento sopla fuerte y trae olores mezclados. Una senda ancha baja hacia la vega; detrás, la bajada de la huerta lleva de vuelta a la ciudad.",
+      "description": "Desde lo alto de esta colina se ve toda la cuenca, como un mapa de verdad: Vaisgard al norte, con sus muros viejos, y hacia el sur caminos que se van entre campos, roca y árboles hacia los cinco pueblos. La sierra azulea a lo lejos. El viento sopla fuerte y trae olores mezclados. Una senda ancha baja al sur hacia la vega; al norte, la bajada de la huerta lleva de vuelta a la ciudad.",
       "day": "El agrimensor compara dos postes del campo. Espera a que pase un carro para volver a medir la distancia.",
       "night": "Las luces de las entradas dibujan una ciudad más pequeña que sus muros. Fuera de ellas sólo algunas cargas llevan farol. La distancia hacia los pueblos no puede adivinarse siguiendo un punto luminoso.",
       "rain": "La lluvia tapa los caminos bajos. Aún distingues los tejados altos de Vaisgard. El agrimensor cubre su cuaderno.",
@@ -1203,7 +1250,7 @@
       "name": "Subida de grava",
       "region": "veyra",
       "kind": "road",
-      "description": "Una rampa de grava sube desde la ciudad, y cada paso hace crujir las piedrecitas. A un lado hay sitio para que los carros paren a ajustar la carga. Abajo, una hondonada se ha llenado de piedras arrastradas por las lluvias, y el camino la rodea con cuidado. Por delante empiezan las laderas de Hoshai; el aire ya es más fino y más frío.",
+      "description": "Una rampa de grava sube desde la ciudad, y cada paso hace crujir las piedrecitas. A un lado hay sitio para que los carros paren a ajustar la carga. Abajo, una hondonada se ha llenado de piedras arrastradas por las lluvias, y el camino la rodea con cuidado. Al norte empiezan las laderas de Hoshai, donde el aire es más fino y más frío.",
       "day": "El viajero prueba el terreno con la punta del bastón. Señala un borde firme a sus compañeros; detrás de ellos, la puerta de la ciudad se ve entre los taludes.",
       "night": "Las luces de la puerta quedan cuesta abajo. Con un farol puedes ver las piedras cercanas, pero no el terreno detrás de la siguiente loma.",
       "rain": "El arroyo oculto se hace audible bajo las piedras. Una corriente corta cruza la rampa sin borrar la dirección general. Las huellas profundas del descansadero aconsejan apoyar las cargas sobre el borde firme en vez del centro.",
@@ -1229,7 +1276,7 @@
       "name": "Camino de piedra",
       "region": "veyra",
       "kind": "road",
-      "description": "Un camino de piedras claras que crujen al pisarlas y brillan con el sol. Un arroyo seco lo corta, y los carros lo cruzan por una entrada inclinada, despacio, para no volcar. Por detrás todavía se ve la puerta de Vaisgard; por delante, una loma tapa el resto del camino hacia Korven.",
+      "description": "Un camino de piedras claras que crujen al pisarlas y brillan con el sol. Un arroyo seco lo corta, y los carros lo cruzan por una entrada inclinada, despacio, para no volcar. Al este todavía se ve la puerta de Vaisgard; al oeste, una loma tapa el resto del camino hacia Korven.",
       "day": "Una cuadrilla aparta cascajos del giro sin intentar barrer todo el camino. Su conductora deja que el carro pase vacío antes de acercar una carga. El paso seguro se verifica con ruedas, no con una promesa.",
       "night": "Las piedras claras guardan algo de luz cuando la ciudad queda detrás de la loma. Una rueda que llega se oye antes de verse. El arroyo seco parece más ancho porque sus bordes dejan de distinguirse.",
       "rain": "El cauce empieza a reunir agua en pequeñas bolsas separadas. Los cascajos firman cada huella con barro oscuro. La entrada inclinada sigue visible, pero los trabajadores comprueban que el agua no haya socavado su borde.",
@@ -1339,7 +1386,7 @@
       "name": "Entrada al bosque",
       "region": "veyra",
       "kind": "road",
-      "description": "Tres grupos de árboles van cerrando el camino poco a poco: aquí empieza el bosque de Nhal. Al principio caben los carros; más adelante, las raíces levantan el suelo y hay que mirar dónde se pisa. La luz se vuelve verde y el aire, más húmedo. Detrás todavía se ve la puerta de Vaisgard, y a un lado se abre un desvío hacia una cantera vieja.",
+      "description": "Tres grupos de árboles van cerrando el camino poco a poco: aquí empieza el bosque de Nhal. Junto a la ciudad caben los carros; hacia el este, las raíces levantan el suelo y hay que mirar dónde se pisa. La luz se vuelve verde y el aire, más húmedo. Al oeste todavía se ve la puerta de Vaisgard, y al sur se abre un desvío hacia una cantera vieja.",
       "day": "Un cargador recoge ramas caídas y las apila junto a la parcela. Deja libres las raíces y el paso hacia el bosque.",
       "night": "La tercera franja parece comenzar más cerca cuando desaparece la luz del suelo. Desde la ciudad se oye una herramienta, pero no llega hasta el bosque. El cargador recoge su cordel antes de perderlo entre raíces.",
       "rain": "Las hojas retienen gotas después de que la primera parcela queda bajo un chaparrón abierto. El cambio de sonido distingue las tres franjas. El agua vuelve resbaladizas las raíces que de día bastaban para marcar el ascenso.",
