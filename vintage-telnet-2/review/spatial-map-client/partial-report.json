@@ -1,0 +1,14 @@
+{
+  "scope": "Partial 10-room Valdren display fixture; stable absolute server positions, only visited room extent used",
+  "status": "PASS",
+  "nodes": 10,
+  "bounds": {
+    "width": 710,
+    "height": 982,
+    "scale": 0.446322
+  },
+  "worldY": [
+    34,
+    39
+  ]
+}

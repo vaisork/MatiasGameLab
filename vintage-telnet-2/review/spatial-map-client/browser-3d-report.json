@@ -1,0 +1,27 @@
+{
+  "scope": "Real Chromium WebGL rendering of isolated184-room/197-road Engine snapshot fixture, not physical mobile or gameplay session; no production actions",
+  "results": [
+    {
+      "width": 393,
+      "actualWebGL": {
+        "width": 337,
+        "height": 456,
+        "webgl": true,
+        "lost": false
+      },
+      "closedCanvases": 0,
+      "pageErrors": []
+    },
+    {
+      "width": 1440,
+      "actualWebGL": {
+        "width": 504,
+        "height": 456,
+        "webgl": true,
+        "lost": false
+      },
+      "closedCanvases": 0,
+      "pageErrors": []
+    }
+  ]
+}

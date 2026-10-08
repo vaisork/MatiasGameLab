@@ -1430,7 +1430,7 @@
       "name": "Pasillo detrás de los sacos",
       "region": "korven",
       "kind": "interior",
-      "description": "Un hueco entre los sacos permite llegar al depósito sur. Al oeste vuelves al cruce. Hay un cordel atado para no mover los sacos que sujetan el resto.",
+      "description": "Un hueco entre los sacos deja pasar al corredor sur. El corredor dobla al oeste antes de llegar al depósito del fondo. Al oeste vuelves al cruce. Hay un cordel atado para no mover los sacos que sujetan el resto.",
       "exits": {
         "oeste": "korven_almacen_cruce",
         "sur": "korven_almacen_fondo"
@@ -1454,7 +1454,7 @@
       "name": "Depósito del fondo",
       "region": "korven",
       "kind": "interior",
-      "description": "Una placa de balanza está apoyada contra un saco. Tiene tres muescas en el borde. El paso norte vuelve al cruce; el oriental conecta con el pasillo lateral. Las paredes no tienen otras salidas.",
+      "description": "Una placa de balanza está apoyada contra un saco. Tiene tres muescas en el borde. El paso norte vuelve al cruce; el oriental gira al norte hacia el pasillo lateral. Las paredes no tienen otras salidas.",
       "exits": {
         "norte": "korven_almacen_cruce",
         "este": "korven_almacen_lateral"

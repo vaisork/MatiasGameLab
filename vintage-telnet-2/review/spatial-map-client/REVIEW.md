@@ -1,0 +1,19 @@
+# Spatial client QA — 2026-10-08, final frozen roads
+
+Read-only HTTP fixture8121 served this worktree. Current Engine snapshot generated with183authored rooms and the character's own home known:184nodes/197connections. This isolated in-memory fixture uses no database/accounts/production actions and is diagram/layout QA, not a discovered player journey or human session. The six other-home reserves are not present in its API response.
+
+Client preserves authoritative room positions and learned route.points (valid endpoints match positions*4). Reverse geometry is retained. Legacy snapshots use deterministic directional fallback. Bounds include only known node centers and visible road bends, even far from world-origin. Home/salir are abstract actions; their geometric ports do not invent cardinal labels.2D and3D share positions/quarter-tile point units. Crossings are computed only between visible roads, so unknown roads never reveal themselves through a gap.
+
+Selected BFS itinerary highlighted in SVG; gaps distinguish crossings without junction dots or physical bridges. Room height76px stays within routing clearance; full names remain accessible. Cached geometry depends on coordinates, directions and route.points, not game state. Removing redundant traversal and pairwise crossing reconstruction lowered full frozen diagram calculation to approximately57ms first/13ms cached in local Node; not physical mobile profiling.
+
+Current content/spatial.json SHA256: `81b17e1b9a8246a896bdc82d3ad010a991473d84ae582e35291cf5bffb520905`.
+
+Pure QA (`client/qa-map-spatial.mjs`): production frozen atlas202connections between183rooms plus6reserved homes,8cartographic crossings; all canonical points retained, actual cardinal ports correct, no unrelated-room intersection or shared lane, node/route permutation stable. Public-room fallback183/196also passes. `qa-map-frozen-roads.mjs`: subset/discovery retains path, reverse points, cache geometry changes, invalid-endpoint fallback and hidden crossing absent.15orientationchecks,13technical-mapViewchecks, endpoint/pathcontracts, JSsyntax and whitespace checks pass.
+
+Chromium393/1440: actual Engine184/197fixture,197SVGroads,2mask elements for5visible crossings, selected route highlighting, noJS errors or horizontal page overflow. All184room labels checked: no clipping inside their boxes. Six actual towns (Valdren/Khariel/Brumak/Narevia/Velmora/Vaisgard) and overview captured. Viewport-edge clipping of rooms outside the visible scroll window is expected and resolved by scrolling. PartialValdren10rooms:710x982logicalpx including visible canonical bends,fitScale0.446; no35emptyrows toward origin. Browser display fixture only, not a human mobile session.
+
+Real WebGL view verified at393/1440 (`browser-3d.py`): active non-lost WebGL context, nonzero canvas337x456/504x456, actual rendered graph screenshots inspected, no page errors, closing leaves0canvases. Runtime uses root's LineSegments cartographic gaps, no invented physical bridges. Overview labels intentionally limited/truncated by the existing3D presentation; no physical Android/GPU performance claim.
+
+Five remaining visible crossings are Edran rural/canal paths, none of the previous Valdren/Brumak/Hoshai/Lethra local crossings remain. `crossings.json` records precise pairs and coordinates; proximity markers are heuristic, not authoritative town boundaries. The frozen private atlas has8crossings when all six home reserves are included solely for geometry QA. No global road atlas exported to game client or unknown nodes added to its state.
+
+Evidence: snapshot.json, browser.py/browser-report.json, partial-browser.py/partial-report.json, browser-3d.py/browser-3d-report.json, crossings.mjs/crossings.json and screenshots. Fixture server stopped after review. No deployment or account/production writes.

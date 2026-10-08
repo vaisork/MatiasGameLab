@@ -249,3 +249,5 @@ body{background:linear-gradient(135deg,#eef6ed,#e8f1f6)}
 
 /* El emblema del juego comparte identidad con el acceso de inicio. */
 .brand-mark{display:block;flex:0 0 40px;object-fit:contain;background:#173d49;border-radius:11px}
+/* Rooms are the only junctions; road crossings have an explicit SVG gap. */
+.discovered-roads{position:absolute;inset:0;overflow:visible;pointer-events:none}.discovered-road{fill:none;stroke:#829587;stroke-width:2.5;stroke-linejoin:round;stroke-linecap:round}.discovered-road-selected{stroke:#09657b;stroke-width:4.5}.discovered-place{height:76px;min-height:76px;max-height:76px;overflow:hidden;display:flex;align-items:center;justify-content:center}.discovered-place>span{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:4;overflow:hidden}.discovered-place small{line-height:1.2}.discovered-frontier{z-index:0}

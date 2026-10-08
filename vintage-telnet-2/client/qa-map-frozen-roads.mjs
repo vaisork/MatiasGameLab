@@ -1,0 +1,17 @@
+import assert from 'node:assert/strict';
+import {orientationMap,discoveredLayout,discoveredPaths} from './ui-data.js';
+const fullNodes=[{id:'a',name:'A',position:[0,0]},{id:'b',name:'B',position:[2,0]},{id:'blocker',name:'Blocker',position:[1,0]}],rawRoutes=[{from:'a',to:'b',direction:'este'},{from:'b',to:'a',direction:'oeste'}];
+const authored=discoveredPaths({routes:rawRoutes},discoveredLayout({nodes:fullNodes,routes:rawRoutes}))[0].points;
+const frozen=rawRoutes.map(r=>({...r,points:r.from==='a'?authored:[...authored].reverse()}));
+const partial=orientationMap({nodes:fullNodes.slice(0,2),routes:frozen},'a'),complete=orientationMap({nodes:fullNodes,routes:frozen},'a');
+assert.deepEqual(discoveredPaths(partial,discoveredLayout(partial))[0].points,authored);
+assert.deepEqual(discoveredPaths(complete,discoveredLayout(complete))[0].points,authored);
+assert.deepEqual(discoveredPaths({...partial,routes:[{...frozen[0],points:undefined},frozen[1]]},discoveredLayout(partial))[0].points,authored);
+const alternate=[[0,0],[0,-4],[8,-4],[8,0]],changed={...partial,routes:[{...frozen[0],points:alternate}]};assert.deepEqual(discoveredPaths(changed,discoveredLayout(changed))[0].points,alternate);
+const invalid={...partial,routes:frozen.map(r=>({...r,points:[[100,100],[101,101]]}))};assert.notDeepEqual(discoveredPaths(invalid,discoveredLayout(partial))[0].points,[[100,100],[101,101]]);
+const crossingNodes=[{id:'a',name:'A',position:[-1,0]},{id:'b',name:'B',position:[1,0]},{id:'c',name:'C',position:[0,-1]},{id:'d',name:'D',position:[0,1]}];
+const crossRoutes=[{from:'a',to:'b',direction:'este',points:Array.from({length:17},(_,i)=>[-4+i/2,0])},{from:'c',to:'d',direction:'sur',points:Array.from({length:17},(_,i)=>[0,-4+i/2])}];
+const visible=orientationMap({nodes:crossingNodes.slice(0,2),routes:crossRoutes},'a'),all=orientationMap({nodes:crossingNodes,routes:crossRoutes},'a');
+assert.equal(discoveredPaths(visible,discoveredLayout(visible))[0].crossings.length,0);assert.equal(discoveredPaths(all,discoveredLayout(all)).flatMap(l=>l.crossings).length,1);
+assert(!JSON.stringify(discoveredPaths(visible,discoveredLayout(visible))).includes('"c"'));
+console.log('PASS: frozen geometry survives subset/discovery, actual reverse points supported, invalid endpoints fallback, cache includes points, hidden crossing causes no gap.');

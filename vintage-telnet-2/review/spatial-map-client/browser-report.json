@@ -1,0 +1,25 @@
+{
+  "scope": "Read-only full-map Engine.snapshot fixture at8121, not a player session. All authored rooms deliberately known in isolated in-memory state; no DB.",
+  "results": [
+    {
+      "width": 393,
+      "knownRooms": 184,
+      "drawnRoads": 197,
+      "svgGapMasks": 2,
+      "clippedRoomLabels": [],
+      "routeHighlighted": true,
+      "noPageErrors": true,
+      "noHorizontalPageOverflow": true
+    },
+    {
+      "width": 1440,
+      "knownRooms": 184,
+      "drawnRoads": 197,
+      "svgGapMasks": 2,
+      "clippedRoomLabels": [],
+      "routeHighlighted": true,
+      "noPageErrors": true,
+      "noHorizontalPageOverflow": true
+    }
+  ]
+}

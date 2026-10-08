@@ -813,6 +813,8 @@ class Engine:
             r=home_room if key==state['home'] else self.content.rooms.get(key)
             if r:
                 node={'id':key,'name':r['name'],'region':r['region'],'kind':r['kind'],'visited':key in state['visited']}
+                position=self.content.spatial.get('homes',{}).get(r['region']) if key==state['home'] else self.content.spatial.get('positions',{}).get(key)
+                if position is not None:node['position']=list(position)
                 buyer=r.get('buyer');forge=r.get('forge_service')
                 if buyer or forge:
                     node['commerce']={'buys_materials':bool(buyer and buyer in r.get('npcs',[])),'buys_weapons':bool(forge and forge in r.get('npcs',[]))}
@@ -828,7 +830,13 @@ class Engine:
                 exits={'salir':origin_region['settlement']} if source==state['home'] else dict(self.content.rooms.get(source,{}).get('exits',{}))
                 if source==origin_region['settlement']:exits['hogar']=state['home']
                 for direction,target in exits.items():
-                    if target==destination:routes.append({'from':source,'to':destination,'direction':direction})
+                    if target==destination:
+                        route={'from':source,'to':destination,'direction':direction}
+                        spatial_source=f"home:{home_room['region']}" if source==state['home'] else source
+                        spatial_target=f"home:{home_room['region']}" if destination==state['home'] else destination
+                        points=self.content.spatial_roads.get((spatial_source,spatial_target))
+                        if points:route['points']=[list(point) for point in points]
+                        routes.append(route)
         current_exits=dict(room.get('exits',{}))
         if state['location']==origin_region['settlement']:current_exits['hogar']=state['home']
         frontiers=[{'from':state['location'],'direction':direction} for direction in current_exits

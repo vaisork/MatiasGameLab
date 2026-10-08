@@ -37,6 +37,29 @@ class Content:
                     if destination not in self.rooms:raise ValueError(f'Unknown discovery in {key}')
         for region_id,region in self.regions.items():
             if region.get('settlement') not in self.rooms:raise ValueError(f'Unknown settlement for {region_id}')
+        spatial_file=self.root/'spatial.json'
+        self.spatial=json.loads(spatial_file.read_text(encoding='utf-8')) if spatial_file.is_file() else {}
+        positions=self.spatial.get('positions',{});homes=self.spatial.get('homes',{})
+        if positions and set(positions)!=set(self.rooms):raise ValueError('Spatial layout must cover exactly the existing rooms')
+        if positions and set(homes)!=set(self.regions):raise ValueError('Spatial layout must reserve one home per region')
+        cells=set()
+        for key,position in {**positions,**{f'home:{key}':value for key,value in homes.items()}}.items():
+            if not isinstance(position,list) or len(position)!=2 or any(type(v)!=int for v in position):raise ValueError(f'Invalid spatial position: {key}')
+            if tuple(position) in cells:raise ValueError(f'Overlapping spatial position: {key}')
+            cells.add(tuple(position))
+        self.spatial_roads={}
+        coordinates={**positions,**{f'home:{key}':value for key,value in homes.items()}}
+        expected={frozenset((key,target)) for key,room in self.rooms.items() for target in room.get('exits',{}).values()}
+        expected.update(frozenset((f'home:{key}',region['settlement'])) for key,region in self.regions.items())
+        for road in self.spatial.get('roads',[]):
+            source,target=road['from'],road['to'];points=road.get('points',[])
+            if source not in coordinates or target not in coordinates or frozenset((source,target)) not in expected:raise ValueError('Unknown spatial road')
+            if len(points)<2 or any(not isinstance(p,list) or len(p)!=2 or any(type(v) not in (int,float) or not float(v).is_integer() and not (float(v)*2).is_integer() for v in p) for p in points):raise ValueError('Invalid spatial road points')
+            if points[0]!=[v*4 for v in coordinates[source]] or points[-1]!=[v*4 for v in coordinates[target]]:raise ValueError('Spatial road endpoints disagree')
+            if (source,target) in self.spatial_roads:raise ValueError('Duplicate spatial road')
+            self.spatial_roads[source,target]=points
+            self.spatial_roads[target,source]=list(reversed(points))
+        if positions and {frozenset(pair) for pair in self.spatial_roads}!=expected:raise ValueError('Spatial roads must cover every existing connection')
         for region_id,region in self.regions.items():
             for found in region.get('search',{}).get('finds',[]):
                 if found.get('item') not in self.items:raise ValueError(f'Unknown search item for {region_id}')

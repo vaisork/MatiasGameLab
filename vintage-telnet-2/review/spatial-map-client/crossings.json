@@ -1,0 +1,112 @@
+{
+  "scope": "Cartographic crossings of known full-world Engine fixture; proximity is a heuristic, not physical bridges or town boundary proof",
+  "spatialSha256": "81b17e1b9a8246a896bdc82d3ad010a991473d84ae582e35291cf5bffb520905",
+  "count": 5,
+  "crosses": [
+    {
+      "tile": [
+        8.25,
+        33
+      ],
+      "quarterTile": [
+        33,
+        132
+      ],
+      "road": [
+        "edran_era",
+        "edran_zanja_antigua"
+      ],
+      "otherRoads": [
+        [
+          "edran_cobertizo_campo",
+          "edran_lindero"
+        ]
+      ],
+      "nearSettlementCenters": []
+    },
+    {
+      "tile": [
+        12,
+        32.5
+      ],
+      "quarterTile": [
+        48,
+        130
+      ],
+      "road": [
+        "edran_puente_juncos",
+        "edran_sauces"
+      ],
+      "otherRoads": [
+        [
+          "edran_arboleda",
+          "edran_camino_carros"
+        ]
+      ],
+      "nearSettlementCenters": []
+    },
+    {
+      "tile": [
+        10.5,
+        33
+      ],
+      "quarterTile": [
+        42,
+        132
+      ],
+      "road": [
+        "edran_puente_juncos",
+        "edran_sauces"
+      ],
+      "otherRoads": [
+        [
+          "edran_arboleda",
+          "edran_cobertizo_campo"
+        ]
+      ],
+      "nearSettlementCenters": []
+    },
+    {
+      "tile": [
+        6.625,
+        37
+      ],
+      "quarterTile": [
+        26.5,
+        148
+      ],
+      "road": [
+        "edran_puente_juncos",
+        "edran_sauces"
+      ],
+      "otherRoads": [
+        [
+          "edran_bajo_humedo",
+          "edran_estanque"
+        ]
+      ],
+      "nearSettlementCenters": []
+    },
+    {
+      "tile": [
+        7.625,
+        34
+      ],
+      "quarterTile": [
+        30.5,
+        136
+      ],
+      "road": [
+        "edran_puente_juncos",
+        "edran_sauces"
+      ],
+      "otherRoads": [
+        [
+          "edran_canal_entrada",
+          "edran_zanja_antigua"
+        ]
+      ],
+      "nearSettlementCenters": []
+    }
+  ]
+}
