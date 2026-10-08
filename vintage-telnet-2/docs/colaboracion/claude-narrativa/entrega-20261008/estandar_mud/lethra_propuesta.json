@@ -1,0 +1,113 @@
+{
+ "_nota": "Lethra (27 salas). Narevia está sobre el agua: plataformas, pasarelas y barcas; sus habitantes respiran aire. 'No ves el fondo' en la Orilla del canal es la pista del secreto I3.",
+ "rooms": {
+  "lethra_ribera_seca": {
+   "description": "El camino sigue sobre raíces, junto a un cauce que se va ensanchando y oscureciendo. Detrás quedan las hondonadas de Vaisgard; por delante empiezan las hierbas húmedas y el olor a agua. Un ave cruza volando a la otra orilla, y con su vuelo se ve cuánto terreno escondían los tallos altos. El suelo todavía está seco, pero no por mucho.",
+   "brief": "La ribera seca, junto al cauce que se ensancha."
+  },
+  "lethra_tierra_esponjosa": {
+   "description": "El suelo firme se corta en manchas de hojas que se hunden al pisarlas, como una esponja, y sale un poco de agua. Dos varas clavadas marcan el paso estrecho por donde pueden ir las cargas sin hundirse. Una rana te mira desde el barro sin moverse. Más adelante, las raíces llevan al juncal.",
+   "brief": "La tierra blanda y sus dos varas."
+  },
+  "lethra_juncal_abierto": {
+   "description": "Los juncos, más altos que tú, se abren con el viento y dejan ver el agua brillando entre ellos; luego se cierran otra vez. Las pisadas mantienen despejada una franja entre los tallos. Se oye un susurro continuo, como si el juncal hablara. Por delante empiezan las primeras tablas, y un desvío lleva a un banco de barro.",
+   "brief": "El paso entre los juncos."
+  },
+  "lethra_tablas_primeras": {
+   "description": "Las primeras tablas del camino cruzan por encima del barro, sobre apoyos bajos que crujen un poco al pisar. El agua escurre por las uniones y brilla entre las rendijas. Algunas tablas están más gastadas que otras: se nota por dónde pisa más la gente. A un lado cuelga una vara de prueba, fuera del agua.",
+   "brief": "Las primeras tablas sobre el barro."
+  },
+  "lethra_cruce_canales": {
+   "description": "Dos canales corren juntos: uno rápido, que hace ruido y espuma, y otro casi quieto, donde flotan hojas. Las plantas de la orilla se doblan hacia lados distintos, cada una con su corriente. En una plataforma pequeña junto al paso se puede mirar cómo gira una hoja en el remanso, dando vueltas sin decidirse. Aquí se acaban las tablas y sigue la tierra firme.",
+   "brief": "El cruce de canales, uno rápido y otro quieto."
+  },
+  "lethra_ribera_firme": {
+   "description": "Recipientes cerrados esperan sobre apoyos de madera, por encima del barro, para que no se mojen. Quienes descargan dejan los bultos levantados mientras buscan sitio, y se oyen voces que se llaman de un apoyo a otro. Una curva lleva a una pasarela.",
+   "brief": "La ribera de las cargas, con sus recipientes en alto."
+  },
+  "lethra_pasarela_curva": {
+   "description": "Una pasarela de madera con baranda rodea un agua tan quieta que parece un espejo. La orilla de llegada parece estar justo enfrente, a un salto, pero hay que seguir toda la curva para alcanzarla. Tus pasos suenan huecos sobre las tablas. Más adelante asoman el techo y los postes de un embarcadero.",
+   "brief": "La pasarela curva que rodea el agua quieta."
+  },
+  "lethra_embarcadero_camino": {
+   "description": "Bajo un techo de juncos, las cargas del camino pasan de los hombros a barcas pequeñas que se balancean. Los bultos se dejan lejos del borde del agua. Un poste con rayas marca el nivel del canal; otro guarda las tiras de las barcas que se esperan. Desde aquí, la senda sigue hacia Narevia.",
+   "brief": "El embarcadero del camino, bajo su techo."
+  },
+  "lethra_senda_elevada": {
+   "description": "Una senda elevada pasa frente a viviendas separadas por canales. Cada puerta da a su propia plataforma, fuera del camino, con macetas y redes colgadas. La gente se llama por su nombre de una casa a otra, por encima del agua, y se pasan cosas con cestas atadas a cuerdas. Por delante ya se oyen las voces de Narevia.",
+   "brief": "La senda sobre el agua, entre casas y canales."
+  },
+  "narevia_centro": {
+   "description": "Narevia ocupa una isla baja unida por pasarelas, y todo parece flotar. Los Marevyn pasan entre barcas y plataformas con una facilidad que da envidia; algunos saltan al agua y salen por el otro lado. Los apoyos altos dejan un sitio seco junto a la plaza. Huele a agua, a pescado asado y a madera. Desde aquí se reparten el taller, el mercado, el camino de tierra y la ribera que sale hacia Edran.",
+   "brief": "La plaza de Narevia, en su isla de pasarelas."
+  },
+  "lethra_taller_fibras": {
+   "description": "Un taller con el techo abierto hacia el canal, por donde entra luz que se mueve con el agua. Los haces de fibra esperan bajo cubierta; los hilos secos cuelgan altos, como cortinas, y los húmedos quedan en recipientes bajos. La mesa está hecha para que escurra el agua. Una puerta da al lugar de cuidados.",
+   "brief": "El taller de fibras, abierto al canal."
+  },
+  "lethra_plataforma_secado": {
+   "description": "Los paños cuelgan de barras separadas para que el viento no los junte, y ondean como velas. Uno de ellos tiene remiendos de manos muy distintas: puntadas grandes, pequeñas, de muchos colores. El canal estrecho corre por debajo del borde y deja entrar aire por los dos lados. Junto a la plataforma hay un banco para conversar.",
+   "brief": "La plataforma de secado, con el paño de los remiendos."
+  },
+  "lethra_banco_conversacion": {
+   "description": "Un banco de madera junto al canal, con sitio para un recipiente y para quien espera. El agua trae voces por debajo, de otras plataformas, y a veces se entiende alguna palabra. Desde aquí se ve la ventana de la cocina, y llega olor a caldo.",
+   "brief": "El banco junto al canal."
+  },
+  "lethra_cocina_reunion": {
+   "description": "Huele a hierbas, raíces y humo, y el calor del fuego te envuelve al entrar. El fuego está sobre suelo seco, lejos del canal. Los vecinos acercan sus utensilios a la mesa larga, cada uno con su marca. Una olla vieja tiene la base reparada y el asa envuelta para no quemarse; el caldo burbujea dentro.",
+   "brief": "La cocina vecinal y su olla de base reparada."
+  },
+  "lethra_mercado_hojas": {
+   "description": "Las barcas traen la comida en cestas levantadas del fondo, y la descargan directamente en los puestos. Se separan las envolturas abiertas, para comer cerca, de las que se guardan húmedas para el viaje. Huele a hierbas cortadas, a fruta y a madera mojada. Se oye regatear y reír. Más allá está el muelle.",
+   "brief": "El mercado de Narevia, entre barcas y cestas."
+  },
+  "lethra_muelle_vecinal": {
+   "description": "Barcas pequeñas esperan junto a apoyos de distintas alturas, chocando suavemente unas con otras. Las cestas vacías se agrupan por dueño; algunas tienen el asa remendada. Desde otra plataforma llaman a alguien para devolverle su cesta.",
+   "brief": "El muelle de las cestas."
+  },
+  "lethra_patio_ventanas": {
+   "description": "Un patio estrecho con agua entre las casas, donde las ventanas se miran unas a otras tan de cerca que se podría pasar una taza de una a otra. Junto a cada entrada queda sitio para llamar y esperar respuesta. Se oyen conversaciones de ventana a ventana. Desde aquí se va al muelle, a una ribera con sombra y al patio donde se arreglan las barcas.",
+   "brief": "El patio de las ventanas, con agua entre las casas."
+  },
+  "lethra_cuidado_barcas": {
+   "description": "Las barcas descansan inclinadas sobre una plataforma, boca abajo o de lado, para que escurran y se puedan revisar sus uniones. Junto a las herramientas se guardan piezas de otras reparaciones, por si sirven. El canal pasa por debajo, y se oye el agua golpeando los postes.",
+   "brief": "El patio de las barcas, inclinadas para escurrir."
+  },
+  "lethra_banco_barro": {
+   "description": "Un banco de barro firme, con un canal profundo y oscuro delante. Algunas ondas avanzan contra el viento, cosa que no debería pasar. Un tallo se mueve cuando los demás están quietos, y no se ve qué pasa debajo. Hay un silencio extraño.",
+   "brief": "El banco de barro, frente al canal profundo."
+  },
+  "lethra_orilla_silente": {
+   "description": "La orilla termina junto al canal. El agua parece quieta y no ves el fondo; es tan oscura que refleja el cielo como un espejo negro. No se oyen ranas ni pájaros. Unas raíces, a un lado, ofrecen sitio para observar.",
+   "brief": "La orilla del canal, de agua quieta y sin fondo a la vista."
+  },
+  "lethra_raices_observacion": {
+   "description": "Unas raíces gruesas dan apoyo firme, separadas del canal por barro sin pisar. Desde aquí se pueden mirar las marcas del suelo sin borrarlas. Una tira de tela atada a una raíz guarda una nota sobre lo que se ha visto junto al agua.",
+   "brief": "Las raíces junto al agua, con su nota atada."
+  },
+  "lethra_ribera_oeste": {
+   "description": "Los apoyos de madera se separan a medida que te alejas de Narevia, y el barro deja paso a la tierra seca de los llanos: este camino sale hacia Edran. Bajo una cubierta común se pueden ajustar las envolturas y sacudirse el agua. Detrás todavía se oyen las voces del pueblo sobre el agua.",
+   "brief": "La ribera hacia Edran, con su cubierta común."
+  },
+  "lethra_hito_tierra": {
+   "description": "Dos piedras marcan la franja alta junto al terreno que se inunda. En el suelo de abajo siguen las marcas de las crecidas, como rayas en un tronco. Detrás queda la senda de Narevia; por delante, un puente cruza hacia Edran, y un desvío lleva a un remanso donde se oyen aves.",
+   "brief": "El cruce del puente, entre dos piedras."
+  },
+  "lethra_ribera_sombra": {
+   "description": "El canal va a un lado y las raíces al otro. Las hojas empiezan a tapar los reflejos del agua y los árboles crecen cada vez más juntos: Narevia queda atrás y el camino va hacia el bosque. Una pasarela corta cruza entre dos troncos. La luz se vuelve verde y el aire, más fresco.",
+   "brief": "La ribera sombreada, donde empiezan los árboles."
+  },
+  "lethra_relevo_raices": {
+   "description": "El canal se estrecha entre raíces enormes que sostienen una plataforma, como manos que la levantan. En una pared de tablas hay notas sobre la pasarela y el nivel del agua; bajo su cubierta se puede esperar sin bajar al barro. Es la Orilla Velada: aquí el agua se mete bajo los árboles de Nhal y todo se vuelve sombra.",
+   "brief": "La Orilla Velada, donde el agua entra en el bosque."
+  },
+  "lethra_escucha_aves": {
+   "description": "Un ave llama desde el cauce; otra le responde entre los juncos. Después, silencio, y luego otra vez. Hay una raíz seca donde sentarse a escuchar. Es un buen sitio para no hacer nada.",
+   "brief": "La orilla de las aves."
+  },
+  "lethra_sala_cuidados": {
+   "description": "Una plataforma cubierta por encima del canal, donde el agua suena tranquila por debajo. Una tabla seca une el asiento con la puerta del taller. El agua de limpiar está en recipientes tapados, y los paños nunca se dejan en la baranda húmeda.",
+   "brief": "La plataforma de cuidados de Narevia."
+  }
+ }
+}

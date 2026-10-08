@@ -1,0 +1,107 @@
+{
+ "_nota": "Campo de sala look: {dirección: texto}. Sólo describe lo que se ve; no nombra destinos no visitados más allá de regiones o rasgos visibles. Cada dirección debe ser una salida real.",
+ "rooms": {
+  "valdren_plaza": {
+   "norte": "Una calle corta sube empinada entre casas apretadas. Al final se oye un martillo, y a veces sale humo entre los tejados.",
+   "este": "Un camino de tierra se mete entre huertos y cercas bajas. Más allá, las cercas se abren y empieza el campo.",
+   "sur": "Hay un patio de piedra con un tejadillo en medio. Se oye una cuerda que sube y baja, y el golpe de un cubo.",
+   "oeste": "Un cobertizo grande de tablas oscuras deja asomar las varas de un carro. Huele a grasa y a madera."
+  },
+  "vaisgard_mercado": {
+   "norte": "El empedrado se abre en una plaza grande donde se cruza gente de todas partes. Se ven capas de montaña y carretas de piedra.",
+   "sur": "Se oye agua corriendo sin parar. Hay una pila de piedra y gente con jarras.",
+   "este": "Una calle cubierta de toldos de colores, tan juntos que la luz llega azul y roja. Se oyen martillos pequeños.",
+   "oeste": "Una calle de almacenes con escaleras por fuera. Pasan carros despacio, cargados de sacos."
+  },
+  "veyra_plaza_rutas": {
+   "sur": "Puestos, cestas y voces: el mercado, apretado entre muros viejos.",
+   "norte": "El suelo empieza a subir hacia una puerta. Más allá, lejos y azul, se ve la sierra.",
+   "oeste": "Un patio con animales de carga a la sombra, junto a un bebedero. Huele a paja.",
+   "este": "Un alero con tablillas colgadas que se mueven con el aire. Alguien lee sentado en un banco."
+  },
+  "khariel_centro": {
+   "sur": "Escalones de piedra bajan hacia una terraza ancha. Más abajo, el valle entero, y el vacío.",
+   "oeste": "Una puerta de la que sale olor a serrín y ruido de herramientas.",
+   "este": "Entre muros que cortan el viento ondean cintas de colores, como banderas pequeñas.",
+   "norte": "Puertas repartidas entre escalones y descansos, una encima de otra. Se oyen voces y platos."
+  },
+  "brumak_centro": {
+   "este": "Unos escalones bajos y anchos, con una franja lisa para carros, bajan hacia el camino.",
+   "norte": "Una puerta baja en la roca. Dentro se oyen golpes cortos y precisos.",
+   "oeste": "Un almacén con una ventana alta. Huele a grano seco.",
+   "sur": "Una calle de casas metidas en la roca, con repisas pequeñas junto a cada puerta."
+  },
+  "narevia_centro": {
+   "norte": "Una senda elevada sale sobre el agua, entre casas con plataformas propias.",
+   "este": "Un taller con el techo abierto al canal; se ven hilos colgados como cortinas.",
+   "sur": "Barcas que descargan cestas directamente en los puestos. Huele a fruta y a madera mojada.",
+   "oeste": "Los apoyos de madera se separan y el barro deja paso a tierra seca: por ahí se va hacia los campos de Edran."
+  },
+  "velmora_centro": {
+   "oeste": "Entre los troncos asoman lámparas pequeñas, junto a una mesa de espera. Más allá, el bosque oscuro.",
+   "norte": "Un taller abierto por un lado. Se oye trabajar la madera.",
+   "sur": "Cestas bajo cubiertas, y un olor que cambia en cada una: setas, frutos, raíces.",
+   "este": "Bancos alrededor de una mesa cubierta. Llegan voces que cuentan algo."
+  },
+  "edran_hito_campos": {
+   "sur": "Una subida empedrada baja de vuelta hacia los campos de Edran.",
+   "este": "Un desvío corto sube a un borde de la loma, abierto al cielo. Desde ahí debe de verse lejos.",
+   "norte": "Tres piedras cruzan el arroyo, una detrás de otra. Detrás, el camino sube hacia una muralla que todavía no se ve."
+  },
+  "edran_linde_piedra": {
+   "sur": "La tierra vuelve a tener hierba y piedras sueltas; una ladera baja hacia los campos.",
+   "norte": "El camino se mete entre dos lomos de roca, como por una puerta sin techo. Más allá todo es piedra clara y polvo."
+  },
+  "edran_puente_juncos": {
+   "oeste": "Un sendero estrecho entre juncos altos, que esconden el agua.",
+   "este": "Al otro lado del puente, la orilla sube y el aire huele a río y a barro: es Lethra.",
+   "sur": "Un sauce inclinado echa sus ramas sobre la orilla."
+  },
+  "edran_salida_huertos": {
+   "oeste": "Las casas del pueblo, los huertos y el humo de las cocinas.",
+   "este": "Un camino sigue el agua de la acequia hacia los campos abiertos.",
+   "sur": "El tramo dobla junto a las cercas hacia dos edificios altos y gruesos."
+  },
+  "hoshai_terraza_cargas": {
+   "sur": "Dos paredes de roca se juntan tanto que sólo cabe una carga. Se oye un golpe de aviso.",
+   "norte": "Escalones al sol suben hacia los tejados oscuros de un pueblo.",
+   "este": "Un saliente de roca se asoma a un barranco. Una cuerda cruza el vacío.",
+   "oeste": "Una lona azul tapa unas cajas junto al camino. Alguien vigila al lado."
+  },
+  "hoshai_estribacion": {
+   "norte": "La pendiente se llena de raíces y árboles torcidos. El camino desaparece en una curva.",
+   "sur": "Abajo, la grava baja hacia la cuenca; muy lejos, los muros de una ciudad."
+  },
+  "korven_asiento_revision": {
+   "este": "Dos paredes de roca se cierran en un paso estrecho y en sombra.",
+   "oeste": "Escalones bajos y una franja para carros suben hacia casas metidas en la roca.",
+   "norte": "Una senda sube a una meseta. Arriba, la sierra se ve más cerca."
+  },
+  "korven_borde_tierra": {
+   "norte": "Las paredes de roca vuelven a crecer y el viento silba entre ellas.",
+   "sur": "Pastos, tierra blanda y cercas a lo lejos: por ahí empiezan los campos de Edran."
+  },
+  "lethra_hito_tierra": {
+   "este": "Una ribera con apoyos de madera lleva hacia las voces de un pueblo sobre el agua.",
+   "sur": "Un remanso tranquilo. Se oye llamar a un ave, y otra que le contesta.",
+   "oeste": "Un puente de tablas cruza el agua hacia tierra más seca: el camino de Edran."
+  },
+  "lethra_relevo_raices": {
+   "sur": "El canal vuelve a la luz, entre raíces y una pasarela corta.",
+   "norte": "El agua se mete bajo los árboles y todo se vuelve sombra verde: el bosque de Nhal."
+  },
+  "nhal_arbol_umbral": {
+   "este": "Las copas se juntan y la luz baja a manchas sobre un suelo de hojas de colores.",
+   "oeste": "Detrás todavía entra la luz dorada de la cuenca, y se ve una puerta de la ciudad."
+  },
+  "nhal_relevo_altura": {
+   "sur": "Una roca ancha sobresale entre las copas; más abajo, las luces de un pueblo entre árboles.",
+   "oeste": "Un cordel entre dos árboles marca un camino que sale del bosque hacia la montaña."
+  },
+  "veyra_vega_abierta": {
+   "norte": "Una colina sube hacia los muros viejos de Vaisgard.",
+   "oeste": "Un camino ancho cruza pastos entre dos lomas, hacia los campos de Edran.",
+   "este": "Un camino elevado sigue una acequia rápida y clara hacia los canales."
+  }
+ }
+}

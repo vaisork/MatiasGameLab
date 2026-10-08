@@ -1,5 +1,7 @@
 # MatiasGameLab
 
+[Relevo VT2: Ubuntu, GitHub, Raspberry, SSH y operación](docs/VT2_RELEVO_20261008.md).
+
 Dos proyectos independientes:
 
 - **Vintage Telnet 2**, base actual: [entrada técnica](vintage-telnet-2/README.md), [agentes](vintage-telnet-2/AGENTS.md), [juego oficial](https://raspberrypi.tail3d212e.ts.net/).

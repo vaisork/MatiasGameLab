@@ -1,0 +1,608 @@
+{
+ "_nota": "Escenas que avanzan al volver. Sólo usan 'states' con requires_visits y requires_time (contrato existente). 'insertar_en' = índice dentro de states: después de las variantes de visita ya existentes y antes de las de clima o misión, para que lluvia/viento/niebla/nieve y las consecuencias de encargos sigan mandando. Ninguna escena cambia flags, objetos, sellos ni salidas.",
+ "valdren_plaza": {
+  "insertar_en": 2,
+  "estados": [
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 5
+    },
+    "overrides": {
+     "day": "El niño ya no pregunta: ha puesto tres semillas en fila sobre el banco y espera, muy quieto, a ver qué pájaro baja. Su abuela finge leer a su lado, pero también mira el cielo."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 8
+    },
+    "overrides": {
+     "day": "Un Ala parda baja a la piedra del banco, picotea dos veces las semillas del niño y se va. El niño señala las marcas del pico, su abuela asiente y los dos se ríen: era ése."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "night": "Alguien ha dejado una manta doblada sobre la piedra del banco. Por una ventana se oye a un niño repetir, medio dormido: «Ala parda, Ala parda»."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 6
+    },
+    "overrides": {
+     "night": "La plaza está vacía y huele a pan para mañana. Sobre la piedra del banco quedan dos semillas que nadie ha recogido."
+    }
+   }
+  ]
+ },
+ "valdren_calle_alta": {
+  "insertar_en": 0,
+  "estados": [
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "day": "La vecina ya ha limpiado el borde de su pared y ahora mezcla barro con paja en un cubo. Prueba la mezcla con los dedos, arruga la nariz y añade un puñado más."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 5
+    },
+    "overrides": {
+     "day": "Media pared tiene ya barro nuevo, más claro que el resto. La vecina alisa la última parte con la palma; un gato la observa desde el tejado, sin decidirse a bajar."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 8
+    },
+    "overrides": {
+     "day": "La pared está arreglada, y la línea del tejado antiguo sigue a la vista: la vecina no quiso taparla. Al pasar a su lado, la toca con la mano, como quien saluda a alguien."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "night": "Una ventana de la calle sigue encendida. Detrás, alguien cuenta en voz alta cuántos golpes de martillo ha dado hoy la fragua, y otra voz le dice que se equivoca."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 6
+    },
+    "overrides": {
+     "night": "El gato del tejado ha bajado por fin a la calle y se ha sentado en el escalón más tibio. Te mira pasar sin moverse."
+    }
+   }
+  ]
+ },
+ "valdren_pozo": {
+  "insertar_en": 0,
+  "estados": [
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "day": "Dos niños compiten por ver quién saca el cubo más deprisa. Gana el pequeño, porque el mayor se ríe a mitad de camino y se le escapa la cuerda."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 5
+    },
+    "overrides": {
+     "day": "La vecina del pozo enseña a un niño a hacer el nudo de la cuerda nueva. Le sale al tercer intento; lo deshace para hacerlo otra vez, sólo por gusto."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 8
+    },
+    "overrides": {
+     "day": "Un viajero se para a beber y pregunta por qué hay dos cuerdas. La vecina le explica que la vieja se guarda para el día que la nueva se rompa. El viajero se ríe: en su pueblo hacen lo mismo con los zapatos."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "night": "El cubo boca abajo gotea despacio sobre la piedra. Muy abajo, dentro del pozo, algo hace «plop»: una gota o una rana, quién sabe."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 6
+    },
+    "overrides": {
+     "night": "Si te asomas al pozo, un brillo pequeño tiembla en el agua del fondo, y tu respiración vuelve hacia ti más fría."
+    }
+   }
+  ]
+ },
+ "valdren_huertos": {
+  "insertar_en": 0,
+  "estados": [
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "day": "La encargada del huerto levanta una col para enseñarla: tiene un agujero perfecto en el centro. Busca al culpable entre las hojas y encuentra un caracol que no parece nada arrepentido."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 5
+    },
+    "overrides": {
+     "day": "Un niño camina por el borde de la canaleta con los brazos abiertos, como si cruzara un puente altísimo. Su madre le llama desde una cocina sin mirar: sabe exactamente dónde está."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 8
+    },
+    "overrides": {
+     "day": "Hoy toca regar. Con una tablilla, la encargada desvía el agua de la canaleta hacia cada parcela, una a una; cuenta en voz baja y cambia la tablilla al llegar a diez."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "night": "Una rana croa desde la canaleta. Otra le contesta desde el huerto de enfrente, y después las dos se callan a la vez."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 6
+    },
+    "overrides": {
+     "night": "Por la ventana abierta de una cocina sale olor a cebolla dorada. Alguien canta bajito mientras friega."
+    }
+   }
+  ]
+ },
+ "edran_salida_huertos": {
+  "insertar_en": 0,
+  "estados": [
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "day": "Un perro pastor espera sentado junto a uno de los postes, mirando el camino del campo. Mueve la cola cada vez que aparece alguien, aunque no sea a quien espera."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 5
+    },
+    "overrides": {
+     "day": "El perro del poste ya no está solo: a su lado, un niño con un palo largo también vigila el camino. Cuando aparece un carro a lo lejos, los dos se levantan a la vez."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 8
+    },
+    "overrides": {
+     "day": "Por el camino de la acequia llega un pastor con sus ovejas. El perro sale disparado, le da tres vueltas y se coloca detrás del rebaño, muy serio, como si nunca hubiera estado esperando."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "night": "Un farol cuelga de uno de los postes de la entrada, para quien vuelva tarde del campo. Alrededor suena un Grillo campana."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 6
+    },
+    "overrides": {
+     "night": "Desde la oscuridad del campo llega el balido de una oveja perdida. Al rato suena el silbido corto de un pastor, y el balido se calla."
+    }
+   }
+  ]
+ },
+ "vaisgard_mercado": {
+  "insertar_en": 2,
+  "estados": [
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 5
+    },
+    "overrides": {
+     "day": "La niña ha plantado su semilla en una maceta rota que le dio un vendedor. La riega con lo que queda en su vaso, muy despacio, para no derramar ni una gota."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 8
+    },
+    "overrides": {
+     "day": "En la maceta rota de la niña ha salido un brote verde, pequeño como una uña. Varios vendedores se acercan a mirarlo, y uno dice muy serio que es el puesto más importante del mercado."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "night": "Un gato recorre los puestos cerrados oliendo cada cesta. En la de las hierbas estornuda, sacude la cabeza y sigue."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 6
+    },
+    "overrides": {
+     "night": "Dos vendedores cuentan sellos a la luz de una lámpara, apilándolos en torres pequeñas. Cada vez que se equivocan, empiezan otra vez desde el principio."
+    }
+   }
+  ]
+ },
+ "veyra_plaza_rutas": {
+  "insertar_en": 0,
+  "estados": [
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "day": "Una carreta de piedra y otra de cestas llegan a la vez y no caben juntas. Los conductores discuten un momento y acaban echándolo a suertes con los dedos para ver quién pasa primero."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 5
+    },
+    "overrides": {
+     "day": "Un mensajero recién bajado de la sierra se sienta en una piedra antigua a vaciar una bota llena de grava. Saca una piedrecita, la mira y se la guarda: dice que trae suerte."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 8
+    },
+    "overrides": {
+     "day": "En el centro de la plaza, unos niños juegan a las cinco rutas: cada uno corre hacia un camino gritando el nombre de un pueblo. Gana quien vuelve primero al centro."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "night": "Bajo el alero de los avisos, una mensajera duerme sentada, abrazada a su bolsa de mensajes."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 6
+    },
+    "overrides": {
+     "night": "Por el camino de la sierra baja despacio un farol. Se detiene en el borde de la plaza y se apaga: alguien ha llegado a Vaisgard y ya no lo necesita."
+    }
+   }
+  ]
+ },
+ "khariel_centro": {
+  "insertar_en": 0,
+  "estados": [
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "day": "Los dos jóvenes de la nuez han inventado un juego: uno salta el cambio de nivel y el otro tiene que hacerlo con los ojos cerrados. Una vecina los mira desde la puerta, sin decidir si reírse o regañarlos."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 5
+    },
+    "overrides": {
+     "day": "Un viajero humano intenta subir de un salto el cambio de nivel, como los Felaryn, y se queda colgado del borde. Los jóvenes le ayudan a subir, y uno le enseña dónde poner el pie la próxima vez."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 8
+    },
+    "overrides": {
+     "day": "Hoy es el viajero humano quien pone la nuez en el último escalón y desafía a los jóvenes. Pierde, pero sube por la rampa riéndose, más rápido que la primera vez."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "night": "Desde la terraza alta, el silbato ya toca tres notas seguidas. Alguien aplaude desde una ventana."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 6
+    },
+    "overrides": {
+     "night": "El silbato toca por fin una melodía entera, corta y alegre. Al terminar se apagan varias luces, como si todo Khariel hubiera esperado ese final para irse a dormir."
+    }
+   }
+  ]
+ },
+ "brumak_centro": {
+  "insertar_en": 2,
+  "estados": [
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 5
+    },
+    "overrides": {
+     "day": "El niño ya abre y cierra el recipiente sin ayuda. Ahora le enseña el truco a otro más pequeño, con la misma voz seria que usó la Dravak con él."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 8
+    },
+    "overrides": {
+     "day": "Bajo el banco hay una fila de recipientes bien cerrados. El niño los revisa uno a uno golpeándolos con los nudillos, como hace la gente de Brumak, y escucha el sonido con la cabeza ladeada."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "night": "Las dos tazas del umbral ya están vacías. Sus dueños siguen sentados hablando muy bajo; uno se ríe tapándose la boca para no despertar a nadie."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 6
+    },
+    "overrides": {
+     "night": "Una piedrecita cae de la pared y rebota por el patio. En varias puertas bajas se asoma alguien a escuchar; no pasa nada más, y las puertas se vuelven a cerrar."
+    }
+   }
+  ]
+ },
+ "narevia_centro": {
+  "insertar_en": 2,
+  "estados": [
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 5
+    },
+    "overrides": {
+     "day": "Llega una barca a la plaza y los niños corren a ayudar a amarrarla. El más pequeño sujeta la cuerda con las dos manos, muy concentrado, aunque la barca ya está quieta."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 8
+    },
+    "overrides": {
+     "day": "Dos familias comparten comida en la plataforma alta: una ha traído pescado y la otra pan. Discuten en broma cuál de las dos cosas sabe mejor mojada en el caldo."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "night": "Una barca pasa despacio bajo las pasarelas, con un farol en la proa. Su luz se mueve por el agua y por las caras de quienes miran desde arriba."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 6
+    },
+    "overrides": {
+     "night": "Desde una plataforma, alguien cuenta en voz baja la historia de la barca. Los niños, ya acostados, piden que la cuente otra vez desde el principio."
+    }
+   }
+  ]
+ },
+ "velmora_centro": {
+  "insertar_en": 2,
+  "estados": [
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 5
+    },
+    "overrides": {
+     "day": "El niño de la rueda ha atado un segundo cordel para que gire más deprisa. Funciona tan bien que la rueda sale disparada y rueda hasta los pies de un vecino, que se la devuelve sonriendo."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 8
+    },
+    "overrides": {
+     "day": "Ahora son tres niños con ruedas de cordel. Hacen carreras sobre la mesa larga, y los mayores apartan los platos sin protestar."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "night": "Las lámparas Vesperi se bajan una a una. Desde el patio del relato llega una frase suelta y después, risas."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 6
+    },
+    "overrides": {
+     "night": "Una rueda de juguete se ha quedado olvidada sobre la mesa. Alguien la recoge y la deja junto a una puerta, donde el niño la encontrará por la mañana."
+    }
+   }
+  ]
+ }
+}

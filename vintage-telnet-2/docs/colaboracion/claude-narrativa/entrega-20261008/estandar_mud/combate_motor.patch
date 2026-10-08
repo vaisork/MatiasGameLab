@@ -1,0 +1,15 @@
+--- a/server/engine.py
++++ b/server/engine.py
+@@ -273,10 +273,10 @@
+                 if player['class_id'] in ('arcano','sombra','artifice') and any('Usas ' in event['text'] for event in player['state']['events']):accuracy=min(accuracy,response.get('accuracy',accuracy))
+             if self.rng.random()*100<m.clamp(accuracy,20,90):
+                 damage=max(1,m.rounded(combat['profile']['damage']*(1-reply.get('reduction',0))*(1-state.get('armor_reduction',0))*(1-reply.get('guard',0))))
+-                state['hp']-=damage;m.wound(state,damage);state['events'].append(event('combat',f"{creature['name']} te alcanza: {damage} de daño."))
++                state['hp']-=damage;m.wound(state,damage);state['events'].append(event('combat',m.creature_prose(creature,'hit',damage,combat['round'])))
+                 if state['hp']<=0:self.death(primary,world)
+             else:
+-                state['events'].append(event('combat',f"La respuesta de {creature['name']} pasa sin alcanzarte."))
++                state['events'].append(event('combat',m.creature_prose(creature,'miss',0,combat['round'])))
+                 for player,response in responses:
+                     if player['class_id']=='sombra' and response.get('signature') and player['state']['combat']:
+                         player['state']['combat']['opening']=True

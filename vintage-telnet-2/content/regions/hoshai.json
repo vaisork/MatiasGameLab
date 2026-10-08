@@ -51,7 +51,7 @@
       "name": "Primera subida",
       "region": "hoshai",
       "kind": "road",
-      "description": "La pendiente enlaza la grava de la cuenca con los pastos cortos de la sierra. Al sur queda la rampa de Vaisgard; al norte, una pendiente con raíces. Un arroyo cruza delante de ti. Hay espacio para dejar la carga antes de pasar sobre las piedras redondas.",
+      "description": "Aquí termina la grava de la cuenca y empiezan los pastos cortos de la sierra, verdes y duros. Detrás queda la rampa de Vaisgard; por delante, la montaña se levanta de golpe. Un arroyo frío cruza el camino saltando sobre piedras redondas, y antes de pasarlo hay un ensanche para dejar la carga y tomar aliento. El aire ya es otro: más fino, más frío.",
       "day": "Una pastora recoge una cuerda del arroyo y deja libre la entrada al ascenso. Su compañero espera con las bestias en terreno ancho, sin exigirles girar donde el camino ya empieza a estrecharse.",
       "night": "La ciudad conserva un resplandor al sur, pero la pendiente norte lo oculta en cuanto avanzas. El arroyo permite reconocer el pie del ascenso por su sonido; no revela cómo cruzar cada piedra cercana.",
       "rain": "El arroyo crece hacia la banda de pasto pisado. La pastora aparta a las bestias antes de que se mezclen sus huellas con la corriente. La entrada firme continúa junto al talud, no por el centro brillante.",
@@ -77,22 +77,27 @@
         },
         {
           "creature": "unapiedra",
-          "text": "Un Unapiedra cruza la pendiente pegado a la roca. Sus uñas encuentran apoyos junto al camino.",
+          "text": "Junto al arroyo, un Uñapiedra sube por una roca casi lisa. Sus uñas se agarran a bultos que tú ni ves. Se para a media altura y te mira de lado.",
           "persistent_trace": false
         },
         {
           "creature": "rasgacumbres",
-          "text": "Ves marcas profundas de garras. Más arriba, un Rasgacumbres se mueve entre las rocas; puedes mantener la distancia.",
+          "text": "Muy arriba, en la sierra, una forma grande cruza una cornisa y deja caer piedrecitas. Es un Rasgacumbres. Desde aquí abajo parece pequeño.",
           "persistent_trace": false
         }
-      ]
+      ],
+      "brief": "La primera subida, donde la grava se vuelve pasto.",
+      "look": {
+        "norte": "La pendiente se llena de raíces y árboles torcidos. El camino desaparece en una curva.",
+        "sur": "Abajo, la grava baja hacia la cuenca; muy lejos, los muros de una ciudad."
+      }
     },
     "hoshai_repecho_raices": {
       "id": "hoshai_repecho_raices",
       "name": "Cuesta de las raíces",
       "region": "hoshai",
       "kind": "road",
-      "description": "La cuesta pasa entre raíces descubiertas y árboles inclinados. Puedes volver al arroyo por el sur o seguir al descanso del norte. La curva esconde lo que viene después. Entre dos troncos hay sitio para apoyar un bulto sin tapar el sendero.",
+      "description": "La cuesta sube entre raíces al aire y árboles torcidos por el viento, todos inclinados hacia el mismo lado. Hay que levantar bien los pies para no tropezar. Una curva tapa lo que viene después, y desde ella bajan a veces voces de otros viajeros. Entre dos troncos queda un hueco para apoyar un bulto sin cortar el sendero.",
       "day": "Dos viajeros esperan en huecos diferentes mientras una carga desciende. Un Felaryn mira por encima del bulto para anticipar la curva, pero sigue indicando apoyos cercanos a quien no puede ver desde su altura.",
       "night": "Las raíces oscuras cruzan el sendero como líneas que el farol no explica de inmediato. Los viajeros bajan la carga antes de discutir la curva. El borde queda a un paso de la curva y el fardo casi roza la raíz más alta.",
       "rain": "La tierra se desliza entre las raíces y descubre una superficie lisa. Quien sube prueba el hueco lateral antes de apoyar su bulto. El agua baja entre raíces; los troncos más expuestos dejan caer gotas sobre quienes se acercan.",
@@ -121,22 +126,23 @@
         },
         {
           "creature": "unapiedra",
-          "text": "Un Unapiedra cruza la pendiente pegado a la roca. Sus uñas encuentran apoyos junto al camino.",
+          "text": "Un Uñapiedra trepa por la roca que asoma entre dos raíces. Cuando pasas, se aplasta contra la piedra y se queda quieto, del mismo color que ella.",
           "persistent_trace": false
         },
         {
           "creature": "rasgacumbres",
-          "text": "Ves marcas profundas de garras. Más arriba, un Rasgacumbres se mueve entre las rocas; puedes mantener la distancia.",
+          "text": "Por encima de los árboles inclinados, unas garras rascan la roca. Un Rasgacumbres asoma en un saliente lejano y vuelve a quedar tapado por la curva.",
           "persistent_trace": false
         }
-      ]
+      ],
+      "brief": "La cuesta de las raíces, con su curva escondida."
     },
     "hoshai_descanso_tres_piedras": {
       "id": "hoshai_descanso_tres_piedras",
       "name": "Descanso de las Tres Piedras",
       "region": "hoshai",
       "kind": "landmark",
-      "description": "Tres piedras grandes ofrecen asiento en mitad de la subida. El repecho queda al sur; al norte sigue el camino junto a una pared. Desde aquí ves dos curvas del ascenso. Unas cuerdas descansan sobre una piedra pequeña, apartadas del paso.",
+      "description": "En mitad de la subida, tres piedras grandes forman un asiento natural, gastado por todos los que se han sentado antes. Desde aquí se ven dos curvas del camino, una encima de la otra, como escalones gigantes. El viento sopla constante y seca el sudor. Unas cuerdas enrolladas descansan sobre una piedra pequeña, apartadas del paso.",
       "day": "La porteadora extiende su cubierta sobre la piedra baja. Su aprendiz toca la esquina húmeda del fardo y la aparta del extremo seco.",
       "night": "El farol ilumina una cuerda sobre la piedra baja. Una viajera se sienta con la espalda hacia la pared; más allá de sus pies queda el borde oscuro.",
       "rain": "El agua baja por la pared fría y reúne gotas junto a la cuerda. La porteadora traslada el fardo a la piedra más alta; deja suficiente espacio para que quien viene bajando pueda hacer lo mismo.",
@@ -159,14 +165,15 @@
         "weather",
         "return"
       ],
-      "max_layers": 2
+      "max_layers": 2,
+      "brief": "El descanso de las tres piedras, a media subida."
     },
     "hoshai_pared_goteo": {
       "id": "hoshai_pared_goteo",
       "name": "Pared húmeda",
       "region": "hoshai",
       "kind": "road",
-      "description": "La pared queda a tu izquierda al subir, con el valle abierto al otro lado. El sendero une las tres piedras del sur con el pinar del norte. En los huecos de la roca cabe una carga. El barro conserva marcas de manos junto al goteo.",
+      "description": "El sendero va pegado a una pared de roca que gotea sin parar, a tu izquierda al subir; a la derecha se abre el valle, enorme, sin nada que lo tape. Da un poco de vértigo mirar. En los huecos de la pared cabe una carga. En el barro se ven marcas de manos, donde la gente se apoya junto al goteo, y la roca está fría y resbaladiza al tocarla.",
       "day": "Una viajera deja pasar a quienes descienden junto al entrante mayor. Su compañero toca la pared; retira la mano mojada y prueba el saliente de al lado.",
       "night": "El valle queda oscuro y se oye el goteo más cerca. Un saliente corta el reflejo de la pared. Los viajeros bajan sus luces para mirar el sendero.",
       "rain": "La pared devuelve varios hilos de agua que antes eran gotas. Los viajeros protegen la carga del lado interior, pero dejan el apoyo de la mano libre; una cubierta mal puesta impediría reconocer la superficie húmeda.",
@@ -192,22 +199,23 @@
         },
         {
           "creature": "unapiedra",
-          "text": "Un Unapiedra cruza la pendiente pegado a la roca. Sus uñas encuentran apoyos junto al camino.",
+          "text": "Sobre la pared húmeda, un Uñapiedra avanza por donde gotea el agua. Prueba cada saliente con una uña antes de apoyarse.",
           "persistent_trace": false
         },
         {
           "creature": "rasgacumbres",
-          "text": "Ves marcas profundas de garras. Más arriba, un Rasgacumbres se mueve entre las rocas; puedes mantener la distancia.",
+          "text": "En la ladera de enfrente, al otro lado del valle, un Rasgacumbres baja despacio entre rocas. Las piedras que suelta tardan en dejar de sonar.",
           "persistent_trace": false
         }
-      ]
+      ],
+      "brief": "La pared húmeda, con el valle abierto al otro lado."
     },
     "hoshai_pinar_discontinuo": {
       "id": "hoshai_pinar_discontinuo",
       "name": "Pinar abierto",
       "region": "hoshai",
       "kind": "road",
-      "description": "Los pinos dejan claros desde los que se ve el valle. Al sur vuelve el camino de la pared; al norte corre agua fría. Un desvío al oeste lleva al abrigo de piñas y al collado. Las piñas se acumulan donde el viento no las alcanza.",
+      "description": "Un pinar abierto, con claros desde los que se ve todo el valle. Huele fuerte a resina, y las agujas secas crujen bajo los pies como una alfombra. Las piñas se amontonan donde el viento no llega. A veces un Pico gris golpea un tronco con el pico. Un desvío entre los pinos lleva hacia un abrigo de piñas y, más arriba, al collado.",
       "day": "Un pájaro golpea dos veces el tronco de un pino. La siguiente respuesta llega desde más arriba; entre ambos sonidos se oye caer una aguja sobre la roca.",
       "night": "El pino más próximo roza la roca. El olor de las agujas llega antes de que puedas distinguir su franja oscura en el suelo.",
       "rain": "Las agujas mojadas oscurecen la tierra y amortiguan el paso de las cargas. La recolectora deja en tierra las piñas abiertas y lleva sólo las que aún conservan semillas. Bajo los árboles siguen cayendo gotas cuando el claro se despeja.",
@@ -234,12 +242,12 @@
         },
         {
           "creature": "unapiedra",
-          "text": "Un Unapiedra cruza la pendiente pegado a la roca. Sus uñas encuentran apoyos junto al camino.",
+          "text": "Un Uñapiedra pasa de un pino a una roca sin pisar las agujas del suelo. Se queda agarrado al lado de la piedra donde no da el viento.",
           "persistent_trace": false
         },
         {
           "creature": "rasgacumbres",
-          "text": "Ves marcas profundas de garras. Más arriba, un Rasgacumbres se mueve entre las rocas; puedes mantener la distancia.",
+          "text": "Desde un claro del pinar se ve, lejos y arriba, un Rasgacumbres sobre un risco. Tiene la cabeza vuelta hacia el valle, no hacia ti.",
           "persistent_trace": false
         }
       ],
@@ -260,14 +268,20 @@
         "activity"
       ],
       "dawn": "El pájaro golpea una sola vez. Más arriba tarda en llegar la respuesta; la roca guarda el frío.",
-      "dusk": "La última respuesta llega desde la ladera alta. Cerca sólo se oye una aguja que toca la piedra."
+      "dusk": "La última respuesta llega desde la ladera alta. Cerca sólo se oye una aguja que toca la piedra.",
+      "brief": "El pinar abierto y sus claros sobre el valle.",
+      "echoes": [
+        "Una piña cae de lo alto y rebota en una roca con un ruido seco.",
+        "El Pico gris vuelve a golpear el tronco: toc, toc, toc.",
+        "El viento pasa entre los pinos y suena como agua lejana."
+      ]
     },
     "hoshai_agua_fria": {
       "id": "hoshai_agua_fria",
       "name": "Cruce de agua fría",
       "region": "hoshai",
       "kind": "road",
-      "description": "Una corriente fría atraviesa el sendero. Al sur quedan los pinos; al norte, unos escalones de roca suben hacia los hitos. Una piedra grande desvía parte del agua. Puedes dejar la carga en el lado seco antes de escoger dónde pisar.",
+      "description": "Una corriente de agua helada cruza el sendero, tan fría que duelen los dedos si los metes. Baja de la nieve de arriba, rápida y ruidosa. Una piedra grande desvía parte del agua; en el lado seco se puede dejar la carga antes de elegir con cuidado dónde pisar. Al otro lado, unos escalones de roca siguen subiendo.",
       "day": "Una Felaryn cruza ligera y vuelve a indicar el apoyo final desde la otra orilla. Un compañero permanece en la plataforma hasta tener libre el sitio de llegada. La viajera espera al otro lado y vuelve a tender la mano cuando llega el segundo recipiente.",
       "night": "El agua tapa los sonidos del pinar. Las luces de ambas orillas dejan ver los escalones próximos; en medio, los reflejos se rompen sobre la corriente.",
       "rain": "La corriente alcanza el segundo escalón y arrastra agujas del pinar. Los viajeros alzan los bultos sobre la plataforma seca mientras observan el paso. La otra orilla sigue cerca, pero su apoyo útil se ha estrechado.",
@@ -295,22 +309,23 @@
         },
         {
           "creature": "unapiedra",
-          "text": "Un Unapiedra cruza la pendiente pegado a la roca. Sus uñas encuentran apoyos junto al camino.",
+          "text": "En la piedra grande que desvía el agua, un Uñapiedra bebe agarrado al borde. Cuando te acercas a la orilla, sube un palmo y espera.",
           "persistent_trace": false
         },
         {
           "creature": "rasgacumbres",
-          "text": "Ves marcas profundas de garras. Más arriba, un Rasgacumbres se mueve entre las rocas; puedes mantener la distancia.",
+          "text": "Río arriba, en las rocas, hay marcas frescas de garras. Más lejos todavía, un Rasgacumbres se mueve entre las piedras altas.",
           "persistent_trace": false
         }
-      ]
+      ],
+      "brief": "El cruce de agua fría y su piedra grande."
     },
     "hoshai_ladera_hitos": {
       "id": "hoshai_ladera_hitos",
       "name": "Ladera de las señales",
       "region": "hoshai",
       "kind": "road",
-      "description": "El sendero recorre una ladera abierta entre la corriente baja y el cuello de roca. Al sur queda la corriente y al norte se estrecha el paso entre dos paredes. Dos grupos de piedras marcan las curvas: uno sigue el camino y otro el borde que se revisa tras el deshielo. Una tablilla cercana explica la diferencia.",
+      "description": "Una ladera abierta y ventosa, entre la corriente de abajo y un paso de roca estrecho de arriba. Dos grupos de piedras amontonadas marcan las curvas: uno señala el camino y el otro, el borde que se revisa después del deshielo, cuando la tierra se mueve. Una tablilla cercana explica la diferencia para quien no la conozca. Desde aquí, el valle se ve pequeño.",
       "day": "Una cuidadora repasa la tablilla mientras su aprendiz devuelve piedras al grupo del borde. Señala las señales del camino a la viajera que pregunta; luego toca la marca de revisión.",
       "night": "Con el farol bajo, los dos grupos de piedras parecen uno. El aprendiz guarda la cesta y cubre la tablilla. Hay que detenerse en la curva para distinguirlos.",
       "rain": "El agua marca una línea entre los dos grupos de piedras. La cuidadora espera a que pase una carga y se arrodilla junto a la base que empieza a hundirse.",
@@ -339,22 +354,23 @@
         },
         {
           "creature": "unapiedra",
-          "text": "Un Unapiedra cruza la pendiente pegado a la roca. Sus uñas encuentran apoyos junto al camino.",
+          "text": "Un Uñapiedra se queda quieto encima de un grupo de piedras de señal, como si fuera una más. Sólo se le nota cuando cambia una uña de sitio.",
           "persistent_trace": false
         },
         {
           "creature": "rasgacumbres",
-          "text": "Ves marcas profundas de garras. Más arriba, un Rasgacumbres se mueve entre las rocas; puedes mantener la distancia.",
+          "text": "Por encima del paso entre paredes, un Rasgacumbres cruza la ladera de lado. Una piedra suelta rueda desde donde pisó y se para lejos del sendero.",
           "persistent_trace": false
         }
-      ]
+      ],
+      "brief": "La ladera de las señales, con sus dos grupos de piedras."
     },
     "hoshai_cuello_roca": {
       "id": "hoshai_cuello_roca",
       "name": "Paso entre paredes",
       "region": "hoshai",
       "kind": "road",
-      "description": "Las paredes se acercan tanto que las cargas deben pasar en fila. Al sur puedes esperar en la ladera; al norte se abre una terraza. Hay una piedra plana en cada extremo: los viajeros golpean madera contra ella para avisar antes de entrar.",
+      "description": "Las paredes de roca se acercan tanto que sólo cabe una carga cada vez; el cielo es una franja estrecha allá arriba. En cada extremo hay una piedra plana, gastada de golpes: antes de entrar, se golpea con un palo para avisar a quien venga del otro lado, y se espera respuesta. Los golpes resuenan entre las paredes. Hace frío, y la roca suda gotas.",
       "day": "La porteadora espera un golpe desde el otro lado de la roca. La niña vuelve por el paso estrecho, señala la terraza libre y se aparta junto a la pared.",
       "night": "Los golpes se oyen completos entre las paredes y pierden fuerza al salir a la ladera. Quien no recibe respuesta deja la carga fuera y mira el primer apoyo. Una luz se acerca desde el otro extremo y vuelve a oírse el paso de una carga.",
       "rain": "El agua corre pegada a la pared oriental y reduce el apoyo de ese lado. Los viajeros mantienen el anuncio antes de cruzar; cubrirse de la lluvia no da permiso para ocupar el cuello desde ambas entradas.",
@@ -362,7 +378,8 @@
       "return": "La piedra de aviso aparece antes del estrechamiento. Del otro lado, la abertura de la terraza permite reconocer dónde termina el paso en fila.",
       "examine": {
         "piedras": "Las marcas son de madera golpeada. No prometen que alguien haya oído cada aviso.",
-        "paredes": "La franja oriental recoge agua; el paso útil no conserva su anchura en lluvia."
+        "paredes": "La franja oriental recoge agua; el paso útil no conserva su anchura en lluvia.",
+        "repisa": "Muy arriba, en la pared del paso, hay una repisa estrecha. Desde abajo se ven rayas en la roca. Para llegar haría falta saltar como un Felaryn."
       },
       "exits": {
         "sur": "hoshai_ladera_hitos",
@@ -371,7 +388,24 @@
       "arrivals": {},
       "npcs": [],
       "signals": [],
-      "actions": [],
+      "actions": [
+        {
+          "id": "hoshai_secreto_repisa",
+          "label": "Saltar a la repisa alta",
+          "requires_species": [
+            "felaryn"
+          ],
+          "forbids_flags": [
+            "hoshai_marca_repisa"
+          ],
+          "set_flags": [
+            "hoshai_marca_repisa"
+          ],
+          "scope": "player",
+          "text": "Tomas impulso en la piedra plana y alcanzas la repisa de un salto. Está llena de rayas de altura: cada una tiene al lado un nombre, una cola dibujada o las dos cosas. Son marcas de los niños de Khariel, de muchos años. Con una piedra haces la tuya, un poco más arriba de lo que esperabas.",
+          "journal": "Dejaste tu marca de altura en la repisa alta del paso entre paredes, entre las de los niños de Khariel."
+        }
+      ],
       "wildlife_pool": [
         {
           "creature": "saltacresta",
@@ -380,22 +414,23 @@
         },
         {
           "creature": "unapiedra",
-          "text": "Un Unapiedra cruza la pendiente pegado a la roca. Sus uñas encuentran apoyos junto al camino.",
+          "text": "En la pared del paso estrecho, un Uñapiedra se pega a la roca por encima de las cabezas. Cuando alguien golpea la piedra de aviso, se queda inmóvil.",
           "persistent_trace": false
         },
         {
           "creature": "rasgacumbres",
-          "text": "Ves marcas profundas de garras. Más arriba, un Rasgacumbres se mueve entre las rocas; puedes mantener la distancia.",
+          "text": "Arriba, en el borde de las paredes, una sombra grande tapa la luz un momento. Un Rasgacumbres mira el paso desde lo alto y sigue de largo.",
           "persistent_trace": false
         }
-      ]
+      ],
+      "brief": "El paso entre paredes y su piedra de aviso."
     },
     "hoshai_terraza_cargas": {
       "id": "hoshai_terraza_cargas",
       "name": "Terraza de las cargas",
       "region": "hoshai",
       "kind": "landmark",
-      "description": "El paso estrecho desemboca en una terraza ancha. Al sur queda el cuello de roca; al norte suben los escalones de Khariel. Un sendero al este lleva al mirador. Las cargas descansan abiertas, con sus cuerdas lejos del borde. Un techo del pueblo asoma sobre la subida. Una lona al oeste señala un campamento junto al camino; se puede llegar sin bajar por toda la sierra.",
+      "description": "El paso estrecho se abre de golpe a una terraza ancha y soleada, y el viento vuelve a soplar. Aquí las cargas se abren y se reparten, con las cuerdas lejos del borde, que cae en picado. Por encima de la subida asoma el primer techo de Khariel, de tejas oscuras. A un lado, una lona azul marca un campamento; al otro, un sendero lleva a un mirador.",
       "day": "Dos comerciantes redistribuyen los paquetes. Un acompañante se endereza al recibir menos peso de un lado; el aprendiz enrolla la cuerda que quedó suelta.",
       "night": "Una ventana lejana permanece visible cuando los escalones ya no lo están. Los comerciantes cubren los paquetes y acercan sus luces a las cuerdas. La casa parece más cercana justamente cuando conviene mirar el suelo.",
       "rain": "Los viajeros vuelven las cubiertas con el lado seco hacia los paquetes y dejan escapar el agua por el borde exterior. Las cuerdas mojadas se separan de las de repuesto para no llevar humedad a toda la carga.",
@@ -414,14 +449,78 @@
       "arrivals": {},
       "npcs": [],
       "signals": [],
-      "actions": []
+      "actions": [],
+      "brief": "La terraza de las cargas, bajo el primer techo de Khariel.",
+      "states": [
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_visits": {
+            "min": 3
+          },
+          "overrides": {
+            "day": "Un comerciante Felaryn lleva una caja en equilibrio sobre la cabeza y otra en cada mano, y así sube los primeros escalones. Los demás le miran, entre admirados y preocupados."
+          }
+        },
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_visits": {
+            "min": 5
+          },
+          "overrides": {
+            "day": "Un aprendiz deja colgar una cuerda por el borde de la terraza para ver hasta dónde llega. No llega a ningún sitio: el vacío es más largo que la cuerda."
+          }
+        },
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_visits": {
+            "min": 8
+          },
+          "overrides": {
+            "day": "Dos comerciantes han terminado de repartir las cargas y juegan con piedrecitas sobre una caja. El viento se lleva una y los dos corren detrás de ella."
+          }
+        },
+        {
+          "requires_time": [
+            "noche"
+          ],
+          "requires_visits": {
+            "min": 3
+          },
+          "overrides": {
+            "night": "La terraza está vacía y el viento sopla fuerte. Las cuerdas atadas golpean los postes, tac, tac, como si alguien llamara a una puerta."
+          }
+        },
+        {
+          "requires_time": [
+            "noche"
+          ],
+          "requires_visits": {
+            "min": 6
+          },
+          "overrides": {
+            "night": "Muy abajo, en el valle, se ve una luz pequeña que avanza: alguien sube de noche. Tardará mucho en llegar."
+          }
+        }
+      ],
+      "look": {
+        "sur": "Dos paredes de roca se juntan tanto que sólo cabe una carga. Se oye un golpe de aviso.",
+        "norte": "Escalones al sol suben hacia los tejados oscuros de un pueblo.",
+        "este": "Un saliente de roca se asoma a un barranco. Una cuerda cruza el vacío.",
+        "oeste": "Una lona azul tapa unas cajas junto al camino. Alguien vigila al lado."
+      }
     },
     "hoshai_escalones_sol": {
       "id": "hoshai_escalones_sol",
       "name": "Escalones al sol",
       "region": "hoshai",
       "kind": "road",
-      "description": "Escalones de tamaños distintos enlazan la terraza baja con las casas: unos están tallados y otros reparados con piedras nuevas. Al sur está la terraza de cargas; al norte llegas a Khariel. Un canal corre al lado de los peldaños. Las reparaciones dejan apoyos para pies humanos y Felaryn.",
+      "description": "Escalones de tamaños distintos suben de la terraza a las casas de Khariel, calientes por el sol de la mañana. Unos están tallados en la roca hace mucho; otros, arreglados con piedras nuevas y más claras. Las reparaciones dejan apoyos para pies humanos y para pies Felaryn, que pisan de puntillas. A un lado baja un canal de agua que canturrea.",
       "day": "Un albañil prueba el escalón reparado desde dos alturas. Una viajera espera a que recoja la herramienta antes de subir.",
       "night": "La cara soleada no conserva su ventaja al apagarse el cielo. Una luz junto al muro superior permite reconocer el final de la subida. Los peldaños intermedios siguen necesitando atención aunque el pueblo parezca despierto.",
       "rain": "El canal lateral reúne agua que resbala de las piezas reparadas. El albañil revisa el hueco inferior sin retirarlo en pleno tránsito. Una marca de barro revela qué peldaño están evitando las cargas más anchas.",
@@ -450,13 +549,71 @@
         },
         {
           "creature": "unapiedra",
-          "text": "Un Unapiedra cruza la pendiente pegado a la roca. Sus uñas encuentran apoyos junto al camino.",
+          "text": "Un Uñapiedra toma el sol en un escalón tallado, lejos del canal. Al ver tus pies, se pasa al borde de una piedra nueva, sin estorbar a nadie.",
           "persistent_trace": false
         },
         {
           "creature": "rasgacumbres",
-          "text": "Ves marcas profundas de garras. Más arriba, un Rasgacumbres se mueve entre las rocas; puedes mantener la distancia.",
+          "text": "Desde los escalones se ve la sierra. En una cornisa lejana, un Rasgacumbres se estira al sol. En los peldaños nadie deja de trabajar por él.",
           "persistent_trace": false
+        }
+      ],
+      "brief": "Los escalones al sol, tallados y remendados.",
+      "states": [
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_visits": {
+            "min": 3
+          },
+          "overrides": {
+            "day": "Un niño Felaryn sube los escalones de dos en dos, de tres en tres, saltando. Una abuela humana sube detrás, de uno en uno, y llegan arriba a la vez."
+          }
+        },
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_visits": {
+            "min": 5
+          },
+          "overrides": {
+            "day": "Un gato se ha tumbado en el escalón más caliente, justo en medio. Todo el mundo pasa por encima con cuidado; nadie lo mueve."
+          }
+        },
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_visits": {
+            "min": 8
+          },
+          "overrides": {
+            "day": "El albañil termina de arreglar un escalón. Lo pisa, salta encima y se queda satisfecho. Luego se da la vuelta y mira el siguiente."
+          }
+        },
+        {
+          "requires_time": [
+            "noche"
+          ],
+          "requires_visits": {
+            "min": 3
+          },
+          "overrides": {
+            "night": "La piedra de los escalones todavía está tibia. El canal de al lado suena más fuerte en el silencio."
+          }
+        },
+        {
+          "requires_time": [
+            "noche"
+          ],
+          "requires_visits": {
+            "min": 6
+          },
+          "overrides": {
+            "night": "Alguien baja los escalones con una lámpara. La luz salta de peldaño en peldaño, como si bajara sola."
+          }
         }
       ]
     },
@@ -465,7 +622,7 @@
       "name": "Plaza de Khariel",
       "region": "hoshai",
       "kind": "settlement",
-      "description": "La plaza de Khariel ocupa dos terrazas unidas por escalones y una rampa. El camino baja al sur; al oeste está el taller, al este el mercado y al norte las viviendas. Los bancos dejan sitio para las colas Felaryn y para apoyar cargas.",
+      "description": "La plaza de Khariel ocupa dos terrazas unidas por escalones y una rampa, para que suba quien salta y quien no. Los bancos tienen hueco detrás para las colas Felaryn y sitio para apoyar cargas. Desde aquí se ve todo el valle, y el viento trae olor a comida de las casas. Alrededor se reparten el taller, el mercado de las cintas y el patio de las casas.",
       "day": "Dos jóvenes saltan el cambio de nivel con las manos libres. Una vecina pone una nuez en el último escalón; el primero falla al recogerla y la nuez rueda hasta la rampa.",
       "night": "En la terraza superior alguien practica dos notas con un silbato. Una ventana se abre y una voz pide la melodía entera; abajo se oyen pasos recién llegados.",
       "rain": "Los habitantes apartan los asientos del agua que baja por los escalones y despejan la rampa para las cargas. Las capas mojadas se cuelgan bajo un techo común, lejos de las herramientas que esperan en el taller.",
@@ -496,6 +653,61 @@
           "requires_time": [
             "día"
           ],
+          "requires_visits": {
+            "min": 3
+          },
+          "overrides": {
+            "day": "Los dos jóvenes de la nuez han inventado un juego: uno salta el cambio de nivel y el otro tiene que hacerlo con los ojos cerrados. Una vecina los mira desde la puerta, sin decidir si reírse o regañarlos."
+          }
+        },
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_visits": {
+            "min": 5
+          },
+          "overrides": {
+            "day": "Un viajero humano intenta subir de un salto el cambio de nivel, como los Felaryn, y se queda colgado del borde. Los jóvenes le ayudan a subir, y uno le enseña dónde poner el pie la próxima vez."
+          }
+        },
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_visits": {
+            "min": 8
+          },
+          "overrides": {
+            "day": "Hoy es el viajero humano quien pone la nuez en el último escalón y desafía a los jóvenes. Pierde, pero sube por la rampa riéndose, más rápido que la primera vez."
+          }
+        },
+        {
+          "requires_time": [
+            "noche"
+          ],
+          "requires_visits": {
+            "min": 3
+          },
+          "overrides": {
+            "night": "Desde la terraza alta, el silbato ya toca tres notas seguidas. Alguien aplaude desde una ventana."
+          }
+        },
+        {
+          "requires_time": [
+            "noche"
+          ],
+          "requires_visits": {
+            "min": 6
+          },
+          "overrides": {
+            "night": "El silbato toca por fin una melodía entera, corta y alegre. Al terminar se apagan varias luces, como si todo Khariel hubiera esperado ese final para irse a dormir."
+          }
+        },
+        {
+          "requires_time": [
+            "día"
+          ],
           "requires_weather": [
             "nieve"
           ],
@@ -506,6 +718,18 @@
       ],
       "focus": [
         "activity"
+      ],
+      "brief": "La plaza de Khariel, en dos terrazas con rampa.",
+      "look": {
+        "sur": "Escalones de piedra bajan hacia una terraza ancha. Más abajo, el valle entero, y el vacío.",
+        "oeste": "Una puerta de la que sale olor a serrín y ruido de herramientas.",
+        "este": "Entre muros que cortan el viento ondean cintas de colores, como banderas pequeñas.",
+        "norte": "Puertas repartidas entre escalones y descansos, una encima de otra. Se oyen voces y platos."
+      },
+      "echoes": [
+        "Una ráfaga de viento hace volar una cinta de colores desde el mercado; un joven Felaryn salta y la atrapa al vuelo.",
+        "Alguien llama a otro por su nombre desde la terraza alta, y le contestan desde la baja.",
+        "Un niño baja la rampa corriendo con los brazos abiertos, como si volara."
       ]
     },
     "hoshai_taller_apoyos": {
@@ -513,7 +737,7 @@
       "name": "Taller de Khariel",
       "region": "hoshai",
       "kind": "interior",
-      "description": "El taller huele a serrín. Hay herramientas grandes junto a un banco bajo y piezas pequeñas en los estantes. Un dibujo señala qué escalones necesitan reparación. La puerta del este vuelve a la plaza. Sobre el banco, una plantilla gastada espera junto a una pieza recién cortada.",
+      "description": "El taller huele a serrín y a madera recién cortada. Junto a un banco bajo esperan herramientas grandes; en los estantes, piezas pequeñas ordenadas por tamaño. En la pared hay un dibujo de todos los escalones del camino, con marcas en los que necesitan arreglo. Sobre el banco, una plantilla gastada espera al lado de una pieza recién cortada, todavía con virutas.",
       "day": "Daren pasa una mano por una pieza y encuentra una astilla. La quita con una herramienta pequeña y deja que su aprendiz repita el gesto en el otro extremo.",
       "night": "Una viruta larga cuelga del banco. Dentro del taller se oye guardar la última herramienta; después el cierre encaja dos veces.",
       "rain": "Las piezas traídas del exterior se apoyan sobre un travesaño y no sobre la madera seca del banco. El aprendiz limpia barro de un borde para comprobar si está gastado o simplemente cubierto de agua.",
@@ -550,7 +774,7 @@
         {
           "id": "hoshai_entregar_polea",
           "label": "Devolver la polea y explicar la cuenta",
-          "text": "Daren comprueba la marca y registra la reclamación de Seran junto al transporte. No declara culpable a nadie por una sola conversación. La polea vuelve al taller.",
+          "text": "Pones la polea sobre el banco y le das a Daren la tablilla de Seran. Daren reconoce la marca del mango enseguida. Lee la cuenta despacio y la deja junto al dibujo de los escalones: «Antes de decir quién tiene razón, quiero compararlo con mis notas del transporte.»",
           "requires_items": {
             "polea_daren": 1
           },
@@ -627,14 +851,15 @@
       ],
       "focus": [
         "activity"
-      ]
+      ],
+      "brief": "El taller de Khariel, con su dibujo de los escalones."
     },
     "hoshai_mercado_cintas": {
       "id": "hoshai_mercado_cintas",
       "name": "Mercado de las cintas",
       "region": "hoshai",
       "kind": "settlement",
-      "description": "Entre muros que cortan el viento, los puestos ofrecen comida envuelta y cintas para las cargas. Puedes probar una atadura sobre las barras. El paso hacia la plaza vuelve al oeste. Los colores de las cintas indican qué bulto abrir primero y cuál mantener seco. Una puerta al este lleva al lugar de cuidados.",
+      "description": "Entre muros que cortan el viento, los puestos venden comida envuelta y cintas de colores para atar las cargas. Cada color dice algo: qué bulto abrir primero, cuál mantener seco. Las cintas ondean como banderas pequeñas. Unas barras permiten probar una atadura antes de comprar. Una puerta da al lugar de cuidados.",
       "day": "Luma compara una cinta teñida con otra ya lavada. Una clienta anuda ambas al mismo dedo y las mira a la luz antes de escoger.",
       "night": "Las cintas recogidas dejan ver las marcas de sol en la mesa. Desde las viviendas llega olor a comida y la voz de alguien que llama por su nombre.",
       "rain": "Los paquetes se separan del muro, donde el agua baja sin verse desde delante. La comerciante cambia una cinta húmeda por otra seca y muestra cómo puede colgarse fuera del bulto sin mojar lo que protege.",
@@ -692,6 +917,50 @@
           "requires_time": [
             "día"
           ],
+          "requires_visits": {
+            "min": 5
+          },
+          "overrides": {
+            "day": "Una niña se ha atado cintas de todos los colores a la trenza y gira sobre sí misma para que vuelen. Luma la mira y dice que así nadie sabrá qué abrir primero."
+          }
+        },
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_visits": {
+            "min": 8
+          },
+          "overrides": {
+            "day": "Un comerciante de la cuenca intenta aprender el código de colores de las cintas. Confunde el azul con el gris tres veces, y Luma le presta una cinta de muestra para el camino."
+          }
+        },
+        {
+          "requires_time": [
+            "noche"
+          ],
+          "requires_visits": {
+            "min": 3
+          },
+          "overrides": {
+            "night": "Las cintas recogidas en un cesto parecen un nido de colores. Un gato duerme encima."
+          }
+        },
+        {
+          "requires_time": [
+            "noche"
+          ],
+          "requires_visits": {
+            "min": 6
+          },
+          "overrides": {
+            "night": "El viento trae olor a pan de las casas. En un puesto, alguien envuelve con cuidado las provisiones de un viajero que saldrá de madrugada."
+          }
+        },
+        {
+          "requires_time": [
+            "día"
+          ],
           "requires_weather": [
             "viento"
           ],
@@ -705,14 +974,15 @@
       ],
       "focus": [
         "people"
-      ]
+      ],
+      "brief": "El mercado de las cintas, al abrigo del viento."
     },
     "hoshai_patio_hogares": {
       "id": "hoshai_patio_hogares",
       "name": "Patio de las casas",
       "region": "hoshai",
       "kind": "settlement",
-      "description": "Las puertas de las casas se reparten entre escalones y pequeños descansos. La plaza queda al sur, el lavadero al este y la senda del bosque al norte. Los recipientes esperan junto a los muros. Para visitar una casa, hay un umbral donde llamar sin bloquear el paso.",
+      "description": "Las puertas de las casas se reparten entre escalones y pequeños descansos, unas encima de otras, como en una escalera ancha. Los recipientes esperan junto a los muros. Para visitar a alguien hay un umbral donde llamar sin cortar el paso. Se oyen voces dentro, platos y alguna risa. Desde el patio salen el lavadero y una senda hacia los árboles altos.",
       "day": "Una familia recoge ropa de una cuerda que cruza por encima de los descansos. Los menores ayudan desde el nivel bajo y los adultos suben los recipientes. Las cargas grandes utilizan la rampa y dejan los peldaños libres para quienes llevan sólo un recipiente.",
       "night": "Las voces salen por rendijas antes de que se abran puertas. Una lámpara señala el umbral de espera, separándolo de los pasos domésticos. Quien llega con preguntas puede llamar sin entrar en la casa de alguien.",
       "rain": "Los vecinos recogen las cuerdas de ropa contra los muros. El agua alcanza el borde bajo de la rampa; un recipiente sube de mano en mano hasta la puerta.",
@@ -730,14 +1000,72 @@
       "arrivals": {},
       "npcs": [],
       "signals": [],
-      "actions": []
+      "actions": [],
+      "brief": "El patio de las casas, entre escalones y descansos.",
+      "states": [
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_visits": {
+            "min": 3
+          },
+          "overrides": {
+            "day": "Dos vecinas hablan de un descanso a otro, una arriba y otra abajo, y se pasan una cesta con una cuerda."
+          }
+        },
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_visits": {
+            "min": 5
+          },
+          "overrides": {
+            "day": "Unos niños juegan a no tocar el suelo: van de escalón en descanso y de descanso en escalón. El más pequeño se queda atascado y le llevan entre todos."
+          }
+        },
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_visits": {
+            "min": 8
+          },
+          "overrides": {
+            "day": "Hoy hay fiesta en una de las casas: por la ventana se oyen risas y un silbato, y huele a pastel de frutos secos."
+          }
+        },
+        {
+          "requires_time": [
+            "noche"
+          ],
+          "requires_visits": {
+            "min": 3
+          },
+          "overrides": {
+            "night": "Las voces salen por las rendijas de las puertas. Alguien ríe; alguien manda callar; alguien vuelve a reír."
+          }
+        },
+        {
+          "requires_time": [
+            "noche"
+          ],
+          "requires_visits": {
+            "min": 6
+          },
+          "overrides": {
+            "night": "Una lámpara se apaga arriba, y luego otra, y otra, de arriba abajo, como si el patio se fuera a dormir escalón a escalón."
+          }
+        }
+      ]
     },
     "hoshai_lavadero_roca": {
       "id": "hoshai_lavadero_roca",
       "name": "Lavadero de roca",
       "region": "hoshai",
       "kind": "landmark",
-      "description": "El agua fría cae en una pila estrecha y sigue cuesta abajo. Las piedras del borde sostienen ropa y recipientes. Al oeste vuelves a las viviendas; una escalera al norte lleva al depósito. Las prendas limpias cuelgan altas, lejos del barro que llega con los viajeros.",
+      "description": "El agua fría cae en una pila estrecha de roca, salpicando, y sigue cuesta abajo. Las piedras del borde sostienen ropa y recipientes. Las prendas limpias cuelgan altas, lejos del barro que traen los viajeros, y se mueven con el viento. Una escalera sube a un depósito.",
       "day": "Una vecina dobla una manga sobre la piedra y busca la mancha que queda al secarse. Dos niños intentan silbar con una hoja mojada; sólo uno consigue un sonido.",
       "night": "El agua fría sigue entrando entre las piedras. Una prenda olvidada oscurece el borde del lavadero; el viento levanta apenas su manga.",
       "rain": "El agua de lluvia baja por fuera de la conducción y moja el apoyo inferior. Los vecinos levantan el cesto y dejan ese borde sin ropa. La diferencia entre cauce conducido y escorrentía mantiene su importancia.",
@@ -772,14 +1100,15 @@
         "activity"
       ],
       "dawn": "La primera manga toca el agua fría. Su dueña sopla los dedos antes de volver a frotar.",
-      "dusk": "Una hoja mojada queda sobre la piedra. Los niños vuelven a probar el silbido antes de irse."
+      "dusk": "Una hoja mojada queda sobre la piedra. Los niños vuelven a probar el silbido antes de irse.",
+      "brief": "El lavadero de roca y su pila de agua fría."
     },
     "hoshai_deposito_comun": {
       "id": "hoshai_deposito_comun",
       "name": "Depósito de herramientas",
       "region": "hoshai",
       "kind": "interior",
-      "description": "Bajo el alero esperan herramientas mojadas. Dentro, cada tarea tiene su estante y una tablilla indica quién tomó prestada la pieza que falta. La escalera del sur baja al lavadero; al oeste puedes salir al balcón. El suelo de entrada conserva gotas y serrín.",
+      "description": "Bajo el alero esperan herramientas mojadas, goteando. Dentro, cada tarea tiene su estante, y una tablilla dice quién se llevó la pieza que falta y cuándo la devolverá. En la entrada hay gotas y serrín. Una puerta da a un balcón sobre el valle, y por ella entra un aire frío.",
       "day": "La encargada mira la tabla vacía antes de entregar una pala. Pregunta dónde sigue trabajando quien tomó la primera y apunta su nombre junto al dibujo del huerto.",
       "night": "Las herramientas que hacen ruido quedan fijadas con tiras y la encargada deja una nota en la puerta. Quien devuelve una pieza tarde puede dejarla bajo el alero sin despertar a las viviendas del patio.",
       "rain": "Las herramientas devueltas se separan bajo el alero mientras se les quita el barro. La encargada no rellena una tabla vacía con una pieza mojada sin revisarla; el préstamo termina cuando el objeto puede volver a usarse.",
@@ -796,14 +1125,15 @@
       "arrivals": {},
       "npcs": [],
       "signals": [],
-      "actions": []
+      "actions": [],
+      "brief": "El depósito de herramientas, con su tablilla de préstamos."
     },
     "hoshai_balcon_valle": {
       "id": "hoshai_balcon_valle",
       "name": "Balcón sobre el valle",
       "region": "hoshai",
       "kind": "landmark",
-      "description": "El camino aparece y desaparece entre las laderas. Una roca oculta el cruce frío. El banco está lejos del borde. Al este vuelves al depósito.",
+      "description": "Un balcón colgado sobre el vacío del valle. Desde el banco, lejos del borde, se ve el camino aparecer y desaparecer entre las laderas como un hilo. Abajo, los árboles parecen musgo. El viento sube por la pared y silba. Una roca y una cornisa tapan parte de la vista, incluido el cruce de agua fría.",
       "day": "Un observador compara el movimiento de dos cargas con un momento anotado en su cuaderno. No presume saber quién las lleva desde tan lejos. Espera una señal en la terraza para distinguir avance de pausa.",
       "night": "Las luces de Khariel quedan cerca; las del valle, muy separadas. El observador cierra el cuaderno cuando ya no distingue el camino.",
       "rain": "Las cortinas de lluvia borran una ladera y dejan otra visible. El observador tacha el último tramo de su dibujo y apoya el lápiz junto al banco.",
@@ -811,7 +1141,7 @@
       "return": "La cornisa sigue cortando parte de la vista, entre dos laderas de inclinación distinta. Reconoces el banco alejado del borde. Las cargas aparecen por trechos y vuelven a ocultarse antes de llegar a la terraza visible.",
       "examine": {
         "cuaderno": "Una línea incompleta indica que se perdió de vista una carga, no que se perdió la carga.",
-        "cornisa": "Oculta el paso frío incluso con buena luz."
+        "cornisa": "La cornisa es un camino estrecho pegado a la roca. Tiene apoyos para los pies y sitio para una persona con un bulto pequeño; un carro no cabe. Detrás de la roca el camino se pierde de vista un rato y vuelve a aparecer más abajo."
       },
       "exits": {
         "este": "hoshai_deposito_comun"
@@ -870,6 +1200,12 @@
             }
           }
         }
+      ],
+      "brief": "El balcón sobre el valle, con su banco lejos del borde.",
+      "echoes": [
+        "Un ave grande planea sobre el valle sin mover las alas, subiendo con el aire caliente.",
+        "Muy abajo, una carga minúscula aparece en el camino, se esconde tras la roca y vuelve a aparecer.",
+        "Una nube pasa por debajo del balcón. Por un momento, el valle desaparece."
       ]
     },
     "hoshai_mirador_nudo": {
@@ -877,7 +1213,7 @@
       "name": "Mirador de la cuerda",
       "region": "hoshai",
       "kind": "landmark",
-      "description": "Desde el saliente ves una cuerda de paso y el nudo junto a su apoyo. Una ladera protege el sitio del barranco. Al oeste vuelves a la terraza de cargas; al norte está la caseta. Aquí puedes mirar la unión sin ocupar el sendero principal.",
+      "description": "Un saliente de roca protegido del barranco por la ladera. Desde aquí se ve una cuerda de paso tendida sobre el vacío, tensa como la de un instrumento, y el nudo grueso junto a su apoyo. Cuando sopla el viento, la cuerda zumba. Se puede mirar la unión con calma, sin ocupar el sendero.",
       "day": "Yesa intenta ajustar un paquete sin soltar la cinta que lleva en el dedo. Al final deja ambas manos quietas y se sienta. El nudo del mirador sigue a la vista, pero hoy comparte espacio con un regreso interrumpido.",
       "night": "La cuerda corta una franja de cielo, pero su nudo deja de distinguirse. La cuidadora guarda la revisión para cuando pueda ver ambas partes. La caseta conserva una luz que orienta el regreso, no una garantía sobre el apoyo.",
       "rain": "La cuerda mojada se oscurece y deja ver un roce claro junto al nudo. El mirador recibe agua de la ladera, de modo que la cuidadora mantiene los pies en el saliente ancho antes de observar.",
@@ -983,14 +1319,15 @@
           ],
           "text": "La piedra deja sitio para otra pausa como la que compartiste con Yesa antes de que continuara."
         }
-      ]
+      ],
+      "brief": "El mirador de la cuerda tendida sobre el vacío."
     },
     "hoshai_caseta_revision": {
       "id": "hoshai_caseta_revision",
       "name": "Caseta del camino",
       "region": "hoshai",
       "kind": "interior",
-      "description": "La caseta está pegada a la roca, con la puerta protegida del viento. Dentro hay tiras de repuesto y tablillas con dibujos del nudo. Las herramientas se guardan junto a la entrada. El camino del sur vuelve al mirador y, desde allí, a la terraza.",
+      "description": "Una caseta pequeña pegada a la roca, con la puerta protegida del viento. Dentro hace un calor agradable. Hay tiras de repuesto colgadas y tablillas con dibujos del nudo, de muchas formas. Las herramientas se guardan junto a la entrada, listas para salir.",
       "day": "La cuidadora coloca una tira nueva junto al dibujo, sin retirar todavía la que está en uso. Su compañero pregunta qué se ha visto desde el mirador. Ella señala el hueco del dibujo y deja la punta del lápiz allí.",
       "night": "La puerta permanece cerrada con una nota de trabajo pendiente. Las tiras se guardan secas en lo alto y la luz se apaga al terminar la jornada. La caseta no mantiene un guardia esperando cualquier consulta nocturna.",
       "rain": "El techo descarga lejos del umbral y deja un espacio seco donde extender el dibujo. Las herramientas mojadas esperan sobre una tabla aparte. Nadie confunde el resguardo de la caseta con una revisión ya concluida.",
@@ -1053,14 +1390,15 @@
         }
       ],
       "dawn": "La cuidadora abre la caseta y cuelga una cubierta para que se airee. Las notas del día anterior siguen sobre la mesa, todavía sin nueva cuenta.",
-      "dusk": "La cuidadora reúne las notas y retira la cubierta del exterior. Quien llega tiene tiempo para decir qué vio antes de que se cierre la puerta."
+      "dusk": "La cuidadora reúne las notas y retira la cubierta del exterior. Quien llega tiene tiempo para decir qué vio antes de que se cierre la puerta.",
+      "brief": "La caseta del camino, con los dibujos del nudo."
     },
     "hoshai_abrigo_pinas": {
       "id": "hoshai_abrigo_pinas",
       "name": "Refugio de las piñas",
       "region": "hoshai",
       "kind": "landmark",
-      "description": "Piñas secas se acumulan junto a la pared. Una raíz ofrece sitio para dejar la carga. Al este vuelves al pinar; al norte subes al collado.",
+      "description": "Un abrigo natural junto a una pared de roca, donde las piñas secas se amontonan hasta las rodillas. La resina deja los dedos pegajosos si tocas una piña. Una raíz gruesa deja sitio para dejar la carga y sentarse al resguardo del viento. Desde aquí, la senda sube hacia el collado.",
       "day": "Una piña cruje bajo el peso de un ave pequeña. Dentro del abrigo, una viajera lee una nota que ha doblado muchas veces y alisa el mismo rincón.",
       "night": "Se oyen agujas arrastradas fuera de la cubierta. Una piña rueda hasta el poste y se queda allí; el abrigo guarda una franja de suelo quieto.",
       "rain": "El goteo avanza hasta la franja de piñas y deja seco el apoyo del fondo. Quien llega apoya la carga bajo la raíz y se acerca a la pared para dejar libre el frente del abrigo.",
@@ -1094,14 +1432,15 @@
       ],
       "focus": [
         "activity"
-      ]
+      ],
+      "brief": "El refugio de las piñas, junto a la pared."
     },
     "hoshai_collado_pino": {
       "id": "hoshai_collado_pino",
       "name": "Paso del último pino",
       "region": "hoshai",
       "kind": "wilderness",
-      "description": "Un pino aislado crece entre piedras partidas, con la copa doblada por el viento. Sus raíces sujetan un poco de tierra. Al sur baja la senda al abrigo; al norte llegas al aprisco. Entre las marcas de los viajeros hay huellas que rodean el árbol.",
+      "description": "Un pino solo crece entre piedras partidas, con la copa doblada por el viento hacia un lado, como si se estuviera agachando. Sus raíces sujetan un poco de tierra en medio de la roca. Alrededor del árbol, las huellas de los viajeros dan la vuelta: todo el mundo lo rodea, como si lo saludara. Aquí arriba el viento no para.",
       "day": "Una pastora recoge lana atrapada en una rama baja sin perseguir al rebaño entre las piedras. Se queda donde puede ver el aprisco.",
       "night": "El pino se recorta antes que el camino al aprisco. Los sonidos del rebaño llegan desde abajo y pueden confundirse con la dirección del viento. La pastora espera la respuesta del aprisco antes de seguir; una llamada lejana se pierde detrás de la ladera.",
       "rain": "La copa devuelve agua a un solo lado y deja el otro expuesto al viento. La pastora no reúne allí al rebaño: el pequeño suelo de las raíces soporta al árbol, no una estancia prolongada de muchas bestias.",
@@ -1127,22 +1466,23 @@
         },
         {
           "creature": "unapiedra",
-          "text": "Un Unapiedra cruza la pendiente pegado a la roca. Sus uñas encuentran apoyos junto al camino.",
+          "text": "Un Uñapiedra rodea el pino por las piedras partidas. Se para en la raíz más alta y te sigue con la mirada.",
           "persistent_trace": false
         },
         {
           "creature": "rasgacumbres",
-          "text": "Ves marcas profundas de garras. Más arriba, un Rasgacumbres se mueve entre las rocas; puedes mantener la distancia.",
+          "text": "Por encima del collado, un Rasgacumbres cruza una pared de roca. Cuando se detiene, sus garras dejan un rasguño claro en la piedra.",
           "persistent_trace": false
         }
-      ]
+      ],
+      "brief": "El paso del último pino, doblado por el viento."
     },
     "hoshai_aprisco_abierto": {
       "id": "hoshai_aprisco_abierto",
       "name": "Refugio del rebaño",
       "region": "hoshai",
       "kind": "wilderness",
-      "description": "Piedras sueltas guían al rebaño hacia el lado protegido de la ladera. Un recipiente espera en un hueco seco. Al sur está el collado del pino; al oeste sigue el sendero hacia las lajas. La pastora deja espacio para que los animales puedan moverse.",
+      "description": "Piedras sueltas forman muros bajos que guían al rebaño hacia el lado protegido de la ladera. En un hueco seco espera un recipiente para el agua. Hay espacio para que los animales se muevan sin chocar. Se oyen balidos y el tintineo de alguna campanilla. Hacia el oeste, el sendero sigue por unas lajas.",
       "day": "La pastora revisa un apoyo vencido antes de llamar al rebaño. Su ayudante retira el recipiente de la abertura; dos animales pasan junto a la piedra y vuelven la cabeza hacia el agua.",
       "night": "El rebaño se recoge hacia el abrigo inferior y el aprisco queda quieto. Las piedras parecen formar más cierres de los que tienen. Sólo quien reconoce la salida al agua puede distinguir su orden sin luz del día.",
       "rain": "El agua atraviesa los huecos entre piedras y evita acumularse donde se reúne el rebaño. La pastora retira el recipiente del hueco exterior. Una roca recién desplazada deja un borde claro bajo el barro.",
@@ -1168,22 +1508,23 @@
         },
         {
           "creature": "unapiedra",
-          "text": "Un Unapiedra cruza la pendiente pegado a la roca. Sus uñas encuentran apoyos junto al camino.",
+          "text": "Un Uñapiedra se asoma por encima de la pared seca del aprisco. El rebaño no le hace caso, y él tampoco al rebaño.",
           "persistent_trace": false
         },
         {
           "creature": "rasgacumbres",
-          "text": "Ves marcas profundas de garras. Más arriba, un Rasgacumbres se mueve entre las rocas; puedes mantener la distancia.",
+          "text": "El rebaño se aprieta contra el lado protegido de la ladera. Muy arriba, un Rasgacumbres recorre la cresta. La pastora lo mira sin moverse.",
           "persistent_trace": false
         }
-      ]
+      ],
+      "brief": "El refugio del rebaño, al abrigo de la ladera."
     },
     "hoshai_hombro_lajas": {
       "id": "hoshai_hombro_lajas",
       "name": "Camino de las lajas",
       "region": "hoshai",
       "kind": "landmark",
-      "description": "El sendero dobla entre lajas inclinadas hacia una hondonada. Su brillo puede hacerlas parecer planas. Al este vuelves al aprisco; al oeste bajas hacia la garganta. Una tablilla recoge noticias de los viajeros. Detrás aún se alcanza a ver el pino del collado.",
+      "description": "El sendero dobla entre lajas de piedra inclinadas; con el brillo del sol pueden parecer planas, y no lo son: hay que pisar con cuidado. Una tablilla recoge noticias de los viajeros. Detrás todavía se ve el pino del collado, pequeño; por delante, el camino baja a la garganta que lleva a Korven.",
       "day": "Un mensajero lee la última marca de revisión y mira la garganta. Su compañero espera lejos de las lajas inclinadas y aprieta la correa que llevaba suelta.",
       "night": "El farol se refleja en las lajas y oculta sus pendientes. El mensajero marca su llegada en la tablilla. La garganta queda oscura más adelante.",
       "rain": "El agua dibuja líneas nuevas sobre las lajas y destaca su inclinación hacia la hondonada. Los viajeros revisan las cubiertas antes de salir del abrigo de la sierra. La piedra seca del oeste aún queda más allá de la garganta.",
@@ -1200,14 +1541,15 @@
       "arrivals": {},
       "npcs": [],
       "signals": [],
-      "actions": []
+      "actions": [],
+      "brief": "El camino de las lajas, más inclinadas de lo que parecen."
     },
     "hoshai_garganta_oeste": {
       "id": "hoshai_garganta_oeste",
       "name": "Garganta hacia Korven",
       "region": "hoshai",
       "kind": "road",
-      "description": "Las paredes de la garganta van perdiendo vegetación. El aire trae polvo de las piedras claras que aparecen más abajo. Al este regresas a las lajas; al sur llegas a la meseta de Korven. Un ensanchamiento permite que dos cargas se crucen sin rozar la pared.",
+      "description": "Las paredes de la garganta van perdiendo plantas a medida que bajas, y el aire empieza a traer polvo de piedras claras: abajo empieza Korven. El eco repite tus pasos. Un ensanche permite que dos cargas se crucen sin rozar la roca. Hace calor seco, distinto del frío de arriba.",
       "day": "Una viajera sacude agujas del pinar antes de revisar el polvo sobre sus cubiertas. Otros esperan en el ensanchamiento a que ascienda una carga.",
       "night": "El aire mueve polvo que el farol vuelve visible demasiado cerca de los ojos. Los viajeros reducen el paso hasta reconocer el ensanchamiento. El hombro de la sierra queda atrás sin conservar su vista nocturna sobre el camino.",
       "rain": "El agua se reúne en pequeñas juntas antes de desaparecer entre cascajos occidentales. Las cubiertas mojan una carga que enseguida recoge polvo. Una viajera levanta la tela mojada y limpia el polvo que se pegó al apoyo.",
@@ -1236,22 +1578,23 @@
         },
         {
           "creature": "unapiedra",
-          "text": "Un Unapiedra cruza la pendiente pegado a la roca. Sus uñas encuentran apoyos junto al camino.",
+          "text": "En la pared de la garganta, un Uñapiedra se agarra a una roca clara. Sus uñas levantan un poco de polvo.",
           "persistent_trace": false
         },
         {
           "creature": "rasgacumbres",
-          "text": "Ves marcas profundas de garras. Más arriba, un Rasgacumbres se mueve entre las rocas; puedes mantener la distancia.",
+          "text": "Por encima de la garganta, un Rasgacumbres baja hasta media pared y se para. Desde el ensanchamiento sólo se ven sus patas y una lluvia de polvo.",
           "persistent_trace": false
         }
-      ]
+      ],
+      "brief": "La garganta hacia Korven y su ensanche."
     },
     "hoshai_senda_dosel": {
       "id": "hoshai_senda_dosel",
       "name": "Senda de los árboles altos",
       "region": "hoshai",
       "kind": "road",
-      "description": "La senda baja entre árboles altos y rodea un pequeño valle. Al sur vuelves a las viviendas de Khariel; al este alcanzas la estación del cordel. La plaza desaparece tras la primera curva. Un banco seco permite esperar sin dejar la carga sobre las raíces mojadas.",
+      "description": "La senda baja entre árboles altos, muy altos, y rodea un valle pequeño, camino de la parada del cordel. Tras la primera curva, la plaza de Khariel deja de verse y el ruido del pueblo se apaga. La luz llega verde y a manchas. Un banco seco permite esperar sin poner la carga sobre las raíces mojadas.",
       "day": "Un viajero del bosque deja hojas oscuras junto al banco al sacudir su cubierta. Una habitante de Khariel pregunta por las marcas de la próxima curva antes de despedirlo. Ella señala el borde rehecho del banco; él aparta una hoja para mostrar la raíz del dibujo.",
       "night": "Las viviendas desaparecen al doblar y el dosel reúne una oscuridad más pareja que el valle abierto. El banco sigue ofreciendo apoyo seco. Las voces dejan de propagarse en línea recta entre los troncos.",
       "rain": "Las hojas amplias del descenso devuelven gotas más pesadas que las agujas del pinar. El viajero mantiene su carga lejos de las raíces húmedas. La llegada del bosque se siente también en cómo cae el agua sobre el sendero.",
@@ -1277,22 +1620,23 @@
         },
         {
           "creature": "unapiedra",
-          "text": "Un Unapiedra cruza la pendiente pegado a la roca. Sus uñas encuentran apoyos junto al camino.",
+          "text": "Un Uñapiedra sube por una roca con musgo junto al banco seco. Se mueve despacio, una pata cada vez.",
           "persistent_trace": false
         },
         {
           "creature": "rasgacumbres",
-          "text": "Ves marcas profundas de garras. Más arriba, un Rasgacumbres se mueve entre las rocas; puedes mantener la distancia.",
+          "text": "Entre los árboles altos se ve un trozo de montaña. Allí arriba, un Rasgacumbres cruza un paso de roca y se queda mirando el valle.",
           "persistent_trace": false
         }
-      ]
+      ],
+      "brief": "La senda de los árboles altos, con su banco seco."
     },
     "hoshai_estacion_cuerda": {
       "id": "hoshai_estacion_cuerda",
       "name": "Parada del cordel",
       "region": "hoshai",
       "kind": "landmark",
-      "description": "Un cordel une dos árboles fuera del sendero. Sus marcas señalan dónde apoyar las cargas; bajo una cubierta se guardan notas del camino. Al oeste vuelves hacia Khariel. Al este, los troncos se juntan y la ruta entra en el Dosel Alto de Nhal.",
+      "description": "Un cordel une dos árboles fuera del sendero; sus nudos y marcas dicen dónde apoyar las cargas. Bajo una cubierta se guardan notas del camino, protegidas de la lluvia. Detrás quedan las casas de Khariel. Por delante, los troncos se juntan y la luz se oscurece: por ahí la ruta entra en el Dosel Alto de Nhal.",
       "day": "La cuidadora Felaryn espera a la mensajera Vesperi. Extienden sus notas juntas; una señala la raíz dibujada y la otra el nudo del siguiente tramo.",
       "night": "Las marcas del cordel quedan oscuras. La cubierta de notas está cerrada; debajo hay sitio para apoyar un farol. La senda sigue al este entre los árboles.",
       "rain": "La cubierta protege las notas, pero los árboles descargan agua sobre la senda. Las dos cuidadoras miran los apoyos cercanos antes de recomendar un tramo.",
@@ -1309,14 +1653,15 @@
       "arrivals": {},
       "npcs": [],
       "signals": [],
-      "actions": []
+      "actions": [],
+      "brief": "La parada del cordel, a la entrada de Nhal."
     },
     "hoshai_campamento_lona": {
       "id": "hoshai_campamento_lona",
       "name": "Campamento de la lona azul",
       "region": "hoshai",
       "kind": "landmark",
-      "description": "Una lona azul cubre tres cajas de viaje. La terraza queda al este y un sendero corto baja al sur hasta las cargas. Un viajero afirma que una polea del taller le pertenece. Puedes hablar antes de acercarte a su palo.",
+      "description": "Una lona azul cubre tres cajas de viaje. La terraza queda al este y un sendero corto baja al sur hasta más cajas. Seran, un viajero con un palo corto, vigila la carga y dice que la polea del taller es suya hasta que le paguen. Puedes hablar con él antes de acercarte.",
       "exits": {
         "este": "hoshai_terraza_cargas",
         "sur": "hoshai_cajas_camino"
@@ -1335,7 +1680,7 @@
       "signals": [
         {
           "creature": "forajido_camino",
-          "text": "Un salteador golpea una caja con un palo corto para que no te acerques. La terraza permanece libre al este.",
+          "text": "Seran golpea una caja con su palo corto para que no te acerques a la carga. No te corta el paso: la terraza sigue libre al este.",
           "forbids_flags": [
             "hoshai_polea_acordada"
           ]
@@ -1348,7 +1693,7 @@
             "hoshai_polea_acordada"
           ],
           "overrides": {
-            "description": "Seran deja el palo junto a la lona y espera que lleves su tablilla a Daren. La terraza está al este; las cajas con la polea, al sur. El acuerdo ha dejado ambos pasos libres."
+            "description": "Una lona azul, descolorida por el sol, cubre tres cajas de viaje junto al camino. Seran ha dejado el palo junto a la lona y espera que lleves su tablilla a Daren. El acuerdo ha dejado libres los dos pasos: el de la terraza y el de las cajas con la polea. Hay restos de una hoguera pequeña y una manta doblada."
           }
         },
         {
@@ -1356,18 +1701,28 @@
             "hoshai_polea_devuelta"
           ],
           "overrides": {
-            "description": "Seran conserva su espacio junto a la lona. La terraza está al este y las cajas al sur; la polea que recogiste ya volvió al taller de Daren. La cuenta de transporte sigue en la tablilla que entregaste.",
+            "description": "Una lona azul, descolorida por el sol, cubre tres cajas de viaje junto al camino. La polea ya volvió al taller de Daren; la cuenta del transporte sigue escrita en la tablilla que entregaste. Hay restos de una hoguera pequeña y una manta doblada.",
             "return": "La lona sitúa el desvío donde hablaste de la cuenta. Desde aquí vuelve a verse la terraza por la que llevaste la polea al taller."
           }
         }
-      ]
+      ],
+      "brief": "El campamento de la lona azul.",
+      "adversary_prose": {
+        "forajido_camino": {
+          "dialogue": {
+            "qué quieres": "Que me paguen el transporte. Mientras no me paguen, la polea se queda conmigo.",
+            "por qué": "Subí estas cajas hasta aquí y nadie me pagó. No soy un ladrón: es lo único que tengo para que me escuchen.",
+            "dejar paso": "La terraza está libre. Si quieres arreglarlo hablando, habla conmigo, no con mi palo."
+          }
+        }
+      }
     },
     "hoshai_cajas_camino": {
       "id": "hoshai_cajas_camino",
       "name": "Cajas bajo la terraza",
       "region": "hoshai",
       "kind": "landmark",
-      "description": "Una polea de mano está encajada entre dos cajas. El sendero vuelve al norte al campamento; no continúa por debajo de la montaña. La marca del taller está visible en el mango.",
+      "description": "Un hueco entre dos cajas grandes, al final del sendero, con la montaña a la espalda. Ahí está encajada una polea de mano con la marca del taller en el mango. El sendero no sigue: no hay paso por debajo de la montaña.",
       "exits": {
         "norte": "hoshai_campamento_lona"
       },
@@ -1419,14 +1774,15 @@
             "hoshai_polea_recogida"
           ],
           "overrides": {
-            "description": "El espacio entre las cajas conserva la marca de la polea que recogiste. El sendero vuelve al norte al campamento. Una tira de tela sujeta la caja superior; no hay salida bajo la montaña.",
+            "description": "Un hueco entre dos cajas grandes, al final del sendero, con la montaña a la espalda. Una tira de tela sujeta la caja de arriba, y en la madera queda la marca de la polea que recogiste. No hay paso por debajo de la montaña.",
             "return": "El hueco de la polea reaparece entre las dos cajas. Puedes situar el sendero del campamento desde la tira que sujeta la caja alta.",
             "examine": {
               "polea": "La marca del mango salió contigo al recoger la polea. En la madera de la caja quedó el apoyo que ocupaba."
             }
           }
         }
-      ]
+      ],
+      "brief": "Las cajas bajo la terraza."
     },
     "hoshai_sala_cuidados": {
       "id": "hoshai_sala_cuidados",
@@ -1434,7 +1790,7 @@
       "region": "hoshai",
       "kind": "interior",
       "safe": true,
-      "description": "Un banco ancho está fijado a la terraza. Las capas mojadas se quedan bajo el alero y los paños limpios, en una caja cerrada. La ventana da al valle; la puerta occidental vuelve al mercado.",
+      "description": "Un banco ancho fijado a la terraza, con una ventana grande que da al valle; desde aquí se ve el cielo entero. Las capas mojadas se quedan bajo el alero y los paños limpios, en una caja cerrada. Es un sitio tranquilo para recuperarse.",
       "exits": {
         "oeste": "hoshai_mercado_cintas"
       },
@@ -1453,7 +1809,8 @@
       "examine": {
         "cuidados": "El servicio cuesta dieciocho sellos. Recupera hasta el noventa por ciento de vitalidad, reduce un grado de herida y renueva el margen para descansar. No sustituye la decisión de evitar otra pelea."
       },
-      "source": "Ampliación original autorizada: recuperación local del contrato existente"
+      "source": "Ampliación original autorizada: recuperación local del contrato existente",
+      "brief": "El asiento de cuidados de Khariel, frente al valle."
     }
   },
   "npcs": {
@@ -1547,7 +1904,7 @@
         "comprar": "Aquí priorizamos arcos y puñales de camino, provisiones y materiales para fijar apoyos: resina, cuerda y piedra veteada. Para comparar todas las armas, el mercado de Vaisgard recibe las cinco rutas.",
         "vender": "La mochila muestra únicamente los materiales que necesita este puesto y el precio antes de vender. Conserva lo que vayas a usar en un encargo o en el afinado.",
         "cornisa": {
-          "text": "Luma escucha tu recomendación y reserva las cargas voluminosas para el camino principal. «Me sirve saber qué viste y qué prefieres que revisemos.»",
+          "text": "Así que la viste con tus propios ojos. Eso me sirve más que lo que se oye en la plaza. Las cargas grandes seguirán por el camino principal; para lo demás, haré caso a tu nota.",
           "set_flags": [
             "hoshai_cornisa_informada"
           ],
@@ -1555,7 +1912,13 @@
             "hoshai_cornisa_decidida"
           ]
         },
-        "cuidados": "El lugar de cuidados está junto a Mercado de las cintas. Cuesta dieciocho sellos y atiende heridas, no sólo hambre. Está cerca del pueblo: no hace falta cruzar otras regiones."
+        "cuidados": "El lugar de cuidados está junto a Mercado de las cintas. Cuesta dieciocho sellos y atiende heridas, no sólo hambre. Está cerca del pueblo: no hace falta cruzar otras regiones.",
+        "repisa": {
+          "requires_flags": [
+            "hoshai_marca_repisa"
+          ],
+          "text": "¿Subiste a la repisa del paso? Mi marca es la tercera por abajo, la de la cola torcida. No la mires mucho: entonces era muy pequeña y muy orgullosa."
+        }
       },
       "memory": {
         "hoshai_cornisa_cargas_pequenas": "Luma recuerda que recomendaste la cornisa para cargas pequeñas, no para carros.",
@@ -1598,7 +1961,7 @@
       "description": "Seran sostiene una tablilla rota; la palabra taller sigue legible bajo sus dedos. No bloquea el regreso.",
       "topics": {
         "cuenta": {
-          "text": "«Esperaba un pago por transportar estas cajas. Daren puede aclararlo. Si vas a llevarle la polea, que conste quién la entregó.»",
+          "text": "Subí estas cajas hasta aquí porque me dijeron que el taller pagaría al llegar. Nadie me ha pagado. Por eso me quedé la polea: no la quiero, quiero mi pago. Si se la llevas a Daren, dile también quién la trajo y qué se me debe.",
           "set_flags": [
             "hoshai_seran_escuchado"
           ]
@@ -1610,7 +1973,7 @@
           "forbids_flags": [
             "hoshai_polea_por_fuerza"
           ],
-          "text": "Acuerdas devolver la polea e indicar que Seran reclama una cuenta pendiente. Deja libre la caja del sendero sur. No has comprado su silencio ni le has entregado sellos.",
+          "text": "Está bien. La polea está en las cajas del sendero sur; llévatela. Y llévate esta tablilla: ahí está escrita mi cuenta. Que Daren la lea. No te pido sellos a ti; te pido que no se pierda mi parte.",
           "set_flags": [
             "hoshai_polea_acordada"
           ]

@@ -1,0 +1,2232 @@
+{
+  "scope": "Integration of 45 new agent-reviewed fixed environmental views; no new art creation, no human approval claim, no deployment",
+  "source_delivery": "/home/jdiaz/Escritorio/Vintage Telnet - Arte - Entrega",
+  "source_worktree": "/home/jdiaz/proyectos/vintage-telnet-2-arte",
+  "source_snapshot": "ec37879",
+  "source_manifests": {
+    "evaluaciones.json": "fdba0f6cb84885abc9eba6c966906325b6fa3ec013e6fd1b908ba650f70878e3",
+    "integracion-propuesta.json": "f292e790ee314d3a27821bf0e16beab9a11a9496149307b7a1889868dc701b37",
+    "prompts.json": "a45c637e0fd2bca00ffdc0affed5c05fb20ef5bcefb97aa86cc480254fab1de2",
+    "canon-snapshot.json": "1b791a08c0098a07cad6099538c514743587c87933a8af9c175072d8742f28c9"
+  },
+  "new_views": 45,
+  "new_assets": 90,
+  "by_region": {
+    "hoshai": 3,
+    "korven": 10,
+    "veyra": 3,
+    "lethra": 11,
+    "nhal": 13,
+    "edran": 5
+  },
+  "existing_place_assets_preserved": 120,
+  "existing_47_delivery_views_preserved": 47,
+  "new_asset_bytes": 16579648,
+  "entries": [
+    {
+      "id": "hoshai_terraza_cargas",
+      "region": "hoshai",
+      "name": "Terraza de las cargas",
+      "approval": "Aprobación artística del agente, sin revisión humana",
+      "evaluation": {
+        "Canon": 3,
+        "Identidad regional": 4,
+        "Continuidad": 4,
+        "Composición": 4,
+        "Escala": 3,
+        "Estilo anime": 4,
+        "Atmósfera": 4,
+        "Originalidad": 3,
+        "Calidad técnica": 4,
+        "Utilidad jugable": 4
+      },
+      "critique": "Corregidas cargas y cuerdas alejándolas del borde; plaza natural abierta con campamento y primer techo. Las cuerdas extendidas quedan poco explícitas.",
+      "mapping": {
+        "name": "Terraza de las cargas",
+        "illustration": "/client/art/places/hoshai_terraza_cargas-anime-v1.webp",
+        "thumbnail": "/client/art/places/hoshai_terraza_cargas-anime-v1-thumb.webp",
+        "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+      },
+      "assets": [
+        {
+          "kind": "illustration",
+          "source": "webp/hoshai_terraza_cargas-anime-v1.webp",
+          "runtime": "client/art/places/hoshai_terraza_cargas-anime-v1.webp",
+          "sha256": "de26ca6c9851a0350e1259c2d84abab94217179fd48c61d78d865bc35cd21728",
+          "bytes": 362334,
+          "dimensions": [
+            1200,
+            800
+          ]
+        },
+        {
+          "kind": "thumbnail",
+          "source": "miniaturas/hoshai_terraza_cargas-anime-v1-thumb.webp",
+          "runtime": "client/art/places/hoshai_terraza_cargas-anime-v1-thumb.webp",
+          "sha256": "85af3d43aeab9d5d6a94371ef585fad85ea05dd6cc774913050297a314990773",
+          "bytes": 25600,
+          "dimensions": [
+            300,
+            200
+          ]
+        }
+      ]
+    },
+    {
+      "id": "korven_loma_cascajo",
+      "region": "korven",
+      "name": "Loma de las piedras claras",
+      "approval": "Aprobación artística del agente, sin revisión humana",
+      "evaluation": {
+        "Canon": 4,
+        "Identidad regional": 4,
+        "Continuidad": 4,
+        "Composición": 4,
+        "Escala": 3,
+        "Estilo anime": 4,
+        "Atmósfera": 4,
+        "Originalidad": 3,
+        "Calidad técnica": 4,
+        "Utilidad jugable": 4
+      },
+      "critique": "Roderas y cascajo con pala diferencian loma; ciudad oculta y descenso claro. Ausencia de escala humana intencional, escala por pala.",
+      "mapping": {
+        "name": "Loma de las piedras claras",
+        "illustration": "/client/art/places/korven_loma_cascajo-anime-v1.webp",
+        "thumbnail": "/client/art/places/korven_loma_cascajo-anime-v1-thumb.webp",
+        "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+      },
+      "assets": [
+        {
+          "kind": "illustration",
+          "source": "webp/korven_loma_cascajo-anime-v1.webp",
+          "runtime": "client/art/places/korven_loma_cascajo-anime-v1.webp",
+          "sha256": "6655671492e9d78c89145a4759a13dd973a789207c3c86ef2caf1a3a926f50be",
+          "bytes": 398014,
+          "dimensions": [
+            1200,
+            800
+          ]
+        },
+        {
+          "kind": "thumbnail",
+          "source": "miniaturas/korven_loma_cascajo-anime-v1-thumb.webp",
+          "runtime": "client/art/places/korven_loma_cascajo-anime-v1-thumb.webp",
+          "sha256": "41cf0bbb51517c9450d12e7229764c715e9bde1bafecdf0cf46fb59e8f2bbb64",
+          "bytes": 25170,
+          "dimensions": [
+            300,
+            200
+          ]
+        }
+      ]
+    },
+    {
+      "id": "korven_cauce_duro",
+      "region": "korven",
+      "name": "Cauce seco",
+      "approval": "Aprobación artística del agente, sin revisión humana",
+      "evaluation": {
+        "Canon": 4,
+        "Identidad regional": 4,
+        "Continuidad": 4,
+        "Composición": 4,
+        "Escala": 3,
+        "Estilo anime": 4,
+        "Atmósfera": 4,
+        "Originalidad": 3,
+        "Calidad técnica": 4,
+        "Utilidad jugable": 4
+      },
+      "critique": "Arena de cauce y cuenco de herramientas legibles; bifurcación y subida. El estrato del lecho podría comunicar más erosión, composición algo genérica.",
+      "mapping": {
+        "name": "Cauce seco",
+        "illustration": "/client/art/places/korven_cauce_duro-anime-v1.webp",
+        "thumbnail": "/client/art/places/korven_cauce_duro-anime-v1-thumb.webp",
+        "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+      },
+      "assets": [
+        {
+          "kind": "illustration",
+          "source": "webp/korven_cauce_duro-anime-v1.webp",
+          "runtime": "client/art/places/korven_cauce_duro-anime-v1.webp",
+          "sha256": "947816fe250ff8c3c6e28879fc0e98d331e20df361e2a3413818b9024e8a3111",
+          "bytes": 348884,
+          "dimensions": [
+            1200,
+            800
+          ]
+        },
+        {
+          "kind": "thumbnail",
+          "source": "miniaturas/korven_cauce_duro-anime-v1-thumb.webp",
+          "runtime": "client/art/places/korven_cauce_duro-anime-v1-thumb.webp",
+          "sha256": "215dc180eb2dae905a8211fe3f900ad178642f25faa6e68319762d7c1e89e836",
+          "bytes": 22612,
+          "dimensions": [
+            300,
+            200
+          ]
+        }
+      ]
+    },
+    {
+      "id": "korven_meseta_baja",
+      "region": "korven",
+      "name": "Meseta de las dos piedras",
+      "approval": "Aprobación artística del agente, sin revisión humana",
+      "evaluation": {
+        "Canon": 4,
+        "Identidad regional": 4,
+        "Continuidad": 4,
+        "Composición": 4,
+        "Escala": 3,
+        "Estilo anime": 4,
+        "Atmósfera": 4,
+        "Originalidad": 4,
+        "Calidad técnica": 4,
+        "Utilidad jugable": 4
+      },
+      "critique": "Dos grandes piedras ofrecen sombras reconocibles; desvío al horno bajo. Gran escala de piedras plausible sin monumento construido.",
+      "mapping": {
+        "name": "Meseta de las dos piedras",
+        "illustration": "/client/art/places/korven_meseta_baja-anime-v1.webp",
+        "thumbnail": "/client/art/places/korven_meseta_baja-anime-v1-thumb.webp",
+        "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+      },
+      "assets": [
+        {
+          "kind": "illustration",
+          "source": "webp/korven_meseta_baja-anime-v1.webp",
+          "runtime": "client/art/places/korven_meseta_baja-anime-v1.webp",
+          "sha256": "653ef4a5f65de34d56cecdd91451d944854278e79131bb66de7560810959fe49",
+          "bytes": 333424,
+          "dimensions": [
+            1200,
+            800
+          ]
+        },
+        {
+          "kind": "thumbnail",
+          "source": "miniaturas/korven_meseta_baja-anime-v1-thumb.webp",
+          "runtime": "client/art/places/korven_meseta_baja-anime-v1-thumb.webp",
+          "sha256": "f4d1ae525cebf1033b60149a69ecc7fab886418c71f2b9e1267bb229d1ad980b",
+          "bytes": 22060,
+          "dimensions": [
+            300,
+            200
+          ]
+        }
+      ]
+    },
+    {
+      "id": "veyra_terraplen_roca",
+      "region": "veyra",
+      "name": "Camino de piedra",
+      "approval": "Aprobación artística del agente, sin revisión humana",
+      "evaluation": {
+        "Canon": 4,
+        "Identidad regional": 4,
+        "Continuidad": 4,
+        "Composición": 4,
+        "Escala": 3,
+        "Estilo anime": 4,
+        "Atmósfera": 4,
+        "Originalidad": 3,
+        "Calidad técnica": 4,
+        "Utilidad jugable": 4
+      },
+      "critique": "Corregido puente ajeno al canon; acceso diagonal al cauce bajo, piedra suelta y separadores apartados. Sombra del fondo puede parecer humedad; no representa flujo.",
+      "mapping": {
+        "name": "Camino de piedra",
+        "illustration": "/client/art/places/veyra_terraplen_roca-anime-v1.webp",
+        "thumbnail": "/client/art/places/veyra_terraplen_roca-anime-v1-thumb.webp",
+        "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+      },
+      "assets": [
+        {
+          "kind": "illustration",
+          "source": "webp/veyra_terraplen_roca-anime-v1.webp",
+          "runtime": "client/art/places/veyra_terraplen_roca-anime-v1.webp",
+          "sha256": "df2d14336eed14e3141d3302cf721883902ab81a86daa6193538d711c0c4eddb",
+          "bytes": 367124,
+          "dimensions": [
+            1200,
+            800
+          ]
+        },
+        {
+          "kind": "thumbnail",
+          "source": "miniaturas/veyra_terraplen_roca-anime-v1-thumb.webp",
+          "runtime": "client/art/places/veyra_terraplen_roca-anime-v1-thumb.webp",
+          "sha256": "190e6933308c528bcb537961dd82c4e12c9a85cd2e2be5c8dade0f3a6b3781de",
+          "bytes": 24492,
+          "dimensions": [
+            300,
+            200
+          ]
+        }
+      ]
+    },
+    {
+      "id": "korven_pared_sotavento",
+      "region": "korven",
+      "name": "Pared que corta el viento",
+      "approval": "Aprobación artística del agente, sin revisión humana",
+      "evaluation": {
+        "Canon": 4,
+        "Identidad regional": 4,
+        "Continuidad": 4,
+        "Composición": 4,
+        "Escala": 3,
+        "Estilo anime": 4,
+        "Atmósfera": 4,
+        "Originalidad": 3,
+        "Calidad técnica": 4,
+        "Utilidad jugable": 4
+      },
+      "critique": "Pared y hueco de cargas, escoba corta y corredor despejado. Marca de suelo sutil y juntas polvorientas.",
+      "mapping": {
+        "name": "Pared que corta el viento",
+        "illustration": "/client/art/places/korven_pared_sotavento-anime-v1.webp",
+        "thumbnail": "/client/art/places/korven_pared_sotavento-anime-v1-thumb.webp",
+        "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+      },
+      "assets": [
+        {
+          "kind": "illustration",
+          "source": "webp/korven_pared_sotavento-anime-v1.webp",
+          "runtime": "client/art/places/korven_pared_sotavento-anime-v1.webp",
+          "sha256": "13a943f3567c2158fad6ab677210666097c6e3cd65e2228febf872eebefdafb4",
+          "bytes": 334758,
+          "dimensions": [
+            1200,
+            800
+          ]
+        },
+        {
+          "kind": "thumbnail",
+          "source": "miniaturas/korven_pared_sotavento-anime-v1-thumb.webp",
+          "runtime": "client/art/places/korven_pared_sotavento-anime-v1-thumb.webp",
+          "sha256": "26100f5133fb07b760d4a67c5a26ffed986a1b9e45297b3f920a66e63529c605",
+          "bytes": 21022,
+          "dimensions": [
+            300,
+            200
+          ]
+        }
+      ]
+    },
+    {
+      "id": "korven_hitos_paso",
+      "region": "korven",
+      "name": "Camino de los mojones",
+      "approval": "Aprobación artística del agente, sin revisión humana",
+      "evaluation": {
+        "Canon": 4,
+        "Identidad regional": 4,
+        "Continuidad": 4,
+        "Composición": 4,
+        "Escala": 3,
+        "Estilo anime": 4,
+        "Atmósfera": 4,
+        "Originalidad": 3,
+        "Calidad técnica": 4,
+        "Utilidad jugable": 4
+      },
+      "critique": "Mojones sucesivos en roca firme junto a huecos laterales; alturas variables y remates claros. Algunos remates faltan; no hay vegetación alpina.",
+      "mapping": {
+        "name": "Camino de los mojones",
+        "illustration": "/client/art/places/korven_hitos_paso-anime-v1.webp",
+        "thumbnail": "/client/art/places/korven_hitos_paso-anime-v1-thumb.webp",
+        "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+      },
+      "assets": [
+        {
+          "kind": "illustration",
+          "source": "webp/korven_hitos_paso-anime-v1.webp",
+          "runtime": "client/art/places/korven_hitos_paso-anime-v1.webp",
+          "sha256": "17ce6eba1ad7f924549a32267be9ed55263c0e7c3f9b1398db647811270463d0",
+          "bytes": 340196,
+          "dimensions": [
+            1200,
+            800
+          ]
+        },
+        {
+          "kind": "thumbnail",
+          "source": "miniaturas/korven_hitos_paso-anime-v1-thumb.webp",
+          "runtime": "client/art/places/korven_hitos_paso-anime-v1-thumb.webp",
+          "sha256": "09a3a6c3414ea390817c4b02426607809e2fb2dd7c7a46ff7bb87a971e16a54b",
+          "bytes": 22378,
+          "dimensions": [
+            300,
+            200
+          ]
+        }
+      ]
+    },
+    {
+      "id": "korven_hendidura_transito",
+      "region": "korven",
+      "name": "Paso estrecho",
+      "approval": "Aprobación artística del agente, sin revisión humana",
+      "evaluation": {
+        "Canon": 4,
+        "Identidad regional": 4,
+        "Continuidad": 4,
+        "Composición": 4,
+        "Escala": 3,
+        "Estilo anime": 4,
+        "Atmósfera": 4,
+        "Originalidad": 3,
+        "Calidad técnica": 4,
+        "Utilidad jugable": 4
+      },
+      "critique": "Corregidos bifurcación y tabla transversal: corredor único y tabla longitudinal sobre junta. Tabla más larga que la necesaria; escala 3.",
+      "mapping": {
+        "name": "Paso estrecho",
+        "illustration": "/client/art/places/korven_hendidura_transito-anime-v1.webp",
+        "thumbnail": "/client/art/places/korven_hendidura_transito-anime-v1-thumb.webp",
+        "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+      },
+      "assets": [
+        {
+          "kind": "illustration",
+          "source": "webp/korven_hendidura_transito-anime-v1.webp",
+          "runtime": "client/art/places/korven_hendidura_transito-anime-v1.webp",
+          "sha256": "b3123c414f387d49f08acf2ecf42ac26fbd56bb328ab9a74f5c36b041144e80f",
+          "bytes": 330154,
+          "dimensions": [
+            1200,
+            800
+          ]
+        },
+        {
+          "kind": "thumbnail",
+          "source": "miniaturas/korven_hendidura_transito-anime-v1-thumb.webp",
+          "runtime": "client/art/places/korven_hendidura_transito-anime-v1-thumb.webp",
+          "sha256": "cad5f2c609bcf2d80afe99480fdf98caf6c06da6a6caf425ecd779e578280635",
+          "bytes": 22188,
+          "dimensions": [
+            300,
+            200
+          ]
+        }
+      ]
+    },
+    {
+      "id": "korven_asiento_revision",
+      "region": "korven",
+      "name": "Banco de revisión",
+      "approval": "Aprobación artística del agente, sin revisión humana",
+      "evaluation": {
+        "Canon": 4,
+        "Identidad regional": 4,
+        "Continuidad": 4,
+        "Composición": 4,
+        "Escala": 3,
+        "Estilo anime": 4,
+        "Atmósfera": 4,
+        "Originalidad": 3,
+        "Calidad técnica": 4,
+        "Utilidad jugable": 3
+      },
+      "critique": "Trabajo corregido a inspección de pieza con apoyo, martillo apartado. Rostro humano Dravak y placas limitadas. Polvo/huella húmeda se leen de cerca; utilidad 3.",
+      "mapping": {
+        "name": "Banco de revisión",
+        "illustration": "/client/art/places/korven_asiento_revision-anime-v1.webp",
+        "thumbnail": "/client/art/places/korven_asiento_revision-anime-v1-thumb.webp",
+        "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+      },
+      "assets": [
+        {
+          "kind": "illustration",
+          "source": "webp/korven_asiento_revision-anime-v1.webp",
+          "runtime": "client/art/places/korven_asiento_revision-anime-v1.webp",
+          "sha256": "d5baed2b4db095624a5bc59a06927d1abad663b83817c1aaff606b5ac7124190",
+          "bytes": 322400,
+          "dimensions": [
+            1200,
+            800
+          ]
+        },
+        {
+          "kind": "thumbnail",
+          "source": "miniaturas/korven_asiento_revision-anime-v1-thumb.webp",
+          "runtime": "client/art/places/korven_asiento_revision-anime-v1-thumb.webp",
+          "sha256": "715ce881441632ca79ce4d523c4536d4c2d5d9a38557c0778b49f4723aba57c1",
+          "bytes": 23260,
+          "dimensions": [
+            300,
+            200
+          ]
+        }
+      ]
+    },
+    {
+      "id": "veyra_hondonada_canales",
+      "region": "veyra",
+      "name": "Cruce de canales",
+      "approval": "Aprobación artística del agente, sin revisión humana",
+      "evaluation": {
+        "Canon": 3,
+        "Identidad regional": 4,
+        "Continuidad": 4,
+        "Composición": 4,
+        "Escala": 3,
+        "Estilo anime": 4,
+        "Atmósfera": 4,
+        "Originalidad": 3,
+        "Calidad técnica": 4,
+        "Utilidad jugable": 4
+      },
+      "critique": "Canales confluyen y pasarela sobre desagüe menor, orilla elevada. Actividad urbana algo extensa respecto al texto; canon 3 por detalle interpretativo.",
+      "mapping": {
+        "name": "Cruce de canales",
+        "illustration": "/client/art/places/veyra_hondonada_canales-anime-v1.webp",
+        "thumbnail": "/client/art/places/veyra_hondonada_canales-anime-v1-thumb.webp",
+        "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+      },
+      "assets": [
+        {
+          "kind": "illustration",
+          "source": "webp/veyra_hondonada_canales-anime-v1.webp",
+          "runtime": "client/art/places/veyra_hondonada_canales-anime-v1.webp",
+          "sha256": "343a0bccc990b7b0f498f76a2b5784c4edcadd1c19544266eaf4a8143a2f0fa6",
+          "bytes": 380824,
+          "dimensions": [
+            1200,
+            800
+          ]
+        },
+        {
+          "kind": "thumbnail",
+          "source": "miniaturas/veyra_hondonada_canales-anime-v1-thumb.webp",
+          "runtime": "client/art/places/veyra_hondonada_canales-anime-v1-thumb.webp",
+          "sha256": "6216c97fb8f4ef66feaabfaa0fa0d5a5d40308a6d8b59ef612cab4a3f5ea9895",
+          "bytes": 25262,
+          "dimensions": [
+            300,
+            200
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lethra_ribera_seca",
+      "region": "lethra",
+      "name": "Ribera seca",
+      "approval": "Aprobación artística del agente, sin revisión humana",
+      "evaluation": {
+        "Canon": 4,
+        "Identidad regional": 4,
+        "Continuidad": 4,
+        "Composición": 4,
+        "Escala": 3,
+        "Estilo anime": 4,
+        "Atmósfera": 4,
+        "Originalidad": 3,
+        "Calidad técnica": 4,
+        "Utilidad jugable": 4
+      },
+      "critique": "Ribera alta sobre raíces frente a cauce abierto; vegetación aumenta y ciudad queda lejos. Vista amplia con escala por ave.",
+      "mapping": {
+        "name": "Ribera seca",
+        "illustration": "/client/art/places/lethra_ribera_seca-anime-v1.webp",
+        "thumbnail": "/client/art/places/lethra_ribera_seca-anime-v1-thumb.webp",
+        "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+      },
+      "assets": [
+        {
+          "kind": "illustration",
+          "source": "webp/lethra_ribera_seca-anime-v1.webp",
+          "runtime": "client/art/places/lethra_ribera_seca-anime-v1.webp",
+          "sha256": "79e30bf90fd0e4e10ae7fc1ca5e4453c57fadf428f55f899936cda994b84b87d",
+          "bytes": 377026,
+          "dimensions": [
+            1200,
+            800
+          ]
+        },
+        {
+          "kind": "thumbnail",
+          "source": "miniaturas/lethra_ribera_seca-anime-v1-thumb.webp",
+          "runtime": "client/art/places/lethra_ribera_seca-anime-v1-thumb.webp",
+          "sha256": "dd4274429095df3fcc575e9035194c0c1dcc588301e7b11e273993d469b35aa4",
+          "bytes": 25334,
+          "dimensions": [
+            300,
+            200
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lethra_tierra_esponjosa",
+      "region": "lethra",
+      "name": "Tierra blanda",
+      "approval": "Aprobación artística del agente, sin revisión humana",
+      "evaluation": {
+        "Canon": 4,
+        "Identidad regional": 4,
+        "Continuidad": 4,
+        "Composición": 4,
+        "Escala": 3,
+        "Estilo anime": 4,
+        "Atmósfera": 4,
+        "Originalidad": 4,
+        "Calidad técnica": 4,
+        "Utilidad jugable": 4
+      },
+      "critique": "Dos varas limitan ancho; suelo alterna apoyos firmes y hojas hundidas. Rana pequeña visible, entorno protagonista.",
+      "mapping": {
+        "name": "Tierra blanda",
+        "illustration": "/client/art/places/lethra_tierra_esponjosa-anime-v1.webp",
+        "thumbnail": "/client/art/places/lethra_tierra_esponjosa-anime-v1-thumb.webp",
+        "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+      },
+      "assets": [
+        {
+          "kind": "illustration",
+          "source": "webp/lethra_tierra_esponjosa-anime-v1.webp",
+          "runtime": "client/art/places/lethra_tierra_esponjosa-anime-v1.webp",
+          "sha256": "bcc931afda995be38375c9405ea62222dcd6cb20616b6385e63d9a46d3392a53",
+          "bytes": 363508,
+          "dimensions": [
+            1200,
+            800
+          ]
+        },
+        {
+          "kind": "thumbnail",
+          "source": "miniaturas/lethra_tierra_esponjosa-anime-v1-thumb.webp",
+          "runtime": "client/art/places/lethra_tierra_esponjosa-anime-v1-thumb.webp",
+          "sha256": "b7f549f211a6f7c3d5d621e09b2768db083960dba936b66063d507235eea02bc",
+          "bytes": 25938,
+          "dimensions": [
+            300,
+            200
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lethra_juncal_abierto",
+      "region": "lethra",
+      "name": "Paso entre los juncos",
+      "approval": "Aprobación artística del agente, sin revisión humana",
+      "evaluation": {
+        "Canon": 4,
+        "Identidad regional": 4,
+        "Continuidad": 4,
+        "Composición": 4,
+        "Escala": 3,
+        "Estilo anime": 4,
+        "Atmósfera": 4,
+        "Originalidad": 4,
+        "Calidad técnica": 4,
+        "Utilidad jugable": 4
+      },
+      "critique": "Juncos enmarcan ruta, tablones empiezan después y desvío occidental acaba en barro firme. Composición encerrada frente a ribera abierta.",
+      "mapping": {
+        "name": "Paso entre los juncos",
+        "illustration": "/client/art/places/lethra_juncal_abierto-anime-v1.webp",
+        "thumbnail": "/client/art/places/lethra_juncal_abierto-anime-v1-thumb.webp",
+        "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+      },
+      "assets": [
+        {
+          "kind": "illustration",
+          "source": "webp/lethra_juncal_abierto-anime-v1.webp",
+          "runtime": "client/art/places/lethra_juncal_abierto-anime-v1.webp",
+          "sha256": "d9e15648bf26f3b9de2deca7587af24031280228cab6721a95856fc45cf183c0",
+          "bytes": 329646,
+          "dimensions": [
+            1200,
+            800
+          ]
+        },
+        {
+          "kind": "thumbnail",
+          "source": "miniaturas/lethra_juncal_abierto-anime-v1-thumb.webp",
+          "runtime": "client/art/places/lethra_juncal_abierto-anime-v1-thumb.webp",
+          "sha256": "dfeb1dc3a26c3c2c9c71d8b7d1c5f64fed2d9fae49a48193e31e8e6895d8e424",
+          "bytes": 25304,
+          "dimensions": [
+            300,
+            200
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lethra_cruce_canales",
+      "region": "lethra",
+      "name": "Cruce de canales",
+      "approval": "Aprobación artística del agente, sin revisión humana",
+      "evaluation": {
+        "Canon": 4,
+        "Identidad regional": 4,
+        "Continuidad": 4,
+        "Composición": 4,
+        "Escala": 3,
+        "Estilo anime": 4,
+        "Atmósfera": 4,
+        "Originalidad": 3,
+        "Calidad técnica": 4,
+        "Utilidad jugable": 4
+      },
+      "critique": "Corriente y remanso contrastan por ondas y reflejos; plataforma y hoja identificables. Hoja algo grande, escala 3.",
+      "mapping": {
+        "name": "Cruce de canales",
+        "illustration": "/client/art/places/lethra_cruce_canales-anime-v1.webp",
+        "thumbnail": "/client/art/places/lethra_cruce_canales-anime-v1-thumb.webp",
+        "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+      },
+      "assets": [
+        {
+          "kind": "illustration",
+          "source": "webp/lethra_cruce_canales-anime-v1.webp",
+          "runtime": "client/art/places/lethra_cruce_canales-anime-v1.webp",
+          "sha256": "8433593112a924ab0559e49719aaccc4b0e17a9b13bf72f29f1e650a537e2522",
+          "bytes": 342338,
+          "dimensions": [
+            1200,
+            800
+          ]
+        },
+        {
+          "kind": "thumbnail",
+          "source": "miniaturas/lethra_cruce_canales-anime-v1-thumb.webp",
+          "runtime": "client/art/places/lethra_cruce_canales-anime-v1-thumb.webp",
+          "sha256": "875bbf319978feefff9a263901e1cd7f957facb6171bb7f19c5f437c41dca762",
+          "bytes": 24610,
+          "dimensions": [
+            300,
+            200
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lethra_ribera_firme",
+      "region": "lethra",
+      "name": "Ribera de las cargas",
+      "approval": "Aprobación artística del agente, sin revisión humana",
+      "evaluation": {
+        "Canon": 4,
+        "Identidad regional": 4,
+        "Continuidad": 4,
+        "Composición": 4,
+        "Escala": 3,
+        "Estilo anime": 4,
+        "Atmósfera": 4,
+        "Originalidad": 3,
+        "Calidad técnica": 4,
+        "Utilidad jugable": 4
+      },
+      "critique": "Recipientes cerrados y hojas dobles sobre apoyos, suelo embarrado y espacio de descarga. Ninguna comida servida ni reparación atribuida.",
+      "mapping": {
+        "name": "Ribera de las cargas",
+        "illustration": "/client/art/places/lethra_ribera_firme-anime-v1.webp",
+        "thumbnail": "/client/art/places/lethra_ribera_firme-anime-v1-thumb.webp",
+        "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+      },
+      "assets": [
+        {
+          "kind": "illustration",
+          "source": "webp/lethra_ribera_firme-anime-v1.webp",
+          "runtime": "client/art/places/lethra_ribera_firme-anime-v1.webp",
+          "sha256": "369527c77cae62d42659d83137d872cd081d81574dc12c10a9ad754e2c3f921d",
+          "bytes": 339610,
+          "dimensions": [
+            1200,
+            800
+          ]
+        },
+        {
+          "kind": "thumbnail",
+          "source": "miniaturas/lethra_ribera_firme-anime-v1-thumb.webp",
+          "runtime": "client/art/places/lethra_ribera_firme-anime-v1-thumb.webp",
+          "sha256": "8c8d2b959d8d6367fa8814f85239d9c122fc313ee38bdcd188a34e57e246fa85",
+          "bytes": 24308,
+          "dimensions": [
+            300,
+            200
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lethra_pasarela_curva",
+      "region": "lethra",
+      "name": "Pasarela curva",
+      "approval": "Aprobación artística del agente, sin revisión humana",
+      "evaluation": {
+        "Canon": 4,
+        "Identidad regional": 4,
+        "Continuidad": 4,
+        "Composición": 4,
+        "Escala": 3,
+        "Estilo anime": 4,
+        "Atmósfera": 4,
+        "Originalidad": 4,
+        "Calidad técnica": 4,
+        "Utilidad jugable": 4
+      },
+      "critique": "Curva rodea remanso, baranda exterior despejada y embarcadero aparece al final; vista amplia orienta distancia.",
+      "mapping": {
+        "name": "Pasarela curva",
+        "illustration": "/client/art/places/lethra_pasarela_curva-anime-v1.webp",
+        "thumbnail": "/client/art/places/lethra_pasarela_curva-anime-v1-thumb.webp",
+        "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+      },
+      "assets": [
+        {
+          "kind": "illustration",
+          "source": "webp/lethra_pasarela_curva-anime-v1.webp",
+          "runtime": "client/art/places/lethra_pasarela_curva-anime-v1.webp",
+          "sha256": "c7a197392cc6b6e21d6c8f1fb46220167fb0dc731c6b81b270feb1bb8f2f22d9",
+          "bytes": 323150,
+          "dimensions": [
+            1200,
+            800
+          ]
+        },
+        {
+          "kind": "thumbnail",
+          "source": "miniaturas/lethra_pasarela_curva-anime-v1-thumb.webp",
+          "runtime": "client/art/places/lethra_pasarela_curva-anime-v1-thumb.webp",
+          "sha256": "caeff788dd13975c0e9379a8ad5e7c7e1c4d51c27e0e7027c014681d4f4e74d7",
+          "bytes": 24118,
+          "dimensions": [
+            300,
+            200
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lethra_embarcadero_camino",
+      "region": "lethra",
+      "name": "Embarcadero del camino",
+      "approval": "Aprobación artística del agente, sin revisión humana",
+      "evaluation": {
+        "Canon": 4,
+        "Identidad regional": 4,
+        "Continuidad": 4,
+        "Composición": 3,
+        "Escala": 3,
+        "Estilo anime": 4,
+        "Atmósfera": 4,
+        "Originalidad": 3,
+        "Calidad técnica": 4,
+        "Utilidad jugable": 4
+      },
+      "critique": "Techo, barcas pequeñas y postes de niveles/llegadas distintos. Figura a primer término ocupa más de lo previsto, composición 3; detalles funcionales visibles.",
+      "mapping": {
+        "name": "Embarcadero del camino",
+        "illustration": "/client/art/places/lethra_embarcadero_camino-anime-v1.webp",
+        "thumbnail": "/client/art/places/lethra_embarcadero_camino-anime-v1-thumb.webp",
+        "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+      },
+      "assets": [
+        {
+          "kind": "illustration",
+          "source": "webp/lethra_embarcadero_camino-anime-v1.webp",
+          "runtime": "client/art/places/lethra_embarcadero_camino-anime-v1.webp",
+          "sha256": "3809394073355a3d5fc980a46a592a074c25dad67c87ff6e0a8c791947511581",
+          "bytes": 322382,
+          "dimensions": [
+            1200,
+            800
+          ]
+        },
+        {
+          "kind": "thumbnail",
+          "source": "miniaturas/lethra_embarcadero_camino-anime-v1-thumb.webp",
+          "runtime": "client/art/places/lethra_embarcadero_camino-anime-v1-thumb.webp",
+          "sha256": "87d60e2226e380fe9906dd098c00679653eda073e9df21e173fa533234a9db69",
+          "bytes": 23240,
+          "dimensions": [
+            300,
+            200
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lethra_senda_elevada",
+      "region": "lethra",
+      "name": "Senda sobre el agua",
+      "approval": "Aprobación artística del agente, sin revisión humana",
+      "evaluation": {
+        "Canon": 4,
+        "Identidad regional": 4,
+        "Continuidad": 4,
+        "Composición": 4,
+        "Escala": 3,
+        "Estilo anime": 4,
+        "Atmósfera": 4,
+        "Originalidad": 3,
+        "Calidad técnica": 4,
+        "Utilidad jugable": 4
+      },
+      "critique": "Senda común separada de umbrales sobre canales; intercambio a ventana. La acción cotidiana ilustra uso sin resolver una misión ni identificar NPC.",
+      "mapping": {
+        "name": "Senda sobre el agua",
+        "illustration": "/client/art/places/lethra_senda_elevada-anime-v1.webp",
+        "thumbnail": "/client/art/places/lethra_senda_elevada-anime-v1-thumb.webp",
+        "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+      },
+      "assets": [
+        {
+          "kind": "illustration",
+          "source": "webp/lethra_senda_elevada-anime-v1.webp",
+          "runtime": "client/art/places/lethra_senda_elevada-anime-v1.webp",
+          "sha256": "f9e0bbe0b4138a82fb89de1e994928468528a5225ce624582c3be8ebb86af369",
+          "bytes": 322216,
+          "dimensions": [
+            1200,
+            800
+          ]
+        },
+        {
+          "kind": "thumbnail",
+          "source": "miniaturas/lethra_senda_elevada-anime-v1-thumb.webp",
+          "runtime": "client/art/places/lethra_senda_elevada-anime-v1-thumb.webp",
+          "sha256": "c111d343ef6dab4e554b2cc4386c3a80d7865cfa89b45a58bc7b1aa16e94a6c0",
+          "bytes": 23116,
+          "dimensions": [
+            300,
+            200
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lethra_tablas_primeras",
+      "region": "lethra",
+      "name": "Primeras tablas",
+      "approval": "Aprobación artística del agente, sin revisión humana",
+      "evaluation": {
+        "Canon": 4,
+        "Identidad regional": 4,
+        "Continuidad": 4,
+        "Composición": 4,
+        "Escala": 3,
+        "Estilo anime": 4,
+        "Atmósfera": 4,
+        "Originalidad": 3,
+        "Calidad técnica": 4,
+        "Utilidad jugable": 4
+      },
+      "critique": "Vara corregida y colgada con espacio de aire al agua; desgaste, uniones y apoyo bajo visibles.",
+      "mapping": {
+        "name": "Primeras tablas",
+        "illustration": "/client/art/places/lethra_tablas_primeras-anime-v1.webp",
+        "thumbnail": "/client/art/places/lethra_tablas_primeras-anime-v1-thumb.webp",
+        "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+      },
+      "assets": [
+        {
+          "kind": "illustration",
+          "source": "webp/lethra_tablas_primeras-anime-v1.webp",
+          "runtime": "client/art/places/lethra_tablas_primeras-anime-v1.webp",
+          "sha256": "e77d3e37aaf8de1c9c3154c18bc2ef97805a94a47c3879aed1f48aeb1c2f94da",
+          "bytes": 284018,
+          "dimensions": [
+            1200,
+            800
+          ]
+        },
+        {
+          "kind": "thumbnail",
+          "source": "miniaturas/lethra_tablas_primeras-anime-v1-thumb.webp",
+          "runtime": "client/art/places/lethra_tablas_primeras-anime-v1-thumb.webp",
+          "sha256": "1d86559d52c52d0abb418c2dc317b74a86677962d65744852120b9bff02af23b",
+          "bytes": 23840,
+          "dimensions": [
+            300,
+            200
+          ]
+        }
+      ]
+    },
+    {
+      "id": "veyra_lindero_arboles",
+      "region": "veyra",
+      "name": "Entrada al bosque",
+      "approval": "Aprobación artística del agente, sin revisión humana",
+      "evaluation": {
+        "Canon": 4,
+        "Identidad regional": 4,
+        "Continuidad": 4,
+        "Composición": 4,
+        "Escala": 3,
+        "Estilo anime": 4,
+        "Atmósfera": 4,
+        "Originalidad": 3,
+        "Calidad técnica": 4,
+        "Utilidad jugable": 4
+      },
+      "critique": "Grupos jóvenes y dosel antiguo cierran gradualmente senda; ciudad queda atrás, cantera lateral y cordel sólo en montón. Tramo aún empedrado por transición urbana.",
+      "mapping": {
+        "name": "Entrada al bosque",
+        "illustration": "/client/art/places/veyra_lindero_arboles-anime-v1.webp",
+        "thumbnail": "/client/art/places/veyra_lindero_arboles-anime-v1-thumb.webp",
+        "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+      },
+      "assets": [
+        {
+          "kind": "illustration",
+          "source": "webp/veyra_lindero_arboles-anime-v1.webp",
+          "runtime": "client/art/places/veyra_lindero_arboles-anime-v1.webp",
+          "sha256": "d00fe99c6569deb52816a8326eaab8dfa489cc522318d14e0eacc57ffed0f2a1",
+          "bytes": 410112,
+          "dimensions": [
+            1200,
+            800
+          ]
+        },
+        {
+          "kind": "thumbnail",
+          "source": "miniaturas/veyra_lindero_arboles-anime-v1-thumb.webp",
+          "runtime": "client/art/places/veyra_lindero_arboles-anime-v1-thumb.webp",
+          "sha256": "8b41d70f054371c659de53f33b945878e905eefb4e878df579197df26ac6a228",
+          "bytes": 25888,
+          "dimensions": [
+            300,
+            200
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nhal_arbol_umbral",
+      "region": "nhal",
+      "name": "Primer árbol del bosque",
+      "approval": "Aprobación artística del agente, sin revisión humana",
+      "evaluation": {
+        "Canon": 4,
+        "Identidad regional": 4,
+        "Continuidad": 4,
+        "Composición": 4,
+        "Escala": 3,
+        "Estilo anime": 4,
+        "Atmósfera": 4,
+        "Originalidad": 4,
+        "Calidad técnica": 4,
+        "Utilidad jugable": 4
+      },
+      "critique": "Dos raíces enmarcan apertura y marca en madera caída. Árbol ancho excepcional pero coherente con referencia Nhal; escala 3 por falta de figura.",
+      "mapping": {
+        "name": "Primer árbol del bosque",
+        "illustration": "/client/art/places/nhal_arbol_umbral-anime-v1.webp",
+        "thumbnail": "/client/art/places/nhal_arbol_umbral-anime-v1-thumb.webp",
+        "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+      },
+      "assets": [
+        {
+          "kind": "illustration",
+          "source": "webp/nhal_arbol_umbral-anime-v1.webp",
+          "runtime": "client/art/places/nhal_arbol_umbral-anime-v1.webp",
+          "sha256": "e500be8ab59ac55c8a7f4b8743a75e37c590873772b1c16010562d3f86ef5878",
+          "bytes": 366184,
+          "dimensions": [
+            1200,
+            800
+          ]
+        },
+        {
+          "kind": "thumbnail",
+          "source": "miniaturas/nhal_arbol_umbral-anime-v1-thumb.webp",
+          "runtime": "client/art/places/nhal_arbol_umbral-anime-v1-thumb.webp",
+          "sha256": "5918d7732bc60734b942b438e188ab9a9a8182095c77582497dfd8b7074921fe",
+          "bytes": 23866,
+          "dimensions": [
+            300,
+            200
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nhal_suelo_hojas",
+      "region": "nhal",
+      "name": "Sendero de hojas",
+      "approval": "Aprobación artística del agente, sin revisión humana",
+      "evaluation": {
+        "Canon": 4,
+        "Identidad regional": 4,
+        "Continuidad": 4,
+        "Composición": 4,
+        "Escala": 3,
+        "Estilo anime": 4,
+        "Atmósfera": 4,
+        "Originalidad": 4,
+        "Calidad técnica": 4,
+        "Utilidad jugable": 4
+      },
+      "critique": "Hojas rotas de ruta frente a intactas laterales, cáscaras y dos semillas. Encuadre bajo distingue este tramo; sin criatura retratada.",
+      "mapping": {
+        "name": "Sendero de hojas",
+        "illustration": "/client/art/places/nhal_suelo_hojas-anime-v1.webp",
+        "thumbnail": "/client/art/places/nhal_suelo_hojas-anime-v1-thumb.webp",
+        "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+      },
+      "assets": [
+        {
+          "kind": "illustration",
+          "source": "webp/nhal_suelo_hojas-anime-v1.webp",
+          "runtime": "client/art/places/nhal_suelo_hojas-anime-v1.webp",
+          "sha256": "2a95d94df3d511d17dfc4763b1b0da70766f20002212b4536ebe9154b07782a3",
+          "bytes": 329214,
+          "dimensions": [
+            1200,
+            800
+          ]
+        },
+        {
+          "kind": "thumbnail",
+          "source": "miniaturas/nhal_suelo_hojas-anime-v1-thumb.webp",
+          "runtime": "client/art/places/nhal_suelo_hojas-anime-v1-thumb.webp",
+          "sha256": "a5121234812d74675c2e15524bbbd0a1d22522b7a1791eed69fe6cfbdb11dae0",
+          "bytes": 24858,
+          "dimensions": [
+            300,
+            200
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nhal_tronco_acostado",
+      "region": "nhal",
+      "name": "Tronco caído",
+      "approval": "Aprobación artística del agente, sin revisión humana",
+      "evaluation": {
+        "Canon": 4,
+        "Identidad regional": 4,
+        "Continuidad": 4,
+        "Composición": 4,
+        "Escala": 3,
+        "Estilo anime": 4,
+        "Atmósfera": 4,
+        "Originalidad": 4,
+        "Calidad técnica": 4,
+        "Utilidad jugable": 4
+      },
+      "critique": "Tronco conserva madera y hongos distintos; rodeo por suelo firme, árbol claro anuncia tramo siguiente. Norte claro se distingue como abertura, no ruta principal. Ajuste autorizado: luz reducida y flores retiradas; continuidad hacia corteza clara corregida. No sustituye arte original aprobado del juego.",
+      "mapping": {
+        "name": "Tronco caído",
+        "illustration": "/client/art/places/nhal_tronco_acostado-anime-v1.webp",
+        "thumbnail": "/client/art/places/nhal_tronco_acostado-anime-v1-thumb.webp",
+        "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+      },
+      "assets": [
+        {
+          "kind": "illustration",
+          "source": "webp/nhal_tronco_acostado-anime-v1.webp",
+          "runtime": "client/art/places/nhal_tronco_acostado-anime-v1.webp",
+          "sha256": "3a004aaba5fe3ab1de0e04efecf3cd9f8f9e20bf83581c997a92e3bb0da4a5a1",
+          "bytes": 314146,
+          "dimensions": [
+            1200,
+            800
+          ]
+        },
+        {
+          "kind": "thumbnail",
+          "source": "miniaturas/nhal_tronco_acostado-anime-v1-thumb.webp",
+          "runtime": "client/art/places/nhal_tronco_acostado-anime-v1-thumb.webp",
+          "sha256": "ee7dffa549b59a2556a088cecd13bd281984c1650c18aeabbfc77d93ed4b201f",
+          "bytes": 20074,
+          "dimensions": [
+            300,
+            200
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nhal_corteza_clara",
+      "region": "nhal",
+      "name": "Árbol de corteza clara",
+      "approval": "Aprobación artística del agente, sin revisión humana",
+      "evaluation": {
+        "Canon": 4,
+        "Identidad regional": 4,
+        "Continuidad": 4,
+        "Composición": 4,
+        "Escala": 3,
+        "Estilo anime": 4,
+        "Atmósfera": 4,
+        "Originalidad": 3,
+        "Calidad técnica": 4,
+        "Utilidad jugable": 4
+      },
+      "critique": "Revisión individual: tono de bosque sobrio corregido, luz difusa legible, hitos conservados. Escala natural creíble; variedad limitada por continuidad forestal. Puente con apoyos independientes separado de los troncos; nota en envoltura protectora. Sin revisión humana.",
+      "mapping": {
+        "name": "Árbol de corteza clara",
+        "illustration": "/client/art/places/nhal_corteza_clara-anime-v1.webp",
+        "thumbnail": "/client/art/places/nhal_corteza_clara-anime-v1-thumb.webp",
+        "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+      },
+      "assets": [
+        {
+          "kind": "illustration",
+          "source": "webp/nhal_corteza_clara-anime-v1.webp",
+          "runtime": "client/art/places/nhal_corteza_clara-anime-v1.webp",
+          "sha256": "a338fe3da8214c4056964869f92ee183ec4bf97d42e7a1291e1186096db2e6a6",
+          "bytes": 289594,
+          "dimensions": [
+            1200,
+            800
+          ]
+        },
+        {
+          "kind": "thumbnail",
+          "source": "miniaturas/nhal_corteza_clara-anime-v1-thumb.webp",
+          "runtime": "client/art/places/nhal_corteza_clara-anime-v1-thumb.webp",
+          "sha256": "c66a0df94002182e4e7299d2d5bc9f60bc361584b9a3a4dcc2ef7e8122c7b4d8",
+          "bytes": 18234,
+          "dimensions": [
+            300,
+            200
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nhal_raices_altas",
+      "region": "nhal",
+      "name": "Paso de las raíces altas",
+      "approval": "Aprobación artística del agente, sin revisión humana",
+      "evaluation": {
+        "Canon": 4,
+        "Identidad regional": 4,
+        "Continuidad": 4,
+        "Composición": 4,
+        "Escala": 3,
+        "Estilo anime": 4,
+        "Atmósfera": 4,
+        "Originalidad": 3,
+        "Calidad técnica": 4,
+        "Utilidad jugable": 4
+      },
+      "critique": "Revisión individual: tono de bosque sobrio corregido, luz difusa legible, hitos conservados. Escala natural creíble; variedad limitada por continuidad forestal. Puente con apoyos independientes separado de los troncos; nota en envoltura protectora. Sin revisión humana.",
+      "mapping": {
+        "name": "Paso de las raíces altas",
+        "illustration": "/client/art/places/nhal_raices_altas-anime-v1.webp",
+        "thumbnail": "/client/art/places/nhal_raices_altas-anime-v1-thumb.webp",
+        "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+      },
+      "assets": [
+        {
+          "kind": "illustration",
+          "source": "webp/nhal_raices_altas-anime-v1.webp",
+          "runtime": "client/art/places/nhal_raices_altas-anime-v1.webp",
+          "sha256": "3d4573a4f29f9bfaff802171fe2a6910f9a37d1daf7e9905c2a8340285553fb7",
+          "bytes": 306568,
+          "dimensions": [
+            1200,
+            800
+          ]
+        },
+        {
+          "kind": "thumbnail",
+          "source": "miniaturas/nhal_raices_altas-anime-v1-thumb.webp",
+          "runtime": "client/art/places/nhal_raices_altas-anime-v1-thumb.webp",
+          "sha256": "2efcc1be074029c4dd0011aa42f678ebdda5205742699862b822849a4148cadc",
+          "bytes": 19430,
+          "dimensions": [
+            300,
+            200
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nhal_piedras_musgo",
+      "region": "nhal",
+      "name": "Piedras con musgo",
+      "approval": "Aprobación artística del agente, sin revisión humana",
+      "evaluation": {
+        "Canon": 4,
+        "Identidad regional": 4,
+        "Continuidad": 4,
+        "Composición": 4,
+        "Escala": 3,
+        "Estilo anime": 4,
+        "Atmósfera": 4,
+        "Originalidad": 3,
+        "Calidad técnica": 4,
+        "Utilidad jugable": 4
+      },
+      "critique": "Revisión individual: tono de bosque sobrio corregido, luz difusa legible, hitos conservados. Escala natural creíble; variedad limitada por continuidad forestal. Puente con apoyos independientes separado de los troncos; nota en envoltura protectora. Sin revisión humana.",
+      "mapping": {
+        "name": "Piedras con musgo",
+        "illustration": "/client/art/places/nhal_piedras_musgo-anime-v1.webp",
+        "thumbnail": "/client/art/places/nhal_piedras_musgo-anime-v1-thumb.webp",
+        "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+      },
+      "assets": [
+        {
+          "kind": "illustration",
+          "source": "webp/nhal_piedras_musgo-anime-v1.webp",
+          "runtime": "client/art/places/nhal_piedras_musgo-anime-v1.webp",
+          "sha256": "39632c55dc5bc5c0df58847425f246e21f466458bc95e574780628333bd19f14",
+          "bytes": 323042,
+          "dimensions": [
+            1200,
+            800
+          ]
+        },
+        {
+          "kind": "thumbnail",
+          "source": "miniaturas/nhal_piedras_musgo-anime-v1-thumb.webp",
+          "runtime": "client/art/places/nhal_piedras_musgo-anime-v1-thumb.webp",
+          "sha256": "fef3b238846b2ef1331e03bc628eb475f02348563679b393747cb7d87035fe1b",
+          "bytes": 20868,
+          "dimensions": [
+            300,
+            200
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nhal_puente_bajo",
+      "region": "nhal",
+      "name": "Puente entre árboles",
+      "approval": "Aprobación artística del agente, sin revisión humana",
+      "evaluation": {
+        "Canon": 4,
+        "Identidad regional": 4,
+        "Continuidad": 4,
+        "Composición": 4,
+        "Escala": 3,
+        "Estilo anime": 4,
+        "Atmósfera": 4,
+        "Originalidad": 3,
+        "Calidad técnica": 4,
+        "Utilidad jugable": 4
+      },
+      "critique": "Revisión individual: tono de bosque sobrio corregido, luz difusa legible, hitos conservados. Escala natural creíble; variedad limitada por continuidad forestal. Puente con apoyos independientes separado de los troncos; nota en envoltura protectora. Sin revisión humana.",
+      "mapping": {
+        "name": "Puente entre árboles",
+        "illustration": "/client/art/places/nhal_puente_bajo-anime-v1.webp",
+        "thumbnail": "/client/art/places/nhal_puente_bajo-anime-v1-thumb.webp",
+        "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+      },
+      "assets": [
+        {
+          "kind": "illustration",
+          "source": "webp/nhal_puente_bajo-anime-v1.webp",
+          "runtime": "client/art/places/nhal_puente_bajo-anime-v1.webp",
+          "sha256": "9eb46308072c30af4952f6d9888aa5890c69213255f5bc6672904144c7718c75",
+          "bytes": 312938,
+          "dimensions": [
+            1200,
+            800
+          ]
+        },
+        {
+          "kind": "thumbnail",
+          "source": "miniaturas/nhal_puente_bajo-anime-v1-thumb.webp",
+          "runtime": "client/art/places/nhal_puente_bajo-anime-v1-thumb.webp",
+          "sha256": "29e64601678f0766fc775bad8ec81fdce41a18e859c119dae59f044ae1782c17",
+          "bytes": 20196,
+          "dimensions": [
+            300,
+            200
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nhal_helechos_bajos",
+      "region": "nhal",
+      "name": "Sendero de helechos",
+      "approval": "Aprobación artística del agente, sin revisión humana",
+      "evaluation": {
+        "Canon": 4,
+        "Identidad regional": 4,
+        "Continuidad": 4,
+        "Composición": 4,
+        "Escala": 3,
+        "Estilo anime": 4,
+        "Atmósfera": 4,
+        "Originalidad": 3,
+        "Calidad técnica": 4,
+        "Utilidad jugable": 4
+      },
+      "critique": "Revisión individual: tono de bosque sobrio corregido, luz difusa legible, hitos conservados. Escala natural creíble; variedad limitada por continuidad forestal. Puente con apoyos independientes separado de los troncos; nota en envoltura protectora. Sin revisión humana.",
+      "mapping": {
+        "name": "Sendero de helechos",
+        "illustration": "/client/art/places/nhal_helechos_bajos-anime-v1.webp",
+        "thumbnail": "/client/art/places/nhal_helechos_bajos-anime-v1-thumb.webp",
+        "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+      },
+      "assets": [
+        {
+          "kind": "illustration",
+          "source": "webp/nhal_helechos_bajos-anime-v1.webp",
+          "runtime": "client/art/places/nhal_helechos_bajos-anime-v1.webp",
+          "sha256": "51dceebeef34d833469efc6e1172f47496c0e3cbb5054494a8dd2310669fd159",
+          "bytes": 299064,
+          "dimensions": [
+            1200,
+            800
+          ]
+        },
+        {
+          "kind": "thumbnail",
+          "source": "miniaturas/nhal_helechos_bajos-anime-v1-thumb.webp",
+          "runtime": "client/art/places/nhal_helechos_bajos-anime-v1-thumb.webp",
+          "sha256": "dd55a89293b52cb32eddb8521a6a1417efdf950251e0d10f691fbed7fedef94a",
+          "bytes": 18472,
+          "dimensions": [
+            300,
+            200
+          ]
+        }
+      ]
+    },
+    {
+      "id": "korven_almacen_grano",
+      "region": "korven",
+      "name": "Almacén de grano",
+      "approval": "Aprobación artística del agente, sin revisión humana",
+      "evaluation": {
+        "Canon": 4,
+        "Identidad regional": 4,
+        "Continuidad": 4,
+        "Composición": 4,
+        "Escala": 3,
+        "Estilo anime": 4,
+        "Atmósfera": 4,
+        "Originalidad": 3,
+        "Calidad técnica": 4,
+        "Utilidad jugable": 4
+      },
+      "critique": "Inspección individual: materiales de región coherentes, hito y función legibles, sin errores críticos observados. Brumak corregido a casas bajas. La transición pierde roca y gana suelo. Escala/precisión fina de fibras limitada; sin revisión humana.",
+      "mapping": {
+        "name": "Almacén de grano",
+        "illustration": "/client/art/places/korven_almacen_grano-anime-v1.webp",
+        "thumbnail": "/client/art/places/korven_almacen_grano-anime-v1-thumb.webp",
+        "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+      },
+      "assets": [
+        {
+          "kind": "illustration",
+          "source": "webp/korven_almacen_grano-anime-v1.webp",
+          "runtime": "client/art/places/korven_almacen_grano-anime-v1.webp",
+          "sha256": "3248549647855109da36cfac04c0b53ce1fe39cd624b54dca0dac5bd82fd42d9",
+          "bytes": 252036,
+          "dimensions": [
+            1200,
+            800
+          ]
+        },
+        {
+          "kind": "thumbnail",
+          "source": "miniaturas/korven_almacen_grano-anime-v1-thumb.webp",
+          "runtime": "client/art/places/korven_almacen_grano-anime-v1-thumb.webp",
+          "sha256": "9df951381939ae980d8ecf66c1d047d429b90ec77034bf7200084f76171f3ee5",
+          "bytes": 15560,
+          "dimensions": [
+            300,
+            200
+          ]
+        }
+      ]
+    },
+    {
+      "id": "korven_senda_viento",
+      "region": "korven",
+      "name": "Senda del viento",
+      "approval": "Aprobación artística del agente, sin revisión humana",
+      "evaluation": {
+        "Canon": 4,
+        "Identidad regional": 4,
+        "Continuidad": 4,
+        "Composición": 4,
+        "Escala": 3,
+        "Estilo anime": 4,
+        "Atmósfera": 4,
+        "Originalidad": 3,
+        "Calidad técnica": 4,
+        "Utilidad jugable": 4
+      },
+      "critique": "Inspección individual: materiales de región coherentes, hito y función legibles, sin errores críticos observados. Brumak corregido a casas bajas. La transición pierde roca y gana suelo. Escala/precisión fina de fibras limitada; sin revisión humana.",
+      "mapping": {
+        "name": "Senda del viento",
+        "illustration": "/client/art/places/korven_senda_viento-anime-v1.webp",
+        "thumbnail": "/client/art/places/korven_senda_viento-anime-v1-thumb.webp",
+        "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+      },
+      "assets": [
+        {
+          "kind": "illustration",
+          "source": "webp/korven_senda_viento-anime-v1.webp",
+          "runtime": "client/art/places/korven_senda_viento-anime-v1.webp",
+          "sha256": "0a8a9780d92b41b9a11bc8ed2727419d791ae76e12856aa9bd18bcc514014463",
+          "bytes": 341038,
+          "dimensions": [
+            1200,
+            800
+          ]
+        },
+        {
+          "kind": "thumbnail",
+          "source": "miniaturas/korven_senda_viento-anime-v1-thumb.webp",
+          "runtime": "client/art/places/korven_senda_viento-anime-v1-thumb.webp",
+          "sha256": "9b2a6aa8401c28c5a8c865f17d47fa73055de282b3e037fd17e9c290a9c07fe9",
+          "bytes": 22582,
+          "dimensions": [
+            300,
+            200
+          ]
+        }
+      ]
+    },
+    {
+      "id": "korven_borde_tierra",
+      "region": "korven",
+      "name": "Parada de los Cardos",
+      "approval": "Aprobación artística del agente, sin revisión humana",
+      "evaluation": {
+        "Canon": 4,
+        "Identidad regional": 4,
+        "Continuidad": 4,
+        "Composición": 4,
+        "Escala": 3,
+        "Estilo anime": 4,
+        "Atmósfera": 4,
+        "Originalidad": 3,
+        "Calidad técnica": 4,
+        "Utilidad jugable": 4
+      },
+      "critique": "Inspección individual: materiales de región coherentes, hito y función legibles, sin errores críticos observados. Brumak corregido a casas bajas. La transición pierde roca y gana suelo. Escala/precisión fina de fibras limitada; sin revisión humana.",
+      "mapping": {
+        "name": "Parada de los Cardos",
+        "illustration": "/client/art/places/korven_borde_tierra-anime-v1.webp",
+        "thumbnail": "/client/art/places/korven_borde_tierra-anime-v1-thumb.webp",
+        "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+      },
+      "assets": [
+        {
+          "kind": "illustration",
+          "source": "webp/korven_borde_tierra-anime-v1.webp",
+          "runtime": "client/art/places/korven_borde_tierra-anime-v1.webp",
+          "sha256": "5d7e0897cb194c415b98c1fce5e64f714450c5f909ea88f3e667a6eb7eb3937f",
+          "bytes": 388512,
+          "dimensions": [
+            1200,
+            800
+          ]
+        },
+        {
+          "kind": "thumbnail",
+          "source": "miniaturas/korven_borde_tierra-anime-v1-thumb.webp",
+          "runtime": "client/art/places/korven_borde_tierra-anime-v1-thumb.webp",
+          "sha256": "7405507040e6eae207b3751127edeb8783b6d9eb4c988427a230c108bb5b89f5",
+          "bytes": 23590,
+          "dimensions": [
+            300,
+            200
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edran_linde_piedra",
+      "region": "edran",
+      "name": "Paso hacia Korven",
+      "approval": "Aprobación artística del agente, sin revisión humana",
+      "evaluation": {
+        "Canon": 4,
+        "Identidad regional": 4,
+        "Continuidad": 4,
+        "Composición": 4,
+        "Escala": 3,
+        "Estilo anime": 4,
+        "Atmósfera": 4,
+        "Originalidad": 3,
+        "Calidad técnica": 4,
+        "Utilidad jugable": 4
+      },
+      "critique": "Inspección individual: materiales de región coherentes, hito y función legibles, sin errores críticos observados. Brumak corregido a casas bajas. La transición pierde roca y gana suelo. Escala/precisión fina de fibras limitada; sin revisión humana.",
+      "mapping": {
+        "name": "Paso hacia Korven",
+        "illustration": "/client/art/places/edran_linde_piedra-anime-v1.webp",
+        "thumbnail": "/client/art/places/edran_linde_piedra-anime-v1-thumb.webp",
+        "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+      },
+      "assets": [
+        {
+          "kind": "illustration",
+          "source": "webp/edran_linde_piedra-anime-v1.webp",
+          "runtime": "client/art/places/edran_linde_piedra-anime-v1.webp",
+          "sha256": "42887dd6d284fbbd43b73594c8286ce54419ba631aaaf59a3a0050eb6ef95ac0",
+          "bytes": 379864,
+          "dimensions": [
+            1200,
+            800
+          ]
+        },
+        {
+          "kind": "thumbnail",
+          "source": "miniaturas/edran_linde_piedra-anime-v1-thumb.webp",
+          "runtime": "client/art/places/edran_linde_piedra-anime-v1-thumb.webp",
+          "sha256": "64bea734aee1629a38b7b5e3e0c574da53adbf0c09041c77b179b98ae343a015",
+          "bytes": 22672,
+          "dimensions": [
+            300,
+            200
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edran_ladera_piedra",
+      "region": "edran",
+      "name": "Ladera de los cestos",
+      "approval": "Aprobación artística del agente, sin revisión humana",
+      "evaluation": {
+        "Canon": 4,
+        "Identidad regional": 4,
+        "Continuidad": 4,
+        "Composición": 4,
+        "Escala": 3,
+        "Estilo anime": 4,
+        "Atmósfera": 4,
+        "Originalidad": 3,
+        "Calidad técnica": 4,
+        "Utilidad jugable": 4
+      },
+      "critique": "Inspección individual: materiales de región coherentes, hito y función legibles, sin errores críticos observados. Brumak corregido a casas bajas. La transición pierde roca y gana suelo. Escala/precisión fina de fibras limitada; sin revisión humana.",
+      "mapping": {
+        "name": "Ladera de los cestos",
+        "illustration": "/client/art/places/edran_ladera_piedra-anime-v1.webp",
+        "thumbnail": "/client/art/places/edran_ladera_piedra-anime-v1-thumb.webp",
+        "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+      },
+      "assets": [
+        {
+          "kind": "illustration",
+          "source": "webp/edran_ladera_piedra-anime-v1.webp",
+          "runtime": "client/art/places/edran_ladera_piedra-anime-v1.webp",
+          "sha256": "a2842e3ef30b9aa9ced28fa3f1f283e695d1f16073b529efbfa83c399502a30f",
+          "bytes": 382614,
+          "dimensions": [
+            1200,
+            800
+          ]
+        },
+        {
+          "kind": "thumbnail",
+          "source": "miniaturas/edran_ladera_piedra-anime-v1-thumb.webp",
+          "runtime": "client/art/places/edran_ladera_piedra-anime-v1-thumb.webp",
+          "sha256": "ee9692fa80b78273c1d1a5ce2c321aa3a4553f99ba45f2cb1ee593f9f0cc5c53",
+          "bytes": 23908,
+          "dimensions": [
+            300,
+            200
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edran_prado",
+      "region": "edran",
+      "name": "Prado de las Marcas Anchas",
+      "approval": "Aprobación artística del agente, sin revisión humana",
+      "evaluation": {
+        "Canon": 4,
+        "Identidad regional": 4,
+        "Continuidad": 4,
+        "Composición": 4,
+        "Escala": 3,
+        "Estilo anime": 4,
+        "Atmósfera": 4,
+        "Originalidad": 3,
+        "Calidad técnica": 4,
+        "Utilidad jugable": 4
+      },
+      "critique": "Inspección individual: materiales de región coherentes, hito y función legibles, sin errores críticos observados. Brumak corregido a casas bajas. La transición pierde roca y gana suelo. Escala/precisión fina de fibras limitada; sin revisión humana.",
+      "mapping": {
+        "name": "Prado de las Marcas Anchas",
+        "illustration": "/client/art/places/edran_prado-anime-v1.webp",
+        "thumbnail": "/client/art/places/edran_prado-anime-v1-thumb.webp",
+        "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+      },
+      "assets": [
+        {
+          "kind": "illustration",
+          "source": "webp/edran_prado-anime-v1.webp",
+          "runtime": "client/art/places/edran_prado-anime-v1.webp",
+          "sha256": "0e3d862daa644f361ad3047742427c159cd1ca43b2fd507136cebe4229453f4a",
+          "bytes": 421394,
+          "dimensions": [
+            1200,
+            800
+          ]
+        },
+        {
+          "kind": "thumbnail",
+          "source": "miniaturas/edran_prado-anime-v1-thumb.webp",
+          "runtime": "client/art/places/edran_prado-anime-v1-thumb.webp",
+          "sha256": "51a72ab378964e460a2e289e75c1c6ce6a87d9087323f7424c529da35d063c4c",
+          "bytes": 24460,
+          "dimensions": [
+            300,
+            200
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edran_loma",
+      "region": "edran",
+      "name": "Loma del Pasto Cortado",
+      "approval": "Aprobación artística del agente, sin revisión humana",
+      "evaluation": {
+        "Canon": 4,
+        "Identidad regional": 4,
+        "Continuidad": 4,
+        "Composición": 4,
+        "Escala": 3,
+        "Estilo anime": 4,
+        "Atmósfera": 4,
+        "Originalidad": 3,
+        "Calidad técnica": 4,
+        "Utilidad jugable": 4
+      },
+      "critique": "Inspección individual: materiales de región coherentes, hito y función legibles, sin errores críticos observados. Brumak corregido a casas bajas. La transición pierde roca y gana suelo. Escala/precisión fina de fibras limitada; sin revisión humana.",
+      "mapping": {
+        "name": "Loma del Pasto Cortado",
+        "illustration": "/client/art/places/edran_loma-anime-v1.webp",
+        "thumbnail": "/client/art/places/edran_loma-anime-v1-thumb.webp",
+        "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+      },
+      "assets": [
+        {
+          "kind": "illustration",
+          "source": "webp/edran_loma-anime-v1.webp",
+          "runtime": "client/art/places/edran_loma-anime-v1.webp",
+          "sha256": "e88f05c5dfda79887d5aa223d972f048a50cda381de7d1c90125d71b68205714",
+          "bytes": 398716,
+          "dimensions": [
+            1200,
+            800
+          ]
+        },
+        {
+          "kind": "thumbnail",
+          "source": "miniaturas/edran_loma-anime-v1-thumb.webp",
+          "runtime": "client/art/places/edran_loma-anime-v1-thumb.webp",
+          "sha256": "cfae3ce9fb58215d2dc210f0e1afd4c22e3be0bd9ea8af10f0071c9258870346",
+          "bytes": 24056,
+          "dimensions": [
+            300,
+            200
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edran_lindero",
+      "region": "edran",
+      "name": "Lindero de la Piedra Hundida",
+      "approval": "Aprobación artística del agente, sin revisión humana",
+      "evaluation": {
+        "Canon": 3,
+        "Identidad regional": 4,
+        "Continuidad": 4,
+        "Composición": 4,
+        "Escala": 3,
+        "Estilo anime": 4,
+        "Atmósfera": 4,
+        "Originalidad": 3,
+        "Calidad técnica": 4,
+        "Utilidad jugable": 4
+      },
+      "critique": "Inspección individual: materiales de región coherentes, hito y función legibles, sin errores críticos observados. Brumak corregido a casas bajas. La transición pierde roca y gana suelo. Escala/precisión fina de fibras limitada; sin revisión humana. La muesca se representa bastante profunda; legible pero simplifica precisión del desgaste.",
+      "mapping": {
+        "name": "Lindero de la Piedra Hundida",
+        "illustration": "/client/art/places/edran_lindero-anime-v1.webp",
+        "thumbnail": "/client/art/places/edran_lindero-anime-v1-thumb.webp",
+        "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+      },
+      "assets": [
+        {
+          "kind": "illustration",
+          "source": "webp/edran_lindero-anime-v1.webp",
+          "runtime": "client/art/places/edran_lindero-anime-v1.webp",
+          "sha256": "aa91b54535139fe144de4bef6382bbfda63abb945db762bf929cb657d97a61fd",
+          "bytes": 414462,
+          "dimensions": [
+            1200,
+            800
+          ]
+        },
+        {
+          "kind": "thumbnail",
+          "source": "miniaturas/edran_lindero-anime-v1-thumb.webp",
+          "runtime": "client/art/places/edran_lindero-anime-v1-thumb.webp",
+          "sha256": "7dd52d6809d10888dccaff9fbac5beeaf2aa71d1a9ae1bdc75ea1ae738ca28b3",
+          "bytes": 24992,
+          "dimensions": [
+            300,
+            200
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hoshai_senda_dosel",
+      "region": "hoshai",
+      "name": "Senda de los árboles altos",
+      "approval": "Aprobación artística del agente, sin revisión humana",
+      "evaluation": {
+        "Canon": 4,
+        "Identidad regional": 4,
+        "Continuidad": 4,
+        "Composición": 4,
+        "Escala": 3,
+        "Estilo anime": 4,
+        "Atmósfera": 4,
+        "Originalidad": 3,
+        "Calidad técnica": 4,
+        "Utilidad jugable": 4
+      },
+      "critique": "Inspeccionada individualmente: tono sobrio, materiales húmedos de altura, cordeles fuera del paso y referencias parciales de la sierra. Valle reducido y edificios espurios retirados de senda. Adultas atentas en relevo, sin gestos infantiles. Sin revisión humana.",
+      "mapping": {
+        "name": "Senda de los árboles altos",
+        "illustration": "/client/art/places/hoshai_senda_dosel-anime-v1.webp",
+        "thumbnail": "/client/art/places/hoshai_senda_dosel-anime-v1-thumb.webp",
+        "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+      },
+      "assets": [
+        {
+          "kind": "illustration",
+          "source": "webp/hoshai_senda_dosel-anime-v1.webp",
+          "runtime": "client/art/places/hoshai_senda_dosel-anime-v1.webp",
+          "sha256": "4caab35c35298c1266986cc4310bece0ebd4b708a7420ded5e1a033a9e3b1afc",
+          "bytes": 377544,
+          "dimensions": [
+            1200,
+            800
+          ]
+        },
+        {
+          "kind": "thumbnail",
+          "source": "miniaturas/hoshai_senda_dosel-anime-v1-thumb.webp",
+          "runtime": "client/art/places/hoshai_senda_dosel-anime-v1-thumb.webp",
+          "sha256": "46fa59e2ff0ec6b8f1d12692221a3da266d002e604bfac6cc7586827d413affd",
+          "bytes": 22148,
+          "dimensions": [
+            300,
+            200
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hoshai_estacion_cuerda",
+      "region": "hoshai",
+      "name": "Parada del cordel",
+      "approval": "Aprobación artística del agente, sin revisión humana",
+      "evaluation": {
+        "Canon": 4,
+        "Identidad regional": 4,
+        "Continuidad": 4,
+        "Composición": 4,
+        "Escala": 3,
+        "Estilo anime": 4,
+        "Atmósfera": 4,
+        "Originalidad": 3,
+        "Calidad técnica": 4,
+        "Utilidad jugable": 4
+      },
+      "critique": "Inspeccionada individualmente: tono sobrio, materiales húmedos de altura, cordeles fuera del paso y referencias parciales de la sierra. Valle reducido y edificios espurios retirados de senda. Adultas atentas en relevo, sin gestos infantiles. Sin revisión humana.",
+      "mapping": {
+        "name": "Parada del cordel",
+        "illustration": "/client/art/places/hoshai_estacion_cuerda-anime-v1.webp",
+        "thumbnail": "/client/art/places/hoshai_estacion_cuerda-anime-v1-thumb.webp",
+        "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+      },
+      "assets": [
+        {
+          "kind": "illustration",
+          "source": "webp/hoshai_estacion_cuerda-anime-v1.webp",
+          "runtime": "client/art/places/hoshai_estacion_cuerda-anime-v1.webp",
+          "sha256": "568cf7e652fa303f6f4b7c42e51b6f92885f9db28608a6086793af0a17932408",
+          "bytes": 380520,
+          "dimensions": [
+            1200,
+            800
+          ]
+        },
+        {
+          "kind": "thumbnail",
+          "source": "miniaturas/hoshai_estacion_cuerda-anime-v1-thumb.webp",
+          "runtime": "client/art/places/hoshai_estacion_cuerda-anime-v1-thumb.webp",
+          "sha256": "823ef64151997325659990839b7c03d8053b3f4ce053d4dd5eb8702a7477bb18",
+          "bytes": 23706,
+          "dimensions": [
+            300,
+            200
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nhal_relevo_altura",
+      "region": "nhal",
+      "name": "Alto de las Raíces",
+      "approval": "Aprobación artística del agente, sin revisión humana",
+      "evaluation": {
+        "Canon": 4,
+        "Identidad regional": 4,
+        "Continuidad": 4,
+        "Composición": 4,
+        "Escala": 3,
+        "Estilo anime": 4,
+        "Atmósfera": 4,
+        "Originalidad": 3,
+        "Calidad técnica": 4,
+        "Utilidad jugable": 4
+      },
+      "critique": "Inspeccionada individualmente: tono sobrio, materiales húmedos de altura, cordeles fuera del paso y referencias parciales de la sierra. Valle reducido y edificios espurios retirados de senda. Adultas atentas en relevo, sin gestos infantiles. Sin revisión humana.",
+      "mapping": {
+        "name": "Alto de las Raíces",
+        "illustration": "/client/art/places/nhal_relevo_altura-anime-v1.webp",
+        "thumbnail": "/client/art/places/nhal_relevo_altura-anime-v1-thumb.webp",
+        "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+      },
+      "assets": [
+        {
+          "kind": "illustration",
+          "source": "webp/nhal_relevo_altura-anime-v1.webp",
+          "runtime": "client/art/places/nhal_relevo_altura-anime-v1.webp",
+          "sha256": "ffe14c258b205754c26a07155515db1618016eb6c7a2a337a67912ceb3e30931",
+          "bytes": 333200,
+          "dimensions": [
+            1200,
+            800
+          ]
+        },
+        {
+          "kind": "thumbnail",
+          "source": "miniaturas/nhal_relevo_altura-anime-v1-thumb.webp",
+          "runtime": "client/art/places/nhal_relevo_altura-anime-v1-thumb.webp",
+          "sha256": "e812c1fb3a3c2e2598e15aadcc6ac0528baf1f4e95c09812aff0c886043e5407",
+          "bytes": 21286,
+          "dimensions": [
+            300,
+            200
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nhal_roca_entre_copas",
+      "region": "nhal",
+      "name": "Roca entre los árboles",
+      "approval": "Aprobación artística del agente, sin revisión humana",
+      "evaluation": {
+        "Canon": 4,
+        "Identidad regional": 4,
+        "Continuidad": 4,
+        "Composición": 4,
+        "Escala": 3,
+        "Estilo anime": 4,
+        "Atmósfera": 4,
+        "Originalidad": 3,
+        "Calidad técnica": 4,
+        "Utilidad jugable": 4
+      },
+      "critique": "Inspeccionada individualmente: tono sobrio, materiales húmedos de altura, cordeles fuera del paso y referencias parciales de la sierra. Valle reducido y edificios espurios retirados de senda. Adultas atentas en relevo, sin gestos infantiles. Sin revisión humana.",
+      "mapping": {
+        "name": "Roca entre los árboles",
+        "illustration": "/client/art/places/nhal_roca_entre_copas-anime-v1.webp",
+        "thumbnail": "/client/art/places/nhal_roca_entre_copas-anime-v1-thumb.webp",
+        "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+      },
+      "assets": [
+        {
+          "kind": "illustration",
+          "source": "webp/nhal_roca_entre_copas-anime-v1.webp",
+          "runtime": "client/art/places/nhal_roca_entre_copas-anime-v1.webp",
+          "sha256": "92c5cdcd971b1dcb6aeca6b31d5bd2af9912ecae36f4bb3ecc40465b46af8e17",
+          "bytes": 343408,
+          "dimensions": [
+            1200,
+            800
+          ]
+        },
+        {
+          "kind": "thumbnail",
+          "source": "miniaturas/nhal_roca_entre_copas-anime-v1-thumb.webp",
+          "runtime": "client/art/places/nhal_roca_entre_copas-anime-v1-thumb.webp",
+          "sha256": "cf8d59d300d9961f4aae19baa9f06f270041d70dafbd793c821c4cd6ebbc45f6",
+          "bytes": 21630,
+          "dimensions": [
+            300,
+            200
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nhal_sendero_altura",
+      "region": "nhal",
+      "name": "Subida entre árboles",
+      "approval": "Aprobación artística del agente, sin revisión humana",
+      "evaluation": {
+        "Canon": 4,
+        "Identidad regional": 4,
+        "Continuidad": 4,
+        "Composición": 4,
+        "Escala": 3,
+        "Estilo anime": 4,
+        "Atmósfera": 4,
+        "Originalidad": 3,
+        "Calidad técnica": 4,
+        "Utilidad jugable": 4
+      },
+      "critique": "Inspeccionada individualmente: tono sobrio, materiales húmedos de altura, cordeles fuera del paso y referencias parciales de la sierra. Valle reducido y edificios espurios retirados de senda. Adultas atentas en relevo, sin gestos infantiles. Sin revisión humana.",
+      "mapping": {
+        "name": "Subida entre árboles",
+        "illustration": "/client/art/places/nhal_sendero_altura-anime-v1.webp",
+        "thumbnail": "/client/art/places/nhal_sendero_altura-anime-v1-thumb.webp",
+        "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+      },
+      "assets": [
+        {
+          "kind": "illustration",
+          "source": "webp/nhal_sendero_altura-anime-v1.webp",
+          "runtime": "client/art/places/nhal_sendero_altura-anime-v1.webp",
+          "sha256": "7fab3fda5bc2ab7d0d3ee835ae5cb3d740fbaa2555f3b1d5593775391217a822",
+          "bytes": 359582,
+          "dimensions": [
+            1200,
+            800
+          ]
+        },
+        {
+          "kind": "thumbnail",
+          "source": "miniaturas/nhal_sendero_altura-anime-v1-thumb.webp",
+          "runtime": "client/art/places/nhal_sendero_altura-anime-v1-thumb.webp",
+          "sha256": "79702de7f2136274b762bfd72f20e2e881ff4aab9e9ea742c5aa6519aa5037a3",
+          "bytes": 22054,
+          "dimensions": [
+            300,
+            200
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nhal_agua_sombreada",
+      "region": "nhal",
+      "name": "Cauce bajo los árboles",
+      "approval": "Aprobación artística del agente, sin revisión humana",
+      "evaluation": {
+        "Canon": 4,
+        "Identidad regional": 4,
+        "Continuidad": 4,
+        "Composición": 4,
+        "Escala": 3,
+        "Estilo anime": 4,
+        "Atmósfera": 4,
+        "Originalidad": 3,
+        "Calidad técnica": 4,
+        "Utilidad jugable": 4
+      },
+      "critique": "Inspección individual: agua y raíces legibles, paleta contenida, plataforma sin cruce del canal principal; pasarela corta sobre brazo secundario. Hilos bajos dejan libre ruta. Detalle de autor/hora en notas no verificable por imagen, corresponde a lectura; sin revisión humana.",
+      "mapping": {
+        "name": "Cauce bajo los árboles",
+        "illustration": "/client/art/places/nhal_agua_sombreada-anime-v1.webp",
+        "thumbnail": "/client/art/places/nhal_agua_sombreada-anime-v1-thumb.webp",
+        "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+      },
+      "assets": [
+        {
+          "kind": "illustration",
+          "source": "webp/nhal_agua_sombreada-anime-v1.webp",
+          "runtime": "client/art/places/nhal_agua_sombreada-anime-v1.webp",
+          "sha256": "16ee75d7c5363ec46ab977ec34b681c20d7aa9c2db9364e7c60d1cbfebccd453",
+          "bytes": 334438,
+          "dimensions": [
+            1200,
+            800
+          ]
+        },
+        {
+          "kind": "thumbnail",
+          "source": "miniaturas/nhal_agua_sombreada-anime-v1-thumb.webp",
+          "runtime": "client/art/places/nhal_agua_sombreada-anime-v1-thumb.webp",
+          "sha256": "842804aaeaca7c73ca212bba1f002a7ef7c8103dae5112de5941902f3386d197",
+          "bytes": 21252,
+          "dimensions": [
+            300,
+            200
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nhal_ribera_relevo",
+      "region": "nhal",
+      "name": "Paso hacia Lethra",
+      "approval": "Aprobación artística del agente, sin revisión humana",
+      "evaluation": {
+        "Canon": 4,
+        "Identidad regional": 4,
+        "Continuidad": 4,
+        "Composición": 4,
+        "Escala": 3,
+        "Estilo anime": 4,
+        "Atmósfera": 4,
+        "Originalidad": 3,
+        "Calidad técnica": 4,
+        "Utilidad jugable": 4
+      },
+      "critique": "Inspección individual: agua y raíces legibles, paleta contenida, plataforma sin cruce del canal principal; pasarela corta sobre brazo secundario. Hilos bajos dejan libre ruta. Detalle de autor/hora en notas no verificable por imagen, corresponde a lectura; sin revisión humana.",
+      "mapping": {
+        "name": "Paso hacia Lethra",
+        "illustration": "/client/art/places/nhal_ribera_relevo-anime-v1.webp",
+        "thumbnail": "/client/art/places/nhal_ribera_relevo-anime-v1-thumb.webp",
+        "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+      },
+      "assets": [
+        {
+          "kind": "illustration",
+          "source": "webp/nhal_ribera_relevo-anime-v1.webp",
+          "runtime": "client/art/places/nhal_ribera_relevo-anime-v1.webp",
+          "sha256": "49f51fe479b984e5a2df83a1e78852035ef0aa0f69a33b3bee19cfc1d9ee86dd",
+          "bytes": 343626,
+          "dimensions": [
+            1200,
+            800
+          ]
+        },
+        {
+          "kind": "thumbnail",
+          "source": "miniaturas/nhal_ribera_relevo-anime-v1-thumb.webp",
+          "runtime": "client/art/places/nhal_ribera_relevo-anime-v1-thumb.webp",
+          "sha256": "bbc63e276c88cd0b04ca31b6f936ceaec1ce6da22d5cc914760ea76ed2b19910",
+          "bytes": 21956,
+          "dimensions": [
+            300,
+            200
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lethra_relevo_raices",
+      "region": "lethra",
+      "name": "Orilla Velada",
+      "approval": "Aprobación artística del agente, sin revisión humana",
+      "evaluation": {
+        "Canon": 4,
+        "Identidad regional": 4,
+        "Continuidad": 4,
+        "Composición": 4,
+        "Escala": 3,
+        "Estilo anime": 4,
+        "Atmósfera": 4,
+        "Originalidad": 3,
+        "Calidad técnica": 4,
+        "Utilidad jugable": 4
+      },
+      "critique": "Inspección individual: agua y raíces legibles, paleta contenida, plataforma sin cruce del canal principal; pasarela corta sobre brazo secundario. Hilos bajos dejan libre ruta. Detalle de autor/hora en notas no verificable por imagen, corresponde a lectura; sin revisión humana.",
+      "mapping": {
+        "name": "Orilla Velada",
+        "illustration": "/client/art/places/lethra_relevo_raices-anime-v1.webp",
+        "thumbnail": "/client/art/places/lethra_relevo_raices-anime-v1-thumb.webp",
+        "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+      },
+      "assets": [
+        {
+          "kind": "illustration",
+          "source": "webp/lethra_relevo_raices-anime-v1.webp",
+          "runtime": "client/art/places/lethra_relevo_raices-anime-v1.webp",
+          "sha256": "77e936c0f725c58ba8898a9fc7281e9ee445ddbf0ee3465ca4aed282d77840a0",
+          "bytes": 325084,
+          "dimensions": [
+            1200,
+            800
+          ]
+        },
+        {
+          "kind": "thumbnail",
+          "source": "miniaturas/lethra_relevo_raices-anime-v1-thumb.webp",
+          "runtime": "client/art/places/lethra_relevo_raices-anime-v1-thumb.webp",
+          "sha256": "59f69b52224aeca8d43ad21e4d68c4756a0ea92ee06e83877e864cab2f19d769",
+          "bytes": 20074,
+          "dimensions": [
+            300,
+            200
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lethra_ribera_sombra",
+      "region": "lethra",
+      "name": "Ribera sombreada",
+      "approval": "Aprobación artística del agente, sin revisión humana",
+      "evaluation": {
+        "Canon": 4,
+        "Identidad regional": 4,
+        "Continuidad": 4,
+        "Composición": 4,
+        "Escala": 3,
+        "Estilo anime": 4,
+        "Atmósfera": 4,
+        "Originalidad": 3,
+        "Calidad técnica": 4,
+        "Utilidad jugable": 4
+      },
+      "critique": "Inspección individual: agua y raíces legibles, paleta contenida, plataforma sin cruce del canal principal; pasarela corta sobre brazo secundario. Hilos bajos dejan libre ruta. Detalle de autor/hora en notas no verificable por imagen, corresponde a lectura; sin revisión humana.",
+      "mapping": {
+        "name": "Ribera sombreada",
+        "illustration": "/client/art/places/lethra_ribera_sombra-anime-v1.webp",
+        "thumbnail": "/client/art/places/lethra_ribera_sombra-anime-v1-thumb.webp",
+        "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+      },
+      "assets": [
+        {
+          "kind": "illustration",
+          "source": "webp/lethra_ribera_sombra-anime-v1.webp",
+          "runtime": "client/art/places/lethra_ribera_sombra-anime-v1.webp",
+          "sha256": "9766439a003a34f29758937271d8acacb418e12c38ad59757ab4bbc159a171fa",
+          "bytes": 308104,
+          "dimensions": [
+            1200,
+            800
+          ]
+        },
+        {
+          "kind": "thumbnail",
+          "source": "miniaturas/lethra_ribera_sombra-anime-v1-thumb.webp",
+          "runtime": "client/art/places/lethra_ribera_sombra-anime-v1-thumb.webp",
+          "sha256": "13c9f6b7bf82a424b0196c6802227dd519ba574b2643c2546ec655d9ae5cfed8",
+          "bytes": 20974,
+          "dimensions": [
+            300,
+            200
+          ]
+        }
+      ]
+    }
+  ]
+}

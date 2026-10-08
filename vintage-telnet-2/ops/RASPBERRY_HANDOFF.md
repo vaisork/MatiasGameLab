@@ -1,3 +1,5 @@
+> Operación vigente y rutas exactas: [relevo técnico](../../docs/VT2_RELEVO_20261008.md). Última instalación comprobada: d5ee227, 8 octubre2026. Las instrucciones de migración siguientes son históricas.
+
 # Instalación y migración de enlaces — Raspberry Pi
 
 Encargo de Javier: instalar la versión nueva, mantener sus datos, usar los enlaces/túneles de Internet del anterior y dar de baja el anterior después de comprobar la sustitución. No se deben importar reglas ni partidas antiguas automáticamente: son motores y bases distintos.

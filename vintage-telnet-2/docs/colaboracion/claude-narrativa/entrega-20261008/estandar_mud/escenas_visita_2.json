@@ -1,0 +1,1590 @@
+{
+ "_nota": "Segunda tanda de escenas por visita (26 salas). Mismo formato que escenas_visita.json; insertar_en calculado contra la base desplegada: tras la última variante sólo de hora/visita y antes de clima o misión. Si ya existía una variante de día en la visita 3, no se duplica.",
+ "valdren_cobertizo": {
+  "insertar_en": 0,
+  "estados": [
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "day": "Bren engrasa el eje de una rueda desmontada con un trapo negro. Sin darse cuenta se pasa el trapo por la cara y se queda con un bigote de grasa; nadie se atreve a decírselo."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 5
+    },
+    "overrides": {
+     "day": "Un niño del pueblo ha venido a ver los carros. Bren le deja sentarse en el pescante del carro alto, sin moverlo, y el niño sujeta unas riendas imaginarias muy serio."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 8
+    },
+    "overrides": {
+     "day": "Bren cuenta en voz alta las ruedas guardadas, señalándolas con el dedo. Siempre le sale una de más, y siempre vuelve a empezar."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "night": "Un animalillo de bigotes largos cruza por encima de una rueda desmontada, se para en el centro y sigue. Su sombra en la pared parece la de un animal mucho más grande."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 6
+    },
+    "overrides": {
+     "night": "El viento hace sonar la lona de las varas como un tambor flojo. Dentro, todo huele a madera fría y a grasa."
+    }
+   }
+  ]
+ },
+ "valdren_comedor": {
+  "insertar_en": 2,
+  "estados": [
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 5
+    },
+    "overrides": {
+     "day": "Un comensal se ha quedado dormido con la cuchara en la mano. Elva le quita el cuenco con cuidado y le deja un trozo de pan al lado, por si despierta con hambre."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 8
+    },
+    "overrides": {
+     "day": "Hoy el pan ha salido con una forma rara, como una oreja. Elva dice que es para que escuche las conversaciones; los niños se pelean por el trozo de la oreja."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "night": "Alguien cuenta una historia junto al fuego, en voz baja, y los que escuchan se inclinan hacia delante a la vez."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 6
+    },
+    "overrides": {
+     "night": "Las tazas boca abajo del estante brillan con el resplandor de las brasas. Fuera, alguien se despide y una puerta se cierra despacio."
+    }
+   }
+  ]
+ },
+ "valdren_fragua": {
+  "insertar_en": 0,
+  "estados": [
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "day": "Daro mete una pieza al rojo en el barreño: el agua chilla, sube una nube de vapor y por un momento no se ve nada. Cuando se aclara, Daro ya está mirando la siguiente pieza."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 5
+    },
+    "overrides": {
+     "day": "Un aprendiz pequeño sujeta el fuelle con las dos manos y sopla tan fuerte que las chispas suben hasta el techo. «Más despacio», dice Daro, y el chico sopla despacio pero con la cara roja."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 8
+    },
+    "overrides": {
+     "day": "Daro se sienta un momento en el banco, se seca la frente y se bebe un vaso de agua de un trago. Luego se mira las manos, llenas de cicatrices pequeñas, y vuelve al yunque."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "night": "El carbón cruje solo mientras se enfría. De vez en cuando salta una chispa pequeña y se apaga en el aire."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 6
+    },
+    "overrides": {
+     "night": "Fuera, un gato se ha acurrucado contra la pared de la fragua, donde la piedra todavía guarda el calor del día."
+    }
+   }
+  ]
+ },
+ "edran_acequia": {
+  "insertar_en": 0,
+  "estados": [
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "day": "Dos niños hacen carreras de hojas en la acequia: las sueltan arriba y corren por la orilla para ver cuál llega antes a la losa. Una se atasca en la rejilla y su dueño protesta."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 5
+    },
+    "overrides": {
+     "day": "Un Ala parda baja a la curva, se queda quieto en el borde y mira el agua sin parpadear. Cuando te acercas, abre las alas sin prisa y se va un poco más lejos."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 8
+    },
+    "overrides": {
+     "day": "La mujer de la rejilla ha atado una rama larga a un palo para limpiar sin agacharse. Te lo enseña orgullosa: dice que se le ocurrió soñando."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "night": "Las ranas de la acequia cantan todas a la vez y luego se callan de golpe, como si alguien les hubiera mandado callar."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 6
+    },
+    "overrides": {
+     "night": "La luz de una casa lejana se refleja en el agua de la curva y tiembla. Sobre la losa queda una hoja mojada, como una huella."
+    }
+   }
+  ]
+ },
+ "edran_camino_carros": {
+  "insertar_en": 0,
+  "estados": [
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "day": "Un carro cargado se ha quedado atascado en la rodada baja. Su conductor empuja, otro viajero tira del animal, y al final sale con un ruido de barro que hace reír a los dos."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 5
+    },
+    "overrides": {
+     "day": "Una familia camina detrás de su carro: la madre lleva las riendas, el padre un saco, y la niña más pequeña va sentada encima de la carga, cantando."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 8
+    },
+    "overrides": {
+     "day": "Un conductor se para a mirar las rodadas, muy anchas y profundas. «Por aquí ha pasado mucho peso», dice, y decide ir por la de arriba."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "night": "Un Grillo campana empieza a sonar en la arboleda. Otro le contesta desde más lejos, y el camino parece más largo en la oscuridad."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 6
+    },
+    "overrides": {
+     "night": "Una rueda chirría lejos, en la oscuridad. El sonido se acerca, se acerca... y se pierde por la rodada baja sin que llegues a ver el carro."
+    }
+   }
+  ]
+ },
+ "edran_hito_campos": {
+  "insertar_en": 0,
+  "estados": [
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "day": "Un viajero se para junto al poste, saca un trozo de pan y lo comparte con su perro antes de cruzar el arroyo. El perro cruza primero, saltando de piedra en piedra."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 5
+    },
+    "overrides": {
+     "day": "Una niña cruza las tres piedras del arroyo con los brazos abiertos. En la segunda casi se cae; en la tercera se vuelve y hace una reverencia a nadie."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 8
+    },
+    "overrides": {
+     "day": "Alguien ha dejado una flor del campo en lo alto del poste. Los viajeros que pasan la miran, y uno añade otra."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "night": "El agua del arroyo suena más fuerte de noche. Las tres piedras se ven claras sobre el agua oscura, como tres huevos grandes."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 6
+    },
+    "overrides": {
+     "night": "A lo lejos, hacia Veyra, brilla una luz pequeña. Desaparece y vuelve a aparecer: alguien camina con un farol."
+    }
+   }
+  ]
+ },
+ "veyra_calle_toldos": {
+  "insertar_en": 0,
+  "estados": [
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "day": "Un niño corre por debajo de los toldos contando colores en voz alta: «¡Azul, rojo, gris, otro azul!». Al llegar al final se le ha olvidado cuántos llevaba y empieza otra vez."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 5
+    },
+    "overrides": {
+     "day": "Un toldo se ha llenado de agua y cuelga como una barriga. Un vecino lo empuja desde abajo con una pértiga y el agua cae de golpe... justo al lado de un gato, que sale corriendo, muy ofendido."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 8
+    },
+    "overrides": {
+     "day": "Los talleres de la calle comparten la comida del mediodía en una mesa larga bajo los toldos. Cada uno ha traído algo distinto, y discuten qué tela es la más bonita."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "night": "Bajo los toldos se oye coser a alguien que no puede dormir. La aguja entra y sale, entra y sale, como un reloj."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 6
+    },
+    "overrides": {
+     "night": "El viento mueve los toldos, que suenan como velas de barco. Una tela suelta golpea suavemente una ventana: pom, pom."
+    }
+   }
+  ]
+ },
+ "veyra_patio_senales": {
+  "insertar_en": 2,
+  "estados": [
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 5
+    },
+    "overrides": {
+     "day": "Un mensajero llega corriendo, sin aliento, con una tablilla en la mano. Todos se callan para escucharle... y es para avisar de que llegará tarde a cenar. Las mensajeras se ríen."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 8
+    },
+    "overrides": {
+     "day": "Una niña deja una tablilla con un dibujo: un pájaro y su nombre. Las mensajeras la cuelgan en la fila de los avisos importantes, muy serias."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "night": "Una lámpara bajo el alero ilumina las tablillas, que se mueven con el aire y chocan entre sí con un ruido de madera."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 6
+    },
+    "overrides": {
+     "night": "El patio está vacío. En la pared antigua, junto al armazón, algo pequeño brilla un momento a la luz de la lámpara y luego ya no se ve."
+    }
+   }
+  ]
+ },
+ "veyra_patio_agua": {
+  "insertar_en": 0,
+  "estados": [
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "day": "Dos vecinas llenan sus jarras y se ponen a hablar tanto que el agua rebosa. Las dos se ríen, vacían un poco y siguen hablando."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 5
+    },
+    "overrides": {
+     "day": "Un niño intenta beber directamente del caño de agua limpia y se moja hasta las orejas. Su madre le da un vaso sin decir nada."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 8
+    },
+    "overrides": {
+     "day": "Una mujer mayor se sienta en el borde de la pila, cerca del agua, con los ojos cerrados. Dice que viene todos los días sólo para escucharla."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "night": "El agua cae en la pila con un sonido que no para nunca. Una rana pequeña se ha subido a la baranda y te mira."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 6
+    },
+    "overrides": {
+     "night": "Una lámpara de una ventana dibuja un círculo de luz que tiembla en el agua limpia."
+    }
+   }
+  ]
+ },
+ "veyra_hondonada_canales": {
+  "insertar_en": 0,
+  "estados": [
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "day": "Un pescador muy joven ha echado al canal un hilo sin anzuelo, sólo con un nudo. Dice que así los peces no se asustan; todavía no ha pescado nada."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 5
+    },
+    "overrides": {
+     "day": "Una barca pequeña pasa bajo la pasarela; quien rema tiene que agacharse tanto que casi toca el agua con la nariz."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 8
+    },
+    "overrides": {
+     "day": "El pescador joven ha pescado por fin algo: una bota vieja. Se la enseña a todo el que pasa como si fuera un tesoro."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "night": "El agua corre bajo la pasarela y unas Agujas azules zumban sobre los juncos de la orilla."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 6
+    },
+    "overrides": {
+     "night": "Una rama baja flotando por el canal, choca con un apoyo de la pasarela, da una vuelta entera y sigue su camino."
+    }
+   }
+  ]
+ },
+ "veyra_vega_abierta": {
+  "insertar_en": 0,
+  "estados": [
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "day": "Un grupo de viajeros discute junto al poste qué camino tomar. Cada uno señala uno distinto. Al final lo echan a suertes con una piedra."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 5
+    },
+    "overrides": {
+     "day": "Un pastor deja pastar a sus cabras en la vega mientras él duerme a la sombra del poste, con el sombrero sobre la cara."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 8
+    },
+    "overrides": {
+     "day": "Hoy la vega tiene flores amarillas por todas partes. Una niña hace una corona con ellas y se la pone al poste del cruce."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "night": "Bajo el farol del poste suenan los Grillos campana. Alrededor, la vega es un mar oscuro que susurra."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 6
+    },
+    "overrides": {
+     "night": "Se oyen ruedas en el camino de la colina, luego agua en el de la acequia, luego nada. Tres caminos, tres sonidos."
+    }
+   }
+  ]
+ },
+ "hoshai_terraza_cargas": {
+  "insertar_en": 0,
+  "estados": [
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "day": "Un comerciante Felaryn lleva una caja en equilibrio sobre la cabeza y otra en cada mano, y así sube los primeros escalones. Los demás le miran, entre admirados y preocupados."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 5
+    },
+    "overrides": {
+     "day": "Un aprendiz deja colgar una cuerda por el borde de la terraza para ver hasta dónde llega. No llega a ningún sitio: el vacío es más largo que la cuerda."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 8
+    },
+    "overrides": {
+     "day": "Dos comerciantes han terminado de repartir las cargas y juegan con piedrecitas sobre una caja. El viento se lleva una y los dos corren detrás de ella."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "night": "La terraza está vacía y el viento sopla fuerte. Las cuerdas atadas golpean los postes, tac, tac, como si alguien llamara a una puerta."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 6
+    },
+    "overrides": {
+     "night": "Muy abajo, en el valle, se ve una luz pequeña que avanza: alguien sube de noche. Tardará mucho en llegar."
+    }
+   }
+  ]
+ },
+ "hoshai_escalones_sol": {
+  "insertar_en": 0,
+  "estados": [
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "day": "Un niño Felaryn sube los escalones de dos en dos, de tres en tres, saltando. Una abuela humana sube detrás, de uno en uno, y llegan arriba a la vez."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 5
+    },
+    "overrides": {
+     "day": "Un gato se ha tumbado en el escalón más caliente, justo en medio. Todo el mundo pasa por encima con cuidado; nadie lo mueve."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 8
+    },
+    "overrides": {
+     "day": "El albañil termina de arreglar un escalón. Lo pisa, salta encima y se queda satisfecho. Luego se da la vuelta y mira el siguiente."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "night": "La piedra de los escalones todavía está tibia. El canal de al lado suena más fuerte en el silencio."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 6
+    },
+    "overrides": {
+     "night": "Alguien baja los escalones con una lámpara. La luz salta de peldaño en peldaño, como si bajara sola."
+    }
+   }
+  ]
+ },
+ "hoshai_mercado_cintas": {
+  "insertar_en": 2,
+  "estados": [
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 5
+    },
+    "overrides": {
+     "day": "Una niña se ha atado cintas de todos los colores a la trenza y gira sobre sí misma para que vuelen. Luma la mira y dice que así nadie sabrá qué abrir primero."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 8
+    },
+    "overrides": {
+     "day": "Un comerciante de la cuenca intenta aprender el código de colores de las cintas. Confunde el azul con el gris tres veces, y Luma le presta una cinta de muestra para el camino."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "night": "Las cintas recogidas en un cesto parecen un nido de colores. Un gato duerme encima."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 6
+    },
+    "overrides": {
+     "night": "El viento trae olor a pan de las casas. En un puesto, alguien envuelve con cuidado las provisiones de un viajero que saldrá de madrugada."
+    }
+   }
+  ]
+ },
+ "hoshai_patio_hogares": {
+  "insertar_en": 0,
+  "estados": [
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "day": "Dos vecinas hablan de un descanso a otro, una arriba y otra abajo, y se pasan una cesta con una cuerda."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 5
+    },
+    "overrides": {
+     "day": "Unos niños juegan a no tocar el suelo: van de escalón en descanso y de descanso en escalón. El más pequeño se queda atascado y le llevan entre todos."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 8
+    },
+    "overrides": {
+     "day": "Hoy hay fiesta en una de las casas: por la ventana se oyen risas y un silbato, y huele a pastel de frutos secos."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "night": "Las voces salen por las rendijas de las puertas. Alguien ríe; alguien manda callar; alguien vuelve a reír."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 6
+    },
+    "overrides": {
+     "night": "Una lámpara se apaga arriba, y luego otra, y otra, de arriba abajo, como si el patio se fuera a dormir escalón a escalón."
+    }
+   }
+  ]
+ },
+ "korven_asiento_revision": {
+  "insertar_en": 0,
+  "estados": [
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "day": "La revisora golpea una pieza, escucha y vuelve a golpear. Le pide a su ayudante que lo intente; él golpea demasiado fuerte y la pieza salta de la mesa."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 5
+    },
+    "overrides": {
+     "day": "Un viajero de la sierra deja su carga en el banco y pregunta qué hacen. La revisora le explica que una pieza buena suena como una campana pequeña, y una mala, como una nuez hueca."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 8
+    },
+    "overrides": {
+     "day": "La revisora y su ayudante hacen una prueba juntos: él golpea y ella escucha con los ojos cerrados. Cuando acierta qué pieza está mal, él aplaude."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "night": "Los golpes han parado. Una cubierta tapa la mesa, y bajo ella la nota pendiente espera a mañana."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 6
+    },
+    "overrides": {
+     "night": "El viento silba en la roca marcada de golpes. Parece que la roca recordara todos los golpes del día."
+    }
+   }
+  ]
+ },
+ "korven_peldanos_cortos": {
+  "insertar_en": 0,
+  "estados": [
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "day": "Un niño Dravak sube los escalones con un recipiente de agua en equilibrio sobre la cabeza. No derrama ni una gota y no mira a nadie: está muy concentrado."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 5
+    },
+    "overrides": {
+     "day": "Un carro baja por la franja ancha demasiado deprisa. Su dueña lo frena con una cuña justo a tiempo, y suspira."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 8
+    },
+    "overrides": {
+     "day": "Una vecina barre los escalones de arriba abajo. Al llegar al último, vuelve a empezar arriba: el viento ya ha traído más polvo."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "night": "Las luces colocadas junto a cada cambio de nivel parecen pequeñas estrellas en el suelo."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 6
+    },
+    "overrides": {
+     "night": "Un carro tardío sube despacio. Se oyen las ruedas, la cuña, una voz que dice «despacio», y después una puerta."
+    }
+   }
+  ]
+ },
+ "korven_calle_fachadas": {
+  "insertar_en": 0,
+  "estados": [
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "day": "Una abuela Dravak se ha sentado en la repisa de su puerta a tomar el sol. Saluda a cada persona que pasa con un golpecito suave en la roca."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 5
+    },
+    "overrides": {
+     "day": "Dos niños juegan a esconder una piedra pintada en las repisas de las casas. Los vecinos fingen no ver nada."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 8
+    },
+    "overrides": {
+     "day": "En una repisa asoma una piedra pintada: los niños la han vuelto a esconder, esta vez a la vista de todos, y esperan detrás de una puerta a ver quién la encuentra."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "night": "Las puertas se entreabren para recibir voces conocidas y se cierran enseguida. La calle queda quieta."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 6
+    },
+    "overrides": {
+     "night": "Dentro de una de las casas, alguien canta muy bajito. La piedra lleva el sonido hasta la calle."
+    }
+   }
+  ]
+ },
+ "korven_cisterna_comun": {
+  "insertar_en": 0,
+  "estados": [
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "day": "Un niño grita su nombre dentro de la cisterna y el eco se lo devuelve tres veces. Su hermana lo intenta y el eco se lo devuelve cuatro."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 5
+    },
+    "overrides": {
+     "day": "Dos vecinos discuten sobre la vara del nivel: uno dice que ha bajado y el otro que no. Al final la miden juntos con una cuerda, y los dos tenían un poco de razón."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 8
+    },
+    "overrides": {
+     "day": "Una vecina enseña a un niño a leer la vara del nivel: cada marca es mucha agua. El niño cuenta las marcas con los dedos, muy despacio."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "night": "Una cuerda roza el borde de la cisterna y se queda quieta. El agua de abajo hace un ruido suave, como si respirara."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 6
+    },
+    "overrides": {
+     "night": "Alguien ha dejado una lámpara junto a la vara del nivel. A su luz, la piedra del brocal brilla húmeda."
+    }
+   }
+  ]
+ },
+ "lethra_mercado_hojas": {
+  "insertar_en": 0,
+  "estados": [
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "day": "Llega una barca cargada de fruta y quien rema lanza una pieza a la vendedora del primer puesto. Ella la coge al vuelo sin dejar de hablar con una clienta."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 5
+    },
+    "overrides": {
+     "day": "Un niño Marevyn bucea bajo la barca del mercado y sale por el otro lado con una hoja en la cabeza, como un sombrero. Los vendedores aplauden."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 8
+    },
+    "overrides": {
+     "day": "Hoy han llegado unas frutas de piel morada que nadie conoce. Los vendedores las prueban, ponen caras raras... y luego piden otra."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "night": "Las barcas del mercado chocan suavemente contra los postes: toc, toc, como si llamaran."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 6
+    },
+    "overrides": {
+     "night": "Un vendedor duerme en su barca, tapado con una manta, para salir temprano. Se le oye roncar por encima del agua."
+    }
+   }
+  ]
+ },
+ "lethra_senda_elevada": {
+  "insertar_en": 0,
+  "estados": [
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "day": "Desde una ventana, alguien baja un cesto con una cuerda hasta una barca que pasa. El de la barca coge una fruta, deja otra a cambio y sigue remando."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 5
+    },
+    "overrides": {
+     "day": "Un niño pesca desde su plataforma con un hilo y una miga de pan. Saca un pez tan pequeño que lo devuelve al agua pidiéndole perdón."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 8
+    },
+    "overrides": {
+     "day": "Las casas de la senda han colgado paños de colores entre las ventanas: hoy alguien cumple años. Desde una plataforma tiran pétalos al agua."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "night": "Las ventanas se iluminan una a una y sus luces tiemblan en el canal. Alguien canta mientras friega."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 6
+    },
+    "overrides": {
+     "night": "Una barca pasa en silencio bajo la senda, empujada con una pértiga. Sólo se oye el agua apartándose."
+    }
+   }
+  ]
+ },
+ "lethra_embarcadero_camino": {
+  "insertar_en": 0,
+  "estados": [
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "day": "Una barca llega tan cargada que el agua casi entra por los bordes. Entre cuatro personas la descargan deprisa, riéndose de los nervios."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 5
+    },
+    "overrides": {
+     "day": "La encargada del embarcadero enseña a un niño a hacer el nudo de amarre. Le sale torcido, pero aguanta; ella le da una palmada en la espalda."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 8
+    },
+    "overrides": {
+     "day": "Una barca vieja llega con la vela llena de remiendos de colores. El barquero dice que cada remiendo es un viaje."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "night": "Bajo el techo, las barcas amarradas se mecen y crujen. Una lámpara alumbra el poste del nivel del agua."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 6
+    },
+    "overrides": {
+     "night": "Un vecino que espera su traslado tardío se ha quedado dormido sentado sobre su carga, con la cabeza apoyada en un poste."
+    }
+   }
+  ]
+ },
+ "lethra_patio_ventanas": {
+  "insertar_en": 0,
+  "estados": [
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "day": "Desde dos ventanas enfrentadas, dos niñas se lanzan una pelota de trapo por encima del agua. Cuando cae al canal, una de ellas se tira a buscarla nadando."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 5
+    },
+    "overrides": {
+     "day": "Una vecina riega las plantas de su ventana con una jarra, y el agua que sobra cae al canal con un ruido de lluvia pequeña."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 8
+    },
+    "overrides": {
+     "day": "Hoy un plato va de ventana en ventana por todo el patio, y cada familia le añade algo. Al llegar a la última casa, el plato está lleno."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "night": "Las ventanas iluminadas muestran manos que recogen platos y apagan velas. Una voz dice «buenas noches» y otra le contesta desde enfrente."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 6
+    },
+    "overrides": {
+     "night": "El patio está a oscuras, pero el agua refleja una sola ventana encendida, y su luz tiembla entre las casas."
+    }
+   }
+  ]
+ },
+ "nhal_mercado_setas": {
+  "insertar_en": 0,
+  "estados": [
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "day": "Un niño Vesperi señala una seta enorme y pregunta si se puede comer. La vendedora dice que sí, pero que es tan grande que habría que invitar a todo el pueblo."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 5
+    },
+    "overrides": {
+     "day": "Dos vendedoras huelen la misma seta por turnos, muy serias, como si fuera un perfume. Al final asienten a la vez."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 8
+    },
+    "overrides": {
+     "day": "Alguien ha traído una cesta de frutos rojos del Dosel Alto, que sólo maduran unos pocos días. Se acaban enseguida, y quien llega tarde se queda mirando la cesta vacía."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "night": "El cuenco de recortes de debajo de la mesa atrae a un animal pequeño, que se lleva un trozo y desaparece entre las raíces."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 6
+    },
+    "overrides": {
+     "night": "Los puestos están tapados. Sólo una lámpara baja alumbra la mesa de las hojas, donde alguien todavía separa las buenas de las malas."
+    }
+   }
+  ]
+ },
+ "nhal_patio_relato": {
+  "insertar_en": 0,
+  "estados": [
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "day": "Un niño pide que le cuenten otra vez el relato del recipiente. La narradora sonríe y empieza, pero esta vez deja que el niño diga las partes que ya se sabe."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 5
+    },
+    "overrides": {
+     "day": "Una abuela se sienta en el banco y añade al relato algo que nadie sabía: dónde estaba ella aquel día. La narradora escribe muy deprisa para no perderlo."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 8
+    },
+    "overrides": {
+     "day": "El patio está lleno: hoy han venido a escuchar vecinos de las casas altas. Alguien trae comida y el relato se alarga hasta que cambia la luz."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "night": "Bajo la cubierta, la narradora lee en voz baja las tachaduras de su cuaderno, una a una, como quien recuerda."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 6
+    },
+    "overrides": {
+     "night": "Los bancos están vacíos. En la mesa queda una hoja con una frase empezada, esperando a mañana."
+    }
+   }
+  ]
+ },
+ "nhal_umbral_velmora": {
+  "insertar_en": 0,
+  "estados": [
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "day": "Dos vecinas descargan una carga del puente y cuentan las piezas en voz alta. Siempre falta una, hasta que aparece debajo de la mesa."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 5
+    },
+    "overrides": {
+     "day": "Un viajero de fuera se para en la entrada y parpadea: tarda en acostumbrarse a la poca luz. Una vecina le acerca una lámpara pequeña para el camino."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 8
+    },
+    "overrides": {
+     "day": "Hoy han colgado lámparas pequeñas en las raíces de la entrada, para recibir a alguien que vuelve de un viaje largo. Los niños esperan sentados en la mesa."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "night": "Las luces encajadas en las raíces dibujan el camino hacia la plaza. Más allá, el bosque es negro y está lleno de ruidos pequeños."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 6
+    },
+    "overrides": {
+     "night": "Un Pico sordo se posa en la rama más baja, sobre la mesa de espera, y mira a los que pasan sin hacer ningún ruido."
+    }
+   }
+  ]
+ },
+ "nhal_calle_hogares": {
+  "insertar_en": 0,
+  "estados": [
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "day": "El niño de la rueda reparada la hace girar en el umbral de su casa. Su abuela le mira desde dentro y aplaude cada vez que da diez vueltas."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 5
+    },
+    "overrides": {
+     "day": "Una vecina baja de su casa por una escalera de raíces y se para a mitad para saludar a otra que sube. Hablan tanto que ninguna termina de bajar ni de subir."
+    }
+   },
+   {
+    "requires_time": [
+     "día"
+    ],
+    "requires_visits": {
+     "min": 8
+    },
+    "overrides": {
+     "day": "Hoy huele a pan en toda la calle. De cada puerta sale alguien con un trozo para la casa de al lado."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 3
+    },
+    "overrides": {
+     "night": "Una puerta sigue abierta para una visita esperada. Dentro se oyen platos y una risa."
+    }
+   },
+   {
+    "requires_time": [
+     "noche"
+    ],
+    "requires_visits": {
+     "min": 6
+    },
+    "overrides": {
+     "night": "Las lámparas de las casas se apagan una a una, de abajo arriba, hasta que sólo queda encendida la más alta, como una estrella pequeña."
+    }
+   }
+  ]
+ }
+}

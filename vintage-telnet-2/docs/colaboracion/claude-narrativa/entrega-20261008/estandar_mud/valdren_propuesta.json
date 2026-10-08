@@ -1,0 +1,55 @@
+{
+ "_nota": "Propuesta acotada: 12 salas de Valdren. Sólo campos de texto. 'brief' es un campo nuevo (requiere el ajuste de renderizador). 'states[N].overrides.description' reescribe el estado existente para mantener el mismo estilo.",
+ "rooms": {
+  "valdren_plaza": {
+   "description": "La plaza de Valdren es el corazón del pueblo: un espacio de tierra apisonada entre casas bajas de piedra y madera, con sitio de sobra para que un carro gire sin tapar ninguna puerta. Un banco largo la cruza de lado a lado, pero no es recto: lo interrumpe una piedra vieja que asoma entre las tablas. Quien lo construyó prefirió rodearla antes que arrancarla, y ahora los niños se suben a ella como si fuera un trono. Huele a pan recién sacado del horno. Calle arriba se oye el martillo de la fragua.",
+   "brief": "La plaza de Valdren, con su banco largo partido por una piedra.",
+   "return": "Ya sabes orientarte aquí: la calle que sube lleva al golpe de la fragua; el corredor de los huertos, al campo."
+  },
+  "valdren_fragua": {
+   "description": "Nada más entrar, el calor te da en la cara. El fuego ocupa el fondo, rojo bajo la ceniza, y junto a él cuelgan las herramientas que todavía queman. A su lado espera un barreño de agua para enfriar el hierro: cuando una pieza entra en él, suelta un silbido y una nube de vapor. Las piezas terminadas se apoyan en fila junto a la puerta. El centro del taller queda libre, para pasar sin rozar nada caliente. Todo huele a carbón y a metal, y el suelo está negro de hollín.",
+   "brief": "La fragua: fuego al fondo, barreño al lado, piezas junto a la puerta."
+  },
+  "valdren_huertos": {
+   "description": "Un camino de tierra blanda serpentea entre huertos pequeños, cercas bajas y puertas de cocina que dan directamente a las verduras. Una canaleta de madera corre junto al camino, llevando agua a cada parcela, a la sombra de un árbol viejo de ramas anchas. Las cercas son tan bajas que se puede saludar por encima. Hacia el norte asoma el tejado de la casa de semillas; hacia el este, las cercas se abren y empieza el campo.",
+   "brief": "El corredor de los huertos, con su canaleta a la sombra del árbol."
+  },
+  "valdren_casa_semillas": {
+   "description": "Dentro hace fresco y huele a grano seco, a polvo dulce. Los estantes son bajos, a la altura del pecho, para poder hablar por encima de ellos, y están llenos de recipientes de barro y de madera. Cada uno lleva una tablilla con un nombre y una cantidad: aquí se guardan las semillas de todo el pueblo, y cada familia sabe cuáles son las suyas. Junto a la ventana se secan los lotes nuevos sobre paños. Al fondo cuelgan sacos vacíos, esperando la próxima cosecha.",
+   "brief": "La casa de semillas: estantes bajos, tablillas y sacos vacíos al fondo."
+  },
+  "valdren_pozo": {
+   "description": "En medio de un patio de piedra se levanta un pozo con brocal de piedra y un tejadillo de madera encima. Tiene dos cuerdas. La nueva, clara y tensa, es la que se usa; la vieja, gris y deshilachada, está enrollada en una clavija por si un día la nueva se rompe. Una fila de piedras en el suelo marca dónde esperar turno sin acercarse al borde. Si te asomas un poco, el aire de dentro sube frío, huele a piedra mojada, y tu voz vuelve desde muy abajo.",
+   "brief": "El pozo de las dos cuerdas, con su fila de piedras para esperar."
+  },
+  "valdren_cobertizo": {
+   "description": "Un cobertizo grande de dos alturas, hecho de tablas que han oscurecido con los años. Bajo la parte de techo bajo se amontonan ruedas desmontadas, unas sobre otras, como monedas gigantes. En la parte alta cabe un carro entero, con las varas apuntando hacia el patio. En el suelo, una cuerda tendida marca el círculo que necesita un carro para girar: nadie debe quedarse dentro mientras se mueve. La grasa de los ejes deja manchas negras en todo lo que toca.",
+   "brief": "El cobertizo de los carros y su cuerda de giro en el suelo."
+  },
+  "valdren_patio_carros": {
+   "description": "Un patio de tierra con una ligera cuesta. No parece mucho, pero basta para que un carro sin calzar empiece a moverse solo; por eso hay un madero grueso atravesado en la parte baja, que frena las ruedas y tiene la madera marcada de tantos golpes. Sobre una plataforma de piedras planas espera una carga de sacos, lejos del barro. Por el borde sur sale una senda que rodea los campos hacia la arboleda.",
+   "brief": "El patio inclinado de los carros, con el madero que frena las ruedas."
+  },
+  "valdren_graneros": {
+   "description": "Un pasillo estrecho entre dos graneros altos de paredes gruesas, donde la luz entra de lado. A uno se entra subiendo por una rampa de tablas; el otro tiene la puerta a ras del suelo, más cómoda para descargar sacos pesados. En la esquina baja se ha amontonado tierra por encima de las viejas marcas que dejó el agua en la pared las otras veces que se inundó. Por el este, el pasillo se abre a los campos.",
+   "brief": "El paso entre los graneros: una puerta en rampa, otra a ras de suelo.",
+   "states[0].overrides.description": "Un pasillo estrecho entre dos graneros altos de paredes gruesas, donde la luz entra de lado. A uno se entra subiendo por una rampa de tablas; el otro tiene la puerta a ras del suelo, más cómoda para descargar sacos pesados. En la esquina baja, la salida del agua ya está despejada: la tierra retirada espera aparte, más arriba, y las viejas marcas de la pared no tienen barro delante. Por el este, el pasillo se abre a los campos."
+  },
+  "valdren_comedor": {
+   "description": "Una sala cálida que huele a pan recién hecho y a caldo. El fuego ocupa un lado entero, y cerca de él está la mesa larga, hecha con tres tableros que no son iguales: uno más oscuro, otro más ancho, otro con un nudo en el centro. Las ollas se quedan en el extremo estrecho, donde no estorban. En un estante, varias tazas boca abajo guardan sitio para quienes todavía no han llegado del campo; nadie las toca hasta que su dueño vuelve.",
+   "brief": "El comedor: mesa de tres tableros, ollas y tazas boca abajo."
+  },
+  "valdren_calle_alta": {
+   "description": "Una calle corta y empinada sube entre casas tan apretadas que casi se tocan los aleros. En la pared de una de ellas todavía se ve la línea del tejado antiguo, más bajo que el de ahora: la casa creció hacia arriba sin perder su marca. Las piedras del suelo están gastadas por el centro, por donde sube todo el mundo. Desde aquí se ve abajo el banco largo de la plaza y se oye arriba el martillo de la fragua. Un hueco entre dos casas da a un patio con ropa tendida.",
+   "brief": "La calle empinada que sube de la plaza a la fragua."
+  },
+  "valdren_patio_ropa": {
+   "description": "Dos cuerdas a distinta altura cruzan el patio, cargadas de paños de trabajo y de ropa limpia que se mueve con el aire. En el suelo firme hay una tina grande de madera, con el borde gastado de tanto frotar. Junto a la pared queda un paso seco, siempre libre, que lleva a una puerta: detrás atienden a quien llega herido, y por eso aquí nadie deja ropa sucia cerca de ese paso.",
+   "brief": "El patio de ropa tendida, con el paso seco junto a la pared."
+  },
+  "valdren_cuidado": {
+   "description": "Una habitación tranquila, limpia y fresca, donde el ruido del pueblo llega apagado. Junto a la ventana hay una cama corta con una manta doblada. En la mesa, todo tiene su sitio: paños limpios a un lado, agua tapada en el centro, y recipientes que nunca se mezclan con los de la comida. Aquí no llega el polvo del trabajo: aquí se atienden las heridas.",
+   "brief": "La casa de cuidados: cama corta, paños limpios y agua tapada."
+  }
+ }
+}

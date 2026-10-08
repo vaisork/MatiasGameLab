@@ -1,0 +1,24 @@
+{
+ "codigo": {
+  "combate": "6/6",
+  "combate_motor": "2/2",
+  "extras_motor": "6/6",
+  "extras_contenido": "2/2",
+  "extras_cliente": "1/1",
+  "linea_salidas": "1/1"
+ },
+ "contenido": {
+  "description": 183,
+  "brief": 183,
+  "estados": 18,
+  "return": 12,
+  "escenas_visita": 182,
+  "look": 20,
+  "echoes": 18,
+  "propuestas": 243
+ },
+ "omitido": [
+  "propuesta veyra_nera.topics (claves): código/clave",
+  "propuesta journal.secretos: código/clave"
+ ]
+}

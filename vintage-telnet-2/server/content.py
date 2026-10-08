@@ -2,7 +2,7 @@
 import json
 from pathlib import Path
 
-TABLES = ('regions','rooms','npcs','creatures','stories','items','quests')
+TABLES = ('regions','rooms','npcs','creatures','stories','items','quests','secrets')
 
 class Content:
     def __init__(self, root):
@@ -24,6 +24,9 @@ class Content:
             for destination in room.get('exits',{}).values():
                 if destination not in self.rooms:
                     raise ValueError(f'Unknown exit from {key}: {destination}')
+            for direction in room.get('look',{}):
+                if direction not in room.get('exits',{}):
+                    raise ValueError(f'Look direction without exit in {key}: {direction}')
             for npc in room.get('npcs',[]):
                 if npc not in self.npcs:
                     raise ValueError(f'Unknown NPC {npc} in {key}')

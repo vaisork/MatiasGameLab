@@ -1,0 +1,1384 @@
+{
+  "version": 1,
+  "regions": {
+    "veyra": {
+      "id": "veyra",
+      "name": "Cuenca de Veyra",
+      "identity": "Una cuenca de colinas bajas y arroyos donde los viajes se convierten en convivencia. La ciudad antigua no conoce el origen de sus primeras piedras; sus habitantes sí conocen quién mantiene cada puente y quién lleva esperando una carga.",
+      "settlement": "vaisgard_mercado",
+      "species": "mixta",
+      "weather": {
+        "lluvia": "Los desagües reúnen el agua de calles altas y obligan a repartir refugios sin mezclar cargas y herramientas.",
+        "niebla": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino.",
+        "viento": "Las cubiertas se revisan antes de abandonar el abrigo de la ciudad."
+      },
+      "source": "Vintage_Telnet_Prompt_Actualizado.pdf — canon geográfico y especies; ampliación textual nueva autorizada 2026-10-05",
+      "search": {
+        "finds": [
+          {
+            "item": "cuerda_recuperada",
+            "text": "Bajo una piedra encuentras un trozo de cuerda que el agua dejó atrapado."
+          }
+        ],
+        "traces": [
+          "Una cuerda marca el barro: por aquí arrastraron una carga.",
+          "Encuentras una huella antigua, pero no basta para saber qué la dejó."
+        ],
+        "empty": [
+          "Apartas grava de la orilla. No ha quedado nada que puedas recoger.",
+          "Buscas con cuidado. Esta vez no encuentras nada para llevar."
+        ]
+      }
+    }
+  },
+  "rooms": {
+    "vaisgard_mercado": {
+      "id": "vaisgard_mercado",
+      "name": "Mercado de Vaisgard",
+      "region": "veyra",
+      "kind": "settlement",
+      "description": "Frutas, herramientas y cestas ocupan los puestos entre muros antiguos. Un canal pequeño cruza el mercado. Al norte está la plaza de las rutas; al sur, el patio del agua. Los carros entran por el oeste y los toldos cubren la calle del este.",
+      "day": "Una vendedora corta una fruta para mostrar el centro. Su vecina prueba un trozo y hace una mueca; ambas apartan esa cesta mientras una niña recoge la semilla del plato.",
+      "night": "Un vendedor recoge las últimas cestas. Entre los muros se oyen pasos y una discusión sobre quién olvidó devolver una cuchara.",
+      "rain": "El agua corre por las esquinas de los toldos hacia el canalillo. Los vendedores levantan del suelo sus cajas y comparten los huecos secos; las cargas recién llegadas permanecen cerradas hasta poder sacudir sus cubiertas.",
+      "clear": "",
+      "return": "El canal divide otra vez tu paso entre puestos. La plaza queda detrás de las herramientas; los carros alcanzan el corredor occidental por el lado de las cestas.",
+      "examine": {
+        "canalillo": "La pendiente lleva el agua hacia el patio sur. Una tabla móvil permite atravesarlo con ruedas sin volcar las cestas.",
+        "muros": "Las bases son más antiguas que los cobertizos. Ninguna inscripción permite atribuirlas a un fundador."
+      },
+      "exits": {
+        "norte": "veyra_plaza_rutas",
+        "sur": "veyra_patio_agua",
+        "este": "veyra_calle_toldos",
+        "oeste": "veyra_barrio_cargas"
+      },
+      "arrivals": {},
+      "npcs": [
+        "veyra_bela"
+      ],
+      "signals": [],
+      "actions": [
+        {
+          "id": "veyra_recibir_fibra_toldo",
+          "label": "Recibir la fibra prestada para el toldo",
+          "text": "Bela saca un haz del estante de reparaciones y te lo presta para Seli. «Es para sujetar su toldo. Si no lo usáis, devuélvelo entero; otra persona puede necesitarlo.» No es mercancía regalada para vender: llevas material prestado para ese trabajo.",
+          "give_items": {
+            "junco_prestado_seli": 1
+          },
+          "set_flags": [
+            "encargo_veyra_fibra_prestada"
+          ],
+          "forbids_flags": [
+            "encargo_veyra_fibra_prestada"
+          ],
+          "requires_npc": "veyra_bela"
+        },
+        {
+          "id": "veyra_devolver_fibra_toldo",
+          "label": "Devolver a Bela el junco que no usaste",
+          "text": "Entregas a Bela el haz que no gastaste. Ella comprueba que esté completo y lo devuelve al estante de reparaciones. «Preparaste las perchas y no hizo falta usarlo. Mejor tenerlo aquí para el siguiente arreglo.» La fibra prestada ya no ocupa tu mochila.",
+          "requires_flags": [
+            "encargo_veyra_toldo_perchas"
+          ],
+          "requires_items": {
+            "junco_prestado_seli": 1
+          },
+          "consume_items": {
+            "junco_prestado_seli": 1
+          },
+          "set_flags": [
+            "encargo_veyra_fibra_devuelta"
+          ],
+          "forbids_flags": [
+            "encargo_veyra_fibra_devuelta"
+          ],
+          "requires_npc": "veyra_bela"
+        }
+      ],
+      "dawn": "Los puestos abren envolturas todavía frías. La primera fruta cortada deja un charco pequeño en el plato.",
+      "dusk": "Una vendedora ofrece la última mitad de fruta a su vecina. Dos toldos bajan antes de terminar la conversación.",
+      "shop": [
+        "provision_basica",
+        "punal_camino",
+        "arco_ruta",
+        "varita_aprendiz",
+        "espada_juramento"
+      ],
+      "buyer": "veyra_bela",
+      "buy_items": [
+        "semillas_camino",
+        "cuerda_recuperada",
+        "resina_pino",
+        "piedra_veteada",
+        "fibra_junco",
+        "rama_flexible",
+        "fibra_espinajo",
+        "piel_mordelinde"
+      ],
+      "states": [
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_weather": [
+            "lluvia"
+          ],
+          "overrides": {
+            "day": "La fruta cortada se refugia bajo un toldo. Una gota cae por una reparación vieja y obliga a cambiar el plato de sitio; la vendedora acerca otro trozo a su vecina."
+          }
+        },
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_visits": {
+            "min": 3
+          },
+          "overrides": {
+            "day": "La cesta apartada conserva la fruta abierta. La niña ha puesto su semilla en un pliegue de hoja; la vendedora le muestra cuál de los dos lados debe quedar arriba."
+          }
+        },
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_weather": [
+            "lluvia"
+          ],
+          "requires_visits": {
+            "min": 3
+          },
+          "overrides": {
+            "day": "La niña protege con la mano su semilla bajo el toldo. La vendedora cambia de sitio el plato vacío cuando vuelve a caer una gota por el remiendo."
+          }
+        }
+      ],
+      "focus": [
+        "people"
+      ]
+    },
+    "veyra_plaza_rutas": {
+      "id": "veyra_plaza_rutas",
+      "name": "Plaza de las Cinco Rutas",
+      "region": "veyra",
+      "kind": "settlement",
+      "description": "Las rutas se reúnen sobre el empedrado. Las piedras antiguas sobresalen entre las casas. Al sur bajas al mercado; al norte sales hacia la sierra. Los animales descansan en el patio oeste. Al este, una mensajera organiza avisos bajo un alero.",
+      "day": "La mensajera sigue con el dedo unas letras pequeñas y pregunta a una viajera si reconoce la mano. El aviso está escrito en el reverso de una cuenta vieja. En el patio oeste, un animal se rasca el cuello contra el poste hasta que su cuidadora lo aparta.",
+      "night": "Cada patio mantiene una luz baja junto al umbral. El centro queda vacío; una conversación se acerca al muro oriental, junto al último alero encendido.",
+      "rain": "El abanico de juntas recoge hilos de agua. Los mensajeros protegen sus papeles debajo del alero oriental y dejan las esquinas libres para los carros; las capas mojadas se sacuden siempre fuera de ese refugio.",
+      "clear": "",
+      "return": "Reconoces las sogas cortas de quienes vienen de la piedra y las cubiertas anchas del campo. Junto al alero, los bultos pequeños de la sierra quedan separados de las cestas.",
+      "examine": {
+        "juntas": "Las reparaciones forman capas sucesivas. La plaza es posterior a las piedras del núcleo antiguo.",
+        "avisos": "Un aviso distingue carga detenida de carga perdida: no encontrar un envío al mediodía no prueba que alguien lo haya robado."
+      },
+      "exits": {
+        "sur": "vaisgard_mercado",
+        "norte": "veyra_puerta_alta",
+        "oeste": "veyra_patio_porte",
+        "este": "veyra_patio_senales"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [],
+      "actions": [],
+      "dawn": "Los mensajeros comparan destinos antes de que la plaza reciba carros. Quienes han dormido en los patios ajustan cubiertas mirando el cielo.",
+      "dusk": "Las cargas que llegan tarde buscan patio antes de preguntar por el mercado. Un mensajero lee su último papel junto al muro oriental.",
+      "weather": {
+        "niebla": "Los patios del otro extremo se borran tras el empedrado húmedo. Bajo el alero todavía se distinguen los papeles; una voz pide que repitan el destino antes de entregar un mensaje.",
+        "viento": "El aire silba por una junta entre piedra antigua y mortero reciente. La mensajera sujeta sus papeles con una teja rota; del patio oeste llega el golpeteo irregular de una puerta."
+      }
+    },
+    "veyra_calle_toldos": {
+      "id": "veyra_calle_toldos",
+      "name": "Calle de los Toldos Remendados",
+      "region": "veyra",
+      "kind": "settlement",
+      "description": "Toldos remendados cubren la calle. Cada taller ha reparado su tramo con una tela distinta. El mercado queda al oeste. Al sur sales hacia los canales; al este llega el camino del bosque, por donde entran haces de madera.",
+      "day": "Una Marevyn sujeta el borde del toldo mientras su vecino cose. Comprueban dónde caerá el agua para no mojar el taller de abajo.",
+      "night": "Los toldos descienden y estrechan la franja de cielo. Tras dos ventanas aún se trabaja con luz protegida. Los pasos se vuelven cuidadosos porque los soportes de las telas ocupan parte del suelo.",
+      "rain": "Una costura vencida vierte agua sobre la entrada de un taller. Sus vecinos recogen el borde con una pértiga y lo desvían hacia la calle; la reparación necesita acuerdo antes que materiales nuevos.",
+      "clear": "",
+      "return": "Reconoces la costura azul entre los dos talleres. Bajo el último desagüe están los recipientes que marcaban la vuelta hacia los canales.",
+      "examine": {
+        "costura": "El desgarro está en una unión vieja, no en un corte reciente. Apuntar el daño evitaría que se culpara al taller vecino.",
+        "percha": "La pértiga puede levantar el borde sin invadir el espacio de quien trabaja dentro."
+      },
+      "exits": {
+        "oeste": "vaisgard_mercado",
+        "sur": "veyra_puerta_juncos",
+        "este": "veyra_puerta_sombra"
+      },
+      "arrivals": {},
+      "npcs": [
+        "veyra_seli"
+      ],
+      "signals": [],
+      "actions": [
+        {
+          "id": "veyra_acordar_costura",
+          "label": "Ayudar a acordar el desagüe",
+          "text": "Sostienes la pértiga mientras Seli y su vecina fijan el borde que se había doblado. Antes de soltarlo, comprueban hacia dónde caerá el agua. Ya no irá hacia el taller de abajo. El paso queda cubierto y Seli baja los brazos para sacudir el cansancio.",
+          "set_flags": [
+            "veyra_costura_acordada"
+          ],
+          "requires_flags": [],
+          "forbids_flags": [
+            "veyra_costura_acordada"
+          ],
+          "scope": "world",
+          "journal": "El toldo compartido vierte hacia la calle sin cerrar el taller vecino.",
+          "requires_npc": "veyra_seli",
+          "requires_time": [
+            "día"
+          ]
+        },
+        {
+          "id": "veyra_atar_toldo",
+          "label": "Entregar el junco y sujetar el desgarro",
+          "text": "Entregas tu fibra de junco para el arreglo. Seli te indica dónde sujetar la costura vieja y comprueba que el borde de desagüe quede abierto. El junco que llevabas queda usado en el toldo; no vuelve a la mochila. Cuando pase agua, Seli podrá revisar por dónde sale.",
+          "requires_items": {
+            "fibra_junco": 1
+          },
+          "consume_items": {
+            "fibra_junco": 1
+          },
+          "set_flags": [
+            "encargo_veyra_toldo_listo",
+            "encargo_veyra_toldo_junco"
+          ],
+          "forbids_flags": [
+            "encargo_veyra_toldo_listo"
+          ],
+          "requires_npc": "veyra_seli"
+        },
+        {
+          "id": "veyra_preparar_perchas",
+          "label": "Preparar las perchas para que Seli termine",
+          "text": "Sostienes la percha para que Seli alcance la costura. Ella marca el comienzo del desgarro y el borde por donde debe salir el agua. «Con esto preparado puedo seguir sin tener que buscar de nuevo la rotura.» No gastas junco ni terminas el amarre; si llevas fibra prestada, puedes devolverla a Bela.",
+          "set_flags": [
+            "encargo_veyra_toldo_listo",
+            "encargo_veyra_toldo_perchas"
+          ],
+          "forbids_flags": [
+            "encargo_veyra_toldo_listo"
+          ],
+          "requires_npc": "veyra_seli"
+        },
+        {
+          "id": "veyra_atar_toldo_prestado",
+          "label": "Entregar el junco prestado para el toldo",
+          "text": "Entregas a Seli el haz que prestó Bela. Sujetáis la costura vieja con ese junco sin cerrar el borde de desagüe. «Ésta era la reparación para la que lo guardaba», dice Seli. La fibra prestada queda usada en el toldo; no hay un haz sin gastar que devolver.",
+          "requires_items": {
+            "junco_prestado_seli": 1
+          },
+          "consume_items": {
+            "junco_prestado_seli": 1
+          },
+          "set_flags": [
+            "encargo_veyra_toldo_listo",
+            "encargo_veyra_toldo_junco"
+          ],
+          "forbids_flags": [
+            "encargo_veyra_toldo_listo"
+          ],
+          "requires_npc": "veyra_seli"
+        }
+      ],
+      "memories": [
+        {
+          "requires_flags": [
+            "veyra_costura_acordada"
+          ],
+          "text": "El borde reparado vierte hacia la calle. El taller inferior conserva su entrada y la nueva costura recuerda un acuerdo entre sus vecinos."
+        }
+      ],
+      "states": [
+        {
+          "requires_flags": [
+            "veyra_costura_acordada"
+          ],
+          "overrides": {
+            "rain": "La costura nueva lleva agua hacia la calle, fuera de la entrada del taller. Dos vecinos comprueban el borde desde sus fachadas. Seli mantiene la pértiga recogida en vez de sostener una tela que ya tiene apoyo.",
+            "examine": {
+              "costura": "La unión reparada se apoya en un borde acordado entre las fachadas. El desagüe descarga a la calle y el taller inferior conserva su paso."
+            }
+          }
+        },
+        {
+          "requires_flags": [
+            "encargo_veyra_toldo_junco"
+          ],
+          "overrides": {
+            "description": "El amarre de junco que preparaste sujeta el borde del toldo junto a la costura vieja. Los talleres mantienen sus telas distintas. Al oeste queda el mercado; al sur, los canales; al este llega el camino del bosque.",
+            "day": "Seli prueba el amarre que dejaste y recoge la pértiga. Una gota pasa por el borde exterior de la tela y cae a la calle.",
+            "return": "El haz que utilizaste quedó trenzado junto a la unión vieja. La pértiga ya puede recogerse sin soltar ese borde.",
+            "examine": {
+              "costura": "La unión vieja tiene el amarre de junco que preparaste. El borde deja salida al agua hacia la calle."
+            }
+          }
+        },
+        {
+          "requires_flags": [
+            "encargo_veyra_toldo_perchas"
+          ],
+          "overrides": {
+            "description": "Las perchas que preparaste quedan bajo el borde del toldo. Seli puede alcanzar la costura desde esos apoyos. Las telas de los talleres siguen siendo distintas. Al oeste está el mercado; al sur, los canales; al este, el camino del bosque.",
+            "day": "Seli acerca la tela a las perchas que preparaste y deja la pértiga junto a la fachada. Prueba el giro de un apoyo antes de tomar la aguja.",
+            "return": "Las perchas preparadas vuelven a distinguir el tramo donde ayudaste. La aguja de Seli está junto al apoyo interior.",
+            "examine": {
+              "percha": "El apoyo que preparaste permite sostener el borde sin ocupar la entrada del taller."
+            }
+          }
+        }
+      ]
+    },
+    "veyra_barrio_cargas": {
+      "id": "veyra_barrio_cargas",
+      "name": "Calle de los almacenes",
+      "region": "veyra",
+      "kind": "settlement",
+      "description": "Los carros pasan entre almacenes y escaleras que suben a las viviendas. Una raya pintada en una piedra marca dónde parar sin tapar las puertas. Al este llegas al mercado; al oeste sales por la puerta que lleva a Edran.",
+      "day": "Dos ayudantes hacen girar un carro por separado: uno mira las ruedas y el otro el alero. Una vecina espera con su jarra hasta que le dejan libre la escalera, sin abandonar su sitio.",
+      "night": "Los carros descansan de costado y dejan un corredor central. Se oye a los habitantes de arriba bajar recipientes antes de cerrar. El olor de las bestias queda afuera; el de la cena sale por ventanas altas.",
+      "rain": "Las ruedas levantan un barro fino que no existía en la plaza. Los arrieros colocan tablones delante de los almacenes y dejan descubierta la franja de drenaje; taparla inundaría las casas inferiores.",
+      "clear": "",
+      "return": "Recuerdas la raya pintada: los carros paran antes de ella para dejar libres las puertas. Ya sabes por dónde pasar mientras descargan.",
+      "examine": {
+        "raya": "Está repasada sobre otra más antigua. La anchura de las cargas cambió antes que la anchura de la calle.",
+        "escalera": "Los primeros peldaños están limpios porque nadie deja bultos sobre ellos."
+      },
+      "exits": {
+        "este": "vaisgard_mercado",
+        "oeste": "veyra_puerta_campos"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [],
+      "actions": []
+    },
+    "veyra_patio_porte": {
+      "id": "veyra_patio_porte",
+      "name": "Patio de los animales",
+      "region": "veyra",
+      "kind": "settlement",
+      "description": "Los animales descansan a la sombra, junto a un bebedero. Las cargas pasan por fuera para dejarles espacio. Hay argollas altas y bajas para sujetarlas. Al este vuelves a la plaza; al oeste sales al camino de piedra, hacia Korven.",
+      "day": "El cuidador afloja una cincha antes de tocar el agua. Una porteadora Dravak revisa las piedras de su carga desde un asiento bajo. Ambos esperan a que el animal deje de respirar con tanta prisa.",
+      "night": "Las argollas vacías golpean el muro cuando alguien pasa. El cuidador deja una cubeta donde pueda encontrarla quien llegue tarde, pero guarda las cinchas dentro: ayudar no equivale a abandonar sus herramientas.",
+      "rain": "El patio recibe agua de dos calles y el cuidador despeja la salida con su escoba. Los animales buscan el muro a sotavento. Las cargas se mantienen levantadas sobre travesaños en lugar de apilarse contra ellos.",
+      "clear": "",
+      "return": "Reconoces el rincón del bebedero. Una bestia mantiene la cabeza baja junto al agua; su carga espera al otro lado de las argollas.",
+      "examine": {
+        "cinchas": "Una marca de roce obliga a recolocar la protección, no a apretar más.",
+        "cubeta": "Se deja al alcance del viajero sin sujetar un animal desconocido a la fuente."
+      },
+      "exits": {
+        "este": "veyra_plaza_rutas",
+        "oeste": "veyra_puerta_piedra"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [],
+      "actions": []
+    },
+    "veyra_patio_senales": {
+      "id": "veyra_patio_senales",
+      "name": "Patio de mensajes",
+      "region": "veyra",
+      "kind": "settlement",
+      "description": "Las tablillas de mensajes cuelgan protegidas bajo un alero. Una mensajera las separa por lugar de origen y pide los nombres completos. Puedes leer sentado sin tapar el paso. Al oeste está la plaza; al este, el archivo de cargas.",
+      "day": "Dos mensajeras intentan leer una letra sobre un papel doblado. Una vuelve a escribirla más grande en el margen; la otra se ríe al reconocer por fin el nombre.",
+      "night": "Una luz bajo el alero ilumina la mitad de una nota. Su dueña la pliega antes de marcharse; quedan dos papeles sujetos con una teja.",
+      "rain": "La mensajera seca la mesa antes de apoyar una funda abierta. Los viajeros forman una hilera bajo el alero sin inclinar sus capas sobre las tablillas; el patio parece pequeño cuando todos recuerdan que el papel se moja.",
+      "clear": "",
+      "return": "Recuerdas la ranura donde dejaron el recado urgente. El montón de notas del alero queda debajo, sujeto con la misma teja.",
+      "examine": {
+        "tablillas": "Una marca identifica remitente y ruta, sin afirmar que el mensaje haya sido leído.",
+        "armazon": "Entre el armazón y la pared antigua cabe una mano. Las notas cuelgan de travesaños nuevos."
+      },
+      "exits": {
+        "oeste": "veyra_plaza_rutas",
+        "este": "veyra_archivo_cargas"
+      },
+      "arrivals": {},
+      "npcs": [
+        "veyra_arel"
+      ],
+      "signals": [],
+      "actions": [
+        {
+          "id": "veyra_atribuir_mensaje",
+          "label": "Aclarar de qué camino viene el aviso",
+          "text": "Arel confirma dónde vieron el problema y corrige el aviso: el desagüe peligroso está al sureste. Las otras rutas ya no quedan marcadas por esa advertencia.",
+          "set_flags": [
+            "veyra_mensaje_atribuido"
+          ],
+          "requires_flags": [],
+          "forbids_flags": [
+            "veyra_mensaje_atribuido"
+          ],
+          "scope": "world",
+          "journal": "El aviso sobre agua corresponde al camino sureste, no a toda la cuenca.",
+          "requires_npc": "veyra_arel"
+        }
+      ],
+      "memories": [
+        {
+          "requires_flags": [
+            "veyra_mensaje_atribuido"
+          ],
+          "text": "La tablilla del agua queda atribuida al desagüe sureste. Las demás rutas no cargan ahora con el rumor de una condición que nadie observó allí."
+        }
+      ],
+      "states": [
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_weather": [
+            "niebla"
+          ],
+          "overrides": {
+            "day": "La mensajera no distingue el gesto de quien espera al otro extremo. Le pide que repita el nombre y escribe la letra que faltaba bajo el alero próximo."
+          }
+        },
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_visits": {
+            "min": 3
+          },
+          "overrides": {
+            "day": "La letra reescrita ya ocupa el margen. Una mensajera dobla la nota dejando el nombre hacia fuera; la otra comprueba el pliegue antes de guardarla."
+          }
+        },
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_weather": [
+            "niebla"
+          ],
+          "requires_visits": {
+            "min": 3
+          },
+          "overrides": {
+            "day": "El nombre queda visible en el pliegue nuevo. La mensajera responde en voz alta a quien espera al otro extremo y guarda la nota bajo su capa."
+          }
+        }
+      ],
+      "focus": [
+        "activity"
+      ]
+    },
+    "veyra_patio_agua": {
+      "id": "veyra_patio_agua",
+      "name": "Patio del agua",
+      "region": "veyra",
+      "kind": "settlement",
+      "description": "Una pila recibe el agua de las calles. La parte alta guarda agua limpia; abajo se recoge la usada. Los recipientes de las casas esperan lejos del barro. Al norte vuelves al mercado. Rodeando la baranda hacia el sur llegas a la huerta. Una puerta al este lleva al lugar de cuidados.",
+      "day": "Una mujer compara el sabor de dos vasos de agua y deja uno junto al canal. Un niño acerca la nariz al segundo; ella le señala la jarra de barro recién enjuagada.",
+      "night": "El agua repite un goteo irregular bajo el muro. En el borde de una jarra queda una línea clara; un insecto se detiene junto al asa.",
+      "rain": "La pila inferior crece y arrastra hojas del mercado. Una vecina cierra el paso de lavado hasta poder despejarlo, pero mantiene disponible el agua alta. La lluvia no vuelve intercambiables los dos canales.",
+      "clear": "",
+      "return": "Reconoces el brillo gastado donde apoyaron la jarra. El agua de la calle entra por debajo; la conducción limpia queda en la parte alta.",
+      "examine": {
+        "canales": "La conducción limpia no procede del mercado. Confundir ambas entradas haría inútil la separación.",
+        "baranda": "Está reparada del lado de las cargas; protege la pila cuando alguien baja demasiado rápido."
+      },
+      "exits": {
+        "norte": "vaisgard_mercado",
+        "sur": "veyra_huerta_baja",
+        "este": "veyra_sala_cuidados"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [],
+      "actions": [],
+      "states": [
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_weather": [
+            "lluvia"
+          ],
+          "overrides": {
+            "day": "El agua de los tejados entra turbia por el desagüe. La mujer tapa sus jarras y aparta el vaso del canal; el niño sigue mirando la pequeña nube de sedimento."
+          }
+        }
+      ],
+      "focus": [
+        "activity"
+      ],
+      "dawn": "La jarra de barro recibe agua fría. Una mujer prueba un sorbo y enjuaga otra vez el vaso.",
+      "dusk": "Los vasos vacíos quedan invertidos junto al canal. El muro todavía guarda calor bajo una mano apoyada."
+    },
+    "veyra_huerta_baja": {
+      "id": "veyra_huerta_baja",
+      "name": "Huerta bajo las Escaleras",
+      "region": "veyra",
+      "kind": "wilderness",
+      "description": "Una franja de huerta ocupa el pie de las casas. Cultivan hierbas y semillas con el agua que baja por canales pequeños. Las herramientas caben en un cobertizo bajo. Al norte está el patio del agua; al sur subes a una colina abierta.",
+      "day": "Una vecina busca pulgones bajo una hoja y deja intacta una mariquita. En el escalón, un niño cuenta las manchas rojas de un fruto antes de decidir si ya puede cogerlo.",
+      "night": "Las hojas rozan el último escalón. Algo roe bajo el bancal y cesa cuando se abre una puerta encima de la huerta.",
+      "rain": "El agua del talud lleva arena hacia el primer bancal. La hortelana protege los brotes con una estera inclinada y abre una zanja de desvío, evitando que la corriente de la calle se confunda con el riego.",
+      "clear": "",
+      "return": "Recuerdas la tabla junto al bancal. De un lado, la tierra oscura alcanza la raíz; del otro, el polvo queda seco alrededor del cesto.",
+      "examine": {
+        "tabla": "Puedes colocarla para llevar agua a la parcela o dejarla correr por el canal.",
+        "cesto": "Su fondo cedió por desgaste. La reparación requiere paciencia y una unión limpia."
+      },
+      "exits": {
+        "norte": "veyra_patio_agua",
+        "sur": "veyra_colina_vista"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [],
+      "actions": [
+        {
+          "id": "veyra_colocar_tabla_riego",
+          "label": "Colocar la tabla para regar el bancal",
+          "text": "Encajas la tabla en la ranura y desvías un hilo de agua hacia el bancal. El canal conserva paso para el resto del caudal. La tabla queda sujeta sin que tengas que sostenerla.",
+          "set_flags": [
+            "veyra_tabla_riego_colocada"
+          ],
+          "forbids_flags": [
+            "veyra_tabla_riego_colocada"
+          ],
+          "forbids_weather": [
+            "lluvia"
+          ],
+          "scope": "world",
+          "journal": "Dejé la tabla de la huerta de Vaisgard encajada para dirigir un hilo de agua al bancal."
+        }
+      ],
+      "wildlife_pool": [],
+      "states": [
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_weather": [
+            "viento"
+          ],
+          "overrides": {
+            "day": "Las hojas se vuelven y muestran su cara pálida. La vecina sostiene una para terminar de quitar los pulgones; el niño protege el fruto con las dos manos."
+          }
+        },
+        {
+          "requires_weather": [
+            "lluvia"
+          ],
+          "overrides": {
+            "examine": {
+              "tabla": "La lluvia ya lleva agua al bancal. La tabla puede esperar junto a la ranura; ahora conviene dejar libre el canal."
+            }
+          }
+        },
+        {
+          "requires_flags": [
+            "veyra_tabla_riego_colocada"
+          ],
+          "overrides": {
+            "return": "La tabla sigue encajada en la ranura. Un paso lateral deja libre el canal; el desvío pequeño llega al bancal.",
+            "examine": {
+              "tabla": "La tabla queda sujeta en la ranura. Dirige sólo parte del agua al bancal y deja libre el paso lateral del canal."
+            }
+          }
+        }
+      ],
+      "focus": [
+        "activity"
+      ],
+      "dawn": "La vecina levanta una hoja mojada para revisar el envés. El niño llega con un cesto vacío y espera a que le señalen qué frutos puede coger.",
+      "dusk": "El niño lleva el cesto bajo el brazo. La vecina deja las hojas revisadas en su sitio y recoge las herramientas junto al primer escalón."
+    },
+    "veyra_colina_vista": {
+      "id": "veyra_colina_vista",
+      "name": "Colina de las Procedencias",
+      "region": "veyra",
+      "kind": "landmark",
+      "description": "Vaisgard queda al norte. Desde la colina ves caminos entre campos, roca y árboles; la sierra está más lejos. Al norte vuelves a la huerta; al sur bajas por una senda ancha hacia la vega.",
+      "day": "El agrimensor compara dos postes del campo. Espera a que pase un carro para volver a medir la distancia.",
+      "night": "Las luces de las entradas dibujan una ciudad más pequeña que sus muros. Fuera de ellas sólo algunas cargas llevan farol. La distancia hacia los pueblos no puede adivinarse siguiendo un punto luminoso.",
+      "rain": "La lluvia tapa los caminos bajos. Aún distingues los tejados altos de Vaisgard. El agrimensor cubre su cuaderno.",
+      "clear": "",
+      "return": "La entrada de la ciudad sigue visible junto al comienzo de un camino. Reconoces el punto desde el que miraste la cuenca. Las colinas conservan partes ocultas y los tejados dejan ver cómo convergen distintas pendientes.",
+      "examine": {
+        "hitos": "Dos hitos se alinean con la abertura entre las lomas; el tercero queda junto al cauce.",
+        "nucleo": "Su altura destaca; su origen sigue sin conocerse."
+      },
+      "exits": {
+        "norte": "veyra_huerta_baja",
+        "sur": "veyra_vega_abierta"
+      },
+      "arrivals": {
+        "veyra_vega_abierta": "La senda sube sin cruces hasta la colina. Detrás queda la vega abierta; los tejados reaparecen al ganar altura."
+      },
+      "npcs": [],
+      "signals": [],
+      "actions": [],
+      "states": [
+        {
+          "requires_weather": [
+            "niebla"
+          ],
+          "overrides": {
+            "description": "Vaisgard queda al norte, tras la huerta. La niebla oculta los caminos bajos y parte de los tejados; desde aquí no puedes seguir una ruta lejana con la vista. Al norte vuelves a la huerta; al sur bajas por una senda ancha hacia la vega.",
+            "day": "El agrimensor comprueba el poste más cercano y guarda la medida de los otros para cuando despeje. Bajo la colina, una rueda suena sin que puedas ver el carro.",
+            "return": "Reconoces la bajada hacia la huerta, cerca de tus pies. La niebla sigue ocultando los cruces lejanos; recordar el camino no hace visible lo que hay más allá.",
+            "examine": {
+              "hitos": "El hito cercano conserva su marca. La niebla impide comprobar su alineación con los otros dos desde aquí.",
+              "nucleo": "La niebla borra su perfil. Desde esta colina no puedes distinguir sus detalles; su origen sigue sin conocerse."
+            }
+          }
+        },
+        {
+          "requires_weather": [
+            "lluvia"
+          ],
+          "overrides": {
+            "description": "Vaisgard queda al norte, tras la huerta. La lluvia tapa los caminos bajos y oscurece el suelo de la colina. La bajada hacia la huerta sigue cerca; es el paso para volver a la ciudad.",
+            "return": "El suelo está más oscuro junto a la bajada que recuerdas. La lluvia borra los caminos bajos, pero el borde de la huerta queda cerca.",
+            "examine": {
+              "hitos": "El hito cercano está mojado. No distingues los otros dos lo bastante bien para comprobar la alineación.",
+              "nucleo": "La lluvia oculta buena parte de su perfil. No puedes precisar sus detalles desde aquí; su origen sigue sin conocerse."
+            }
+          }
+        },
+        {
+          "requires_time": [
+            "noche"
+          ],
+          "overrides": {
+            "description": "Vaisgard queda al norte, tras la huerta. Los caminos de la cuenca se pierden en la oscuridad; las luces de la ciudad no permiten medir la distancia hasta otros pueblos. Vuelve por la bajada de la huerta.",
+            "return": "Reconoces la bajada por el borde de tierra junto a tus pies. Más allá de la huerta, las luces de la ciudad señalan el regreso.",
+            "examine": {
+              "hitos": "Distingues la piedra junto a tus pies. En la oscuridad no puedes seguir la alineación de los hitos lejanos.",
+              "nucleo": "Las luces de la ciudad no bastan para reconocer sus detalles. Su origen sigue sin conocerse."
+            }
+          }
+        }
+      ],
+      "dawn": "El agrimensor espera junto al primer poste. Mientras llega más luz, anota de qué puerta salió el carro que acaba de subir.",
+      "dusk": "El agrimensor recoge la cuerda de medir y cierra el cuaderno. El último carro baja despacio hacia la huerta."
+    },
+    "veyra_archivo_cargas": {
+      "id": "veyra_archivo_cargas",
+      "name": "Archivo de cargas",
+      "region": "veyra",
+      "kind": "interior",
+      "description": "Las cargas pendientes tienen sus tablillas cerca de la puerta; las entregadas, al fondo. La mesa está gastada por las cajas. Sales al oeste.",
+      "day": "La archivera compara la marca de una caja con su tablilla. El ayudante pregunta dónde guardarla: cerca de la puerta si sigue pendiente, al fondo si ya fue entregada.",
+      "night": "La mesa permanece iluminada mientras esperan un envío tardío. Nadie abre cajas para aliviar la espera. Las tablillas pendientes se quedan cerca de la puerta y la archivera puede encontrarlas sin despertar a todo el patio.",
+      "rain": "Las fundas mojadas esperan en un travesaño de la entrada. La archivera recibe primero las marcas de procedencia y deja secar el resto; no arrastra la humedad hasta los estantes donde reposan los envíos concluidos.",
+      "clear": "",
+      "return": "Reconoces las dos filas de tablillas. La casilla vacía queda entre una nota de salida y otra que guarda la fecha de llegada.",
+      "examine": {
+        "mesa": "Las reparaciones indican que el archivo también recibe objetos pesados.",
+        "estantes": "Un envío marcado como detenido permanece pendiente, aunque haya regresado su mensajero."
+      },
+      "exits": {
+        "oeste": "veyra_patio_senales"
+      },
+      "arrivals": {},
+      "npcs": [
+        "veyra_nera"
+      ],
+      "signals": [],
+      "actions": [
+        {
+          "id": "veyra_aclarar_demora",
+          "label": "Aclarar la demora de la carga",
+          "text": "Cuentas a Nera lo que te mostró Tov: la carga sigue junto a la puerta y una tabla rota impide moverla con seguridad. Nera anota su nombre y la causa del retraso. «Entonces sigue pendiente de llegar.» La caja permanece cerrada; aclarar la noticia no ha reparado el carro.",
+          "set_flags": [
+            "veyra_demora_aclarada"
+          ],
+          "requires_flags": [
+            "veyra_demora_conocida"
+          ],
+          "forbids_flags": [
+            "veyra_demora_aclarada"
+          ],
+          "scope": "world",
+          "journal": "El archivo conoce la causa del retraso de Tov.",
+          "requires_npc": "veyra_nera"
+        }
+      ],
+      "memories": [
+        {
+          "requires_flags": [
+            "veyra_demora_aclarada"
+          ],
+          "text": "El registro pendiente atribuye ahora a un separador roto la demora de Tov. La caja sigue cerrada y ya no circula como una pérdida sin explicación."
+        }
+      ],
+      "states": [
+        {
+          "requires_flags": [
+            "encargo_veyra_aviso_preciso"
+          ],
+          "overrides": {
+            "return": "La copia del aviso que trajiste queda junto a la puerta: Tov se retrasó por un separador roto. Su tablilla permanece entre llegadas pendientes.",
+            "day": "La copia del aviso que trajiste queda junto a la puerta: Tov se retrasó por un separador roto. Su tablilla permanece entre llegadas pendientes.",
+            "examine": {
+              "aviso": "La copia del aviso que trajiste queda junto a la puerta: Tov se retrasó por un separador roto. Su tablilla permanece entre llegadas pendientes."
+            }
+          }
+        },
+        {
+          "requires_flags": [
+            "encargo_veyra_aviso_comprobar"
+          ],
+          "overrides": {
+            "return": "La copia de tu aviso espera junto a la puerta. Nera dejó espacio para la respuesta de Tov antes de cambiar la tablilla de su carga.",
+            "day": "La copia de tu aviso espera junto a la puerta. Nera dejó espacio para la respuesta de Tov antes de cambiar la tablilla de su carga.",
+            "examine": {
+              "aviso": "La copia de tu aviso espera junto a la puerta. Nera dejó espacio para la respuesta de Tov antes de cambiar la tablilla de su carga."
+            }
+          }
+        }
+      ]
+    },
+    "veyra_puerta_campos": {
+      "id": "veyra_puerta_campos",
+      "name": "Puerta de los Campos",
+      "region": "veyra",
+      "kind": "landmark",
+      "description": "Un arco bajo abre el camino hacia Edran. Las ruedas han pulido su suelo. A los lados ajustan los sacos antes de bajar entre las primeras cercas. Al este puedes volver al mercado por los almacenes; al sur sales a los campos.",
+      "day": "Los carros que entran se apartan para que salgan los vacíos. Una guardiana mira el suelo debajo de una carga: si algo pierde semillas, habrá que sujetarlo antes de bajar hacia los cultivos.",
+      "night": "Una luz marca el arco. Los arrieros que llegan esperan junto a los apoyos; fuera, las rodadas se pierden después del último reflejo.",
+      "rain": "El descenso devuelve barro hacia las ruedas detenidas. La guardiana señala el lado firme del arco mientras los viajeros ajustan las cubiertas. El olor de las cargas mojadas se distingue del agua que baja por las cercas.",
+      "clear": "",
+      "return": "El arco aparece antes que el mercado. Bajo las ruedas, la tierra del campo cede al empedrado; después de la puerta se oye el primer puesto.",
+      "examine": {
+        "apoyos": "Las cuñas se prestan mientras se atan cargas; no se llevan como botín.",
+        "descenso": "Las cercas marcan parcelas, no barreras del camino público."
+      },
+      "exits": {
+        "este": "veyra_barrio_cargas",
+        "sur": "edran_hito_campos"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [],
+      "actions": []
+    },
+    "veyra_puerta_alta": {
+      "id": "veyra_puerta_alta",
+      "name": "Puerta del Camino Alto",
+      "region": "veyra",
+      "kind": "landmark",
+      "description": "El suelo empieza a subir antes de cruzar la puerta. Los viajeros ajustan sus cargas en una plataforma lateral. Algunos regresan con capas gruesas de la sierra. Al sur vuelves a la plaza; la rampa norte lleva hacia Hoshai.",
+      "day": "La porteadora aprieta el fardo y reduce su ancho. Sus compañeros lo levantan un momento; uno vuelve a tensar la tira que se afloja del lado de la pendiente.",
+      "night": "La plataforma queda vacía y el viento atraviesa el umbral sin las voces que lo cortaban. Una luz baja distingue dónde comienza la grava. Más allá se pierde el ascenso antes de que pueda verse la montaña.",
+      "rain": "La grava devuelve agua por franjas y deja libres algunos apoyos. Los viajeros eligen dónde plantar el pie antes de volver a cargar. Una cubierta demasiado suelta golpea el muro y recuerda que arriba también habrá viento.",
+      "clear": "",
+      "return": "La plataforma lateral aparece antes de que el suelo cambie de empedrado a grava. La rampa se ve por encima de las cargas, junto al muro exterior.",
+      "examine": {
+        "plataforma": "Sus bordes están gastados donde se apoyan las cargas de lado; una tira queda prensada bajo la más próxima.",
+        "grava": "Los canales más claros corresponden al agua, no a un sendero alternativo."
+      },
+      "exits": {
+        "sur": "veyra_plaza_rutas",
+        "norte": "veyra_rampa_grava"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [],
+      "actions": [],
+      "dawn": "La grava conserva humedad y los primeros viajeros suben sin apartarse de sus apoyos. Detrás, los patios empiezan a recibir voces.",
+      "dusk": "Los viajeros que bajan dejan paso a una carga rezagada. La sierra conserva luz por encima de la puerta cuando la rampa ya está en sombra."
+    },
+    "veyra_puerta_piedra": {
+      "id": "veyra_puerta_piedra",
+      "name": "Puerta del camino de Korven",
+      "region": "veyra",
+      "kind": "landmark",
+      "description": "La puerta deja atrás el patio de los animales, al este. Al oeste, el camino de Korven cruza tierra seca y piedras sueltas. Los carros llevan cargas bajas, sujetas con tablas. Las casas cercanas tienen ventanas pequeñas para frenar el polvo.",
+      "day": "Una Dravak comprueba cada separador golpeándolo con los nudillos. Un conductor más alto se agacha para escucharla desde su nivel de trabajo. La carga no sale hasta que ambos pueden señalar la misma pieza suelta.",
+      "night": "Las ventanas se cierran. Bajo el cobertizo espera un carro para salir temprano, con las cuñas preparadas junto a sus ruedas.",
+      "rain": "El polvo se convierte en una costra oscura junto a la puerta. Los separadores mojados se revisan de nuevo porque las cargas no deben apoyarse unas contra otras. El agua desaparece pronto entre piedras del terraplén.",
+      "clear": "",
+      "return": "Recuerdas el desnivel de la puerta. Antes de él quedan las cuñas del carro; del otro lado empieza el borde de piedras sueltas.",
+      "examine": {
+        "separadores": "Un travesaño roto puede hacer moverse toda la carga, aunque las ruedas parezcan sanas.",
+        "ventanas": "Las hojas exteriores protegen del polvo sin sellar las viviendas."
+      },
+      "exits": {
+        "este": "veyra_patio_porte",
+        "oeste": "veyra_terraplen_roca"
+      },
+      "arrivals": {},
+      "npcs": [
+        "veyra_tov"
+      ],
+      "signals": [],
+      "actions": [
+        {
+          "id": "veyra_anotar_demora",
+          "label": "Preguntar por la demora de Tov",
+          "text": "Tov señala la tabla rota entre las piedras. «Las separaba para que no se movieran juntas. Tengo que poner otra antes de bajar.» Te dice que Nera espera el envío en el archivo. Ya puedes explicar quién se retrasa y por qué, sin contar que la carga desapareció.",
+          "set_flags": [
+            "veyra_demora_conocida"
+          ],
+          "requires_flags": [],
+          "forbids_flags": [
+            "veyra_demora_conocida"
+          ],
+          "scope": "player",
+          "journal": "La carga de Tov está detenida por un separador roto, no desaparecida.",
+          "requires_npc": "veyra_tov"
+        }
+      ]
+    },
+    "veyra_puerta_juncos": {
+      "id": "veyra_puerta_juncos",
+      "name": "Puerta de los canales",
+      "region": "veyra",
+      "kind": "landmark",
+      "description": "El canal pasa junto a una puerta lateral. Fuera, las casas dejan sitio a hondonadas de hierba alta. Una tabla permite cambiarse el calzado sin tapar el paso. Al norte vuelves a los toldos; al sur sigues el agua hacia Lethra.",
+      "day": "Una viajera quita barro de sus recipientes antes de entrar. Otros levantan los bultos sobre el suelo; el canal pasa por debajo de la tabla donde esperan.",
+      "night": "El agua permanece audible cuando el camino se pierde. La luz de la puerta cae sobre la tabla y el primer escalón; más lejos, las hondonadas se confunden. Los viajeros tardíos preguntan por apoyos antes que por distancia.",
+      "rain": "Los desagües traen ramas que un vecino aparta con un gancho. El camino exterior refleja el cielo entre huellas oscuras. Los bultos se cambian de lado para no arrastrar cubiertas por el borde del canal.",
+      "clear": "",
+      "return": "El escalón seco de la puerta permite saber que has terminado el tramo bajo sin mirar atrás continuamente. Si regresas con barro, la tabla recuerda dónde detenerte antes de llevarlo al taller que mantiene el toldo vecino.",
+      "examine": {
+        "tabla": "Está apartada del agua del canal; aquí se cambian apoyos, no se lava comida.",
+        "gancho": "Las ramas retiradas se amontonan lejos del desagüe para que no vuelvan a entrar."
+      },
+      "exits": {
+        "norte": "veyra_calle_toldos",
+        "sur": "veyra_hondonada_canales"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [],
+      "actions": []
+    },
+    "veyra_puerta_sombra": {
+      "id": "veyra_puerta_sombra",
+      "name": "Puerta del bosque",
+      "region": "veyra",
+      "kind": "landmark",
+      "description": "La calle se ensancha para girar las cargas de madera. Más allá aparecen árboles separados por parcelas viejas. Al oeste quedan los toldos y las herramientas de los talleres. El camino este entra en el bosque, rumbo a Nhal.",
+      "day": "Una Vesperi palpa dos ataduras del haz. Su vecino retira una astilla junto a la hoja inutilizada; al pasar la madera roza todavía el otro borde.",
+      "night": "La calle recoge menos luz que las entradas del norte. Una lámpara se coloca contra el muro nuevo y deja legible la anchura útil. Quienes conocen el bosque hablan bajo mientras esperan que termine una maniobra.",
+      "rain": "La corteza mojada pierde trozos sobre el suelo. Los cargadores los retiran para que nadie resbale al girar. El olor de madera húmeda llega antes que las voces de quienes esperan entre las primeras bandas de árboles.",
+      "clear": "",
+      "return": "Reconoces la hoja de puerta inutilizada. La carga que sale rodea su borde; desde el bosque llega otra que espera junto a los árboles.",
+      "examine": {
+        "hoja": "Su bisagra no forma parte de las piedras antiguas. La puerta actual es una adaptación posterior.",
+        "ataduras": "Las cuerdas se distribuyen para que el haz no se abra durante el giro."
+      },
+      "exits": {
+        "oeste": "veyra_calle_toldos",
+        "este": "veyra_lindero_arboles"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [],
+      "actions": []
+    },
+    "veyra_rampa_grava": {
+      "id": "veyra_rampa_grava",
+      "name": "Subida de grava",
+      "region": "veyra",
+      "kind": "road",
+      "description": "La grava sube desde la ciudad. Los carros pueden parar a un lado para ajustar las cargas. Unas piedras arrastradas llenan la hondonada que el camino rodea. Al sur quedan las últimas casas; al norte comienzan las laderas de Hoshai.",
+      "day": "El viajero prueba el terreno con la punta del bastón. Señala un borde firme a sus compañeros; detrás de ellos, la puerta de la ciudad se ve entre los taludes.",
+      "night": "Las luces de la puerta quedan cuesta abajo. Con un farol puedes ver las piedras cercanas, pero no el terreno detrás de la siguiente loma.",
+      "rain": "El arroyo oculto se hace audible bajo las piedras. Una corriente corta cruza la rampa sin borrar la dirección general. Las huellas profundas del descansadero aconsejan apoyar las cargas sobre el borde firme en vez del centro.",
+      "clear": "",
+      "return": "Ahora distingues el descansadero de la hondonada por su acceso lateral. Reconoces el descanso antes del segundo tramo. Desde allí se mantiene a la vista el borde por donde llegan las cargas.",
+      "examine": {
+        "hondonada": "El agua arrastró estas piedras redondas hasta el fondo de la cuesta.",
+        "descansadero": "Una franja sin grava suelta permite apoyar los bultos sin deslizarlos."
+      },
+      "exits": {
+        "sur": "veyra_puerta_alta",
+        "norte": "hoshai_estribacion"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [],
+      "actions": [],
+      "wildlife_pool": []
+    },
+    "veyra_terraplen_roca": {
+      "id": "veyra_terraplen_roca",
+      "name": "Camino de piedra",
+      "region": "veyra",
+      "kind": "road",
+      "description": "Las piedras claras crujen bajo los pies. Un arroyo seco corta el camino; los carros lo cruzan por una entrada inclinada. Al este ves la puerta de Vaisgard. Al oeste, una loma oculta el siguiente tramo hacia Korven.",
+      "day": "Una cuadrilla aparta cascajos del giro sin intentar barrer todo el camino. Su conductora deja que el carro pase vacío antes de acercar una carga. El paso seguro se verifica con ruedas, no con una promesa.",
+      "night": "Las piedras claras guardan algo de luz cuando la ciudad queda detrás de la loma. Una rueda que llega se oye antes de verse. El arroyo seco parece más ancho porque sus bordes dejan de distinguirse.",
+      "rain": "El cauce empieza a reunir agua en pequeñas bolsas separadas. Los cascajos firman cada huella con barro oscuro. La entrada inclinada sigue visible, pero los trabajadores comprueban que el agua no haya socavado su borde.",
+      "clear": "",
+      "return": "Reconoces la franja de piedras grandes. Después del cruce viene la loma. Las tablas rotas siguen apartadas del paso.",
+      "examine": {
+        "cauce": "La ruta lo cruza de lado para no exigir un descenso brusco a las cargas.",
+        "maderas": "Son separadores sustituidos; nadie los utiliza como mojones."
+      },
+      "exits": {
+        "este": "veyra_puerta_piedra",
+        "oeste": "korven_loma_cascajo"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [],
+      "actions": [],
+      "wildlife_pool": []
+    },
+    "veyra_hondonada_canales": {
+      "id": "veyra_hondonada_canales",
+      "name": "Cruce de canales",
+      "region": "veyra",
+      "kind": "road",
+      "description": "Varios hilos de agua se reúnen en un canal. El camino sigue por la orilla alta y cruza un desagüe sobre una pasarela corta. Al norte queda Vaisgard; al sur la vegetación se vuelve más densa y empieza el camino de Lethra. Al oeste, un camino elevado sigue la acequia hasta la vega, por fuera de la ciudad.",
+      "day": "Una recolectora vacía su cesta de hierbas sobre la ribera seca. Conserva las raíces aparte para no llevar barro al mercado. Desde aquí puede ver quién llega a la pasarela y dejarle espacio antes de levantarse.",
+      "night": "Oyes el agua correr bajo la pasarela. Sus apoyos sobresalen, pero no ves el fondo del canal. Sigue por las tablas.",
+      "rain": "Los desagües secundarios crecen primero y la pasarela recibe salpicaduras desde abajo. La recolectora abandona el punto de selección y vuelve a la ribera alta; deja un lugar de trabajo, no una cesta olvidada para el viajero.",
+      "clear": "",
+      "return": "El desagüe pequeño termina bajo el muro. El canal largo sigue entre juncos; recuerdas la ribera alta que vuelve a los tejados.",
+      "examine": {
+        "pasarela": "Los apoyos se encuentran a ambos lados del desagüe menor. No hay estructura sobre el canal profundo.",
+        "hierbas": "Las raíces húmedas manchan sólo una esquina del lugar de selección."
+      },
+      "exits": {
+        "norte": "veyra_puerta_juncos",
+        "sur": "lethra_ribera_seca",
+        "oeste": "veyra_acequia_exterior"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [],
+      "actions": [],
+      "wildlife_pool": []
+    },
+    "veyra_lindero_arboles": {
+      "id": "veyra_lindero_arboles",
+      "name": "Entrada al bosque",
+      "region": "veyra",
+      "kind": "road",
+      "description": "Tres grupos de árboles cierran poco a poco el camino. Los carros caben al principio; después las raíces levantan el suelo. Al oeste aún ves la puerta de Vaisgard. El este entra en Nhal; un desvío sur lleva a una cantera vieja.",
+      "day": "Un cargador recoge ramas caídas y las apila junto a la parcela. Deja libres las raíces y el paso hacia el bosque.",
+      "night": "La tercera franja parece comenzar más cerca cuando desaparece la luz del suelo. Desde la ciudad se oye una herramienta, pero no llega hasta el bosque. El cargador recoge su cordel antes de perderlo entre raíces.",
+      "rain": "Las hojas retienen gotas después de que la primera parcela queda bajo un chaparrón abierto. El cambio de sonido distingue las tres franjas. El agua vuelve resbaladizas las raíces que de día bastaban para marcar el ascenso.",
+      "clear": "",
+      "return": "El primer claro deja ver otra vez la anchura de la cuenca. A un lado está la abertura quieta de la cantera; de frente sigue la senda entre hojas.",
+      "examine": {
+        "franjas": "Las parcelas separan el lindero reciente del dosel antiguo. No hay un límite trazado en una sola línea.",
+        "cordel": "Delimita el montón de trabajo para que nadie lo confunda con una marca de ruta."
+      },
+      "exits": {
+        "oeste": "veyra_puerta_sombra",
+        "sur": "veyra_cantera_callada",
+        "este": "nhal_arbol_umbral"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [],
+      "actions": [],
+      "wildlife_pool": []
+    },
+    "veyra_cantera_callada": {
+      "id": "veyra_cantera_callada",
+      "name": "Cantera vieja",
+      "region": "veyra",
+      "kind": "landmark",
+      "description": "Marcas de herramientas cubren la pared. Un bloque quedó sin sacar, bajo las raíces. El desvío termina aquí; al norte vuelves al bosque.",
+      "day": "Una lagartija cruza una piedra calentada por el sol. Al llegar a la sombra se detiene; una pluma permanece en el hueco donde antes estaba su cabeza.",
+      "night": "Una gota cae en una junta de la cantera. El eco tarda un instante en desaparecer; luego no se oye nada bajo el corte de roca.",
+      "rain": "El agua desciende por las raíces y humedece una fisura lateral. La canterera recoge la manta antes de que el goteo alcance sus herramientas. Los fragmentos recién oscuros se distinguen de los que ya tenían musgo.",
+      "clear": "",
+      "return": "Las huellas de extracción siguen en la pared junto al banco sin separar. Ahora puedes reconocer las cuñas desde la entrada norte. La humedad oscurece una junta lateral y deja más claro el relieve de los cortes.",
+      "examine": {
+        "banco": "Hay cuñas antiguas sin marca legible. Una cuña tiene el ancho de la ranura del banco; sus marcas están borradas.",
+        "fisura": "El agua sale de una junta lateral; acercarse al pie no ofrece una respuesta mejor."
+      },
+      "exits": {
+        "norte": "veyra_lindero_arboles"
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [],
+      "actions": [],
+      "states": [
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_weather": [
+            "niebla"
+          ],
+          "overrides": {
+            "day": "La pared alta desaparece en la niebla. Cerca, la lagartija se recoge en una junta húmeda; sólo queda visible la pluma pegada a la piedra."
+          }
+        }
+      ],
+      "focus": [
+        "activity"
+      ],
+      "dawn": "La roca permanece fría en la franja inferior. Una lagartija espera donde empieza a tocar el sol.",
+      "dusk": "La lagartija se acerca al último borde iluminado. La pluma queda en sombra dentro de su hueco."
+    },
+    "veyra_sala_cuidados": {
+      "id": "veyra_sala_cuidados",
+      "name": "Cuarto de cuidados de Vaisgard",
+      "region": "veyra",
+      "kind": "interior",
+      "safe": true,
+      "description": "Una puerta baja separa la mesa limpia del tránsito del patio. Las camillas no ocupan la salida y el agua usada tiene su recipiente propio. Al oeste vuelves al patio del agua, a un paso del mercado.",
+      "exits": {
+        "oeste": "veyra_patio_agua"
+      },
+      "npcs": [
+        "veyra_doma"
+      ],
+      "signals": [],
+      "actions": [],
+      "recovery_service": true,
+      "recovery_npc": "veyra_doma",
+      "day": "La cuidadora enjuaga un paño y comprueba con el dorso de la mano la temperatura de un cuenco. En el banco, una persona afloja los dedos vendados antes de volver a apoyarlos.",
+      "night": "Una lámpara baja ilumina los paños doblados. Desde el banco alguien pide agua; la cuidadora acerca un vaso sin encender otra luz.",
+      "rain": "La ropa mojada queda junto a la puerta, apartada del asiento y de los paños.",
+      "clear": "La puerta deja entrar aire sin acercar el polvo a la mesa.",
+      "return": "Doma te indica el asiento libre y pregunta cómo siguieron las heridas durante el camino.",
+      "examine": {
+        "cuidados": "El servicio cuesta dieciocho sellos. Recupera hasta el noventa por ciento de vitalidad, reduce un grado de herida y renueva el margen para descansar. No sustituye la decisión de evitar otra pelea."
+      },
+      "source": "Ampliación original autorizada: recuperación local del contrato existente",
+      "states": [
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_weather": [
+            "viento"
+          ],
+          "overrides": {
+            "day": "La cuidadora ajusta la puerta cuando el aire enfría el cuenco. Vuelve a probarlo con la mano y acerca una manta a quien descansa en el banco."
+          }
+        }
+      ],
+      "focus": [
+        "activity"
+      ]
+    },
+    "veyra_vega_abierta": {
+      "id": "veyra_vega_abierta",
+      "name": "Vega abierta",
+      "region": "veyra",
+      "kind": "road",
+      "description": "La senda de la colina llega a una vega sin muros. Al norte subes hacia Vaisgard; al oeste cruzas los pastos hacia Edran y al este sigues la acequia hacia los canales. Los tres caminos se distinguen desde el cruce, sin calles entre ellos.",
+      "day": "Un carro atraviesa la vega sin entrar en la ciudad. Su conductora deja descansar a los animales junto a un poste; otros viajeros pasan por el lado libre.",
+      "night": "Un farol cuelga del poste del cruce. Ilumina tres marcas cercanas: colina, pastos y acequia. Fuera de ese círculo sólo se oyen ruedas y agua.",
+      "rain": "El agua corre hacia la franja baja de hierba. Las rodadas permanecen arriba; la conductora espera allí antes de ajustar la cubierta.",
+      "return": "Reconoces el poste donde se separan las tres rutas. Puedes seguir hacia otro lado de la cuenca sin subir de nuevo al mercado.",
+      "clear": "",
+      "exits": {
+        "norte": "veyra_colina_vista",
+        "oeste": "veyra_pastos_exteriores",
+        "este": "veyra_acequia_exterior"
+      },
+      "examine": {
+        "poste": "Tres dibujos muestran una colina, una espiga y un canal. Cada uno mira hacia su camino.",
+        "carro": "El apoyo del poste permite dejar libre el cruce mientras se revisa una rueda."
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [],
+      "actions": []
+    },
+    "veyra_pastos_exteriores": {
+      "id": "veyra_pastos_exteriores",
+      "name": "Camino de los pastos",
+      "region": "veyra",
+      "kind": "road",
+      "description": "Un camino ancho atraviesa hierba corta entre dos lomas. Al oeste está el mirador de Edran; al este, la vega de Vaisgard. No hay desvíos entre ambos extremos.",
+      "day": "Una pastora mueve su rebaño fuera de las rodadas. El último animal se detiene junto a un bebedero y ella espera antes de cerrar la cuerda.",
+      "night": "Los postes bajos mantienen visible el borde inmediato. Una campanilla suena fuera del camino; el rebaño queda detrás de una cerca.",
+      "rain": "Las gotas golpean el bebedero. El camino conserva grava sobre las rodadas, mientras la hierba de ambos lados recoge el barro.",
+      "return": "El bebedero te permite reconocer la mitad del trayecto. Las lomas siguen separando el camino de las parcelas cultivadas.",
+      "clear": "",
+      "exits": {
+        "oeste": "edran_vista_cuenca",
+        "este": "veyra_vega_abierta"
+      },
+      "examine": {
+        "bebedero": "El agua entra por un tubo estrecho. Una rejilla aparta las hojas; es un punto para el ganado, fuera del paso de carros.",
+        "postes": "Están junto al camino, no dentro de las rodadas."
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [],
+      "actions": []
+    },
+    "veyra_acequia_exterior": {
+      "id": "veyra_acequia_exterior",
+      "name": "Camino sobre la acequia",
+      "region": "veyra",
+      "kind": "road",
+      "description": "Una acequia acompaña un camino elevado. Al oeste llegas a la vega; al este, al cruce de canales que baja hacia Lethra. Las tablas cubren sólo los desagües pequeños, sin obligarte a cruzar el canal profundo.",
+      "day": "Una trabajadora levanta hojas de la rejilla y las deja en una cesta. El agua vuelve a correr por el hueco; espera a que pase un carro antes de apoyarlo todo junto al camino.",
+      "night": "La corriente se oye debajo del borde. Dos reflectores claros marcan las tablas del desagüe; el camino continúa sobre tierra firme.",
+      "rain": "El desagüe suena más fuerte. El borde alto sigue fuera del agua; las hojas se juntan contra la rejilla y la trabajadora las retira desde arriba.",
+      "return": "El pequeño paso de tablas vuelve a señalar dónde el agua baja del campo hacia los canales. El camino exterior sigue a ambos lados.",
+      "clear": "",
+      "exits": {
+        "oeste": "veyra_vega_abierta",
+        "este": "veyra_hondonada_canales"
+      },
+      "examine": {
+        "rejilla": "Las hojas quedan arriba; el agua atraviesa las barras hacia el canal.",
+        "tablas": "Cubren un desagüe estrecho. El canal largo corre al lado del camino, no debajo de todo el tramo."
+      },
+      "arrivals": {},
+      "npcs": [],
+      "signals": [],
+      "actions": []
+    }
+  },
+  "npcs": {
+    "veyra_nera": {
+      "id": "veyra_nera",
+      "name": "Nera",
+      "species": "humano",
+      "role": "archivera de llegadas",
+      "home_room": "veyra_archivo_cargas",
+      "description": "Tiene los puños manchados de tinta y una uña rota de levantar cajas. Antes de mirar una firma pregunta de qué camino procede.",
+      "topics": {
+        "cargas": "En esta lista apunto lo que espera llegar. Si un carro tarda, necesito saber quién lo lleva y qué le ocurrió. Escribir «perdido» demasiado pronto haría que alguien dejara de esperar su pedido. Prefiero una noticia incompleta pero cierta a una explicación que nadie ha comprobado.",
+        "ciudad": "Guardamos las listas de ahora en estos estantes. Sobre quienes levantaron las piedras antiguas sabemos mucho menos. No te voy a dar un nombre sólo porque encaje con una historia bonita.",
+        "rutas": "Desde aquí salen recados hacia cinco caminos. Si copio una noticia sin saber de dónde viene, puedo asustar a personas que ni siquiera pasan por ese lugar. Siempre pregunto quién vio el problema y dónde.",
+        "aviso_preciso": {
+          "requires_flags": [
+            "encargo_veyra_demora_conocida"
+          ],
+          "forbids_flags": [
+            "encargo_veyra_aviso_entregado"
+          ],
+          "text": "Nera escucha el nombre de Tov y anota: «Puerta de piedra. Tabla separadora rota. Carga entera, llegada tardía». Deja el envío en la lista de llegadas. «Así sé qué ocurrió y quién te lo mostró. No voy a escribir que hubo un robo.»",
+          "set_flags": [
+            "encargo_veyra_aviso_entregado",
+            "encargo_veyra_aviso_preciso"
+          ]
+        },
+        "pedir_comprobacion": {
+          "requires_flags": [
+            "encargo_veyra_demora_conocida"
+          ],
+          "forbids_flags": [
+            "encargo_veyra_aviso_entregado"
+          ],
+          "text": "Le pides a Nera que compruebe la noticia con Tov. Ella deja una marca de espera junto al envío. «Hablaré con ella sobre la tabla rota antes de cambiar la lista. Mientras tanto seguirá pendiente; no lo daré por perdido.»",
+          "set_flags": [
+            "encargo_veyra_aviso_entregado",
+            "encargo_veyra_aviso_comprobar"
+          ]
+        }
+      },
+      "day": "Reordena las tablillas pendientes por ruta.",
+      "night": "Deja cerca de la puerta los envíos que aún esperan destinatario.",
+      "memory": {
+        "veyra_demora_aclarada": "Nera señala el registro corregido: el aviso atribuido evitó llamar perdida a la carga de Tov. Ahora comprueba su procedencia antes de repetir el rumor.",
+        "hallazgo:cuerda_recuperada": "Reconoce lo que llevas: «Trozo de cuerda. Es de por aquí; mira el suelo cuando vuelvas a pasar.»",
+        "encargo_veyra_aviso_preciso": "La nota de Tov registra un separador roto y una llegada tardía; no una carga robada.",
+        "encargo_veyra_aviso_comprobar": "La llegada de Tov sigue pendiente de una comprobación directa."
+      },
+      "states": [
+        {
+          "requires_flags": [
+            "encargo_veyra_aviso_preciso"
+          ],
+          "overrides": {
+            "topics": {
+              "cargas": "La nota que me diste sitúa a Tov junto a la puerta de piedra: separador roto y llegada tardía. La carga sigue en la lista de llegadas; no está registrada como robada."
+            }
+          }
+        },
+        {
+          "requires_flags": [
+            "encargo_veyra_aviso_comprobar"
+          ],
+          "overrides": {
+            "topics": {
+              "cargas": "La llegada sigue pendiente de comprobación. Antes de cambiarla en la lista hablaré con Tov sobre el separador; no hay noticia de robo."
+            }
+          }
+        }
+      ]
+    },
+    "veyra_tov": {
+      "id": "veyra_tov",
+      "name": "Tov",
+      "species": "dravak",
+      "role": "porteadora de piedra",
+      "home_room": "veyra_puerta_piedra",
+      "description": "Trabaja desde el nivel de los separadores y lleva una tabla de repuesto atada al carro, fuera de la carga. Su voz no intenta competir con las ruedas.",
+      "topics": {
+        "carga": "Las piedras siguen en el carro. Se rompió una tabla que las mantenía separadas, y ahora debo colocarlas y sujetarlas otra vez. No voy a bajar por el terraplén mientras puedan deslizarse. Prefiero llegar tarde a dejar caer la carga en el camino.",
+        "demora": "Nera me espera en el archivo. Me preocupa que alguien vea el carro parado y diga que me robaron. Entonces ella buscaría una carga que tengo aquí delante. Sólo necesito que sepa por qué voy a tardar.",
+        "brumak": "Allí una puerta demasiado grande desperdicia sombra. Aquí me toca recordar a todos que una carga baja también ocupa espacio.",
+        "aviso": {
+          "text": "«Mi carga está entera. Se ha roto un separador; necesito recolocarla antes de entrar. Dile a Nera que llegaré tarde, no que se ha perdido.»",
+          "set_flags": [
+            "encargo_veyra_demora_conocida"
+          ]
+        }
+      },
+      "day": "Comprueba separadores y prepara el paso occidental.",
+      "night": "Descansa junto al carro inmovilizado.",
+      "memory": {
+        "veyra_demora_aclarada": "Tov asiente al saber que Nera anotó la demora. Su carro sigue junto a la puerta, pendiente de recolocar la carga.",
+        "hallazgo:cuerda_recuperada": "Reconoce lo que llevas: «Trozo de cuerda. Es de por aquí; mira el suelo cuando vuelvas a pasar.»"
+      },
+      "states": [
+        {
+          "requires_flags": [
+            "encargo_veyra_aviso_entregado",
+            "encargo_veyra_aviso_preciso"
+          ],
+          "overrides": {
+            "topics": {
+              "aviso": "El aviso conserva mi nombre y el separador roto. La carga sigue entera; me falta terminar de sujetarla antes de entrar."
+            }
+          }
+        },
+        {
+          "requires_flags": [
+            "encargo_veyra_aviso_entregado",
+            "encargo_veyra_aviso_comprobar"
+          ],
+          "overrides": {
+            "topics": {
+              "aviso": "Nera puede comprobar aquí mismo el separador. Mantengo la carga junto a la puerta hasta dejarla bien sujeta."
+            }
+          }
+        }
+      ]
+    },
+    "veyra_seli": {
+      "id": "veyra_seli",
+      "name": "Seli",
+      "species": "marevyn",
+      "role": "remendadora de toldos",
+      "home_room": "veyra_calle_toldos",
+      "description": "Una cinta de cuero mantiene apartadas las mangas mientras cose. Su bolsa separa hilo seco de trapos que ya recogieron agua.",
+      "topics": {
+        "toldos": "Este toldo une dos fachadas. Cuando su borde se dobla, el agua cae hacia el taller de abajo. La vecina y yo podemos enderezarlo, pero una de las dos necesita que alguien sostenga la pértiga mientras trabaja.",
+        "vecinos": "Quien trabaja abajo no puede dejar sus herramientas bajo la lluvia. No quiero que cierre el taller por este borde suelto. Si nos ponemos de acuerdo sobre dónde dejar salir el agua, el arreglo le sirve a ella y también a quienes pasan.",
+        "narevia": "En casa aprendí a dejar pasar el agua antes de pensar en detenerla.",
+        "reparación": "Mira primero la costura vieja para encontrar el desgarro. Puedes sujetarlo con junco sin tapar la salida del agua. Bela presta un haz en el mercado, un paso al oeste. Si prefieres no gastar fibra, ayúdame a preparar las perchas y marcar dónde debo coser; yo terminaré la sujeción."
+      },
+      "day": "Ajusta costuras compartidas.",
+      "night": "Guarda hilo seco y revisa los apoyos desde las puertas.",
+      "memory": {
+        "veyra_costura_acordada": "Seli muestra el borde corregido: el taller sigue abierto y el agua vuelve a la calle.",
+        "hallazgo:cuerda_recuperada": "Reconoce lo que llevas: «Trozo de cuerda. Es de por aquí; mira el suelo cuando vuelvas a pasar.»",
+        "encargo_veyra_toldo_junco": "Seli toca el amarre que colocaste sin tirar de él. «El junco está sujeto y este borde queda libre para el agua. Lo revisaré cuando llueva.»",
+        "encargo_veyra_toldo_perchas": "Seli encuentra las marcas junto al desgarro. «Preparaste las perchas. Me toca terminar el amarre, pero ya no tengo que buscar dónde empezaba la rotura.»",
+        "encargo_pagado:vaisgard_toldo": "Seli guarda la cuenta de tu ayuda. «Ya te pagué. Ahora seguiré con lo que falta y revisaré por dónde sale el agua cuando pase. No quiero que el taller de abajo vuelva a mojarse.»"
+      },
+      "states": [
+        {
+          "requires_flags": [
+            "encargo_veyra_toldo_perchas"
+          ],
+          "overrides": {
+            "topics": {
+              "reparación": "La costura quedó marcada y las perchas preparadas. El desagüe sigue libre; ahora me toca terminar la sujeción."
+            }
+          }
+        },
+        {
+          "requires_flags": [
+            "encargo_veyra_toldo_junco"
+          ],
+          "overrides": {
+            "topics": {
+              "reparación": "La atadura que hiciste sujeta el desgarro sin tapar el desagüe. Cuando pase agua, revisaré ese borde."
+            }
+          }
+        }
+      ]
+    },
+    "veyra_arel": {
+      "id": "veyra_arel",
+      "name": "Arel",
+      "species": "vesperi",
+      "role": "mensajera de ruta",
+      "home_room": "veyra_patio_senales",
+      "description": "Lleva fundas distintas para hojas urgentes y recados ordinarios. Se detiene para escuchar una respuesta completa antes de repetirla.",
+      "topics": {
+        "mensajes": "A veces me dan un recado y se marchan antes de responderme. Yo necesito saber quién vio lo que cuentan y dónde ocurrió. Si llevo «la carga desapareció» cuando sólo está esperando, hago que otras personas busquen en vano. Puedo tardar un poco más en escuchar.",
+        "velmora": "Las marcas del bosque ayudan si sabes quién las mantiene. Copiar una marca no te entrega ese conocimiento.",
+        "espera": "Si alguien dice «todavía no llega», espero a oír el resto. Quizá la rueda esté rota o quizá la persona venga mañana. Son las mismas primeras palabras, pero no llevan el mismo recado."
+      },
+      "day": "Recibe recados junto al armazón.",
+      "night": "Separa los mensajes urgentes de los que pueden esperar.",
+      "memory": {
+        "veyra_mensaje_atribuido": "Arel mantiene la procedencia aclarada junto a la advertencia; el desagüe sureste no se confunde ahora con todas las rutas.",
+        "hallazgo:cuerda_recuperada": "Reconoce lo que llevas: «Trozo de cuerda. Es de por aquí; mira el suelo cuando vuelvas a pasar.»",
+        "encargo_veyra_aviso_preciso": "Arel conserva tu aviso con la fuente y la causa de la demora. «Así no enviamos un miedo distinto por cada camino.»",
+        "encargo_veyra_aviso_comprobar": "Arel sabe que preferiste confirmar con Tov antes de alterar la lista de llegadas.",
+        "encargo_pagado:vaisgard_aviso_carga": "Arel muestra la copia del aviso que llevaste. «Tov, puerta de piedra, separador roto. Nera conserva la procedencia.»"
+      }
+    },
+    "veyra_bela": {
+      "id": "veyra_bela",
+      "name": "Bela",
+      "species": "humano",
+      "home_room": "vaisgard_mercado",
+      "role": "comerciante de camino",
+      "description": "Bela abre espacio entre los viajeros de las cinco rutas. Compara las armas sobre el mismo mostrador y deja los alimentos aparte para que ninguna hoja alcance las envolturas.",
+      "topics": {
+        "comprar": "En Vaisgard llegan las cinco rutas: aquí puedes comparar las cuatro armas comunes y comprar provisiones. Los puestos regionales ofrecen menos piezas y compran materiales para sus trabajos propios.",
+        "vender": "Compramos materiales recogidos en los caminos. La mochila muestra lo que podemos aceptar y su precio. Los objetos prestados o de un encargo no se venden.",
+        "cuidados": "El lugar de cuidados está junto a Patio del agua. Cuesta dieciocho sellos y atiende heridas, no sólo hambre. Está cerca del pueblo: no hace falta cruzar otras regiones."
+      },
+      "memory": {},
+      "day": "Bela aparta una cesta para dejar pasar un carro y vuelve a colocar las piezas por tamaño. Un viajero compara un mango con el que trae de su pueblo.",
+      "night": "Bela orienta la lámpara hacia las piezas que alguien quiere comparar. Al otro lado del canal, los puestos cerrados dejan sitio a las cargas de quienes llegan tarde."
+    },
+    "veyra_doma": {
+      "id": "veyra_doma",
+      "name": "Doma",
+      "species": "humano",
+      "role": "cuidador de viajeros",
+      "home_room": "veyra_sala_cuidados",
+      "description": "Doma deja un paño limpio junto al banco y pregunta dónde ocurrió la herida. Sobre la mesa quedan notas de las cinco rutas.",
+      "topics": {
+        "atención": "La recuperación cuesta dieciocho sellos: atendemos un grado de herida, quitamos la fatiga y recuperamos vitalidad hasta el noventa por ciento. Después vuelves a disponer de margen para descansar. No necesitas comprar un arma ni ganar una pelea para pedir cuidados.",
+        "salida": "Puedes volver por la misma puerta. Si no puedes pagar ahora, descansa lo que permita tu estado y evita entrar otra vez en peligro; una retirada no borra tu progreso.",
+        "descansar": "Descansar requiere un lugar seguro y usa un margen limitado. La provisión ayuda a recuperar fuerzas; los cuidados sirven para las heridas y para renovar ese margen. Mira tu estado antes de gastar."
+      },
+      "memory": {},
+      "day": "Doma deja un paño limpio junto al banco y pregunta dónde ocurrió la herida. Sobre la mesa quedan notas de las cinco rutas.",
+      "night": "Doma prepara una lámpara y recibe a quien necesite atención."
+    }
+  },
+  "stories": {
+    "veyra_carga_detendida": {
+      "id": "veyra_carga_detendida",
+      "title": "Lo que llega antes que una carga",
+      "premise": "Una demora de trabajo puede convertirse en acusación cuando se pierde su procedencia.",
+      "steps": [
+        {
+          "flag": "veyra_demora_conocida",
+          "text": "Tov explicó el separador roto."
+        },
+        {
+          "flag": "veyra_demora_aclarada",
+          "text": "El archivo corrigió el registro y la porteadora lo recuerda."
+        }
+      ],
+      "source": "Ampliación autorizada: trabajo y memoria social de Vaisgard."
+    }
+  }
+}

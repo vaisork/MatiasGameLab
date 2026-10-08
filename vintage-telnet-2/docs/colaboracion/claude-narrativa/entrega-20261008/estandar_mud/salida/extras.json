@@ -1,0 +1,20 @@
+{
+ "mirar: 4 direcciones en la plaza": "OK",
+ "mirar: «mirar al norte» se entiende": "OK",
+ "mirar: devuelve el texto de la dirección": "OK",
+ "mirar: no mueve al personaje": "OK",
+ "ecos: nada al llegar": "OK",
+ "ecos: aparece uno al quedarse 70 s": "OK",
+ "ecos: cambia a los 150 s": "OK",
+ "ecos: se agotan (no infinitos)": "OK",
+ "ecos: consultar no modifica el estado": "OK",
+ "ecos: no tapan un peligro": "OK",
+ "secretos: empieza en 0": "OK",
+ "secretos: cuenta flags propios y participados": "OK",
+ "contenido: rechaza dirección sin salida": "OK",
+ "tests": "OK · Ran 145 tests in 69.142s",
+ "cliente sintaxis app.js": "OK",
+ "cliente qa-narrative.mjs": "PASS",
+ "cliente qa-printing.mjs": "PASS",
+ "cliente qa-passive.mjs": "PASS"
+}

@@ -1,0 +1,95 @@
+{
+ "_nota": "Campo de sala echoes: microescenas que aparecen al quedarse en un lugar (a partir de 60 s, una nueva cada 75 s, hasta agotarlas). Admiten objetos {text, requires_time, ...}.",
+ "rooms": {
+  "valdren_plaza": [
+   "Un perro cruza la plaza al trote, olfatea la piedra del banco y sigue su camino como si tuviera prisa.",
+   "Desde la fragua llegan tres golpes de martillo, una pausa, y otros tres.",
+   "Una ventana se abre y alguien sacude un mantel. Caen migas y bajan dos Gorriones de ruta a por ellas."
+  ],
+  "vaisgard_mercado": [
+   "Una vendedora grita el precio de las manzanas; la de enfrente grita uno más bajo; las dos se ríen.",
+   "Un niño se escapa entre los puestos con una fruta en la mano. Nadie lo persigue: era suya.",
+   "El canal pequeño trae una hoja que gira sobre sí misma y desaparece bajo un puesto."
+  ],
+  "veyra_plaza_rutas": [
+   "Llega una carreta de piedra y su conductor saluda a otro que se va con cestas vacías.",
+   "Un mensajero lee en voz alta un aviso, y un grupo de viajeros se acerca a escuchar.",
+   "Una paloma se posa en una de las piedras antiguas, se esponja y se queda dormida al sol."
+  ],
+  "khariel_centro": [
+   "Una ráfaga de viento hace volar una cinta de colores desde el mercado; un joven Felaryn salta y la atrapa al vuelo.",
+   "Alguien llama a otro por su nombre desde la terraza alta, y le contestan desde la baja.",
+   "Un niño baja la rampa corriendo con los brazos abiertos, como si volara."
+  ],
+  "brumak_centro": [
+   "Desde el taller llega el golpe de un martillo pequeño, regular como un corazón.",
+   "Una Dravak barre el polvo de su umbral; el viento lo devuelve y ella vuelve a barrer, sin enfadarse.",
+   "Un carro pequeño cruza el patio y gira exactamente por donde debe, sin tocar ningún banco."
+  ],
+  "narevia_centro": [
+   "Una barca pasa bajo una pasarela y quien rema se agacha justo a tiempo.",
+   "Alguien se tira al agua desde una plataforma con un chapuzón y sale por el otro lado riendo.",
+   "Un pescado salta en el canal y vuelve a caer; un niño lo señala, pero ya no está."
+  ],
+  "velmora_centro": [
+   "Una lámpara se enciende en una casa, luego otra al lado, como si se pasaran la luz.",
+   "Un animal pequeño cruza corriendo por una raíz y se mete en un hueco.",
+   "Desde el patio del relato llega una carcajada, y luego alguien manda callar para seguir escuchando."
+  ],
+  "edran_surcos": [
+   "Un Ala parda se posa en un surco nuevo, picotea algo y sale volando con un gusano en el pico.",
+   "El viento mueve los tallos viejos y suenan como papel arrugado.",
+   "A lo lejos, la agricultora se endereza, se estira la espalda y vuelve a agacharse."
+  ],
+  "edran_estanque": [
+   "Una Libélula clara se queda quieta sobre la mitad tranquila del estanque, como si estuviera pintada.",
+   "Un pez asoma la boca en la superficie, hace un círculo y desaparece.",
+   "Una hoja llega flotando por la corriente, choca con el tronco hundido y se queda allí, atrapada."
+  ],
+  "edran_arboleda": [
+   "Una Liebre corta asoma entre las raíces del árbol del medio, te mira y desaparece de un salto en la hierba.",
+   "Cae una hoja, despacio, dando vueltas, hasta posarse en el banco de tierra.",
+   "El viento hace crujir las tres copas a la vez, como si hablaran entre ellas."
+  ],
+  "hoshai_pinar_discontinuo": [
+   "Una piña cae de lo alto y rebota en una roca con un ruido seco.",
+   "El Pico gris vuelve a golpear el tronco: toc, toc, toc.",
+   "El viento pasa entre los pinos y suena como agua lejana."
+  ],
+  "hoshai_balcon_valle": [
+   "Un ave grande planea sobre el valle sin mover las alas, subiendo con el aire caliente.",
+   "Muy abajo, una carga minúscula aparece en el camino, se esconde tras la roca y vuelve a aparecer.",
+   "Una nube pasa por debajo del balcón. Por un momento, el valle desaparece."
+  ],
+  "korven_meseta_baja": [
+   "Un remolino de polvo se levanta solo, da vueltas por la meseta y se deshace contra una de las dos piedras.",
+   "Un Saltapiedra menudo sale a tomar el sol sobre una roca, quieto como si fuera de piedra.",
+   "El viento cambia de dirección y trae un olor a lluvia lejana que no llega."
+  ],
+  "korven_cisterna_comun": [
+   "Una gota cae dentro de la cisterna y el eco tarda un momento en volver.",
+   "Una vecina baja el cubo y cuenta en voz baja las vueltas de cuerda.",
+   "Un niño se asoma al borde, grita «¡hola!» y espera la respuesta del eco."
+  ],
+  "lethra_juncal_abierto": [
+   "Una rana salta de un junco a otro y el tallo se dobla bajo su peso.",
+   "El viento abre los juncos y por un momento se ve brillar el agua; luego se cierran otra vez.",
+   "Un Picojunco camina despacio entre los tallos, levantando mucho las patas."
+  ],
+  "lethra_mercado_hojas": [
+   "Una barca nueva llega al mercado y alguien grita «¡fruta fresca!» antes de amarrarla.",
+   "Una clienta huele una envoltura, arruga la nariz y elige otra.",
+   "El agua golpea suavemente los postes del puesto: chap, chap."
+  ],
+  "nhal_suelo_hojas": [
+   "Una hoja roja cae girando y se posa justo en el camino, como si te la regalaran.",
+   "Algo pequeño corre bajo las hojas: sólo se ve cómo se mueven.",
+   "Un rayo de luz atraviesa las copas y se apaga cuando una nube tapa el sol."
+  ],
+  "nhal_claro_silencio": [
+   "Una semilla cae sobre una hoja ancha, la dobla y rueda hasta el suelo.",
+   "Por la abertura del cielo pasa una nube y el claro se oscurece un momento.",
+   "Durante un rato no se oye absolutamente nada. Luego, muy lejos, un pájaro."
+  ]
+ }
+}

@@ -1,0 +1,47 @@
+{
+  "version": "d5ee22799c83e7c32cb076fd70df1b1885e45d9f",
+  "rows": [
+    {
+      "path": "/",
+      "status": 200
+    },
+    {
+      "path": "/dm",
+      "status": 200
+    },
+    {
+      "path": "/client/art/places/valdren_huertos-anime-v1-thumb.webp",
+      "status": 200
+    },
+    {
+      "path": "/client/art/places/valdren_huertos-anime-v1.webp",
+      "status": 200
+    },
+    {
+      "path": "/client/art/places/hoshai_agua_fria-anime-v1.webp",
+      "status": 200
+    },
+    {
+      "path": "/api/master/login",
+      "status": 401,
+      "meaning": "Origin and CSRF accepted; invalid credentials rejected."
+    },
+    {
+      "path": "/api/account/login",
+      "status": 401,
+      "meaning": "Origin and CSRF accepted; invalid credentials rejected."
+    },
+    {
+      "width": 393,
+      "gameAndDM": true,
+      "noOverflow": true,
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "gameAndDM": true,
+      "noOverflow": true,
+      "errors": []
+    }
+  ]
+}

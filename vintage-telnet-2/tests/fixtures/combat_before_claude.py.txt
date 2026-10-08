@@ -1,0 +1,62 @@
+def resolve_round(state, creature, rng, respond=True):
+ combat=state['combat']; profile=combat['profile']; intervention=combat.pop('intervention',None) or {'id':'atacar'}
+ action=intervention['id']; target=intervention.get('target'); a=state['attributes']; penalty,power=penalties(state)
+ weapon=next((i for i in state['inventory'] if i['id']==state['equipment']['weapon']),None)
+ accuracy=clamp(55+.45*(a['destreza']-10)+.18*(a['percepcion']-10)+.5*(cg(state)-8*(profile['level']-1)/99)-penalty-profile.get('evasion',0),25,90)
+ raw=(weapon['damage'] if weapon else 0)+.48*(a['fuerza']-10)+.12*(a['destreza']-10)+.25*cg(state)
+ prepared=preparation(combat)
+ enemy_accuracy=prepared.get('accuracy',60) if prepared else profile['accuracy']
+ reduction=0; guard=0; events=[]; signature=False; costs={'atacar':4,'esquivar':6,'bloquear':5,'resistir':3,'huir':8,'capacidad':5}
+ if action=='defender':action=target
+ if action=='huir':
+  chance=clamp(50+.45*(a['agilidad']-10)+.15*(a['percepcion']-10)+min(30,.6*max(0,profile['level']-state['level']))+15*combat.get('failed_flee',0)-penalty,20,95)
+  if rng.random()*100<chance:
+   state['fatigue']=min(100,state['fatigue']+fatigue_cost(state,8));state['combat']=None
+   return [{'kind':'action','text':'Te apartas del alcance de tu rival y recuperas distancia.'}], 'fled'
+  combat['failed_flee']=combat.get('failed_flee',0)+1;events.append({'kind':'danger','text':'Tu rival corta tu retirada; ahora reconoces mejor su ritmo.'})
+ if action=='capacidad':
+  signature=True;cls=state['_class'];combat['cooldown']=CLASSES[cls]['cooldown']+1
+  if cls=='juramentado' and (not prepared or prepared.get('frontal',False)):guard=min(.45,.30+.0025*(a['destreza']-10)+.0015*(a['resistencia']-10));enemy_accuracy=min(enemy_accuracy,profile['accuracy'])
+  elif cls=='arcano':
+   if prepared and prepared.get('interruptible',False):enemy_accuracy=profile['accuracy']-10;combat['prepared']=False
+   elif not prepared:enemy_accuracy=profile['accuracy']-20
+  elif cls=='sombra':enemy_accuracy-=25
+  elif cls=='artifice':raw*=.75
+  effects={'juramentado':('Afirmas la guardia. Si el golpe llega, recibes menos daño.' if not prepared or prepared.get('frontal',False) else 'El ataque viene de lado: tu guardia frontal no reduce este golpe.'),
+           'arcano':('Rompes su preparación y reduces la precisión de su respuesta.' if prepared and prepared.get('interruptible',False) else 'Desvías su respuesta con un impulso. Pierde precisión en esta ronda.'),
+           'sombra':'Sales de su foco. Su siguiente respuesta pierde precisión; si falla, tendrás una apertura para atacar.',
+           'artifice':(f"Disparas hacia {prepared['name']}. "+('El impacto decidirá si consigues interrumpirlo.' if prepared.get('interruptible',False) else 'No puedes interrumpirlo; el impacto sólo dañará a tu rival.') if prepared else 'Disparas para desviar su respuesta. Necesitas acertar para reducir su precisión.')}
+  if cls=='arcano' and prepared and not prepared.get('interruptible',False):effects[cls]='Esta preparación no puede ser interrumpida; mantiene su respuesta.'
+  events.append({'kind':'action','text':f"Usas {CLASSES[cls]['signature']}. {effects[cls]}"})
+ attack=action=='atacar' or (signature and state['_class']=='artifice')
+ if attack and not weapon:
+  attack=False;events.append({'kind':'action','text':'Sin un arma activa no puedes ejecutar el ataque físico de tu formación.'})
+ if attack:
+  if combat.pop('opening',False):accuracy=min(90,accuracy+15)
+  if rng.random()*100<accuracy:
+   damage=max(1,rounded(raw*power*(1-profile['reduction'])));combat['hp']-=damage
+   events.append({'kind':'combat','text':f"Tu golpe alcanza a {creature['name']}: {damage} de daño."})
+   if signature and state['_class']=='artifice':
+    if prepared and prepared.get('interruptible',False):
+     combat['prepared']=False;enemy_accuracy=profile['accuracy'];events.append({'kind':'combat','text':f"Tu disparo interrumpe {prepared['name']}."})
+    elif not prepared:
+     enemy_accuracy-=15;events.append({'kind':'combat','text':'El disparo le hace perder precisión en su siguiente respuesta.'})
+  else:events.append({'kind':'combat','text':'Tu ataque no encuentra un ángulo limpio.'})
+ state['fatigue']=min(100,state['fatigue']+fatigue_cost(state,costs.get(action,4)))
+ if combat['hp']<=0:return events,'victory'
+ if action=='esquivar':enemy_accuracy-=.48*(a['agilidad']-10)+.12*(a['percepcion']-10)-penalty
+ elif action=='bloquear':reduction=max(0,min(.32,.10+.0035*(a['destreza']-10))-penalty/100)
+ elif action=='resistir':reduction=max(0,min(.38,.0055*(a['resistencia']-10))-penalty/100)
+ combat['_response']={'accuracy':enemy_accuracy,'reduction':reduction,'guard':guard,'signature':signature}
+ if not respond:
+  combat['round']+=1;combat['cooldown']=max(0,combat.get('cooldown',0)-1)
+  return events,'ongoing'
+ connected=rng.random()*100<clamp(enemy_accuracy,20,90)
+ if connected:
+  damage=max(1,rounded(profile['damage']*(1-reduction)*(1-state.get('armor_reduction',0))*(1-guard)));state['hp']-=damage;wound(state,damage)
+  events.append({'kind':'combat','text':f"{creature['name']} te alcanza: {damage} de daño."})
+ else:
+  events.append({'kind':'combat','text':f"La respuesta de {creature['name']} pasa sin alcanzarte."})
+  if signature and state['_class']=='sombra':combat['opening']=True
+ combat['prepared']=False;combat['round']+=1;combat['cooldown']=max(0,combat.get('cooldown',0)-1)
+ return events,'death' if state['hp']<=0 else 'ongoing'

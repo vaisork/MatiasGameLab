@@ -184,9 +184,8 @@ class Engine:
         memories=[i for i in room.get('memories',[]) if self.allowed(i,state,world)]
         if memories:layers['memory']=event('discovery',memories[-1]['text'])
         elif state['visits'].get(room['id'],0)>1 and room.get('return'):layers['return']=event('world',room['return'])
-        for npc in self.people(room,state,world,ambient):
-            activity=npc.get(phase_key) or npc.get('night' if phase_key=='night' else 'day')
-            if activity:layers['people']=event('world',activity);break
+        present=self.people(room,state,world,ambient)
+        people_lines=[event('world',npc.get(phase_key) or npc.get('night' if phase_key=='night' else 'day') or npc['name']+' está aquí.') for npc in present]
         for signal in room.get('signals',[]):
             if self.allowed(signal,state,world) and signal_present(signal,room,world,self.clock()):layers['danger']=event('danger',signal['text']);break
         visits=state['visits'].get(room['id'],0)
@@ -199,14 +198,33 @@ class Engine:
         priority=['danger']+(['memory'] if recall else [])+[key for key in authored if key in layers and key!='danger']+priority
         limit=room.get('max_layers',3)
         limit=min(8,max(1,limit)) if isinstance(limit,int) else 3
-        description=room.get('brief',room['description']) if mode=='navigation' and visits>1 else room['description']
+        brief=room.get('brief') if mode=='navigation' and visits>1 else None
+        description=brief or room['description']
         lines=[event('look' if mode=='mirar' else 'world',description)];seen={description}
-        for key in priority:
-            if len(lines)>=limit:break
+        if brief:
+            options=list(dict.fromkeys(key for key in priority if key in layers and key!='danger'))
+            if options:
+                shift=visits%len(options);options=options[shift:]+options[:shift]
+            chosen=(['danger'] if 'danger' in layers else [])+options
+            # Three live layers, as authored; danger always occupies the first slot.
+            chosen=chosen[:3]
+        else:chosen=priority
+        selected=[]
+        for key in chosen:
+            if not brief and len(lines)>=limit:break
             line=layers.get(key)
             if line and line['text'] not in seen:
-                lines.append(line);seen.add(line['text'])
-            if len(lines)>=limit:break
+                lines.append(line);seen.add(line['text']);selected.append(key)
+        # A remembered person does not establish their current presence.
+        for npc,line in zip(present,people_lines):
+            if any(npc['name'] in layers[key]['text'] for key in selected if key in ('activity','weather','arrival')):continue
+            text=npc['name']+' está aquí.' if brief else line['text']
+            if text not in seen:lines.append(event('world',text));seen.add(text)
+        echoes=[item.get('text') if isinstance(item,dict) else item for item in room.get('echoes',[]) if not isinstance(item,dict) or self.allowed(item,state,world)]
+        stayed=self.clock()-state.get('arrived_at',self.clock())
+        if mode=='navigation' and echoes and stayed>=60 and 'danger' not in layers and not state.get('combat'):
+            window=int((stayed-60)//75)
+            if window<len(echoes):lines.append(event('world',echoes[(window+visits)%len(echoes)]))
         return lines
 
     @staticmethod
@@ -266,10 +284,10 @@ class Engine:
                 if player['class_id'] in ('arcano','sombra','artifice') and any('Usas ' in event['text'] for event in player['state']['events']):accuracy=min(accuracy,response.get('accuracy',accuracy))
             if self.rng.random()*100<m.clamp(accuracy,20,90):
                 damage=max(1,m.rounded(combat['profile']['damage']*(1-reply.get('reduction',0))*(1-state.get('armor_reduction',0))*(1-reply.get('guard',0))))
-                state['hp']-=damage;m.wound(state,damage);state['events'].append(event('combat',f"{creature['name']} te alcanza: {damage} de daño."))
+                state['hp']-=damage;m.wound(state,damage);state['events'].append(event('combat',m.creature_prose(creature,'hit',damage,combat['round'])))
                 if state['hp']<=0:self.death(primary,world)
             else:
-                state['events'].append(event('combat',f"La respuesta de {creature['name']} pasa sin alcanzarte."))
+                state['events'].append(event('combat',m.creature_prose(creature,'miss',0,combat['round'])))
                 for player,response in responses:
                     if player['class_id']=='sombra' and response.get('signature') and player['state']['combat']:
                         player['state']['combat']['opening']=True
@@ -391,7 +409,7 @@ class Engine:
         if mark_route and previous!=destination:
             pair=sorted((previous,destination))
             if pair not in state['routes']:state['routes'].append(pair)
-        state['last_room']=previous;state['location']=destination;state['arrival']=True
+        state['last_room']=previous;state['location']=destination;state['arrival']=True;state['arrived_at']=self.clock()
         for key in ('known','visited'):
             if destination not in state[key]:state[key].append(destination)
         state['visits'][destination]=state['visits'].get(destination,0)+1
@@ -457,6 +475,7 @@ class Engine:
             cost=1 if value<20 else 2 if value<35 else 3 if value<45 else 4 if value<60 else 5
             if state['pa']>=cost:actions.append({'id':'atributo','target':attribute,'label':f'Mejorar {attribute} · {cost} PA','confirmation':f'Aumentar {attribute} de {value} a {value+1} por {cost} PA. No podrás deshacerlo.'})
         actions += [{'id':'examinar','target':key,'label':f'Examinar {key}'} for key,value in room.get('examine',{}).items() if not isinstance(value,dict) or self.allowed(value,state,world)]
+        actions += [{'id':'mirar_direccion','target':direction,'label':f'Mirar hacia el {direction}'} for direction in room.get('look',{}) if direction in room.get('exits',{})]
         for direction,destination in room.get('exits',{}).items():
             gate=room.get('exit_requirements',{}).get(direction,{})
             _,origin=self.region_for(character['species'])
@@ -470,7 +489,7 @@ class Engine:
             reason='' if changes else ('Ya estás sin fatiga y con toda tu vitalidad.' if state['hp']>=m.hp_max(state) else 'El descanso ya no recupera más vida. Puedes usar una provisión o buscar cuidados.')
             actions.append({'id':'descansar','label':'Descansar'+(' · '+' · '.join(changes) if changes else ''),'disabled':not changes,'reason':reason})
         for npc in self.people(room,state,world,self.ambient(room,world)):
-            actions += [{'id':'hablar','target':npc['id'],'topic':topic,'label':f"{npc['name']} · {topic}"} for topic,value in npc.get('topics',{}).items() if not isinstance(value,dict) or self.allowed(value,state,world)]
+            actions += [{'id':'hablar','target':npc['id'],'topic':topic,'label':f"{npc['name']} · {value.get('label',topic) if isinstance(value,dict) else topic}"} for topic,value in npc.get('topics',{}).items() if not isinstance(value,dict) or self.allowed(value,state,world)]
         for item in room.get('actions',[]):
             if self.allowed(item,state,world):actions.append({'id':item['id'],'label':item['label']})
         for signal in room.get('signals',[]):
@@ -561,6 +580,7 @@ class Engine:
                 short={'norte':'n','sur':'s','este':'e','oeste':'o'}
                 if target in short:aliases.add(short[target])
             elif id=='examinar':aliases.add(normalize('examinar '+target))
+            elif id=='mirar_direccion':aliases.update(normalize(v) for v in ('mirar '+target,'mirar al '+target,'mirar hacia el '+target))
             elif id=='hablar':
                 npc=self.content.npcs.get(target,{})
                 for prefix in ('hablar','hablar con','conversar con'):
@@ -605,7 +625,9 @@ class Engine:
             if combat.get('intervention'):raise RuleError('Ya has decidido tu intervención para esta ronda.',409)
             combat['intervention']={'id':action,'target':target};state['events']=[event('action','Tu decisión queda preparada para la próxima respuesta de tu rival.')]
             return
-        if action in ('mirar','observar','examinar'):
+        if action=='mirar_direccion':
+            state['events']=[event('world',room['look'][target])]
+        elif action in ('mirar','observar','examinar'):
             if action in ('mirar','observar'):self.observe(state,room,world)
             if action=='observar':
                 observations=state.setdefault('observations',{});observations[room['id']]=observations.get(room['id'],0)+1
@@ -878,4 +900,4 @@ class Engine:
             'chat':[{k:v[k] for k in ('id','sender_id','sender','text','at')} for v in world.get('chat',[]) if v['room']==state['location'] and self.clock()-v['at']<600 and character['id'] in v['recipients']][-30:],
             'narrative':state['events'] or self.narrative(character,world),'scene':self.narrative(character,world),'actions':self.actions(character,world),
             'map':{'nodes':nodes,'edges':[p for p in state['routes'] if set(p).issubset(known)],'routes':routes,'frontiers':frontiers,**({'recovery':state['last_recovery']} if state.get('last_recovery') else {})},
-            'inventory':state['inventory'],'bestiary':[{**entry,**({'illustration':self.content.creatures[cid]['illustration']} if self.content.creatures.get(cid,{}).get('illustration') else {})} for cid,entry in state['bestiary'].items()],'journal':state['journal'],'quests':quests,'ambient':ambient}
+            'inventory':state['inventory'],'bestiary':[{**entry,**({'illustration':self.content.creatures[cid]['illustration']} if self.content.creatures.get(cid,{}).get('illustration') else {})} for cid,entry in state['bestiary'].items()],'journal':state['journal'],'secrets':{'found':sum(1 for secret in getattr(self.content,'secrets',{}).values() if secret.get('flag') in state['flags'] or 'participated:'+str(secret.get('flag')) in state['flags'])},'quests':quests,'ambient':ambient}
