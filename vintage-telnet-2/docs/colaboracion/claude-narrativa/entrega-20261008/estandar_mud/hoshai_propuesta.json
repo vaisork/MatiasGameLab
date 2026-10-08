@@ -1,0 +1,124 @@
+{
+ "_nota": "Hoshai (29 salas). Vocabulario de altura: viento, vacío, roca, pendiente, horizonte. Khariel es Felaryn, no Japón.",
+ "rooms": {
+  "hoshai_estribacion": {
+   "description": "Aquí termina la grava de la cuenca y empiezan los pastos cortos de la sierra, verdes y duros. Detrás queda la rampa de Vaisgard; por delante, la montaña se levanta de golpe. Un arroyo frío cruza el camino saltando sobre piedras redondas, y antes de pasarlo hay un ensanche para dejar la carga y tomar aliento. El aire ya es otro: más fino, más frío.",
+   "brief": "La primera subida, donde la grava se vuelve pasto."
+  },
+  "hoshai_repecho_raices": {
+   "description": "La cuesta sube entre raíces al aire y árboles torcidos por el viento, todos inclinados hacia el mismo lado. Hay que levantar bien los pies para no tropezar. Una curva tapa lo que viene después, y desde ella bajan a veces voces de otros viajeros. Entre dos troncos queda un hueco para apoyar un bulto sin cortar el sendero.",
+   "brief": "La cuesta de las raíces, con su curva escondida."
+  },
+  "hoshai_descanso_tres_piedras": {
+   "description": "En mitad de la subida, tres piedras grandes forman un asiento natural, gastado por todos los que se han sentado antes. Desde aquí se ven dos curvas del camino, una encima de la otra, como escalones gigantes. El viento sopla constante y seca el sudor. Unas cuerdas enrolladas descansan sobre una piedra pequeña, apartadas del paso.",
+   "brief": "El descanso de las tres piedras, a media subida."
+  },
+  "hoshai_pared_goteo": {
+   "description": "El sendero va pegado a una pared de roca que gotea sin parar, a tu izquierda al subir; a la derecha se abre el valle, enorme, sin nada que lo tape. Da un poco de vértigo mirar. En los huecos de la pared cabe una carga. En el barro se ven marcas de manos, donde la gente se apoya junto al goteo, y la roca está fría y resbaladiza al tocarla.",
+   "brief": "La pared húmeda, con el valle abierto al otro lado."
+  },
+  "hoshai_pinar_discontinuo": {
+   "description": "Un pinar abierto, con claros desde los que se ve todo el valle. Huele fuerte a resina, y las agujas secas crujen bajo los pies como una alfombra. Las piñas se amontonan donde el viento no llega. A veces un Pico gris golpea un tronco con el pico. Un desvío entre los pinos lleva hacia un abrigo de piñas y, más arriba, al collado.",
+   "brief": "El pinar abierto y sus claros sobre el valle."
+  },
+  "hoshai_agua_fria": {
+   "description": "Una corriente de agua helada cruza el sendero, tan fría que duelen los dedos si los metes. Baja de la nieve de arriba, rápida y ruidosa. Una piedra grande desvía parte del agua; en el lado seco se puede dejar la carga antes de elegir con cuidado dónde pisar. Al otro lado, unos escalones de roca siguen subiendo.",
+   "brief": "El cruce de agua fría y su piedra grande."
+  },
+  "hoshai_ladera_hitos": {
+   "description": "Una ladera abierta y ventosa, entre la corriente de abajo y un paso de roca estrecho de arriba. Dos grupos de piedras amontonadas marcan las curvas: uno señala el camino y el otro, el borde que se revisa después del deshielo, cuando la tierra se mueve. Una tablilla cercana explica la diferencia para quien no la conozca. Desde aquí, el valle se ve pequeño.",
+   "brief": "La ladera de las señales, con sus dos grupos de piedras."
+  },
+  "hoshai_cuello_roca": {
+   "description": "Las paredes de roca se acercan tanto que sólo cabe una carga cada vez; el cielo es una franja estrecha allá arriba. En cada extremo hay una piedra plana, gastada de golpes: antes de entrar, se golpea con un palo para avisar a quien venga del otro lado, y se espera respuesta. Los golpes resuenan entre las paredes. Hace frío, y la roca suda gotas.",
+   "brief": "El paso entre paredes y su piedra de aviso."
+  },
+  "hoshai_terraza_cargas": {
+   "description": "El paso estrecho se abre de golpe a una terraza ancha y soleada, y el viento vuelve a soplar. Aquí las cargas se abren y se reparten, con las cuerdas lejos del borde, que cae en picado. Por encima de la subida asoma el primer techo de Khariel, de tejas oscuras. A un lado, una lona azul marca un campamento; al otro, un sendero lleva a un mirador.",
+   "brief": "La terraza de las cargas, bajo el primer techo de Khariel."
+  },
+  "hoshai_escalones_sol": {
+   "description": "Escalones de tamaños distintos suben de la terraza a las casas de Khariel, calientes por el sol de la mañana. Unos están tallados en la roca hace mucho; otros, arreglados con piedras nuevas y más claras. Las reparaciones dejan apoyos para pies humanos y para pies Felaryn, que pisan de puntillas. A un lado baja un canal de agua que canturrea.",
+   "brief": "Los escalones al sol, tallados y remendados."
+  },
+  "khariel_centro": {
+   "description": "La plaza de Khariel ocupa dos terrazas unidas por escalones y una rampa, para que suba quien salta y quien no. Los bancos tienen hueco detrás para las colas Felaryn y sitio para apoyar cargas. Desde aquí se ve todo el valle, y el viento trae olor a comida de las casas. Alrededor se reparten el taller, el mercado de las cintas y el patio de las casas.",
+   "brief": "La plaza de Khariel, en dos terrazas con rampa."
+  },
+  "hoshai_taller_apoyos": {
+   "description": "El taller huele a serrín y a madera recién cortada. Junto a un banco bajo esperan herramientas grandes; en los estantes, piezas pequeñas ordenadas por tamaño. En la pared hay un dibujo de todos los escalones del camino, con marcas en los que necesitan arreglo. Sobre el banco, una plantilla gastada espera al lado de una pieza recién cortada, todavía con virutas.",
+   "brief": "El taller de Khariel, con su dibujo de los escalones."
+  },
+  "hoshai_mercado_cintas": {
+   "description": "Entre muros que cortan el viento, los puestos venden comida envuelta y cintas de colores para atar las cargas. Cada color dice algo: qué bulto abrir primero, cuál mantener seco. Las cintas ondean como banderas pequeñas. Unas barras permiten probar una atadura antes de comprar. Una puerta da al lugar de cuidados.",
+   "brief": "El mercado de las cintas, al abrigo del viento."
+  },
+  "hoshai_patio_hogares": {
+   "description": "Las puertas de las casas se reparten entre escalones y pequeños descansos, unas encima de otras, como en una escalera ancha. Los recipientes esperan junto a los muros. Para visitar a alguien hay un umbral donde llamar sin cortar el paso. Se oyen voces dentro, platos y alguna risa. Desde el patio salen el lavadero y una senda hacia los árboles altos.",
+   "brief": "El patio de las casas, entre escalones y descansos."
+  },
+  "hoshai_lavadero_roca": {
+   "description": "El agua fría cae en una pila estrecha de roca, salpicando, y sigue cuesta abajo. Las piedras del borde sostienen ropa y recipientes. Las prendas limpias cuelgan altas, lejos del barro que traen los viajeros, y se mueven con el viento. Una escalera sube a un depósito.",
+   "brief": "El lavadero de roca y su pila de agua fría."
+  },
+  "hoshai_deposito_comun": {
+   "description": "Bajo el alero esperan herramientas mojadas, goteando. Dentro, cada tarea tiene su estante, y una tablilla dice quién se llevó la pieza que falta y cuándo la devolverá. En la entrada hay gotas y serrín. Una puerta da a un balcón sobre el valle, y por ella entra un aire frío.",
+   "brief": "El depósito de herramientas, con su tablilla de préstamos."
+  },
+  "hoshai_balcon_valle": {
+   "description": "Un balcón colgado sobre el vacío del valle. Desde el banco, lejos del borde, se ve el camino aparecer y desaparecer entre las laderas como un hilo. Abajo, los árboles parecen musgo. El viento sube por la pared y silba. Una roca y una cornisa tapan parte de la vista, incluido el cruce de agua fría.",
+   "brief": "El balcón sobre el valle, con su banco lejos del borde."
+  },
+  "hoshai_mirador_nudo": {
+   "description": "Un saliente de roca protegido del barranco por la ladera. Desde aquí se ve una cuerda de paso tendida sobre el vacío, tensa como la de un instrumento, y el nudo grueso junto a su apoyo. Cuando sopla el viento, la cuerda zumba. Se puede mirar la unión con calma, sin ocupar el sendero.",
+   "brief": "El mirador de la cuerda tendida sobre el vacío."
+  },
+  "hoshai_caseta_revision": {
+   "description": "Una caseta pequeña pegada a la roca, con la puerta protegida del viento. Dentro hace un calor agradable. Hay tiras de repuesto colgadas y tablillas con dibujos del nudo, de muchas formas. Las herramientas se guardan junto a la entrada, listas para salir.",
+   "brief": "La caseta del camino, con los dibujos del nudo."
+  },
+  "hoshai_abrigo_pinas": {
+   "description": "Un abrigo natural junto a una pared de roca, donde las piñas secas se amontonan hasta las rodillas. La resina deja los dedos pegajosos si tocas una piña. Una raíz gruesa deja sitio para dejar la carga y sentarse al resguardo del viento. Desde aquí, la senda sube hacia el collado.",
+   "brief": "El refugio de las piñas, junto a la pared."
+  },
+  "hoshai_collado_pino": {
+   "description": "Un pino solo crece entre piedras partidas, con la copa doblada por el viento hacia un lado, como si se estuviera agachando. Sus raíces sujetan un poco de tierra en medio de la roca. Alrededor del árbol, las huellas de los viajeros dan la vuelta: todo el mundo lo rodea, como si lo saludara. Aquí arriba el viento no para.",
+   "brief": "El paso del último pino, doblado por el viento."
+  },
+  "hoshai_aprisco_abierto": {
+   "description": "Piedras sueltas forman muros bajos que guían al rebaño hacia el lado protegido de la ladera. En un hueco seco espera un recipiente para el agua. Hay espacio para que los animales se muevan sin chocar. Se oyen balidos y el tintineo de alguna campanilla. Hacia el oeste, el sendero sigue por unas lajas.",
+   "brief": "El refugio del rebaño, al abrigo de la ladera."
+  },
+  "hoshai_hombro_lajas": {
+   "description": "El sendero dobla entre lajas de piedra inclinadas; con el brillo del sol pueden parecer planas, y no lo son: hay que pisar con cuidado. Una tablilla recoge noticias de los viajeros. Detrás todavía se ve el pino del collado, pequeño; por delante, el camino baja a la garganta que lleva a Korven.",
+   "brief": "El camino de las lajas, más inclinadas de lo que parecen."
+  },
+  "hoshai_garganta_oeste": {
+   "description": "Las paredes de la garganta van perdiendo plantas a medida que bajas, y el aire empieza a traer polvo de piedras claras: abajo empieza Korven. El eco repite tus pasos. Un ensanche permite que dos cargas se crucen sin rozar la roca. Hace calor seco, distinto del frío de arriba.",
+   "brief": "La garganta hacia Korven y su ensanche."
+  },
+  "hoshai_senda_dosel": {
+   "description": "La senda baja entre árboles altos, muy altos, y rodea un valle pequeño, camino de la parada del cordel. Tras la primera curva, la plaza de Khariel deja de verse y el ruido del pueblo se apaga. La luz llega verde y a manchas. Un banco seco permite esperar sin poner la carga sobre las raíces mojadas.",
+   "brief": "La senda de los árboles altos, con su banco seco."
+  },
+  "hoshai_estacion_cuerda": {
+   "description": "Un cordel une dos árboles fuera del sendero; sus nudos y marcas dicen dónde apoyar las cargas. Bajo una cubierta se guardan notas del camino, protegidas de la lluvia. Detrás quedan las casas de Khariel. Por delante, los troncos se juntan y la luz se oscurece: por ahí la ruta entra en el Dosel Alto de Nhal.",
+   "brief": "La parada del cordel, a la entrada de Nhal."
+  },
+  "hoshai_campamento_lona": {
+   "description": "Una lona azul, descolorida por el sol, cubre tres cajas de viaje junto al camino. Un sendero corto baja hacia más cajas. Seran, un viajero con un palo corto, vigila la carga y dice que la polea del taller es suya hasta que le paguen. Hay restos de una hoguera pequeña y una manta doblada. Puedes hablar con él antes de acercarte.",
+   "brief": "El campamento de la lona azul.",
+   "states[0].overrides.description": "Una lona azul, descolorida por el sol, cubre tres cajas de viaje junto al camino. Seran ha dejado el palo junto a la lona y espera que lleves su tablilla a Daren. El acuerdo ha dejado libres los dos pasos: el de la terraza y el de las cajas con la polea. Hay restos de una hoguera pequeña y una manta doblada.",
+   "states[1].overrides.description": "Una lona azul, descolorida por el sol, cubre tres cajas de viaje junto al camino. La polea ya volvió al taller de Daren; la cuenta del transporte sigue escrita en la tablilla que entregaste. Hay restos de una hoguera pequeña y una manta doblada."
+  },
+  "hoshai_cajas_camino": {
+   "description": "Un hueco entre dos cajas grandes, al final del sendero, con la montaña a la espalda. Ahí está encajada una polea de mano con la marca del taller en el mango. El sendero no sigue: no hay paso por debajo de la montaña.",
+   "brief": "Las cajas bajo la terraza.",
+   "states[0].overrides.description": "Un hueco entre dos cajas grandes, al final del sendero, con la montaña a la espalda. Una tira de tela sujeta la caja de arriba, y en la madera queda la marca de la polea que recogiste. No hay paso por debajo de la montaña."
+  },
+  "hoshai_sala_cuidados": {
+   "description": "Un banco ancho fijado a la terraza, con una ventana grande que da al valle; desde aquí se ve el cielo entero. Las capas mojadas se quedan bajo el alero y los paños limpios, en una caja cerrada. Es un sitio tranquilo para recuperarse.",
+   "brief": "El asiento de cuidados de Khariel, frente al valle."
+  }
+ }
+}

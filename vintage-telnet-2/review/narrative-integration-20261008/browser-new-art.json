@@ -1,0 +1,38 @@
+{
+  "scope": "Fresh temporary database, real game/API and Chrome. Reduced motion tests layout and content, not reading speed.",
+  "rows": [
+    {
+      "width": 320,
+      "fullFirstVisit": true,
+      "briefReturn": true,
+      "explicitLook": true,
+      "noLocationDuplicate": true,
+      "noPassiveLookRepeat": true,
+      "artWidth": 1200,
+      "noOverflow": true,
+      "errors": []
+    },
+    {
+      "width": 393,
+      "fullFirstVisit": true,
+      "briefReturn": true,
+      "explicitLook": true,
+      "noLocationDuplicate": true,
+      "noPassiveLookRepeat": true,
+      "artWidth": 1200,
+      "noOverflow": true,
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "fullFirstVisit": true,
+      "briefReturn": true,
+      "explicitLook": true,
+      "noLocationDuplicate": true,
+      "noPassiveLookRepeat": true,
+      "artWidth": 1200,
+      "noOverflow": true,
+      "errors": []
+    }
+  ]
+}

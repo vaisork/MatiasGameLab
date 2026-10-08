@@ -1,0 +1,108 @@
+{
+ "_nota": "Veyra (24 salas). Canon: Vaisgard reutiliza construcciones antiguas cuyos autores nadie conoce; ninguna descripción lo resuelve.",
+ "rooms": {
+  "vaisgard_mercado": {
+   "description": "Frutas, herramientas y cestas llenan los puestos, apretados entre muros mucho más viejos que ellos: nadie sabe quién levantó esas piedras, pero hoy sirven de apoyo para toldos y estantes. Un canal pequeño cruza el mercado por el medio, y hay que pasar por encima de un lado a otro. El aire mezcla fruta cortada, cuerda nueva y pan. Se oyen voces de las cinco rutas a la vez: el acento de la sierra, el de los campos, el del agua.",
+   "brief": "El mercado de Vaisgard, partido por su canal pequeño.",
+   "return": "Ya sabes moverte entre los puestos: las herramientas a un lado del canal, la fruta al otro."
+  },
+  "veyra_plaza_rutas": {
+   "description": "Una plaza empedrada y ancha donde se juntan las cinco rutas de la cuenca. Entre las casas sobresalen piedras antiguas, enormes y lisas, de antes de que nadie recuerde; los niños se sientan en ellas como en bancos. Por aquí pasa todo el mundo: carretas de piedra, cestas de pescado, viajeros con capas de montaña. Desde el centro se ven el camino que sube a la sierra, un patio con animales y un alero lleno de avisos.",
+   "brief": "La Plaza de las Cinco Rutas y sus piedras antiguas."
+  },
+  "veyra_calle_toldos": {
+   "description": "Toldos remendados cubren la calle de un lado a otro, tan juntos que la luz llega de colores: azul en un tramo, rojo en otro, gris donde la tela es vieja. Cada taller ha arreglado su parte con lo que tenía, así que el techo parece una manta hecha de retales. Debajo se oyen agujas, martillos pequeños y conversaciones. Por un extremo entran haces de madera del camino del bosque.",
+   "brief": "La calle de los toldos remendados, de telas distintas.",
+   "states[1].overrides.description": "El amarre de junco que preparaste sujeta el borde del toldo junto a la costura vieja y deja salir el agua hacia la calle. Toldos remendados cubren la calle de un lado a otro, tan juntos que la luz llega de colores; cada taller ha arreglado su parte con lo que tenía. Debajo se oyen agujas y martillos pequeños.",
+   "states[2].overrides.description": "Las perchas que preparaste quedan bajo el borde roto del toldo: desde ellas Seli puede alcanzar la costura. Toldos remendados cubren la calle de un lado a otro, tan juntos que la luz llega de colores; cada taller ha arreglado su parte con lo que tenía. Debajo se oyen agujas y martillos pequeños."
+  },
+  "veyra_barrio_cargas": {
+   "description": "Una calle de almacenes en la planta baja y viviendas arriba, con escaleras de piedra por fuera de las casas. Los carros pasan despacio y crujen bajo el peso de los sacos. Una raya pintada en una piedra marca dónde hay que parar para no tapar ninguna puerta, y todos los conductores la respetan. Por un extremo, la calle lleva a la puerta que sale hacia Edran.",
+   "brief": "La calle de los almacenes y su raya pintada en la piedra."
+  },
+  "veyra_patio_porte": {
+   "description": "Un patio amplio donde los animales de carga descansan a la sombra, junto a un bebedero de piedra. Resoplan, beben y mueven las orejas para espantar moscas. En el muro hay argollas altas y bajas para atarlos, según su tamaño. Las cargas pasan por fuera, sin molestarlos, camino de la puerta de Korven. Se oye el chapoteo de los hocicos en el bebedero.",
+   "brief": "El patio de los animales y su bebedero a la sombra."
+  },
+  "veyra_patio_senales": {
+   "description": "Bajo un alero cuelgan tablillas de mensajes, ordenadas por el lugar del que vienen: cada ruta tiene su fila. Algunas son nuevas; otras tienen la madera gastada de tanto leerlas. Hay un banco para leer sentado sin tapar el paso. El armazón de las notas está apoyado contra una pared antigua, y entre los dos queda un hueco estrecho, del ancho de una mano. Se oye el roce de las tablillas cuando sopla el aire.",
+   "brief": "El patio de mensajes, con sus tablillas bajo el alero."
+  },
+  "veyra_patio_agua": {
+   "description": "Una pila de piedra recibe el agua que baja por las calles de la ciudad. Arriba se guarda el agua limpia, que brilla y se puede beber; abajo se recoge la usada, más turbia. Los recipientes de las casas esperan en fila, lejos del barro. Una baranda rodea la pila para que nadie resbale. Se oye correr el agua sin parar, y el aire aquí es más fresco. Una puerta da al lugar de cuidados.",
+   "brief": "El patio del agua: limpia arriba, usada abajo."
+  },
+  "veyra_huerta_baja": {
+   "description": "Una franja de huerta se esconde al pie de las casas, regada por canales pequeños que bajan de la calle. Crecen hierbas de olor, semillas y alguna verdura, en bancales estrechos entre piedras. Las herramientas se guardan en un cobertizo bajo. Arriba se oye la ciudad; aquí abajo, sólo el agua y algún insecto. Por detrás, el terreno sube hacia una colina abierta.",
+   "brief": "La huerta bajo las escaleras, con sus bancales estrechos."
+  },
+  "veyra_colina_vista": {
+   "description": "Desde lo alto de esta colina se ve toda la cuenca, como un mapa de verdad: Vaisgard detrás, con sus muros viejos, y por delante caminos que se van entre campos, roca y árboles hacia los cinco pueblos. La sierra azulea a lo lejos. El viento sopla fuerte y trae olores mezclados. Una senda ancha baja hacia la vega; detrás, la bajada de la huerta lleva de vuelta a la ciudad.",
+   "brief": "La colina de las procedencias, con la cuenca a la vista.",
+   "states[0].overrides.description": "Desde lo alto de esta colina, la niebla lo cubre todo como una sábana: tapa los caminos bajos y la mitad de los tejados de Vaisgard. Hoy no se puede seguir ninguna ruta con la vista. El aire está húmedo y frío, y los sonidos llegan apagados. La bajada hacia la huerta sigue cerca.",
+   "states[1].overrides.description": "Desde lo alto de esta colina, la lluvia tapa los caminos bajos y oscurece el suelo, que se vuelve resbaladizo. La bajada hacia la huerta, que lleva de vuelta a la ciudad, sigue cerca.",
+   "states[2].overrides.description": "Desde lo alto de esta colina, los caminos de la cuenca se pierden en la oscuridad. Sólo se ven, abajo, las luces de Vaisgard, pequeñas como chispas, y no dejan medir lo lejos que quedan los otros pueblos. Sopla un aire fresco. La bajada hacia la huerta sigue cerca."
+  },
+  "veyra_archivo_cargas": {
+   "description": "Un cuarto de estantes y tablillas que huele a madera y a tinta. Las tablillas de las cargas que todavía esperan están cerca de la puerta, para encontrarlas rápido; las de las entregadas, al fondo, en orden. La mesa está gastada y llena de golpes de tanto apoyar cajas encima. Aquí se sabe qué ha llegado a la ciudad y qué falta todavía.",
+   "brief": "El archivo de cargas: pendientes junto a la puerta, entregadas al fondo."
+  },
+  "veyra_puerta_campos": {
+   "description": "Un arco bajo de piedra abre la ciudad hacia los campos de Edran. Las ruedas han pulido el suelo de debajo hasta dejarlo liso y brillante. A los lados hay sitio para ajustar los sacos antes de bajar entre las primeras cercas. Por el arco entra olor a hierba y a tierra arada; hacia dentro, olor a ciudad.",
+   "brief": "La Puerta de los Campos, con su suelo pulido por las ruedas."
+  },
+  "veyra_puerta_alta": {
+   "description": "El suelo empieza a subir antes incluso de llegar a la puerta: por aquí sale el camino de la sierra de Hoshai. A un lado, una plataforma sirve para ajustar las cargas antes de la subida, porque arriba no hay sitio. Algunos viajeros vuelven por aquí con capas gruesas, de las que se usan en la montaña, y con las mejillas rojas de frío. El viento que baja de la sierra es más fresco.",
+   "brief": "La Puerta del Camino Alto y su plataforma de carga."
+  },
+  "veyra_puerta_piedra": {
+   "description": "Una puerta de la ciudad que da al camino de Korven: fuera sólo hay tierra seca y piedras sueltas que crujen. Los carros que salen llevan cargas bajas, bien sujetas con tablas, porque el camino de piedra salta mucho. Las casas cercanas tienen ventanas pequeñas, casi rendijas, para que no entre el polvo.",
+   "brief": "La puerta del camino de Korven, con sus ventanas pequeñas."
+  },
+  "veyra_puerta_juncos": {
+   "description": "Una puerta lateral junto al canal, que sigue hacia Lethra. Fuera, las casas se acaban de golpe y empiezan hondonadas de hierba alta y húmeda. Una tabla permite cambiarse el calzado embarrado sin tapar el paso, y siempre hay alguna bota sucia olvidada al lado. A lo lejos croan las ranas.",
+   "brief": "La puerta de los canales, con su tabla para el calzado."
+  },
+  "veyra_puerta_sombra": {
+   "description": "La calle se ensancha aquí para que las cargas de madera puedan girar sin rozar las paredes. Una hoja vieja de puerta, que ya no se cierra, se ha quedado apoyada contra el muro, cubierta de musgo. Más allá aparecen árboles sueltos entre parcelas viejas: es el comienzo del camino hacia el bosque de Nhal. La luz se vuelve más verde.",
+   "brief": "La puerta del bosque, con su hoja vieja contra el muro."
+  },
+  "veyra_rampa_grava": {
+   "description": "Una rampa de grava sube desde la ciudad, y cada paso hace crujir las piedrecitas. A un lado hay sitio para que los carros paren a ajustar la carga. Abajo, una hondonada se ha llenado de piedras arrastradas por las lluvias, y el camino la rodea con cuidado. Por delante empiezan las laderas de Hoshai; el aire ya es más fino y más frío.",
+   "brief": "La subida de grava que rodea la hondonada."
+  },
+  "veyra_terraplen_roca": {
+   "description": "Un camino de piedras claras que crujen al pisarlas y brillan con el sol. Un arroyo seco lo corta, y los carros lo cruzan por una entrada inclinada, despacio, para no volcar. Por detrás todavía se ve la puerta de Vaisgard; por delante, una loma tapa el resto del camino hacia Korven.",
+   "brief": "El camino de piedras claras y su arroyo seco."
+  },
+  "veyra_hondonada_canales": {
+   "description": "Varios hilos de agua se juntan aquí en un canal más grande, y el ruido del agua lo llena todo. El camino va por la orilla alta y cruza un desagüe por una pasarela corta de tablas. Desde este cruce salen tres caminos: hacia la ciudad, hacia la vegetación espesa de Lethra y por encima de una acequia, rodeando la ciudad.",
+   "brief": "El cruce de canales y su pasarela corta."
+  },
+  "veyra_lindero_arboles": {
+   "description": "Tres grupos de árboles van cerrando el camino poco a poco: aquí empieza el bosque de Nhal. Al principio caben los carros; más adelante, las raíces levantan el suelo y hay que mirar dónde se pisa. La luz se vuelve verde y el aire, más húmedo. Detrás todavía se ve la puerta de Vaisgard, y a un lado se abre un desvío hacia una cantera vieja.",
+   "brief": "La entrada al bosque, donde las raíces empiezan a levantar el suelo."
+  },
+  "veyra_cantera_callada": {
+   "description": "Una pared de piedra cortada a mano, llena de marcas de herramientas antiguas. Un bloque enorme se quedó a medio sacar, y las raíces ya crecen por encima, como si quisieran guardarlo. Aquí termina el desvío. Hace un silencio raro: los ruidos del camino no llegan, y una piedra que cae suena muy fuerte.",
+   "brief": "La cantera vieja y su bloque a medio sacar."
+  },
+  "veyra_sala_cuidados": {
+   "description": "Una puerta baja separa una mesa limpia del ruido del patio. Las camillas están colocadas sin tapar la salida, y el agua usada tiene su propio recipiente, lejos de la limpia. Aunque el mercado está a un paso, aquí dentro se oye poco: lo justo para no sentirse solo.",
+   "brief": "El cuarto de cuidados de Vaisgard, con su mesa limpia."
+  },
+  "veyra_vega_abierta": {
+   "description": "Una vega llana y abierta, sin muros, donde la hierba se mueve con el viento. Aquí se cruzan tres caminos y desde el cruce se distinguen bien los tres: uno sube a Vaisgard por la colina, otro cruza los pastos hacia Edran y otro sigue la acequia hacia los canales. Un poste de madera marca el centro, y alrededor la tierra está pisada por miles de pasos.",
+   "brief": "La vega abierta, con el poste donde se cruzan tres caminos.",
+   "return": "Desde aquí puedes ir a otro lado de la cuenca sin volver a subir al mercado."
+  },
+  "veyra_pastos_exteriores": {
+   "description": "Un camino ancho cruza hierba corta entre dos lomas redondeadas. No tiene desvíos: va de la vega al mirador de Edran sin más. A medio camino hay un bebedero para el ganado, y casi siempre algún animal bebiendo. El viento sopla libre entre flores pequeñas.",
+   "brief": "El camino de los pastos, entre dos lomas."
+  },
+  "veyra_acequia_exterior": {
+   "description": "Un camino elevado sigue una acequia por fuera de la ciudad, entre la vega y el cruce de canales que baja hacia Lethra. El agua corre a tu lado, rápida y clara, y se oye todo el tiempo. Unas tablas cubren los desagües pequeños; el canal profundo queda siempre a un lado, sin tener que cruzarlo.",
+   "brief": "El camino sobre la acequia, con sus tablas en los desagües."
+  }
+ }
+}

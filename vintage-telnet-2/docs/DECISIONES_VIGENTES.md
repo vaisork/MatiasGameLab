@@ -1,5 +1,7 @@
 # Decisiones operativas vigentes — 2026-10-08
 
+Encargo más reciente: integrar entregas de arte y Claude, publicar en main y preparar relevo al arquitecto/programador. No autoriza un segundo despliegue implícito. Producción se actualizó expresamente a d5ee227 (PR #660), con datos conservados; registro en `review/qa/raspberry-deploy/update-d5ee227/DEPLOYMENT.md`. Leer `../../docs/VT2_RELEVO_20261008.md` para rutas, SSH y operación. Las pausas anteriores quedan subordinadas a este encargo acotado.
+
 Encargo posterior: Javier pide cinco iteraciones de coherencia al caminar. Resultado: cinco recorridos API aislados, 628 movimientos en los cinco ciclos y 374 adicionales al corregir y repetir el quinto, con cobertura de las 183 salas; eliminación de giros artificiales, separación de interiores y hogares respecto a calles. Sin modificar salidas ni desplegar. Evidencia: `review/spatial-five-cycles/REVIEW.md`.
 
 Encargo posterior: Javier autoriza corregir la geografía cartográfica de todo el juego, no sólo Valdren. Atlas fijo para 183 salas y hogares, trazados estables, privacidad del descubrimiento y concordancia HTML/3D; conservar todas las salidas, progresión y mecánicas. Informe: `review/spatial-world/REVIEW.md`. Este encargo no autoriza desplegar su nueva versión en Raspberry.

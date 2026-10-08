@@ -1,0 +1,49 @@
+{
+  "codigo": {
+    "renderer": "reconciled with current navigation/LOOK and conditioned brief",
+    "combat": "text only, deterministic 1440-case equivalence",
+    "extras": "look20,echoes18,secrets10 and client counter",
+    "navigation": "known-action exits only"
+  },
+  "contenido": {
+    "description": 183,
+    "brief": 183,
+    "estados": 18,
+    "return": 12,
+    "escenas_visita": 182,
+    "look": 20,
+    "echoes": 18,
+    "propuestas": 243
+  },
+  "omitido": [],
+  "adaptaciones": [
+    "Nera topic display labels retain topic IDs",
+    "journal secret counter implemented in current client",
+    "seven descriptions retain six curved physical connections",
+    "boat bottom hidden after world rescue; neutral vela orientation",
+    "bandit keeps club after miss",
+    "canonical spatial JSON unchanged"
+  ],
+  "validation": {
+    "focal_python": 14,
+    "combat_differential_rounds": 1440,
+    "narrative_client": 22,
+    "combat_client": 14,
+    "printing": 34,
+    "passive": 4,
+    "canonical_atlas_rooms": 189,
+    "canonical_atlas_roads": 202,
+    "full_suite": {
+      "tests": 150,
+      "elapsed_seconds": 238.708,
+      "initial_failures": [
+        "new test fixture missing world.version (fixed;5 focaltestsPASS)",
+        "visibility literal changed by authored prose (updated without removing weather guards;2testsPASS)"
+      ],
+      "all_other_tests": "148 passed in full run",
+      "focused_recheck": "7 passed",
+      "limits": "full suite not rerun after fixture/literal-only fixes"
+    },
+    "browser": "parent running independent review"
+  }
+}

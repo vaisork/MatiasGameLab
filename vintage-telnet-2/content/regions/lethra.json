@@ -51,7 +51,7 @@
       "name": "Ribera seca",
       "region": "lethra",
       "kind": "road",
-      "description": "El camino sigue sobre raíces, junto a un cauce cada vez más ancho. Al norte vuelves a las hondonadas de Vaisgard; al sur empiezan las hierbas húmedas. Un ave cruza hasta la otra orilla. Su vuelo deja ver cuánto terreno escondían los tallos.",
+      "description": "El camino sigue sobre raíces, junto a un cauce que se va ensanchando y oscureciendo. Detrás quedan las hondonadas de Vaisgard; por delante empiezan las hierbas húmedas y el olor a agua. Un ave cruza volando a la otra orilla, y con su vuelo se ve cuánto terreno escondían los tallos altos. El suelo todavía está seco, pero no por mucho.",
       "day": "Una recolectora limpia su cuchillo sobre una hoja seca y junta tallos sin raíces. Su cesta desprende un olor fresco que se distingue del barro. Al cerrar la cesta, la recolectora retira una hoja del cierre.",
       "night": "Las hierbas ocultan el agua antes que las estrellas desaparezcan sobre el cauce. La recolectora ya se marchó y dejó el apoyo vacío. Un chapoteo lejano se propaga sin señalar exactamente dónde comienza la otra orilla.",
       "rain": "La ribera mantiene una franja firme mientras las pequeñas bajadas se llenan de agua. Las plantas altas se inclinan con el peso de las gotas. El olor del barro sube antes de que cambie la anchura del camino.",
@@ -72,27 +72,28 @@
       "wildlife_pool": [
         {
           "creature": "pinzajunco",
-          "text": "Una pinza desigual se levanta al borde del agua. El Pinzajunco arrastra una hoja hacia su agujero cuando los pasos siguen por tierra.",
+          "text": "En el borde del cauce, un Pinzajunco camina de lado con una hoja seca en la pinza grande. Al llegar a su agujero, la mete dentro.",
           "persistent_trace": false
         },
         {
           "creature": "saltalodo",
-          "text": "Un Saltalodo infla la bolsa del cuello y deja escapar una llamada baja. El salto siguiente rompe el reflejo lejos de la raíz seca.",
+          "text": "Un Saltalodo hincha la bolsa del cuello entre las hierbas de la orilla. Su llamada suena hondo, como una gota grande al caer.",
           "persistent_trace": false
         },
         {
           "creature": "dorsalodo",
-          "text": "Los juncos están aplastados junto al agua. Una espalda ancha se mueve bajo el barro: un Dorsalodo ocupa la orilla.",
+          "text": "En la parte ancha del cauce, una espalda rugosa asoma del agua y vuelve a hundirse. Un Dorsalodo descansa en lo hondo; sus ondas llegan hasta la orilla.",
           "persistent_trace": false
         }
-      ]
+      ],
+      "brief": "La ribera seca, junto al cauce que se ensancha."
     },
     "lethra_tierra_esponjosa": {
       "id": "lethra_tierra_esponjosa",
       "name": "Tierra blanda",
       "region": "lethra",
       "kind": "road",
-      "description": "El suelo firme se corta en manchas de hojas que se hunden al pisarlas. Al norte está la ribera seca; al sur, las raíces llevan al juncal. Dos varas marcan el paso estrecho para las cargas. Una rana permanece quieta sobre el barro.",
+      "description": "El suelo firme se corta en manchas de hojas que se hunden al pisarlas, como una esponja, y sale un poco de agua. Dos varas clavadas marcan el paso estrecho por donde pueden ir las cargas sin hundirse. Una rana te mira desde el barro sin moverse. Más adelante, las raíces llevan al juncal.",
       "day": "Una viajera se detiene a cambiar el bulto de hombro y un acompañante deja pasar a la rana antes de seguir. La pausa produce un silencio breve, lleno de insectos que seguían sonando bajo las voces.",
       "night": "Las varas marcan el paso sobre hojas oscuras. Un farol ilumina la siguiente; fuera de ese círculo se oye un insecto y el roce del agua.",
       "rain": "Las hojas flotan sobre depresiones pequeñas y el camino firme queda más estrecho. Una viajera prueba el apoyo junto a las raíces antes de cargar. La rana salta bajo las hojas y deja un círculo de agua que se deshace entre raíces.",
@@ -113,27 +114,28 @@
       "wildlife_pool": [
         {
           "creature": "pinzajunco",
-          "text": "Una pinza desigual se levanta al borde del agua. El Pinzajunco arrastra una hoja hacia su agujero cuando los pasos siguen por tierra.",
+          "text": "Junto a las varas del paso estrecho, un Pinzajunco levanta la pinza mayor hacia tus pies. No retrocede: ésa es su orilla.",
           "persistent_trace": false
         },
         {
           "creature": "saltalodo",
-          "text": "Un Saltalodo infla la bolsa del cuello y deja escapar una llamada baja. El salto siguiente rompe el reflejo lejos de la raíz seca.",
+          "text": "Sobre el barro, un Saltalodo moteado infla el cuello y llama. Cuando pisas, salta a una mancha de hojas y vuelve a llamar desde allí.",
           "persistent_trace": false
         },
         {
           "creature": "dorsalodo",
-          "text": "Los juncos están aplastados junto al agua. Una espalda ancha se mueve bajo el barro: un Dorsalodo ocupa la orilla.",
+          "text": "Más allá, hacia el juncal, la hierba alta queda aplastada en una franja ancha. Un Dorsalodo se arrastra hacia el agua, lento y pesado.",
           "persistent_trace": false
         }
-      ]
+      ],
+      "brief": "La tierra blanda y sus dos varas."
     },
     "lethra_juncal_abierto": {
       "id": "lethra_juncal_abierto",
       "name": "Paso entre los juncos",
       "region": "lethra",
       "kind": "road",
-      "description": "Los juncos se abren con el viento y dejan ver el agua. La senda vuelve al norte, hacia las raíces, y sigue al sur sobre las primeras tablas. Un desvío al oeste llega al banco de barro. Las huellas mantienen despejada una franja entre los tallos.",
+      "description": "Los juncos, más altos que tú, se abren con el viento y dejan ver el agua brillando entre ellos; luego se cierran otra vez. Las pisadas mantienen despejada una franja entre los tallos. Se oye un susurro continuo, como si el juncal hablara. Por delante empiezan las primeras tablas, y un desvío lleva a un banco de barro.",
       "day": "Una artesana elige tallos secos y deja los verdes juntos para no abrir un hueco nuevo. Al atarlos, los juncos crujen con un sonido distinto del viento. Las fibras quedan junto al borde y el centro se mantiene libre para quienes pasan.",
       "night": "Los juncos tapan el agua. Al oeste, la tierra firme señala el paso al banco de barro. Un ave llama entre los tallos; no alcanzas a verla.",
       "rain": "Los juncos pesan más y se inclinan sobre la franja de tránsito. La artesana recoge su haz alto para que no arrastre barro. Las aberturas del viento ya no muestran lo mismo, aunque la primera tabla siga al sur.",
@@ -156,14 +158,20 @@
           "text": "Una pinza desigual se levanta al borde del agua. El Pinzajunco arrastra una hoja hacia su agujero cuando los pasos siguen por tierra."
         }
       ],
-      "actions": []
+      "actions": [],
+      "brief": "El paso entre los juncos.",
+      "echoes": [
+        "Una rana salta de un junco a otro y el tallo se dobla bajo su peso.",
+        "El viento abre los juncos y por un momento se ve brillar el agua; luego se cierran otra vez.",
+        "Un Picojunco camina despacio entre los tallos, levantando mucho las patas."
+      ]
     },
     "lethra_tablas_primeras": {
       "id": "lethra_tablas_primeras",
       "name": "Primeras tablas",
       "region": "lethra",
       "kind": "road",
-      "description": "Las tablas cruzan por encima del barro sobre apoyos bajos. Al norte están los juncos; al sur se separan dos canales. El agua escurre por las uniones. Algunas tablas están más gastadas que otras. Una vara de prueba cuelga a un lado, fuera del agua.",
+      "description": "Las primeras tablas del camino cruzan por encima del barro, sobre apoyos bajos que crujen un poco al pisar. El agua escurre por las uniones y brilla entre las rendijas. Algunas tablas están más gastadas que otras: se nota por dónde pisa más la gente. A un lado cuelga una vara de prueba, fuera del agua.",
       "day": "Un carpintero camina sin carga hasta la unión que debe revisar. Sus compañeros esperan sobre tierra firme. El ruido de una tabla gastada se distingue mejor cuando nadie habla ni hace vibrar todo el tramo.",
       "night": "Las uniones interrumpen el reflejo del farol sobre las tablas. El barro queda negro debajo y no permite medir profundidad. El carpintero guardó sus herramientas, pero la vara sigue indicando dónde puede empezar una revisión prudente.",
       "rain": "El agua resbala por las juntas y deja una película sobre la madera. El carpintero levanta la tabla de repuesto del barro y la acerca a la unión gastada.",
@@ -189,22 +197,23 @@
         },
         {
           "creature": "saltalodo",
-          "text": "Un Saltalodo infla la bolsa del cuello y deja escapar una llamada baja. El salto siguiente rompe el reflejo lejos de la raíz seca.",
+          "text": "Bajo las tablas, un Saltalodo llama entre los apoyos. Su voz suena por todo el tramo de madera.",
           "persistent_trace": false
         },
         {
           "creature": "dorsalodo",
-          "text": "Los juncos están aplastados junto al agua. Una espalda ancha se mueve bajo el barro: un Dorsalodo ocupa la orilla.",
+          "text": "En uno de los dos canales, el agua se levanta en una ola sin viento. Un Dorsalodo pasa por debajo, lejos de las tablas.",
           "persistent_trace": false
         }
-      ]
+      ],
+      "brief": "Las primeras tablas sobre el barro."
     },
     "lethra_cruce_canales": {
       "id": "lethra_cruce_canales",
       "name": "Cruce de canales",
       "region": "lethra",
       "kind": "landmark",
-      "description": "Un canal corre rápido junto a otro casi quieto. Las tablas llegan del norte y la senda sale al sur por tierra firme. En una pequeña plataforma junto al paso puedes mirar cómo gira una hoja. Las plantas se doblan hacia lados distintos de la corriente.",
+      "description": "Dos canales corren juntos: uno rápido, que hace ruido y espuma, y otro casi quieto, donde flotan hojas. Las plantas de la orilla se doblan hacia lados distintos, cada una con su corriente. En una plataforma pequeña junto al paso se puede mirar cómo gira una hoja en el remanso, dando vueltas sin decidirse. Aquí se acaban las tablas y sigue la tierra firme.",
       "day": "Una Marevyn observa una hoja hasta que sale del remanso y anota el giro en una tablilla. Desde el apoyo seco señala dónde cambia la corriente y espera a que la hoja llegue al siguiente canal. Un viajero guarda su recipiente antes de acercarse a preguntar.",
       "night": "La corriente rápida conserva un rumor y el remanso devuelve reflejos más quietos. Las plantas dejan de mostrar su inclinación. Una luz sobre la plataforma ayuda a ver lo cercano, pero no descubre el fondo de ninguno de los canales.",
       "rain": "Las gotas dibujan movimiento en el remanso y dificultan comparar la hoja con su giro habitual. La observadora mira el borde de plantas en vez de seguir una superficie agitada. El canal rápido reúne agua primero.",
@@ -227,14 +236,15 @@
       "weather": {
         "niebla": "La hoja desaparece antes de llegar al siguiente canal. La observadora deja de anotar y escucha: el rumor de la corriente rápida continúa bajo el apoyo seco.",
         "viento": "El viento empuja la hoja de lado sobre el remanso. La observadora señala una planta hundida que sigue inclinándose corriente abajo y borra el último giro de su tablilla."
-      }
+      },
+      "brief": "El cruce de canales, uno rápido y otro quieto."
     },
     "lethra_ribera_firme": {
       "id": "lethra_ribera_firme",
       "name": "Ribera de las cargas",
       "region": "lethra",
       "kind": "road",
-      "description": "Recipientes cerrados esperan sobre apoyos de madera, por encima del barro. Huele a fibras mojadas y comida envuelta en hojas. Al norte vuelves al cruce de canales; al sur una curva lleva a la pasarela. Quienes descargan dejan los bultos levantados mientras buscan espacio.",
+      "description": "Recipientes cerrados esperan sobre apoyos de madera, por encima del barro, para que no se mojen. Quienes descargan dejan los bultos levantados mientras buscan sitio, y se oyen voces que se llaman de un apoyo a otro. Una curva lleva a una pasarela.",
       "day": "Dos vecinas intercambian un recipiente sin bajarlo al suelo. Una tercera reconoce por la envoltura qué debe abrirse antes. La tercera se aparta con la envoltura abierta y las otras dos vuelven a sus apoyos.",
       "night": "Los apoyos vacíos se distinguen por los travesaños bajo el farol. El olor de comida llega desde más lejos, junto a la curva. Las voces domésticas aparecen antes de que puedan verse los primeros hogares de Narevia.",
       "rain": "Los vecinos levantan sus recipientes al apoyo más alto. Las envolturas siguen cerradas; una mujer sostiene el último cuenco hasta que le acercan una tabla seca.",
@@ -255,27 +265,28 @@
       "wildlife_pool": [
         {
           "creature": "pinzajunco",
-          "text": "Una pinza desigual se levanta al borde del agua. El Pinzajunco arrastra una hoja hacia su agujero cuando los pasos siguen por tierra.",
+          "text": "Bajo un apoyo de madera, un Pinzajunco arrastra una hoja que se cayó de una envoltura. Nadie se la quita.",
           "persistent_trace": false
         },
         {
           "creature": "saltalodo",
-          "text": "Un Saltalodo infla la bolsa del cuello y deja escapar una llamada baja. El salto siguiente rompe el reflejo lejos de la raíz seca.",
+          "text": "Un Saltalodo salta de un recipiente vacío al barro y llama una vez. Una vecina se sobresalta y luego se ríe.",
           "persistent_trace": false
         },
         {
           "creature": "dorsalodo",
-          "text": "Los juncos están aplastados junto al agua. Una espalda ancha se mueve bajo el barro: un Dorsalodo ocupa la orilla.",
+          "text": "Lejos, donde el agua se ensancha, la espalda de un Dorsalodo asoma como una isla de barro. Quienes descargan siguen trabajando de este lado.",
           "persistent_trace": false
         }
-      ]
+      ],
+      "brief": "La ribera de las cargas, con sus recipientes en alto."
     },
     "lethra_pasarela_curva": {
       "id": "lethra_pasarela_curva",
       "name": "Pasarela curva",
       "region": "lethra",
       "kind": "road",
-      "description": "La pasarela rodea el agua quieta. Ves la orilla de llegada casi enfrente, pero debes seguir la curva hacia el sur para alcanzarla. Al norte queda la ribera de los recipientes. Una baranda protege el lado abierto. Más adelante asoman el techo y los postes del embarcadero.",
+      "description": "Una pasarela de madera con baranda rodea un agua tan quieta que parece un espejo. La orilla de llegada parece estar justo enfrente, a un salto, pero hay que seguir toda la curva para alcanzarla. Tus pasos suenan huecos sobre las tablas. Más adelante asoman el techo y los postes de un embarcadero.",
       "day": "Una vecina lleva un recipiente ancho por la curva. Se detiene en el ensanchamiento para dejar pasar a alguien y vuelve a mirar la orilla de enfrente.",
       "night": "Los postes reflejan fragmentos de farol y pueden parecer una línea más directa que la pasarela. La curva se sigue por tablas y uniones. El techo del embarcadero deja de ayudar a leer cada apoyo cercano.",
       "rain": "El agua golpea los postes y devuelve pequeñas salpicaduras hacia la baranda. Las plantas bajo la curva retienen restos que llegan del remanso. Los viajeros miran si alguna rama alcanzó una unión antes de pisarla.",
@@ -296,27 +307,28 @@
       "wildlife_pool": [
         {
           "creature": "pinzajunco",
-          "text": "Una pinza desigual se levanta al borde del agua. El Pinzajunco arrastra una hoja hacia su agujero cuando los pasos siguen por tierra.",
+          "text": "Abajo, junto a un poste de la pasarela, un Pinzajunco corta una hoja con la pinza pequeña y sujeta el resto con la grande.",
           "persistent_trace": false
         },
         {
           "creature": "saltalodo",
-          "text": "Un Saltalodo infla la bolsa del cuello y deja escapar una llamada baja. El salto siguiente rompe el reflejo lejos de la raíz seca.",
+          "text": "En el agua quieta, junto a la baranda, un Saltalodo llama. Al oír tus pasos en la madera, salta a una hoja flotante.",
           "persistent_trace": false
         },
         {
           "creature": "dorsalodo",
-          "text": "Los juncos están aplastados junto al agua. Una espalda ancha se mueve bajo el barro: un Dorsalodo ocupa la orilla.",
+          "text": "En medio del agua quieta, una ola ancha avanza hacia la orilla. Un Dorsalodo nada por debajo, sin acercarse a la pasarela.",
           "persistent_trace": false
         }
-      ]
+      ],
+      "brief": "La pasarela curva que rodea el agua quieta."
     },
     "lethra_embarcadero_camino": {
       "id": "lethra_embarcadero_camino",
       "name": "Embarcadero del camino",
       "region": "lethra",
       "kind": "landmark",
-      "description": "Bajo el techo se cambian las cargas del camino a pequeñas embarcaciones. Los bultos dejan libre el borde del agua. Al norte vuelves a la pasarela y al sur sigues hacia Narevia. Un poste marca el nivel del canal; otro guarda las tiras de las barcas esperadas.",
+      "description": "Bajo un techo de juncos, las cargas del camino pasan de los hombros a barcas pequeñas que se balancean. Los bultos se dejan lejos del borde del agua. Un poste con rayas marca el nivel del canal; otro guarda las tiras de las barcas que se esperan. Desde aquí, la senda sigue hacia Narevia.",
       "day": "Una encargada llama a quien espera una cesta y la recibe de mano en mano, sin lanzarla sobre el canal. Un niño identifica una tira de llegada y corre por la senda alta para avisar a su casa.",
       "night": "Las tiras de las barcas están guardadas bajo el techo. Una luz queda lejos del borde. Un vecino espera un traslado tardío, con la carga fuera del paso.",
       "rain": "Los bultos mojados esperan en el lado exterior de la cubierta. La encargada compara el nivel del agua con el poste y retira un recipiente del apoyo más bajo.",
@@ -333,14 +345,72 @@
       "arrivals": {},
       "npcs": [],
       "signals": [],
-      "actions": []
+      "actions": [],
+      "brief": "El embarcadero del camino, bajo su techo.",
+      "states": [
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_visits": {
+            "min": 3
+          },
+          "overrides": {
+            "day": "Una barca llega tan cargada que el agua casi entra por los bordes. Entre cuatro personas la descargan deprisa, riéndose de los nervios."
+          }
+        },
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_visits": {
+            "min": 5
+          },
+          "overrides": {
+            "day": "La encargada del embarcadero enseña a un niño a hacer el nudo de amarre. Le sale torcido, pero aguanta; ella le da una palmada en la espalda."
+          }
+        },
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_visits": {
+            "min": 8
+          },
+          "overrides": {
+            "day": "Una barca vieja llega con la vela llena de remiendos de colores. El barquero dice que cada remiendo es un viaje."
+          }
+        },
+        {
+          "requires_time": [
+            "noche"
+          ],
+          "requires_visits": {
+            "min": 3
+          },
+          "overrides": {
+            "night": "Bajo el techo, las barcas amarradas se mecen y crujen. Una lámpara alumbra el poste del nivel del agua."
+          }
+        },
+        {
+          "requires_time": [
+            "noche"
+          ],
+          "requires_visits": {
+            "min": 6
+          },
+          "overrides": {
+            "night": "Un vecino que espera su traslado tardío se ha quedado dormido sentado sobre su carga, con la cabeza apoyada en un poste."
+          }
+        }
+      ]
     },
     "lethra_senda_elevada": {
       "id": "lethra_senda_elevada",
       "name": "Senda sobre el agua",
       "region": "lethra",
       "kind": "road",
-      "description": "Pasas frente a viviendas separadas por canales. Sus puertas abren a plataformas propias, fuera del camino. Al norte queda el embarcadero; al sur se oyen las voces de Narevia. Una vecina levanta comida hacia una ventana y otra devuelve un recipiente. Se llaman por sus nombres sobre el agua.",
+      "description": "Una senda elevada pasa frente a viviendas separadas por canales. Cada puerta da a su propia plataforma, fuera del camino, con macetas y redes colgadas. La gente se llama por su nombre de una casa a otra, por encima del agua, y se pasan cosas con cestas atadas a cuerdas. Por delante ya se oyen las voces de Narevia.",
       "day": "Desde una ventana bajan una cesta y desde la siguiente devuelven dos paños doblados. La vecina llama a quien espera y le pide que acerque el asa.",
       "night": "Las ventanas se iluminan por separado y sus reflejos no dibujan otra senda sobre el canal. Los recipientes se recogen en plataformas propias. La plaza sigue audible al sur, aunque las conversaciones de las casas se vuelvan más breves.",
       "rain": "Los vecinos acercan las plataformas móviles a sus puertas y sujetan recipientes que estaban esperando. La senda pública continúa elevada sobre las corrientes pequeñas. Las viviendas responden a la lluvia sin intentar cerrar todos los canales.",
@@ -366,13 +436,71 @@
         },
         {
           "creature": "saltalodo",
-          "text": "Un Saltalodo infla la bolsa del cuello y deja escapar una llamada baja. El salto siguiente rompe el reflejo lejos de la raíz seca.",
+          "text": "Entre dos plataformas, un Saltalodo llama desde una hoja. Desde una ventana, alguien le contesta imitándolo.",
           "persistent_trace": false
         },
         {
           "creature": "dorsalodo",
-          "text": "Los juncos están aplastados junto al agua. Una espalda ancha se mueve bajo el barro: un Dorsalodo ocupa la orilla.",
+          "text": "Por un canal ancho entre las viviendas pasa despacio una espalda rugosa: un Dorsalodo. Las vecinas suben las cestas a las ventanas mientras pasa.",
           "persistent_trace": false
+        }
+      ],
+      "brief": "La senda sobre el agua, entre casas y canales.",
+      "states": [
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_visits": {
+            "min": 3
+          },
+          "overrides": {
+            "day": "Desde una ventana, alguien baja un cesto con una cuerda hasta una barca que pasa. El de la barca coge una fruta, deja otra a cambio y sigue remando."
+          }
+        },
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_visits": {
+            "min": 5
+          },
+          "overrides": {
+            "day": "Un niño pesca desde su plataforma con un hilo y una miga de pan. Saca un pez tan pequeño que lo devuelve al agua pidiéndole perdón."
+          }
+        },
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_visits": {
+            "min": 8
+          },
+          "overrides": {
+            "day": "Las casas de la senda han colgado paños de colores entre las ventanas: hoy alguien cumple años. Desde una plataforma tiran pétalos al agua."
+          }
+        },
+        {
+          "requires_time": [
+            "noche"
+          ],
+          "requires_visits": {
+            "min": 3
+          },
+          "overrides": {
+            "night": "Las ventanas se iluminan una a una y sus luces tiemblan en el canal. Alguien canta mientras friega."
+          }
+        },
+        {
+          "requires_time": [
+            "noche"
+          ],
+          "requires_visits": {
+            "min": 6
+          },
+          "overrides": {
+            "night": "Una barca pasa en silencio bajo la senda, empujada con una pértiga. Sólo se oye el agua apartándose."
+          }
         }
       ]
     },
@@ -381,7 +509,7 @@
       "name": "Plaza de Narevia",
       "region": "lethra",
       "kind": "settlement",
-      "description": "Narevia ocupa una isla baja unida por pasarelas. Al norte está el camino terrestre, al este el taller, al sur el mercado y al oeste la ribera que sale hacia Edran. Los Marevyn pasan entre barcas y plataformas; los apoyos altos conservan espacio seco junto a la plaza.",
+      "description": "Narevia ocupa una isla baja unida por pasarelas, y todo parece flotar. Los Marevyn pasan entre barcas y plataformas con una facilidad que da envidia; algunos saltan al agua y salen por el otro lado. Los apoyos altos dejan un sitio seco junto a la plaza. Huele a agua, a pescado asado y a madera. Desde aquí se reparten el taller, el mercado, el camino de tierra y la ribera que sale hacia Edran.",
       "day": "Una familia reparte comida sobre la plataforma alta. Quien cuenta una visita de la otra orilla espera al final del martilleo para repetir el nombre; un niño sopla su cuenco.",
       "night": "Un cuenco queda junto a una cuchara húmeda. Desde una ventana cuentan el final de una visita; otra voz pregunta qué ocurrió con la barca.",
       "rain": "Los vecinos trasladan bancos al nivel alto y dejan libres las uniones de las pasarelas. Los recipientes de comida pasan bajo cubiertas cortas. La plaza sigue reuniendo conversaciones, pero las voces esperan el ruido de los chaparrones.",
@@ -434,6 +562,50 @@
           "requires_time": [
             "día"
           ],
+          "requires_visits": {
+            "min": 5
+          },
+          "overrides": {
+            "day": "Llega una barca a la plaza y los niños corren a ayudar a amarrarla. El más pequeño sujeta la cuerda con las dos manos, muy concentrado, aunque la barca ya está quieta."
+          }
+        },
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_visits": {
+            "min": 8
+          },
+          "overrides": {
+            "day": "Dos familias comparten comida en la plataforma alta: una ha traído pescado y la otra pan. Discuten en broma cuál de las dos cosas sabe mejor mojada en el caldo."
+          }
+        },
+        {
+          "requires_time": [
+            "noche"
+          ],
+          "requires_visits": {
+            "min": 3
+          },
+          "overrides": {
+            "night": "Una barca pasa despacio bajo las pasarelas, con un farol en la proa. Su luz se mueve por el agua y por las caras de quienes miran desde arriba."
+          }
+        },
+        {
+          "requires_time": [
+            "noche"
+          ],
+          "requires_visits": {
+            "min": 6
+          },
+          "overrides": {
+            "night": "Desde una plataforma, alguien cuenta en voz baja la historia de la barca. Los niños, ya acostados, piden que la cuente otra vez desde el principio."
+          }
+        },
+        {
+          "requires_time": [
+            "día"
+          ],
           "requires_weather": [
             "niebla"
           ],
@@ -447,6 +619,18 @@
       ],
       "focus": [
         "activity"
+      ],
+      "brief": "La plaza de Narevia, en su isla de pasarelas.",
+      "look": {
+        "norte": "Una senda elevada sale sobre el agua, entre casas con plataformas propias.",
+        "este": "Un taller con el techo abierto al canal; se ven hilos colgados como cortinas.",
+        "sur": "Barcas que descargan cestas directamente en los puestos. Huele a fruta y a madera mojada.",
+        "oeste": "Los apoyos de madera se separan y el barro deja paso a tierra seca: por ahí se va hacia los campos de Edran."
+      },
+      "echoes": [
+        "Una barca pasa bajo una pasarela y quien rema se agacha justo a tiempo.",
+        "Alguien se tira al agua desde una plataforma con un chapuzón y sale por el otro lado riendo.",
+        "Un pescado salta en el canal y vuelve a caer; un niño lo señala, pero ya no está."
       ]
     },
     "lethra_taller_fibras": {
@@ -454,7 +638,7 @@
       "name": "Taller de fibras",
       "region": "lethra",
       "kind": "interior",
-      "description": "Haces de fibra esperan bajo un techo abierto hacia el canal. Los hilos secos cuelgan altos y los húmedos quedan en recipientes bajos. Una artesana los prueba con los dedos. Al oeste vuelves a la plaza; al sur está la plataforma de secado. La mesa deja escurrir el agua. Una puerta al este lleva al lugar de cuidados.",
+      "description": "Un taller con el techo abierto hacia el canal, por donde entra luz que se mueve con el agua. Los haces de fibra esperan bajo cubierta; los hilos secos cuelgan altos, como cortinas, y los húmedos quedan en recipientes bajos. La mesa está hecha para que escurra el agua. Una puerta da al lugar de cuidados.",
       "day": "Una artesana separa dos fibras y deja una pequeña horquilla entre ellas. Su compañera prueba la tensión del trenzado con el pulgar y deshace una vuelta demasiado apretada.",
       "night": "El trenzado queda suspendido de una horquilla. Una fibra suelta roza la mesa cuando el agua mueve el apoyo de abajo.",
       "rain": "La humedad vuelve menos útiles las fibras que esperaban secarse junto al techo. La artesana mueve ese haz hacia el interior y deja el húmedo donde puede seguir trabajándose. La lluvia cambia prioridades sin detener todas las manos.",
@@ -533,21 +717,22 @@
         "activity"
       ],
       "dawn": "La horquilla sostiene dos fibras todavía húmedas. Una artesana prueba primero la muestra guardada bajo la mesa.",
-      "dusk": "La vuelta que se deshizo queda abierta junto a la muestra. La artesana estira los dedos antes de guardar la horquilla."
+      "dusk": "La vuelta que se deshizo queda abierta junto a la muestra. La artesana estira los dedos antes de guardar la horquilla.",
+      "brief": "El taller de fibras, abierto al canal."
     },
     "lethra_plataforma_secado": {
       "id": "lethra_plataforma_secado",
       "name": "Plataforma de secado",
       "region": "lethra",
       "kind": "landmark",
-      "description": "Los paños cuelgan sobre barras separadas para que no se toquen con el viento. Uno conserva remiendos de manos distintas. Al norte vuelves al taller; al este hay un banco para conversar. El canal estrecho corre debajo del borde y deja entrar aire por ambos lados.",
+      "description": "Los paños cuelgan de barras separadas para que el viento no los junte, y ondean como velas. Uno de ellos tiene remiendos de manos muy distintas: puntadas grandes, pequeñas, de muchos colores. El canal estrecho corre por debajo del borde y deja entrar aire por los dos lados. Junto a la plataforma hay un banco para conversar.",
       "day": "Una vecina recoge primero las barras del lado que ya recibió sol y deja las otras abiertas. Su compañero señala una costura que aprendió de su madre. Pasa el pulgar por aquella costura y dobla el extremo que ya está seco.",
       "night": "Las barras quedan vacías y permiten ver reflejos del canal entre ellas. El paño común se guarda en una caja alta. El descanso oriental conserva un banco donde puede hablarse sin pisar el espacio de secado.",
       "rain": "Los vecinos recogen las barras y separan el paño común de los recién mojados. Una costura floja queda sostenida hasta que se seque.",
       "clear": "",
       "return": "La costura corta vuelve a verse entre las uniones del paño extendido. Recuerdas la caja alta donde lo guardaron al terminar.",
       "examine": {
-        "costuras": "Distintas manos repararon el paño a lo largo de reuniones familiares.",
+        "costuras": "Distintas manos repararon el paño en distintas reuniones familiares. La costura más corta todavía está húmeda al tocarla; las demás ya secaron.",
         "caja": "Se eleva para conservar seco lo que cubre alimentos."
       },
       "exits": {
@@ -606,14 +791,15 @@
             "return": "La caja abierta recuerda tu propuesta de esperar al paño. La costura sigue siendo el punto que Mira comprueba antes de llevarlo."
           }
         }
-      ]
+      ],
+      "brief": "La plataforma de secado, con el paño de los remiendos."
     },
     "lethra_banco_conversacion": {
       "id": "lethra_banco_conversacion",
       "name": "Banco junto al canal",
       "region": "lethra",
       "kind": "landmark",
-      "description": "El agua lleva voces bajo el banco. Hay sitio para un recipiente y para quien espera. Al oeste vuelves a los paños; al sur está la cocina.",
+      "description": "Un banco de madera junto al canal, con sitio para un recipiente y para quien espera. El agua trae voces por debajo, de otras plataformas, y a veces se entiende alguna palabra. Desde aquí se ve la ventana de la cocina, y llega olor a caldo.",
       "day": "La habitante repasa una frase antes de decirla y luego guarda silencio para escuchar pasos. Un vecino deja un recipiente y continúa hacia la cocina. Una mujer guarda sitio con un recipiente vacío. Quien espera a su hermana mira la ventana de la cocina y pregunta si ya empezó la cena.",
       "night": "La luz de la cocina deja un lado del banco visible y el otro más oscuro. Quien espera puede reconocer la llegada por la pasarela. Las voces del mercado disminuyen y el agua ocupa los huecos entre conversaciones.",
       "rain": "La mujer acerca su recipiente al centro cubierto del banco. Hace sitio a quien llega y vuelve a mirar la ventana de la cocina.",
@@ -630,14 +816,15 @@
       "arrivals": {},
       "npcs": [],
       "signals": [],
-      "actions": []
+      "actions": [],
+      "brief": "El banco junto al canal."
     },
     "lethra_cocina_reunion": {
       "id": "lethra_cocina_reunion",
       "name": "Cocina vecinal",
       "region": "lethra",
       "kind": "interior",
-      "description": "Huele a hierbas, raíces y humo. El fuego está sobre suelo seco, lejos del canal. Los vecinos acercan sus utensilios a la mesa. Una olla vieja tiene la base reparada y el asa envuelta para no quemarse. La salida del norte vuelve al banco de conversación.",
+      "description": "Huele a hierbas, raíces y humo, y el calor del fuego te envuelve al entrar. El fuego está sobre suelo seco, lejos del canal. Los vecinos acercan sus utensilios a la mesa larga, cada uno con su marca. Una olla vieja tiene la base reparada y el asa envuelta para no quemarse; el caldo burbujea dentro.",
       "day": "Una cocinera levanta la tapa y deja salir olor a hierbas. Alguien prueba con una cuchara, espera y acerca el cuenco a otra persona para que decida si falta sal.",
       "night": "La tapa conserva gotas por dentro. Una familia recoge los últimos cuencos; desde el canal llega el golpe de una barca contra su amarre.",
       "rain": "Se secan los bordes de los recipientes antes de acercarlos al fuego. Nima lleva la reunión a la plataforma alta y mantiene la olla bajo techo.",
@@ -734,14 +921,15 @@
       ],
       "focus": [
         "activity"
-      ]
+      ],
+      "brief": "La cocina vecinal y su olla de base reparada."
     },
     "lethra_mercado_hojas": {
       "id": "lethra_mercado_hojas",
       "name": "Mercado de Narevia",
       "region": "lethra",
       "kind": "settlement",
-      "description": "Las barcas traen alimentos en cestas levantadas del fondo. Los puestos separan las envolturas abiertas de las que deben conservar humedad. Huele a hierbas cortadas y madera mojada. Al norte queda la plaza; al sur está el muelle. Los vendedores preparan bultos distintos para comer cerca o viajar.",
+      "description": "Las barcas traen la comida en cestas levantadas del fondo, y la descargan directamente en los puestos. Se separan las envolturas abiertas, para comer cerca, de las que se guardan húmedas para el viaje. Huele a hierbas cortadas, a fruta y a madera mojada. Se oye regatear y reír. Más allá está el muelle.",
       "day": "Iria abre una envoltura y huele lo que contiene antes de ofrecerla. Una compradora aparta una hoja rota del borde y la guarda para remendar la suya.",
       "night": "Las hojas de los puestos dejan un olor húmedo sobre la mesa. Una vendedora cuenta dos recipientes vacíos y llama al dueño del tercero.",
       "rain": "Los vendedores levantan las cestas y retiran hojas salpicadas de agua sucia. Las barcas esperan lejos de las pasarelas hasta que quede sitio para descargar.",
@@ -777,6 +965,61 @@
           "requires_time": [
             "día"
           ],
+          "requires_visits": {
+            "min": 3
+          },
+          "overrides": {
+            "day": "Llega una barca cargada de fruta y quien rema lanza una pieza a la vendedora del primer puesto. Ella la coge al vuelo sin dejar de hablar con una clienta."
+          }
+        },
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_visits": {
+            "min": 5
+          },
+          "overrides": {
+            "day": "Un niño Marevyn bucea bajo la barca del mercado y sale por el otro lado con una hoja en la cabeza, como un sombrero. Los vendedores aplauden."
+          }
+        },
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_visits": {
+            "min": 8
+          },
+          "overrides": {
+            "day": "Hoy han llegado unas frutas de piel morada que nadie conoce. Los vendedores las prueban, ponen caras raras... y luego piden otra."
+          }
+        },
+        {
+          "requires_time": [
+            "noche"
+          ],
+          "requires_visits": {
+            "min": 3
+          },
+          "overrides": {
+            "night": "Las barcas del mercado chocan suavemente contra los postes: toc, toc, como si llamaran."
+          }
+        },
+        {
+          "requires_time": [
+            "noche"
+          ],
+          "requires_visits": {
+            "min": 6
+          },
+          "overrides": {
+            "night": "Un vendedor duerme en su barca, tapado con una manta, para salir temprano. Se le oye roncar por encima del agua."
+          }
+        },
+        {
+          "requires_time": [
+            "día"
+          ],
           "requires_weather": [
             "viento"
           ],
@@ -787,6 +1030,12 @@
       ],
       "focus": [
         "people"
+      ],
+      "brief": "El mercado de Narevia, entre barcas y cestas.",
+      "echoes": [
+        "Una barca nueva llega al mercado y alguien grita «¡fruta fresca!» antes de amarrarla.",
+        "Una clienta huele una envoltura, arruga la nariz y elige otra.",
+        "El agua golpea suavemente los postes del puesto: chap, chap."
       ]
     },
     "lethra_muelle_vecinal": {
@@ -794,7 +1043,7 @@
       "name": "Muelle de las cestas",
       "region": "lethra",
       "kind": "settlement",
-      "description": "Pequeñas barcas esperan junto a apoyos de distintas alturas. Las cestas vacías se agrupan por dueño; algunas asas tienen remiendos viejos. Al norte vuelves al mercado; al este llegas al patio de ventanas. Desde otra plataforma llaman a alguien para devolverle su cesta.",
+      "description": "Barcas pequeñas esperan junto a apoyos de distintas alturas, chocando suavemente unas con otras. Las cestas vacías se agrupan por dueño; algunas tienen el asa remendada. Desde otra plataforma llaman a alguien para devolverle su cesta.",
       "day": "Una vecina reconoce su cesta por el asa remendada y la levanta antes de que llegue otra carga. Un niño devuelve una que tomó su familia.",
       "night": "Las embarcaciones se sujetan cerca de apoyos altos y las cestas pendientes quedan bajo una cubierta. El muelle guarda nombres sin pronunciarse todo el tiempo. Una llegada puede despertar a una casa sin ocupar la plaza entera.",
       "rain": "Las cestas se trasladan según dónde queda seca su cubierta, conservando separados los grupos de dueños. Las cuerdas húmedas se revisan con calma antes de bajar un apoyo. La devolución no termina por dejar todo en cualquier borde.",
@@ -811,14 +1060,15 @@
       "arrivals": {},
       "npcs": [],
       "signals": [],
-      "actions": []
+      "actions": [],
+      "brief": "El muelle de las cestas."
     },
     "lethra_patio_ventanas": {
       "id": "lethra_patio_ventanas",
       "name": "Patio de las ventanas",
       "region": "lethra",
       "kind": "settlement",
-      "description": "Las ventanas se miran sobre un patio estrecho con agua entre las casas. Puedes volver al muelle por el oeste, salir a la ribera sombreada al norte o visitar las barcas en reparación al este. Junto a las entradas queda sitio para llamar y esperar una respuesta.",
+      "description": "Un patio estrecho con agua entre las casas, donde las ventanas se miran unas a otras tan de cerca que se podría pasar una taza de una a otra. Junto a cada entrada queda sitio para llamar y esperar respuesta. Se oyen conversaciones de ventana a ventana. Desde aquí se va al muelle, a una ribera con sombra y al patio donde se arreglan las barcas.",
       "day": "Una vecina sacude un paño lejos de la ventana donde se reparte comida. Otra abre una entrada de espera para un visitante.",
       "night": "Las ventanas iluminadas muestran manos y recipientes antes que rostros completos. Una llamada espera respuesta desde la entrada pública. El canal mantiene separados los hogares aun cuando sus reflejos parecen reunirse sobre la misma superficie.",
       "rain": "Los paños se guardan dentro y las visitas esperan bajo un saliente del paso público. Una ventana mantiene abierta la voz mientras protege la mesa. Los vecinos cubren sus propios umbrales y llaman a quienes esperan antes de abrirles la puerta.",
@@ -836,14 +1086,72 @@
       "arrivals": {},
       "npcs": [],
       "signals": [],
-      "actions": []
+      "actions": [],
+      "brief": "El patio de las ventanas, con agua entre las casas.",
+      "states": [
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_visits": {
+            "min": 3
+          },
+          "overrides": {
+            "day": "Desde dos ventanas enfrentadas, dos niñas se lanzan una pelota de trapo por encima del agua. Cuando cae al canal, una de ellas se tira a buscarla nadando."
+          }
+        },
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_visits": {
+            "min": 5
+          },
+          "overrides": {
+            "day": "Una vecina riega las plantas de su ventana con una jarra, y el agua que sobra cae al canal con un ruido de lluvia pequeña."
+          }
+        },
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_visits": {
+            "min": 8
+          },
+          "overrides": {
+            "day": "Hoy un plato va de ventana en ventana por todo el patio, y cada familia le añade algo. Al llegar a la última casa, el plato está lleno."
+          }
+        },
+        {
+          "requires_time": [
+            "noche"
+          ],
+          "requires_visits": {
+            "min": 3
+          },
+          "overrides": {
+            "night": "Las ventanas iluminadas muestran manos que recogen platos y apagan velas. Una voz dice «buenas noches» y otra le contesta desde enfrente."
+          }
+        },
+        {
+          "requires_time": [
+            "noche"
+          ],
+          "requires_visits": {
+            "min": 6
+          },
+          "overrides": {
+            "night": "El patio está a oscuras, pero el agua refleja una sola ventana encendida, y su luz tiembla entre las casas."
+          }
+        }
+      ]
     },
     "lethra_cuidado_barcas": {
       "id": "lethra_cuidado_barcas",
       "name": "Patio de las barcas",
       "region": "lethra",
       "kind": "landmark",
-      "description": "Las barcas descansan inclinadas sobre una plataforma para escurrir el agua y revisar sus uniones. Una cuidadora guarda piezas de otras reparaciones junto a las herramientas. El canal queda debajo, al sur. La única salida vuelve al oeste, hacia el patio de ventanas.",
+      "description": "Las barcas descansan inclinadas sobre una plataforma, boca abajo o de lado, para que escurran y se puedan revisar sus uniones. Junto a las herramientas se guardan piezas de otras reparaciones, por si sirven. El canal pasa por debajo, y se oye el agua golpeando los postes.",
       "day": "La cuidadora muestra la unión desde el lado seco. El aprendiz señala la abertura por donde vio salir agua; ella gira la pieza y acerca una cuña pequeña.",
       "night": "Las barcas permanecen inclinadas y las herramientas quedan guardadas bajo una cubierta. El canal devuelve golpes de agua contra apoyos vacíos. Una luz doméstica alcanza el borde de la plataforma y deja las uniones en sombra.",
       "rain": "La humedad tapa las marcas de la unión. La cuidadora deja de revisarla, la cubre y anota qué falta por mirar cuando se seque.",
@@ -919,14 +1227,15 @@
             "dusk": "La cuidadora asegura la cubierta para pasar la noche. La unión pendiente conserva su sitio; la revisión seguirá cuando se seque."
           }
         }
-      ]
+      ],
+      "brief": "El patio de las barcas, inclinadas para escurrir."
     },
     "lethra_banco_barro": {
       "id": "lethra_banco_barro",
       "name": "Banco de barro",
       "region": "lethra",
       "kind": "wilderness",
-      "description": "El barro de este banco es firme, con un canal profundo delante. Al este vuelves al juncal; al sur puedes acercarte a la orilla. Algunas ondas avanzan contra el viento. Un tallo se mueve cuando los demás quedan quietos, sin dejar ver qué pasa debajo.",
+      "description": "Un banco de barro firme, con un canal profundo y oscuro delante. Algunas ondas avanzan contra el viento, cosa que no debería pasar. Un tallo se mueve cuando los demás están quietos, y no se ve qué pasa debajo. Hay un silencio extraño.",
       "day": "Una observadora permanece de lado para no proyectar toda su sombra sobre el agua. Espera otra onda antes de anotarla. Su paciencia deja oír insectos que seguían allí durante el paso apresurado de las cargas.",
       "night": "El canal conserva sonidos leves. La observadora recoge su nota y vuelve hacia el juncal; el barro del banco queda oscuro detrás.",
       "rain": "Las gotas llenan el canal de ondas. La observadora señala los tallos aplastados: aún pueden verse, aunque los movimientos del agua se confundan.",
@@ -947,27 +1256,28 @@
       "wildlife_pool": [
         {
           "creature": "pinzajunco",
-          "text": "Una pinza desigual se levanta al borde del agua. El Pinzajunco arrastra una hoja hacia su agujero cuando los pasos siguen por tierra.",
+          "text": "En el barro firme, un Pinzajunco excava su agujero con la pinza grande. Se para y la apunta hacia ti.",
           "persistent_trace": false
         },
         {
           "creature": "saltalodo",
-          "text": "Un Saltalodo infla la bolsa del cuello y deja escapar una llamada baja. El salto siguiente rompe el reflejo lejos de la raíz seca.",
+          "text": "Un Saltalodo llama desde el borde del canal profundo. Después se queda quieto, mirando las ondas.",
           "persistent_trace": false
         },
         {
           "creature": "dorsalodo",
-          "text": "Los juncos están aplastados junto al agua. Una espalda ancha se mueve bajo el barro: un Dorsalodo ocupa la orilla.",
+          "text": "Las ondas que van contra el viento las mueve un cuerpo grande. En el canal profundo, un Dorsalodo asoma los ojos y un trozo de espalda.",
           "persistent_trace": false
         }
-      ]
+      ],
+      "brief": "El banco de barro, frente al canal profundo."
     },
     "lethra_orilla_silente": {
       "id": "lethra_orilla_silente",
       "name": "Orilla del canal",
       "region": "lethra",
       "kind": "wilderness",
-      "description": "La orilla termina junto al canal. El agua parece quieta y no ves el fondo. Al norte vuelves al banco de barro; al oeste, unas raíces ofrecen sitio para observar.",
+      "description": "La orilla termina junto al canal. El agua parece quieta y no ves el fondo; es tan oscura que refleja el cielo como un espejo negro. No se oyen ranas ni pájaros. Unas raíces, a un lado, ofrecen sitio para observar.",
       "day": "Una burbuja rompe la superficie cerca de una hoja quieta. El agua vuelve a quedar lisa; desde otra orilla se oye una herramienta, una sola vez.",
       "night": "La hoja roza el borde de la orilla. Después sólo queda el agua contra la madera.",
       "rain": "El agua llena parte de los arrastres y conserva la inclinación de los tallos. La observadora anota qué detalle dejó de verse. El canal cubre las marcas bajas. La raíz alta conserva el lugar donde puedes esperar antes de decidir si sigues.",
@@ -975,7 +1285,16 @@
       "return": "Reconoces la entrada ancha entre los tallos aplastados. Junto a las raíces queda el apoyo desde el que miraste los arrastres sin bajar al borde.",
       "examine": {
         "arrastres": "Son anchos y entran en el canal; no tienen la forma del tránsito de una cesta por la senda.",
-        "raíces": "El apoyo occidental permite observar fuera del borde marcado."
+        "raíces": "El apoyo occidental permite observar fuera del borde marcado.",
+        "fondo": {
+          "requires_species": [
+            "marevyn"
+          ],
+          "text": "Acercas la cara al agua y tus ojos se acostumbran enseguida. En el fondo, entre el barro, hay una barquita de juguete con la vela rota. En el casco, rayado con cuidado: SOLA.",
+          "forbids_flags": [
+            "lethra_barquita_rescatada"
+          ]
+        }
       },
       "exits": {
         "norte": "lethra_banco_barro",
@@ -992,7 +1311,24 @@
           ]
         }
       ],
-      "actions": [],
+      "actions": [
+        {
+          "id": "lethra_secreto_barquita",
+          "label": "Sacar la barquita y dejarla en la raíz",
+          "requires_species": [
+            "marevyn"
+          ],
+          "forbids_flags": [
+            "lethra_barquita_rescatada"
+          ],
+          "set_flags": [
+            "lethra_barquita_rescatada"
+          ],
+          "scope": "world",
+          "text": "Metes el brazo hasta el codo, sin moverte del borde. La barquita sale llena de barro y agua. La vacías y la dejas en la raíz seca, con la vela hacia arriba.",
+          "journal": "Sacaste del canal una barquita de juguete con el nombre de Sola y la dejaste secando en la raíz."
+        }
+      ],
       "states": [
         {
           "requires_time": [
@@ -1004,20 +1340,31 @@
           "overrides": {
             "day": "Las ondas llevan la hoja hasta el borde. Cuando el aire cae, un círculo pequeño crece en la franja protegida y vuelve a desaparecer."
           }
+        },
+        {
+          "requires_flags": [
+            "lethra_barquita_rescatada"
+          ],
+          "overrides": {
+            "examine": {
+              "raíces": "En la raíz seca hay una barquita de juguete con la vela rota. Alguien la sacó del canal; en el casco pone SOLA."
+            }
+          }
         }
       ],
       "focus": [
         "activity"
       ],
       "dawn": "La hoja queda inmóvil en el agua clara. Una burbuja pequeña aparece junto al borde y desaparece.",
-      "dusk": "La hoja pierde su reflejo antes de que el canal oscurezca. Desde la otra orilla llega un solo golpe."
+      "dusk": "La hoja pierde su reflejo antes de que el canal oscurezca. Desde la otra orilla llega un solo golpe.",
+      "brief": "La orilla del canal, de agua quieta y sin fondo a la vista."
     },
     "lethra_raices_observacion": {
       "id": "lethra_raices_observacion",
       "name": "Raíces junto al agua",
       "region": "lethra",
       "kind": "landmark",
-      "description": "Las raíces ofrecen un apoyo firme, separado del canal por barro intacto. Puedes mirar las marcas sin pisarlas. Una tira de tela guarda una nota sobre lo visto junto al agua. La salida del este vuelve a la orilla; desde allí se regresa al banco.",
+      "description": "Unas raíces gruesas dan apoyo firme, separadas del canal por barro sin pisar. Desde aquí se pueden mirar las marcas del suelo sin borrarlas. Una tira de tela atada a una raíz guarda una nota sobre lo que se ha visto junto al agua.",
       "day": "Una cuidadora ata la nota sin apretar la raíz viva y deja una cara visible desde el sendero. Otra persona escucha antes de decidir si continúa hacia la orilla. Quien escucha mira la entrada ancha y después el sendero por donde puede volver.",
       "night": "La nota pierde legibilidad y la cuidadora la guarda bajo una cubierta cercana. El apoyo firme sigue ahí, pero el canal no muestra detalles suficientes para la misma comparación. La vuelta puede hacerse por el sendero que ya conoces.",
       "rain": "El barro intacto recibe gotas sin huellas nuevas y ofrece un contraste con la entrada del canal. La cuidadora mantiene su nota separada de raíces mojadas. La información incluye lluvia antes de hablar de cambios en arrastres.",
@@ -1056,14 +1403,15 @@
           ],
           "text": "La nota que dejaste conserva lugar y condición del canal. Otra persona puede leerla desde el apoyo sin seguir los arrastres al agua."
         }
-      ]
+      ],
+      "brief": "Las raíces junto al agua, con su nota atada."
     },
     "lethra_ribera_oeste": {
       "id": "lethra_ribera_oeste",
       "name": "Ribera hacia Edran",
       "region": "lethra",
       "kind": "road",
-      "description": "Los apoyos se separan conforme te alejas de Narevia. Al este vuelves al pueblo; al oeste llegas al hito junto a la ruta de Edran. Bajo una cubierta común puedes ajustar las envolturas. Los viajeros de los llanos retiran de sus pies tierra distinta al barro del canal.",
+      "description": "Los apoyos de madera se separan a medida que te alejas de Narevia, y el barro deja paso a la tierra seca de los llanos: este camino sale hacia Edran. Bajo una cubierta común se pueden ajustar las envolturas y sacudirse el agua. Detrás todavía se oyen las voces del pueblo sobre el agua.",
       "day": "Una viajera de campo sacude su capa lejos de las envolturas de comida. Un vecino le señala el apoyo exterior y le acerca un paño para las manos.",
       "night": "Las luces del pueblo se reflejan al este mientras el terreno occidental absorbe la oscuridad. La cubierta conserva un lugar de espera. Un viaje puede terminar su preparación sin fingir que conoce toda la Tierra Húmeda.",
       "rain": "El barro cae de las cargas sobre el apoyo exterior. Bajo la cubierta interior quedan los paquetes; una gota rueda desde la hierba occidental hasta la tabla de entrada.",
@@ -1105,12 +1453,12 @@
         },
         {
           "creature": "pinzajunco",
-          "text": "Una pinza desigual se levanta al borde del agua. El Pinzajunco arrastra una hoja hacia su agujero cuando los pasos siguen por tierra.",
+          "text": "Un Pinzajunco cruza de lado por el barro, fuera de la cubierta, y arrastra un trozo de envoltura hasta su agujero.",
           "persistent_trace": false
         },
         {
           "creature": "saltalodo",
-          "text": "Un Saltalodo infla la bolsa del cuello y deja escapar una llamada baja. El salto siguiente rompe el reflejo lejos de la raíz seca.",
+          "text": "En el borde del barro, un Saltalodo llama hacia los pastos del oeste. Desde allí no le contesta ninguno.",
           "persistent_trace": false
         }
       ],
@@ -1121,14 +1469,15 @@
           ],
           "text": "Reconoces el borde que permite evitar la parada sin cambiar de ruta regional."
         }
-      ]
+      ],
+      "brief": "La ribera hacia Edran, con su cubierta común."
     },
     "lethra_hito_tierra": {
       "id": "lethra_hito_tierra",
       "name": "Cruce del puente",
       "region": "lethra",
       "kind": "road",
-      "description": "Dos piedras marcan la franja alta junto al terreno inundable. Al este queda la senda de Narevia; al oeste cruzas hacia el puente de Edran. Un desvío al sur lleva al remanso de las aves. Las marcas de crecidas siguen en el suelo bajo.",
+      "description": "Dos piedras marcan la franja alta junto al terreno que se inunda. En el suelo de abajo siguen las marcas de las crecidas, como rayas en un tronco. Detrás queda la senda de Narevia; por delante, un puente cruza hacia Edran, y un desvío lleva a un remanso donde se oyen aves.",
       "day": "Una cuidadora comprueba que las piedras puedan verse desde la senda alta y retira una rama del apoyo menor. Un viajero compara sus zapatos con el barro de abajo antes de escoger por dónde continuará.",
       "night": "Las piedras sólo se ven de cerca; el terreno bajo queda oscuro. Se oye un ave en el remanso del sur. La cuidadora deja su marca junto al apoyo alto.",
       "rain": "El agua reaparece abajo y confirma por qué los hitos se colocaron fuera de esa franja. La senda alta sigue visible mientras las huellas inferiores se borran. Una rama pasa flotando por debajo de la piedra menor.",
@@ -1157,22 +1506,28 @@
         },
         {
           "creature": "saltalodo",
-          "text": "Un Saltalodo infla la bolsa del cuello y deja escapar una llamada baja. El salto siguiente rompe el reflejo lejos de la raíz seca.",
+          "text": "Entre las dos piedras del hito, un Saltalodo infla el cuello y llama. Otro le contesta desde el terreno inundable.",
           "persistent_trace": false
         },
         {
           "creature": "dorsalodo",
-          "text": "Los juncos están aplastados junto al agua. Una espalda ancha se mueve bajo el barro: un Dorsalodo ocupa la orilla.",
+          "text": "Abajo, en el terreno inundable, la hierba está aplastada en una franja ancha. Un Dorsalodo descansa en el barro, medio hundido.",
           "persistent_trace": false
         }
-      ]
+      ],
+      "brief": "El cruce del puente, entre dos piedras.",
+      "look": {
+        "este": "Una ribera con apoyos de madera lleva hacia las voces de un pueblo sobre el agua.",
+        "sur": "Un remanso tranquilo. Se oye llamar a un ave, y otra que le contesta.",
+        "oeste": "Un puente de tablas cruza el agua hacia tierra más seca: el camino de Edran."
+      }
     },
     "lethra_ribera_sombra": {
       "id": "lethra_ribera_sombra",
       "name": "Ribera sombreada",
       "region": "lethra",
       "kind": "road",
-      "description": "El canal queda a un lado y las raíces al otro. Al sur vuelves al patio de Narevia; al norte sigues hacia el bosque. Una pasarela corta cruza entre dos troncos. Las hojas empiezan a tapar los reflejos, mientras los árboles crecen cada vez más juntos.",
+      "description": "El canal va a un lado y las raíces al otro. Las hojas empiezan a tapar los reflejos del agua y los árboles crecen cada vez más juntos: Narevia queda atrás y el camino va hacia el bosque. Una pasarela corta cruza entre dos troncos. La luz se vuelve verde y el aire, más fresco.",
       "day": "Una viajera retira hojas de la tabla para mirar su unión. Un Marevyn comprueba el agua que pasa debajo. Después comparan lo que vieron.",
       "night": "Las raíces se confunden con el canal. La pasarela suena hueca cuando alguien llega. Las voces de Narevia se oyen cada vez más lejos.",
       "rain": "Las hojas mojadas ocultan juntas de la pasarela y hacen resbalar una franja del apoyo. La viajera las aparta sin barrer todo el bosque. El brazo menor reúne agua antes de desaparecer hacia el canal principal.",
@@ -1198,22 +1553,23 @@
         },
         {
           "creature": "saltalodo",
-          "text": "Un Saltalodo infla la bolsa del cuello y deja escapar una llamada baja. El salto siguiente rompe el reflejo lejos de la raíz seca.",
+          "text": "Bajo la pasarela corta, un Saltalodo llama entre dos troncos. Su voz suena distinta debajo de los árboles.",
           "persistent_trace": false
         },
         {
           "creature": "dorsalodo",
-          "text": "Los juncos están aplastados junto al agua. Una espalda ancha se mueve bajo el barro: un Dorsalodo ocupa la orilla.",
+          "text": "En el canal, a la sombra, una espalda rugosa parece un tronco más. Hasta que se mueve: es un Dorsalodo.",
           "persistent_trace": false
         }
-      ]
+      ],
+      "brief": "La ribera sombreada, donde empiezan los árboles."
     },
     "lethra_relevo_raices": {
       "id": "lethra_relevo_raices",
       "name": "Orilla Velada",
       "region": "lethra",
       "kind": "landmark",
-      "description": "El canal se estrecha entre raíces que sostienen una plataforma. En una pared de tablas hay notas de la pasarela y del nivel del agua. Al sur vuelves a la ribera sombreada; al norte entras en Nhal. Las marcas del camino empiezan a quedar bajo los árboles. Este relevo de agua y bosque se conoce como Orilla Velada. La cubierta de tablas permite esperar sin bajar al barro ni ocupar la pasarela.",
+      "description": "El canal se estrecha entre raíces enormes que sostienen una plataforma, como manos que la levantan. En una pared de tablas hay notas sobre la pasarela y el nivel del agua; bajo su cubierta se puede esperar sin bajar al barro. Es la Orilla Velada: aquí el agua se mete bajo los árboles de Nhal y todo se vuelve sombra.",
       "day": "Una viajera deja secar la manga bajo la cubierta. En el borde de la plataforma una araña sostiene un hilo y lo recoge cuando una gota lo alcanza.",
       "night": "El agua toca una raíz bajo la plataforma. Un hilo corto se ve junto al poste; la cubierta tarda en soltar su última gota.",
       "rain": "El cuidador compara el agua con la marca de la plataforma. La mensajera toca la raíz que sostiene la tabla y retira la mano cubierta de barro.",
@@ -1249,14 +1605,19 @@
       ],
       "focus": [
         "activity"
-      ]
+      ],
+      "brief": "La Orilla Velada, donde el agua entra en el bosque.",
+      "look": {
+        "sur": "El canal vuelve a la luz, entre raíces y una pasarela corta.",
+        "norte": "El agua se mete bajo los árboles y todo se vuelve sombra verde: el bosque de Nhal."
+      }
     },
     "lethra_escucha_aves": {
       "id": "lethra_escucha_aves",
       "name": "Orilla de las aves",
       "region": "lethra",
       "kind": "wilderness",
-      "description": "Un ave llama desde el cauce; otra responde entre los juncos. Después queda silencio. Puedes sentarte en la raíz seca. La senda vuelve al norte.",
+      "description": "Un ave llama desde el cauce; otra le responde entre los juncos. Después, silencio, y luego otra vez. Hay una raíz seca donde sentarse a escuchar. Es un buen sitio para no hacer nada.",
       "day": "Un ave hunde el pico entre plantas y levanta una gota antes de repetir el gesto. Otra permanece sobre un tallo bajo. Los apoyos secos permiten mirar sin acercar una sombra grande al borde de alimentación.",
       "night": "Entre llamadas se oyen pequeños roces que no alcanzas a ver. La tierra del norte sigue marcando el regreso al hito.",
       "rain": "Las aves se recogen entre plantas altas. Las hojas giran deprisa junto a una entrada de agua; las gotas golpean el borde donde antes hundían el pico.",
@@ -1278,7 +1639,8 @@
         }
       ],
       "actions": [],
-      "max_layers": 2
+      "max_layers": 2,
+      "brief": "La orilla de las aves."
     },
     "lethra_sala_cuidados": {
       "id": "lethra_sala_cuidados",
@@ -1286,7 +1648,7 @@
       "region": "lethra",
       "kind": "interior",
       "safe": true,
-      "description": "La plataforma cubierta queda por encima del canal. Una tabla seca une el asiento con la puerta occidental del taller. El agua de limpieza está en recipientes tapados; los paños no se dejan sobre la baranda húmeda.",
+      "description": "Una plataforma cubierta por encima del canal, donde el agua suena tranquila por debajo. Una tabla seca une el asiento con la puerta del taller. El agua de limpiar está en recipientes tapados, y los paños nunca se dejan en la baranda húmeda.",
       "exits": {
         "oeste": "lethra_taller_fibras"
       },
@@ -1305,7 +1667,8 @@
       "examine": {
         "cuidados": "El servicio cuesta dieciocho sellos. Recupera hasta el noventa por ciento de vitalidad, reduce un grado de herida y renueva el margen para descansar. No sustituye la decisión de evitar otra pelea."
       },
-      "source": "Ampliación original autorizada: recuperación local del contrato existente"
+      "source": "Ampliación original autorizada: recuperación local del contrato existente",
+      "brief": "La plataforma de cuidados de Narevia."
     }
   },
   "npcs": {
@@ -1319,7 +1682,13 @@
       "topics": {
         "paño": "Cada reunión dejó una reparación. La costura corta es de mi hermana, que ya vive en otra ribera.",
         "hermana": "Sola prometió volver para la comida. No quiero un aviso de peligro; quiero saber si recibió la invitación.",
-        "fibras": "La que no sirve para secarse todavía puede servir para trenzar. El agua no arruina todos los trabajos igual."
+        "fibras": "La que no sirve para secarse todavía puede servir para trenzar. El agua no arruina todos los trabajos igual.",
+        "barquita": {
+          "requires_flags": [
+            "lethra_barquita_rescatada"
+          ],
+          "text": "Eso no es verdad. La hundió ella sola y luego me echó la culpa. Pregúntale por qué le rayó su nombre tan grande: era para que nadie más pudiera jugar con ella."
+        }
       },
       "day": "Trenza y separa fibras junto al canal.",
       "night": "Guarda haces y prepara el trabajo siguiente.",
@@ -1339,7 +1708,13 @@
       "topics": {
         "reunion": "Esperaba que alguien trajera la hora acordada. Puedo terminar la unión pendiente y cruzar hacia la cocina.",
         "mira": "La costura corta del paño es mía. La hice deprisa; todavía se burla de que sea la más resistente.",
-        "barcas": "Lo visto a flote y lo visto en seco tienen que contarse juntos."
+        "barcas": "Lo visto a flote y lo visto en seco tienen que contarse juntos.",
+        "barquita": {
+          "requires_flags": [
+            "lethra_barquita_rescatada"
+          ],
+          "text": "¿Mi barquita? ¡La hundió Mira! Teníamos siete y ocho años. Dijo que quería ver si flotaba con piedras dentro. No flotaba."
+        }
       },
       "day": "Revisa uniones de embarcaciones inclinadas.",
       "night": "Guarda herramientas y cubre reparaciones pendientes.",
@@ -1363,7 +1738,7 @@
         "caldo": "Mi padre dice que estas hojas siempre amargan. Las puso él. Ahora me toca lograr que también se lo coma.",
         "mesa": "Mira y Sola discutirán dónde sentarse y acabarán cerca de la misma ventana. Llevo años dejando ese lado libre.",
         "preparativos": {
-          "text": "Nima escucha tu propuesta y anota dónde reunir los cuencos. Desde la cocina llama a Mira para confirmar cómo sigue el paño.",
+          "text": "Bien pensado. Apunto dónde van los cuencos, así no los movemos dos veces. Ahora le aviso a Mira para que sepa qué hacemos con el paño.",
           "set_flags": [
             "lethra_reunion_comunicada"
           ],

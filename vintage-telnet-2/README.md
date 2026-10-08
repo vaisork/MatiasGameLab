@@ -1,4 +1,4 @@
-> Para continuar el desarrollo, empieza por [el contexto de continuidad](docs/CONTEXTO_CONTINUIDAD.md): decisiones, producción, pruebas y trabajo en pausa.
+> Para continuar, empieza por [el relevo técnico actual](../docs/VT2_RELEVO_20261008.md): Ubuntu, GitHub, Raspberry, SSH, operación y límites. El [contexto de continuidad](docs/CONTEXTO_CONTINUIDAD.md) conserva el historial.
 
 # Vintage Telnet 2
 
@@ -8,7 +8,7 @@ Juego de exploración y lectura con interfaz anime, mundo persistente, comercio,
 
 **Vintage Telnet 2 se empezó desde cero**, por petición de Javier, para construir un mundo más rico y una lectura más clara. Se conserva el canon del prompt maestro; no se copió la historia ni la narración descartada del juego anterior. Se aprovecharon selectivamente ideas y funciones útiles del anterior —orientación por mapa descubierto, algunas reglas y experiencia de operación— y se adaptaron a esta implementación. El servidor y el contenido de esta versión viven en esta carpeta; no dependen de importar el motor anterior.
 
-La versión anterior se conserva en `../vintage-telnet` como referencia histórica. No modificar Senku ni sustituir automáticamente datos de producción. La instancia oficial usa esta nueva implementación; el código narrativo más reciente está guardado como trabajo pendiente, aún sin desplegar y en pausa por indicación de Javier.
+La versión anterior se conserva en `../vintage-telnet` como referencia histórica. No modificar Senku ni sustituir automáticamente datos de producción. La instancia oficial usa esta nueva implementación; las entregas locales y la instalación activa deben distinguirse por versión. El relevo técnico registra la autorización actual de integración y qué versión está desplegada.
 
 ## Ubuntu o Raspberry Pi
 

@@ -120,6 +120,80 @@ def capability_hint(class_id, prepared=None):
  if class_id=='arcano' and not prepared:return 'Reduce la precisión de la respuesta ordinaria durante esta ronda.'
  return CLASSES[class_id]['effect']
 
+# Narración de combate: sólo cambia el texto. Daño, precisión y azar no se tocan;
+# la variante sale del número de ronda y la intensidad, del daño ya calculado.
+WEAPON_PROSE = {
+ 'espada_juramento': {
+  'hit': ['Tajo amplio con la espada', 'La hoja silba en el aire', 'Adelantas la hoja y diriges el golpe', 'Descargas la espada con las dos manos'],
+  'miss': ['Tu tajo corta el aire.', 'La espada muerde el suelo; {c} ya no estaba ahí.', 'Estocada: {c} gira y la hoja pasa rozando.'],
+  'final': ['Último tajo, firme y limpio. {c} ya no puede seguir: {d} de daño.']},
+ 'punal_camino': {
+  'hit': ['Entras rápido por debajo', 'Amago a un lado, pinchazo al otro', 'Te pegas a su costado con el puñal', 'Golpe corto y seco'],
+  'miss': ['El puñal sólo encuentra aire.', '{c} no se cree el amago.', '{c} es más rápido esta vez.'],
+  'final': ['Te deslizas a su lado y el puñal decide: {d} de daño a {c}.']},
+ 'arco_ruta': {
+  'hit': ['Tensas, sueltas: la flecha silba', 'Retrocedes un paso y disparas', 'Esperas... ¡ahora! Sueltas la cuerda', 'Disparo rápido, casi sin apuntar'],
+  'miss': ['La flecha pasa silbando junto a {c}.', 'Disparas con prisa: la flecha se queda corta.', '{c} se mueve justo al soltar la cuerda.'],
+  'final': ['Última flecha, bien apuntada. {c} deja de pelear: {d} de daño.']},
+ 'varita_aprendiz': {
+  'hit': ['Cosquilleo en los dedos: el impulso sale', 'Un círculo en el aire, y el aire empuja', 'Sueltas el impulso de golpe', 'La varita vibra y empuja'],
+  'miss': ['El impulso sale torcido y sólo mueve hojas.', 'Pierdes la concentración: un chasquido y nada.', 'El impulso pasa junto a {c}, que ni se inmuta.'],
+  'final': ['Toda tu concentración en la punta de la varita: {c} se queda sin fuerzas. {d} de daño.']},
+}
+# Si un arma nueva no está en la tabla, se elige por sus propiedades.
+WEAPON_PROSE_FALLBACK = (('ranged', 'arco_ruta'), ('focus', 'varita_aprendiz'), ('block', 'espada_juramento'))
+# Intensidad del acierto según la parte de la vida máxima del rival que quita (como los mensajes de daño clásicos).
+HIT_TIERS = ((.10, '. Apenas rozas a {c}: {d} de daño.'), (.20, '. Alcanzas a {c}: {d} de daño.'),
+             (.30, '. ¡Das de lleno a {c}! {d} de daño.'), (None, '. ¡Golpe tremendo! {c} se tambalea: {d} de daño.'))
+DEFENSE_PROSE = {
+ 'esquivar': ['Te mueves de lado, ligero.', 'Rodillas dobladas, listo para saltar.', 'Un paso atrás y otro al lado.'],
+ 'bloquear': ['Te cubres con los brazos firmes.', 'Pones el arma delante del cuerpo.', 'Pies firmes: esperas el choque.'],
+ 'resistir': ['Aprietas los dientes y te plantas.', 'Bajas el cuerpo, tenso.', 'Respiras hondo y aguantas.'],
+}
+# Ataque propio de cada rival. {n} es el nombre mostrado (incluye nombres locales como Seran).
+CREATURE_PROSE = {
+ 'mordelinde': {'hit': ['{n} se lanza a tus tobillos y te muerde antes de retroceder', '{n} te araña con las manos delanteras y vuelve a mirar su hueco', '{n} se escurre por un lado y te muerde la mano'],
+                'miss': ['{n} amaga hacia tus pies, pero sólo muerde el aire.', '{n} da un salto corto y se queda a medio camino, mirando su salida.']},
+ 'espinajo_rastrojo': {'hit': ['{n} embiste agachado y sus espinas te pinchan las piernas', '{n} gira de golpe y te golpea con el lomo erizado', '{n} carga desde los tallos con las espinas por delante'],
+                       'miss': ['{n} carga, pero te apartas y pasa de largo entre los tallos.', 'Las espinas de {n} se quedan a un palmo de ti.']},
+ 'cornalomo': {'hit': ['{n} baja la cabeza y te empuja con el cuerno; sales despedido hacia atrás', '{n} pisa fuerte y te alcanza con el costado, como chocar contra un muro', '{n} da un cabezazo que te deja sin aire'],
+               'miss': ['{n} embiste, pero sólo levanta tierra donde estabas.', 'El cuerno de {n} pasa rozándote el hombro.']},
+ 'dorsalodo': {'hit': ['{n} barre los juncos con el cuerpo y te tira al suelo con el agua', 'La espalda rugosa de {n} te golpea de lado', '{n} sale del agua de golpe y te empuja hacia la orilla'],
+               'miss': ['{n} levanta una ola de barro, pero no llega a tocarte.', 'El cuerpo de {n} pasa a tu lado y el agua te salpica hasta las rodillas.']},
+ 'rasgacumbres': {'hit': ['{n} lanza un zarpazo de lado y sus garras te alcanzan', '{n} salta desde la roca y te derriba con las patas', 'Las garras de {n} te raspan el brazo antes de que puedas apartarlo'],
+                  'miss': ['Las garras de {n} arañan la piedra donde estabas hace un momento.', '{n} salta, pero calcula mal y cae a un paso de ti.']},
+ 'quebrarrocas': {'hit': ['{n} te empuja con todo su peso, como una pared que se mueve', '{n} lanza una piedra con el hombro y te golpea', '{n} avanza y te arrincona contra las rocas'],
+                  'miss': ['{n} empuja, pero te apartas y sólo mueve un bloque.', 'Una piedra lanzada por {n} rebota a tu lado.']},
+ 'rasgacorteza': {'hit': ['{n} se separa del tronco y te golpea con un brazo duro como la madera', 'Las ramas crujen y {n} te alcanza desde arriba', '{n} te empuja contra un tronco'],
+                  'miss': ['{n} golpea el tronco en vez de a ti, y caen hojas por todas partes.', 'El golpe de {n} pasa por encima de tu cabeza.']},
+ 'cascapedernal': {'hit': ['{n} se lanza de lado y su caparazón te golpea la pierna', 'El borde del caparazón de {n} te da un golpe seco en la mano', '{n} choca contra tu bota con un ruido de piedra'],
+                   'miss': ['{n} golpea la roca con el caparazón, lejos de ti.', '{n} se lanza, pero se queda corto y se recoge.']},
+ 'forajido_camino': {'hit': ['{n} te da un golpe con el palo en el hombro', '{n} barre con el palo a la altura de las piernas y te alcanza', '{n} amaga arriba y golpea abajo con el palo'],
+                     'miss': ['{n} descarga un golpe con el palo, pero lo esquivas por poco.', 'El palo de {n} silba junto a tu oreja sin tocarte.']},
+}
+
+def weapon_prose(weapon, kind, creature_name, damage, combat_round, max_hp=1):
+    key = str(weapon.get('catalog_id', weapon.get('id', ''))).split(':')[0]
+    if key not in WEAPON_PROSE:
+        key = next((wid for flag, wid in WEAPON_PROSE_FALLBACK if weapon.get(flag)), 'punal_camino')
+    options = WEAPON_PROSE[key][kind]
+    text = options[combat_round % len(options)]
+    if kind == 'hit':
+        share = damage / max(1, max_hp)
+        text += next(tail for limit, tail in HIT_TIERS if limit is None or share < limit)
+    return text.format(c=creature_name, d=damage)
+
+def defense_prose(action, creature_name, combat_round):
+    options = DEFENSE_PROSE[action]
+    return options[combat_round % len(options)].format(c=creature_name)
+
+def creature_prose(creature, kind, damage, combat_round):
+    options = CREATURE_PROSE.get(creature.get('id'), {}).get(kind)
+    if not options:
+        return f"{creature['name']} te alcanza: {damage} de daño." if kind == 'hit' else f"La respuesta de {creature['name']} pasa sin alcanzarte."
+    text = options[combat_round % len(options)].format(n=creature['name'])
+    return text + f": {damage} de daño." if kind == 'hit' else text
+
 def resolve_round(state, creature, rng, respond=True):
  combat=state['combat']; profile=combat['profile']; intervention=combat.pop('intervention',None) or {'id':'atacar'}
  action=intervention['id']; target=intervention.get('target'); a=state['attributes']; penalty,power=penalties(state)
@@ -157,15 +231,16 @@ def resolve_round(state, creature, rng, respond=True):
   if combat.pop('opening',False):accuracy=min(90,accuracy+15)
   if rng.random()*100<accuracy:
    damage=max(1,rounded(raw*power*(1-profile['reduction'])));combat['hp']-=damage
-   events.append({'kind':'combat','text':f"Tu golpe alcanza a {creature['name']}: {damage} de daño."})
+   events.append({'kind':'combat','text':weapon_prose(weapon,'final' if combat['hp']<=0 else 'hit',creature['name'],damage,combat['round'],profile['hp'])})
    if signature and state['_class']=='artifice':
     if prepared and prepared.get('interruptible',False):
      combat['prepared']=False;enemy_accuracy=profile['accuracy'];events.append({'kind':'combat','text':f"Tu disparo interrumpe {prepared['name']}."})
     elif not prepared:
      enemy_accuracy-=15;events.append({'kind':'combat','text':'El disparo le hace perder precisión en su siguiente respuesta.'})
-  else:events.append({'kind':'combat','text':'Tu ataque no encuentra un ángulo limpio.'})
+  else:events.append({'kind':'combat','text':weapon_prose(weapon,'miss',creature['name'],0,combat['round'])})
  state['fatigue']=min(100,state['fatigue']+fatigue_cost(state,costs.get(action,4)))
  if combat['hp']<=0:return events,'victory'
+ if action in DEFENSE_PROSE:events.append({'kind':'action','text':defense_prose(action,creature['name'],combat['round'])})
  if action=='esquivar':enemy_accuracy-=.48*(a['agilidad']-10)+.12*(a['percepcion']-10)-penalty
  elif action=='bloquear':reduction=max(0,min(.32,.10+.0035*(a['destreza']-10))-penalty/100)
  elif action=='resistir':reduction=max(0,min(.38,.0055*(a['resistencia']-10))-penalty/100)
@@ -176,9 +251,9 @@ def resolve_round(state, creature, rng, respond=True):
  connected=rng.random()*100<clamp(enemy_accuracy,20,90)
  if connected:
   damage=max(1,rounded(profile['damage']*(1-reduction)*(1-state.get('armor_reduction',0))*(1-guard)));state['hp']-=damage;wound(state,damage)
-  events.append({'kind':'combat','text':f"{creature['name']} te alcanza: {damage} de daño."})
+  events.append({'kind':'combat','text':creature_prose(creature,'hit',damage,combat['round'])})
  else:
-  events.append({'kind':'combat','text':f"La respuesta de {creature['name']} pasa sin alcanzarte."})
+  events.append({'kind':'combat','text':creature_prose(creature,'miss',0,combat['round'])})
   if signature and state['_class']=='sombra':combat['opening']=True
  combat['prepared']=False;combat['round']+=1;combat['cooldown']=max(0,combat.get('cooldown',0)-1)
  return events,'death' if state['hp']<=0 else 'ongoing'

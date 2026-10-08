@@ -1,3 +1,5 @@
+> Relevo actual: [Ubuntu, repo, Raspberry y operación](../../docs/VT2_RELEVO_20261008.md). Integración actual: `narrative-integration-20261008/` y `art-integration-20261008/`; despliegue real: `qa/raspberry-deploy/update-d5ee227/`.
+
 # Evidencia de revisión
 
 Índice organizativo, no certificación del estado actual ni autorización de desarrollo.

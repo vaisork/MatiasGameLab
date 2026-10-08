@@ -1,0 +1,56 @@
+--- a/server/engine.py
++++ b/server/engine.py
+@@ -207,6 +207,11 @@
+             if line and line['text'] not in seen:
+                 lines.append(line);seen.add(line['text'])
+             if len(lines)>=limit:break
++        echoes=[item.get('text') if isinstance(item,dict) else item for item in room.get('echoes',[]) if not isinstance(item,dict) or self.allowed(item,state,world)]
++        stayed=self.clock()-state.get('arrived_at',self.clock())
++        if mode=='navigation' and echoes and stayed>=60 and 'danger' not in layers:
++            window=int((stayed-60)//75)
++            if window<len(echoes):lines.append(event('world',echoes[(window+visits)%len(echoes)]))
+         return lines
+ 
+     @staticmethod
+@@ -391,7 +396,7 @@
+         if mark_route and previous!=destination:
+             pair=sorted((previous,destination))
+             if pair not in state['routes']:state['routes'].append(pair)
+-        state['last_room']=previous;state['location']=destination;state['arrival']=True
++        state['last_room']=previous;state['location']=destination;state['arrival']=True;state['arrived_at']=self.clock()
+         for key in ('known','visited'):
+             if destination not in state[key]:state[key].append(destination)
+         state['visits'][destination]=state['visits'].get(destination,0)+1
+@@ -457,6 +462,7 @@
+             cost=1 if value<20 else 2 if value<35 else 3 if value<45 else 4 if value<60 else 5
+             if state['pa']>=cost:actions.append({'id':'atributo','target':attribute,'label':f'Mejorar {attribute} · {cost} PA','confirmation':f'Aumentar {attribute} de {value} a {value+1} por {cost} PA. No podrás deshacerlo.'})
+         actions += [{'id':'examinar','target':key,'label':f'Examinar {key}'} for key,value in room.get('examine',{}).items() if not isinstance(value,dict) or self.allowed(value,state,world)]
++        actions += [{'id':'mirar_direccion','target':direction,'label':f'Mirar hacia el {direction}'} for direction in room.get('look',{}) if direction in room.get('exits',{})]
+         for direction,destination in room.get('exits',{}).items():
+             gate=room.get('exit_requirements',{}).get(direction,{})
+             _,origin=self.region_for(character['species'])
+@@ -561,6 +567,7 @@
+                 short={'norte':'n','sur':'s','este':'e','oeste':'o'}
+                 if target in short:aliases.add(short[target])
+             elif id=='examinar':aliases.add(normalize('examinar '+target))
++            elif id=='mirar_direccion':aliases.update(normalize(v) for v in ('mirar '+target,'mirar al '+target,'mirar hacia el '+target))
+             elif id=='hablar':
+                 npc=self.content.npcs.get(target,{})
+                 for prefix in ('hablar','hablar con','conversar con'):
+@@ -605,7 +612,9 @@
+             if combat.get('intervention'):raise RuleError('Ya has decidido tu intervención para esta ronda.',409)
+             combat['intervention']={'id':action,'target':target};state['events']=[event('action','Tu decisión queda preparada para la próxima respuesta de tu rival.')]
+             return
+-        if action in ('mirar','observar','examinar'):
++        if action=='mirar_direccion':
++            state['events']=[event('world',room['look'][target])]
++        elif action in ('mirar','observar','examinar'):
+             if action in ('mirar','observar'):self.observe(state,room,world)
+             if action=='observar':
+                 observations=state.setdefault('observations',{});observations[room['id']]=observations.get(room['id'],0)+1
+@@ -878,4 +887,4 @@
+             'chat':[{k:v[k] for k in ('id','sender_id','sender','text','at')} for v in world.get('chat',[]) if v['room']==state['location'] and self.clock()-v['at']<600 and character['id'] in v['recipients']][-30:],
+             'narrative':state['events'] or self.narrative(character,world),'scene':self.narrative(character,world),'actions':self.actions(character,world),
+             'map':{'nodes':nodes,'edges':[p for p in state['routes'] if set(p).issubset(known)],'routes':routes,'frontiers':frontiers,**({'recovery':state['last_recovery']} if state.get('last_recovery') else {})},
+-            'inventory':state['inventory'],'bestiary':[{**entry,**({'illustration':self.content.creatures[cid]['illustration']} if self.content.creatures.get(cid,{}).get('illustration') else {})} for cid,entry in state['bestiary'].items()],'journal':state['journal'],'quests':quests,'ambient':ambient}
++            'inventory':state['inventory'],'bestiary':[{**entry,**({'illustration':self.content.creatures[cid]['illustration']} if self.content.creatures.get(cid,{}).get('illustration') else {})} for cid,entry in state['bestiary'].items()],'journal':state['journal'],'secrets':{'found':sum(1 for secret in getattr(self.content,'secrets',{}).values() if secret.get('flag') in state['flags'] or 'participated:'+str(secret.get('flag')) in state['flags'])},'quests':quests,'ambient':ambient}

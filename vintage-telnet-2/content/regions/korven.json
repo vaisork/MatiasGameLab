@@ -51,7 +51,7 @@
       "name": "Loma de las piedras claras",
       "region": "korven",
       "kind": "road",
-      "description": "La loma termina de ocultar Vaisgard. Al este puedes volver a la cuenca; al oeste, el camino baja entre rocas hacia un cauce seco. Un montón de cascajo conserva huellas de pala junto al paso. Las ruedas han dejado dos surcos en la tierra menos dura.",
+      "description": "Desde esta loma ya no se ve Vaisgard: la cuenca verde ha quedado detrás y delante todo es piedra clara. El camino baja entre rocas hacia un cauce seco. Junto al paso hay un montón de cascajo con huellas de pala, y las ruedas han dejado dos surcos profundos donde la tierra es más blanda. El viento es seco y trae polvo que hace toser.",
       "day": "Un trabajador baja cascajo al montón lateral y espera a que pase una carga. La pala roza la roca fija al recoger las últimas piedras sueltas.",
       "night": "El cascajo claro recibe la luz del farol y vuelve difícil leer el relieve. La depresión occidental parece más cerca de lo que está. El montón lateral sigue sirviendo para reconocer dónde se abandona la loma.",
       "rain": "El polvo se pega entre las piedras y el agua deja líneas claras. El trabajador mira la bajada antes de despejar otra franja del camino.",
@@ -72,27 +72,28 @@
       "wildlife_pool": [
         {
           "creature": "cascapedernal",
-          "text": "Un pequeño caparazón moteado se aparta hacia una junta de roca al cambiar la sombra.",
+          "text": "En el cascajo, un Cascapedernal se recoge contra una piedra grande cuando tu sombra lo cubre. Su caparazón da un golpe seco contra la roca.",
           "persistent_trace": false
         },
         {
           "creature": "colagrieta",
-          "text": "Una cola desaparece por una grieta. El Colagrieta asoma la cabeza y vuelve a esconderse.",
+          "text": "Del montón de cascajo asoma una cabeza alargada. El Colagrieta mira la pala y retrocede hacia una grieta, apoyándose en la cola gruesa.",
           "persistent_trace": false
         },
         {
           "creature": "quebrarrocas",
-          "text": "Un bloque recién movido corta parte del suelo. El Quebrarrocas sigue empujando piedras a cierta distancia.",
+          "text": "Hacia el oeste, entre las rocas del cauce, un bloque se mueve. Detrás, un Quebrarrocas sigue empujando. El polvo sube hasta la loma.",
           "persistent_trace": false
         }
-      ]
+      ],
+      "brief": "La loma de las piedras claras, con su montón de cascajo."
     },
     "korven_cauce_duro": {
       "id": "korven_cauce_duro",
       "name": "Cauce seco",
       "region": "korven",
       "kind": "road",
-      "description": "Bajas a un cauce con arena entre las piedras. Al este vuelve la loma; al oeste subes a la meseta. Un desvío al sur llega a la roca de los líquenes. Las piedras grandes ofrecen paso firme; un cuenco tallado guarda herramientas junto al borde.",
+      "description": "Un cauce sin agua, ancho y pedregoso, con arena fina entre las piedras. Por aquí corría un río hace mucho tiempo; ahora sólo queda su forma. Las piedras grandes dan paso firme. Junto al borde, un cuenco tallado en la roca guarda herramientas para quien las necesite. Un desvío lleva hacia una roca cubierta de líquenes. Hace calor y la luz rebota en las piedras.",
       "day": "Un insecto cruza la sombra de una piedra y se oculta en una junta. Su recorrido deja un grano claro junto a otros más oscuros.",
       "night": "El cauce guarda calor cerca de la roca. Desde una fisura llega un roce breve que no vuelve a repetirse.",
       "rain": "El agua llena primero las juntas pequeñas. Las piedras grandes sobresalen como islas bajas. La cuidadora recoge las herramientas y revisa por dónde se puede cruzar.",
@@ -121,12 +122,12 @@
         },
         {
           "creature": "colagrieta",
-          "text": "Una cola desaparece por una grieta. El Colagrieta asoma la cabeza y vuelve a esconderse.",
+          "text": "Un Colagrieta toma el sol en una piedra del cauce. Al notar tus pasos en la arena, se mete de golpe en una junta; sólo queda fuera la punta de la cola.",
           "persistent_trace": false
         },
         {
           "creature": "quebrarrocas",
-          "text": "Un bloque recién movido corta parte del suelo. El Quebrarrocas sigue empujando piedras a cierta distancia.",
+          "text": "Cauce abajo se oye piedra contra piedra. Un Quebrarrocas aparta bloques del fondo seco, lejos del cuenco de las herramientas.",
           "persistent_trace": false
         }
       ],
@@ -145,14 +146,15 @@
       ],
       "focus": [
         "activity"
-      ]
+      ],
+      "brief": "El cauce seco y su cuenco de herramientas tallado en la roca."
     },
     "korven_meseta_baja": {
       "id": "korven_meseta_baja",
       "name": "Meseta de las dos piedras",
       "region": "korven",
       "kind": "road",
-      "description": "Dos piedras dan sombra a la meseta. Al este queda el cauce; al oeste, la pared. El desvío sur baja al horno viejo.",
+      "description": "Una meseta pelada, plana y amplia, donde sólo dos piedras grandes dan algo de sombra. El viento trae un polvo fino que se mete en los ojos y entre los dientes. El cielo parece más grande aquí. Desde la meseta, un desvío baja hacia un horno viejo, y hacia el otro lado se alza una pared de roca.",
       "day": "Una viajera traslada su carga cuando la sombra de la pared deja de cubrirla. Su compañero comprueba la cubierta sin gastar agua en quitar todo el polvo. La pausa se adapta a la luz, no al nombre del sitio.",
       "night": "La pared se pierde al fondo de la meseta. Los viajeros acercan los faroles a las cargas para seguir la huella del carro.",
       "rain": "La lluvia golpea el tramo abierto antes de que la pared empiece a gotear. Los recipientes se apartan de una hendidura donde cae agua con polvo. Las gotas alcanzan también el centro de la sombra, entre las dos piedras.",
@@ -175,19 +177,25 @@
       "wildlife_pool": [
         {
           "creature": "cascapedernal",
-          "text": "Un pequeño caparazón moteado se aparta hacia una junta de roca al cambiar la sombra.",
+          "text": "Al pie de la otra piedra, un Cascapedernal raspa liquen. Cuando le cae tu sombra, recoge las patas y se queda pegado a la roca.",
           "persistent_trace": false
         },
         {
           "creature": "colagrieta",
-          "text": "Una cola desaparece por una grieta. El Colagrieta asoma la cabeza y vuelve a esconderse.",
+          "text": "A la sombra de una de las dos piedras, un Colagrieta asoma la cabeza por una fisura. Cuando la sombra se mueve, él se mueve con ella.",
           "persistent_trace": false
         },
         {
           "creature": "quebrarrocas",
-          "text": "Un bloque recién movido corta parte del suelo. El Quebrarrocas sigue empujando piedras a cierta distancia.",
+          "text": "Bajo la pared de la meseta, lejos de las dos piedras, un Quebrarrocas empuja una losa con el hombro. La losa cae de lado y el golpe rebota en la roca.",
           "persistent_trace": false
         }
+      ],
+      "brief": "La meseta de las dos piedras.",
+      "echoes": [
+        "Un remolino de polvo se levanta solo, da vueltas por la meseta y se deshace contra una de las dos piedras.",
+        "Un Saltapiedra menudo sale a tomar el sol sobre una roca, quieto como si fuera de piedra.",
+        "El viento cambia de dirección y trae un olor a lluvia lejana que no llega."
       ]
     },
     "korven_pared_sotavento": {
@@ -195,7 +203,7 @@
       "name": "Pared que corta el viento",
       "region": "korven",
       "kind": "landmark",
-      "description": "La pared corta el viento y deja un hueco ancho donde apoyar las cargas. Al este está la meseta; al oeste siguen los mojones. Una escoba descansa junto a las juntas llenas de polvo. La marca del suelo indica qué franja debe quedar libre para pasar.",
+      "description": "Una pared de roca alta corta el viento de golpe, y detrás de ella el aire se queda quieto y tibio. Hay un hueco ancho donde apoyar las cargas y descansar. Junto a las juntas llenas de polvo descansa una escoba, y una marca pintada en el suelo indica qué franja debe quedar libre para pasar. Aquí se oye por fin tu propia respiración.",
       "day": "Un porteador limpia el apoyo antes de sentarse y deja la escoba donde otro podrá encontrarla. Las cargas se orientan hacia el mismo lado para poder salir sin cruzarse dentro del entrante más estrecho.",
       "night": "La meseta devuelve un golpe lejano. Dentro del entrante se ve un cuenco sobre el apoyo bajo; la lámpara deja una sombra estrecha junto a la pared.",
       "rain": "El viento devuelve algunas gotas al entrante y obliga a mover la carga del apoyo exterior. La escoba retira barro de una junta que normalmente sólo reúne polvo. El corredor permanece libre aunque todos busquen el mismo refugio.",
@@ -217,14 +225,15 @@
       "dusk": "La piedra devuelve el calor acumulado. Alguien apoya la espalda un momento; una pequeña sombra cruza la junta donde queda polvo.",
       "weather": {
         "viento": "La escoba permanece quieta dentro del entrante. Fuera, el polvo roza la pared con un siseo seco; dos viajeros esperan a que baje para distinguir el siguiente mojón."
-      }
+      },
+      "brief": "La pared que corta el viento, con su escoba y su marca en el suelo."
     },
     "korven_hitos_paso": {
       "id": "korven_hitos_paso",
       "name": "Camino de los mojones",
       "region": "korven",
       "kind": "road",
-      "description": "Los mojones cruzan suelo duro entre huecos de la roca. Algunos llevan piedras claras arriba; otros esperan reparación. Al este vuelves a la pared y al oeste llegas al paso estrecho. Desde cada mojón puedes buscar el siguiente sin acercarte al borde.",
+      "description": "Una fila de mojones de piedra cruza el suelo duro, entre huecos de la roca. Algunos llevan una piedra clara encima, como un sombrero; otros esperan arreglo y tienen piedras caídas a los pies. Desde cada mojón se ve el siguiente, así que no hace falta acercarse al borde. El polvo cruje bajo las botas.",
       "day": "La revisora mira el siguiente mojón desde la franja de las ruedas. Retira una piedra recién añadida a la pila y la deja al lado de la cavidad.",
       "night": "El farol alcanza un mojón a la vez. Los viajeros caminan despacio, buscando las piedras claras del siguiente antes de avanzar.",
       "rain": "La lluvia oscurece los mojones y reúne arena en sus bases. La revisora se sitúa donde pasan las ruedas y mira el pie de la pila antes de acercarse.",
@@ -250,22 +259,23 @@
         },
         {
           "creature": "colagrieta",
-          "text": "Una cola desaparece por una grieta. El Colagrieta asoma la cabeza y vuelve a esconderse.",
+          "text": "En la base de un mojón, un Colagrieta saca la cabeza de un hueco. Mira la pila de piedras y vuelve a meterse.",
           "persistent_trace": false
         },
         {
           "creature": "quebrarrocas",
-          "text": "Un bloque recién movido corta parte del suelo. El Quebrarrocas sigue empujando piedras a cierta distancia.",
+          "text": "Lejos de los mojones, un Quebrarrocas abre paso entre rocas que nadie ha marcado. Cada empujón deja una franja de polvo nueva.",
           "persistent_trace": false
         }
-      ]
+      ],
+      "brief": "El camino de los mojones."
     },
     "korven_hendidura_transito": {
       "id": "korven_hendidura_transito",
       "name": "Paso estrecho",
       "region": "korven",
       "kind": "road",
-      "description": "Las cargas pasan en fila entre las paredes. Al este se ven los mojones; al oeste se abre el banco de revisión. Una tabla gastada cubre la grieta por donde se atascaría una rueda. Los huecos altos dejan pasar aire sobre el sendero en sombra.",
+      "description": "Un paso estrecho entre dos paredes de roca altas, donde las cargas van en fila y los hombros casi rozan la piedra. Una tabla gastada tapa una grieta en la que se atascaría una rueda. Por unos huecos altos entra aire y algo de luz sobre el sendero en sombra. Hace fresco, y cada sonido rebota.",
       "day": "Una conductora baja de su carro para mirar la tabla antes de entrar. El viajero que viene del oeste espera en el asiento de revisión. El carro queda quieto hasta que se oyen pasos saliendo por la entrada opuesta.",
       "night": "La hendidura devuelve la respiración y el ruido de las ruedas. El farol alcanza la tabla gastada; en las cavidades laterales sólo se ve el borde de la roca.",
       "rain": "El agua se reúne en la junta cubierta sin quedar visible desde cada entrada. La conductora prueba la tabla antes de apoyar el carro. En los muros, algunas cavidades devuelven gotas que no llegan hasta el camino.",
@@ -291,22 +301,23 @@
         },
         {
           "creature": "colagrieta",
-          "text": "Una cola desaparece por una grieta. El Colagrieta asoma la cabeza y vuelve a esconderse.",
+          "text": "Por una grieta alta del paso estrecho asoma un Colagrieta. Cuando una rueda golpea la tabla, se esconde de golpe y luego vuelve a asomar.",
           "persistent_trace": false
         },
         {
           "creature": "quebrarrocas",
-          "text": "Un bloque recién movido corta parte del suelo. El Quebrarrocas sigue empujando piedras a cierta distancia.",
+          "text": "Al otro lado de la pared se oye arrastrar piedra. Por un hueco alto se ve el lomo de un Quebrarrocas empujando un bloque, lejos del sendero.",
           "persistent_trace": false
         }
-      ]
+      ],
+      "brief": "El paso estrecho y su tabla sobre la grieta."
     },
     "korven_asiento_revision": {
       "id": "korven_asiento_revision",
       "name": "Banco de revisión",
       "region": "korven",
       "kind": "landmark",
-      "description": "El camino se ensancha junto a una roca marcada por golpes. Hay un banco donde dejar la carga. Al este queda el paso estrecho; al oeste sigues hacia Brumak. La senda del norte sube a la meseta de relevo. Sobre la mesa descansa una capa fina de polvo.",
+      "description": "El camino se ensancha junto a una roca grande marcada de golpes, de tanto probar piezas contra ella. Hay un banco para dejar la carga y una mesa con una capa fina de polvo, donde se comparan piezas con cuidado. Se oye el golpeteo de quien revisa algo. Desde aquí sigue el camino a Brumak, y una senda sube a una meseta donde paran los viajeros de la sierra.",
       "day": "La revisora compara un golpe sobre la pieza con otro sobre una base firme. Su ayudante anota la diferencia y deja la carga en el banco. Nadie continúa una prueba de apoyo mientras alguien sigue pisándolo.",
       "night": "Los golpes cesan. Una cubierta protege la nota pendiente; quien llega con farol pone su carga en el banco separado y mira la pieza sobre la mesa.",
       "rain": "La piedra mojada suena distinto. La revisora escribe que llovía cuando la golpeó y deja la carga apartada de la mesa.",
@@ -324,14 +335,77 @@
       "arrivals": {},
       "npcs": [],
       "signals": [],
-      "actions": []
+      "actions": [],
+      "brief": "El banco de revisión, junto a la roca de los golpes.",
+      "states": [
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_visits": {
+            "min": 3
+          },
+          "overrides": {
+            "day": "La revisora golpea una pieza, escucha y vuelve a golpear. Le pide a su ayudante que lo intente; él golpea demasiado fuerte y la pieza salta de la mesa."
+          }
+        },
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_visits": {
+            "min": 5
+          },
+          "overrides": {
+            "day": "Un viajero de la sierra deja su carga en el banco y pregunta qué hacen. La revisora le explica que una pieza buena suena como una campana pequeña, y una mala, como una nuez hueca."
+          }
+        },
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_visits": {
+            "min": 8
+          },
+          "overrides": {
+            "day": "La revisora y su ayudante hacen una prueba juntos: él golpea y ella escucha con los ojos cerrados. Cuando acierta qué pieza está mal, él aplaude."
+          }
+        },
+        {
+          "requires_time": [
+            "noche"
+          ],
+          "requires_visits": {
+            "min": 3
+          },
+          "overrides": {
+            "night": "Los golpes han parado. Una cubierta tapa la mesa, y bajo ella la nota pendiente espera a mañana."
+          }
+        },
+        {
+          "requires_time": [
+            "noche"
+          ],
+          "requires_visits": {
+            "min": 6
+          },
+          "overrides": {
+            "night": "El viento silba en la roca marcada de golpes. Parece que la roca recordara todos los golpes del día."
+          }
+        }
+      ],
+      "look": {
+        "este": "Dos paredes de roca se cierran en un paso estrecho y en sombra.",
+        "oeste": "Escalones bajos y una franja para carros suben hacia casas metidas en la roca.",
+        "norte": "Una senda sube a una meseta. Arriba, la sierra se ve más cerca."
+      }
     },
     "brumak_centro": {
       "id": "brumak_centro",
       "name": "Patio de Brumak",
       "region": "korven",
       "kind": "settlement",
-      "description": "El patio de Brumak está protegido del viento. Las casas Dravak tienen puertas bajas; el paso público deja más altura. Al este está la entrada del camino, al norte el taller, al oeste el almacén y al sur las viviendas. Bancos y cargas dejan libre el giro de los carros.",
+      "description": "El patio de Brumak está protegido del viento por la roca que lo rodea, y aquí dentro el aire se calma. Las casas Dravak tienen puertas bajas, pero el paso público deja altura de sobra para cualquiera. Se oye trabajo de piedra en algún sitio: golpes cortos y precisos. Los bancos y las cargas se colocan sin tapar el giro de los carros. Alrededor se reparten el taller, el almacén y las casas.",
       "day": "Una Dravak prueba el cierre de un recipiente bajo el banco. Un niño se agacha junto a ella y vuelve a hacerlo; la tapa encaja cuando deja de apretarla de lado.",
       "night": "En una puerta baja aparecen dos tazas. Sus dueños hablan sentados en el umbral; al fondo del patio alguien bosteza antes de despedirse.",
       "rain": "Los canales de las fachadas descargan en una junta lateral y los vecinos apartan sus bancos de ella. Las cargas entran de una en una para no llevar barro hacia las puertas bajas donde se reúnen las familias.",
@@ -380,6 +454,50 @@
           "requires_time": [
             "día"
           ],
+          "requires_visits": {
+            "min": 5
+          },
+          "overrides": {
+            "day": "El niño ya abre y cierra el recipiente sin ayuda. Ahora le enseña el truco a otro más pequeño, con la misma voz seria que usó la Dravak con él."
+          }
+        },
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_visits": {
+            "min": 8
+          },
+          "overrides": {
+            "day": "Bajo el banco hay una fila de recipientes bien cerrados. El niño los revisa uno a uno golpeándolos con los nudillos, como hace la gente de Brumak, y escucha el sonido con la cabeza ladeada."
+          }
+        },
+        {
+          "requires_time": [
+            "noche"
+          ],
+          "requires_visits": {
+            "min": 3
+          },
+          "overrides": {
+            "night": "Las dos tazas del umbral ya están vacías. Sus dueños siguen sentados hablando muy bajo; uno se ríe tapándose la boca para no despertar a nadie."
+          }
+        },
+        {
+          "requires_time": [
+            "noche"
+          ],
+          "requires_visits": {
+            "min": 6
+          },
+          "overrides": {
+            "night": "Una piedrecita cae de la pared y rebota por el patio. En varias puertas bajas se asoma alguien a escuchar; no pasa nada más, y las puertas se vuelven a cerrar."
+          }
+        },
+        {
+          "requires_time": [
+            "día"
+          ],
           "requires_weather": [
             "viento"
           ],
@@ -393,6 +511,18 @@
       ],
       "focus": [
         "activity"
+      ],
+      "brief": "El patio de Brumak, al abrigo de la roca.",
+      "look": {
+        "este": "Unos escalones bajos y anchos, con una franja lisa para carros, bajan hacia el camino.",
+        "norte": "Una puerta baja en la roca. Dentro se oyen golpes cortos y precisos.",
+        "oeste": "Un almacén con una ventana alta. Huele a grano seco.",
+        "sur": "Una calle de casas metidas en la roca, con repisas pequeñas junto a cada puerta."
+      },
+      "echoes": [
+        "Desde el taller llega el golpe de un martillo pequeño, regular como un corazón.",
+        "Una Dravak barre el polvo de su umbral; el viento lo devuelve y ella vuelve a barrer, sin enfadarse.",
+        "Un carro pequeño cruza el patio y gira exactamente por donde debe, sin tocar ningún banco."
       ]
     },
     "korven_taller_juntas": {
@@ -400,7 +530,7 @@
       "name": "Taller de Brumak",
       "region": "korven",
       "kind": "interior",
-      "description": "Las herramientas de golpe cuelgan en una pared y las de medida en otra. Varias piezas de apoyo esperan sobre el suelo. El banco bajo tiene los bordes reparados. Una ranura levanta una línea de polvo al fondo. La puerta del sur vuelve al patio de Brumak.",
+      "description": "Un taller muy ordenado: las herramientas de golpe cuelgan en una pared y las de medir, en la de enfrente, cada una en su sitio exacto. Varias piezas de apoyo esperan en el suelo. El banco bajo tiene los bordes reparados. Al fondo, una ranura deja entrar una línea de luz llena de polvo que flota.",
       "day": "El artesano moja una junta para ver mejor su borde. Una aprendiz traza con tiza el tramo que aún se abre y frota el otro con el pulgar para comparar.",
       "night": "La tiza queda junto a una pieza inmóvil. Se oye raspar un cuenco dentro del taller; una luz corta dibuja el umbral bajo.",
       "rain": "Las piezas mojadas quedan fuera del banco de medida. La maestra limpia una marca oscura con el paño y vuelve a pasar el dedo por la junta.",
@@ -472,14 +602,15 @@
       ],
       "focus": [
         "activity"
-      ]
+      ],
+      "brief": "El taller de Brumak: golpe en una pared, medida en la otra."
     },
     "korven_almacen_grano": {
       "id": "korven_almacen_grano",
       "name": "Almacén de grano",
       "region": "korven",
       "kind": "interior",
-      "description": "Las cestas descansan sobre apoyos de madera. Las recién llegadas esperan delante; las abiertas quedan al fondo, con las cubiertas dobladas. Una ventana alta deja entrar aire sin sol directo. Al este vuelves al patio y al oeste sales a la senda expuesta al viento.",
+      "description": "Las cestas de grano descansan sobre apoyos de madera, lejos del suelo frío. Las recién llegadas esperan delante; las abiertas, al fondo, con las cubiertas dobladas encima. Una ventana alta deja entrar aire sin que dé el sol directo. El suelo está barrido.",
       "day": "Una encargada limpia el apoyo antes de recibir una cesta. Su compañero pregunta de qué camino llega y retira la tapa: el borde tiene polvo, el centro aún guarda humedad.",
       "night": "Las cestas abiertas se cubren primero y la encargada revisa que ninguna apoye directamente en el suelo. Una luz cerca de la puerta permite recibir una llegada tardía sin recorrer a oscuras todos los estantes.",
       "rain": "Las cargas mojadas esperan bajo el alero. La encargada prepara un apoyo para secar sus cubiertas, separado de las cestas del fondo.",
@@ -496,14 +627,15 @@
       "arrivals": {},
       "npcs": [],
       "signals": [],
-      "actions": []
+      "actions": [],
+      "brief": "El almacén de grano y sus cestas sobre apoyos."
     },
     "korven_calle_fachadas": {
       "id": "korven_calle_fachadas",
       "name": "Calle de las casas",
       "region": "korven",
       "kind": "settlement",
-      "description": "La calle sigue junto a casas metidas en la roca. Sus puertas tienen distinta profundidad y pequeñas repisas donde esperan objetos. Al norte queda el patio de Brumak; al sur bajas a la cisterna. El paso permite cruzar sin entrar en las viviendas ni golpear sus cargas. Una puerta al este lleva al lugar de cuidados.",
+      "description": "Una calle de casas metidas en la roca, como si la montaña las hubiera abrazado. Cada puerta tiene distinta profundidad, y junto a ellas hay repisas pequeñas donde esperan objetos: una taza, una herramienta, una piedra bonita. El paso es ancho: se puede cruzar sin entrar en ninguna casa ni rozar sus cargas. Una puerta da al lugar de cuidados.",
       "day": "Una vecina deja un recipiente en la repisa y ayuda a cerrar la cubierta del lado del viento. El niño devuelve una herramienta al entrante; desde dentro le agradecen el gesto.",
       "night": "Las conversaciones se acercan a las puertas y dejan la calle central quieta. Una luz señala el escalón de la cisterna. Quien llama permanece junto al umbral. La puerta se abre apenas lo suficiente para recibir una voz conocida.",
       "rain": "Las cubiertas de madera protegen sólo algunos entrantes y los vecinos comparten dónde esperar. Los objetos de repisa se guardan antes de que el agua recorra la pared. Las puertas siguen pudiendo abrir sin empujar bultos mojados.",
@@ -521,14 +653,72 @@
       "arrivals": {},
       "npcs": [],
       "signals": [],
-      "actions": []
+      "actions": [],
+      "brief": "La calle de las casas metidas en la roca.",
+      "states": [
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_visits": {
+            "min": 3
+          },
+          "overrides": {
+            "day": "Una abuela Dravak se ha sentado en la repisa de su puerta a tomar el sol. Saluda a cada persona que pasa con un golpecito suave en la roca."
+          }
+        },
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_visits": {
+            "min": 5
+          },
+          "overrides": {
+            "day": "Dos niños juegan a esconder una piedra pintada en las repisas de las casas. Los vecinos fingen no ver nada."
+          }
+        },
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_visits": {
+            "min": 8
+          },
+          "overrides": {
+            "day": "En una repisa asoma una piedra pintada: los niños la han vuelto a esconder, esta vez a la vista de todos, y esperan detrás de una puerta a ver quién la encuentra."
+          }
+        },
+        {
+          "requires_time": [
+            "noche"
+          ],
+          "requires_visits": {
+            "min": 3
+          },
+          "overrides": {
+            "night": "Las puertas se entreabren para recibir voces conocidas y se cierran enseguida. La calle queda quieta."
+          }
+        },
+        {
+          "requires_time": [
+            "noche"
+          ],
+          "requires_visits": {
+            "min": 6
+          },
+          "overrides": {
+            "night": "Dentro de una de las casas, alguien canta muy bajito. La piedra lleva el sonido hasta la calle."
+          }
+        }
+      ]
     },
     "korven_cisterna_comun": {
       "id": "korven_cisterna_comun",
       "name": "Cisterna común",
       "region": "korven",
       "kind": "landmark",
-      "description": "Una plataforma baja rodea la cisterna. El agua de lluvia llega por un canal separado del lugar donde se llenan los recipientes. Una vara marcada muestra el nivel. Al norte vuelves a las casas, al oeste está el patio de lavado y al este el mirador.",
+      "description": "Una plataforma baja de piedra rodea la cisterna del pueblo, un pozo ancho y oscuro. El agua de lluvia llega por un canal aparte, lejos del sitio donde se llenan los recipientes, para no mezclarla con el polvo. Una vara con marcas muestra cuánta agua queda. Si te asomas, el aire de dentro sube húmedo y fresco, un regalo en esta tierra seca.",
       "day": "Una mujer baja el recipiente y escucha hasta oír el contacto con el agua. Un vecino cuenta despacio las vueltas de cuerda; se detienen al mismo tiempo.",
       "night": "Una cuerda roza el borde y queda quieta. El agua devuelve un sonido más hondo que los pasos que se alejan del brocal.",
       "rain": "El canal exterior recibe agua con polvo. La cuidadora sigue el tabique que lo separa de la cisterna y aparta una ramita de su salida. La vara de medida espera seca bajo la cubierta.",
@@ -552,6 +742,61 @@
           "requires_time": [
             "día"
           ],
+          "requires_visits": {
+            "min": 3
+          },
+          "overrides": {
+            "day": "Un niño grita su nombre dentro de la cisterna y el eco se lo devuelve tres veces. Su hermana lo intenta y el eco se lo devuelve cuatro."
+          }
+        },
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_visits": {
+            "min": 5
+          },
+          "overrides": {
+            "day": "Dos vecinos discuten sobre la vara del nivel: uno dice que ha bajado y el otro que no. Al final la miden juntos con una cuerda, y los dos tenían un poco de razón."
+          }
+        },
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_visits": {
+            "min": 8
+          },
+          "overrides": {
+            "day": "Una vecina enseña a un niño a leer la vara del nivel: cada marca es mucha agua. El niño cuenta las marcas con los dedos, muy despacio."
+          }
+        },
+        {
+          "requires_time": [
+            "noche"
+          ],
+          "requires_visits": {
+            "min": 3
+          },
+          "overrides": {
+            "night": "Una cuerda roza el borde de la cisterna y se queda quieta. El agua de abajo hace un ruido suave, como si respirara."
+          }
+        },
+        {
+          "requires_time": [
+            "noche"
+          ],
+          "requires_visits": {
+            "min": 6
+          },
+          "overrides": {
+            "night": "Alguien ha dejado una lámpara junto a la vara del nivel. A su luz, la piedra del brocal brilla húmeda."
+          }
+        },
+        {
+          "requires_time": [
+            "día"
+          ],
           "requires_weather": [
             "viento"
           ],
@@ -564,14 +809,20 @@
         "activity"
       ],
       "dawn": "La cuerda fría se estira junto al brocal. El primer recipiente toca el agua antes de que lleguen otras voces.",
-      "dusk": "Un vecino recoge la cuerda por vueltas cortas. La última gota oscurece el borde de piedra."
+      "dusk": "Un vecino recoge la cuerda por vueltas cortas. La última gota oscurece el borde de piedra.",
+      "brief": "La cisterna común y su vara de nivel.",
+      "echoes": [
+        "Una gota cae dentro de la cisterna y el eco tarda un momento en volver.",
+        "Una vecina baja el cubo y cuenta en voz baja las vueltas de cuerda.",
+        "Un niño se asoma al borde, grita «¡hola!» y espera la respuesta del eco."
+      ]
     },
     "korven_patio_lavado": {
       "id": "korven_patio_lavado",
       "name": "Patio de lavado",
       "region": "korven",
       "kind": "settlement",
-      "description": "Aquí se limpian recipientes y cubiertas. Un muro bajo separa lo recién traído de lo que ya está limpio. El agua usada sale hacia la grava. Puedes volver al este, a la cisterna, o entrar al depósito del sur. El polvo queda pegado al lado húmedo del muro.",
+      "description": "Aquí se limpian recipientes y cubiertas. Un muro bajo separa lo que llega sucio de lo que ya está limpio, y nadie confunde un lado con el otro. El agua usada sale hacia la grava, haciendo regueros. El polvo se queda pegado al lado húmedo del muro, formando dibujos. Se oye frotar y enjuagar.",
       "day": "Una vecina frota una mancha en el fondo de un cuenco. El niño a su lado intenta hacerlo girar con dos dedos sobre la piedra mojada.",
       "night": "Dos cuencos boca abajo guardan gotas en el borde. Bajo la puerta más cercana se ve luz y el movimiento breve de una sombra.",
       "rain": "El agua exterior devuelve barro hacia la franja de entrada y los vecinos apartan lo limpio. La cubierta de una carga puede esperar sin lavarse de inmediato. Los paños limpios quedan bajo la cubierta; los recipientes utilizados reciben agua del lado abierto.",
@@ -604,14 +855,15 @@
       ],
       "focus": [
         "activity"
-      ]
+      ],
+      "brief": "El patio de lavado y su muro bajo."
     },
     "korven_deposito_cubiertas": {
       "id": "korven_deposito_cubiertas",
       "name": "Depósito de cubiertas",
       "region": "korven",
       "kind": "interior",
-      "description": "Las cubiertas secas cuelgan separadas de las húmedas. Una tablilla nombra a quien tomó cada pieza. La puerta norte vuelve al patio de lavado.",
+      "description": "Un cuarto fresco donde cuelgan cubiertas de tela gruesa: las secas a un lado, las húmedas al otro, para que no se estropeen. Una tablilla dice quién se llevó cada pieza.",
       "day": "La encargada comprueba una cubierta desde el borde hasta el centro. El vecino pregunta por su préstamo; ella toca el paño todavía húmedo y vuelve a colgarlo junto al hueco de aire.",
       "night": "La encargada recoge las tablas de préstamo junto a la puerta. Deja libre un travesaño para devoluciones tardías y otro para la cubierta mojada.",
       "rain": "Las devoluciones llenan la franja húmeda. La encargada abre el segundo hueco de aire y sacude una cubierta; del centro cae agua sobre la tabla inferior.",
@@ -627,14 +879,15 @@
       "arrivals": {},
       "npcs": [],
       "signals": [],
-      "actions": []
+      "actions": [],
+      "brief": "El depósito de cubiertas."
     },
     "korven_mirador_grietas": {
       "id": "korven_mirador_grietas",
       "name": "Mirador de las grietas",
       "region": "korven",
       "kind": "landmark",
-      "description": "Un borde bajo de piedra protege el mirador. Delante se ven plataformas cortadas por grietas y una franja oscura cuya profundidad no alcanzas a medir. Al oeste vuelves a la cisterna; al sur bajas al cauce. Brumak queda detrás de la pared.",
+      "description": "Un mirador protegido por un borde bajo de piedra. Delante se extienden plataformas de roca cortadas por grietas, como un plato roto, y una franja oscura tan honda que no se le ve el fondo. Si tiras una piedrecita, tarda en sonar. Brumak queda detrás, tras la pared. El viento silba al pasar por las grietas.",
       "day": "La observadora ve una nube de polvo junto al camino. Espera a que aparezca una carga para saber si la levantó un viajero.",
       "night": "La luz de la cisterna ilumina el borde próximo. Las plataformas exteriores se juntan en una masa oscura; desde una grieta llega el golpe de una piedra y la observadora recoge sus notas.",
       "rain": "El agua oscurece las plataformas y borra la nube de polvo. La observadora apunta lo que ya no alcanza a ver desde el borde.",
@@ -651,14 +904,15 @@
       "arrivals": {},
       "npcs": [],
       "signals": [],
-      "actions": []
+      "actions": [],
+      "brief": "El mirador de las grietas."
     },
     "korven_cauce_observacion": {
       "id": "korven_cauce_observacion",
       "name": "Cauce de piedras movidas",
       "region": "korven",
       "kind": "wilderness",
-      "description": "El cauce está lleno de piedras movidas. Algunas tienen una cara limpia; otras conservan polvo viejo donde estuvieron apoyadas. Un bloque ocupa el borde del paso. Al norte subes al mirador y al este llegas a la plataforma donde se escuchan los movimientos del suelo.",
+      "description": "Un cauce lleno de piedras que alguien o algo ha movido. Algunas muestran una cara limpia, recién expuesta; otras conservan el polvo viejo donde estuvieron apoyadas durante años. Un bloque grande ocupa el borde del paso. Cerca hay una plataforma donde se escucha cómo se mueve el suelo. Todo está muy quieto.",
       "day": "Una revisora mira las caras limpias de los bloques y busca una piedra que recuerda de su último paso. Su compañero espera fuera del cauce.",
       "night": "Las sombras impiden distinguir la cara limpia del polvo viejo. La revisora deja una nota junto a la entrada y se queda fuera de los bloques.",
       "rain": "El agua limpia el polvo de varias caras. La revisora busca el bloque que anotó antes y señala la mancha que aún conserva bajo el saliente.",
@@ -710,27 +964,28 @@
       "wildlife_pool": [
         {
           "creature": "cascapedernal",
-          "text": "Un pequeño caparazón moteado se aparta hacia una junta de roca al cambiar la sombra.",
+          "text": "Bajo una piedra de cara limpia, un Cascapedernal se mete de lado. El borde del caparazón roza la roca con un golpe breve.",
           "persistent_trace": false
         },
         {
           "creature": "colagrieta",
-          "text": "Una cola desaparece por una grieta. El Colagrieta asoma la cabeza y vuelve a esconderse.",
+          "text": "Entre las piedras movidas, un Colagrieta busca una grieta. Prueba una, no cabe, y prueba otra.",
           "persistent_trace": false
         },
         {
           "creature": "quebrarrocas",
-          "text": "Un bloque recién movido corta parte del suelo. El Quebrarrocas sigue empujando piedras a cierta distancia.",
+          "text": "Al fondo del cauce, un Quebrarrocas apoya el cuerpo contra un bloque y lo hace rodar. Así se ven las piedras de cara limpia: alguien las ha movido.",
           "persistent_trace": false
         }
-      ]
+      ],
+      "brief": "El cauce de las piedras movidas."
     },
     "korven_plataforma_escucha": {
       "id": "korven_plataforma_escucha",
       "name": "Plataforma de escucha",
       "region": "korven",
       "kind": "landmark",
-      "description": "Un recipiente vacío descansa en una junta de la roca firme. Sus pequeños movimientos pueden verse desde la plataforma, lejos de los bloques del cauce. Al oeste vuelves al cauce; al norte llegas al registro. Las cargas que pasan cerca también hacen temblar el recipiente.",
+      "description": "Una plataforma de roca firme, lejos de los bloques del cauce. En una junta descansa un recipiente vacío: cuando el suelo se mueve, aunque sea poco, tiembla y tintinea. Los Dravak lo usan para escuchar la tierra. Las cargas que pasan cerca también lo hacen temblar. Hay que quedarse muy quieto para notarlo.",
       "day": "La revisora espera a que pase la carga. El recipiente deja de temblar; el ayudante anota el último sonido de las ruedas y vuelve a escucharlo desde la plataforma.",
       "night": "El recipiente conserva su borde visible bajo una luz pequeña. Los sonidos del pueblo llegan con pausas mayores y permiten distinguir una carga que ya pasó. Después de una pausa se oye grava desde la pared occidental. La oscuridad oculta la altura de donde procede.",
       "rain": "Las gotas hacen temblar el recipiente. La revisora lo retira de la junta, seca su borde y señala el techo al ayudante antes de guardar la nota.",
@@ -747,14 +1002,15 @@
       "arrivals": {},
       "npcs": [],
       "signals": [],
-      "actions": []
+      "actions": [],
+      "brief": "La plataforma de escucha y su recipiente que tiembla."
     },
     "korven_registro_cauce": {
       "id": "korven_registro_cauce",
       "name": "Registro del cauce",
       "region": "korven",
       "kind": "interior",
-      "description": "Bajo una cubierta baja se guardan tablillas en fundas. Cada nota dice dónde cambió el terreno, quién lo vio y cómo estaba el tiempo. Una abertura permite mirar el cauce sin bajar. La salida del sur vuelve a la plataforma de escucha.",
+      "description": "Bajo una cubierta baja se guardan tablillas en fundas de cuero. Cada nota dice dónde cambió el terreno, quién lo vio y qué tiempo hacía ese día. Por una abertura se ve el cauce sin tener que bajar. Aquí se guarda la memoria del suelo.",
       "day": "La encargada pregunta si llovía cuando se movió el recipiente. Su compañero busca la nota que dice dónde estaba el bloque.",
       "night": "Las fundas están cerradas. Bajo la cubierta queda una tablilla para anotar una llegada tardía y lo que pudo verse desde el camino.",
       "rain": "La mesa conserva una franja seca para abrir fundas y otra donde esperan las recién llegadas. La encargada registra primero la lluvia. Comparar un bloque mojado con polvo seco necesita que esa diferencia quede escrita.",
@@ -798,14 +1054,15 @@
           ],
           "text": "La advertencia conserva la franja concreta del bloque observado. Otros apoyos siguen con su estado conocido, sin recibir una acusación de peligro por simple cercanía."
         }
-      ]
+      ],
+      "brief": "El registro del cauce, con sus tablillas en fundas."
     },
     "korven_desvio_horno": {
       "id": "korven_desvio_horno",
       "name": "Desvío al horno",
       "region": "korven",
       "kind": "road",
-      "description": "El desvío conserva tierra quemada y fragmentos de recipientes junto a un muro corto. Al norte vuelves a la meseta; al sur está el horno viejo. Una franja clara evita pisar las piezas. Bajo la cubierta esperan trabajo sin terminar y herramientas nuevas.",
+      "description": "Un desvío de tierra quemada y oscura, con trozos de recipientes rotos junto a un muro corto. Una franja clara marca por dónde pisar sin romper las piezas que quedan. Bajo una cubierta esperan trabajos sin terminar y herramientas nuevas. La ceniza vieja se levanta a cada paso. Más abajo está el horno viejo.",
       "day": "Una alfarera retira un fragmento del paso y lo compara con otro que lleva envuelto. Alinea los dos bordes sobre la tela y gira el fragmento que tiene una pared más gruesa.",
       "night": "El horno no conserva calor ni luz y su abertura parece más profunda de lo que es. La ruta de Brumak sigue audible desde el norte. El silencio deja oír un roce de hojas contra el muro corto.",
       "rain": "La tierra quemada se vuelve oscura y las piezas brillan con agua. La alfarera cubre el fragmento que trae para no confundir su color seco con el de los restos mojados. La comparación puede esperar.",
@@ -826,27 +1083,28 @@
       "wildlife_pool": [
         {
           "creature": "cascapedernal",
-          "text": "Un pequeño caparazón moteado se aparta hacia una junta de roca al cambiar la sombra.",
+          "text": "Un Cascapedernal cruza la tierra quemada y se refugia bajo un fragmento grande de recipiente. El borde del caparazón asoma por un lado.",
           "persistent_trace": false
         },
         {
           "creature": "colagrieta",
-          "text": "Una cola desaparece por una grieta. El Colagrieta asoma la cabeza y vuelve a esconderse.",
+          "text": "Entre los trozos de recipientes, un Colagrieta asoma por encima del muro corto. Cuando un fragmento cruje bajo tu pie, retrocede.",
           "persistent_trace": false
         },
         {
           "creature": "quebrarrocas",
-          "text": "Un bloque recién movido corta parte del suelo. El Quebrarrocas sigue empujando piedras a cierta distancia.",
+          "text": "Más allá del muro corto, lejos del horno, un Quebrarrocas empuja piedras. El temblor llega hasta los fragmentos del suelo.",
           "persistent_trace": false
         }
-      ]
+      ],
+      "brief": "El desvío al horno, entre trozos de recipientes."
     },
     "korven_horno_reposo": {
       "id": "korven_horno_reposo",
       "name": "Horno viejo",
       "region": "korven",
       "kind": "landmark",
-      "description": "Parte de la boca del horno se ha vencido. El suelo sólo está limpio donde se revisan los restos. Un recipiente torcido espera sobre un banco. Al norte puedes volver a la meseta por el desvío; al oeste hay un hueco donde Taren compara las piezas.",
+      "description": "Un horno viejo y grande, con parte de la boca hundida hacia dentro. El suelo sólo está limpio donde se revisan los restos. Sobre un banco espera un recipiente torcido, con un lado más grueso que el otro. Todavía huele un poco a quemado, aunque hace mucho que nadie lo enciende. A un lado hay un rincón donde se comparan las piezas.",
       "day": "La alfarera coloca dos bordes juntos sobre el banco y busca una diferencia de espesor. Un aprendiz deja el recipiente torcido donde puede verse completo. El borde vencido queda frente al borde recto de la otra pieza.",
       "night": "El banco queda cubierto con una tela y la boca del horno sin luz. El recipiente torcido permanece en su apoyo, fuera del tránsito. Las herramientas permanecen recogidas y la mesa queda cubierta hasta que vuelva la alfarera.",
       "rain": "La tela protege el banco mientras el agua moja los restos de la boca. La alfarera revisa que ninguna pieza caiga hacia la entrada. Coloca otra piedra sobre la cubierta y lleva las piezas secas hacia el entrante protegido.",
@@ -866,8 +1124,8 @@
       "actions": [
         {
           "id": "korven_recomendar_aro",
-          "label": "Recomendar conservar el aro y aligerar la base",
-          "text": "Comparas las muestras y marcas una base menos gruesa. El aro conserva el tamaño que Taren quería para la mano de su madre.",
+          "label": "Recomendar una base más ligera",
+          "text": "Comparas el recipiente torcido con las medidas: lo que más pesa es la base, demasiado gruesa. Marcas una base más fina y dejas el aro como está, a la medida de la mano de la madre de Taren.",
           "requires_flags": [
             "encargo_korven_taza_medida"
           ],
@@ -882,7 +1140,7 @@
         {
           "id": "korven_recomendar_base",
           "label": "Recomendar una base más estable",
-          "text": "Comparas las muestras y marcas una base un poco más ancha, manteniendo el aro pequeño. Taren podrá decidir cuánto peso acepta para que la taza no vuelque.",
+          "text": "Comparas el recipiente torcido con las medidas: se inclina porque la base es estrecha. Marcas una base un poco más ancha y dejas el aro pequeño. La taza pesará algo más, pero no se volcará.",
           "requires_flags": [
             "encargo_korven_taza_medida"
           ],
@@ -902,14 +1160,15 @@
           ],
           "text": "Una nota junto al recipiente describe el espesor desigual. El objeto gana una observación atribuida sin que nadie invente por ella el motivo del abandono del horno."
         }
-      ]
+      ],
+      "brief": "El horno viejo y su recipiente torcido."
     },
     "korven_entrante_piezas": {
       "id": "korven_entrante_piezas",
       "name": "Rincón de las muestras",
       "region": "korven",
       "kind": "landmark",
-      "description": "Dos muestras esperan separadas sobre una cubierta. Taren ha dejado sitio seco para una taza grande; el extremo abierto recoge polvo del camino. Puedes mirar sin meterte entre las herramientas. La única salida va al este, hacia el horno viejo.",
+      "description": "Un rincón al abrigo, junto al horno. Dos muestras de barro cocido esperan separadas sobre una cubierta, cada una con su etiqueta. En el extremo seco del asiento queda sitio para una taza grande. El lado abierto recoge el polvo del camino. Se puede mirar sin meterse entre las herramientas.",
       "day": "Taren acerca la taza al extremo seco del asiento. El resto de las piezas permanece bajo una cubierta: quiere probar una sola cosa antes de seguir trabajando.",
       "night": "La piedra plana recibe luz lateral y deja visibles los espesores. Las muestras de color esperan cubiertas en la estera. Una nota recuerda qué parte falta comparar; la puerta de Taren permanece cerrada al otro lado del horno.",
       "rain": "Las muestras mojadas quedan sobre una estera distinta. La alfarera cubre la pareja seca; una gota oscurece el borde grueso del fragmento que había dejado fuera.",
@@ -1028,14 +1287,15 @@
       "buy_items": [
         "piedra_veteada",
         "rama_flexible"
-      ]
+      ],
+      "brief": "El rincón de las muestras."
     },
     "korven_meseta_relevo": {
       "id": "korven_meseta_relevo",
       "name": "Refugio de Lajas",
       "region": "korven",
       "kind": "road",
-      "description": "En la meseta se mezclan piedras claras y restos bajados de la sierra. Una cubierta guarda notas de ambos caminos. Al norte subes por la garganta hacia Hoshai; al sur vuelves al banco de revisión. Las cargas esperan junto a una pared baja, sin bloquear el giro. La cubierta del Refugio de Lajas protege una mesa y dos apoyos de descanso; al partir, cada viajero devuelve la piedra que sujetaba su nota.",
+      "description": "Una meseta donde se mezclan piedras claras de Korven y restos oscuros bajados de la sierra de Hoshai. Una cubierta protege una mesa y dos apoyos de descanso, y guarda notas de los dos caminos. Al irse, cada viajero devuelve la piedra que sujetaba su nota. Las cargas esperan junto a una pared baja. El viento de la montaña baja frío.",
       "day": "Una viajera aplasta con una piedra el rincón de su nota. Su compañero dibuja al margen el aspecto del último pino; ella añade una rama que él había olvidado.",
       "night": "La cubierta golpea una vez y se aquieta. Una piedra sostiene dos notas sobre la mesa; el resto del abrigo queda en silencio.",
       "rain": "El agua trae agujas de pino entre los cascajos de la garganta. La encargada anota lo que quedó en la junta y acerca la carga a la pared baja.",
@@ -1043,7 +1303,8 @@
       "return": "Reconoces la pared donde esperan las cargas. Las notas siguen separadas por camino: una llega de Hoshai y otra de los pedrales.",
       "examine": {
         "noticias": "Se atribuyen al tramo visto, no a una región completa.",
-        "restos": "Las agujas llegaron desde arriba junto con el agua de la garganta."
+        "restos": "Las agujas llegaron desde arriba junto con el agua de la garganta.",
+        "dibujo": "En el margen de una nota hay un pino dibujado, con la copa doblada por el viento."
       },
       "exits": {
         "sur": "korven_asiento_revision",
@@ -1055,7 +1316,24 @@
       },
       "npcs": [],
       "signals": [],
-      "actions": [],
+      "actions": [
+        {
+          "id": "korven_secreto_dibujo",
+          "label": "Añadir algo al dibujo del pino",
+          "requires_visits": {
+            "min": 5
+          },
+          "forbids_flags": [
+            "korven_dibujo_aportado"
+          ],
+          "set_flags": [
+            "korven_dibujo_aportado"
+          ],
+          "scope": "player",
+          "text": "Buscas un hueco libre en el margen y dibujas algo pequeño junto al pino. Cuando vuelvas, quizá alguien le haya añadido algo a lo tuyo.",
+          "journal": "Añadiste tu propio dibujo al pino del margen, en el Refugio de Lajas."
+        }
+      ],
       "wildlife_pool": [
         {
           "creature": "cascapedernal",
@@ -1064,12 +1342,12 @@
         },
         {
           "creature": "colagrieta",
-          "text": "Una cola desaparece por una grieta. El Colagrieta asoma la cabeza y vuelve a esconderse.",
+          "text": "Junto a la pared baja, un Colagrieta asoma entre las lajas. Mira la mesa de las notas un momento y vuelve a su hueco.",
           "persistent_trace": false
         },
         {
           "creature": "quebrarrocas",
-          "text": "Un bloque recién movido corta parte del suelo. El Quebrarrocas sigue empujando piedras a cierta distancia.",
+          "text": "Hacia la garganta, lejos del refugio, un Quebrarrocas aparta piedras bajadas de la sierra. Desde la mesa se oye cada golpe.",
           "persistent_trace": false
         }
       ],
@@ -1084,18 +1362,49 @@
           "overrides": {
             "day": "La nota intenta salir bajo la piedra. Los dos viajeros se sientan del lado protegido y terminan juntos el dibujo del pino mientras afuera silba la meseta."
           }
+        },
+        {
+          "requires_visits": {
+            "min": 3
+          },
+          "overrides": {
+            "examine": {
+              "dibujo": "El pino del margen tiene ahora piñas. Y raíces, sujetando un poco de tierra. Lo ha dibujado más de una mano."
+            }
+          }
+        },
+        {
+          "requires_visits": {
+            "min": 5
+          },
+          "overrides": {
+            "examine": {
+              "dibujo": "Alguien ha colgado un Uñapiedra de una rama del pino. Debajo, con otra letra, pone: «¿Quién dibuja esto?»"
+            }
+          }
+        },
+        {
+          "requires_visits": {
+            "min": 8
+          },
+          "overrides": {
+            "examine": {
+              "dibujo": "Debajo de la pregunta hay respuesta, con una letra nueva: «Todos.» El pino ya casi no cabe en el margen."
+            }
+          }
         }
       ],
       "focus": [
         "activity"
-      ]
+      ],
+      "brief": "El Refugio de Lajas, con su mesa de notas."
     },
     "korven_senda_viento": {
       "id": "korven_senda_viento",
       "name": "Senda del viento",
       "region": "korven",
       "kind": "road",
-      "description": "Las paredes de Brumak quedan cada vez más bajas y el viento alcanza las cargas. Un cobertizo abierto permite ajustar las cubiertas. Al este vuelves al almacén; al sur sigue la bajada hacia Edran. Entre las piedras empiezan a aparecer franjas de tierra.",
+      "description": "Las paredes de Brumak se van quedando bajas y el viento empieza a golpear las cargas sin piedad, tirando de las cubiertas. Un cobertizo abierto sirve para ajustarlas y recuperar el aliento. Entre las piedras aparecen las primeras franjas de tierra y alguna hierba: el camino baja hacia Edran.",
       "day": "Un viajero ajusta las tiras del lado protegido mientras su compañera sujeta el borde que golpea el aire. Al salir del cobertizo, la cubierta vuelve a tensarse sobre sus manos.",
       "night": "Las fachadas quedan invisibles y el cobertizo conserva apenas un techo bajo sobre la luz. Las tiras flojas golpean antes de que se vea mover la cubierta. Escuchar ese detalle ayuda más que mirar un horizonte apagado.",
       "rain": "El viento lleva agua bajo un lado del cobertizo y cambia el sitio donde se ajustan las tiras. Los viajeros evitan mojar el contenido al revisar el borde. La ruta de los llanos continúa más allá de la lluvia cercana.",
@@ -1121,22 +1430,23 @@
         },
         {
           "creature": "colagrieta",
-          "text": "Una cola desaparece por una grieta. El Colagrieta asoma la cabeza y vuelve a esconderse.",
+          "text": "Con el viento llega polvo, y un Colagrieta se pega a la pared más baja: la cabeza dentro de una grieta, la cola fuera.",
           "persistent_trace": false
         },
         {
           "creature": "quebrarrocas",
-          "text": "Un bloque recién movido corta parte del suelo. El Quebrarrocas sigue empujando piedras a cierta distancia.",
+          "text": "Detrás del almacén, un Quebrarrocas empuja un bloque cuesta abajo. El viento se lleva el polvo antes de que llegue a las cubiertas.",
           "persistent_trace": false
         }
-      ]
+      ],
+      "brief": "La senda del viento, con su cobertizo abierto."
     },
     "korven_borde_tierra": {
       "id": "korven_borde_tierra",
       "name": "Parada de los Cardos",
       "region": "korven",
       "kind": "road",
-      "description": "La tierra ocupa más espacio entre las piedras y aparecen pastos bajos. Una zanja recoge la arena que trae el viento. Al norte vuelves a la senda de las cubiertas; al sur cruzas hacia la linde de Edran. Los bloques de roca ya quedan separados. Una cubierta remendada junto a la zanja señala la Parada de los Cardos. Debajo hay una tabla para sentarse y un gancho donde secar una correa.",
+      "description": "Aquí la tierra ya ocupa más sitio que la piedra, y crecen pastos bajos y cardos con flores moradas. Una zanja recoge la arena que trae el viento. Junto a ella, una cubierta remendada marca la Parada de los Cardos: debajo hay una tabla para sentarse y un gancho para secar una correa. Más allá empieza la linde de Edran.",
       "day": "Una cuidadora saca arena de la zanja y deja las raíces del pasto en su borde. Su compañero espera; después apoya la carga junto a la tabla del refugio.",
       "night": "El pasto se escucha antes de verse cuando el viento mueve sus hojas entre las rocas. La zanja permanece oscura junto al paso. Una luz cercana permite distinguir la franja de tránsito de la tierra que se conserva.",
       "rain": "El agua deja arena en la zanja y humedece la tierra fina sin cubrirla por completo. La cuidadora comprueba qué parte queda retenida. Los viajeros eligen apoyos de piedra para no abrir nuevas huellas en el pequeño suelo.",
@@ -1165,22 +1475,27 @@
         },
         {
           "creature": "colagrieta",
-          "text": "Una cola desaparece por una grieta. El Colagrieta asoma la cabeza y vuelve a esconderse.",
+          "text": "En la zanja, un Colagrieta busca grieta entre las últimas rocas. Aquí hay más tierra que piedra y le cuesta encontrar dónde meterse.",
           "persistent_trace": false
         },
         {
           "creature": "quebrarrocas",
-          "text": "Un bloque recién movido corta parte del suelo. El Quebrarrocas sigue empujando piedras a cierta distancia.",
+          "text": "Al norte, donde todavía hay bloques grandes, un Quebrarrocas empuja una roca. Desde los pastos de la parada, el ruido llega flojo.",
           "persistent_trace": false
         }
-      ]
+      ],
+      "brief": "La Parada de los Cardos, donde la tierra gana a la piedra.",
+      "look": {
+        "norte": "Las paredes de roca vuelven a crecer y el viento silba entre ellas.",
+        "sur": "Pastos, tierra blanda y cercas a lo lejos: por ahí empiezan los campos de Edran."
+      }
     },
     "korven_roca_cascaron": {
       "id": "korven_roca_cascaron",
       "name": "Roca de los líquenes",
       "region": "korven",
       "kind": "wilderness",
-      "description": "Una roca cubierta de líquenes queda al final del desvío. Cerca de su base hay marcas de roce. Un caparazón moteado se aparta hacia una grieta estrecha. Puedes observar desde fuera del cascajo. El camino de regreso está al norte, sobre el cauce seco.",
+      "description": "Al final del desvío, una roca grande cubierta de líquenes verdes y naranjas, como manchas de pintura. Cerca de su base hay marcas de roce. Un caparazón moteado se aparta hacia una grieta estrecha cuando te acercas. Se puede observar desde fuera del cascajo sin molestarlo.",
       "day": "Un insecto de caparazón se inmoviliza cuando pasa una sombra y después busca una junta lateral. Una observadora permanece quieta fuera del cascajo. El insecto cabe entero en la junta; sólo quedan fuera las antenas.",
       "night": "Las grietas se pierden en la oscuridad. La observadora guarda la lupa; ya no se distingue el movimiento pequeño junto al líquen.",
       "rain": "Las costras se oscurecen y el insecto busca un apoyo fuera del agua reunida en la base. La observadora describe el cambio de posición sin tocarlo. El suelo mojado permite ver huellas que el polvo seco ocultaba.",
@@ -1204,14 +1519,15 @@
           ]
         }
       ],
-      "actions": []
+      "actions": [],
+      "brief": "La roca de los líquenes."
     },
     "korven_peldanos_cortos": {
       "id": "korven_peldanos_cortos",
       "name": "Escalones bajos",
       "region": "korven",
       "kind": "road",
-      "description": "Escalones bajos y una franja para carros suben hacia las casas de Brumak. Al este vuelves al banco de revisión; al oeste entras en el patio. Una repisa guarda cuñas cerca del suelo. Las ruedas pequeñas han gastado más la piedra junto a los peldaños. Al sur, una puerta baja conduce al antiguo almacén de las cargas.",
+      "description": "Escalones bajos y anchos, junto a una franja lisa para carros, suben hacia las casas de Brumak. Las ruedas pequeñas han gastado más la piedra junto a los peldaños, dejando una línea brillante. Una repisa guarda cuñas cerca del suelo, a mano. A un lado, una puerta baja da al antiguo almacén de las cargas.",
       "day": "Una habitante recoloca una cuña y empuja el carro por la franja ancha. Un visitante alto espera junto a los peldaños; baja la cabeza al pasar bajo el borde de la puerta.",
       "night": "Las luces se colocan junto a los cambios de nivel y no en lo alto de una fachada. El carro tardío se anuncia desde el asiento de revisión. La franja lateral permanece reconocible hasta alcanzar los primeros muros.",
       "rain": "Los peldaños reciben barro que baja de las viviendas. Una habitante limpia el borde de la franja lateral antes de apoyar la rueda. Los recipientes se conservan sobre la repisa, lejos de la corriente de la escalera.",
@@ -1254,12 +1570,12 @@
         },
         {
           "creature": "colagrieta",
-          "text": "Una cola desaparece por una grieta. El Colagrieta asoma la cabeza y vuelve a esconderse.",
+          "text": "Bajo la repisa de las cuñas, un Colagrieta saca la cabeza. Una vecina lo ve, sonríe y aparta el pie.",
           "persistent_trace": false
         },
         {
           "creature": "quebrarrocas",
-          "text": "Un bloque recién movido corta parte del suelo. El Quebrarrocas sigue empujando piedras a cierta distancia.",
+          "text": "Lejos de las casas, fuera del camino, un Quebrarrocas mueve piedras en la ladera. Desde los escalones sólo se ve su polvo.",
           "persistent_trace": false
         }
       ],
@@ -1273,6 +1589,61 @@
       },
       "states": [
         {
+          "requires_time": [
+            "día"
+          ],
+          "requires_visits": {
+            "min": 3
+          },
+          "overrides": {
+            "day": "Un niño Dravak sube los escalones con un recipiente de agua en equilibrio sobre la cabeza. No derrama ni una gota y no mira a nadie: está muy concentrado."
+          }
+        },
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_visits": {
+            "min": 5
+          },
+          "overrides": {
+            "day": "Un carro baja por la franja ancha demasiado deprisa. Su dueña lo frena con una cuña justo a tiempo, y suspira."
+          }
+        },
+        {
+          "requires_time": [
+            "día"
+          ],
+          "requires_visits": {
+            "min": 8
+          },
+          "overrides": {
+            "day": "Una vecina barre los escalones de arriba abajo. Al llegar al último, vuelve a empezar arriba: el viento ya ha traído más polvo."
+          }
+        },
+        {
+          "requires_time": [
+            "noche"
+          ],
+          "requires_visits": {
+            "min": 3
+          },
+          "overrides": {
+            "night": "Las luces colocadas junto a cada cambio de nivel parecen pequeñas estrellas en el suelo."
+          }
+        },
+        {
+          "requires_time": [
+            "noche"
+          ],
+          "requires_visits": {
+            "min": 6
+          },
+          "overrides": {
+            "night": "Un carro tardío sube despacio. Se oyen las ruedas, la cuña, una voz que dice «despacio», y después una puerta."
+          }
+        },
+        {
           "requires_flags": [
             "permiso_brumak"
           ],
@@ -1280,14 +1651,15 @@
             "return": "Ved levanta la vista y te deja pasar sin pedir otra presentación. Reconoces la cuña junto al peldaño corto y la franja que los carros mantienen despejada."
           }
         }
-      ]
+      ],
+      "brief": "Los escalones bajos de Brumak y su franja para carros."
     },
     "korven_almacen_entrada": {
       "id": "korven_almacen_entrada",
       "name": "Puerta del almacén viejo",
       "region": "korven",
       "kind": "interior",
-      "description": "Una puerta encajada en la ladera protege sacos vacíos del viento. Los peldaños de Brumak quedan al norte. Un corredor baja al sur y una escalera lateral lleva al oeste, hasta la zona de pesaje.",
+      "description": "Una puerta encajada en la ladera protege del viento un almacén de sacos vacíos. La luz llega sólo desde la entrada. Un corredor baja hacia el fondo y una escalera lateral lleva a la zona de pesaje.",
       "exits": {
         "norte": "korven_peldanos_cortos",
         "sur": "korven_almacen_cruce",
@@ -1346,14 +1718,15 @@
             "return": "La placa que devolviste queda en el brazo de la balanza junto al paso occidental. Ruma compara ahora las cargas pequeñas desde esa mesa."
           }
         }
-      ]
+      ],
+      "brief": "La puerta del almacén viejo."
     },
     "korven_almacen_balanzas": {
       "id": "korven_almacen_balanzas",
       "name": "Mesa de pesaje",
       "region": "korven",
       "kind": "interior",
-      "description": "Dos brazos de madera cruzan una mesa baja. Uno conserva su placa; el otro cuelga vacío. Una ventana estrecha deja oír las cargas que pasan por los peldaños. La puerta vuelve al este.",
+      "description": "Dos brazos de madera cruzan una mesa baja: son las balanzas del almacén. Uno conserva su placa; el otro cuelga vacío, torcido. Por una ventana estrecha se oyen las cargas que pasan por los peldaños.",
       "exits": {
         "este": "korven_almacen_entrada"
       },
@@ -1376,7 +1749,7 @@
             "korven_placa_devuelta"
           ],
           "overrides": {
-            "description": "Los dos brazos de madera tienen sus placas sobre la mesa baja. Ruma encajó la que trajiste por las tres muescas del borde. La ventana estrecha deja oír las cargas de los peldaños; la puerta vuelve al este.",
+            "description": "Dos brazos de madera cruzan una mesa baja: son las balanzas del almacén, y los dos tienen ya su placa: Ruma encajó la que trajiste por las tres muescas del borde. Por una ventana estrecha se oyen las cargas que pasan por los peldaños.",
             "day": "Un saco pequeño descansa junto al brazo que probaron. La placa devuelta conserva el otro apoyo; las tres muescas encajan en la madera.",
             "return": "Las tres muescas permiten reconocer la placa recuperada en su brazo. La mesa vuelve a servir para comparar cargas pequeñas.",
             "examine": {
@@ -1384,14 +1757,15 @@
             }
           }
         }
-      ]
+      ],
+      "brief": "La mesa de pesaje y sus dos brazos de madera."
     },
     "korven_almacen_cruce": {
       "id": "korven_almacen_cruce",
       "name": "Cruce de los sacos vacíos",
       "region": "korven",
       "kind": "interior",
-      "description": "El corredor norte vuelve a la entrada. Al sur está el depósito del fondo; al este, un pasillo estrecho conserva rayas de arrastre. Entre los sacos queda espacio para retroceder hacia la puerta.",
+      "description": "Un cruce entre pilas de sacos vacíos, más altas que una persona. En el polvo del suelo hay rayas de arrastre que se meten por un pasillo estrecho. Entre los sacos queda espacio para retroceder hacia la puerta. Hace silencio, y el polvo flota.",
       "exits": {
         "norte": "korven_almacen_entrada",
         "sur": "korven_almacen_fondo",
@@ -1423,14 +1797,15 @@
           ]
         }
       ],
-      "source": "Ampliación original autorizada: campaña nocturna"
+      "source": "Ampliación original autorizada: campaña nocturna",
+      "brief": "El cruce de los sacos vacíos."
     },
     "korven_almacen_lateral": {
       "id": "korven_almacen_lateral",
       "name": "Pasillo detrás de los sacos",
       "region": "korven",
       "kind": "interior",
-      "description": "Un hueco entre los sacos deja pasar al corredor sur. El corredor dobla al oeste antes de llegar al depósito del fondo. Al oeste vuelves al cruce. Hay un cordel atado para no mover los sacos que sujetan el resto.",
+      "description": "Un hueco estrecho entre los sacos, por donde hay que pasar de lado. Un cordel atado sujeta las pilas altas para que no se caigan, y deja libre el paso por debajo. El corredor sur dobla al oeste antes de llegar al depósito del fondo.",
       "exits": {
         "oeste": "korven_almacen_cruce",
         "sur": "korven_almacen_fondo"
@@ -1447,14 +1822,15 @@
       "npcs": [],
       "signals": [],
       "actions": [],
-      "source": "Ampliación original autorizada: campaña nocturna"
+      "source": "Ampliación original autorizada: campaña nocturna",
+      "brief": "El pasillo detrás de los sacos, con su cordel."
     },
     "korven_almacen_fondo": {
       "id": "korven_almacen_fondo",
       "name": "Depósito del fondo",
       "region": "korven",
       "kind": "interior",
-      "description": "Una placa de balanza está apoyada contra un saco. Tiene tres muescas en el borde. El paso norte vuelve al cruce; el oriental gira al norte hacia el pasillo lateral. Las paredes no tienen otras salidas.",
+      "description": "El fondo del almacén, cerrado por la roca por todos lados. Hace frío y el aire está quieto. Contra un saco hay apoyada una placa de balanza con tres muescas en el borde. El paso oriental gira al norte hacia el pasillo lateral.",
       "exits": {
         "norte": "korven_almacen_cruce",
         "este": "korven_almacen_lateral"
@@ -1496,14 +1872,15 @@
             "korven_placa_recogida"
           ],
           "overrides": {
-            "description": "El hueco junto al saco conserva tres marcas donde estaba la placa que recogiste. Al norte vuelves al cruce; al este está el pasillo lateral. Las paredes cierran el depósito por los otros lados.",
+            "description": "El fondo del almacén, cerrado por la roca por todos lados. Hace frío y el aire está quieto. Junto al saco quedan en el polvo tres marcas: ahí estaba la placa que recogiste.",
             "return": "Las tres marcas del saco sitúan el hueco de la placa. El cordel del pasillo lateral vuelve a verse hacia el este.",
             "examine": {
               "saco": "La placa dejó tres muescas de apoyo en el borde del saco; ya no está apoyada aquí."
             }
           }
         }
-      ]
+      ],
+      "brief": "El depósito del fondo."
     },
     "korven_sala_cuidados": {
       "id": "korven_sala_cuidados",
@@ -1511,7 +1888,7 @@
       "region": "korven",
       "kind": "interior",
       "safe": true,
-      "description": "Una pared gruesa detiene el viento sin cerrar la ventana alta. El asiento es bajo y firme; los paños usados quedan lejos del agua limpia. La puerta occidental sale a la calle de las casas.",
+      "description": "Una pared gruesa detiene el viento, pero deja abierta una ventana alta por donde entra luz. El asiento es bajo y firme, a la medida Dravak. Los paños usados se guardan lejos del agua limpia. Aquí se está a salvo del polvo.",
       "exits": {
         "oeste": "korven_calle_fachadas"
       },
@@ -1530,7 +1907,8 @@
       "examine": {
         "cuidados": "El servicio cuesta dieciocho sellos. Recupera hasta el noventa por ciento de vitalidad, reduce un grado de herida y renueva el margen para descansar. No sustituye la decisión de evitar otra pelea."
       },
-      "source": "Ampliación original autorizada: recuperación local del contrato existente"
+      "source": "Ampliación original autorizada: recuperación local del contrato existente",
+      "brief": "La casa de cuidados de Brumak."
     }
   },
   "npcs": {
@@ -1571,7 +1949,7 @@
         "pieza": "Esta taza iba a ser para mi madre. La primera era pequeña; la segunda quedó enorme. Si hago una tercera, terminará bebiendo directamente del horno.",
         "materiales": "Acepto piedras veteadas para comparar muestras y ramas flexibles para los soportes de recipientes. Las armas las revisa Beran, en el taller del pueblo.",
         "medidas": {
-          "text": "Taren te muestra dos marcas en su tabla. «Busco una taza manejable, no la más grande. Mira el borde de la muestra que está junto al horno y dime si conviene conservar el aro o ensanchar la base.»",
+          "text": "Mira estas dos marcas: la de la izquierda es la mano de mi madre; la de la derecha, la taza grande. El aro pequeño le queda bien a la mano, eso no lo cambio. Lo que dudo es la base: más ligera, para que pese menos, o más ancha, para que no se vuelque. Mira el recipiente torcido del horno y decide tú.",
           "set_flags": [
             "encargo_korven_taza_medida"
           ]
@@ -1580,7 +1958,7 @@
           "requires_flags": [
             "encargo_korven_taza_recomendada"
           ],
-          "text": "Taren compara tu recomendación con las marcas de la mano. «No has elegido sólo por tamaño. Haré una prueba antes de entregarla.»",
+          "text": "Así que esto es lo que viste en el horno. Bien: no elegiste sólo por tamaño, pensaste en quien la va a usar. Haré una prueba con tu marca antes de dársela a mi madre.",
           "set_flags": [
             "encargo_korven_taza_informada"
           ]

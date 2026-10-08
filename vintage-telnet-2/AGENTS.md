@@ -6,7 +6,7 @@ Este proyecto no importa el motor VT1. No leer Senku como contexto operativo ni 
 
 ## Alcance autorizado
 
-Reorganización operativa #649 autorizada el 8 de octubre de 2026. La profundización narrativa y desarrollo general continúan en pausa. No reactivar las antiguas colas al migrar agentes. Antes de programar, debe existir encargo vigente explícito para VT2.
+Encargo vigente del 8 de octubre de 2026: integrar las entregas actuales de arte y Claude, publicar en main y dejar relevo al arquitecto/programador. Leer `../docs/VT2_RELEVO_20261008.md`. La reorganización #649 y las pausas previas no bloquean este encargo acotado; no reactivar otras colas históricas por inercia. Producción se desplegó expresamente a d5ee227; versiones posteriores requieren su propia autorización de despliegue.
 
 ## Fronteras
 

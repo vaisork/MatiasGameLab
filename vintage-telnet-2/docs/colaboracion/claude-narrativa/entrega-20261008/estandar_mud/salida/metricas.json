@@ -1,0 +1,1036 @@
+{
+ "renderizador actual + texto actual · día": {
+  "palabras": 110879,
+  "repetidas": 89522,
+  "pct_repetido": 81,
+  "combate_resuelto": true,
+  "termina_en": "valdren_plaza",
+  "salas_recorridas": "183/183",
+  "movimientos_fallidos": [],
+  "eventos": 4317
+ },
+ "renderizador actual + texto actual · noche": {
+  "palabras": 110042,
+  "repetidas": 89310,
+  "pct_repetido": 81,
+  "combate_resuelto": true,
+  "termina_en": "valdren_plaza",
+  "salas_recorridas": "183/183",
+  "movimientos_fallidos": [],
+  "eventos": 4311
+ },
+ "renderizador propuesto + texto actual · día": {
+  "palabras": 112773,
+  "repetidas": 91487,
+  "pct_repetido": 81,
+  "combate_resuelto": true,
+  "termina_en": "valdren_plaza",
+  "salas_recorridas": "183/183",
+  "movimientos_fallidos": [],
+  "eventos": 5506
+ },
+ "renderizador propuesto + texto actual · noche": {
+  "palabras": 112116,
+  "repetidas": 91501,
+  "pct_repetido": 82,
+  "combate_resuelto": true,
+  "termina_en": "valdren_plaza",
+  "salas_recorridas": "183/183",
+  "movimientos_fallidos": [],
+  "eventos": 5511
+ },
+ "renderizador propuesto + texto propuesto · día": {
+  "palabras": 95345,
+  "repetidas": 69355,
+  "pct_repetido": 73,
+  "combate_resuelto": true,
+  "termina_en": "valdren_plaza",
+  "salas_recorridas": "183/183",
+  "movimientos_fallidos": [],
+  "eventos": 6028
+ },
+ "renderizador propuesto + texto propuesto · noche": {
+  "palabras": 93951,
+  "repetidas": 68618,
+  "pct_repetido": 73,
+  "combate_resuelto": true,
+  "termina_en": "valdren_plaza",
+  "salas_recorridas": "183/183",
+  "movimientos_fallidos": [],
+  "eventos": 6039
+ },
+ "cobertura": {
+  "edran_salida_huertos": [
+   "atrás",
+   "calle",
+   "dejas",
+   "recta",
+   "señalan",
+   "tramo"
+  ],
+  "edran_acequia": [
+   "alcanzas",
+   "mojarte",
+   "permite",
+   "rodea",
+   "seguir",
+   "subes",
+   "tapan"
+  ],
+  "edran_surcos": [
+   "llega"
+  ],
+  "edran_lindero": [
+   "distintos",
+   "guardan",
+   "subes",
+   "tamaños"
+  ],
+  "edran_loma": [
+   "entra",
+   "franja",
+   "ofrece",
+   "sendero"
+  ],
+  "edran_cobertizo_campo": [
+   "cubre",
+   "desnivel",
+   "llevan",
+   "senda"
+  ],
+  "edran_arboleda": [
+   "vuelve"
+  ],
+  "edran_camino_carros": [
+   "cruza",
+   "después"
+  ],
+  "edran_reparo": [
+   "comienza",
+   "descansan",
+   "lejos",
+   "subes"
+  ],
+  "edran_era": [
+   "permite",
+   "sirve",
+   "trabajar"
+  ],
+  "edran_terraplen": [
+   "cruzarse",
+   "deben",
+   "descubierto",
+   "sitio"
+  ],
+  "edran_casa_camino": [
+   "bajas",
+   "húmedas",
+   "ocupa"
+  ],
+  "edran_hito_campos": [
+   "atrás",
+   "ofrece",
+   "señalan",
+   "vista"
+  ],
+  "edran_prado": [
+   "empieza",
+   "pedregosa"
+  ],
+  "edran_linde_piedra": [
+   "cambiar",
+   "campos",
+   "edran",
+   "prado",
+   "sitio"
+  ],
+  "edran_sendero_juncos": [
+   "avanzar",
+   "crecen",
+   "entrar",
+   "permite",
+   "puente",
+   "tiene"
+  ],
+  "edran_puente_juncos": [
+   "corre",
+   "cruzarlo",
+   "cruzas",
+   "descansar",
+   "dónde",
+   "edran",
+   "llama",
+   "permite",
+   "seguir"
+  ],
+  "edran_estanque": [
+   "mirar"
+  ],
+  "edran_bajo_humedo": [
+   "húmedo",
+   "única"
+  ],
+  "edran_parcela_vieja": [
+   "dejando",
+   "pisarlos",
+   "regresas",
+   "subes"
+  ],
+  "edran_zanja_antigua": [
+   "acceso",
+   "actual",
+   "comprobando",
+   "dobla",
+   "dónde",
+   "entera",
+   "mujer",
+   "parte",
+   "subes"
+  ],
+  "edran_sauces": [
+   "alrededor",
+   "puente"
+  ],
+  "edran_calzada": [
+   "cubren",
+   "destacan",
+   "hacen",
+   "oculta",
+   "redondeadas",
+   "ruido"
+  ],
+  "edran_vista_cuenca": [
+   "cruza"
+  ],
+  "edran_ladera_piedra": [
+   "apoyarlos",
+   "permiten",
+   "subes"
+  ],
+  "edran_sendero_regreso": [
+   "enfrentadas",
+   "entradas",
+   "quitarte",
+   "regresas",
+   "rodear",
+   "señala"
+  ],
+  "edran_canal_entrada": [
+   "altura",
+   "caminar",
+   "depender",
+   "entradas",
+   "occidental",
+   "permite",
+   "regresar",
+   "suficiente",
+   "tienen"
+  ],
+  "edran_canal_herramientas": [
+   "escuchar",
+   "oriental"
+  ],
+  "edran_canal_bifurcacion": [
+   "continúa",
+   "criatura",
+   "escalera",
+   "salida"
+  ],
+  "edran_canal_refugio": [
+   "cierra",
+   "levantarse",
+   "sostiene",
+   "vuelve",
+   "única"
+  ],
+  "edran_canal_compuerta": [
+   "permanece",
+   "volver"
+  ],
+  "edran_canal_repisa": [
+   "pueblo",
+   "través",
+   "túnel"
+  ],
+  "hoshai_estribacion": [
+   "enlaza"
+  ],
+  "hoshai_repecho_raices": [
+   "arroyo",
+   "descubiertas",
+   "esconde",
+   "seguir",
+   "sitio",
+   "tapar",
+   "volver"
+  ],
+  "hoshai_descanso_tres_piedras": [
+   "ascenso",
+   "ofrecen"
+  ],
+  "hoshai_pared_goteo": [
+   "conserva"
+  ],
+  "hoshai_pinar_discontinuo": [
+   "acumulan",
+   "alcanza",
+   "corre",
+   "dejan"
+  ],
+  "hoshai_agua_fria": [
+   "atraviesa",
+   "escoger",
+   "hitos",
+   "pinos",
+   "suben"
+  ],
+  "hoshai_ladera_hitos": [
+   "cuello",
+   "estrecha",
+   "recorre"
+  ],
+  "hoshai_cuello_roca": [
+   "contra",
+   "deben",
+   "esperar",
+   "golpean",
+   "pasar"
+  ],
+  "hoshai_terraza_cargas": [
+   "abiertas",
+   "bajar",
+   "camino",
+   "descansan",
+   "desemboca",
+   "llegar",
+   "pueblo",
+   "señala",
+   "sierra",
+   "suben"
+  ],
+  "hoshai_escalones_sol": [
+   "corre",
+   "enlazan",
+   "reparados"
+  ],
+  "khariel_centro": [
+   "camino"
+  ],
+  "hoshai_taller_apoyos": [
+   "puerta",
+   "reparación",
+   "vuelve"
+  ],
+  "hoshai_mercado_cintas": [
+   "indican",
+   "lleva",
+   "ofrecen"
+  ],
+  "hoshai_patio_hogares": [
+   "bloquear"
+  ],
+  "hoshai_lavadero_roca": [
+   "lleva",
+   "viviendas"
+  ],
+  "hoshai_deposito_comun": [
+   "conserva",
+   "indica",
+   "prestada",
+   "salir",
+   "suelo"
+  ],
+  "hoshai_balcon_valle": [],
+  "hoshai_mirador_nudo": [
+   "principal",
+   "protege",
+   "sitio"
+  ],
+  "hoshai_caseta_revision": [
+   "terraza",
+   "vuelve"
+  ],
+  "hoshai_abrigo_pinas": [
+   "acumulan",
+   "ofrece",
+   "subes"
+  ],
+  "hoshai_collado_pino": [
+   "abrigo",
+   "aislado",
+   "senda"
+  ],
+  "hoshai_aprisco_abierto": [
+   "collado",
+   "moverse",
+   "puedan"
+  ],
+  "hoshai_hombro_lajas": [
+   "alcanza",
+   "bajas",
+   "hacerlas"
+  ],
+  "hoshai_garganta_oeste": [
+   "aparecen",
+   "meseta",
+   "regresas"
+  ],
+  "hoshai_senda_dosel": [
+   "alcanzas",
+   "dejar",
+   "estación"
+  ],
+  "hoshai_estacion_cuerda": [
+   "señalan"
+  ],
+  "hoshai_campamento_lona": [
+   "afirma",
+   "pertenece"
+  ],
+  "hoshai_cajas_camino": [
+   "continúa",
+   "visible",
+   "vuelve"
+  ],
+  "hoshai_sala_cuidados": [
+   "occidental",
+   "vuelve"
+  ],
+  "korven_loma_cascajo": [
+   "conserva",
+   "menos",
+   "ocultar",
+   "termina",
+   "volver"
+  ],
+  "korven_cauce_duro": [
+   "ofrecen",
+   "subes"
+  ],
+  "korven_meseta_baja": [],
+  "korven_pared_sotavento": [
+   "siguen"
+  ],
+  "korven_hitos_paso": [
+   "acercarte",
+   "arriba",
+   "buscar",
+   "cruzan",
+   "reparación"
+  ],
+  "korven_hendidura_transito": [
+   "cubre",
+   "dejan",
+   "pasan",
+   "pasar"
+  ],
+  "korven_asiento_revision": [
+   "descansa",
+   "relevo",
+   "sigues"
+  ],
+  "brumak_centro": [
+   "camino",
+   "dejan",
+   "entrada"
+  ],
+  "korven_taller_juntas": [
+   "levanta",
+   "puerta"
+  ],
+  "korven_almacen_grano": [
+   "expuesta",
+   "sales"
+  ],
+  "korven_calle_fachadas": [
+   "bajas",
+   "golpear",
+   "lleva",
+   "permite",
+   "tienen",
+   "viviendas"
+  ],
+  "korven_cisterna_comun": [
+   "lugar",
+   "marcada",
+   "separado"
+  ],
+  "korven_patio_lavado": [
+   "entrar",
+   "recién",
+   "traído",
+   "volver"
+  ],
+  "korven_deposito_cubiertas": [
+   "nombra"
+  ],
+  "korven_mirador_grietas": [
+   "alcanzas",
+   "bajas",
+   "medir",
+   "profundidad",
+   "protege"
+  ],
+  "korven_cauce_observacion": [
+   "escuchan",
+   "movimientos",
+   "subes",
+   "tienen"
+  ],
+  "korven_plataforma_escucha": [
+   "movimientos",
+   "pequeños",
+   "pueden",
+   "verse"
+  ],
+  "korven_registro_cauce": [
+   "mirar",
+   "permite",
+   "salida",
+   "vuelve"
+  ],
+  "korven_desvio_horno": [
+   "evita",
+   "fragmentos"
+  ],
+  "korven_horno_reposo": [
+   "hueco",
+   "meseta",
+   "taren",
+   "volver"
+  ],
+  "korven_entrante_piezas": [
+   "meterte",
+   "salida",
+   "única"
+  ],
+  "korven_meseta_relevo": [
+   "ambos",
+   "bloquear",
+   "partir",
+   "subes"
+  ],
+  "korven_senda_viento": [
+   "alcanza",
+   "aparecer",
+   "bajada",
+   "empiezan",
+   "permite"
+  ],
+  "korven_borde_tierra": [
+   "aparecen",
+   "bloques",
+   "cruzas",
+   "cubiertas",
+   "espacio",
+   "piedras",
+   "separados",
+   "señala"
+  ],
+  "korven_roca_cascaron": [
+   "camino",
+   "regreso"
+  ],
+  "korven_peldanos_cortos": [
+   "conduce"
+  ],
+  "korven_almacen_entrada": [
+   "brumak"
+  ],
+  "korven_almacen_balanzas": [],
+  "korven_almacen_cruce": [
+   "vuelve"
+  ],
+  "korven_almacen_lateral": [
+   "llegar",
+   "mover",
+   "resto",
+   "sujetan"
+  ],
+  "korven_almacen_fondo": [
+   "conecta",
+   "oriental",
+   "paredes",
+   "salidas",
+   "tiene",
+   "tienen"
+  ],
+  "korven_sala_cuidados": [
+   "cerrar",
+   "occidental"
+  ],
+  "lethra_ribera_seca": [
+   "ancho"
+  ],
+  "lethra_tierra_esponjosa": [
+   "permanece",
+   "quieta"
+  ],
+  "lethra_juncal_abierto": [
+   "huellas",
+   "raíces",
+   "senda",
+   "vuelve"
+  ],
+  "lethra_tablas_primeras": [
+   "separan"
+  ],
+  "lethra_cruce_canales": [
+   "llegan",
+   "senda"
+  ],
+  "lethra_ribera_firme": [
+   "espacio"
+  ],
+  "lethra_pasarela_curva": [
+   "debes",
+   "recipientes"
+  ],
+  "lethra_embarcadero_camino": [
+   "cambian",
+   "embarcaciones",
+   "esperadas",
+   "libre",
+   "sigues"
+  ],
+  "lethra_senda_elevada": [
+   "abren",
+   "levanta",
+   "llaman",
+   "nombres",
+   "pasas"
+  ],
+  "narevia_centro": [
+   "conservan",
+   "espacio",
+   "terrestre"
+  ],
+  "lethra_taller_fibras": [
+   "escurrir",
+   "lleva"
+  ],
+  "lethra_plataforma_secado": [
+   "ambos",
+   "toquen"
+  ],
+  "lethra_banco_conversacion": [
+   "lleva",
+   "paños"
+  ],
+  "lethra_cocina_reunion": [
+   "conversación",
+   "salida"
+  ],
+  "lethra_mercado_hojas": [
+   "alimentos",
+   "bultos",
+   "conservar",
+   "deben",
+   "distintos",
+   "humedad",
+   "preparan",
+   "viajar"
+  ],
+  "lethra_muelle_vecinal": [
+   "viejos"
+  ],
+  "lethra_patio_ventanas": [
+   "reparación",
+   "salir",
+   "visitar",
+   "volver"
+  ],
+  "lethra_cuidado_barcas": [
+   "salida",
+   "única"
+  ],
+  "lethra_banco_barro": [
+   "acercarte",
+   "dejar"
+  ],
+  "lethra_orilla_silente": [],
+  "lethra_raices_observacion": [
+   "banco",
+   "ofrecen",
+   "pisarlas",
+   "regresa",
+   "salida",
+   "separado",
+   "vuelve"
+  ],
+  "lethra_ribera_oeste": [
+   "conforme",
+   "distinta",
+   "retiran"
+  ],
+  "lethra_hito_tierra": [
+   "cruzas",
+   "inundable"
+  ],
+  "lethra_ribera_sombra": [
+   "mientras",
+   "sigues"
+  ],
+  "lethra_relevo_raices": [
+   "camino",
+   "conoce",
+   "empiezan",
+   "entras",
+   "marcas",
+   "ocupar",
+   "permite",
+   "quedar",
+   "relevo"
+  ],
+  "lethra_escucha_aves": [
+   "senda",
+   "sentarte",
+   "vuelve"
+  ],
+  "lethra_sala_cuidados": [
+   "limpieza",
+   "occidental"
+  ],
+  "nhal_arbol_umbral": [
+   "corta",
+   "entrando",
+   "grandes"
+  ],
+  "nhal_suelo_hojas": [
+   "encuentras"
+  ],
+  "nhal_tronco_acostado": [
+   "camino",
+   "entra",
+   "obliga",
+   "sigues"
+  ],
+  "nhal_corteza_clara": [
+   "detenerte",
+   "permite",
+   "reconocer",
+   "sigues"
+  ],
+  "nhal_raices_altas": [
+   "ambos",
+   "claro",
+   "empiezan",
+   "fuera"
+  ],
+  "nhal_piedras_musgo": [
+   "marcas",
+   "salvo"
+  ],
+  "nhal_puente_bajo": [
+   "alrededor",
+   "dejan",
+   "espacio",
+   "permite",
+   "revisarse"
+  ],
+  "nhal_helechos_bajos": [
+   "empiezan",
+   "sombreado"
+  ],
+  "nhal_umbral_velmora": [
+   "iluminan"
+  ],
+  "velmora_centro": [
+   "ocultan"
+  ],
+  "nhal_taller_cortezas": [],
+  "nhal_secadero_sombra": [
+   "cambian",
+   "sequen",
+   "sitio"
+  ],
+  "nhal_mercado_setas": [
+   "alimentos",
+   "entras"
+  ],
+  "nhal_cocina_raices": [
+   "comida",
+   "manga",
+   "persona",
+   "relato",
+   "remueve"
+  ],
+  "nhal_patio_relato": [
+   "busca",
+   "leris",
+   "reparado",
+   "vacía"
+  ],
+  "nhal_calle_hogares": [
+   "esperar",
+   "iluminar",
+   "reparación",
+   "subes"
+  ],
+  "nhal_claro_silencio": [
+   "senda",
+   "árboles",
+   "única"
+  ],
+  "nhal_agua_sombreada": [
+   "senda",
+   "sigues",
+   "subes"
+  ],
+  "nhal_ribera_relevo": [
+   "dosel",
+   "niveles"
+  ],
+  "nhal_sendero_altura": [
+   "copas",
+   "subes",
+   "viviendas"
+  ],
+  "nhal_roca_entre_copas": [
+   "bajas",
+   "incluso",
+   "observar",
+   "partes"
+  ],
+  "nhal_relevo_altura": [
+   "bajas",
+   "cercanas",
+   "extiende",
+   "identifica",
+   "marcas",
+   "pronto",
+   "sigues",
+   "tapan",
+   "tomar"
+  ],
+  "nhal_senda_recipiente": [
+   "reunión"
+  ],
+  "nhal_umbral_elin": [
+   "cesta",
+   "figura",
+   "remendada",
+   "reparado",
+   "salida",
+   "tiene",
+   "trabaja",
+   "vuelve"
+  ],
+  "nhal_rincon_semillas": [
+   "camino",
+   "cuadrúpedo",
+   "dejado",
+   "detiene",
+   "pegado",
+   "senda"
+  ],
+  "nhal_raiz_marcada": [
+   "arrastres",
+   "detenerte",
+   "única"
+  ],
+  "nhal_sala_cuidados": [
+   "apartados"
+  ],
+  "valdren_plaza": [
+   "asiento",
+   "girar",
+   "puertas",
+   "sobresale"
+  ],
+  "valdren_fragua": [
+   "calientes",
+   "plaza",
+   "salida",
+   "trabaja"
+  ],
+  "valdren_huertos": [
+   "campos",
+   "salir"
+  ],
+  "valdren_casa_semillas": [
+   "algunos",
+   "cantidades",
+   "nombres",
+   "permiten",
+   "puerta",
+   "rodearlos",
+   "secarse",
+   "vuelve"
+  ],
+  "valdren_pozo": [
+   "detrás",
+   "gastada"
+  ],
+  "valdren_cobertizo": [
+   "girarlo"
+  ],
+  "valdren_patio_carros": [
+   "detiene",
+   "permite",
+   "puede",
+   "volver"
+  ],
+  "valdren_graneros": [
+   "acumula",
+   "alcanza",
+   "cruza",
+   "sales"
+  ],
+  "valdren_comedor": [
+   "distintos",
+   "llegan",
+   "sirve",
+   "vueltas"
+  ],
+  "valdren_calle_alta": [
+   "estrechan"
+  ],
+  "valdren_patio_ropa": [
+   "entra",
+   "heridas",
+   "ocupa",
+   "sostienen"
+  ],
+  "valdren_cuidado": [
+   "lejos",
+   "pueden",
+   "puerta",
+   "vuelve"
+  ],
+  "vaisgard_mercado": [
+   "antiguos",
+   "carros",
+   "cubren",
+   "entran",
+   "ocupan"
+  ],
+  "veyra_plaza_rutas": [
+   "bajas",
+   "descansan",
+   "empedrado",
+   "organiza",
+   "reúnen",
+   "sales"
+  ],
+  "veyra_calle_toldos": [
+   "reparado",
+   "sales"
+  ],
+  "veyra_barrio_cargas": [
+   "sales",
+   "suben"
+  ],
+  "veyra_patio_porte": [
+   "dejarles",
+   "espacio",
+   "sales",
+   "sujetarlas"
+  ],
+  "veyra_patio_senales": [
+   "completos",
+   "nombres",
+   "origen",
+   "protegidas",
+   "separa"
+  ],
+  "veyra_patio_agua": [
+   "lleva",
+   "rodeando"
+  ],
+  "veyra_huerta_baja": [
+   "caben",
+   "cultivan",
+   "ocupa",
+   "subes"
+  ],
+  "veyra_colina_vista": [
+   "bajas"
+  ],
+  "veyra_archivo_cargas": [
+   "sales",
+   "tienen"
+  ],
+  "veyra_puerta_campos": [
+   "sales",
+   "volver"
+  ],
+  "veyra_puerta_alta": [
+   "ajustan",
+   "cruzar",
+   "lleva",
+   "regresan"
+  ],
+  "veyra_puerta_piedra": [
+   "atrás",
+   "cruza",
+   "frenar"
+  ],
+  "veyra_puerta_juncos": [
+   "dejan",
+   "sigues",
+   "sitio"
+  ],
+  "veyra_puerta_sombra": [
+   "herramientas",
+   "rumbo",
+   "separados",
+   "talleres"
+  ],
+  "veyra_rampa_grava": [
+   "casas",
+   "comienzan",
+   "llenan",
+   "parar",
+   "pueden",
+   "últimas"
+  ],
+  "veyra_terraplen_roca": [
+   "oculta",
+   "siguiente",
+   "tramo"
+  ],
+  "veyra_hondonada_canales": [
+   "densa",
+   "elevado",
+   "empieza",
+   "fuera",
+   "reúnen",
+   "vaisgard"
+  ],
+  "veyra_lindero_arboles": [
+   "cierran",
+   "lleva"
+  ],
+  "veyra_cantera_callada": [
+   "cubren"
+  ],
+  "veyra_sala_cuidados": [
+   "ocupan",
+   "tránsito"
+  ],
+  "veyra_vega_abierta": [
+   "calles",
+   "cruzas",
+   "ellos",
+   "llega",
+   "senda",
+   "sigues",
+   "subes"
+  ],
+  "veyra_pastos_exteriores": [
+   "atraviesa",
+   "extremos",
+   "vaisgard"
+  ],
+  "veyra_acequia_exterior": [
+   "acompaña",
+   "obligarte"
+  ]
+ },
+ "tests_con_parche": "OK",
+ "tests_sin_parche": "OK",
+ "cliente qa-narrative.mjs": "PASS",
+ "cliente qa-printing.mjs": "PASS",
+ "cliente qa-passive.mjs": "PASS"
+}

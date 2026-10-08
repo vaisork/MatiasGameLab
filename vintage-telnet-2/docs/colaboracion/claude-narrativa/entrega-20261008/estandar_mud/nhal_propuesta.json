@@ -1,0 +1,117 @@
+{
+ "_nota": "Nhal (27 salas). Raíces, poca luz, madera, recipientes y memoria compartida. Los Vesperi no son murciélagos. La piedra del claro y los bancos del patio sostienen el secreto I4.",
+ "rooms": {
+  "nhal_arbol_umbral": {
+   "description": "Dos raíces enormes, más altas que un niño, rodean el paso bajo el primer árbol del bosque. Detrás todavía entra la luz dorada de la cuenca; por delante, las copas se juntan y la sombra cae a manchas sobre el suelo húmedo. El aire cambia de golpe: más fresco, más quieto, con olor a hojas. Una marca en una madera caída señala el camino.",
+   "brief": "El primer árbol del bosque, entre dos raíces enormes."
+  },
+  "nhal_suelo_hojas": {
+   "description": "La senda cruza un suelo cubierto de hojas de colores distintos: rojas, amarillas, marrones. Las que pisan las cargas están rotas; a los lados siguen enteras y crujen si las tocas. Bajo una raíz, un animal pequeño busca algo y se queda quieto al oírte. Arriba, entre las copas, algo se mueve y deja caer más hojas.",
+   "brief": "El sendero de hojas."
+  },
+  "nhal_tronco_acostado": {
+   "description": "Un tronco enorme se cayó hace tiempo y ahora hay que rodear su base por el lado más firme. Es tan grande que podrías caminar por encima. Entre los restos de su copa crecen hongos pequeños, blancos y marrones. Un desvío se mete hacia un claro tranquilo.",
+   "brief": "El tronco caído y sus hongos."
+  },
+  "nhal_corteza_clara": {
+   "description": "Un árbol ancho de corteza pálida, casi blanca, se distingue entre las sombras como una lámpara apagada; por eso todos lo usan para orientarse en el cruce. Junto a él hay sitio para pararse sin tapar el paso. Si pones la mano en la corteza, está suave y fresca. Un desvío lleva a una raíz marcada.",
+   "brief": "El árbol de corteza clara, que todos usan para orientarse."
+  },
+  "nhal_raices_altas": {
+   "description": "Las raíces levantan el suelo a los dos lados del sendero, como olas de madera congeladas. Entre ellas hay trozos de corteza y charcos de agua baja donde se refleja el bosque. En una repisa, lejos del paso de las cargas, espera una nota protegida. Se oye gotear.",
+   "brief": "El paso de las raíces altas."
+  },
+  "nhal_piedras_musgo": {
+   "description": "El musgo cubre las piedras con una capa verde y blanda, menos donde se pisan. Un hilo de agua oscurece las juntas y brilla. Junto al camino hay semillas caídas y huellas pequeñas, distintas de las de las ruedas. Un desvío lleva a un rincón lleno de semillas.",
+   "brief": "Las piedras con musgo."
+  },
+  "nhal_puente_bajo": {
+   "description": "Un puente de madera cruza un cauce estrecho entre dos árboles, y sus tablas se curvan para dejar sitio a los troncos. Los apoyos se pueden revisar desde tierra. El agua de abajo suena clara. Una piedra junto al puente sirve para avisar con un golpe antes de pasar con carga.",
+   "brief": "El puente entre árboles y su piedra de aviso."
+  },
+  "nhal_helechos_bajos": {
+   "description": "Los helechos tapan el terreno bajo como un mar verde de hojas en forma de pluma, pero la senda sigue por una franja más alta. Una cubierta pequeña protege la marca del camino. Se oyen golpes de madera a lo lejos: las casas están cerca. Un desvío baja hacia un cauce con sombra.",
+   "brief": "El sendero de helechos."
+  },
+  "nhal_umbral_velmora": {
+   "description": "Entre los árboles aparecen las primeras casas de Velmora, cada una con una luz pequeña junto a su tarea. Las lámparas Vesperi alumbran los apoyos con una luz suave, sin deslumbrar a quien llega de la oscuridad. Sale humo de alguna cocina. Junto al camino hay una mesa para esperar mientras pasa una carga.",
+   "brief": "La entrada de Velmora y sus lámparas bajas."
+  },
+  "velmora_centro": {
+   "description": "Velmora ocupa un claro grande entre los árboles, y las raíces lo atraviesan como caminos. Casas y bancos se colocan dejando sitio a las raíces, sin cortarlas. Las voces llegan de cerca, pero los troncos tapan a medias a cada grupo, así que parece que el bosque habla. Desde aquí se reparten el taller, el mercado y el patio del relato.",
+   "brief": "El claro de Velmora, entre raíces y bancos."
+  },
+  "nhal_taller_cortezas": {
+   "description": "Un taller abierto por un lado al aire del bosque, donde huele a madera recién trabajada. Un banco reúne recipientes en arreglo y otro, piezas para los techos. Hay marcas de cuchillo en la madera donde se trabaja cada día. Las tablas del suelo dejan huecos para que las raíces sigan creciendo.",
+   "brief": "El taller de madera, con huecos para las raíces."
+  },
+  "nhal_secadero_sombra": {
+   "description": "Una franja de luz cae entre las hojas sobre un juguete y un recipiente recién arreglados, puestos a secar. Los apoyos se mueven a lo largo del día para seguir la luz, que aquí abajo es poca. En el rayo flota un polvo dorado.",
+   "brief": "El secadero del taller.",
+   "states[0].overrides.description": "Una franja de luz cae entre las hojas sobre un juguete recién arreglado. La tabla sigue sosteniéndolo; a su lado, el aro quedó libre cuando recogiste el recipiente de Elin. En el rayo flota un polvo dorado."
+  },
+  "nhal_mercado_setas": {
+   "description": "Las cestas esperan bajo cubiertas separadas, con pasillos de suelo firme entre las raíces. En una mesa se revisan las hojas que llegan con la comida. El olor cambia en cada cesta abierta: setas, frutos, raíces dulces. Se habla bajito, como en todo el bosque. Una puerta da al lugar de cuidados.",
+   "brief": "El mercado de Velmora y sus cestas bajo cubierta."
+  },
+  "nhal_cocina_raices": {
+   "description": "El fuego arde sobre una base seca de piedra, y el humo sale por una abertura del techo hacia las copas. Huele a caldo de setas. Los recipientes limpios esperan junto a la ventana; los sucios se reciben aparte, en un barreño.",
+   "brief": "La cocina del bosque."
+  },
+  "nhal_patio_relato": {
+   "description": "Bancos distintos rodean una mesa bajo una cubierta corta. Aquí se cuentan los recuerdos del pueblo, y quien llega puede sentarse a escuchar sin pedir permiso. Un recipiente arreglado guarda hojas escritas con ellos, llenas de nombres y de tachaduras. Las voces se quedan bajo la cubierta, como si el bosque también escuchara.",
+   "brief": "El patio de reuniones, donde se cuentan los recuerdos.",
+   "states[0].overrides.description": "Bancos distintos rodean una mesa bajo una cubierta corta. Aquí se cuentan los recuerdos del pueblo, y quien llega puede sentarse a escuchar. En las hojas del relato hay tachaduras y una frase nueva: una comida fría y una mano ocupada junto a una puerta."
+  },
+  "nhal_calle_hogares": {
+   "description": "Las casas se reparten en pequeños niveles entre los árboles, unas más altas que otras, unidas por escaleras de raíz. Sus entradas dejan sitio a las raíces y a quien espera antes de llamar. Las luces muestran un arreglo o una comida sin alumbrar todo el interior. Por aquí se sube hacia el Dosel Alto.",
+   "brief": "La calle de las casas, en niveles entre los árboles."
+  },
+  "nhal_claro_silencio": {
+   "description": "Un claro pequeño y callado, donde la luz baja directa entre las copas como por un agujero. Una raíz hace de asiento, y a su lado hay una piedra lisa. En la tierra queda una hoja doblada. Aquí no se oye nada del pueblo: sólo hojas que caen. Es un buen sitio para parar.",
+   "brief": "El claro tranquilo."
+  },
+  "nhal_agua_sombreada": {
+   "description": "El agua oscura retiene hojas entre las raíces y sigue junto al canal hacia Lethra. Desde un apoyo natural se ven unos hilos finísimos tendidos muy bajos, cerca de la corriente, cargados de gotas que brillan. Entre dos raíces, los hilos dejan libre el camino.",
+   "brief": "El cauce bajo los árboles."
+  },
+  "nhal_ribera_relevo": {
+   "description": "Árboles y raíces acompañan el canal hasta una plataforma común, donde empieza el tramo de Lethra; detrás queda el camino a Velmora. Dos notas comparan los apoyos de madera y el nivel del agua de los dos lados. La sombra del bosque alcanza parte del canal, y la otra parte brilla al sol.",
+   "brief": "El paso hacia Lethra, con su plataforma común."
+  },
+  "nhal_sendero_altura": {
+   "description": "La senda sube y los árboles empiezan a separarse; las raíces hacen de peldaños. Detrás quedan las luces de las casas de Velmora, cada vez más pequeñas. Un descanso de raíces permite esperar a quien baja con carga. El aire se vuelve más ligero.",
+   "brief": "La subida entre árboles."
+  },
+  "nhal_roca_entre_copas": {
+   "description": "Una roca ancha sobresale entre las copas, por encima de Velmora, y desde ella el bosque parece un mar verde que se mueve con el viento. Entre las ramas se ve una ladera de Hoshai, gris y lejana. Hay sitio para mirar lejos del borde. Aun así, los árboles tapan trozos del camino.",
+   "brief": "La roca entre los árboles, con Hoshai a lo lejos."
+  },
+  "nhal_relevo_altura": {
+   "description": "Bajo una cubierta se guardan notas de la ruta, y un cordel fuera del camino marca dónde apoyar las cargas. Una talla sencilla en la madera da nombre al sitio: el Alto de las Raíces. Abajo queda Velmora; dos apoyos sirven para descansar antes de seguir hacia la sierra de Hoshai. El viento de la montaña ya se nota aquí.",
+   "brief": "El Alto de las Raíces, camino de Hoshai."
+  },
+  "nhal_senda_recipiente": {
+   "description": "Una senda corta y tranquila va del patio a una casa de trabajo, entre helechos. Junto al umbral espera una cesta remendada; su tira de tela indica que hay un recipiente prestado que debe volver al patio. Se oye el ruido suave de alguien trabajando madera.",
+   "brief": "La senda hacia Elin y su cesta remendada."
+  },
+  "nhal_umbral_elin": {
+   "description": "Una casa de trabajo con la puerta abierta, de la que sale olor a madera recién lijada. Sobre un apoyo descansa un recipiente arreglado, con un raspón que no aparece en el relato del patio. Fuera hay un banco para escuchar sin entrar en la casa.",
+   "brief": "La puerta de Elin.",
+   "states[0].overrides.description": "Una casa de trabajo con la puerta abierta, de la que sale olor a madera recién lijada. El apoyo del recipiente está vacío: ya volvió al patio. Fuera hay un banco, cerca de las herramientas, y la cesta remendada sigue marcando el camino.",
+   "states[1].overrides.description": "Una casa de trabajo con la puerta abierta, de la que sale olor a madera recién lijada. Junto a la cesta remendada está el recipiente pequeño que devolviste; al otro lado, el apoyo del recipiente del relato. Fuera hay un banco para escuchar sin entrar."
+  },
+  "nhal_rincon_semillas": {
+   "description": "Entre las raíces se amontonan semillas, restos de comida y tierra removida, como la despensa de alguien. En el musgo hay pelo áspero de algún animal pequeño de cuatro patas. Una semilla rueda sobre las hojas y se para junto a otra mordida. Huele a nueces.",
+   "brief": "El rincón de semillas."
+  },
+  "nhal_raiz_marcada": {
+   "description": "Una raíz gruesa tiene la corteza recién rota, más clara que el resto, como una herida. Hojas aplastadas y marcas de arrastre siguen hacia árboles muy juntos, donde está oscuro. Desde la tierra firme se puede mirar sin pisar las marcas. Aquí los pájaros no cantan.",
+   "brief": "La raíz marcada, con la corteza rota."
+  },
+  "nhal_sala_cuidados": {
+   "description": "La luz de una ventana lateral alcanza la mesa sin deslumbrar el asiento: aquí se cuida con poca luz, como les gusta a los Vesperi. El suelo de madera está libre de raíces y cargas. Los paños limpios se guardan lejos de las hojas que traen las capas.",
+   "brief": "El cuarto de cuidados de Velmora."
+  }
+ }
+}

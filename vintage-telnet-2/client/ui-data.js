@@ -22,7 +22,7 @@ export class NarrativeJournal {
   if(!scene.length&&snapshot.room.description)scene.push({kind:'WORLD',text:snapshot.room.description});
   const current=new Set(scene.map(stamp)),moved=this.room!==snapshot.room.id,feedbackKey=JSON.stringify(reply.map(stamp));
   const additions=[];
-  if(moved){this.visit++;additions.push({kind:'LOCATION',text:(this.room===null?'Estás en ':'Llegas a ')+snapshot.room.name+'.'});if(this.region&&snapshot.room.region&&this.region!==snapshot.room.region)additions.push({kind:'DISCOVERY',text:'Entras en '+(regionNames[snapshot.room.region]||snapshot.room.region)+'.'});additions.push(...scene);}
+  if(moved){this.visit++;additions.push({kind:'LOCATION',text:(this.room===null?'Estás en ':'Llegas a ')+snapshot.room.name+'.'});if(this.region&&snapshot.room.region&&this.region!==snapshot.room.region)additions.push({kind:'DISCOVERY',text:'Entras en '+(regionNames[snapshot.room.region]||snapshot.room.region)+'.'});additions.push(...scene);const exits=list(snapshot.actions).filter(a=>a.id==='mover'&&a.target!=='hogar').map(a=>{const name=String(a.label||'').split(' · ')[1];return name&&name!=='Salida por explorar'?`${a.target} (${name})`:a.target;});if(exits.length)additions.push({kind:'INFO',text:'Salidas: '+exits.join(', ')+'.'});}
   // Existing scene details are already in the journal, including explicit observations.
   else if(!explicit)additions.push(...scene.filter(e=>!this.scene.has(stamp(e))));
   if(explicit||feedbackKey!==this.feedback)additions.push(...reply.filter(e=>!current.has(stamp(e))));
@@ -431,6 +431,280 @@ Object.assign(placeIllustrations,{
 const townArtKeys={edran:'valdren_plaza',hoshai:'khariel_centro',korven:'brumak_centro',lethra:'narevia_centro',nhal:'velmora_centro',veyra:'vaisgard_mercado'};
 const homeArtNames={edran:'valdren',hoshai:'khariel',korven:'brumak',lethra:'narevia',nhal:'velmora'};
 placeIllustrations.valdren_fragua={name:'Fragua de Valdren',illustration:'/client/art/places/valdren-fragua-anime-v1.webp',thumbnail:'/client/art/places/valdren-fragua-anime-v1-thumb.webp',caption:'La fragua compra armas sobrantes y permite mejorar el filo; las acciones disponibles dependen de lo que llevas.'};
+// Additional environmental views: agent-reviewed delivery, 2026-10-08; fixed views, no time/weather state.
+Object.assign(placeIllustrations,{
+  "hoshai_terraza_cargas": {
+    "name": "Terraza de las cargas",
+    "illustration": "/client/art/places/hoshai_terraza_cargas-anime-v1.webp",
+    "thumbnail": "/client/art/places/hoshai_terraza_cargas-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "korven_loma_cascajo": {
+    "name": "Loma de las piedras claras",
+    "illustration": "/client/art/places/korven_loma_cascajo-anime-v1.webp",
+    "thumbnail": "/client/art/places/korven_loma_cascajo-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "korven_cauce_duro": {
+    "name": "Cauce seco",
+    "illustration": "/client/art/places/korven_cauce_duro-anime-v1.webp",
+    "thumbnail": "/client/art/places/korven_cauce_duro-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "korven_meseta_baja": {
+    "name": "Meseta de las dos piedras",
+    "illustration": "/client/art/places/korven_meseta_baja-anime-v1.webp",
+    "thumbnail": "/client/art/places/korven_meseta_baja-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "veyra_terraplen_roca": {
+    "name": "Camino de piedra",
+    "illustration": "/client/art/places/veyra_terraplen_roca-anime-v1.webp",
+    "thumbnail": "/client/art/places/veyra_terraplen_roca-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "korven_pared_sotavento": {
+    "name": "Pared que corta el viento",
+    "illustration": "/client/art/places/korven_pared_sotavento-anime-v1.webp",
+    "thumbnail": "/client/art/places/korven_pared_sotavento-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "korven_hitos_paso": {
+    "name": "Camino de los mojones",
+    "illustration": "/client/art/places/korven_hitos_paso-anime-v1.webp",
+    "thumbnail": "/client/art/places/korven_hitos_paso-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "korven_hendidura_transito": {
+    "name": "Paso estrecho",
+    "illustration": "/client/art/places/korven_hendidura_transito-anime-v1.webp",
+    "thumbnail": "/client/art/places/korven_hendidura_transito-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "korven_asiento_revision": {
+    "name": "Banco de revisión",
+    "illustration": "/client/art/places/korven_asiento_revision-anime-v1.webp",
+    "thumbnail": "/client/art/places/korven_asiento_revision-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "veyra_hondonada_canales": {
+    "name": "Cruce de canales",
+    "illustration": "/client/art/places/veyra_hondonada_canales-anime-v1.webp",
+    "thumbnail": "/client/art/places/veyra_hondonada_canales-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "lethra_ribera_seca": {
+    "name": "Ribera seca",
+    "illustration": "/client/art/places/lethra_ribera_seca-anime-v1.webp",
+    "thumbnail": "/client/art/places/lethra_ribera_seca-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "lethra_tierra_esponjosa": {
+    "name": "Tierra blanda",
+    "illustration": "/client/art/places/lethra_tierra_esponjosa-anime-v1.webp",
+    "thumbnail": "/client/art/places/lethra_tierra_esponjosa-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "lethra_juncal_abierto": {
+    "name": "Paso entre los juncos",
+    "illustration": "/client/art/places/lethra_juncal_abierto-anime-v1.webp",
+    "thumbnail": "/client/art/places/lethra_juncal_abierto-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "lethra_cruce_canales": {
+    "name": "Cruce de canales",
+    "illustration": "/client/art/places/lethra_cruce_canales-anime-v1.webp",
+    "thumbnail": "/client/art/places/lethra_cruce_canales-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "lethra_ribera_firme": {
+    "name": "Ribera de las cargas",
+    "illustration": "/client/art/places/lethra_ribera_firme-anime-v1.webp",
+    "thumbnail": "/client/art/places/lethra_ribera_firme-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "lethra_pasarela_curva": {
+    "name": "Pasarela curva",
+    "illustration": "/client/art/places/lethra_pasarela_curva-anime-v1.webp",
+    "thumbnail": "/client/art/places/lethra_pasarela_curva-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "lethra_embarcadero_camino": {
+    "name": "Embarcadero del camino",
+    "illustration": "/client/art/places/lethra_embarcadero_camino-anime-v1.webp",
+    "thumbnail": "/client/art/places/lethra_embarcadero_camino-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "lethra_senda_elevada": {
+    "name": "Senda sobre el agua",
+    "illustration": "/client/art/places/lethra_senda_elevada-anime-v1.webp",
+    "thumbnail": "/client/art/places/lethra_senda_elevada-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "lethra_tablas_primeras": {
+    "name": "Primeras tablas",
+    "illustration": "/client/art/places/lethra_tablas_primeras-anime-v1.webp",
+    "thumbnail": "/client/art/places/lethra_tablas_primeras-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "veyra_lindero_arboles": {
+    "name": "Entrada al bosque",
+    "illustration": "/client/art/places/veyra_lindero_arboles-anime-v1.webp",
+    "thumbnail": "/client/art/places/veyra_lindero_arboles-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "nhal_arbol_umbral": {
+    "name": "Primer árbol del bosque",
+    "illustration": "/client/art/places/nhal_arbol_umbral-anime-v1.webp",
+    "thumbnail": "/client/art/places/nhal_arbol_umbral-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "nhal_suelo_hojas": {
+    "name": "Sendero de hojas",
+    "illustration": "/client/art/places/nhal_suelo_hojas-anime-v1.webp",
+    "thumbnail": "/client/art/places/nhal_suelo_hojas-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "nhal_tronco_acostado": {
+    "name": "Tronco caído",
+    "illustration": "/client/art/places/nhal_tronco_acostado-anime-v1.webp",
+    "thumbnail": "/client/art/places/nhal_tronco_acostado-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "nhal_corteza_clara": {
+    "name": "Árbol de corteza clara",
+    "illustration": "/client/art/places/nhal_corteza_clara-anime-v1.webp",
+    "thumbnail": "/client/art/places/nhal_corteza_clara-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "nhal_raices_altas": {
+    "name": "Paso de las raíces altas",
+    "illustration": "/client/art/places/nhal_raices_altas-anime-v1.webp",
+    "thumbnail": "/client/art/places/nhal_raices_altas-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "nhal_piedras_musgo": {
+    "name": "Piedras con musgo",
+    "illustration": "/client/art/places/nhal_piedras_musgo-anime-v1.webp",
+    "thumbnail": "/client/art/places/nhal_piedras_musgo-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "nhal_puente_bajo": {
+    "name": "Puente entre árboles",
+    "illustration": "/client/art/places/nhal_puente_bajo-anime-v1.webp",
+    "thumbnail": "/client/art/places/nhal_puente_bajo-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "nhal_helechos_bajos": {
+    "name": "Sendero de helechos",
+    "illustration": "/client/art/places/nhal_helechos_bajos-anime-v1.webp",
+    "thumbnail": "/client/art/places/nhal_helechos_bajos-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "korven_almacen_grano": {
+    "name": "Almacén de grano",
+    "illustration": "/client/art/places/korven_almacen_grano-anime-v1.webp",
+    "thumbnail": "/client/art/places/korven_almacen_grano-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "korven_senda_viento": {
+    "name": "Senda del viento",
+    "illustration": "/client/art/places/korven_senda_viento-anime-v1.webp",
+    "thumbnail": "/client/art/places/korven_senda_viento-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "korven_borde_tierra": {
+    "name": "Parada de los Cardos",
+    "illustration": "/client/art/places/korven_borde_tierra-anime-v1.webp",
+    "thumbnail": "/client/art/places/korven_borde_tierra-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "edran_linde_piedra": {
+    "name": "Paso hacia Korven",
+    "illustration": "/client/art/places/edran_linde_piedra-anime-v1.webp",
+    "thumbnail": "/client/art/places/edran_linde_piedra-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "edran_ladera_piedra": {
+    "name": "Ladera de los cestos",
+    "illustration": "/client/art/places/edran_ladera_piedra-anime-v1.webp",
+    "thumbnail": "/client/art/places/edran_ladera_piedra-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "edran_prado": {
+    "name": "Prado de las Marcas Anchas",
+    "illustration": "/client/art/places/edran_prado-anime-v1.webp",
+    "thumbnail": "/client/art/places/edran_prado-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "edran_loma": {
+    "name": "Loma del Pasto Cortado",
+    "illustration": "/client/art/places/edran_loma-anime-v1.webp",
+    "thumbnail": "/client/art/places/edran_loma-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "edran_lindero": {
+    "name": "Lindero de la Piedra Hundida",
+    "illustration": "/client/art/places/edran_lindero-anime-v1.webp",
+    "thumbnail": "/client/art/places/edran_lindero-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "hoshai_senda_dosel": {
+    "name": "Senda de los árboles altos",
+    "illustration": "/client/art/places/hoshai_senda_dosel-anime-v1.webp",
+    "thumbnail": "/client/art/places/hoshai_senda_dosel-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "hoshai_estacion_cuerda": {
+    "name": "Parada del cordel",
+    "illustration": "/client/art/places/hoshai_estacion_cuerda-anime-v1.webp",
+    "thumbnail": "/client/art/places/hoshai_estacion_cuerda-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "nhal_relevo_altura": {
+    "name": "Alto de las Raíces",
+    "illustration": "/client/art/places/nhal_relevo_altura-anime-v1.webp",
+    "thumbnail": "/client/art/places/nhal_relevo_altura-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "nhal_roca_entre_copas": {
+    "name": "Roca entre los árboles",
+    "illustration": "/client/art/places/nhal_roca_entre_copas-anime-v1.webp",
+    "thumbnail": "/client/art/places/nhal_roca_entre_copas-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "nhal_sendero_altura": {
+    "name": "Subida entre árboles",
+    "illustration": "/client/art/places/nhal_sendero_altura-anime-v1.webp",
+    "thumbnail": "/client/art/places/nhal_sendero_altura-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "nhal_agua_sombreada": {
+    "name": "Cauce bajo los árboles",
+    "illustration": "/client/art/places/nhal_agua_sombreada-anime-v1.webp",
+    "thumbnail": "/client/art/places/nhal_agua_sombreada-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "nhal_ribera_relevo": {
+    "name": "Paso hacia Lethra",
+    "illustration": "/client/art/places/nhal_ribera_relevo-anime-v1.webp",
+    "thumbnail": "/client/art/places/nhal_ribera_relevo-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "lethra_relevo_raices": {
+    "name": "Orilla Velada",
+    "illustration": "/client/art/places/lethra_relevo_raices-anime-v1.webp",
+    "thumbnail": "/client/art/places/lethra_relevo_raices-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "lethra_ribera_sombra": {
+    "name": "Ribera sombreada",
+    "illustration": "/client/art/places/lethra_ribera_sombra-anime-v1.webp",
+    "thumbnail": "/client/art/places/lethra_ribera_sombra-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  }
+});
+
 export function placeArt(room){
  if(!room)return null;
  if(room.kind==='home'&&homeArtNames[room.region])return {name:room.name,illustration:`/client/art/places/${homeArtNames[room.region]}-home-anime-v1.webp`,thumbnail:`/client/art/places/${homeArtNames[room.region]}-home-thumb-v1.webp`,caption:'Representación de tu hogar. La hora, el clima y el equipo actual se consultan en el juego.'};
