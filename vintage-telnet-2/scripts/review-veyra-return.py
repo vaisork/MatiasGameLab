@@ -62,5 +62,5 @@ with tempfile.TemporaryDirectory(prefix='vt-veyra-review-') as tmp:
  walk('veyra_colina_vista');walk('veyra_huerta_baja');checked=act('examinar','tabla');assert 'queda sujeta' in checked['narrative'][0]['text'];out.append({'type':'irrigation-return','narrative':checked['narrative']})
  walk('lethra_muelle_vecinal');act('observar')
  walk('narevia_centro');act('mover','hogar');assert not state()['character']['combat']
-Path(root/'review/VEYRA_RETURN_20261007.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n')
+Path(root/'review/narrative/VEYRA_RETURN_20261007.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n')
 print('Veyra route:',sum(x['type']=='step' for x in out),'movement steps')

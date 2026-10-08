@@ -58,5 +58,5 @@ with tempfile.TemporaryDirectory(prefix='vt-night-integration-') as tmp:
  act('descansar');walk('khariel_centro');act('mover','hogar');act('descansar')
  moves=sum(e.get('action')=='mover' for e in journey);assert moves>=60
  out={'moves':moves,'events':journey,'summary':evidence,'final':state()}
- (root/os.environ.get('VT_DEPTH5_OUTPUT','review/depth-cycle5-before.json')).write_text(json.dumps(out,ensure_ascii=False,indent=2))
+ (root/os.environ.get('VT_DEPTH5_OUTPUT','review/archive/2026-10-07/depth-cycle5-before.json')).write_text(json.dumps(out,ensure_ascii=False,indent=2))
  print('PASS long real API journey',moves,'moves',len(journey),'actions')

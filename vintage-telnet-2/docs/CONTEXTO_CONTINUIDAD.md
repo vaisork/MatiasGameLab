@@ -1,7 +1,9 @@
+> Estado operativo actual: [DECISIONES_VIGENTES.md](DECISIONES_VIGENTES.md). Las notas de sesiones anteriores se conservan como historial; #649 autoriza reorganización, no desarrollo narrativo.
+
 # Contexto de continuidad de Vintage Telnet
 
 Actualizado: 7 de octubre de 2026, cierre de sesión en horario de México.
-Este documento es el punto de entrada para otro programador. Resume decisiones y estado; el historial detallado de ciclos está en `review/GOAL_HANDOFF_20261007.md`. No contiene contraseñas ni sustituye el canon.
+Este documento es el punto de entrada para otro programador. Resume decisiones y estado; el historial detallado de ciclos está en `review/current/GOAL_HANDOFF_20261007.md`. No contiene contraseñas ni sustituye el canon.
 
 ## Estado y autorización actuales
 
@@ -68,7 +70,7 @@ Producción Raspberry: `/home/jdiaz/proyectos/vintage-telnet-nuevo`. Servicio de
 
 Instancia Ubuntu puede seguir usando módulo Python anterior en memoria; archivos estáticos nuevos no prueban que el backend local esté actualizado. Pruebas de backend: servidor aislado con DB temporal o producción sólo lectura. No usar partidas de Javier como fixtures. Reiniciar servicio Raspberry sólo al desplegar Python aprobado; estáticos no precisan reinicio.
 
-Documentos operativos: `ops/RASPBERRY_HANDOFF.md`, `review/raspberry-deploy/DEPLOYMENT.md`. Entrega local `/home/jdiaz/Escritorio/Vintage Telnet - Entrega`: tar.gz, git.bundle, manual e icono. Paquetes se generaron antes de los últimos cambios de esta sesión; reconstruir cuando se acuerde entrega, sin incluir secretos ni cambios narrativos no revisados accidentalmente.
+Documentos operativos: `ops/RASPBERRY_HANDOFF.md`, `review/qa/raspberry-deploy/DEPLOYMENT.md`. Entrega local `/home/jdiaz/Escritorio/Vintage Telnet - Entrega`: tar.gz, git.bundle, manual e icono. Paquetes se generaron antes de los últimos cambios de esta sesión; reconstruir cuando se acuerde entrega, sin incluir secretos ni cambios narrativos no revisados accidentalmente.
 
 ## Estado exacto de Git y trabajo narrativo interrumpido
 
@@ -84,7 +86,7 @@ Otro agente de fauna estaba revisando sólo `rooms.signals` y `wildlife_pool` en
 
 Suite completa de referencia: 126 pruebas aprobadas en la entrega de gestión DM; después se añadió prueba de manifest/iconos aprobada por separado. No afirmar suite completa actual 127 pasada sin ejecutarla. Navegador Chrome real con Playwright en tamaños 320/393/1440 según informe. Algunas pruebas usan estado API interceptado para UI y otras recorren API/motor real contra DB temporal: distinguirlas, no llamarlas sesiones productivas auténticas.
 
-Revisiones: `review/dm-management/`, `review/dm-controls/`, `review/dm-password/`, `review/dm-access/`, `review/player-portraits/`, `review/home-icon/`, mapas/lectura/comercio/mazmorras y el handoff histórico. Scripts dejan evidencia de rutas, acciones y errores. No agregar indiscriminadamente screenshots no rastreados ni estados privados de `/tmp`.
+Revisiones: `review/ui/dm-management/`, `review/ui/dm-controls/`, `review/ui/dm-password/`, `review/ui/dm-access/`, `review/ui/player-portraits/`, `review/ui/home-icon/`, mapas/lectura/comercio/mazmorras y el handoff histórico. Scripts dejan evidencia de rutas, acciones y errores. No agregar indiscriminadamente screenshots no rastreados ni estados privados de `/tmp`.
 
 Herramientas locales de comprobación: `PYTHONPATH=runtime/python-deps python3 -m unittest ...`; Playwright `/tmp/vt-new-browser-tools/node_modules/playwright/index.mjs`, navegador `/usr/bin/google-chrome`. Evitar colisiones de puertos y cerrar servidores temporales propios. Mantener instrucciones de AGENTS/skills aplicables, comunicación en español y permiso ya existente; no pedir confirmación rutinaria por acciones reversibles autorizadas.
 

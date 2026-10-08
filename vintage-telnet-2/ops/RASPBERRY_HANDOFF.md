@@ -4,7 +4,7 @@ Encargo de Javier: instalar la versión nueva, mantener sus datos, usar los enla
 
 ## Estado verificado en Ubuntu
 
-Proyecto `vintage-telnet-2-nuevo`, puerto local 8083. Tailscale de Ubuntu `100.100.196.125`; Raspberry `100.112.10.16`. Juego `/`, director `/dm`; el enlace del director no aparece en el juego. Este documento no afirma una instalación en Raspberry ni una migración de túneles ya realizada.
+Proyecto `vintage-telnet-2-nuevo`, puerto local 8083. Tailscale de Ubuntu `100.100.196.125`; Raspberry `100.112.10.16`. Juego `/`, director `/dm`; el enlace del director no aparece en el juego. La instalación y sustitución posteriores están documentadas en [DEPLOYMENT.md](../review/qa/raspberry-deploy/DEPLOYMENT.md). Estas instrucciones iniciales se conservan como procedimiento; no implican que deba repetirse la migración.
 
 SSH por Tailscale puede exigir comprobación de identidad; el enlace es temporal. No cambies las ACL para eludirla. Inspecciona los servicios y la configuración real en Raspberry: los túneles no están configurados en este checkout y no se deben adivinar sus dominios ni tokens.
 

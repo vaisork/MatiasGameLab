@@ -45,5 +45,5 @@ with tempfile.TemporaryDirectory(prefix='vt-depth-cycle2-') as tmp:
   merchant=next(n for n in content.rooms[target]['npcs'] if content.npcs[n].get('role') in ['comerciante de camino','comerciante de mercado'] or 'comprar' in content.npcs[n].get('topics',{}))
   phase='night' if state()['ambient']['time_of_day']=='Noche' else 'day'
   assert content.npcs[merchant][phase] in [event['text'] for event in scene]
-Path(root/'review/REGIONAL_MERCHANTS_20261007.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n')
+Path(root/'review/qa/REGIONAL_MERCHANTS_20261007.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n')
 print('Independent blind route:',sum(x['type']=='step' for x in out),'movement steps')

@@ -51,5 +51,5 @@ with tempfile.TemporaryDirectory(prefix='vt-depth-cycle2-') as tmp:
   for revisit in range(2):
    walk(neighbor);walk(target)
    snap=state();out.append({'type':'revisit','room':target,'visit_round':revisit+1,'ambient':snap['ambient'],'scene':snap['scene']})
-Path(sys.argv[1] if len(sys.argv)>1 else root/'review/DEPTH_CYCLE_8_BEFORE.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n')
+Path(sys.argv[1] if len(sys.argv)>1 else root/'review/archive/2026-10-07/DEPTH_CYCLE_8_BEFORE.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n')
 print('Isolated API journey:',sum(x['type']=='step' for x in out),'movement steps;',sum(x['type']=='sample' for x in out),'phase/weather samples')

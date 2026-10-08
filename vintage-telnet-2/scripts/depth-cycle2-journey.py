@@ -47,5 +47,5 @@ with tempfile.TemporaryDirectory(prefix='vt-depth-cycle2-') as tmp:
    seen.add(key);s=state();observed=act('observar')
    out.append({'type':'sample','room':target,'ambient':s['ambient'],'scene':s['scene'],'observe':observed['narrative'],'actions':[a['label'] for a in s['actions']],'npcs':s.get('people',[])})
   clock.now=43200
-Path(sys.argv[1] if len(sys.argv)>1 else root/'review/DEPTH_CYCLE_2_BEFORE.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n')
+Path(sys.argv[1] if len(sys.argv)>1 else root/'review/archive/2026-10-07/DEPTH_CYCLE_2_BEFORE.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n')
 print('Isolated API journey:',sum(x['type']=='step' for x in out),'movement steps;',sum(x['type']=='sample' for x in out),'phase/weather samples')

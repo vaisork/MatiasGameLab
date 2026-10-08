@@ -1,3 +1,4 @@
+# VT1 legacy: automatic work frozen after VT2 cutover. Paths retained for rollback.
 name: VT Art — Publish on PR Approval
 
 on:
@@ -10,7 +11,7 @@ permissions:
 
 jobs:
   publish-on-approval:
-    if: github.event.review.state == 'approved'
+    if: ${{ false }}  # Legacy publication frozen
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:

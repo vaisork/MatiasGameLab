@@ -74,7 +74,7 @@ La lectura independiente detectó voz de documento de diseño dentro de escenas 
 
 Las observaciones precisas usan requires_time y forbids_weather donde el texto vuelve ilegible su evidencia. Las conversaciones requieren_npc y los revisores con cierre nocturno tienen schedule diurno. Preguntar por la costura se realiza en el taller con Mira; la comparación de Taren se realiza donde está Taren. States modifica prosa y exámenes tras el arreglo compartido del toldo, la incorporación de la voz de Elin y la devolución física del recipiente. Los cambios públicos quedan visibles también a quien no los realizó.
 
-El escritor ejecutó fixtures controlados del motor real para comprobar tres observaciones a través de 72 horas de reloj simulado, tres presencias programadas y tres cambios físicos mundiales. Resultado en review/AUTHORED_CAUSALITY_CHECK.json; script reproducible junto a él. Es validación de causalidad bajo estados de prueba, no recorrido jugado ni aceptación literaria propia. El frontend mantiene la revisión lectora independiente.
+El escritor ejecutó fixtures controlados del motor real para comprobar tres observaciones a través de 72 horas de reloj simulado, tres presencias programadas y tres cambios físicos mundiales. Resultado en review/narrative/AUTHORED_CAUSALITY_CHECK.json; script reproducible junto a él. Es validación de causalidad bajo estados de prueba, no recorrido jugado ni aceptación literaria propia. El frontend mantiene la revisión lectora independiente.
 
 ## Nuevas escenas cotidianas después de la revisión lectora
 

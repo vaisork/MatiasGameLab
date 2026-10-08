@@ -56,4 +56,4 @@ with tempfile.TemporaryDirectory(prefix='vt-night-integration-') as tmp:
  clock.now=max(clock.now,23*3600)
  walk('lethra_muelle_vecinal');act('observar');walk('lethra_mercado_hojas');sample('Narevia night return')
  out={'moves':sum(e['action']=='mover' for e in journey),'distinct_rooms':len({e['room'] for e in journey if e['action']=='mover'}),'events':journey,'samples':samples,'gender':state()['character']['gender']}
- (root/(sys.argv[1] if len(sys.argv)>1 else 'review/DEPTH_CYCLE_14_BLIND.json')).write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n');print('moves',out['moves'],'distinct',out['distinct_rooms'])
+ (root/(sys.argv[1] if len(sys.argv)>1 else 'review/archive/2026-10-07/DEPTH_CYCLE_14_BLIND.json')).write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n');print('moves',out['moves'],'distinct',out['distinct_rooms'])

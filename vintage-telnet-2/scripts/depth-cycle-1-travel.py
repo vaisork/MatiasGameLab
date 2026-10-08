@@ -46,7 +46,7 @@ for label,species,targets in routes:
   act('mover','hogar');assert state()['room']['id']==home
   moves=[e for e in log if e['action']=='mover'];assert len(moves)>=20
   all_runs.append({'route':label,'targets':targets,'movement_count':len(moves),'returned_home':True,'events':log})
-(root/('review/depth-cycle-1/'+(sys.argv[2] if len(sys.argv)>2 else 'travel-before.json'))).write_text(json.dumps(all_runs,ensure_ascii=False,indent=2))
+(root/('review/archive/2026-10-07/depth-cycle-1/'+(sys.argv[2] if len(sys.argv)>2 else 'travel-before.json'))).write_text(json.dumps(all_runs,ensure_ascii=False,indent=2))
 for run in all_runs:
  print('ROUTE',run['route'],'MOVES',run['movement_count'])
  for i,e in enumerate(run['events']):
