@@ -442,6 +442,22 @@
           ],
           "text": "Levantas la cabeza hasta que te duele el cuello. Muy arriba, en la pared, hay arañazos largos y profundos, mucho más altos que los de un Rasgacumbres. Debajo, la grava está recién caída, todavía clara, sin polvo encima. Algo enorme mueve roca allá arriba, donde ningún camino llega. Por un momento, todo el paso parece más estrecho.",
           "journal": "En el Paso entre paredes viste arañazos y roca movida muy por encima del camino: algo mucho más grande que un Rasgacumbres trabaja en las cumbres."
+        },
+        {
+          "id": "secreto_f_apoyos",
+          "label": "Buscar una subida entre los salientes",
+          "requires_species": [
+            "felaryn"
+          ],
+          "forbids_flags": [
+            "sec_f_apoyos"
+          ],
+          "set_flags": [
+            "sec_f_apoyos"
+          ],
+          "text": "Tus ojos encuentran enseguida un camino de salientes por el que podrías subir: aquí, luego allí, luego aquel borde. Pero las marcas grandes de la pared no siguen ese camino. Van por otro sitio, uno que no tiene sentido para alguien que salta.",
+          "journal": "Las señales de la roca no corresponden a la forma en que yo subiría.",
+          "scope": "player"
         }
       ],
       "wildlife_pool": [
@@ -487,7 +503,24 @@
       "arrivals": {},
       "npcs": [],
       "signals": [],
-      "actions": [],
+      "actions": [
+        {
+          "id": "secreto_f_eco",
+          "label": "Escuchar las tablas en silencio",
+          "requires_species": [
+            "felaryn"
+          ],
+          "forbids_flags": [
+            "sec_f_eco"
+          ],
+          "set_flags": [
+            "sec_f_eco"
+          ],
+          "text": "Te quedas muy quieto, con las orejas atentas. Bajo tus pies, una parte de la terraza da un golpecito corto que no suena como el resto. Cuando para la ráfaga de viento, desaparece.",
+          "journal": "Una parte de la terraza responde al viento de otra manera.",
+          "scope": "player"
+        }
+      ],
       "brief": "La terraza de las cargas, bajo el primer techo de Khariel.",
       "states": [
         {
@@ -578,7 +611,24 @@
       },
       "npcs": [],
       "signals": [],
-      "actions": [],
+      "actions": [
+        {
+          "id": "pista2_marcas_desde_abajo",
+          "label": "Comparar las marcas desde abajo",
+          "requires_flags": [
+            "hoshai_marcas_altas"
+          ],
+          "forbids_flags": [
+            "hoshai_marcas_desde_abajo"
+          ],
+          "set_flags": [
+            "hoshai_marcas_desde_abajo"
+          ],
+          "text": "Desde los escalones se ve otra raspadura, muy por encima de las señales que dejan los que arreglan el camino. Las marcas no siguen el recorrido de las cuerdas ni de las cargas: van por donde ninguna persona podría ir.",
+          "journal": "Algo alcanzó la roca desde una altura poco habitual. Esas marcas no son del trabajo del camino.",
+          "scope": "player"
+        }
+      ],
       "wildlife_pool": [
         {
           "creature": "saltacresta",
@@ -1376,6 +1426,25 @@
           "scope": "world",
           "text": "Dejas tus cosas fuera del paso y te sientas. Yesa empieza a contar cómo su hijo eligió el paquete pequeño porque pensaba que sería más fácil. A mitad de la historia mueve la cinta al bulto, sin pensarlo. Cuando se levanta ya no se ríe de haberse detenido.",
           "journal": "Compartí una pausa con Yesa antes de que continuara. La cinta quedó en el paquete."
+        },
+        {
+          "id": "secreto_f_nudo",
+          "label": "Buscar otro ángulo desde el saliente",
+          "requires_species": [
+            "felaryn"
+          ],
+          "requires_time": [
+            "día"
+          ],
+          "forbids_flags": [
+            "sec_f_nudo"
+          ],
+          "set_flags": [
+            "sec_f_nudo"
+          ],
+          "text": "Te subes al apoyo más alto y miras de lado, con la cabeza inclinada como haces sin pensar. Detrás del nudo aparece una fibra rozada que desde el sendero parecía intacta.",
+          "journal": "La misma cuerda cuenta otra historia cuando se mira desde el sitio adecuado.",
+          "scope": "player"
         }
       ],
       "dawn": "La primera luz toca la parte de fuera del nudo. La de dentro, pegada al apoyo, sigue en sombra: hay que esperar un poco para compararlas.",
@@ -1917,6 +1986,24 @@
             "pista_marcas_cresta"
           ],
           "text": "Nuestras marcas de camino están a la altura de la mano, y siempre en piedras que se pueden tocar. Lo que tú viste está demasiado arriba. Eso no lo hizo nadie de Khariel."
+        },
+        "fibra": {
+          "requires_flags": [
+            "sec_f_nudo"
+          ],
+          "text": "¿Desde el apoyo alto se ve la fibra rozada? Lo apunto. Lo revisaré yo misma con la cuerda en la mano antes de decir nada a nadie."
+        },
+        "terraza": {
+          "requires_flags": [
+            "sec_f_eco"
+          ],
+          "text": "¿Un golpecito sólo cuando sopla? Puede ser una tabla floja o sólo el viento. No lo daré por peligroso hasta revisarla, pero gracias por escuchar."
+        },
+        "raspadura": {
+          "requires_flags": [
+            "hoshai_marcas_desde_abajo"
+          ],
+          "text": "Nuestras marcas siguen las cuerdas. Ésas no siguen nada. Por eso no las borramos: quiero ver si aparecen más."
         }
       },
       "day": "Coordina revisiones desde la caseta.",

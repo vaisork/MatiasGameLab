@@ -85,7 +85,29 @@
       },
       "npcs": [],
       "signals": [],
-      "actions": [],
+      "actions": [
+        {
+          "id": "secreto_v_senal",
+          "label": "Buscar la marca con poca luz",
+          "requires_species": [
+            "vesperi"
+          ],
+          "requires_time": [
+            "amanecer",
+            "atardecer",
+            "noche"
+          ],
+          "forbids_flags": [
+            "sec_v_senal"
+          ],
+          "set_flags": [
+            "sec_v_senal"
+          ],
+          "text": "Con poca luz, tus ojos ven lo que de día se escapa. La marca está sobre madera caída, no sobre el árbol vivo, y colocada para verse desde el paso, no desde el claro. Quien la hizo quería que la encontrara quien camina, sin hacer daño al árbol.",
+          "journal": "Quienes marcaron esta ruta eligieron una señal discreta y respetaron el árbol vivo.",
+          "scope": "player"
+        }
+      ],
       "wildlife_pool": [
         {
           "creature": "rondamusgo",
@@ -1007,6 +1029,23 @@
           "scope": "player",
           "text": "La dejas donde está. Desde aquí la figura oye entero el relato de Leris. Quien la puso eligió el mejor sitio del patio.",
           "journal": "Viste la figura de corteza del sobrino de Desi: bajo el banco del relato asoma la figura de corteza, de cara…"
+        },
+        {
+          "id": "secreto_v_pausa",
+          "label": "Escuchar a Leris",
+          "requires_species": [
+            "vesperi"
+          ],
+          "requires_npc": "nhal_leris",
+          "forbids_flags": [
+            "sec_v_pausa"
+          ],
+          "set_flags": [
+            "sec_v_pausa"
+          ],
+          "text": "Leris deja un silencio corto antes de seguir. Conoces esa pausa desde pequeño: es el hueco que se guarda para quien todavía no ha contado su parte.",
+          "journal": "Una historia puede guardar sitio para otra persona sin dejar de ser verdadera.",
+          "scope": "player"
         }
       ],
       "memories": [
@@ -1374,6 +1413,22 @@
       "signals": [],
       "actions": [
         {
+          "id": "pista2_brotes_altos",
+          "label": "Comparar los brotes altos",
+          "requires_flags": [
+            "nhal_rastro_alto"
+          ],
+          "forbids_flags": [
+            "nhal_brotes_elegidos"
+          ],
+          "set_flags": [
+            "nhal_brotes_elegidos"
+          ],
+          "text": "Las puntas tiernas de varios árboles están arrancadas, todas más o menos a la misma altura. Las ramas de abajo siguen enteras. Parece que alguien eligió justo los brotes nuevos, como quien escoge la fruta más dulce.",
+          "journal": "Las señales más altas parecen cosa de comida, no de un paso violento.",
+          "scope": "player"
+        },
+        {
           "id": "nhal_rodeo_visible_conocido",
           "label": "Conocer el rodeo para evitar la parada",
           "text": "Recorres el borde visible entre las raíces, sin entrar bajo el alero donde alguien podría cortarte el paso. Reconoces un rodeo que puedes utilizar al regresar. No has eliminado a nadie del bosque.",
@@ -1461,7 +1516,29 @@
       },
       "npcs": [],
       "signals": [],
-      "actions": [],
+      "actions": [
+        {
+          "id": "secreto_v_fundas",
+          "label": "Mirar cómo están colocadas las fundas",
+          "requires_species": [
+            "vesperi"
+          ],
+          "requires_time": [
+            "amanecer",
+            "atardecer",
+            "noche"
+          ],
+          "forbids_flags": [
+            "sec_v_fundas"
+          ],
+          "set_flags": [
+            "sec_v_fundas"
+          ],
+          "text": "Con la luz baja lo ves claro: las fundas no están puestas al azar. Unas, las de los avisos pendientes, miran hacia el camino; las otras, las ya leídas, hacia el árbol. Así quien llega sabe qué es nuevo sin abrir nada.",
+          "journal": "En los relevos del bosque también se puede leer el paso del tiempo.",
+          "scope": "player"
+        }
+      ],
       "states": [
         {
           "requires_time": [
@@ -1824,7 +1901,13 @@
       "topics": {
         "relato": "Elin recibió el recipiente después. Si no la escuchamos, sólo contaremos la mitad del viaje.",
         "raspon": "Sé cómo se reparó, pero no cómo se hizo. La diferencia cabe en una pregunta sencilla.",
-        "velmora": "Recordar juntos no obliga a que todos hayamos visto lo mismo."
+        "velmora": "Recordar juntos no obliga a que todos hayamos visto lo mismo.",
+        "pausa": {
+          "requires_flags": [
+            "sec_v_pausa"
+          ],
+          "text": "Reconociste la pausa. Entonces ya sabes que este relato no está cerrado. Cuando tengas tu parte, aquí habrá sitio para ella."
+        }
       },
       "day": "Reúne voces y prepara hojas para una conversación.",
       "night": "Lee historias incompletas bajo cubierta y guarda lo pendiente.",

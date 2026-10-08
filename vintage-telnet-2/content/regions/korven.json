@@ -1092,7 +1092,24 @@
       "arrivals": {},
       "npcs": [],
       "signals": [],
-      "actions": [],
+      "actions": [
+        {
+          "id": "secreto_d_vibracion",
+          "label": "Apoyar la palma en la piedra",
+          "requires_species": [
+            "dravak"
+          ],
+          "forbids_flags": [
+            "sec_d_vibracion"
+          ],
+          "set_flags": [
+            "sec_d_vibracion"
+          ],
+          "text": "Apoyas la palma en la piedra firme y luego en el borde. La vibración llega primero por un sitio y después por el otro. Para ti es tan claro como oír dos voces: la misma piedra no responde igual a cada golpe.",
+          "journal": "Dos puntos de una misma plataforma responden distinto. Una vibración sola no dice qué la causó.",
+          "scope": "player"
+        }
+      ],
       "brief": "La plataforma de escucha y su recipiente que tiembla."
     },
     "korven_registro_cauce": {
@@ -1135,6 +1152,22 @@
           "scope": "world",
           "journal": "El registro distingue una franja pendiente de revisión del cauce completo.",
           "requires_npc": "korven_oma"
+        },
+        {
+          "id": "pista2_anotaciones_oma",
+          "label": "Comparar las anotaciones del registro",
+          "requires_flags": [
+            "korven_presion_abajo"
+          ],
+          "forbids_flags": [
+            "korven_fechas_distintas"
+          ],
+          "set_flags": [
+            "korven_fechas_distintas"
+          ],
+          "text": "Una anotación vieja de Oma describe una vibración corta. Otra, más reciente, habla de la grieta reabierta. Las fechas no coinciden: la piedra se ha movido más de una vez, en días distintos.",
+          "journal": "Los movimientos del cauce no ocurrieron todos juntos. Todavía no puedo decir que tengan una sola causa.",
+          "scope": "player"
         }
       ],
       "memories": [
@@ -1322,6 +1355,22 @@
           "scope": "world",
           "text": "Apartas del asiento la cubierta que ocupa el lado seco. Taren coloca la taza grande y trae agua para comprobar el asa. La sostiene con las dos manos y deja escapar una risa: «Mejor se la doy a mi hermano. Siempre dice que le sirvo poco».",
           "journal": "Taren probó el asa en el asiento seco y decidió para quién será la taza grande."
+        },
+        {
+          "id": "secreto_d_espesor",
+          "label": "Sopesar las muestras",
+          "requires_species": [
+            "dravak"
+          ],
+          "forbids_flags": [
+            "sec_d_espesor"
+          ],
+          "set_flags": [
+            "sec_d_espesor"
+          ],
+          "text": "Coges las muestras una a una, con cuidado. Una pesa distinto en la mano: su borde es apenas más grueso, aunque desde arriba parece igual a las demás.",
+          "journal": "Las muestras no se distinguen sólo por el color. La forma de sostenerlas también cuenta.",
+          "scope": "player"
         }
       ],
       "memories": [
@@ -1609,7 +1658,24 @@
           ]
         }
       ],
-      "actions": [],
+      "actions": [
+        {
+          "id": "secreto_d_junta",
+          "label": "Examinar la piedra bajo las costras",
+          "requires_species": [
+            "dravak"
+          ],
+          "forbids_flags": [
+            "sec_d_junta"
+          ],
+          "set_flags": [
+            "sec_d_junta"
+          ],
+          "text": "Sin arrancar los líquenes, sigues con el dedo una línea oscura que continúa por debajo. No es una inscripción ni una puerta: es una junta de la propia piedra. Tu gente lo reconoce enseguida; así envejece la roca.",
+          "journal": "Una marca extraña puede ser sólo la forma en que envejece la roca.",
+          "scope": "player"
+        }
+      ],
       "brief": "La roca de los líquenes."
     },
     "korven_peldanos_cortos": {
@@ -2064,6 +2130,12 @@
             "pista_herramienta_dravak"
           ],
           "text": "Es trabajo Dravak, sí. Antiguo, de antes de que se repararan estas casas. Pero no te inventes un reino perdido por una herramienta oxidada: una pieza no es todo el pasado."
+        },
+        "peso": {
+          "requires_flags": [
+            "sec_d_espesor"
+          ],
+          "text": "¿Lo notaste en la mano? Bien. El color engaña; el peso no tanto. Pero apúntalo igual: lo que no está escrito se olvida."
         }
       },
       "day": "Compara muestras bajo luz lateral.",

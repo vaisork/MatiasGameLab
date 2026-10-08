@@ -659,6 +659,62 @@
     "nhal_rastro_alto": {
       "flag": "nhal_rastro_alto",
       "title": "El árbol que se dobló sin romperse"
+    },
+    "sec_h_estacas": {
+      "flag": "sec_h_estacas",
+      "title": "Las estacas de generaciones"
+    },
+    "sec_h_piedra": {
+      "flag": "sec_h_piedra",
+      "title": "La piedra respetada"
+    },
+    "sec_h_carga_pendiente": {
+      "flag": "sec_h_carga_pendiente",
+      "title": "La carga que todavía espera"
+    },
+    "sec_f_nudo": {
+      "flag": "sec_f_nudo",
+      "title": "El nudo visto desde otro ángulo"
+    },
+    "sec_f_apoyos": {
+      "flag": "sec_f_apoyos",
+      "title": "Los apoyos que no encajan"
+    },
+    "sec_f_eco": {
+      "flag": "sec_f_eco",
+      "title": "El eco bajo la terraza"
+    },
+    "sec_d_vibracion": {
+      "flag": "sec_d_vibracion",
+      "title": "La piedra que responde distinto"
+    },
+    "sec_d_espesor": {
+      "flag": "sec_d_espesor",
+      "title": "El espesor de Taren"
+    },
+    "sec_d_junta": {
+      "flag": "sec_d_junta",
+      "title": "La junta entre líquenes"
+    },
+    "sec_m_corrientes": {
+      "flag": "sec_m_corrientes",
+      "title": "Dos corrientes"
+    },
+    "sec_m_fibra": {
+      "flag": "sec_m_fibra",
+      "title": "La fibra bajo el amarre"
+    },
+    "sec_v_senal": {
+      "flag": "sec_v_senal",
+      "title": "La señal bajo la sombra"
+    },
+    "sec_v_pausa": {
+      "flag": "sec_v_pausa",
+      "title": "Las pausas del relato"
+    },
+    "sec_v_fundas": {
+      "flag": "sec_v_fundas",
+      "title": "Las fundas del relevo"
     }
   }
 }

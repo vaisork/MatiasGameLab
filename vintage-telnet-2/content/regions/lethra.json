@@ -257,7 +257,24 @@
       "arrivals": {},
       "npcs": [],
       "signals": [],
-      "actions": [],
+      "actions": [
+        {
+          "id": "secreto_m_corrientes",
+          "label": "Meter la mano en el agua",
+          "requires_species": [
+            "marevyn"
+          ],
+          "forbids_flags": [
+            "sec_m_corrientes"
+          ],
+          "set_flags": [
+            "sec_m_corrientes"
+          ],
+          "text": "Desde el borde seguro hundes el brazo hasta el codo. Arriba, el agua te acaricia la mano hacia un lado; un poco más abajo, te empuja hacia el otro. Para cualquiera serían el mismo canal. Para ti son dos.",
+          "journal": "Las corrientes del canal no son iguales a todas las profundidades.",
+          "scope": "player"
+        }
+      ],
       "dawn": "El agua lenta guarda una claridad lisa; la corriente corta ya la ha partido. Quien cruza puede distinguir ambos ritmos antes de oír trabajo río arriba.",
       "dusk": "El canal lento es el primero en oscurecerse. Desde una casa llega el golpe de un recipiente, y debajo del cruce sigue pasando el agua rápida.",
       "weather": {
@@ -1275,6 +1292,22 @@
             "lluvia",
             "tormenta"
           ]
+        },
+        {
+          "id": "secreto_m_fibra",
+          "label": "Mirar el amarre desde el agua",
+          "requires_species": [
+            "marevyn"
+          ],
+          "forbids_flags": [
+            "sec_m_fibra"
+          ],
+          "set_flags": [
+            "sec_m_fibra"
+          ],
+          "text": "Te deslizas al agua junto al poste y miras la cuerda desde abajo. Las fibras se han ido abriendo poco a poco. No hay ningún tajo limpio: la cuerda lleva mucho tiempo aguantando tensión.",
+          "journal": "El amarre no fue cortado. El agua y la fuerza de la barca dejaron sus propias marcas.",
+          "scope": "player"
         }
       ],
       "memories": [
@@ -1479,6 +1512,22 @@
           ],
           "scope": "world",
           "journal": "Una nota atribuida conserva los arrastres y tallos observados desde las raíces."
+        },
+        {
+          "id": "pista2_barro_raices",
+          "label": "Comparar las marcas de barro",
+          "requires_flags": [
+            "lethra_rastro_largo"
+          ],
+          "forbids_flags": [
+            "lethra_movimiento_grande"
+          ],
+          "set_flags": [
+            "lethra_movimiento_grande"
+          ],
+          "text": "Hay barro pegado a una raíz alta, muy por encima del agua, pero las raíces de al lado están limpias. El agua tuvo que levantarse con mucha fuerza en un solo punto, como cuando algo enorme se mueve de golpe.",
+          "journal": "El canal guarda señales de un movimiento grande, distinto de la corriente de siempre.",
+          "scope": "player"
         }
       ],
       "memories": [
@@ -1804,6 +1853,12 @@
             "pista_amarre"
           ],
           "text": "¿El poste doblado? Una barca tiró de él cuando subió el agua. Mira la cuerda: está deshilachada, no cortada. Roce, tensión y días. Nadie lo rompió a propósito."
+        },
+        "fibras": {
+          "requires_flags": [
+            "sec_m_fibra"
+          ],
+          "text": "Lo viste desde abajo, ¿eh? Eso es lo que yo digo: lo de a flote y lo de en seco tienen que contarse juntos. Nadie cortó esa cuerda."
         }
       },
       "day": "Revisa uniones de embarcaciones inclinadas.",

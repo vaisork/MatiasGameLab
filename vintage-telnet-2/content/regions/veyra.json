@@ -1092,6 +1092,22 @@
           "scope": "world",
           "journal": "El archivo conoce la causa del retraso de Tov.",
           "requires_npc": "veyra_nera"
+        },
+        {
+          "id": "secreto_h_carga_pendiente",
+          "label": "Leer las anotaciones abiertas",
+          "requires_species": [
+            "humano"
+          ],
+          "forbids_flags": [
+            "sec_h_carga_pendiente"
+          ],
+          "set_flags": [
+            "sec_h_carga_pendiente"
+          ],
+          "text": "Una anotación está abierta, sin tachar. Sabes lo que significa: quien la escribió no la dio por perdida. Esperaba que alguien volviera a buscarla.",
+          "journal": "Una cuenta sin cerrar puede guardar una promesa, no siempre una pérdida.",
+          "scope": "player"
         }
       ],
       "memories": [
@@ -1726,6 +1742,12 @@
             "pista_piedra_antigua"
           ],
           "text": "La ciudad está hecha sobre piedras más viejas que ella. Las usamos, las reparamos, las movemos. Pero las piedras no nos han contado quién las puso."
+        },
+        "promesa": {
+          "requires_flags": [
+            "sec_h_carga_pendiente"
+          ],
+          "text": "¿Te fijaste en la anotación abierta? No la tacho porque quien la dejó dijo que volvería. Mientras siga abierta, su sitio en el estante es suyo."
         }
       },
       "day": "Reordena las tablillas pendientes por ruta.",

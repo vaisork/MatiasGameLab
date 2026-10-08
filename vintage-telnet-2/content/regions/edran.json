@@ -89,7 +89,24 @@
       },
       "npcs": [],
       "signals": [],
-      "actions": [],
+      "actions": [
+        {
+          "id": "secreto_h_piedra",
+          "label": "Seguir con la mano la madera del banco",
+          "requires_species": [
+            "humano"
+          ],
+          "forbids_flags": [
+            "sec_h_piedra"
+          ],
+          "set_flags": [
+            "sec_h_piedra"
+          ],
+          "text": "Pasas la mano por el banco y notas que la madera cambia de dirección justo antes de tocar la piedra. No es un error: alguien prefirió que el banco rodeara la piedra antes que quitarla de su sitio.",
+          "journal": "Valdren conserva algunas cosas sin necesidad de explicar de dónde vienen.",
+          "scope": "player"
+        }
+      ],
       "return": "Ya sabes orientarte aquí: la calle que sube lleva al golpe de la fragua; el corredor de los huertos, al campo.",
       "weather": {
         "viento": "El cuenco del banco traquetea bajo su tapa. La lámpara oscila junto al corredor y su luz pasa de las tablas al suelo; en las casas, alguien encaja una contraventana."
@@ -1518,6 +1535,38 @@
           "scope": "player",
           "text": "Te agachas. El Espinajo de la pata asoma por detrás de la estaca, igual que uno de verdad en los tallos. Quien lo hizo esperaba sentado justo aquí.",
           "journal": "Otro Espinajo con una L, escondido en la pata del banco del cobertizo de las estacas."
+        },
+        {
+          "id": "pista2_estacas_exteriores",
+          "label": "Comparar las estacas exteriores",
+          "requires_flags": [
+            "edran_rastro_grande"
+          ],
+          "forbids_flags": [
+            "edran_paso_conocido"
+          ],
+          "set_flags": [
+            "edran_paso_conocido"
+          ],
+          "text": "Las estacas del lado del campo se han cambiado muchas más veces que las de dentro. Varias están inclinadas hacia el mismo lado, y entre algunas han dejado un hueco demasiado ancho para una cerca normal. Como si alguien supiera que por ahí pasa algo grande y prefiriera dejarle sitio.",
+          "journal": "Las marcas del prado no fueron un hecho aislado. Alguien conoce ese paso y procura dejarle espacio.",
+          "scope": "player"
+        },
+        {
+          "id": "secreto_h_estacas",
+          "label": "Mirar de cerca las marcas de las estacas",
+          "requires_species": [
+            "humano"
+          ],
+          "forbids_flags": [
+            "sec_h_estacas"
+          ],
+          "set_flags": [
+            "sec_h_estacas"
+          ],
+          "text": "Debajo de la última marca de cada estaca hay otras dos, casi borradas. Reconoces la costumbre: en tu familia también se marcaba así cada arreglo de la misma cerca. No son dueños distintos; son años de volver a reparar lo mismo.",
+          "journal": "Los campos guardan su historia en señales pequeñas. Esta cerca ha necesitado cuidados durante años.",
+          "scope": "player"
         }
       ],
       "return": "Recuerdas la estaca numerada que faltaba en la pared. El hueco está entre dos herramientas con barro seco en el mango.",
@@ -2814,7 +2863,24 @@
       },
       "npcs": [],
       "signals": [],
-      "actions": [],
+      "actions": [
+        {
+          "id": "pista2_cuna_conducto",
+          "label": "Comparar la cuña con las marcas del conducto",
+          "requires_flags": [
+            "edran_conduccion_vieja"
+          ],
+          "forbids_flags": [
+            "edran_canal_reparado"
+          ],
+          "set_flags": [
+            "edran_canal_reparado"
+          ],
+          "text": "La cuña de la mesa está gastada por un lado. Una marca de la pared del canal tiene justo su anchura, pero la piedra de alrededor es muchísimo más vieja. Alguien trabajó aquí cuando el canal ya llevaba mucho tiempo construido.",
+          "journal": "El canal fue reparado después de construirse. Todavía no sé quién lo levantó.",
+          "scope": "player"
+        }
+      ],
       "source": "Ampliación original autorizada: campaña nocturna",
       "brief": "La cámara de herramientas y su mesa de barro seco."
     },
