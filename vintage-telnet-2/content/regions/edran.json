@@ -36,9 +36,18 @@
           "Unas bolitas de excremento redondas junto a una mata: por aquí come una Liebre corta.",
           "Una pluma parda, ligera, se ha quedado enganchada en un tallo. Es de un Ala parda.",
           "Debajo de una piedra, un Grillo campana se queda quieto en cuanto la levantas. La vuelves a dejar como estaba.",
-          "En el barro seco hay una huella partida en dos, tan ancha como una rueda de carro y mucho más honda que las de Cornalomo. Lo que la dejó pesaba muchísimo más.",
-          "Una cerca tiene dos postes tumbados hacia fuera, empujados desde el campo, no desde el camino. Nadie los ha vuelto a levantar.",
-          "Una línea de tierra hundida cruza la parcela, recta como una cuerda tensa. Ningún animal camina así: parece que algo corre por debajo, hacia el canal cubierto.",
+          {
+            "text": "En el barro seco hay una huella partida en dos, tan ancha como una rueda de carro y mucho más honda que las de Cornalomo. Lo que la dejó pesaba muchísimo más.",
+            "flag": "pista_huella_partida"
+          },
+          {
+            "text": "Una cerca tiene dos postes tumbados hacia fuera, empujados desde el campo, no desde el camino. Nadie los ha vuelto a levantar.",
+            "flag": "pista_huella_partida"
+          },
+          {
+            "text": "Una línea de tierra hundida cruza la parcela, recta como una cuerda tensa. Ningún animal camina así: parece que algo corre por debajo, hacia el canal cubierto.",
+            "flag": "pista_linea_hundida"
+          },
           "Entre la hierba aparece una cuña de madera vieja, de las que usan los carros. Alguien la perdió hace tiempo."
         ],
         "empty": [
@@ -2053,7 +2062,23 @@
           "text": "En la zona aplastada del prado, un Cornalomo arranca hierba con calma. Cuando pisa, la tierra se hunde. Desde el sendero se le ve entero; acercarse ya es otra cosa."
         }
       ],
-      "actions": [],
+      "actions": [
+        {
+          "id": "pista_comparar_huellas",
+          "label": "Comparar la huella partida con las de Cornalomo",
+          "requires_flags": [
+            "pista_huella_partida"
+          ],
+          "forbids_flags": [
+            "edran_rastro_grande"
+          ],
+          "set_flags": [
+            "edran_rastro_grande"
+          ],
+          "text": "Te agachas junto al sendero. Las huellas de Cornalomo están por todas partes: partidas en dos, como la que encontraste, pero pequeñas, del tamaño de tu mano. La otra era igual de partida y tres veces más ancha, y se hundía en el barro seco como si encima hubiera ido una carreta cargada de piedras. La misma forma de pisar, pero un animal muchísimo más grande. En la hierba alta, un pasillo aplastado se aleja hacia los campos de fuera, lejos del pueblo.",
+          "journal": "En el Prado de las Marcas Anchas comparaste las huellas: algo con pezuñas como las de Cornalomo, pero muchísimo más grande, cruza los campos de fuera."
+        }
+      ],
       "return": "El sendero pasa entre las dos bandas de hierba. Fuera de él, unas huellas profundas hunden los tallos hacia el claro del prado.",
       "weather": {
         "viento": "Las hierbas altas se inclinan juntas salvo donde el peso del Cornalomo las mantiene aplastadas. La dirección del aire hace más visible ese espacio ocupado."
@@ -2490,7 +2515,23 @@
       "arrivals": {},
       "npcs": [],
       "signals": [],
-      "actions": [],
+      "actions": [
+        {
+          "id": "pista_seguir_linea",
+          "label": "Seguir la línea de tierra hundida",
+          "requires_flags": [
+            "pista_linea_hundida"
+          ],
+          "forbids_flags": [
+            "edran_conduccion_vieja"
+          ],
+          "set_flags": [
+            "edran_conduccion_vieja"
+          ],
+          "text": "La línea hundida llega recta hasta el borde de la zanja y se mete en ella. Abajo, entre la tierra, asoman piedras puestas a mano, formando un canal pequeño y muy viejo. Si pegas la oreja, oyes agua corriendo por dentro, hacia el canal cubierto. No era un animal: es un camino de agua que alguien hizo hace mucho y que todavía funciona.",
+          "journal": "En la Zanja seca descubriste que la línea de tierra hundida es una vieja conducción de agua que sigue corriendo hacia el canal cubierto."
+        }
+      ],
       "return": "El borde recto de la zanja no ha cambiado. Su entrada está apisonada; entre las paredes de tierra han crecido plantas.",
       "brief": "La zanja seca, con la escalera del canal cubierto."
     },
@@ -3175,6 +3216,12 @@
             "edran_cuerda_entregada"
           ],
           "text": "¡Una cuerda buena! La ato en este tramo de la escalera. Ahora hay dos apoyos: cuando vuelvas a bajar, usa el de la derecha."
+        },
+        "linea": {
+          "requires_flags": [
+            "pista_linea_hundida"
+          ],
+          "text": "¿La línea recta del campo? Es el canal viejo. Va por debajo de las parcelas hasta aquí. Nadie recuerda quién lo hizo, pero sigue llevando agua, así que lo cuidamos como si fuera nuestro."
         }
       },
       "memory": {

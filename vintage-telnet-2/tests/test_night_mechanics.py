@@ -115,6 +115,21 @@ class NightMechanicsTests(unittest.TestCase):
   self.assertTrue(repair['disabled']);self.assertEqual(repair['reason'],'Te faltan 8 sellos.')
   with self.assertRaises(RuleError):self.act('reparar',weapon['id'])
   self.assertEqual(self.state['seals'],0);self.assertFalse(weapon.get('honed',False));self.assertEqual(weapon['condition'],'damaged_event')
+ def test_seen_clue_opens_its_follow_up_at_the_explaining_place(self):
+  class Fixed:
+   def __init__(self,value):self.value=value
+   def random(self):return self.value
+  traces=self.content.regions['edran']['search']['traces']
+  index=next(i for i,t in enumerate(traces) if isinstance(t,dict) and t['flag']=='pista_huella_partida')
+  self.state['location']='edran_camino_carros';self.engine.rng=Fixed(.4+(index+.5)/len(traces)*.35)
+  self.engine.search(self.character,self.world)
+  self.assertEqual(self.state['events'][0]['text'],traces[index]['text'])
+  self.assertIn('pista_huella_partida',self.state['flags'])
+  self.state['location']='edran_prado';self.engine.rng=ZeroRandom()
+  self.assertIn('pista_comparar_huellas',[a['id'] for a in self.engine.actions(self.character,self.world)])
+  self.act('pista_comparar_huellas')
+  self.assertIn('edran_rastro_grande',self.state['flags'])
+  self.assertNotIn('pista_comparar_huellas',[a['id'] for a in self.engine.actions(self.character,self.world)])
  def test_search_uses_both_authored_empty_and_trace_variants(self):
   class Fixed:
    def __init__(self,value):self.value=value
@@ -125,7 +140,8 @@ class NightMechanicsTests(unittest.TestCase):
    options=search[kind];index=min(int((value-start)/span*len(options)),len(options)-1)
    self.state['location']='lethra_tierra_esponjosa';self.engine.rng=Fixed(value)
    self.engine.search(self.character,self.world)
-   self.assertEqual(self.state['events'][0]['text'],options[index])
+   expected=options[index]['text'] if isinstance(options[index],dict) else options[index]
+   self.assertEqual(self.state['events'][0]['text'],expected)
    self.now+=61
  def test_four_unique_quests_pay_announced_reward_even_after_other_errands(self):
   self.state['ledger']=[{'family':'valdren_paid_errands','at':self.now,'amount':6} for _ in range(5)]

@@ -39,9 +39,18 @@
           "Una Aguja azul se queda suspendida en el aire sobre el agua, quieta, y luego sale disparada.",
           "Huellas finas y largas en el barro, de un Picojunco que buscaba comida.",
           "Un Caracol liso sube por un junco, muy despacio, dejando un hilo brillante.",
-          "Una franja de juncos está aplastada de golpe, como si algo largo y pesado hubiera salido del agua y vuelto a entrar. El barro todavía está mojado.",
-          "Un poste de amarre está doblado hacia el canal. La madera está sana: algo tiró de él desde el agua.",
-          "En el agua flota una cuerda cortada, con los bordes deshilachados, no limpios como de cuchillo.",
+          {
+            "text": "Una franja de juncos está aplastada de golpe, como si algo largo y pesado hubiera salido del agua y vuelto a entrar. El barro todavía está mojado.",
+            "flag": "pista_juncos_aplastados"
+          },
+          {
+            "text": "Un poste de amarre está doblado hacia el canal. La madera está sana: algo tiró de él desde el agua.",
+            "flag": "pista_amarre"
+          },
+          {
+            "text": "En el agua flota un trozo de cuerda con la punta deshilachada, no limpia como si la hubiera cortado un cuchillo.",
+            "flag": "pista_amarre"
+          },
           "Bajo el agua turbia, entre las raíces, se adivina algo pequeño de madera con forma de barca. Cuando el agua se mueve, se hunde un poco más."
         ],
         "empty": [
@@ -1388,6 +1397,21 @@
           "scope": "world",
           "text": "Metes el brazo hasta el codo, sin moverte del borde. La barquita sale llena de barro y agua. La vacías y la dejas en la raíz seca, con la vela hacia arriba.",
           "journal": "Sacaste del canal una barquita de juguete con el nombre de Sola y la dejaste secando en la raíz."
+        },
+        {
+          "id": "pista_seguir_juncos",
+          "label": "Seguir la franja de juncos aplastados",
+          "requires_flags": [
+            "pista_juncos_aplastados"
+          ],
+          "forbids_flags": [
+            "lethra_rastro_largo"
+          ],
+          "set_flags": [
+            "lethra_rastro_largo"
+          ],
+          "text": "Los juncos aplastados llegan hasta aquí y bajan al canal en una franja ancha, lisa, como si hubieran arrastrado un tronco enorme. Pero no hay tronco. En el barro quedan marcas de un cuerpo largo y pesado, y el agua oscura todavía mueve ondas grandes y lentas, aunque no sopla el viento. Te quedas en la raíz, sin acercarte al borde.",
+          "journal": "En la Orilla del canal seguiste el rastro de algo largo y pesado que entra y sale del agua oscura."
         }
       ],
       "states": [
@@ -1774,6 +1798,12 @@
             "lethra_barquita_rescatada"
           ],
           "text": "¿Mi barquita? ¡La hundió Mira! Teníamos siete y ocho años. Dijo que quería ver si flotaba con piedras dentro. No flotaba."
+        },
+        "amarre": {
+          "requires_flags": [
+            "pista_amarre"
+          ],
+          "text": "¿El poste doblado? Una barca tiró de él cuando subió el agua. Mira la cuerda: está deshilachada, no cortada. Roce, tensión y días. Nadie lo rompió a propósito."
         }
       },
       "day": "Revisa uniones de embarcaciones inclinadas.",

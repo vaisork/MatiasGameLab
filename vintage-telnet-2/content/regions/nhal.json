@@ -39,9 +39,15 @@
           "Una Ratona de hoja se escabulle entre la hojarasca con una semilla más grande que su cabeza.",
           "Un Pico sordo picotea un tronco sin hacer ningún ruido. Te mira y sigue.",
           "Unas hojas brillan un momento cuando les da un rayo de luz, y se apagan cuando pasa.",
-          "Un árbol joven está doblado hasta el suelo, como si algo enorme se hubiera apoyado en él para pasar. Las hojas de arriba ni siquiera se han roto.",
+          {
+            "text": "Un árbol joven está doblado hasta el suelo, como si algo enorme se hubiera apoyado en él para pasar. Las hojas de arriba ni siquiera se han roto.",
+            "flag": "pista_arbol_doblado"
+          },
           "Hay una franja de bosque donde no cantan los pájaros. Cuando sales de ella, vuelven a cantar.",
-          "Una marca tallada en la corteza, muy antigua, medio tapada por la madera nueva: dos líneas y un círculo.",
+          {
+            "text": "Una marca tallada en la corteza, muy antigua, medio tapada por la madera nueva: dos líneas y un círculo.",
+            "flag": "pista_talla"
+          },
           "Un recipiente de madera viejo, olvidado entre las raíces, lleno de agua de lluvia."
         ],
         "empty": [
@@ -1751,6 +1757,21 @@
             "lluvia",
             "tormenta"
           ]
+        },
+        {
+          "id": "pista_altura_dano",
+          "label": "Mirar a qué altura está el daño",
+          "requires_flags": [
+            "pista_arbol_doblado"
+          ],
+          "forbids_flags": [
+            "nhal_rastro_alto"
+          ],
+          "set_flags": [
+            "nhal_rastro_alto"
+          ],
+          "text": "Aquí también hay árboles jóvenes doblados, como el que encontraste. Ninguno está roto: alguien los ha inclinado con cuidado, sin partirlos. Los brotes de arriba han desaparecido, mordidos a una altura a la que no llegaría ni subido a los hombros de otra persona. Entre los troncos queda un paso ancho, de hojas aplastadas, por el que cabría una casa.",
+          "journal": "En la Raíz marcada viste árboles jóvenes doblados sin romperse y brotes comidos muy arriba: algo enorme se alimenta en lo profundo del bosque."
         }
       ],
       "memories": [

@@ -39,8 +39,14 @@
           "Pelo gris pegado a una roca con resina: algo pequeño se frota aquí para quitarse los bichos.",
           "Una Mariposa fría se posa en tu manga, quieta, como si quisiera calentarse, y se va.",
           "En una repisa alta, una Orejilla de risco te mira sin moverse. Sólo se le ven las orejas.",
-          "Una roca del tamaño de una puerta ha rodado hace poco por la ladera. Arriba, en la cresta, quedan marcas que no son de viento.",
-          "Hay arañazos largos en la piedra, de tres en tres, más arriba de lo que llegaría una persona de pie.",
+          {
+            "text": "Una roca del tamaño de una puerta ha rodado hace poco por la ladera. Arriba, en la cresta, quedan marcas que no son de viento.",
+            "flag": "pista_marcas_cresta"
+          },
+          {
+            "text": "Hay arañazos largos en la piedra, de tres en tres, más arriba de lo que llegaría una persona de pie.",
+            "flag": "pista_marcas_cresta"
+          },
           "Un apoyo de madera nuevo, clavado en la roca: alguien lo puso para que nadie resbale aquí.",
           "En una grieta seca quedan restos de una hoguera vieja y una piedra plana usada de asiento."
         ],
@@ -421,6 +427,21 @@
           "scope": "player",
           "text": "Tomas impulso en la piedra plana y alcanzas la repisa de un salto. Está llena de rayas de altura: cada una tiene al lado un nombre, una cola dibujada o las dos cosas. Son marcas de los niños de Khariel, de muchos años. Con una piedra haces la tuya, un poco más arriba de lo que esperabas.",
           "journal": "Dejaste tu marca de altura en la repisa alta del paso entre paredes, entre las de los niños de Khariel."
+        },
+        {
+          "id": "pista_mirar_cresta",
+          "label": "Mirar hacia la cresta",
+          "requires_flags": [
+            "pista_marcas_cresta"
+          ],
+          "forbids_flags": [
+            "hoshai_marcas_altas"
+          ],
+          "set_flags": [
+            "hoshai_marcas_altas"
+          ],
+          "text": "Levantas la cabeza hasta que te duele el cuello. Muy arriba, en la pared, hay arañazos largos y profundos, mucho más altos que los de un Rasgacumbres. Debajo, la grava está recién caída, todavía clara, sin polvo encima. Algo enorme mueve roca allá arriba, donde ningún camino llega. Por un momento, todo el paso parece más estrecho.",
+          "journal": "En el Paso entre paredes viste arañazos y roca movida muy por encima del camino: algo mucho más grande que un Rasgacumbres trabaja en las cumbres."
         }
       ],
       "wildlife_pool": [
@@ -1890,7 +1911,13 @@
       "topics": {
         "nudo": "Desde aquí falta una parte. Quien ha mirado desde abajo puede completar la revisión.",
         "cargas": "Un apoyo que sirve a mis pies puede no servir a una rueda. Lo revisamos por usos, no por orgullo.",
-        "hitos": "Los del borde llevan una marca de revisión. Sigue las piedras gastadas del camino: desde la tablilla se ve la siguiente."
+        "hitos": "Los del borde llevan una marca de revisión. Sigue las piedras gastadas del camino: desde la tablilla se ve la siguiente.",
+        "marcas": {
+          "requires_flags": [
+            "pista_marcas_cresta"
+          ],
+          "text": "Nuestras marcas de camino están a la altura de la mano, y siempre en piedras que se pueden tocar. Lo que tú viste está demasiado arriba. Eso no lo hizo nadie de Khariel."
+        }
       },
       "day": "Coordina revisiones desde la caseta.",
       "night": "Guarda tiras de repuesto y registra trabajos pendientes.",
