@@ -22,4 +22,4 @@ assert results['juramentado']['signature']['incomingDamage']<results['juramentad
 assert results['sombra']['openingNextAttack']['damageWithOpening']>results['sombra']['openingNextAttack']['damageWithoutOpening']
 assert results['artifice']['signature']['outgoingDamage']>0
 out={'status':'PASS','scope':'Deterministic actual round comparison, not human play or new balance approval','sources':['GAMEPLAY §§20.5,36.4–36.7','CLASS_SIGNATURE_CANON_RECONCILIATION.md'],'results':results}
-(root/'review/night-playtest/power-audit.json').write_text(json.dumps(out,ensure_ascii=False,indent=2));print('PASS powers compared; arcano response accuracy',results['arcano']['signature']['enemyResponseAccuracy'])
+(root/'review/archive/2026-10-07/night-playtest/power-audit.json').write_text(json.dumps(out,ensure_ascii=False,indent=2));print('PASS powers compared; arcano response accuracy',results['arcano']['signature']['enemyResponseAccuracy'])

@@ -61,4 +61,4 @@ with tempfile.TemporaryDirectory(prefix='vt-night-integration-') as tmp:
    pair[role]=responses
    if role=='observer':assert not any(t['kind']=='discovery' for v in responses for t in v['narrative']),(npc,responses)
   pairs.append(pair)
- (root/'review/DEPTH_CYCLE_18_PRIVATE_PAIR.json').write_text(json.dumps({'pairs':pairs,'moves':sum(e['action']=='mover' for e in journey)},ensure_ascii=False,indent=2)+'\n');print('three owner/observer pairs; no private memory in observer dialogues')
+ (root/'review/archive/2026-10-07/DEPTH_CYCLE_18_PRIVATE_PAIR.json').write_text(json.dumps({'pairs':pairs,'moves':sum(e['action']=='mover' for e in journey)},ensure_ascii=False,indent=2)+'\n');print('three owner/observer pairs; no private memory in observer dialogues')

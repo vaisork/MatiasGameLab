@@ -59,6 +59,6 @@ with tempfile.TemporaryDirectory(prefix='vt-night-integration-') as tmp:
   for turn in range(3):
    sample('later rain '+str(turn));act('mover','oeste');act('mover','este')
  out={'moves':sum(e['action']=='mover' for e in journey),'events':journey,'samples':samples}
- (root/(sys.argv[1] if len(sys.argv)>1 else 'review/DEPTH_CYCLE_13_BEFORE.json')).write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n')
+ (root/(sys.argv[1] if len(sys.argv)>1 else 'review/archive/2026-10-07/DEPTH_CYCLE_13_BEFORE.json')).write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n')
  print('moves',out['moves'])
  for v in samples:print(v['tag'],v['room'],v['ambient'],v['scene'])

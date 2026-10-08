@@ -53,4 +53,4 @@ with tempfile.TemporaryDirectory(prefix='vt-night-integration-') as tmp:
  for room,npc,topics in [('valdren_fragua','edran_daro',['trabajo','armas','pueblo']),('korven_entrante_piezas','korven_taren',['medidas','materiales','horno','pieza']),('lethra_mercado_hojas','lethra_nera_mercado',['reunión','comprar','vender','cuidados'])]:
   walk(room);talkset(npc,topics,'later revisit')
  out={'moves':sum(e['action']=='mover' for e in journey),'events':journey,'conversations':samples}
- (root/(sys.argv[1] if len(sys.argv)>1 else 'review/DEPTH_CYCLE_18_BEFORE.json')).write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n');print('moves',out['moves'],'conversations',len(samples))
+ (root/(sys.argv[1] if len(sys.argv)>1 else 'review/archive/2026-10-07/DEPTH_CYCLE_18_BEFORE.json')).write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n');print('moves',out['moves'],'conversations',len(samples))

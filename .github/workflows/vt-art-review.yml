@@ -1,3 +1,4 @@
+# VT1 legacy: automatic work frozen after VT2 cutover. Paths retained for rollback.
 name: Vintage Telnet — estado de revisión de arte
 
 on:
@@ -14,14 +15,7 @@ concurrency:
 
 jobs:
   record-review-status:
-    if: >-
-      github.repository == 'vaisork/MatiasGameLab' &&
-      github.event.pull_request.base.ref == 'main' &&
-      github.event.pull_request.head.repo.full_name == github.repository &&
-      startsWith(github.event.pull_request.head.ref, 'art-drafts/run-') &&
-      (github.event.action == 'dismissed' ||
-       github.event.review.state == 'approved' ||
-       github.event.review.state == 'changes_requested')
+    if: ${{ false }}  # Legacy review automation frozen
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:

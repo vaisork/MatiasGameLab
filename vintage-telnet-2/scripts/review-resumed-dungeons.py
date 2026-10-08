@@ -50,5 +50,5 @@ with tempfile.TemporaryDirectory(prefix='vt-depth-cycle2-') as tmp:
   walk('korven_almacen_fondo');note('observar');walk('edran_canal_refugio');note('observar')
  assert not state()['character']['combat']
  assert not any(entry['id']=='forajido_camino' for entry in state()['bestiary'])
-Path(root/'review/DUNGEON_REPLAY_20261007.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n')
+Path(root/'review/qa/DUNGEON_REPLAY_20261007.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n')
 print('Independent blind route:',sum(x['type']=='step' for x in out),'movement steps')

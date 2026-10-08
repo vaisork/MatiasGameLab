@@ -274,7 +274,7 @@ Un jugador que no vea/cargue la ilustración no debería perder información mec
 
 ## RELACIÓN CON EL PUBLICADOR AUTOMÁTICO
 
-Esta necesidad refuerza `ASSET_BATCH_PUBLISHER_SPEC.md`.
+Esta necesidad refuerza `vintage-telnet/docs/archive/ASSET_BATCH_PUBLISHER_SPEC.md`.
 
 El publicador debería poder, en una fase posterior:
 1. recibir un máster;

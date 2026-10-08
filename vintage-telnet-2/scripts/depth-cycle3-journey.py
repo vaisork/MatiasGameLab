@@ -43,4 +43,4 @@ with tempfile.TemporaryDirectory(prefix='vt-depth3-') as tmp:
   if dest=='edran_surcos':
    act('combatir','espinajo_rastrojo');act('capacidad');clock.now+=4;s=state();log.append({'after_signature':s});clock.now+=40;log.append({'after_fight':state()})
  assert moves>=20,moves
- (root/os.environ.get('VT_DEPTH3_OUTPUT','review/depth-cycle3-before.json')).write_text(json.dumps({'moves':moves,'events':log,'final':state()},ensure_ascii=False,indent=2));print('PASS',moves)
+ (root/os.environ.get('VT_DEPTH3_OUTPUT','review/archive/2026-10-07/depth-cycle3-before.json')).write_text(json.dumps({'moves':moves,'events':log,'final':state()},ensure_ascii=False,indent=2));print('PASS',moves)

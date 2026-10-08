@@ -91,5 +91,5 @@ with tempfile.TemporaryDirectory(prefix='vt-night-integration-') as tmp:
    if pair['room'] in checks:
     text=checks[pair['room']];assert text in pair['owner']['room']['description'],pair['room'];assert text not in pair['observer']['room']['description'],pair['room']
  out={'moves':sum(e.get('action')=='mover' for e in journey),'events':journey,'checkpoints':checkpoints,'flags':flags,'final':state()}
- (root/os.environ.get('VT_DEPTH6_OUTPUT','review/depth-cycle6-before.json')).write_text(json.dumps(out,ensure_ascii=False,indent=2))
+ (root/os.environ.get('VT_DEPTH6_OUTPUT','review/archive/2026-10-07/depth-cycle6-before.json')).write_text(json.dumps(out,ensure_ascii=False,indent=2))
  print('PASS history journey',out['moves'],'moves; ten paid errands, two dungeon recoveries, twenty paired owner/observer checkpoints')

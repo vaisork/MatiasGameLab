@@ -1,0 +1,39 @@
+name: Vintage Telnet 2 tests
+
+on:
+  pull_request:
+    paths:
+      - 'vintage-telnet-2/**'
+      - 'AGENTS.md'
+      - 'senku/**'
+      - '.github/workflows/vt2-tests.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'vintage-telnet-2/**'
+      - 'AGENTS.md'
+      - 'senku/**'
+      - '.github/workflows/vt2-tests.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: vintage-telnet-2
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: python -m pip install -r requirements.txt
+      - run: python -m unittest discover -s tests -q
+      - run: node client/qa-map.mjs && node client/qa-map-paths.mjs && node client/qa-printing.mjs
+      - name: Repository structure and evidence
+        run: python scripts/check_repo_structure.py

@@ -49,4 +49,4 @@ if rest.get('disabled'):
  record('No descanso adicional necesario: recuperación completa',state())
 else:act('descansar')
 assert moves>=20
-out={'scope':'Real HTTP isolated DB; fresh level1 Dravak Juramentado; no fixture/inventory edits','moves':moves,'events':log,'evidence':evidence,'final':state()};out['final'].pop('csrf_token',None);(root/os.environ.get('VT_COMMERCE_OUTPUT','review/depth-cycle12-commerce-before.json')).write_text(json.dumps(out,ensure_ascii=False,indent=2));print(json.dumps({'moves':moves,'actions':len(log),'finalRoom':out['final']['room']['id'],'finalSeals':out['final']['character']['seals']}))
+out={'scope':'Real HTTP isolated DB; fresh level1 Dravak Juramentado; no fixture/inventory edits','moves':moves,'events':log,'evidence':evidence,'final':state()};out['final'].pop('csrf_token',None);(root/os.environ.get('VT_COMMERCE_OUTPUT','review/archive/2026-10-07/depth-cycle12-commerce-before.json')).write_text(json.dumps(out,ensure_ascii=False,indent=2));print(json.dumps({'moves':moves,'actions':len(log),'finalRoom':out['final']['room']['id'],'finalSeals':out['final']['character']['seals']}))

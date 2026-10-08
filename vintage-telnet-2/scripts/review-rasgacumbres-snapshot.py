@@ -19,5 +19,5 @@ with tempfile.TemporaryDirectory(prefix='vt-rasgacumbres-art-') as directory:
  act('mover','salir');act('mover','sur');snapshot=state();entry=next(e for e in snapshot['bestiary'] if e['id']=='rasgacumbres')
  assert entry['illustration']=='/client/art/bestiary/rasgacumbres-anime-v2.webp';assert snapshot['character']['combat'] is None
  snapshot['bestiary']=[entry] # Read-only UI focus: entry is genuinely API-discovered, not fabricated.
- (root/'review/rasgacumbres-v2/api-state.json').write_text(json.dumps(snapshot,ensure_ascii=False,indent=2))
+ (root/'review/qa/rasgacumbres-v2/api-state.json').write_text(json.dumps(snapshot,ensure_ascii=False,indent=2))
  print('PASS real API discovery; temporary store; new illustration reference; no combat')

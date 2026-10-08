@@ -11,7 +11,7 @@ Generador de arte local para Vintage Telnet — Paso 1 del flujo de publicación
       └─ Renderiza images en-game basándose en visual_context_id
 
 ⚠️ REQUISITO: Cada ficha JSON en art_requests/ DEBE tener visual_context_id
-   para que aparezca en el juego. Ver ART_GENERATION_GUIDE.md
+   para que aparezca en el juego. Ver vintage-telnet/docs/archive/ART_GENERATION_GUIDE.md
 
 📁 SALIDA:
    - art-masters/{creatures,locations}/        (PNG backup de alta calidad)

@@ -2,7 +2,7 @@
 import json
 from pathlib import Path
 root=Path(__file__).resolve().parents[1]
-b=json.loads((root/'review/depth-cycle15-dialogue-before.json').read_text());a=json.loads((root/'review/depth-cycle15-dialogue-after.json').read_text())
+b=json.loads((root/'review/archive/2026-10-07/depth-cycle15-dialogue-before.json').read_text());a=json.loads((root/'review/archive/2026-10-07/depth-cycle15-dialogue-after.json').read_text())
 assert (b['moves'],len(b['events']))==(a['moves'],len(a['events']))
 for key in ['seals','hp','fatigue','xp','level','equipment','attributes']:assert b['final']['character'][key]==a['final']['character'][key],key
 assert b['final']['inventory']==a['final']['inventory']
@@ -22,4 +22,4 @@ for before in b['checks']:
   if before['narrative']!=after['narrative']:changed.append([before['npc'],before['topic']])
 assert len(changed)==11,changed
 report={'sameMoves':a['moves'],'sameActions':len(a['events']),'sameFinalSeals':a['final']['character']['seals'],'sameEconomyEquipmentAndRecovery':True,'initialEffectsAndInstructionsPreserved':True,'privateObserverResponsesUnchanged':privates,'sharedPhysicalResponsesConsistent':['edran_bren','edran_iria'],'changedResolvedTopics':changed}
-(root/'review/depth-cycle15-dialogue-comparison.json').write_text(json.dumps(report,ensure_ascii=False,indent=2));print(json.dumps(report,ensure_ascii=False))
+(root/'review/archive/2026-10-07/depth-cycle15-dialogue-comparison.json').write_text(json.dumps(report,ensure_ascii=False,indent=2));print(json.dumps(report,ensure_ascii=False))

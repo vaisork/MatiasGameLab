@@ -1,15 +1,21 @@
+# VT1 legacy: automatic work frozen after VT2 cutover. Paths retained for rollback.
 name: VT Art — Publish Approved to Main
 
 on:
-  schedule:
-    - cron: '0 * * * *'  # Cada hora en UTC
-  workflow_dispatch:     # Manual también
+  workflow_dispatch:
+    inputs:
+      legacy_ack:
+        description: Ejecutar explícitamente pipeline VT1 legacy; no publica en VT2
+        type: boolean
+        required: true
+        default: false
 
 permissions:
   contents: write
 
 jobs:
   publish:
+    if: github.event_name == 'workflow_dispatch' && inputs.legacy_ack == true
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:

@@ -11,4 +11,4 @@ expected={('hoshai_luma','cornisa'):'pedido de revisión',('korven_taren','recom
 for key,phrase in expected.items():
  row=next(r for r in j.checks if (r['npc'],r['topic'])==key and r['stage'] in ['paid','resolved']);assert any(phrase in e['text'] for e in row['narrative']),(key,row)
 assert not any(i['id']=='junco_prestado_seli' for i in j.state()['inventory'])
-(j.root/'review/depth-cycle15-dialogue-alternatives.json').write_text(json.dumps({'moves':j.moves,'checks':j.checks,'events':j.events,'final':j.state()},ensure_ascii=False,indent=2));print(json.dumps({'moves':j.moves,'checks':len(j.checks),'branches':len(expected)}))
+(j.root/'review/archive/2026-10-07/depth-cycle15-dialogue-alternatives.json').write_text(json.dumps({'moves':j.moves,'checks':j.checks,'events':j.events,'final':j.state()},ensure_ascii=False,indent=2));print(json.dumps({'moves':j.moves,'checks':len(j.checks),'branches':len(expected)}))

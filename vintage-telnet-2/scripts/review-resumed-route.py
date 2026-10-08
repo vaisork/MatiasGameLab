@@ -41,5 +41,5 @@ with tempfile.TemporaryDirectory(prefix='vt-depth-cycle2-') as tmp:
  targets=['korven_cisterna_comun','hoshai_lavadero_roca','nhal_secadero_sombra','lethra_muelle_vecinal','edran_zanja_antigua','veyra_cantera_callada','veyra_huerta_baja','korven_patio_lavado']
  for target in targets:
   walk(target);observed=act('observar');out.append({'type':'observation','room':target,'scene':state()['scene'],'observe':observed['narrative']})
-Path(root/'review/RESUMED_ROUTE_20261007.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n')
+Path(root/'review/narrative/RESUMED_ROUTE_20261007.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n')
 print('Independent blind route:',sum(x['type']=='step' for x in out),'movement steps')

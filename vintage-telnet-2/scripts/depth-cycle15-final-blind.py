@@ -53,4 +53,4 @@ with tempfile.TemporaryDirectory(prefix='vt-night-integration-') as tmp:
  moves=sum(e['action']=='mover' for e in journey)
  assert moves==24,(moves,state()['room']['id'])
  out={'moves':moves,'actions':len(journey),'events':journey,'samples':snapshots}
- (root/'review/DEPTH_CYCLE_15_FINAL_BLIND.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n');print(moves,len(journey))
+ (root/'review/archive/2026-10-07/DEPTH_CYCLE_15_FINAL_BLIND.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n');print(moves,len(journey))

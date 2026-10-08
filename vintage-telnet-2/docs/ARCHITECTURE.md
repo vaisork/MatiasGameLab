@@ -28,7 +28,7 @@ Una decisión usa `id`, `label`, `text`, guardas y efectos estructurados. `scope
 
 ## Añadir criaturas y equipo
 
-Registrar ecología, descripción, advertencias y señales en `creatures`; situarlas mediante `signals` de salas. El bestiario se descubre al observar o encontrar señales reales. Una criatura sin contrato numérico ofrece observación, no combate con números inventados. Para habilitar combate, añadir un perfil validado a `mechanics.PROFILES` y probar aviso previo, ronda, intervención, huida, derrota y cooperación. Los límites de balance avanzado están en `review/KNOWN_LIMITS.md`.
+Registrar ecología, descripción, advertencias y señales en `creatures`; situarlas mediante `signals` de salas. El bestiario se descubre al observar o encontrar señales reales. Una criatura sin contrato numérico ofrece observación, no combate con números inventados. Para habilitar combate, añadir un perfil validado a `mechanics.PROFILES` y probar aviso previo, ronda, intervención, huida, derrota y cooperación. Los límites de balance avanzado están en `review/current/KNOWN_LIMITS.md`.
 
 Las armas comunes de Daro conservan daño y utilidad definidos por `mechanics.WEAPONS`; `content.items` añade precios y reventa canónicos. Cada compra crea una instancia distinta con `catalog_id`, `id`, cantidad1 y condición intacta; no autoequipa. La venta requiere confirmación, presencia de Daro, pieza no equipada y otra arma utilizable. El catálogo regional de Forja no se convierte en una tienda ordinaria: la activación física requiere el ciclo canónico de evidencia y validación externa y no está completada por una reparación.
 
@@ -50,9 +50,9 @@ La lectura es el escenario vintage; formularios, decisiones, ficha y mapa textua
 
 `./start.sh` prepara runtime y arranca Waitress en localhost8083; `/dm` abre el director. El acceso «Vintage Telnet 2 — Nuevo» ejecuta ese mismo script. No comparte base de datos con el juego anterior. Para respaldo, detener el servidor y copiar el directorio runtime privado; no publicarlo ni incorporarlo a Git.
 
-Ejecutar `PYTHONPATH=runtime/python-deps python3 -m unittest discover -s tests -v` y `npm run check:client`. Los lectores de `review/api-reader-final.py` y `api-reader-edran.py` recorren el catálogo mediante API en proceso con datos temporales. `scripts/browser-review-new.mjs` comprueba navegador real cuando el entorno permite abrir sockets y arrancar Chrome. Los contratos cliente y el test client de Flask no sustituyen navegador, Android ni lectura humana de20–30 minutos.
+Ejecutar `PYTHONPATH=runtime/python-deps python3 -m unittest discover -s tests -v` y `npm run check:client`. Los lectores de `review/narrative/api-reader-final.py` y `api-reader-edran.py` recorren el catálogo mediante API en proceso con datos temporales. `scripts/browser-review-new.mjs` comprueba navegador real cuando el entorno permite abrir sockets y arrancar Chrome. Los contratos cliente y el test client de Flask no sustituyen navegador, Android ni lectura humana de20–30 minutos.
 
-Consultar `review/VALIDATION_MATRIX.md` para evidencia y pendientes. Una valoración literaria identifica el contenido y recorrido leído; no se extrapola automáticamente a nuevas salas. Conservar el ciclo de rechazo, corrección y relectura independiente, seguido de un recorrido distinto.
+Consultar `review/qa/VALIDATION_MATRIX.md` para evidencia y pendientes. Una valoración literaria identifica el contenido y recorrido leído; no se extrapola automáticamente a nuevas salas. Conservar el ciclo de rechazo, corrección y relectura independiente, seguido de un recorrido distinto.
 
 ## Mapa de orientación y recorrido
 

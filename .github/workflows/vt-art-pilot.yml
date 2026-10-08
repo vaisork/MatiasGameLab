@@ -1,8 +1,14 @@
+# VT1 legacy: automatic work frozen after VT2 cutover. Paths retained for rollback.
 name: Vintage Telnet — piloto de arte
 
 on:
   workflow_dispatch:
     inputs:
+      legacy_ack:
+        description: Ejecutar explícitamente pipeline VT1 legacy; no publica en VT2
+        type: boolean
+        required: true
+        default: false
       request_file:
         description: Ficha JSON aprobada dentro de vintage-telnet/art_requests
         required: true
@@ -15,7 +21,7 @@ permissions:
 
 jobs:
   generate-one-draft:
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' && inputs.legacy_ack == true
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:

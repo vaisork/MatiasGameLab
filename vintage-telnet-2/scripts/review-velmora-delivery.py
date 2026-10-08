@@ -52,5 +52,5 @@ with tempfile.TemporaryDirectory(prefix='vt-depth-cycle2-') as tmp:
  walk('nhal_umbral_elin');checked=act('examinar','recipiente');assert 'aro vacío queda en el secadero' in checked['narrative'][0]['text'];out.append({'type':'examination','room':state()['room']['id'],'narrative':checked['narrative']})
  assert not any(item['id']=='recipiente_elin' for item in state()['inventory'])
  assert not state()['character']['combat']
-Path(root/'review/VELMORA_DELIVERY_REPLAY_20261007.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n')
+Path(root/'review/qa/VELMORA_DELIVERY_REPLAY_20261007.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n')
 print('Independent blind route:',sum(x['type']=='step' for x in out),'movement steps')

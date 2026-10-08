@@ -1,9 +1,14 @@
+# VT1 legacy: automatic work frozen after VT2 cutover. Paths retained for rollback.
 name: VT Art — Publish Approved to Assets
 
 on:
-  schedule:
-    - cron: '0 * * * *'  # Cada hora
-  workflow_dispatch:  # Manual también
+  workflow_dispatch:
+    inputs:
+      legacy_ack:
+        description: Ejecutar explícitamente pipeline VT1 legacy; no publica en VT2
+        type: boolean
+        required: true
+        default: false
 
 permissions:
   contents: write
@@ -11,6 +16,7 @@ permissions:
 
 jobs:
   publish:
+    if: github.event_name == 'workflow_dispatch' && inputs.legacy_ack == true
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -45,9 +51,9 @@ jobs:
             git add assets/vintage-telnet/ art-masters/
             git commit -m "vt-art: publish approved images to assets (auto)
 
-Automated publication of approved art assets.
-- Creatures → assets/vintage-telnet/creatures/ + art-masters/creatures/
-- Locations → assets/vintage-telnet/locations/ + art-masters/locations/"
+          Automated publication of approved art assets.
+          - Creatures → assets/vintage-telnet/creatures/ + art-masters/creatures/
+          - Locations → assets/vintage-telnet/locations/ + art-masters/locations/"
             git push origin main
             echo "✅ Published approved images to main"
           else
