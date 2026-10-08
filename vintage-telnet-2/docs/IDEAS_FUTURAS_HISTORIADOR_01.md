@@ -1,0 +1,27 @@
+# Ideas futuras preservadas — legado del Historiador 1
+
+**Estado:** ideas de exploración futura, NO canon aprobado, NO backlog de implementación.
+**Origen:** tres temas compartidos por el hijo del creador, preservados a petición expresa del creador el 2026-10-08.
+**Custodia:** Historiador de Vintage Telnet 2.
+
+Este archivo conserva ideas sin activarlas. No autoriza cambios de mundo, clases, criaturas, tecnología, progresión, mapas, narrativa, arte ni código. Cualquier desarrollo requiere decisión posterior explícita y contraste con `docs/DECISIONES_VIGENTES.md`, `AGENTS.md` y el contenido jugable actual.
+
+## 1. Los arcanes
+
+La clase **Arcano** ya forma parte del roster vigente de VT2 (Juramentado, Arcano, Sombra, Artífice). Preservar como tema futuro la profundización de **los arcanes**: su conocimiento, prácticas, tradición y lugar en las culturas del mundo. No se presupone una facción, sociedad secreta, sistema de magia nuevo ni clase adicional. Antes de concretar, aclarar con el creador y su hijo qué imaginaban exactamente al hablar de «los arcanes».
+
+## 2. Aparición futura de dragones
+
+Preservar la idea de que **en algún momento puedan aparecer dragones**. Su existencia, naturaleza, cantidad, territorio, relación con fauna mayor, cronología y papel narrativo permanecen **sin decidir**. No introducir rastros, rumores presentados como hechos, arte, encuentros ni referencias canónicas hasta autorización expresa. Una criatura peligrosa no equivale automáticamente a un jefe; se mantiene la distinción histórica entre especie e individuo excepcional.
+
+## 3. Una sociedad tecnológica
+
+Preservar la idea de desarrollar **una sociedad tecnológica**. No definir todavía si es contemporánea, antigua, oculta, distante o futura; tampoco su localización, nivel tecnológico, especie, origen o relación con las regiones conocidas. No atribuirle la construcción de Vaisgard ni explicar con ella ruinas o misterios existentes: el origen del núcleo antiguo de Vaisgard sigue desconocido.
+
+## Regla de reactivación
+
+Cuando el creador decida retomar uno de estos temas, el Historiador deberá: (1) consultar la intención original del creador y de su hijo; (2) revisar canon y juego vigentes; (3) redactar alternativas y consecuencias antes de canonizar; (4) obtener decisión explícita; (5) entregar contratos separados a Narrativa, Jugabilidad, NPCs, Arte y Desarrollo según corresponda.
+
+**No abrir issues de implementación por este registro. No desplegar.**
+
+> Una idea guardada no necesita explicarse hoy para poder enriquecer el mundo mañana.
