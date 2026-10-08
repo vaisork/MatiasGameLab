@@ -1,0 +1,49 @@
+{
+  "scope": "Cartographic crossings of known full-world Engine fixture; proximity is a heuristic, not physical bridges or town boundary proof",
+  "spatialSha256": "6951e6a6ecc0a553f0042297218f33190ce78d9027c7fa6bd2f74c7d8f339576",
+  "count": 2,
+  "crosses": [
+    {
+      "tile": [
+        6,
+        33
+      ],
+      "quarterTile": [
+        24,
+        132
+      ],
+      "road": [
+        "edran_era",
+        "edran_zanja_antigua"
+      ],
+      "otherRoads": [
+        [
+          "edran_cobertizo_campo",
+          "edran_lindero"
+        ]
+      ],
+      "nearSettlementCenters": []
+    },
+    {
+      "tile": [
+        12,
+        39
+      ],
+      "quarterTile": [
+        48,
+        156
+      ],
+      "road": [
+        "edran_puente_juncos",
+        "edran_sauces"
+      ],
+      "otherRoads": [
+        [
+          "edran_arboleda",
+          "edran_sendero_regreso"
+        ]
+      ],
+      "nearSettlementCenters": []
+    }
+  ]
+}

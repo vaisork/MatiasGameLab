@@ -99,7 +99,7 @@ export function discoveredPaths(map,positions){
  const cells=[...positions.values()],minX=Math.min(...cells.map(p=>p[0]*8))-8,maxX=Math.max(...cells.map(p=>p[0]*8))+8,minY=Math.min(...cells.map(p=>p[1]*8))-8,maxY=Math.max(...cells.map(p=>p[1]*8))+8;
  const routes=[...list(map.routes)].sort((a,b)=>(a.from+'\n'+a.to+'\n'+a.direction).localeCompare(b.from+'\n'+b.to+'\n'+b.direction));
  const cacheKey=JSON.stringify([[...positions].sort((a,b)=>a[0].localeCompare(b[0])),routes.map(r=>[r.from,r.to,r.direction,r.points])]);if(lastDiscoveredPaths?.key===cacheKey)return lastDiscoveredPaths.links;
- function port(id,direction){const vector=vectors[direction]||[1,0],center=positions.get(id).map(v=>v*8),name=id+'\n'+direction,index=ports.get(name)||0;ports.set(name,index+1);const offset=index===0?0:index%2?Math.ceil(index/2):-index/2;return center.map((v,i)=>v+vector[i]*3+(i===0?-vector[1]:vector[0])*offset);}
+ function port(id,direction,override){const vector=override||vectors[direction]||[1,0],center=positions.get(id).map(v=>v*8),name=id+'\n'+direction,index=ports.get(name)||0;ports.set(name,index+1);const offset=index===0?0:index%2?Math.ceil(index/2):-index/2;return center.map((v,i)=>v+vector[i]*3+(i===0?-vector[1]:vector[0])*offset);}
  for(const route of routes){
   if(!positions.has(route.from)||!positions.has(route.to)||route.from===route.to)continue;
   const pair=[route.from,route.to].sort().join('\n');if(seen.has(pair))continue;seen.add(pair);
@@ -108,16 +108,28 @@ export function discoveredPaths(map,positions){
   const reversed=Array.isArray(reverse?.points)?[...reverse.points].reverse():null,canonical=validPath(route.points)?route.points:validPath(reversed)?reversed:null;
   if(canonical){const points=canonical.map(p=>[...p]);for(let i=2;i<points.length-1;i++)usedEdges.add(edgeKey(points[i-1].map(v=>v*2),points[i].map(v=>v*2)));links.push({from:route.from,to:route.to,direction:route.direction,reverse:reverse?.direction,points,crossings:[]});continue;}
   const dx=destination[0]-origin[0],dy=destination[1]-origin[1],toward=Math.abs(dx)>=Math.abs(dy)?(dx>=0?'este':'oeste'):(dy>=0?'sur':'norte'),opposite={norte:'sur',sur:'norte',este:'oeste',oeste:'este'},out=['norte','sur','este','oeste'].includes(route.direction)?route.direction:toward,back=['norte','sur','este','oeste'].includes(reverse?.direction)?reverse.direction:opposite[toward];
-  const from=positions.get(route.from).map(v=>v*8),to=positions.get(route.to).map(v=>v*8),start=port(route.from,out),end=port(route.to,back),goal=key(end),parent=new Map([[key(start),null]]),cost=new Map([[key(start),0]]),heap=[];
-  const score=p=>Math.abs(p[0]-end[0])+Math.abs(p[1]-end[1]);
-  function push(p,g){const item={p,g,f:g+score(p)};heap.push(item);let i=heap.length-1;while(i){const j=(i-1)>>1;if(heap[j].f<=item.f)break;heap[i]=heap[j];i=j;}heap[i]=item;}
-  function pop(){const first=heap[0],last=heap.pop();if(heap.length){let i=0;while(i*2+1<heap.length){let j=i*2+1;if(j+1<heap.length&&heap[j+1].f<heap[j].f)j++;if(heap[j].f>=last.f)break;heap[i]=heap[j];i=j;}heap[i]=last;}return first;}
-  push(start,0);
-  while(heap.length){const {p,g}=pop();if(g!==cost.get(key(p)))continue;if(key(p)===goal)break;
-   for(const v of [[0,-1],[1,0],[0,1],[-1,0]]){const cell=p.map((n,i)=>n+v[i]),k=key(cell);if(cell[0]<minX||cell[0]>maxX||cell[1]<minY||cell[1]>maxY||blocked.has(k)||usedEdges.has(edgeKey(p,cell))||g+1>=(cost.get(k)??Infinity))continue;cost.set(k,g+1);parent.set(k,p);push(cell,g+1);}
+  // Home is an abstract entrance, not another public cardinal street.
+  if(['salir','hogar'].includes(route.direction)&&Math.abs(dx)===Math.abs(dy)&&dx!==0){
+   const count=Math.abs(dx)*8,points=Array.from({length:count+1},(_,i)=>origin.map((v,axis)=>v*4+(destination[axis]-v)*4*i/count));
+   const clear=points.every(point=>[...positions].every(([id,p])=>id===route.from||id===route.to||Math.abs(point[0]-p[0]*4)>1||Math.abs(point[1]-p[1]*4)>1));
+   if(clear){links.push({from:route.from,to:route.to,direction:route.direction,reverse:reverse?.direction,points,crossings:[]});continue;}
   }
-  if(!parent.has(goal))continue;
-  const path=[];for(let cell=end;cell;cell=parent.get(key(cell)))path.unshift(cell);
+  const from=positions.get(route.from).map(v=>v*8),to=positions.get(route.to).map(v=>v*8),start=port(route.from,route.direction==='salir'||route.direction==='hogar'?route.direction:out,['salir','hogar'].includes(route.direction)?[Math.sign(dx),Math.sign(dy)]:null),end=port(route.to,['salir','hogar'].includes(reverse?.direction)?reverse.direction:back,['salir','hogar'].includes(reverse?.direction)?[-Math.sign(dx),-Math.sign(dy)]:null),goal=key(end),parent=new Map([[key(start),null]]),cost=new Map([[key(start),0]]),heap=[];
+  // Length wins first; among equally short paths prefer few bends, not staircases.
+  const stepCost=10000,steps=[[0,-1],[1,0],[0,1],[-1,0]],stateKey=(p,d)=>key(p)+'/'+d;
+  const initialDirection=steps.findIndex(v=>v[0]===vectors[out]?.[0]&&v[1]===vectors[out]?.[1]),initial=stateKey(start,initialDirection);
+  parent.clear();cost.clear();parent.set(initial,null);cost.set(initial,0);
+  const states=new Map([[initial,{p:start,d:initialDirection}]]),score=p=>(Math.abs(p[0]-end[0])+Math.abs(p[1]-end[1]))*stepCost;
+  let sequence=0;
+  const less=(a,b)=>a.f<b.f||(a.f===b.f&&(a.h<b.h||(a.h===b.h&&a.sequence<b.sequence)));
+  function push(p,d,g){const h=score(p),item={p,d,g,h,f:g+h,sequence:sequence++};heap.push(item);let i=heap.length-1;while(i){const j=(i-1)>>1;if(!less(item,heap[j]))break;heap[i]=heap[j];i=j;}heap[i]=item;}
+  function pop(){const first=heap[0],last=heap.pop();if(heap.length){let i=0;while(i*2+1<heap.length){let j=i*2+1;if(j+1<heap.length&&less(heap[j+1],heap[j]))j++;if(!less(heap[j],last))break;heap[i]=heap[j];i=j;}heap[i]=last;}return first;}
+  push(start,initialDirection,0);let finish=null;
+  while(heap.length){const {p,d,g}=pop(),current=stateKey(p,d);if(g!==cost.get(current))continue;if(key(p)===goal){finish=current;break;}
+   for(let next=0;next<steps.length;next++){const v=steps[next],cell=p.map((n,i)=>n+v[i]),k=key(cell),nextKey=stateKey(cell,next),nextCost=g+stepCost+(d>=0&&d!==next?1:0);if(cell[0]<minX||cell[0]>maxX||cell[1]<minY||cell[1]>maxY||blocked.has(k)||usedEdges.has(edgeKey(p,cell))||nextCost>=(cost.get(nextKey)??Infinity))continue;cost.set(nextKey,nextCost);parent.set(nextKey,current);states.set(nextKey,{p:cell,d:next});push(cell,next,nextCost);}
+  }
+  if(!finish)continue;
+  const path=[];for(let current=finish;current;current=parent.get(current))path.unshift(states.get(current).p);
   for(let i=1;i<path.length;i++)usedEdges.add(edgeKey(path[i-1],path[i]));
   const points=[from,...path,to].map(p=>p.map(v=>v/2));
   links.push({from:route.from,to:route.to,direction:route.direction,reverse:reverse?.direction,points,crossings:[]});

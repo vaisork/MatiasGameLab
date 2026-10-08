@@ -1,0 +1,97 @@
+{
+  "roads": 202,
+  "max_turns": 29,
+  "public_turns_over_two": 14,
+  "worst": [
+    {
+      "from": "edran_puente_juncos",
+      "to": "edran_sauces",
+      "turns": 29,
+      "detour_ratio": 1.0
+    },
+    {
+      "from": "edran_arboleda",
+      "to": "edran_sendero_regreso",
+      "turns": 25,
+      "detour_ratio": 1.0
+    },
+    {
+      "from": "edran_era",
+      "to": "edran_zanja_antigua",
+      "turns": 17,
+      "detour_ratio": 1.0
+    },
+    {
+      "from": "edran_salida_huertos",
+      "to": "valdren_graneros",
+      "turns": 11,
+      "detour_ratio": 1.0
+    },
+    {
+      "from": "edran_parcela_vieja",
+      "to": "edran_surcos",
+      "turns": 8,
+      "detour_ratio": 1.15
+    },
+    {
+      "from": "edran_sendero_regreso",
+      "to": "valdren_patio_carros",
+      "turns": 5,
+      "detour_ratio": 1.0
+    },
+    {
+      "from": "korven_almacen_fondo",
+      "to": "korven_almacen_lateral",
+      "turns": 5,
+      "detour_ratio": 1.0
+    },
+    {
+      "from": "valdren_cobertizo",
+      "to": "valdren_patio_carros",
+      "turns": 4,
+      "detour_ratio": 1.25
+    },
+    {
+      "from": "nhal_calle_hogares",
+      "to": "nhal_patio_relato",
+      "turns": 4,
+      "detour_ratio": 1.188
+    },
+    {
+      "from": "brumak_centro",
+      "to": "home:korven",
+      "turns": 4,
+      "detour_ratio": 1.0
+    },
+    {
+      "from": "home:edran",
+      "to": "valdren_plaza",
+      "turns": 4,
+      "detour_ratio": 1.0
+    },
+    {
+      "from": "home:hoshai",
+      "to": "khariel_centro",
+      "turns": 4,
+      "detour_ratio": 1.0
+    },
+    {
+      "from": "home:lethra",
+      "to": "narevia_centro",
+      "turns": 4,
+      "detour_ratio": 1.0
+    },
+    {
+      "from": "home:nhal",
+      "to": "velmora_centro",
+      "turns": 4,
+      "detour_ratio": 1.0
+    },
+    {
+      "from": "home:veyra",
+      "to": "vaisgard_mercado",
+      "turns": 4,
+      "detour_ratio": 1.0
+    }
+  ]
+}

@@ -1,0 +1,1276 @@
+{
+  "cycle": 1,
+  "focus": "Pueblos y calles",
+  "movements": 50,
+  "regions": [
+    "edran",
+    "lethra",
+    "nhal"
+  ],
+  "home_return": true,
+  "stable_learned_roads": true,
+  "no_direction_sign_contradiction": true,
+  "geometry": {
+    "roads": 202,
+    "max_turns": 29,
+    "public_turns_over_two": 9,
+    "worst": [
+      {
+        "from": "edran_puente_juncos",
+        "to": "edran_sauces",
+        "turns": 29,
+        "detour_ratio": 1.0
+      },
+      {
+        "from": "edran_arboleda",
+        "to": "edran_sendero_regreso",
+        "turns": 25,
+        "detour_ratio": 1.0
+      },
+      {
+        "from": "edran_era",
+        "to": "edran_zanja_antigua",
+        "turns": 17,
+        "detour_ratio": 1.0
+      },
+      {
+        "from": "edran_salida_huertos",
+        "to": "valdren_graneros",
+        "turns": 11,
+        "detour_ratio": 1.0
+      },
+      {
+        "from": "edran_parcela_vieja",
+        "to": "edran_surcos",
+        "turns": 8,
+        "detour_ratio": 1.15
+      },
+      {
+        "from": "valdren_cobertizo",
+        "to": "valdren_patio_carros",
+        "turns": 6,
+        "detour_ratio": 1.25
+      },
+      {
+        "from": "edran_sendero_regreso",
+        "to": "valdren_patio_carros",
+        "turns": 5,
+        "detour_ratio": 1.0
+      },
+      {
+        "from": "korven_almacen_fondo",
+        "to": "korven_almacen_lateral",
+        "turns": 5,
+        "detour_ratio": 1.0
+      },
+      {
+        "from": "nhal_calle_hogares",
+        "to": "nhal_patio_relato",
+        "turns": 4,
+        "detour_ratio": 1.188
+      },
+      {
+        "from": "brumak_centro",
+        "to": "home:korven",
+        "turns": 3,
+        "detour_ratio": 1.0
+      },
+      {
+        "from": "home:edran",
+        "to": "valdren_plaza",
+        "turns": 3,
+        "detour_ratio": 1.0
+      },
+      {
+        "from": "home:hoshai",
+        "to": "khariel_centro",
+        "turns": 3,
+        "detour_ratio": 1.0
+      },
+      {
+        "from": "home:lethra",
+        "to": "narevia_centro",
+        "turns": 3,
+        "detour_ratio": 1.0
+      },
+      {
+        "from": "home:nhal",
+        "to": "velmora_centro",
+        "turns": 3,
+        "detour_ratio": 1.0
+      },
+      {
+        "from": "home:veyra",
+        "to": "vaisgard_mercado",
+        "turns": 3,
+        "detour_ratio": 1.0
+      }
+    ]
+  },
+  "walk": [
+    {
+      "from": "valdren_plaza",
+      "direction": "oeste",
+      "to": "valdren_cobertizo",
+      "position": [
+        2,
+        36
+      ],
+      "description": "Bren guarda los carros con las varas hacia el patio. Bajo el techo bajo hay ruedas desmontadas; en la parte alta cabe un carro entero. Una cuerda marca el espacio para girarlo. La plaza queda al este y el patio al sur.",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Bren guarda los carros con las varas hacia el patio. Bajo el techo bajo hay ruedas desmontadas; en la parte alta cabe un carro entero. Una cuerda marca el espacio para girarlo. La plaza queda al este y el patio al sur."
+        },
+        {
+          "kind": "world",
+          "text": "Bren hace avanzar un carro vacío y escucha un crujido que desaparece al volver. Pide una segunda persona para observar la rueda desde fuera de su recorrido."
+        },
+        {
+          "kind": "world",
+          "text": "Bren mantiene la cuerda de giro fuera del alcance de quienes miran."
+        }
+      ]
+    },
+    {
+      "from": "valdren_cobertizo",
+      "direction": "sur",
+      "to": "valdren_patio_carros",
+      "position": [
+        2,
+        39
+      ],
+      "description": "Una carga de sacos espera en el patio. La ligera pendiente puede mover un carro sin calzar; un madero detiene las ruedas. El cobertizo queda al norte, los graneros al este. La senda sur permite volver hacia la arboleda.",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Una carga de sacos espera en el patio. La ligera pendiente puede mover un carro sin calzar; un madero detiene las ruedas. El cobertizo queda al norte, los graneros al este. La senda sur permite volver hacia la arboleda."
+        },
+        {
+          "kind": "world",
+          "text": "Un ayudante de Bren desplaza un saco y pide que nadie sujete el carro mientras observa si vuelve a inclinarse. Una mujer recoge las semillas que han caído bajo la plataforma."
+        }
+      ]
+    },
+    {
+      "from": "valdren_patio_carros",
+      "direction": "este",
+      "to": "valdren_graneros",
+      "position": [
+        4,
+        39
+      ],
+      "description": "El paso cruza entre dos graneros. Una puerta se alcanza por una rampa; la otra está a ras del suelo. En una esquina se acumula tierra por encima de las marcas de agua. Al oeste está el patio; al este, el camino dobla al norte hacia la salida de los huertos.",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "El paso cruza entre dos graneros. Una puerta se alcanza por una rampa; la otra está a ras del suelo. En una esquina se acumula tierra por encima de las marcas de agua. Al oeste está el patio; al este, el camino dobla al norte hacia la salida de los huertos."
+        },
+        {
+          "kind": "world",
+          "text": "Una almacenista cuenta sacos por sus nudos, sin abrirlos. Un muchacho espera con una tablilla hasta que la almacenista termina de comprobar el granero alto."
+        }
+      ]
+    },
+    {
+      "from": "valdren_graneros",
+      "direction": "oeste",
+      "to": "valdren_patio_carros",
+      "position": [
+        2,
+        39
+      ],
+      "description": "Una carga de sacos espera en el patio. La ligera pendiente puede mover un carro sin calzar; un madero detiene las ruedas. El cobertizo queda al norte, los graneros al este. La senda sur permite volver hacia la arboleda.",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Una carga de sacos espera en el patio. La ligera pendiente puede mover un carro sin calzar; un madero detiene las ruedas. El cobertizo queda al norte, los graneros al este. La senda sur permite volver hacia la arboleda."
+        },
+        {
+          "kind": "world",
+          "text": "Ahora ves la pendiente junto al pozo. El madero que frenó la rueda tiene una marca fresca debajo del borde."
+        },
+        {
+          "kind": "world",
+          "text": "Un ayudante de Bren desplaza un saco y pide que nadie sujete el carro mientras observa si vuelve a inclinarse. Una mujer recoge las semillas que han caído bajo la plataforma."
+        }
+      ]
+    },
+    {
+      "from": "valdren_patio_carros",
+      "direction": "norte",
+      "to": "valdren_cobertizo",
+      "position": [
+        2,
+        36
+      ],
+      "description": "Bren guarda los carros con las varas hacia el patio. Bajo el techo bajo hay ruedas desmontadas; en la parte alta cabe un carro entero. Una cuerda marca el espacio para girarlo. La plaza queda al este y el patio al sur.",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "El cobertizo de los carros y su cuerda de giro en el suelo."
+        },
+        {
+          "kind": "world",
+          "text": "Ahora sabes dónde esperar sin obligar a Bren a interrumpir una prueba. El crujido procede del carro alto, no de las ruedas almacenadas contra la pared."
+        },
+        {
+          "kind": "world",
+          "text": "Bren hace avanzar un carro vacío y escucha un crujido que desaparece al volver. Pide una segunda persona para observar la rueda desde fuera de su recorrido."
+        }
+      ]
+    },
+    {
+      "from": "valdren_cobertizo",
+      "direction": "este",
+      "to": "valdren_plaza",
+      "position": [
+        3,
+        36
+      ],
+      "description": "Un banco largo cruza la plaza. Hay espacio para girar los carros sin tapar las puertas. La fragua queda al norte, los huertos al este, el pozo al sur y el cobertizo al oeste. Una piedra sobresale entre las tablas del asiento.",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "La plaza de Valdren, con su banco largo partido por una piedra."
+        },
+        {
+          "kind": "world",
+          "text": "La vecina aparta una semilla mordida y la deja en un cuenco pequeño. Un niño intenta adivinar qué pájaro la abrió; su abuela le muestra las dos marcas del pico."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces el extremo del banco por la piedra que obliga a interrumpirlo. La fragua queda detrás de las casas más altas; el corredor de huertos ofrece una salida distinta, orientada al campo."
+        }
+      ]
+    },
+    {
+      "from": "valdren_plaza",
+      "direction": "sur",
+      "to": "valdren_pozo",
+      "position": [
+        3,
+        37
+      ],
+      "description": "Una cuerda nueva baja al pozo. La vieja está enrollada en una clavija, gastada por el uso. Quienes esperan se quedan detrás de las piedras del borde. Al norte vuelves a la plaza; al sur llegas al comedor.",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Una cuerda nueva baja al pozo. La vieja está enrollada en una clavija, gastada por el uso. Quienes esperan se quedan detrás de las piedras del borde. Al norte vuelves a la plaza; al sur llegas al comedor."
+        },
+        {
+          "kind": "world",
+          "text": "Una vecina llena recipientes pequeños antes que el suyo grande. Los coloca a la sombra del tejadillo y deja la cuerda preparada para la persona siguiente."
+        }
+      ]
+    },
+    {
+      "from": "valdren_pozo",
+      "direction": "norte",
+      "to": "valdren_plaza",
+      "position": [
+        3,
+        36
+      ],
+      "description": "Un banco largo cruza la plaza. Hay espacio para girar los carros sin tapar las puertas. La fragua queda al norte, los huertos al este, el pozo al sur y el cobertizo al oeste. Una piedra sobresale entre las tablas del asiento.",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "La plaza de Valdren, con su banco largo partido por una piedra."
+        },
+        {
+          "kind": "world",
+          "text": "El niño acerca otra semilla al cuenco de las mordidas. Su abuela la gira entre los dedos y le enseña que esta abertura sólo tiene una marca."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces el extremo del banco por la piedra que obliga a interrumpirlo. La fragua queda detrás de las casas más altas; el corredor de huertos ofrece una salida distinta, orientada al campo."
+        }
+      ]
+    },
+    {
+      "from": "valdren_plaza",
+      "direction": "este",
+      "to": "valdren_huertos",
+      "position": [
+        4,
+        36
+      ],
+      "description": "El camino pasa entre huertos, cercas bajas y puertas de cocina. Un árbol da sombra a la canaleta. Al oeste queda la plaza; al norte está la casa de semillas. Sigue al este para salir de Valdren hacia los campos.",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "El camino pasa entre huertos, cercas bajas y puertas de cocina. Un árbol da sombra a la canaleta. Al oeste queda la plaza; al norte está la casa de semillas. Sigue al este para salir de Valdren hacia los campos."
+        },
+        {
+          "kind": "world",
+          "text": "Una familia lleva hojas a la cocina sin usar cestos: la distancia es tan corta que basta doblar el delantal. La encargada del huerto deja espacio para quienes necesitan pasar con un carro."
+        }
+      ]
+    },
+    {
+      "from": "valdren_huertos",
+      "direction": "este",
+      "to": "edran_salida_huertos",
+      "position": [
+        5,
+        36
+      ],
+      "description": "Las cercas bajan y el viento llega de frente. Dejas las casas atrás. El camino este sigue hasta la acequia; por el sur vuelves entre los graneros. Los dos postes del oeste señalan la entrada a Valdren. El tramo hacia los graneros dobla junto a las cercas; no es una calle recta.",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Las cercas bajan y el viento llega de frente. Dejas las casas atrás. El camino este sigue hasta la acequia; por el sur vuelves entre los graneros. Los dos postes del oeste señalan la entrada a Valdren. El tramo hacia los graneros dobla junto a las cercas; no es una calle recta."
+        },
+        {
+          "kind": "danger",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro."
+        },
+        {
+          "kind": "world",
+          "text": "Una persona abre la cerca para pasar con una cesta y vuelve a apoyarla sin atarla. Su trayecto es corto; las huellas que siguen la acequia llevan carros."
+        },
+        {
+          "kind": "discovery",
+          "text": "Añades Espinajo de rastrojo al bestiario."
+        }
+      ]
+    },
+    {
+      "from": "edran_salida_huertos",
+      "direction": "este",
+      "to": "edran_acequia",
+      "position": [
+        6,
+        36
+      ],
+      "description": "El agua rodea una losa antes de seguir hacia Valdren. Unas hojas tapan la abertura de una zanja seca. Al oeste queda el pueblo, al norte subes al campo y al sur alcanzas el estanque. La losa permite cruzar sin mojarte.",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "El agua rodea una losa antes de seguir hacia Valdren. Unas hojas tapan la abertura de una zanja seca. Al oeste queda el pueblo, al norte subes al campo y al sur alcanzas el estanque. La losa permite cruzar sin mojarte."
+        },
+        {
+          "kind": "world",
+          "text": "Una rana se deja caer desde la hierba y abre dos círculos pequeños. Más abajo, una mujer libera una hoja atrapada en la rejilla con la punta de una rama."
+        }
+      ]
+    },
+    {
+      "from": "edran_acequia",
+      "direction": "sur",
+      "to": "edran_estanque",
+      "position": [
+        6,
+        37
+      ],
+      "description": "Un tronco hundido divide el estanque. El agua entra bajo una raíz y sale por el sur. Al norte vuelves a la acequia; al sur están los sauces. Desde las piedras secas puedes mirar la hierba oscura del bajo oriental.",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Un tronco hundido divide el estanque. El agua entra bajo una raíz y sale por el sur. Al norte vuelves a la acequia; al sur están los sauces. Desde las piedras secas puedes mirar la hierba oscura del bajo oriental."
+        },
+        {
+          "kind": "world",
+          "text": "Insectos se detienen sobre la parte quieta mientras el agua sigue pasando al otro lado del tronco. Un ave baja sólo hasta el borde firme."
+        }
+      ]
+    },
+    {
+      "from": "edran_estanque",
+      "direction": "sur",
+      "to": "edran_sauces",
+      "position": [
+        6,
+        38
+      ],
+      "description": "Dos aves se esconden en el sauce. El agua corre bajo sus raíces. Al norte está el estanque. Al este, la senda rodea el sauce y gira al norte hacia el puente.",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Dos aves se esconden en el sauce. El agua corre bajo sus raíces. Al norte está el estanque. Al este, la senda rodea el sauce y gira al norte hacia el puente."
+        },
+        {
+          "kind": "danger",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro."
+        }
+      ]
+    },
+    {
+      "from": "edran_sauces",
+      "direction": "este",
+      "to": "edran_puente_juncos",
+      "position": [
+        14,
+        31
+      ],
+      "description": "El agua corre bajo las tablas separadas del puente. Sus apoyos se ven desde la orilla. Edran queda al oeste; al este cruzas hacia Lethra. Una tabla gastada marca dónde descansar una carga. Al sur puedes seguir junto a los sauces. Una marca antigua llama Vado de Juncos a este paso. El puente permite cruzarlo cuando el cauce cubre las piedras del fondo.",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "El agua corre bajo las tablas separadas del puente. Sus apoyos se ven desde la orilla. Edran queda al oeste; al este cruzas hacia Lethra. Una tabla gastada marca dónde descansar una carga. Al sur puedes seguir junto a los sauces. Una marca antigua llama Vado de Juncos a este paso. El puente permite cruzarlo cuando el cauce cubre las piedras del fondo."
+        },
+        {
+          "kind": "world",
+          "text": "Una mujer cruza con dos recipientes colgados a distinta altura. Espera en el lado alto para equilibrarlos otra vez, lejos del centro del puente."
+        }
+      ]
+    },
+    {
+      "from": "edran_puente_juncos",
+      "direction": "este",
+      "to": "lethra_hito_tierra",
+      "position": [
+        15,
+        31
+      ],
+      "description": "Dos piedras marcan la franja alta junto al terreno inundable. Al este queda la senda de Narevia; al oeste cruzas hacia el puente de Edran. Un desvío al sur lleva al remanso de las aves. Las marcas de crecidas siguen en el suelo bajo.",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Dos piedras marcan la franja alta junto al terreno inundable. Al este queda la senda de Narevia; al oeste cruzas hacia el puente de Edran. Un desvío al sur lleva al remanso de las aves. Las marcas de crecidas siguen en el suelo bajo."
+        },
+        {
+          "kind": "danger",
+          "text": "Un Pinzajunco sostiene una hoja empapada bajo la piedra menor del hito. La pinza grande asoma sobre el barro; la pequeña recoge el tallo."
+        },
+        {
+          "kind": "world",
+          "text": "Las tablas quedan atrás, pero las crecidas siguen marcadas a la altura de tus tobillos. Las dos piedras señalan terreno que el agua todavía no cubre."
+        },
+        {
+          "kind": "discovery",
+          "text": "Añades Pinzajunco al bestiario."
+        }
+      ]
+    },
+    {
+      "from": "lethra_hito_tierra",
+      "direction": "este",
+      "to": "lethra_ribera_oeste",
+      "position": [
+        17,
+        31
+      ],
+      "description": "Los apoyos se separan conforme te alejas de Narevia. Al este vuelves al pueblo; al oeste llegas al hito junto a la ruta de Edran. Bajo una cubierta común puedes ajustar las envolturas. Los viajeros de los llanos retiran de sus pies tierra distinta al barro del canal.",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Los apoyos se separan conforme te alejas de Narevia. Al este vuelves al pueblo; al oeste llegas al hito junto a la ruta de Edran. Bajo una cubierta común puedes ajustar las envolturas. Los viajeros de los llanos retiran de sus pies tierra distinta al barro del canal."
+        },
+        {
+          "kind": "danger",
+          "text": "Una persona con un palo corto espera junto a la cubierta de la ribera y pide tu equipaje. El suelo está firme; la vuelta al pueblo queda al este. No necesitas entrar en el agua."
+        },
+        {
+          "kind": "world",
+          "text": "Una viajera de campo sacude su capa lejos de las envolturas de comida. Un vecino le señala el apoyo exterior y le acerca un paño para las manos."
+        }
+      ]
+    },
+    {
+      "from": "lethra_ribera_oeste",
+      "direction": "este",
+      "to": "narevia_centro",
+      "position": [
+        18,
+        31
+      ],
+      "description": "Narevia ocupa una isla baja unida por pasarelas. Al norte está el camino terrestre, al este el taller, al sur el mercado y al oeste la ribera que sale hacia Edran. Los Marevyn pasan entre barcas y plataformas; los apoyos altos conservan espacio seco junto a la plaza.",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Narevia ocupa una isla baja unida por pasarelas. Al norte está el camino terrestre, al este el taller, al sur el mercado y al oeste la ribera que sale hacia Edran. Los Marevyn pasan entre barcas y plataformas; los apoyos altos conservan espacio seco junto a la plaza."
+        },
+        {
+          "kind": "world",
+          "text": "Una familia reparte comida sobre la plataforma alta. Quien cuenta una visita de la otra orilla espera al final del martilleo para repetir el nombre; un niño sopla su cuenco."
+        },
+        {
+          "kind": "world",
+          "text": "Un junco amarrado vibra contra el poste de la pasarela. Las ondas cruzan los reflejos de las casas; en la plataforma alta cubren un cuenco para que no entren hojas."
+        }
+      ]
+    },
+    {
+      "from": "narevia_centro",
+      "direction": "sur",
+      "to": "lethra_mercado_hojas",
+      "position": [
+        18,
+        32
+      ],
+      "description": "Las barcas traen alimentos en cestas levantadas del fondo. Los puestos separan las envolturas abiertas de las que deben conservar humedad. Huele a hierbas cortadas y madera mojada. Al norte queda la plaza; al sur está el muelle. Los vendedores preparan bultos distintos para comer cerca o viajar.",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Las barcas traen alimentos en cestas levantadas del fondo. Los puestos separan las envolturas abiertas de las que deben conservar humedad. Huele a hierbas cortadas y madera mojada. Al norte queda la plaza; al sur está el muelle. Los vendedores preparan bultos distintos para comer cerca o viajar."
+        },
+        {
+          "kind": "world",
+          "text": "Tila levanta una cesta del fondo de la barca antes de abrir su envoltura. Las provisiones de viaje quedan en el apoyo seco; lo que se comerá cerca conserva su cubierta húmeda."
+        },
+        {
+          "kind": "world",
+          "text": "Iria apoya una mano sobre la envoltura abierta. La compradora recoge la hoja rota antes de que caiga al canal y comprueba si todavía puede usarla."
+        }
+      ]
+    },
+    {
+      "from": "lethra_mercado_hojas",
+      "direction": "sur",
+      "to": "lethra_muelle_vecinal",
+      "position": [
+        18,
+        35
+      ],
+      "description": "Pequeñas barcas esperan junto a apoyos de distintas alturas. Las cestas vacías se agrupan por dueño; algunas asas tienen remiendos viejos. Al norte vuelves al mercado; al este llegas al patio de ventanas. Desde otra plataforma llaman a alguien para devolverle su cesta.",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Pequeñas barcas esperan junto a apoyos de distintas alturas. Las cestas vacías se agrupan por dueño; algunas asas tienen remiendos viejos. Al norte vuelves al mercado; al este llegas al patio de ventanas. Desde otra plataforma llaman a alguien para devolverle su cesta."
+        },
+        {
+          "kind": "world",
+          "text": "Una vecina reconoce su cesta por el asa remendada y la levanta antes de que llegue otra carga. Un niño devuelve una que tomó su familia."
+        }
+      ]
+    },
+    {
+      "from": "lethra_muelle_vecinal",
+      "direction": "este",
+      "to": "lethra_patio_ventanas",
+      "position": [
+        28,
+        35
+      ],
+      "description": "Las ventanas se miran sobre un patio estrecho con agua entre las casas. Puedes volver al muelle por el oeste, salir a la ribera sombreada al norte o visitar las barcas en reparación al este. Junto a las entradas queda sitio para llamar y esperar una respuesta.",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Las ventanas se miran sobre un patio estrecho con agua entre las casas. Puedes volver al muelle por el oeste, salir a la ribera sombreada al norte o visitar las barcas en reparación al este. Junto a las entradas queda sitio para llamar y esperar una respuesta."
+        },
+        {
+          "kind": "world",
+          "text": "Una vecina sacude un paño lejos de la ventana donde se reparte comida. Otra abre una entrada de espera para un visitante."
+        }
+      ]
+    },
+    {
+      "from": "lethra_patio_ventanas",
+      "direction": "norte",
+      "to": "lethra_ribera_sombra",
+      "position": [
+        28,
+        31
+      ],
+      "description": "El canal queda a un lado y las raíces al otro. Al sur vuelves al patio de Narevia; al norte sigues hacia el bosque. Una pasarela corta cruza entre dos troncos. Las hojas empiezan a tapar los reflejos, mientras los árboles crecen cada vez más juntos.",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "El canal queda a un lado y las raíces al otro. Al sur vuelves al patio de Narevia; al norte sigues hacia el bosque. Una pasarela corta cruza entre dos troncos. Las hojas empiezan a tapar los reflejos, mientras los árboles crecen cada vez más juntos."
+        },
+        {
+          "kind": "danger",
+          "text": "Una hoja desaparece despacio bajo la raíz del canal. El Pinzajunco la arrastra por el tallo y deja un surco pequeño en el barro sombreado."
+        },
+        {
+          "kind": "world",
+          "text": "Una viajera retira hojas de la tabla para mirar su unión. Un Marevyn comprueba el agua que pasa debajo. Después comparan lo que vieron."
+        }
+      ]
+    },
+    {
+      "from": "lethra_ribera_sombra",
+      "direction": "norte",
+      "to": "lethra_relevo_raices",
+      "position": [
+        28,
+        28
+      ],
+      "description": "El canal se estrecha entre raíces que sostienen una plataforma. En una pared de tablas hay notas de la pasarela y del nivel del agua. Al sur vuelves a la ribera sombreada; al norte entras en Nhal. Las marcas del camino empiezan a quedar bajo los árboles. Este relevo de agua y bosque se conoce como Orilla Velada. La cubierta de tablas permite esperar sin bajar al barro ni ocupar la pasarela.",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "El canal se estrecha entre raíces que sostienen una plataforma. En una pared de tablas hay notas de la pasarela y del nivel del agua. Al sur vuelves a la ribera sombreada; al norte entras en Nhal. Las marcas del camino empiezan a quedar bajo los árboles. Este relevo de agua y bosque se conoce como Orilla Velada. La cubierta de tablas permite esperar sin bajar al barro ni ocupar la pasarela."
+        },
+        {
+          "kind": "world",
+          "text": "Una viajera deja secar la manga bajo la cubierta. En el borde de la plataforma una araña sostiene un hilo y lo recoge cuando una gota lo alcanza."
+        },
+        {
+          "kind": "world",
+          "text": "El reflejo abierto del canal se rompe en franjas bajo las raíces. Una cubierta de tablas guarda las notas donde acaba la luz de la ribera."
+        }
+      ]
+    },
+    {
+      "from": "lethra_relevo_raices",
+      "direction": "norte",
+      "to": "nhal_ribera_relevo",
+      "position": [
+        28,
+        24
+      ],
+      "description": "Árboles y raíces acompañan el canal hasta una plataforma común. Al norte vuelve la ribera hacia Velmora; al sur empieza el tramo de Lethra. Dos notas comparan apoyos de madera y niveles de agua de ambos lados. La sombra del dosel alcanza parte del canal.",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Árboles y raíces acompañan el canal hasta una plataforma común. Al norte vuelve la ribera hacia Velmora; al sur empieza el tramo de Lethra. Dos notas comparan apoyos de madera y niveles de agua de ambos lados. La sombra del dosel alcanza parte del canal."
+        },
+        {
+          "kind": "danger",
+          "text": "Una hebra de pelo con musgo queda en la raíz que toca el canal. En el barro del otro lado se ven semillas caídas antes de que el agua las cubra."
+        },
+        {
+          "kind": "world",
+          "text": "La sombra alcanza ahora las dos orillas. Una marca pintada en la cara seca de una raíz permite seguir sin confundir el canal con la senda."
+        },
+        {
+          "kind": "discovery",
+          "text": "Añades Rondamusgo al bestiario."
+        }
+      ]
+    },
+    {
+      "from": "nhal_ribera_relevo",
+      "direction": "norte",
+      "to": "nhal_agua_sombreada",
+      "position": [
+        28,
+        21
+      ],
+      "description": "El agua retiene hojas entre las raíces. Al norte subes a la senda de helechos; al sur sigues junto al canal hacia Lethra. Desde un apoyo natural puedes mirar unos hilos bajos tendidos cerca de la corriente. Entre dos raíces, los hilos dejan libre el camino.",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "El agua retiene hojas entre las raíces. Al norte subes a la senda de helechos; al sur sigues junto al canal hacia Lethra. Desde un apoyo natural puedes mirar unos hilos bajos tendidos cerca de la corriente. Entre dos raíces, los hilos dejan libre el camino."
+        },
+        {
+          "kind": "danger",
+          "text": "Una tela baja ocupa el espacio húmedo entre raíces, fuera de la franja de tránsito."
+        },
+        {
+          "kind": "world",
+          "text": "Una araña permanece junto a los hilos y se mueve cuando una gota queda suspendida en ellos. La observadora mantiene distancia para no hacer caer hojas sobre la tela. Otra gota llega por debajo de una raíz."
+        },
+        {
+          "kind": "discovery",
+          "text": "Añades Hilaria de niebla al bestiario."
+        }
+      ]
+    },
+    {
+      "from": "nhal_agua_sombreada",
+      "direction": "norte",
+      "to": "nhal_helechos_bajos",
+      "position": [
+        28,
+        17
+      ],
+      "description": "Los helechos tapan el terreno bajo, pero la senda sigue sobre una franja elevada. Al oeste vuelves al puente; al este empiezan las casas. Un desvío al sur baja al cauce sombreado. Se oyen golpes de madera. Una pequeña cubierta protege la marca del camino.",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Los helechos tapan el terreno bajo, pero la senda sigue sobre una franja elevada. Al oeste vuelves al puente; al este empiezan las casas. Un desvío al sur baja al cauce sombreado. Se oyen golpes de madera. Una pequeña cubierta protege la marca del camino."
+        },
+        {
+          "kind": "danger",
+          "text": "Los helechos bajos conservan un arco de tallos doblados. Bajo ellos hay pelo áspero y dos semillas, separados de las huellas de los porteadores."
+        },
+        {
+          "kind": "world",
+          "text": "La aprendiz levanta un helecho quebrado junto a la senda. Del taller llegan dos golpes y una pausa; al soltar el tallo se oye el roce de las hojas."
+        }
+      ]
+    },
+    {
+      "from": "nhal_helechos_bajos",
+      "direction": "este",
+      "to": "nhal_umbral_velmora",
+      "position": [
+        29,
+        17
+      ],
+      "description": "Las primeras casas aparecen entre árboles, con luces cerca de cada tarea. Al oeste queda la senda de helechos; al este entras en Velmora. Una mesa junto al camino permite esperar mientras pasa una carga. Las lámparas Vesperi iluminan los apoyos sin deslumbrar a quien llega.",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Las primeras casas aparecen entre árboles, con luces cerca de cada tarea. Al oeste queda la senda de helechos; al este entras en Velmora. Una mesa junto al camino permite esperar mientras pasa una carga. Las lámparas Vesperi iluminan los apoyos sin deslumbrar a quien llega."
+        },
+        {
+          "kind": "danger",
+          "text": "Un mechón con musgo roza la pata de la mesa de espera. La marca continúa hacia las raíces exteriores, lejos de las luces de las casas."
+        },
+        {
+          "kind": "world",
+          "text": "Una vecina termina de limpiar la mesa antes de recibir una carga del puente. Otra pregunta a quién se la entregará y acerca un banco para escuchar la respuesta."
+        }
+      ]
+    },
+    {
+      "from": "nhal_umbral_velmora",
+      "direction": "este",
+      "to": "velmora_centro",
+      "position": [
+        30,
+        17
+      ],
+      "description": "Velmora ocupa un claro entre los árboles. Las casas y bancos dejan sitio a las raíces. Al oeste está la entrada, al norte el taller, al sur el mercado y al este el patio del relato. Las voces llegan de cerca; los árboles ocultan parte de cada grupo.",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Velmora ocupa un claro entre los árboles. Las casas y bancos dejan sitio a las raíces. Al oeste está la entrada, al norte el taller, al sur el mercado y al este el patio del relato. Las voces llegan de cerca; los árboles ocultan parte de cada grupo."
+        },
+        {
+          "kind": "world",
+          "text": "Una vecina sostiene un juguete mientras otro habitante pasa un cordel por la rueda. El niño cuenta cómo se soltó y espera a que termine el golpe del taller para mostrarlo."
+        },
+        {
+          "kind": "world",
+          "text": "El borde del claro se pierde antes que las mesas próximas. Quien cuenta el relato se acerca al banco y baja la voz; desde una casa responde alguien a quien todavía no puedes ver."
+        }
+      ]
+    },
+    {
+      "from": "velmora_centro",
+      "direction": "este",
+      "to": "nhal_patio_relato",
+      "position": [
+        31,
+        17
+      ],
+      "description": "Bancos distintos rodean una mesa bajo una cubierta corta. Al oeste vuelves al claro, al sur está la cocina, al norte las casas y al este la senda de Elin. Un recipiente reparado guarda hojas con recuerdos. Leris busca un nombre en su cuaderno y deja una línea vacía.",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Bancos distintos rodean una mesa bajo una cubierta corta. Al oeste vuelves al claro, al sur está la cocina, al norte las casas y al este la senda de Elin. Un recipiente reparado guarda hojas con recuerdos. Leris busca un nombre en su cuaderno y deja una línea vacía."
+        },
+        {
+          "kind": "world",
+          "text": "La narradora tacha una frase cuando un vecino corrige el nombre. Una mujer añade dónde estaba al oír aquel ruido; Elin acerca un asiento y la narradora deja el lápiz sobre el cuaderno."
+        },
+        {
+          "kind": "world",
+          "text": "Reúne voces y prepara hojas para una conversación."
+        }
+      ]
+    },
+    {
+      "from": "nhal_patio_relato",
+      "direction": "norte",
+      "to": "nhal_calle_hogares",
+      "position": [
+        31,
+        13
+      ],
+      "description": "Las casas se reparten en pequeños niveles entre los árboles. Sus entradas dejan sitio para las raíces y para esperar antes de llamar. Al sur vuelves al patio; al norte subes hacia el Dosel Alto. Las luces muestran una reparación o una comida, sin iluminar todo el interior.",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Las casas se reparten en pequeños niveles entre los árboles. Sus entradas dejan sitio para las raíces y para esperar antes de llamar. Al sur vuelves al patio; al norte subes hacia el Dosel Alto. Las luces muestran una reparación o una comida, sin iluminar todo el interior."
+        },
+        {
+          "kind": "world",
+          "text": "Una vecina escucha desde el umbral antes de abrir. Un niño lleva el juguete reparado contra el pecho; al llegar a su puerta lo separa un poco para ver girar la rueda."
+        }
+      ]
+    },
+    {
+      "from": "nhal_calle_hogares",
+      "direction": "sur",
+      "to": "nhal_patio_relato",
+      "position": [
+        31,
+        17
+      ],
+      "description": "Bancos distintos rodean una mesa bajo una cubierta corta. Al oeste vuelves al claro, al sur está la cocina, al norte las casas y al este la senda de Elin. Un recipiente reparado guarda hojas con recuerdos. Leris busca un nombre en su cuaderno y deja una línea vacía.",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Bancos distintos rodean una mesa bajo una cubierta corta. Al oeste vuelves al claro, al sur está la cocina, al norte las casas y al este la senda de Elin. Un recipiente reparado guarda hojas con recuerdos. Leris busca un nombre en su cuaderno y deja una línea vacía."
+        },
+        {
+          "kind": "world",
+          "text": "El asiento que acercaron junto al borde te permite reconocer el pequeño círculo. En el cuaderno queda la línea que la narradora dejó sin completar."
+        },
+        {
+          "kind": "world",
+          "text": "La narradora tacha una frase cuando un vecino corrige el nombre. Una mujer añade dónde estaba al oír aquel ruido; Elin acerca un asiento y la narradora deja el lápiz sobre el cuaderno."
+        }
+      ]
+    },
+    {
+      "from": "nhal_patio_relato",
+      "direction": "oeste",
+      "to": "velmora_centro",
+      "position": [
+        30,
+        17
+      ],
+      "description": "Velmora ocupa un claro entre los árboles. Las casas y bancos dejan sitio a las raíces. Al oeste está la entrada, al norte el taller, al sur el mercado y al este el patio del relato. Las voces llegan de cerca; los árboles ocultan parte de cada grupo.",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Velmora ocupa un claro entre los árboles. Las casas y bancos dejan sitio a las raíces. Al oeste está la entrada, al norte el taller, al sur el mercado y al este el patio del relato. Las voces llegan de cerca; los árboles ocultan parte de cada grupo."
+        },
+        {
+          "kind": "world",
+          "text": "Una vecina sostiene un juguete mientras otro habitante pasa un cordel por la rueda. El niño cuenta cómo se soltó y espera a que termine el golpe del taller para mostrarlo."
+        },
+        {
+          "kind": "world",
+          "text": "Los golpes del taller permiten situar el borde norte del claro. Al otro lado de la mesa, la entrada al patio del relato se distingue entre dos raíces."
+        }
+      ]
+    },
+    {
+      "from": "velmora_centro",
+      "direction": "oeste",
+      "to": "nhal_umbral_velmora",
+      "position": [
+        29,
+        17
+      ],
+      "description": "Las primeras casas aparecen entre árboles, con luces cerca de cada tarea. Al oeste queda la senda de helechos; al este entras en Velmora. Una mesa junto al camino permite esperar mientras pasa una carga. Las lámparas Vesperi iluminan los apoyos sin deslumbrar a quien llega.",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Las primeras casas aparecen entre árboles, con luces cerca de cada tarea. Al oeste queda la senda de helechos; al este entras en Velmora. Una mesa junto al camino permite esperar mientras pasa una carga. Las lámparas Vesperi iluminan los apoyos sin deslumbrar a quien llega."
+        },
+        {
+          "kind": "danger",
+          "text": "Un mechón con musgo roza la pata de la mesa de espera. La marca continúa hacia las raíces exteriores, lejos de las luces de las casas."
+        },
+        {
+          "kind": "world",
+          "text": "La mesa conserva la mancha de la carga que dejaron al llegar. Detrás del banco aparece el primer claro entre las viviendas."
+        }
+      ]
+    },
+    {
+      "from": "nhal_umbral_velmora",
+      "direction": "oeste",
+      "to": "nhal_helechos_bajos",
+      "position": [
+        28,
+        17
+      ],
+      "description": "Los helechos tapan el terreno bajo, pero la senda sigue sobre una franja elevada. Al oeste vuelves al puente; al este empiezan las casas. Un desvío al sur baja al cauce sombreado. Se oyen golpes de madera. Una pequeña cubierta protege la marca del camino.",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Los helechos tapan el terreno bajo, pero la senda sigue sobre una franja elevada. Al oeste vuelves al puente; al este empiezan las casas. Un desvío al sur baja al cauce sombreado. Se oyen golpes de madera. Una pequeña cubierta protege la marca del camino."
+        },
+        {
+          "kind": "danger",
+          "text": "Los helechos bajos conservan un arco de tallos doblados. Bajo ellos hay pelo áspero y dos semillas, separados de las huellas de los porteadores."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces la pequeña cubierta donde empezaste a oír el taller. Si hoy no hay golpes, se oyen roces entre los helechos."
+        }
+      ]
+    },
+    {
+      "from": "nhal_helechos_bajos",
+      "direction": "sur",
+      "to": "nhal_agua_sombreada",
+      "position": [
+        28,
+        21
+      ],
+      "description": "El agua retiene hojas entre las raíces. Al norte subes a la senda de helechos; al sur sigues junto al canal hacia Lethra. Desde un apoyo natural puedes mirar unos hilos bajos tendidos cerca de la corriente. Entre dos raíces, los hilos dejan libre el camino.",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "El agua retiene hojas entre las raíces. Al norte subes a la senda de helechos; al sur sigues junto al canal hacia Lethra. Desde un apoyo natural puedes mirar unos hilos bajos tendidos cerca de la corriente. Entre dos raíces, los hilos dejan libre el camino."
+        },
+        {
+          "kind": "danger",
+          "text": "Una tela baja ocupa el espacio húmedo entre raíces, fuera de la franja de tránsito."
+        },
+        {
+          "kind": "world",
+          "text": "Vuelves al apoyo natural entre raíces. Desde él puedes mirar el borde de los hilos sin hacer caer hojas sobre la corriente."
+        }
+      ]
+    },
+    {
+      "from": "nhal_agua_sombreada",
+      "direction": "sur",
+      "to": "nhal_ribera_relevo",
+      "position": [
+        28,
+        24
+      ],
+      "description": "Árboles y raíces acompañan el canal hasta una plataforma común. Al norte vuelve la ribera hacia Velmora; al sur empieza el tramo de Lethra. Dos notas comparan apoyos de madera y niveles de agua de ambos lados. La sombra del dosel alcanza parte del canal.",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Árboles y raíces acompañan el canal hasta una plataforma común. Al norte vuelve la ribera hacia Velmora; al sur empieza el tramo de Lethra. Dos notas comparan apoyos de madera y niveles de agua de ambos lados. La sombra del dosel alcanza parte del canal."
+        },
+        {
+          "kind": "danger",
+          "text": "Una hebra de pelo con musgo queda en la raíz que toca el canal. En el barro del otro lado se ven semillas caídas antes de que el agua las cubra."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces las dos notas, una del humedal y otra del bosque. Las marcas siguen indicando qué apoyo revisó cada persona."
+        }
+      ]
+    },
+    {
+      "from": "nhal_ribera_relevo",
+      "direction": "sur",
+      "to": "lethra_relevo_raices",
+      "position": [
+        28,
+        28
+      ],
+      "description": "El canal se estrecha entre raíces que sostienen una plataforma. En una pared de tablas hay notas de la pasarela y del nivel del agua. Al sur vuelves a la ribera sombreada; al norte entras en Nhal. Las marcas del camino empiezan a quedar bajo los árboles. Este relevo de agua y bosque se conoce como Orilla Velada. La cubierta de tablas permite esperar sin bajar al barro ni ocupar la pasarela.",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "El canal se estrecha entre raíces que sostienen una plataforma. En una pared de tablas hay notas de la pasarela y del nivel del agua. Al sur vuelves a la ribera sombreada; al norte entras en Nhal. Las marcas del camino empiezan a quedar bajo los árboles. Este relevo de agua y bosque se conoce como Orilla Velada. La cubierta de tablas permite esperar sin bajar al barro ni ocupar la pasarela."
+        },
+        {
+          "kind": "world",
+          "text": "Una viajera deja secar la manga bajo la cubierta. En el borde de la plataforma una araña sostiene un hilo y lo recoge cuando una gota lo alcanza."
+        },
+        {
+          "kind": "world",
+          "text": "Las dos notas reaparecen bajo la cubierta. La pasarela hacia el pueblo recibe más luz que el tramo de canal entre las raíces del norte."
+        }
+      ]
+    },
+    {
+      "from": "lethra_relevo_raices",
+      "direction": "sur",
+      "to": "lethra_ribera_sombra",
+      "position": [
+        28,
+        31
+      ],
+      "description": "El canal queda a un lado y las raíces al otro. Al sur vuelves al patio de Narevia; al norte sigues hacia el bosque. Una pasarela corta cruza entre dos troncos. Las hojas empiezan a tapar los reflejos, mientras los árboles crecen cada vez más juntos.",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "El canal queda a un lado y las raíces al otro. Al sur vuelves al patio de Narevia; al norte sigues hacia el bosque. Una pasarela corta cruza entre dos troncos. Las hojas empiezan a tapar los reflejos, mientras los árboles crecen cada vez más juntos."
+        },
+        {
+          "kind": "danger",
+          "text": "Una hoja desaparece despacio bajo la raíz del canal. El Pinzajunco la arrastra por el tallo y deja un surco pequeño en el barro sombreado."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces la tabla que crujió bajo las hojas. Camino del pueblo, el agua vuelve a reflejar cielo entre dos raíces y después junto a las plataformas."
+        }
+      ]
+    },
+    {
+      "from": "lethra_ribera_sombra",
+      "direction": "sur",
+      "to": "lethra_patio_ventanas",
+      "position": [
+        28,
+        35
+      ],
+      "description": "Las ventanas se miran sobre un patio estrecho con agua entre las casas. Puedes volver al muelle por el oeste, salir a la ribera sombreada al norte o visitar las barcas en reparación al este. Junto a las entradas queda sitio para llamar y esperar una respuesta.",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Las ventanas se miran sobre un patio estrecho con agua entre las casas. Puedes volver al muelle por el oeste, salir a la ribera sombreada al norte o visitar las barcas en reparación al este. Junto a las entradas queda sitio para llamar y esperar una respuesta."
+        },
+        {
+          "kind": "world",
+          "text": "La tabla que sonó al llegar sigue delante de la ventana baja. Desde allí puedes llamar sin cruzar el tramo de agua que separa las entradas."
+        },
+        {
+          "kind": "world",
+          "text": "Una vecina sacude un paño lejos de la ventana donde se reparte comida. Otra abre una entrada de espera para un visitante."
+        }
+      ]
+    },
+    {
+      "from": "lethra_patio_ventanas",
+      "direction": "oeste",
+      "to": "lethra_muelle_vecinal",
+      "position": [
+        18,
+        35
+      ],
+      "description": "Pequeñas barcas esperan junto a apoyos de distintas alturas. Las cestas vacías se agrupan por dueño; algunas asas tienen remiendos viejos. Al norte vuelves al mercado; al este llegas al patio de ventanas. Desde otra plataforma llaman a alguien para devolverle su cesta.",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Pequeñas barcas esperan junto a apoyos de distintas alturas. Las cestas vacías se agrupan por dueño; algunas asas tienen remiendos viejos. Al norte vuelves al mercado; al este llegas al patio de ventanas. Desde otra plataforma llaman a alguien para devolverle su cesta."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces el apoyo de la cesta con el asa remendada. Las alturas de las tablas sitúan el mercado por encima del borde donde amarran las barcas."
+        },
+        {
+          "kind": "world",
+          "text": "Una vecina reconoce su cesta por el asa remendada y la levanta antes de que llegue otra carga. Un niño devuelve una que tomó su familia."
+        }
+      ]
+    },
+    {
+      "from": "lethra_muelle_vecinal",
+      "direction": "norte",
+      "to": "lethra_mercado_hojas",
+      "position": [
+        18,
+        32
+      ],
+      "description": "Las barcas traen alimentos en cestas levantadas del fondo. Los puestos separan las envolturas abiertas de las que deben conservar humedad. Huele a hierbas cortadas y madera mojada. Al norte queda la plaza; al sur está el muelle. Los vendedores preparan bultos distintos para comer cerca o viajar.",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Las barcas traen alimentos en cestas levantadas del fondo. Los puestos separan las envolturas abiertas de las que deben conservar humedad. Huele a hierbas cortadas y madera mojada. Al norte queda la plaza; al sur está el muelle. Los vendedores preparan bultos distintos para comer cerca o viajar."
+        },
+        {
+          "kind": "world",
+          "text": "Tila levanta una cesta del fondo de la barca antes de abrir su envoltura. Las provisiones de viaje quedan en el apoyo seco; lo que se comerá cerca conserva su cubierta húmeda."
+        },
+        {
+          "kind": "world",
+          "text": "Las envolturas abiertas quedan cerca del agua; las de viaje, bajo el borde de la cubierta. La separación que viste permite encontrar dónde preguntar."
+        }
+      ]
+    },
+    {
+      "from": "lethra_mercado_hojas",
+      "direction": "norte",
+      "to": "narevia_centro",
+      "position": [
+        18,
+        31
+      ],
+      "description": "Narevia ocupa una isla baja unida por pasarelas. Al norte está el camino terrestre, al este el taller, al sur el mercado y al oeste la ribera que sale hacia Edran. Los Marevyn pasan entre barcas y plataformas; los apoyos altos conservan espacio seco junto a la plaza.",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Narevia ocupa una isla baja unida por pasarelas. Al norte está el camino terrestre, al este el taller, al sur el mercado y al oeste la ribera que sale hacia Edran. Los Marevyn pasan entre barcas y plataformas; los apoyos altos conservan espacio seco junto a la plaza."
+        },
+        {
+          "kind": "world",
+          "text": "Una familia reparte comida sobre la plataforma alta. Quien cuenta una visita de la otra orilla espera al final del martilleo para repetir el nombre; un niño sopla su cuenco."
+        },
+        {
+          "kind": "world",
+          "text": "La pasarela de llegada queda entre taller y mercado. Desde la plataforma alta puedes situar la ribera occidental por el hueco entre las barcas."
+        }
+      ]
+    },
+    {
+      "from": "narevia_centro",
+      "direction": "oeste",
+      "to": "lethra_ribera_oeste",
+      "position": [
+        17,
+        31
+      ],
+      "description": "Los apoyos se separan conforme te alejas de Narevia. Al este vuelves al pueblo; al oeste llegas al hito junto a la ruta de Edran. Bajo una cubierta común puedes ajustar las envolturas. Los viajeros de los llanos retiran de sus pies tierra distinta al barro del canal.",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Los apoyos se separan conforme te alejas de Narevia. Al este vuelves al pueblo; al oeste llegas al hito junto a la ruta de Edran. Bajo una cubierta común puedes ajustar las envolturas. Los viajeros de los llanos retiran de sus pies tierra distinta al barro del canal."
+        },
+        {
+          "kind": "danger",
+          "text": "Una persona con un palo corto espera junto a la cubierta de la ribera y pide tu equipaje. El suelo está firme; la vuelta al pueblo queda al este. No necesitas entrar en el agua."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces la cubierta por el paño del apoyo exterior. Bajo techo quedan las envolturas limpias; del lado del pueblo asoman los primeros canales."
+        }
+      ]
+    },
+    {
+      "from": "lethra_ribera_oeste",
+      "direction": "oeste",
+      "to": "lethra_hito_tierra",
+      "position": [
+        15,
+        31
+      ],
+      "description": "Dos piedras marcan la franja alta junto al terreno inundable. Al este queda la senda de Narevia; al oeste cruzas hacia el puente de Edran. Un desvío al sur lleva al remanso de las aves. Las marcas de crecidas siguen en el suelo bajo.",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Dos piedras marcan la franja alta junto al terreno inundable. Al este queda la senda de Narevia; al oeste cruzas hacia el puente de Edran. Un desvío al sur lleva al remanso de las aves. Las marcas de crecidas siguen en el suelo bajo."
+        },
+        {
+          "kind": "danger",
+          "text": "Un Pinzajunco sostiene una hoja empapada bajo la piedra menor del hito. La pinza grande asoma sobre el barro; la pequeña recoge el tallo."
+        },
+        {
+          "kind": "world",
+          "text": "Recuerdas la marca del agua en las dos piedras. Al oeste, la senda alta rodea los sauces antes de llegar al puente."
+        }
+      ]
+    },
+    {
+      "from": "lethra_hito_tierra",
+      "direction": "oeste",
+      "to": "edran_puente_juncos",
+      "position": [
+        14,
+        31
+      ],
+      "description": "El agua corre bajo las tablas separadas del puente. Sus apoyos se ven desde la orilla. Edran queda al oeste; al este cruzas hacia Lethra. Una tabla gastada marca dónde descansar una carga. Al sur puedes seguir junto a los sauces. Una marca antigua llama Vado de Juncos a este paso. El puente permite cruzarlo cuando el cauce cubre las piedras del fondo.",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "El agua corre bajo las tablas separadas del puente. Sus apoyos se ven desde la orilla. Edran queda al oeste; al este cruzas hacia Lethra. Una tabla gastada marca dónde descansar una carga. Al sur puedes seguir junto a los sauces. Una marca antigua llama Vado de Juncos a este paso. El puente permite cruzarlo cuando el cauce cubre las piedras del fondo."
+        },
+        {
+          "kind": "world",
+          "text": "Recuerdas la tabla de espera en el lado alto. Los juncos rozan los apoyos del puente; enfrente vuelve a verse la subida hacia las plataformas."
+        },
+        {
+          "kind": "world",
+          "text": "Desde la tierra alta ves los apoyos expuestos del puente. Del otro lado empiezan sauces y una senda que permite seguir por suelo seco hacia los campos."
+        }
+      ]
+    },
+    {
+      "from": "edran_puente_juncos",
+      "direction": "sur",
+      "to": "edran_sauces",
+      "position": [
+        6,
+        38
+      ],
+      "description": "Dos aves se esconden en el sauce. El agua corre bajo sus raíces. Al norte está el estanque. Al este, la senda rodea el sauce y gira al norte hacia el puente.",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Dos aves se esconden en el sauce. El agua corre bajo sus raíces. Al norte está el estanque. Al este, la senda rodea el sauce y gira al norte hacia el puente."
+        },
+        {
+          "kind": "danger",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro."
+        }
+      ]
+    },
+    {
+      "from": "edran_sauces",
+      "direction": "norte",
+      "to": "edran_estanque",
+      "position": [
+        6,
+        37
+      ],
+      "description": "Un tronco hundido divide el estanque. El agua entra bajo una raíz y sale por el sur. Al norte vuelves a la acequia; al sur están los sauces. Desde las piedras secas puedes mirar la hierba oscura del bajo oriental.",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Un tronco hundido divide el estanque. El agua entra bajo una raíz y sale por el sur. Al norte vuelves a la acequia; al sur están los sauces. Desde las piedras secas puedes mirar la hierba oscura del bajo oriental."
+        },
+        {
+          "kind": "world",
+          "text": "Insectos se detienen sobre la parte quieta mientras el agua sigue pasando al otro lado del tronco. Un ave baja sólo hasta el borde firme."
+        }
+      ]
+    },
+    {
+      "from": "edran_estanque",
+      "direction": "norte",
+      "to": "edran_acequia",
+      "position": [
+        6,
+        36
+      ],
+      "description": "El agua rodea una losa antes de seguir hacia Valdren. Unas hojas tapan la abertura de una zanja seca. Al oeste queda el pueblo, al norte subes al campo y al sur alcanzas el estanque. La losa permite cruzar sin mojarte.",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "El agua rodea una losa antes de seguir hacia Valdren. Unas hojas tapan la abertura de una zanja seca. Al oeste queda el pueblo, al norte subes al campo y al sur alcanzas el estanque. La losa permite cruzar sin mojarte."
+        },
+        {
+          "kind": "world",
+          "text": "Una rana se deja caer desde la hierba y abre dos círculos pequeños. Más abajo, una mujer libera una hoja atrapada en la rejilla con la punta de una rama."
+        },
+        {
+          "kind": "world",
+          "text": "La corriente vuelve a doblar hacia la abertura tapada. Recuerdas el tramo seco que queda detrás de las hojas."
+        }
+      ]
+    },
+    {
+      "from": "edran_acequia",
+      "direction": "oeste",
+      "to": "edran_salida_huertos",
+      "position": [
+        5,
+        36
+      ],
+      "description": "Las cercas bajan y el viento llega de frente. Dejas las casas atrás. El camino este sigue hasta la acequia; por el sur vuelves entre los graneros. Los dos postes del oeste señalan la entrada a Valdren. El tramo hacia los graneros dobla junto a las cercas; no es una calle recta.",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "Las cercas bajan y el viento llega de frente. Dejas las casas atrás. El camino este sigue hasta la acequia; por el sur vuelves entre los graneros. Los dos postes del oeste señalan la entrada a Valdren. El tramo hacia los graneros dobla junto a las cercas; no es una calle recta."
+        },
+        {
+          "kind": "danger",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces la curva junto a la acequia. Las rodadas rodean el huerto húmedo y llegan al campo por el borde firme."
+        }
+      ]
+    },
+    {
+      "from": "edran_salida_huertos",
+      "direction": "oeste",
+      "to": "valdren_huertos",
+      "position": [
+        4,
+        36
+      ],
+      "description": "El camino pasa entre huertos, cercas bajas y puertas de cocina. Un árbol da sombra a la canaleta. Al oeste queda la plaza; al norte está la casa de semillas. Sigue al este para salir de Valdren hacia los campos.",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "El corredor de los huertos, con su canaleta a la sombra del árbol."
+        },
+        {
+          "kind": "world",
+          "text": "Los postes desiguales te permiten localizar la plaza sin ver el banco. También reconoces la curva donde la canaleta debe recoger el agua de los dos lados."
+        },
+        {
+          "kind": "world",
+          "text": "Una familia lleva hojas a la cocina sin usar cestos: la distancia es tan corta que basta doblar el delantal. La encargada del huerto deja espacio para quienes necesitan pasar con un carro."
+        }
+      ]
+    },
+    {
+      "from": "valdren_huertos",
+      "direction": "oeste",
+      "to": "valdren_plaza",
+      "position": [
+        3,
+        36
+      ],
+      "description": "Un banco largo cruza la plaza. Hay espacio para girar los carros sin tapar las puertas. La fragua queda al norte, los huertos al este, el pozo al sur y el cobertizo al oeste. Una piedra sobresale entre las tablas del asiento.",
+      "narrative": [
+        {
+          "kind": "world",
+          "text": "La plaza de Valdren, con su banco largo partido por una piedra."
+        },
+        {
+          "kind": "world",
+          "text": "El niño acerca otra semilla al cuenco de las mordidas. Su abuela la gira entre los dedos y le enseña que esta abertura sólo tiene una marca."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces el extremo del banco por la piedra que obliga a interrumpirlo. La fragua queda detrás de las casas más altas; el corredor de huertos ofrece una salida distinta, orientada al campo."
+        }
+      ]
+    }
+  ]
+}
