@@ -1,0 +1,258 @@
+{
+  "scope": "Canonical room content displayed using intercepted read-only player snapshot; no player movement or writes. Mobile emulation in Chrome.",
+  "checks": 36,
+  "results": [
+    {
+      "width": 1440,
+      "room": "valdren_plaza",
+      "thumbnail": true,
+      "fullImage": true,
+      "focusRestored": true
+    },
+    {
+      "width": 1440,
+      "room": "review-home-edran",
+      "thumbnail": true,
+      "fullImage": true,
+      "focusRestored": true
+    },
+    {
+      "width": 1440,
+      "room": "khariel_centro",
+      "thumbnail": true,
+      "fullImage": true,
+      "focusRestored": true
+    },
+    {
+      "width": 1440,
+      "room": "review-home-hoshai",
+      "thumbnail": true,
+      "fullImage": true,
+      "focusRestored": true
+    },
+    {
+      "width": 1440,
+      "room": "brumak_centro",
+      "thumbnail": true,
+      "fullImage": true,
+      "focusRestored": true
+    },
+    {
+      "width": 1440,
+      "room": "review-home-korven",
+      "thumbnail": true,
+      "fullImage": true,
+      "focusRestored": true
+    },
+    {
+      "width": 1440,
+      "room": "korven_peldanos_cortos",
+      "thumbnail": true,
+      "fullImage": true,
+      "focusRestored": true
+    },
+    {
+      "width": 1440,
+      "room": "narevia_centro",
+      "thumbnail": true,
+      "fullImage": true,
+      "focusRestored": true
+    },
+    {
+      "width": 1440,
+      "room": "review-home-lethra",
+      "thumbnail": true,
+      "fullImage": true,
+      "focusRestored": true
+    },
+    {
+      "width": 1440,
+      "room": "velmora_centro",
+      "thumbnail": true,
+      "fullImage": true,
+      "focusRestored": true
+    },
+    {
+      "width": 1440,
+      "room": "review-home-nhal",
+      "thumbnail": true,
+      "fullImage": true,
+      "focusRestored": true
+    },
+    {
+      "width": 1440,
+      "room": "vaisgard_mercado",
+      "thumbnail": true,
+      "fullImage": true,
+      "focusRestored": true
+    },
+    {
+      "width": 393,
+      "room": "valdren_plaza",
+      "thumbnail": true,
+      "fullImage": true,
+      "focusRestored": true
+    },
+    {
+      "width": 393,
+      "room": "review-home-edran",
+      "thumbnail": true,
+      "fullImage": true,
+      "focusRestored": true
+    },
+    {
+      "width": 393,
+      "room": "khariel_centro",
+      "thumbnail": true,
+      "fullImage": true,
+      "focusRestored": true
+    },
+    {
+      "width": 393,
+      "room": "review-home-hoshai",
+      "thumbnail": true,
+      "fullImage": true,
+      "focusRestored": true
+    },
+    {
+      "width": 393,
+      "room": "brumak_centro",
+      "thumbnail": true,
+      "fullImage": true,
+      "focusRestored": true
+    },
+    {
+      "width": 393,
+      "room": "review-home-korven",
+      "thumbnail": true,
+      "fullImage": true,
+      "focusRestored": true
+    },
+    {
+      "width": 393,
+      "room": "korven_peldanos_cortos",
+      "thumbnail": true,
+      "fullImage": true,
+      "focusRestored": true
+    },
+    {
+      "width": 393,
+      "room": "narevia_centro",
+      "thumbnail": true,
+      "fullImage": true,
+      "focusRestored": true
+    },
+    {
+      "width": 393,
+      "room": "review-home-lethra",
+      "thumbnail": true,
+      "fullImage": true,
+      "focusRestored": true
+    },
+    {
+      "width": 393,
+      "room": "velmora_centro",
+      "thumbnail": true,
+      "fullImage": true,
+      "focusRestored": true
+    },
+    {
+      "width": 393,
+      "room": "review-home-nhal",
+      "thumbnail": true,
+      "fullImage": true,
+      "focusRestored": true
+    },
+    {
+      "width": 393,
+      "room": "vaisgard_mercado",
+      "thumbnail": true,
+      "fullImage": true,
+      "focusRestored": true
+    },
+    {
+      "width": 320,
+      "room": "valdren_plaza",
+      "thumbnail": true,
+      "fullImage": true,
+      "focusRestored": true
+    },
+    {
+      "width": 320,
+      "room": "review-home-edran",
+      "thumbnail": true,
+      "fullImage": true,
+      "focusRestored": true
+    },
+    {
+      "width": 320,
+      "room": "khariel_centro",
+      "thumbnail": true,
+      "fullImage": true,
+      "focusRestored": true
+    },
+    {
+      "width": 320,
+      "room": "review-home-hoshai",
+      "thumbnail": true,
+      "fullImage": true,
+      "focusRestored": true
+    },
+    {
+      "width": 320,
+      "room": "brumak_centro",
+      "thumbnail": true,
+      "fullImage": true,
+      "focusRestored": true
+    },
+    {
+      "width": 320,
+      "room": "review-home-korven",
+      "thumbnail": true,
+      "fullImage": true,
+      "focusRestored": true
+    },
+    {
+      "width": 320,
+      "room": "korven_peldanos_cortos",
+      "thumbnail": true,
+      "fullImage": true,
+      "focusRestored": true
+    },
+    {
+      "width": 320,
+      "room": "narevia_centro",
+      "thumbnail": true,
+      "fullImage": true,
+      "focusRestored": true
+    },
+    {
+      "width": 320,
+      "room": "review-home-lethra",
+      "thumbnail": true,
+      "fullImage": true,
+      "focusRestored": true
+    },
+    {
+      "width": 320,
+      "room": "velmora_centro",
+      "thumbnail": true,
+      "fullImage": true,
+      "focusRestored": true
+    },
+    {
+      "width": 320,
+      "room": "review-home-nhal",
+      "thumbnail": true,
+      "fullImage": true,
+      "focusRestored": true
+    },
+    {
+      "width": 320,
+      "room": "vaisgard_mercado",
+      "thumbnail": true,
+      "fullImage": true,
+      "focusRestored": true
+    }
+  ]
+}

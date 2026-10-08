@@ -1,0 +1,33 @@
+{
+  "status": "PASS",
+  "scope": "Real arrival/examine/evaluate/personal bypass, second account minor fight, local care and no-encounter roll caching",
+  "cases": [
+    {
+      "species": "vesperi",
+      "target": "nhal_sendero_altura",
+      "distanceFromTown": 3,
+      "examinedHumanNotBestiary": true,
+      "personalBypassNoXPItems": true,
+      "secondPlayerThreatPreservedBeforeExpiry": true,
+      "careCost": 18,
+      "hpBeforeCare": 85,
+      "hpAfterCare": 90.0,
+      "secondPlayerThreatAfterExpiryFirstVisitorBypass": true
+    },
+    {
+      "species": "marevyn",
+      "target": "lethra_ribera_oeste",
+      "distanceFromTown": 1,
+      "examinedHumanNotBestiary": true,
+      "personalBypassNoXPItems": true,
+      "secondPlayerThreatPreservedBeforeExpiry": true,
+      "careCost": 18,
+      "hpBeforeCare": 85,
+      "hpAfterCare": 90.0,
+      "secondPlayerThreatAfterExpiryFirstVisitorBypass": true
+    }
+  ],
+  "snapshotTriggeredEncounterRerolls": false,
+  "rngCallsBeforeSnapshots": 19,
+  "rngCallsAfterSnapshots": 19
+}

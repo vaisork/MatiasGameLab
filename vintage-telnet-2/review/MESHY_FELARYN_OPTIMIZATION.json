@@ -1,0 +1,26 @@
+{
+  "tool": "@gltf-transform/cli 4.5.1",
+  "steps": [
+    "weld",
+    "simplify --ratio 0.035 --error 0.005",
+    "resize --width 1024 --height 1024"
+  ],
+  "assets": [
+    {
+      "path": "/home/jdiaz/Escritorio/Vintage Telnet - Meshy/felaryn.glb",
+      "bytes": 55160396,
+      "sha256": "4b42dc2bc748df13719782cb90c06776cf0d52ccb81aa4cec425b6217a60cb57",
+      "triangles": 1164192,
+      "animations": 0,
+      "skins": 0
+    },
+    {
+      "path": "client/models/species/felaryn.glb",
+      "bytes": 1732520,
+      "sha256": "39fda8976425502bb70254a1cf18e51e39637c9cebac4dd49e383318d99aabb9",
+      "triangles": 40746,
+      "animations": 0,
+      "skins": 0
+    }
+  ]
+}

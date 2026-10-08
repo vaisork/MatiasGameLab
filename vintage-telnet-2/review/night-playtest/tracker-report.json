@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "scope": "Browser acceptance, tracker active/pay/known delivery route, actual journey/decision/dialogue, tracker claim, completed disclosure, relogin persistence",
+  "quest": "khariel_cornisa",
+  "paid": 6,
+  "knownLocations": 3
+}

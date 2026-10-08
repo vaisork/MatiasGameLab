@@ -1,0 +1,23 @@
+[
+  {
+    "id": "rondamusgo",
+    "source": "/home/jdiaz/.codex/generated_images/01a108da-d311-72e2-a1f0-be925b003240/exec-d5ba699c-3fad-4f7c-8859-be431eced9c2.png",
+    "asset": "client/art/bestiary/rondamusgo-anime-v1.webp",
+    "sha256": "068de7f441c17d5f09b7c942cdca497c363a003b139e1b4c44bf7e4ce76dbd84",
+    "bytes": 230124
+  },
+  {
+    "id": "colagrieta",
+    "source": "/home/jdiaz/.codex/generated_images/01a108da-d311-72e2-a1f0-be925b003240/exec-19969780-0923-4b44-b792-0a878fc8d423.png",
+    "asset": "client/art/bestiary/colagrieta-anime-v1.webp",
+    "sha256": "ba8b75137a40f4af80d0fda0dbde8d501c9012ceff94e6b3c1b596edff087ac6",
+    "bytes": 263702
+  },
+  {
+    "id": "saltalodo",
+    "source": "/home/jdiaz/.codex/generated_images/01a108da-d311-72e2-a1f0-be925b003240/exec-ba18f059-0f63-4930-89f0-a8f6f5c1f300.png",
+    "asset": "client/art/bestiary/saltalodo-anime-v1.webp",
+    "sha256": "c10a7d06a46839d2104f5d52e0f5446276a888fd225736173969c5495f7dea67",
+    "bytes": 193930
+  }
+]

@@ -1,0 +1,38 @@
+{
+  "status": "PASS",
+  "scope": "Three real accounts; two co-op attacks against one human, one retreats before victory, observer remains; only surviving real contributor opens local quest combat branch and earns paid delivery",
+  "firstRound": [
+    {
+      "hp": 95,
+      "enemyHp": 9
+    },
+    {
+      "hp": 100,
+      "enemyHp": 9
+    },
+    {
+      "hp": 100,
+      "enemyHp": null
+    }
+  ],
+  "resolvedXP": [
+    0,
+    12,
+    0
+  ],
+  "combatBranchOffered": [
+    false,
+    true,
+    false
+  ],
+  "questPaidSeals": 28,
+  "supportingSombra": {
+    "firstRoundEnemyHP": 18,
+    "secondRoundEnemyHP": 10,
+    "primaryHP": 100,
+    "normalAttackRollPercent": 50,
+    "normalAccuracy": 40,
+    "openingAccuracy": 55,
+    "scope": "Actual cooperative support power makes enemy response miss and enables supporter next attack with otherwise failing roll"
+  }
+}

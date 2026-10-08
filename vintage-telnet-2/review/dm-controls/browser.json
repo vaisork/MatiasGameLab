@@ -1,0 +1,29 @@
+{
+  "scope": "Actual Chrome/CSS with isolated authenticated API fixtures; no production changes.",
+  "results": [
+    {
+      "width": 1440,
+      "noRosterRefreshInPlayer": true,
+      "mainMenuDistinct": true,
+      "submenusIndentedAndQuieter": true,
+      "keyboardOpensMenu": true,
+      "noOverflow": true
+    },
+    {
+      "width": 393,
+      "noRosterRefreshInPlayer": true,
+      "mainMenuDistinct": true,
+      "submenusIndentedAndQuieter": true,
+      "keyboardOpensMenu": true,
+      "noOverflow": true
+    },
+    {
+      "width": 320,
+      "noRosterRefreshInPlayer": true,
+      "mainMenuDistinct": true,
+      "submenusIndentedAndQuieter": true,
+      "keyboardOpensMenu": true,
+      "noOverflow": true
+    }
+  ]
+}

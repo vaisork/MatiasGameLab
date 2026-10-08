@@ -1,0 +1,20 @@
+{
+  "scope": "Readonly real Chrome, actual isolated encounter snapshot, normal progressive reading; no production mutations",
+  "results": [
+    {
+      "width": 1440,
+      "tellCompleteMs": 4243,
+      "roundWindowMs": 4000
+    },
+    {
+      "width": 393,
+      "tellCompleteMs": 4229,
+      "roundWindowMs": 4000
+    },
+    {
+      "width": 320,
+      "tellCompleteMs": 4239,
+      "roundWindowMs": 4000
+    }
+  ]
+}

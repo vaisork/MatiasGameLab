@@ -1,0 +1,781 @@
+[
+  {
+    "type": "step",
+    "room": "nhal_mercado_setas",
+    "ambient": {
+      "region": "nhal",
+      "time_of_day": "Día",
+      "timestamp": 43320,
+      "weather": "Niebla",
+      "weather_description": "Las referencias próximas conservan sentido y las lejanas pierden atribución; las voces ayudan sin sustituir todas las marcas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las cestas esperan bajo cubiertas separadas, con pasillos de suelo firme entre las raíces. Las hojas que llegan con los alimentos se revisan en una mesa. Al norte vuelves al claro de Velmora; al este entras en la cocina. El olor cambia junto a cada cesta abierta. Una puerta al oeste lleva al lugar de cuidados."
+      },
+      {
+        "kind": "world",
+        "text": "La vendedora acerca la seta cortada a la mesa próxima para mostrar su interior. El borde del puesto vecino se ha borrado; le pide su opinión en voz baja."
+      },
+      {
+        "kind": "world",
+        "text": "Recibe viajeros y repone el puesto sin cerrar el paso."
+      }
+    ]
+  },
+  {
+    "type": "conversation",
+    "room": "nhal_mercado_setas",
+    "npc": "nhal_varo",
+    "topic": "recipiente",
+    "narrative": [
+      {
+        "kind": "npc",
+        "text": "Varo: Elin espera un recipiente, pero Leris no sabe quién lo dejó junto al secadero. Pregunta a ambos y mira el apoyo; importa devolverlo con una explicación, no acusar a quien vive más cerca."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "velmora_centro",
+    "ambient": {
+      "region": "nhal",
+      "time_of_day": "Día",
+      "timestamp": 43380,
+      "weather": "Niebla",
+      "weather_description": "Las referencias próximas conservan sentido y las lejanas pierden atribución; las voces ayudan sin sustituir todas las marcas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Velmora ocupa un claro entre los árboles. Las casas y bancos dejan sitio a las raíces. Al oeste está la entrada, al norte el taller, al sur el mercado y al este el patio del relato. Las voces llegan de cerca; los árboles ocultan parte de cada grupo."
+      },
+      {
+        "kind": "world",
+        "text": "Una vecina sostiene un juguete mientras otro habitante pasa un cordel por la rueda. El niño cuenta cómo se soltó y espera a que termine el golpe del taller para mostrarlo."
+      },
+      {
+        "kind": "world",
+        "text": "Los golpes del taller permiten situar el borde norte del claro. Al otro lado de la mesa, la entrada al patio del relato se distingue entre dos raíces."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "nhal_patio_relato",
+    "ambient": {
+      "region": "nhal",
+      "time_of_day": "Día",
+      "timestamp": 43440,
+      "weather": "Niebla",
+      "weather_description": "Las referencias próximas conservan sentido y las lejanas pierden atribución; las voces ayudan sin sustituir todas las marcas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Bancos distintos rodean una mesa bajo una cubierta corta. Al oeste vuelves al claro, al sur está la cocina, al norte las casas y al este la senda de Elin. Un recipiente reparado guarda hojas con recuerdos. Leris busca un nombre en su cuaderno y deja una línea vacía."
+      },
+      {
+        "kind": "world",
+        "text": "La narradora tacha una frase cuando un vecino corrige el nombre. Una mujer añade dónde estaba al oír aquel ruido; Elin acerca un asiento y la narradora deja el lápiz sobre el cuaderno."
+      },
+      {
+        "kind": "world",
+        "text": "Reúne voces y prepara hojas para una conversación."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "nhal_senda_recipiente",
+    "ambient": {
+      "region": "nhal",
+      "time_of_day": "Día",
+      "timestamp": 43500,
+      "weather": "Niebla",
+      "weather_description": "Las referencias próximas conservan sentido y las lejanas pierden atribución; las voces ayudan sin sustituir todas las marcas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "La senda sale del patio hacia una casa de trabajo. Al oeste vuelves a las voces de la reunión; al este está la puerta de Elin. Una cesta remendada espera junto al umbral. Su tira señala el recipiente prestado que debe volver al patio."
+      },
+      {
+        "kind": "world",
+        "text": "Una artesana detiene el corte al oír pasos y deja la pieza en un hueco del banco. Mira la tira del recipiente y pregunta quién la ató."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "nhal_umbral_elin",
+    "ambient": {
+      "region": "nhal",
+      "time_of_day": "Día",
+      "timestamp": 43560,
+      "weather": "Niebla",
+      "weather_description": "Las referencias próximas conservan sentido y las lejanas pierden atribución; las voces ayudan sin sustituir todas las marcas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Elin trabaja junto a la puerta abierta. El recipiente reparado descansa sobre un apoyo y tiene un raspón que no figura en el relato del patio. Un banco permite escuchar sin entrar en la casa. La salida del oeste vuelve a la senda, junto a la cesta remendada."
+      },
+      {
+        "kind": "world",
+        "text": "La artesana mira el raspón y se ríe: recuerda la sopa que acabó sobre su manga cuando prestó el recipiente. Apoya una mano en el banco y señala la abolladura del asa."
+      },
+      {
+        "kind": "world",
+        "text": "Prepara piezas sobre apoyos adaptados."
+      }
+    ]
+  },
+  {
+    "type": "conversation",
+    "room": "nhal_umbral_elin",
+    "npc": "nhal_elin",
+    "topic": "entrega",
+    "narrative": [
+      {
+        "kind": "npc",
+        "text": "Elin: Elin señala un recipiente pequeño del taller. «Es distinto del que usamos para repartir comida en el patio. El aro es mío; la tabla la prestó Desi. Pregúntale cómo retirarlo sin dejar otra pieza en el suelo.»"
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "nhal_senda_recipiente",
+    "ambient": {
+      "region": "nhal",
+      "time_of_day": "Día",
+      "timestamp": 43620,
+      "weather": "Niebla",
+      "weather_description": "Las referencias próximas conservan sentido y las lejanas pierden atribución; las voces ayudan sin sustituir todas las marcas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "La senda sale del patio hacia una casa de trabajo. Al oeste vuelves a las voces de la reunión; al este está la puerta de Elin. Una cesta remendada espera junto al umbral. Su tira señala el recipiente prestado que debe volver al patio."
+      },
+      {
+        "kind": "world",
+        "text": "La tira de tela señala el mismo apoyo fuera del barro. Puedes situar el umbral de Elin desde aquí, aunque las raíces oculten la puerta."
+      },
+      {
+        "kind": "world",
+        "text": "Una artesana detiene el corte al oír pasos y deja la pieza en un hueco del banco. Mira la tira del recipiente y pregunta quién la ató."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "nhal_patio_relato",
+    "ambient": {
+      "region": "nhal",
+      "time_of_day": "Día",
+      "timestamp": 43680,
+      "weather": "Niebla",
+      "weather_description": "Las referencias próximas conservan sentido y las lejanas pierden atribución; las voces ayudan sin sustituir todas las marcas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Bancos distintos rodean una mesa bajo una cubierta corta. Al oeste vuelves al claro, al sur está la cocina, al norte las casas y al este la senda de Elin. Un recipiente reparado guarda hojas con recuerdos. Leris busca un nombre en su cuaderno y deja una línea vacía."
+      },
+      {
+        "kind": "world",
+        "text": "El asiento que acercaron junto al borde te permite reconocer el pequeño círculo. En el cuaderno queda la línea que la narradora dejó sin completar."
+      },
+      {
+        "kind": "world",
+        "text": "La narradora tacha una frase cuando un vecino corrige el nombre. Una mujer añade dónde estaba al oír aquel ruido; Elin acerca un asiento y la narradora deja el lápiz sobre el cuaderno."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "velmora_centro",
+    "ambient": {
+      "region": "nhal",
+      "time_of_day": "Día",
+      "timestamp": 43740,
+      "weather": "Niebla",
+      "weather_description": "Las referencias próximas conservan sentido y las lejanas pierden atribución; las voces ayudan sin sustituir todas las marcas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Velmora ocupa un claro entre los árboles. Las casas y bancos dejan sitio a las raíces. Al oeste está la entrada, al norte el taller, al sur el mercado y al este el patio del relato. Las voces llegan de cerca; los árboles ocultan parte de cada grupo."
+      },
+      {
+        "kind": "world",
+        "text": "La rueda vuelve a girar en manos del niño. La vecina recoge el cordel sobrante y escucha cuando él pregunta qué ocurrirá si vuelve a tirar demasiado."
+      },
+      {
+        "kind": "world",
+        "text": "El borde del claro se pierde antes que las mesas próximas. Quien cuenta el relato se acerca al banco y baja la voz; desde una casa responde alguien a quien todavía no puedes ver."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "nhal_taller_cortezas",
+    "ambient": {
+      "region": "nhal",
+      "time_of_day": "Día",
+      "timestamp": 43800,
+      "weather": "Niebla",
+      "weather_description": "Las referencias próximas conservan sentido y las lejanas pierden atribución; las voces ayudan sin sustituir todas las marcas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "El aire entra por el lado abierto del taller. Un banco reúne recipientes en reparación y otro piezas para los techos. Hay marcas de cuchillo donde trabaja la artesana. Al sur vuelves al claro; al este está el secadero. Las tablas dejan huecos para las raíces."
+      },
+      {
+        "kind": "world",
+        "text": "Desi mueve una rueda pequeña sobre la mesa y escucha el punto donde raspa. Frota ese borde con un paño; a su lado alguien ordena dos botones de madera."
+      }
+    ]
+  },
+  {
+    "type": "conversation",
+    "room": "nhal_taller_cortezas",
+    "npc": "nhal_desi",
+    "topic": "apoyo",
+    "narrative": [
+      {
+        "kind": "npc",
+        "text": "Desi: «El aro puede llevarse. La tabla debe quedarse hasta que seque el juguete. Levanta el recipiente, no todo el apoyo.»"
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "nhal_secadero_sombra",
+    "ambient": {
+      "region": "nhal",
+      "time_of_day": "Día",
+      "timestamp": 43860,
+      "weather": "Niebla",
+      "weather_description": "Las referencias próximas conservan sentido y las lejanas pierden atribución; las voces ayudan sin sustituir todas las marcas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Una franja de luz cae sobre un juguete y un recipiente reparado. Los apoyos cambian de sitio para que se sequen. Al oeste vuelves al taller."
+      },
+      {
+        "kind": "world",
+        "text": "La encargada gira el juguete cuando la luz abandona uno de sus lados. Un niño espera sin tocarlo y pregunta por la reparación. La encargada le acerca el juguete a la parte seca: podrá llevarlo cuando ese lado deje de ceder al tocarlo."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "nhal_taller_cortezas",
+    "ambient": {
+      "region": "nhal",
+      "time_of_day": "Día",
+      "timestamp": 43980,
+      "weather": "Niebla",
+      "weather_description": "Las referencias próximas conservan sentido y las lejanas pierden atribución; las voces ayudan sin sustituir todas las marcas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "El aire entra por el lado abierto del taller. Un banco reúne recipientes en reparación y otro piezas para los techos. Hay marcas de cuchillo donde trabaja la artesana. Al sur vuelves al claro; al este está el secadero. Las tablas dejan huecos para las raíces."
+      },
+      {
+        "kind": "world",
+        "text": "Desi mueve una rueda pequeña sobre la mesa y escucha el punto donde raspa. Frota ese borde con un paño; a su lado alguien ordena dos botones de madera."
+      },
+      {
+        "kind": "world",
+        "text": "Reconoces las marcas de cuchillo del banco. Los recipientes terminados dejan huecos entre las piezas que todavía esperan reparación."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "velmora_centro",
+    "ambient": {
+      "region": "nhal",
+      "time_of_day": "Día",
+      "timestamp": 44040,
+      "weather": "Niebla",
+      "weather_description": "Las referencias próximas conservan sentido y las lejanas pierden atribución; las voces ayudan sin sustituir todas las marcas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Velmora ocupa un claro entre los árboles. Las casas y bancos dejan sitio a las raíces. Al oeste está la entrada, al norte el taller, al sur el mercado y al este el patio del relato. Las voces llegan de cerca; los árboles ocultan parte de cada grupo."
+      },
+      {
+        "kind": "world",
+        "text": "La rueda vuelve a girar en manos del niño. La vecina recoge el cordel sobrante y escucha cuando él pregunta qué ocurrirá si vuelve a tirar demasiado."
+      },
+      {
+        "kind": "world",
+        "text": "El borde del claro se pierde antes que las mesas próximas. Quien cuenta el relato se acerca al banco y baja la voz; desde una casa responde alguien a quien todavía no puedes ver."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "nhal_patio_relato",
+    "ambient": {
+      "region": "nhal",
+      "time_of_day": "Día",
+      "timestamp": 44100,
+      "weather": "Niebla",
+      "weather_description": "Las referencias próximas conservan sentido y las lejanas pierden atribución; las voces ayudan sin sustituir todas las marcas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Bancos distintos rodean una mesa bajo una cubierta corta. Al oeste vuelves al claro, al sur está la cocina, al norte las casas y al este la senda de Elin. Un recipiente reparado guarda hojas con recuerdos. Leris busca un nombre en su cuaderno y deja una línea vacía."
+      },
+      {
+        "kind": "world",
+        "text": "La narradora tacha una frase cuando un vecino corrige el nombre. Una mujer añade dónde estaba al oír aquel ruido; Elin acerca un asiento y la narradora deja el lápiz sobre el cuaderno."
+      },
+      {
+        "kind": "world",
+        "text": "Reúne voces y prepara hojas para una conversación."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "nhal_senda_recipiente",
+    "ambient": {
+      "region": "nhal",
+      "time_of_day": "Día",
+      "timestamp": 44160,
+      "weather": "Niebla",
+      "weather_description": "Las referencias próximas conservan sentido y las lejanas pierden atribución; las voces ayudan sin sustituir todas las marcas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "La senda sale del patio hacia una casa de trabajo. Al oeste vuelves a las voces de la reunión; al este está la puerta de Elin. Una cesta remendada espera junto al umbral. Su tira señala el recipiente prestado que debe volver al patio."
+      },
+      {
+        "kind": "world",
+        "text": "Una artesana detiene el corte al oír pasos y deja la pieza en un hueco del banco. Mira la tira del recipiente y pregunta quién la ató."
+      },
+      {
+        "kind": "world",
+        "text": "La tira de tela señala el mismo apoyo fuera del barro. Puedes situar el umbral de Elin desde aquí, aunque las raíces oculten la puerta."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "nhal_umbral_elin",
+    "ambient": {
+      "region": "nhal",
+      "time_of_day": "Día",
+      "timestamp": 44220,
+      "weather": "Niebla",
+      "weather_description": "Las referencias próximas conservan sentido y las lejanas pierden atribución; las voces ayudan sin sustituir todas las marcas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Elin trabaja junto a la puerta abierta. El recipiente reparado descansa sobre un apoyo y tiene un raspón que no figura en el relato del patio. Un banco permite escuchar sin entrar en la casa. La salida del oeste vuelve a la senda, junto a la cesta remendada."
+      },
+      {
+        "kind": "world",
+        "text": "Reconoces el raspón del apoyo junto a la entrada. La voz de Elin llega desde el lado del recipiente; el patio del relato queda detrás de la senda."
+      },
+      {
+        "kind": "world",
+        "text": "La artesana mira el raspón y se ríe: recuerda la sopa que acabó sobre su manga cuando prestó el recipiente. Apoya una mano en el banco y señala la abolladura del asa."
+      }
+    ]
+  },
+  {
+    "type": "conversation",
+    "room": "nhal_umbral_elin",
+    "npc": "nhal_elin",
+    "topic": "entrega",
+    "narrative": [
+      {
+        "kind": "npc",
+        "text": "Elin: El recipiente que trajiste queda junto a mi puerta. Desi conserva su tabla y el aro en el taller; pude recibirlo sin dejar las otras piezas sin apoyo."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "nhal_senda_recipiente",
+    "ambient": {
+      "region": "nhal",
+      "time_of_day": "Día",
+      "timestamp": 44340,
+      "weather": "Niebla",
+      "weather_description": "Las referencias próximas conservan sentido y las lejanas pierden atribución; las voces ayudan sin sustituir todas las marcas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "La senda sale del patio hacia una casa de trabajo. Al oeste vuelves a las voces de la reunión; al este está la puerta de Elin. Una cesta remendada espera junto al umbral. Su tira señala el recipiente prestado que debe volver al patio."
+      },
+      {
+        "kind": "world",
+        "text": "Una artesana detiene el corte al oír pasos y deja la pieza en un hueco del banco. Mira la tira del recipiente y pregunta quién la ató."
+      },
+      {
+        "kind": "world",
+        "text": "La tira de tela señala el mismo apoyo fuera del barro. Puedes situar el umbral de Elin desde aquí, aunque las raíces oculten la puerta."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "nhal_patio_relato",
+    "ambient": {
+      "region": "nhal",
+      "time_of_day": "Día",
+      "timestamp": 44400,
+      "weather": "Niebla",
+      "weather_description": "Las referencias próximas conservan sentido y las lejanas pierden atribución; las voces ayudan sin sustituir todas las marcas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Bancos distintos rodean una mesa bajo una cubierta corta. Al oeste vuelves al claro, al sur está la cocina, al norte las casas y al este la senda de Elin. Un recipiente reparado guarda hojas con recuerdos. Leris busca un nombre en su cuaderno y deja una línea vacía."
+      },
+      {
+        "kind": "world",
+        "text": "La narradora tacha una frase cuando un vecino corrige el nombre. Una mujer añade dónde estaba al oír aquel ruido; Elin acerca un asiento y la narradora deja el lápiz sobre el cuaderno."
+      },
+      {
+        "kind": "world",
+        "text": "Reúne voces y prepara hojas para una conversación."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "velmora_centro",
+    "ambient": {
+      "region": "nhal",
+      "time_of_day": "Día",
+      "timestamp": 44460,
+      "weather": "Niebla",
+      "weather_description": "Las referencias próximas conservan sentido y las lejanas pierden atribución; las voces ayudan sin sustituir todas las marcas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Velmora ocupa un claro entre los árboles. Las casas y bancos dejan sitio a las raíces. Al oeste está la entrada, al norte el taller, al sur el mercado y al este el patio del relato. Las voces llegan de cerca; los árboles ocultan parte de cada grupo."
+      },
+      {
+        "kind": "world",
+        "text": "La rueda vuelve a girar en manos del niño. La vecina recoge el cordel sobrante y escucha cuando él pregunta qué ocurrirá si vuelve a tirar demasiado."
+      },
+      {
+        "kind": "world",
+        "text": "Los golpes del taller permiten situar el borde norte del claro. Al otro lado de la mesa, la entrada al patio del relato se distingue entre dos raíces."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "nhal_mercado_setas",
+    "ambient": {
+      "region": "nhal",
+      "time_of_day": "Día",
+      "timestamp": 44520,
+      "weather": "Niebla",
+      "weather_description": "Las referencias próximas conservan sentido y las lejanas pierden atribución; las voces ayudan sin sustituir todas las marcas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las cestas esperan bajo cubiertas separadas, con pasillos de suelo firme entre las raíces. Las hojas que llegan con los alimentos se revisan en una mesa. Al norte vuelves al claro de Velmora; al este entras en la cocina. El olor cambia junto a cada cesta abierta. Una puerta al oeste lleva al lugar de cuidados."
+      },
+      {
+        "kind": "world",
+        "text": "La vendedora acerca la seta cortada a la mesa próxima para mostrar su interior. El borde del puesto vecino se ha borrado; le pide su opinión en voz baja."
+      },
+      {
+        "kind": "world",
+        "text": "El banco donde viste abrir una cesta queda bajo la parte más baja de la cubierta. Su olor alcanza el paso antes de que puedas ver el contenido."
+      }
+    ]
+  },
+  {
+    "type": "conversation",
+    "room": "nhal_mercado_setas",
+    "npc": "nhal_varo",
+    "topic": "recipiente",
+    "narrative": [
+      {
+        "kind": "npc",
+        "text": "Varo: Elin conserva el recipiente que llevaste. Desi mantuvo la tabla y el aro en el apoyo del taller. Ya no hace falta mover esa pieza del secadero."
+      }
+    ]
+  },
+  {
+    "type": "conversation",
+    "room": "nhal_mercado_setas",
+    "npc": "nhal_varo",
+    "topic": "recipiente",
+    "narrative": [
+      {
+        "kind": "npc",
+        "text": "Varo: Elin conserva el recipiente que llevaste. Desi mantuvo la tabla y el aro en el apoyo del taller. Ya no hace falta mover esa pieza del secadero."
+      }
+    ]
+  },
+  {
+    "type": "conversation",
+    "room": "nhal_mercado_setas",
+    "npc": "nhal_varo",
+    "topic": "recipiente",
+    "narrative": [
+      {
+        "kind": "npc",
+        "text": "Varo: Elin conserva el recipiente que llevaste. Desi mantuvo la tabla y el aro en el apoyo del taller. Ya no hace falta mover esa pieza del secadero."
+      }
+    ]
+  },
+  {
+    "type": "conversation",
+    "room": "nhal_mercado_setas",
+    "npc": "nhal_varo",
+    "topic": "recipiente",
+    "narrative": [
+      {
+        "kind": "npc",
+        "text": "Varo: Elin conserva el recipiente que llevaste. Desi mantuvo la tabla y el aro en el apoyo del taller. Ya no hace falta mover esa pieza del secadero."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "velmora_centro",
+    "ambient": {
+      "region": "nhal",
+      "time_of_day": "Día",
+      "timestamp": 44580,
+      "weather": "Niebla",
+      "weather_description": "Las referencias próximas conservan sentido y las lejanas pierden atribución; las voces ayudan sin sustituir todas las marcas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Velmora ocupa un claro entre los árboles. Las casas y bancos dejan sitio a las raíces. Al oeste está la entrada, al norte el taller, al sur el mercado y al este el patio del relato. Las voces llegan de cerca; los árboles ocultan parte de cada grupo."
+      },
+      {
+        "kind": "world",
+        "text": "La rueda vuelve a girar en manos del niño. La vecina recoge el cordel sobrante y escucha cuando él pregunta qué ocurrirá si vuelve a tirar demasiado."
+      },
+      {
+        "kind": "world",
+        "text": "El borde del claro se pierde antes que las mesas próximas. Quien cuenta el relato se acerca al banco y baja la voz; desde una casa responde alguien a quien todavía no puedes ver."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "nhal_taller_cortezas",
+    "ambient": {
+      "region": "nhal",
+      "time_of_day": "Día",
+      "timestamp": 44640,
+      "weather": "Niebla",
+      "weather_description": "Las referencias próximas conservan sentido y las lejanas pierden atribución; las voces ayudan sin sustituir todas las marcas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "El aire entra por el lado abierto del taller. Un banco reúne recipientes en reparación y otro piezas para los techos. Hay marcas de cuchillo donde trabaja la artesana. Al sur vuelves al claro; al este está el secadero. Las tablas dejan huecos para las raíces."
+      },
+      {
+        "kind": "world",
+        "text": "La rueda ya no raspa en el mismo borde. Desi la pasa por la mesa hacia quien ordenaba los botones y le pide que escuche la siguiente vuelta."
+      },
+      {
+        "kind": "world",
+        "text": "Reconoces las marcas de cuchillo del banco. Los recipientes terminados dejan huecos entre las piezas que todavía esperan reparación."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "nhal_secadero_sombra",
+    "ambient": {
+      "region": "nhal",
+      "time_of_day": "Día",
+      "timestamp": 44700,
+      "weather": "Niebla",
+      "weather_description": "Las referencias próximas conservan sentido y las lejanas pierden atribución; las voces ayudan sin sustituir todas las marcas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "El aro del recipiente quedó libre cuando recogiste la pieza de Elin. La tabla sigue sosteniendo el juguete en la franja de luz. Al oeste vuelves al taller; los apoyos conservan espacio para secarse."
+      },
+      {
+        "kind": "world",
+        "text": "El aro vacío y la tabla ocupada recuerdan qué separaste y qué dejaste secándose. El taller sigue al oeste."
+      },
+      {
+        "kind": "world",
+        "text": "La encargada gira el juguete sobre la tabla que dejaste. Al lado, el aro vacío guarda la forma del recipiente que llevaste."
+      }
+    ]
+  },
+  {
+    "type": "examination",
+    "room": "nhal_secadero_sombra",
+    "narrative": [
+      {
+        "kind": "world",
+        "text": "La tabla sigue bajo el juguete; el aro quedó libre al recoger el recipiente pequeño de Elin."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "nhal_taller_cortezas",
+    "ambient": {
+      "region": "nhal",
+      "time_of_day": "Día",
+      "timestamp": 44820,
+      "weather": "Niebla",
+      "weather_description": "Las referencias próximas conservan sentido y las lejanas pierden atribución; las voces ayudan sin sustituir todas las marcas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "El aire entra por el lado abierto del taller. Un banco reúne recipientes en reparación y otro piezas para los techos. Hay marcas de cuchillo donde trabaja la artesana. Al sur vuelves al claro; al este está el secadero. Las tablas dejan huecos para las raíces."
+      },
+      {
+        "kind": "world",
+        "text": "La rueda ya no raspa en el mismo borde. Desi la pasa por la mesa hacia quien ordenaba los botones y le pide que escuche la siguiente vuelta."
+      },
+      {
+        "kind": "world",
+        "text": "Reconoces las marcas de cuchillo del banco. Los recipientes terminados dejan huecos entre las piezas que todavía esperan reparación."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "velmora_centro",
+    "ambient": {
+      "region": "nhal",
+      "time_of_day": "Día",
+      "timestamp": 44880,
+      "weather": "Niebla",
+      "weather_description": "Las referencias próximas conservan sentido y las lejanas pierden atribución; las voces ayudan sin sustituir todas las marcas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Velmora ocupa un claro entre los árboles. Las casas y bancos dejan sitio a las raíces. Al oeste está la entrada, al norte el taller, al sur el mercado y al este el patio del relato. Las voces llegan de cerca; los árboles ocultan parte de cada grupo."
+      },
+      {
+        "kind": "world",
+        "text": "La rueda vuelve a girar en manos del niño. La vecina recoge el cordel sobrante y escucha cuando él pregunta qué ocurrirá si vuelve a tirar demasiado."
+      },
+      {
+        "kind": "world",
+        "text": "El borde del claro se pierde antes que las mesas próximas. Quien cuenta el relato se acerca al banco y baja la voz; desde una casa responde alguien a quien todavía no puedes ver."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "nhal_patio_relato",
+    "ambient": {
+      "region": "nhal",
+      "time_of_day": "Día",
+      "timestamp": 44940,
+      "weather": "Niebla",
+      "weather_description": "Las referencias próximas conservan sentido y las lejanas pierden atribución; las voces ayudan sin sustituir todas las marcas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Bancos distintos rodean una mesa bajo una cubierta corta. Al oeste vuelves al claro, al sur está la cocina, al norte las casas y al este la senda de Elin. Un recipiente reparado guarda hojas con recuerdos. Leris busca un nombre en su cuaderno y deja una línea vacía."
+      },
+      {
+        "kind": "world",
+        "text": "El asiento que acercaron junto al borde te permite reconocer el pequeño círculo. En el cuaderno queda la línea que la narradora dejó sin completar."
+      },
+      {
+        "kind": "world",
+        "text": "La narradora tacha una frase cuando un vecino corrige el nombre. Una mujer añade dónde estaba al oír aquel ruido; Elin acerca un asiento y la narradora deja el lápiz sobre el cuaderno."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "nhal_senda_recipiente",
+    "ambient": {
+      "region": "nhal",
+      "time_of_day": "Día",
+      "timestamp": 45000,
+      "weather": "Niebla",
+      "weather_description": "Las referencias próximas conservan sentido y las lejanas pierden atribución; las voces ayudan sin sustituir todas las marcas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "La senda sale del patio hacia una casa de trabajo. Al oeste vuelves a las voces de la reunión; al este está la puerta de Elin. Una cesta remendada espera junto al umbral. Su tira señala el recipiente prestado que debe volver al patio."
+      },
+      {
+        "kind": "world",
+        "text": "La tira de tela señala el mismo apoyo fuera del barro. Puedes situar el umbral de Elin desde aquí, aunque las raíces oculten la puerta."
+      },
+      {
+        "kind": "world",
+        "text": "Una artesana detiene el corte al oír pasos y deja la pieza en un hueco del banco. Mira la tira del recipiente y pregunta quién la ató."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "nhal_umbral_elin",
+    "ambient": {
+      "region": "nhal",
+      "time_of_day": "Día",
+      "timestamp": 45060,
+      "weather": "Niebla",
+      "weather_description": "Las referencias próximas conservan sentido y las lejanas pierden atribución; las voces ayudan sin sustituir todas las marcas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Elin trabaja junto a la puerta abierta. El recipiente pequeño que devolviste queda junto a la cesta remendada. El apoyo del recipiente del relato ocupa el otro lado. Un banco espera fuera de la puerta. Al oeste vuelves a la senda."
+      },
+      {
+        "kind": "world",
+        "text": "Elin comprueba el borde del recipiente pequeño que trajiste antes de apoyar otra pieza de madera. Desde el patio llega la voz de quien continúa el relato."
+      },
+      {
+        "kind": "world",
+        "text": "Prepara piezas sobre apoyos adaptados."
+      }
+    ]
+  },
+  {
+    "type": "examination",
+    "room": "nhal_umbral_elin",
+    "narrative": [
+      {
+        "kind": "world",
+        "text": "El recipiente pequeño del taller descansa junto a la cesta. La tabla sigue sosteniendo el juguete y el aro vacío queda en el secadero."
+      }
+    ]
+  }
+]

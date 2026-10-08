@@ -1,0 +1,7 @@
+# Comodidad de lectura — ajuste tras uso de Javier
+
+Javier informó que se siente más lectura, pero no resulta cómoda; inmediatamente antes había tenido dificultades para abandonar los primeros cuartos. Se solicitó una preferencia opcional para distinguir desplazamiento, tipografía y repetición. Sin depender de la respuesta, se corrigieron fricciones constatables en la interfaz: salidas después de toda la prosa y salto automático tras cada decisión.
+
+Las salidas quedan junto al contexto del lugar, antes de la crónica, sin desplazar acciones narrativas al mapa. Los destinos visitados se nombran; los desconocidos siguen como salida por explorar. El servidor determina ese conocimiento. Observar, hablar y comprar ya no hacen scroll automáticamente; cambiar de sala lleva al encabezado nuevo. La crónica mantiene acciones y estado autoritativos. Letra grande y contraste se ajustan desde la propia lectura y conservan preferencias locales existentes. Se retiraron parpadeo del cursor y sombra de texto.
+
+Sintaxis JS,44 contratos cliente y34 pruebas backend pasan (16.728s). El diff no cambia dinero, permisos, rutas ni contenido narrativo. Esta evidencia no constituye validación visual ni demuestra comodidad subjetiva. El navegador sigue bloqueado por el entorno y la valoración del usuario sigue pendiente. Para usar las modificaciones cliente basta recargar; las etiquetas nuevas de destinos del servidor requieren reiniciar el proceso habitual del juego. No se interrumpió la partida desde el entorno restringido.

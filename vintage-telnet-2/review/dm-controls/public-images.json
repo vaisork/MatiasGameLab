@@ -1,0 +1,19 @@
+{
+  "scope": "Deployed Raspberry HTML/JS/CSS and actual public image assets; authenticated APIs replaced by isolated fixtures, no production mutations.",
+  "results": [
+    {
+      "width": 393,
+      "currentPersonalPortraitLoaded": true,
+      "threeOwnVariantsLoaded": true,
+      "noFilenameDropdown": true,
+      "noOverflow": true
+    },
+    {
+      "width": 1440,
+      "currentPersonalPortraitLoaded": true,
+      "threeOwnVariantsLoaded": true,
+      "noFilenameDropdown": true,
+      "noOverflow": true
+    }
+  ]
+}

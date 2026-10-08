@@ -1,0 +1,4452 @@
+{
+  "moves": 42,
+  "scope": "Permission and return journey; New level1 character in temporary DB; all moves ordinary API; permission requests honoured; no player flags/inventory seeded. Every exposed map edge verified against actual walked pairs; directions against canonical exits; frontiers expose no destination names.",
+  "journey": [
+    {
+      "type": "step",
+      "room": "lethra_ribera_oeste",
+      "ambient": {
+        "region": "lethra",
+        "time_of_day": "Día",
+        "timestamp": 43320,
+        "weather": "Viento",
+        "weather_description": "Las hojas y envolturas se atan sin aplastar el contenido; las corrientes y las ondas de superficie dejan de parecer el mismo movimiento."
+      },
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Los apoyos se separan conforme te alejas de Narevia. Al este vuelves al pueblo; al oeste llegas al hito junto a la ruta de Edran. Bajo una cubierta común puedes ajustar las envolturas. Los viajeros de los llanos retiran de sus pies tierra distinta al barro del canal."
+        },
+        {
+          "kind": "world",
+          "text": "Una viajera de campo sacude su capa lejos de las envolturas de comida. Un vecino le señala el apoyo exterior y le acerca un paño para las manos."
+        }
+      ]
+    },
+    {
+      "type": "step",
+      "room": "lethra_hito_tierra",
+      "ambient": {
+        "region": "lethra",
+        "time_of_day": "Día",
+        "timestamp": 43380,
+        "weather": "Viento",
+        "weather_description": "Las hojas y envolturas se atan sin aplastar el contenido; las corrientes y las ondas de superficie dejan de parecer el mismo movimiento."
+      },
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Dos piedras marcan la franja alta junto al terreno inundable. Al este queda la senda de Narevia; al oeste cruzas hacia el puente de Edran. Un desvío al sur lleva al remanso de las aves. Las marcas de crecidas siguen en el suelo bajo."
+        },
+        {
+          "kind": "world",
+          "text": "Una cuidadora comprueba que las piedras puedan verse desde la senda alta y retira una rama del apoyo menor. Un viajero compara sus zapatos con el barro de abajo antes de escoger por dónde continuará."
+        }
+      ]
+    },
+    {
+      "type": "step",
+      "room": "edran_puente_juncos",
+      "ambient": {
+        "region": "edran",
+        "time_of_day": "Día",
+        "timestamp": 43440,
+        "weather": "Despejado",
+        "weather_description": "El terreno abierto conserva referencias entre parcelas, sombras y caminos."
+      },
+      "scene": [
+        {
+          "kind": "world",
+          "text": "El agua corre bajo las tablas separadas del puente. Sus apoyos se ven desde la orilla. Edran queda al oeste; al este cruzas hacia Lethra. Una tabla gastada marca dónde descansar una carga. Al sur puedes seguir junto a los sauces. Una marca antigua llama Vado de Juncos a este paso. El puente permite cruzarlo cuando el cauce cubre las piedras del fondo."
+        },
+        {
+          "kind": "world",
+          "text": "Desde la tierra alta ves los apoyos expuestos del puente. Del otro lado empiezan sauces y una senda que permite seguir por suelo seco hacia los campos."
+        },
+        {
+          "kind": "world",
+          "text": "Una mujer cruza con dos recipientes colgados a distinta altura. Espera en el lado alto para equilibrarlos otra vez, lejos del centro del puente."
+        }
+      ]
+    },
+    {
+      "type": "step",
+      "room": "edran_sauces",
+      "ambient": {
+        "region": "edran",
+        "time_of_day": "Día",
+        "timestamp": 43500,
+        "weather": "Despejado",
+        "weather_description": "El terreno abierto conserva referencias entre parcelas, sombras y caminos."
+      },
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Dos aves se esconden en el sauce. El agua corre bajo sus raíces. Al norte está el estanque; al este, el puente. La senda del puente gira alrededor del sauce y sigue la orilla."
+        },
+        {
+          "kind": "world",
+          "text": "Las aves cruzan entre dos ramas y regresan al mismo hueco. Sus movimientos dejan intervalos largos durante los que sólo se escucha la ribera."
+        }
+      ]
+    },
+    {
+      "type": "step",
+      "room": "edran_estanque",
+      "ambient": {
+        "region": "edran",
+        "time_of_day": "Día",
+        "timestamp": 43560,
+        "weather": "Despejado",
+        "weather_description": "El terreno abierto conserva referencias entre parcelas, sombras y caminos."
+      },
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Un tronco hundido divide el estanque. El agua entra bajo una raíz y sale por el sur. Al norte vuelves a la acequia; al sur están los sauces. Desde las piedras secas puedes mirar la hierba oscura del bajo oriental."
+        },
+        {
+          "kind": "world",
+          "text": "Insectos se detienen sobre la parte quieta mientras el agua sigue pasando al otro lado del tronco. Un ave baja sólo hasta el borde firme."
+        }
+      ]
+    },
+    {
+      "type": "step",
+      "room": "edran_acequia",
+      "ambient": {
+        "region": "edran",
+        "time_of_day": "Día",
+        "timestamp": 43620,
+        "weather": "Despejado",
+        "weather_description": "El terreno abierto conserva referencias entre parcelas, sombras y caminos."
+      },
+      "scene": [
+        {
+          "kind": "world",
+          "text": "El agua rodea una losa antes de seguir hacia Valdren. Unas hojas tapan la abertura de una zanja seca. Al oeste queda el pueblo, al norte subes al campo y al sur alcanzas el estanque. La losa permite cruzar sin mojarte."
+        },
+        {
+          "kind": "world",
+          "text": "Una rana se deja caer desde la hierba y abre dos círculos pequeños. Más abajo, una mujer libera una hoja atrapada en la rejilla con la punta de una rama."
+        }
+      ]
+    },
+    {
+      "type": "step",
+      "room": "edran_salida_huertos",
+      "ambient": {
+        "region": "edran",
+        "time_of_day": "Día",
+        "timestamp": 43680,
+        "weather": "Despejado",
+        "weather_description": "El terreno abierto conserva referencias entre parcelas, sombras y caminos."
+      },
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Las cercas bajan y el viento llega de frente. Dejas las casas atrás. El camino este sigue hasta la acequia; por el sur vuelves entre los graneros. Los dos postes del oeste señalan la entrada a Valdren. El tramo hacia los graneros dobla junto a las cercas; no es una calle recta."
+        },
+        {
+          "kind": "world",
+          "text": "Una persona abre la cerca para pasar con una cesta y vuelve a apoyarla sin atarla. Su trayecto es corto; las huellas que siguen la acequia llevan carros."
+        },
+        {
+          "kind": "world",
+          "text": "Lina compara los nombres de la lista con las cestas que llegan de los huertos."
+        }
+      ]
+    },
+    {
+      "type": "conversation",
+      "room": "edran_salida_huertos",
+      "narrative": [
+        {
+          "kind": "npc",
+          "text": "Lina: Dime tu nombre y lo anoto junto a quienes llegan hoy. Así sabemos a quién avisar si una carga se retrasa. Entrar no cuesta sellos; basta con presentarte una vez."
+        }
+      ]
+    },
+    {
+      "type": "permission",
+      "room": "edran_salida_huertos",
+      "narrative": [
+        {
+          "kind": "action",
+          "text": "Lina anota tu nombre al margen de la lista de cargas. «Listo. Deja la cerca apoyada al pasar.» Puedes entrar y salir sin repetir el permiso."
+        }
+      ]
+    },
+    {
+      "type": "observation",
+      "room": "edran_salida_huertos",
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Las cercas bajan y el viento llega de frente. Dejas las casas atrás. El camino este sigue hasta la acequia; por el sur vuelves entre los graneros. Los dos postes del oeste señalan la entrada a Valdren. El tramo hacia los graneros dobla junto a las cercas; no es una calle recta."
+        },
+        {
+          "kind": "world",
+          "text": "Una persona abre la cerca para pasar con una cesta y vuelve a apoyarla sin atarla. Su trayecto es corto; las huellas que siguen la acequia llevan carros."
+        },
+        {
+          "kind": "world",
+          "text": "Lina compara los nombres de la lista con las cestas que llegan de los huertos."
+        }
+      ],
+      "observe": [
+        {
+          "kind": "world",
+          "text": "Lina sostiene la lista contra un poste de la cerca. Aparta una cesta para dejar pasar el carro de los huertos."
+        },
+        {
+          "kind": "world",
+          "text": "Una persona abre la cerca para pasar con una cesta y vuelve a apoyarla sin atarla. Su trayecto es corto; las huellas que siguen la acequia llevan carros."
+        },
+        {
+          "kind": "trace",
+          "text": "Están pensadas para guiar animales y carros. Una persona puede ver el campo entero por encima."
+        },
+        {
+          "kind": "action",
+          "text": "Observas con atención."
+        }
+      ]
+    },
+    {
+      "type": "step",
+      "room": "valdren_huertos",
+      "ambient": {
+        "region": "edran",
+        "time_of_day": "Día",
+        "timestamp": 43860,
+        "weather": "Despejado",
+        "weather_description": "El terreno abierto conserva referencias entre parcelas, sombras y caminos."
+      },
+      "scene": [
+        {
+          "kind": "world",
+          "text": "El camino pasa entre huertos, cercas bajas y puertas de cocina. Un árbol da sombra a la canaleta. Al oeste queda la plaza; al norte está la casa de semillas. Sigue al este para salir de Valdren hacia los campos."
+        },
+        {
+          "kind": "world",
+          "text": "Una familia lleva hojas a la cocina sin usar cestos: la distancia es tan corta que basta doblar el delantal. La encargada del huerto deja espacio para quienes necesitan pasar con un carro."
+        }
+      ]
+    },
+    {
+      "type": "observation",
+      "room": "valdren_huertos",
+      "scene": [
+        {
+          "kind": "world",
+          "text": "El camino pasa entre huertos, cercas bajas y puertas de cocina. Un árbol da sombra a la canaleta. Al oeste queda la plaza; al norte está la casa de semillas. Sigue al este para salir de Valdren hacia los campos."
+        },
+        {
+          "kind": "world",
+          "text": "Una familia lleva hojas a la cocina sin usar cestos: la distancia es tan corta que basta doblar el delantal. La encargada del huerto deja espacio para quienes necesitan pasar con un carro."
+        }
+      ],
+      "observe": [
+        {
+          "kind": "world",
+          "text": "Una familia lleva hojas a la cocina sin usar cestos: la distancia es tan corta que basta doblar el delantal. La encargada del huerto deja espacio para quienes necesitan pasar con un carro."
+        },
+        {
+          "kind": "trace",
+          "text": "Un tapón de hojas desvía el agua hacia el huerto pequeño. Puede retirarse sin excavar ni cambiar la pendiente."
+        },
+        {
+          "kind": "action",
+          "text": "Observas con atención."
+        }
+      ]
+    },
+    {
+      "type": "step",
+      "room": "edran_salida_huertos",
+      "ambient": {
+        "region": "edran",
+        "time_of_day": "Día",
+        "timestamp": 43980,
+        "weather": "Despejado",
+        "weather_description": "El terreno abierto conserva referencias entre parcelas, sombras y caminos."
+      },
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Las cercas bajan y el viento llega de frente. Dejas las casas atrás. El camino este sigue hasta la acequia; por el sur vuelves entre los graneros. Los dos postes del oeste señalan la entrada a Valdren. El tramo hacia los graneros dobla junto a las cercas; no es una calle recta."
+        },
+        {
+          "kind": "world",
+          "text": "Lina reconoce tu paso y vuelve a sujetar la lista contra el poste. Las ruedas siguen la curva de la acequia; tu entrada ya está anotada."
+        },
+        {
+          "kind": "world",
+          "text": "Una persona abre la cerca para pasar con una cesta y vuelve a apoyarla sin atarla. Su trayecto es corto; las huellas que siguen la acequia llevan carros."
+        }
+      ]
+    },
+    {
+      "type": "conversation",
+      "room": "edran_salida_huertos",
+      "narrative": [
+        {
+          "kind": "npc",
+          "text": "Lina: Tu nombre ya está en la lista. Pasa; hoy dejamos libre el borde para los carros."
+        }
+      ]
+    },
+    {
+      "type": "observation",
+      "room": "edran_salida_huertos",
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Las cercas bajan y el viento llega de frente. Dejas las casas atrás. El camino este sigue hasta la acequia; por el sur vuelves entre los graneros. Los dos postes del oeste señalan la entrada a Valdren. El tramo hacia los graneros dobla junto a las cercas; no es una calle recta."
+        },
+        {
+          "kind": "world",
+          "text": "Lina reconoce tu paso y vuelve a sujetar la lista contra el poste. Las ruedas siguen la curva de la acequia; tu entrada ya está anotada."
+        },
+        {
+          "kind": "world",
+          "text": "Una persona abre la cerca para pasar con una cesta y vuelve a apoyarla sin atarla. Su trayecto es corto; las huellas que siguen la acequia llevan carros."
+        }
+      ],
+      "observe": [
+        {
+          "kind": "world",
+          "text": "Lina sostiene la lista contra un poste de la cerca. Aparta una cesta para dejar pasar el carro de los huertos."
+        },
+        {
+          "kind": "world",
+          "text": "Una persona abre la cerca para pasar con una cesta y vuelve a apoyarla sin atarla. Su trayecto es corto; las huellas que siguen la acequia llevan carros."
+        },
+        {
+          "kind": "trace",
+          "text": "Los pasos cortos cruzan hacia el huerto; las ruedas continúan por la curva."
+        },
+        {
+          "kind": "action",
+          "text": "Observas con atención."
+        }
+      ]
+    },
+    {
+      "type": "step",
+      "room": "edran_acequia",
+      "ambient": {
+        "region": "edran",
+        "time_of_day": "Día",
+        "timestamp": 44100,
+        "weather": "Despejado",
+        "weather_description": "El terreno abierto conserva referencias entre parcelas, sombras y caminos."
+      },
+      "scene": [
+        {
+          "kind": "world",
+          "text": "El agua rodea una losa antes de seguir hacia Valdren. Unas hojas tapan la abertura de una zanja seca. Al oeste queda el pueblo, al norte subes al campo y al sur alcanzas el estanque. La losa permite cruzar sin mojarte."
+        },
+        {
+          "kind": "world",
+          "text": "Una rana se deja caer desde la hierba y abre dos círculos pequeños. Más abajo, una mujer libera una hoja atrapada en la rejilla con la punta de una rama."
+        },
+        {
+          "kind": "world",
+          "text": "La corriente vuelve a doblar hacia la abertura tapada. Recuerdas el tramo seco que queda detrás de las hojas."
+        }
+      ]
+    },
+    {
+      "type": "step",
+      "room": "edran_surcos",
+      "ambient": {
+        "region": "edran",
+        "time_of_day": "Día",
+        "timestamp": 44160,
+        "weather": "Despejado",
+        "weather_description": "El terreno abierto conserva referencias entre parcelas, sombras y caminos."
+      },
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Los surcos nuevos tienen tierra clara; los viejos conservan tallos cortos. Un sendero sin sembrar llega al lindero del norte. La acequia queda al sur. Hacia el oeste puedes entrar en una parcela vieja; al este hay una zanja seca."
+        },
+        {
+          "kind": "danger",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro."
+        },
+        {
+          "kind": "world",
+          "text": "La agricultora comprueba la humedad con dos dedos y cubre de nuevo el agujero. En la hilera antigua, unos tallos se doblan contra el viento aunque los demás permanezcan quietos."
+        }
+      ]
+    },
+    {
+      "type": "step",
+      "room": "edran_lindero",
+      "ambient": {
+        "region": "edran",
+        "time_of_day": "Día",
+        "timestamp": 44220,
+        "weather": "Despejado",
+        "weather_description": "El terreno abierto conserva referencias entre parcelas, sombras y caminos."
+      },
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Una piedra hundida separa las parcelas. Tiene una muesca llena de tierra en la cara sur. Por allí vuelves al campo. Al oeste subes a la loma; al este llegas al cobertizo, donde guardan estacas de distintos tamaños."
+        },
+        {
+          "kind": "world",
+          "text": "Una joven deja el recipiente junto a la piedra y mira dos veces la cerca. Busca una tablilla pequeña entre la hierba y las huellas del borde."
+        }
+      ]
+    },
+    {
+      "type": "step",
+      "room": "edran_loma",
+      "ambient": {
+        "region": "edran",
+        "time_of_day": "Día",
+        "timestamp": 44280,
+        "weather": "Despejado",
+        "weather_description": "El terreno abierto conserva referencias entre parcelas, sombras y caminos."
+      },
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Desde la loma ves Valdren y tres parcelas a distinta altura. Una franja de pasto cortado ofrece sitio para parar. Al norte está el prado; al este bajas al lindero. El sendero sur entra en la parcela vieja."
+        },
+        {
+          "kind": "world",
+          "text": "El aire trae primero un golpe de la fragua y luego el rumor de un carro. Desde aquí puedes separar sonidos que abajo se mezclan con las conversaciones del pueblo."
+        }
+      ]
+    },
+    {
+      "type": "step",
+      "room": "edran_prado",
+      "ambient": {
+        "region": "edran",
+        "time_of_day": "Día",
+        "timestamp": 44340,
+        "weather": "Despejado",
+        "weather_description": "El terreno abierto conserva referencias entre parcelas, sombras y caminos."
+      },
+      "scene": [
+        {
+          "kind": "world",
+          "text": "La hierba alta tiene una zona aplastada, con marcas demasiado anchas para ser de una persona. El sendero pasa por fuera de ella. Al sur vuelves a la loma; al oeste empieza la ladera pedregosa. Mira las señales antes de acercarte."
+        },
+        {
+          "kind": "danger",
+          "text": "Un cuerpo enorme aparta la hierba. El volumen de su lomo y la tierra hundida advierten una fuerza muy por encima de una primera formación."
+        },
+        {
+          "kind": "world",
+          "text": "Un movimiento pesado baja la hierba y vuelve a levantarla más allá. No sigue el sendero ni se acerca al cultivo: mantiene una franja propia dentro del prado."
+        }
+      ]
+    },
+    {
+      "type": "step",
+      "room": "edran_ladera_piedra",
+      "ambient": {
+        "region": "edran",
+        "time_of_day": "Día",
+        "timestamp": 44400,
+        "weather": "Despejado",
+        "weather_description": "El terreno abierto conserva referencias entre parcelas, sombras y caminos."
+      },
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Tres salientes permiten dejar cestos sin apoyarlos en la tierra. El más bajo está protegido por un arbusto; debajo hay una cuerda rota, apartada del camino. Al este vuelves al prado. Al norte subes a la linde que lleva a Korven."
+        },
+        {
+          "kind": "world",
+          "text": "Un porteador cambia su cesto del saliente alto al bajo antes de ajustar la correa. La pausa sucede fuera del sendero."
+        }
+      ]
+    },
+    {
+      "type": "step",
+      "room": "edran_linde_piedra",
+      "ambient": {
+        "region": "edran",
+        "time_of_day": "Día",
+        "timestamp": 44460,
+        "weather": "Despejado",
+        "weather_description": "El terreno abierto conserva referencias entre parcelas, sombras y caminos."
+      },
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Las piedras aparecen cada vez más juntas. Al sur quedan el prado y los campos de Edran. El paso norte entra en Korven entre dos lomos de roca. Las rodadas terminan aquí; una explanada ofrece sitio para cambiar las cargas de apoyo."
+        },
+        {
+          "kind": "world",
+          "text": "Dos porteadores pasan sacos del carro a una estructura más estrecha. Uno sujeta el borde del paquete mientras el otro lo prueba entre los dos lomos de roca."
+        }
+      ]
+    },
+    {
+      "type": "step",
+      "room": "korven_borde_tierra",
+      "ambient": {
+        "region": "korven",
+        "time_of_day": "Día",
+        "timestamp": 44520,
+        "weather": "Lluvia",
+        "weather_description": "Las juntas reúnen agua y cambian comparaciones de polvo, color y apoyo."
+      },
+      "scene": [
+        {
+          "kind": "world",
+          "text": "La tierra ocupa más espacio entre las piedras y aparecen pastos bajos. Una zanja recoge la arena que trae el viento. Al norte vuelves a la senda de las cubiertas; al sur cruzas hacia la linde de Edran. Los bloques de roca ya quedan separados. Una cubierta remendada junto a la zanja señala la Parada de los Cardos. Debajo hay una tabla para sentarse y un gancho donde secar una correa."
+        },
+        {
+          "kind": "world",
+          "text": "Las franjas de tierra se estrechan entre bloques. La cubierta de los cardos es el último sitio ancho antes de seguir hacia los corredores de piedra."
+        },
+        {
+          "kind": "world",
+          "text": "El agua deja arena en la zanja y humedece la tierra fina sin cubrirla por completo. La cuidadora comprueba qué parte queda retenida. Los viajeros eligen apoyos de piedra para no abrir nuevas huellas en el pequeño suelo."
+        }
+      ]
+    },
+    {
+      "type": "step",
+      "room": "korven_senda_viento",
+      "ambient": {
+        "region": "korven",
+        "time_of_day": "Día",
+        "timestamp": 44580,
+        "weather": "Lluvia",
+        "weather_description": "Las juntas reúnen agua y cambian comparaciones de polvo, color y apoyo."
+      },
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Las paredes de Brumak quedan cada vez más bajas y el viento alcanza las cargas. Un cobertizo abierto permite ajustar las cubiertas. Al este vuelves al almacén; al sur sigue la bajada hacia Edran. Entre las piedras empiezan a aparecer franjas de tierra."
+        },
+        {
+          "kind": "world",
+          "text": "El viento lleva agua bajo un lado del cobertizo y cambia el sitio donde se ajustan las tiras. Los viajeros evitan mojar el contenido al revisar el borde. La ruta de los llanos continúa más allá de la lluvia cercana."
+        },
+        {
+          "kind": "world",
+          "text": "Un viajero ajusta las tiras del lado protegido mientras su compañera sujeta el borde que golpea el aire. Al salir del cobertizo, la cubierta vuelve a tensarse sobre sus manos."
+        }
+      ]
+    },
+    {
+      "type": "step",
+      "room": "korven_almacen_grano",
+      "ambient": {
+        "region": "korven",
+        "time_of_day": "Día",
+        "timestamp": 44640,
+        "weather": "Lluvia",
+        "weather_description": "Las juntas reúnen agua y cambian comparaciones de polvo, color y apoyo."
+      },
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Las cestas descansan sobre apoyos de madera. Las recién llegadas esperan delante; las abiertas quedan al fondo, con las cubiertas dobladas. Una ventana alta deja entrar aire sin sol directo. Al este vuelves al patio y al oeste sales a la senda expuesta al viento."
+        },
+        {
+          "kind": "world",
+          "text": "Las cargas mojadas esperan bajo el alero. La encargada prepara un apoyo para secar sus cubiertas, separado de las cestas del fondo."
+        },
+        {
+          "kind": "world",
+          "text": "Una encargada limpia el apoyo antes de recibir una cesta. Su compañero pregunta de qué camino llega y retira la tapa: el borde tiene polvo, el centro aún guarda humedad."
+        }
+      ]
+    },
+    {
+      "type": "step",
+      "room": "brumak_centro",
+      "ambient": {
+        "region": "korven",
+        "time_of_day": "Día",
+        "timestamp": 44700,
+        "weather": "Lluvia",
+        "weather_description": "Las juntas reúnen agua y cambian comparaciones de polvo, color y apoyo."
+      },
+      "scene": [
+        {
+          "kind": "world",
+          "text": "El patio de Brumak está protegido del viento. Las casas Dravak tienen puertas bajas; el paso público deja más altura. Al este está la entrada del camino, al norte el taller, al oeste el almacén y al sur las viviendas. Bancos y cargas dejan libre el giro de los carros."
+        },
+        {
+          "kind": "world",
+          "text": "Una Dravak prueba el cierre de un recipiente bajo el banco. Un niño se agacha junto a ella y vuelve a hacerlo; la tapa encaja cuando deja de apretarla de lado."
+        },
+        {
+          "kind": "world",
+          "text": "Los canales de las fachadas descargan en una junta lateral y los vecinos apartan sus bancos de ella. Las cargas entran de una en una para no llevar barro hacia las puertas bajas donde se reúnen las familias."
+        }
+      ]
+    },
+    {
+      "type": "step",
+      "room": "korven_peldanos_cortos",
+      "ambient": {
+        "region": "korven",
+        "time_of_day": "Día",
+        "timestamp": 44760,
+        "weather": "Lluvia",
+        "weather_description": "Las juntas reúnen agua y cambian comparaciones de polvo, color y apoyo."
+      },
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Escalones bajos y una franja para carros suben hacia las casas de Brumak. Al este vuelves al banco de revisión; al oeste entras en el patio. Una repisa guarda cuñas cerca del suelo. Las ruedas pequeñas han gastado más la piedra junto a los peldaños. Al sur, una puerta baja conduce al antiguo almacén de las cargas."
+        },
+        {
+          "kind": "world",
+          "text": "Los peldaños reciben barro que baja de las viviendas. Una habitante limpia el borde de la franja lateral antes de apoyar la rueda. Los recipientes se conservan sobre la repisa, lejos de la corriente de la escalera."
+        },
+        {
+          "kind": "world",
+          "text": "Una habitante recoloca una cuña y empuja el carro por la franja ancha. Un visitante alto espera junto a los peldaños; baja la cabeza al pasar bajo el borde de la puerta."
+        }
+      ]
+    },
+    {
+      "type": "conversation",
+      "room": "korven_peldanos_cortos",
+      "narrative": [
+        {
+          "kind": "npc",
+          "text": "Ved: Tu nombre basta; no cobramos por entrar. Lo guardo en esta tablilla para que sepan a quién buscar si dejas una carga. Pasa por los peldaños y deja libre la franja de las ruedas. No tendrás que presentarte de nuevo."
+        }
+      ]
+    },
+    {
+      "type": "permission",
+      "room": "korven_peldanos_cortos",
+      "narrative": [
+        {
+          "kind": "action",
+          "text": "Ved escribe tu nombre en la tablilla apoyada en sus rodillas. «Puedes pasar. Los carros necesitan la franja ancha.» La entrada queda autorizada sin repetir el permiso."
+        }
+      ]
+    },
+    {
+      "type": "observation",
+      "room": "korven_peldanos_cortos",
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Escalones bajos y una franja para carros suben hacia las casas de Brumak. Al este vuelves al banco de revisión; al oeste entras en el patio. Una repisa guarda cuñas cerca del suelo. Las ruedas pequeñas han gastado más la piedra junto a los peldaños. Al sur, una puerta baja conduce al antiguo almacén de las cargas."
+        },
+        {
+          "kind": "world",
+          "text": "Los peldaños reciben barro que baja de las viviendas. Una habitante limpia el borde de la franja lateral antes de apoyar la rueda. Los recipientes se conservan sobre la repisa, lejos de la corriente de la escalera."
+        },
+        {
+          "kind": "world",
+          "text": "Una habitante recoloca una cuña y empuja el carro por la franja ancha. Un visitante alto espera junto a los peldaños; baja la cabeza al pasar bajo el borde de la puerta."
+        }
+      ],
+      "observe": [
+        {
+          "kind": "world",
+          "text": "Ved trabaja en un asiento bajo junto a los peldaños. Una cuña sujeta el carro mientras escucha a quien llega."
+        },
+        {
+          "kind": "world",
+          "text": "Una habitante recoloca una cuña y empuja el carro por la franja ancha. Un visitante alto espera junto a los peldaños; baja la cabeza al pasar bajo el borde de la puerta."
+        },
+        {
+          "kind": "world",
+          "text": "Los peldaños reciben barro que baja de las viviendas. Una habitante limpia el borde de la franja lateral antes de apoyar la rueda. Los recipientes se conservan sobre la repisa, lejos de la corriente de la escalera."
+        },
+        {
+          "kind": "trace",
+          "text": "Se comparten para impedir que una rueda retroceda mientras se cambia de apoyo."
+        },
+        {
+          "kind": "action",
+          "text": "Observas con atención."
+        }
+      ]
+    },
+    {
+      "type": "step",
+      "room": "brumak_centro",
+      "ambient": {
+        "region": "korven",
+        "time_of_day": "Día",
+        "timestamp": 44940,
+        "weather": "Lluvia",
+        "weather_description": "Las juntas reúnen agua y cambian comparaciones de polvo, color y apoyo."
+      },
+      "scene": [
+        {
+          "kind": "world",
+          "text": "El patio de Brumak está protegido del viento. Las casas Dravak tienen puertas bajas; el paso público deja más altura. Al este está la entrada del camino, al norte el taller, al oeste el almacén y al sur las viviendas. Bancos y cargas dejan libre el giro de los carros."
+        },
+        {
+          "kind": "world",
+          "text": "Una Dravak prueba el cierre de un recipiente bajo el banco. Un niño se agacha junto a ella y vuelve a hacerlo; la tapa encaja cuando deja de apretarla de lado."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces la curva gastada por las ruedas. Las puertas bajas quedan fuera de ella; dos bancos se recogen junto al primer umbral."
+        }
+      ]
+    },
+    {
+      "type": "observation",
+      "room": "brumak_centro",
+      "scene": [
+        {
+          "kind": "world",
+          "text": "El patio de Brumak está protegido del viento. Las casas Dravak tienen puertas bajas; el paso público deja más altura. Al este está la entrada del camino, al norte el taller, al oeste el almacén y al sur las viviendas. Bancos y cargas dejan libre el giro de los carros."
+        },
+        {
+          "kind": "world",
+          "text": "Una Dravak prueba el cierre de un recipiente bajo el banco. Un niño se agacha junto a ella y vuelve a hacerlo; la tapa encaja cuando deja de apretarla de lado."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces la curva gastada por las ruedas. Las puertas bajas quedan fuera de ella; dos bancos se recogen junto al primer umbral."
+        }
+      ],
+      "observe": [
+        {
+          "kind": "world",
+          "text": "Una Dravak prueba el cierre de un recipiente bajo el banco. Un niño se agacha junto a ella y vuelve a hacerlo; la tapa encaja cuando deja de apretarla de lado."
+        },
+        {
+          "kind": "world",
+          "text": "Los canales de las fachadas descargan en una junta lateral y los vecinos apartan sus bancos de ella. Las cargas entran de una en una para no llevar barro hacia las puertas bajas donde se reúnen las familias."
+        },
+        {
+          "kind": "trace",
+          "text": "Protegen luces y mantienen libre el paso a alturas diferentes."
+        },
+        {
+          "kind": "action",
+          "text": "Observas con atención."
+        }
+      ]
+    },
+    {
+      "type": "step",
+      "room": "korven_peldanos_cortos",
+      "ambient": {
+        "region": "korven",
+        "time_of_day": "Día",
+        "timestamp": 45060,
+        "weather": "Lluvia",
+        "weather_description": "Las juntas reúnen agua y cambian comparaciones de polvo, color y apoyo."
+      },
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Escalones bajos y una franja para carros suben hacia las casas de Brumak. Al este vuelves al banco de revisión; al oeste entras en el patio. Una repisa guarda cuñas cerca del suelo. Las ruedas pequeñas han gastado más la piedra junto a los peldaños. Al sur, una puerta baja conduce al antiguo almacén de las cargas."
+        },
+        {
+          "kind": "world",
+          "text": "Ved levanta la vista y te deja pasar sin pedir otra presentación. Reconoces la cuña junto al peldaño corto y la franja que los carros mantienen despejada."
+        },
+        {
+          "kind": "world",
+          "text": "Los peldaños reciben barro que baja de las viviendas. Una habitante limpia el borde de la franja lateral antes de apoyar la rueda. Los recipientes se conservan sobre la repisa, lejos de la corriente de la escalera."
+        }
+      ]
+    },
+    {
+      "type": "conversation",
+      "room": "korven_peldanos_cortos",
+      "narrative": [
+        {
+          "kind": "npc",
+          "text": "Ved: Tu nombre ya está en la tablilla. Pasa por los peldaños; están moviendo una carga por la franja."
+        }
+      ]
+    },
+    {
+      "type": "observation",
+      "room": "korven_peldanos_cortos",
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Escalones bajos y una franja para carros suben hacia las casas de Brumak. Al este vuelves al banco de revisión; al oeste entras en el patio. Una repisa guarda cuñas cerca del suelo. Las ruedas pequeñas han gastado más la piedra junto a los peldaños. Al sur, una puerta baja conduce al antiguo almacén de las cargas."
+        },
+        {
+          "kind": "world",
+          "text": "Ved levanta la vista y te deja pasar sin pedir otra presentación. Reconoces la cuña junto al peldaño corto y la franja que los carros mantienen despejada."
+        },
+        {
+          "kind": "world",
+          "text": "Los peldaños reciben barro que baja de las viviendas. Una habitante limpia el borde de la franja lateral antes de apoyar la rueda. Los recipientes se conservan sobre la repisa, lejos de la corriente de la escalera."
+        }
+      ],
+      "observe": [
+        {
+          "kind": "world",
+          "text": "Ved trabaja en un asiento bajo junto a los peldaños. Una cuña sujeta el carro mientras escucha a quien llega."
+        },
+        {
+          "kind": "world",
+          "text": "Una habitante recoloca una cuña y empuja el carro por la franja ancha. Un visitante alto espera junto a los peldaños; baja la cabeza al pasar bajo el borde de la puerta."
+        },
+        {
+          "kind": "world",
+          "text": "Los peldaños reciben barro que baja de las viviendas. Una habitante limpia el borde de la franja lateral antes de apoyar la rueda. Los recipientes se conservan sobre la repisa, lejos de la corriente de la escalera."
+        },
+        {
+          "kind": "trace",
+          "text": "Desde el asiento bajo se alcanza la repisa sin levantarse; quedan dos herramientas sobre ella."
+        },
+        {
+          "kind": "action",
+          "text": "Observas con atención."
+        }
+      ]
+    },
+    {
+      "type": "step",
+      "room": "brumak_centro",
+      "ambient": {
+        "region": "korven",
+        "time_of_day": "Día",
+        "timestamp": 45180,
+        "weather": "Lluvia",
+        "weather_description": "Las juntas reúnen agua y cambian comparaciones de polvo, color y apoyo."
+      },
+      "scene": [
+        {
+          "kind": "world",
+          "text": "El patio de Brumak está protegido del viento. Las casas Dravak tienen puertas bajas; el paso público deja más altura. Al este está la entrada del camino, al norte el taller, al oeste el almacén y al sur las viviendas. Bancos y cargas dejan libre el giro de los carros."
+        },
+        {
+          "kind": "world",
+          "text": "La tapa ya está encajada. El niño golpea dos veces el recipiente y pregunta cómo abrirlo; la Dravak le muestra el borde que debe levantar primero."
+        },
+        {
+          "kind": "world",
+          "text": "Los canales de las fachadas descargan en una junta lateral y los vecinos apartan sus bancos de ella. Las cargas entran de una en una para no llevar barro hacia las puertas bajas donde se reúnen las familias."
+        }
+      ]
+    },
+    {
+      "type": "observation",
+      "room": "brumak_centro",
+      "scene": [
+        {
+          "kind": "world",
+          "text": "El patio de Brumak está protegido del viento. Las casas Dravak tienen puertas bajas; el paso público deja más altura. Al este está la entrada del camino, al norte el taller, al oeste el almacén y al sur las viviendas. Bancos y cargas dejan libre el giro de los carros."
+        },
+        {
+          "kind": "world",
+          "text": "La tapa ya está encajada. El niño golpea dos veces el recipiente y pregunta cómo abrirlo; la Dravak le muestra el borde que debe levantar primero."
+        },
+        {
+          "kind": "world",
+          "text": "Los canales de las fachadas descargan en una junta lateral y los vecinos apartan sus bancos de ella. Las cargas entran de una en una para no llevar barro hacia las puertas bajas donde se reúnen las familias."
+        }
+      ],
+      "observe": [
+        {
+          "kind": "world",
+          "text": "La tapa ya está encajada. El niño golpea dos veces el recipiente y pregunta cómo abrirlo; la Dravak le muestra el borde que debe levantar primero."
+        },
+        {
+          "kind": "world",
+          "text": "Los canales de las fachadas descargan en una junta lateral y los vecinos apartan sus bancos de ella. Las cargas entran de una en una para no llevar barro hacia las puertas bajas donde se reúnen las familias."
+        },
+        {
+          "kind": "trace",
+          "text": "Recoge desagües de las viviendas antes de sacarlos del patio."
+        },
+        {
+          "kind": "action",
+          "text": "Observas con atención."
+        }
+      ]
+    },
+    {
+      "type": "step",
+      "room": "korven_almacen_grano",
+      "ambient": {
+        "region": "korven",
+        "time_of_day": "Día",
+        "timestamp": 45300,
+        "weather": "Lluvia",
+        "weather_description": "Las juntas reúnen agua y cambian comparaciones de polvo, color y apoyo."
+      },
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Las cestas descansan sobre apoyos de madera. Las recién llegadas esperan delante; las abiertas quedan al fondo, con las cubiertas dobladas. Una ventana alta deja entrar aire sin sol directo. Al este vuelves al patio y al oeste sales a la senda expuesta al viento."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces las cubiertas dobladas sobre las cestas abiertas. Las cerradas esperan bajo el alero, donde dejaron una tabla para secar la última."
+        },
+        {
+          "kind": "world",
+          "text": "Las cargas mojadas esperan bajo el alero. La encargada prepara un apoyo para secar sus cubiertas, separado de las cestas del fondo."
+        }
+      ]
+    },
+    {
+      "type": "step",
+      "room": "korven_senda_viento",
+      "ambient": {
+        "region": "korven",
+        "time_of_day": "Día",
+        "timestamp": 45360,
+        "weather": "Lluvia",
+        "weather_description": "Las juntas reúnen agua y cambian comparaciones de polvo, color y apoyo."
+      },
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Las paredes de Brumak quedan cada vez más bajas y el viento alcanza las cargas. Un cobertizo abierto permite ajustar las cubiertas. Al este vuelves al almacén; al sur sigue la bajada hacia Edran. Entre las piedras empiezan a aparecer franjas de tierra."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces el cobertizo donde ajustaron las tiras. De vuelta al pueblo aparecen primero paredes bajas y luego el rodeo junto a las casas."
+        },
+        {
+          "kind": "world",
+          "text": "El viento lleva agua bajo un lado del cobertizo y cambia el sitio donde se ajustan las tiras. Los viajeros evitan mojar el contenido al revisar el borde. La ruta de los llanos continúa más allá de la lluvia cercana."
+        }
+      ]
+    },
+    {
+      "type": "step",
+      "room": "korven_borde_tierra",
+      "ambient": {
+        "region": "korven",
+        "time_of_day": "Día",
+        "timestamp": 45420,
+        "weather": "Lluvia",
+        "weather_description": "Las juntas reúnen agua y cambian comparaciones de polvo, color y apoyo."
+      },
+      "scene": [
+        {
+          "kind": "world",
+          "text": "La tierra ocupa más espacio entre las piedras y aparecen pastos bajos. Una zanja recoge la arena que trae el viento. Al norte vuelves a la senda de las cubiertas; al sur cruzas hacia la linde de Edran. Los bloques de roca ya quedan separados. Una cubierta remendada junto a la zanja señala la Parada de los Cardos. Debajo hay una tabla para sentarse y un gancho donde secar una correa."
+        },
+        {
+          "kind": "world",
+          "text": "Puedes reconocer la franja donde el pasto mantiene tierra entre las rocas. Reconoces las plantas del terreno retenido antes de alcanzar los lomos de piedra. Las rodadas vuelven a reunirse del lado de Edran."
+        },
+        {
+          "kind": "world",
+          "text": "Los bloques dejan huecos de tierra donde el pasto consigue sujetarse. Bajo la cubierta de la parada, unas semillas de cardo se han prendido a una tira de tela."
+        }
+      ]
+    },
+    {
+      "type": "step",
+      "room": "edran_linde_piedra",
+      "ambient": {
+        "region": "edran",
+        "time_of_day": "Día",
+        "timestamp": 45480,
+        "weather": "Despejado",
+        "weather_description": "El terreno abierto conserva referencias entre parcelas, sombras y caminos."
+      },
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Las piedras aparecen cada vez más juntas. Al sur quedan el prado y los campos de Edran. El paso norte entra en Korven entre dos lomos de roca. Las rodadas terminan aquí; una explanada ofrece sitio para cambiar las cargas de apoyo."
+        },
+        {
+          "kind": "world",
+          "text": "Recuerdas dónde terminan las rodadas. En la explanada espera el soporte estrecho que probaron antes de pasar entre los lomos de roca."
+        },
+        {
+          "kind": "world",
+          "text": "Dos porteadores pasan sacos del carro a una estructura más estrecha. Uno sujeta el borde del paquete mientras el otro lo prueba entre los dos lomos de roca."
+        }
+      ]
+    },
+    {
+      "type": "step",
+      "room": "edran_ladera_piedra",
+      "ambient": {
+        "region": "edran",
+        "time_of_day": "Día",
+        "timestamp": 45540,
+        "weather": "Despejado",
+        "weather_description": "El terreno abierto conserva referencias entre parcelas, sombras y caminos."
+      },
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Tres salientes permiten dejar cestos sin apoyarlos en la tierra. El más bajo está protegido por un arbusto; debajo hay una cuerda rota, apartada del camino. Al este vuelves al prado. Al norte subes a la linde que lleva a Korven."
+        },
+        {
+          "kind": "world",
+          "text": "Puedes elegir apoyo según tamaño y abrigo. El apoyo bajo protege una carga pequeña; el alto deja espacio para un cesto más ancho."
+        },
+        {
+          "kind": "world",
+          "text": "Un porteador cambia su cesto del saliente alto al bajo antes de ajustar la correa. La pausa sucede fuera del sendero."
+        }
+      ]
+    },
+    {
+      "type": "step",
+      "room": "edran_prado",
+      "ambient": {
+        "region": "edran",
+        "time_of_day": "Día",
+        "timestamp": 45600,
+        "weather": "Despejado",
+        "weather_description": "El terreno abierto conserva referencias entre parcelas, sombras y caminos."
+      },
+      "scene": [
+        {
+          "kind": "world",
+          "text": "La hierba alta tiene una zona aplastada, con marcas demasiado anchas para ser de una persona. El sendero pasa por fuera de ella. Al sur vuelves a la loma; al oeste empieza la ladera pedregosa. Mira las señales antes de acercarte."
+        },
+        {
+          "kind": "danger",
+          "text": "Un cuerpo enorme aparta la hierba. El volumen de su lomo y la tierra hundida advierten una fuerza muy por encima de una primera formación."
+        },
+        {
+          "kind": "world",
+          "text": "Recuerdas el sendero entre las dos bandas de hierba. Fuera de él, unas huellas profundas hunden los tallos hacia el claro del prado."
+        }
+      ]
+    },
+    {
+      "type": "step",
+      "room": "edran_loma",
+      "ambient": {
+        "region": "edran",
+        "time_of_day": "Día",
+        "timestamp": 45660,
+        "weather": "Despejado",
+        "weather_description": "El terreno abierto conserva referencias entre parcelas, sombras y caminos."
+      },
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Desde la loma ves Valdren y tres parcelas a distinta altura. Una franja de pasto cortado ofrece sitio para parar. Al norte está el prado; al este bajas al lindero. El sendero sur entra en la parcela vieja."
+        },
+        {
+          "kind": "world",
+          "text": "La loma vuelve a reunir referencias visibles: los tejados de Valdren, la curva del agua y la piedra entre parcelas. Puedes relacionar sus posiciones desde aquí, aunque todavía no hayas seguido todos esos pasos."
+        },
+        {
+          "kind": "world",
+          "text": "El aire trae primero un golpe de la fragua y luego el rumor de un carro. Desde aquí puedes separar sonidos que abajo se mezclan con las conversaciones del pueblo."
+        }
+      ]
+    },
+    {
+      "type": "step",
+      "room": "edran_lindero",
+      "ambient": {
+        "region": "edran",
+        "time_of_day": "Día",
+        "timestamp": 45720,
+        "weather": "Despejado",
+        "weather_description": "El terreno abierto conserva referencias entre parcelas, sombras y caminos."
+      },
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Una piedra hundida separa las parcelas. Tiene una muesca llena de tierra en la cara sur. Por allí vuelves al campo. Al oeste subes a la loma; al este llegas al cobertizo, donde guardan estacas de distintos tamaños."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces la muesca de la piedra antigua. La cerca más nueva dobla a su lado y deja tierra abierta alrededor del pie."
+        },
+        {
+          "kind": "world",
+          "text": "Una joven deja el recipiente junto a la piedra y mira dos veces la cerca. Busca una tablilla pequeña entre la hierba y las huellas del borde."
+        }
+      ]
+    },
+    {
+      "type": "step",
+      "room": "edran_surcos",
+      "ambient": {
+        "region": "edran",
+        "time_of_day": "Día",
+        "timestamp": 45780,
+        "weather": "Despejado",
+        "weather_description": "El terreno abierto conserva referencias entre parcelas, sombras y caminos."
+      },
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Los surcos nuevos tienen tierra clara; los viejos conservan tallos cortos. Un sendero sin sembrar llega al lindero del norte. La acequia queda al sur. Hacia el oeste puedes entrar en una parcela vieja; al este hay una zanja seca."
+        },
+        {
+          "kind": "danger",
+          "text": "Entre los tallos viejos se arquea un lomo provisto de espinas. El movimiento se mantiene alrededor de un espacio corto: acercarte abandonaría el sendero seguro."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces la tierra nueva y la banda de tallos antiguos. El sendero rodea la depresión antes de alcanzar el cobertizo que se ve al otro lado."
+        }
+      ]
+    },
+    {
+      "type": "step",
+      "room": "edran_acequia",
+      "ambient": {
+        "region": "edran",
+        "time_of_day": "Día",
+        "timestamp": 45840,
+        "weather": "Despejado",
+        "weather_description": "El terreno abierto conserva referencias entre parcelas, sombras y caminos."
+      },
+      "scene": [
+        {
+          "kind": "world",
+          "text": "El agua rodea una losa antes de seguir hacia Valdren. Unas hojas tapan la abertura de una zanja seca. Al oeste queda el pueblo, al norte subes al campo y al sur alcanzas el estanque. La losa permite cruzar sin mojarte."
+        },
+        {
+          "kind": "world",
+          "text": "Una rana se deja caer desde la hierba y abre dos círculos pequeños. Más abajo, una mujer libera una hoja atrapada en la rejilla con la punta de una rama."
+        },
+        {
+          "kind": "world",
+          "text": "La corriente vuelve a doblar hacia la abertura tapada. Recuerdas el tramo seco que queda detrás de las hojas."
+        }
+      ]
+    },
+    {
+      "type": "step",
+      "room": "edran_estanque",
+      "ambient": {
+        "region": "edran",
+        "time_of_day": "Día",
+        "timestamp": 45900,
+        "weather": "Despejado",
+        "weather_description": "El terreno abierto conserva referencias entre parcelas, sombras y caminos."
+      },
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Un tronco hundido divide el estanque. El agua entra bajo una raíz y sale por el sur. Al norte vuelves a la acequia; al sur están los sauces. Desde las piedras secas puedes mirar la hierba oscura del bajo oriental."
+        },
+        {
+          "kind": "world",
+          "text": "Insectos se detienen sobre la parte quieta mientras el agua sigue pasando al otro lado del tronco. Un ave baja sólo hasta el borde firme."
+        }
+      ]
+    },
+    {
+      "type": "step",
+      "room": "edran_sauces",
+      "ambient": {
+        "region": "edran",
+        "time_of_day": "Día",
+        "timestamp": 45960,
+        "weather": "Despejado",
+        "weather_description": "El terreno abierto conserva referencias entre parcelas, sombras y caminos."
+      },
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Dos aves se esconden en el sauce. El agua corre bajo sus raíces. Al norte está el estanque; al este, el puente. La senda del puente gira alrededor del sauce y sigue la orilla."
+        },
+        {
+          "kind": "world",
+          "text": "Las aves cruzan entre dos ramas y regresan al mismo hueco. Sus movimientos dejan intervalos largos durante los que sólo se escucha la ribera."
+        }
+      ]
+    },
+    {
+      "type": "step",
+      "room": "edran_puente_juncos",
+      "ambient": {
+        "region": "edran",
+        "time_of_day": "Día",
+        "timestamp": 46020,
+        "weather": "Despejado",
+        "weather_description": "El terreno abierto conserva referencias entre parcelas, sombras y caminos."
+      },
+      "scene": [
+        {
+          "kind": "world",
+          "text": "El agua corre bajo las tablas separadas del puente. Sus apoyos se ven desde la orilla. Edran queda al oeste; al este cruzas hacia Lethra. Una tabla gastada marca dónde descansar una carga. Al sur puedes seguir junto a los sauces. Una marca antigua llama Vado de Juncos a este paso. El puente permite cruzarlo cuando el cauce cubre las piedras del fondo."
+        },
+        {
+          "kind": "world",
+          "text": "Recuerdas la tabla de espera en el lado alto. Los juncos rozan los apoyos del puente; enfrente vuelve a verse la subida hacia las plataformas."
+        },
+        {
+          "kind": "world",
+          "text": "Una mujer cruza con dos recipientes colgados a distinta altura. Espera en el lado alto para equilibrarlos otra vez, lejos del centro del puente."
+        }
+      ]
+    },
+    {
+      "type": "step",
+      "room": "lethra_hito_tierra",
+      "ambient": {
+        "region": "lethra",
+        "time_of_day": "Día",
+        "timestamp": 46080,
+        "weather": "Viento",
+        "weather_description": "Las hojas y envolturas se atan sin aplastar el contenido; las corrientes y las ondas de superficie dejan de parecer el mismo movimiento."
+      },
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Dos piedras marcan la franja alta junto al terreno inundable. Al este queda la senda de Narevia; al oeste cruzas hacia el puente de Edran. Un desvío al sur lleva al remanso de las aves. Las marcas de crecidas siguen en el suelo bajo."
+        },
+        {
+          "kind": "world",
+          "text": "Recuerdas la marca del agua en las dos piedras. Al oeste, la senda alta rodea los sauces antes de llegar al puente."
+        },
+        {
+          "kind": "world",
+          "text": "Las tablas quedan atrás, pero las crecidas siguen marcadas a la altura de tus tobillos. Las dos piedras señalan terreno que el agua todavía no cubre."
+        }
+      ]
+    },
+    {
+      "type": "step",
+      "room": "lethra_ribera_oeste",
+      "ambient": {
+        "region": "lethra",
+        "time_of_day": "Día",
+        "timestamp": 46140,
+        "weather": "Viento",
+        "weather_description": "Las hojas y envolturas se atan sin aplastar el contenido; las corrientes y las ondas de superficie dejan de parecer el mismo movimiento."
+      },
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Los apoyos se separan conforme te alejas de Narevia. Al este vuelves al pueblo; al oeste llegas al hito junto a la ruta de Edran. Bajo una cubierta común puedes ajustar las envolturas. Los viajeros de los llanos retiran de sus pies tierra distinta al barro del canal."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces la cubierta por el paño del apoyo exterior. Bajo techo quedan las envolturas limpias; del lado del pueblo asoman los primeros canales."
+        },
+        {
+          "kind": "world",
+          "text": "Una viajera de campo sacude su capa lejos de las envolturas de comida. Un vecino le señala el apoyo exterior y le acerca un paño para las manos."
+        }
+      ]
+    },
+    {
+      "type": "step",
+      "room": "narevia_centro",
+      "ambient": {
+        "region": "lethra",
+        "time_of_day": "Día",
+        "timestamp": 46200,
+        "weather": "Viento",
+        "weather_description": "Las hojas y envolturas se atan sin aplastar el contenido; las corrientes y las ondas de superficie dejan de parecer el mismo movimiento."
+      },
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Narevia ocupa una isla baja unida por pasarelas. Al norte está el camino terrestre, al este el taller, al sur el mercado y al oeste la ribera que sale hacia Edran. Los Marevyn pasan entre barcas y plataformas; los apoyos altos conservan espacio seco junto a la plaza."
+        },
+        {
+          "kind": "world",
+          "text": "Una familia reparte comida sobre la plataforma alta. Quien cuenta una visita de la otra orilla espera al final del martilleo para repetir el nombre; un niño sopla su cuenco."
+        },
+        {
+          "kind": "world",
+          "text": "La pasarela de llegada queda entre taller y mercado. Desde la plataforma alta puedes situar la ribera occidental por el hueco entre las barcas."
+        }
+      ]
+    }
+  ],
+  "milestones": [
+    {
+      "room": "edran_salida_huertos",
+      "map": {
+        "edges": [
+          [
+            "home:1",
+            "narevia_centro"
+          ],
+          [
+            "lethra_ribera_oeste",
+            "narevia_centro"
+          ],
+          [
+            "lethra_hito_tierra",
+            "lethra_ribera_oeste"
+          ],
+          [
+            "edran_puente_juncos",
+            "lethra_hito_tierra"
+          ],
+          [
+            "edran_puente_juncos",
+            "edran_sauces"
+          ],
+          [
+            "edran_estanque",
+            "edran_sauces"
+          ],
+          [
+            "edran_acequia",
+            "edran_estanque"
+          ],
+          [
+            "edran_acequia",
+            "edran_salida_huertos"
+          ]
+        ],
+        "frontiers": [
+          {
+            "direction": "oeste",
+            "from": "edran_salida_huertos"
+          },
+          {
+            "direction": "sur",
+            "from": "edran_salida_huertos"
+          }
+        ],
+        "nodes": [
+          {
+            "id": "home:1",
+            "kind": "home",
+            "name": "Hogar junto al canal de Narevia",
+            "region": "lethra",
+            "unexplored_directions": [],
+            "visited": true
+          },
+          {
+            "id": "narevia_centro",
+            "kind": "settlement",
+            "name": "Plaza de Narevia",
+            "region": "lethra",
+            "unexplored_directions": [
+              "norte",
+              "este",
+              "sur"
+            ],
+            "visited": true
+          },
+          {
+            "id": "lethra_ribera_oeste",
+            "kind": "road",
+            "name": "Ribera hacia Edran",
+            "region": "lethra",
+            "unexplored_directions": [],
+            "visited": true
+          },
+          {
+            "id": "lethra_hito_tierra",
+            "kind": "road",
+            "name": "Cruce del puente",
+            "region": "lethra",
+            "unexplored_directions": [
+              "sur"
+            ],
+            "visited": true
+          },
+          {
+            "id": "edran_puente_juncos",
+            "kind": "landmark",
+            "name": "Vado de Juncos",
+            "region": "edran",
+            "unexplored_directions": [
+              "oeste"
+            ],
+            "visited": true
+          },
+          {
+            "id": "edran_sauces",
+            "kind": "wilderness",
+            "name": "Borde de los Sauces Bajos",
+            "region": "edran",
+            "unexplored_directions": [],
+            "visited": true
+          },
+          {
+            "id": "edran_estanque",
+            "kind": "landmark",
+            "name": "Estanque del Reflejo Partido",
+            "region": "edran",
+            "unexplored_directions": [
+              "este"
+            ],
+            "visited": true
+          },
+          {
+            "id": "edran_acequia",
+            "kind": "landmark",
+            "name": "Curva de la Acequia",
+            "region": "edran",
+            "unexplored_directions": [
+              "norte"
+            ],
+            "visited": true
+          },
+          {
+            "id": "edran_salida_huertos",
+            "kind": "road",
+            "name": "Salida de las Cercas Bajas",
+            "region": "edran",
+            "unexplored_directions": [
+              "oeste",
+              "sur"
+            ],
+            "visited": true
+          }
+        ],
+        "routes": [
+          {
+            "direction": "salir",
+            "from": "home:1",
+            "to": "narevia_centro"
+          },
+          {
+            "direction": "hogar",
+            "from": "narevia_centro",
+            "to": "home:1"
+          },
+          {
+            "direction": "este",
+            "from": "lethra_ribera_oeste",
+            "to": "narevia_centro"
+          },
+          {
+            "direction": "oeste",
+            "from": "narevia_centro",
+            "to": "lethra_ribera_oeste"
+          },
+          {
+            "direction": "este",
+            "from": "lethra_hito_tierra",
+            "to": "lethra_ribera_oeste"
+          },
+          {
+            "direction": "oeste",
+            "from": "lethra_ribera_oeste",
+            "to": "lethra_hito_tierra"
+          },
+          {
+            "direction": "este",
+            "from": "edran_puente_juncos",
+            "to": "lethra_hito_tierra"
+          },
+          {
+            "direction": "oeste",
+            "from": "lethra_hito_tierra",
+            "to": "edran_puente_juncos"
+          },
+          {
+            "direction": "sur",
+            "from": "edran_puente_juncos",
+            "to": "edran_sauces"
+          },
+          {
+            "direction": "este",
+            "from": "edran_sauces",
+            "to": "edran_puente_juncos"
+          },
+          {
+            "direction": "sur",
+            "from": "edran_estanque",
+            "to": "edran_sauces"
+          },
+          {
+            "direction": "norte",
+            "from": "edran_sauces",
+            "to": "edran_estanque"
+          },
+          {
+            "direction": "sur",
+            "from": "edran_acequia",
+            "to": "edran_estanque"
+          },
+          {
+            "direction": "norte",
+            "from": "edran_estanque",
+            "to": "edran_acequia"
+          },
+          {
+            "direction": "oeste",
+            "from": "edran_acequia",
+            "to": "edran_salida_huertos"
+          },
+          {
+            "direction": "este",
+            "from": "edran_salida_huertos",
+            "to": "edran_acequia"
+          }
+        ]
+      }
+    },
+    {
+      "room": "valdren_huertos",
+      "map": {
+        "edges": [
+          [
+            "home:1",
+            "narevia_centro"
+          ],
+          [
+            "lethra_ribera_oeste",
+            "narevia_centro"
+          ],
+          [
+            "lethra_hito_tierra",
+            "lethra_ribera_oeste"
+          ],
+          [
+            "edran_puente_juncos",
+            "lethra_hito_tierra"
+          ],
+          [
+            "edran_puente_juncos",
+            "edran_sauces"
+          ],
+          [
+            "edran_estanque",
+            "edran_sauces"
+          ],
+          [
+            "edran_acequia",
+            "edran_estanque"
+          ],
+          [
+            "edran_acequia",
+            "edran_salida_huertos"
+          ],
+          [
+            "edran_salida_huertos",
+            "valdren_huertos"
+          ]
+        ],
+        "frontiers": [
+          {
+            "direction": "oeste",
+            "from": "valdren_huertos"
+          },
+          {
+            "direction": "norte",
+            "from": "valdren_huertos"
+          }
+        ],
+        "nodes": [
+          {
+            "id": "home:1",
+            "kind": "home",
+            "name": "Hogar junto al canal de Narevia",
+            "region": "lethra",
+            "unexplored_directions": [],
+            "visited": true
+          },
+          {
+            "id": "narevia_centro",
+            "kind": "settlement",
+            "name": "Plaza de Narevia",
+            "region": "lethra",
+            "unexplored_directions": [
+              "norte",
+              "este",
+              "sur"
+            ],
+            "visited": true
+          },
+          {
+            "id": "lethra_ribera_oeste",
+            "kind": "road",
+            "name": "Ribera hacia Edran",
+            "region": "lethra",
+            "unexplored_directions": [],
+            "visited": true
+          },
+          {
+            "id": "lethra_hito_tierra",
+            "kind": "road",
+            "name": "Cruce del puente",
+            "region": "lethra",
+            "unexplored_directions": [
+              "sur"
+            ],
+            "visited": true
+          },
+          {
+            "id": "edran_puente_juncos",
+            "kind": "landmark",
+            "name": "Vado de Juncos",
+            "region": "edran",
+            "unexplored_directions": [
+              "oeste"
+            ],
+            "visited": true
+          },
+          {
+            "id": "edran_sauces",
+            "kind": "wilderness",
+            "name": "Borde de los Sauces Bajos",
+            "region": "edran",
+            "unexplored_directions": [],
+            "visited": true
+          },
+          {
+            "id": "edran_estanque",
+            "kind": "landmark",
+            "name": "Estanque del Reflejo Partido",
+            "region": "edran",
+            "unexplored_directions": [
+              "este"
+            ],
+            "visited": true
+          },
+          {
+            "id": "edran_acequia",
+            "kind": "landmark",
+            "name": "Curva de la Acequia",
+            "region": "edran",
+            "unexplored_directions": [
+              "norte"
+            ],
+            "visited": true
+          },
+          {
+            "id": "edran_salida_huertos",
+            "kind": "road",
+            "name": "Salida de las Cercas Bajas",
+            "region": "edran",
+            "unexplored_directions": [
+              "sur"
+            ],
+            "visited": true
+          },
+          {
+            "id": "valdren_huertos",
+            "kind": "settlement",
+            "name": "Corredor de los Huertos",
+            "region": "edran",
+            "unexplored_directions": [
+              "oeste",
+              "norte"
+            ],
+            "visited": true
+          }
+        ],
+        "routes": [
+          {
+            "direction": "salir",
+            "from": "home:1",
+            "to": "narevia_centro"
+          },
+          {
+            "direction": "hogar",
+            "from": "narevia_centro",
+            "to": "home:1"
+          },
+          {
+            "direction": "este",
+            "from": "lethra_ribera_oeste",
+            "to": "narevia_centro"
+          },
+          {
+            "direction": "oeste",
+            "from": "narevia_centro",
+            "to": "lethra_ribera_oeste"
+          },
+          {
+            "direction": "este",
+            "from": "lethra_hito_tierra",
+            "to": "lethra_ribera_oeste"
+          },
+          {
+            "direction": "oeste",
+            "from": "lethra_ribera_oeste",
+            "to": "lethra_hito_tierra"
+          },
+          {
+            "direction": "este",
+            "from": "edran_puente_juncos",
+            "to": "lethra_hito_tierra"
+          },
+          {
+            "direction": "oeste",
+            "from": "lethra_hito_tierra",
+            "to": "edran_puente_juncos"
+          },
+          {
+            "direction": "sur",
+            "from": "edran_puente_juncos",
+            "to": "edran_sauces"
+          },
+          {
+            "direction": "este",
+            "from": "edran_sauces",
+            "to": "edran_puente_juncos"
+          },
+          {
+            "direction": "sur",
+            "from": "edran_estanque",
+            "to": "edran_sauces"
+          },
+          {
+            "direction": "norte",
+            "from": "edran_sauces",
+            "to": "edran_estanque"
+          },
+          {
+            "direction": "sur",
+            "from": "edran_acequia",
+            "to": "edran_estanque"
+          },
+          {
+            "direction": "norte",
+            "from": "edran_estanque",
+            "to": "edran_acequia"
+          },
+          {
+            "direction": "oeste",
+            "from": "edran_acequia",
+            "to": "edran_salida_huertos"
+          },
+          {
+            "direction": "este",
+            "from": "edran_salida_huertos",
+            "to": "edran_acequia"
+          },
+          {
+            "direction": "oeste",
+            "from": "edran_salida_huertos",
+            "to": "valdren_huertos"
+          },
+          {
+            "direction": "este",
+            "from": "valdren_huertos",
+            "to": "edran_salida_huertos"
+          }
+        ]
+      }
+    },
+    {
+      "room": "edran_salida_huertos",
+      "map": {
+        "edges": [
+          [
+            "home:1",
+            "narevia_centro"
+          ],
+          [
+            "lethra_ribera_oeste",
+            "narevia_centro"
+          ],
+          [
+            "lethra_hito_tierra",
+            "lethra_ribera_oeste"
+          ],
+          [
+            "edran_puente_juncos",
+            "lethra_hito_tierra"
+          ],
+          [
+            "edran_puente_juncos",
+            "edran_sauces"
+          ],
+          [
+            "edran_estanque",
+            "edran_sauces"
+          ],
+          [
+            "edran_acequia",
+            "edran_estanque"
+          ],
+          [
+            "edran_acequia",
+            "edran_salida_huertos"
+          ],
+          [
+            "edran_salida_huertos",
+            "valdren_huertos"
+          ]
+        ],
+        "frontiers": [
+          {
+            "direction": "sur",
+            "from": "edran_salida_huertos"
+          }
+        ],
+        "nodes": [
+          {
+            "id": "home:1",
+            "kind": "home",
+            "name": "Hogar junto al canal de Narevia",
+            "region": "lethra",
+            "unexplored_directions": [],
+            "visited": true
+          },
+          {
+            "id": "narevia_centro",
+            "kind": "settlement",
+            "name": "Plaza de Narevia",
+            "region": "lethra",
+            "unexplored_directions": [
+              "norte",
+              "este",
+              "sur"
+            ],
+            "visited": true
+          },
+          {
+            "id": "lethra_ribera_oeste",
+            "kind": "road",
+            "name": "Ribera hacia Edran",
+            "region": "lethra",
+            "unexplored_directions": [],
+            "visited": true
+          },
+          {
+            "id": "lethra_hito_tierra",
+            "kind": "road",
+            "name": "Cruce del puente",
+            "region": "lethra",
+            "unexplored_directions": [
+              "sur"
+            ],
+            "visited": true
+          },
+          {
+            "id": "edran_puente_juncos",
+            "kind": "landmark",
+            "name": "Vado de Juncos",
+            "region": "edran",
+            "unexplored_directions": [
+              "oeste"
+            ],
+            "visited": true
+          },
+          {
+            "id": "edran_sauces",
+            "kind": "wilderness",
+            "name": "Borde de los Sauces Bajos",
+            "region": "edran",
+            "unexplored_directions": [],
+            "visited": true
+          },
+          {
+            "id": "edran_estanque",
+            "kind": "landmark",
+            "name": "Estanque del Reflejo Partido",
+            "region": "edran",
+            "unexplored_directions": [
+              "este"
+            ],
+            "visited": true
+          },
+          {
+            "id": "edran_acequia",
+            "kind": "landmark",
+            "name": "Curva de la Acequia",
+            "region": "edran",
+            "unexplored_directions": [
+              "norte"
+            ],
+            "visited": true
+          },
+          {
+            "id": "edran_salida_huertos",
+            "kind": "road",
+            "name": "Salida de las Cercas Bajas",
+            "region": "edran",
+            "unexplored_directions": [
+              "sur"
+            ],
+            "visited": true
+          },
+          {
+            "id": "valdren_huertos",
+            "kind": "settlement",
+            "name": "Corredor de los Huertos",
+            "region": "edran",
+            "unexplored_directions": [
+              "oeste",
+              "norte"
+            ],
+            "visited": true
+          }
+        ],
+        "routes": [
+          {
+            "direction": "salir",
+            "from": "home:1",
+            "to": "narevia_centro"
+          },
+          {
+            "direction": "hogar",
+            "from": "narevia_centro",
+            "to": "home:1"
+          },
+          {
+            "direction": "este",
+            "from": "lethra_ribera_oeste",
+            "to": "narevia_centro"
+          },
+          {
+            "direction": "oeste",
+            "from": "narevia_centro",
+            "to": "lethra_ribera_oeste"
+          },
+          {
+            "direction": "este",
+            "from": "lethra_hito_tierra",
+            "to": "lethra_ribera_oeste"
+          },
+          {
+            "direction": "oeste",
+            "from": "lethra_ribera_oeste",
+            "to": "lethra_hito_tierra"
+          },
+          {
+            "direction": "este",
+            "from": "edran_puente_juncos",
+            "to": "lethra_hito_tierra"
+          },
+          {
+            "direction": "oeste",
+            "from": "lethra_hito_tierra",
+            "to": "edran_puente_juncos"
+          },
+          {
+            "direction": "sur",
+            "from": "edran_puente_juncos",
+            "to": "edran_sauces"
+          },
+          {
+            "direction": "este",
+            "from": "edran_sauces",
+            "to": "edran_puente_juncos"
+          },
+          {
+            "direction": "sur",
+            "from": "edran_estanque",
+            "to": "edran_sauces"
+          },
+          {
+            "direction": "norte",
+            "from": "edran_sauces",
+            "to": "edran_estanque"
+          },
+          {
+            "direction": "sur",
+            "from": "edran_acequia",
+            "to": "edran_estanque"
+          },
+          {
+            "direction": "norte",
+            "from": "edran_estanque",
+            "to": "edran_acequia"
+          },
+          {
+            "direction": "oeste",
+            "from": "edran_acequia",
+            "to": "edran_salida_huertos"
+          },
+          {
+            "direction": "este",
+            "from": "edran_salida_huertos",
+            "to": "edran_acequia"
+          },
+          {
+            "direction": "oeste",
+            "from": "edran_salida_huertos",
+            "to": "valdren_huertos"
+          },
+          {
+            "direction": "este",
+            "from": "valdren_huertos",
+            "to": "edran_salida_huertos"
+          }
+        ]
+      }
+    },
+    {
+      "room": "korven_peldanos_cortos",
+      "map": {
+        "edges": [
+          [
+            "home:1",
+            "narevia_centro"
+          ],
+          [
+            "lethra_ribera_oeste",
+            "narevia_centro"
+          ],
+          [
+            "lethra_hito_tierra",
+            "lethra_ribera_oeste"
+          ],
+          [
+            "edran_puente_juncos",
+            "lethra_hito_tierra"
+          ],
+          [
+            "edran_puente_juncos",
+            "edran_sauces"
+          ],
+          [
+            "edran_estanque",
+            "edran_sauces"
+          ],
+          [
+            "edran_acequia",
+            "edran_estanque"
+          ],
+          [
+            "edran_acequia",
+            "edran_salida_huertos"
+          ],
+          [
+            "edran_salida_huertos",
+            "valdren_huertos"
+          ],
+          [
+            "edran_acequia",
+            "edran_surcos"
+          ],
+          [
+            "edran_lindero",
+            "edran_surcos"
+          ],
+          [
+            "edran_lindero",
+            "edran_loma"
+          ],
+          [
+            "edran_loma",
+            "edran_prado"
+          ],
+          [
+            "edran_ladera_piedra",
+            "edran_prado"
+          ],
+          [
+            "edran_ladera_piedra",
+            "edran_linde_piedra"
+          ],
+          [
+            "edran_linde_piedra",
+            "korven_borde_tierra"
+          ],
+          [
+            "korven_borde_tierra",
+            "korven_senda_viento"
+          ],
+          [
+            "korven_almacen_grano",
+            "korven_senda_viento"
+          ],
+          [
+            "brumak_centro",
+            "korven_almacen_grano"
+          ],
+          [
+            "brumak_centro",
+            "korven_peldanos_cortos"
+          ]
+        ],
+        "frontiers": [
+          {
+            "direction": "este",
+            "from": "korven_peldanos_cortos"
+          },
+          {
+            "direction": "sur",
+            "from": "korven_peldanos_cortos"
+          }
+        ],
+        "nodes": [
+          {
+            "id": "home:1",
+            "kind": "home",
+            "name": "Hogar junto al canal de Narevia",
+            "region": "lethra",
+            "unexplored_directions": [],
+            "visited": true
+          },
+          {
+            "id": "narevia_centro",
+            "kind": "settlement",
+            "name": "Plaza de Narevia",
+            "region": "lethra",
+            "unexplored_directions": [
+              "norte",
+              "este",
+              "sur"
+            ],
+            "visited": true
+          },
+          {
+            "id": "lethra_ribera_oeste",
+            "kind": "road",
+            "name": "Ribera hacia Edran",
+            "region": "lethra",
+            "unexplored_directions": [],
+            "visited": true
+          },
+          {
+            "id": "lethra_hito_tierra",
+            "kind": "road",
+            "name": "Cruce del puente",
+            "region": "lethra",
+            "unexplored_directions": [
+              "sur"
+            ],
+            "visited": true
+          },
+          {
+            "id": "edran_puente_juncos",
+            "kind": "landmark",
+            "name": "Vado de Juncos",
+            "region": "edran",
+            "unexplored_directions": [
+              "oeste"
+            ],
+            "visited": true
+          },
+          {
+            "id": "edran_sauces",
+            "kind": "wilderness",
+            "name": "Borde de los Sauces Bajos",
+            "region": "edran",
+            "unexplored_directions": [],
+            "visited": true
+          },
+          {
+            "id": "edran_estanque",
+            "kind": "landmark",
+            "name": "Estanque del Reflejo Partido",
+            "region": "edran",
+            "unexplored_directions": [
+              "este"
+            ],
+            "visited": true
+          },
+          {
+            "id": "edran_acequia",
+            "kind": "landmark",
+            "name": "Curva de la Acequia",
+            "region": "edran",
+            "unexplored_directions": [],
+            "visited": true
+          },
+          {
+            "id": "edran_salida_huertos",
+            "kind": "road",
+            "name": "Salida de las Cercas Bajas",
+            "region": "edran",
+            "unexplored_directions": [
+              "sur"
+            ],
+            "visited": true
+          },
+          {
+            "id": "valdren_huertos",
+            "kind": "settlement",
+            "name": "Corredor de los Huertos",
+            "region": "edran",
+            "unexplored_directions": [
+              "oeste",
+              "norte"
+            ],
+            "visited": true
+          },
+          {
+            "id": "edran_surcos",
+            "kind": "wilderness",
+            "name": "Campo de surcos",
+            "region": "edran",
+            "unexplored_directions": [
+              "oeste",
+              "este"
+            ],
+            "visited": true
+          },
+          {
+            "id": "edran_lindero",
+            "kind": "landmark",
+            "name": "Lindero de la Piedra Hundida",
+            "region": "edran",
+            "unexplored_directions": [
+              "este"
+            ],
+            "visited": true
+          },
+          {
+            "id": "edran_loma",
+            "kind": "landmark",
+            "name": "Loma del Pasto Cortado",
+            "region": "edran",
+            "unexplored_directions": [
+              "sur"
+            ],
+            "visited": true
+          },
+          {
+            "id": "edran_prado",
+            "kind": "wilderness",
+            "name": "Prado de las Marcas Anchas",
+            "region": "edran",
+            "unexplored_directions": [],
+            "visited": true
+          },
+          {
+            "id": "edran_ladera_piedra",
+            "kind": "landmark",
+            "name": "Ladera de los cestos",
+            "region": "edran",
+            "unexplored_directions": [],
+            "visited": true
+          },
+          {
+            "id": "edran_linde_piedra",
+            "kind": "road",
+            "name": "Paso hacia Korven",
+            "region": "edran",
+            "unexplored_directions": [],
+            "visited": true
+          },
+          {
+            "id": "korven_borde_tierra",
+            "kind": "road",
+            "name": "Parada de los Cardos",
+            "region": "korven",
+            "unexplored_directions": [],
+            "visited": true
+          },
+          {
+            "id": "korven_senda_viento",
+            "kind": "road",
+            "name": "Senda del viento",
+            "region": "korven",
+            "unexplored_directions": [],
+            "visited": true
+          },
+          {
+            "id": "korven_almacen_grano",
+            "kind": "interior",
+            "name": "Almacén de grano",
+            "region": "korven",
+            "unexplored_directions": [],
+            "visited": true
+          },
+          {
+            "id": "brumak_centro",
+            "kind": "settlement",
+            "name": "Patio de Brumak",
+            "region": "korven",
+            "unexplored_directions": [
+              "norte",
+              "sur"
+            ],
+            "visited": true
+          },
+          {
+            "id": "korven_peldanos_cortos",
+            "kind": "road",
+            "name": "Escalones bajos",
+            "region": "korven",
+            "unexplored_directions": [
+              "este",
+              "sur"
+            ],
+            "visited": true
+          }
+        ],
+        "routes": [
+          {
+            "direction": "salir",
+            "from": "home:1",
+            "to": "narevia_centro"
+          },
+          {
+            "direction": "hogar",
+            "from": "narevia_centro",
+            "to": "home:1"
+          },
+          {
+            "direction": "este",
+            "from": "lethra_ribera_oeste",
+            "to": "narevia_centro"
+          },
+          {
+            "direction": "oeste",
+            "from": "narevia_centro",
+            "to": "lethra_ribera_oeste"
+          },
+          {
+            "direction": "este",
+            "from": "lethra_hito_tierra",
+            "to": "lethra_ribera_oeste"
+          },
+          {
+            "direction": "oeste",
+            "from": "lethra_ribera_oeste",
+            "to": "lethra_hito_tierra"
+          },
+          {
+            "direction": "este",
+            "from": "edran_puente_juncos",
+            "to": "lethra_hito_tierra"
+          },
+          {
+            "direction": "oeste",
+            "from": "lethra_hito_tierra",
+            "to": "edran_puente_juncos"
+          },
+          {
+            "direction": "sur",
+            "from": "edran_puente_juncos",
+            "to": "edran_sauces"
+          },
+          {
+            "direction": "este",
+            "from": "edran_sauces",
+            "to": "edran_puente_juncos"
+          },
+          {
+            "direction": "sur",
+            "from": "edran_estanque",
+            "to": "edran_sauces"
+          },
+          {
+            "direction": "norte",
+            "from": "edran_sauces",
+            "to": "edran_estanque"
+          },
+          {
+            "direction": "sur",
+            "from": "edran_acequia",
+            "to": "edran_estanque"
+          },
+          {
+            "direction": "norte",
+            "from": "edran_estanque",
+            "to": "edran_acequia"
+          },
+          {
+            "direction": "oeste",
+            "from": "edran_acequia",
+            "to": "edran_salida_huertos"
+          },
+          {
+            "direction": "este",
+            "from": "edran_salida_huertos",
+            "to": "edran_acequia"
+          },
+          {
+            "direction": "oeste",
+            "from": "edran_salida_huertos",
+            "to": "valdren_huertos"
+          },
+          {
+            "direction": "este",
+            "from": "valdren_huertos",
+            "to": "edran_salida_huertos"
+          },
+          {
+            "direction": "norte",
+            "from": "edran_acequia",
+            "to": "edran_surcos"
+          },
+          {
+            "direction": "sur",
+            "from": "edran_surcos",
+            "to": "edran_acequia"
+          },
+          {
+            "direction": "sur",
+            "from": "edran_lindero",
+            "to": "edran_surcos"
+          },
+          {
+            "direction": "norte",
+            "from": "edran_surcos",
+            "to": "edran_lindero"
+          },
+          {
+            "direction": "oeste",
+            "from": "edran_lindero",
+            "to": "edran_loma"
+          },
+          {
+            "direction": "este",
+            "from": "edran_loma",
+            "to": "edran_lindero"
+          },
+          {
+            "direction": "norte",
+            "from": "edran_loma",
+            "to": "edran_prado"
+          },
+          {
+            "direction": "sur",
+            "from": "edran_prado",
+            "to": "edran_loma"
+          },
+          {
+            "direction": "este",
+            "from": "edran_ladera_piedra",
+            "to": "edran_prado"
+          },
+          {
+            "direction": "oeste",
+            "from": "edran_prado",
+            "to": "edran_ladera_piedra"
+          },
+          {
+            "direction": "norte",
+            "from": "edran_ladera_piedra",
+            "to": "edran_linde_piedra"
+          },
+          {
+            "direction": "sur",
+            "from": "edran_linde_piedra",
+            "to": "edran_ladera_piedra"
+          },
+          {
+            "direction": "norte",
+            "from": "edran_linde_piedra",
+            "to": "korven_borde_tierra"
+          },
+          {
+            "direction": "sur",
+            "from": "korven_borde_tierra",
+            "to": "edran_linde_piedra"
+          },
+          {
+            "direction": "norte",
+            "from": "korven_borde_tierra",
+            "to": "korven_senda_viento"
+          },
+          {
+            "direction": "sur",
+            "from": "korven_senda_viento",
+            "to": "korven_borde_tierra"
+          },
+          {
+            "direction": "oeste",
+            "from": "korven_almacen_grano",
+            "to": "korven_senda_viento"
+          },
+          {
+            "direction": "este",
+            "from": "korven_senda_viento",
+            "to": "korven_almacen_grano"
+          },
+          {
+            "direction": "oeste",
+            "from": "brumak_centro",
+            "to": "korven_almacen_grano"
+          },
+          {
+            "direction": "este",
+            "from": "korven_almacen_grano",
+            "to": "brumak_centro"
+          },
+          {
+            "direction": "este",
+            "from": "brumak_centro",
+            "to": "korven_peldanos_cortos"
+          },
+          {
+            "direction": "oeste",
+            "from": "korven_peldanos_cortos",
+            "to": "brumak_centro"
+          }
+        ]
+      }
+    },
+    {
+      "room": "brumak_centro",
+      "map": {
+        "edges": [
+          [
+            "home:1",
+            "narevia_centro"
+          ],
+          [
+            "lethra_ribera_oeste",
+            "narevia_centro"
+          ],
+          [
+            "lethra_hito_tierra",
+            "lethra_ribera_oeste"
+          ],
+          [
+            "edran_puente_juncos",
+            "lethra_hito_tierra"
+          ],
+          [
+            "edran_puente_juncos",
+            "edran_sauces"
+          ],
+          [
+            "edran_estanque",
+            "edran_sauces"
+          ],
+          [
+            "edran_acequia",
+            "edran_estanque"
+          ],
+          [
+            "edran_acequia",
+            "edran_salida_huertos"
+          ],
+          [
+            "edran_salida_huertos",
+            "valdren_huertos"
+          ],
+          [
+            "edran_acequia",
+            "edran_surcos"
+          ],
+          [
+            "edran_lindero",
+            "edran_surcos"
+          ],
+          [
+            "edran_lindero",
+            "edran_loma"
+          ],
+          [
+            "edran_loma",
+            "edran_prado"
+          ],
+          [
+            "edran_ladera_piedra",
+            "edran_prado"
+          ],
+          [
+            "edran_ladera_piedra",
+            "edran_linde_piedra"
+          ],
+          [
+            "edran_linde_piedra",
+            "korven_borde_tierra"
+          ],
+          [
+            "korven_borde_tierra",
+            "korven_senda_viento"
+          ],
+          [
+            "korven_almacen_grano",
+            "korven_senda_viento"
+          ],
+          [
+            "brumak_centro",
+            "korven_almacen_grano"
+          ],
+          [
+            "brumak_centro",
+            "korven_peldanos_cortos"
+          ]
+        ],
+        "frontiers": [
+          {
+            "direction": "norte",
+            "from": "brumak_centro"
+          },
+          {
+            "direction": "sur",
+            "from": "brumak_centro"
+          }
+        ],
+        "nodes": [
+          {
+            "id": "home:1",
+            "kind": "home",
+            "name": "Hogar junto al canal de Narevia",
+            "region": "lethra",
+            "unexplored_directions": [],
+            "visited": true
+          },
+          {
+            "id": "narevia_centro",
+            "kind": "settlement",
+            "name": "Plaza de Narevia",
+            "region": "lethra",
+            "unexplored_directions": [
+              "norte",
+              "este",
+              "sur"
+            ],
+            "visited": true
+          },
+          {
+            "id": "lethra_ribera_oeste",
+            "kind": "road",
+            "name": "Ribera hacia Edran",
+            "region": "lethra",
+            "unexplored_directions": [],
+            "visited": true
+          },
+          {
+            "id": "lethra_hito_tierra",
+            "kind": "road",
+            "name": "Cruce del puente",
+            "region": "lethra",
+            "unexplored_directions": [
+              "sur"
+            ],
+            "visited": true
+          },
+          {
+            "id": "edran_puente_juncos",
+            "kind": "landmark",
+            "name": "Vado de Juncos",
+            "region": "edran",
+            "unexplored_directions": [
+              "oeste"
+            ],
+            "visited": true
+          },
+          {
+            "id": "edran_sauces",
+            "kind": "wilderness",
+            "name": "Borde de los Sauces Bajos",
+            "region": "edran",
+            "unexplored_directions": [],
+            "visited": true
+          },
+          {
+            "id": "edran_estanque",
+            "kind": "landmark",
+            "name": "Estanque del Reflejo Partido",
+            "region": "edran",
+            "unexplored_directions": [
+              "este"
+            ],
+            "visited": true
+          },
+          {
+            "id": "edran_acequia",
+            "kind": "landmark",
+            "name": "Curva de la Acequia",
+            "region": "edran",
+            "unexplored_directions": [],
+            "visited": true
+          },
+          {
+            "id": "edran_salida_huertos",
+            "kind": "road",
+            "name": "Salida de las Cercas Bajas",
+            "region": "edran",
+            "unexplored_directions": [
+              "sur"
+            ],
+            "visited": true
+          },
+          {
+            "id": "valdren_huertos",
+            "kind": "settlement",
+            "name": "Corredor de los Huertos",
+            "region": "edran",
+            "unexplored_directions": [
+              "oeste",
+              "norte"
+            ],
+            "visited": true
+          },
+          {
+            "id": "edran_surcos",
+            "kind": "wilderness",
+            "name": "Campo de surcos",
+            "region": "edran",
+            "unexplored_directions": [
+              "oeste",
+              "este"
+            ],
+            "visited": true
+          },
+          {
+            "id": "edran_lindero",
+            "kind": "landmark",
+            "name": "Lindero de la Piedra Hundida",
+            "region": "edran",
+            "unexplored_directions": [
+              "este"
+            ],
+            "visited": true
+          },
+          {
+            "id": "edran_loma",
+            "kind": "landmark",
+            "name": "Loma del Pasto Cortado",
+            "region": "edran",
+            "unexplored_directions": [
+              "sur"
+            ],
+            "visited": true
+          },
+          {
+            "id": "edran_prado",
+            "kind": "wilderness",
+            "name": "Prado de las Marcas Anchas",
+            "region": "edran",
+            "unexplored_directions": [],
+            "visited": true
+          },
+          {
+            "id": "edran_ladera_piedra",
+            "kind": "landmark",
+            "name": "Ladera de los cestos",
+            "region": "edran",
+            "unexplored_directions": [],
+            "visited": true
+          },
+          {
+            "id": "edran_linde_piedra",
+            "kind": "road",
+            "name": "Paso hacia Korven",
+            "region": "edran",
+            "unexplored_directions": [],
+            "visited": true
+          },
+          {
+            "id": "korven_borde_tierra",
+            "kind": "road",
+            "name": "Parada de los Cardos",
+            "region": "korven",
+            "unexplored_directions": [],
+            "visited": true
+          },
+          {
+            "id": "korven_senda_viento",
+            "kind": "road",
+            "name": "Senda del viento",
+            "region": "korven",
+            "unexplored_directions": [],
+            "visited": true
+          },
+          {
+            "id": "korven_almacen_grano",
+            "kind": "interior",
+            "name": "Almacén de grano",
+            "region": "korven",
+            "unexplored_directions": [],
+            "visited": true
+          },
+          {
+            "id": "brumak_centro",
+            "kind": "settlement",
+            "name": "Patio de Brumak",
+            "region": "korven",
+            "unexplored_directions": [
+              "norte",
+              "sur"
+            ],
+            "visited": true
+          },
+          {
+            "id": "korven_peldanos_cortos",
+            "kind": "road",
+            "name": "Escalones bajos",
+            "region": "korven",
+            "unexplored_directions": [
+              "este",
+              "sur"
+            ],
+            "visited": true
+          }
+        ],
+        "routes": [
+          {
+            "direction": "salir",
+            "from": "home:1",
+            "to": "narevia_centro"
+          },
+          {
+            "direction": "hogar",
+            "from": "narevia_centro",
+            "to": "home:1"
+          },
+          {
+            "direction": "este",
+            "from": "lethra_ribera_oeste",
+            "to": "narevia_centro"
+          },
+          {
+            "direction": "oeste",
+            "from": "narevia_centro",
+            "to": "lethra_ribera_oeste"
+          },
+          {
+            "direction": "este",
+            "from": "lethra_hito_tierra",
+            "to": "lethra_ribera_oeste"
+          },
+          {
+            "direction": "oeste",
+            "from": "lethra_ribera_oeste",
+            "to": "lethra_hito_tierra"
+          },
+          {
+            "direction": "este",
+            "from": "edran_puente_juncos",
+            "to": "lethra_hito_tierra"
+          },
+          {
+            "direction": "oeste",
+            "from": "lethra_hito_tierra",
+            "to": "edran_puente_juncos"
+          },
+          {
+            "direction": "sur",
+            "from": "edran_puente_juncos",
+            "to": "edran_sauces"
+          },
+          {
+            "direction": "este",
+            "from": "edran_sauces",
+            "to": "edran_puente_juncos"
+          },
+          {
+            "direction": "sur",
+            "from": "edran_estanque",
+            "to": "edran_sauces"
+          },
+          {
+            "direction": "norte",
+            "from": "edran_sauces",
+            "to": "edran_estanque"
+          },
+          {
+            "direction": "sur",
+            "from": "edran_acequia",
+            "to": "edran_estanque"
+          },
+          {
+            "direction": "norte",
+            "from": "edran_estanque",
+            "to": "edran_acequia"
+          },
+          {
+            "direction": "oeste",
+            "from": "edran_acequia",
+            "to": "edran_salida_huertos"
+          },
+          {
+            "direction": "este",
+            "from": "edran_salida_huertos",
+            "to": "edran_acequia"
+          },
+          {
+            "direction": "oeste",
+            "from": "edran_salida_huertos",
+            "to": "valdren_huertos"
+          },
+          {
+            "direction": "este",
+            "from": "valdren_huertos",
+            "to": "edran_salida_huertos"
+          },
+          {
+            "direction": "norte",
+            "from": "edran_acequia",
+            "to": "edran_surcos"
+          },
+          {
+            "direction": "sur",
+            "from": "edran_surcos",
+            "to": "edran_acequia"
+          },
+          {
+            "direction": "sur",
+            "from": "edran_lindero",
+            "to": "edran_surcos"
+          },
+          {
+            "direction": "norte",
+            "from": "edran_surcos",
+            "to": "edran_lindero"
+          },
+          {
+            "direction": "oeste",
+            "from": "edran_lindero",
+            "to": "edran_loma"
+          },
+          {
+            "direction": "este",
+            "from": "edran_loma",
+            "to": "edran_lindero"
+          },
+          {
+            "direction": "norte",
+            "from": "edran_loma",
+            "to": "edran_prado"
+          },
+          {
+            "direction": "sur",
+            "from": "edran_prado",
+            "to": "edran_loma"
+          },
+          {
+            "direction": "este",
+            "from": "edran_ladera_piedra",
+            "to": "edran_prado"
+          },
+          {
+            "direction": "oeste",
+            "from": "edran_prado",
+            "to": "edran_ladera_piedra"
+          },
+          {
+            "direction": "norte",
+            "from": "edran_ladera_piedra",
+            "to": "edran_linde_piedra"
+          },
+          {
+            "direction": "sur",
+            "from": "edran_linde_piedra",
+            "to": "edran_ladera_piedra"
+          },
+          {
+            "direction": "norte",
+            "from": "edran_linde_piedra",
+            "to": "korven_borde_tierra"
+          },
+          {
+            "direction": "sur",
+            "from": "korven_borde_tierra",
+            "to": "edran_linde_piedra"
+          },
+          {
+            "direction": "norte",
+            "from": "korven_borde_tierra",
+            "to": "korven_senda_viento"
+          },
+          {
+            "direction": "sur",
+            "from": "korven_senda_viento",
+            "to": "korven_borde_tierra"
+          },
+          {
+            "direction": "oeste",
+            "from": "korven_almacen_grano",
+            "to": "korven_senda_viento"
+          },
+          {
+            "direction": "este",
+            "from": "korven_senda_viento",
+            "to": "korven_almacen_grano"
+          },
+          {
+            "direction": "oeste",
+            "from": "brumak_centro",
+            "to": "korven_almacen_grano"
+          },
+          {
+            "direction": "este",
+            "from": "korven_almacen_grano",
+            "to": "brumak_centro"
+          },
+          {
+            "direction": "este",
+            "from": "brumak_centro",
+            "to": "korven_peldanos_cortos"
+          },
+          {
+            "direction": "oeste",
+            "from": "korven_peldanos_cortos",
+            "to": "brumak_centro"
+          }
+        ]
+      }
+    },
+    {
+      "room": "korven_peldanos_cortos",
+      "map": {
+        "edges": [
+          [
+            "home:1",
+            "narevia_centro"
+          ],
+          [
+            "lethra_ribera_oeste",
+            "narevia_centro"
+          ],
+          [
+            "lethra_hito_tierra",
+            "lethra_ribera_oeste"
+          ],
+          [
+            "edran_puente_juncos",
+            "lethra_hito_tierra"
+          ],
+          [
+            "edran_puente_juncos",
+            "edran_sauces"
+          ],
+          [
+            "edran_estanque",
+            "edran_sauces"
+          ],
+          [
+            "edran_acequia",
+            "edran_estanque"
+          ],
+          [
+            "edran_acequia",
+            "edran_salida_huertos"
+          ],
+          [
+            "edran_salida_huertos",
+            "valdren_huertos"
+          ],
+          [
+            "edran_acequia",
+            "edran_surcos"
+          ],
+          [
+            "edran_lindero",
+            "edran_surcos"
+          ],
+          [
+            "edran_lindero",
+            "edran_loma"
+          ],
+          [
+            "edran_loma",
+            "edran_prado"
+          ],
+          [
+            "edran_ladera_piedra",
+            "edran_prado"
+          ],
+          [
+            "edran_ladera_piedra",
+            "edran_linde_piedra"
+          ],
+          [
+            "edran_linde_piedra",
+            "korven_borde_tierra"
+          ],
+          [
+            "korven_borde_tierra",
+            "korven_senda_viento"
+          ],
+          [
+            "korven_almacen_grano",
+            "korven_senda_viento"
+          ],
+          [
+            "brumak_centro",
+            "korven_almacen_grano"
+          ],
+          [
+            "brumak_centro",
+            "korven_peldanos_cortos"
+          ]
+        ],
+        "frontiers": [
+          {
+            "direction": "este",
+            "from": "korven_peldanos_cortos"
+          },
+          {
+            "direction": "sur",
+            "from": "korven_peldanos_cortos"
+          }
+        ],
+        "nodes": [
+          {
+            "id": "home:1",
+            "kind": "home",
+            "name": "Hogar junto al canal de Narevia",
+            "region": "lethra",
+            "unexplored_directions": [],
+            "visited": true
+          },
+          {
+            "id": "narevia_centro",
+            "kind": "settlement",
+            "name": "Plaza de Narevia",
+            "region": "lethra",
+            "unexplored_directions": [
+              "norte",
+              "este",
+              "sur"
+            ],
+            "visited": true
+          },
+          {
+            "id": "lethra_ribera_oeste",
+            "kind": "road",
+            "name": "Ribera hacia Edran",
+            "region": "lethra",
+            "unexplored_directions": [],
+            "visited": true
+          },
+          {
+            "id": "lethra_hito_tierra",
+            "kind": "road",
+            "name": "Cruce del puente",
+            "region": "lethra",
+            "unexplored_directions": [
+              "sur"
+            ],
+            "visited": true
+          },
+          {
+            "id": "edran_puente_juncos",
+            "kind": "landmark",
+            "name": "Vado de Juncos",
+            "region": "edran",
+            "unexplored_directions": [
+              "oeste"
+            ],
+            "visited": true
+          },
+          {
+            "id": "edran_sauces",
+            "kind": "wilderness",
+            "name": "Borde de los Sauces Bajos",
+            "region": "edran",
+            "unexplored_directions": [],
+            "visited": true
+          },
+          {
+            "id": "edran_estanque",
+            "kind": "landmark",
+            "name": "Estanque del Reflejo Partido",
+            "region": "edran",
+            "unexplored_directions": [
+              "este"
+            ],
+            "visited": true
+          },
+          {
+            "id": "edran_acequia",
+            "kind": "landmark",
+            "name": "Curva de la Acequia",
+            "region": "edran",
+            "unexplored_directions": [],
+            "visited": true
+          },
+          {
+            "id": "edran_salida_huertos",
+            "kind": "road",
+            "name": "Salida de las Cercas Bajas",
+            "region": "edran",
+            "unexplored_directions": [
+              "sur"
+            ],
+            "visited": true
+          },
+          {
+            "id": "valdren_huertos",
+            "kind": "settlement",
+            "name": "Corredor de los Huertos",
+            "region": "edran",
+            "unexplored_directions": [
+              "oeste",
+              "norte"
+            ],
+            "visited": true
+          },
+          {
+            "id": "edran_surcos",
+            "kind": "wilderness",
+            "name": "Campo de surcos",
+            "region": "edran",
+            "unexplored_directions": [
+              "oeste",
+              "este"
+            ],
+            "visited": true
+          },
+          {
+            "id": "edran_lindero",
+            "kind": "landmark",
+            "name": "Lindero de la Piedra Hundida",
+            "region": "edran",
+            "unexplored_directions": [
+              "este"
+            ],
+            "visited": true
+          },
+          {
+            "id": "edran_loma",
+            "kind": "landmark",
+            "name": "Loma del Pasto Cortado",
+            "region": "edran",
+            "unexplored_directions": [
+              "sur"
+            ],
+            "visited": true
+          },
+          {
+            "id": "edran_prado",
+            "kind": "wilderness",
+            "name": "Prado de las Marcas Anchas",
+            "region": "edran",
+            "unexplored_directions": [],
+            "visited": true
+          },
+          {
+            "id": "edran_ladera_piedra",
+            "kind": "landmark",
+            "name": "Ladera de los cestos",
+            "region": "edran",
+            "unexplored_directions": [],
+            "visited": true
+          },
+          {
+            "id": "edran_linde_piedra",
+            "kind": "road",
+            "name": "Paso hacia Korven",
+            "region": "edran",
+            "unexplored_directions": [],
+            "visited": true
+          },
+          {
+            "id": "korven_borde_tierra",
+            "kind": "road",
+            "name": "Parada de los Cardos",
+            "region": "korven",
+            "unexplored_directions": [],
+            "visited": true
+          },
+          {
+            "id": "korven_senda_viento",
+            "kind": "road",
+            "name": "Senda del viento",
+            "region": "korven",
+            "unexplored_directions": [],
+            "visited": true
+          },
+          {
+            "id": "korven_almacen_grano",
+            "kind": "interior",
+            "name": "Almacén de grano",
+            "region": "korven",
+            "unexplored_directions": [],
+            "visited": true
+          },
+          {
+            "id": "brumak_centro",
+            "kind": "settlement",
+            "name": "Patio de Brumak",
+            "region": "korven",
+            "unexplored_directions": [
+              "norte",
+              "sur"
+            ],
+            "visited": true
+          },
+          {
+            "id": "korven_peldanos_cortos",
+            "kind": "road",
+            "name": "Escalones bajos",
+            "region": "korven",
+            "unexplored_directions": [
+              "este",
+              "sur"
+            ],
+            "visited": true
+          }
+        ],
+        "routes": [
+          {
+            "direction": "salir",
+            "from": "home:1",
+            "to": "narevia_centro"
+          },
+          {
+            "direction": "hogar",
+            "from": "narevia_centro",
+            "to": "home:1"
+          },
+          {
+            "direction": "este",
+            "from": "lethra_ribera_oeste",
+            "to": "narevia_centro"
+          },
+          {
+            "direction": "oeste",
+            "from": "narevia_centro",
+            "to": "lethra_ribera_oeste"
+          },
+          {
+            "direction": "este",
+            "from": "lethra_hito_tierra",
+            "to": "lethra_ribera_oeste"
+          },
+          {
+            "direction": "oeste",
+            "from": "lethra_ribera_oeste",
+            "to": "lethra_hito_tierra"
+          },
+          {
+            "direction": "este",
+            "from": "edran_puente_juncos",
+            "to": "lethra_hito_tierra"
+          },
+          {
+            "direction": "oeste",
+            "from": "lethra_hito_tierra",
+            "to": "edran_puente_juncos"
+          },
+          {
+            "direction": "sur",
+            "from": "edran_puente_juncos",
+            "to": "edran_sauces"
+          },
+          {
+            "direction": "este",
+            "from": "edran_sauces",
+            "to": "edran_puente_juncos"
+          },
+          {
+            "direction": "sur",
+            "from": "edran_estanque",
+            "to": "edran_sauces"
+          },
+          {
+            "direction": "norte",
+            "from": "edran_sauces",
+            "to": "edran_estanque"
+          },
+          {
+            "direction": "sur",
+            "from": "edran_acequia",
+            "to": "edran_estanque"
+          },
+          {
+            "direction": "norte",
+            "from": "edran_estanque",
+            "to": "edran_acequia"
+          },
+          {
+            "direction": "oeste",
+            "from": "edran_acequia",
+            "to": "edran_salida_huertos"
+          },
+          {
+            "direction": "este",
+            "from": "edran_salida_huertos",
+            "to": "edran_acequia"
+          },
+          {
+            "direction": "oeste",
+            "from": "edran_salida_huertos",
+            "to": "valdren_huertos"
+          },
+          {
+            "direction": "este",
+            "from": "valdren_huertos",
+            "to": "edran_salida_huertos"
+          },
+          {
+            "direction": "norte",
+            "from": "edran_acequia",
+            "to": "edran_surcos"
+          },
+          {
+            "direction": "sur",
+            "from": "edran_surcos",
+            "to": "edran_acequia"
+          },
+          {
+            "direction": "sur",
+            "from": "edran_lindero",
+            "to": "edran_surcos"
+          },
+          {
+            "direction": "norte",
+            "from": "edran_surcos",
+            "to": "edran_lindero"
+          },
+          {
+            "direction": "oeste",
+            "from": "edran_lindero",
+            "to": "edran_loma"
+          },
+          {
+            "direction": "este",
+            "from": "edran_loma",
+            "to": "edran_lindero"
+          },
+          {
+            "direction": "norte",
+            "from": "edran_loma",
+            "to": "edran_prado"
+          },
+          {
+            "direction": "sur",
+            "from": "edran_prado",
+            "to": "edran_loma"
+          },
+          {
+            "direction": "este",
+            "from": "edran_ladera_piedra",
+            "to": "edran_prado"
+          },
+          {
+            "direction": "oeste",
+            "from": "edran_prado",
+            "to": "edran_ladera_piedra"
+          },
+          {
+            "direction": "norte",
+            "from": "edran_ladera_piedra",
+            "to": "edran_linde_piedra"
+          },
+          {
+            "direction": "sur",
+            "from": "edran_linde_piedra",
+            "to": "edran_ladera_piedra"
+          },
+          {
+            "direction": "norte",
+            "from": "edran_linde_piedra",
+            "to": "korven_borde_tierra"
+          },
+          {
+            "direction": "sur",
+            "from": "korven_borde_tierra",
+            "to": "edran_linde_piedra"
+          },
+          {
+            "direction": "norte",
+            "from": "korven_borde_tierra",
+            "to": "korven_senda_viento"
+          },
+          {
+            "direction": "sur",
+            "from": "korven_senda_viento",
+            "to": "korven_borde_tierra"
+          },
+          {
+            "direction": "oeste",
+            "from": "korven_almacen_grano",
+            "to": "korven_senda_viento"
+          },
+          {
+            "direction": "este",
+            "from": "korven_senda_viento",
+            "to": "korven_almacen_grano"
+          },
+          {
+            "direction": "oeste",
+            "from": "brumak_centro",
+            "to": "korven_almacen_grano"
+          },
+          {
+            "direction": "este",
+            "from": "korven_almacen_grano",
+            "to": "brumak_centro"
+          },
+          {
+            "direction": "este",
+            "from": "brumak_centro",
+            "to": "korven_peldanos_cortos"
+          },
+          {
+            "direction": "oeste",
+            "from": "korven_peldanos_cortos",
+            "to": "brumak_centro"
+          }
+        ]
+      }
+    },
+    {
+      "room": "brumak_centro",
+      "map": {
+        "edges": [
+          [
+            "home:1",
+            "narevia_centro"
+          ],
+          [
+            "lethra_ribera_oeste",
+            "narevia_centro"
+          ],
+          [
+            "lethra_hito_tierra",
+            "lethra_ribera_oeste"
+          ],
+          [
+            "edran_puente_juncos",
+            "lethra_hito_tierra"
+          ],
+          [
+            "edran_puente_juncos",
+            "edran_sauces"
+          ],
+          [
+            "edran_estanque",
+            "edran_sauces"
+          ],
+          [
+            "edran_acequia",
+            "edran_estanque"
+          ],
+          [
+            "edran_acequia",
+            "edran_salida_huertos"
+          ],
+          [
+            "edran_salida_huertos",
+            "valdren_huertos"
+          ],
+          [
+            "edran_acequia",
+            "edran_surcos"
+          ],
+          [
+            "edran_lindero",
+            "edran_surcos"
+          ],
+          [
+            "edran_lindero",
+            "edran_loma"
+          ],
+          [
+            "edran_loma",
+            "edran_prado"
+          ],
+          [
+            "edran_ladera_piedra",
+            "edran_prado"
+          ],
+          [
+            "edran_ladera_piedra",
+            "edran_linde_piedra"
+          ],
+          [
+            "edran_linde_piedra",
+            "korven_borde_tierra"
+          ],
+          [
+            "korven_borde_tierra",
+            "korven_senda_viento"
+          ],
+          [
+            "korven_almacen_grano",
+            "korven_senda_viento"
+          ],
+          [
+            "brumak_centro",
+            "korven_almacen_grano"
+          ],
+          [
+            "brumak_centro",
+            "korven_peldanos_cortos"
+          ]
+        ],
+        "frontiers": [
+          {
+            "direction": "norte",
+            "from": "brumak_centro"
+          },
+          {
+            "direction": "sur",
+            "from": "brumak_centro"
+          }
+        ],
+        "nodes": [
+          {
+            "id": "home:1",
+            "kind": "home",
+            "name": "Hogar junto al canal de Narevia",
+            "region": "lethra",
+            "unexplored_directions": [],
+            "visited": true
+          },
+          {
+            "id": "narevia_centro",
+            "kind": "settlement",
+            "name": "Plaza de Narevia",
+            "region": "lethra",
+            "unexplored_directions": [
+              "norte",
+              "este",
+              "sur"
+            ],
+            "visited": true
+          },
+          {
+            "id": "lethra_ribera_oeste",
+            "kind": "road",
+            "name": "Ribera hacia Edran",
+            "region": "lethra",
+            "unexplored_directions": [],
+            "visited": true
+          },
+          {
+            "id": "lethra_hito_tierra",
+            "kind": "road",
+            "name": "Cruce del puente",
+            "region": "lethra",
+            "unexplored_directions": [
+              "sur"
+            ],
+            "visited": true
+          },
+          {
+            "id": "edran_puente_juncos",
+            "kind": "landmark",
+            "name": "Vado de Juncos",
+            "region": "edran",
+            "unexplored_directions": [
+              "oeste"
+            ],
+            "visited": true
+          },
+          {
+            "id": "edran_sauces",
+            "kind": "wilderness",
+            "name": "Borde de los Sauces Bajos",
+            "region": "edran",
+            "unexplored_directions": [],
+            "visited": true
+          },
+          {
+            "id": "edran_estanque",
+            "kind": "landmark",
+            "name": "Estanque del Reflejo Partido",
+            "region": "edran",
+            "unexplored_directions": [
+              "este"
+            ],
+            "visited": true
+          },
+          {
+            "id": "edran_acequia",
+            "kind": "landmark",
+            "name": "Curva de la Acequia",
+            "region": "edran",
+            "unexplored_directions": [],
+            "visited": true
+          },
+          {
+            "id": "edran_salida_huertos",
+            "kind": "road",
+            "name": "Salida de las Cercas Bajas",
+            "region": "edran",
+            "unexplored_directions": [
+              "sur"
+            ],
+            "visited": true
+          },
+          {
+            "id": "valdren_huertos",
+            "kind": "settlement",
+            "name": "Corredor de los Huertos",
+            "region": "edran",
+            "unexplored_directions": [
+              "oeste",
+              "norte"
+            ],
+            "visited": true
+          },
+          {
+            "id": "edran_surcos",
+            "kind": "wilderness",
+            "name": "Campo de surcos",
+            "region": "edran",
+            "unexplored_directions": [
+              "oeste",
+              "este"
+            ],
+            "visited": true
+          },
+          {
+            "id": "edran_lindero",
+            "kind": "landmark",
+            "name": "Lindero de la Piedra Hundida",
+            "region": "edran",
+            "unexplored_directions": [
+              "este"
+            ],
+            "visited": true
+          },
+          {
+            "id": "edran_loma",
+            "kind": "landmark",
+            "name": "Loma del Pasto Cortado",
+            "region": "edran",
+            "unexplored_directions": [
+              "sur"
+            ],
+            "visited": true
+          },
+          {
+            "id": "edran_prado",
+            "kind": "wilderness",
+            "name": "Prado de las Marcas Anchas",
+            "region": "edran",
+            "unexplored_directions": [],
+            "visited": true
+          },
+          {
+            "id": "edran_ladera_piedra",
+            "kind": "landmark",
+            "name": "Ladera de los cestos",
+            "region": "edran",
+            "unexplored_directions": [],
+            "visited": true
+          },
+          {
+            "id": "edran_linde_piedra",
+            "kind": "road",
+            "name": "Paso hacia Korven",
+            "region": "edran",
+            "unexplored_directions": [],
+            "visited": true
+          },
+          {
+            "id": "korven_borde_tierra",
+            "kind": "road",
+            "name": "Parada de los Cardos",
+            "region": "korven",
+            "unexplored_directions": [],
+            "visited": true
+          },
+          {
+            "id": "korven_senda_viento",
+            "kind": "road",
+            "name": "Senda del viento",
+            "region": "korven",
+            "unexplored_directions": [],
+            "visited": true
+          },
+          {
+            "id": "korven_almacen_grano",
+            "kind": "interior",
+            "name": "Almacén de grano",
+            "region": "korven",
+            "unexplored_directions": [],
+            "visited": true
+          },
+          {
+            "id": "brumak_centro",
+            "kind": "settlement",
+            "name": "Patio de Brumak",
+            "region": "korven",
+            "unexplored_directions": [
+              "norte",
+              "sur"
+            ],
+            "visited": true
+          },
+          {
+            "id": "korven_peldanos_cortos",
+            "kind": "road",
+            "name": "Escalones bajos",
+            "region": "korven",
+            "unexplored_directions": [
+              "este",
+              "sur"
+            ],
+            "visited": true
+          }
+        ],
+        "routes": [
+          {
+            "direction": "salir",
+            "from": "home:1",
+            "to": "narevia_centro"
+          },
+          {
+            "direction": "hogar",
+            "from": "narevia_centro",
+            "to": "home:1"
+          },
+          {
+            "direction": "este",
+            "from": "lethra_ribera_oeste",
+            "to": "narevia_centro"
+          },
+          {
+            "direction": "oeste",
+            "from": "narevia_centro",
+            "to": "lethra_ribera_oeste"
+          },
+          {
+            "direction": "este",
+            "from": "lethra_hito_tierra",
+            "to": "lethra_ribera_oeste"
+          },
+          {
+            "direction": "oeste",
+            "from": "lethra_ribera_oeste",
+            "to": "lethra_hito_tierra"
+          },
+          {
+            "direction": "este",
+            "from": "edran_puente_juncos",
+            "to": "lethra_hito_tierra"
+          },
+          {
+            "direction": "oeste",
+            "from": "lethra_hito_tierra",
+            "to": "edran_puente_juncos"
+          },
+          {
+            "direction": "sur",
+            "from": "edran_puente_juncos",
+            "to": "edran_sauces"
+          },
+          {
+            "direction": "este",
+            "from": "edran_sauces",
+            "to": "edran_puente_juncos"
+          },
+          {
+            "direction": "sur",
+            "from": "edran_estanque",
+            "to": "edran_sauces"
+          },
+          {
+            "direction": "norte",
+            "from": "edran_sauces",
+            "to": "edran_estanque"
+          },
+          {
+            "direction": "sur",
+            "from": "edran_acequia",
+            "to": "edran_estanque"
+          },
+          {
+            "direction": "norte",
+            "from": "edran_estanque",
+            "to": "edran_acequia"
+          },
+          {
+            "direction": "oeste",
+            "from": "edran_acequia",
+            "to": "edran_salida_huertos"
+          },
+          {
+            "direction": "este",
+            "from": "edran_salida_huertos",
+            "to": "edran_acequia"
+          },
+          {
+            "direction": "oeste",
+            "from": "edran_salida_huertos",
+            "to": "valdren_huertos"
+          },
+          {
+            "direction": "este",
+            "from": "valdren_huertos",
+            "to": "edran_salida_huertos"
+          },
+          {
+            "direction": "norte",
+            "from": "edran_acequia",
+            "to": "edran_surcos"
+          },
+          {
+            "direction": "sur",
+            "from": "edran_surcos",
+            "to": "edran_acequia"
+          },
+          {
+            "direction": "sur",
+            "from": "edran_lindero",
+            "to": "edran_surcos"
+          },
+          {
+            "direction": "norte",
+            "from": "edran_surcos",
+            "to": "edran_lindero"
+          },
+          {
+            "direction": "oeste",
+            "from": "edran_lindero",
+            "to": "edran_loma"
+          },
+          {
+            "direction": "este",
+            "from": "edran_loma",
+            "to": "edran_lindero"
+          },
+          {
+            "direction": "norte",
+            "from": "edran_loma",
+            "to": "edran_prado"
+          },
+          {
+            "direction": "sur",
+            "from": "edran_prado",
+            "to": "edran_loma"
+          },
+          {
+            "direction": "este",
+            "from": "edran_ladera_piedra",
+            "to": "edran_prado"
+          },
+          {
+            "direction": "oeste",
+            "from": "edran_prado",
+            "to": "edran_ladera_piedra"
+          },
+          {
+            "direction": "norte",
+            "from": "edran_ladera_piedra",
+            "to": "edran_linde_piedra"
+          },
+          {
+            "direction": "sur",
+            "from": "edran_linde_piedra",
+            "to": "edran_ladera_piedra"
+          },
+          {
+            "direction": "norte",
+            "from": "edran_linde_piedra",
+            "to": "korven_borde_tierra"
+          },
+          {
+            "direction": "sur",
+            "from": "korven_borde_tierra",
+            "to": "edran_linde_piedra"
+          },
+          {
+            "direction": "norte",
+            "from": "korven_borde_tierra",
+            "to": "korven_senda_viento"
+          },
+          {
+            "direction": "sur",
+            "from": "korven_senda_viento",
+            "to": "korven_borde_tierra"
+          },
+          {
+            "direction": "oeste",
+            "from": "korven_almacen_grano",
+            "to": "korven_senda_viento"
+          },
+          {
+            "direction": "este",
+            "from": "korven_senda_viento",
+            "to": "korven_almacen_grano"
+          },
+          {
+            "direction": "oeste",
+            "from": "brumak_centro",
+            "to": "korven_almacen_grano"
+          },
+          {
+            "direction": "este",
+            "from": "korven_almacen_grano",
+            "to": "brumak_centro"
+          },
+          {
+            "direction": "este",
+            "from": "brumak_centro",
+            "to": "korven_peldanos_cortos"
+          },
+          {
+            "direction": "oeste",
+            "from": "korven_peldanos_cortos",
+            "to": "brumak_centro"
+          }
+        ]
+      }
+    },
+    {
+      "room": "home:1",
+      "map": {
+        "edges": [
+          [
+            "home:1",
+            "narevia_centro"
+          ],
+          [
+            "lethra_ribera_oeste",
+            "narevia_centro"
+          ],
+          [
+            "lethra_hito_tierra",
+            "lethra_ribera_oeste"
+          ],
+          [
+            "edran_puente_juncos",
+            "lethra_hito_tierra"
+          ],
+          [
+            "edran_puente_juncos",
+            "edran_sauces"
+          ],
+          [
+            "edran_estanque",
+            "edran_sauces"
+          ],
+          [
+            "edran_acequia",
+            "edran_estanque"
+          ],
+          [
+            "edran_acequia",
+            "edran_salida_huertos"
+          ],
+          [
+            "edran_salida_huertos",
+            "valdren_huertos"
+          ],
+          [
+            "edran_acequia",
+            "edran_surcos"
+          ],
+          [
+            "edran_lindero",
+            "edran_surcos"
+          ],
+          [
+            "edran_lindero",
+            "edran_loma"
+          ],
+          [
+            "edran_loma",
+            "edran_prado"
+          ],
+          [
+            "edran_ladera_piedra",
+            "edran_prado"
+          ],
+          [
+            "edran_ladera_piedra",
+            "edran_linde_piedra"
+          ],
+          [
+            "edran_linde_piedra",
+            "korven_borde_tierra"
+          ],
+          [
+            "korven_borde_tierra",
+            "korven_senda_viento"
+          ],
+          [
+            "korven_almacen_grano",
+            "korven_senda_viento"
+          ],
+          [
+            "brumak_centro",
+            "korven_almacen_grano"
+          ],
+          [
+            "brumak_centro",
+            "korven_peldanos_cortos"
+          ]
+        ],
+        "frontiers": [],
+        "nodes": [
+          {
+            "id": "home:1",
+            "kind": "home",
+            "name": "Hogar junto al canal de Narevia",
+            "region": "lethra",
+            "unexplored_directions": [],
+            "visited": true
+          },
+          {
+            "id": "narevia_centro",
+            "kind": "settlement",
+            "name": "Plaza de Narevia",
+            "region": "lethra",
+            "unexplored_directions": [
+              "norte",
+              "este",
+              "sur"
+            ],
+            "visited": true
+          },
+          {
+            "id": "lethra_ribera_oeste",
+            "kind": "road",
+            "name": "Ribera hacia Edran",
+            "region": "lethra",
+            "unexplored_directions": [],
+            "visited": true
+          },
+          {
+            "id": "lethra_hito_tierra",
+            "kind": "road",
+            "name": "Cruce del puente",
+            "region": "lethra",
+            "unexplored_directions": [
+              "sur"
+            ],
+            "visited": true
+          },
+          {
+            "id": "edran_puente_juncos",
+            "kind": "landmark",
+            "name": "Vado de Juncos",
+            "region": "edran",
+            "unexplored_directions": [
+              "oeste"
+            ],
+            "visited": true
+          },
+          {
+            "id": "edran_sauces",
+            "kind": "wilderness",
+            "name": "Borde de los Sauces Bajos",
+            "region": "edran",
+            "unexplored_directions": [],
+            "visited": true
+          },
+          {
+            "id": "edran_estanque",
+            "kind": "landmark",
+            "name": "Estanque del Reflejo Partido",
+            "region": "edran",
+            "unexplored_directions": [
+              "este"
+            ],
+            "visited": true
+          },
+          {
+            "id": "edran_acequia",
+            "kind": "landmark",
+            "name": "Curva de la Acequia",
+            "region": "edran",
+            "unexplored_directions": [],
+            "visited": true
+          },
+          {
+            "id": "edran_salida_huertos",
+            "kind": "road",
+            "name": "Salida de las Cercas Bajas",
+            "region": "edran",
+            "unexplored_directions": [
+              "sur"
+            ],
+            "visited": true
+          },
+          {
+            "id": "valdren_huertos",
+            "kind": "settlement",
+            "name": "Corredor de los Huertos",
+            "region": "edran",
+            "unexplored_directions": [
+              "oeste",
+              "norte"
+            ],
+            "visited": true
+          },
+          {
+            "id": "edran_surcos",
+            "kind": "wilderness",
+            "name": "Campo de surcos",
+            "region": "edran",
+            "unexplored_directions": [
+              "oeste",
+              "este"
+            ],
+            "visited": true
+          },
+          {
+            "id": "edran_lindero",
+            "kind": "landmark",
+            "name": "Lindero de la Piedra Hundida",
+            "region": "edran",
+            "unexplored_directions": [
+              "este"
+            ],
+            "visited": true
+          },
+          {
+            "id": "edran_loma",
+            "kind": "landmark",
+            "name": "Loma del Pasto Cortado",
+            "region": "edran",
+            "unexplored_directions": [
+              "sur"
+            ],
+            "visited": true
+          },
+          {
+            "id": "edran_prado",
+            "kind": "wilderness",
+            "name": "Prado de las Marcas Anchas",
+            "region": "edran",
+            "unexplored_directions": [],
+            "visited": true
+          },
+          {
+            "id": "edran_ladera_piedra",
+            "kind": "landmark",
+            "name": "Ladera de los cestos",
+            "region": "edran",
+            "unexplored_directions": [],
+            "visited": true
+          },
+          {
+            "id": "edran_linde_piedra",
+            "kind": "road",
+            "name": "Paso hacia Korven",
+            "region": "edran",
+            "unexplored_directions": [],
+            "visited": true
+          },
+          {
+            "id": "korven_borde_tierra",
+            "kind": "road",
+            "name": "Parada de los Cardos",
+            "region": "korven",
+            "unexplored_directions": [],
+            "visited": true
+          },
+          {
+            "id": "korven_senda_viento",
+            "kind": "road",
+            "name": "Senda del viento",
+            "region": "korven",
+            "unexplored_directions": [],
+            "visited": true
+          },
+          {
+            "id": "korven_almacen_grano",
+            "kind": "interior",
+            "name": "Almacén de grano",
+            "region": "korven",
+            "unexplored_directions": [],
+            "visited": true
+          },
+          {
+            "id": "brumak_centro",
+            "kind": "settlement",
+            "name": "Patio de Brumak",
+            "region": "korven",
+            "unexplored_directions": [
+              "norte",
+              "sur"
+            ],
+            "visited": true
+          },
+          {
+            "id": "korven_peldanos_cortos",
+            "kind": "road",
+            "name": "Escalones bajos",
+            "region": "korven",
+            "unexplored_directions": [
+              "este",
+              "sur"
+            ],
+            "visited": true
+          }
+        ],
+        "routes": [
+          {
+            "direction": "salir",
+            "from": "home:1",
+            "to": "narevia_centro"
+          },
+          {
+            "direction": "hogar",
+            "from": "narevia_centro",
+            "to": "home:1"
+          },
+          {
+            "direction": "este",
+            "from": "lethra_ribera_oeste",
+            "to": "narevia_centro"
+          },
+          {
+            "direction": "oeste",
+            "from": "narevia_centro",
+            "to": "lethra_ribera_oeste"
+          },
+          {
+            "direction": "este",
+            "from": "lethra_hito_tierra",
+            "to": "lethra_ribera_oeste"
+          },
+          {
+            "direction": "oeste",
+            "from": "lethra_ribera_oeste",
+            "to": "lethra_hito_tierra"
+          },
+          {
+            "direction": "este",
+            "from": "edran_puente_juncos",
+            "to": "lethra_hito_tierra"
+          },
+          {
+            "direction": "oeste",
+            "from": "lethra_hito_tierra",
+            "to": "edran_puente_juncos"
+          },
+          {
+            "direction": "sur",
+            "from": "edran_puente_juncos",
+            "to": "edran_sauces"
+          },
+          {
+            "direction": "este",
+            "from": "edran_sauces",
+            "to": "edran_puente_juncos"
+          },
+          {
+            "direction": "sur",
+            "from": "edran_estanque",
+            "to": "edran_sauces"
+          },
+          {
+            "direction": "norte",
+            "from": "edran_sauces",
+            "to": "edran_estanque"
+          },
+          {
+            "direction": "sur",
+            "from": "edran_acequia",
+            "to": "edran_estanque"
+          },
+          {
+            "direction": "norte",
+            "from": "edran_estanque",
+            "to": "edran_acequia"
+          },
+          {
+            "direction": "oeste",
+            "from": "edran_acequia",
+            "to": "edran_salida_huertos"
+          },
+          {
+            "direction": "este",
+            "from": "edran_salida_huertos",
+            "to": "edran_acequia"
+          },
+          {
+            "direction": "oeste",
+            "from": "edran_salida_huertos",
+            "to": "valdren_huertos"
+          },
+          {
+            "direction": "este",
+            "from": "valdren_huertos",
+            "to": "edran_salida_huertos"
+          },
+          {
+            "direction": "norte",
+            "from": "edran_acequia",
+            "to": "edran_surcos"
+          },
+          {
+            "direction": "sur",
+            "from": "edran_surcos",
+            "to": "edran_acequia"
+          },
+          {
+            "direction": "sur",
+            "from": "edran_lindero",
+            "to": "edran_surcos"
+          },
+          {
+            "direction": "norte",
+            "from": "edran_surcos",
+            "to": "edran_lindero"
+          },
+          {
+            "direction": "oeste",
+            "from": "edran_lindero",
+            "to": "edran_loma"
+          },
+          {
+            "direction": "este",
+            "from": "edran_loma",
+            "to": "edran_lindero"
+          },
+          {
+            "direction": "norte",
+            "from": "edran_loma",
+            "to": "edran_prado"
+          },
+          {
+            "direction": "sur",
+            "from": "edran_prado",
+            "to": "edran_loma"
+          },
+          {
+            "direction": "este",
+            "from": "edran_ladera_piedra",
+            "to": "edran_prado"
+          },
+          {
+            "direction": "oeste",
+            "from": "edran_prado",
+            "to": "edran_ladera_piedra"
+          },
+          {
+            "direction": "norte",
+            "from": "edran_ladera_piedra",
+            "to": "edran_linde_piedra"
+          },
+          {
+            "direction": "sur",
+            "from": "edran_linde_piedra",
+            "to": "edran_ladera_piedra"
+          },
+          {
+            "direction": "norte",
+            "from": "edran_linde_piedra",
+            "to": "korven_borde_tierra"
+          },
+          {
+            "direction": "sur",
+            "from": "korven_borde_tierra",
+            "to": "edran_linde_piedra"
+          },
+          {
+            "direction": "norte",
+            "from": "korven_borde_tierra",
+            "to": "korven_senda_viento"
+          },
+          {
+            "direction": "sur",
+            "from": "korven_senda_viento",
+            "to": "korven_borde_tierra"
+          },
+          {
+            "direction": "oeste",
+            "from": "korven_almacen_grano",
+            "to": "korven_senda_viento"
+          },
+          {
+            "direction": "este",
+            "from": "korven_senda_viento",
+            "to": "korven_almacen_grano"
+          },
+          {
+            "direction": "oeste",
+            "from": "brumak_centro",
+            "to": "korven_almacen_grano"
+          },
+          {
+            "direction": "este",
+            "from": "korven_almacen_grano",
+            "to": "brumak_centro"
+          },
+          {
+            "direction": "este",
+            "from": "brumak_centro",
+            "to": "korven_peldanos_cortos"
+          },
+          {
+            "direction": "oeste",
+            "from": "korven_peldanos_cortos",
+            "to": "brumak_centro"
+          }
+        ]
+      }
+    }
+  ]
+}

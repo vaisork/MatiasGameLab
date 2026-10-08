@@ -1,0 +1,26 @@
+{
+  "tool": "gltf-transform4.5.1",
+  "steps": [
+    "weld",
+    "simplify --ratio 0.025 --error 0.005",
+    "resize --width 1024 --height 1024"
+  ],
+  "assets": [
+    {
+      "path": "/home/jdiaz/Escritorio/Vintage Telnet - Meshy/vesperi.glb",
+      "bytes": 69558920,
+      "sha256": "a012f7898768bd0ba84c02956e386369a78f2200ba068f5acb7d4393eaf78bd9",
+      "skins": 0,
+      "animations": 0,
+      "triangles": 1763280
+    },
+    {
+      "path": "client/models/species/vesperi.glb",
+      "bytes": 1884856,
+      "sha256": "3303ea6075f1f54bc3896f613b18958efef93a76deee1474b916e5324578fd18",
+      "skins": 0,
+      "animations": 0,
+      "triangles": 44076
+    }
+  ]
+}

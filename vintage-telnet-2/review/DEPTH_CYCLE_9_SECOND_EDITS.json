@@ -1,0 +1,194 @@
+[
+  {
+    "file": "nhal.json",
+    "path": "rooms.nhal_raices_altas.night",
+    "before": "Las raíces ofrecen líneas cercanas, mientras los huecos laterales pierden profundidad visible. La nota recibe una luz breve y vuelve a cubrirse. Las voces se mantienen bajas para escuchar a quien llega detrás, no porque todo ruido convoque peligro.",
+    "after": "La nota recibe una luz breve y vuelve a cubrirse. Los huecos laterales quedan oscuros; detrás, una viajera pide que la esperen."
+  },
+  {
+    "file": "nhal.json",
+    "path": "rooms.nhal_secadero_sombra.return",
+    "before": "Reconoces el apoyo del juguete aunque ya esté vacío. Si volvió a su dueño, el secadero puede ofrecer otro trabajo sin perder la historia de esa espera; el lugar conserva memoria mediante usos que llegan a concluir.",
+    "after": "Recuerdas el apoyo donde giraron el juguete. En la madera queda su marca redonda, junto a una pieza que espera secarse."
+  },
+  {
+    "file": "nhal.json",
+    "path": "rooms.nhal_agua_sombreada.rain",
+    "before": "Las gotas vencen algunos hilos y la araña se recoge cerca de la raíz. Las hojas retenidas alteran una pequeña corriente. La lluvia cambia el trabajo del animal sin hacer que toda tela rota signifique amenaza o pérdida.",
+    "after": "Las gotas vencen algunos hilos y la araña se recoge junto a la raíz. Una hoja retenida desvía la corriente; otro hilo se estira sobre el agua."
+  },
+  {
+    "file": "nhal.json",
+    "path": "rooms.nhal_sendero_altura.night",
+    "before": "Las luces domésticas quedan más abajo y se pierden entre árboles. El descanso se distingue por raíces cercanas, no por el borde cubierto. Un farol acompaña el ascenso sin prometer una vista completa del Dosel Alto.",
+    "after": "Las luces de las casas se pierden entre árboles, más abajo. El farol ilumina la raíz del descanso y se apaga antes del borde cubierto."
+  },
+  {
+    "file": "nhal.json",
+    "path": "rooms.nhal_mercado_setas.description",
+    "before": "Las cestas esperan bajo cubiertas separadas, con pasillos de suelo firme entre las raíces. Las hojas que llegan con los alimentos se revisan en una mesa. Al norte vuelves al claro de Velmora; al este entras en la cocina. El olor cambia junto a cada cesta abierta. Una puerta al oeste lleva al lugar de cuidados; la atención está separada del trabajo y del tránsito.",
+    "after": "Las cestas esperan bajo cubiertas separadas, con pasillos de suelo firme entre las raíces. Las hojas que llegan con los alimentos se revisan en una mesa. Al norte vuelves al claro de Velmora; al este entras en la cocina. El olor cambia junto a cada cesta abierta. Una puerta al oeste lleva al lugar de cuidados."
+  },
+  {
+    "file": "hoshai.json",
+    "path": "rooms.hoshai_terraza_cargas.day",
+    "before": "Dos comerciantes redistribuyen paquetes para que ninguno de sus acompañantes cargue un solo lado. Un aprendiz recoge las cuerdas sobrantes antes de que otro viaje salga del cuello. La terraza sirve de encuentro, no de almacén permanente.",
+    "after": "Dos comerciantes redistribuyen los paquetes. Un acompañante se endereza al recibir menos peso de un lado; el aprendiz enrolla la cuerda que quedó suelta."
+  },
+  {
+    "file": "hoshai.json",
+    "path": "rooms.hoshai_patio_hogares.rain",
+    "before": "Las cuerdas de ropa se retiran hacia los muros y dejan la rampa libre. Los vecinos suben recipientes antes de que el agua alcance su descanso. La protección de una puerta no tiene por qué cerrar el patio entero.",
+    "after": "Los vecinos recogen las cuerdas de ropa contra los muros. El agua alcanza el borde bajo de la rampa; un recipiente sube de mano en mano hasta la puerta."
+  },
+  {
+    "file": "hoshai.json",
+    "path": "rooms.hoshai_mercado_cintas.description",
+    "before": "Entre muros que cortan el viento, los puestos ofrecen comida envuelta y cintas para las cargas. Puedes probar una atadura sobre las barras. La única salida vuelve al oeste, a la plaza. Los colores de las cintas indican qué bulto abrir primero y cuál mantener seco. Una puerta al este lleva al lugar de cuidados; la atención está separada del trabajo y del tránsito.",
+    "after": "Entre muros que cortan el viento, los puestos ofrecen comida envuelta y cintas para las cargas. Puedes probar una atadura sobre las barras. La única salida vuelve al oeste, a la plaza. Los colores de las cintas indican qué bulto abrir primero y cuál mantener seco. Una puerta al este lleva al lugar de cuidados."
+  },
+  {
+    "file": "korven.json",
+    "path": "rooms.korven_pared_sotavento.night",
+    "before": "El resguardo conserva silencio mientras la meseta devuelve sonidos de cargas distantes. Las luces se mantienen lejos de la pared para no dejar todo el paso en sombras. Los apoyos bajos siguen siendo útiles para cuerpos distintos.",
+    "after": "La meseta devuelve un golpe lejano. Dentro del entrante se ve un cuenco sobre el apoyo bajo; la lámpara deja una sombra estrecha junto a la pared."
+  },
+  {
+    "file": "korven.json",
+    "path": "rooms.korven_hitos_paso.day",
+    "before": "Una revisora compara el siguiente mojón desde el suelo del paso, no desde lo alto de su carga. Retira una piedra añadida que lo hacía visible desde una cavidad engañosa. El mantenimiento también puede consistir en quitar.",
+    "after": "La revisora mira el siguiente mojón desde la franja de las ruedas. Retira una piedra recién añadida a la pila y la deja al lado de la cavidad."
+  },
+  {
+    "file": "korven.json",
+    "path": "rooms.korven_asiento_revision.night",
+    "before": "Los golpes se interrumpen para no confundir la revisión con sonidos del camino. Una cubierta protege la nota pendiente. Quien llega tarde reconoce el banco disponible, pero no deduce por silencio que la piedra haya sido aprobada.",
+    "after": "Los golpes cesan. Una cubierta protege la nota pendiente; quien llega con farol pone su carga en el banco separado y mira la pieza sobre la mesa."
+  },
+  {
+    "file": "korven.json",
+    "path": "rooms.korven_calle_fachadas.day",
+    "before": "Una vecina deja un recipiente en la repisa mientras ayuda a cerrar una cubierta del lado del viento. Un niño devuelve una herramienta al entrante correcto. La calle enseña pertenencias por relaciones visibles, no por nombres pegados a todo.",
+    "after": "Una vecina deja un recipiente en la repisa y ayuda a cerrar la cubierta del lado del viento. El niño devuelve una herramienta al entrante; desde dentro le agradecen el gesto."
+  },
+  {
+    "file": "korven.json",
+    "path": "rooms.korven_cisterna_comun.rain",
+    "before": "El canal exterior recibe agua con polvo y la cuidadora comprueba la separación con la cisterna. No celebra toda lluvia como abastecimiento directo. Una cubierta protege el apoyo limpio donde reposa la vara de medida.",
+    "after": "El canal exterior recibe agua con polvo. La cuidadora sigue el tabique que lo separa de la cisterna y aparta una ramita de su salida. La vara de medida espera seca bajo la cubierta."
+  },
+  {
+    "file": "korven.json",
+    "path": "rooms.korven_deposito_cubiertas.day",
+    "before": "La encargada comprueba una cubierta desde el borde hasta el centro antes de pasarla a la franja seca. Un vecino pregunta por su préstamo anterior. La respuesta depende del objeto, no de cuánto tiempo lleva conversando con ella.",
+    "after": "La encargada comprueba una cubierta desde el borde hasta el centro. El vecino pregunta por su préstamo; ella toca el paño todavía húmedo y vuelve a colgarlo junto al hueco de aire."
+  },
+  {
+    "file": "korven.json",
+    "path": "rooms.korven_deposito_cubiertas.rain",
+    "before": "Las devoluciones ocupan toda la franja húmeda y la encargada abre el segundo hueco de aire. Prestar una cubierta seca exige decidir a qué trabajo puede servir ahora, no fingir que la lluvia aumenta las reservas.",
+    "after": "Las devoluciones llenan la franja húmeda. La encargada abre el segundo hueco de aire y sacude una cubierta; del centro cae agua sobre la tabla inferior."
+  },
+  {
+    "file": "korven.json",
+    "path": "rooms.korven_mirador_grietas.night",
+    "before": "El borde sigue visible con la luz de la cisterna, mientras las plataformas exteriores se juntan en una sola masa. La observadora recoge sus notas. Un sonido desde una grieta no permite medir su profundidad.",
+    "after": "La luz de la cisterna ilumina el borde próximo. Las plataformas exteriores se juntan en una masa oscura; desde una grieta llega el golpe de una piedra y la observadora recoge sus notas."
+  },
+  {
+    "file": "korven.json",
+    "path": "rooms.korven_cauce_observacion.rain",
+    "before": "El agua borra polvo de varias caras y vuelve menos clara la señal de movimiento. La revisora registra la lluvia antes de interpretar la diferencia. La prudencia no consiste en llamar recién movida a cada piedra mojada.",
+    "after": "El agua limpia el polvo de varias caras. La revisora busca el bloque que anotó antes y señala la mancha que aún conserva bajo el saliente."
+  },
+  {
+    "file": "korven.json",
+    "path": "rooms.korven_plataforma_escucha.day",
+    "before": "La revisora espera a que termine el paso de una carga antes de mirar el recipiente. Un ayudante escribe qué sonido acompañó el movimiento. La señal necesita una causa posible, una comparación que pueda repetirse desde el mismo apoyo.",
+    "after": "La revisora espera a que pase la carga. El recipiente deja de temblar; el ayudante anota el último sonido de las ruedas y vuelve a escucharlo desde la plataforma."
+  },
+  {
+    "file": "korven.json",
+    "path": "rooms.korven_plataforma_escucha.rain",
+    "before": "Las gotas hacen moverse el recipiente y la revisora lo retira hasta encontrar una comparación útil. El agua impide usar la misma señal de la jornada seca. El registro anota esa limitación en vez de ocultarla.",
+    "after": "Las gotas hacen temblar el recipiente. La revisora lo retira de la junta, seca su borde y señala el techo al ayudante antes de guardar la nota."
+  },
+  {
+    "file": "korven.json",
+    "path": "rooms.korven_entrante_piezas.rain",
+    "before": "Las muestras mojadas quedan sobre otra estera y la alfarera mantiene cubierta la pareja seca. El lugar no pierde toda utilidad, pero cambia qué puede compararse. La lluvia no autoriza una conclusión más rápida sobre el horno.",
+    "after": "Las muestras mojadas quedan sobre una estera distinta. La alfarera cubre la pareja seca; una gota oscurece el borde grueso del fragmento que había dejado fuera."
+  },
+  {
+    "file": "korven.json",
+    "path": "rooms.korven_calle_fachadas.description",
+    "before": "La calle sigue junto a casas metidas en la roca. Sus puertas tienen distinta profundidad y pequeñas repisas donde esperan objetos. Al norte queda el patio de Brumak; al sur bajas a la cisterna. El paso permite cruzar sin entrar en las viviendas ni golpear sus cargas. Una puerta al este lleva al lugar de cuidados; la atención está separada del trabajo y del tránsito.",
+    "after": "La calle sigue junto a casas metidas en la roca. Sus puertas tienen distinta profundidad y pequeñas repisas donde esperan objetos. Al norte queda el patio de Brumak; al sur bajas a la cisterna. El paso permite cruzar sin entrar en las viviendas ni golpear sus cargas. Una puerta al este lleva al lugar de cuidados."
+  },
+  {
+    "file": "edran.json",
+    "path": "rooms.edran_surcos.return",
+    "before": "Ahora diferencias tierra nueva, tallos antiguos y sendero sin sembrar antes de avanzar. El cobertizo queda al otro lado de una depresión; la distancia no se mide sólo mirándolo.",
+    "after": "Reconoces la tierra nueva y la banda de tallos antiguos. El sendero rodea la depresión antes de alcanzar el cobertizo que se ve al otro lado."
+  },
+  {
+    "file": "edran.json",
+    "path": "rooms.edran_linde_piedra.day",
+    "before": "Dos porteadores trasladan sacos de un carro a una estructura más estrecha. Antes de avanzar comprueban dónde cabrá la carga, no sólo cuánto pesa.",
+    "after": "Dos porteadores pasan sacos del carro a una estructura más estrecha. Uno sujeta el borde del paquete mientras el otro lo prueba entre los dos lomos de roca."
+  },
+  {
+    "file": "edran.json",
+    "path": "rooms.edran_puente_juncos.return",
+    "before": "Reconoces el sitio de espera en el lado alto. El puente conecta dos formas de usar el terreno sin exigir que una persona se detenga sobre el agua.",
+    "after": "Recuerdas la tabla de espera en el lado alto. Los juncos rozan los apoyos del puente; enfrente vuelve a verse la subida hacia las plataformas."
+  },
+  {
+    "file": "veyra.json",
+    "path": "rooms.veyra_plaza_rutas.night",
+    "before": "El centro queda libre, pero las entradas no desaparecen en la oscuridad. Cada patio mantiene una luz baja junto al umbral. Las conversaciones se trasladan hacia los muros, donde se puede oír sin estorbar.",
+    "after": "Cada patio mantiene una luz baja junto al umbral. El centro queda vacío; una conversación se acerca al muro oriental, junto al último alero encendido."
+  },
+  {
+    "file": "veyra.json",
+    "path": "rooms.veyra_patio_agua.description",
+    "before": "Una pila recibe el agua de las calles. La parte alta guarda agua limpia; abajo se recoge la usada. Los recipientes de las casas esperan lejos del barro. Al norte vuelves al mercado. Rodeando la baranda hacia el sur llegas a la huerta. Una puerta al este lleva al lugar de cuidados; la atención está separada del trabajo y del tránsito.",
+    "after": "Una pila recibe el agua de las calles. La parte alta guarda agua limpia; abajo se recoge la usada. Los recipientes de las casas esperan lejos del barro. Al norte vuelves al mercado. Rodeando la baranda hacia el sur llegas a la huerta. Una puerta al este lleva al lugar de cuidados."
+  },
+  {
+    "file": "lethra.json",
+    "path": "rooms.lethra_ribera_seca.return",
+    "before": "El apoyo de la recolectora permite reconocer el inicio de la región incluso si está vacío. Reconoces la ruta alta y la bajada donde se apoyan recipientes. El espacio sigue dispuesto para el trabajo cuando las personas ya se han ido.",
+    "after": "Reconoces el apoyo de la recolectora junto a la bajada. La ruta alta pasa sobre el barro; junto a la madera vacía queda el borde redondo de un recipiente."
+  },
+  {
+    "file": "lethra.json",
+    "path": "rooms.lethra_tierra_esponjosa.night",
+    "before": "El suelo firme deja de distinguirse por color y las varas adquieren mayor importancia. Los insectos ocupan el sonido de la senda. Un farol muestra apoyos cercanos sin volver sólida toda la franja cubierta de hojas.",
+    "after": "Las varas marcan el paso sobre hojas oscuras. Un farol ilumina la siguiente; fuera de ese círculo se oye un insecto y el roce del agua."
+  },
+  {
+    "file": "lethra.json",
+    "path": "rooms.lethra_ribera_firme.rain",
+    "before": "La ribera recoge agua entre apoyos y los vecinos cambian sus recipientes a los más altos. Las envolturas se mantienen cerradas durante el traslado. El trabajo cotidiano sigue, pero ahora necesita manos que sostengan en vez de sólo recibir.",
+    "after": "Los vecinos levantan sus recipientes al apoyo más alto. Las envolturas siguen cerradas; una mujer sostiene el último cuenco hasta que le acercan una tabla seca."
+  },
+  {
+    "file": "lethra.json",
+    "path": "rooms.lethra_banco_conversacion.rain",
+    "before": "Una cubierta corta protege el centro del banco, pero las personas se acercan para no mojar los recipientes. La habitante conserva su frase y deja sitio a alguien más. La espera cambia de postura, no de destinatario.",
+    "after": "La mujer acerca su recipiente al centro cubierto del banco. Hace sitio a quien llega y vuelve a mirar la ventana de la cocina."
+  },
+  {
+    "file": "lethra.json",
+    "path": "rooms.lethra_ribera_oeste.rain",
+    "before": "El barro de las cargas se mezcla sobre el apoyo exterior y los viajeros mantienen los paquetes bajo la cubierta interior. Las hierbas occidentales retienen agua distinta del canal; la transición no desaparece durante el chaparrón.",
+    "after": "El barro cae de las cargas sobre el apoyo exterior. Bajo la cubierta interior quedan los paquetes; una gota rueda desde la hierba occidental hasta la tabla de entrada."
+  },
+  {
+    "file": "lethra.json",
+    "path": "rooms.lethra_taller_fibras.description",
+    "before": "Haces de fibra esperan bajo un techo abierto hacia el canal. Los hilos secos cuelgan altos y los húmedos quedan en recipientes bajos. Una artesana los prueba con los dedos. Al oeste vuelves a la plaza; al sur está la plataforma de secado. La mesa deja escurrir el agua. Una puerta al este lleva al lugar de cuidados; la atención está separada del trabajo y del tránsito.",
+    "after": "Haces de fibra esperan bajo un techo abierto hacia el canal. Los hilos secos cuelgan altos y los húmedos quedan en recipientes bajos. Una artesana los prueba con los dedos. Al oeste vuelves a la plaza; al sur está la plataforma de secado. La mesa deja escurrir el agua. Una puerta al este lleva al lugar de cuidados."
+  }
+]

@@ -1,0 +1,9 @@
+{
+  "name": "vintage-telnet-2-nuevo",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check:client": "node --check client/app.js && node --check client/ui-data.js",
+    "review:browser": "node scripts/browser-review-new.mjs"
+  }
+}

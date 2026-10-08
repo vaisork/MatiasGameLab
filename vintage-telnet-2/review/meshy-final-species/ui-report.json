@@ -1,0 +1,29 @@
+{
+  "results": [
+    {
+      "width": 320,
+      "allFiveModels": true,
+      "allFiveBackgrounds": true,
+      "zoomAndReset": true,
+      "closedCleanly": true,
+      "errors": []
+    },
+    {
+      "width": 393,
+      "allFiveModels": true,
+      "allFiveBackgrounds": true,
+      "zoomAndReset": true,
+      "closedCleanly": true,
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "allFiveModels": true,
+      "allFiveBackgrounds": true,
+      "zoomAndReset": true,
+      "closedCleanly": true,
+      "errors": []
+    }
+  ],
+  "scope": "Actual production static assets over Tailscale; intercepted read-only player snapshot; no authenticated production actions or writes."
+}

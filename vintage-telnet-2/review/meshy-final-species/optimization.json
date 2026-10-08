@@ -1,0 +1,55 @@
+{
+  "steps": {
+    "humano": [
+      "weld",
+      "simplify ratio0.045 error0.005",
+      "resize1024"
+    ],
+    "dravak": [
+      "weld",
+      "resize1024; all geometry kept"
+    ]
+  },
+  "assets": [
+    {
+      "species": "humano",
+      "variant": "original",
+      "path": "/home/jdiaz/Escritorio/Vintage Telnet - Meshy/humano.glb",
+      "bytes": 46611972,
+      "triangles": 966476,
+      "skins": 0,
+      "animations": 0,
+      "sha256": "db3f18631466d5cf834499d46664ee5f6ff166fcc289d3f034bd1517aa682cda"
+    },
+    {
+      "species": "humano",
+      "variant": "optimized",
+      "path": "client/models/species/humano.glb",
+      "bytes": 1739872,
+      "triangles": 43484,
+      "skins": 0,
+      "animations": 0,
+      "sha256": "63bb010a3e69689efe901298287ea79f6e5811171d22db7eb38fedb733246e98"
+    },
+    {
+      "species": "dravak",
+      "variant": "original",
+      "path": "/home/jdiaz/Escritorio/Vintage Telnet - Meshy/dravak.glb",
+      "bytes": 24314208,
+      "triangles": 15566,
+      "skins": 0,
+      "animations": 0,
+      "sha256": "321254f113a3add2cc65e2d439e1aae4f138a46cea70e1d14f8ba8d3d6766fd3"
+    },
+    {
+      "species": "dravak",
+      "variant": "optimized",
+      "path": "client/models/species/dravak.glb",
+      "bytes": 3954532,
+      "triangles": 15566,
+      "skins": 0,
+      "animations": 0,
+      "sha256": "94146db0323437cf0c60565ca542232c49d3f6a56c9243b8db37c715ccb5b104"
+    }
+  ]
+}

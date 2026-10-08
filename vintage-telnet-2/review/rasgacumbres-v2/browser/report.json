@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "scope": "Read-only Chromium UI review using a real temporary-account discovery snapshot: one Rasgacumbres thumbnail, actual WebP decoding, click-to-expand, close, and no mobile overflow",
+  "creatures": [
+    "rasgacumbres"
+  ],
+  "limits": [
+    "Emulated mobile, not physical Android",
+    "API state intercepted for read-only display; no player actions performed"
+  ],
+  "viewport": {
+    "width": 393,
+    "height": 750
+  },
+  "thumbnailMaximumPx": 56
+}

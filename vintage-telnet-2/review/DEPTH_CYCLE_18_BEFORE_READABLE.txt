@@ -1,0 +1,87 @@
+completed · edran_daro · trabajo · Día
+Daro: La medida que trajiste de Bren está junto a la abrazadera. Ahora puedo ajustar la pieza con esa referencia, sin añadir hierro por añadirlo.
+Daro señala la tiza junto a la abrazadera. «Es la medida que trajiste de Bren. Ahora puedo comparar la pieza.»
+
+completed · edran_daro · armas · Día
+Daro: Las varitas me llegan de talleres de Veyra. El puñal y la espada los preparo aquí; los arcos entran con los viajeros. Una hoja de Hoshai se busca en Khariel, y un martillo de Korven en Brumak.
+Daro señala la tiza junto a la abrazadera. «Es la medida que trajiste de Bren. Ahora puedo comparar la pieza.»
+
+completed · edran_daro · pueblo · Día
+Daro: La cuesta obliga a escuchar quién baja antes de subir. Aquí las herramientas también tienen que dejar sitio al paso.
+Daro señala la tiza junto a la abrazadera. «Es la medida que trajiste de Bren. Ahora puedo comparar la pieza.»
+
+completed · korven_taren · medidas · Día
+Taren: Tengo tu recomendación junto a las marcas de la mano. Ya no falta elegir entre aro y base; falta hacer la prueba y comprobar que la taza se pueda sostener.
+Taren alinea la arcilla con tu marca. «Empiezo por esta prueba; el borde del horno sigue en las muestras.»
+
+completed · korven_taren · materiales · Día
+Taren: Acepto piedras veteadas para comparar muestras y ramas flexibles para los soportes de recipientes. Las armas las revisa Beran, en el taller del pueblo.
+Taren alinea la arcilla con tu marca. «Empiezo por esta prueba; el borde del horno sigue en las muestras.»
+
+completed · korven_taren · horno · Día
+Taren: No sé por qué cesó todo su trabajo. Sí puedo comparar este borde con el recipiente que quedó torcido.
+Taren alinea la arcilla con tu marca. «Empiezo por esta prueba; el borde del horno sigue en las muestras.»
+
+completed · korven_taren · pieza · Día
+Taren: Esta taza iba a ser para mi madre. La primera era pequeña; la segunda quedó enorme. Si hago una tercera, terminará bebiendo directamente del horno.
+Taren alinea la arcilla con tu marca. «Empiezo por esta prueba; el borde del horno sigue en las muestras.»
+
+completed · lethra_nera_mercado · reunión · Día
+Tila: Nima ya recibió tu propuesta. Llevaré los cuencos al rincón cubierto de la cocina; el paño puede seguir secándose en la plataforma.
+Tila acerca la lista de cuencos. «Nima ya recibió tu propuesta; llevaré la entrega al lugar que acordasteis.»
+
+completed · lethra_nera_mercado · comprar · Día
+Tila: Traemos puñales, varitas comunes y provisiones. Compro junco para amarres, resina para proteger uniones y ramas flexibles. Las otras armas se consiguen en Vaisgard o en los talleres de camino.
+Tila acerca la lista de cuencos. «Nima ya recibió tu propuesta; llevaré la entrega al lugar que acordasteis.»
+
+completed · lethra_nera_mercado · vender · Día
+Tila: La mochila muestra únicamente los materiales que necesita este puesto y el precio antes de vender. Conserva lo que vayas a usar en un encargo o en el afinado.
+Tila acerca la lista de cuencos. «Nima ya recibió tu propuesta; llevaré la entrega al lugar que acordasteis.»
+
+completed · lethra_nera_mercado · cuidados · Día
+Tila: El lugar de cuidados está junto a Taller de fibras. Cuesta dieciocho sellos y atiende heridas, no sólo hambre. Está cerca del pueblo: no hace falta cruzar otras regiones.
+Tila acerca la lista de cuencos. «Nima ya recibió tu propuesta; llevaré la entrega al lugar que acordasteis.»
+
+later revisit · edran_daro · trabajo · Atardecer
+Daro: La medida que trajiste de Bren está junto a la abrazadera. Ahora puedo ajustar la pieza con esa referencia, sin añadir hierro por añadirlo.
+Daro señala la tiza junto a la abrazadera. «Es la medida que trajiste de Bren. Ahora puedo comparar la pieza.»
+
+later revisit · edran_daro · armas · Atardecer
+Daro: Las varitas me llegan de talleres de Veyra. El puñal y la espada los preparo aquí; los arcos entran con los viajeros. Una hoja de Hoshai se busca en Khariel, y un martillo de Korven en Brumak.
+Daro señala la tiza junto a la abrazadera. «Es la medida que trajiste de Bren. Ahora puedo comparar la pieza.»
+
+later revisit · edran_daro · pueblo · Atardecer
+Daro: La cuesta obliga a escuchar quién baja antes de subir. Aquí las herramientas también tienen que dejar sitio al paso.
+Daro señala la tiza junto a la abrazadera. «Es la medida que trajiste de Bren. Ahora puedo comparar la pieza.»
+
+later revisit · korven_taren · medidas · Atardecer
+Taren: Tengo tu recomendación junto a las marcas de la mano. Ya no falta elegir entre aro y base; falta hacer la prueba y comprobar que la taza se pueda sostener.
+Taren alinea la arcilla con tu marca. «Empiezo por esta prueba; el borde del horno sigue en las muestras.»
+
+later revisit · korven_taren · materiales · Atardecer
+Taren: Acepto piedras veteadas para comparar muestras y ramas flexibles para los soportes de recipientes. Las armas las revisa Beran, en el taller del pueblo.
+Taren alinea la arcilla con tu marca. «Empiezo por esta prueba; el borde del horno sigue en las muestras.»
+
+later revisit · korven_taren · horno · Atardecer
+Taren: No sé por qué cesó todo su trabajo. Sí puedo comparar este borde con el recipiente que quedó torcido.
+Taren alinea la arcilla con tu marca. «Empiezo por esta prueba; el borde del horno sigue en las muestras.»
+
+later revisit · korven_taren · pieza · Atardecer
+Taren: Esta taza iba a ser para mi madre. La primera era pequeña; la segunda quedó enorme. Si hago una tercera, terminará bebiendo directamente del horno.
+Taren alinea la arcilla con tu marca. «Empiezo por esta prueba; el borde del horno sigue en las muestras.»
+
+later revisit · lethra_nera_mercado · reunión · Noche
+Tila: Nima ya recibió tu propuesta. Llevaré los cuencos al rincón cubierto de la cocina; el paño puede seguir secándose en la plataforma.
+Tila acerca la lista de cuencos. «Nima ya recibió tu propuesta; llevaré la entrega al lugar que acordasteis.»
+
+later revisit · lethra_nera_mercado · comprar · Noche
+Tila: Traemos puñales, varitas comunes y provisiones. Compro junco para amarres, resina para proteger uniones y ramas flexibles. Las otras armas se consiguen en Vaisgard o en los talleres de camino.
+Tila acerca la lista de cuencos. «Nima ya recibió tu propuesta; llevaré la entrega al lugar que acordasteis.»
+
+later revisit · lethra_nera_mercado · vender · Noche
+Tila: La mochila muestra únicamente los materiales que necesita este puesto y el precio antes de vender. Conserva lo que vayas a usar en un encargo o en el afinado.
+Tila acerca la lista de cuencos. «Nima ya recibió tu propuesta; llevaré la entrega al lugar que acordasteis.»
+
+later revisit · lethra_nera_mercado · cuidados · Noche
+Tila: El lugar de cuidados está junto a Taller de fibras. Cuesta dieciocho sellos y atiende heridas, no sólo hambre. Está cerca del pueblo: no hace falta cruzar otras regiones.
+Tila acerca la lista de cuencos. «Nima ya recibió tu propuesta; llevaré la entrega al lugar que acordasteis.»

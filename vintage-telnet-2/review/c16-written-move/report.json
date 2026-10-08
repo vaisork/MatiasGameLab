@@ -1,0 +1,86 @@
+{
+  "scope": "BEFORE real browser/mobile and 20 legal repeated route moves per width plus mirar/observar; isolated accounts8099, no edits",
+  "results": [
+    {
+      "width": 320,
+      "moves": [
+        {
+          "step": 1,
+          "direction": "norte",
+          "room": "Calle de la fragua",
+          "latency": 0.303,
+          "scrollY": 6,
+          "contextTop": 0,
+          "readingTop": 31,
+          "navTop": 642,
+          "shown": "Lugar\nLlegas a Calle de la fragua.\n\nEntorno\nLa calle sube desde la plaza hasta la fragua. Dos casas estr",
+          "paragraphs": [
+            {
+              "hidden": false,
+              "total": 28,
+              "shown": 28
+            },
+            {
+              "hidden": false,
+              "total": 230,
+              "shown": 60
+            },
+            {
+              "hidden": true,
+              "total": 135,
+              "shown": 0
+            }
+          ],
+          "canvases": 0,
+          "overflow": false
+        },
+        {
+          "step": 2,
+          "direction": "sur",
+          "room": "Plaza de Valdren",
+          "latency": 0.211,
+          "scrollY": 6,
+          "contextTop": 0,
+          "readingTop": 31,
+          "navTop": 642,
+          "shown": "Lugar\nLlegas a Plaza de Valdren.\n\nEntorno\nUn banco largo cruza la plaza. Hay e",
+          "paragraphs": [
+            {
+              "hidden": false,
+              "total": 26,
+              "shown": 26
+            },
+            {
+              "hidden": false,
+              "total": 225,
+              "shown": 36
+            },
+            {
+              "hidden": true,
+              "total": 160,
+              "shown": 0
+            },
+            {
+              "hidden": true,
+              "total": 190,
+              "shown": 0
+            }
+          ],
+          "canvases": 0,
+          "overflow": false
+        }
+      ],
+      "errors": [],
+      "afterWrittenDecision": {
+        "scrollY": 6,
+        "readerTop": 31,
+        "readerBottom": 373,
+        "navTop": 642,
+        "feedTop": 81,
+        "feedBottom": 361
+      },
+      "finalRoom": "valdren_calle_alta",
+      "canvasCount": 0
+    }
+  ]
+}

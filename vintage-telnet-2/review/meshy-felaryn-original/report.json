@@ -1,0 +1,25 @@
+{
+  "phase": "original",
+  "results": [
+    {
+      "width": 320,
+      "loaded": true,
+      "canvasesAfterDispose": 0,
+      "lateLoadDidNotRemount": true
+    },
+    {
+      "width": 393,
+      "loaded": true,
+      "canvasesAfterDispose": 0,
+      "lateLoadDidNotRemount": true
+    },
+    {
+      "width": 1100,
+      "loaded": true,
+      "canvasesAfterDispose": 0,
+      "lateLoadDidNotRemount": true
+    }
+  ],
+  "errors": [],
+  "limits": "No animation clips supplied. Visual canon requires screenshot inspection."
+}

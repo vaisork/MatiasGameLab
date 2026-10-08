@@ -1,0 +1,32 @@
+{
+  "scope": "Readonly real Chrome, actual isolated encounter snapshot, normal progressive reading; no production mutations",
+  "results": [
+    {
+      "width": 1440,
+      "tellCompleteMs": 42,
+      "roundWindowMs": 4000,
+      "ambientStillProgressive": true,
+      "tacticalTellVisibleWhileFollowing": true,
+      "manualScrollPreserved": true,
+      "feedOverflow": true
+    },
+    {
+      "width": 393,
+      "tellCompleteMs": 44,
+      "roundWindowMs": 4000,
+      "ambientStillProgressive": true,
+      "tacticalTellVisibleWhileFollowing": true,
+      "manualScrollPreserved": true,
+      "feedOverflow": true
+    },
+    {
+      "width": 320,
+      "tellCompleteMs": 59,
+      "roundWindowMs": 4000,
+      "ambientStillProgressive": true,
+      "tacticalTellVisibleWhileFollowing": true,
+      "manualScrollPreserved": true,
+      "feedOverflow": true
+    }
+  ]
+}

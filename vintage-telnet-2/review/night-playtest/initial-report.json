@@ -1,0 +1,102 @@
+{
+  "initialLocation": "khariel_centro",
+  "currentLocation": "hoshai_escalones_sol",
+  "currentName": "Escalones al sol",
+  "reading": {
+    "visible": "Lugar\nEstás en Plaza de Khariel.\n\nEntorno\nLa plaza de Khariel ocupa dos terrazas unidas por escalones y una rampa. El camino baja al sur; al oeste está el taller, al este el mercado y al norte las viviendas. Los bancos dejan sitio para las colas Felaryn y para apoyar cargas.\n\nEntorno\nLos habitantes apartan los asientos del agua que baja por los escalones y despejan la rampa para las cargas. Las capas mojadas se cuelgan bajo un techo común, lejos de las herramientas que esperan en el taller.\n\nEntorno\nLas luces se colocan a la altura de los cambios de nivel. La plaza superior conserva voces de viviendas, mientras abajo esperan viajeros recién llegados. El pueblo no cierra por completo, pero distingue descanso doméstico de tránsito.\n\nLugar\nLlegas a Escalones al sol.",
+    "accessible": [
+      {
+        "hidden": false,
+        "label": "Estás en Plaza de Khariel."
+      },
+      {
+        "hidden": false,
+        "label": "La plaza de Khariel ocupa dos terrazas unidas por escalones y una rampa. El camino baja al sur; al oeste está el taller, al este el mercado y al norte las viviendas. Los bancos dejan sitio para las colas Felaryn y para apoyar cargas."
+      },
+      {
+        "hidden": false,
+        "label": "Los habitantes apartan los asientos del agua que baja por los escalones y despejan la rampa para las cargas. Las capas mojadas se cuelgan bajo un techo común, lejos de las herramientas que esperan en el taller."
+      },
+      {
+        "hidden": false,
+        "label": "Las luces se colocan a la altura de los cambios de nivel. La plaza superior conserva voces de viviendas, mientras abajo esperan viajeros recién llegados. El pueblo no cierra por completo, pero distingue descanso doméstico de tránsito."
+      },
+      {
+        "hidden": false,
+        "label": "Llegas a Escalones al sol."
+      },
+      {
+        "hidden": true,
+        "label": "Subes por escalones de tamaños distintos, unos tallados y otros reparados con piedras nuevas. Al sur está la terraza de cargas; al norte llegas a Khariel. Un canal corre al lado de los peldaños. Las reparaciones dejan apoyos para pies humanos y Felaryn."
+      },
+      {
+        "hidden": true,
+        "label": "Un Saltacresta salta entre dos piedras y mira hacia la ladera antes de seguir."
+      },
+      {
+        "hidden": true,
+        "label": "El canal lateral reúne agua que resbala de las piezas reparadas. El albañil revisa el hueco inferior sin retirarlo en pleno tránsito. Una marca de barro revela qué peldaño están evitando las cargas más anchas."
+      },
+      {
+        "hidden": true,
+        "label": "Añades Saltacresta al bestiario."
+      }
+    ],
+    "scroll": 348,
+    "height": 280
+  },
+  "actions": [
+    {
+      "disabled": false,
+      "id": "buscar",
+      "label": "Buscar alrededor",
+      "reason": "Revisar suelo, refugios y objetos que hayan quedado en el camino."
+    },
+    {
+      "id": "examinar_criatura",
+      "label": "Examinar Saltacresta",
+      "target": "saltacresta"
+    },
+    {
+      "id": "mirar",
+      "label": "Mirar"
+    },
+    {
+      "id": "observar",
+      "label": "Observar"
+    },
+    {
+      "id": "examinar",
+      "label": "Examinar peldaños",
+      "target": "peldaños"
+    },
+    {
+      "id": "examinar",
+      "label": "Examinar canal",
+      "target": "canal"
+    },
+    {
+      "id": "mover",
+      "label": "Sur · Salida por explorar",
+      "target": "sur"
+    },
+    {
+      "id": "mover",
+      "label": "Norte · Plaza de Khariel",
+      "target": "norte"
+    },
+    {
+      "id": "desequipar",
+      "label": "Dejar de usar weapon",
+      "target": "weapon"
+    },
+    {
+      "disabled": false,
+      "id": "equipar",
+      "label": "Equipar Puñal de camino",
+      "reason": "",
+      "target": "punal_camino"
+    }
+  ],
+  "shops": []
+}

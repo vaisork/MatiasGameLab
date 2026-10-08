@@ -1,0 +1,29 @@
+{
+  "results": [
+    {
+      "width": 320,
+      "images": 15,
+      "allDecoded": true,
+      "no3D": true,
+      "noOverflow": true,
+      "errors": []
+    },
+    {
+      "width": 393,
+      "images": 15,
+      "allDecoded": true,
+      "no3D": true,
+      "noOverflow": true,
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "images": 15,
+      "allDecoded": true,
+      "no3D": true,
+      "noOverflow": true,
+      "errors": []
+    }
+  ],
+  "scope": "Display-only fixture based on authoritative creature catalogue; no fabricated discoveries persisted; temporary accounts only."
+}

@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "scope": "Read-only Chromium: saved known map, orthogonal links and actual direction labels; character portrait and five species gallery; decode, expand and close; mobile overflow",
+  "knownNodes": 89,
+  "limits": [
+    "State intercepted for read-only UI review",
+    "Emulated mobile, not physical Android"
+  ]
+}

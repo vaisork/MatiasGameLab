@@ -1,0 +1,11 @@
+# Mapa para orientarse — petición de Javier
+
+La lista de lugares no resolvía dónde estaba el personaje ni cómo regresar. Se sustituyó por brújula local, selector de destinos conocidos e itinerario por pasos. La pestaña ahora se llama «Mapa». El centro muestra el lugar actual; norte/sur/este/oeste muestran vecinos aprendidos o salidas por explorar. La casa se muestra aparte, sin inventarle una dirección cardinal.
+
+El servidor conserva la privacidad del mapa: sólo nodos conocidos y parejas recorridas. Las rutas dirigidas se derivan de salidas reales, no del punto opuesto supuesto. Las fronteras no incluyen nombre ni id del destino. La consulta de un lugar no mueve al personaje. El botón siguiente paso envía una acción de movimiento disponible; nunca sigue toda la ruta automáticamente. Un destino aislado no recibe una ruta inventada.
+
+Se corrigió además la identidad del hogar: anteriormente, fuera de casa, su nodo podía reutilizar el nombre y tipo del cuarto actual. Ahora se deriva de su plantilla privada. Los datos y rutas existentes se conservan. El servidor anterior no ofrece direcciones: el cliente lo indica y no las deduce de texto. Reiniciar el juego en Ubuntu carga el servidor actualizado; este entorno no detuvo el proceso real porque no puede volver a abrir sockets.
+
+Validación backend:39 pruebas PASS en19.751s; cuatro pruebas de mapa comprueban hogar/frontera sin destino oculto, regreso y relogin, dirección de vuelta asimétrica y ausencia de retorno en un paso de una sola dirección. Los15 contratos de orientación prueban filtrado y caminos;16 comprobaciones ejecutan mapView real con un adaptador DOM para selección, paso, frontera, hogar, incomunicado y compatibilidad. El resto de contratos cliente pasan. No se hizo revisión visual, render móvil ni sesión humana, y estos tests no los sustituyen.
+
+El catálogo real añade un recorrido autenticado a Narevia y regreso al hogar por las direcciones aprendidas. La actualización pasiva ya no se congela al dejar enfocado el selector: conserva foco/destino, borrador y cursor mientras adopta ubicación, combate y acciones nuevas. Tres casos del adaptador prueban esa conducta, junto al refresco sin cambios y la guarda del director. «Ver mapa» está junto al nombre del cuarto; el combate real ofrece aviso para volver a responder en Aventura.

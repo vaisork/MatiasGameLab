@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "scope": "Actual near-town human combat; both HP totals; Sombra power cooldown 4 rounds visible at 320/393; victory → nearby 18-seal care; second Arcano actor sees actual Espinajo prepared attack",
+  "widths": [
+    320,
+    393
+  ],
+  "cooldown": 4,
+  "combatHP": 95,
+  "enemyHP": 28,
+  "careHPBefore": 80,
+  "careHPAfter": 90,
+  "careSeals": 2,
+  "preparedAction": "Embestida territorial"
+}

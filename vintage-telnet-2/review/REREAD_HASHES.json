@@ -1,0 +1,21 @@
+{
+  "client/app.js": "500ba408b7a5e620965c8a8ee5ec1607abf596adaa0e06e42e5fdde3843d5c6c",
+  "client/index.html": "3cd01d9cde88683115aabda3206ce43feebd81edb7313f581a4485c5b2f50c13",
+  "client/qa-commerce.mjs": "16e63e7d35f71ea3b118252333066c6c8f6dd0d7d1fc6387c91ec2ae367da61f",
+  "client/qa-contracts.mjs": "3f8568fa5db692b26d2a0c4233f9d51681355c3c1a374b7d76f117ce42d80367",
+  "client/style.css": "c5c8ed09c84405ddebbc4fe146020b2456592db832727a1afb7ac31147f264e0",
+  "client/ui-data.js": "c84f3e9a0ec1616d00dc9654d59df2ebacac0b239d80f4db3601277bf8d64c40",
+  "content/regions/edran.json": "b80f59030428999dbe0796226671a764779eab9742f710819a9409abb9a866d9",
+  "content/regions/hoshai.json": "a1fd31a2a5e2b3d1f96379b0ea69f99085d0f6b393004d0823c1f6ff73b2b27a",
+  "content/regions/korven.json": "aa8dcddf8c700e75b6dd559a485eab76674b4d33737945a8d2fde76d4feba824",
+  "content/regions/lethra.json": "ac620275bdee1ebd9db44500e936a024aa33057ee5910be64cd9fa737762ae50",
+  "content/regions/nhal.json": "15af5d9c1a0d4d500f26861bae63c01cb06a69dc214521966bb34605a972594c",
+  "content/regions/veyra.json": "41e330a4406b97c9a16aa554555539cf913183e0265d2f3cc6fbce180ac3fbee",
+  "content/world.json": "b89d6f287520e5ee3133b6ef62eaa3cfdc4762b3c77935ef9f09948d8634a0dc",
+  "server/__init__.py": "d6c4253b9dd213160cd2714c24ce853137e2abc0cf8fe382b4ddefc427afcf3c",
+  "server/app.py": "d49ddf321c22a1249f98a4be1bce1e0742885ae1707649fe4a661a437a5c17c6",
+  "server/content.py": "7de0aced0aebfaae252bee9f83cfbbefc2ddd81deac1b7e9e7cf7035244d265c",
+  "server/engine.py": "6b9d672b9e0665cdcfc9d604834b31d2056feae55ba812ca8262dafd4c3d473d",
+  "server/mechanics.py": "3a4de977b962e4ccd28c98ce235084f2da6a53505b8d4b88b9811f984fdd5109",
+  "server/store.py": "eb9cb38adc7530ec71184d45fd4ff8a20dde2c178b04356065cbe4a46552872f"
+}

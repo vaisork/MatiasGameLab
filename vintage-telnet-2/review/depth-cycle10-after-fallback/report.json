@@ -1,0 +1,92 @@
+{
+  "phase": "after-fallback",
+  "results": [
+    {
+      "width": 393,
+      "clockMode": "isolated controlled clock +10s",
+      "searchReasonBefore": "Ya revisaste este lugar. Puedes buscar de nuevo en 61 s.",
+      "searchReasonAfter": "Ya revisaste este lugar. Puedes buscar de nuevo en 51 s.",
+      "room": "edran_surcos",
+      "initial": {
+        "canvasToken": "4349cc80-0c5d-4b2e-bf05-3e78fb024028",
+        "labels": [
+          {
+            "name": "Tu casa junto al corredor",
+            "left": "72px",
+            "top": "149.453px"
+          },
+          {
+            "name": "Plaza de Valdren",
+            "left": "98.6192px",
+            "top": "188.343px"
+          },
+          {
+            "name": "Campo de surcos · Aquí",
+            "left": "257.759px",
+            "top": "169.877px"
+          }
+        ],
+        "compass": "↑"
+      },
+      "before": {
+        "canvasToken": "4349cc80-0c5d-4b2e-bf05-3e78fb024028",
+        "labels": [
+          {
+            "name": "Tu casa junto al corredor",
+            "left": "75.298px",
+            "top": "100.702px"
+          },
+          {
+            "name": "Plaza de Valdren",
+            "left": "87.0598px",
+            "top": "170.787px"
+          },
+          {
+            "name": "Curva de la Acequia",
+            "left": "261.851px",
+            "top": "264.112px"
+          },
+          {
+            "name": "Campo de surcos · Aquí",
+            "left": "265px",
+            "top": "225.135px"
+          }
+        ],
+        "compass": "↑"
+      },
+      "after": {
+        "canvasToken": "9c4b6ea4-b1cb-4403-9d60-f1cbf5ca20c0",
+        "labels": [
+          {
+            "name": "Tu casa junto al corredor",
+            "left": "75.298px",
+            "top": "100.702px"
+          },
+          {
+            "name": "Plaza de Valdren",
+            "left": "87.0598px",
+            "top": "170.787px"
+          },
+          {
+            "name": "Curva de la Acequia",
+            "left": "261.851px",
+            "top": "264.112px"
+          },
+          {
+            "name": "Campo de surcos · Aquí",
+            "left": "265px",
+            "top": "225.135px"
+          }
+        ],
+        "compass": "↑"
+      },
+      "projectionChanged": false,
+      "canvasReplaced": true,
+      "errors": [],
+      "contextLossSurvivesPassiveRefresh": true,
+      "otherCharacterFreshCamera": true,
+      "closedAndSwitchedCanvasReleased": true,
+      "contextLossFallback": true
+    }
+  ]
+}

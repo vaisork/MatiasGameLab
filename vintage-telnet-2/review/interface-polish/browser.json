@@ -1,0 +1,33 @@
+{
+  "scope": "Read-only player snapshot displayed in Chrome; no player writes. Mobile viewport emulation.",
+  "results": [
+    {
+      "width": 1440,
+      "views": 5,
+      "icons": 11,
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "width": 768,
+      "views": 5,
+      "icons": 11,
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "width": 393,
+      "views": 5,
+      "icons": 11,
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "width": 320,
+      "views": 5,
+      "icons": 11,
+      "overflow": false,
+      "errors": []
+    }
+  ]
+}

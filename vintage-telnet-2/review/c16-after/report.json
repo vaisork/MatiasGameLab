@@ -1,0 +1,1443 @@
+{
+  "scope": "AFTER real browser/mobile and 20 legal repeated route moves per width plus mirar/observar; isolated accounts8099, written decision scroll fix",
+  "results": [
+    {
+      "width": 320,
+      "moves": [
+        {
+          "step": 1,
+          "direction": "norte",
+          "room": "Calle de la fragua",
+          "latency": 0.175,
+          "scrollY": 6,
+          "contextTop": 0,
+          "readingTop": 31,
+          "navTop": 642,
+          "shown": "Lugar\nLlegas a Calle de la fragua.\n\nEntorno\nLa calle sube desde la plaza hasta l",
+          "paragraphs": [
+            {
+              "hidden": false,
+              "total": 28,
+              "shown": 28
+            },
+            {
+              "hidden": false,
+              "total": 230,
+              "shown": 36
+            },
+            {
+              "hidden": true,
+              "total": 135,
+              "shown": 0
+            }
+          ],
+          "canvases": 0,
+          "overflow": false
+        },
+        {
+          "step": 2,
+          "direction": "sur",
+          "room": "Plaza de Valdren",
+          "latency": 0.122,
+          "scrollY": 6,
+          "contextTop": 0,
+          "readingTop": 31,
+          "navTop": 642,
+          "shown": "Lugar\nLlegas a Plaza de Valdren.\n\nEntorno\nUn banco largo cruza la ",
+          "paragraphs": [
+            {
+              "hidden": false,
+              "total": 26,
+              "shown": 26
+            },
+            {
+              "hidden": false,
+              "total": 225,
+              "shown": 24
+            },
+            {
+              "hidden": true,
+              "total": 160,
+              "shown": 0
+            },
+            {
+              "hidden": true,
+              "total": 190,
+              "shown": 0
+            }
+          ],
+          "canvases": 0,
+          "overflow": false
+        },
+        {
+          "step": 3,
+          "direction": "norte",
+          "room": "Calle de la fragua",
+          "latency": 0.135,
+          "scrollY": 6,
+          "contextTop": 0,
+          "readingTop": 31,
+          "navTop": 642,
+          "shown": "Lugar\nLlegas a Calle de la fragua.\n\nEntorno\nLa calle sube desde la p",
+          "paragraphs": [
+            {
+              "hidden": false,
+              "total": 28,
+              "shown": 28
+            },
+            {
+              "hidden": false,
+              "total": 230,
+              "shown": 24
+            },
+            {
+              "hidden": true,
+              "total": 126,
+              "shown": 0
+            },
+            {
+              "hidden": true,
+              "total": 135,
+              "shown": 0
+            }
+          ],
+          "canvases": 0,
+          "overflow": false
+        },
+        {
+          "step": 4,
+          "direction": "sur",
+          "room": "Plaza de Valdren",
+          "latency": 0.135,
+          "scrollY": 6,
+          "contextTop": 0,
+          "readingTop": 31,
+          "navTop": 642,
+          "shown": "Lugar\nLlegas a Plaza de Valdren.\n\nEntorno\nUn banco largo cruza la plaza. Hay e",
+          "paragraphs": [
+            {
+              "hidden": false,
+              "total": 26,
+              "shown": 26
+            },
+            {
+              "hidden": false,
+              "total": 225,
+              "shown": 36
+            },
+            {
+              "hidden": true,
+              "total": 140,
+              "shown": 0
+            },
+            {
+              "hidden": true,
+              "total": 190,
+              "shown": 0
+            }
+          ],
+          "canvases": 0,
+          "overflow": false
+        },
+        {
+          "step": 5,
+          "direction": "norte",
+          "room": "Calle de la fragua",
+          "latency": 0.135,
+          "scrollY": 6,
+          "contextTop": 0,
+          "readingTop": 31,
+          "navTop": 642,
+          "shown": "Lugar\nLlegas a Calle de la fragua.\n\nEntorno\nLa calle sube desde la plaza hasta l",
+          "paragraphs": [
+            {
+              "hidden": false,
+              "total": 28,
+              "shown": 28
+            },
+            {
+              "hidden": false,
+              "total": 230,
+              "shown": 36
+            },
+            {
+              "hidden": true,
+              "total": 135,
+              "shown": 0
+            },
+            {
+              "hidden": true,
+              "total": 126,
+              "shown": 0
+            }
+          ],
+          "canvases": 0,
+          "overflow": false
+        },
+        {
+          "step": 6,
+          "direction": "sur",
+          "room": "Plaza de Valdren",
+          "latency": 0.126,
+          "scrollY": 6,
+          "contextTop": 0,
+          "readingTop": 31,
+          "navTop": 642,
+          "shown": "Lugar\nLlegas a Plaza de Valdren.\n\nEntorno\nUn banco largo cruza la ",
+          "paragraphs": [
+            {
+              "hidden": false,
+              "total": 26,
+              "shown": 26
+            },
+            {
+              "hidden": false,
+              "total": 225,
+              "shown": 24
+            },
+            {
+              "hidden": true,
+              "total": 140,
+              "shown": 0
+            },
+            {
+              "hidden": true,
+              "total": 190,
+              "shown": 0
+            }
+          ],
+          "canvases": 0,
+          "overflow": false
+        },
+        {
+          "step": 7,
+          "direction": "norte",
+          "room": "Calle de la fragua",
+          "latency": 0.144,
+          "scrollY": 6,
+          "contextTop": 0,
+          "readingTop": 31,
+          "navTop": 642,
+          "shown": "Lugar\nLlegas a Calle de la fragua.\n\nEntorno\nLa calle sube desde la plaza hasta l",
+          "paragraphs": [
+            {
+              "hidden": false,
+              "total": 28,
+              "shown": 28
+            },
+            {
+              "hidden": false,
+              "total": 230,
+              "shown": 36
+            },
+            {
+              "hidden": true,
+              "total": 135,
+              "shown": 0
+            },
+            {
+              "hidden": true,
+              "total": 126,
+              "shown": 0
+            }
+          ],
+          "canvases": 0,
+          "overflow": false
+        },
+        {
+          "step": 8,
+          "direction": "sur",
+          "room": "Plaza de Valdren",
+          "latency": 0.148,
+          "scrollY": 6,
+          "contextTop": 0,
+          "readingTop": 31,
+          "navTop": 642,
+          "shown": "Lugar\nLlegas a Plaza de Valdren.\n\nEntorno\nUn banco largo cruza la ",
+          "paragraphs": [
+            {
+              "hidden": false,
+              "total": 26,
+              "shown": 26
+            },
+            {
+              "hidden": false,
+              "total": 225,
+              "shown": 24
+            },
+            {
+              "hidden": true,
+              "total": 140,
+              "shown": 0
+            },
+            {
+              "hidden": true,
+              "total": 190,
+              "shown": 0
+            }
+          ],
+          "canvases": 0,
+          "overflow": false
+        },
+        {
+          "step": 9,
+          "direction": "norte",
+          "room": "Calle de la fragua",
+          "latency": 0.138,
+          "scrollY": 6,
+          "contextTop": 0,
+          "readingTop": 31,
+          "navTop": 642,
+          "shown": "Lugar\nLlegas a Calle de la fragua.\n\nEntorno\nLa calle sube desde la plaza hasta l",
+          "paragraphs": [
+            {
+              "hidden": false,
+              "total": 28,
+              "shown": 28
+            },
+            {
+              "hidden": false,
+              "total": 230,
+              "shown": 36
+            },
+            {
+              "hidden": true,
+              "total": 126,
+              "shown": 0
+            },
+            {
+              "hidden": true,
+              "total": 135,
+              "shown": 0
+            }
+          ],
+          "canvases": 0,
+          "overflow": false
+        },
+        {
+          "step": 10,
+          "direction": "sur",
+          "room": "Plaza de Valdren",
+          "latency": 0.124,
+          "scrollY": 6,
+          "contextTop": 0,
+          "readingTop": 31,
+          "navTop": 642,
+          "shown": "Lugar\nLlegas a Plaza de Valdren.\n\nEntorno\nUn banco largo cruza la ",
+          "paragraphs": [
+            {
+              "hidden": false,
+              "total": 26,
+              "shown": 26
+            },
+            {
+              "hidden": false,
+              "total": 225,
+              "shown": 24
+            },
+            {
+              "hidden": true,
+              "total": 140,
+              "shown": 0
+            },
+            {
+              "hidden": true,
+              "total": 190,
+              "shown": 0
+            }
+          ],
+          "canvases": 0,
+          "overflow": false
+        },
+        {
+          "step": 11,
+          "direction": "norte",
+          "room": "Calle de la fragua",
+          "latency": 0.126,
+          "scrollY": 6,
+          "contextTop": 0,
+          "readingTop": 31,
+          "navTop": 642,
+          "shown": "Lugar\nLlegas a Calle de la fragua.\n\nEntorno\nLa calle sube desde la plaza hasta l",
+          "paragraphs": [
+            {
+              "hidden": false,
+              "total": 28,
+              "shown": 28
+            },
+            {
+              "hidden": false,
+              "total": 230,
+              "shown": 36
+            },
+            {
+              "hidden": true,
+              "total": 135,
+              "shown": 0
+            },
+            {
+              "hidden": true,
+              "total": 126,
+              "shown": 0
+            }
+          ],
+          "canvases": 0,
+          "overflow": false
+        },
+        {
+          "step": 12,
+          "direction": "sur",
+          "room": "Plaza de Valdren",
+          "latency": 0.122,
+          "scrollY": 6,
+          "contextTop": 0,
+          "readingTop": 31,
+          "navTop": 642,
+          "shown": "Lugar\nLlegas a Plaza de Valdren.\n\nEntorno\nUn banco largo cruza la ",
+          "paragraphs": [
+            {
+              "hidden": false,
+              "total": 26,
+              "shown": 26
+            },
+            {
+              "hidden": false,
+              "total": 225,
+              "shown": 24
+            },
+            {
+              "hidden": true,
+              "total": 140,
+              "shown": 0
+            },
+            {
+              "hidden": true,
+              "total": 190,
+              "shown": 0
+            }
+          ],
+          "canvases": 0,
+          "overflow": false
+        },
+        {
+          "step": 13,
+          "direction": "norte",
+          "room": "Calle de la fragua",
+          "latency": 0.149,
+          "scrollY": 6,
+          "contextTop": 0,
+          "readingTop": 31,
+          "navTop": 642,
+          "shown": "Lugar\nLlegas a Calle de la fragua.\n\nEntorno\nLa calle sube desde la plaza hasta l",
+          "paragraphs": [
+            {
+              "hidden": false,
+              "total": 28,
+              "shown": 28
+            },
+            {
+              "hidden": false,
+              "total": 230,
+              "shown": 36
+            },
+            {
+              "hidden": true,
+              "total": 135,
+              "shown": 0
+            },
+            {
+              "hidden": true,
+              "total": 126,
+              "shown": 0
+            }
+          ],
+          "canvases": 0,
+          "overflow": false
+        },
+        {
+          "step": 14,
+          "direction": "sur",
+          "room": "Plaza de Valdren",
+          "latency": 0.142,
+          "scrollY": 6,
+          "contextTop": 0,
+          "readingTop": 31,
+          "navTop": 642,
+          "shown": "Lugar\nLlegas a Plaza de Valdren.\n\nEntorno\nUn banco largo cruza la ",
+          "paragraphs": [
+            {
+              "hidden": false,
+              "total": 26,
+              "shown": 26
+            },
+            {
+              "hidden": false,
+              "total": 225,
+              "shown": 24
+            },
+            {
+              "hidden": true,
+              "total": 140,
+              "shown": 0
+            },
+            {
+              "hidden": true,
+              "total": 190,
+              "shown": 0
+            }
+          ],
+          "canvases": 0,
+          "overflow": false
+        },
+        {
+          "step": 15,
+          "direction": "norte",
+          "room": "Calle de la fragua",
+          "latency": 0.131,
+          "scrollY": 6,
+          "contextTop": 0,
+          "readingTop": 31,
+          "navTop": 642,
+          "shown": "Lugar\nLlegas a Calle de la fragua.\n\nEntorno\nLa calle sube desde la plaza hasta l",
+          "paragraphs": [
+            {
+              "hidden": false,
+              "total": 28,
+              "shown": 28
+            },
+            {
+              "hidden": false,
+              "total": 230,
+              "shown": 36
+            },
+            {
+              "hidden": true,
+              "total": 126,
+              "shown": 0
+            },
+            {
+              "hidden": true,
+              "total": 135,
+              "shown": 0
+            }
+          ],
+          "canvases": 0,
+          "overflow": false
+        },
+        {
+          "step": 16,
+          "direction": "sur",
+          "room": "Plaza de Valdren",
+          "latency": 0.117,
+          "scrollY": 6,
+          "contextTop": 0,
+          "readingTop": 31,
+          "navTop": 642,
+          "shown": "Lugar\nLlegas a Plaza de Valdren.\n\nEntorno\nUn banco largo cruza la ",
+          "paragraphs": [
+            {
+              "hidden": false,
+              "total": 26,
+              "shown": 26
+            },
+            {
+              "hidden": false,
+              "total": 225,
+              "shown": 24
+            },
+            {
+              "hidden": true,
+              "total": 140,
+              "shown": 0
+            },
+            {
+              "hidden": true,
+              "total": 190,
+              "shown": 0
+            }
+          ],
+          "canvases": 0,
+          "overflow": false
+        },
+        {
+          "step": 17,
+          "direction": "norte",
+          "room": "Calle de la fragua",
+          "latency": 0.123,
+          "scrollY": 6,
+          "contextTop": 0,
+          "readingTop": 31,
+          "navTop": 642,
+          "shown": "Lugar\nLlegas a Calle de la fragua.\n\nEntorno\nLa calle sube desde la plaza hasta l",
+          "paragraphs": [
+            {
+              "hidden": false,
+              "total": 28,
+              "shown": 28
+            },
+            {
+              "hidden": false,
+              "total": 230,
+              "shown": 36
+            },
+            {
+              "hidden": true,
+              "total": 135,
+              "shown": 0
+            },
+            {
+              "hidden": true,
+              "total": 126,
+              "shown": 0
+            }
+          ],
+          "canvases": 0,
+          "overflow": false
+        },
+        {
+          "step": 18,
+          "direction": "sur",
+          "room": "Plaza de Valdren",
+          "latency": 0.133,
+          "scrollY": 6,
+          "contextTop": 0,
+          "readingTop": 31,
+          "navTop": 642,
+          "shown": "Lugar\nLlegas a Plaza de Valdren.\n\nEntorno\nUn banco largo cruza la plaza. Hay e",
+          "paragraphs": [
+            {
+              "hidden": false,
+              "total": 26,
+              "shown": 26
+            },
+            {
+              "hidden": false,
+              "total": 225,
+              "shown": 36
+            },
+            {
+              "hidden": true,
+              "total": 140,
+              "shown": 0
+            },
+            {
+              "hidden": true,
+              "total": 190,
+              "shown": 0
+            }
+          ],
+          "canvases": 0,
+          "overflow": false
+        },
+        {
+          "step": 19,
+          "direction": "norte",
+          "room": "Calle de la fragua",
+          "latency": 0.137,
+          "scrollY": 6,
+          "contextTop": 0,
+          "readingTop": 31,
+          "navTop": 642,
+          "shown": "Lugar\nLlegas a Calle de la fragua.\n\nEntorno\nLa calle sube desde la p",
+          "paragraphs": [
+            {
+              "hidden": false,
+              "total": 28,
+              "shown": 28
+            },
+            {
+              "hidden": false,
+              "total": 230,
+              "shown": 24
+            },
+            {
+              "hidden": true,
+              "total": 135,
+              "shown": 0
+            },
+            {
+              "hidden": true,
+              "total": 126,
+              "shown": 0
+            }
+          ],
+          "canvases": 0,
+          "overflow": false
+        },
+        {
+          "step": 20,
+          "direction": "sur",
+          "room": "Plaza de Valdren",
+          "latency": 0.11,
+          "scrollY": 6,
+          "contextTop": 0,
+          "readingTop": 31,
+          "navTop": 642,
+          "shown": "Lugar\nLlegas a Plaza de Valdren.\n\nEntorno\nUn banco largo cruza la ",
+          "paragraphs": [
+            {
+              "hidden": false,
+              "total": 26,
+              "shown": 26
+            },
+            {
+              "hidden": false,
+              "total": 225,
+              "shown": 24
+            },
+            {
+              "hidden": true,
+              "total": 140,
+              "shown": 0
+            },
+            {
+              "hidden": true,
+              "total": 190,
+              "shown": 0
+            }
+          ],
+          "canvases": 0,
+          "overflow": false
+        }
+      ],
+      "errors": [],
+      "pollScroll": [
+        140,
+        140
+      ],
+      "errorScroll": [
+        140,
+        140
+      ],
+      "afterWrittenDecision": {
+        "scrollY": 37,
+        "readerTop": 0,
+        "readerBottom": 342,
+        "navTop": 642,
+        "feedTop": 50,
+        "feedBottom": 330
+      },
+      "finalRoom": "valdren_plaza",
+      "canvasCount": 0
+    },
+    {
+      "width": 393,
+      "moves": [
+        {
+          "step": 1,
+          "direction": "norte",
+          "room": "Calle de la fragua",
+          "latency": 0.189,
+          "scrollY": 6,
+          "contextTop": 0,
+          "readingTop": 31,
+          "navTop": 642,
+          "shown": "Lugar\nLlegas a Calle de la fragua.\n\nEntorno\nLa calle sube desde la plaza hasta l",
+          "paragraphs": [
+            {
+              "hidden": false,
+              "total": 28,
+              "shown": 28
+            },
+            {
+              "hidden": false,
+              "total": 230,
+              "shown": 36
+            },
+            {
+              "hidden": true,
+              "total": 135,
+              "shown": 0
+            }
+          ],
+          "canvases": 0,
+          "overflow": false
+        },
+        {
+          "step": 2,
+          "direction": "sur",
+          "room": "Plaza de Valdren",
+          "latency": 0.152,
+          "scrollY": 6,
+          "contextTop": 0,
+          "readingTop": 31,
+          "navTop": 642,
+          "shown": "Lugar\nLlegas a Plaza de Valdren.\n\nEntorno\nUn banco largo cruza la ",
+          "paragraphs": [
+            {
+              "hidden": false,
+              "total": 26,
+              "shown": 26
+            },
+            {
+              "hidden": false,
+              "total": 225,
+              "shown": 24
+            },
+            {
+              "hidden": true,
+              "total": 160,
+              "shown": 0
+            },
+            {
+              "hidden": true,
+              "total": 190,
+              "shown": 0
+            }
+          ],
+          "canvases": 0,
+          "overflow": false
+        },
+        {
+          "step": 3,
+          "direction": "norte",
+          "room": "Calle de la fragua",
+          "latency": 0.136,
+          "scrollY": 6,
+          "contextTop": 0,
+          "readingTop": 31,
+          "navTop": 642,
+          "shown": "Lugar\nLlegas a Calle de la fragua.\n\nEntorno\nLa calle sube desde la p",
+          "paragraphs": [
+            {
+              "hidden": false,
+              "total": 28,
+              "shown": 28
+            },
+            {
+              "hidden": false,
+              "total": 230,
+              "shown": 24
+            },
+            {
+              "hidden": true,
+              "total": 126,
+              "shown": 0
+            },
+            {
+              "hidden": true,
+              "total": 135,
+              "shown": 0
+            }
+          ],
+          "canvases": 0,
+          "overflow": false
+        },
+        {
+          "step": 4,
+          "direction": "sur",
+          "room": "Plaza de Valdren",
+          "latency": 0.125,
+          "scrollY": 6,
+          "contextTop": 0,
+          "readingTop": 31,
+          "navTop": 642,
+          "shown": "Lugar\nLlegas a Plaza de Valdren.\n\nEntorno\nUn banco largo cruza la ",
+          "paragraphs": [
+            {
+              "hidden": false,
+              "total": 26,
+              "shown": 26
+            },
+            {
+              "hidden": false,
+              "total": 225,
+              "shown": 24
+            },
+            {
+              "hidden": true,
+              "total": 140,
+              "shown": 0
+            },
+            {
+              "hidden": true,
+              "total": 190,
+              "shown": 0
+            }
+          ],
+          "canvases": 0,
+          "overflow": false
+        },
+        {
+          "step": 5,
+          "direction": "norte",
+          "room": "Calle de la fragua",
+          "latency": 0.126,
+          "scrollY": 6,
+          "contextTop": 0,
+          "readingTop": 31,
+          "navTop": 642,
+          "shown": "Lugar\nLlegas a Calle de la fragua.\n\nEntorno\nLa calle sube desde la p",
+          "paragraphs": [
+            {
+              "hidden": false,
+              "total": 28,
+              "shown": 28
+            },
+            {
+              "hidden": false,
+              "total": 230,
+              "shown": 24
+            },
+            {
+              "hidden": true,
+              "total": 135,
+              "shown": 0
+            },
+            {
+              "hidden": true,
+              "total": 126,
+              "shown": 0
+            }
+          ],
+          "canvases": 0,
+          "overflow": false
+        },
+        {
+          "step": 6,
+          "direction": "sur",
+          "room": "Plaza de Valdren",
+          "latency": 0.124,
+          "scrollY": 6,
+          "contextTop": 0,
+          "readingTop": 31,
+          "navTop": 642,
+          "shown": "Lugar\nLlegas a Plaza de Valdren.\n\nEntorno\nUn banco largo cruza la plaza. Hay e",
+          "paragraphs": [
+            {
+              "hidden": false,
+              "total": 26,
+              "shown": 26
+            },
+            {
+              "hidden": false,
+              "total": 225,
+              "shown": 36
+            },
+            {
+              "hidden": true,
+              "total": 140,
+              "shown": 0
+            },
+            {
+              "hidden": true,
+              "total": 190,
+              "shown": 0
+            }
+          ],
+          "canvases": 0,
+          "overflow": false
+        },
+        {
+          "step": 7,
+          "direction": "norte",
+          "room": "Calle de la fragua",
+          "latency": 0.127,
+          "scrollY": 6,
+          "contextTop": 0,
+          "readingTop": 31,
+          "navTop": 642,
+          "shown": "Lugar\nLlegas a Calle de la fragua.\n\nEntorno\nLa calle sube desde la plaza hasta l",
+          "paragraphs": [
+            {
+              "hidden": false,
+              "total": 28,
+              "shown": 28
+            },
+            {
+              "hidden": false,
+              "total": 230,
+              "shown": 36
+            },
+            {
+              "hidden": true,
+              "total": 135,
+              "shown": 0
+            },
+            {
+              "hidden": true,
+              "total": 126,
+              "shown": 0
+            }
+          ],
+          "canvases": 0,
+          "overflow": false
+        },
+        {
+          "step": 8,
+          "direction": "sur",
+          "room": "Plaza de Valdren",
+          "latency": 0.121,
+          "scrollY": 6,
+          "contextTop": 0,
+          "readingTop": 31,
+          "navTop": 642,
+          "shown": "Lugar\nLlegas a Plaza de Valdren.\n\nEntorno\nUn banco largo cruza la plaza. Hay e",
+          "paragraphs": [
+            {
+              "hidden": false,
+              "total": 26,
+              "shown": 26
+            },
+            {
+              "hidden": false,
+              "total": 225,
+              "shown": 36
+            },
+            {
+              "hidden": true,
+              "total": 140,
+              "shown": 0
+            },
+            {
+              "hidden": true,
+              "total": 190,
+              "shown": 0
+            }
+          ],
+          "canvases": 0,
+          "overflow": false
+        },
+        {
+          "step": 9,
+          "direction": "norte",
+          "room": "Calle de la fragua",
+          "latency": 0.119,
+          "scrollY": 6,
+          "contextTop": 0,
+          "readingTop": 31,
+          "navTop": 642,
+          "shown": "Lugar\nLlegas a Calle de la fragua.\n\nEntorno\nLa calle sube desde la p",
+          "paragraphs": [
+            {
+              "hidden": false,
+              "total": 28,
+              "shown": 28
+            },
+            {
+              "hidden": false,
+              "total": 230,
+              "shown": 24
+            },
+            {
+              "hidden": true,
+              "total": 126,
+              "shown": 0
+            },
+            {
+              "hidden": true,
+              "total": 135,
+              "shown": 0
+            }
+          ],
+          "canvases": 0,
+          "overflow": false
+        },
+        {
+          "step": 10,
+          "direction": "sur",
+          "room": "Plaza de Valdren",
+          "latency": 0.124,
+          "scrollY": 6,
+          "contextTop": 0,
+          "readingTop": 31,
+          "navTop": 642,
+          "shown": "Lugar\nLlegas a Plaza de Valdren.\n\nEntorno\nUn banco largo cruza la ",
+          "paragraphs": [
+            {
+              "hidden": false,
+              "total": 26,
+              "shown": 26
+            },
+            {
+              "hidden": false,
+              "total": 225,
+              "shown": 24
+            },
+            {
+              "hidden": true,
+              "total": 140,
+              "shown": 0
+            },
+            {
+              "hidden": true,
+              "total": 190,
+              "shown": 0
+            }
+          ],
+          "canvases": 0,
+          "overflow": false
+        },
+        {
+          "step": 11,
+          "direction": "norte",
+          "room": "Calle de la fragua",
+          "latency": 0.131,
+          "scrollY": 6,
+          "contextTop": 0,
+          "readingTop": 31,
+          "navTop": 642,
+          "shown": "Lugar\nLlegas a Calle de la fragua.\n\nEntorno\nLa calle sube desde la p",
+          "paragraphs": [
+            {
+              "hidden": false,
+              "total": 28,
+              "shown": 28
+            },
+            {
+              "hidden": false,
+              "total": 230,
+              "shown": 24
+            },
+            {
+              "hidden": true,
+              "total": 135,
+              "shown": 0
+            },
+            {
+              "hidden": true,
+              "total": 126,
+              "shown": 0
+            }
+          ],
+          "canvases": 0,
+          "overflow": false
+        },
+        {
+          "step": 12,
+          "direction": "sur",
+          "room": "Plaza de Valdren",
+          "latency": 0.131,
+          "scrollY": 6,
+          "contextTop": 0,
+          "readingTop": 31,
+          "navTop": 642,
+          "shown": "Lugar\nLlegas a Plaza de Valdren.\n\nEntorno\nUn banco largo cruza la ",
+          "paragraphs": [
+            {
+              "hidden": false,
+              "total": 26,
+              "shown": 26
+            },
+            {
+              "hidden": false,
+              "total": 225,
+              "shown": 24
+            },
+            {
+              "hidden": true,
+              "total": 140,
+              "shown": 0
+            },
+            {
+              "hidden": true,
+              "total": 190,
+              "shown": 0
+            }
+          ],
+          "canvases": 0,
+          "overflow": false
+        },
+        {
+          "step": 13,
+          "direction": "norte",
+          "room": "Calle de la fragua",
+          "latency": 0.134,
+          "scrollY": 6,
+          "contextTop": 0,
+          "readingTop": 31,
+          "navTop": 642,
+          "shown": "Lugar\nLlegas a Calle de la fragua.\n\nEntorno\nLa calle sube desde la p",
+          "paragraphs": [
+            {
+              "hidden": false,
+              "total": 28,
+              "shown": 28
+            },
+            {
+              "hidden": false,
+              "total": 230,
+              "shown": 24
+            },
+            {
+              "hidden": true,
+              "total": 135,
+              "shown": 0
+            },
+            {
+              "hidden": true,
+              "total": 126,
+              "shown": 0
+            }
+          ],
+          "canvases": 0,
+          "overflow": false
+        },
+        {
+          "step": 14,
+          "direction": "sur",
+          "room": "Plaza de Valdren",
+          "latency": 0.104,
+          "scrollY": 6,
+          "contextTop": 0,
+          "readingTop": 31,
+          "navTop": 642,
+          "shown": "Lugar\nLlegas a Plaza de Valdren.\n\nEntorno\nUn banco largo cruza la ",
+          "paragraphs": [
+            {
+              "hidden": false,
+              "total": 26,
+              "shown": 26
+            },
+            {
+              "hidden": false,
+              "total": 225,
+              "shown": 24
+            },
+            {
+              "hidden": true,
+              "total": 140,
+              "shown": 0
+            },
+            {
+              "hidden": true,
+              "total": 190,
+              "shown": 0
+            }
+          ],
+          "canvases": 0,
+          "overflow": false
+        },
+        {
+          "step": 15,
+          "direction": "norte",
+          "room": "Calle de la fragua",
+          "latency": 0.107,
+          "scrollY": 6,
+          "contextTop": 0,
+          "readingTop": 31,
+          "navTop": 642,
+          "shown": "Lugar\nLlegas a Calle de la fragua.\n\nEntorno\nLa calle sube desde la p",
+          "paragraphs": [
+            {
+              "hidden": false,
+              "total": 28,
+              "shown": 28
+            },
+            {
+              "hidden": false,
+              "total": 230,
+              "shown": 24
+            },
+            {
+              "hidden": true,
+              "total": 126,
+              "shown": 0
+            },
+            {
+              "hidden": true,
+              "total": 135,
+              "shown": 0
+            }
+          ],
+          "canvases": 0,
+          "overflow": false
+        },
+        {
+          "step": 16,
+          "direction": "sur",
+          "room": "Plaza de Valdren",
+          "latency": 0.12,
+          "scrollY": 6,
+          "contextTop": 0,
+          "readingTop": 31,
+          "navTop": 642,
+          "shown": "Lugar\nLlegas a Plaza de Valdren.\n\nEntorno\nUn banco largo cruza la plaza. Hay e",
+          "paragraphs": [
+            {
+              "hidden": false,
+              "total": 26,
+              "shown": 26
+            },
+            {
+              "hidden": false,
+              "total": 225,
+              "shown": 36
+            },
+            {
+              "hidden": true,
+              "total": 140,
+              "shown": 0
+            },
+            {
+              "hidden": true,
+              "total": 190,
+              "shown": 0
+            }
+          ],
+          "canvases": 0,
+          "overflow": false
+        },
+        {
+          "step": 17,
+          "direction": "norte",
+          "room": "Calle de la fragua",
+          "latency": 0.127,
+          "scrollY": 6,
+          "contextTop": 0,
+          "readingTop": 31,
+          "navTop": 642,
+          "shown": "Lugar\nLlegas a Calle de la fragua.\n\nEntorno\nLa calle sube desde la plaza hasta l",
+          "paragraphs": [
+            {
+              "hidden": false,
+              "total": 28,
+              "shown": 28
+            },
+            {
+              "hidden": false,
+              "total": 230,
+              "shown": 36
+            },
+            {
+              "hidden": true,
+              "total": 135,
+              "shown": 0
+            },
+            {
+              "hidden": true,
+              "total": 126,
+              "shown": 0
+            }
+          ],
+          "canvases": 0,
+          "overflow": false
+        },
+        {
+          "step": 18,
+          "direction": "sur",
+          "room": "Plaza de Valdren",
+          "latency": 0.131,
+          "scrollY": 6,
+          "contextTop": 0,
+          "readingTop": 31,
+          "navTop": 642,
+          "shown": "Lugar\nLlegas a Plaza de Valdren.\n\nEntorno\nUn banco largo cruza la plaza. Hay e",
+          "paragraphs": [
+            {
+              "hidden": false,
+              "total": 26,
+              "shown": 26
+            },
+            {
+              "hidden": false,
+              "total": 225,
+              "shown": 36
+            },
+            {
+              "hidden": true,
+              "total": 140,
+              "shown": 0
+            },
+            {
+              "hidden": true,
+              "total": 190,
+              "shown": 0
+            }
+          ],
+          "canvases": 0,
+          "overflow": false
+        },
+        {
+          "step": 19,
+          "direction": "norte",
+          "room": "Calle de la fragua",
+          "latency": 0.129,
+          "scrollY": 6,
+          "contextTop": 0,
+          "readingTop": 31,
+          "navTop": 642,
+          "shown": "Lugar\nLlegas a Calle de la fragua.\n\nEntorno\nLa calle sube desde la p",
+          "paragraphs": [
+            {
+              "hidden": false,
+              "total": 28,
+              "shown": 28
+            },
+            {
+              "hidden": false,
+              "total": 230,
+              "shown": 24
+            },
+            {
+              "hidden": true,
+              "total": 135,
+              "shown": 0
+            },
+            {
+              "hidden": true,
+              "total": 126,
+              "shown": 0
+            }
+          ],
+          "canvases": 0,
+          "overflow": false
+        },
+        {
+          "step": 20,
+          "direction": "sur",
+          "room": "Plaza de Valdren",
+          "latency": 0.109,
+          "scrollY": 6,
+          "contextTop": 0,
+          "readingTop": 31,
+          "navTop": 642,
+          "shown": "Lugar\nLlegas a Plaza de Valdren.\n\nEntorno\nUn banco largo cruza la ",
+          "paragraphs": [
+            {
+              "hidden": false,
+              "total": 26,
+              "shown": 26
+            },
+            {
+              "hidden": false,
+              "total": 225,
+              "shown": 24
+            },
+            {
+              "hidden": true,
+              "total": 140,
+              "shown": 0
+            },
+            {
+              "hidden": true,
+              "total": 190,
+              "shown": 0
+            }
+          ],
+          "canvases": 0,
+          "overflow": false
+        }
+      ],
+      "errors": [],
+      "pollScroll": [
+        140,
+        140
+      ],
+      "errorScroll": [
+        140,
+        140
+      ],
+      "afterWrittenDecision": {
+        "scrollY": 37,
+        "readerTop": 0,
+        "readerBottom": 344,
+        "navTop": 642,
+        "feedTop": 50,
+        "feedBottom": 330
+      },
+      "finalRoom": "valdren_plaza",
+      "canvasCount": 0
+    }
+  ]
+}

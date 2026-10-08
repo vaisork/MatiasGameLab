@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "scope": "Read-only Chromium UI review using saved discovered bestiary: five thumbnails, real asset decoding, click-to-expand, close, mobile overflow",
+  "creatures": [
+    "pinzajunco",
+    "saltacresta",
+    "rasgacumbres",
+    "unapiedra",
+    "quebrarrocas"
+  ],
+  "limits": [
+    "Emulated mobile, not physical Android",
+    "API state intercepted for read-only display; no player actions performed"
+  ]
+}

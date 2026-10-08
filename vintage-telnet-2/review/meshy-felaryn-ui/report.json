@@ -1,0 +1,28 @@
+{
+  "results": [
+    {
+      "width": 320,
+      "realApi": true,
+      "modelLoaded": true,
+      "speciesLabel": true,
+      "noCspErrors": true,
+      "closedCanvas": 0
+    },
+    {
+      "width": 393,
+      "realApi": true,
+      "modelLoaded": true,
+      "speciesLabel": true,
+      "noCspErrors": true,
+      "closedCanvas": 0
+    },
+    {
+      "width": 1100,
+      "realApi": true,
+      "modelLoaded": true,
+      "speciesLabel": true,
+      "noCspErrors": true,
+      "closedCanvas": 0
+    }
+  ]
+}

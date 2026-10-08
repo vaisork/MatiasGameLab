@@ -1,0 +1,19 @@
+{
+  "scope": "Real browser with isolated director/API fixtures; no real account passwords changed.",
+  "results": [
+    {
+      "width": 393,
+      "mismatchRejected": true,
+      "accountChangeSubmitted": true,
+      "passwordCleared": true,
+      "noHorizontalOverflow": true
+    },
+    {
+      "width": 1440,
+      "mismatchRejected": true,
+      "accountChangeSubmitted": true,
+      "passwordCleared": true,
+      "noHorizontalOverflow": true
+    }
+  ]
+}

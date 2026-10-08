@@ -1,0 +1,1170 @@
+{
+  "moves": 24,
+  "actions": 31,
+  "events": [
+    {
+      "action": "mover",
+      "target": "salir",
+      "room": "valdren_plaza",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Un banco largo cruza la plaza. Hay espacio para girar los carros sin tapar las puertas. La fragua queda al norte, los huertos al este, el pozo al sur y el cobertizo al oeste. Una piedra sobresale entre las tablas del asiento."
+        },
+        {
+          "kind": "world",
+          "text": "La vecina aparta una semilla mordida y la deja en un cuenco pequeño. Un niño intenta adivinar qué pájaro la abrió; su abuela le muestra las dos marcas del pico."
+        }
+      ],
+      "seals": 20,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "norte",
+      "room": "valdren_calle_alta",
+      "events": [
+        {
+          "kind": "world",
+          "text": "La calle sube desde la plaza hasta la fragua. Dos casas estrechan el paso; una conserva la marca de su tejado antiguo. Desde arriba ves el banco largo. Al oeste hay un patio con ropa tendida. La plaza queda al sur y Daro al norte."
+        },
+        {
+          "kind": "world",
+          "text": "Una vecina limpia el borde antiguo de su pared para preparar una reparación. El sonido de la fragua llega por el espacio entre tejados."
+        }
+      ],
+      "seals": 20,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "norte",
+      "room": "valdren_fragua",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Daro trabaja entre el fuego y un barreño de agua. Las piezas terminadas esperan junto a la puerta; las herramientas calientes quedan al fondo. El centro está libre para pasar. La salida sur baja por la calle hacia la plaza."
+        },
+        {
+          "kind": "world",
+          "text": "Daro comprueba el sonido de dos piezas sobre el yunque. Una devuelve un golpe claro; la otra, más corta, queda apartada junto a una marca de tiza."
+        },
+        {
+          "kind": "world",
+          "text": "Daro separa una pieza para quien necesita comprobarla antes de recogerla."
+        }
+      ],
+      "seals": 20,
+      "hp": 100
+    },
+    {
+      "action": "hablar",
+      "target": "edran_daro",
+      "room": "valdren_fragua",
+      "events": [
+        {
+          "kind": "npc",
+          "text": "Daro: Una abrazadera no falla sola. Si Bren me dice de qué lado cede la carga, podré ajustarla sin añadir hierro por añadirlo."
+        }
+      ],
+      "seals": 20,
+      "hp": 100
+    },
+    {
+      "action": "aceptar",
+      "target": "valdren_recado_forja",
+      "room": "valdren_fragua",
+      "events": [
+        {
+          "kind": "action",
+          "text": "Daro necesita que pases por el cobertizo y preguntes a Bren qué carro espera una abrazadera. El pago corresponde a llevar esa medida de vuelta, no a reparar la rueda."
+        }
+      ],
+      "seals": 20,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "sur",
+      "room": "valdren_calle_alta",
+      "events": [
+        {
+          "kind": "world",
+          "text": "La calle sube desde la plaza hasta la fragua. Dos casas estrechan el paso; una conserva la marca de su tejado antiguo. Desde arriba ves el banco largo. Al oeste hay un patio con ropa tendida. La plaza queda al sur y Daro al norte."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces el tejado viejo por su línea quebrada. La casa que añadieron al lado queda un peldaño más alta, camino de la fragua."
+        },
+        {
+          "kind": "world",
+          "text": "Una vecina limpia el borde antiguo de su pared para preparar una reparación. El sonido de la fragua llega por el espacio entre tejados."
+        }
+      ],
+      "seals": 20,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "sur",
+      "room": "valdren_plaza",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Un banco largo cruza la plaza. Hay espacio para girar los carros sin tapar las puertas. La fragua queda al norte, los huertos al este, el pozo al sur y el cobertizo al oeste. Una piedra sobresale entre las tablas del asiento."
+        },
+        {
+          "kind": "world",
+          "text": "La vecina aparta una semilla mordida y la deja en un cuenco pequeño. Un niño intenta adivinar qué pájaro la abrió; su abuela le muestra las dos marcas del pico."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces el extremo del banco por la piedra que obliga a interrumpirlo. La fragua queda detrás de las casas más altas; el corredor de huertos ofrece una salida distinta, orientada al campo."
+        }
+      ],
+      "seals": 20,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "oeste",
+      "room": "valdren_cobertizo",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Bren guarda los carros con las varas hacia el patio. Bajo el techo bajo hay ruedas desmontadas; en la parte alta cabe un carro entero. Una cuerda marca el espacio para girarlo. La plaza queda al este y el patio al sur."
+        },
+        {
+          "kind": "world",
+          "text": "Bren hace avanzar un carro vacío y escucha un crujido que desaparece al volver. Pide una segunda persona para observar la rueda desde fuera de su recorrido."
+        },
+        {
+          "kind": "world",
+          "text": "Bren mantiene la cuerda de giro fuera del alcance de quienes miran."
+        }
+      ],
+      "seals": 20,
+      "hp": 100
+    },
+    {
+      "action": "hablar",
+      "target": "edran_bren",
+      "room": "valdren_cobertizo",
+      "events": [
+        {
+          "kind": "npc",
+          "text": "Bren: El crujido sólo aparece al avanzar. Mira desde fuera de la cuerda; yo moveré el carro despacio."
+        },
+        {
+          "kind": "discovery",
+          "text": "El encargo ya puede entregarse."
+        }
+      ],
+      "seals": 20,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "este",
+      "room": "valdren_plaza",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Un banco largo cruza la plaza. Hay espacio para girar los carros sin tapar las puertas. La fragua queda al norte, los huertos al este, el pozo al sur y el cobertizo al oeste. Una piedra sobresale entre las tablas del asiento."
+        },
+        {
+          "kind": "world",
+          "text": "El niño acerca otra semilla al cuenco de las mordidas. Su abuela la gira entre los dedos y le enseña que esta abertura sólo tiene una marca."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces el extremo del banco por la piedra que obliga a interrumpirlo. La fragua queda detrás de las casas más altas; el corredor de huertos ofrece una salida distinta, orientada al campo."
+        }
+      ],
+      "seals": 20,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "norte",
+      "room": "valdren_calle_alta",
+      "events": [
+        {
+          "kind": "world",
+          "text": "La calle sube desde la plaza hasta la fragua. Dos casas estrechan el paso; una conserva la marca de su tejado antiguo. Desde arriba ves el banco largo. Al oeste hay un patio con ropa tendida. La plaza queda al sur y Daro al norte."
+        },
+        {
+          "kind": "world",
+          "text": "Una vecina limpia el borde antiguo de su pared para preparar una reparación. El sonido de la fragua llega por el espacio entre tejados."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces el tejado viejo por su línea quebrada. La casa que añadieron al lado queda un peldaño más alta, camino de la fragua."
+        }
+      ],
+      "seals": 20,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "norte",
+      "room": "valdren_fragua",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Daro trabaja entre el fuego y un barreño de agua. Las piezas terminadas esperan junto a la puerta; las herramientas calientes quedan al fondo. El centro está libre para pasar. La salida sur baja por la calle hacia la plaza."
+        },
+        {
+          "kind": "world",
+          "text": "Daro comprueba el sonido de dos piezas sobre el yunque. Una devuelve un golpe claro; la otra, más corta, queda apartada junto a una marca de tiza."
+        },
+        {
+          "kind": "world",
+          "text": "Recuerdas el banco que deja libre el centro. Desde el fuego, la franja de suelo limpio llega hasta la mesa y el recipiente de agua."
+        }
+      ],
+      "seals": 20,
+      "hp": 100
+    },
+    {
+      "action": "cobrar",
+      "target": "valdren_recado_forja",
+      "room": "valdren_fragua",
+      "events": [
+        {
+          "kind": "reward",
+          "text": "Entregas Llevar la medida del carro. Recibes 6 sellos."
+        }
+      ],
+      "seals": 26,
+      "hp": 100
+    },
+    {
+      "action": "hablar",
+      "target": "edran_daro",
+      "room": "valdren_fragua",
+      "events": [
+        {
+          "kind": "npc",
+          "text": "Daro: Una abrazadera no falla sola. Si Bren me dice de qué lado cede la carga, podré ajustarla sin añadir hierro por añadirlo."
+        },
+        {
+          "kind": "discovery",
+          "text": "Daro señala la tiza junto a la abrazadera. «Es la medida que trajiste de Bren. Ahora puedo comparar la pieza.»"
+        }
+      ],
+      "seals": 26,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "sur",
+      "room": "valdren_calle_alta",
+      "events": [
+        {
+          "kind": "world",
+          "text": "La calle sube desde la plaza hasta la fragua. Dos casas estrechan el paso; una conserva la marca de su tejado antiguo. Desde arriba ves el banco largo. Al oeste hay un patio con ropa tendida. La plaza queda al sur y Daro al norte."
+        },
+        {
+          "kind": "world",
+          "text": "Una vecina limpia el borde antiguo de su pared para preparar una reparación. El sonido de la fragua llega por el espacio entre tejados."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces el tejado viejo por su línea quebrada. La casa que añadieron al lado queda un peldaño más alta, camino de la fragua."
+        }
+      ],
+      "seals": 26,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "sur",
+      "room": "valdren_plaza",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Un banco largo cruza la plaza. Hay espacio para girar los carros sin tapar las puertas. La fragua queda al norte, los huertos al este, el pozo al sur y el cobertizo al oeste. Una piedra sobresale entre las tablas del asiento."
+        },
+        {
+          "kind": "world",
+          "text": "La última semilla vuelve al cuenco. El niño pregunta si mañana vendrá el mismo pájaro."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces el extremo del banco por la piedra que obliga a interrumpirlo. La fragua queda detrás de las casas más altas; el corredor de huertos ofrece una salida distinta, orientada al campo."
+        }
+      ],
+      "seals": 26,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "oeste",
+      "room": "valdren_cobertizo",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Bren guarda los carros con las varas hacia el patio. Bajo el techo bajo hay ruedas desmontadas; en la parte alta cabe un carro entero. Una cuerda marca el espacio para girarlo. La plaza queda al este y el patio al sur."
+        },
+        {
+          "kind": "world",
+          "text": "Ahora sabes dónde esperar sin obligar a Bren a interrumpir una prueba. El crujido procede del carro alto, no de las ruedas almacenadas contra la pared."
+        },
+        {
+          "kind": "world",
+          "text": "Bren lleva las piezas pequeñas al techo bajo. El carro ocupa el centro sin moverse; las pruebas nuevas esperarán a que pueda verse la cuña."
+        }
+      ],
+      "seals": 26,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "sur",
+      "room": "valdren_patio_carros",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Una carga de sacos espera en el patio. La ligera pendiente puede mover un carro sin calzar; un madero detiene las ruedas. El cobertizo queda al norte, los graneros al este. La senda sur permite volver hacia la arboleda."
+        },
+        {
+          "kind": "world",
+          "text": "Un ayudante de Bren desplaza un saco y pide que nadie sujete el carro mientras observa si vuelve a inclinarse. Una mujer recoge las semillas que han caído bajo la plataforma."
+        }
+      ],
+      "seals": 26,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "sur",
+      "room": "edran_sendero_regreso",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Un árbol aislado señala la vuelta a Valdren. Desde su sombra ves el techo del cobertizo, pero no la plaza. Al oeste llegas al patio de carros; al este regresas a la arboleda. Hay sitio para quitarte barro antes de entrar al pueblo. La senda gira al rodear los campos: sus entradas no quedan enfrentadas."
+        },
+        {
+          "kind": "world",
+          "text": "Una persona limpia sus botas con una rama caída y recoge después los restos fuera del paso. Un carro entra por el patio, separado de los huertos."
+        }
+      ],
+      "seals": 26,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "este",
+      "room": "edran_arboleda",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Tres árboles dan sombra al banco de tierra y al sendero. Las raíces del último levantan el suelo. Entre las ramas ves el camino de carros, al norte. El cobertizo queda al oeste; la senda sur rodea los campos y vuelve al pueblo."
+        },
+        {
+          "kind": "world",
+          "text": "Un viajero deja que su animal descanse fuera de la sombra más cercana al sendero. Conserva ese espacio para quienes sólo necesitan pasar."
+        }
+      ],
+      "seals": 26,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "norte",
+      "room": "edran_camino_carros",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Dos rodadas se separan ante una subida: una pasa por arriba y la otra cruza una hondonada. Después vuelven a juntarse. La arboleda queda al sur. Sigue al norte para llegar al refugio de viajeros; las piedras bajas marcan el borde del camino."
+        },
+        {
+          "kind": "world",
+          "text": "Un carro vacío utiliza la hondonada; uno cargado toma la rodada alta y avanza despacio. Sus conductores se saludan cuando pueden verse, antes de llegar al cruce."
+        }
+      ],
+      "seals": 26,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "norte",
+      "room": "edran_reparo",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Un techo protege dos bancos del viento. El camino pasa por delante, lejos de quienes descansan. En la repisa hay un cuenco y tres mensajes. Al sur vuelves a los carros, al norte subes a la era; al este comienza el sendero de juncos."
+        },
+        {
+          "kind": "world",
+          "text": "Los viajeros preguntan dónde quieren pasar la noche antes de añadir otra distancia. Una carga queda contra la pared corta y deja el frente libre."
+        }
+      ],
+      "seals": 26,
+      "hp": 100
+    },
+    {
+      "action": "observar",
+      "target": null,
+      "room": "edran_reparo",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Los viajeros preguntan dónde quieren pasar la noche antes de añadir otra distancia. Una carga queda contra la pared corta y deja el frente libre."
+        },
+        {
+          "kind": "trace",
+          "text": "Una anuncia una rueda revisada; otra pide noticia de una carga retrasada. El tercer mensaje no tiene destinatario claro."
+        },
+        {
+          "kind": "action",
+          "text": "Observas con atención."
+        }
+      ],
+      "seals": 26,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "sur",
+      "room": "edran_camino_carros",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Dos rodadas se separan ante una subida: una pasa por arriba y la otra cruza una hondonada. Después vuelven a juntarse. La arboleda queda al sur. Sigue al norte para llegar al refugio de viajeros; las piedras bajas marcan el borde del camino."
+        },
+        {
+          "kind": "world",
+          "text": "La rodada alta sigue firme sobre el borde. La baja conserva barro en el centro; ambas se juntan otra vez delante del reparo."
+        },
+        {
+          "kind": "world",
+          "text": "Un carro vacío utiliza la hondonada; uno cargado toma la rodada alta y avanza despacio. Sus conductores se saludan cuando pueden verse, antes de llegar al cruce."
+        }
+      ],
+      "seals": 26,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "sur",
+      "room": "edran_arboleda",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Tres árboles dan sombra al banco de tierra y al sendero. Las raíces del último levantan el suelo. Entre las ramas ves el camino de carros, al norte. El cobertizo queda al oeste; la senda sur rodea los campos y vuelve al pueblo."
+        },
+        {
+          "kind": "world",
+          "text": "Reconoces las raíces altas del árbol oriental. El banco de tierra queda bajo el del centro; entre ambos se ve el camino de carros."
+        },
+        {
+          "kind": "world",
+          "text": "Un viajero deja que su animal descanse fuera de la sombra más cercana al sendero. Conserva ese espacio para quienes sólo necesitan pasar."
+        }
+      ],
+      "seals": 26,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "oeste",
+      "room": "edran_cobertizo_campo",
+      "events": [
+        {
+          "kind": "world",
+          "text": "El techo cubre un banco de trabajo y una caja estrecha. En la pared, las estacas están ordenadas por tamaño y llevan números. El lindero queda al oeste, al otro lado del desnivel. Una senda al este entra en la arboleda."
+        },
+        {
+          "kind": "world",
+          "text": "Un muchacho devuelve una estaca y comprueba el número antes de colocarla. Los huecos del extremo corto indican qué piezas siguen en los campos."
+        }
+      ],
+      "seals": 26,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "oeste",
+      "room": "edran_lindero",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Una piedra hundida separa las parcelas. Tiene una muesca llena de tierra en la cara sur. Por allí vuelves al campo. Al oeste subes a la loma; al este llegas al cobertizo, donde guardan estacas de distintos tamaños."
+        },
+        {
+          "kind": "world",
+          "text": "Una joven deja el recipiente junto a la piedra y mira dos veces la cerca. Busca una tablilla pequeña entre la hierba y las huellas del borde."
+        }
+      ],
+      "seals": 26,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "oeste",
+      "room": "edran_loma",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Desde la loma ves Valdren y tres parcelas a distinta altura. Una franja de pasto cortado ofrece sitio para parar. Al norte está el prado; al este bajas al lindero. El sendero sur entra en la parcela vieja."
+        },
+        {
+          "kind": "world",
+          "text": "Las parcelas pierden detalle de abajo hacia arriba. Desde la loma llegan conversaciones del regreso; las casas conservan luz cuando la acequia empieza a desaparecer."
+        }
+      ],
+      "seals": 26,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "norte",
+      "room": "edran_prado",
+      "events": [
+        {
+          "kind": "world",
+          "text": "La hierba alta tiene una zona aplastada, con marcas demasiado anchas para ser de una persona. El sendero pasa por fuera de ella. Al sur vuelves a la loma; al oeste empieza la ladera pedregosa. Mira las señales antes de acercarte."
+        },
+        {
+          "kind": "danger",
+          "text": "Un cuerpo enorme aparta la hierba. El volumen de su lomo y la tierra hundida advierten una fuerza muy por encima de una primera formación."
+        },
+        {
+          "kind": "world",
+          "text": "Un movimiento pesado baja la hierba y vuelve a levantarla más allá. No sigue el sendero ni se acerca al cultivo: mantiene una franja propia dentro del prado."
+        },
+        {
+          "kind": "discovery",
+          "text": "Añades Cornalomo al bestiario."
+        }
+      ],
+      "seals": 26,
+      "hp": 100
+    },
+    {
+      "action": "mover",
+      "target": "oeste",
+      "room": "edran_ladera_piedra",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Tres salientes permiten dejar cestos sin apoyarlos en la tierra. El más bajo está protegido por un arbusto; debajo hay una cuerda rota, apartada del camino. Al este vuelves al prado. Al norte subes a la linde que lleva a Korven."
+        },
+        {
+          "kind": "world",
+          "text": "Un porteador cambia su cesto del saliente alto al bajo antes de ajustar la correa. La pausa sucede fuera del sendero."
+        }
+      ],
+      "seals": 26,
+      "hp": 100
+    },
+    {
+      "action": "observar",
+      "target": null,
+      "room": "edran_ladera_piedra",
+      "events": [
+        {
+          "kind": "world",
+          "text": "Un porteador cambia su cesto del saliente alto al bajo antes de ajustar la correa. La pausa sucede fuera del sendero."
+        },
+        {
+          "kind": "trace",
+          "text": "Está gastada donde sostenía peso. Dejarla recogida evita que alguien confunda un resto con una sujeción segura."
+        },
+        {
+          "kind": "action",
+          "text": "Observas con atención."
+        }
+      ],
+      "seals": 26,
+      "hp": 100
+    }
+  ],
+  "samples": [
+    {
+      "tag": "forge initial",
+      "room": "valdren_fragua",
+      "ambient": {
+        "region": "edran",
+        "time_of_day": "Día",
+        "timestamp": 43440,
+        "weather": "Despejado",
+        "weather_description": "El terreno abierto conserva referencias entre parcelas, sombras y caminos."
+      },
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Daro trabaja entre el fuego y un barreño de agua. Las piezas terminadas esperan junto a la puerta; las herramientas calientes quedan al fondo. El centro está libre para pasar. La salida sur baja por la calle hacia la plaza."
+        },
+        {
+          "kind": "world",
+          "text": "Daro comprueba el sonido de dos piezas sobre el yunque. Una devuelve un golpe claro; la otra, más corta, queda apartada junto a una marca de tiza."
+        },
+        {
+          "kind": "world",
+          "text": "Daro separa una pieza para quien necesita comprobarla antes de recogerla."
+        }
+      ],
+      "character": {
+        "attributes": {
+          "agilidad": 10,
+          "destreza": 10,
+          "fuerza": 10,
+          "intelecto": 10,
+          "percepcion": 10,
+          "presencia": 10,
+          "resistencia": 10,
+          "voluntad": 10
+        },
+        "class_id": "juramentado",
+        "combat": null,
+        "equipment": {
+          "armor": null,
+          "block": null,
+          "weapon": "espada_juramento"
+        },
+        "fatigue": 0,
+        "gender": "femenino",
+        "hp": 100,
+        "hp_max": 100.0,
+        "id": 1,
+        "level": 1,
+        "location": "valdren_fragua",
+        "name": "Prueba nocturna",
+        "pa": 0,
+        "pp": 0,
+        "seals": 20,
+        "species": "humano",
+        "status": "approved",
+        "wound": null,
+        "xp": 0,
+        "xp_next": 100
+      },
+      "actions": [
+        {
+          "id": "mirar",
+          "label": "Mirar"
+        },
+        {
+          "id": "observar",
+          "label": "Observar"
+        },
+        {
+          "id": "examinar",
+          "label": "Examinar abrazadera",
+          "target": "abrazadera"
+        },
+        {
+          "id": "examinar",
+          "label": "Examinar tiza",
+          "target": "tiza"
+        },
+        {
+          "disabled": false,
+          "id": "mover",
+          "label": "Sur · Calle de la fragua",
+          "reason": "",
+          "target": "sur"
+        },
+        {
+          "id": "descansar",
+          "label": "Descansar"
+        },
+        {
+          "id": "hablar",
+          "label": "Daro · trabajo",
+          "target": "edran_daro",
+          "topic": "trabajo"
+        },
+        {
+          "id": "hablar",
+          "label": "Daro · pueblo",
+          "target": "edran_daro",
+          "topic": "pueblo"
+        },
+        {
+          "id": "hablar",
+          "label": "Daro · armas",
+          "target": "edran_daro",
+          "topic": "armas"
+        },
+        {
+          "id": "hablar",
+          "label": "Daro · reparación",
+          "target": "edran_daro",
+          "topic": "reparación"
+        },
+        {
+          "id": "hablar",
+          "label": "Daro · afinado",
+          "target": "edran_daro",
+          "topic": "afinado"
+        },
+        {
+          "disabled": false,
+          "id": "aceptar",
+          "label": "Aceptar Llevar la medida del carro",
+          "reason": "",
+          "target": "valdren_recado_forja"
+        },
+        {
+          "id": "desequipar",
+          "label": "Guardar arma",
+          "target": "weapon"
+        },
+        {
+          "confirmation": "Afinar esta pieza una vez por 12 sellos y el material indicado: +1 daño. No activa ni valida Forja.",
+          "cost": 12,
+          "disabled": true,
+          "id": "afinar",
+          "label": "Afinar Espada de juramento · 12 sellos · +1 daño",
+          "reason": "Consume 1 Fibra de rastrojo aprovechable",
+          "target": "espada_juramento"
+        },
+        {
+          "disabled": false,
+          "id": "equipar",
+          "label": "Equipar Espada de juramento",
+          "reason": "",
+          "target": "espada_juramento"
+        },
+        {
+          "cost": 85,
+          "disabled": true,
+          "id": "comprar",
+          "label": "Comprar Espada de juramento · 85 sellos · daño base 10 · permite bloquear",
+          "reason": "Te faltan 65 sellos.",
+          "target": "espada_juramento"
+        },
+        {
+          "cost": 40,
+          "disabled": true,
+          "id": "comprar",
+          "label": "Comprar Varita de aprendiz · 40 sellos · daño base 7 · foco arcano",
+          "reason": "Te faltan 20 sellos.",
+          "target": "varita_aprendiz"
+        },
+        {
+          "cost": 50,
+          "disabled": true,
+          "id": "comprar",
+          "label": "Comprar Puñal de camino · 50 sellos · daño base 8",
+          "reason": "Te faltan 30 sellos.",
+          "target": "punal_camino"
+        },
+        {
+          "cost": 65,
+          "disabled": true,
+          "id": "comprar",
+          "label": "Comprar Arco de ruta · 65 sellos · daño base 9 · a distancia",
+          "reason": "Te faltan 45 sellos.",
+          "target": "arco_ruta"
+        }
+      ]
+    },
+    {
+      "tag": "forge paid return",
+      "room": "valdren_fragua",
+      "ambient": {
+        "region": "edran",
+        "time_of_day": "Día",
+        "timestamp": 44040,
+        "weather": "Despejado",
+        "weather_description": "El terreno abierto conserva referencias entre parcelas, sombras y caminos."
+      },
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Daro trabaja entre el fuego y un barreño de agua. Las piezas terminadas esperan junto a la puerta; las herramientas calientes quedan al fondo. El centro está libre para pasar. La salida sur baja por la calle hacia la plaza."
+        },
+        {
+          "kind": "world",
+          "text": "Daro compara la medida que trajiste de Bren con una marca de tiza en la abrazadera. La pieza sigue sobre el banco, lejos de las herramientas calientes."
+        },
+        {
+          "kind": "world",
+          "text": "La marca de tiza junto a la abrazadera recuerda la medida que llevaste desde el cobertizo. La puerta de la plaza sigue al sur."
+        }
+      ],
+      "character": {
+        "attributes": {
+          "agilidad": 10,
+          "destreza": 10,
+          "fuerza": 10,
+          "intelecto": 10,
+          "percepcion": 10,
+          "presencia": 10,
+          "resistencia": 10,
+          "voluntad": 10
+        },
+        "class_id": "juramentado",
+        "combat": null,
+        "equipment": {
+          "armor": null,
+          "block": null,
+          "weapon": "espada_juramento"
+        },
+        "fatigue": 0,
+        "gender": "femenino",
+        "hp": 100,
+        "hp_max": 100.0,
+        "id": 1,
+        "level": 1,
+        "location": "valdren_fragua",
+        "name": "Prueba nocturna",
+        "pa": 0,
+        "pp": 0,
+        "seals": 26,
+        "species": "humano",
+        "status": "approved",
+        "wound": null,
+        "xp": 0,
+        "xp_next": 100
+      },
+      "actions": [
+        {
+          "id": "mirar",
+          "label": "Mirar"
+        },
+        {
+          "id": "observar",
+          "label": "Observar"
+        },
+        {
+          "id": "examinar",
+          "label": "Examinar abrazadera",
+          "target": "abrazadera"
+        },
+        {
+          "id": "examinar",
+          "label": "Examinar tiza",
+          "target": "tiza"
+        },
+        {
+          "disabled": false,
+          "id": "mover",
+          "label": "Sur · Calle de la fragua",
+          "reason": "",
+          "target": "sur"
+        },
+        {
+          "id": "descansar",
+          "label": "Descansar"
+        },
+        {
+          "id": "hablar",
+          "label": "Daro · trabajo",
+          "target": "edran_daro",
+          "topic": "trabajo"
+        },
+        {
+          "id": "hablar",
+          "label": "Daro · pueblo",
+          "target": "edran_daro",
+          "topic": "pueblo"
+        },
+        {
+          "id": "hablar",
+          "label": "Daro · armas",
+          "target": "edran_daro",
+          "topic": "armas"
+        },
+        {
+          "id": "hablar",
+          "label": "Daro · reparación",
+          "target": "edran_daro",
+          "topic": "reparación"
+        },
+        {
+          "id": "hablar",
+          "label": "Daro · afinado",
+          "target": "edran_daro",
+          "topic": "afinado"
+        },
+        {
+          "disabled": false,
+          "id": "aceptar",
+          "label": "Aceptar Llevar la medida del carro",
+          "reason": "",
+          "target": "valdren_recado_forja"
+        },
+        {
+          "id": "desequipar",
+          "label": "Guardar arma",
+          "target": "weapon"
+        },
+        {
+          "confirmation": "Afinar esta pieza una vez por 12 sellos y el material indicado: +1 daño. No activa ni valida Forja.",
+          "cost": 12,
+          "disabled": true,
+          "id": "afinar",
+          "label": "Afinar Espada de juramento · 12 sellos · +1 daño",
+          "reason": "Consume 1 Fibra de rastrojo aprovechable",
+          "target": "espada_juramento"
+        },
+        {
+          "disabled": false,
+          "id": "equipar",
+          "label": "Equipar Espada de juramento",
+          "reason": "",
+          "target": "espada_juramento"
+        },
+        {
+          "cost": 85,
+          "disabled": true,
+          "id": "comprar",
+          "label": "Comprar Espada de juramento · 85 sellos · daño base 10 · permite bloquear",
+          "reason": "Te faltan 59 sellos.",
+          "target": "espada_juramento"
+        },
+        {
+          "cost": 40,
+          "disabled": true,
+          "id": "comprar",
+          "label": "Comprar Varita de aprendiz · 40 sellos · daño base 7 · foco arcano",
+          "reason": "Te faltan 14 sellos.",
+          "target": "varita_aprendiz"
+        },
+        {
+          "cost": 50,
+          "disabled": true,
+          "id": "comprar",
+          "label": "Comprar Puñal de camino · 50 sellos · daño base 8",
+          "reason": "Te faltan 24 sellos.",
+          "target": "punal_camino"
+        },
+        {
+          "cost": 65,
+          "disabled": true,
+          "id": "comprar",
+          "label": "Comprar Arco de ruta · 65 sellos · daño base 9 · a distancia",
+          "reason": "Te faltan 39 sellos.",
+          "target": "arco_ruta"
+        }
+      ]
+    },
+    {
+      "tag": "western road dusk",
+      "room": "edran_reparo",
+      "ambient": {
+        "region": "edran",
+        "time_of_day": "Atardecer",
+        "timestamp": 68940,
+        "weather": "Despejado",
+        "weather_description": "El terreno abierto conserva referencias entre parcelas, sombras y caminos."
+      },
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Un techo protege dos bancos del viento. El camino pasa por delante, lejos de quienes descansan. En la repisa hay un cuenco y tres mensajes. Al sur vuelves a los carros, al norte subes a la era; al este comienza el sendero de juncos."
+        },
+        {
+          "kind": "world",
+          "text": "Los viajeros preguntan dónde quieren pasar la noche antes de añadir otra distancia. Una carga queda contra la pared corta y deja el frente libre."
+        }
+      ],
+      "character": {
+        "attributes": {
+          "agilidad": 10,
+          "destreza": 10,
+          "fuerza": 10,
+          "intelecto": 10,
+          "percepcion": 10,
+          "presencia": 10,
+          "resistencia": 10,
+          "voluntad": 10
+        },
+        "class_id": "juramentado",
+        "combat": null,
+        "equipment": {
+          "armor": null,
+          "block": null,
+          "weapon": "espada_juramento"
+        },
+        "fatigue": 0,
+        "gender": "femenino",
+        "hp": 100,
+        "hp_max": 100.0,
+        "id": 1,
+        "level": 1,
+        "location": "edran_reparo",
+        "name": "Prueba nocturna",
+        "pa": 0,
+        "pp": 0,
+        "seals": 26,
+        "species": "humano",
+        "status": "approved",
+        "wound": null,
+        "xp": 0,
+        "xp_next": 100
+      },
+      "actions": [
+        {
+          "id": "mirar",
+          "label": "Mirar"
+        },
+        {
+          "id": "observar",
+          "label": "Observar"
+        },
+        {
+          "id": "examinar",
+          "label": "Examinar tablillas",
+          "target": "tablillas"
+        },
+        {
+          "id": "examinar",
+          "label": "Examinar cuenco",
+          "target": "cuenco"
+        },
+        {
+          "disabled": false,
+          "id": "mover",
+          "label": "Sur · Camino de carros",
+          "reason": "",
+          "target": "sur"
+        },
+        {
+          "disabled": false,
+          "id": "mover",
+          "label": "Norte · Salida por explorar",
+          "reason": "",
+          "target": "norte"
+        },
+        {
+          "disabled": false,
+          "id": "mover",
+          "label": "Este · Salida por explorar",
+          "reason": "",
+          "target": "este"
+        },
+        {
+          "id": "descansar",
+          "label": "Descansar"
+        },
+        {
+          "id": "desequipar",
+          "label": "Guardar arma",
+          "target": "weapon"
+        },
+        {
+          "disabled": false,
+          "id": "equipar",
+          "label": "Equipar Espada de juramento",
+          "reason": "",
+          "target": "espada_juramento"
+        }
+      ]
+    },
+    {
+      "tag": "final trail",
+      "room": "edran_ladera_piedra",
+      "ambient": {
+        "region": "edran",
+        "time_of_day": "Atardecer",
+        "timestamp": 69420,
+        "weather": "Despejado",
+        "weather_description": "El terreno abierto conserva referencias entre parcelas, sombras y caminos."
+      },
+      "scene": [
+        {
+          "kind": "world",
+          "text": "Tres salientes permiten dejar cestos sin apoyarlos en la tierra. El más bajo está protegido por un arbusto; debajo hay una cuerda rota, apartada del camino. Al este vuelves al prado. Al norte subes a la linde que lleva a Korven."
+        },
+        {
+          "kind": "world",
+          "text": "Un porteador cambia su cesto del saliente alto al bajo antes de ajustar la correa. La pausa sucede fuera del sendero."
+        }
+      ],
+      "character": {
+        "attributes": {
+          "agilidad": 10,
+          "destreza": 10,
+          "fuerza": 10,
+          "intelecto": 10,
+          "percepcion": 10,
+          "presencia": 10,
+          "resistencia": 10,
+          "voluntad": 10
+        },
+        "class_id": "juramentado",
+        "combat": null,
+        "equipment": {
+          "armor": null,
+          "block": null,
+          "weapon": "espada_juramento"
+        },
+        "fatigue": 0,
+        "gender": "femenino",
+        "hp": 100,
+        "hp_max": 100.0,
+        "id": 1,
+        "level": 1,
+        "location": "edran_ladera_piedra",
+        "name": "Prueba nocturna",
+        "pa": 0,
+        "pp": 0,
+        "seals": 26,
+        "species": "humano",
+        "status": "approved",
+        "wound": null,
+        "xp": 0,
+        "xp_next": 100
+      },
+      "actions": [
+        {
+          "disabled": false,
+          "id": "buscar",
+          "label": "Buscar alrededor",
+          "reason": "Revisar suelo, refugios y objetos que hayan quedado en el camino."
+        },
+        {
+          "id": "mirar",
+          "label": "Mirar"
+        },
+        {
+          "id": "observar",
+          "label": "Observar"
+        },
+        {
+          "id": "examinar",
+          "label": "Examinar cuerda",
+          "target": "cuerda"
+        },
+        {
+          "id": "examinar",
+          "label": "Examinar salientes",
+          "target": "salientes"
+        },
+        {
+          "disabled": false,
+          "id": "mover",
+          "label": "Este · Prado de las Marcas Anchas",
+          "reason": "",
+          "target": "este"
+        },
+        {
+          "disabled": false,
+          "id": "mover",
+          "label": "Norte · Salida por explorar",
+          "reason": "",
+          "target": "norte"
+        },
+        {
+          "id": "desequipar",
+          "label": "Guardar arma",
+          "target": "weapon"
+        },
+        {
+          "disabled": false,
+          "id": "equipar",
+          "label": "Equipar Espada de juramento",
+          "reason": "",
+          "target": "espada_juramento"
+        }
+      ]
+    }
+  ]
+}

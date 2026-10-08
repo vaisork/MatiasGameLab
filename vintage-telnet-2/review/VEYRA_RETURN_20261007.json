@@ -1,0 +1,4306 @@
+[
+  {
+    "type": "step",
+    "room": "lethra_senda_elevada",
+    "ambient": {
+      "region": "lethra",
+      "time_of_day": "Día",
+      "timestamp": 43320,
+      "weather": "Viento",
+      "weather_description": "Las hojas y envolturas se atan sin aplastar el contenido; las corrientes y las ondas de superficie dejan de parecer el mismo movimiento."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Pasas frente a viviendas separadas por canales. Sus puertas abren a plataformas propias, fuera del camino. Al norte queda el embarcadero; al sur se oyen las voces de Narevia. Una vecina levanta comida hacia una ventana y otra devuelve un recipiente. Se llaman por sus nombres sobre el agua."
+      },
+      {
+        "kind": "world",
+        "text": "Desde una ventana bajan una cesta y desde la siguiente devuelven dos paños doblados. La vecina llama a quien espera y le pide que acerque el asa."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "lethra_embarcadero_camino",
+    "ambient": {
+      "region": "lethra",
+      "time_of_day": "Día",
+      "timestamp": 43380,
+      "weather": "Viento",
+      "weather_description": "Las hojas y envolturas se atan sin aplastar el contenido; las corrientes y las ondas de superficie dejan de parecer el mismo movimiento."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Bajo el techo se cambian las cargas del camino a pequeñas embarcaciones. Los bultos dejan libre el borde del agua. Al norte vuelves a la pasarela y al sur sigues hacia Narevia. Un poste marca el nivel del canal; otro guarda las tiras de las barcas esperadas."
+      },
+      {
+        "kind": "world",
+        "text": "Una encargada llama a quien espera una cesta y la recibe de mano en mano, sin lanzarla sobre el canal. Un niño identifica una tira de llegada y corre por la senda alta para avisar a su casa."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "lethra_pasarela_curva",
+    "ambient": {
+      "region": "lethra",
+      "time_of_day": "Día",
+      "timestamp": 43440,
+      "weather": "Viento",
+      "weather_description": "Las hojas y envolturas se atan sin aplastar el contenido; las corrientes y las ondas de superficie dejan de parecer el mismo movimiento."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "La pasarela rodea el agua quieta. Ves la orilla de llegada casi enfrente, pero debes seguir la curva hacia el sur para alcanzarla. Al norte queda la ribera de los recipientes. Una baranda protege el lado abierto. Más adelante asoman el techo y los postes del embarcadero."
+      },
+      {
+        "kind": "world",
+        "text": "Una vecina lleva un recipiente ancho por la curva. Se detiene en el ensanchamiento para dejar pasar a alguien y vuelve a mirar la orilla de enfrente."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "lethra_ribera_firme",
+    "ambient": {
+      "region": "lethra",
+      "time_of_day": "Día",
+      "timestamp": 43500,
+      "weather": "Viento",
+      "weather_description": "Las hojas y envolturas se atan sin aplastar el contenido; las corrientes y las ondas de superficie dejan de parecer el mismo movimiento."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Recipientes cerrados esperan sobre apoyos de madera, por encima del barro. Huele a fibras mojadas y comida envuelta en hojas. Al norte vuelves al cruce de canales; al sur una curva lleva a la pasarela. Quienes descargan dejan los bultos levantados mientras buscan espacio."
+      },
+      {
+        "kind": "world",
+        "text": "Dos vecinas intercambian un recipiente sin bajarlo al suelo. Una tercera reconoce por la envoltura qué debe abrirse antes. La tercera se aparta con la envoltura abierta y las otras dos vuelven a sus apoyos."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "lethra_cruce_canales",
+    "ambient": {
+      "region": "lethra",
+      "time_of_day": "Día",
+      "timestamp": 43560,
+      "weather": "Viento",
+      "weather_description": "Las hojas y envolturas se atan sin aplastar el contenido; las corrientes y las ondas de superficie dejan de parecer el mismo movimiento."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Un canal corre rápido junto a otro casi quieto. Las tablas llegan del norte y la senda sale al sur por tierra firme. En una pequeña plataforma junto al paso puedes mirar cómo gira una hoja. Las plantas se doblan hacia lados distintos de la corriente."
+      },
+      {
+        "kind": "world",
+        "text": "El viento empuja la hoja de lado sobre el remanso. La observadora señala una planta hundida que sigue inclinándose corriente abajo y borra el último giro de su tablilla."
+      },
+      {
+        "kind": "world",
+        "text": "Una Marevyn observa una hoja hasta que sale del remanso y anota el giro en una tablilla. Desde el apoyo seco señala dónde cambia la corriente y espera a que la hoja llegue al siguiente canal. Un viajero guarda su recipiente antes de acercarse a preguntar."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "lethra_tablas_primeras",
+    "ambient": {
+      "region": "lethra",
+      "time_of_day": "Día",
+      "timestamp": 43620,
+      "weather": "Viento",
+      "weather_description": "Las hojas y envolturas se atan sin aplastar el contenido; las corrientes y las ondas de superficie dejan de parecer el mismo movimiento."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las tablas cruzan por encima del barro sobre apoyos bajos. Al norte están los juncos; al sur se separan dos canales. El agua escurre por las uniones. Algunas tablas están más gastadas que otras. Una vara de prueba cuelga a un lado, fuera del agua."
+      },
+      {
+        "kind": "world",
+        "text": "Un carpintero camina sin carga hasta la unión que debe revisar. Sus compañeros esperan sobre tierra firme. El ruido de una tabla gastada se distingue mejor cuando nadie habla ni hace vibrar todo el tramo."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "lethra_juncal_abierto",
+    "ambient": {
+      "region": "lethra",
+      "time_of_day": "Día",
+      "timestamp": 43680,
+      "weather": "Viento",
+      "weather_description": "Las hojas y envolturas se atan sin aplastar el contenido; las corrientes y las ondas de superficie dejan de parecer el mismo movimiento."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Los juncos se abren con el viento y dejan ver el agua. La senda vuelve al norte, hacia las raíces, y sigue al sur sobre las primeras tablas. Un desvío al oeste llega al banco de barro. Las huellas mantienen despejada una franja entre los tallos."
+      },
+      {
+        "kind": "danger",
+        "text": "Una pinza desigual se levanta al borde del agua. El Pinzajunco arrastra una hoja hacia su agujero cuando los pasos siguen por tierra."
+      },
+      {
+        "kind": "world",
+        "text": "Una artesana elige tallos secos y deja los verdes juntos para no abrir un hueco nuevo. Al atarlos, los juncos crujen con un sonido distinto del viento. Las fibras quedan junto al borde y el centro se mantiene libre para quienes pasan."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "lethra_tierra_esponjosa",
+    "ambient": {
+      "region": "lethra",
+      "time_of_day": "Día",
+      "timestamp": 43740,
+      "weather": "Viento",
+      "weather_description": "Las hojas y envolturas se atan sin aplastar el contenido; las corrientes y las ondas de superficie dejan de parecer el mismo movimiento."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "El suelo firme se corta en manchas de hojas que se hunden al pisarlas. Al norte está la ribera seca; al sur, las raíces llevan al juncal. Dos varas marcan el paso estrecho para las cargas. Una rana permanece quieta sobre el barro."
+      },
+      {
+        "kind": "world",
+        "text": "Una viajera se detiene a cambiar el bulto de hombro y un acompañante deja pasar a la rana antes de seguir. La pausa produce un silencio breve, lleno de insectos que seguían sonando bajo las voces."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "lethra_ribera_seca",
+    "ambient": {
+      "region": "lethra",
+      "time_of_day": "Día",
+      "timestamp": 43800,
+      "weather": "Viento",
+      "weather_description": "Las hojas y envolturas se atan sin aplastar el contenido; las corrientes y las ondas de superficie dejan de parecer el mismo movimiento."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "El camino sigue sobre raíces, junto a un cauce cada vez más ancho. Al norte vuelves a las hondonadas de Vaisgard; al sur empiezan las hierbas húmedas. Un ave cruza hasta la otra orilla. Su vuelo deja ver cuánto terreno escondían los tallos."
+      },
+      {
+        "kind": "world",
+        "text": "Una recolectora limpia su cuchillo sobre una hoja seca y junta tallos sin raíces. Su cesta desprende un olor fresco que se distingue del barro. Al cerrar la cesta, la recolectora retira una hoja del cierre."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_hondonada_canales",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 43860,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Varios hilos de agua se reúnen en un canal. El camino sigue por la orilla alta y cruza un desagüe sobre una pasarela corta. Al norte queda Vaisgard; al sur la vegetación se vuelve más densa y empieza el camino de Lethra."
+      },
+      {
+        "kind": "world",
+        "text": "Una recolectora vacía su cesta de hierbas sobre la ribera seca. Conserva las raíces aparte para no llevar barro al mercado. Desde aquí puede ver quién llega a la pasarela y dejarle espacio antes de levantarse."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_puerta_juncos",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 43920,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "El canal pasa junto a una puerta lateral. Fuera, las casas dejan sitio a hondonadas de hierba alta. Una tabla permite cambiarse el calzado sin tapar el paso. Al norte vuelves a los toldos; al sur sigues el agua hacia Lethra."
+      },
+      {
+        "kind": "world",
+        "text": "Una viajera quita barro de sus recipientes antes de entrar. Otros levantan los bultos sobre el suelo; el canal pasa por debajo de la tabla donde esperan."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_calle_toldos",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 43980,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Toldos remendados cubren la calle. Cada taller ha reparado su tramo con una tela distinta. El mercado queda al oeste. Al sur sales hacia los canales; al este llega el camino del bosque, por donde entran haces de madera."
+      },
+      {
+        "kind": "world",
+        "text": "Una Marevyn sujeta el borde del toldo mientras su vecino cose. Comprueban dónde caerá el agua para no mojar el taller de abajo."
+      },
+      {
+        "kind": "world",
+        "text": "Ajusta costuras compartidas."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "vaisgard_mercado",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 44040,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Frutas, herramientas y cestas ocupan los puestos entre muros antiguos. Un canal pequeño cruza el mercado. Al norte está la plaza de las rutas; al sur, el patio del agua. Los carros entran por el oeste y los toldos cubren la calle del este."
+      },
+      {
+        "kind": "world",
+        "text": "Bela aparta una cesta para dejar pasar un carro y vuelve a colocar las piezas por tamaño. Un viajero compara un mango con el que trae de su pueblo."
+      },
+      {
+        "kind": "world",
+        "text": "Una vendedora corta una fruta para mostrar el centro. Su vecina prueba un trozo y hace una mueca; ambas apartan esa cesta mientras una niña recoge la semilla del plato."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_plaza_rutas",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 44100,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las rutas se reúnen sobre el empedrado. Las piedras antiguas sobresalen entre las casas. Al sur bajas al mercado; al norte sales hacia la sierra. Los animales descansan en el patio oeste. Al este, una mensajera organiza avisos bajo un alero."
+      },
+      {
+        "kind": "world",
+        "text": "Los patios del otro extremo se borran tras el empedrado húmedo. Bajo el alero todavía se distinguen los papeles; una voz pide que repitan el destino antes de entregar un mensaje."
+      },
+      {
+        "kind": "world",
+        "text": "La mensajera sigue con el dedo unas letras pequeñas y pregunta a una viajera si reconoce la mano. El aviso está escrito en el reverso de una cuenta vieja. En el patio oeste, un animal se rasca el cuello contra el poste hasta que su cuidadora lo aparta."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_patio_senales",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 44160,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las tablillas de mensajes cuelgan protegidas bajo un alero. Una mensajera las separa por lugar de origen y pide los nombres completos. Puedes leer sentado sin tapar el paso. Al oeste está la plaza; al este, el archivo de cargas."
+      },
+      {
+        "kind": "world",
+        "text": "La mensajera no distingue el gesto de quien espera al otro extremo. Le pide que repita el nombre y escribe la letra que faltaba bajo el alero próximo."
+      },
+      {
+        "kind": "world",
+        "text": "Recibe recados junto al armazón."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_plaza_rutas",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 44280,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las rutas se reúnen sobre el empedrado. Las piedras antiguas sobresalen entre las casas. Al sur bajas al mercado; al norte sales hacia la sierra. Los animales descansan en el patio oeste. Al este, una mensajera organiza avisos bajo un alero."
+      },
+      {
+        "kind": "world",
+        "text": "Reconoces las sogas cortas de quienes vienen de la piedra y las cubiertas anchas del campo. Junto al alero, los bultos pequeños de la sierra quedan separados de las cestas."
+      },
+      {
+        "kind": "world",
+        "text": "Los patios del otro extremo se borran tras el empedrado húmedo. Bajo el alero todavía se distinguen los papeles; una voz pide que repitan el destino antes de entregar un mensaje."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_patio_porte",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 44340,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Los animales descansan a la sombra, junto a un bebedero. Las cargas pasan por fuera para dejarles espacio. Hay argollas altas y bajas para sujetarlas. Al este vuelves a la plaza; al oeste sales al camino de piedra, hacia Korven."
+      },
+      {
+        "kind": "world",
+        "text": "El cuidador afloja una cincha antes de tocar el agua. Una porteadora Dravak revisa las piedras de su carga desde un asiento bajo. Ambos esperan a que el animal deje de respirar con tanta prisa."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_puerta_piedra",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 44400,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "La puerta deja atrás el patio de los animales, al este. Al oeste, el camino de Korven cruza tierra seca y piedras sueltas. Los carros llevan cargas bajas, sujetas con tablas. Las casas cercanas tienen ventanas pequeñas para frenar el polvo."
+      },
+      {
+        "kind": "world",
+        "text": "Una Dravak comprueba cada separador golpeándolo con los nudillos. Un conductor más alto se agacha para escucharla desde su nivel de trabajo. La carga no sale hasta que ambos pueden señalar la misma pieza suelta."
+      },
+      {
+        "kind": "world",
+        "text": "Comprueba separadores y prepara el paso occidental."
+      }
+    ]
+  },
+  {
+    "type": "conversation",
+    "room": "veyra_puerta_piedra",
+    "npc": "veyra_tov",
+    "topic": "aviso",
+    "narrative": [
+      {
+        "kind": "npc",
+        "text": "Tov: «Mi carga está entera. Se ha roto un separador; necesito recolocarla antes de entrar. Dile a Nera que llegaré tarde, no que se ha perdido.»"
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_patio_porte",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 44520,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Los animales descansan a la sombra, junto a un bebedero. Las cargas pasan por fuera para dejarles espacio. Hay argollas altas y bajas para sujetarlas. Al este vuelves a la plaza; al oeste sales al camino de piedra, hacia Korven."
+      },
+      {
+        "kind": "world",
+        "text": "Reconoces el rincón del bebedero. Una bestia mantiene la cabeza baja junto al agua; su carga espera al otro lado de las argollas."
+      },
+      {
+        "kind": "world",
+        "text": "El cuidador afloja una cincha antes de tocar el agua. Una porteadora Dravak revisa las piedras de su carga desde un asiento bajo. Ambos esperan a que el animal deje de respirar con tanta prisa."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_plaza_rutas",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 44580,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las rutas se reúnen sobre el empedrado. Las piedras antiguas sobresalen entre las casas. Al sur bajas al mercado; al norte sales hacia la sierra. Los animales descansan en el patio oeste. Al este, una mensajera organiza avisos bajo un alero."
+      },
+      {
+        "kind": "world",
+        "text": "Los patios del otro extremo se borran tras el empedrado húmedo. Bajo el alero todavía se distinguen los papeles; una voz pide que repitan el destino antes de entregar un mensaje."
+      },
+      {
+        "kind": "world",
+        "text": "La mensajera sigue con el dedo unas letras pequeñas y pregunta a una viajera si reconoce la mano. El aviso está escrito en el reverso de una cuenta vieja. En el patio oeste, un animal se rasca el cuello contra el poste hasta que su cuidadora lo aparta."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_patio_senales",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 44640,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las tablillas de mensajes cuelgan protegidas bajo un alero. Una mensajera las separa por lugar de origen y pide los nombres completos. Puedes leer sentado sin tapar el paso. Al oeste está la plaza; al este, el archivo de cargas."
+      },
+      {
+        "kind": "world",
+        "text": "La mensajera no distingue el gesto de quien espera al otro extremo. Le pide que repita el nombre y escribe la letra que faltaba bajo el alero próximo."
+      },
+      {
+        "kind": "world",
+        "text": "Recuerdas la ranura donde dejaron el recado urgente. El montón de notas del alero queda debajo, sujeto con la misma teja."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_archivo_cargas",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 44700,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las cargas pendientes tienen sus tablillas cerca de la puerta; las entregadas, al fondo. La mesa está gastada por las cajas. Sales al oeste."
+      },
+      {
+        "kind": "world",
+        "text": "La archivera compara la marca de una caja con su tablilla. El ayudante pregunta dónde guardarla: cerca de la puerta si sigue pendiente, al fondo si ya fue entregada."
+      },
+      {
+        "kind": "world",
+        "text": "Reordena las tablillas pendientes por ruta."
+      }
+    ]
+  },
+  {
+    "type": "conversation",
+    "room": "veyra_archivo_cargas",
+    "npc": "veyra_nera",
+    "topic": "aviso_preciso",
+    "narrative": [
+      {
+        "kind": "npc",
+        "text": "Nera: Nera anota la demora, el separador roto y quién dio la noticia. La carga sigue en la lista de llegadas; nadie recibe un aviso de robo sin pruebas."
+      },
+      {
+        "kind": "discovery",
+        "text": "La nota de Tov registra un separador roto y una llegada tardía; no una carga robada."
+      },
+      {
+        "kind": "discovery",
+        "text": "El encargo ya puede entregarse."
+      }
+    ]
+  },
+  {
+    "type": "conversation",
+    "room": "veyra_archivo_cargas",
+    "npc": "veyra_nera",
+    "topic": "cargas",
+    "narrative": [
+      {
+        "kind": "npc",
+        "text": "Nera: La nota que me diste sitúa a Tov junto a la puerta de piedra: separador roto y llegada tardía. La carga sigue en la lista de llegadas; no está registrada como robada."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_patio_senales",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 44820,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las tablillas de mensajes cuelgan protegidas bajo un alero. Una mensajera las separa por lugar de origen y pide los nombres completos. Puedes leer sentado sin tapar el paso. Al oeste está la plaza; al este, el archivo de cargas."
+      },
+      {
+        "kind": "world",
+        "text": "El nombre queda visible en el pliegue nuevo. La mensajera responde en voz alta a quien espera al otro extremo y guarda la nota bajo su capa."
+      },
+      {
+        "kind": "world",
+        "text": "Recibe recados junto al armazón."
+      }
+    ]
+  },
+  {
+    "type": "payment",
+    "narrative": [
+      {
+        "kind": "reward",
+        "text": "Entregas Una demora sin inventar un robo. Recibes 6 sellos."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_plaza_rutas",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 44940,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las rutas se reúnen sobre el empedrado. Las piedras antiguas sobresalen entre las casas. Al sur bajas al mercado; al norte sales hacia la sierra. Los animales descansan en el patio oeste. Al este, una mensajera organiza avisos bajo un alero."
+      },
+      {
+        "kind": "world",
+        "text": "Los patios del otro extremo se borran tras el empedrado húmedo. Bajo el alero todavía se distinguen los papeles; una voz pide que repitan el destino antes de entregar un mensaje."
+      },
+      {
+        "kind": "world",
+        "text": "La mensajera sigue con el dedo unas letras pequeñas y pregunta a una viajera si reconoce la mano. El aviso está escrito en el reverso de una cuenta vieja. En el patio oeste, un animal se rasca el cuello contra el poste hasta que su cuidadora lo aparta."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_patio_porte",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 45000,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Los animales descansan a la sombra, junto a un bebedero. Las cargas pasan por fuera para dejarles espacio. Hay argollas altas y bajas para sujetarlas. Al este vuelves a la plaza; al oeste sales al camino de piedra, hacia Korven."
+      },
+      {
+        "kind": "world",
+        "text": "El cuidador afloja una cincha antes de tocar el agua. Una porteadora Dravak revisa las piedras de su carga desde un asiento bajo. Ambos esperan a que el animal deje de respirar con tanta prisa."
+      },
+      {
+        "kind": "world",
+        "text": "Reconoces el rincón del bebedero. Una bestia mantiene la cabeza baja junto al agua; su carga espera al otro lado de las argollas."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_puerta_piedra",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 45060,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "La puerta deja atrás el patio de los animales, al este. Al oeste, el camino de Korven cruza tierra seca y piedras sueltas. Los carros llevan cargas bajas, sujetas con tablas. Las casas cercanas tienen ventanas pequeñas para frenar el polvo."
+      },
+      {
+        "kind": "world",
+        "text": "Recuerdas el desnivel de la puerta. Antes de él quedan las cuñas del carro; del otro lado empieza el borde de piedras sueltas."
+      },
+      {
+        "kind": "world",
+        "text": "Una Dravak comprueba cada separador golpeándolo con los nudillos. Un conductor más alto se agacha para escucharla desde su nivel de trabajo. La carga no sale hasta que ambos pueden señalar la misma pieza suelta."
+      }
+    ]
+  },
+  {
+    "type": "conversation",
+    "room": "veyra_puerta_piedra",
+    "npc": "veyra_tov",
+    "topic": "carga",
+    "narrative": [
+      {
+        "kind": "npc",
+        "text": "Tov: No faltan piedras. Falta sujetarlas bien antes de cruzar el terraplén."
+      },
+      {
+        "kind": "discovery",
+        "text": "Tov asiente al saber que Nera anotó la demora. Su carro sigue junto a la puerta, pendiente de recolocar la carga."
+      }
+    ]
+  },
+  {
+    "type": "memory-location-check",
+    "room": "veyra_puerta_piedra",
+    "narrative": [
+      {
+        "kind": "npc",
+        "text": "Tov: No faltan piedras. Falta sujetarlas bien antes de cruzar el terraplén."
+      },
+      {
+        "kind": "discovery",
+        "text": "Tov asiente al saber que Nera anotó la demora. Su carro sigue junto a la puerta, pendiente de recolocar la carga."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_patio_porte",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Amanecer",
+      "timestamp": 108060,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Los animales descansan a la sombra, junto a un bebedero. Las cargas pasan por fuera para dejarles espacio. Hay argollas altas y bajas para sujetarlas. Al este vuelves a la plaza; al oeste sales al camino de piedra, hacia Korven."
+      },
+      {
+        "kind": "world",
+        "text": "El cuidador afloja una cincha antes de tocar el agua. Una porteadora Dravak revisa las piedras de su carga desde un asiento bajo. Ambos esperan a que el animal deje de respirar con tanta prisa."
+      },
+      {
+        "kind": "world",
+        "text": "Reconoces el rincón del bebedero. Una bestia mantiene la cabeza baja junto al agua; su carga espera al otro lado de las argollas."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_plaza_rutas",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Amanecer",
+      "timestamp": 108120,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las rutas se reúnen sobre el empedrado. Las piedras antiguas sobresalen entre las casas. Al sur bajas al mercado; al norte sales hacia la sierra. Los animales descansan en el patio oeste. Al este, una mensajera organiza avisos bajo un alero."
+      },
+      {
+        "kind": "world",
+        "text": "Reconoces las sogas cortas de quienes vienen de la piedra y las cubiertas anchas del campo. Junto al alero, los bultos pequeños de la sierra quedan separados de las cestas."
+      },
+      {
+        "kind": "world",
+        "text": "Los patios del otro extremo se borran tras el empedrado húmedo. Bajo el alero todavía se distinguen los papeles; una voz pide que repitan el destino antes de entregar un mensaje."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "vaisgard_mercado",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Amanecer",
+      "timestamp": 108180,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Frutas, herramientas y cestas ocupan los puestos entre muros antiguos. Un canal pequeño cruza el mercado. Al norte está la plaza de las rutas; al sur, el patio del agua. Los carros entran por el oeste y los toldos cubren la calle del este."
+      },
+      {
+        "kind": "world",
+        "text": "Bela aparta una cesta para dejar pasar un carro y vuelve a colocar las piezas por tamaño. Un viajero compara un mango con el que trae de su pueblo."
+      },
+      {
+        "kind": "world",
+        "text": "El canal divide otra vez tu paso entre puestos. La plaza queda detrás de las herramientas; los carros alcanzan el corredor occidental por el lado de las cestas."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_calle_toldos",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Amanecer",
+      "timestamp": 108240,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Toldos remendados cubren la calle. Cada taller ha reparado su tramo con una tela distinta. El mercado queda al oeste. Al sur sales hacia los canales; al este llega el camino del bosque, por donde entran haces de madera."
+      },
+      {
+        "kind": "world",
+        "text": "Reconoces la costura azul entre los dos talleres. Bajo el último desagüe están los recipientes que marcaban la vuelta hacia los canales."
+      },
+      {
+        "kind": "world",
+        "text": "Una Marevyn sujeta el borde del toldo mientras su vecino cose. Comprueban dónde caerá el agua para no mojar el taller de abajo."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_puerta_sombra",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Amanecer",
+      "timestamp": 108300,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "La calle se ensancha para girar las cargas de madera. Más allá aparecen árboles separados por parcelas viejas. Al oeste quedan los toldos y las herramientas de los talleres. El camino este entra en el bosque, rumbo a Nhal."
+      },
+      {
+        "kind": "world",
+        "text": "Una Vesperi palpa dos ataduras del haz. Su vecino retira una astilla junto a la hoja inutilizada; al pasar la madera roza todavía el otro borde."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_lindero_arboles",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Amanecer",
+      "timestamp": 108360,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Tres grupos de árboles cierran poco a poco el camino. Los carros caben al principio; después las raíces levantan el suelo. Al oeste aún ves la puerta de Vaisgard. El este entra en Nhal; un desvío sur lleva a una cantera vieja."
+      },
+      {
+        "kind": "world",
+        "text": "Un cargador recoge ramas caídas y las apila junto a la parcela. Deja libres las raíces y el paso hacia el bosque."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_cantera_callada",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Amanecer",
+      "timestamp": 108420,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Marcas de herramientas cubren la pared. Un bloque quedó sin sacar, bajo las raíces. El desvío termina aquí; al norte vuelves al bosque."
+      },
+      {
+        "kind": "world",
+        "text": "La roca permanece fría en la franja inferior. Una lagartija espera donde empieza a tocar el sol."
+      }
+    ]
+  },
+  {
+    "type": "observation",
+    "room": "veyra_cantera_callada",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Amanecer",
+      "timestamp": 108480,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Marcas de herramientas cubren la pared. Un bloque quedó sin sacar, bajo las raíces. El desvío termina aquí; al norte vuelves al bosque."
+      },
+      {
+        "kind": "world",
+        "text": "La roca permanece fría en la franja inferior. Una lagartija espera donde empieza a tocar el sol."
+      }
+    ],
+    "observe": [
+      {
+        "kind": "world",
+        "text": "La roca permanece fría en la franja inferior. Una lagartija espera donde empieza a tocar el sol."
+      },
+      {
+        "kind": "trace",
+        "text": "Hay cuñas antiguas sin marca legible. Una cuña tiene el ancho de la ranura del banco; sus marcas están borradas."
+      },
+      {
+        "kind": "action",
+        "text": "Observas con atención."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_lindero_arboles",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Amanecer",
+      "timestamp": 108540,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Tres grupos de árboles cierran poco a poco el camino. Los carros caben al principio; después las raíces levantan el suelo. Al oeste aún ves la puerta de Vaisgard. El este entra en Nhal; un desvío sur lleva a una cantera vieja."
+      },
+      {
+        "kind": "world",
+        "text": "El primer claro deja ver otra vez la anchura de la cuenca. A un lado está la abertura quieta de la cantera; de frente sigue la senda entre hojas."
+      },
+      {
+        "kind": "world",
+        "text": "Un cargador recoge ramas caídas y las apila junto a la parcela. Deja libres las raíces y el paso hacia el bosque."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_puerta_sombra",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Amanecer",
+      "timestamp": 108600,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "La calle se ensancha para girar las cargas de madera. Más allá aparecen árboles separados por parcelas viejas. Al oeste quedan los toldos y las herramientas de los talleres. El camino este entra en el bosque, rumbo a Nhal."
+      },
+      {
+        "kind": "world",
+        "text": "Reconoces la hoja de puerta inutilizada. La carga que sale rodea su borde; desde el bosque llega otra que espera junto a los árboles."
+      },
+      {
+        "kind": "world",
+        "text": "Una Vesperi palpa dos ataduras del haz. Su vecino retira una astilla junto a la hoja inutilizada; al pasar la madera roza todavía el otro borde."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_calle_toldos",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Amanecer",
+      "timestamp": 108660,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Toldos remendados cubren la calle. Cada taller ha reparado su tramo con una tela distinta. El mercado queda al oeste. Al sur sales hacia los canales; al este llega el camino del bosque, por donde entran haces de madera."
+      },
+      {
+        "kind": "world",
+        "text": "Una Marevyn sujeta el borde del toldo mientras su vecino cose. Comprueban dónde caerá el agua para no mojar el taller de abajo."
+      },
+      {
+        "kind": "world",
+        "text": "Ajusta costuras compartidas."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "vaisgard_mercado",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Amanecer",
+      "timestamp": 108720,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Frutas, herramientas y cestas ocupan los puestos entre muros antiguos. Un canal pequeño cruza el mercado. Al norte está la plaza de las rutas; al sur, el patio del agua. Los carros entran por el oeste y los toldos cubren la calle del este."
+      },
+      {
+        "kind": "world",
+        "text": "Bela aparta una cesta para dejar pasar un carro y vuelve a colocar las piezas por tamaño. Un viajero compara un mango con el que trae de su pueblo."
+      },
+      {
+        "kind": "world",
+        "text": "Los puestos abren envolturas todavía frías. La primera fruta cortada deja un charco pequeño en el plato."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_patio_agua",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Amanecer",
+      "timestamp": 108780,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Una pila recibe el agua de las calles. La parte alta guarda agua limpia; abajo se recoge la usada. Los recipientes de las casas esperan lejos del barro. Al norte vuelves al mercado. Rodeando la baranda hacia el sur llegas a la huerta. Una puerta al este lleva al lugar de cuidados."
+      },
+      {
+        "kind": "world",
+        "text": "La jarra de barro recibe agua fría. Una mujer prueba un sorbo y enjuaga otra vez el vaso."
+      }
+    ]
+  },
+  {
+    "type": "observation",
+    "room": "veyra_patio_agua",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Amanecer",
+      "timestamp": 108840,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Una pila recibe el agua de las calles. La parte alta guarda agua limpia; abajo se recoge la usada. Los recipientes de las casas esperan lejos del barro. Al norte vuelves al mercado. Rodeando la baranda hacia el sur llegas a la huerta. Una puerta al este lleva al lugar de cuidados."
+      },
+      {
+        "kind": "world",
+        "text": "La jarra de barro recibe agua fría. Una mujer prueba un sorbo y enjuaga otra vez el vaso."
+      }
+    ],
+    "observe": [
+      {
+        "kind": "world",
+        "text": "La jarra de barro recibe agua fría. Una mujer prueba un sorbo y enjuaga otra vez el vaso."
+      },
+      {
+        "kind": "trace",
+        "text": "La conducción limpia no procede del mercado. Confundir ambas entradas haría inútil la separación."
+      },
+      {
+        "kind": "action",
+        "text": "Observas con atención."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_huerta_baja",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Amanecer",
+      "timestamp": 108900,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Una franja de huerta ocupa el pie de las casas. Cultivan hierbas y semillas con el agua que baja por canales pequeños. Las herramientas caben en un cobertizo bajo. Al norte está el patio del agua; al sur subes a una colina abierta."
+      },
+      {
+        "kind": "world",
+        "text": "La vecina levanta una hoja mojada para revisar el envés. El niño llega con un cesto vacío y espera a que le señalen qué frutos puede coger."
+      }
+    ]
+  },
+  {
+    "type": "observation",
+    "room": "veyra_huerta_baja",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Amanecer",
+      "timestamp": 108960,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Una franja de huerta ocupa el pie de las casas. Cultivan hierbas y semillas con el agua que baja por canales pequeños. Las herramientas caben en un cobertizo bajo. Al norte está el patio del agua; al sur subes a una colina abierta."
+      },
+      {
+        "kind": "world",
+        "text": "La vecina levanta una hoja mojada para revisar el envés. El niño llega con un cesto vacío y espera a que le señalen qué frutos puede coger."
+      }
+    ],
+    "observe": [
+      {
+        "kind": "world",
+        "text": "La vecina levanta una hoja mojada para revisar el envés. El niño llega con un cesto vacío y espera a que le señalen qué frutos puede coger."
+      },
+      {
+        "kind": "trace",
+        "text": "Puedes colocarla para llevar agua a la parcela o dejarla correr por el canal."
+      },
+      {
+        "kind": "action",
+        "text": "Observas con atención."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_colina_vista",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Amanecer",
+      "timestamp": 109020,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Vaisgard queda al norte, tras la huerta. La niebla oculta los caminos bajos y parte de los tejados; desde aquí no puedes seguir una ruta lejana con la vista. Vuelve a la huerta para continuar."
+      },
+      {
+        "kind": "world",
+        "text": "El agrimensor espera junto al primer poste. Mientras llega más luz, anota de qué puerta salió el carro que acaba de subir."
+      }
+    ]
+  },
+  {
+    "type": "observation",
+    "room": "veyra_colina_vista",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Amanecer",
+      "timestamp": 109080,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Vaisgard queda al norte, tras la huerta. La niebla oculta los caminos bajos y parte de los tejados; desde aquí no puedes seguir una ruta lejana con la vista. Vuelve a la huerta para continuar."
+      },
+      {
+        "kind": "world",
+        "text": "El agrimensor espera junto al primer poste. Mientras llega más luz, anota de qué puerta salió el carro que acaba de subir."
+      }
+    ],
+    "observe": [
+      {
+        "kind": "world",
+        "text": "El agrimensor espera junto al primer poste. Mientras llega más luz, anota de qué puerta salió el carro que acaba de subir."
+      },
+      {
+        "kind": "trace",
+        "text": "El hito cercano conserva su marca. La niebla impide comprobar su alineación con los otros dos desde aquí."
+      },
+      {
+        "kind": "action",
+        "text": "Observas con atención."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_huerta_baja",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Amanecer",
+      "timestamp": 109140,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Una franja de huerta ocupa el pie de las casas. Cultivan hierbas y semillas con el agua que baja por canales pequeños. Las herramientas caben en un cobertizo bajo. Al norte está el patio del agua; al sur subes a una colina abierta."
+      },
+      {
+        "kind": "world",
+        "text": "La vecina levanta una hoja mojada para revisar el envés. El niño llega con un cesto vacío y espera a que le señalen qué frutos puede coger."
+      },
+      {
+        "kind": "world",
+        "text": "Recuerdas la tabla junto al bancal. De un lado, la tierra oscura alcanza la raíz; del otro, el polvo queda seco alrededor del cesto."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_patio_agua",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Amanecer",
+      "timestamp": 109200,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Una pila recibe el agua de las calles. La parte alta guarda agua limpia; abajo se recoge la usada. Los recipientes de las casas esperan lejos del barro. Al norte vuelves al mercado. Rodeando la baranda hacia el sur llegas a la huerta. Una puerta al este lleva al lugar de cuidados."
+      },
+      {
+        "kind": "world",
+        "text": "La jarra de barro recibe agua fría. Una mujer prueba un sorbo y enjuaga otra vez el vaso."
+      },
+      {
+        "kind": "world",
+        "text": "Reconoces el brillo gastado donde apoyaron la jarra. El agua de la calle entra por debajo; la conducción limpia queda en la parte alta."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "vaisgard_mercado",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Amanecer",
+      "timestamp": 109260,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Frutas, herramientas y cestas ocupan los puestos entre muros antiguos. Un canal pequeño cruza el mercado. Al norte está la plaza de las rutas; al sur, el patio del agua. Los carros entran por el oeste y los toldos cubren la calle del este."
+      },
+      {
+        "kind": "world",
+        "text": "Bela aparta una cesta para dejar pasar un carro y vuelve a colocar las piezas por tamaño. Un viajero compara un mango con el que trae de su pueblo."
+      },
+      {
+        "kind": "world",
+        "text": "Los puestos abren envolturas todavía frías. La primera fruta cortada deja un charco pequeño en el plato."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_plaza_rutas",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Amanecer",
+      "timestamp": 109320,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las rutas se reúnen sobre el empedrado. Las piedras antiguas sobresalen entre las casas. Al sur bajas al mercado; al norte sales hacia la sierra. Los animales descansan en el patio oeste. Al este, una mensajera organiza avisos bajo un alero."
+      },
+      {
+        "kind": "world",
+        "text": "Los patios del otro extremo se borran tras el empedrado húmedo. Bajo el alero todavía se distinguen los papeles; una voz pide que repitan el destino antes de entregar un mensaje."
+      },
+      {
+        "kind": "world",
+        "text": "Los mensajeros comparan destinos antes de que la plaza reciba carros. Quienes han dormido en los patios ajustan cubiertas mirando el cielo."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_patio_senales",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Amanecer",
+      "timestamp": 109380,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las tablillas de mensajes cuelgan protegidas bajo un alero. Una mensajera las separa por lugar de origen y pide los nombres completos. Puedes leer sentado sin tapar el paso. Al oeste está la plaza; al este, el archivo de cargas."
+      },
+      {
+        "kind": "world",
+        "text": "Dos mensajeras intentan leer una letra sobre un papel doblado. Una vuelve a escribirla más grande en el margen; la otra se ríe al reconocer por fin el nombre."
+      },
+      {
+        "kind": "world",
+        "text": "Recibe recados junto al armazón."
+      }
+    ]
+  },
+  {
+    "type": "observation",
+    "room": "veyra_patio_senales",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Amanecer",
+      "timestamp": 109440,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las tablillas de mensajes cuelgan protegidas bajo un alero. Una mensajera las separa por lugar de origen y pide los nombres completos. Puedes leer sentado sin tapar el paso. Al oeste está la plaza; al este, el archivo de cargas."
+      },
+      {
+        "kind": "world",
+        "text": "Dos mensajeras intentan leer una letra sobre un papel doblado. Una vuelve a escribirla más grande en el margen; la otra se ríe al reconocer por fin el nombre."
+      },
+      {
+        "kind": "world",
+        "text": "Recibe recados junto al armazón."
+      }
+    ],
+    "observe": [
+      {
+        "kind": "world",
+        "text": "Lleva fundas distintas para hojas urgentes y recados ordinarios. Se detiene para escuchar una respuesta completa antes de repetirla."
+      },
+      {
+        "kind": "world",
+        "text": "Dos mensajeras intentan leer una letra sobre un papel doblado. Una vuelve a escribirla más grande en el margen; la otra se ríe al reconocer por fin el nombre."
+      },
+      {
+        "kind": "trace",
+        "text": "Una marca identifica remitente y ruta, sin afirmar que el mensaje haya sido leído."
+      },
+      {
+        "kind": "action",
+        "text": "Observas con atención."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_archivo_cargas",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Amanecer",
+      "timestamp": 109500,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las cargas pendientes tienen sus tablillas cerca de la puerta; las entregadas, al fondo. La mesa está gastada por las cajas. Sales al oeste."
+      },
+      {
+        "kind": "discovery",
+        "text": "El registro pendiente atribuye ahora a un separador roto la demora de Tov. La caja sigue cerrada y ya no circula como una pérdida sin explicación."
+      },
+      {
+        "kind": "world",
+        "text": "La copia del aviso que trajiste queda junto a la puerta: Tov se retrasó por un separador roto. Su tablilla permanece entre llegadas pendientes."
+      }
+    ]
+  },
+  {
+    "type": "observation",
+    "room": "veyra_archivo_cargas",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Amanecer",
+      "timestamp": 109560,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las cargas pendientes tienen sus tablillas cerca de la puerta; las entregadas, al fondo. La mesa está gastada por las cajas. Sales al oeste."
+      },
+      {
+        "kind": "discovery",
+        "text": "El registro pendiente atribuye ahora a un separador roto la demora de Tov. La caja sigue cerrada y ya no circula como una pérdida sin explicación."
+      },
+      {
+        "kind": "world",
+        "text": "La copia del aviso que trajiste queda junto a la puerta: Tov se retrasó por un separador roto. Su tablilla permanece entre llegadas pendientes."
+      }
+    ],
+    "observe": [
+      {
+        "kind": "world",
+        "text": "Tiene los puños manchados de tinta y una uña rota de levantar cajas. Antes de mirar una firma pregunta de qué camino procede."
+      },
+      {
+        "kind": "world",
+        "text": "La copia del aviso que trajiste queda junto a la puerta: Tov se retrasó por un separador roto. Su tablilla permanece entre llegadas pendientes."
+      },
+      {
+        "kind": "trace",
+        "text": "Las reparaciones indican que el archivo también recibe objetos pesados."
+      },
+      {
+        "kind": "action",
+        "text": "Observas con atención."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_patio_senales",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 216060,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las tablillas de mensajes cuelgan protegidas bajo un alero. Una mensajera las separa por lugar de origen y pide los nombres completos. Puedes leer sentado sin tapar el paso. Al oeste está la plaza; al este, el archivo de cargas."
+      },
+      {
+        "kind": "world",
+        "text": "El nombre queda visible en el pliegue nuevo. La mensajera responde en voz alta a quien espera al otro extremo y guarda la nota bajo su capa."
+      },
+      {
+        "kind": "world",
+        "text": "Recuerdas la ranura donde dejaron el recado urgente. El montón de notas del alero queda debajo, sujeto con la misma teja."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_plaza_rutas",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 216120,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las rutas se reúnen sobre el empedrado. Las piedras antiguas sobresalen entre las casas. Al sur bajas al mercado; al norte sales hacia la sierra. Los animales descansan en el patio oeste. Al este, una mensajera organiza avisos bajo un alero."
+      },
+      {
+        "kind": "world",
+        "text": "Los patios del otro extremo se borran tras el empedrado húmedo. Bajo el alero todavía se distinguen los papeles; una voz pide que repitan el destino antes de entregar un mensaje."
+      },
+      {
+        "kind": "world",
+        "text": "La mensajera sigue con el dedo unas letras pequeñas y pregunta a una viajera si reconoce la mano. El aviso está escrito en el reverso de una cuenta vieja. En el patio oeste, un animal se rasca el cuello contra el poste hasta que su cuidadora lo aparta."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "vaisgard_mercado",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 216180,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Frutas, herramientas y cestas ocupan los puestos entre muros antiguos. Un canal pequeño cruza el mercado. Al norte está la plaza de las rutas; al sur, el patio del agua. Los carros entran por el oeste y los toldos cubren la calle del este."
+      },
+      {
+        "kind": "world",
+        "text": "Bela aparta una cesta para dejar pasar un carro y vuelve a colocar las piezas por tamaño. Un viajero compara un mango con el que trae de su pueblo."
+      },
+      {
+        "kind": "world",
+        "text": "El canal divide otra vez tu paso entre puestos. La plaza queda detrás de las herramientas; los carros alcanzan el corredor occidental por el lado de las cestas."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_calle_toldos",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 216240,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Toldos remendados cubren la calle. Cada taller ha reparado su tramo con una tela distinta. El mercado queda al oeste. Al sur sales hacia los canales; al este llega el camino del bosque, por donde entran haces de madera."
+      },
+      {
+        "kind": "world",
+        "text": "Una Marevyn sujeta el borde del toldo mientras su vecino cose. Comprueban dónde caerá el agua para no mojar el taller de abajo."
+      },
+      {
+        "kind": "world",
+        "text": "Ajusta costuras compartidas."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_puerta_sombra",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 216300,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "La calle se ensancha para girar las cargas de madera. Más allá aparecen árboles separados por parcelas viejas. Al oeste quedan los toldos y las herramientas de los talleres. El camino este entra en el bosque, rumbo a Nhal."
+      },
+      {
+        "kind": "world",
+        "text": "Una Vesperi palpa dos ataduras del haz. Su vecino retira una astilla junto a la hoja inutilizada; al pasar la madera roza todavía el otro borde."
+      },
+      {
+        "kind": "world",
+        "text": "Reconoces la hoja de puerta inutilizada. La carga que sale rodea su borde; desde el bosque llega otra que espera junto a los árboles."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_lindero_arboles",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 216360,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Tres grupos de árboles cierran poco a poco el camino. Los carros caben al principio; después las raíces levantan el suelo. Al oeste aún ves la puerta de Vaisgard. El este entra en Nhal; un desvío sur lleva a una cantera vieja."
+      },
+      {
+        "kind": "world",
+        "text": "Un cargador recoge ramas caídas y las apila junto a la parcela. Deja libres las raíces y el paso hacia el bosque."
+      },
+      {
+        "kind": "world",
+        "text": "El primer claro deja ver otra vez la anchura de la cuenca. A un lado está la abertura quieta de la cantera; de frente sigue la senda entre hojas."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_cantera_callada",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 216420,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Marcas de herramientas cubren la pared. Un bloque quedó sin sacar, bajo las raíces. El desvío termina aquí; al norte vuelves al bosque."
+      },
+      {
+        "kind": "world",
+        "text": "La pared alta desaparece en la niebla. Cerca, la lagartija se recoge en una junta húmeda; sólo queda visible la pluma pegada a la piedra."
+      },
+      {
+        "kind": "world",
+        "text": "Las huellas de extracción siguen en la pared junto al banco sin separar. Ahora puedes reconocer las cuñas desde la entrada norte. La humedad oscurece una junta lateral y deja más claro el relieve de los cortes."
+      }
+    ]
+  },
+  {
+    "type": "observation",
+    "room": "veyra_cantera_callada",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 216480,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Marcas de herramientas cubren la pared. Un bloque quedó sin sacar, bajo las raíces. El desvío termina aquí; al norte vuelves al bosque."
+      },
+      {
+        "kind": "world",
+        "text": "La pared alta desaparece en la niebla. Cerca, la lagartija se recoge en una junta húmeda; sólo queda visible la pluma pegada a la piedra."
+      },
+      {
+        "kind": "world",
+        "text": "Las huellas de extracción siguen en la pared junto al banco sin separar. Ahora puedes reconocer las cuñas desde la entrada norte. La humedad oscurece una junta lateral y deja más claro el relieve de los cortes."
+      }
+    ],
+    "observe": [
+      {
+        "kind": "world",
+        "text": "La pared alta desaparece en la niebla. Cerca, la lagartija se recoge en una junta húmeda; sólo queda visible la pluma pegada a la piedra."
+      },
+      {
+        "kind": "trace",
+        "text": "El agua sale de una junta lateral; acercarse al pie no ofrece una respuesta mejor."
+      },
+      {
+        "kind": "action",
+        "text": "Observas con atención."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_lindero_arboles",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 216540,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Tres grupos de árboles cierran poco a poco el camino. Los carros caben al principio; después las raíces levantan el suelo. Al oeste aún ves la puerta de Vaisgard. El este entra en Nhal; un desvío sur lleva a una cantera vieja."
+      },
+      {
+        "kind": "world",
+        "text": "Un cargador recoge ramas caídas y las apila junto a la parcela. Deja libres las raíces y el paso hacia el bosque."
+      },
+      {
+        "kind": "world",
+        "text": "El primer claro deja ver otra vez la anchura de la cuenca. A un lado está la abertura quieta de la cantera; de frente sigue la senda entre hojas."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_puerta_sombra",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 216600,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "La calle se ensancha para girar las cargas de madera. Más allá aparecen árboles separados por parcelas viejas. Al oeste quedan los toldos y las herramientas de los talleres. El camino este entra en el bosque, rumbo a Nhal."
+      },
+      {
+        "kind": "world",
+        "text": "Una Vesperi palpa dos ataduras del haz. Su vecino retira una astilla junto a la hoja inutilizada; al pasar la madera roza todavía el otro borde."
+      },
+      {
+        "kind": "world",
+        "text": "Reconoces la hoja de puerta inutilizada. La carga que sale rodea su borde; desde el bosque llega otra que espera junto a los árboles."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_calle_toldos",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 216660,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Toldos remendados cubren la calle. Cada taller ha reparado su tramo con una tela distinta. El mercado queda al oeste. Al sur sales hacia los canales; al este llega el camino del bosque, por donde entran haces de madera."
+      },
+      {
+        "kind": "world",
+        "text": "Reconoces la costura azul entre los dos talleres. Bajo el último desagüe están los recipientes que marcaban la vuelta hacia los canales."
+      },
+      {
+        "kind": "world",
+        "text": "Una Marevyn sujeta el borde del toldo mientras su vecino cose. Comprueban dónde caerá el agua para no mojar el taller de abajo."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "vaisgard_mercado",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 216720,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Frutas, herramientas y cestas ocupan los puestos entre muros antiguos. Un canal pequeño cruza el mercado. Al norte está la plaza de las rutas; al sur, el patio del agua. Los carros entran por el oeste y los toldos cubren la calle del este."
+      },
+      {
+        "kind": "world",
+        "text": "Bela aparta una cesta para dejar pasar un carro y vuelve a colocar las piezas por tamaño. Un viajero compara un mango con el que trae de su pueblo."
+      },
+      {
+        "kind": "world",
+        "text": "La cesta apartada conserva la fruta abierta. La niña ha puesto su semilla en un pliegue de hoja; la vendedora le muestra cuál de los dos lados debe quedar arriba."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_patio_agua",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 216780,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Una pila recibe el agua de las calles. La parte alta guarda agua limpia; abajo se recoge la usada. Los recipientes de las casas esperan lejos del barro. Al norte vuelves al mercado. Rodeando la baranda hacia el sur llegas a la huerta. Una puerta al este lleva al lugar de cuidados."
+      },
+      {
+        "kind": "world",
+        "text": "Una mujer compara el sabor de dos vasos de agua y deja uno junto al canal. Un niño acerca la nariz al segundo; ella le señala la jarra de barro recién enjuagada."
+      },
+      {
+        "kind": "world",
+        "text": "Reconoces el brillo gastado donde apoyaron la jarra. El agua de la calle entra por debajo; la conducción limpia queda en la parte alta."
+      }
+    ]
+  },
+  {
+    "type": "observation",
+    "room": "veyra_patio_agua",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 216840,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Una pila recibe el agua de las calles. La parte alta guarda agua limpia; abajo se recoge la usada. Los recipientes de las casas esperan lejos del barro. Al norte vuelves al mercado. Rodeando la baranda hacia el sur llegas a la huerta. Una puerta al este lleva al lugar de cuidados."
+      },
+      {
+        "kind": "world",
+        "text": "Una mujer compara el sabor de dos vasos de agua y deja uno junto al canal. Un niño acerca la nariz al segundo; ella le señala la jarra de barro recién enjuagada."
+      },
+      {
+        "kind": "world",
+        "text": "Reconoces el brillo gastado donde apoyaron la jarra. El agua de la calle entra por debajo; la conducción limpia queda en la parte alta."
+      }
+    ],
+    "observe": [
+      {
+        "kind": "world",
+        "text": "Una mujer compara el sabor de dos vasos de agua y deja uno junto al canal. Un niño acerca la nariz al segundo; ella le señala la jarra de barro recién enjuagada."
+      },
+      {
+        "kind": "trace",
+        "text": "Está reparada del lado de las cargas; protege la pila cuando alguien baja demasiado rápido."
+      },
+      {
+        "kind": "action",
+        "text": "Observas con atención."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_huerta_baja",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 216900,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Una franja de huerta ocupa el pie de las casas. Cultivan hierbas y semillas con el agua que baja por canales pequeños. Las herramientas caben en un cobertizo bajo. Al norte está el patio del agua; al sur subes a una colina abierta."
+      },
+      {
+        "kind": "world",
+        "text": "Una vecina busca pulgones bajo una hoja y deja intacta una mariquita. En el escalón, un niño cuenta las manchas rojas de un fruto antes de decidir si ya puede cogerlo."
+      },
+      {
+        "kind": "world",
+        "text": "Recuerdas la tabla junto al bancal. De un lado, la tierra oscura alcanza la raíz; del otro, el polvo queda seco alrededor del cesto."
+      }
+    ]
+  },
+  {
+    "type": "observation",
+    "room": "veyra_huerta_baja",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 216960,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Una franja de huerta ocupa el pie de las casas. Cultivan hierbas y semillas con el agua que baja por canales pequeños. Las herramientas caben en un cobertizo bajo. Al norte está el patio del agua; al sur subes a una colina abierta."
+      },
+      {
+        "kind": "world",
+        "text": "Una vecina busca pulgones bajo una hoja y deja intacta una mariquita. En el escalón, un niño cuenta las manchas rojas de un fruto antes de decidir si ya puede cogerlo."
+      },
+      {
+        "kind": "world",
+        "text": "Recuerdas la tabla junto al bancal. De un lado, la tierra oscura alcanza la raíz; del otro, el polvo queda seco alrededor del cesto."
+      }
+    ],
+    "observe": [
+      {
+        "kind": "world",
+        "text": "Una vecina busca pulgones bajo una hoja y deja intacta una mariquita. En el escalón, un niño cuenta las manchas rojas de un fruto antes de decidir si ya puede cogerlo."
+      },
+      {
+        "kind": "trace",
+        "text": "Su fondo cedió por desgaste. La reparación requiere paciencia y una unión limpia."
+      },
+      {
+        "kind": "action",
+        "text": "Observas con atención."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_colina_vista",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 217020,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Vaisgard queda al norte, tras la huerta. La niebla oculta los caminos bajos y parte de los tejados; desde aquí no puedes seguir una ruta lejana con la vista. Vuelve a la huerta para continuar."
+      },
+      {
+        "kind": "world",
+        "text": "Reconoces la bajada hacia la huerta, cerca de tus pies. La niebla sigue ocultando los cruces lejanos; recordar el camino no hace visible lo que hay más allá."
+      },
+      {
+        "kind": "world",
+        "text": "El agrimensor comprueba el poste más cercano y guarda la medida de los otros para cuando despeje. Bajo la colina, una rueda suena sin que puedas ver el carro."
+      }
+    ]
+  },
+  {
+    "type": "observation",
+    "room": "veyra_colina_vista",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 217080,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Vaisgard queda al norte, tras la huerta. La niebla oculta los caminos bajos y parte de los tejados; desde aquí no puedes seguir una ruta lejana con la vista. Vuelve a la huerta para continuar."
+      },
+      {
+        "kind": "world",
+        "text": "Reconoces la bajada hacia la huerta, cerca de tus pies. La niebla sigue ocultando los cruces lejanos; recordar el camino no hace visible lo que hay más allá."
+      },
+      {
+        "kind": "world",
+        "text": "El agrimensor comprueba el poste más cercano y guarda la medida de los otros para cuando despeje. Bajo la colina, una rueda suena sin que puedas ver el carro."
+      }
+    ],
+    "observe": [
+      {
+        "kind": "world",
+        "text": "El agrimensor comprueba el poste más cercano y guarda la medida de los otros para cuando despeje. Bajo la colina, una rueda suena sin que puedas ver el carro."
+      },
+      {
+        "kind": "trace",
+        "text": "La niebla borra su perfil. Desde esta colina no puedes distinguir sus detalles; su origen sigue sin conocerse."
+      },
+      {
+        "kind": "action",
+        "text": "Observas con atención."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_huerta_baja",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 217140,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Una franja de huerta ocupa el pie de las casas. Cultivan hierbas y semillas con el agua que baja por canales pequeños. Las herramientas caben en un cobertizo bajo. Al norte está el patio del agua; al sur subes a una colina abierta."
+      },
+      {
+        "kind": "world",
+        "text": "Una vecina busca pulgones bajo una hoja y deja intacta una mariquita. En el escalón, un niño cuenta las manchas rojas de un fruto antes de decidir si ya puede cogerlo."
+      },
+      {
+        "kind": "world",
+        "text": "Recuerdas la tabla junto al bancal. De un lado, la tierra oscura alcanza la raíz; del otro, el polvo queda seco alrededor del cesto."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_patio_agua",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 217200,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Una pila recibe el agua de las calles. La parte alta guarda agua limpia; abajo se recoge la usada. Los recipientes de las casas esperan lejos del barro. Al norte vuelves al mercado. Rodeando la baranda hacia el sur llegas a la huerta. Una puerta al este lleva al lugar de cuidados."
+      },
+      {
+        "kind": "world",
+        "text": "Una mujer compara el sabor de dos vasos de agua y deja uno junto al canal. Un niño acerca la nariz al segundo; ella le señala la jarra de barro recién enjuagada."
+      },
+      {
+        "kind": "world",
+        "text": "Reconoces el brillo gastado donde apoyaron la jarra. El agua de la calle entra por debajo; la conducción limpia queda en la parte alta."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "vaisgard_mercado",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 217260,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Frutas, herramientas y cestas ocupan los puestos entre muros antiguos. Un canal pequeño cruza el mercado. Al norte está la plaza de las rutas; al sur, el patio del agua. Los carros entran por el oeste y los toldos cubren la calle del este."
+      },
+      {
+        "kind": "world",
+        "text": "Bela aparta una cesta para dejar pasar un carro y vuelve a colocar las piezas por tamaño. Un viajero compara un mango con el que trae de su pueblo."
+      },
+      {
+        "kind": "world",
+        "text": "La cesta apartada conserva la fruta abierta. La niña ha puesto su semilla en un pliegue de hoja; la vendedora le muestra cuál de los dos lados debe quedar arriba."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_plaza_rutas",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 217320,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las rutas se reúnen sobre el empedrado. Las piedras antiguas sobresalen entre las casas. Al sur bajas al mercado; al norte sales hacia la sierra. Los animales descansan en el patio oeste. Al este, una mensajera organiza avisos bajo un alero."
+      },
+      {
+        "kind": "world",
+        "text": "Reconoces las sogas cortas de quienes vienen de la piedra y las cubiertas anchas del campo. Junto al alero, los bultos pequeños de la sierra quedan separados de las cestas."
+      },
+      {
+        "kind": "world",
+        "text": "Los patios del otro extremo se borran tras el empedrado húmedo. Bajo el alero todavía se distinguen los papeles; una voz pide que repitan el destino antes de entregar un mensaje."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_patio_senales",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 217380,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las tablillas de mensajes cuelgan protegidas bajo un alero. Una mensajera las separa por lugar de origen y pide los nombres completos. Puedes leer sentado sin tapar el paso. Al oeste está la plaza; al este, el archivo de cargas."
+      },
+      {
+        "kind": "world",
+        "text": "El nombre queda visible en el pliegue nuevo. La mensajera responde en voz alta a quien espera al otro extremo y guarda la nota bajo su capa."
+      },
+      {
+        "kind": "world",
+        "text": "Recibe recados junto al armazón."
+      }
+    ]
+  },
+  {
+    "type": "observation",
+    "room": "veyra_patio_senales",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 217440,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las tablillas de mensajes cuelgan protegidas bajo un alero. Una mensajera las separa por lugar de origen y pide los nombres completos. Puedes leer sentado sin tapar el paso. Al oeste está la plaza; al este, el archivo de cargas."
+      },
+      {
+        "kind": "world",
+        "text": "El nombre queda visible en el pliegue nuevo. La mensajera responde en voz alta a quien espera al otro extremo y guarda la nota bajo su capa."
+      },
+      {
+        "kind": "world",
+        "text": "Recibe recados junto al armazón."
+      }
+    ],
+    "observe": [
+      {
+        "kind": "world",
+        "text": "Lleva fundas distintas para hojas urgentes y recados ordinarios. Se detiene para escuchar una respuesta completa antes de repetirla."
+      },
+      {
+        "kind": "world",
+        "text": "El nombre queda visible en el pliegue nuevo. La mensajera responde en voz alta a quien espera al otro extremo y guarda la nota bajo su capa."
+      },
+      {
+        "kind": "trace",
+        "text": "Entre el armazón y la pared antigua cabe una mano. Las notas cuelgan de travesaños nuevos."
+      },
+      {
+        "kind": "action",
+        "text": "Observas con atención."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_archivo_cargas",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 217500,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las cargas pendientes tienen sus tablillas cerca de la puerta; las entregadas, al fondo. La mesa está gastada por las cajas. Sales al oeste."
+      },
+      {
+        "kind": "world",
+        "text": "La copia del aviso que trajiste queda junto a la puerta: Tov se retrasó por un separador roto. Su tablilla permanece entre llegadas pendientes."
+      },
+      {
+        "kind": "world",
+        "text": "Reordena las tablillas pendientes por ruta."
+      }
+    ]
+  },
+  {
+    "type": "observation",
+    "room": "veyra_archivo_cargas",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 217560,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las cargas pendientes tienen sus tablillas cerca de la puerta; las entregadas, al fondo. La mesa está gastada por las cajas. Sales al oeste."
+      },
+      {
+        "kind": "world",
+        "text": "La copia del aviso que trajiste queda junto a la puerta: Tov se retrasó por un separador roto. Su tablilla permanece entre llegadas pendientes."
+      },
+      {
+        "kind": "world",
+        "text": "Reordena las tablillas pendientes por ruta."
+      }
+    ],
+    "observe": [
+      {
+        "kind": "world",
+        "text": "Tiene los puños manchados de tinta y una uña rota de levantar cajas. Antes de mirar una firma pregunta de qué camino procede."
+      },
+      {
+        "kind": "world",
+        "text": "La copia del aviso que trajiste queda junto a la puerta: Tov se retrasó por un separador roto. Su tablilla permanece entre llegadas pendientes."
+      },
+      {
+        "kind": "trace",
+        "text": "Un envío marcado como detenido permanece pendiente, aunque haya regresado su mensajero."
+      },
+      {
+        "kind": "action",
+        "text": "Observas con atención."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_patio_senales",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Atardecer",
+      "timestamp": 324060,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las tablillas de mensajes cuelgan protegidas bajo un alero. Una mensajera las separa por lugar de origen y pide los nombres completos. Puedes leer sentado sin tapar el paso. Al oeste está la plaza; al este, el archivo de cargas."
+      },
+      {
+        "kind": "world",
+        "text": "Dos mensajeras intentan leer una letra sobre un papel doblado. Una vuelve a escribirla más grande en el margen; la otra se ríe al reconocer por fin el nombre."
+      },
+      {
+        "kind": "world",
+        "text": "Recibe recados junto al armazón."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_plaza_rutas",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Atardecer",
+      "timestamp": 324120,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las rutas se reúnen sobre el empedrado. Las piedras antiguas sobresalen entre las casas. Al sur bajas al mercado; al norte sales hacia la sierra. Los animales descansan en el patio oeste. Al este, una mensajera organiza avisos bajo un alero."
+      },
+      {
+        "kind": "world",
+        "text": "Los patios del otro extremo se borran tras el empedrado húmedo. Bajo el alero todavía se distinguen los papeles; una voz pide que repitan el destino antes de entregar un mensaje."
+      },
+      {
+        "kind": "world",
+        "text": "Las cargas que llegan tarde buscan patio antes de preguntar por el mercado. Un mensajero lee su último papel junto al muro oriental."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "vaisgard_mercado",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Atardecer",
+      "timestamp": 324180,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Frutas, herramientas y cestas ocupan los puestos entre muros antiguos. Un canal pequeño cruza el mercado. Al norte está la plaza de las rutas; al sur, el patio del agua. Los carros entran por el oeste y los toldos cubren la calle del este."
+      },
+      {
+        "kind": "world",
+        "text": "Bela aparta una cesta para dejar pasar un carro y vuelve a colocar las piezas por tamaño. Un viajero compara un mango con el que trae de su pueblo."
+      },
+      {
+        "kind": "world",
+        "text": "El canal divide otra vez tu paso entre puestos. La plaza queda detrás de las herramientas; los carros alcanzan el corredor occidental por el lado de las cestas."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_calle_toldos",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Atardecer",
+      "timestamp": 324240,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Toldos remendados cubren la calle. Cada taller ha reparado su tramo con una tela distinta. El mercado queda al oeste. Al sur sales hacia los canales; al este llega el camino del bosque, por donde entran haces de madera."
+      },
+      {
+        "kind": "world",
+        "text": "Una Marevyn sujeta el borde del toldo mientras su vecino cose. Comprueban dónde caerá el agua para no mojar el taller de abajo."
+      },
+      {
+        "kind": "world",
+        "text": "Ajusta costuras compartidas."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_puerta_sombra",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Atardecer",
+      "timestamp": 324300,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "La calle se ensancha para girar las cargas de madera. Más allá aparecen árboles separados por parcelas viejas. Al oeste quedan los toldos y las herramientas de los talleres. El camino este entra en el bosque, rumbo a Nhal."
+      },
+      {
+        "kind": "world",
+        "text": "Reconoces la hoja de puerta inutilizada. La carga que sale rodea su borde; desde el bosque llega otra que espera junto a los árboles."
+      },
+      {
+        "kind": "world",
+        "text": "Una Vesperi palpa dos ataduras del haz. Su vecino retira una astilla junto a la hoja inutilizada; al pasar la madera roza todavía el otro borde."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_lindero_arboles",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Atardecer",
+      "timestamp": 324360,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Tres grupos de árboles cierran poco a poco el camino. Los carros caben al principio; después las raíces levantan el suelo. Al oeste aún ves la puerta de Vaisgard. El este entra en Nhal; un desvío sur lleva a una cantera vieja."
+      },
+      {
+        "kind": "world",
+        "text": "El primer claro deja ver otra vez la anchura de la cuenca. A un lado está la abertura quieta de la cantera; de frente sigue la senda entre hojas."
+      },
+      {
+        "kind": "world",
+        "text": "Un cargador recoge ramas caídas y las apila junto a la parcela. Deja libres las raíces y el paso hacia el bosque."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_cantera_callada",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Atardecer",
+      "timestamp": 324420,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Marcas de herramientas cubren la pared. Un bloque quedó sin sacar, bajo las raíces. El desvío termina aquí; al norte vuelves al bosque."
+      },
+      {
+        "kind": "world",
+        "text": "La lagartija se acerca al último borde iluminado. La pluma queda en sombra dentro de su hueco."
+      },
+      {
+        "kind": "world",
+        "text": "Las huellas de extracción siguen en la pared junto al banco sin separar. Ahora puedes reconocer las cuñas desde la entrada norte. La humedad oscurece una junta lateral y deja más claro el relieve de los cortes."
+      }
+    ]
+  },
+  {
+    "type": "observation",
+    "room": "veyra_cantera_callada",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Atardecer",
+      "timestamp": 324480,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Marcas de herramientas cubren la pared. Un bloque quedó sin sacar, bajo las raíces. El desvío termina aquí; al norte vuelves al bosque."
+      },
+      {
+        "kind": "world",
+        "text": "La lagartija se acerca al último borde iluminado. La pluma queda en sombra dentro de su hueco."
+      },
+      {
+        "kind": "world",
+        "text": "Las huellas de extracción siguen en la pared junto al banco sin separar. Ahora puedes reconocer las cuñas desde la entrada norte. La humedad oscurece una junta lateral y deja más claro el relieve de los cortes."
+      }
+    ],
+    "observe": [
+      {
+        "kind": "world",
+        "text": "La lagartija se acerca al último borde iluminado. La pluma queda en sombra dentro de su hueco."
+      },
+      {
+        "kind": "trace",
+        "text": "Hay cuñas antiguas sin marca legible. Una cuña tiene el ancho de la ranura del banco; sus marcas están borradas."
+      },
+      {
+        "kind": "action",
+        "text": "Observas con atención."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_lindero_arboles",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Atardecer",
+      "timestamp": 324540,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Tres grupos de árboles cierran poco a poco el camino. Los carros caben al principio; después las raíces levantan el suelo. Al oeste aún ves la puerta de Vaisgard. El este entra en Nhal; un desvío sur lleva a una cantera vieja."
+      },
+      {
+        "kind": "world",
+        "text": "Un cargador recoge ramas caídas y las apila junto a la parcela. Deja libres las raíces y el paso hacia el bosque."
+      },
+      {
+        "kind": "world",
+        "text": "El primer claro deja ver otra vez la anchura de la cuenca. A un lado está la abertura quieta de la cantera; de frente sigue la senda entre hojas."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_puerta_sombra",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Atardecer",
+      "timestamp": 324600,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "La calle se ensancha para girar las cargas de madera. Más allá aparecen árboles separados por parcelas viejas. Al oeste quedan los toldos y las herramientas de los talleres. El camino este entra en el bosque, rumbo a Nhal."
+      },
+      {
+        "kind": "world",
+        "text": "Una Vesperi palpa dos ataduras del haz. Su vecino retira una astilla junto a la hoja inutilizada; al pasar la madera roza todavía el otro borde."
+      },
+      {
+        "kind": "world",
+        "text": "Reconoces la hoja de puerta inutilizada. La carga que sale rodea su borde; desde el bosque llega otra que espera junto a los árboles."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_calle_toldos",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Atardecer",
+      "timestamp": 324660,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Toldos remendados cubren la calle. Cada taller ha reparado su tramo con una tela distinta. El mercado queda al oeste. Al sur sales hacia los canales; al este llega el camino del bosque, por donde entran haces de madera."
+      },
+      {
+        "kind": "world",
+        "text": "Una Marevyn sujeta el borde del toldo mientras su vecino cose. Comprueban dónde caerá el agua para no mojar el taller de abajo."
+      },
+      {
+        "kind": "world",
+        "text": "Ajusta costuras compartidas."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "vaisgard_mercado",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Atardecer",
+      "timestamp": 324720,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Frutas, herramientas y cestas ocupan los puestos entre muros antiguos. Un canal pequeño cruza el mercado. Al norte está la plaza de las rutas; al sur, el patio del agua. Los carros entran por el oeste y los toldos cubren la calle del este."
+      },
+      {
+        "kind": "world",
+        "text": "Bela aparta una cesta para dejar pasar un carro y vuelve a colocar las piezas por tamaño. Un viajero compara un mango con el que trae de su pueblo."
+      },
+      {
+        "kind": "world",
+        "text": "Una vendedora ofrece la última mitad de fruta a su vecina. Dos toldos bajan antes de terminar la conversación."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_patio_agua",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Atardecer",
+      "timestamp": 324780,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Una pila recibe el agua de las calles. La parte alta guarda agua limpia; abajo se recoge la usada. Los recipientes de las casas esperan lejos del barro. Al norte vuelves al mercado. Rodeando la baranda hacia el sur llegas a la huerta. Una puerta al este lleva al lugar de cuidados."
+      },
+      {
+        "kind": "world",
+        "text": "Los vasos vacíos quedan invertidos junto al canal. El muro todavía guarda calor bajo una mano apoyada."
+      },
+      {
+        "kind": "world",
+        "text": "Reconoces el brillo gastado donde apoyaron la jarra. El agua de la calle entra por debajo; la conducción limpia queda en la parte alta."
+      }
+    ]
+  },
+  {
+    "type": "observation",
+    "room": "veyra_patio_agua",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Atardecer",
+      "timestamp": 324840,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Una pila recibe el agua de las calles. La parte alta guarda agua limpia; abajo se recoge la usada. Los recipientes de las casas esperan lejos del barro. Al norte vuelves al mercado. Rodeando la baranda hacia el sur llegas a la huerta. Una puerta al este lleva al lugar de cuidados."
+      },
+      {
+        "kind": "world",
+        "text": "Los vasos vacíos quedan invertidos junto al canal. El muro todavía guarda calor bajo una mano apoyada."
+      },
+      {
+        "kind": "world",
+        "text": "Reconoces el brillo gastado donde apoyaron la jarra. El agua de la calle entra por debajo; la conducción limpia queda en la parte alta."
+      }
+    ],
+    "observe": [
+      {
+        "kind": "world",
+        "text": "Los vasos vacíos quedan invertidos junto al canal. El muro todavía guarda calor bajo una mano apoyada."
+      },
+      {
+        "kind": "trace",
+        "text": "La conducción limpia no procede del mercado. Confundir ambas entradas haría inútil la separación."
+      },
+      {
+        "kind": "action",
+        "text": "Observas con atención."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_huerta_baja",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Atardecer",
+      "timestamp": 324900,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Una franja de huerta ocupa el pie de las casas. Cultivan hierbas y semillas con el agua que baja por canales pequeños. Las herramientas caben en un cobertizo bajo. Al norte está el patio del agua; al sur subes a una colina abierta."
+      },
+      {
+        "kind": "world",
+        "text": "El niño lleva el cesto bajo el brazo. La vecina deja las hojas revisadas en su sitio y recoge las herramientas junto al primer escalón."
+      },
+      {
+        "kind": "world",
+        "text": "Recuerdas la tabla junto al bancal. De un lado, la tierra oscura alcanza la raíz; del otro, el polvo queda seco alrededor del cesto."
+      }
+    ]
+  },
+  {
+    "type": "observation",
+    "room": "veyra_huerta_baja",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Atardecer",
+      "timestamp": 324960,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Una franja de huerta ocupa el pie de las casas. Cultivan hierbas y semillas con el agua que baja por canales pequeños. Las herramientas caben en un cobertizo bajo. Al norte está el patio del agua; al sur subes a una colina abierta."
+      },
+      {
+        "kind": "world",
+        "text": "El niño lleva el cesto bajo el brazo. La vecina deja las hojas revisadas en su sitio y recoge las herramientas junto al primer escalón."
+      },
+      {
+        "kind": "world",
+        "text": "Recuerdas la tabla junto al bancal. De un lado, la tierra oscura alcanza la raíz; del otro, el polvo queda seco alrededor del cesto."
+      }
+    ],
+    "observe": [
+      {
+        "kind": "world",
+        "text": "El niño lleva el cesto bajo el brazo. La vecina deja las hojas revisadas en su sitio y recoge las herramientas junto al primer escalón."
+      },
+      {
+        "kind": "trace",
+        "text": "Puedes colocarla para llevar agua a la parcela o dejarla correr por el canal."
+      },
+      {
+        "kind": "action",
+        "text": "Observas con atención."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_colina_vista",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Atardecer",
+      "timestamp": 325020,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Vaisgard queda al norte, tras la huerta. La niebla oculta los caminos bajos y parte de los tejados; desde aquí no puedes seguir una ruta lejana con la vista. Vuelve a la huerta para continuar."
+      },
+      {
+        "kind": "world",
+        "text": "El agrimensor recoge la cuerda de medir y cierra el cuaderno. El último carro baja despacio hacia la huerta."
+      },
+      {
+        "kind": "world",
+        "text": "Reconoces la bajada hacia la huerta, cerca de tus pies. La niebla sigue ocultando los cruces lejanos; recordar el camino no hace visible lo que hay más allá."
+      }
+    ]
+  },
+  {
+    "type": "observation",
+    "room": "veyra_colina_vista",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Atardecer",
+      "timestamp": 325080,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Vaisgard queda al norte, tras la huerta. La niebla oculta los caminos bajos y parte de los tejados; desde aquí no puedes seguir una ruta lejana con la vista. Vuelve a la huerta para continuar."
+      },
+      {
+        "kind": "world",
+        "text": "El agrimensor recoge la cuerda de medir y cierra el cuaderno. El último carro baja despacio hacia la huerta."
+      },
+      {
+        "kind": "world",
+        "text": "Reconoces la bajada hacia la huerta, cerca de tus pies. La niebla sigue ocultando los cruces lejanos; recordar el camino no hace visible lo que hay más allá."
+      }
+    ],
+    "observe": [
+      {
+        "kind": "world",
+        "text": "El agrimensor recoge la cuerda de medir y cierra el cuaderno. El último carro baja despacio hacia la huerta."
+      },
+      {
+        "kind": "trace",
+        "text": "El hito cercano conserva su marca. La niebla impide comprobar su alineación con los otros dos desde aquí."
+      },
+      {
+        "kind": "action",
+        "text": "Observas con atención."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_huerta_baja",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Atardecer",
+      "timestamp": 325140,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Una franja de huerta ocupa el pie de las casas. Cultivan hierbas y semillas con el agua que baja por canales pequeños. Las herramientas caben en un cobertizo bajo. Al norte está el patio del agua; al sur subes a una colina abierta."
+      },
+      {
+        "kind": "world",
+        "text": "El niño lleva el cesto bajo el brazo. La vecina deja las hojas revisadas en su sitio y recoge las herramientas junto al primer escalón."
+      },
+      {
+        "kind": "world",
+        "text": "Recuerdas la tabla junto al bancal. De un lado, la tierra oscura alcanza la raíz; del otro, el polvo queda seco alrededor del cesto."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_patio_agua",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Atardecer",
+      "timestamp": 325200,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Una pila recibe el agua de las calles. La parte alta guarda agua limpia; abajo se recoge la usada. Los recipientes de las casas esperan lejos del barro. Al norte vuelves al mercado. Rodeando la baranda hacia el sur llegas a la huerta. Una puerta al este lleva al lugar de cuidados."
+      },
+      {
+        "kind": "world",
+        "text": "Los vasos vacíos quedan invertidos junto al canal. El muro todavía guarda calor bajo una mano apoyada."
+      },
+      {
+        "kind": "world",
+        "text": "Reconoces el brillo gastado donde apoyaron la jarra. El agua de la calle entra por debajo; la conducción limpia queda en la parte alta."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "vaisgard_mercado",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Atardecer",
+      "timestamp": 325260,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Frutas, herramientas y cestas ocupan los puestos entre muros antiguos. Un canal pequeño cruza el mercado. Al norte está la plaza de las rutas; al sur, el patio del agua. Los carros entran por el oeste y los toldos cubren la calle del este."
+      },
+      {
+        "kind": "world",
+        "text": "Bela aparta una cesta para dejar pasar un carro y vuelve a colocar las piezas por tamaño. Un viajero compara un mango con el que trae de su pueblo."
+      },
+      {
+        "kind": "world",
+        "text": "Una vendedora ofrece la última mitad de fruta a su vecina. Dos toldos bajan antes de terminar la conversación."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_plaza_rutas",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Atardecer",
+      "timestamp": 325320,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las rutas se reúnen sobre el empedrado. Las piedras antiguas sobresalen entre las casas. Al sur bajas al mercado; al norte sales hacia la sierra. Los animales descansan en el patio oeste. Al este, una mensajera organiza avisos bajo un alero."
+      },
+      {
+        "kind": "world",
+        "text": "Los patios del otro extremo se borran tras el empedrado húmedo. Bajo el alero todavía se distinguen los papeles; una voz pide que repitan el destino antes de entregar un mensaje."
+      },
+      {
+        "kind": "world",
+        "text": "Las cargas que llegan tarde buscan patio antes de preguntar por el mercado. Un mensajero lee su último papel junto al muro oriental."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_patio_senales",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Atardecer",
+      "timestamp": 325380,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las tablillas de mensajes cuelgan protegidas bajo un alero. Una mensajera las separa por lugar de origen y pide los nombres completos. Puedes leer sentado sin tapar el paso. Al oeste está la plaza; al este, el archivo de cargas."
+      },
+      {
+        "kind": "world",
+        "text": "Dos mensajeras intentan leer una letra sobre un papel doblado. Una vuelve a escribirla más grande en el margen; la otra se ríe al reconocer por fin el nombre."
+      },
+      {
+        "kind": "world",
+        "text": "Recuerdas la ranura donde dejaron el recado urgente. El montón de notas del alero queda debajo, sujeto con la misma teja."
+      }
+    ]
+  },
+  {
+    "type": "observation",
+    "room": "veyra_patio_senales",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Atardecer",
+      "timestamp": 325440,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las tablillas de mensajes cuelgan protegidas bajo un alero. Una mensajera las separa por lugar de origen y pide los nombres completos. Puedes leer sentado sin tapar el paso. Al oeste está la plaza; al este, el archivo de cargas."
+      },
+      {
+        "kind": "world",
+        "text": "Dos mensajeras intentan leer una letra sobre un papel doblado. Una vuelve a escribirla más grande en el margen; la otra se ríe al reconocer por fin el nombre."
+      },
+      {
+        "kind": "world",
+        "text": "Recuerdas la ranura donde dejaron el recado urgente. El montón de notas del alero queda debajo, sujeto con la misma teja."
+      }
+    ],
+    "observe": [
+      {
+        "kind": "world",
+        "text": "Lleva fundas distintas para hojas urgentes y recados ordinarios. Se detiene para escuchar una respuesta completa antes de repetirla."
+      },
+      {
+        "kind": "world",
+        "text": "Dos mensajeras intentan leer una letra sobre un papel doblado. Una vuelve a escribirla más grande en el margen; la otra se ríe al reconocer por fin el nombre."
+      },
+      {
+        "kind": "trace",
+        "text": "Una marca identifica remitente y ruta, sin afirmar que el mensaje haya sido leído."
+      },
+      {
+        "kind": "action",
+        "text": "Observas con atención."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_archivo_cargas",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Atardecer",
+      "timestamp": 325500,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las cargas pendientes tienen sus tablillas cerca de la puerta; las entregadas, al fondo. La mesa está gastada por las cajas. Sales al oeste."
+      },
+      {
+        "kind": "world",
+        "text": "La copia del aviso que trajiste queda junto a la puerta: Tov se retrasó por un separador roto. Su tablilla permanece entre llegadas pendientes."
+      },
+      {
+        "kind": "world",
+        "text": "Reordena las tablillas pendientes por ruta."
+      }
+    ]
+  },
+  {
+    "type": "observation",
+    "room": "veyra_archivo_cargas",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Atardecer",
+      "timestamp": 325560,
+      "weather": "Niebla",
+      "weather_description": "La niebla tapa las colinas. Cerca todavía ves las puertas y los canales que acompañan el camino."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las cargas pendientes tienen sus tablillas cerca de la puerta; las entregadas, al fondo. La mesa está gastada por las cajas. Sales al oeste."
+      },
+      {
+        "kind": "world",
+        "text": "La copia del aviso que trajiste queda junto a la puerta: Tov se retrasó por un separador roto. Su tablilla permanece entre llegadas pendientes."
+      },
+      {
+        "kind": "world",
+        "text": "Reordena las tablillas pendientes por ruta."
+      }
+    ],
+    "observe": [
+      {
+        "kind": "world",
+        "text": "Tiene los puños manchados de tinta y una uña rota de levantar cajas. Antes de mirar una firma pregunta de qué camino procede."
+      },
+      {
+        "kind": "world",
+        "text": "La copia del aviso que trajiste queda junto a la puerta: Tov se retrasó por un separador roto. Su tablilla permanece entre llegadas pendientes."
+      },
+      {
+        "kind": "trace",
+        "text": "La copia del aviso que trajiste queda junto a la puerta: Tov se retrasó por un separador roto. Su tablilla permanece entre llegadas pendientes."
+      },
+      {
+        "kind": "action",
+        "text": "Observas con atención."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_patio_senales",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Noche",
+      "timestamp": 424860,
+      "weather": "Lluvia",
+      "weather_description": "Los desagües reúnen el agua de calles altas y obligan a repartir refugios sin mezclar cargas y herramientas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las tablillas de mensajes cuelgan protegidas bajo un alero. Una mensajera las separa por lugar de origen y pide los nombres completos. Puedes leer sentado sin tapar el paso. Al oeste está la plaza; al este, el archivo de cargas."
+      },
+      {
+        "kind": "world",
+        "text": "Una luz bajo el alero ilumina la mitad de una nota. Su dueña la pliega antes de marcharse; quedan dos papeles sujetos con una teja."
+      },
+      {
+        "kind": "world",
+        "text": "La mensajera seca la mesa antes de apoyar una funda abierta. Los viajeros forman una hilera bajo el alero sin inclinar sus capas sobre las tablillas; el patio parece pequeño cuando todos recuerdan que el papel se moja."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_plaza_rutas",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Noche",
+      "timestamp": 424920,
+      "weather": "Lluvia",
+      "weather_description": "Los desagües reúnen el agua de calles altas y obligan a repartir refugios sin mezclar cargas y herramientas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las rutas se reúnen sobre el empedrado. Las piedras antiguas sobresalen entre las casas. Al sur bajas al mercado; al norte sales hacia la sierra. Los animales descansan en el patio oeste. Al este, una mensajera organiza avisos bajo un alero."
+      },
+      {
+        "kind": "world",
+        "text": "Reconoces las sogas cortas de quienes vienen de la piedra y las cubiertas anchas del campo. Junto al alero, los bultos pequeños de la sierra quedan separados de las cestas."
+      },
+      {
+        "kind": "world",
+        "text": "El abanico de juntas recoge hilos de agua. Los mensajeros protegen sus papeles debajo del alero oriental y dejan las esquinas libres para los carros; las capas mojadas se sacuden siempre fuera de ese refugio."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "vaisgard_mercado",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Noche",
+      "timestamp": 424980,
+      "weather": "Lluvia",
+      "weather_description": "Los desagües reúnen el agua de calles altas y obligan a repartir refugios sin mezclar cargas y herramientas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Frutas, herramientas y cestas ocupan los puestos entre muros antiguos. Un canal pequeño cruza el mercado. Al norte está la plaza de las rutas; al sur, el patio del agua. Los carros entran por el oeste y los toldos cubren la calle del este."
+      },
+      {
+        "kind": "world",
+        "text": "Bela orienta la lámpara hacia las piezas que alguien quiere comparar. Al otro lado del canal, los puestos cerrados dejan sitio a las cargas de quienes llegan tarde."
+      },
+      {
+        "kind": "world",
+        "text": "El canal divide otra vez tu paso entre puestos. La plaza queda detrás de las herramientas; los carros alcanzan el corredor occidental por el lado de las cestas."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_calle_toldos",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Noche",
+      "timestamp": 425040,
+      "weather": "Lluvia",
+      "weather_description": "Los desagües reúnen el agua de calles altas y obligan a repartir refugios sin mezclar cargas y herramientas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Toldos remendados cubren la calle. Cada taller ha reparado su tramo con una tela distinta. El mercado queda al oeste. Al sur sales hacia los canales; al este llega el camino del bosque, por donde entran haces de madera."
+      },
+      {
+        "kind": "world",
+        "text": "Reconoces la costura azul entre los dos talleres. Bajo el último desagüe están los recipientes que marcaban la vuelta hacia los canales."
+      },
+      {
+        "kind": "world",
+        "text": "Una costura vencida vierte agua sobre la entrada de un taller. Sus vecinos recogen el borde con una pértiga y lo desvían hacia la calle; la reparación necesita acuerdo antes que materiales nuevos."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_puerta_sombra",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Noche",
+      "timestamp": 425100,
+      "weather": "Lluvia",
+      "weather_description": "Los desagües reúnen el agua de calles altas y obligan a repartir refugios sin mezclar cargas y herramientas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "La calle se ensancha para girar las cargas de madera. Más allá aparecen árboles separados por parcelas viejas. Al oeste quedan los toldos y las herramientas de los talleres. El camino este entra en el bosque, rumbo a Nhal."
+      },
+      {
+        "kind": "world",
+        "text": "La corteza mojada pierde trozos sobre el suelo. Los cargadores los retiran para que nadie resbale al girar. El olor de madera húmeda llega antes que las voces de quienes esperan entre las primeras bandas de árboles."
+      },
+      {
+        "kind": "world",
+        "text": "La calle recoge menos luz que las entradas del norte. Una lámpara se coloca contra el muro nuevo y deja legible la anchura útil. Quienes conocen el bosque hablan bajo mientras esperan que termine una maniobra."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_lindero_arboles",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Noche",
+      "timestamp": 425160,
+      "weather": "Lluvia",
+      "weather_description": "Los desagües reúnen el agua de calles altas y obligan a repartir refugios sin mezclar cargas y herramientas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Tres grupos de árboles cierran poco a poco el camino. Los carros caben al principio; después las raíces levantan el suelo. Al oeste aún ves la puerta de Vaisgard. El este entra en Nhal; un desvío sur lleva a una cantera vieja."
+      },
+      {
+        "kind": "world",
+        "text": "Las hojas retienen gotas después de que la primera parcela queda bajo un chaparrón abierto. El cambio de sonido distingue las tres franjas. El agua vuelve resbaladizas las raíces que de día bastaban para marcar el ascenso."
+      },
+      {
+        "kind": "world",
+        "text": "La tercera franja parece comenzar más cerca cuando desaparece la luz del suelo. Desde la ciudad se oye una herramienta, pero no llega hasta el bosque. El cargador recoge su cordel antes de perderlo entre raíces."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_cantera_callada",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Noche",
+      "timestamp": 425220,
+      "weather": "Lluvia",
+      "weather_description": "Los desagües reúnen el agua de calles altas y obligan a repartir refugios sin mezclar cargas y herramientas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Marcas de herramientas cubren la pared. Un bloque quedó sin sacar, bajo las raíces. El desvío termina aquí; al norte vuelves al bosque."
+      },
+      {
+        "kind": "world",
+        "text": "Una gota cae en una junta de la cantera. El eco tarda un instante en desaparecer; luego no se oye nada bajo el corte de roca."
+      },
+      {
+        "kind": "world",
+        "text": "El agua desciende por las raíces y humedece una fisura lateral. La canterera recoge la manta antes de que el goteo alcance sus herramientas. Los fragmentos recién oscuros se distinguen de los que ya tenían musgo."
+      }
+    ]
+  },
+  {
+    "type": "observation",
+    "room": "veyra_cantera_callada",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Noche",
+      "timestamp": 425280,
+      "weather": "Lluvia",
+      "weather_description": "Los desagües reúnen el agua de calles altas y obligan a repartir refugios sin mezclar cargas y herramientas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Marcas de herramientas cubren la pared. Un bloque quedó sin sacar, bajo las raíces. El desvío termina aquí; al norte vuelves al bosque."
+      },
+      {
+        "kind": "world",
+        "text": "Una gota cae en una junta de la cantera. El eco tarda un instante en desaparecer; luego no se oye nada bajo el corte de roca."
+      },
+      {
+        "kind": "world",
+        "text": "El agua desciende por las raíces y humedece una fisura lateral. La canterera recoge la manta antes de que el goteo alcance sus herramientas. Los fragmentos recién oscuros se distinguen de los que ya tenían musgo."
+      }
+    ],
+    "observe": [
+      {
+        "kind": "world",
+        "text": "Una gota cae en una junta de la cantera. El eco tarda un instante en desaparecer; luego no se oye nada bajo el corte de roca."
+      },
+      {
+        "kind": "world",
+        "text": "El agua desciende por las raíces y humedece una fisura lateral. La canterera recoge la manta antes de que el goteo alcance sus herramientas. Los fragmentos recién oscuros se distinguen de los que ya tenían musgo."
+      },
+      {
+        "kind": "trace",
+        "text": "El agua sale de una junta lateral; acercarse al pie no ofrece una respuesta mejor."
+      },
+      {
+        "kind": "action",
+        "text": "Observas con atención."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_lindero_arboles",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Noche",
+      "timestamp": 425340,
+      "weather": "Lluvia",
+      "weather_description": "Los desagües reúnen el agua de calles altas y obligan a repartir refugios sin mezclar cargas y herramientas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Tres grupos de árboles cierran poco a poco el camino. Los carros caben al principio; después las raíces levantan el suelo. Al oeste aún ves la puerta de Vaisgard. El este entra en Nhal; un desvío sur lleva a una cantera vieja."
+      },
+      {
+        "kind": "world",
+        "text": "El primer claro deja ver otra vez la anchura de la cuenca. A un lado está la abertura quieta de la cantera; de frente sigue la senda entre hojas."
+      },
+      {
+        "kind": "world",
+        "text": "Las hojas retienen gotas después de que la primera parcela queda bajo un chaparrón abierto. El cambio de sonido distingue las tres franjas. El agua vuelve resbaladizas las raíces que de día bastaban para marcar el ascenso."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_puerta_sombra",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Noche",
+      "timestamp": 425400,
+      "weather": "Lluvia",
+      "weather_description": "Los desagües reúnen el agua de calles altas y obligan a repartir refugios sin mezclar cargas y herramientas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "La calle se ensancha para girar las cargas de madera. Más allá aparecen árboles separados por parcelas viejas. Al oeste quedan los toldos y las herramientas de los talleres. El camino este entra en el bosque, rumbo a Nhal."
+      },
+      {
+        "kind": "world",
+        "text": "Reconoces la hoja de puerta inutilizada. La carga que sale rodea su borde; desde el bosque llega otra que espera junto a los árboles."
+      },
+      {
+        "kind": "world",
+        "text": "La corteza mojada pierde trozos sobre el suelo. Los cargadores los retiran para que nadie resbale al girar. El olor de madera húmeda llega antes que las voces de quienes esperan entre las primeras bandas de árboles."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_calle_toldos",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Noche",
+      "timestamp": 425460,
+      "weather": "Lluvia",
+      "weather_description": "Los desagües reúnen el agua de calles altas y obligan a repartir refugios sin mezclar cargas y herramientas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Toldos remendados cubren la calle. Cada taller ha reparado su tramo con una tela distinta. El mercado queda al oeste. Al sur sales hacia los canales; al este llega el camino del bosque, por donde entran haces de madera."
+      },
+      {
+        "kind": "world",
+        "text": "Una costura vencida vierte agua sobre la entrada de un taller. Sus vecinos recogen el borde con una pértiga y lo desvían hacia la calle; la reparación necesita acuerdo antes que materiales nuevos."
+      },
+      {
+        "kind": "world",
+        "text": "Los toldos descienden y estrechan la franja de cielo. Tras dos ventanas aún se trabaja con luz protegida. Los pasos se vuelven cuidadosos porque los soportes de las telas ocupan parte del suelo."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "vaisgard_mercado",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Noche",
+      "timestamp": 425520,
+      "weather": "Lluvia",
+      "weather_description": "Los desagües reúnen el agua de calles altas y obligan a repartir refugios sin mezclar cargas y herramientas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Frutas, herramientas y cestas ocupan los puestos entre muros antiguos. Un canal pequeño cruza el mercado. Al norte está la plaza de las rutas; al sur, el patio del agua. Los carros entran por el oeste y los toldos cubren la calle del este."
+      },
+      {
+        "kind": "world",
+        "text": "Bela orienta la lámpara hacia las piezas que alguien quiere comparar. Al otro lado del canal, los puestos cerrados dejan sitio a las cargas de quienes llegan tarde."
+      },
+      {
+        "kind": "world",
+        "text": "El agua corre por las esquinas de los toldos hacia el canalillo. Los vendedores levantan del suelo sus cajas y comparten los huecos secos; las cargas recién llegadas permanecen cerradas hasta poder sacudir sus cubiertas."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_patio_agua",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Noche",
+      "timestamp": 425580,
+      "weather": "Lluvia",
+      "weather_description": "Los desagües reúnen el agua de calles altas y obligan a repartir refugios sin mezclar cargas y herramientas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Una pila recibe el agua de las calles. La parte alta guarda agua limpia; abajo se recoge la usada. Los recipientes de las casas esperan lejos del barro. Al norte vuelves al mercado. Rodeando la baranda hacia el sur llegas a la huerta. Una puerta al este lleva al lugar de cuidados."
+      },
+      {
+        "kind": "world",
+        "text": "El agua repite un goteo irregular bajo el muro. En el borde de una jarra queda una línea clara; un insecto se detiene junto al asa."
+      },
+      {
+        "kind": "world",
+        "text": "La pila inferior crece y arrastra hojas del mercado. Una vecina cierra el paso de lavado hasta poder despejarlo, pero mantiene disponible el agua alta. La lluvia no vuelve intercambiables los dos canales."
+      }
+    ]
+  },
+  {
+    "type": "observation",
+    "room": "veyra_patio_agua",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Noche",
+      "timestamp": 425640,
+      "weather": "Lluvia",
+      "weather_description": "Los desagües reúnen el agua de calles altas y obligan a repartir refugios sin mezclar cargas y herramientas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Una pila recibe el agua de las calles. La parte alta guarda agua limpia; abajo se recoge la usada. Los recipientes de las casas esperan lejos del barro. Al norte vuelves al mercado. Rodeando la baranda hacia el sur llegas a la huerta. Una puerta al este lleva al lugar de cuidados."
+      },
+      {
+        "kind": "world",
+        "text": "El agua repite un goteo irregular bajo el muro. En el borde de una jarra queda una línea clara; un insecto se detiene junto al asa."
+      },
+      {
+        "kind": "world",
+        "text": "La pila inferior crece y arrastra hojas del mercado. Una vecina cierra el paso de lavado hasta poder despejarlo, pero mantiene disponible el agua alta. La lluvia no vuelve intercambiables los dos canales."
+      }
+    ],
+    "observe": [
+      {
+        "kind": "world",
+        "text": "El agua repite un goteo irregular bajo el muro. En el borde de una jarra queda una línea clara; un insecto se detiene junto al asa."
+      },
+      {
+        "kind": "world",
+        "text": "La pila inferior crece y arrastra hojas del mercado. Una vecina cierra el paso de lavado hasta poder despejarlo, pero mantiene disponible el agua alta. La lluvia no vuelve intercambiables los dos canales."
+      },
+      {
+        "kind": "trace",
+        "text": "Está reparada del lado de las cargas; protege la pila cuando alguien baja demasiado rápido."
+      },
+      {
+        "kind": "action",
+        "text": "Observas con atención."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_huerta_baja",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Noche",
+      "timestamp": 425700,
+      "weather": "Lluvia",
+      "weather_description": "Los desagües reúnen el agua de calles altas y obligan a repartir refugios sin mezclar cargas y herramientas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Una franja de huerta ocupa el pie de las casas. Cultivan hierbas y semillas con el agua que baja por canales pequeños. Las herramientas caben en un cobertizo bajo. Al norte está el patio del agua; al sur subes a una colina abierta."
+      },
+      {
+        "kind": "world",
+        "text": "Las hojas rozan el último escalón. Algo roe bajo el bancal y cesa cuando se abre una puerta encima de la huerta."
+      },
+      {
+        "kind": "world",
+        "text": "El agua del talud lleva arena hacia el primer bancal. La hortelana protege los brotes con una estera inclinada y abre una zanja de desvío, evitando que la corriente de la calle se confunda con el riego."
+      }
+    ]
+  },
+  {
+    "type": "observation",
+    "room": "veyra_huerta_baja",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Noche",
+      "timestamp": 425760,
+      "weather": "Lluvia",
+      "weather_description": "Los desagües reúnen el agua de calles altas y obligan a repartir refugios sin mezclar cargas y herramientas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Una franja de huerta ocupa el pie de las casas. Cultivan hierbas y semillas con el agua que baja por canales pequeños. Las herramientas caben en un cobertizo bajo. Al norte está el patio del agua; al sur subes a una colina abierta."
+      },
+      {
+        "kind": "world",
+        "text": "Las hojas rozan el último escalón. Algo roe bajo el bancal y cesa cuando se abre una puerta encima de la huerta."
+      },
+      {
+        "kind": "world",
+        "text": "El agua del talud lleva arena hacia el primer bancal. La hortelana protege los brotes con una estera inclinada y abre una zanja de desvío, evitando que la corriente de la calle se confunda con el riego."
+      }
+    ],
+    "observe": [
+      {
+        "kind": "world",
+        "text": "Las hojas rozan el último escalón. Algo roe bajo el bancal y cesa cuando se abre una puerta encima de la huerta."
+      },
+      {
+        "kind": "world",
+        "text": "El agua del talud lleva arena hacia el primer bancal. La hortelana protege los brotes con una estera inclinada y abre una zanja de desvío, evitando que la corriente de la calle se confunda con el riego."
+      },
+      {
+        "kind": "trace",
+        "text": "Su fondo cedió por desgaste. La reparación requiere paciencia y una unión limpia."
+      },
+      {
+        "kind": "action",
+        "text": "Observas con atención."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_colina_vista",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Noche",
+      "timestamp": 425820,
+      "weather": "Lluvia",
+      "weather_description": "Los desagües reúnen el agua de calles altas y obligan a repartir refugios sin mezclar cargas y herramientas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Vaisgard queda al norte, tras la huerta. Los caminos de la cuenca se pierden en la oscuridad; las luces de la ciudad no permiten medir la distancia hasta otros pueblos. Vuelve por la bajada de la huerta."
+      },
+      {
+        "kind": "world",
+        "text": "La lluvia tapa los caminos bajos. Aún distingues los tejados altos de Vaisgard. El agrimensor cubre su cuaderno."
+      },
+      {
+        "kind": "world",
+        "text": "Las luces de las entradas dibujan una ciudad más pequeña que sus muros. Fuera de ellas sólo algunas cargas llevan farol. La distancia hacia los pueblos no puede adivinarse siguiendo un punto luminoso."
+      }
+    ]
+  },
+  {
+    "type": "observation",
+    "room": "veyra_colina_vista",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Noche",
+      "timestamp": 425880,
+      "weather": "Lluvia",
+      "weather_description": "Los desagües reúnen el agua de calles altas y obligan a repartir refugios sin mezclar cargas y herramientas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Vaisgard queda al norte, tras la huerta. Los caminos de la cuenca se pierden en la oscuridad; las luces de la ciudad no permiten medir la distancia hasta otros pueblos. Vuelve por la bajada de la huerta."
+      },
+      {
+        "kind": "world",
+        "text": "La lluvia tapa los caminos bajos. Aún distingues los tejados altos de Vaisgard. El agrimensor cubre su cuaderno."
+      },
+      {
+        "kind": "world",
+        "text": "Las luces de las entradas dibujan una ciudad más pequeña que sus muros. Fuera de ellas sólo algunas cargas llevan farol. La distancia hacia los pueblos no puede adivinarse siguiendo un punto luminoso."
+      }
+    ],
+    "observe": [
+      {
+        "kind": "world",
+        "text": "Las luces de las entradas dibujan una ciudad más pequeña que sus muros. Fuera de ellas sólo algunas cargas llevan farol. La distancia hacia los pueblos no puede adivinarse siguiendo un punto luminoso."
+      },
+      {
+        "kind": "world",
+        "text": "La lluvia tapa los caminos bajos. Aún distingues los tejados altos de Vaisgard. El agrimensor cubre su cuaderno."
+      },
+      {
+        "kind": "trace",
+        "text": "Las luces de la ciudad no bastan para reconocer sus detalles. Su origen sigue sin conocerse."
+      },
+      {
+        "kind": "action",
+        "text": "Observas con atención."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_huerta_baja",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Noche",
+      "timestamp": 425940,
+      "weather": "Lluvia",
+      "weather_description": "Los desagües reúnen el agua de calles altas y obligan a repartir refugios sin mezclar cargas y herramientas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Una franja de huerta ocupa el pie de las casas. Cultivan hierbas y semillas con el agua que baja por canales pequeños. Las herramientas caben en un cobertizo bajo. Al norte está el patio del agua; al sur subes a una colina abierta."
+      },
+      {
+        "kind": "world",
+        "text": "Las hojas rozan el último escalón. Algo roe bajo el bancal y cesa cuando se abre una puerta encima de la huerta."
+      },
+      {
+        "kind": "world",
+        "text": "Recuerdas la tabla junto al bancal. De un lado, la tierra oscura alcanza la raíz; del otro, el polvo queda seco alrededor del cesto."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_patio_agua",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Noche",
+      "timestamp": 426000,
+      "weather": "Lluvia",
+      "weather_description": "Los desagües reúnen el agua de calles altas y obligan a repartir refugios sin mezclar cargas y herramientas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Una pila recibe el agua de las calles. La parte alta guarda agua limpia; abajo se recoge la usada. Los recipientes de las casas esperan lejos del barro. Al norte vuelves al mercado. Rodeando la baranda hacia el sur llegas a la huerta. Una puerta al este lleva al lugar de cuidados."
+      },
+      {
+        "kind": "world",
+        "text": "El agua repite un goteo irregular bajo el muro. En el borde de una jarra queda una línea clara; un insecto se detiene junto al asa."
+      },
+      {
+        "kind": "world",
+        "text": "Reconoces el brillo gastado donde apoyaron la jarra. El agua de la calle entra por debajo; la conducción limpia queda en la parte alta."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "vaisgard_mercado",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Noche",
+      "timestamp": 426060,
+      "weather": "Lluvia",
+      "weather_description": "Los desagües reúnen el agua de calles altas y obligan a repartir refugios sin mezclar cargas y herramientas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Frutas, herramientas y cestas ocupan los puestos entre muros antiguos. Un canal pequeño cruza el mercado. Al norte está la plaza de las rutas; al sur, el patio del agua. Los carros entran por el oeste y los toldos cubren la calle del este."
+      },
+      {
+        "kind": "world",
+        "text": "Bela orienta la lámpara hacia las piezas que alguien quiere comparar. Al otro lado del canal, los puestos cerrados dejan sitio a las cargas de quienes llegan tarde."
+      },
+      {
+        "kind": "world",
+        "text": "El agua corre por las esquinas de los toldos hacia el canalillo. Los vendedores levantan del suelo sus cajas y comparten los huecos secos; las cargas recién llegadas permanecen cerradas hasta poder sacudir sus cubiertas."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_plaza_rutas",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Noche",
+      "timestamp": 426120,
+      "weather": "Lluvia",
+      "weather_description": "Los desagües reúnen el agua de calles altas y obligan a repartir refugios sin mezclar cargas y herramientas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las rutas se reúnen sobre el empedrado. Las piedras antiguas sobresalen entre las casas. Al sur bajas al mercado; al norte sales hacia la sierra. Los animales descansan en el patio oeste. Al este, una mensajera organiza avisos bajo un alero."
+      },
+      {
+        "kind": "world",
+        "text": "El abanico de juntas recoge hilos de agua. Los mensajeros protegen sus papeles debajo del alero oriental y dejan las esquinas libres para los carros; las capas mojadas se sacuden siempre fuera de ese refugio."
+      },
+      {
+        "kind": "world",
+        "text": "Cada patio mantiene una luz baja junto al umbral. El centro queda vacío; una conversación se acerca al muro oriental, junto al último alero encendido."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_patio_senales",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Noche",
+      "timestamp": 426180,
+      "weather": "Lluvia",
+      "weather_description": "Los desagües reúnen el agua de calles altas y obligan a repartir refugios sin mezclar cargas y herramientas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las tablillas de mensajes cuelgan protegidas bajo un alero. Una mensajera las separa por lugar de origen y pide los nombres completos. Puedes leer sentado sin tapar el paso. Al oeste está la plaza; al este, el archivo de cargas."
+      },
+      {
+        "kind": "world",
+        "text": "Una luz bajo el alero ilumina la mitad de una nota. Su dueña la pliega antes de marcharse; quedan dos papeles sujetos con una teja."
+      },
+      {
+        "kind": "world",
+        "text": "La mensajera seca la mesa antes de apoyar una funda abierta. Los viajeros forman una hilera bajo el alero sin inclinar sus capas sobre las tablillas; el patio parece pequeño cuando todos recuerdan que el papel se moja."
+      }
+    ]
+  },
+  {
+    "type": "observation",
+    "room": "veyra_patio_senales",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Noche",
+      "timestamp": 426240,
+      "weather": "Lluvia",
+      "weather_description": "Los desagües reúnen el agua de calles altas y obligan a repartir refugios sin mezclar cargas y herramientas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las tablillas de mensajes cuelgan protegidas bajo un alero. Una mensajera las separa por lugar de origen y pide los nombres completos. Puedes leer sentado sin tapar el paso. Al oeste está la plaza; al este, el archivo de cargas."
+      },
+      {
+        "kind": "world",
+        "text": "Una luz bajo el alero ilumina la mitad de una nota. Su dueña la pliega antes de marcharse; quedan dos papeles sujetos con una teja."
+      },
+      {
+        "kind": "world",
+        "text": "La mensajera seca la mesa antes de apoyar una funda abierta. Los viajeros forman una hilera bajo el alero sin inclinar sus capas sobre las tablillas; el patio parece pequeño cuando todos recuerdan que el papel se moja."
+      }
+    ],
+    "observe": [
+      {
+        "kind": "world",
+        "text": "Lleva fundas distintas para hojas urgentes y recados ordinarios. Se detiene para escuchar una respuesta completa antes de repetirla."
+      },
+      {
+        "kind": "world",
+        "text": "Una luz bajo el alero ilumina la mitad de una nota. Su dueña la pliega antes de marcharse; quedan dos papeles sujetos con una teja."
+      },
+      {
+        "kind": "world",
+        "text": "La mensajera seca la mesa antes de apoyar una funda abierta. Los viajeros forman una hilera bajo el alero sin inclinar sus capas sobre las tablillas; el patio parece pequeño cuando todos recuerdan que el papel se moja."
+      },
+      {
+        "kind": "trace",
+        "text": "Entre el armazón y la pared antigua cabe una mano. Las notas cuelgan de travesaños nuevos."
+      },
+      {
+        "kind": "action",
+        "text": "Observas con atención."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_archivo_cargas",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Noche",
+      "timestamp": 426300,
+      "weather": "Lluvia",
+      "weather_description": "Los desagües reúnen el agua de calles altas y obligan a repartir refugios sin mezclar cargas y herramientas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las cargas pendientes tienen sus tablillas cerca de la puerta; las entregadas, al fondo. La mesa está gastada por las cajas. Sales al oeste."
+      },
+      {
+        "kind": "discovery",
+        "text": "El registro pendiente atribuye ahora a un separador roto la demora de Tov. La caja sigue cerrada y ya no circula como una pérdida sin explicación."
+      },
+      {
+        "kind": "world",
+        "text": "Las fundas mojadas esperan en un travesaño de la entrada. La archivera recibe primero las marcas de procedencia y deja secar el resto; no arrastra la humedad hasta los estantes donde reposan los envíos concluidos."
+      }
+    ]
+  },
+  {
+    "type": "observation",
+    "room": "veyra_archivo_cargas",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Noche",
+      "timestamp": 426360,
+      "weather": "Lluvia",
+      "weather_description": "Los desagües reúnen el agua de calles altas y obligan a repartir refugios sin mezclar cargas y herramientas."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las cargas pendientes tienen sus tablillas cerca de la puerta; las entregadas, al fondo. La mesa está gastada por las cajas. Sales al oeste."
+      },
+      {
+        "kind": "discovery",
+        "text": "El registro pendiente atribuye ahora a un separador roto la demora de Tov. La caja sigue cerrada y ya no circula como una pérdida sin explicación."
+      },
+      {
+        "kind": "world",
+        "text": "Las fundas mojadas esperan en un travesaño de la entrada. La archivera recibe primero las marcas de procedencia y deja secar el resto; no arrastra la humedad hasta los estantes donde reposan los envíos concluidos."
+      }
+    ],
+    "observe": [
+      {
+        "kind": "world",
+        "text": "Tiene los puños manchados de tinta y una uña rota de levantar cajas. Antes de mirar una firma pregunta de qué camino procede."
+      },
+      {
+        "kind": "world",
+        "text": "La mesa permanece iluminada mientras esperan un envío tardío. Nadie abre cajas para aliviar la espera. Las tablillas pendientes se quedan cerca de la puerta y la archivera puede encontrarlas sin despertar a todo el patio."
+      },
+      {
+        "kind": "world",
+        "text": "Las fundas mojadas esperan en un travesaño de la entrada. La archivera recibe primero las marcas de procedencia y deja secar el resto; no arrastra la humedad hasta los estantes donde reposan los envíos concluidos."
+      },
+      {
+        "kind": "trace",
+        "text": "Las reparaciones indican que el archivo también recibe objetos pesados."
+      },
+      {
+        "kind": "action",
+        "text": "Observas con atención."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_patio_senales",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 374460,
+      "weather": "Viento",
+      "weather_description": "Las cubiertas se revisan antes de abandonar el abrigo de la ciudad."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las tablillas de mensajes cuelgan protegidas bajo un alero. Una mensajera las separa por lugar de origen y pide los nombres completos. Puedes leer sentado sin tapar el paso. Al oeste está la plaza; al este, el archivo de cargas."
+      },
+      {
+        "kind": "world",
+        "text": "La letra reescrita ya ocupa el margen. Una mensajera dobla la nota dejando el nombre hacia fuera; la otra comprueba el pliegue antes de guardarla."
+      },
+      {
+        "kind": "world",
+        "text": "Recuerdas la ranura donde dejaron el recado urgente. El montón de notas del alero queda debajo, sujeto con la misma teja."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_plaza_rutas",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 374520,
+      "weather": "Viento",
+      "weather_description": "Las cubiertas se revisan antes de abandonar el abrigo de la ciudad."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las rutas se reúnen sobre el empedrado. Las piedras antiguas sobresalen entre las casas. Al sur bajas al mercado; al norte sales hacia la sierra. Los animales descansan en el patio oeste. Al este, una mensajera organiza avisos bajo un alero."
+      },
+      {
+        "kind": "world",
+        "text": "El aire silba por una junta entre piedra antigua y mortero reciente. La mensajera sujeta sus papeles con una teja rota; del patio oeste llega el golpeteo irregular de una puerta."
+      },
+      {
+        "kind": "world",
+        "text": "La mensajera sigue con el dedo unas letras pequeñas y pregunta a una viajera si reconoce la mano. El aviso está escrito en el reverso de una cuenta vieja. En el patio oeste, un animal se rasca el cuello contra el poste hasta que su cuidadora lo aparta."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "vaisgard_mercado",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 374580,
+      "weather": "Viento",
+      "weather_description": "Las cubiertas se revisan antes de abandonar el abrigo de la ciudad."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Frutas, herramientas y cestas ocupan los puestos entre muros antiguos. Un canal pequeño cruza el mercado. Al norte está la plaza de las rutas; al sur, el patio del agua. Los carros entran por el oeste y los toldos cubren la calle del este."
+      },
+      {
+        "kind": "world",
+        "text": "Bela aparta una cesta para dejar pasar un carro y vuelve a colocar las piezas por tamaño. Un viajero compara un mango con el que trae de su pueblo."
+      },
+      {
+        "kind": "world",
+        "text": "El canal divide otra vez tu paso entre puestos. La plaza queda detrás de las herramientas; los carros alcanzan el corredor occidental por el lado de las cestas."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_patio_agua",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 374640,
+      "weather": "Viento",
+      "weather_description": "Las cubiertas se revisan antes de abandonar el abrigo de la ciudad."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Una pila recibe el agua de las calles. La parte alta guarda agua limpia; abajo se recoge la usada. Los recipientes de las casas esperan lejos del barro. Al norte vuelves al mercado. Rodeando la baranda hacia el sur llegas a la huerta. Una puerta al este lleva al lugar de cuidados."
+      },
+      {
+        "kind": "world",
+        "text": "Una mujer compara el sabor de dos vasos de agua y deja uno junto al canal. Un niño acerca la nariz al segundo; ella le señala la jarra de barro recién enjuagada."
+      },
+      {
+        "kind": "world",
+        "text": "Reconoces el brillo gastado donde apoyaron la jarra. El agua de la calle entra por debajo; la conducción limpia queda en la parte alta."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_huerta_baja",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 374700,
+      "weather": "Viento",
+      "weather_description": "Las cubiertas se revisan antes de abandonar el abrigo de la ciudad."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Una franja de huerta ocupa el pie de las casas. Cultivan hierbas y semillas con el agua que baja por canales pequeños. Las herramientas caben en un cobertizo bajo. Al norte está el patio del agua; al sur subes a una colina abierta."
+      },
+      {
+        "kind": "world",
+        "text": "Las hojas se vuelven y muestran su cara pálida. La vecina sostiene una para terminar de quitar los pulgones; el niño protege el fruto con las dos manos."
+      },
+      {
+        "kind": "world",
+        "text": "Recuerdas la tabla junto al bancal. De un lado, la tierra oscura alcanza la raíz; del otro, el polvo queda seco alrededor del cesto."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_colina_vista",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 374820,
+      "weather": "Viento",
+      "weather_description": "Las cubiertas se revisan antes de abandonar el abrigo de la ciudad."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Vaisgard queda al norte. Desde la colina ves caminos entre campos, roca y árboles; la sierra está más lejos. Vuelve a la huerta para continuar."
+      },
+      {
+        "kind": "world",
+        "text": "La entrada de la ciudad sigue visible junto al comienzo de un camino. Reconoces el punto desde el que miraste la cuenca. Las colinas conservan partes ocultas y los tejados dejan ver cómo convergen distintas pendientes."
+      },
+      {
+        "kind": "world",
+        "text": "El agrimensor compara dos postes del campo. Espera a que pase un carro para volver a medir la distancia."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_huerta_baja",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 374880,
+      "weather": "Viento",
+      "weather_description": "Las cubiertas se revisan antes de abandonar el abrigo de la ciudad."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Una franja de huerta ocupa el pie de las casas. Cultivan hierbas y semillas con el agua que baja por canales pequeños. Las herramientas caben en un cobertizo bajo. Al norte está el patio del agua; al sur subes a una colina abierta."
+      },
+      {
+        "kind": "world",
+        "text": "Las hojas se vuelven y muestran su cara pálida. La vecina sostiene una para terminar de quitar los pulgones; el niño protege el fruto con las dos manos."
+      },
+      {
+        "kind": "world",
+        "text": "La tabla sigue encajada en la ranura. Un paso lateral deja libre el canal; el desvío pequeño llega al bancal."
+      }
+    ]
+  },
+  {
+    "type": "irrigation-return",
+    "narrative": [
+      {
+        "kind": "world",
+        "text": "La tabla queda sujeta en la ranura. Dirige sólo parte del agua al bancal y deja libre el paso lateral del canal."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_patio_agua",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 375000,
+      "weather": "Viento",
+      "weather_description": "Las cubiertas se revisan antes de abandonar el abrigo de la ciudad."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Una pila recibe el agua de las calles. La parte alta guarda agua limpia; abajo se recoge la usada. Los recipientes de las casas esperan lejos del barro. Al norte vuelves al mercado. Rodeando la baranda hacia el sur llegas a la huerta. Una puerta al este lleva al lugar de cuidados."
+      },
+      {
+        "kind": "world",
+        "text": "Una mujer compara el sabor de dos vasos de agua y deja uno junto al canal. Un niño acerca la nariz al segundo; ella le señala la jarra de barro recién enjuagada."
+      },
+      {
+        "kind": "world",
+        "text": "Reconoces el brillo gastado donde apoyaron la jarra. El agua de la calle entra por debajo; la conducción limpia queda en la parte alta."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "vaisgard_mercado",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 375060,
+      "weather": "Viento",
+      "weather_description": "Las cubiertas se revisan antes de abandonar el abrigo de la ciudad."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Frutas, herramientas y cestas ocupan los puestos entre muros antiguos. Un canal pequeño cruza el mercado. Al norte está la plaza de las rutas; al sur, el patio del agua. Los carros entran por el oeste y los toldos cubren la calle del este."
+      },
+      {
+        "kind": "world",
+        "text": "Bela aparta una cesta para dejar pasar un carro y vuelve a colocar las piezas por tamaño. Un viajero compara un mango con el que trae de su pueblo."
+      },
+      {
+        "kind": "world",
+        "text": "La cesta apartada conserva la fruta abierta. La niña ha puesto su semilla en un pliegue de hoja; la vendedora le muestra cuál de los dos lados debe quedar arriba."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_calle_toldos",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 375120,
+      "weather": "Viento",
+      "weather_description": "Las cubiertas se revisan antes de abandonar el abrigo de la ciudad."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Toldos remendados cubren la calle. Cada taller ha reparado su tramo con una tela distinta. El mercado queda al oeste. Al sur sales hacia los canales; al este llega el camino del bosque, por donde entran haces de madera."
+      },
+      {
+        "kind": "world",
+        "text": "Una Marevyn sujeta el borde del toldo mientras su vecino cose. Comprueban dónde caerá el agua para no mojar el taller de abajo."
+      },
+      {
+        "kind": "world",
+        "text": "Ajusta costuras compartidas."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_puerta_juncos",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 375180,
+      "weather": "Viento",
+      "weather_description": "Las cubiertas se revisan antes de abandonar el abrigo de la ciudad."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "El canal pasa junto a una puerta lateral. Fuera, las casas dejan sitio a hondonadas de hierba alta. Una tabla permite cambiarse el calzado sin tapar el paso. Al norte vuelves a los toldos; al sur sigues el agua hacia Lethra."
+      },
+      {
+        "kind": "world",
+        "text": "El escalón seco de la puerta permite saber que has terminado el tramo bajo sin mirar atrás continuamente. Si regresas con barro, la tabla recuerda dónde detenerte antes de llevarlo al taller que mantiene el toldo vecino."
+      },
+      {
+        "kind": "world",
+        "text": "Una viajera quita barro de sus recipientes antes de entrar. Otros levantan los bultos sobre el suelo; el canal pasa por debajo de la tabla donde esperan."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "veyra_hondonada_canales",
+    "ambient": {
+      "region": "veyra",
+      "time_of_day": "Día",
+      "timestamp": 375240,
+      "weather": "Viento",
+      "weather_description": "Las cubiertas se revisan antes de abandonar el abrigo de la ciudad."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Varios hilos de agua se reúnen en un canal. El camino sigue por la orilla alta y cruza un desagüe sobre una pasarela corta. Al norte queda Vaisgard; al sur la vegetación se vuelve más densa y empieza el camino de Lethra."
+      },
+      {
+        "kind": "world",
+        "text": "El desagüe pequeño termina bajo el muro. El canal largo sigue entre juncos; recuerdas la ribera alta que vuelve a los tejados."
+      },
+      {
+        "kind": "world",
+        "text": "Una recolectora vacía su cesta de hierbas sobre la ribera seca. Conserva las raíces aparte para no llevar barro al mercado. Desde aquí puede ver quién llega a la pasarela y dejarle espacio antes de levantarse."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "lethra_ribera_seca",
+    "ambient": {
+      "region": "lethra",
+      "time_of_day": "Día",
+      "timestamp": 375300,
+      "weather": "Lluvia",
+      "weather_description": "Las plataformas altas reciben bancos, cargas y envolturas; cada traslado mantiene libre el apoyo de quien llega."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "El camino sigue sobre raíces, junto a un cauce cada vez más ancho. Al norte vuelves a las hondonadas de Vaisgard; al sur empiezan las hierbas húmedas. Un ave cruza hasta la otra orilla. Su vuelo deja ver cuánto terreno escondían los tallos."
+      },
+      {
+        "kind": "world",
+        "text": "Reconoces el apoyo de la recolectora junto a la bajada. La ruta alta pasa sobre el barro; junto a la madera vacía queda el borde redondo de un recipiente."
+      },
+      {
+        "kind": "world",
+        "text": "La ribera mantiene una franja firme mientras las pequeñas bajadas se llenan de agua. Las plantas altas se inclinan con el peso de las gotas. El olor del barro sube antes de que cambie la anchura del camino."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "lethra_tierra_esponjosa",
+    "ambient": {
+      "region": "lethra",
+      "time_of_day": "Día",
+      "timestamp": 375360,
+      "weather": "Lluvia",
+      "weather_description": "Las plataformas altas reciben bancos, cargas y envolturas; cada traslado mantiene libre el apoyo de quien llega."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "El suelo firme se corta en manchas de hojas que se hunden al pisarlas. Al norte está la ribera seca; al sur, las raíces llevan al juncal. Dos varas marcan el paso estrecho para las cargas. Una rana permanece quieta sobre el barro."
+      },
+      {
+        "kind": "world",
+        "text": "Reconoces las dos varas junto a la raíz. El cauce pasa debajo; entre ellas queda una franja estrecha de tierra más alta."
+      },
+      {
+        "kind": "world",
+        "text": "Las hojas flotan sobre depresiones pequeñas y el camino firme queda más estrecho. Una viajera prueba el apoyo junto a las raíces antes de cargar. La rana salta bajo las hojas y deja un círculo de agua que se deshace entre raíces."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "lethra_juncal_abierto",
+    "ambient": {
+      "region": "lethra",
+      "time_of_day": "Día",
+      "timestamp": 375420,
+      "weather": "Lluvia",
+      "weather_description": "Las plataformas altas reciben bancos, cargas y envolturas; cada traslado mantiene libre el apoyo de quien llega."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Los juncos se abren con el viento y dejan ver el agua. La senda vuelve al norte, hacia las raíces, y sigue al sur sobre las primeras tablas. Un desvío al oeste llega al banco de barro. Las huellas mantienen despejada una franja entre los tallos."
+      },
+      {
+        "kind": "danger",
+        "text": "Una pinza desigual se levanta al borde del agua. El Pinzajunco arrastra una hoja hacia su agujero cuando los pasos siguen por tierra."
+      },
+      {
+        "kind": "world",
+        "text": "Reconoces la abertura del banco por los tallos cortados. El ave que oíste no se ve; desde el otro borde llega el roce de una fibra contra otra."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "lethra_tablas_primeras",
+    "ambient": {
+      "region": "lethra",
+      "time_of_day": "Día",
+      "timestamp": 375480,
+      "weather": "Lluvia",
+      "weather_description": "Las plataformas altas reciben bancos, cargas y envolturas; cada traslado mantiene libre el apoyo de quien llega."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las tablas cruzan por encima del barro sobre apoyos bajos. Al norte están los juncos; al sur se separan dos canales. El agua escurre por las uniones. Algunas tablas están más gastadas que otras. Una vara de prueba cuelga a un lado, fuera del agua."
+      },
+      {
+        "kind": "world",
+        "text": "Reconoces la transición entre suelo y madera por el primer travesaño visible. La unión gastada queda después de ese apoyo y conserva su sonido al pisarse. La ribera firme se ve al otro extremo, entre los primeros canales."
+      },
+      {
+        "kind": "world",
+        "text": "El agua resbala por las juntas y deja una película sobre la madera. El carpintero levanta la tabla de repuesto del barro y la acerca a la unión gastada."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "lethra_cruce_canales",
+    "ambient": {
+      "region": "lethra",
+      "time_of_day": "Día",
+      "timestamp": 375540,
+      "weather": "Lluvia",
+      "weather_description": "Las plataformas altas reciben bancos, cargas y envolturas; cada traslado mantiene libre el apoyo de quien llega."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Un canal corre rápido junto a otro casi quieto. Las tablas llegan del norte y la senda sale al sur por tierra firme. En una pequeña plataforma junto al paso puedes mirar cómo gira una hoja. Las plantas se doblan hacia lados distintos de la corriente."
+      },
+      {
+        "kind": "world",
+        "text": "Reconoces el remanso junto a la lengua de barro. La hoja gira en su salida; más allá, la corriente rápida pasa detrás de la plataforma."
+      },
+      {
+        "kind": "world",
+        "text": "Las gotas dibujan movimiento en el remanso y dificultan comparar la hoja con su giro habitual. La observadora mira el borde de plantas en vez de seguir una superficie agitada. El canal rápido reúne agua primero."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "lethra_ribera_firme",
+    "ambient": {
+      "region": "lethra",
+      "time_of_day": "Día",
+      "timestamp": 375600,
+      "weather": "Lluvia",
+      "weather_description": "Las plataformas altas reciben bancos, cargas y envolturas; cada traslado mantiene libre el apoyo de quien llega."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Recipientes cerrados esperan sobre apoyos de madera, por encima del barro. Huele a fibras mojadas y comida envuelta en hojas. Al norte vuelves al cruce de canales; al sur una curva lleva a la pasarela. Quienes descargan dejan los bultos levantados mientras buscan espacio."
+      },
+      {
+        "kind": "world",
+        "text": "Recuerdas el apoyo alto donde dejaron el recipiente. Después de la curva asoma la baranda de la pasarela; una franja de agua queda entre ambos."
+      },
+      {
+        "kind": "world",
+        "text": "Los vecinos levantan sus recipientes al apoyo más alto. Las envolturas siguen cerradas; una mujer sostiene el último cuenco hasta que le acercan una tabla seca."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "lethra_pasarela_curva",
+    "ambient": {
+      "region": "lethra",
+      "time_of_day": "Día",
+      "timestamp": 375660,
+      "weather": "Lluvia",
+      "weather_description": "Las plataformas altas reciben bancos, cargas y envolturas; cada traslado mantiene libre el apoyo de quien llega."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "La pasarela rodea el agua quieta. Ves la orilla de llegada casi enfrente, pero debes seguir la curva hacia el sur para alcanzarla. Al norte queda la ribera de los recipientes. Una baranda protege el lado abierto. Más adelante asoman el techo y los postes del embarcadero."
+      },
+      {
+        "kind": "world",
+        "text": "Recuerdas el ensanchamiento donde dejaron pasar la carga. La orilla de enfrente está cerca; las tablas siguen la curva larga hacia su lado sur."
+      },
+      {
+        "kind": "world",
+        "text": "El agua golpea los postes y devuelve pequeñas salpicaduras hacia la baranda. Las plantas bajo la curva retienen restos que llegan del remanso. Los viajeros miran si alguna rama alcanzó una unión antes de pisarla."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "lethra_embarcadero_camino",
+    "ambient": {
+      "region": "lethra",
+      "time_of_day": "Día",
+      "timestamp": 375720,
+      "weather": "Lluvia",
+      "weather_description": "Las plataformas altas reciben bancos, cargas y envolturas; cada traslado mantiene libre el apoyo de quien llega."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Bajo el techo se cambian las cargas del camino a pequeñas embarcaciones. Los bultos dejan libre el borde del agua. Al norte vuelves a la pasarela y al sur sigues hacia Narevia. Un poste marca el nivel del canal; otro guarda las tiras de las barcas esperadas."
+      },
+      {
+        "kind": "world",
+        "text": "Reconoces el poste con la marca de nivel. Los bultos envueltos esperan junto a las tiras de las barcas; la senda alta sigue detrás de la cubierta."
+      },
+      {
+        "kind": "world",
+        "text": "Los bultos mojados esperan en el lado exterior de la cubierta. La encargada compara el nivel del agua con el poste y retira un recipiente del apoyo más bajo."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "lethra_senda_elevada",
+    "ambient": {
+      "region": "lethra",
+      "time_of_day": "Día",
+      "timestamp": 375780,
+      "weather": "Lluvia",
+      "weather_description": "Las plataformas altas reciben bancos, cargas y envolturas; cada traslado mantiene libre el apoyo de quien llega."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Pasas frente a viviendas separadas por canales. Sus puertas abren a plataformas propias, fuera del camino. Al norte queda el embarcadero; al sur se oyen las voces de Narevia. Una vecina levanta comida hacia una ventana y otra devuelve un recipiente. Se llaman por sus nombres sobre el agua."
+      },
+      {
+        "kind": "world",
+        "text": "Reconoces la plataforma de aquella ventana por su borde corto. La senda continúa por fuera, junto al canal, hasta las voces de la plaza."
+      },
+      {
+        "kind": "world",
+        "text": "Los vecinos acercan las plataformas móviles a sus puertas y sujetan recipientes que estaban esperando. La senda pública continúa elevada sobre las corrientes pequeñas. Las viviendas responden a la lluvia sin intentar cerrar todos los canales."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "narevia_centro",
+    "ambient": {
+      "region": "lethra",
+      "time_of_day": "Día",
+      "timestamp": 375840,
+      "weather": "Lluvia",
+      "weather_description": "Las plataformas altas reciben bancos, cargas y envolturas; cada traslado mantiene libre el apoyo de quien llega."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Narevia ocupa una isla baja unida por pasarelas. Al norte está el camino terrestre, al este el taller, al sur el mercado y al oeste la ribera que sale hacia Edran. Los Marevyn pasan entre barcas y plataformas; los apoyos altos conservan espacio seco junto a la plaza."
+      },
+      {
+        "kind": "world",
+        "text": "Una familia reparte comida sobre la plataforma alta. Quien cuenta una visita de la otra orilla espera al final del martilleo para repetir el nombre; un niño sopla su cuenco."
+      },
+      {
+        "kind": "world",
+        "text": "La pasarela de llegada queda entre taller y mercado. Desde la plataforma alta puedes situar la ribera occidental por el hueco entre las barcas."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "lethra_mercado_hojas",
+    "ambient": {
+      "region": "lethra",
+      "time_of_day": "Día",
+      "timestamp": 375900,
+      "weather": "Lluvia",
+      "weather_description": "Las plataformas altas reciben bancos, cargas y envolturas; cada traslado mantiene libre el apoyo de quien llega."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las barcas traen alimentos en cestas levantadas del fondo. Los puestos separan las envolturas abiertas de las que deben conservar humedad. Huele a hierbas cortadas y madera mojada. Al norte queda la plaza; al sur está el muelle. Los vendedores preparan bultos distintos para comer cerca o viajar."
+      },
+      {
+        "kind": "world",
+        "text": "Tila levanta una cesta del fondo de la barca antes de abrir su envoltura. Las provisiones de viaje quedan en el apoyo seco; lo que se comerá cerca conserva su cubierta húmeda."
+      },
+      {
+        "kind": "world",
+        "text": "Los vendedores levantan las cestas y retiran hojas salpicadas de agua sucia. Las barcas esperan lejos de las pasarelas hasta que quede sitio para descargar."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "lethra_muelle_vecinal",
+    "ambient": {
+      "region": "lethra",
+      "time_of_day": "Día",
+      "timestamp": 375960,
+      "weather": "Lluvia",
+      "weather_description": "Las plataformas altas reciben bancos, cargas y envolturas; cada traslado mantiene libre el apoyo de quien llega."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Pequeñas barcas esperan junto a apoyos de distintas alturas. Las cestas vacías se agrupan por dueño; algunas asas tienen remiendos viejos. Al norte vuelves al mercado; al este llegas al patio de ventanas. Desde otra plataforma llaman a alguien para devolverle su cesta."
+      },
+      {
+        "kind": "world",
+        "text": "Las cestas se trasladan según dónde queda seca su cubierta, conservando separados los grupos de dueños. Las cuerdas húmedas se revisan con calma antes de bajar un apoyo. La devolución no termina por dejar todo en cualquier borde."
+      },
+      {
+        "kind": "world",
+        "text": "Una vecina reconoce su cesta por el asa remendada y la levanta antes de que llegue otra carga. Un niño devuelve una que tomó su familia."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "lethra_mercado_hojas",
+    "ambient": {
+      "region": "lethra",
+      "time_of_day": "Día",
+      "timestamp": 376080,
+      "weather": "Lluvia",
+      "weather_description": "Las plataformas altas reciben bancos, cargas y envolturas; cada traslado mantiene libre el apoyo de quien llega."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Las barcas traen alimentos en cestas levantadas del fondo. Los puestos separan las envolturas abiertas de las que deben conservar humedad. Huele a hierbas cortadas y madera mojada. Al norte queda la plaza; al sur está el muelle. Los vendedores preparan bultos distintos para comer cerca o viajar."
+      },
+      {
+        "kind": "world",
+        "text": "Tila levanta una cesta del fondo de la barca antes de abrir su envoltura. Las provisiones de viaje quedan en el apoyo seco; lo que se comerá cerca conserva su cubierta húmeda."
+      },
+      {
+        "kind": "world",
+        "text": "Las envolturas abiertas quedan cerca del agua; las de viaje, bajo el borde de la cubierta. La separación que viste permite encontrar dónde preguntar."
+      }
+    ]
+  },
+  {
+    "type": "step",
+    "room": "narevia_centro",
+    "ambient": {
+      "region": "lethra",
+      "time_of_day": "Día",
+      "timestamp": 376140,
+      "weather": "Lluvia",
+      "weather_description": "Las plataformas altas reciben bancos, cargas y envolturas; cada traslado mantiene libre el apoyo de quien llega."
+    },
+    "scene": [
+      {
+        "kind": "world",
+        "text": "Narevia ocupa una isla baja unida por pasarelas. Al norte está el camino terrestre, al este el taller, al sur el mercado y al oeste la ribera que sale hacia Edran. Los Marevyn pasan entre barcas y plataformas; los apoyos altos conservan espacio seco junto a la plaza."
+      },
+      {
+        "kind": "world",
+        "text": "El cuenco del niño queda vacío. Quien contaba la visita dibuja con una cuchara el lugar donde amarraron la barca; otra persona corrige la curva con el dedo."
+      },
+      {
+        "kind": "world",
+        "text": "Los vecinos trasladan bancos al nivel alto y dejan libres las uniones de las pasarelas. Los recipientes de comida pasan bajo cubiertas cortas. La plaza sigue reuniendo conversaciones, pero las voces esperan el ruido de los chaparrones."
+      }
+    ]
+  }
+]

@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "scope": "Six rapid UI steps, immediate current location, archived previous visits, Mirar scroll, three widths, dotted unknown map exits",
+  "visits": [
+    "Plaza de Khariel",
+    "Escalones al sol",
+    "Plaza de Khariel",
+    "Escalones al sol",
+    "Plaza de Khariel",
+    "Escalones al sol",
+    "Plaza de Khariel",
+    "Escalones al sol"
+  ],
+  "before": 30,
+  "after": 30,
+  "widths": [
+    320,
+    393,
+    1440
+  ],
+  "stubs": 4
+}

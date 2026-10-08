@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "username": "lectora1791259614265",
+  "scope": "Chromium: registration, approval, observation, 19-step real route to Lethra, preserved Mirar scroll, regional search finding, compact bestiary thumbnails, click-to-expand illustration, Escape/button close, unexplored fork markers, random habitat encounter, Sombra power, retreat, map overview/current position, logout/relogin, three viewport widths",
+  "limits": [
+    "Not a 20–30 minute human session",
+    "Paid quest must be reviewed separately through real travel"
+  ],
+  "hashes": {
+    "index.html": "3cd01d9cde88683115aabda3206ce43feebd81edb7313f581a4485c5b2f50c13",
+    "style.css": "cd6b4863950bcaf707477127e5666d199b7e9d612be31981e43d04aa46519f08",
+    "app.js": "77669e7792e6ae7472c3c8db5acd0f81cea7e7cea9e8f5597cf7f5f88a6641fd",
+    "ui-data.js": "4359a50e2f1064e730ef8af558a2bf88940c8cd3e0365b8727448db03cf2af95"
+  }
+}

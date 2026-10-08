@@ -1,0 +1,17 @@
+{
+  "scope": "Real browser with controlled director/API fixtures; no production accounts expelled.",
+  "results": [
+    {
+      "width": 393,
+      "cancelPreservesAccess": true,
+      "expelAndRestore": true,
+      "noHorizontalOverflow": true
+    },
+    {
+      "width": 1440,
+      "cancelPreservesAccess": true,
+      "expelAndRestore": true,
+      "noHorizontalOverflow": true
+    }
+  ]
+}

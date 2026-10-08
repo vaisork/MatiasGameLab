@@ -1,0 +1,85 @@
+{
+  "results": [
+    {
+      "id": "humano",
+      "variant": "original",
+      "width": 320,
+      "loaded": true,
+      "background": true,
+      "zoomRotationReset": true,
+      "disposed": true,
+      "errors": []
+    },
+    {
+      "id": "humano",
+      "variant": "optimized",
+      "width": 320,
+      "loaded": true,
+      "background": true,
+      "zoomRotationReset": true,
+      "disposed": true,
+      "errors": []
+    },
+    {
+      "id": "humano",
+      "variant": "optimized",
+      "width": 393,
+      "loaded": true,
+      "background": true,
+      "zoomRotationReset": true,
+      "disposed": true,
+      "errors": []
+    },
+    {
+      "id": "humano",
+      "variant": "optimized",
+      "width": 1440,
+      "loaded": true,
+      "background": true,
+      "zoomRotationReset": true,
+      "disposed": true,
+      "errors": []
+    },
+    {
+      "id": "dravak",
+      "variant": "original",
+      "width": 320,
+      "loaded": true,
+      "background": true,
+      "zoomRotationReset": true,
+      "disposed": true,
+      "errors": []
+    },
+    {
+      "id": "dravak",
+      "variant": "optimized",
+      "width": 320,
+      "loaded": true,
+      "background": true,
+      "zoomRotationReset": true,
+      "disposed": true,
+      "errors": []
+    },
+    {
+      "id": "dravak",
+      "variant": "optimized",
+      "width": 393,
+      "loaded": true,
+      "background": true,
+      "zoomRotationReset": true,
+      "disposed": true,
+      "errors": []
+    },
+    {
+      "id": "dravak",
+      "variant": "optimized",
+      "width": 1440,
+      "loaded": true,
+      "background": true,
+      "zoomRotationReset": true,
+      "disposed": true,
+      "errors": []
+    }
+  ],
+  "scope": "Original versus optimized GLBs mounted with candidate source intercepted in browser; original files kept unchanged."
+}

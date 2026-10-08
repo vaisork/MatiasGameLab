@@ -1,0 +1,273 @@
+{
+  "phase": "after",
+  "results": [
+    {
+      "width": 320,
+      "clockMode": "isolated controlled clock +10s",
+      "searchReasonBefore": "Ya revisaste este lugar. Puedes buscar de nuevo en 61 s.",
+      "searchReasonAfter": "Ya revisaste este lugar. Puedes buscar de nuevo en 51 s.",
+      "room": "edran_surcos",
+      "initial": {
+        "canvasToken": "8f3d6b9b-b6f8-41c4-9ae3-71ff2c3dfe7b",
+        "labels": [
+          {
+            "name": "Plaza de Valdren",
+            "left": "80.7683px",
+            "top": "189.005px"
+          },
+          {
+            "name": "Campo de surcos · Aquí",
+            "left": "204px",
+            "top": "173.881px"
+          }
+        ],
+        "compass": "↑"
+      },
+      "before": {
+        "canvasToken": "8f3d6b9b-b6f8-41c4-9ae3-71ff2c3dfe7b",
+        "labels": [
+          {
+            "name": "Tu casa junto al corredor",
+            "left": "72px",
+            "top": "101.577px"
+          },
+          {
+            "name": "Plaza de Valdren",
+            "left": "72px",
+            "top": "158.976px"
+          },
+          {
+            "name": "Campo de surcos · Aquí",
+            "left": "204px",
+            "top": "203.487px"
+          }
+        ],
+        "compass": "↑"
+      },
+      "after": {
+        "canvasToken": "4ec20a3b-e333-462f-8b02-431e0e7d64cd",
+        "labels": [
+          {
+            "name": "Tu casa junto al corredor",
+            "left": "72px",
+            "top": "101.577px"
+          },
+          {
+            "name": "Plaza de Valdren",
+            "left": "72px",
+            "top": "158.976px"
+          },
+          {
+            "name": "Campo de surcos · Aquí",
+            "left": "204px",
+            "top": "203.487px"
+          }
+        ],
+        "compass": "↑"
+      },
+      "projectionChanged": false,
+      "canvasReplaced": true,
+      "errors": [],
+      "otherCharacterFreshCamera": true,
+      "closedAndSwitchedCanvasReleased": true,
+      "contextLossFallback": true
+    },
+    {
+      "width": 393,
+      "clockMode": "isolated controlled clock +10s",
+      "searchReasonBefore": "Ya revisaste este lugar. Puedes buscar de nuevo en 61 s.",
+      "searchReasonAfter": "Ya revisaste este lugar. Puedes buscar de nuevo en 51 s.",
+      "room": "edran_surcos",
+      "initial": {
+        "canvasToken": "10e32332-3c9f-4802-83cc-947972a3033f",
+        "labels": [
+          {
+            "name": "Tu casa junto al corredor",
+            "left": "72px",
+            "top": "149.453px"
+          },
+          {
+            "name": "Plaza de Valdren",
+            "left": "98.6192px",
+            "top": "188.343px"
+          },
+          {
+            "name": "Campo de surcos · Aquí",
+            "left": "257.759px",
+            "top": "169.877px"
+          }
+        ],
+        "compass": "↑"
+      },
+      "before": {
+        "canvasToken": "10e32332-3c9f-4802-83cc-947972a3033f",
+        "labels": [
+          {
+            "name": "Tu casa junto al corredor",
+            "left": "75.298px",
+            "top": "100.702px"
+          },
+          {
+            "name": "Plaza de Valdren",
+            "left": "87.0598px",
+            "top": "170.787px"
+          },
+          {
+            "name": "Curva de la Acequia",
+            "left": "261.851px",
+            "top": "264.112px"
+          },
+          {
+            "name": "Campo de surcos · Aquí",
+            "left": "265px",
+            "top": "225.135px"
+          }
+        ],
+        "compass": "↑"
+      },
+      "after": {
+        "canvasToken": "dae0ec88-b66e-4c82-bb04-3a6c259d147a",
+        "labels": [
+          {
+            "name": "Tu casa junto al corredor",
+            "left": "75.298px",
+            "top": "100.702px"
+          },
+          {
+            "name": "Plaza de Valdren",
+            "left": "87.0598px",
+            "top": "170.787px"
+          },
+          {
+            "name": "Curva de la Acequia",
+            "left": "261.851px",
+            "top": "264.112px"
+          },
+          {
+            "name": "Campo de surcos · Aquí",
+            "left": "265px",
+            "top": "225.135px"
+          }
+        ],
+        "compass": "↑"
+      },
+      "projectionChanged": false,
+      "canvasReplaced": true,
+      "errors": [],
+      "otherCharacterFreshCamera": true,
+      "closedAndSwitchedCanvasReleased": true,
+      "contextLossFallback": true
+    },
+    {
+      "width": 1440,
+      "clockMode": "isolated controlled clock +10s",
+      "searchReasonBefore": "Ya revisaste este lugar. Puedes buscar de nuevo en 61 s.",
+      "searchReasonAfter": "Ya revisaste este lugar. Puedes buscar de nuevo en 51 s.",
+      "room": "edran_surcos",
+      "initial": {
+        "canvasToken": "2e3bf935-994c-487e-b4cf-6bc76e126751",
+        "labels": [
+          {
+            "name": "Tu casa junto al corredor",
+            "left": "83.3761px",
+            "top": "128.368px"
+          },
+          {
+            "name": "Plaza de Valdren",
+            "left": "147.49px",
+            "top": "186.531px"
+          },
+          {
+            "name": "Salida de las Cercas Bajas",
+            "left": "298.548px",
+            "top": "201.803px"
+          },
+          {
+            "name": "Campo de surcos · Aquí",
+            "left": "385.491px",
+            "top": "158.913px"
+          }
+        ],
+        "compass": "↑"
+      },
+      "before": {
+        "canvasToken": "2e3bf935-994c-487e-b4cf-6bc76e126751",
+        "labels": [
+          {
+            "name": "Tu casa junto al corredor",
+            "left": "120.798px",
+            "top": "60.7247px"
+          },
+          {
+            "name": "Plaza de Valdren",
+            "left": "136.818px",
+            "top": "156.186px"
+          },
+          {
+            "name": "Corredor de los Huertos",
+            "left": "216.179px",
+            "top": "198.559px"
+          },
+          {
+            "name": "Salida de las Cercas Bajas",
+            "left": "295.539px",
+            "top": "240.931px"
+          },
+          {
+            "name": "Curva de la Acequia",
+            "left": "374.9px",
+            "top": "283.303px"
+          },
+          {
+            "name": "Campo de surcos · Aquí",
+            "left": "432px",
+            "top": "230.214px"
+          }
+        ],
+        "compass": "↑"
+      },
+      "after": {
+        "canvasToken": "2ba7d828-d00e-4d5e-9c99-7b1c80cab5e5",
+        "labels": [
+          {
+            "name": "Tu casa junto al corredor",
+            "left": "120.798px",
+            "top": "60.7247px"
+          },
+          {
+            "name": "Plaza de Valdren",
+            "left": "136.818px",
+            "top": "156.186px"
+          },
+          {
+            "name": "Corredor de los Huertos",
+            "left": "216.179px",
+            "top": "198.559px"
+          },
+          {
+            "name": "Salida de las Cercas Bajas",
+            "left": "295.539px",
+            "top": "240.931px"
+          },
+          {
+            "name": "Curva de la Acequia",
+            "left": "374.9px",
+            "top": "283.303px"
+          },
+          {
+            "name": "Campo de surcos · Aquí",
+            "left": "432px",
+            "top": "230.214px"
+          }
+        ],
+        "compass": "↑"
+      },
+      "projectionChanged": false,
+      "canvasReplaced": true,
+      "errors": [],
+      "otherCharacterFreshCamera": true,
+      "closedAndSwitchedCanvasReleased": true,
+      "contextLossFallback": true
+    }
+  ]
+}

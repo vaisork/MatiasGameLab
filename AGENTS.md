@@ -1,6 +1,6 @@
 # MatiasGameLab — guía operativa para agentes
 
-Este repositorio contiene **Senku** y **Vintage Telnet**. `main` es la fuente de verdad del código integrado y la documentación vigente. Antes de trabajar identifica proyecto, rol y tarea; lee el issue/PR vigente y comprueba si ya existe rama, entrega o implementación para evitar duplicación.
+Este repositorio contiene **Senku**, **Vintage Telnet** y **Vintage Telnet 2** (`vintage-telnet-2/`). Para la nueva implementación leer primero `VINTAGE_TELNET_2.md` y `vintage-telnet-2/docs/CONTEXTO_CONTINUIDAD.md`; el canon y la pausa actual prevalecen sobre colas históricas. `main` es la fuente de verdad del código integrado y la documentación vigente. Antes de trabajar identifica proyecto, rol y tarea; lee el issue/PR vigente y comprueba si ya existe rama, entrega o implementación para evitar duplicación.
 
 Javier y Matías conservan la dirección creativa. Ningún agente rellena por conveniencia una decisión que pertenece a otra especialidad.
 

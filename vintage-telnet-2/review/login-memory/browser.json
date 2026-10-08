@@ -1,0 +1,21 @@
+{
+  "scope": "Real renderer/browser with API success/failure fixtures and intercepted credential-manager store; no real passwords, no production writes. Actual browser save prompt and user preferences remain controlled by the browser.",
+  "results": [
+    {
+      "width": 393,
+      "successfulLoginOffersBrowserStorage": true,
+      "usernameRestored": true,
+      "failedLoginNeverStored": true,
+      "directorSeparateIdentity": true,
+      "noPasswordsInLocalStorage": true
+    },
+    {
+      "width": 320,
+      "successfulLoginOffersBrowserStorage": true,
+      "usernameRestored": true,
+      "failedLoginNeverStored": true,
+      "directorSeparateIdentity": true,
+      "noPasswordsInLocalStorage": true
+    }
+  ]
+}

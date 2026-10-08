@@ -1,0 +1,11 @@
+{
+  "server/engine.py": "de95bdacabd94f7e73531e79a03623cd6ef78fd5b99004621f00de781d9d7735",
+  "client/app.js": "1016a0c177b5d8853b4ee476aba2b9867c1838b497fda20f64eb8b34eee00767",
+  "client/ui-data.js": "07ec49449d2fbcd08c512c46f3443eb8bb460c69dba41b9d42227aecc3f9913c",
+  "client/style.css": "089d4fbc46c4160340591619ddac6fa2252324e5c65238cbcec633de1a6c72c9",
+  "tests/test_map.py": "18c9485a055c847a51c457468292770ab721cb634e6be81d179e45eca0613965",
+  "tests/test_real_content.py": "52db80303e33e45abc8bcfcc88bac45b42d7fcefabbece9060e9d265478825a0",
+  "client/qa-map.mjs": "6a39c06d6b64f99b3492b2d12187d007387b1bca3c8e045a649d9d05ccc121ae",
+  "client/qa-map-view.mjs": "e7b9efa9f92d751676aed8af6cf114be49ce3d447446394117fd605320227faf",
+  "client/qa-passive.mjs": "191d9feaa7a43c09561f833c539f0e983e5d610d100bc2d61b66de681bee8b0d"
+}

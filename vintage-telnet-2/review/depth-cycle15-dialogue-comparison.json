@@ -1,0 +1,68 @@
+{
+  "sameMoves": 248,
+  "sameActions": 311,
+  "sameFinalSeals": 60,
+  "sameEconomyEquipmentAndRecovery": true,
+  "initialEffectsAndInstructionsPreserved": true,
+  "privateObserverResponsesUnchanged": [
+    "edran_daro",
+    "hoshai_daren",
+    "hoshai_luma",
+    "korven_taren",
+    "korven_ruma",
+    "veyra_seli",
+    "veyra_tov",
+    "veyra_nera",
+    "veyra_arel"
+  ],
+  "sharedPhysicalResponsesConsistent": [
+    "edran_bren",
+    "edran_iria"
+  ],
+  "changedResolvedTopics": [
+    [
+      "edran_bren",
+      "rueda"
+    ],
+    [
+      "edran_daro",
+      "trabajo"
+    ],
+    [
+      "edran_iria",
+      "tablilla"
+    ],
+    [
+      "hoshai_daren",
+      "polea"
+    ],
+    [
+      "hoshai_luma",
+      "cornisa"
+    ],
+    [
+      "korven_taren",
+      "medidas"
+    ],
+    [
+      "korven_taren",
+      "recomendación"
+    ],
+    [
+      "korven_ruma",
+      "balanza"
+    ],
+    [
+      "veyra_seli",
+      "reparación"
+    ],
+    [
+      "veyra_nera",
+      "cargas"
+    ],
+    [
+      "veyra_tov",
+      "aviso"
+    ]
+  ]
+}

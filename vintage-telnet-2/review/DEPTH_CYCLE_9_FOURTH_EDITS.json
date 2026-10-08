@@ -1,0 +1,260 @@
+[
+  {
+    "file": "nhal.json",
+    "path": ".rooms.nhal_arbol_umbral.examine.raíces",
+    "before": "Enmarcan el paso y conservan suelo; no forman un portal sobrenatural.",
+    "after": "Enmarcan el paso y conservan suelo; dejan una abertura bajo el tronco."
+  },
+  {
+    "file": "nhal.json",
+    "path": ".rooms.nhal_suelo_hojas.examine.raíz",
+    "before": "El hueco guarda restos de semillas, no una recompensa preparada para visitantes.",
+    "after": "En el hueco quedan cáscaras abiertas y dos semillas mordidas."
+  },
+  {
+    "file": "nhal.json",
+    "path": ".rooms.nhal_corteza_clara.examine.marca",
+    "before": "Indica un lado transitable bajo una condición de suelo, no una verdad eterna del bosque.",
+    "after": "La marca queda del lado alto de la raíz, sobre la tierra que conserva firmeza."
+  },
+  {
+    "file": "nhal.json",
+    "path": ".rooms.nhal_umbral_velmora.examine.luces",
+    "before": "Están protegidas y orientadas hacia tareas, sin atribuir visión perfecta a nadie.",
+    "after": "Las pantallas dejan luz sobre los bancos; entre las casas quedan tramos oscuros."
+  },
+  {
+    "file": "nhal.json",
+    "path": ".rooms.nhal_taller_cortezas.examine.tablas",
+    "before": "La estructura permite crecimiento y paso de raíces sin atribuirles intención mágica.",
+    "after": "Las tablas dejan huecos alrededor de las raíces; dos bordes nuevos rodean la más gruesa."
+  },
+  {
+    "file": "nhal.json",
+    "path": ".rooms.nhal_patio_relato.examine.recipiente",
+    "before": "Su reparación conserva uso familiar, no una propiedad sobrenatural.",
+    "after": "La grieta tiene una costura oscura. El borde está gastado junto al asa."
+  },
+  {
+    "file": "nhal.json",
+    "path": ".rooms.nhal_relevo_altura.examine.fundas",
+    "before": "Separan condiciones y procedencias, sin resumir todo el paso en una promesa de seguridad.",
+    "after": "Cada funda lleva el nombre de un tramo y la hora de la última observación."
+  },
+  {
+    "file": "nhal.json",
+    "path": ".rooms.nhal_senda_recipiente.examine.tira",
+    "before": "Identifica una devolución acordada, no una recompensa que se pueda recoger sin preguntar.",
+    "after": "La tira lleva el nombre de quien espera la devolución y sigue atada al asa."
+  },
+  {
+    "file": "nhal.json",
+    "path": ".rooms.nhal_rincon_semillas.day",
+    "before": "El animal transporta una semilla unos pasos y se queda inmóvil cuando llega una sombra nueva. Una observadora espera fuera de las raíces. El movimiento breve basta para relacionar los restos con un hábito sin intentar domesticarlo.",
+    "after": "El animal transporta una semilla unos pasos y se queda inmóvil cuando llega una sombra nueva. Una observadora espera fuera de las raíces. Entre sus patas queda otra cáscara recién abierta."
+  },
+  {
+    "file": "hoshai.json",
+    "path": ".rooms.hoshai_ladera_hitos.examine.tablilla",
+    "before": "Describe una revisión del talud, no un derecho de paso de una especie.",
+    "after": "El dibujo muestra el talud y una raíz expuesta junto al apoyo inferior."
+  },
+  {
+    "file": "hoshai.json",
+    "path": ".rooms.hoshai_mercado_cintas.examine.cintas",
+    "before": "El color ordena envoltorios, no atribuye prestigio o poder a quien lo lleva.",
+    "after": "Las cintas azules cierran envoltorios largos; las claras rodean paquetes cortos."
+  },
+  {
+    "file": "hoshai.json",
+    "path": ".rooms.hoshai_caseta_revision.day",
+    "before": "La cuidadora coloca una tira nueva junto al dibujo, sin retirar todavía la que está en uso. Su compañero pregunta qué se ha visto desde el mirador. La revisión comienza por una observación que ambos puedan compartir.",
+    "after": "La cuidadora coloca una tira nueva junto al dibujo, sin retirar todavía la que está en uso. Su compañero pregunta qué se ha visto desde el mirador. Ella señala el hueco del dibujo y deja la punta del lápiz allí."
+  },
+  {
+    "file": "hoshai.json",
+    "path": ".rooms.hoshai_caseta_revision.examine.dibujo",
+    "before": "Tiene un hueco reservado para la observación del nudo; no invita a adivinarla.",
+    "after": "Entre los dibujos del banco y del poste queda un hueco para anotar el nudo."
+  },
+  {
+    "file": "hoshai.json",
+    "path": ".npcs.hoshai_iria.description",
+    "before": "Pelo gris corto, una manga cosida y un cuaderno que distingue lo observado de lo esperado. No se acerca al borde para parecer valiente.",
+    "after": "Pelo gris corto, una manga cosida y un cuaderno que distingue lo observado de lo esperado. Se detiene junto a la pared y abre el cuaderno sobre la rodilla."
+  },
+  {
+    "file": "korven.json",
+    "path": ".regions.korven.home.examine.repisa",
+    "before": "Sus apoyos cortos hacen accesibles los objetos de uso diario; no indican menor importancia de sus dueños.",
+    "after": "El cuenco y las herramientas quedan al alcance desde el banco bajo."
+  },
+  {
+    "file": "korven.json",
+    "path": ".rooms.korven_asiento_revision.examine.pieza",
+    "before": "Los golpes comparan apoyos bajo una condición concreta; no revelan tesoros enterrados.",
+    "after": "Un extremo de la pieza tiene polvo seco; el otro conserva una marca húmeda sobre el apoyo."
+  },
+  {
+    "file": "korven.json",
+    "path": ".rooms.korven_cisterna_comun.examine.vara",
+    "before": "Las marcas permiten comparar lecturas atribuidas; no predicen una sequía por sí solas.",
+    "after": "Junto a cada marca se leen una fecha y las iniciales de quien midió el agua."
+  },
+  {
+    "file": "korven.json",
+    "path": ".rooms.korven_patio_lavado.examine.muro",
+    "before": "Separa estados de limpieza, no categorías de personas.",
+    "after": "Los paños húmedos cuelgan de un lado; los doblados esperan bajo el alero del otro."
+  },
+  {
+    "file": "korven.json",
+    "path": ".rooms.korven_desvio_horno.examine.fragmentos",
+    "before": "Uno tiene deformado el borde; la comparación trata de cocción, no de un símbolo mágico.",
+    "after": "Uno tiene el borde vencido hacia fuera; otro conserva una línea de hollín en la base."
+  },
+  {
+    "file": "korven.json",
+    "path": ".rooms.korven_horno_reposo.day",
+    "before": "La alfarera coloca dos bordes juntos sobre el banco y busca una diferencia de espesor. Un aprendiz deja el recipiente torcido donde puede verse completo. Revisar un error empieza por no ocultar la parte que salió mal.",
+    "after": "La alfarera coloca dos bordes juntos sobre el banco y busca una diferencia de espesor. Un aprendiz deja el recipiente torcido donde puede verse completo. El borde vencido queda frente al borde recto de la otra pieza."
+  },
+  {
+    "file": "korven.json",
+    "path": ".rooms.korven_entrante_piezas.examine.estera",
+    "before": "La separación conserva condiciones de hallazgo, no valor de las piezas.",
+    "after": "Cada grupo descansa sobre un paño marcado con el lugar donde apareció."
+  },
+  {
+    "file": "korven.json",
+    "path": ".rooms.korven_roca_cascaron.day",
+    "before": "Un insecto de caparazón se inmoviliza cuando pasa una sombra y después busca una junta lateral. Una observadora permanece quieta fuera del cascajo. No todo animal de Korven tiene que apartar bloques para que valga la pena verlo.",
+    "after": "Un insecto de caparazón se inmoviliza cuando pasa una sombra y después busca una junta lateral. Una observadora permanece quieta fuera del cascajo. El insecto cabe entero en la junta; sólo quedan fuera las antenas."
+  },
+  {
+    "file": "korven.json",
+    "path": ".rooms.korven_roca_cascaron.examine.costras",
+    "before": "Líquenes adheridos a piedra; no son armadura de una criatura grande.",
+    "after": "Los líquenes forman costras pálidas adheridas a la piedra; entre ellas asoma una junta oscura."
+  },
+  {
+    "file": "korven.json",
+    "path": ".rooms.korven_peldanos_cortos.examine.repisa",
+    "before": "Su altura sirve a quienes trabajan cerca del suelo; no es un altar.",
+    "after": "Desde el asiento bajo se alcanza la repisa sin levantarse; quedan dos herramientas sobre ella."
+  },
+  {
+    "file": "korven.json",
+    "path": ".rooms.korven_almacen_balanzas.examine.balanza",
+    "before": "La placa que falta no es un tesoro: sin ella, comparar un saco pequeño requiere otra mesa y otro viaje.",
+    "after": "Falta una placa de la balanza. Para comparar un saco pequeño hay que llevarlo a la otra mesa."
+  },
+  {
+    "file": "edran.json",
+    "path": ".rooms.edran_lindero.examine.muesca",
+    "before": "El roce es ancho y desigual, compatible con cargas apoyadas. No describe un símbolo sagrado ni un límite político.",
+    "after": "El roce es ancho y desigual. En el borde quedan fibras aplastadas por las cargas."
+  },
+  {
+    "file": "edran.json",
+    "path": ".rooms.edran_hito_campos.examine.losa",
+    "before": "Sus reparaciones reúnen piedras distintas. La ruta continúa porque varias manos mantienen sus puntos frágiles.",
+    "after": "Sus reparaciones reúnen piedras distintas. Una piedra clara encaja bajo el borde gastado de la losa."
+  },
+  {
+    "file": "edran.json",
+    "path": ".rooms.edran_zanja_antigua.examine.losa",
+    "before": "Se mantiene como referencia de un cambio práctico, no como monumento a una batalla.",
+    "after": "La losa queda junto a la antigua salida del agua, ahora cerrada con tierra apisonada."
+  },
+  {
+    "file": "edran.json",
+    "path": ".rooms.edran_calzada.examine.reparaciones",
+    "before": "Se han usado piedras de tamaños compatibles, sin intentar fingir que la calzada es nueva entera.",
+    "after": "Las piedras nuevas encajan entre las viejas; sus caras claras todavía conservan aristas."
+  },
+  {
+    "file": "edran.json",
+    "path": ".rooms.edran_ladera_piedra.examine.salientes",
+    "before": "La piedra tiene marcas de cestos apoyados, no cortes hechos para una fortificación.",
+    "after": "Los salientes tienen roces redondeados y restos de fibra donde descansan los cestos."
+  },
+  {
+    "file": "edran.json",
+    "path": ".rooms.edran_sendero_regreso.examine.árbol",
+    "before": "Su base marca una pausa habitual, no una frontera.",
+    "after": "La tierra bajo el árbol está compactada y conserva dos huecos de cargas apoyadas."
+  },
+  {
+    "file": "edran.json",
+    "path": ".npcs.edran_aren.description",
+    "before": "Aren ordena mensajes por destino y pregunta desde dónde se vio lo que cuentan. Una noticia no mejora por repetirse más deprisa.",
+    "after": "Aren ordena mensajes por destino y pregunta desde dónde se vio lo que cuentan. Deja espacio entre dos notas y vuelve a preguntar la hora."
+  },
+  {
+    "file": "veyra.json",
+    "path": ".rooms.veyra_patio_senales.examine.armazon",
+    "before": "Se sostiene separado de la pared antigua; nadie atribuye las noticias de hoy a sus constructores.",
+    "after": "Entre el armazón y la pared antigua cabe una mano. Las notas cuelgan de travesaños nuevos."
+  },
+  {
+    "file": "veyra.json",
+    "path": ".rooms.veyra_colina_vista.examine.hitos",
+    "before": "Las líneas útiles proceden de puntos reconocibles sobre el terreno, no de una cuadrícula dibujada desde arriba.",
+    "after": "Dos hitos se alinean con la abertura entre las lomas; el tercero queda junto al cauce."
+  },
+  {
+    "file": "veyra.json",
+    "path": ".rooms.veyra_puerta_alta.examine.plataforma",
+    "before": "Tiene bordes gastados por cargas apoyadas de lado; no fue diseñada como pedestal.",
+    "after": "Sus bordes están gastados donde se apoyan las cargas de lado; una tira queda prensada bajo la más próxima."
+  },
+  {
+    "file": "veyra.json",
+    "path": ".npcs.veyra_doma.description",
+    "before": "Doma atiende a viajeros de las cinco rutas y pregunta qué ocurrió sin atribuir el peligro al pueblo de procedencia.",
+    "after": "Doma deja un paño limpio junto al banco y pregunta dónde ocurrió la herida. Sobre la mesa quedan notas de las cinco rutas."
+  },
+  {
+    "file": "veyra.json",
+    "path": ".npcs.veyra_doma.day",
+    "before": "Doma atiende a viajeros de las cinco rutas y pregunta qué ocurrió sin atribuir el peligro al pueblo de procedencia.",
+    "after": "Doma deja un paño limpio junto al banco y pregunta dónde ocurrió la herida. Sobre la mesa quedan notas de las cinco rutas."
+  },
+  {
+    "file": "lethra.json",
+    "path": ".rooms.lethra_tierra_esponjosa.examine.rana",
+    "before": "Su quietud la oculta entre hojas; no da recompensa por ser observada.",
+    "after": "La rana queda inmóvil entre dos hojas mojadas. La garganta se mueve una vez."
+  },
+  {
+    "file": "lethra.json",
+    "path": ".rooms.lethra_embarcadero_camino.examine.tiras",
+    "before": "Identifican llegadas esperadas, no pasajeros a quienes puedas atribuir una identidad sin conocerlos.",
+    "after": "Cada tira lleva una hora de llegada; dos conservan gotas secas en el extremo."
+  },
+  {
+    "file": "lethra.json",
+    "path": ".rooms.lethra_banco_conversacion.examine.recipiente",
+    "before": "Quedó para compartir después de hablar, no como pago de una tarea.",
+    "after": "El recipiente queda entre dos asientos; junto a él hay una taza todavía húmeda."
+  },
+  {
+    "file": "lethra.json",
+    "path": ".rooms.lethra_cocina_reunion.examine.olla",
+    "before": "Su base reparada sigue distribuyendo calor; conservarla evita fabricar otro objeto sin necesidad.",
+    "after": "La base reparada tiene una unión oscura. El caldo burbujea junto a ella y al otro lado de la olla."
+  },
+  {
+    "file": "lethra.json",
+    "path": ".npcs.lethra_mira.description",
+    "before": "Sus dedos trabajan las fibras mientras escucha y se detienen cuando una respuesta importa. Conserva distintas costuras como una memoria de manos, no como una competición de destreza.",
+    "after": "Sus dedos trabajan las fibras mientras escucha y se detienen cuando una respuesta importa. Una costura cruza sobre otra más vieja; Mira sigue con el dedo sus puntadas desiguales."
+  },
+  {
+    "file": "lethra.json",
+    "path": ".npcs.lethra_sola.description",
+    "before": "Su manga derecha conserva una mancha de resina y su trabajo exige cambiar de lado para revisar uniones. No habla de una barca como si fuera su único interés.",
+    "after": "Su manga derecha conserva una mancha de resina y su trabajo exige cambiar de lado para revisar uniones. Entre dos ajustes pregunta si han abierto ya la cocina."
+  }
+]

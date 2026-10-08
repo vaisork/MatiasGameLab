@@ -1,0 +1,273 @@
+{
+  "status": "PASS",
+  "scope": "Deterministic actual round comparison, not human play or new balance approval",
+  "sources": [
+    "GAMEPLAY §§20.5,36.4–36.7",
+    "CLASS_SIGNATURE_CANON_RECONCILIATION.md"
+  ],
+  "results": {
+    "juramentado": {
+      "baselineAttack": {
+        "action": "atacar",
+        "outgoingDamage": 9,
+        "incomingDamage": 8,
+        "fatigue": 4.0,
+        "enemyResponseAccuracy": 60,
+        "guard": 0,
+        "opening": false,
+        "cooldown": 0,
+        "events": [
+          {
+            "kind": "combat",
+            "text": "Tu golpe alcanza a Espinajo: 9 de daño."
+          },
+          {
+            "kind": "combat",
+            "text": "Espinajo te alcanza: 8 de daño."
+          }
+        ],
+        "outcome": "ongoing"
+      },
+      "signature": {
+        "action": "capacidad",
+        "outgoingDamage": 0,
+        "incomingDamage": 6,
+        "fatigue": 5.0,
+        "enemyResponseAccuracy": 50,
+        "guard": 0.3,
+        "opening": false,
+        "cooldown": 2,
+        "events": [
+          {
+            "kind": "action",
+            "text": "Usas Guardia Comprometida. Afirmas la guardia. Si el golpe llega, recibes menos daño."
+          },
+          {
+            "kind": "combat",
+            "text": "Espinajo te alcanza: 6 de daño."
+          }
+        ],
+        "outcome": "ongoing"
+      }
+    },
+    "arcano": {
+      "baselineAttack": {
+        "action": "atacar",
+        "outgoingDamage": 6,
+        "incomingDamage": 8,
+        "fatigue": 4.0,
+        "enemyResponseAccuracy": 60,
+        "guard": 0,
+        "opening": false,
+        "cooldown": 0,
+        "events": [
+          {
+            "kind": "combat",
+            "text": "Tu golpe alcanza a Espinajo: 6 de daño."
+          },
+          {
+            "kind": "combat",
+            "text": "Espinajo te alcanza: 8 de daño."
+          }
+        ],
+        "outcome": "ongoing"
+      },
+      "signature": {
+        "action": "capacidad",
+        "outgoingDamage": 0,
+        "incomingDamage": 0,
+        "fatigue": 5.0,
+        "enemyResponseAccuracy": 40,
+        "guard": 0,
+        "opening": false,
+        "cooldown": 4,
+        "events": [
+          {
+            "kind": "action",
+            "text": "Usas Impulso Arcano. Desvías su respuesta con un impulso y rompes la preparación si estaba cargando."
+          },
+          {
+            "kind": "combat",
+            "text": "La respuesta de Espinajo pasa sin alcanzarte."
+          }
+        ],
+        "outcome": "ongoing"
+      }
+    },
+    "sombra": {
+      "baselineAttack": {
+        "action": "atacar",
+        "outgoingDamage": 7,
+        "incomingDamage": 8,
+        "fatigue": 4.0,
+        "enemyResponseAccuracy": 60,
+        "guard": 0,
+        "opening": false,
+        "cooldown": 0,
+        "events": [
+          {
+            "kind": "combat",
+            "text": "Tu golpe alcanza a Espinajo: 7 de daño."
+          },
+          {
+            "kind": "combat",
+            "text": "Espinajo te alcanza: 8 de daño."
+          }
+        ],
+        "outcome": "ongoing"
+      },
+      "signature": {
+        "action": "capacidad",
+        "outgoingDamage": 0,
+        "incomingDamage": 0,
+        "fatigue": 5.0,
+        "enemyResponseAccuracy": 35,
+        "guard": 0,
+        "opening": true,
+        "cooldown": 4,
+        "events": [
+          {
+            "kind": "action",
+            "text": "Usas Borrar el Foco. Sales de su foco. Su siguiente respuesta pierde precisión; si falla, tendrás una apertura para atacar."
+          },
+          {
+            "kind": "combat",
+            "text": "La respuesta de Espinajo pasa sin alcanzarte."
+          }
+        ],
+        "outcome": "ongoing"
+      },
+      "openingNextAttack": {
+        "damageWithOpening": 7,
+        "damageWithoutOpening": 0,
+        "openingConsumed": true
+      }
+    },
+    "artifice": {
+      "baselineAttack": {
+        "action": "atacar",
+        "outgoingDamage": 8,
+        "incomingDamage": 8,
+        "fatigue": 4.0,
+        "enemyResponseAccuracy": 60,
+        "guard": 0,
+        "opening": false,
+        "cooldown": 0,
+        "events": [
+          {
+            "kind": "combat",
+            "text": "Tu golpe alcanza a Espinajo: 8 de daño."
+          },
+          {
+            "kind": "combat",
+            "text": "Espinajo te alcanza: 8 de daño."
+          }
+        ],
+        "outcome": "ongoing"
+      },
+      "signature": {
+        "action": "capacidad",
+        "outgoingDamage": 6,
+        "incomingDamage": 8,
+        "fatigue": 5.0,
+        "enemyResponseAccuracy": 50,
+        "guard": 0,
+        "opening": false,
+        "cooldown": 2,
+        "events": [
+          {
+            "kind": "action",
+            "text": "Usas Tiro de Interrupción. Disparas para cortar su preparación. Necesitas acertar para interrumpirla."
+          },
+          {
+            "kind": "combat",
+            "text": "Tu golpe alcanza a Espinajo: 6 de daño."
+          },
+          {
+            "kind": "combat",
+            "text": "Tu disparo corta la carga que estaba preparando."
+          },
+          {
+            "kind": "combat",
+            "text": "Espinajo te alcanza: 8 de daño."
+          }
+        ],
+        "outcome": "ongoing"
+      }
+    },
+    "levelOneDefenses": {
+      "atacar": {
+        "action": "atacar",
+        "outgoingDamage": 9,
+        "incomingDamage": 8,
+        "fatigue": 4.0,
+        "enemyResponseAccuracy": 60,
+        "guard": 0,
+        "opening": false,
+        "cooldown": 0,
+        "events": [
+          {
+            "kind": "combat",
+            "text": "Tu golpe alcanza a Espinajo: 9 de daño."
+          },
+          {
+            "kind": "combat",
+            "text": "Espinajo te alcanza: 8 de daño."
+          }
+        ],
+        "outcome": "ongoing"
+      },
+      "esquivar": {
+        "action": "esquivar",
+        "outgoingDamage": 0,
+        "incomingDamage": 8,
+        "fatigue": 6.0,
+        "enemyResponseAccuracy": 60.0,
+        "guard": 0,
+        "opening": false,
+        "cooldown": 0,
+        "events": [
+          {
+            "kind": "combat",
+            "text": "Espinajo te alcanza: 8 de daño."
+          }
+        ],
+        "outcome": "ongoing"
+      },
+      "bloquear": {
+        "action": "bloquear",
+        "outgoingDamage": 0,
+        "incomingDamage": 7,
+        "fatigue": 5.0,
+        "enemyResponseAccuracy": 60,
+        "guard": 0,
+        "opening": false,
+        "cooldown": 0,
+        "events": [
+          {
+            "kind": "combat",
+            "text": "Espinajo te alcanza: 7 de daño."
+          }
+        ],
+        "outcome": "ongoing"
+      },
+      "resistir": {
+        "action": "resistir",
+        "outgoingDamage": 0,
+        "incomingDamage": 8,
+        "fatigue": 3.0,
+        "enemyResponseAccuracy": 60,
+        "guard": 0,
+        "opening": false,
+        "cooldown": 0,
+        "events": [
+          {
+            "kind": "combat",
+            "text": "Espinajo te alcanza: 8 de daño."
+          }
+        ],
+        "outcome": "ongoing"
+      }
+    }
+  }
+}

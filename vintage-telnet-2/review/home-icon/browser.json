@@ -1,0 +1,19 @@
+{
+  "scope": "Live Raspberry page, manifest, and PNG assets tested in Chrome phone/tablet viewport emulation. Physical Android/iPad home-screen installation not exercised.",
+  "results": [
+    {
+      "width": 393,
+      "manifestPublic": true,
+      "standaloneLaunchConfigured": true,
+      "appleTouchIconLoaded": true,
+      "androidIconsLoaded": true
+    },
+    {
+      "width": 1024,
+      "manifestPublic": true,
+      "standaloneLaunchConfigured": true,
+      "appleTouchIconLoaded": true,
+      "androidIconsLoaded": true
+    }
+  ]
+}

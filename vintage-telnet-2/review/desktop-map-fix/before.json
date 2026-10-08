@@ -1,0 +1,49 @@
+{
+  "scope": "Read-only production state copy intercepted in browser; no player actions or data writes.",
+  "results": [
+    {
+      "width": 1440,
+      "scale": 0.03,
+      "nodeWidth": 3.47998046875,
+      "fontSize": 0.32999999999999996,
+      "viewportWidth": 510,
+      "viewportHeight": 220,
+      "selectedVisible": true,
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "width": 1100,
+      "scale": 0.03,
+      "nodeWidth": 3.47998046875,
+      "fontSize": 0.32999999999999996,
+      "viewportWidth": 510,
+      "viewportHeight": 220,
+      "selectedVisible": true,
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "width": 393,
+      "scale": 0.03,
+      "nodeWidth": 3.479999542236328,
+      "fontSize": 0.32999999999999996,
+      "viewportWidth": 343,
+      "viewportHeight": 220,
+      "selectedVisible": true,
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "width": 320,
+      "scale": 0.03,
+      "nodeWidth": 3.479999542236328,
+      "fontSize": 0.32999999999999996,
+      "viewportWidth": 282,
+      "viewportHeight": 220,
+      "selectedVisible": true,
+      "overflow": false,
+      "errors": []
+    }
+  ]
+}

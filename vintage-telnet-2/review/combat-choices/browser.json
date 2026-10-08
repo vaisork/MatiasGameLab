@@ -1,0 +1,437 @@
+{
+  "scope": "Real Chrome rendering of 16 actual API encounter snapshots generated in temporary DB (level8/attributes20 combat fixture only). No player actions or production writes; desktop/mobile viewport emulation.",
+  "results": [
+    {
+      "width": 1440,
+      "creature": "rasgacumbres",
+      "class": "juramentado",
+      "disabled": true,
+      "hint": "No cubre ese ángulo",
+      "fullReasonPreserved": true,
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "creature": "rasgacumbres",
+      "class": "arcano",
+      "disabled": false,
+      "hint": "Rompe su preparación",
+      "fullReasonPreserved": true,
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "creature": "rasgacumbres",
+      "class": "sombra",
+      "disabled": false,
+      "hint": "Rival menos preciso; apertura si falla",
+      "fullReasonPreserved": true,
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "creature": "rasgacumbres",
+      "class": "artifice",
+      "disabled": false,
+      "hint": "Corta preparación si aciertas",
+      "fullReasonPreserved": true,
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "creature": "quebrarrocas",
+      "class": "juramentado",
+      "disabled": false,
+      "hint": "Reduce el daño recibido",
+      "fullReasonPreserved": true,
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "creature": "quebrarrocas",
+      "class": "arcano",
+      "disabled": true,
+      "hint": "No interrumpible",
+      "fullReasonPreserved": true,
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "creature": "quebrarrocas",
+      "class": "sombra",
+      "disabled": false,
+      "hint": "Rival menos preciso; apertura si falla",
+      "fullReasonPreserved": true,
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "creature": "quebrarrocas",
+      "class": "artifice",
+      "disabled": false,
+      "hint": "Sólo daño si aciertas",
+      "fullReasonPreserved": true,
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "creature": "dorsalodo",
+      "class": "juramentado",
+      "disabled": true,
+      "hint": "No cubre ese ángulo",
+      "fullReasonPreserved": true,
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "creature": "dorsalodo",
+      "class": "arcano",
+      "disabled": true,
+      "hint": "No interrumpible",
+      "fullReasonPreserved": true,
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "creature": "dorsalodo",
+      "class": "sombra",
+      "disabled": false,
+      "hint": "Rival menos preciso; apertura si falla",
+      "fullReasonPreserved": true,
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "creature": "dorsalodo",
+      "class": "artifice",
+      "disabled": false,
+      "hint": "Sólo daño si aciertas",
+      "fullReasonPreserved": true,
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "creature": "rasgacorteza",
+      "class": "juramentado",
+      "disabled": false,
+      "hint": "Reduce el daño recibido",
+      "fullReasonPreserved": true,
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "creature": "rasgacorteza",
+      "class": "arcano",
+      "disabled": false,
+      "hint": "Rompe su preparación",
+      "fullReasonPreserved": true,
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "creature": "rasgacorteza",
+      "class": "sombra",
+      "disabled": false,
+      "hint": "Rival menos preciso; apertura si falla",
+      "fullReasonPreserved": true,
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "creature": "rasgacorteza",
+      "class": "artifice",
+      "disabled": false,
+      "hint": "Corta preparación si aciertas",
+      "fullReasonPreserved": true,
+      "errors": []
+    },
+    {
+      "width": 393,
+      "creature": "rasgacumbres",
+      "class": "juramentado",
+      "disabled": true,
+      "hint": "No cubre ese ángulo",
+      "fullReasonPreserved": true,
+      "errors": []
+    },
+    {
+      "width": 393,
+      "creature": "rasgacumbres",
+      "class": "arcano",
+      "disabled": false,
+      "hint": "Rompe su preparación",
+      "fullReasonPreserved": true,
+      "errors": []
+    },
+    {
+      "width": 393,
+      "creature": "rasgacumbres",
+      "class": "sombra",
+      "disabled": false,
+      "hint": "Rival menos preciso; apertura si falla",
+      "fullReasonPreserved": true,
+      "errors": []
+    },
+    {
+      "width": 393,
+      "creature": "rasgacumbres",
+      "class": "artifice",
+      "disabled": false,
+      "hint": "Corta preparación si aciertas",
+      "fullReasonPreserved": true,
+      "errors": []
+    },
+    {
+      "width": 393,
+      "creature": "quebrarrocas",
+      "class": "juramentado",
+      "disabled": false,
+      "hint": "Reduce el daño recibido",
+      "fullReasonPreserved": true,
+      "errors": []
+    },
+    {
+      "width": 393,
+      "creature": "quebrarrocas",
+      "class": "arcano",
+      "disabled": true,
+      "hint": "No interrumpible",
+      "fullReasonPreserved": true,
+      "errors": []
+    },
+    {
+      "width": 393,
+      "creature": "quebrarrocas",
+      "class": "sombra",
+      "disabled": false,
+      "hint": "Rival menos preciso; apertura si falla",
+      "fullReasonPreserved": true,
+      "errors": []
+    },
+    {
+      "width": 393,
+      "creature": "quebrarrocas",
+      "class": "artifice",
+      "disabled": false,
+      "hint": "Sólo daño si aciertas",
+      "fullReasonPreserved": true,
+      "errors": []
+    },
+    {
+      "width": 393,
+      "creature": "dorsalodo",
+      "class": "juramentado",
+      "disabled": true,
+      "hint": "No cubre ese ángulo",
+      "fullReasonPreserved": true,
+      "errors": []
+    },
+    {
+      "width": 393,
+      "creature": "dorsalodo",
+      "class": "arcano",
+      "disabled": true,
+      "hint": "No interrumpible",
+      "fullReasonPreserved": true,
+      "errors": []
+    },
+    {
+      "width": 393,
+      "creature": "dorsalodo",
+      "class": "sombra",
+      "disabled": false,
+      "hint": "Rival menos preciso; apertura si falla",
+      "fullReasonPreserved": true,
+      "errors": []
+    },
+    {
+      "width": 393,
+      "creature": "dorsalodo",
+      "class": "artifice",
+      "disabled": false,
+      "hint": "Sólo daño si aciertas",
+      "fullReasonPreserved": true,
+      "errors": []
+    },
+    {
+      "width": 393,
+      "creature": "rasgacorteza",
+      "class": "juramentado",
+      "disabled": false,
+      "hint": "Reduce el daño recibido",
+      "fullReasonPreserved": true,
+      "errors": []
+    },
+    {
+      "width": 393,
+      "creature": "rasgacorteza",
+      "class": "arcano",
+      "disabled": false,
+      "hint": "Rompe su preparación",
+      "fullReasonPreserved": true,
+      "errors": []
+    },
+    {
+      "width": 393,
+      "creature": "rasgacorteza",
+      "class": "sombra",
+      "disabled": false,
+      "hint": "Rival menos preciso; apertura si falla",
+      "fullReasonPreserved": true,
+      "errors": []
+    },
+    {
+      "width": 393,
+      "creature": "rasgacorteza",
+      "class": "artifice",
+      "disabled": false,
+      "hint": "Corta preparación si aciertas",
+      "fullReasonPreserved": true,
+      "errors": []
+    },
+    {
+      "width": 320,
+      "creature": "rasgacumbres",
+      "class": "juramentado",
+      "disabled": true,
+      "hint": "No cubre ese ángulo",
+      "fullReasonPreserved": true,
+      "errors": []
+    },
+    {
+      "width": 320,
+      "creature": "rasgacumbres",
+      "class": "arcano",
+      "disabled": false,
+      "hint": "Rompe su preparación",
+      "fullReasonPreserved": true,
+      "errors": []
+    },
+    {
+      "width": 320,
+      "creature": "rasgacumbres",
+      "class": "sombra",
+      "disabled": false,
+      "hint": "Rival menos preciso; apertura si falla",
+      "fullReasonPreserved": true,
+      "errors": []
+    },
+    {
+      "width": 320,
+      "creature": "rasgacumbres",
+      "class": "artifice",
+      "disabled": false,
+      "hint": "Corta preparación si aciertas",
+      "fullReasonPreserved": true,
+      "errors": []
+    },
+    {
+      "width": 320,
+      "creature": "quebrarrocas",
+      "class": "juramentado",
+      "disabled": false,
+      "hint": "Reduce el daño recibido",
+      "fullReasonPreserved": true,
+      "errors": []
+    },
+    {
+      "width": 320,
+      "creature": "quebrarrocas",
+      "class": "arcano",
+      "disabled": true,
+      "hint": "No interrumpible",
+      "fullReasonPreserved": true,
+      "errors": []
+    },
+    {
+      "width": 320,
+      "creature": "quebrarrocas",
+      "class": "sombra",
+      "disabled": false,
+      "hint": "Rival menos preciso; apertura si falla",
+      "fullReasonPreserved": true,
+      "errors": []
+    },
+    {
+      "width": 320,
+      "creature": "quebrarrocas",
+      "class": "artifice",
+      "disabled": false,
+      "hint": "Sólo daño si aciertas",
+      "fullReasonPreserved": true,
+      "errors": []
+    },
+    {
+      "width": 320,
+      "creature": "dorsalodo",
+      "class": "juramentado",
+      "disabled": true,
+      "hint": "No cubre ese ángulo",
+      "fullReasonPreserved": true,
+      "errors": []
+    },
+    {
+      "width": 320,
+      "creature": "dorsalodo",
+      "class": "arcano",
+      "disabled": true,
+      "hint": "No interrumpible",
+      "fullReasonPreserved": true,
+      "errors": []
+    },
+    {
+      "width": 320,
+      "creature": "dorsalodo",
+      "class": "sombra",
+      "disabled": false,
+      "hint": "Rival menos preciso; apertura si falla",
+      "fullReasonPreserved": true,
+      "errors": []
+    },
+    {
+      "width": 320,
+      "creature": "dorsalodo",
+      "class": "artifice",
+      "disabled": false,
+      "hint": "Sólo daño si aciertas",
+      "fullReasonPreserved": true,
+      "errors": []
+    },
+    {
+      "width": 320,
+      "creature": "rasgacorteza",
+      "class": "juramentado",
+      "disabled": false,
+      "hint": "Reduce el daño recibido",
+      "fullReasonPreserved": true,
+      "errors": []
+    },
+    {
+      "width": 320,
+      "creature": "rasgacorteza",
+      "class": "arcano",
+      "disabled": false,
+      "hint": "Rompe su preparación",
+      "fullReasonPreserved": true,
+      "errors": []
+    },
+    {
+      "width": 320,
+      "creature": "rasgacorteza",
+      "class": "sombra",
+      "disabled": false,
+      "hint": "Rival menos preciso; apertura si falla",
+      "fullReasonPreserved": true,
+      "errors": []
+    },
+    {
+      "width": 320,
+      "creature": "rasgacorteza",
+      "class": "artifice",
+      "disabled": false,
+      "hint": "Corta preparación si aciertas",
+      "fullReasonPreserved": true,
+      "errors": []
+    }
+  ]
+}

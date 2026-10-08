@@ -1,0 +1,143 @@
+{
+  "phase": "after-environment",
+  "results": [
+    {
+      "width": 393,
+      "clockMode": "isolated controlled clock +10s",
+      "searchReasonBefore": "Ya revisaste este lugar. Puedes buscar de nuevo en 61 s.",
+      "searchReasonAfter": "Ya revisaste este lugar. Puedes buscar de nuevo en 51 s.",
+      "room": "edran_surcos",
+      "initial": {
+        "clearColor": [
+          0.8627471327781677,
+          0.9019622802734375,
+          0.8745116591453552,
+          1
+        ],
+        "plannerToken": "a007fe30-0ad0-4eea-b553-3895db35964a",
+        "canvasToken": "0980a054-2143-4e55-8c81-f71849f4103c",
+        "labels": [
+          {
+            "name": "Tu casa junto al corredor",
+            "left": "72px",
+            "top": "149.453px"
+          },
+          {
+            "name": "Plaza de Valdren",
+            "left": "98.6192px",
+            "top": "188.343px"
+          },
+          {
+            "name": "Campo de surcos · Aquí",
+            "left": "257.759px",
+            "top": "169.877px"
+          }
+        ],
+        "compass": "↑"
+      },
+      "before": {
+        "clearColor": [
+          0.8627471327781677,
+          0.9019622802734375,
+          0.8745116591453552,
+          1
+        ],
+        "plannerToken": "a007fe30-0ad0-4eea-b553-3895db35964a",
+        "canvasToken": "0980a054-2143-4e55-8c81-f71849f4103c",
+        "labels": [
+          {
+            "name": "Tu casa junto al corredor",
+            "left": "75.298px",
+            "top": "100.702px"
+          },
+          {
+            "name": "Plaza de Valdren",
+            "left": "87.0598px",
+            "top": "170.787px"
+          },
+          {
+            "name": "Curva de la Acequia",
+            "left": "261.851px",
+            "top": "264.112px"
+          },
+          {
+            "name": "Campo de surcos · Aquí",
+            "left": "265px",
+            "top": "225.135px"
+          }
+        ],
+        "compass": "↑"
+      },
+      "after": {
+        "clearColor": [
+          0.8627471327781677,
+          0.9019622802734375,
+          0.8745116591453552,
+          1
+        ],
+        "plannerToken": "727209e9-7fd5-45c6-ba33-0d7b275365a9",
+        "canvasToken": "0980a054-2143-4e55-8c81-f71849f4103c",
+        "labels": [
+          {
+            "name": "Tu casa junto al corredor",
+            "left": "75.298px",
+            "top": "100.702px"
+          },
+          {
+            "name": "Plaza de Valdren",
+            "left": "87.0598px",
+            "top": "170.787px"
+          },
+          {
+            "name": "Curva de la Acequia",
+            "left": "261.851px",
+            "top": "264.112px"
+          },
+          {
+            "name": "Campo de surcos · Aquí",
+            "left": "265px",
+            "top": "225.135px"
+          }
+        ],
+        "compass": "↑"
+      },
+      "projectionChanged": false,
+      "canvasReplaced": false,
+      "errors": [],
+      "environment": {
+        "before": {
+          "region": "edran",
+          "time_of_day": "Día",
+          "timestamp": 43240,
+          "weather": "Despejado",
+          "weather_description": "El terreno abierto conserva referencias entre parcelas, sombras y caminos."
+        },
+        "after": {
+          "region": "edran",
+          "time_of_day": "Día",
+          "timestamp": 50440,
+          "weather": "Lluvia",
+          "weather_description": "La pendiente reparte agua entre parcelas y vuelve importantes los bordes firmes."
+        },
+        "clockSteps": 24,
+        "canvasReplaced": true,
+        "colorBefore": [
+          0.8627471327781677,
+          0.9019622802734375,
+          0.8745116591453552,
+          1
+        ],
+        "colorAfter": [
+          0.3921630084514618,
+          0.46667253971099854,
+          0.5098095536231995,
+          1
+        ]
+      },
+      "contextLossSurvivesPassiveRefresh": true,
+      "otherCharacterFreshCamera": true,
+      "closedAndSwitchedCanvasReleased": true,
+      "contextLossFallback": true
+    }
+  ]
+}

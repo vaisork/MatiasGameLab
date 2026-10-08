@@ -1,0 +1,26 @@
+{
+  "status": "PASS",
+  "results": [
+    {
+      "width": 320,
+      "actualSpeciesModel": "vesperi",
+      "canvasAfterClose": 0,
+      "bestiary2DOnly": true,
+      "withoutArtTextOnly": true,
+      "noOverflow": true,
+      "pageErrors": [],
+      "cspErrors": []
+    },
+    {
+      "width": 393,
+      "actualSpeciesModel": "vesperi",
+      "canvasAfterClose": 0,
+      "bestiary2DOnly": true,
+      "withoutArtTextOnly": true,
+      "noOverflow": true,
+      "pageErrors": [],
+      "cspErrors": []
+    }
+  ],
+  "scope": "Species real account/API8099; bestiary display-only intercepted state derived from current authoritative world creature catalog, one with art and one without; no discovery claim and no persisted fabricated knowledge"
+}

@@ -1,0 +1,26 @@
+{
+  "scope": "Chrome real rendering of temporary API journey snapshot, no actions on production, desktop/mobile viewport emulation.",
+  "results": [
+    {
+      "width": 1440,
+      "actionVisible": true,
+      "actionEnabled": true,
+      "noOverflow": true,
+      "errors": []
+    },
+    {
+      "width": 393,
+      "actionVisible": true,
+      "actionEnabled": true,
+      "noOverflow": true,
+      "errors": []
+    },
+    {
+      "width": 320,
+      "actionVisible": true,
+      "actionEnabled": true,
+      "noOverflow": true,
+      "errors": []
+    }
+  ]
+}
