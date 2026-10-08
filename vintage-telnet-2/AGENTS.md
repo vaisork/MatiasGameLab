@@ -6,6 +6,11 @@ Este proyecto no importa el motor VT1. No leer Senku como contexto operativo ni 
 
 ## Alcance autorizado
 
+### Roster de clases
+
+El roster vigente de VT2 es **Juramentado, Arcano, Sombra y Artífice**. **No implementar Vigía ni Invocador**. Sus menciones en el Prompt Maestro son históricas/superseded y no constituyen backlog. No crear contratos, contenido, UI, balance ni migraciones para esas clases salvo nueva autorización explícita de Javier.
+
+
 Encargo vigente del 8 de octubre de 2026: integrar las entregas actuales de arte y Claude, publicar en main y dejar relevo al arquitecto/programador. Leer `../docs/VT2_RELEVO_20261008.md`. La reorganización #649 y las pausas previas no bloquean este encargo acotado; no reactivar otras colas históricas por inercia. Producción se desplegó expresamente a d5ee227; versiones posteriores requieren su propia autorización de despliegue.
 
 ## Fronteras
