@@ -1,12 +1,12 @@
 {
   "salas_publicas": 183,
-  "nuevas_imagenes_entregadas": 108,
+  "nuevas_imagenes_entregadas": 113,
   "estados": {
-    "Aprobado (nuevo, pendiente de integración)": 108,
-    "Sin imagen": 67,
+    "Aprobado (nuevo, pendiente de integración)": 113,
+    "Sin imagen": 62,
     "Aprobado": 8
   },
-  "pendientes_especificos": 67,
+  "pendientes_especificos": 62,
   "mision": "INCOMPLETA",
-  "trabajo": "ACTIVO: autorización de reanudación; lote Nhal revisado, siguiente transición Edran–Lethra"
+  "trabajo": "ACTIVO: lote 24 revisado; lote 25 en producción"
 }

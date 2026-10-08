@@ -57,3 +57,7 @@ Canal de Edran: trayecto zanja–entrada–bifurcación–compuerta–repisa y r
 ## Lote 23 — trabajos de Nhal
 
 Revisadas tres secuencias canónicas: patio–senda–umbral, centro–taller–secadero y mercado–cocina–patio. La puerta de la senda ahora está abierta; el taller deja holgura alrededor de las raíces; secadero conserva juguete sobre tabla móvil y recipiente sobre aro. Madera oscura, raíz viva y escala doméstica mantienen continuidad. Hojas en recorridos/nhal-*.jpg. Luz cálida localizada coherente con Velmora; no define el interior inquietante del bosque.
+
+## Lote 24 — Edran a Narevia
+
+Ruta real revisada: edran_reparo → edran_sendero_juncos → edran_puente_juncos → lethra_hito_tierra → lethra_ribera_oeste → narevia_centro. Hoja: recorridos/edran-lethra-narevia.jpg. Los campos y teja desaparecen gradualmente; juncos primero ocultan el agua, luego se ve el cauce y finalmente crecen los apoyos del pueblo. Hitos modestos y tramo alto contrastan con suelo inundable. Escala, sauces y paleta continua. No sustitución de referencias aprobadas.
