@@ -23,7 +23,7 @@
 ## 4. Habilidades y clases
 - Habilidades por nivel y clase; ataque extra, parar, esquivar, rescatar, desarmar, embestir, retroceder, magia y resistencias.
 - Las capacidades de los monstruos de ROM incluyen bash, dodge, parry, rescue, disarm, fast y más; no todas activas en todas las versiones. https://github.com/avinson/rom24-quickmud/blob/master/doc/Rom2.4.doc
-- Adaptar al Juramentado, Sombra, Arcano, Vigía e Invocador sin importar clases ni hechizos históricos como canon.
+- Adaptar únicamente al roster vigente de VT2: **Juramentado, Sombra, Arcano y Artífice**. Las referencias históricas a **Vigía e Invocador están superseded** y no autorizan su implementación.
 
 ## 5. Economía, botín y equipo
 - Tiendas: compra/venta, valor, nivel y disponibilidad; inventario por instancia, no duplicar materiales.
