@@ -22,11 +22,19 @@
         ],
         "traces": [
           "Una cuerda marca el barro: por aquí arrastraron una carga.",
-          "Encuentras una huella antigua, pero no basta para saber qué la dejó."
+          "Un Gorrión de ruta picotea migas en un borde del camino y no se aparta hasta el último momento.",
+          "En una piedra antigua del camino hay una muesca lisa, gastada por manos que se apoyaron en ella durante muchísimos años.",
+          "Entre las piedras del suelo asoma un trozo de canal antiguo, tapado. Va hacia la ciudad, por debajo de todo.",
+          "Una piedra enorme, perfectamente cortada, sirve de banco al borde del camino. Nadie la cortó en esta época.",
+          "Una moneda vieja, de un dibujo que no reconoces, encajada entre dos piedras. La dejas donde estaba.",
+          "Una Libélula clara se posa en un charco y se refleja en él como si fueran dos.",
+          "Huellas de muchos carros distintos, unas encima de otras: por aquí pasa de todo."
         ],
         "empty": [
-          "Apartas grava de la orilla. No ha quedado nada que puedas recoger.",
-          "Buscas con cuidado. Esta vez no encuentras nada para llevar."
+          "Sólo el polvo del camino.",
+          "Mucho tránsito, ningún rastro que destaque.",
+          "Revisas el borde del camino. Nada.",
+          "Un carro lejano, y luego silencio."
         ]
       }
     }
@@ -232,7 +240,8 @@
             "noche"
           ]
         }
-      ]
+      ],
+      "max_layers": 4
     },
     "veyra_plaza_rutas": {
       "id": "veyra_plaza_rutas",
@@ -244,7 +253,7 @@
       "night": "Cada patio mantiene una luz baja junto al umbral. El centro queda vacío; una conversación se acerca al muro oriental, junto al último alero encendido.",
       "rain": "El abanico de juntas recoge hilos de agua. Los mensajeros protegen sus papeles debajo del alero oriental y dejan las esquinas libres para los carros; las capas mojadas se sacuden siempre fuera de ese refugio.",
       "clear": "",
-      "return": "Reconoces las sogas cortas de quienes vienen de la piedra y las cubiertas anchas del campo. Junto al alero, los bultos pequeños de la sierra quedan separados de las cestas.",
+      "return": "Reconoces las sogas cortas de la gente de la piedra y las cubiertas anchas del campo. Junto al alero esperan los bultos pequeños de la sierra.",
       "examine": {
         "juntas": "Las reparaciones forman capas sucesivas. La plaza es posterior a las piedras del núcleo antiguo.",
         "avisos": "Un aviso distingue carga detenida de carga perdida: no encontrar un envío al mediodía no prueba que alguien lo haya robado."
@@ -360,7 +369,8 @@
             "noche"
           ]
         }
-      ]
+      ],
+      "max_layers": 4
     },
     "veyra_calle_toldos": {
       "id": "veyra_calle_toldos",
@@ -372,7 +382,7 @@
       "night": "Los toldos descienden y estrechan la franja de cielo. Tras dos ventanas aún se trabaja con luz protegida. Los pasos se vuelven cuidadosos porque los soportes de las telas ocupan parte del suelo.",
       "rain": "Una costura vencida vierte agua sobre la entrada de un taller. Sus vecinos recogen el borde con una pértiga y lo desvían hacia la calle; la reparación necesita acuerdo antes que materiales nuevos.",
       "clear": "",
-      "return": "Reconoces la costura azul entre los dos talleres. Bajo el último desagüe están los recipientes que marcaban la vuelta hacia los canales.",
+      "return": "La costura azul entre los dos talleres es la más bonita de la calle.",
       "examine": {
         "costura": "El desgarro está en una unión vieja, no en un corte reciente. Apuntar el daño evitaría que se culpara al taller vecino.",
         "percha": "La pértiga puede levantar el borde sin invadir el espacio de quien trabaja dentro."
@@ -560,7 +570,8 @@
           }
         }
       ],
-      "brief": "La calle de los toldos remendados, de telas distintas."
+      "brief": "La calle de los toldos remendados, de telas distintas.",
+      "max_layers": 4
     },
     "veyra_barrio_cargas": {
       "id": "veyra_barrio_cargas",
@@ -572,7 +583,7 @@
       "night": "Los carros descansan de costado y dejan un corredor central. Se oye a los habitantes de arriba bajar recipientes antes de cerrar. El olor de las bestias queda afuera; el de la cena sale por ventanas altas.",
       "rain": "Las ruedas levantan un barro fino que no existía en la plaza. Los arrieros colocan tablones delante de los almacenes y dejan descubierta la franja de drenaje; taparla inundaría las casas inferiores.",
       "clear": "",
-      "return": "Recuerdas la raya pintada: los carros paran antes de ella para dejar libres las puertas. Ya sabes por dónde pasar mientras descargan.",
+      "return": "Los carros paran antes de la raya pintada. Ya sabes por dónde pasar mientras descargan.",
       "examine": {
         "raya": "Está repasada sobre otra más antigua. La anchura de las cargas cambió antes que la anchura de la calle.",
         "escalera": "Los primeros peldaños están limpios porque nadie deja bultos sobre ellos."
@@ -585,7 +596,8 @@
       "npcs": [],
       "signals": [],
       "actions": [],
-      "brief": "La calle de los almacenes y su raya pintada en la piedra."
+      "brief": "La calle de los almacenes y su raya pintada en la piedra.",
+      "max_layers": 4
     },
     "veyra_patio_porte": {
       "id": "veyra_patio_porte",
@@ -597,7 +609,7 @@
       "night": "Las argollas vacías golpean el muro cuando alguien pasa. El cuidador deja una cubeta donde pueda encontrarla quien llegue tarde, pero guarda las cinchas dentro: ayudar no equivale a abandonar sus herramientas.",
       "rain": "El patio recibe agua de dos calles y el cuidador despeja la salida con su escoba. Los animales buscan el muro a sotavento. Las cargas se mantienen levantadas sobre travesaños en lugar de apilarse contra ellos.",
       "clear": "",
-      "return": "Reconoces el rincón del bebedero. Una bestia mantiene la cabeza baja junto al agua; su carga espera al otro lado de las argollas.",
+      "return": "En el rincón del bebedero, una bestia baja la cabeza al agua; su carga espera al otro lado de las argollas.",
       "examine": {
         "cinchas": "Una marca de roce obliga a recolocar la protección, no a apretar más.",
         "cubeta": "Se deja al alcance del viajero sin sujetar un animal desconocido a la fuente."
@@ -610,7 +622,8 @@
       "npcs": [],
       "signals": [],
       "actions": [],
-      "brief": "El patio de los animales y su bebedero a la sombra."
+      "brief": "El patio de los animales y su bebedero a la sombra.",
+      "max_layers": 4
     },
     "veyra_patio_senales": {
       "id": "veyra_patio_senales",
@@ -622,7 +635,7 @@
       "night": "Una luz bajo el alero ilumina la mitad de una nota. Su dueña la pliega antes de marcharse; quedan dos papeles sujetos con una teja.",
       "rain": "La mensajera seca la mesa antes de apoyar una funda abierta. Los viajeros forman una hilera bajo el alero sin inclinar sus capas sobre las tablillas; el patio parece pequeño cuando todos recuerdan que el papel se moja.",
       "clear": "",
-      "return": "Recuerdas la ranura donde dejaron el recado urgente. El montón de notas del alero queda debajo, sujeto con la misma teja.",
+      "return": "Recuerdas la ranura del recado urgente. Debajo, el montón de notas sujeto con la misma teja.",
       "examine": {
         "tablillas": "Una marca identifica remitente y ruta, sin afirmar que el mensaje haya sido leído.",
         "armazon": "Entre el armazón y la pared antigua cabe una mano. Las notas cuelgan de travesaños nuevos.",
@@ -768,7 +781,8 @@
       "focus": [
         "activity"
       ],
-      "brief": "El patio de mensajes, con sus tablillas bajo el alero."
+      "brief": "El patio de mensajes, con sus tablillas bajo el alero.",
+      "max_layers": 4
     },
     "veyra_patio_agua": {
       "id": "veyra_patio_agua",
@@ -780,7 +794,7 @@
       "night": "El agua repite un goteo irregular bajo el muro. En el borde de una jarra queda una línea clara; un insecto se detiene junto al asa.",
       "rain": "La pila inferior crece y arrastra hojas del mercado. Una vecina cierra el paso de lavado hasta poder despejarlo, pero mantiene disponible el agua alta. La lluvia no vuelve intercambiables los dos canales.",
       "clear": "",
-      "return": "Reconoces el brillo gastado donde apoyaron la jarra. El agua de la calle entra por debajo; la conducción limpia queda en la parte alta.",
+      "return": "La piedra brilla, gastada, donde se apoyan las jarras. El agua limpia entra por arriba; la usada, por abajo.",
       "examine": {
         "canales": "La conducción limpia no procede del mercado. Confundir ambas entradas haría inútil la separación.",
         "baranda": "Está reparada del lado de las cargas; protege la pila cuando alguien baja demasiado rápido."
@@ -867,7 +881,8 @@
       ],
       "dawn": "La jarra de barro recibe agua fría. Una mujer prueba un sorbo y enjuaga otra vez el vaso.",
       "dusk": "Los vasos vacíos quedan invertidos junto al canal. El muro todavía guarda calor bajo una mano apoyada.",
-      "brief": "El patio del agua: limpia arriba, usada abajo."
+      "brief": "El patio del agua: limpia arriba, usada abajo.",
+      "max_layers": 4
     },
     "veyra_huerta_baja": {
       "id": "veyra_huerta_baja",
@@ -879,7 +894,7 @@
       "night": "Las hojas rozan el último escalón. Algo roe bajo el bancal y cesa cuando se abre una puerta encima de la huerta.",
       "rain": "El agua del talud lleva arena hacia el primer bancal. La hortelana protege los brotes con una estera inclinada y abre una zanja de desvío, evitando que la corriente de la calle se confunda con el riego.",
       "clear": "",
-      "return": "Recuerdas la tabla junto al bancal. De un lado, la tierra oscura alcanza la raíz; del otro, el polvo queda seco alrededor del cesto.",
+      "return": "La tabla junto al bancal separa la tierra oscura del polvo seco.",
       "examine": {
         "tabla": "Puedes colocarla para llevar agua a la parcela o dejarla correr por el canal.",
         "cesto": "Su fondo cedió por desgaste. La reparación requiere paciencia y una unión limpia."
@@ -949,7 +964,8 @@
       ],
       "dawn": "La vecina levanta una hoja mojada para revisar el envés. El niño llega con un cesto vacío y espera a que le señalen qué frutos puede coger.",
       "dusk": "El niño lleva el cesto bajo el brazo. La vecina deja las hojas revisadas en su sitio y recoge las herramientas junto al primer escalón.",
-      "brief": "La huerta bajo las escaleras, con sus bancales estrechos."
+      "brief": "La huerta bajo las escaleras, con sus bancales estrechos.",
+      "max_layers": 2
     },
     "veyra_colina_vista": {
       "id": "veyra_colina_vista",
@@ -1032,7 +1048,7 @@
       "night": "La mesa permanece iluminada mientras esperan un envío tardío. Nadie abre cajas para aliviar la espera. Las tablillas pendientes se quedan cerca de la puerta y la archivera puede encontrarlas sin despertar a todo el patio.",
       "rain": "Las fundas mojadas esperan en un travesaño de la entrada. La archivera recibe primero las marcas de procedencia y deja secar el resto; no arrastra la humedad hasta los estantes donde reposan los envíos concluidos.",
       "clear": "",
-      "return": "Reconoces las dos filas de tablillas. La casilla vacía queda entre una nota de salida y otra que guarda la fecha de llegada.",
+      "return": "Las dos filas de tablillas, en orden. Entre una nota de salida y otra de llegada queda una casilla vacía.",
       "examine": {
         "mesa": "Las reparaciones indican que el archivo también recibe objetos pesados.",
         "estantes": "Un envío marcado como detenido permanece pendiente, aunque haya regresado su mensajero."
@@ -1162,7 +1178,7 @@
       "night": "Las ventanas se cierran. Bajo el cobertizo espera un carro para salir temprano, con las cuñas preparadas junto a sus ruedas.",
       "rain": "El polvo se convierte en una costra oscura junto a la puerta. Los separadores mojados se revisan de nuevo porque las cargas no deben apoyarse unas contra otras. El agua desaparece pronto entre piedras del terraplén.",
       "clear": "",
-      "return": "Recuerdas el desnivel de la puerta. Antes de él quedan las cuñas del carro; del otro lado empieza el borde de piedras sueltas.",
+      "return": "El desnivel de la puerta, con las cuñas del carro a un lado y las piedras sueltas al otro.",
       "examine": {
         "separadores": "Un travesaño roto puede hacer moverse toda la carga, aunque las ruedas parezcan sanas.",
         "ventanas": "Las hojas exteriores protegen del polvo sin sellar las viviendas."
@@ -1230,7 +1246,7 @@
       "night": "La calle recoge menos luz que las entradas del norte. Una lámpara se coloca contra el muro nuevo y deja legible la anchura útil. Quienes conocen el bosque hablan bajo mientras esperan que termine una maniobra.",
       "rain": "La corteza mojada pierde trozos sobre el suelo. Los cargadores los retiran para que nadie resbale al girar. El olor de madera húmeda llega antes que las voces de quienes esperan entre las primeras bandas de árboles.",
       "clear": "",
-      "return": "Reconoces la hoja de puerta inutilizada. La carga que sale rodea su borde; desde el bosque llega otra que espera junto a los árboles.",
+      "return": "La hoja vieja de puerta está contra el muro, y las cargas de madera la rodean.",
       "examine": {
         "hoja": "Su bisagra no forma parte de las piedras antiguas. La puerta actual es una adaptación posterior.",
         "ataduras": "Las cuerdas se distribuyen para que el haz no se abra durante el giro."
@@ -1276,12 +1292,12 @@
       "name": "Camino de piedra",
       "region": "veyra",
       "kind": "road",
-      "description": "Un camino de piedras claras que crujen al pisarlas y brillan con el sol. Un arroyo seco lo corta, y los carros lo cruzan por una entrada inclinada, despacio, para no volcar. Al este todavía se ve la puerta de Vaisgard; al oeste, una loma tapa el resto del camino hacia Korven.",
+      "description": "Un camino de piedras claras que crujen al pisarlas y destacan aun con poca luz. Un arroyo seco lo corta, y los carros lo cruzan por una entrada inclinada, despacio, para no volcar. Al este todavía se ve la puerta de Vaisgard; al oeste, una loma tapa el resto del camino hacia Korven.",
       "day": "Una cuadrilla aparta cascajos del giro sin intentar barrer todo el camino. Su conductora deja que el carro pase vacío antes de acercar una carga. El paso seguro se verifica con ruedas, no con una promesa.",
       "night": "Las piedras claras guardan algo de luz cuando la ciudad queda detrás de la loma. Una rueda que llega se oye antes de verse. El arroyo seco parece más ancho porque sus bordes dejan de distinguirse.",
       "rain": "El cauce empieza a reunir agua en pequeñas bolsas separadas. Los cascajos firman cada huella con barro oscuro. La entrada inclinada sigue visible, pero los trabajadores comprueban que el agua no haya socavado su borde.",
       "clear": "",
-      "return": "Reconoces la franja de piedras grandes. Después del cruce viene la loma. Las tablas rotas siguen apartadas del paso.",
+      "return": "La franja de piedras grandes cruza el arroyo seco. Las tablas rotas, apartadas del paso.",
       "examine": {
         "cauce": "La ruta lo cruza de lado para no exigir un descenso brusco a las cargas.",
         "maderas": "Son separadores sustituidos; nadie los utiliza como mojones."
@@ -1448,7 +1464,8 @@
       ],
       "dawn": "La roca permanece fría en la franja inferior. Una lagartija espera donde empieza a tocar el sol.",
       "dusk": "La lagartija se acerca al último borde iluminado. La pluma queda en sombra dentro de su hueco.",
-      "brief": "La cantera vieja y su bloque a medio sacar."
+      "brief": "La cantera vieja y su bloque a medio sacar.",
+      "max_layers": 2
     },
     "veyra_sala_cuidados": {
       "id": "veyra_sala_cuidados",

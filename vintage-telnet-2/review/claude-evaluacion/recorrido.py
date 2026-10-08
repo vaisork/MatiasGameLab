@@ -10,13 +10,15 @@ from server.engine import Engine
 from server import mechanics as m
 
 HOUR = float(sys.argv[1]) if len(sys.argv) > 1 else 10.0
+ROUTE = sys.argv[3] if len(sys.argv) > 3 else 'a'
 OUT = Path(sys.argv[2]) if len(sys.argv) > 2 else None
 content = Content(Path('content'))
 now = [HOUR * 3600.0]
 eng = Engine(content, lambda: now[0], random.Random(11))
 world = {'flags': [], 'deaths': {}, 'version': 0}
-state = m.new_state('humano', 'juramentado', 'home:eval', now[0])
-char = {'id': 1, 'name': 'Prueba', 'species': 'humano', 'class_id': 'juramentado', 'status': 'approved', 'state': state}
+SPECIES = 'dravak' if ROUTE == 'b' else 'humano'
+state = m.new_state(SPECIES, 'juramentado', 'home:eval', now[0])
+char = {'id': 1, 'name': 'Prueba', 'species': SPECIES, 'class_id': 'juramentado', 'status': 'approved', 'state': state}
 state['visits']['home:eval'] = 1
 lines = []
 
@@ -54,7 +56,7 @@ def path(a, b):
     prev = {a: None}; queue = [a]
     for here in queue:
         if here == b: break
-        exits = {'salir': eng.region_for('humano')[1]['settlement']} if here.startswith('home:') else content.rooms[here].get('exits', {})
+        exits = {'salir': eng.region_for(SPECIES)[1]['settlement']} if here.startswith('home:') else content.rooms[here].get('exits', {})
         for d, t in exits.items():
             if t not in prev: prev[t] = (here, d); queue.append(t)
     steps = []
@@ -67,6 +69,15 @@ def go(target):
         if state['combat']: return
 
 journal.consume(eng.snapshot(char, world), False)
+if ROUTE == 'b':
+    # Recorrido de control (no usado para ajustar): Brumak → Paso de las Lajas → sierra → Khariel.
+    lines.append('=== Hogar → Brumak'); go('brumak_centro'); stay(120)
+    for target in ('korven_meseta_relevo', 'hoshai_garganta_oeste', 'hoshai_hombro_lajas', 'hoshai_aprisco_abierto', 'hoshai_collado_pino', 'hoshai_abrigo_pinas'):
+        lines.append(f'=== → {target}'); go(target)
+        if any(a['id'] == 'buscar' and not a.get('disabled') for a in eng.actions(char, world)): act({'id': 'buscar'}, 'buscar alrededor')
+    go('hoshai_pinar_discontinuo'); stay(160); go('khariel_centro'); stay(120)
+    act({'id': 'mirar_direccion', 'target': 'sur'}, 'mirar al sur')
+    text = '\n'.join(lines); (OUT.write_text(text, encoding='utf-8') if OUT else print(text)); sys.exit(0)
 lines.append('=== Hogar → Valdren')
 go('valdren_plaza'); stay(150)
 act({'id': 'mirar_direccion', 'target': 'norte'}, 'mirar al norte')

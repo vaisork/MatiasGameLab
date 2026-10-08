@@ -33,11 +33,19 @@
         ],
         "traces": [
           "Los tallos cortados tienen marcas recientes de dientes.",
-          "Encuentras una huella antigua, pero no basta para saber qué la dejó."
+          "Unas bolitas de excremento redondas junto a una mata: por aquí come una Liebre corta.",
+          "Una pluma parda, ligera, se ha quedado enganchada en un tallo. Es de un Ala parda.",
+          "Debajo de una piedra, un Grillo campana se queda quieto en cuanto la levantas. La vuelves a dejar como estaba.",
+          "En el barro seco hay una huella tan ancha como una rueda de carro, de cuatro dedos gruesos. Es vieja. No es de Cornalomo: la forma es otra.",
+          "Una cerca tiene dos postes tumbados hacia fuera, empujados desde el campo, no desde el camino. Nadie los ha vuelto a levantar.",
+          "Un rastro de tierra removida cruza la parcela en línea recta y se pierde en el prado. Lo que pasó por aquí no se desvió por nada.",
+          "Entre la hierba aparece una cuña de madera vieja, de las que usan los carros. Alguien la perdió hace tiempo."
         ],
         "empty": [
-          "Revisas los surcos. Sólo encuentras tierra y raíces.",
-          "Buscas con cuidado. Esta vez no encuentras nada para llevar."
+          "No encuentras nada fuera de lo normal. Sólo hierba y el viento.",
+          "El suelo está pisado por muchas botas; ningún rastro destaca.",
+          "Revisas las cercas y el borde del camino. Todo está en orden.",
+          "Un Grillo campana calla mientras buscas y vuelve a sonar cuando te alejas."
         ]
       }
     }
@@ -202,7 +210,8 @@
             "noche"
           ]
         }
-      ]
+      ],
+      "max_layers": 4
     },
     "valdren_fragua": {
       "id": "valdren_fragua",
@@ -250,7 +259,7 @@
           "journal": "Un Espinajo de tiza dentro de una taza de la fragua de Daro, firmado con una L."
         }
       ],
-      "return": "Recuerdas el banco que deja libre el centro. Desde el fuego, la franja de suelo limpio llega hasta la mesa y el recipiente de agua.",
+      "return": "El banco deja libre el centro, igual que la primera vez. Desde el fuego, la franja de suelo limpio llega hasta la mesa y el recipiente de agua.",
       "weather": {
         "viento": "El aire entra por el umbral y obliga a Daro a proteger las piezas recién retiradas del hogar. La cuesta devuelve el golpe de una puerta de madera."
       },
@@ -449,7 +458,8 @@
           }
         }
       ],
-      "brief": "El corredor de los huertos, con su canaleta a la sombra del árbol."
+      "brief": "El corredor de los huertos, con su canaleta a la sombra del árbol.",
+      "max_layers": 4
     },
     "valdren_casa_semillas": {
       "id": "valdren_casa_semillas",
@@ -563,7 +573,7 @@
           "journal": "El Espinajo más antiguo de la L está rayado en el brocal del pozo."
         }
       ],
-      "return": "Reconoces la cuerda de reserva en su clavija. La línea de piedras sigue desde el borde seco hasta el último sitio de espera.",
+      "return": "La cuerda de reserva cuelga de su clavija, y la línea de piedras marca dónde esperar turno.",
       "brief": "El pozo de las dos cuerdas, con su fila de piedras para esperar.",
       "states": [
         {
@@ -621,7 +631,8 @@
             "night": "Si te asomas al pozo, un brillo pequeño tiembla en el agua del fondo, y tu respiración vuelve hacia ti más fría."
           }
         }
-      ]
+      ],
+      "max_layers": 4
     },
     "valdren_cobertizo": {
       "id": "valdren_cobertizo",
@@ -780,7 +791,8 @@
       "signals": [],
       "actions": [],
       "return": "Ahora ves la pendiente junto al pozo. El madero que frenó la rueda tiene una marca fresca debajo del borde.",
-      "brief": "El patio inclinado de los carros, con el madero que frena las ruedas."
+      "brief": "El patio inclinado de los carros, con el madero que frena las ruedas.",
+      "max_layers": 4
     },
     "valdren_graneros": {
       "id": "valdren_graneros",
@@ -822,7 +834,7 @@
           ]
         }
       ],
-      "return": "Reconoces la puerta baja del almacén. El agua se reúne delante de ella y deja una línea de barro hasta la esquina tapada.",
+      "return": "Otra vez la puerta baja del almacén: el agua se reúne delante y deja una línea de barro hasta la esquina tapada.",
       "memories": [
         {
           "requires_flags": [
@@ -845,7 +857,8 @@
           }
         }
       ],
-      "brief": "El paso entre los graneros: una puerta en rampa, otra a ras de suelo."
+      "brief": "El paso entre los graneros: una puerta en rampa, otra a ras de suelo.",
+      "max_layers": 4
     },
     "valdren_comedor": {
       "id": "valdren_comedor",
@@ -885,7 +898,7 @@
           "journal": "La taza pequeña espera sobre un paño junto a la ventana. Hay otro asiento a su lado."
         }
       ],
-      "return": "Reconoces las tazas invertidas junto a los sitios reservados. El extremo próximo al fuego tiene una silla libre; del otro llega una conversación baja.",
+      "return": "Las tazas invertidas guardan todavía los sitios reservados. El extremo del fuego tiene una silla libre; del otro llega una conversación baja.",
       "shop": [
         "provision_basica"
       ],
@@ -1046,7 +1059,7 @@
           "journal": "Te presentaste al llegar a Valdren. La entrada queda autorizada."
         }
       ],
-      "return": "Reconoces la curva junto a la acequia. Las rodadas rodean el huerto húmedo y llegan al campo por el borde firme.",
+      "return": "Ya sabes leer esta salida: las rodadas rodean el huerto húmedo y buscan el campo por el borde firme.",
       "wildlife_pool": [
         {
           "creature": "espinajo_rastrojo",
@@ -1310,7 +1323,7 @@
         }
       ],
       "actions": [],
-      "return": "Reconoces la tierra nueva y la banda de tallos antiguos. El sendero rodea la depresión antes de alcanzar el cobertizo que se ve al otro lado.",
+      "return": "Tierra nueva a un lado, tallos viejos al otro. El sendero rodea la depresión antes de llegar al cobertizo del otro lado.",
       "dawn": "La tierra mantiene frío bajo la superficie. Una agricultora espera junto al sendero antes de entrar a los surcos nuevos; las hojas conservan gotas sin corriente.",
       "dusk": "Las herramientas vuelven hacia el pueblo por la franja sin sembrar. En los tallos antiguos el movimiento bajo continúa cuando los pasos humanos ya se alejan.",
       "absent_creatures": {
@@ -1346,7 +1359,8 @@
             "noche"
           ]
         }
-      ]
+      ],
+      "max_layers": 2
     },
     "edran_lindero": {
       "id": "edran_lindero",
@@ -1492,7 +1506,7 @@
           "journal": "Otro Espinajo con una L, escondido en la pata del banco del cobertizo de las estacas."
         }
       ],
-      "return": "Recuerdas la estaca numerada que faltaba en la pared. El hueco sigue entre dos herramientas con barro seco en el mango.",
+      "return": "Recuerdas la estaca numerada que faltaba en la pared. El hueco está entre dos herramientas con barro seco en el mango.",
       "memories": [
         {
           "requires_flags": [
@@ -1556,7 +1570,8 @@
         },
         "Cae una hoja, despacio, dando vueltas, hasta posarse en el banco de tierra.",
         "El viento hace crujir las tres copas a la vez, como si hablaran entre ellas."
-      ]
+      ],
+      "max_layers": 2
     },
     "edran_camino_carros": {
       "id": "edran_camino_carros",
@@ -1939,7 +1954,7 @@
       "npcs": [],
       "signals": [],
       "actions": [],
-      "return": "Has cruzado del cultivo cercano a una ruta mantenida entre lugares. Detrás siguen las últimas cercas; delante, las reparaciones del cauce y la ladera conducen hacia Veyra.",
+      "return": "Has cruzado del cultivo cercano a una ruta mantenida entre lugares. Al sur quedan las últimas cercas; al norte, las reparaciones del cauce y la ladera conducen hacia Veyra.",
       "dawn": "Las piedras del cauce aparecen una a una con la luz. Un carro espera arriba mientras su conductor comprueba el primer apoyo sin entrar al agua.",
       "dusk": "Quienes vienen de Veyra reducen el paso antes del cauce. El hito conserva su contorno cuando las últimas parcelas se confunden hacia Valdren.",
       "brief": "El paso hacia Veyra: poste, losa y tres piedras en el arroyo.",
@@ -2033,11 +2048,12 @@
         }
       ],
       "actions": [],
-      "return": "Recuerdas el sendero entre las dos bandas de hierba. Fuera de él, unas huellas profundas hunden los tallos hacia el claro del prado.",
+      "return": "El sendero pasa entre las dos bandas de hierba. Fuera de él, unas huellas profundas hunden los tallos hacia el claro del prado.",
       "weather": {
         "viento": "Las hierbas altas se inclinan juntas salvo donde el peso del Cornalomo las mantiene aplastadas. La dirección del aire hace más visible ese espacio ocupado."
       },
-      "brief": "El prado de las marcas anchas."
+      "brief": "El prado de las marcas anchas.",
+      "max_layers": 2
     },
     "edran_linde_piedra": {
       "id": "edran_linde_piedra",
@@ -2061,7 +2077,7 @@
       "npcs": [],
       "signals": [],
       "actions": [],
-      "return": "Recuerdas dónde terminan las rodadas. En la explanada espera el soporte estrecho que probaron antes de pasar entre los lomos de roca.",
+      "return": "Aquí terminan las rodadas, ya lo sabes. En la explanada espera el soporte estrecho que se usa para pasar entre los lomos de roca.",
       "wildlife_pool": [
         {
           "creature": "espinajo_rastrojo",
@@ -2155,7 +2171,7 @@
       "npcs": [],
       "signals": [],
       "actions": [],
-      "return": "Recuerdas la tabla de espera en el lado alto. Los juncos rozan los apoyos del puente; enfrente vuelve a verse la subida hacia las plataformas.",
+      "return": "La tabla de espera del lado alto, gastada por tantas cargas. Los juncos rozan los apoyos del puente.",
       "weather": {
         "viento": "Las cuerdas de los recipientes se mueven antes de que el viento se note en las tablas. El lado alto permite detener una carga fuera del centro del puente."
       },
@@ -2191,7 +2207,7 @@
       "npcs": [],
       "signals": [],
       "actions": [],
-      "return": "Reconoces el tejado viejo por su línea quebrada. La casa que añadieron al lado queda un peldaño más alta, camino de la fragua.",
+      "return": "La línea quebrada del tejado viejo, en su pared de siempre. La casa de al lado queda un peldaño más alta, camino de la fragua.",
       "brief": "La calle empinada que sube de la plaza a la fragua.",
       "states": [
         {
@@ -2249,7 +2265,8 @@
             "night": "El gato del tejado ha bajado por fin a la calle y se ha sentado en el escalón más tibio. Te mira pasar sin moverse."
           }
         }
-      ]
+      ],
+      "max_layers": 4
     },
     "valdren_patio_ropa": {
       "id": "valdren_patio_ropa",
@@ -2274,7 +2291,8 @@
       "signals": [],
       "actions": [],
       "return": "Las dos alturas de cuerda te permiten distinguir usos sin tocar nada. El recorrido junto a la pared sigue libre aunque el patio esté lleno de trabajo.",
-      "brief": "El patio de ropa tendida, con el paso seco junto a la pared."
+      "brief": "El patio de ropa tendida, con el paso seco junto a la pared.",
+      "max_layers": 4
     },
     "valdren_cuidado": {
       "id": "valdren_cuidado",
@@ -2299,7 +2317,7 @@
       ],
       "signals": [],
       "actions": [],
-      "return": "Reconoces el asiento de espera y la mesa limpia. Sena guarda paños secos junto a la ventana, separados del lugar donde se dejan las capas del camino.",
+      "return": "El asiento de espera y la mesa limpia, como la otra vez. Sena guarda paños secos junto a la ventana, lejos de las capas del camino.",
       "recovery_service": true,
       "buyer": "edran_sena",
       "brief": "La casa de cuidados: cama corta, paños limpios y agua tapada."
@@ -2327,7 +2345,7 @@
       "npcs": [],
       "signals": [],
       "actions": [],
-      "return": "Recuerdas la marca del nivel en el poste. El agua entra junto al pasto y sale por la abertura del lado opuesto, donde una hoja gira antes de seguir.",
+      "return": "En el poste, la marca del nivel. El agua entra junto al pasto y sale por el lado opuesto, donde una hoja gira antes de seguir.",
       "focus": [
         "weather",
         "activity",
@@ -2391,7 +2409,7 @@
           "journal": "Reconozco la entrada del Mordelinde y el espacio que necesita para volver a ella."
         }
       ],
-      "return": "El barro del centro sigue igual de blando. Desde el borde no hace falta pisarlo.",
+      "return": "El barro del centro, igual de blando. Desde el borde no hace falta pisarlo.",
       "memories": [
         {
           "requires_flags": [
@@ -2400,7 +2418,8 @@
           "text": "La raíz hueca señala la entrada que observaste desde el borde alto. Puedes dejarle su espacio sin apartarte del sendero."
         }
       ],
-      "brief": "La hondonada húmeda, vista desde las piedras del borde."
+      "brief": "La hondonada húmeda, vista desde las piedras del borde.",
+      "max_layers": 2
     },
     "edran_parcela_vieja": {
       "id": "edran_parcela_vieja",
@@ -2442,7 +2461,8 @@
           "persistent_trace": false
         }
       ],
-      "brief": "La parcela vieja, con su rincón seco para sentarse."
+      "brief": "La parcela vieja, con su rincón seco para sentarse.",
+      "max_layers": 2
     },
     "edran_zanja_antigua": {
       "id": "edran_zanja_antigua",
@@ -2467,7 +2487,7 @@
       "npcs": [],
       "signals": [],
       "actions": [],
-      "return": "Recuerdas el borde recto de la zanja. Su entrada sigue apisonada; al otro lado han crecido plantas entre las paredes de tierra.",
+      "return": "El borde recto de la zanja no ha cambiado. Su entrada está apisonada; entre las paredes de tierra han crecido plantas.",
       "brief": "La zanja seca, con la escalera del canal cubierto."
     },
     "edran_sauces": {
@@ -2584,7 +2604,7 @@
       "npcs": [],
       "signals": [],
       "actions": [],
-      "return": "Reconoces el hueco entre las lomas por donde viste los muros. La franja de piedra vuelve a ocultarse al acercarte al borde de la ventana.",
+      "return": "Reconoces el hueco entre las lomas por donde viste los muros. La franja de piedra vuelve a ocultarse si te acercas al borde.",
       "weather": {
         "viento": "El aire despeja parte de la ladera y vuelve a ocultarla con tierra fina. Los muros mantienen su distancia; el camino cercano sigue dando una referencia mejor."
       },
@@ -2643,7 +2663,7 @@
       "npcs": [],
       "signals": [],
       "actions": [],
-      "return": "Reconoces los tejados desde este lado del campo. Al acercarte se oye la fragua; el sendero entra entre la cerca baja y las últimas casas.",
+      "return": "Desde aquí ya se distinguen los tejados de Valdren, y se oye la fragua entre la cerca baja y las últimas casas.",
       "wildlife_pool": [
         {
           "creature": "espinajo_rastrojo",
@@ -2768,7 +2788,7 @@
       "night": "La taza del refugio roza una vez la piedra. El ruido viene del sur; al oeste queda la cuerda de regreso.",
       "rain": "Una línea de hojas avanza hacia la compuerta. El escalón del refugio queda por encima del agua que las arrastra.",
       "clear": "",
-      "return": "Reconoces el escalón del sur y la vuelta hacia la cuerda. Las huellas no señalan todas el mismo destino.",
+      "return": "El escalón seco y la cuerda de vuelta, en su sitio. Las huellas del barro no van todas al mismo lugar.",
       "examine": {
         "huellas": "Las suelas dejaron barro junto al escalón. No son rastros de garras.",
         "escalón": "Sube hacia el refugio y mantiene la manta separada del agua del canal."

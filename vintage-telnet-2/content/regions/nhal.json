@@ -36,11 +36,19 @@
         ],
         "traces": [
           "La corteza tiene un arañazo reciente. Unos granos quedaron junto a la raíz.",
-          "Encuentras una huella antigua, pero no basta para saber qué la dejó."
+          "Una Ratona de hoja se escabulle entre la hojarasca con una semilla más grande que su cabeza.",
+          "Un Pico sordo picotea un tronco sin hacer ningún ruido. Te mira y sigue.",
+          "Unas hojas brillan un momento cuando les da un rayo de luz, y se apagan cuando pasa.",
+          "Un árbol joven está doblado hasta el suelo, como si algo enorme se hubiera apoyado en él para pasar. Las hojas de arriba ni siquiera se han roto.",
+          "Hay una franja de bosque donde no cantan los pájaros. Cuando sales de ella, vuelven a cantar.",
+          "Una marca tallada en la corteza, muy antigua, medio tapada por la madera nueva: dos líneas y un círculo.",
+          "Un recipiente de madera viejo, olvidado entre las raíces, lleno de agua de lluvia."
         ],
         "empty": [
-          "Revisas bajo la hojarasca. Sólo aparecen hojas húmedas y tierra.",
-          "Buscas con cuidado. Esta vez no encuentras nada para llevar."
+          "Sólo hojas, raíces y sombra.",
+          "La hojarasca no guarda ninguna huella clara.",
+          "Revisas los huecos de las raíces. Están vacíos.",
+          "Durante un momento no se oye nada. Luego, el bosque vuelve a sonar."
         ]
       }
     }
@@ -56,7 +64,7 @@
       "night": "La luz de la cuenca permanece entre raíces occidentales y desaparece al avanzar hacia las copas. La marca cercana necesita un farol dirigido al suelo. Las copas dejan caer sombras enteras sobre la senda interior.",
       "rain": "Las gotas que llegaron de la cuenca se vuelven caídas lentas de hojas altas. La tierra se oscurece por manchas, no de una vez. La recolectora guarda lo seco bajo una raíz antes de seguir trabajando.",
       "clear": "",
-      "return": "Reconoces las raíces que dejan entrar luz de la cuenca. Reconoces la marca del umbral y la dirección de salida. Los sonidos que llegan de más adentro conservan distancias que aún no puedes situar.",
+      "return": "Entre las dos raíces del umbral entra la luz de la cuenca. De más adentro llegan sonidos que todavía no sabes situar.",
       "examine": {
         "marca": "Está en madera caída, separada del árbol vivo.",
         "raíces": "Enmarcan el paso y conservan suelo; dejan una abertura bajo el tronco."
@@ -228,7 +236,7 @@
       "night": "La nota recibe una luz breve y vuelve a cubrirse. Los huecos laterales quedan oscuros; detrás, una viajera pide que la esperen.",
       "rain": "Las raíces desvían gotas hacia la franja central y humedecen un apoyo que ayer estaba seco. La repisa protege la nota por arriba, pero necesita que se retire agua del borde. La lectura del suelo precede a la del mensaje.",
       "clear": "",
-      "return": "Recuerdas la repisa donde dejaron la nota. La raíz alta sigue separando el paso de los huecos oscuros de abajo.",
+      "return": "La nota descansa en su repisa. La raíz alta separa el paso de los huecos oscuros de abajo.",
       "examine": {
         "repisa": "Su nota tiene procedencia y condición de revisión.",
         "huecos": "Entre las raíces se ven entradas bajas. Las hojas tapan el suelo del fondo."
@@ -322,7 +330,7 @@
       "night": "La corriente se oye antes de distinguir el corte del terreno. Las tablas conservan continuidad bajo el farol y los apoyos laterales quedan oscuros. Un golpe sobre la piedra de aviso se extingue entre ambos troncos.",
       "rain": "El cauce empieza a reunir hojas que un vecino aparta desde el apoyo exterior. La tabla central recibe barro de las cargas. Revisar paso y agua son tareas relacionadas, pero ninguna se resuelve fingiendo que la otra no existe.",
       "clear": "",
-      "return": "Reconoces la piedra de aviso y la tabla gastada del centro. Bajo ella el cauce sigue entre los dos troncos, más estrecho del lado de las raíces.",
+      "return": "La piedra de aviso y la tabla gastada del centro, como siempre. Bajo ellas, el cauce corre entre los dos troncos.",
       "examine": {
         "apoyos": "Se revisa tierra debajo sin clavar la estructura en los árboles vivos.",
         "aviso": "Anuncia una carga próxima; no declara que toda la ruta esté despejada."
@@ -347,7 +355,7 @@
       "night": "Los golpes de madera cesan y la senda recupera otros sonidos pequeños. La corteza protegida sigue mostrando una marca cercana. Los helechos vuelven poco legibles sus entradas laterales, aunque la franja elevada continúe hacia el pueblo.",
       "rain": "Los helechos devuelven agua sobre las mangas al rozarlos. La aprendiz aparta hojas que cubrieron una raíz de paso y deja intacto el resto. El techo mínimo conserva seca la marca que confirma la continuación oriental.",
       "clear": "",
-      "return": "Reconoces la pequeña cubierta donde empezaste a oír el taller. Si hoy no hay golpes, se oyen roces entre los helechos.",
+      "return": "En la pequeña cubierta del camino se oye el taller, si hoy trabajan. Si no, sólo el roce de los helechos.",
       "examine": {
         "helechos": "Algunos se quebraron junto a la anchura de una carga, no en una entrada de animal grande.",
         "corteza": "La marca permanece cerca del apoyo útil y fuera de tallos que cambian de posición."
@@ -602,7 +610,8 @@
         },
         "Un animal pequeño cruza corriendo por una raíz y se mete en un hueco.",
         "Desde el patio del relato llega una carcajada, y luego alguien manda callar para seguir escuchando."
-      ]
+      ],
+      "max_layers": 4
     },
     "nhal_taller_cortezas": {
       "id": "nhal_taller_cortezas",
@@ -614,7 +623,7 @@
       "night": "El paño queda sobre una rueda quieta. Una casa cercana devuelve una tos y luego el cierre de una puerta.",
       "rain": "Las piezas del exterior esperan en el secadero y la artesana conserva un banco limpio para recipientes. El agua entra por hojas cercanas, así que mueve una lámpara antes de acercar su mano. La rutina exige pequeñas correcciones concretas.",
       "clear": "",
-      "return": "Reconoces las marcas de cuchillo del banco. Los recipientes terminados dejan huecos entre las piezas que todavía esperan reparación.",
+      "return": "Las marcas de cuchillo del banco, de tantos días de trabajo. Entre las piezas que esperan arreglo hay huecos de recipientes ya terminados.",
       "examine": {
         "bancos": "La separación mantiene polvo de cubiertas lejos de recipientes.",
         "tablas": "Las tablas dejan huecos alrededor de las raíces; dos bordes nuevos rodean la más gruesa."
@@ -708,7 +717,7 @@
       "night": "La encargada recoge las piezas que necesitan otro día. El recipiente queda bajo la cubierta; en el banco donde estuvo el niño se apagan las últimas manchas de luz.",
       "rain": "La humedad obliga a separar más las piezas y a cubrir sólo la zona que recibe goteo. La encargada cambia el orden de devolución. Un objeto que podía secarse hoy quizá necesite esperar sin que nadie haya incumplido su cuidado.",
       "clear": "",
-      "return": "Recuerdas el apoyo donde giraron el juguete. En la madera queda su marca redonda, junto a una pieza que espera secarse.",
+      "return": "En el apoyo donde giraban el juguete queda una marca redonda, junto a otra pieza que espera secarse.",
       "examine": {
         "juguete": "El corte reparado necesita secarse antes de volver a moverse.",
         "apoyos": "Pueden trasladarse para seguir la franja de luz sin cambiar la senda pública."
@@ -869,7 +878,8 @@
       ],
       "dawn": "La mesa recibe las primeras hojas húmedas. La vendedora limpia tierra del pie de una seta.",
       "dusk": "El cuenco de recortes queda bajo la mesa. Dos vecinas comparan las setas que llevarán a casa.",
-      "brief": "El mercado de Velmora y sus cestas bajo cubierta."
+      "brief": "El mercado de Velmora y sus cestas bajo cubierta.",
+      "max_layers": 4
     },
     "nhal_cocina_raices": {
       "id": "nhal_cocina_raices",
@@ -881,7 +891,7 @@
       "night": "El caldo deja olor cerca de la entrada. Se oye recoger una cuchara y soplar las brasas; una cáscara cruje bajo la mesa.",
       "rain": "Las prendas mojadas esperan fuera de la mesa y el techo se ajusta para sacar humo sin recibir todo el agua. La cocinera cambia el banco del vecino que cose. La lluvia modifica también cómo se comparte un espacio seco.",
       "clear": "",
-      "return": "Recuerdas el asiento junto a la raíz. En el borde de la mesa queda la marca redonda del cuenco que acercaron mientras probaban el caldo.",
+      "return": "En el borde de la mesa queda la marca redonda de un cuenco. El asiento junto a la raíz está libre.",
       "examine": {
         "techo": "La abertura saca humo y se ajusta cuando entra agua.",
         "mesas": "Separan tierra de alimentos y conservan sitio para recibir a quien llega."
@@ -1067,7 +1077,8 @@
           }
         }
       ],
-      "brief": "El patio de reuniones, donde se cuentan los recuerdos."
+      "brief": "El patio de reuniones, donde se cuentan los recuerdos.",
+      "max_layers": 4
     },
     "nhal_calle_hogares": {
       "id": "nhal_calle_hogares",
@@ -1079,7 +1090,7 @@
       "night": "Una puerta permanece abierta para una visita esperada. La casa vecina apaga su lámpara; al fondo otra luz se mueve sobre una mesa.",
       "rain": "Los visitantes esperan bajo aleros pequeños y los recipientes se acercan a las puertas. Una vecina ajusta su lámpara al brillo de la madera mojada. Los visitantes dejan libres las puertas y esperan bajo el alero hasta que alguien los llama.",
       "clear": "",
-      "return": "Reconoces el umbral donde esperaste. La voz de aquella casa vuelve a cruzar la calle; delante de la entrada queda el banco estrecho.",
+      "return": "La voz de aquella casa vuelve a cruzar la calle. Delante de su entrada, el banco estrecho donde se espera.",
       "examine": {
         "umbrales": "Ofrecen lugar de espera fuera de viviendas privadas.",
         "luces": "Se orientan a tareas y pueden cambiar aunque la casa siga ocupada."
@@ -1149,7 +1160,8 @@
             "night": "Las lámparas de las casas se apagan una a una, de abajo arriba, hasta que sólo queda encendida la más alta, como una estrella pequeña."
           }
         }
-      ]
+      ],
+      "max_layers": 4
     },
     "nhal_claro_silencio": {
       "id": "nhal_claro_silencio",
@@ -1283,19 +1295,20 @@
         }
       ],
       "actions": [],
-      "brief": "El cauce bajo los árboles."
+      "brief": "El cauce bajo los árboles.",
+      "max_layers": 2
     },
     "nhal_ribera_relevo": {
       "id": "nhal_ribera_relevo",
       "name": "Paso hacia Lethra",
       "region": "nhal",
       "kind": "road",
-      "description": "Árboles y raíces acompañan el canal hasta una plataforma común, donde empieza, al sur, el tramo de Lethra; al norte queda el camino a Velmora. Dos notas comparan los apoyos de madera y el nivel del agua de los dos lados. La sombra del bosque alcanza parte del canal, y la otra parte brilla al sol.",
+      "description": "Árboles y raíces acompañan el canal hasta una plataforma común, donde empieza, al sur, el tramo de Lethra; al norte queda el camino a Velmora. Dos notas comparan los apoyos de madera y el nivel del agua de los dos lados. La sombra del bosque alcanza parte del canal, y la otra parte queda abierta al cielo.",
       "day": "Una mensajera pregunta por el nivel del agua en Lethra. Su compañero aparta hojas del apoyo mientras ella revisa el borde de la plataforma.",
       "night": "Las notas están cubiertas y una luz baja queda en la plataforma. La mensajera anota su llegada; el tramo oscuro tendrá que esperar a ser revisado.",
       "rain": "La lluvia borra algunos reflejos y vuelve más útil comparar las notas del nivel. Las raíces reciben agua desde arriba, distinta de la que circula por el canal. El mantenimiento necesita ver ambos movimientos para decidir dónde esperar.",
       "clear": "",
-      "return": "Reconoces las dos notas, una del humedal y otra del bosque. Las marcas siguen indicando qué apoyo revisó cada persona.",
+      "return": "Allí están las dos notas, una del humedal y otra del bosque, cada una con las marcas de quien revisó su apoyo.",
       "examine": {
         "notas": "Cada una mantiene autor, lado de llegada y condición de agua.",
         "plataforma": "El apoyo se revisa desde la ribera; no permite cruzar directamente el canal."
@@ -1335,7 +1348,7 @@
       "night": "Las luces de las casas se pierden entre árboles, más abajo. El farol ilumina la raíz del descanso y se apaga antes del borde cubierto.",
       "rain": "El agua baja por la franja empinada y deposita hojas sobre el apoyo inferior. La viajera cambia dónde espera mientras revisa su cubierta. El bosque conserva sombra, pero la pendiente empieza a decidir cómo se mueve la lluvia.",
       "clear": "",
-      "return": "Recuerdas el descanso donde pasó la carga. Camino de las casas, los árboles vuelven a juntarse; detrás de los primeros troncos se ven luces bajas.",
+      "return": "Recuerdas el descanso de raíces donde se deja pasar la carga.",
       "examine": {
         "borde": "Las hojas cubren una caída corta que no forma parte del descanso.",
         "raíces": "El apoyo interior mantiene espacio para dejar pasar una carga."
@@ -1396,7 +1409,7 @@
       "night": "La vista de ladera desaparece y los troncos cercanos conservan referencias con luz baja. El viajero guarda sus notas de altura. La roca sigue ofreciendo apoyo, aunque hoy su principal utilidad sea esperar a otra persona.",
       "rain": "El agua corre sobre la roca y reúne hojas del dosel en la parte exterior. La cuidadora mantiene libre el apoyo interior. La observación de la ladera cambia mientras las marcas cercanas todavía pueden comprobarse.",
       "clear": "",
-      "return": "Reconoces el apoyo de la roca y los árboles que tapaban la ladera. El relevo sigue al norte; por el sur vuelves a bajar hacia las casas.",
+      "return": "Desde la roca, los árboles vuelven a tapar parte de la ladera. Al norte, el relevo; al sur, las casas.",
       "examine": {
         "apoyo": "El interior conserva suelo fuera de la franja que recibe hojas arrastradas.",
         "ladera": "Se ve una sección, no el camino completo hasta Khariel."
@@ -1421,7 +1434,7 @@
       "night": "Entre los dos árboles se oye moverse una rama. La talla del relevo recoge una luz pequeña; las notas permanecen bajo la cubierta.",
       "rain": "Las notas se abren de una en una para mantenerlas secas. Una habla de nieve en Hoshai; aquí las gotas caen entre las raíces.",
       "clear": "",
-      "return": "Reconoces el cordel y la cubierta de las notas. Al bajar hacia el sur vuelven a juntarse las raíces y las hojas sobre la senda.",
+      "return": "El cordel y la cubierta de las notas, en su sitio. Al sur, las raíces y las hojas vuelven a cerrarse sobre la senda.",
       "examine": {
         "cuerda": "Registra disposición de cargas y se mantiene fuera de la ruta.",
         "fundas": "Cada funda lleva el nombre de un tramo y la hora de la última observación."
@@ -1506,7 +1519,7 @@
       "night": "La artesana guarda la madera de trabajo y recibe una conversación breve en el banco exterior. La puerta no queda abierta por obligación. Si la visita continúa, alguien deberá volver al patio con lo que realmente escuchó.",
       "rain": "El recipiente se acerca al interior del umbral y el banco queda bajo el alero. La artesana señala el raspón; una gota toca el borde antes de que termine de contarlo.",
       "clear": "",
-      "return": "Reconoces el raspón del apoyo junto a la entrada. La voz de Elin llega desde el lado del recipiente; el patio del relato queda detrás de la senda.",
+      "return": "Junto a la entrada, el raspón del apoyo. La voz de Elin llega desde el lado del recipiente.",
       "examine": {
         "raspón": "El recipiente golpeó un apoyo durante una entrega de comida.",
         "banco": "Permite una visita sin cruzar la puerta privada de la casa."
@@ -1622,7 +1635,7 @@
       "night": "Las semillas pierden detalle bajo las hojas. La observadora vuelve por el sendero occidental; desde el refugio llega un crujido breve.",
       "rain": "Las semillas se juntan en una depresión y el animal busca refugio algo más alto. La lluvia mueve parte del musgo adherido a las hojas. Observar el cambio no vuelve inútil lo aprendido sobre su transporte de alimento.",
       "clear": "",
-      "return": "Reconoces el rincón por el pelo adherido a la raíz. Algunas semillas quedan ahora sobre una hoja distinta, fuera del hueco donde miraste antes.",
+      "return": "Algunas semillas están ahora sobre otra hoja, fuera del hueco donde miraste antes. Alguien ha vuelto a comer aquí.",
       "examine": {
         "pelo": "Pelo áspero con musgo y hojas adheridas, compatible con una fauna pequeña del bosque.",
         "semillas": "Algunas fueron transportadas por animales y otras se reunieron con agua.",
@@ -1671,7 +1684,8 @@
           "journal": "Viste la figura de corteza del sobrino de Desi: entre las semillas de verdad hay una figura de corteza con f…"
         }
       ],
-      "brief": "El rincón de semillas."
+      "brief": "El rincón de semillas.",
+      "max_layers": 2
     },
     "nhal_raiz_marcada": {
       "id": "nhal_raiz_marcada",
@@ -1683,7 +1697,7 @@
       "night": "La corteza rota pierde su color claro en la oscuridad. La cuidadora guarda el dibujo. Al sur aún se distingue la senda de regreso.",
       "rain": "El agua oscurece corteza nueva y vieja, dejando más útil la comparación de hojas aplastadas. La cuidadora registra esa limitación junto al dibujo. La lluvia no borra todos los indicios ni autoriza conclusiones más amplias.",
       "clear": "",
-      "return": "Reconoces la tierra firme junto a la raíz. Puedes mirar las marcas desde allí sin pisar las hojas aplastadas.",
+      "return": "Desde la tierra firme junto a la raíz se miran las marcas sin pisarlas.",
       "examine": {
         "corteza": {
           "text": "Las marcas tienen altura y anchura mayores que roces del animal pequeño.",
@@ -1742,7 +1756,8 @@
           "text": "El dibujo incluye la condición de tu observación. La siguiente persona puede comparar desde suelo firme sin recibir una identidad de criatura que nunca se avistó."
         }
       ],
-      "brief": "La raíz marcada, con la corteza rota."
+      "brief": "La raíz marcada, con la corteza rota.",
+      "max_layers": 2
     },
     "nhal_sala_cuidados": {
       "id": "nhal_sala_cuidados",

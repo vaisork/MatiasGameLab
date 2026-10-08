@@ -36,11 +36,19 @@
         ],
         "traces": [
           "Un agujero junto al agua tiene hojas recién arrastradas hacia dentro.",
-          "Encuentras una huella antigua, pero no basta para saber qué la dejó."
+          "Una Aguja azul se queda suspendida en el aire sobre el agua, quieta, y luego sale disparada.",
+          "Huellas finas y largas en el barro, de un Picojunco que buscaba comida.",
+          "Un Caracol liso sube por un junco, muy despacio, dejando un hilo brillante.",
+          "Una franja de juncos está aplastada de golpe, como si algo largo y pesado hubiera salido del agua y vuelto a entrar. El barro todavía está mojado.",
+          "Un poste de amarre está doblado hacia el canal. La madera está sana: algo tiró de él desde el agua.",
+          "En el agua flota una cuerda cortada, con los bordes deshilachados, no limpios como de cuchillo.",
+          "Una barca vieja, hundida a medias entre las raíces. Alguien rascó su nombre del casco."
         ],
         "empty": [
-          "Apartas hojas mojadas. El agua ha cubierto cualquier objeto pequeño.",
-          "Buscas con cuidado. Esta vez no encuentras nada para llevar."
+          "No encuentras nada: sólo barro, agua y juncos.",
+          "El agua tapa cualquier huella al momento.",
+          "No encuentras nada fuera de lugar en la orilla.",
+          "Una onda pequeña en el agua, y ya está."
         ]
       }
     }
@@ -56,7 +64,7 @@
       "night": "Las hierbas ocultan el agua antes que las estrellas desaparezcan sobre el cauce. La recolectora ya se marchó y dejó el apoyo vacío. Un chapoteo lejano se propaga sin señalar exactamente dónde comienza la otra orilla.",
       "rain": "La ribera mantiene una franja firme mientras las pequeñas bajadas se llenan de agua. Las plantas altas se inclinan con el peso de las gotas. El olor del barro sube antes de que cambie la anchura del camino.",
       "clear": "",
-      "return": "Reconoces el apoyo de la recolectora junto a la bajada. La ruta alta pasa sobre el barro; junto a la madera vacía queda el borde redondo de un recipiente.",
+      "return": "Junto a la bajada, el apoyo de la recolectora guarda el borde redondo de un recipiente marcado en la madera.",
       "examine": {
         "plantas": "Los tallos cortados conservan raíces para volver a crecer.",
         "ribera": "La senda ocupa el lado alto; las bajadas no continúan hacia Narevia."
@@ -98,7 +106,7 @@
       "night": "Las varas marcan el paso sobre hojas oscuras. Un farol ilumina la siguiente; fuera de ese círculo se oye un insecto y el roce del agua.",
       "rain": "Las hojas flotan sobre depresiones pequeñas y el camino firme queda más estrecho. Una viajera prueba el apoyo junto a las raíces antes de cargar. La rana salta bajo las hojas y deja un círculo de agua que se deshace entre raíces.",
       "clear": "",
-      "return": "Reconoces las dos varas junto a la raíz. El cauce pasa debajo; entre ellas queda una franja estrecha de tierra más alta.",
+      "return": "Las dos varas marcan la franja de tierra más alta, la única que no se hunde.",
       "examine": {
         "varas": "Señalan anchura de trabajo, no la profundidad de cada charco.",
         "rana": "La rana queda inmóvil entre dos hojas mojadas. La garganta se mueve una vez."
@@ -140,7 +148,7 @@
       "night": "Los juncos tapan el agua. Al oeste, la tierra firme señala el paso al banco de barro. Un ave llama entre los tallos; no alcanzas a verla.",
       "rain": "Los juncos pesan más y se inclinan sobre la franja de tránsito. La artesana recoge su haz alto para que no arrastre barro. Las aberturas del viento ya no muestran lo mismo, aunque la primera tabla siga al sur.",
       "clear": "",
-      "return": "Reconoces la abertura del banco por los tallos cortados. El ave que oíste no se ve; desde el otro borde llega el roce de una fibra contra otra.",
+      "return": "La abertura de los tallos cortados lleva otra vez al banco de barro. Desde el otro borde llega el roce de una fibra contra otra.",
       "examine": {
         "tallos": "Los secos se recogen sin dejar una entrada ancha hacia el canal.",
         "abertura": "El banco occidental termina sobre barro firme; no cruza al otro lado del agua."
@@ -183,7 +191,7 @@
       "night": "Las uniones interrumpen el reflejo del farol sobre las tablas. El barro queda negro debajo y no permite medir profundidad. El carpintero guardó sus herramientas, pero la vara sigue indicando dónde puede empezar una revisión prudente.",
       "rain": "El agua resbala por las juntas y deja una película sobre la madera. El carpintero levanta la tabla de repuesto del barro y la acerca a la unión gastada.",
       "clear": "",
-      "return": "Reconoces la transición entre suelo y madera por el primer travesaño visible. La unión gastada queda después de ese apoyo y conserva su sonido al pisarse. La ribera firme se ve al otro extremo, entre los primeros canales.",
+      "return": "Ya conoces el sonido de la unión gastada al pisarla.",
       "examine": {
         "unión": "El desgaste se concentra donde termina un travesaño.",
         "vara": "Sirve para probar un apoyo desde tierra firme, sin caminar al azar sobre cada tabla."
@@ -225,7 +233,7 @@
       "night": "La corriente rápida conserva un rumor y el remanso devuelve reflejos más quietos. Las plantas dejan de mostrar su inclinación. Una luz sobre la plataforma ayuda a ver lo cercano, pero no descubre el fondo de ninguno de los canales.",
       "rain": "Las gotas dibujan movimiento en el remanso y dificultan comparar la hoja con su giro habitual. La observadora mira el borde de plantas en vez de seguir una superficie agitada. El canal rápido reúne agua primero.",
       "clear": "",
-      "return": "Reconoces el remanso junto a la lengua de barro. La hoja gira en su salida; más allá, la corriente rápida pasa detrás de la plataforma.",
+      "return": "En la salida del remanso gira una hoja; más allá corre el canal rápido.",
       "examine": {
         "hoja": "Su giro muestra conexión entre aguas, no profundidad del fondo.",
         "plantas": "La inclinación del borde conserva una referencia cuando la superficie recibe lluvia."
@@ -256,7 +264,7 @@
       "night": "Los apoyos vacíos se distinguen por los travesaños bajo el farol. El olor de comida llega desde más lejos, junto a la curva. Las voces domésticas aparecen antes de que puedan verse los primeros hogares de Narevia.",
       "rain": "Los vecinos levantan sus recipientes al apoyo más alto. Las envolturas siguen cerradas; una mujer sostiene el último cuenco hasta que le acercan una tabla seca.",
       "clear": "",
-      "return": "Recuerdas el apoyo alto donde dejaron el recipiente. Después de la curva asoma la baranda de la pasarela; una franja de agua queda entre ambos.",
+      "return": "Recuerdas el apoyo alto donde se dejan los recipientes. La baranda de la pasarela asoma tras la curva.",
       "examine": {
         "apoyos": "Se elevan para proteger cargas, no para secar por completo la ribera.",
         "envolturas": "Las dobles conservan comida que todavía no debe abrirse."
@@ -298,7 +306,7 @@
       "night": "Los postes reflejan fragmentos de farol y pueden parecer una línea más directa que la pasarela. La curva se sigue por tablas y uniones. El techo del embarcadero deja de ayudar a leer cada apoyo cercano.",
       "rain": "El agua golpea los postes y devuelve pequeñas salpicaduras hacia la baranda. Las plantas bajo la curva retienen restos que llegan del remanso. Los viajeros miran si alguna rama alcanzó una unión antes de pisarla.",
       "clear": "",
-      "return": "Recuerdas el ensanchamiento donde dejaron pasar la carga. La orilla de enfrente está cerca; las tablas siguen la curva larga hacia su lado sur.",
+      "return": "La orilla de enfrente parece cerca, pero la curva es igual de larga.",
       "examine": {
         "curva": "Evita el centro del remanso sin prometer que su borde sea uniforme.",
         "baranda": "Protege el lado abierto; no existe para sujetar cargas colgadas sobre el agua."
@@ -340,7 +348,7 @@
       "night": "Las tiras de las barcas están guardadas bajo el techo. Una luz queda lejos del borde. Un vecino espera un traslado tardío, con la carga fuera del paso.",
       "rain": "Los bultos mojados esperan en el lado exterior de la cubierta. La encargada compara el nivel del agua con el poste y retira un recipiente del apoyo más bajo.",
       "clear": "",
-      "return": "Reconoces el poste con la marca de nivel. Los bultos envueltos esperan junto a las tiras de las barcas; la senda alta sigue detrás de la cubierta.",
+      "return": "El poste de la marca de nivel tiene otra raya. Los bultos envueltos esperan junto a las tiras de las barcas.",
       "examine": {
         "tiras": "Cada tira lleva una hora de llegada; dos conservan gotas secas en el extremo.",
         "poste": "Conserva niveles observados y ayuda a escoger el apoyo de descarga."
@@ -422,7 +430,7 @@
       "night": "Las ventanas se iluminan por separado y sus reflejos no dibujan otra senda sobre el canal. Los recipientes se recogen en plataformas propias. La plaza sigue audible al sur, aunque las conversaciones de las casas se vuelvan más breves.",
       "rain": "Los vecinos acercan las plataformas móviles a sus puertas y sujetan recipientes que estaban esperando. La senda pública continúa elevada sobre las corrientes pequeñas. Las viviendas responden a la lluvia sin intentar cerrar todos los canales.",
       "clear": "",
-      "return": "Reconoces la plataforma de aquella ventana por su borde corto. La senda continúa por fuera, junto al canal, hasta las voces de la plaza.",
+      "return": "Sobre el canal, la plataforma de aquella ventana, la del borde corto.",
       "examine": {
         "plataformas": "Las de las puertas terminan junto a cada casa. Las tablas de la senda siguen por fuera y cruzan el canal entre dos postes.",
         "recipientes": "Los vacíos regresan a quien prestó la comida o el agua."
@@ -658,7 +666,8 @@
             "noche"
           ]
         }
-      ]
+      ],
+      "max_layers": 4
     },
     "lethra_taller_fibras": {
       "id": "lethra_taller_fibras",
@@ -831,7 +840,7 @@
       "night": "La luz de la cocina deja un lado del banco visible y el otro más oscuro. Quien espera puede reconocer la llegada por la pasarela. Las voces del mercado disminuyen y el agua ocupa los huecos entre conversaciones.",
       "rain": "La mujer acerca su recipiente al centro cubierto del banco. Hace sitio a quien llega y vuelve a mirar la ventana de la cocina.",
       "clear": "",
-      "return": "Reconoces el extremo del banco donde dejaron el recipiente vacío. La ventana de la cocina queda a la vista desde ese asiento.",
+      "return": "Reconoces el extremo del banco desde donde se ve la ventana de la cocina.",
       "examine": {
         "recipiente": "El recipiente queda entre dos asientos; junto a él hay una taza todavía húmeda.",
         "cubierta": "Protege el centro y obliga a repartir espacio en lluvia."
@@ -856,7 +865,7 @@
       "night": "La tapa conserva gotas por dentro. Una familia recoge los últimos cuencos; desde el canal llega el golpe de una barca contra su amarre.",
       "rain": "Se secan los bordes de los recipientes antes de acercarlos al fuego. Nima lleva la reunión a la plataforma alta y mantiene la olla bajo techo.",
       "clear": "",
-      "return": "Reconoces la cuchara de mango oscuro junto a la ventana. La olla reparada sigue cerca del fuego; delante queda el sitio donde dejaron las hierbas.",
+      "return": "Junto a la ventana, la cuchara de mango oscuro; cerca del fuego, la olla reparada.",
       "examine": {
         "olla": "La base reparada tiene una unión oscura. El caldo burbujea junto a ella y al otro lado de la olla.",
         "utensilios": "Cada recipiente se devuelve a una casa concreta después de la reunión."
@@ -1077,7 +1086,8 @@
           ]
         },
         "El agua golpea suavemente los postes del puesto: chap, chap."
-      ]
+      ],
+      "max_layers": 4
     },
     "lethra_muelle_vecinal": {
       "id": "lethra_muelle_vecinal",
@@ -1089,7 +1099,7 @@
       "night": "Las embarcaciones se sujetan cerca de apoyos altos y las cestas pendientes quedan bajo una cubierta. El muelle guarda nombres sin pronunciarse todo el tiempo. Una llegada puede despertar a una casa sin ocupar la plaza entera.",
       "rain": "Las cestas se trasladan según dónde queda seca su cubierta, conservando separados los grupos de dueños. Las cuerdas húmedas se revisan con calma antes de bajar un apoyo. La devolución no termina por dejar todo en cualquier borde.",
       "clear": "",
-      "return": "Reconoces el apoyo de la cesta con el asa remendada. Las alturas de las tablas sitúan el mercado por encima del borde donde amarran las barcas.",
+      "return": "La cesta del asa remendada descansa en su apoyo. Por la altura de las tablas, el mercado queda arriba.",
       "examine": {
         "asas": "Los remiendos conservan una identidad de uso para sus propietarios.",
         "cuerdas": "Sujetan embarcaciones; no hacen del canal una ruta peatonal."
@@ -1102,7 +1112,8 @@
       "npcs": [],
       "signals": [],
       "actions": [],
-      "brief": "El muelle de las cestas."
+      "brief": "El muelle de las cestas.",
+      "max_layers": 4
     },
     "lethra_patio_ventanas": {
       "id": "lethra_patio_ventanas",
@@ -1185,7 +1196,8 @@
             "night": "El patio está a oscuras, pero el agua refleja una sola ventana encendida, y su luz tiembla entre las casas."
           }
         }
-      ]
+      ],
+      "max_layers": 4
     },
     "lethra_cuidado_barcas": {
       "id": "lethra_cuidado_barcas",
@@ -1281,7 +1293,7 @@
       "night": "El canal conserva sonidos leves. La observadora recoge su nota y vuelve hacia el juncal; el barro del banco queda oscuro detrás.",
       "rain": "Las gotas llenan el canal de ondas. La observadora señala los tallos aplastados: aún pueden verse, aunque los movimientos del agua se confundan.",
       "clear": "",
-      "return": "Recuerdas la franja de tallos aplastados junto al banco. El apoyo seco sigue cerca de las raíces; desde allí ves una onda que se pierde bajo los juncos.",
+      "return": "Junto al banco, la franja de tallos aplastados. Desde el apoyo seco ves una onda que se pierde bajo los juncos.",
       "examine": {
         "tallos": "Una entrada ancha atraviesa los juncos hacia el agua, distinta de cortes de recolección.",
         "ondas": "No todas proceden del viento; su causa sigue sin verse."
@@ -1311,7 +1323,8 @@
           "persistent_trace": false
         }
       ],
-      "brief": "El banco de barro, frente al canal profundo."
+      "brief": "El banco de barro, frente al canal profundo.",
+      "max_layers": 2
     },
     "lethra_orilla_silente": {
       "id": "lethra_orilla_silente",
@@ -1323,7 +1336,7 @@
       "night": "La hoja roza el borde de la orilla. Después sólo queda el agua contra la madera.",
       "rain": "El agua llena parte de los arrastres y conserva la inclinación de los tallos. La observadora anota qué detalle dejó de verse. El canal cubre las marcas bajas. La raíz alta conserva el lugar donde puedes esperar antes de decidir si sigues.",
       "clear": "",
-      "return": "Reconoces la entrada ancha entre los tallos aplastados. Junto a las raíces queda el apoyo desde el que miraste los arrastres sin bajar al borde.",
+      "return": "La entrada ancha entre los tallos aplastados está abierta. Junto a las raíces queda el sitio desde donde mirar sin bajar al borde.",
       "examine": {
         "arrastres": "Son anchos y entran en el canal; no tienen la forma del tránsito de una cesta por la senda.",
         "raíces": "El apoyo occidental permite observar fuera del borde marcado.",
@@ -1398,7 +1411,8 @@
       ],
       "dawn": "La hoja queda inmóvil en el agua clara. Una burbuja pequeña aparece junto al borde y desaparece.",
       "dusk": "La hoja pierde su reflejo antes de que el canal oscurezca. Desde la otra orilla llega un solo golpe.",
-      "brief": "La orilla del canal, de agua quieta y sin fondo a la vista."
+      "brief": "La orilla del canal, de agua quieta y sin fondo a la vista.",
+      "max_layers": 2
     },
     "lethra_raices_observacion": {
       "id": "lethra_raices_observacion",
@@ -1410,7 +1424,7 @@
       "night": "La nota pierde legibilidad y la cuidadora la guarda bajo una cubierta cercana. El apoyo firme sigue ahí, pero el canal no muestra detalles suficientes para la misma comparación. La vuelta puede hacerse por el sendero que ya conoces.",
       "rain": "El barro intacto recibe gotas sin huellas nuevas y ofrece un contraste con la entrada del canal. La cuidadora mantiene su nota separada de raíces mojadas. La información incluye lluvia antes de hablar de cambios en arrastres.",
       "clear": "",
-      "return": "Reconoces las raíces donde puedes detenerte sin pisar los arrastres. La nota sigue junto al canal para quien llegue después.",
+      "return": "La nota atada junto al canal espera a quien llegue después. Desde las raíces se ven los arrastres sin pisarlos.",
       "examine": {
         "nota": "Registra lugar y condición de observación, sin nombrar un animal no avistado.",
         "barro": "La franja intacta separa el apoyo firme de la entrada marcada."
@@ -1457,7 +1471,7 @@
       "night": "Las luces del pueblo se reflejan al este mientras el terreno occidental absorbe la oscuridad. La cubierta conserva un lugar de espera. Un viaje puede terminar su preparación sin fingir que conoce toda la Tierra Húmeda.",
       "rain": "El barro cae de las cargas sobre el apoyo exterior. Bajo la cubierta interior quedan los paquetes; una gota rueda desde la hierba occidental hasta la tabla de entrada.",
       "clear": "",
-      "return": "Reconoces la cubierta por el paño del apoyo exterior. Bajo techo quedan las envolturas limpias; del lado del pueblo asoman los primeros canales.",
+      "return": "En la cubierta cuelga el paño del apoyo exterior. Bajo techo, las envolturas limpias.",
       "examine": {
         "cubierta": "Su lado exterior recibe barro de viajeros; el interior protege envolturas.",
         "pastos": "El suelo más amplio anuncia una transición, no la llegada inmediata a Valdren."
@@ -1523,7 +1537,7 @@
       "night": "Las piedras sólo se ven de cerca; el terreno bajo queda oscuro. Se oye un ave en el remanso del sur. La cuidadora deja su marca junto al apoyo alto.",
       "rain": "El agua reaparece abajo y confirma por qué los hitos se colocaron fuera de esa franja. La senda alta sigue visible mientras las huellas inferiores se borran. Una rama pasa flotando por debajo de la piedra menor.",
       "clear": "",
-      "return": "Recuerdas la marca del agua en las dos piedras. Al oeste, la senda alta rodea los sauces antes de llegar al puente.",
+      "return": "Recuerdas la marca del agua en las dos piedras. Al oeste, la senda rodea los sauces antes de llegar al puente.",
       "examine": {
         "hitos": "Se leen desde la ribera alta y no recomiendan el terreno inferior.",
         "huellas": "Las del nivel bajo pueden terminar donde el agua ocupó antes otra orilla."
@@ -1573,7 +1587,7 @@
       "night": "Las raíces se confunden con el canal. La pasarela suena hueca cuando alguien llega. Las voces de Narevia se oyen cada vez más lejos.",
       "rain": "Las hojas mojadas ocultan juntas de la pasarela y hacen resbalar una franja del apoyo. La viajera las aparta sin barrer todo el bosque. El brazo menor reúne agua antes de desaparecer hacia el canal principal.",
       "clear": "",
-      "return": "Reconoces la tabla que crujió bajo las hojas. Camino del pueblo, el agua vuelve a reflejar cielo entre dos raíces y después junto a las plataformas.",
+      "return": "La tabla que crujió bajo las hojas vuelve a crujir.",
       "examine": {
         "brazo": "El pequeño cruce no atraviesa el canal principal.",
         "hojas": "Cubren la unión de una tabla y deben apartarse para revisarla."

@@ -57,3 +57,42 @@ Pruebas: 150 tests OK; QA del cliente OK. `qa-mobile-controls` se reparó tras l
 - **Ritmo:** llegadas uniformes. Hay que dejar que algunos sitios respiren con una sola línea y concentrar la escena donde importa.
 - **Exploración:** buscar y observar deberían revelar más cosas propias del lugar.
 - **Repetición estructural:** «Reconoces la…» y «Recuerdas la…» abren 7 textos de regreso en un solo recorrido.
+
+## Iteración 3 — ritmo, exploración y repetición
+
+Cambios:
+- **Regresos:** de 182 textos de regreso, 97 empezaban por «Reconoces/Recuerdas»; ahora quedan 10. Se reescribieron por lo que ha cambiado o por lo que el jugador ya sabe. La muletilla «sigue/siguen» que apareció al reescribir baja de 94 a 28.
+- **Buscar:** cada región tiene ahora 8 rastros y 4 resultados vacíos, todos propios del lugar.
+  - Antes: 2 rastros, uno de ellos la «huella antigua» genérica, compartida por todas las regiones.
+  - Fauna canónica C0 por región (Liebre corta, Mariposa fría, Aguja azul, Ratona de hoja…).
+  - Una pista de algo grande que pasó, sin nombrarlo, para despertar curiosidad.
+  - Un objeto o una marca antigua que sugiere historia.
+- **Ritmo:** con `max_layers`, las 17 salas salvajes o silenciosas muestran como mucho 2 capas y respiran; los 28 asentamientos admiten 4.
+- **Luz:** 6 frases fijas que hablaban del sol aparecían de noche («calientes por el sol de la mañana», «terraza soleada»). Se reescribieron con una forma válida a cualquier hora.
+- **Test:** `test_search_uses_both_authored_empty_and_trace_variants` calcula el índice con la misma regla proporcional que `Engine.search`, en vez de suponer listas de 2.
+
+Comprobación:
+- **Ruta A**, la de las iteraciones anteriores, de día: «Reconoces/Recuerdas» pasa de 11 apariciones a 2.
+- **Ruta B**, de control y de noche, nunca usada para ajustar textos (Brumak → Refugio de Lajas → garganta → aprisco → pinar → Khariel):
+  - Las búsquedas dan rastros distintos y propios del lugar; un Rasgacumbres aparece a lo lejos sin amenazar.
+  - Los tramos salvajes son más cortos y Khariel es denso.
+  - Tras la corrección de la luz, ningún texto de día aparece de noche.
+
+| Categoría | Nota |
+|---|---|
+| Identidad espacial | 4 |
+| Continuidad | 4 |
+| Ritmo | 4 |
+| Vida ambiental | 4 |
+| Densidad sensorial | 4 |
+| Identidad regional | 4 |
+| Tiempo y clima | 4 |
+| Exploración | 4 |
+| Encuentros | 4 |
+| Memoria | 4 |
+| Color semántico | 4 |
+| Curiosidad | 4 |
+
+Pruebas: 150 tests OK; QA del cliente OK.
+
+Pendiente: algunas búsquedas repiten el mismo rastro dos veces seguidas. El motor no evita la repetición inmediata; mejorarlo exige tocar código y queda para la próxima iteración.

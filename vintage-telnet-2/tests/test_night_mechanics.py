@@ -119,10 +119,13 @@ class NightMechanicsTests(unittest.TestCase):
   class Fixed:
    def __init__(self,value):self.value=value
    def random(self):return self.value
-  for value,kind,index in ((.76,'empty',0),(.99,'empty',1),(.41,'traces',0),(.74,'traces',1)):
+  search=self.content.regions['lethra']['search']
+  # First and last variant of each list, using the same proportional selection as Engine.search.
+  for value,kind,start,span in ((.76,'empty',.75,.25),(.99,'empty',.75,.25),(.41,'traces',.4,.35),(.74,'traces',.4,.35)):
+   options=search[kind];index=min(int((value-start)/span*len(options)),len(options)-1)
    self.state['location']='lethra_tierra_esponjosa';self.engine.rng=Fixed(value)
    self.engine.search(self.character,self.world)
-   self.assertEqual(self.state['events'][0]['text'],self.content.regions['lethra']['search'][kind][index])
+   self.assertEqual(self.state['events'][0]['text'],options[index])
    self.now+=61
  def test_four_unique_quests_pay_announced_reward_even_after_other_errands(self):
   self.state['ledger']=[{'family':'valdren_paid_errands','at':self.now,'amount':6} for _ in range(5)]
