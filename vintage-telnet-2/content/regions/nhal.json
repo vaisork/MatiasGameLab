@@ -51,7 +51,7 @@
       "name": "Primer árbol del bosque",
       "region": "nhal",
       "kind": "road",
-      "description": "Dos raíces enormes, más altas que un niño, rodean el paso bajo el primer árbol del bosque. Detrás todavía entra la luz dorada de la cuenca; por delante, las copas se juntan y la sombra cae a manchas sobre el suelo húmedo. El aire cambia de golpe: más fresco, más quieto, con olor a hojas. Una marca en una madera caída señala el camino.",
+      "description": "Dos raíces enormes, más altas que un niño, rodean el paso bajo el primer árbol del bosque. Por el oeste todavía entra la luz dorada de la cuenca; hacia el este, las copas se juntan y la sombra cae a manchas sobre el suelo húmedo. El aire cambia de golpe: más fresco, más quieto, con olor a hojas. Una marca en una madera caída señala el camino.",
       "day": "Una recolectora aparta una rama del paso y escucha antes de levantar otra. Se oyen aves bajo las copas, aunque sólo una se muestra entre las hojas.",
       "night": "La luz de la cuenca permanece entre raíces occidentales y desaparece al avanzar hacia las copas. La marca cercana necesita un farol dirigido al suelo. Las copas dejan caer sombras enteras sobre la senda interior.",
       "rain": "Las gotas que llegaron de la cuenca se vuelven caídas lentas de hojas altas. La tierra se oscurece por manchas, no de una vez. La recolectora guarda lo seco bajo una raíz antes de seguir trabajando.",
@@ -132,7 +132,14 @@
       "echoes": [
         "Una hoja roja cae girando y se posa justo en el camino, como si te la regalaran.",
         "Algo pequeño corre bajo las hojas: sólo se ve cómo se mueven.",
-        "Un rayo de luz atraviesa las copas y se apaga cuando una nube tapa el sol."
+        {
+          "text": "Un rayo de luz atraviesa las copas y se apaga cuando una nube tapa el sol.",
+          "requires_time": [
+            "amanecer",
+            "día",
+            "atardecer"
+          ]
+        }
       ]
     },
     "nhal_tronco_acostado": {
@@ -581,12 +588,18 @@
       "brief": "El claro de Velmora, entre raíces y bancos.",
       "look": {
         "oeste": "Entre los troncos asoman lámparas pequeñas, junto a una mesa de espera. Más allá, el bosque oscuro.",
-        "norte": "Un taller abierto por un lado. Se oye trabajar la madera.",
-        "sur": "Cestas bajo cubiertas, y un olor que cambia en cada una: setas, frutos, raíces.",
-        "este": "Bancos alrededor de una mesa cubierta. Llegan voces que cuentan algo."
+        "norte": "Un taller abierto por un lado, con virutas en el suelo.",
+        "sur": "Cestas bajo cubiertas separadas, entre raíces.",
+        "este": "Bancos distintos alrededor de una mesa cubierta."
       },
       "echoes": [
-        "Una lámpara se enciende en una casa, luego otra al lado, como si se pasaran la luz.",
+        {
+          "text": "Una lámpara se enciende en una casa, luego otra al lado, como si se pasaran la luz.",
+          "requires_time": [
+            "atardecer",
+            "noche"
+          ]
+        },
         "Un animal pequeño cruza corriendo por una raíz y se mete en un hueco.",
         "Desde el patio del relato llega una carcajada, y luego alguien manda callar para seguir escuchando."
       ]
@@ -1223,7 +1236,14 @@
       "brief": "El claro tranquilo.",
       "echoes": [
         "Una semilla cae sobre una hoja ancha, la dobla y rueda hasta el suelo.",
-        "Por la abertura del cielo pasa una nube y el claro se oscurece un momento.",
+        {
+          "text": "Por la abertura del cielo pasa una nube y el claro se oscurece un momento.",
+          "requires_time": [
+            "amanecer",
+            "día",
+            "atardecer"
+          ]
+        },
         "Durante un rato no se oye absolutamente nada. Luego, muy lejos, un pájaro."
       ]
     },
@@ -1270,7 +1290,7 @@
       "name": "Paso hacia Lethra",
       "region": "nhal",
       "kind": "road",
-      "description": "Árboles y raíces acompañan el canal hasta una plataforma común, donde empieza el tramo de Lethra; detrás queda el camino a Velmora. Dos notas comparan los apoyos de madera y el nivel del agua de los dos lados. La sombra del bosque alcanza parte del canal, y la otra parte brilla al sol.",
+      "description": "Árboles y raíces acompañan el canal hasta una plataforma común, donde empieza, al sur, el tramo de Lethra; al norte queda el camino a Velmora. Dos notas comparan los apoyos de madera y el nivel del agua de los dos lados. La sombra del bosque alcanza parte del canal, y la otra parte brilla al sol.",
       "day": "Una mensajera pregunta por el nivel del agua en Lethra. Su compañero aparta hojas del apoyo mientras ella revisa el borde de la plataforma.",
       "night": "Las notas están cubiertas y una luz baja queda en la plataforma. La mensajera anota su llegada; el tramo oscuro tendrá que esperar a ser revisado.",
       "rain": "La lluvia borra algunos reflejos y vuelve más útil comparar las notas del nivel. Las raíces reciben agua desde arriba, distinta de la que circula por el canal. El mantenimiento necesita ver ambos movimientos para decidir dónde esperar.",
@@ -1310,7 +1330,7 @@
       "name": "Subida entre árboles",
       "region": "nhal",
       "kind": "road",
-      "description": "La senda sube y los árboles empiezan a separarse; las raíces hacen de peldaños. Detrás quedan las luces de las casas de Velmora, cada vez más pequeñas. Un descanso de raíces permite esperar a quien baja con carga. El aire se vuelve más ligero.",
+      "description": "La senda sube y los árboles empiezan a separarse; las raíces hacen de peldaños. Al sur, entre los árboles, se ven las luces de las casas de Velmora. Un descanso de raíces permite esperar a quien baja con carga. El aire se vuelve más ligero.",
       "day": "Una viajera recoge su cubierta para que no enganche en las raíces del ascenso. El vecino que espera en el descanso señala el extremo que aún arrastra sobre el suelo.",
       "night": "Las luces de las casas se pierden entre árboles, más abajo. El farol ilumina la raíz del descanso y se apaga antes del borde cubierto.",
       "rain": "El agua baja por la franja empinada y deposita hojas sobre el apoyo inferior. La viajera cambia dónde espera mientras revisa su cubierta. El bosque conserva sombra, pero la pendiente empieza a decidir cómo se mueve la lluvia.",

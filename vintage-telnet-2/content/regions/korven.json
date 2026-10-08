@@ -51,7 +51,7 @@
       "name": "Loma de las piedras claras",
       "region": "korven",
       "kind": "road",
-      "description": "Desde esta loma ya no se ve Vaisgard: la cuenca verde ha quedado detrás y delante todo es piedra clara. El camino baja entre rocas hacia un cauce seco. Junto al paso hay un montón de cascajo con huellas de pala, y las ruedas han dejado dos surcos profundos donde la tierra es más blanda. El viento es seco y trae polvo que hace toser.",
+      "description": "Desde esta loma ya no se ve Vaisgard: la cuenca verde queda al este, y al oeste todo es piedra clara. El camino baja entre rocas hacia un cauce seco. Junto al paso hay un montón de cascajo con huellas de pala, y las ruedas han dejado dos surcos profundos donde la tierra es más blanda. El viento es seco y trae polvo que hace toser.",
       "day": "Un trabajador baja cascajo al montón lateral y espera a que pase una carga. La pala roza la roca fija al recoger las últimas piedras sueltas.",
       "night": "El cascajo claro recibe la luz del farol y vuelve difícil leer el relieve. La depresión occidental parece más cerca de lo que está. El montón lateral sigue sirviendo para reconocer dónde se abandona la loma.",
       "rain": "El polvo se pega entre las piedras y el agua deja líneas claras. El trabajador mira la bajada antes de despejar otra franja del camino.",
@@ -194,7 +194,14 @@
       "brief": "La meseta de las dos piedras.",
       "echoes": [
         "Un remolino de polvo se levanta solo, da vueltas por la meseta y se deshace contra una de las dos piedras.",
-        "Un Saltapiedra menudo sale a tomar el sol sobre una roca, quieto como si fuera de piedra.",
+        {
+          "text": "Un Saltapiedra menudo sale a tomar el sol sobre una roca, quieto como si fuera de piedra.",
+          "requires_time": [
+            "amanecer",
+            "día",
+            "atardecer"
+          ]
+        },
         "El viento cambia de dirección y trae un olor a lluvia lejana que no llega."
       ]
     },
@@ -515,14 +522,41 @@
       "brief": "El patio de Brumak, al abrigo de la roca.",
       "look": {
         "este": "Unos escalones bajos y anchos, con una franja lisa para carros, bajan hacia el camino.",
-        "norte": "Una puerta baja en la roca. Dentro se oyen golpes cortos y precisos.",
+        "norte": "Una puerta baja en la roca, con herramientas colgadas junto a la entrada.",
         "oeste": "Un almacén con una ventana alta. Huele a grano seco.",
         "sur": "Una calle de casas metidas en la roca, con repisas pequeñas junto a cada puerta."
       },
       "echoes": [
-        "Desde el taller llega el golpe de un martillo pequeño, regular como un corazón.",
-        "Una Dravak barre el polvo de su umbral; el viento lo devuelve y ella vuelve a barrer, sin enfadarse.",
-        "Un carro pequeño cruza el patio y gira exactamente por donde debe, sin tocar ningún banco."
+        {
+          "text": "Desde el taller llega el golpe de un martillo pequeño, regular como un corazón.",
+          "requires_time": [
+            "amanecer",
+            "día",
+            "atardecer"
+          ]
+        },
+        {
+          "text": "Una Dravak barre el polvo de su umbral; el viento lo devuelve y ella vuelve a barrer, sin enfadarse.",
+          "requires_time": [
+            "amanecer",
+            "día",
+            "atardecer"
+          ]
+        },
+        {
+          "text": "Un carro pequeño cruza el patio y gira exactamente por donde debe, sin tocar ningún banco.",
+          "requires_time": [
+            "amanecer",
+            "día",
+            "atardecer"
+          ]
+        },
+        {
+          "text": "Una piedrecita se suelta de la pared y rebota por el patio. En una puerta baja alguien se asoma, escucha y vuelve a cerrar.",
+          "requires_time": [
+            "noche"
+          ]
+        }
       ]
     },
     "korven_taller_juntas": {
@@ -813,8 +847,22 @@
       "brief": "La cisterna común y su vara de nivel.",
       "echoes": [
         "Una gota cae dentro de la cisterna y el eco tarda un momento en volver.",
-        "Una vecina baja el cubo y cuenta en voz baja las vueltas de cuerda.",
-        "Un niño se asoma al borde, grita «¡hola!» y espera la respuesta del eco."
+        {
+          "text": "Una vecina baja el cubo y cuenta en voz baja las vueltas de cuerda.",
+          "requires_time": [
+            "amanecer",
+            "día",
+            "atardecer"
+          ]
+        },
+        {
+          "text": "Un niño se asoma al borde, grita «¡hola!» y espera la respuesta del eco.",
+          "requires_time": [
+            "amanecer",
+            "día",
+            "atardecer"
+          ]
+        }
       ]
     },
     "korven_patio_lavado": {
@@ -887,7 +935,7 @@
       "name": "Mirador de las grietas",
       "region": "korven",
       "kind": "landmark",
-      "description": "Un mirador protegido por un borde bajo de piedra. Delante se extienden plataformas de roca cortadas por grietas, como un plato roto, y una franja oscura tan honda que no se le ve el fondo. Si tiras una piedrecita, tarda en sonar. Brumak queda detrás, tras la pared. El viento silba al pasar por las grietas.",
+      "description": "Un mirador protegido por un borde bajo de piedra. Delante se extienden plataformas de roca cortadas por grietas, como un plato roto, y una franja oscura tan honda que no se le ve el fondo. Si tiras una piedrecita, tarda en sonar. Brumak queda al oeste, tras la pared. El viento silba al pasar por las grietas.",
       "day": "La observadora ve una nube de polvo junto al camino. Espera a que aparezca una carga para saber si la levantó un viajero.",
       "night": "La luz de la cisterna ilumina el borde próximo. Las plataformas exteriores se juntan en una masa oscura; desde una grieta llega el golpe de una piedra y la observadora recoge sus notas.",
       "rain": "El agua oscurece las plataformas y borra la nube de polvo. La observadora apunta lo que ya no alcanza a ver desde el borde.",
