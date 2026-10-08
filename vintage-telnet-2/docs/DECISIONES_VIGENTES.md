@@ -1,5 +1,9 @@
 # Decisiones operativas vigentes — 2026-10-08
 
+## Clases definitivas de VT2
+
+Por decisión explícita de Javier del 8 de octubre de 2026, **Vintage Telnet 2 queda con cuatro clases activas y previstas: Juramentado, Arcano, Sombra y Artífice**. **Vigía e Invocador quedan descartados del alcance de VT2**: no son trabajo pendiente, no deben abrirse issues para implementarlos y ninguna referencia histórica del Prompt Maestro o de investigación MUD los reactiva. Cualquier expansión futura del roster requerirá una nueva decisión explícita de producto.
+
 Encargo más reciente: integrar entregas de arte y Claude, publicar en main y preparar relevo al arquitecto/programador. No autoriza un segundo despliegue implícito. Producción se actualizó expresamente a d5ee227 (PR #660), con datos conservados; registro en `review/qa/raspberry-deploy/update-d5ee227/DEPLOYMENT.md`. Leer `../../docs/VT2_RELEVO_20261008.md` para rutas, SSH y operación. Las pausas anteriores quedan subordinadas a este encargo acotado.
 
 Encargo posterior: Javier pide cinco iteraciones de coherencia al caminar. Resultado: cinco recorridos API aislados, 628 movimientos en los cinco ciclos y 374 adicionales al corregir y repetir el quinto, con cobertura de las 183 salas; eliminación de giros artificiales, separación de interiores y hogares respecto a calles. Sin modificar salidas ni desplegar. Evidencia: `review/spatial-five-cycles/REVIEW.md`.
