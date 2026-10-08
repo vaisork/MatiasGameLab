@@ -46,7 +46,7 @@ export function orientationMap(value,current){
   if(!route||!ids.has(route.from)||!ids.has(route.to)||route.from===route.to)continue;
   if(!legacy&&!directions.has(route.direction))continue;
   const key=route.from+'\n'+route.to+'\n'+(route.direction||'');if(seen.has(key))continue;seen.add(key);
-  routes.push({from:route.from,to:route.to,...(!legacy?{direction:route.direction}:{})});
+  routes.push({from:route.from,to:route.to,...(!legacy?{direction:route.direction}:{}),...(Array.isArray(route.points)?{points:route.points}:{})});
  }
  const position=ids.has(current)?current:null,frontiers=[],frontierSeen=new Set();
  for(const exit of list(value?.frontiers)){
@@ -71,49 +71,60 @@ export function knownRoute(map,from,to){
  return null;
 }
 
-// Adapted from the previous map's directional placement; known places only.
-// This is a schematic: collisions move a tile farther along its learned exit.
+// Authoritative positions stay fixed as discovery grows. Legacy snapshots use a schematic.
 export function discoveredLayout(map){
  const steps={norte:[0,-1],sur:[0,1],este:[1,0],oeste:[-1,0],salir:[1,1],hogar:[-1,-1]},positions=new Map(),taken=new Set();
+ const nodes=[...list(map.nodes)].sort((a,b)=>a.id.localeCompare(b.id)),routes=[...list(map.routes)].sort((a,b)=>(a.from+'\n'+a.to+'\n'+a.direction).localeCompare(b.from+'\n'+b.to+'\n'+b.direction));
+ for(const node of nodes)if(Array.isArray(node.position)&&node.position.length===2&&node.position.every(Number.isSafeInteger)){positions.set(node.id,[...node.position]);taken.add(node.position.join(','));}
+ if(positions.size===nodes.length)return positions;
  let component=0;
- for(const node of map.nodes){
-  if(positions.has(node.id))continue;
-  let start=[component*3,0];while(taken.has(start.join(',')))start[0]++;
-  positions.set(node.id,start);taken.add(start.join(','));component++;
-  const queue=[node.id];
+ for(const node of nodes){
+  if(!positions.has(node.id)){let start=[component*3,0];while(taken.has(start.join(',')))start[0]++;positions.set(node.id,start);taken.add(start.join(','));component++;}
+  const queue=[node.id],visited=new Set();
   for(let index=0;index<queue.length;index++){
-   const from=queue[index],[x,y]=positions.get(from);
-   for(const route of map.routes){
-    if(route.from!==from||positions.has(route.to)||!map.nodes.some(n=>n.id===route.to))continue;
-    const [dx,dy]=steps[route.direction]||[1,0];let cell=[x+dx,y+dy];
-    while(taken.has(cell.join(',')))cell=[cell[0]+dx,cell[1]+dy];
-    positions.set(route.to,cell);taken.add(cell.join(','));queue.push(route.to);
-   }
+   const from=queue[index];if(visited.has(from))continue;visited.add(from);const [x,y]=positions.get(from);
+   for(const route of routes){if(route.from!==from||!nodes.some(n=>n.id===route.to))continue;if(!positions.has(route.to)){const [dx,dy]=steps[route.direction]||[1,0];let cell=[x+dx,y+dy];while(taken.has(cell.join(',')))cell=[cell[0]+dx,cell[1]+dy];positions.set(route.to,cell);taken.add(cell.join(','));}if(!visited.has(route.to))queue.push(route.to);}
   }
  }
  return positions;
 }
 
-// Route through the spaces between tiles; endpoint directions are actual learned exits.
+let lastDiscoveredPaths=null;
+// Half-quarter-tile lanes avoid rooms and shared road segments. Ports use real exits.
 export function discoveredPaths(map,positions){
- const vectors={norte:[0,-1],sur:[0,1],este:[1,0],oeste:[-1,0],salir:[1,0],hogar:[-1,0]},blocked=new Set(),links=[],seen=new Set();
- for(const [x,y] of positions.values())for(let dx=-1;dx<=1;dx++)for(let dy=-1;dy<=1;dy++)blocked.add([x*4+dx,y*4+dy].join(','));
- const cells=[...positions.values()],minX=Math.min(...cells.map(p=>p[0]*4))-3,maxX=Math.max(...cells.map(p=>p[0]*4))+3,minY=Math.min(...cells.map(p=>p[1]*4))-3,maxY=Math.max(...cells.map(p=>p[1]*4))+3;
- for(const route of map.routes){
-  if(!positions.has(route.from)||!positions.has(route.to))continue;
-  const key=[route.from,route.to].sort().join('\n');if(seen.has(key))continue;seen.add(key);
-  const reverse=map.routes.find(r=>r.from===route.to&&r.to===route.from),from=positions.get(route.from).map(v=>v*4),to=positions.get(route.to).map(v=>v*4),out=vectors[route.direction]||[1,0],back=vectors[reverse?.direction]||out.map(v=>-v);
-  const start=from.map((v,i)=>v+out[i]*2),end=to.map((v,i)=>v+back[i]*2),queue=[start],parent=new Map([[start.join(','),null]]),goal=end.join(',');
-  for(let index=0;index<queue.length&&!parent.has(goal);index++){
-   const current=queue[index];
-   const next=Object.values(vectors).slice(0,4).map(v=>current.map((n,i)=>n+v[i])).sort((a,b)=>Math.abs(a[0]-end[0])+Math.abs(a[1]-end[1])-Math.abs(b[0]-end[0])-Math.abs(b[1]-end[1]));
-   for(const cell of next){const k=cell.join(',');if(cell[0]<minX||cell[0]>maxX||cell[1]<minY||cell[1]>maxY||blocked.has(k)||parent.has(k))continue;parent.set(k,current);queue.push(cell);}
+ if(!positions.size)return [];
+ const vectors={norte:[0,-1],sur:[0,1],este:[1,0],oeste:[-1,0],salir:[1,0],hogar:[-1,0]},blocked=new Set(),usedEdges=new Set(),links=[],seen=new Set(),ports=new Map();
+ const key=p=>p.join(','),edgeKey=(a,b)=>[key(a),key(b)].sort().join('|');
+ for(const [x,y] of positions.values())for(let dx=-2;dx<=2;dx++)for(let dy=-2;dy<=2;dy++)blocked.add(key([x*8+dx,y*8+dy]));
+ const cells=[...positions.values()],minX=Math.min(...cells.map(p=>p[0]*8))-8,maxX=Math.max(...cells.map(p=>p[0]*8))+8,minY=Math.min(...cells.map(p=>p[1]*8))-8,maxY=Math.max(...cells.map(p=>p[1]*8))+8;
+ const routes=[...list(map.routes)].sort((a,b)=>(a.from+'\n'+a.to+'\n'+a.direction).localeCompare(b.from+'\n'+b.to+'\n'+b.direction));
+ const cacheKey=JSON.stringify([[...positions].sort((a,b)=>a[0].localeCompare(b[0])),routes.map(r=>[r.from,r.to,r.direction,r.points])]);if(lastDiscoveredPaths?.key===cacheKey)return lastDiscoveredPaths.links;
+ function port(id,direction){const vector=vectors[direction]||[1,0],center=positions.get(id).map(v=>v*8),name=id+'\n'+direction,index=ports.get(name)||0;ports.set(name,index+1);const offset=index===0?0:index%2?Math.ceil(index/2):-index/2;return center.map((v,i)=>v+vector[i]*3+(i===0?-vector[1]:vector[0])*offset);}
+ for(const route of routes){
+  if(!positions.has(route.from)||!positions.has(route.to)||route.from===route.to)continue;
+  const pair=[route.from,route.to].sort().join('\n');if(seen.has(pair))continue;seen.add(pair);
+  const reverse=routes.find(r=>r.from===route.to&&r.to===route.from),origin=positions.get(route.from),destination=positions.get(route.to);
+  const validPath=points=>Array.isArray(points)&&points.length>=2&&points.length<=10000&&points.every(p=>Array.isArray(p)&&p.length===2&&p.every(v=>Number.isFinite(v)&&Number.isSafeInteger(v*2)))&&points[0].every((v,i)=>v===origin[i]*4)&&points.at(-1).every((v,i)=>v===destination[i]*4);
+  const reversed=Array.isArray(reverse?.points)?[...reverse.points].reverse():null,canonical=validPath(route.points)?route.points:validPath(reversed)?reversed:null;
+  if(canonical){const points=canonical.map(p=>[...p]);for(let i=2;i<points.length-1;i++)usedEdges.add(edgeKey(points[i-1].map(v=>v*2),points[i].map(v=>v*2)));links.push({from:route.from,to:route.to,direction:route.direction,reverse:reverse?.direction,points,crossings:[]});continue;}
+  const dx=destination[0]-origin[0],dy=destination[1]-origin[1],toward=Math.abs(dx)>=Math.abs(dy)?(dx>=0?'este':'oeste'):(dy>=0?'sur':'norte'),opposite={norte:'sur',sur:'norte',este:'oeste',oeste:'este'},out=['norte','sur','este','oeste'].includes(route.direction)?route.direction:toward,back=['norte','sur','este','oeste'].includes(reverse?.direction)?reverse.direction:opposite[toward];
+  const from=positions.get(route.from).map(v=>v*8),to=positions.get(route.to).map(v=>v*8),start=port(route.from,out),end=port(route.to,back),goal=key(end),parent=new Map([[key(start),null]]),cost=new Map([[key(start),0]]),heap=[];
+  const score=p=>Math.abs(p[0]-end[0])+Math.abs(p[1]-end[1]);
+  function push(p,g){const item={p,g,f:g+score(p)};heap.push(item);let i=heap.length-1;while(i){const j=(i-1)>>1;if(heap[j].f<=item.f)break;heap[i]=heap[j];i=j;}heap[i]=item;}
+  function pop(){const first=heap[0],last=heap.pop();if(heap.length){let i=0;while(i*2+1<heap.length){let j=i*2+1;if(j+1<heap.length&&heap[j+1].f<heap[j].f)j++;if(heap[j].f>=last.f)break;heap[i]=heap[j];i=j;}heap[i]=last;}return first;}
+  push(start,0);
+  while(heap.length){const {p,g}=pop();if(g!==cost.get(key(p)))continue;if(key(p)===goal)break;
+   for(const v of [[0,-1],[1,0],[0,1],[-1,0]]){const cell=p.map((n,i)=>n+v[i]),k=key(cell);if(cell[0]<minX||cell[0]>maxX||cell[1]<minY||cell[1]>maxY||blocked.has(k)||usedEdges.has(edgeKey(p,cell))||g+1>=(cost.get(k)??Infinity))continue;cost.set(k,g+1);parent.set(k,p);push(cell,g+1);}
   }
   if(!parent.has(goal))continue;
-  const path=[];for(let cell=end;cell;cell=parent.get(cell.join(',')))path.unshift(cell);
-  links.push({from:route.from,to:route.to,direction:route.direction,reverse:reverse?.direction,points:[from,...path,to]});
+  const path=[];for(let cell=end;cell;cell=parent.get(key(cell)))path.unshift(cell);
+  for(let i=1;i<path.length;i++)usedEdges.add(edgeKey(path[i-1],path[i]));
+  const points=[from,...path,to].map(p=>p.map(v=>v/2));
+  links.push({from:route.from,to:route.to,direction:route.direction,reverse:reverse?.direction,points,crossings:[]});
  }
- return links;
+ // Crossings are not junctions. The later road gets a visual gap at each crossing.
+ const visiblePoints=new Set();for(const link of links){const own=new Set();for(const point of link.points.slice(1,-1)){const pointKey=key(point);if(visiblePoints.has(pointKey)&&!own.has(pointKey))link.crossings.push([...point]);own.add(pointKey);}for(const pointKey of own)visiblePoints.add(pointKey);}
+ lastDiscoveredPaths={key:cacheKey,links};return links;
 }
 
 export const speciesPortraits=Object.fromEntries(['humano','felaryn','dravak','marevyn','vesperi'].map(id=>[id,`/client/art/species/${id}-anime-v1.webp`]));

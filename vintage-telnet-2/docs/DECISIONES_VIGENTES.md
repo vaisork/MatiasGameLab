@@ -1,5 +1,7 @@
 # Decisiones operativas vigentes — 2026-10-08
 
+Encargo posterior: Javier autoriza corregir la geografía cartográfica de todo el juego, no sólo Valdren. Atlas fijo para 183 salas y hogares, trazados estables, privacidad del descubrimiento y concordancia HTML/3D; conservar todas las salidas, progresión y mecánicas. Informe: `review/spatial-world/REVIEW.md`. Este encargo no autoriza desplegar su nueva versión en Raspberry.
+
 Autorización posterior de despliegue: Javier pidió «Sube a raspberry». PR #657, commit f55188f, está instalado y validado; partidas y configuración privada conservadas. Registro: `review/qa/raspberry-deploy/update-20261008/DEPLOYMENT.md`. Esta autorización concreta no habilita despliegues futuros automáticos.
 
 Autorización posterior: Javier permite continuar el piloto MUD clásico acotado e integrar las entregas del otro Codex y Claude. El piloto modifica seis resúmenes de retorno en Edran, preserva las descripciones completas y adapta la presentación de `mirar`. Se integran 47 vistas ambientales y miniaturas. Las propuestas históricas de mecánicas se conservan como referencia, sin activar fórmulas nuevas. Esta autorización no incluye una reescritura masiva ni un despliegue en Raspberry. Resultado y evidencia: `review/mud-integration/INTEGRACION.md`.
