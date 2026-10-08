@@ -201,6 +201,14 @@ class Engine:
         brief=room.get('brief') if mode=='navigation' and visits>1 else None
         description=brief or room['description']
         lines=[event('look' if mode=='mirar' else 'world',description)];seen={description}
+        # The walk is told before the place it leads to.
+        if mode=='navigation' and 'arrival' in layers:
+            arrival=layers.pop('arrival');lines.insert(0,arrival);seen.add(arrival['text']);limit+=1
+        # First step into a region: say where the player is before describing the place.
+        previous=self.content.rooms.get(state.get('last_room') or '')
+        region=room.get('region');entry=self.content.regions.get(region,{}).get('entry')
+        if mode=='navigation' and state.get('arrival') and isinstance(entry,str) and isinstance(previous,dict) and previous.get('region')!=region and not any(self.content.rooms.get(v,{}).get('region')==region for v in state.get('visited',[]) if v!=room['id']):
+            lines.insert(0,event('discovery',entry));seen.add(entry);limit+=1
         if brief:
             options=list(dict.fromkeys(key for key in priority if key in layers and key!='danger'))
             if options:

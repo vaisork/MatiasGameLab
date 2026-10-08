@@ -68,3 +68,12 @@ class DepthNarrative(unittest.TestCase):
         self.assertIn(self.room['weather']['niebla'], [line['text'] for line in lines])
         self.character['state']['visits']['review'] = 5
         self.assertIn(self.room['memories'][0]['text'], [line['text'] for line in self.engine.narrative(self.character, {})])
+
+    def test_region_entry_only_on_first_step_into_region(self):
+        self.room['region'] = 'lethra'
+        self.engine.content.rooms = {'review': self.room, 'campo': {'region': 'edran'}, 'otra': {'region': 'lethra'}}
+        self.engine.content.regions = {'lethra': {'entry': 'Entras en Lethra.'}, 'edran': {}}
+        state = self.character['state']; state.update(last_room='campo', visited=['campo', 'review'])
+        self.assertEqual(self.engine.narrative(self.character, {})[0]['text'], 'Entras en Lethra.')
+        state['visited'].append('otra')
+        self.assertNotIn('Entras en Lethra.', [line['text'] for line in self.engine.narrative(self.character, {})])

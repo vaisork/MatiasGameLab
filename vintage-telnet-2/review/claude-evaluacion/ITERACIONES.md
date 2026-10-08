@@ -96,3 +96,31 @@ Comprobación:
 Pruebas: 150 tests OK; QA del cliente OK.
 
 Pendiente: algunas búsquedas repiten el mismo rastro dos veces seguidas. El motor no evita la repetición inmediata; mejorarlo exige tocar código y queda para la próxima iteración.
+
+## Iteración 4 — lectura larga y clara: dónde estoy, qué hago
+
+Petición: que en cada lugar la lectura sea larga, constante, interesante y agradable para todos, y que se note mejor dónde estamos y qué estamos haciendo.
+
+Cambios:
+- **Se retira el tope de 2 capas** de la iteración 3. `max_layers` cuenta también la descripción, así que dejaba las zonas salvajes en descripción más una sola capa. Vuelven al valor por defecto (3); los asentamientos mantienen 4.
+- **Qué estoy haciendo:** 38 textos de llegada (`arrivals`) nuevos.
+  - Cubren los 22 cruces entre regiones y todas las entradas a las plazas de cada pueblo.
+  - Antes había 21 textos de llegada para 392 caminos.
+  - El texto de llegada se lee **antes** de la descripción: primero el movimiento («Subes el último escalón… y te encuentras en la plaza de Khariel»), después el lugar.
+- **Dónde estoy:** cada región tiene una bienvenida (`regions.<id>.entry`), escrita para niños.
+  - Se muestra la primera vez que entras en la región, antes de todo lo demás.
+  - Se decide sin guardar estado nuevo: sólo mira si ya visitaste otra sala de esa región.
+  - Test: `test_region_entry_only_on_first_step_into_region`.
+- **Claridad:** 197 capas de ambiente (día, noche, amanecer, atardecer y lluvia) reescritas en lenguaje concreto.
+  - Se retiran frases abstractas o de manual («La diferencia entre cauce conducido y escorrentía mantiene su importancia», «sin forzar una revelación para cerrar la velada»).
+  - Se mantienen el contenido, los personajes y la hora de cada capa.
+- **Fauna canónica:** las 12 ranas pasan a Saltalodo, el anfibio del bestiario; la lagartija pasa a Escarabajo de polvo. El objetivo «examinar rana» pasa a «examinar saltalodo».
+
+Comprobación:
+- Ruta A, de día: 119 palabras por llegada (antes, 117).
+- Ruta B, de control y de noche: 147 palabras por llegada (antes, 137).
+- En las dos, la entrada en Lethra y en Hoshai empieza con la bienvenida de la región, y las plazas empiezan contando cómo llegas.
+
+Pruebas: 151 tests OK; QA del cliente OK.
+
+Pendiente: quedan 354 caminos sin texto de llegada; siguiente tanda, los caminos de la ruta principal dentro de cada región.
