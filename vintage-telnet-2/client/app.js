@@ -61,11 +61,14 @@ function navigate(next){view=next;message('');render();main.focus({preventScroll
 function narrativeNode(event){return el('p',{class:`event event-${event.kind.toLowerCase()}`},el('span',{class:'event-kind'},kindNames[event.kind]||'Mundo'),combatReading(event));}
 
 const terminalFeed=el('div',{class:'terminal-feed',tabIndex:0,'aria-label':'Lectura e historial del recorrido'}),printed=new Map();
-let printTimer=null,following=true,readingVisit=null;
-terminalFeed.addEventListener('scroll',()=>{following=terminalFeed.scrollHeight-terminalFeed.scrollTop-terminalFeed.clientHeight<45;});
+let printTimer=null,following=true,readingVisit=null,expectedTop=null;
+// Only the reader's own scrolling decides whether the terminal keeps following new text:
+// a scroll that lands exactly where the game moved the terminal is the game's, not the reader's.
+const autoScroll=top=>{expectedTop=Math.max(0,Math.min(top,terminalFeed.scrollHeight-terminalFeed.clientHeight));};
+terminalFeed.addEventListener('scroll',()=>{const own=expectedTop!==null&&Math.abs(terminalFeed.scrollTop-expectedTop)<2;expectedTop=null;if(!own)following=terminalFeed.scrollHeight-terminalFeed.scrollTop-terminalFeed.clientHeight<45;});
 function instantReading(){return document.documentElement.classList.contains('reduced-motion')||window.matchMedia('(prefers-reduced-motion: reduce)').matches;}
-function followTerminal(){if(following)terminalFeed.scrollTo({top:terminalFeed.scrollHeight,behavior:'auto'});}
-function resetTerminal(){clearTimeout(printTimer);printTimer=null;printed.clear();terminalFeed.replaceChildren();following=true;}
+function followTerminal(){if(following){autoScroll(terminalFeed.scrollHeight);terminalFeed.scrollTo({top:terminalFeed.scrollHeight,behavior:'auto'});}}
+function resetTerminal(){autoScroll(0);clearTimeout(printTimer);printTimer=null;printed.clear();terminalFeed.replaceChildren();following=true;}
 function finishPrinting(){clearTimeout(printTimer);printTimer=null;for(const item of printed.values()){item.at=item.text.length;item.node.hidden=false;item.output.textContent=item.text;}followTerminal();}
 function printNext(){
  printTimer=null;if(!terminalFeed.isConnected)return;
@@ -77,7 +80,7 @@ function printNext(){
 }
 function captureReadingPosition(){return {top:terminalFeed.scrollTop,page:window.scrollY,following};}
 function restoreReadingPosition(position){
- following=position.following;terminalFeed.scrollTop=position.top;
+ autoScroll(position.top);following=position.following;terminalFeed.scrollTop=position.top;
  window.scrollTo({top:position.page,behavior:'instant'});
 }
 
@@ -170,7 +173,7 @@ function characterStat(label,value,c){const entry=el('div',{class:'stat'},el('sm
 const attributeNames={agilidad:'Agilidad',destreza:'Destreza',fuerza:'Fuerza',intelecto:'Intelecto',percepcion:'Percepción',presencia:'Presencia',resistencia:'Resistencia',voluntad:'Voluntad'},attributeIcons={agilidad:'bolt',destreza:'weapon',fuerza:'swords',intelecto:'≡',percepcion:'eye',presencia:'star',resistencia:'shield',voluntad:'fire'};
 const slotNames={cabeza:'Cabeza',torso:'Torso',brazos:'Brazos',piernas:'Piernas',pies:'Pies',anillo:'Anillo',amuleto:'Amuleto',weapon:'Arma',block:'Escudo',armor:'Torso'},bonusNames={vida:'vida',precision:'precisión',dano:'daño',esquiva:'esquiva'};
 function gearSummary(c){const inventory=list(state.inventory),equipment=c.equipment||{},worn=Object.entries(equipment).filter(([,id])=>id).map(([slot,id])=>[slot,inventory.find(item=>item.id===id)]).filter(([,item])=>item);const protection=Math.min(50,Math.round(worn.reduce((sum,[,item])=>sum+(item.kind==='armor'?item.armor_reduction||0:0),0)*100));return [['Protección',`${protection}% menos daño recibido`],['Equipo puesto',worn.length?worn.map(([slot,item])=>`${slotNames[slot]||slot}: ${item.name}`).join(' · '):'Nada']];}
-function characterView(){const c=state.character,portrait=c.portrait||speciesPortraits[c.species],equipment=c.equipment||{},inventory=list(state.inventory),rows=[['Género',c.gender==='masculino'?'Masculino':c.gender==='femenino'?'Femenino':'Sin elegir'],['Especie',speciesNames[c.species]||c.species],['Clase',classNames[c.class_id]||c.class_id],['Nivel',c.level],['Vitalidad',`${whole(c.hp)}/${whole(c.hp_max)}`],['Fatiga',whole(c.fatigue)],['Sellos',c.seals],['Experiencia',`${c.xp}/${c.xp_next}`],['Puntos de atributo',c.pa],['Puntos de técnica',c.pp],...gearSummary(c),['Herida',c.wound==null?'Sin herida':typeof c.wound==='number'?c.wound===0?'Sin herida':`Grado ${c.wound}`:textLabel(c.wound)||'Sin información']];main.replaceChildren(card(el('div',{class:'character-heading'},portrait?button(el('img',{class:'species-thumbnail',src:portrait,alt:'',decoding:'async'}),()=>openIllustration({name:c.portrait?c.name:speciesNames[c.species],illustration:portrait}),{class:'species-art-button','aria-label':`Ver retrato de ${c.name}`}):null,title('Tu presencia en el mundo',c.name)),el('div',{class:'stats'},...rows.filter(([,value])=>value!==undefined).map(([label,value])=>characterStat(label,value,c))),el('form',{class:'stack',onsubmit:event=>{event.preventDefault();if(busy)return;const data=new FormData(event.currentTarget);mutate('/api/character/profile',{gender:String(data.get('gender'))});}},genderField(c.gender),el('button',{type:'submit',class:'primary',disabled:busy},'Guardar género')),testerPanel(),el('h2',{},'Equipo actual'),...Object.entries(equipment).filter(([slot])=>['weapon','armor'].includes(slot)).map(([slot,item])=>subtitle(`${slot==='weapon'?'Arma':slot==='armor'?'Armadura':slot}: ${typeof item==='string'?inventory.find(entry=>entry.id===item)?.name||'Equipo registrado':item?.name||'Sin equipar'}`)),Object.keys(equipment).length?null:subtitle('No hay equipo indicado.'),el('details',{class:'more'},el('summary',{},'Las cinco especies'),subtitle('Estas ilustraciones representan cada especie.'),el('div',{class:'species-gallery'},...Object.entries(speciesPortraits).map(([id,illustration])=>button(el('span',{},el('img',{class:'species-thumbnail',src:illustration,alt:'',loading:'lazy',decoding:'async'}),speciesNames[id]),()=>openIllustration({name:speciesNames[id],illustration}),{class:'species-gallery-button','aria-label':`Ver especie ${speciesNames[id]}`})))),el('h2',{},'Atributos'),el('div',{class:'attribute-grid'},...Object.entries(c.attributes||{}).map(([name,value])=>el('div',{class:'attribute'},el('span',{class:'attribute-icon'},controlIcon(attributeIcons[name]||'star')),el('small',{},attributeNames[name]||name),el('strong',{},String(value))))),...actions(state.actions).filter(action=>['atributo','tecnica'].includes(action.id)).map(actionButton),list(state.characters).length>1?el('details',{class:'more'},el('summary',{},'Tus otros personajes'),...list(state.characters).filter(other=>other.id!==c.id).map(other=>button(`${other.name} · ${other.status==='approved'?'Disponible':'Pendiente'}`,()=>mutate('/api/character/select',{character_id:other.id})))):null));}
+function characterView(){const c=state.character,portrait=c.portrait||speciesPortraits[c.species],equipment=c.equipment||{},inventory=list(state.inventory),rows=[['Género',c.gender==='masculino'?'Masculino':c.gender==='femenino'?'Femenino':'Sin elegir'],['Especie',speciesNames[c.species]||c.species],['Clase',classNames[c.class_id]||c.class_id],['Nivel',c.level],['Vitalidad',`${whole(c.hp)}/${whole(c.hp_max)}`],['Fatiga',whole(c.fatigue)],['Sellos',c.seals],['Experiencia',`${c.xp}/${c.xp_next}`],['Puntos de atributo',c.pa],['Puntos de técnica',c.pp],...gearSummary(c),['Herida',c.wound==null?'Sin herida':typeof c.wound==='number'?c.wound===0?'Sin herida':`Grado ${c.wound}`:textLabel(c.wound)||'Sin información']];main.replaceChildren(card(el('div',{class:'character-heading'},portrait?button(el('img',{class:'species-thumbnail',src:portrait,alt:'',decoding:'async'}),()=>openIllustration({name:c.portrait?c.name:speciesNames[c.species],illustration:portrait}),{class:'species-art-button','aria-label':`Ver retrato de ${c.name}`}):null,title('Tu presencia en el mundo',c.name)),el('div',{class:'stats'},...rows.filter(([,value])=>value!==undefined).map(([label,value])=>characterStat(label,value,c))),c.gender?null:el('form',{class:'stack',onsubmit:event=>{event.preventDefault();if(busy)return;const data=new FormData(event.currentTarget);mutate('/api/character/profile',{gender:String(data.get('gender'))});}},genderField(c.gender),el('button',{type:'submit',class:'primary',disabled:busy},'Guardar género')),testerPanel(),el('h2',{},'Equipo actual'),...Object.entries(equipment).filter(([slot])=>['weapon','armor'].includes(slot)).map(([slot,item])=>subtitle(`${slot==='weapon'?'Arma':slot==='armor'?'Armadura':slot}: ${typeof item==='string'?inventory.find(entry=>entry.id===item)?.name||'Equipo registrado':item?.name||'Sin equipar'}`)),Object.keys(equipment).length?null:subtitle('No hay equipo indicado.'),el('details',{class:'more'},el('summary',{},'Las cinco especies'),subtitle('Estas ilustraciones representan cada especie.'),el('div',{class:'species-gallery'},...Object.entries(speciesPortraits).map(([id,illustration])=>button(el('span',{},el('img',{class:'species-thumbnail',src:illustration,alt:'',loading:'lazy',decoding:'async'}),speciesNames[id]),()=>openIllustration({name:speciesNames[id],illustration}),{class:'species-gallery-button','aria-label':`Ver especie ${speciesNames[id]}`})))),el('h2',{},'Atributos'),el('div',{class:'attribute-grid'},...Object.entries(c.attributes||{}).map(([name,value])=>el('div',{class:'attribute'},el('span',{class:'attribute-icon'},controlIcon(attributeIcons[name]||'star')),el('small',{},attributeNames[name]||name),el('strong',{},String(value))))),...actions(state.actions).filter(action=>['atributo','tecnica'].includes(action.id)).map(actionButton),list(state.characters).length>1?el('details',{class:'more'},el('summary',{},'Tus otros personajes'),...list(state.characters).filter(other=>other.id!==c.id).map(other=>button(`${other.name} · ${other.status==='approved'?'Disponible':'Pendiente'}`,()=>mutate('/api/character/select',{character_id:other.id})))):null));}
 function sellingSection(compact=false){
  const sales=actions(state.actions).filter(action=>action.id==='vender');
  const section=el('section',{class:'selling-section','aria-label':'Venta de objetos'},el('h2',{},sales.length?'Vender aquí':'Dónde vender'));
@@ -232,21 +235,29 @@ function keepMapToolFocus(label,change){
  if(restore)Array.from(main.querySelectorAll('.map-tools button')).find(control=>control.getAttribute('aria-label')===label)?.focus({preventScroll:true});
 }
 function discoveredMap(map,selected,onSelect){
+ const worldArt='/client/art/map/mundo-anime-v1.webp';
+ // With the illustrated world as background, cells are square so the painting is not distorted.
+ const art=Boolean(worldArt),CX=art?210:230,CY=art?210:170;
  const positions=discoveredLayout(map),links=discoveredPaths(map,positions),cells=[...positions.values(),...links.flatMap(link=>link.points.map(point=>point.map(v=>v/4)))];
  const minX=cells.length?Math.min(...cells.map(p=>p[0])):0,minY=cells.length?Math.min(...cells.map(p=>p[1])):0;
- const point=id=>{const [x,y]=positions.get(id);return [(x-minX)*230+82,(y-minY)*170+66];};
- const width=((cells.length?Math.max(...cells.map(p=>p[0])):0)-minX)*230+164,height=((cells.length?Math.max(...cells.map(p=>p[1])):0)-minY)*170+132;
+ const point=id=>{const [x,y]=positions.get(id);return [(x-minX)*CX+82,(y-minY)*CY+66];};
+ const width=((cells.length?Math.max(...cells.map(p=>p[0])):0)-minX)*CX+164,height=((cells.length?Math.max(...cells.map(p=>p[1])):0)-minY)*CY+132;
  let scale=mapOverview?(mapScale??1):Math.max(.85,mapScale??1);
- const sheet=el('div',{class:'discovered-map',style:`width:${width}px;height:${height}px;transform:scale(${scale});transform-origin:0 0`});
+ const sheet=el('div',{class:`discovered-map${art?' with-world-art':''}`,style:`width:${width}px;height:${height}px;transform:scale(${scale});transform-origin:0 0`});
  const svgNode=(tag,attrs={})=>{const node=document.createElementNS('http://www.w3.org/2000/svg',tag);for(const [key,value] of Object.entries(attrs))node.setAttribute(key,String(value));return node;};
  const roads=svgNode('svg',{class:'discovered-roads',width,height,viewBox:`0 0 ${width} ${height}`,'aria-hidden':'true'}),defs=svgNode('defs');roads.append(defs);
  const chosen=knownRoute(map,map.current,selected)||[],selectedEdges=new Set(chosen.map(step=>[step.from,step.to].sort().join('\n'))),maskPrefix=`road-${Math.random().toString(36).slice(2)}`;
- const pixel=([x,y])=>[(x/4-minX)*230+82,(y/4-minY)*170+66];
+ const pixel=([x,y])=>[(x/4-minX)*CX+82,(y/4-minY)*CY+66];
  links.forEach((link,index)=>{
   const points=link.points.map(pixel),attrs={class:`discovered-road${selectedEdges.has([link.from,link.to].sort().join('\n'))?' discovered-road-selected':''}`,'data-connection':link.from+' '+link.to,d:points.map(([x,y],i)=>`${i?'L':'M'}${x},${y}`).join(' ')};
   if(link.crossings.length){const id=maskPrefix+'-'+index,mask=svgNode('mask',{id,maskUnits:'userSpaceOnUse',x:0,y:0,width,height});mask.append(svgNode('rect',{x:0,y:0,width,height,fill:'white'}));for(const crossing of link.crossings){const [cx,cy]=pixel(crossing);mask.append(svgNode('circle',{cx,cy,r:6,fill:'black'}));}defs.append(mask);attrs.mask=`url(#${id})`;}
   roads.append(svgNode('path',attrs));
- });sheet.append(roads);
+ });if(art){
+  // Fog: the painting is only visible around places this character has discovered.
+  const left=82-minX*CX-CX/2,top=66-minY*CY-CY/2,clear=map.nodes.map(node=>{const [x,y]=point(node.id);return `radial-gradient(circle at ${x-left}px ${y-top}px,#000 ${CX*1.1}px,transparent ${CX*2}px)`;}).join(',');
+  sheet.append(el('div',{class:'world-art','aria-hidden':true,style:`left:${left}px;top:${top}px;width:${35*CX}px;height:${42*CY}px;background-image:url(${worldArt});-webkit-mask-image:${clear};mask-image:${clear}`}));
+ }
+ sheet.append(roads);
  const vectors={norte:[0,-1],sur:[0,1],este:[1,0],oeste:[-1,0]};
  for(const node of map.nodes)for(const direction of node.unexplored_directions||[]){
   const vector=vectors[direction];if(!vector)continue;
@@ -486,7 +497,7 @@ function applyPassiveSnapshot(next){
  // Reattach synchronously: its observer sees a connected node and keeps the canvas.
  if(retainMap)main.querySelector('.visual-3d[data-map-visual-key]')?.replaceWith(retainMap);
  for(const detail of main.querySelectorAll('details')){const previous=opened.find(saved=>saved.label===detail.querySelector('summary')?.textContent);if(previous){detail.open=previous.open;detail.scrollTop=previous.scroll;}}
- if(locationChanged&&view==='adventure'){following=true;terminalFeed.scrollTop=0;}else if(!wasFollowing){following=false;terminalFeed.scrollTop=terminalScroll;}
+ if(locationChanged&&view==='adventure'){autoScroll(0);following=true;terminalFeed.scrollTop=0;}else if(!wasFollowing){autoScroll(terminalScroll);following=false;terminalFeed.scrollTop=terminalScroll;}
  if(focus){
   let target=focus.node.isConnected?focus.node:null;
   if(!target&&focus.id)target=document.getElementById(focus.id);
