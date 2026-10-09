@@ -597,7 +597,7 @@ class Engine:
                     explanation='Va a tu mochila; debes equiparla para usarla.'+reference
                 elif item.get('kind')=='armor':
                     details.append(f"{m.SLOT_NAMES.get(item.get('slot','torso'))} · −{round(item['armor_reduction']*100)}% daño recibido")
-                    explanation='Protege una parte del cuerpo. Las piezas se suman hasta un máximo de −50%.'
+                    explanation=item.get('description','Protege una parte del cuerpo.')
                 elif item.get('kind')=='accessory':
                     details.append(m.SLOT_NAMES.get(item.get('slot'),'')+' · '+', '.join(f"+{v} {k.replace('dano','daño').replace('precision','precisión')}" for k,v in item.get('bonus',{}).items()))
                     explanation=item.get('description','')
@@ -612,6 +612,13 @@ class Engine:
                     explanation=item.get('description','Va a tu mochila.')
                 suffix=' · '+' · '.join(details) if details else ''
                 actions.append({'id':'comprar','target':item_id,'label':f"Comprar {item['name']} · {item['price']} sellos{suffix}",'reason':explanation})
+        # Shop sections: the client groups purchases and sales by what kind of thing they are.
+        for choice in actions:
+            if choice['id'] not in ('comprar','vender'):continue
+            item=self.content.items.get(choice['target']) if choice['id']=='comprar' else next((i for i in state['inventory'] if i['id']==choice['target']),None)
+            kind=(item or {}).get('kind')
+            choice['category']={'weapon':'armas','armor':'armaduras','accessory':'joyas','consumable':'pociones','material':'materiales'}.get(kind,'otros')
+            if kind in ('armor','accessory'):choice['slot']=item.get('slot','torso')
         for choice in actions:
             cost=self.content.items[choice['target']]['price'] if choice['id']=='comprar' else {'afinar':12,'reparar':8,'recuperacion':18}.get(choice['id'])
             if cost is None:continue

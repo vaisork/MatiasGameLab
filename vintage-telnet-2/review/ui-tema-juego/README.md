@@ -24,3 +24,12 @@ El tema va en una capa final de `client/style.css`. No elimina reglas anteriores
 
 ## Pendiente
 Marcos ornamentados y texturas pintadas (filigrana dorada, papel envejecido) requieren arte; se pueden encargar al agente de arte. No hacen falta descargas: fuentes con serifa del sistema y SVG propios.
+
+## Segunda ronda (2026-10-09): la letra manda y la tienda por secciones
+- **Sin ilustración en la escena:** la cabecera queda compacta (nombre, región, hora y clima). La imagen del lugar, y el retrato del rival en combate, sólo aparecen como vista previa al pasar sobre el icono de imagen y a tamaño completo al pulsarlo.
+- **Tienda:** las compras ya no salen como botones sueltos en la escena; hay una sola loseta «Tienda».
+  - Dentro, secciones Pociones y comida, Armas, Armaduras, Anillos y amuletos, y Vender.
+  - Las armaduras y joyas se agrupan por parte del cuerpo. Las ventas, por materiales, equipo y otros.
+  - El servidor añade `category` y `slot` a cada acción de compra y venta.
+- **Mochila:** en lugar de listar las compras, ofrece «Abrir la tienda».
+- Captura: `tienda.jpg`.

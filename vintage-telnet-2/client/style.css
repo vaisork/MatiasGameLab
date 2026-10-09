@@ -417,3 +417,31 @@ html body .room-context .selection .muted,html.combat-active body .room-context 
 body .selling-section{background:linear-gradient(180deg,var(--parchment-3),var(--parchment));border:1px solid var(--gold-dark);border-radius:9px;box-shadow:inset 0 0 0 2px var(--parchment-3);color:var(--ink)}
 html body .tile .pill,html body .inventory-item .pill{background:var(--night);color:var(--gold-2);border:1px solid var(--gold-dark)}
 body .item-emblem{display:grid;place-items:center;background:var(--night);color:var(--gold-2);border:1px solid var(--gold);border-radius:8px}
+/* Cabecera sin ilustración: la letra manda; la imagen sólo al pasar o pulsar el icono */
+body .room-context .scene-hero,body .room-context .scene-hero-plain{min-height:0;background:linear-gradient(180deg,var(--night-3),var(--night));display:flex;align-items:flex-start;justify-content:space-between;gap:10px;padding:12px 12px 4px}
+body .room-context .scene-hero::after{display:none}
+body .room-context .scene-hero-plain .scene-title{position:static;padding:0;right:auto}
+body .room-context .scene-hero .time-chip{position:static;flex-shrink:0;max-width:52%}
+body .room-context .room-top{padding:2px 12px 0;justify-content:flex-end}
+.art-icon{position:relative}
+body .room-context .art-icon,body .selection .art-icon{display:inline-grid;place-items:center;width:42px;height:42px;min-height:0;padding:0;background:var(--night-2);color:var(--gold-2);border:1px solid var(--gold-dark)}
+.art-peek{display:none;position:absolute;top:calc(100% + 6px);right:0;width:min(280px,80vw);aspect-ratio:3/2;object-fit:cover;border:2px solid var(--gold);border-radius:8px;box-shadow:0 10px 26px #000c;z-index:20;pointer-events:none}
+@media(hover:hover){.art-icon:hover .art-peek{display:block}}
+.art-icon:focus-visible .art-peek{display:block}
+body .selection h3 .art-icon{order:2}
+/* Tienda por secciones */
+.shop-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.shop-tabs{display:flex;gap:6px;overflow-x:auto;padding:4px 0 10px;scrollbar-width:thin}
+body .shop-tabs button{display:flex;align-items:center;gap:6px;white-space:nowrap;padding:7px 11px;min-height:40px}
+body .shop-tabs button svg{width:18px;height:18px}
+body .shop-tabs button[aria-pressed=true]{background:linear-gradient(180deg,var(--night-3),var(--night));color:var(--gold-2);border:2px solid var(--gold)}
+.shop-list{display:grid;gap:8px;margin-bottom:12px}
+.shop-group{margin:10px 0 2px;font-size:1rem;color:var(--gold-dark);text-transform:uppercase;letter-spacing:1px}
+body .shop-list .game-action{display:block;text-align:left;padding:10px 12px;min-height:52px}
+body .shop-list .action-content{display:grid;grid-template-columns:auto 1fr;gap:4px 10px;align-items:center}
+body .shop-list .action-symbol{grid-row:span 2;display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--night);color:var(--gold-2);border:1px solid var(--gold)}
+body .shop-list .action-label{font-weight:700}
+body .shop-list .action-reason{grid-column:2;color:var(--ink-soft);font-size:.85rem}
+body .shop-back{margin-top:8px;display:inline-flex;align-items:center;gap:6px}
+body .shop-back svg{width:16px;height:16px}
+.shop-grid .more-tile small{color:#c9d3dc}
