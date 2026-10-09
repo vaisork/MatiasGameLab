@@ -472,3 +472,44 @@ html.combat-active body .quick-actions{padding:10px}
 html.combat-active body .room-context .selection{padding:7px 10px}
 html.combat-active body .quick-actions .action-grid button{height:auto;overflow:visible}
 html.combat-active body .quick-actions .action-label{display:block;line-height:1.15;overflow-wrap:anywhere}
+/* Cabecera compacta: una franja para lugar y herramientas, una línea para el estado, combate mínimo */
+html body .room-context{border-width:1px}
+html body .room-context .scene-hero,html body .room-context .scene-hero-plain{display:flex;align-items:center;gap:6px;padding:6px 8px 4px}
+html body .room-context .scene-title{flex:1;min-width:0;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+html body .room-context .scene-title h1{font-size:1.05rem;line-height:1.15;margin:0;text-shadow:none}
+html body .room-context .scene-title p{font-size:.72rem;margin:0}
+.scene-tools{display:flex;align-items:center;gap:4px;flex-shrink:0}
+html body .room-context .scene-tools .time-chip{position:static;padding:0;width:30px;height:30px;justify-content:center;border-radius:7px;max-width:none}
+html body .room-context .scene-tools .time-chip span:not([aria-hidden]){position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+html body .room-context .scene-tools .time-chip svg{width:16px;height:16px}
+html body .room-context .scene-tools .art-icon,html body .room-context .scene-tools .map-shortcut,html body .room-context .scene-tools .room-details summary{width:30px;height:30px;min-height:0;min-width:0;padding:0;display:inline-grid;place-items:center;font-size:13px;border-radius:7px}
+html body .room-context .scene-tools .control-icon,html body .room-context .scene-tools svg{width:16px;height:16px}
+html body .room-context .scene-tools .room-details{position:relative}
+html body .room-context .scene-tools .room-metadata{position:absolute;right:0;top:36px;z-index:15;width:220px;padding:8px 10px;box-shadow:0 8px 20px #000a}
+html body .hud{grid-template-columns:1fr 1fr auto auto;gap:6px;padding:2px 8px 6px}
+html body .hud-bar{font-size:10.5px;gap:4px}
+html body .hud-bar svg{width:13px;height:13px}
+html body .hud-track{height:6px}
+html body .hud-chip{padding:1px 6px;font-size:11px;gap:3px}
+html body .hud-chip svg{width:12px;height:12px}
+@media(max-width:420px){html body .hud{grid-template-columns:1fr 1fr auto auto}}
+html body .room-context .selection,html.combat-active body .room-context .selection{margin:0 8px 6px;padding:5px 8px}
+html body .room-context .selection h3,html.combat-active body .room-context .selection h3{font-size:12.5px;margin:0 0 3px;line-height:1.2}
+html body .room-context .selection .art-icon{width:26px;height:26px}
+html body .room-context .selection .art-icon svg{width:14px;height:14px}
+html body .combat-vital-row{grid-template-columns:62px 1fr;margin:2px 0;gap:6px}
+html body .combat-vital-row small{font-size:10px}
+html body .combat-vital-track{height:5px}
+html body .room-context .selection p,html.combat-active body .room-context .selection p{font-size:10.5px;margin:2px 0 0;line-height:1.3}
+html body .reading .reading-tools{gap:4px;margin:0 0 4px}
+html body .reading .reading-tools button{min-height:28px;min-width:28px;width:28px;height:28px;padding:0;border-radius:6px}
+html body .reading .reading-tools svg,html body .reading .reading-tools .control-icon{width:14px;height:14px}
+html body .reading{padding:8px 12px 10px}
+/* Combate mínimo: ambos combatientes en una línea fina, sin texto de ayuda */
+html body .combat-vitals{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+html body .combat-vital-row{grid-template-columns:auto 1fr;margin:0;gap:4px}
+html body .combat-vital-row small{font-size:9.5px;max-width:64px}
+html body .combat-vital-track{height:4px}
+html body .room-context .selection p:last-of-type:not(:first-of-type){display:none}
+html body .room-context .selection h3,html.combat-active body .room-context .selection h3{font-size:11.5px;margin:0 0 2px}
+html body .room-context .selection .art-icon{width:22px;height:22px}
