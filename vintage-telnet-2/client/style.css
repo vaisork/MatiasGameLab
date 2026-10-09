@@ -623,3 +623,6 @@ html body .quick-actions .action-grid .action-reason{display:none}
 html body .quick-actions{padding:8px 8px 6px}
 html body .quick-actions .panel-title{font-size:.9rem;margin-bottom:5px;padding-bottom:3px}
 @media(min-width:520px){html body .quick-actions .action-grid{grid-template-columns:repeat(5,minmax(0,1fr))}}
+/* A⁻ / A⁺: más específico que el :root del tema, para que los botones de lectura vuelvan a mandar */
+html.small-reading{--reading-size:14px}
+html.large-reading{--reading-size:22px}
