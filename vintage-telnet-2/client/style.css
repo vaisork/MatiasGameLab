@@ -417,3 +417,99 @@ html body .room-context .selection .muted,html.combat-active body .room-context 
 body .selling-section{background:linear-gradient(180deg,var(--parchment-3),var(--parchment));border:1px solid var(--gold-dark);border-radius:9px;box-shadow:inset 0 0 0 2px var(--parchment-3);color:var(--ink)}
 html body .tile .pill,html body .inventory-item .pill{background:var(--night);color:var(--gold-2);border:1px solid var(--gold-dark)}
 body .item-emblem{display:grid;place-items:center;background:var(--night);color:var(--gold-2);border:1px solid var(--gold);border-radius:8px}
+/* Cabecera sin ilustración: la letra manda; la imagen sólo al pasar o pulsar el icono */
+body .room-context .scene-hero,body .room-context .scene-hero-plain{min-height:0;background:linear-gradient(180deg,var(--night-3),var(--night));display:flex;align-items:flex-start;justify-content:space-between;gap:10px;padding:12px 12px 4px}
+body .room-context .scene-hero::after{display:none}
+body .room-context .scene-hero-plain .scene-title{position:static;padding:0;right:auto}
+body .room-context .scene-hero .time-chip{position:static;flex-shrink:0;max-width:52%}
+body .room-context .room-top{padding:2px 12px 0;justify-content:flex-end}
+.art-icon{position:relative}
+body .room-context .art-icon,body .selection .art-icon{display:inline-grid;place-items:center;width:42px;height:42px;min-height:0;padding:0;background:var(--night-2);color:var(--gold-2);border:1px solid var(--gold-dark)}
+.art-peek{display:none;position:absolute;top:calc(100% + 6px);right:0;width:min(280px,80vw);aspect-ratio:3/2;object-fit:cover;border:2px solid var(--gold);border-radius:8px;box-shadow:0 10px 26px #000c;z-index:20;pointer-events:none}
+@media(hover:hover){.art-icon:hover .art-peek{display:block}}
+.art-icon:focus-visible .art-peek{display:block}
+body .selection h3 .art-icon{order:2}
+/* Tienda por secciones */
+.shop-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.shop-tabs{display:flex;gap:6px;overflow-x:auto;padding:4px 0 10px;scrollbar-width:thin}
+body .shop-tabs button{display:flex;align-items:center;gap:6px;white-space:nowrap;padding:7px 11px;min-height:40px}
+body .shop-tabs button svg{width:18px;height:18px}
+body .shop-tabs button[aria-pressed=true]{background:linear-gradient(180deg,var(--night-3),var(--night));color:var(--gold-2);border:2px solid var(--gold)}
+.shop-list{display:grid;gap:8px;margin-bottom:12px}
+.shop-group{margin:10px 0 2px;font-size:1rem;color:var(--gold-dark);text-transform:uppercase;letter-spacing:1px}
+body .shop-list .game-action{display:block;text-align:left;padding:10px 12px;min-height:52px}
+body .shop-list .action-content{display:grid;grid-template-columns:auto 1fr;gap:4px 10px;align-items:center}
+body .shop-list .action-symbol{grid-row:span 2;display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--night);color:var(--gold-2);border:1px solid var(--gold)}
+body .shop-list .action-label{font-weight:700}
+body .shop-list .action-reason{grid-column:2;color:var(--ink-soft);font-size:.85rem}
+body .shop-back{margin-top:8px;display:inline-flex;align-items:center;gap:6px}
+body .shop-back svg{width:16px;height:16px}
+.shop-grid .more-tile small{color:#c9d3dc}
+/* La conversación siempre en terminal (telnet): pantalla oscura, letra de máquina, marco dorado del tema */
+html body .reading{background:radial-gradient(ellipse at 50% 0,#13263a 0,#08111b 75%);color:#d5e1ea;font-family:ui-monospace,"Cascadia Mono","DejaVu Sans Mono","Liberation Mono",Menlo,Consolas,monospace;font-size:calc(var(--reading-size) - 2px);line-height:1.65;border:1px solid var(--gold-dark);box-shadow:inset 0 0 0 1px #000,inset 0 0 40px #0009,0 6px 18px #0008;
+ --world:#d5e1ea;--place:#ecd394;--action:#8fd0ff;--discovery:#f2ca75;--danger:#ff8f86;--combat:#ffb37b;--secondary:#9fb3c4;--voice:#d6b8f2}
+html body .reading h2{color:var(--gold);font-family:ui-monospace,"DejaVu Sans Mono",monospace;font-size:.8rem;letter-spacing:2px}
+html body .reading h2::before{content:"> "}
+html body .reading .event-kind{font-family:ui-monospace,"DejaVu Sans Mono",monospace;font-variant:normal;text-transform:uppercase;font-size:10.5px;letter-spacing:1px;opacity:.8}
+html body .reading .event-location{color:var(--place);border-top:1px dashed #c9a24a55}
+html body .reading .event-discovery,html body .reading .event-reward{background:#f2ca7514}
+html body .reading .event-danger,html body .reading .event-combat,html body .reading .event-damage{background:#ff8f8612}
+html body .reading .event-info{font-style:normal}
+html body .reading-footer{color:#8fa3b5;font-style:normal}
+html body .reading-footer::after{content:" ▌";color:var(--gold-2);animation:vt-cursor 1.1s steps(1) infinite}
+@keyframes vt-cursor{50%{opacity:0}}
+@media(prefers-reduced-motion:reduce){html body .reading-footer::after{animation:none}}
+html body .terminal-feed{scrollbar-color:#c9a24a #08111b}
+body details.history .reading{background:none;box-shadow:none}
+/* En combate, el menú es compacto: la lectura manda */
+html.combat-active body .quick-actions .action-grid{grid-template-columns:repeat(auto-fill,minmax(76px,1fr));gap:5px}
+html.combat-active body .quick-actions .action-grid button{min-height:54px;padding:5px 4px;border-width:1px}
+html.combat-active body .quick-actions .action-symbol svg,html.combat-active body .quick-actions .action-symbol .control-icon{width:18px;height:18px}
+html.combat-active body .quick-actions .action-label{font-size:.74rem}
+html.combat-active body .quick-actions .action-reason{display:none}
+html.combat-active body .quick-actions .panel-title{font-size:.95rem;margin-bottom:6px}
+html.combat-active body .quick-actions{padding:10px}
+html.combat-active body .room-context .selection{padding:7px 10px}
+html.combat-active body .quick-actions .action-grid button{height:auto;overflow:visible}
+html.combat-active body .quick-actions .action-label{display:block;line-height:1.15;overflow-wrap:anywhere}
+/* Cabecera compacta: una franja para lugar y herramientas, una línea para el estado, combate mínimo */
+html body .room-context{border-width:1px}
+html body .room-context .scene-hero,html body .room-context .scene-hero-plain{display:flex;align-items:center;gap:6px;padding:6px 8px 4px}
+html body .room-context .scene-title{flex:1;min-width:0;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+html body .room-context .scene-title h1{font-size:1.05rem;line-height:1.15;margin:0;text-shadow:none}
+html body .room-context .scene-title p{font-size:.72rem;margin:0}
+.scene-tools{display:flex;align-items:center;gap:4px;flex-shrink:0}
+html body .room-context .scene-tools .time-chip{position:static;padding:0;width:30px;height:30px;justify-content:center;border-radius:7px;max-width:none}
+html body .room-context .scene-tools .time-chip span:not([aria-hidden]){position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+html body .room-context .scene-tools .time-chip svg{width:16px;height:16px}
+html body .room-context .scene-tools .art-icon,html body .room-context .scene-tools .map-shortcut,html body .room-context .scene-tools .room-details summary{width:30px;height:30px;min-height:0;min-width:0;padding:0;display:inline-grid;place-items:center;font-size:13px;border-radius:7px}
+html body .room-context .scene-tools .control-icon,html body .room-context .scene-tools svg{width:16px;height:16px}
+html body .room-context .scene-tools .room-details{position:relative}
+html body .room-context .scene-tools .room-metadata{position:absolute;right:0;top:36px;z-index:15;width:220px;padding:8px 10px;box-shadow:0 8px 20px #000a}
+html body .hud{grid-template-columns:1fr 1fr auto auto;gap:6px;padding:2px 8px 6px}
+html body .hud-bar{font-size:10.5px;gap:4px}
+html body .hud-bar svg{width:13px;height:13px}
+html body .hud-track{height:6px}
+html body .hud-chip{padding:1px 6px;font-size:11px;gap:3px}
+html body .hud-chip svg{width:12px;height:12px}
+@media(max-width:420px){html body .hud{grid-template-columns:1fr 1fr auto auto}}
+html body .room-context .selection,html.combat-active body .room-context .selection{margin:0 8px 6px;padding:5px 8px}
+html body .room-context .selection h3,html.combat-active body .room-context .selection h3{font-size:12.5px;margin:0 0 3px;line-height:1.2}
+html body .room-context .selection .art-icon{width:26px;height:26px}
+html body .room-context .selection .art-icon svg{width:14px;height:14px}
+html body .combat-vital-row{grid-template-columns:62px 1fr;margin:2px 0;gap:6px}
+html body .combat-vital-row small{font-size:10px}
+html body .combat-vital-track{height:5px}
+html body .room-context .selection p,html.combat-active body .room-context .selection p{font-size:10.5px;margin:2px 0 0;line-height:1.3}
+html body .reading .reading-tools{gap:4px;margin:0 0 4px}
+html body .reading .reading-tools button{min-height:28px;min-width:28px;width:28px;height:28px;padding:0;border-radius:6px}
+html body .reading .reading-tools svg,html body .reading .reading-tools .control-icon{width:14px;height:14px}
+html body .reading{padding:8px 12px 10px}
+/* Combate mínimo: ambos combatientes en una línea fina, sin texto de ayuda */
+html body .combat-vitals{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+html body .combat-vital-row{grid-template-columns:auto 1fr;margin:0;gap:4px}
+html body .combat-vital-row small{font-size:9.5px;max-width:64px}
+html body .combat-vital-track{height:4px}
+html body .room-context .selection p:last-of-type:not(:first-of-type){display:none}
+html body .room-context .selection h3,html.combat-active body .room-context .selection h3{font-size:11.5px;margin:0 0 2px}
+html body .room-context .selection .art-icon{width:22px;height:22px}
