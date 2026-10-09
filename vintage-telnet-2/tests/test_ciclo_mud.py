@@ -59,3 +59,12 @@ class CicloMud(unittest.TestCase):
   for item in ('pocion_menor','coraza_vaisgard','espada_vaisgard','anillo_filo','botas_cuero'):self.assertIn(item,shop)
   self.state['location']='vaisgard_mercado';self.engine.add_item(self.state,'cuerno_cornalomo')
   self.assertIn(('vender','cuerno_cornalomo'),self.ids())
+
+ def test_bandits_have_distinct_personalities_on_the_roads(self):
+  bandits=('salteador_desesperado','salteador_bravucon','salteador_veterano','salteadora_negociante')
+  profiles={(m.PROFILES[b]['hp'],m.PROFILES[b]['damage']) for b in bandits};self.assertEqual(len(profiles),4)
+  for b in bandits:
+   creature=self.content.creatures[b]
+   self.assertEqual(creature['combatant_kind'],'human');self.assertEqual(set(creature['dialogue']),{'qué quieres','por qué','dejar paso'})
+   self.assertEqual(m.PROFILES[b]['family'],'forajidos')
+   self.assertTrue(any(s['creature']==b for r in self.content.rooms.values() for s in r.get('wildlife_pool',[])),b)

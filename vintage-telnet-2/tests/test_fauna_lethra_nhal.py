@@ -36,9 +36,11 @@ class FaunaLethraNhal(unittest.TestCase):
     self.assertEqual(room['region'],self.content.creatures[cid]['region'],(cid,rid))
     self.assertNotIn(rid,towns);self.assertNotIn(room['kind'],('settlement','interior','home'))
 
- def test_existing_species_stay_non_combatant(self):
-  for cid in EXISTING:self.assertNotIn(cid,m.PROFILES)
-  self.assertNotIn('hilaria_niebla',m.MINOR_FAUNA)
+ def test_existing_prey_fight_lightly_and_hilaria_stays_non_combatant(self):
+  self.assertNotIn('hilaria_niebla',m.PROFILES)
+  for cid in ('pinzajunco','saltalodo','rondamusgo'):
+   self.assertEqual(m.PROFILES[cid]['category'],'favorable');self.assertLessEqual(m.PROFILES[cid]['damage'],4)
+   self.assertTrue(self.content.creatures[cid]['loot'] and self.content.creatures[cid]['defeat_text'])
 
  def test_nocturnal_species_only_appear_without_daylight(self):
   for cid in ('sombranutria','velomembrana'):
