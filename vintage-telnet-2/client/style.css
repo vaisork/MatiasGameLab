@@ -445,3 +445,30 @@ body .shop-list .action-reason{grid-column:2;color:var(--ink-soft);font-size:.85
 body .shop-back{margin-top:8px;display:inline-flex;align-items:center;gap:6px}
 body .shop-back svg{width:16px;height:16px}
 .shop-grid .more-tile small{color:#c9d3dc}
+/* La conversación siempre en terminal (telnet): pantalla oscura, letra de máquina, marco dorado del tema */
+html body .reading{background:radial-gradient(ellipse at 50% 0,#13263a 0,#08111b 75%);color:#d5e1ea;font-family:ui-monospace,"Cascadia Mono","DejaVu Sans Mono","Liberation Mono",Menlo,Consolas,monospace;font-size:calc(var(--reading-size) - 2px);line-height:1.65;border:1px solid var(--gold-dark);box-shadow:inset 0 0 0 1px #000,inset 0 0 40px #0009,0 6px 18px #0008;
+ --world:#d5e1ea;--place:#ecd394;--action:#8fd0ff;--discovery:#f2ca75;--danger:#ff8f86;--combat:#ffb37b;--secondary:#9fb3c4;--voice:#d6b8f2}
+html body .reading h2{color:var(--gold);font-family:ui-monospace,"DejaVu Sans Mono",monospace;font-size:.8rem;letter-spacing:2px}
+html body .reading h2::before{content:"> "}
+html body .reading .event-kind{font-family:ui-monospace,"DejaVu Sans Mono",monospace;font-variant:normal;text-transform:uppercase;font-size:10.5px;letter-spacing:1px;opacity:.8}
+html body .reading .event-location{color:var(--place);border-top:1px dashed #c9a24a55}
+html body .reading .event-discovery,html body .reading .event-reward{background:#f2ca7514}
+html body .reading .event-danger,html body .reading .event-combat,html body .reading .event-damage{background:#ff8f8612}
+html body .reading .event-info{font-style:normal}
+html body .reading-footer{color:#8fa3b5;font-style:normal}
+html body .reading-footer::after{content:" ▌";color:var(--gold-2);animation:vt-cursor 1.1s steps(1) infinite}
+@keyframes vt-cursor{50%{opacity:0}}
+@media(prefers-reduced-motion:reduce){html body .reading-footer::after{animation:none}}
+html body .terminal-feed{scrollbar-color:#c9a24a #08111b}
+body details.history .reading{background:none;box-shadow:none}
+/* En combate, el menú es compacto: la lectura manda */
+html.combat-active body .quick-actions .action-grid{grid-template-columns:repeat(auto-fill,minmax(76px,1fr));gap:5px}
+html.combat-active body .quick-actions .action-grid button{min-height:54px;padding:5px 4px;border-width:1px}
+html.combat-active body .quick-actions .action-symbol svg,html.combat-active body .quick-actions .action-symbol .control-icon{width:18px;height:18px}
+html.combat-active body .quick-actions .action-label{font-size:.74rem}
+html.combat-active body .quick-actions .action-reason{display:none}
+html.combat-active body .quick-actions .panel-title{font-size:.95rem;margin-bottom:6px}
+html.combat-active body .quick-actions{padding:10px}
+html.combat-active body .room-context .selection{padding:7px 10px}
+html.combat-active body .quick-actions .action-grid button{height:auto;overflow:visible}
+html.combat-active body .quick-actions .action-label{display:block;line-height:1.15;overflow-wrap:anywhere}

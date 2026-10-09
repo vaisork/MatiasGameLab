@@ -33,3 +33,8 @@ Marcos ornamentados y texturas pintadas (filigrana dorada, papel envejecido) req
   - El servidor añade `category` y `slot` a cada acción de compra y venta.
 - **Mochila:** en lugar de listar las compras, ofrece «Abrir la tienda».
 - Captura: `tienda.jpg`.
+
+## Tercera ronda (2026-10-09): conversación en terminal y combate compacto
+- **Terminal:** la conversación vuelve a ser una terminal de computadora, como corresponde a un telnet. Pantalla azul noche casi negra, letra de máquina, colores por tipo de mensaje y cursor parpadeante (`▌`), dentro del marco dorado del tema.
+- **Combate compacto:** losetas pequeñas, de 4 en fila, sin textos explicativos, para que la lectura mande.
+- Captura: `terminal-y-combate.jpg`.
