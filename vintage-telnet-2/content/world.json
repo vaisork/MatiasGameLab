@@ -298,7 +298,8 @@
           "text": "Te llevas un trozo de piel parda, suave y resistente al agua."
         }
       ],
-      "presagio": "Juncos cortados al sesgo, todos a la misma altura, rodean un agujero en el barro: la madriguera de un Mordijunco."
+      "presagio": "Juncos cortados al sesgo, todos a la misma altura, rodean un agujero en el barro: la madriguera de un Mordijunco.",
+      "illustration": "/client/art/bestiary/mordijunco-anime-v1.webp"
     },
     "cienfango": {
       "id": "cienfango",
@@ -322,7 +323,8 @@
           "text": "Te llevas una mandíbula curva, afilada como una cuchilla."
         }
       ],
-      "presagio": "Bajo un tronco húmedo se oye un roce de muchas patas. En la madera hay surcos finos, como de cuchilla: ahí vive un Cienfango."
+      "presagio": "Bajo un tronco húmedo se oye un roce de muchas patas. En la madera hay surcos finos, como de cuchilla: ahí vive un Cienfango.",
+      "illustration": "/client/art/bestiary/cienfango-anime-v1.webp"
     },
     "raizacapa": {
       "id": "raizacapa",
@@ -341,7 +343,8 @@
           "text": "Recoges una placa rugosa del caparazón, dura como la piedra."
         }
       ],
-      "presagio": "Las raíces sumergidas están raspadas, como si algo duro se frotara contra ellas: señal de una Raizacapa."
+      "presagio": "Las raíces sumergidas están raspadas, como si algo duro se frotara contra ellas: señal de una Raizacapa.",
+      "illustration": "/client/art/bestiary/raizacapa-anime-v1.webp"
     },
     "aguaculebra": {
       "id": "aguaculebra",
@@ -365,7 +368,8 @@
           "text": "Te llevas una espina fina de su aleta."
         }
       ],
-      "presagio": "Remolinos pequeños, casi invisibles, giran junto a una grieta inundada: ahí se esconde una Aguaculebra."
+      "presagio": "Remolinos pequeños, casi invisibles, giran junto a una grieta inundada: ahí se esconde una Aguaculebra.",
+      "illustration": "/client/art/bestiary/aguaculebra-anime-v1.webp"
     },
     "cortacorriente": {
       "id": "cortacorriente",
@@ -389,7 +393,8 @@
           "text": "Te llevas un trozo de piel plateada."
         }
       ],
-      "presagio": "En el paso estrecho, algunas ondas avanzan contra la corriente. Algo nada ahí debajo: un Cortacorriente."
+      "presagio": "En el paso estrecho, algunas ondas avanzan contra la corriente. Algo nada ahí debajo: un Cortacorriente.",
+      "illustration": "/client/art/bestiary/cortacorriente-anime-v1.webp"
     },
     "faucecieno": {
       "id": "faucecieno",
@@ -413,7 +418,8 @@
           "text": "Recoges un diente enorme que se le quedó clavado en la orilla."
         }
       ],
-      "presagio": "Suben burbujas del agua turbia y ningún pájaro canta en la orilla. Algo grande respira debajo: un Faucecieno."
+      "presagio": "Suben burbujas del agua turbia y ningún pájaro canta en la orilla. Algo grande respira debajo: un Faucecieno.",
+      "illustration": "/client/art/bestiary/faucecieno-anime-v1.webp"
     },
     "tragacharco": {
       "id": "tragacharco",
@@ -437,7 +443,8 @@
           "text": "Recoges un hueso curvo de su enorme mandíbula."
         }
       ],
-      "presagio": "En el charco, un montículo de barro sube y baja muy despacio, como si respirara. Un Tragacharco duerme ahí."
+      "presagio": "En el charco, un montículo de barro sube y baja muy despacio, como si respirara. Un Tragacharco duerme ahí.",
+      "illustration": "/client/art/bestiary/tragacharco-anime-v1.webp"
     },
     "sombranutria": {
       "id": "sombranutria",
@@ -461,7 +468,8 @@
           "text": "Recoges un diente afilado y oscuro."
         }
       ],
-      "presagio": "Sobre las tablas hay conchas partidas, y bajo la madera se oyen golpes. De noche, aquí caza una Sombranutria."
+      "presagio": "Sobre las tablas hay conchas partidas, y bajo la madera se oyen golpes. De noche, aquí caza una Sombranutria.",
+      "illustration": "/client/art/bestiary/sombranutria-anime-v1.webp"
     },
     "velomembrana": {
       "id": "velomembrana",
@@ -485,7 +493,8 @@
           "text": "Te llevas un poco de pelaje suave como el algodón."
         }
       ],
-      "presagio": "Una sombra pequeña cruza entre las copas sin un ruido. Bajo una rama hay restos de alas de insecto: caza de una Velomembrana."
+      "presagio": "Una sombra pequeña cruza entre las copas sin un ruido. Bajo una rama hay restos de alas de insecto: caza de una Velomembrana.",
+      "illustration": "/client/art/bestiary/velomembrana-anime-v1.webp"
     },
     "roecorteza": {
       "id": "roecorteza",
@@ -509,7 +518,8 @@
           "text": "Te llevas un trozo de piel parda y gruesa."
         }
       ],
-      "presagio": "La corteza de un tronco cuelga en tiras largas y frescas. Algo ha estado buscando larvas: un Roecorteza."
+      "presagio": "La corteza de un tronco cuelga en tiras largas y frescas. Algo ha estado buscando larvas: un Roecorteza.",
+      "illustration": "/client/art/bestiary/roecorteza-anime-v1.webp"
     },
     "quebracascara": {
       "id": "quebracascara",
@@ -533,7 +543,8 @@
           "text": "Te llevas una mandíbula con forma de pinza."
         }
       ],
-      "presagio": "Un tronco podrido está lleno de túneles anchos, y dentro se oye un crujido constante: un Quebracáscara."
+      "presagio": "Un tronco podrido está lleno de túneles anchos, y dentro se oye un crujido constante: un Quebracáscara.",
+      "illustration": "/client/art/bestiary/quebracascara-anime-v1.webp"
     },
     "escarbaraiz": {
       "id": "escarbaraiz",
@@ -557,7 +568,8 @@
           "text": "Te llevas unas escamas pardas y duras."
         }
       ],
-      "presagio": "Hay montones de tierra recién sacada junto a las raíces, y un agujero que se pierde hacia abajo: el refugio de un Escarbaraíz."
+      "presagio": "Hay montones de tierra recién sacada junto a las raíces, y un agujero que se pierde hacia abajo: el refugio de un Escarbaraíz.",
+      "illustration": "/client/art/bestiary/escarbaraiz-anime-v1.webp"
     },
     "clavaespina": {
       "id": "clavaespina",
@@ -581,7 +593,8 @@
           "text": "Te llevas un trozo de cuero grueso, sin púas."
         }
       ],
-      "presagio": "Hay púas largas clavadas en los troncos bajos, todas a la misma altura. Por aquí pasa un Clavaespina."
+      "presagio": "Hay púas largas clavadas en los troncos bajos, todas a la misma altura. Por aquí pasa un Clavaespina.",
+      "illustration": "/client/art/bestiary/clavaespina-anime-v1.webp"
     },
     "mordesombra": {
       "id": "mordesombra",
@@ -605,7 +618,8 @@
           "text": "Recoges un diente fino y muy afilado."
         }
       ],
-      "presagio": "Aquí los pájaros no cantan. Entre los helechos hay un paso bajo y estrecho, como de un animal largo: territorio de un Mordesombra."
+      "presagio": "Aquí los pájaros no cantan. Entre los helechos hay un paso bajo y estrecho, como de un animal largo: territorio de un Mordesombra.",
+      "illustration": "/client/art/bestiary/mordesombra-anime-v1.webp"
     },
     "garfarrama": {
       "id": "garfarrama",
@@ -629,7 +643,8 @@
           "text": "Te llevas unas escamas verdes, con dibujo de corteza."
         }
       ],
-      "presagio": "Muy arriba, la corteza de las ramas está raspada por uñas ganchudas. Algo acecha ahí arriba: un Garfarrama."
+      "presagio": "Muy arriba, la corteza de las ramas está raspada por uñas ganchudas. Algo acecha ahí arriba: un Garfarrama.",
+      "illustration": "/client/art/bestiary/garfarrama-anime-v1.webp"
     },
     "tronchacolmillo": {
       "id": "tronchacolmillo",
@@ -653,7 +668,8 @@
           "text": "Te llevas un trozo de cuero áspero y muy resistente."
         }
       ],
-      "presagio": "El suelo del claro está levantado, con raíces arrancadas y tierra revuelta. Se oyen resoplidos lejos: un Tronchacolmillo."
+      "presagio": "El suelo del claro está levantado, con raíces arrancadas y tierra revuelta. Se oyen resoplidos lejos: un Tronchacolmillo.",
+      "illustration": "/client/art/bestiary/tronchacolmillo-anime-v1.webp"
     },
     "salteador_desesperado": {
       "id": "salteador_desesperado",
