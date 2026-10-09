@@ -107,6 +107,7 @@ class JourneyTests(unittest.TestCase):
   changed=self.post(self.client,'/api/character/profile',{'gender':'femenino'})
   self.assertEqual(changed.status_code,200)
   self.assertEqual(changed.json['character']['gender'],'femenino')
+  self.assertEqual(self.post(self.client,'/api/character/profile',{'gender':'masculino'}).status_code,409)  # chosen once, at creation or first time
   for key in ('id','species','class_id','location','hp','level','seals','equipment'):
    self.assertEqual(changed.json['character'][key],before[key])
   self.post(self.client,'/api/account/logout',{})

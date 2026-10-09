@@ -220,6 +220,8 @@ def create_app(config=None):
         with store.transaction() as db:
             char=selected(db)
             if not char:raise RuleError('Crea y selecciona un personaje.',401)
+            # Gender is chosen at creation; the profile only completes older characters that never chose it.
+            if char['state'].get('gender'):raise RuleError('El género se elige al crear el personaje.',409)
             char['state']['gender']=gender;store.save(db,char)
             return jsonify(state(db,engine()))
 
