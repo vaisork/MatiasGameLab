@@ -1,0 +1,41 @@
+{
+  "scope": "Exact main0e8a1cc; generated temporary account/combat and full known-map fixture. Real Chrome; no production accounts.",
+  "rows": [
+    {
+      "width": 320,
+      "firstBestiary": "Te enfrentas ahoraEspinajo de rastrojo",
+      "fitScale": 0.03285870755750274,
+      "afterMinus": 0.05,
+      "minusUnexpectedlyZoomsIn": true,
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "width": 393,
+      "firstBestiary": "Te enfrentas ahoraEspinajo de rastrojo",
+      "fitScale": 0.04285323110624315,
+      "afterMinus": 0.05,
+      "minusUnexpectedlyZoomsIn": true,
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "width": 768,
+      "firstBestiary": "Te enfrentas ahoraEspinajo de rastrojo",
+      "fitScale": 0.050331731869137496,
+      "afterMinus": 0.05,
+      "minusUnexpectedlyZoomsIn": false,
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "firstBestiary": "Te enfrentas ahoraEspinajo de rastrojo",
+      "fitScale": 0.050331731869137496,
+      "afterMinus": 0.05,
+      "minusUnexpectedlyZoomsIn": false,
+      "overflow": false,
+      "errors": []
+    }
+  ]
+}

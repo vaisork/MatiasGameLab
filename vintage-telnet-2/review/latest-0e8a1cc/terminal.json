@@ -1,0 +1,19 @@
+{
+  "scope": "Exact current UI, synthetic narrative appended to generated temporary encounter snapshot; no production data.",
+  "rows": [
+    {
+      "width": 393,
+      "initialGap": 3275,
+      "urgentGap": 0,
+      "urgentLineFollowed": true,
+      "manualScrollPreserved": true
+    },
+    {
+      "width": 1440,
+      "initialGap": 2003,
+      "urgentGap": 0,
+      "urgentLineFollowed": true,
+      "manualScrollPreserved": true
+    }
+  ]
+}
