@@ -85,3 +85,15 @@ Recorrido de ocho lugares revisado en hoshai-descenso-a-korven.jpg. Vegetación 
 ## Lote 30 — almacén viejo de Brumak
 
 Revisadas brumak-almacen-rodeo-retirada.jpg y brumak-entrada-pesaje.jpg. Entrada clara desciende a cruce; pasillo estrecho rodea sacos atados; muro cierra fondo; vuelta restituye luz exterior. Puertas interiores corregidas antes de aprobar y placa ahora tiene exactamente tres muescas. Vistas iniciales de placa requieren futuras variantes según recogida/devolución. Hojas de plaza–taller y patio–cubiertas disponibles como ramas adicionales.
+
+
+Lote 31: revisados `korven-cisterna-grietas-registro.jpg` (seis conexiones reales) y `korven-cauce-liquenes.jpg`. Relieve tabular continuo; presencia doméstica disminuye hasta las grietas, cauce y registro protegido. No se revela la profundidad desconocida. También revisados los ramales pendientes del lote 30: patio–cubiertas y plaza–taller, coherentes en piedra y organización del oficio.
+
+
+Lote 32: tres recorridos revisados, continuidad de pasarelas, techo y agua entre oficios y cuidados. Lote 33: juncal–banco–orilla–raíces e hitos–aves revisados. Geografía y vegetación continuas; las vistas fijas del juncal previo soleado y las orillas nubladas no simulan un clima sincronizado. La lectura sigue siendo autoridad de hora/clima. Preparar selector sólo si motor lo incorpora; no se modificó.
+
+
+Lote 34: revisados meseta–desvío–horno–muestras y lindero–cantera. Horno corregido para mantener misma cúpula y derrumbe desde lejos y cerca. Bosque reduce luz sobre extracción pequeña, sin monumento añadido.
+
+
+Lotes 35 y 36: cinco recorridos nuevos revisados. Veyra pierde arquitectura al salir a pastos y gana agua en la acequia. Edran conserva agricultura plana y flujo acequia–estanque–sauces–puente, con hondonada observada desde piedra firme. Parcela mantiene piedra ordinaria y dos hileras tras corrección. Se revisaron las seis hojas de cobertura regional completas; continuidad de materiales, escala y estilo aceptada por el agente. Límites: vistas fijas representativas; clima y microtrazas dependen de lectura.

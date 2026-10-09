@@ -1,11 +1,17 @@
 {
   "salas_publicas": 183,
-  "nuevas_imagenes_entregadas": 152,
+  "nuevas_imagenes_entregadas": 175,
   "estados": {
-    "Aprobado (nuevo, pendiente de integración)": 152,
-    "Sin imagen": 23,
+    "Aprobado (nuevo, pendiente de integración)": 175,
     "Aprobado": 8
   },
-  "pendientes_especificos": 23,
-  "mision": "INCOMPLETA"
+  "pendientes_especificos": 0,
+  "mision": "ARTE PREPARADO; INTEGRACIÓN PENDIENTE FUERA DE ALCANCE",
+  "variantes_estado_entregadas": 3,
+  "imagenes_nuevas_seleccionadas_total": 178,
+  "produccion_ambiental": "COBERTURA COMPLETA REVISADA DEL CANON AUDITADO",
+  "generacion_en_curso": false,
+  "pendientes_resolubles_produccion_ambiental": 0,
+  "integracion": "No aplicada",
+  "revision": "Del agente, no humana"
 }

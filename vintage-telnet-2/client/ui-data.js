@@ -1071,6 +1071,146 @@ Object.assign(placeIllustrations,{
     "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
   }
 });
+Object.assign(placeIllustrations,{
+  "lethra_taller_fibras": {
+    "name": "Taller de fibras",
+    "illustration": "/client/art/places/lethra_taller_fibras-anime-v1.webp",
+    "thumbnail": "/client/art/places/lethra_taller_fibras-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "lethra_plataforma_secado": {
+    "name": "Plataforma de secado",
+    "illustration": "/client/art/places/lethra_plataforma_secado-anime-v1.webp",
+    "thumbnail": "/client/art/places/lethra_plataforma_secado-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "lethra_banco_conversacion": {
+    "name": "Banco junto al canal",
+    "illustration": "/client/art/places/lethra_banco_conversacion-anime-v1.webp",
+    "thumbnail": "/client/art/places/lethra_banco_conversacion-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "lethra_cocina_reunion": {
+    "name": "Cocina vecinal",
+    "illustration": "/client/art/places/lethra_cocina_reunion-anime-v1.webp",
+    "thumbnail": "/client/art/places/lethra_cocina_reunion-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "lethra_cuidado_barcas": {
+    "name": "Patio de las barcas",
+    "illustration": "/client/art/places/lethra_cuidado_barcas-anime-v1.webp",
+    "thumbnail": "/client/art/places/lethra_cuidado_barcas-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "lethra_banco_barro": {
+    "name": "Banco de barro",
+    "illustration": "/client/art/places/lethra_banco_barro-anime-v1.webp",
+    "thumbnail": "/client/art/places/lethra_banco_barro-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "lethra_orilla_silente": {
+    "name": "Orilla del canal",
+    "illustration": "/client/art/places/lethra_orilla_silente-anime-v1.webp",
+    "thumbnail": "/client/art/places/lethra_orilla_silente-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "lethra_raices_observacion": {
+    "name": "Raíces junto al agua",
+    "illustration": "/client/art/places/lethra_raices_observacion-anime-v1.webp",
+    "thumbnail": "/client/art/places/lethra_raices_observacion-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "lethra_escucha_aves": {
+    "name": "Orilla de las aves",
+    "illustration": "/client/art/places/lethra_escucha_aves-anime-v1.webp",
+    "thumbnail": "/client/art/places/lethra_escucha_aves-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "korven_desvio_horno": {
+    "name": "Desvío al horno",
+    "illustration": "/client/art/places/korven_desvio_horno-anime-v1.webp",
+    "thumbnail": "/client/art/places/korven_desvio_horno-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "korven_horno_reposo": {
+    "name": "Horno viejo",
+    "illustration": "/client/art/places/korven_horno_reposo-anime-v1.webp",
+    "thumbnail": "/client/art/places/korven_horno_reposo-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "korven_entrante_piezas": {
+    "name": "Rincón de las muestras",
+    "illustration": "/client/art/places/korven_entrante_piezas-anime-v1.webp",
+    "thumbnail": "/client/art/places/korven_entrante_piezas-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "veyra_cantera_callada": {
+    "name": "Cantera vieja",
+    "illustration": "/client/art/places/veyra_cantera_callada-anime-v1.webp",
+    "thumbnail": "/client/art/places/veyra_cantera_callada-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "veyra_huerta_baja": {
+    "name": "Huerta bajo las Escaleras",
+    "illustration": "/client/art/places/veyra_huerta_baja-anime-v1.webp",
+    "thumbnail": "/client/art/places/veyra_huerta_baja-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "veyra_colina_vista": {
+    "name": "Colina de las Procedencias",
+    "illustration": "/client/art/places/veyra_colina_vista-anime-v1.webp",
+    "thumbnail": "/client/art/places/veyra_colina_vista-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "veyra_vega_abierta": {
+    "name": "Vega abierta",
+    "illustration": "/client/art/places/veyra_vega_abierta-anime-v1.webp",
+    "thumbnail": "/client/art/places/veyra_vega_abierta-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "veyra_pastos_exteriores": {
+    "name": "Camino de los pastos",
+    "illustration": "/client/art/places/veyra_pastos_exteriores-anime-v1.webp",
+    "thumbnail": "/client/art/places/veyra_pastos_exteriores-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "veyra_acequia_exterior": {
+    "name": "Camino sobre la acequia",
+    "illustration": "/client/art/places/veyra_acequia_exterior-anime-v1.webp",
+    "thumbnail": "/client/art/places/veyra_acequia_exterior-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "edran_vista_cuenca": {
+    "name": "Mirador de la cuenca",
+    "illustration": "/client/art/places/edran_vista_cuenca-anime-v1.webp",
+    "thumbnail": "/client/art/places/edran_vista_cuenca-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "edran_estanque": {
+    "name": "Estanque del Reflejo Partido",
+    "illustration": "/client/art/places/edran_estanque-anime-v1.webp",
+    "thumbnail": "/client/art/places/edran_estanque-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "edran_sauces": {
+    "name": "Borde de los Sauces Bajos",
+    "illustration": "/client/art/places/edran_sauces-anime-v1.webp",
+    "thumbnail": "/client/art/places/edran_sauces-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "edran_bajo_humedo": {
+    "name": "Hondonada húmeda",
+    "illustration": "/client/art/places/edran_bajo_humedo-anime-v1.webp",
+    "thumbnail": "/client/art/places/edran_bajo_humedo-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "edran_parcela_vieja": {
+    "name": "Parcela vieja",
+    "illustration": "/client/art/places/edran_parcela_vieja-anime-v1.webp",
+    "thumbnail": "/client/art/places/edran_parcela_vieja-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  }
+});
 export function placeArt(room){
  if(!room)return null;
  if(room.kind==='home'&&homeArtNames[room.region])return {name:room.name,illustration:`/client/art/places/${homeArtNames[room.region]}-home-anime-v1.webp`,thumbnail:`/client/art/places/${homeArtNames[room.region]}-home-thumb-v1.webp`,caption:'Representación de tu hogar. La hora, el clima y el equipo actual se consultan en el juego.'};
