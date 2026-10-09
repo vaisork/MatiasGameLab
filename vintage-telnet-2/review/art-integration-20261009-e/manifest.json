@@ -1,0 +1,463 @@
+{
+ "source_delivery": "Vintage Telnet - Arte - Entrega",
+ "source_estado": {
+  "salas_publicas": 183,
+  "nuevas_imagenes_entregadas": 175,
+  "estados": {
+   "Aprobado (nuevo, pendiente de integración)": 175,
+   "Aprobado": 8
+  },
+  "pendientes_especificos": 0,
+  "mision": "ARTE PREPARADO; INTEGRACIÓN PENDIENTE FUERA DE ALCANCE",
+  "variantes_estado_entregadas": 3,
+  "imagenes_nuevas_seleccionadas_total": 178,
+  "produccion_ambiental": "COBERTURA COMPLETA REVISADA DEL CANON AUDITADO",
+  "generacion_en_curso": false,
+  "pendientes_resolubles_produccion_ambiental": 0,
+  "integracion": "No aplicada",
+  "revision": "Del agente, no humana"
+ },
+ "ids": [
+  "lethra_taller_fibras",
+  "lethra_plataforma_secado",
+  "lethra_banco_conversacion",
+  "lethra_cocina_reunion",
+  "lethra_cuidado_barcas",
+  "lethra_banco_barro",
+  "lethra_orilla_silente",
+  "lethra_raices_observacion",
+  "lethra_escucha_aves",
+  "korven_desvio_horno",
+  "korven_horno_reposo",
+  "korven_entrante_piezas",
+  "veyra_cantera_callada",
+  "veyra_huerta_baja",
+  "veyra_colina_vista",
+  "veyra_vega_abierta",
+  "veyra_pastos_exteriores",
+  "veyra_acequia_exterior",
+  "edran_vista_cuenca",
+  "edran_estanque",
+  "edran_sauces",
+  "edran_bajo_humedo",
+  "edran_parcela_vieja"
+ ],
+ "files": [
+  {
+   "id": "lethra_taller_fibras",
+   "file": "client/art/places/lethra_taller_fibras-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "a91dca945d7ce2e05c5bba5091ef0aa028ab4c29976e247f20c15aa6bf438011"
+  },
+  {
+   "id": "lethra_taller_fibras",
+   "file": "client/art/places/lethra_taller_fibras-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "06eb767d0698f05fd928a3a3ff0c96d2cb4bcc1609fc8649fe6115e65d18cf8e"
+  },
+  {
+   "id": "lethra_plataforma_secado",
+   "file": "client/art/places/lethra_plataforma_secado-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "2bbb2de5c592b6e6e2af28bfd0ae192693c3fa9e964b6251c8de6f0581272e9f"
+  },
+  {
+   "id": "lethra_plataforma_secado",
+   "file": "client/art/places/lethra_plataforma_secado-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "b6da041ccb9f70049047c4637d073212c600508163d5c554792739b7d3f07efe"
+  },
+  {
+   "id": "lethra_banco_conversacion",
+   "file": "client/art/places/lethra_banco_conversacion-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "43a16c85cf8bfdf7048b17a7ca1f15b1ca1f8092f637705bd5d3c83bc4e078ec"
+  },
+  {
+   "id": "lethra_banco_conversacion",
+   "file": "client/art/places/lethra_banco_conversacion-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "2d257f2bc78aaaa49c3361e2710018dbae46567ec9c85a66c21cbd5b45d645b7"
+  },
+  {
+   "id": "lethra_cocina_reunion",
+   "file": "client/art/places/lethra_cocina_reunion-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "8189bc182acf41e340b3df77414aaccd64e4bc1e890880b98da21e741ad7a7a4"
+  },
+  {
+   "id": "lethra_cocina_reunion",
+   "file": "client/art/places/lethra_cocina_reunion-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "49dce6f39dbd736f6838d82466043329974624d370f025448aaeb6523eeb8905"
+  },
+  {
+   "id": "lethra_cuidado_barcas",
+   "file": "client/art/places/lethra_cuidado_barcas-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "0736e61f415c9411d4253030226ecf45988648d6a888538cf3cc4ee76cc8fda2"
+  },
+  {
+   "id": "lethra_cuidado_barcas",
+   "file": "client/art/places/lethra_cuidado_barcas-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "268b50e3009e5d67ae3803003b57a8bd0193e3766ef93e6fb1cbf1bd20f520ce"
+  },
+  {
+   "id": "lethra_banco_barro",
+   "file": "client/art/places/lethra_banco_barro-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "2ca8a7ebde4ad196a118dff066a35fc762839a6e3aa293805b20f5d456220786"
+  },
+  {
+   "id": "lethra_banco_barro",
+   "file": "client/art/places/lethra_banco_barro-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "52451d19927d0bbc42765d2531639c99517140934bde509e2834fb3094b9f075"
+  },
+  {
+   "id": "lethra_orilla_silente",
+   "file": "client/art/places/lethra_orilla_silente-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "8ddd244f834924e9bb6a1047a7790d382acc87fa530a4b4276495fe2eb722c35"
+  },
+  {
+   "id": "lethra_orilla_silente",
+   "file": "client/art/places/lethra_orilla_silente-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "edb4f740c1dd587719ec27dc5a2940bba441a9645c2a2f7bf0f6d6ce3a434429"
+  },
+  {
+   "id": "lethra_raices_observacion",
+   "file": "client/art/places/lethra_raices_observacion-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "d3bb57d4e937a076029680f95c002b56d551fadf2ae07ea0c323717228184d10"
+  },
+  {
+   "id": "lethra_raices_observacion",
+   "file": "client/art/places/lethra_raices_observacion-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "84382a936f02d85ab59895a4c379d4bbe95c4798d04e040d88cc135c327a44eb"
+  },
+  {
+   "id": "lethra_escucha_aves",
+   "file": "client/art/places/lethra_escucha_aves-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "a377dbd857f1e4c271370a5a11c3679eb0b1ad83dd3b04d34c7824f7dc154d32"
+  },
+  {
+   "id": "lethra_escucha_aves",
+   "file": "client/art/places/lethra_escucha_aves-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "8ea306bed9c09f583a3ded0713a938e45038cdca132f633abfcee822b5f3d3b9"
+  },
+  {
+   "id": "korven_desvio_horno",
+   "file": "client/art/places/korven_desvio_horno-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "09addfcd8f92f751e66c89d39c823f4eef57f7ad3fdc849367264e7775fa0d70"
+  },
+  {
+   "id": "korven_desvio_horno",
+   "file": "client/art/places/korven_desvio_horno-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "4eeeb469b32acfe4fbbd28be4614aa0cc75129398440ef5e667947f914142fc5"
+  },
+  {
+   "id": "korven_horno_reposo",
+   "file": "client/art/places/korven_horno_reposo-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "a42b4c98f1c5e20d76e8de4fce04a57836b4e86e9a1074fee3dd8d2412fea00d"
+  },
+  {
+   "id": "korven_horno_reposo",
+   "file": "client/art/places/korven_horno_reposo-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "928b83c207065100cd1e5e1c8a5c095772bef7ea117e0a968816b05d34c78bac"
+  },
+  {
+   "id": "korven_entrante_piezas",
+   "file": "client/art/places/korven_entrante_piezas-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "b297aaa028d9a47ac3b692cea2a304b99e453705e41986592a541b25f9a10e28"
+  },
+  {
+   "id": "korven_entrante_piezas",
+   "file": "client/art/places/korven_entrante_piezas-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "1bed77f2b9b71a7a9093de9514beba32f20ba01a31b30e194bded35cd93461e4"
+  },
+  {
+   "id": "veyra_cantera_callada",
+   "file": "client/art/places/veyra_cantera_callada-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "73f5b2c3972e53d74f0941f98005dc6f416be55fc52aa8f789aa6f5579e9548f"
+  },
+  {
+   "id": "veyra_cantera_callada",
+   "file": "client/art/places/veyra_cantera_callada-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "ddacb65ed8dfbf5fd70068f0634a3e3b5f8df07ae83b468a002e8a00d252e5ae"
+  },
+  {
+   "id": "veyra_huerta_baja",
+   "file": "client/art/places/veyra_huerta_baja-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "5b304a97910220851644e63596e9c28d5b1e9d9fb3c6c77b6feece4c51037faa"
+  },
+  {
+   "id": "veyra_huerta_baja",
+   "file": "client/art/places/veyra_huerta_baja-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "9009b5d0341b6a5ebe2f6650ae417ec47e41360bd6dfe1c8687f9599febecfd9"
+  },
+  {
+   "id": "veyra_colina_vista",
+   "file": "client/art/places/veyra_colina_vista-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "f9ed1df8269e39150460a6c7b2cbc687e0d5aa9ab228741f99922411c7104dbf"
+  },
+  {
+   "id": "veyra_colina_vista",
+   "file": "client/art/places/veyra_colina_vista-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "0d3099f63ddb69ee0bc49ba2f089a8af4e7610b05c92dc1b0c781eabca14ea8e"
+  },
+  {
+   "id": "veyra_vega_abierta",
+   "file": "client/art/places/veyra_vega_abierta-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "20b63a520b9a8878b990ce6c814dfa4a1fa95ddedd66683b4182616f306950c5"
+  },
+  {
+   "id": "veyra_vega_abierta",
+   "file": "client/art/places/veyra_vega_abierta-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "448c00c55ec693dd7c86815a9a6645143f9a41e1b90e5d7cebac8571397d73bb"
+  },
+  {
+   "id": "veyra_pastos_exteriores",
+   "file": "client/art/places/veyra_pastos_exteriores-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "ec87897f60291db35ba6bd121d55233a84b7158172c7c5cfa77600c3ccc4726c"
+  },
+  {
+   "id": "veyra_pastos_exteriores",
+   "file": "client/art/places/veyra_pastos_exteriores-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "e8a9c0b84248cad33ed1f6670eefe3ff143c4ce857c079e8188ee7bb6c66c8b9"
+  },
+  {
+   "id": "veyra_acequia_exterior",
+   "file": "client/art/places/veyra_acequia_exterior-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "e03e94b21cb6d4eedde2bb6129dbc835378921282c39530e3f1b557c912b24d8"
+  },
+  {
+   "id": "veyra_acequia_exterior",
+   "file": "client/art/places/veyra_acequia_exterior-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "2a1db32ac9bdfd0e9c166522d8119c20d39416ab23fdbf6c6d96688f47467b8f"
+  },
+  {
+   "id": "edran_vista_cuenca",
+   "file": "client/art/places/edran_vista_cuenca-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "b6d32324605fea4a6c3701844ba33a2aae0452e1fe35faa4eef527bdf8d8d929"
+  },
+  {
+   "id": "edran_vista_cuenca",
+   "file": "client/art/places/edran_vista_cuenca-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "5bf0f060c6cecd9958d6c089e695e931189345de0ba3edf745623509fa0cfb1a"
+  },
+  {
+   "id": "edran_estanque",
+   "file": "client/art/places/edran_estanque-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "be57fe858fe54fcaf445270d35b7abcb371a130857ab87bfa7c2ff8a9ce7c141"
+  },
+  {
+   "id": "edran_estanque",
+   "file": "client/art/places/edran_estanque-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "d12396e4bbc1174c702f2056a46bf2bbe12d303374e38cf01c0db1aaf75cb3f6"
+  },
+  {
+   "id": "edran_sauces",
+   "file": "client/art/places/edran_sauces-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "6bcb09fc4a06fc268257d45cebdf7f126c1a2ae11ed42a4bb5a3f3010da40859"
+  },
+  {
+   "id": "edran_sauces",
+   "file": "client/art/places/edran_sauces-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "7b5e8d42ecea69975beef6bed030c3957c1877d9cd75221051f9678d64b2df3d"
+  },
+  {
+   "id": "edran_bajo_humedo",
+   "file": "client/art/places/edran_bajo_humedo-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "2aaeaa10d1f811a677fe853354167cdaa94cca5064b9f848efdbdfa98ff5f2f6"
+  },
+  {
+   "id": "edran_bajo_humedo",
+   "file": "client/art/places/edran_bajo_humedo-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "0c209a23df924c5c34451e0849cc96ab5125a85b8606a4c3174097c163c692a8"
+  },
+  {
+   "id": "edran_parcela_vieja",
+   "file": "client/art/places/edran_parcela_vieja-anime-v1.webp",
+   "size": [
+    1200,
+    800
+   ],
+   "sha256": "af2ac1f1cb155bbe2468745b79011fafadb363792d68620a1546c32af180c27a"
+  },
+  {
+   "id": "edran_parcela_vieja",
+   "file": "client/art/places/edran_parcela_vieja-anime-v1-thumb.webp",
+   "size": [
+    300,
+    200
+   ],
+   "sha256": "e2c1554c9d98e92cd9e3e601c73d5526d124ec50482f172664250b63448b27b6"
+  }
+ ],
+ "preserved_existing": 330,
+ "approval": "Aprobación artística del agente, sin revisión humana; hoja revisada por Claude"
+}
