@@ -122,7 +122,7 @@ def create_app(config=None):
     def client_asset(filename):
         if filename=='manifest.webmanifest':return send_from_directory(ROOT/'client',filename,mimetype='application/manifest+json')
         if filename in ('icons/icon-192.png','icons/icon-512.png','icons/icon-maskable-512.png','icons/apple-touch-icon.png','icons/favicon-32.png'):return send_from_directory(ROOT/'client',filename)
-        if filename.startswith(('art/bestiary/','art/species/','art/places/','art/encounters/','art/players/')) and filename.endswith('.webp'):
+        if filename.startswith(('art/bestiary/','art/species/','art/places/','art/encounters/','art/players/','art/map/')) and filename.endswith('.webp'):
             return send_from_directory(ROOT/'client'/'art',filename.removeprefix('art/'))
         if filename not in ('app.js','style.css','ui-data.js','world3d.js','model-assets.js','vendor/three.module.js','vendor/GLTFLoader.js','vendor/BufferGeometryUtils.js','vendor/LICENSE-three.txt','models/species/felaryn.glb','models/species/marevyn.glb','models/species/vesperi.glb','models/species/humano.glb','models/species/dravak.glb'):return jsonify(error='not_found'),404
         return send_from_directory(ROOT/'client',filename)

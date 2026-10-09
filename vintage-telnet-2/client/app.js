@@ -235,21 +235,29 @@ function keepMapToolFocus(label,change){
  if(restore)Array.from(main.querySelectorAll('.map-tools button')).find(control=>control.getAttribute('aria-label')===label)?.focus({preventScroll:true});
 }
 function discoveredMap(map,selected,onSelect){
+ const worldArt='/client/art/map/mundo-anime-v1.webp';
+ // With the illustrated world as background, cells are square so the painting is not distorted.
+ const art=Boolean(worldArt),CX=art?210:230,CY=art?210:170;
  const positions=discoveredLayout(map),links=discoveredPaths(map,positions),cells=[...positions.values(),...links.flatMap(link=>link.points.map(point=>point.map(v=>v/4)))];
  const minX=cells.length?Math.min(...cells.map(p=>p[0])):0,minY=cells.length?Math.min(...cells.map(p=>p[1])):0;
- const point=id=>{const [x,y]=positions.get(id);return [(x-minX)*230+82,(y-minY)*170+66];};
- const width=((cells.length?Math.max(...cells.map(p=>p[0])):0)-minX)*230+164,height=((cells.length?Math.max(...cells.map(p=>p[1])):0)-minY)*170+132;
+ const point=id=>{const [x,y]=positions.get(id);return [(x-minX)*CX+82,(y-minY)*CY+66];};
+ const width=((cells.length?Math.max(...cells.map(p=>p[0])):0)-minX)*CX+164,height=((cells.length?Math.max(...cells.map(p=>p[1])):0)-minY)*CY+132;
  let scale=mapOverview?(mapScale??1):Math.max(.85,mapScale??1);
- const sheet=el('div',{class:'discovered-map',style:`width:${width}px;height:${height}px;transform:scale(${scale});transform-origin:0 0`});
+ const sheet=el('div',{class:`discovered-map${art?' with-world-art':''}`,style:`width:${width}px;height:${height}px;transform:scale(${scale});transform-origin:0 0`});
  const svgNode=(tag,attrs={})=>{const node=document.createElementNS('http://www.w3.org/2000/svg',tag);for(const [key,value] of Object.entries(attrs))node.setAttribute(key,String(value));return node;};
  const roads=svgNode('svg',{class:'discovered-roads',width,height,viewBox:`0 0 ${width} ${height}`,'aria-hidden':'true'}),defs=svgNode('defs');roads.append(defs);
  const chosen=knownRoute(map,map.current,selected)||[],selectedEdges=new Set(chosen.map(step=>[step.from,step.to].sort().join('\n'))),maskPrefix=`road-${Math.random().toString(36).slice(2)}`;
- const pixel=([x,y])=>[(x/4-minX)*230+82,(y/4-minY)*170+66];
+ const pixel=([x,y])=>[(x/4-minX)*CX+82,(y/4-minY)*CY+66];
  links.forEach((link,index)=>{
   const points=link.points.map(pixel),attrs={class:`discovered-road${selectedEdges.has([link.from,link.to].sort().join('\n'))?' discovered-road-selected':''}`,'data-connection':link.from+' '+link.to,d:points.map(([x,y],i)=>`${i?'L':'M'}${x},${y}`).join(' ')};
   if(link.crossings.length){const id=maskPrefix+'-'+index,mask=svgNode('mask',{id,maskUnits:'userSpaceOnUse',x:0,y:0,width,height});mask.append(svgNode('rect',{x:0,y:0,width,height,fill:'white'}));for(const crossing of link.crossings){const [cx,cy]=pixel(crossing);mask.append(svgNode('circle',{cx,cy,r:6,fill:'black'}));}defs.append(mask);attrs.mask=`url(#${id})`;}
   roads.append(svgNode('path',attrs));
- });sheet.append(roads);
+ });if(art){
+  // Fog: the painting is only visible around places this character has discovered.
+  const left=82-minX*CX-CX/2,top=66-minY*CY-CY/2,clear=map.nodes.map(node=>{const [x,y]=point(node.id);return `radial-gradient(circle at ${x-left}px ${y-top}px,#000 ${CX*1.1}px,transparent ${CX*2}px)`;}).join(',');
+  sheet.append(el('div',{class:'world-art','aria-hidden':true,style:`left:${left}px;top:${top}px;width:${35*CX}px;height:${42*CY}px;background-image:url(${worldArt});-webkit-mask-image:${clear};mask-image:${clear}`}));
+ }
+ sheet.append(roads);
  const vectors={norte:[0,-1],sur:[0,1],este:[1,0],oeste:[-1,0]};
  for(const node of map.nodes)for(const direction of node.unexplored_directions||[]){
   const vector=vectors[direction];if(!vector)continue;
