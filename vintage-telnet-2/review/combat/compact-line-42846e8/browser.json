@@ -1,0 +1,106 @@
+{
+  "version": "42846e8",
+  "scope": "Real combat created through game API in temporary database; exact deployed source archive; Chrome viewport emulation. No production account or database used.",
+  "rows": [
+    {
+      "width": 320,
+      "boxes": [
+        {
+          "x": 51.953125,
+          "y": 153.53125,
+          "width": 105.046875,
+          "height": 4,
+          "min": "0",
+          "max": "108.75",
+          "value": "108.75"
+        },
+        {
+          "x": 231,
+          "y": 153.53125,
+          "width": 53,
+          "height": 4,
+          "min": "0",
+          "max": "40",
+          "value": "40"
+        }
+      ],
+      "noOverflow": true,
+      "errors": []
+    },
+    {
+      "width": 393,
+      "boxes": [
+        {
+          "x": 51.953125,
+          "y": 134.21875,
+          "width": 141.546875,
+          "height": 4,
+          "min": "0",
+          "max": "108.75",
+          "value": "108.75"
+        },
+        {
+          "x": 267.5,
+          "y": 134.21875,
+          "width": 89.5,
+          "height": 4,
+          "min": "0",
+          "max": "40",
+          "value": "40"
+        }
+      ],
+      "noOverflow": true,
+      "errors": []
+    },
+    {
+      "width": 768,
+      "boxes": [
+        {
+          "x": 147.953125,
+          "y": 186.484375,
+          "width": 233.046875,
+          "height": 4,
+          "min": "0",
+          "max": "108.75",
+          "value": "108.75"
+        },
+        {
+          "x": 455,
+          "y": 186.484375,
+          "width": 181,
+          "height": 4,
+          "min": "0",
+          "max": "40",
+          "value": "40"
+        }
+      ],
+      "noOverflow": true,
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "boxes": [
+        {
+          "x": 483.953125,
+          "y": 186.484375,
+          "width": 233.046875,
+          "height": 4,
+          "min": "0",
+          "max": "108.75",
+          "value": "108.75"
+        },
+        {
+          "x": 791,
+          "y": 186.484375,
+          "width": 181,
+          "height": 4,
+          "min": "0",
+          "max": "40",
+          "value": "40"
+        }
+      ],
+      "noOverflow": true,
+      "errors": []
+    }
+  ]
+}

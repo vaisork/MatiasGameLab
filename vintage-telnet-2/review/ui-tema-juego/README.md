@@ -38,3 +38,13 @@ Marcos ornamentados y texturas pintadas (filigrana dorada, papel envejecido) req
 - **Terminal:** la conversación vuelve a ser una terminal de computadora, como corresponde a un telnet. Pantalla azul noche casi negra, letra de máquina, colores por tipo de mensaje y cursor parpadeante (`▌`), dentro del marco dorado del tema.
 - **Combate compacto:** losetas pequeñas, de 4 en fila, sin textos explicativos, para que la lectura mande.
 - Captura: `terminal-y-combate.jpg`.
+
+## Cuarta ronda (2026-10-09): cruceta, colores alegres y acciones pequeñas
+- **Barra inferior como la original:** cruz de flechas a la izquierda, con la casa o la salida en el centro, y los 7 iconos de sección a la derecha (Explorar, Mapa, Personaje, Inventario, Bestiario, Diario y Ayuda). Desaparece el panel «Salidas»: las flechas lo sustituyen.
+- **Paleta anime alegre:**
+  - azul cielo, dorado brillante y paneles blancos sobre un fondo pastel claro, como la versión original;
+  - letra redondeada en la interfaz;
+  - losetas de color vivo según el tipo de acción;
+  - la terminal sigue oscura, con cian, amarillo y rosa.
+- **Acciones pequeñas:** 4 por fila (5 en pantallas anchas), sin textos explicativos.
+- Captura: `anime-cruceta.jpg`.
