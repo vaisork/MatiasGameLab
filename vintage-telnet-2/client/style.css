@@ -513,3 +513,113 @@ html body .combat-vital-track{height:4px}
 html body .room-context .selection p:last-of-type:not(:first-of-type){display:none}
 html body .room-context .selection h3,html.combat-active body .room-context .selection h3{font-size:11.5px;margin:0 0 2px}
 html body .room-context .selection .art-icon{width:22px;height:22px}
+/* Barra inferior: cruceta a la izquierda, pestañas a la derecha (cada una media pantalla) */
+html body #navigation.with-travel{display:grid;grid-template-columns:1fr 1fr;gap:6px;align-items:center;padding:5px}
+html body #navigation.with-travel .travel-pad{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,38px);gap:3px;justify-items:center;align-items:center;margin:0;padding:0;background:none;border:0}
+html body #navigation.with-travel .travel-pad .travel-norte{grid-area:1/2}
+html body #navigation.with-travel .travel-pad .travel-oeste{grid-area:2/1}
+html body #navigation.with-travel .travel-pad .travel-center{grid-area:2/2}
+html body #navigation.with-travel .travel-pad .travel-este{grid-area:2/3}
+html body #navigation.with-travel .travel-pad .travel-sur{grid-area:3/2}
+html body #navigation .travel-pad button{width:44px;height:38px;min-height:0;min-width:0;padding:0;display:grid;place-items:center;background:radial-gradient(circle at 50% 35%,var(--night-3),var(--night) 80%);color:var(--gold-2);border:1px solid var(--gold-dark);border-radius:9px;box-shadow:inset 0 0 0 1px #000,0 2px 0 #000a}
+html body #navigation .travel-pad button:disabled{opacity:.3}
+html body #navigation .travel-pad button:hover:not(:disabled){border-color:var(--gold)}
+html body #navigation .travel-pad svg{width:20px;height:20px}
+html body #navigation .travel-pad .travel-center:not(button){color:var(--gold-dark);font-size:18px}
+html body #navigation.with-travel .game-tabs{grid-template-columns:repeat(3,1fr);grid-auto-rows:56px;gap:3px}
+html body #navigation.with-travel .game-tabs button{min-height:0;height:56px;padding:4px 1px}
+html body #navigation.with-travel .game-tabs button svg{width:20px;height:20px}
+html body #navigation.with-travel .game-tabs .tab-label{font-size:10px}
+html.reading-adventure body .app{padding-bottom:calc(140px + env(safe-area-inset-bottom))}
+/* Estructura de antes: cruceta a la izquierda, siete iconos en cuadrícula a la derecha */
+html body #navigation .game-tabs{grid-template-columns:repeat(7,minmax(0,1fr))}
+html body #navigation.with-travel .game-tabs{grid-template-columns:repeat(3,1fr);grid-auto-rows:38px;gap:3px}
+html body #navigation.with-travel .game-tabs button{height:38px;padding:2px 1px;gap:0}
+html body #navigation.with-travel .game-tabs button svg{width:18px;height:18px}
+html body #navigation.with-travel .game-tabs .tab-label{font-size:8.5px;line-height:1}
+html body #navigation .game-tabs .tab-label{font-size:9.5px}
+/* ===== Paleta anime alegre (2026-10-09): menos vintage, más color ===== */
+:root{--night:#2b3fb8;--night-2:#3a52d6;--night-3:#5a74f0;--gold:#ffc83d;--gold-2:#ffe07a;--gold-dark:#f0a020;--parchment:#f6f9ff;--parchment-2:#e6eeff;--parchment-3:#ffffff;--ink:#1d2550;--ink-soft:#56638f;
+ --serif:"Nunito","Varela Round","M PLUS Rounded 1c","Trebuchet MS","Segoe UI",system-ui,sans-serif;background:#2a2f8f}
+html body{background:linear-gradient(180deg,#4f8dff 0,#6a5cf0 45%,#3a2a9a 100%) fixed;font-family:var(--serif)}
+html body .card{background:linear-gradient(180deg,#ffffff,#f3f7ff);border:2px solid #9fb6ff;box-shadow:0 6px 0 #2b3fb833,0 10px 24px #1a1f6b55;border-radius:16px}
+html body button{background:linear-gradient(180deg,#ffffff,#e8efff);border:2px solid #9fb6ff;color:var(--ink);border-radius:12px;box-shadow:0 3px 0 #7f97ee}
+html body button:hover:not(:disabled){background:linear-gradient(180deg,#ffffff,#f0f5ff);border-color:var(--night-3)}
+html body .primary,html body .primary:hover:not(:disabled){background:linear-gradient(180deg,#ffd75e,#ffb020);color:#3a2300;border:2px solid #e08a00;box-shadow:0 3px 0 #b86d00}
+html body .brand{background:linear-gradient(90deg,#3a52d6,#7a5cf0);border:2px solid #ffe07a;border-radius:16px}
+html body .brand a,html body .brand a small{color:#fff}
+html body .room-context{background:linear-gradient(135deg,#3a52d6,#6a4ff0);border:2px solid #ffe07a;border-radius:16px}
+html body .room-context .scene-hero,html body .room-context .scene-hero-plain{background:none}
+html body .room-context .scene-title p{color:#ffe07a}
+html body .room-context .scene-tools .time-chip,html body .room-context .scene-tools .art-icon,html body .room-context .scene-tools .map-shortcut,html body .room-context .scene-tools .room-details summary{background:#ffffff26;border:1px solid #ffffff80;color:#fff}
+html body .hud-bar{color:#fff}
+html body .hud-track{background:#1d255066;border-color:#ffffff66}
+html body .hud-life .hud-fill{background:linear-gradient(90deg,#ff4f7b,#ff8fa3)}
+html body .hud-energy .hud-fill{background:linear-gradient(90deg,#2fd27a,#9ff07a)}
+html body .hud-chip{background:#ffffff26;border:1px solid #ffe07a;color:#fff}
+html body .reading{background:linear-gradient(180deg,#151b45,#0e1233);border:2px solid #7f97ee;border-radius:16px;color:#eef1ff;
+ --world:#eef1ff;--place:#7fe6ff;--action:#9fd0ff;--discovery:#ffe07a;--danger:#ff7fa0;--combat:#ffab6b;--secondary:#aab4e0;--voice:#d8b4ff}
+html body .reading h2{color:#7fe6ff}
+html body .reading .event-location{border-top-color:#7fe6ff55}
+html body .reading-footer::after{color:#7fe6ff}
+html body .reading .reading-tools button{background:#2b3fb8;color:#fff;border:1px solid #7f97ee}
+html body .quick-actions .action-grid button,html body .action-grid button,html body .action-grid button:hover:not(:disabled){background:linear-gradient(160deg,#5a74f0,#3a2fb0);border:2px solid #9fb6ff;box-shadow:0 4px 0 #23208a;color:#fff}
+html body .action-grid .action-label{color:#fff}
+html body .action-grid .action-reason{color:#dfe6ff}
+html body .action-grid button[data-tone=fight]{background:linear-gradient(160deg,#ff6b6b,#c22a5a);border-color:#ffb3c1;box-shadow:0 4px 0 #8a1640}
+html body .action-grid button[data-tone=trade]{background:linear-gradient(160deg,#ffc83d,#f08a00);border-color:#ffe9a8;box-shadow:0 4px 0 #a85a00}
+html body .action-grid button[data-tone=talk]{background:linear-gradient(160deg,#b78cff,#7a3fd8);border-color:#e2ccff;box-shadow:0 4px 0 #4f2399}
+html body .action-grid button[data-tone=care]{background:linear-gradient(160deg,#3fe0c0,#14a08a);border-color:#b8fff0;box-shadow:0 4px 0 #0b6a5c}
+html body .action-grid button[data-tone=explore]{background:linear-gradient(160deg,#5ac8ff,#2a7fe0);border-color:#c7ecff;box-shadow:0 4px 0 #17509a}
+html body .action-grid .action-symbol{color:#fff}
+html body .panel-title{color:var(--night)}html body .panel-title::after{background:linear-gradient(90deg,#9fb6ff,transparent)}
+html body .stat,html body .attribute,html body .tile,html body .inventory-item,html body .creature-entry,html body .npc,html body .exit-row,html body details.history,html body .selling-section,html body .visual-3d{background:linear-gradient(180deg,#ffffff,#eef3ff);border:2px solid #c3d2ff;border-radius:12px;color:var(--ink)}
+html body .attribute-icon,html body .item-emblem,html body .exit-arrow,html body .shop-list .action-symbol{background:linear-gradient(160deg,#5a74f0,#3a2fb0);color:#fff;border:1px solid #9fb6ff}
+html body .pill,html body .tile .pill,html body .inventory-item .pill{background:#e6eeff;color:var(--night);border:1px solid #9fb6ff}
+html body .stat-meter-fill{background:linear-gradient(90deg,#ffb020,#ffe07a)}
+html body .more-tile,html body .shop-grid .more-tile{background:linear-gradient(160deg,#5a74f0,#3a2fb0);border:2px solid #9fb6ff;color:#fff}
+html body .more-tile small,html body .shop-grid .more-tile small{color:#dfe6ff}
+html body .shop-tabs button[aria-pressed=true]{background:linear-gradient(180deg,#ffd75e,#ffb020);color:#3a2300;border-color:#e08a00}
+html body .shop-group{color:var(--night-2)}
+html body .room-context .selection,html.combat-active body .room-context .selection{background:linear-gradient(135deg,#ff6b8b,#b0236a);border:1px solid #ffc2d1}
+html body .combat-vital-row:first-child .combat-vital-fill{background:linear-gradient(90deg,#2fd27a,#9ff07a)}
+html body .combat-vital-row:last-child .combat-vital-fill{background:linear-gradient(90deg,#ffd75e,#ff8a3d)}
+html body #navigation{background:linear-gradient(180deg,#3a52d6,#2b3fb8);border:2px solid #ffe07a;border-radius:18px;box-shadow:0 -4px 18px #1a1f6b88}
+html body #navigation .game-tabs button{color:#dfe6ff}
+html body #navigation .game-tabs button[aria-current=page]{color:#3a2300;background:linear-gradient(180deg,#ffe07a,#ffb020);border-color:#fff}
+html body #navigation .game-tabs button[aria-current=page] svg{filter:none}
+html body #navigation .travel-pad button{background:linear-gradient(160deg,#5ac8ff,#2a7fe0);color:#fff;border:2px solid #c7ecff;box-shadow:0 3px 0 #17509a}
+html body #navigation .travel-pad .travel-local{background:linear-gradient(160deg,#ffd75e,#f08a00);border-color:#ffe9a8;box-shadow:0 3px 0 #a85a00}
+html body .map-heading h1{color:#fff}
+html body .discovered-scroll{background:radial-gradient(circle at 30% 20%,#ffffff,#e6eeff 70%);border:2px solid #9fb6ff}
+html body .app-footer{color:#e6ecff}
+html body .notice{background:#fff;border-left-color:#ffb020}
+/* Fondo claro como la versión original, con la iconografía y los colores alegres */
+:root{background:#e8f1ff}
+html body{background:linear-gradient(180deg,#eaf3ff 0,#f3ecff 55%,#fff4e6 100%) fixed}
+html body .map-heading h1{color:var(--night)}
+html body .map-heading .muted,html body .app-footer{color:#56638f}
+/* Menos morado: azul cielo como base */
+:root{--night:#1f6fd0;--night-2:#2f86e8;--night-3:#4aa8ff}
+html body{background:linear-gradient(180deg,#e6f4ff 0,#effaff 55%,#fff6e6 100%) fixed}
+html body .brand,html body .room-context{background:linear-gradient(135deg,#2f9bff,#1f6fd0)}
+html body .quick-actions .action-grid button,html body .action-grid button,html body .action-grid button:hover:not(:disabled){background:linear-gradient(160deg,#4aa8ff,#2563d8);box-shadow:0 4px 0 #17489a}
+html body .more-tile,html body .shop-grid .more-tile,html body .attribute-icon,html body .item-emblem,html body .exit-arrow,html body .shop-list .action-symbol{background:linear-gradient(160deg,#4aa8ff,#2563d8)}
+html body #navigation{background:linear-gradient(180deg,#2f86e8,#1f6fd0)}
+html body .card{border-color:#a8d0ff;box-shadow:0 6px 0 #1f6fd022,0 10px 24px #1f6fd033}
+html body button{border-color:#a8d0ff;box-shadow:0 3px 0 #7fb2ee}
+html body .reading{background:linear-gradient(180deg,#0f2142,#0a1630);border-color:#7fb2ee}
+html body .reading .reading-tools button{background:#1f6fd0;border-color:#7fb2ee}
+html body .panel-title::after{background:linear-gradient(90deg,#a8d0ff,transparent)}
+html body .stat,html body .attribute,html body .tile,html body .inventory-item,html body .creature-entry,html body .npc,html body .exit-row,html body details.history,html body .selling-section,html body .visual-3d{background:linear-gradient(180deg,#ffffff,#eef7ff);border-color:#c3e0ff}
+html body .pill,html body .tile .pill,html body .inventory-item .pill{background:#e6f3ff;border-color:#a8d0ff}
+/* Acciones siempre pequeñas: la lectura manda */
+html body .quick-actions .action-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:5px}
+html body .quick-actions .action-grid button,html body .quick-actions .action-grid button:hover:not(:disabled){min-height:52px;height:auto;padding:5px 3px;border-width:1px;border-radius:10px;box-shadow:0 2px 0 #17489a}
+html body .quick-actions .action-grid .action-content{gap:2px}
+html body .quick-actions .action-grid .action-symbol svg,html body .quick-actions .action-grid .action-symbol .control-icon{width:17px;height:17px}
+html body .quick-actions .action-grid .action-label{font-size:.72rem;line-height:1.12;overflow-wrap:anywhere}
+html body .quick-actions .action-grid .action-reason{display:none}
+html body .quick-actions{padding:8px 8px 6px}
+html body .quick-actions .panel-title{font-size:.9rem;margin-bottom:5px;padding-bottom:3px}
+@media(min-width:520px){html body .quick-actions .action-grid{grid-template-columns:repeat(5,minmax(0,1fr))}}

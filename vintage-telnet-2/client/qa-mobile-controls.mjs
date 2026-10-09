@@ -19,7 +19,7 @@ context.state.actions=[{id:'mover',target:'sur',label:'Sur'}];
 pad=vm.runInContext('travelControls()',context);assert.deepEqual(all(pad).filter(n=>n.tag==='button').map(n=>n.attrs['data-direction']),['norte','oeste','este','sur']);
 context.state.character.combat={};assert(all(vm.runInContext('travelControls()',context)).filter(n=>n.tag==='button').every(n=>n.attrs.disabled));
 vm.runInContext('renderNavigation()',context);
-assert.equal(all(navigation).filter(n=>n.tag==='button').length,5);  // five game tabs; directions live in the scene's exits panel
+assert.equal(all(navigation).filter(n=>n.tag==='button').length,11);  // four arrows on the left half, seven section icons on the right half
 assert(all(navigation).filter(n=>n.tag==='button').every(n=>n.attrs['aria-label']&&n.attrs.title));
 const map=orientationMap({nodes:[{id:'a',name:'Plaza',region:'edran',unexplored_directions:['este','sur']},{id:'b',name:'Camino',region:'edran'},{id:'c',name:'Pozo',region:'edran'}],routes:[{from:'a',to:'b',direction:'norte'},{from:'a',to:'c',direction:'norte'},{from:'b',to:'secret',direction:'este'}]},'a');
 const positions=discoveredLayout(map);assert.equal(positions.size,3);assert.equal(new Set([...positions.values()].map(p=>p.join(','))).size,3);assert(positions.get('b')[1]<positions.get('a')[1]);assert(!positions.has('secret'));
