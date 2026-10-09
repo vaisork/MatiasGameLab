@@ -1,0 +1,2285 @@
+{
+ "lienzo": {
+  "columnas": 35,
+  "filas": 42,
+  "nota": "x_pct/y_pct = centro de la casilla, en % del ancho/alto del dibujo; origen arriba a la izquierda"
+ },
+ "regiones": {
+  "nhal": {
+   "nombre": "Bosque de Nhal",
+   "pueblo": "velmora_centro"
+  },
+  "hoshai": {
+   "nombre": "Sierra de Hoshai",
+   "pueblo": "khariel_centro"
+  },
+  "korven": {
+   "nombre": "Pedrales de Korven",
+   "pueblo": "brumak_centro"
+  },
+  "edran": {
+   "nombre": "Llanos de Edran",
+   "pueblo": "valdren_plaza"
+  },
+  "veyra": {
+   "nombre": "Cuenca de Veyra",
+   "pueblo": "vaisgard_mercado"
+  },
+  "lethra": {
+   "nombre": "Aguas de Lethra",
+   "pueblo": "narevia_centro"
+  }
+ },
+ "lugares": [
+  {
+   "id": "brumak_centro",
+   "nombre": "Patio de Brumak",
+   "region": "korven",
+   "tipo": "pueblo",
+   "x_pct": 7.14,
+   "y_pct": 39.29
+  },
+  {
+   "id": "edran_acequia",
+   "nombre": "Curva de la Acequia",
+   "region": "edran",
+   "tipo": "landmark",
+   "x_pct": 15.71,
+   "y_pct": 89.29
+  },
+  {
+   "id": "edran_arboleda",
+   "nombre": "Arboleda de los tres árboles",
+   "region": "edran",
+   "tipo": "wilderness",
+   "x_pct": 35.71,
+   "y_pct": 79.76
+  },
+  {
+   "id": "edran_bajo_humedo",
+   "nombre": "Hondonada húmeda",
+   "region": "edran",
+   "tipo": "wilderness",
+   "x_pct": 18.57,
+   "y_pct": 91.67
+  },
+  {
+   "id": "edran_calzada",
+   "nombre": "Calzada de piedra",
+   "region": "edran",
+   "tipo": "road",
+   "x_pct": 35.71,
+   "y_pct": 55.95
+  },
+  {
+   "id": "edran_camino_carros",
+   "nombre": "Camino de carros",
+   "region": "edran",
+   "tipo": "road",
+   "x_pct": 35.71,
+   "y_pct": 77.38
+  },
+  {
+   "id": "edran_canal_bifurcacion",
+   "nombre": "Bifurcación del canal",
+   "region": "edran",
+   "tipo": "interior",
+   "x_pct": 24.29,
+   "y_pct": 82.14
+  },
+  {
+   "id": "edran_canal_compuerta",
+   "nombre": "Compuerta abierta",
+   "region": "edran",
+   "tipo": "interior",
+   "x_pct": 27.14,
+   "y_pct": 82.14
+  },
+  {
+   "id": "edran_canal_entrada",
+   "nombre": "Entrada del canal cubierto",
+   "region": "edran",
+   "tipo": "interior",
+   "x_pct": 21.43,
+   "y_pct": 82.14
+  },
+  {
+   "id": "edran_canal_herramientas",
+   "nombre": "Cámara de herramientas",
+   "region": "edran",
+   "tipo": "interior",
+   "x_pct": 21.43,
+   "y_pct": 84.52
+  },
+  {
+   "id": "edran_canal_refugio",
+   "nombre": "Refugio junto al canal",
+   "region": "edran",
+   "tipo": "interior",
+   "x_pct": 24.29,
+   "y_pct": 84.52
+  },
+  {
+   "id": "edran_canal_repisa",
+   "nombre": "Repisa de las cuñas",
+   "region": "edran",
+   "tipo": "interior",
+   "x_pct": 30.0,
+   "y_pct": 82.14
+  },
+  {
+   "id": "edran_casa_camino",
+   "nombre": "Casa del camino",
+   "region": "edran",
+   "tipo": "interior",
+   "x_pct": 35.71,
+   "y_pct": 60.71
+  },
+  {
+   "id": "edran_cobertizo_campo",
+   "nombre": "Cobertizo de las Estacas Numeradas",
+   "region": "edran",
+   "tipo": "interior",
+   "x_pct": 24.29,
+   "y_pct": 79.76
+  },
+  {
+   "id": "edran_era",
+   "nombre": "Era de los campos",
+   "region": "edran",
+   "tipo": "landmark",
+   "x_pct": 35.71,
+   "y_pct": 72.62
+  },
+  {
+   "id": "edran_estanque",
+   "nombre": "Estanque del Reflejo Partido",
+   "region": "edran",
+   "tipo": "landmark",
+   "x_pct": 15.71,
+   "y_pct": 91.67
+  },
+  {
+   "id": "edran_hito_campos",
+   "nombre": "Paso hacia Veyra",
+   "region": "edran",
+   "tipo": "landmark",
+   "x_pct": 35.71,
+   "y_pct": 51.19
+  },
+  {
+   "id": "edran_ladera_piedra",
+   "nombre": "Ladera de los cestos",
+   "region": "edran",
+   "tipo": "landmark",
+   "x_pct": 1.43,
+   "y_pct": 70.24
+  },
+  {
+   "id": "edran_linde_piedra",
+   "nombre": "Paso hacia Korven",
+   "region": "edran",
+   "tipo": "road",
+   "x_pct": 1.43,
+   "y_pct": 58.33
+  },
+  {
+   "id": "edran_lindero",
+   "nombre": "Lindero de la Piedra Hundida",
+   "region": "edran",
+   "tipo": "landmark",
+   "x_pct": 15.71,
+   "y_pct": 79.76
+  },
+  {
+   "id": "edran_loma",
+   "nombre": "Loma del Pasto Cortado",
+   "region": "edran",
+   "tipo": "landmark",
+   "x_pct": 7.14,
+   "y_pct": 79.76
+  },
+  {
+   "id": "edran_parcela_vieja",
+   "nombre": "Parcela vieja",
+   "region": "edran",
+   "tipo": "wilderness",
+   "x_pct": 7.14,
+   "y_pct": 82.14
+  },
+  {
+   "id": "edran_prado",
+   "nombre": "Prado de las Marcas Anchas",
+   "region": "edran",
+   "tipo": "wilderness",
+   "x_pct": 7.14,
+   "y_pct": 70.24
+  },
+  {
+   "id": "edran_puente_juncos",
+   "nombre": "Vado de Juncos",
+   "region": "edran",
+   "tipo": "landmark",
+   "x_pct": 41.43,
+   "y_pct": 75.0
+  },
+  {
+   "id": "edran_reparo",
+   "nombre": "Refugio del camino",
+   "region": "edran",
+   "tipo": "interior",
+   "x_pct": 35.71,
+   "y_pct": 75.0
+  },
+  {
+   "id": "edran_salida_huertos",
+   "nombre": "Salida de las Cercas Bajas",
+   "region": "edran",
+   "tipo": "road",
+   "x_pct": 12.86,
+   "y_pct": 89.29
+  },
+  {
+   "id": "edran_sauces",
+   "nombre": "Borde de los Sauces Bajos",
+   "region": "edran",
+   "tipo": "wilderness",
+   "x_pct": 15.71,
+   "y_pct": 94.05
+  },
+  {
+   "id": "edran_sendero_juncos",
+   "nombre": "Sendero del Agua Oculta",
+   "region": "edran",
+   "tipo": "road",
+   "x_pct": 38.57,
+   "y_pct": 75.0
+  },
+  {
+   "id": "edran_sendero_regreso",
+   "nombre": "Senda de regreso",
+   "region": "edran",
+   "tipo": "road",
+   "x_pct": 18.57,
+   "y_pct": 98.81
+  },
+  {
+   "id": "edran_surcos",
+   "nombre": "Campo de surcos",
+   "region": "edran",
+   "tipo": "wilderness",
+   "x_pct": 15.71,
+   "y_pct": 82.14
+  },
+  {
+   "id": "edran_terraplen",
+   "nombre": "Terraplén de la Subida",
+   "region": "edran",
+   "tipo": "road",
+   "x_pct": 35.71,
+   "y_pct": 67.86
+  },
+  {
+   "id": "edran_vista_cuenca",
+   "nombre": "Mirador de la cuenca",
+   "region": "edran",
+   "tipo": "landmark",
+   "x_pct": 38.57,
+   "y_pct": 51.19
+  },
+  {
+   "id": "edran_zanja_antigua",
+   "nombre": "Zanja seca",
+   "region": "edran",
+   "tipo": "landmark",
+   "x_pct": 18.57,
+   "y_pct": 82.14
+  },
+  {
+   "id": "hoshai_abrigo_pinas",
+   "nombre": "Refugio de las piñas",
+   "region": "hoshai",
+   "tipo": "landmark",
+   "x_pct": 38.57,
+   "y_pct": 22.62
+  },
+  {
+   "id": "hoshai_agua_fria",
+   "nombre": "Cruce de agua fría",
+   "region": "hoshai",
+   "tipo": "road",
+   "x_pct": 47.14,
+   "y_pct": 20.24
+  },
+  {
+   "id": "hoshai_aprisco_abierto",
+   "nombre": "Refugio del rebaño",
+   "region": "hoshai",
+   "tipo": "wilderness",
+   "x_pct": 38.57,
+   "y_pct": 17.86
+  },
+  {
+   "id": "hoshai_balcon_valle",
+   "nombre": "Balcón sobre el valle",
+   "region": "hoshai",
+   "tipo": "landmark",
+   "x_pct": 50.0,
+   "y_pct": 3.57
+  },
+  {
+   "id": "hoshai_cajas_camino",
+   "nombre": "Cajas bajo la terraza",
+   "region": "hoshai",
+   "tipo": "landmark",
+   "x_pct": 44.29,
+   "y_pct": 15.48
+  },
+  {
+   "id": "hoshai_campamento_lona",
+   "nombre": "Campamento de la lona azul",
+   "region": "hoshai",
+   "tipo": "landmark",
+   "x_pct": 44.29,
+   "y_pct": 13.1
+  },
+  {
+   "id": "hoshai_caseta_revision",
+   "nombre": "Caseta del camino",
+   "region": "hoshai",
+   "tipo": "interior",
+   "x_pct": 50.0,
+   "y_pct": 10.71
+  },
+  {
+   "id": "hoshai_collado_pino",
+   "nombre": "Paso del último pino",
+   "region": "hoshai",
+   "tipo": "wilderness",
+   "x_pct": 38.57,
+   "y_pct": 20.24
+  },
+  {
+   "id": "hoshai_cuello_roca",
+   "nombre": "Paso entre paredes",
+   "region": "hoshai",
+   "tipo": "road",
+   "x_pct": 47.14,
+   "y_pct": 15.48
+  },
+  {
+   "id": "hoshai_deposito_comun",
+   "nombre": "Depósito de herramientas",
+   "region": "hoshai",
+   "tipo": "interior",
+   "x_pct": 52.86,
+   "y_pct": 3.57
+  },
+  {
+   "id": "hoshai_descanso_tres_piedras",
+   "nombre": "Descanso de las Tres Piedras",
+   "region": "hoshai",
+   "tipo": "landmark",
+   "x_pct": 47.14,
+   "y_pct": 27.38
+  },
+  {
+   "id": "hoshai_escalones_sol",
+   "nombre": "Escalones al sol",
+   "region": "hoshai",
+   "tipo": "road",
+   "x_pct": 47.14,
+   "y_pct": 10.71
+  },
+  {
+   "id": "hoshai_estacion_cuerda",
+   "nombre": "Parada del cordel",
+   "region": "hoshai",
+   "tipo": "landmark",
+   "x_pct": 70.0,
+   "y_pct": 1.19
+  },
+  {
+   "id": "hoshai_estribacion",
+   "nombre": "Primera subida",
+   "region": "hoshai",
+   "tipo": "road",
+   "x_pct": 47.14,
+   "y_pct": 32.14
+  },
+  {
+   "id": "hoshai_garganta_oeste",
+   "nombre": "Garganta hacia Korven",
+   "region": "hoshai",
+   "tipo": "road",
+   "x_pct": 18.57,
+   "y_pct": 17.86
+  },
+  {
+   "id": "hoshai_hombro_lajas",
+   "nombre": "Camino de las lajas",
+   "region": "hoshai",
+   "tipo": "landmark",
+   "x_pct": 27.14,
+   "y_pct": 17.86
+  },
+  {
+   "id": "hoshai_ladera_hitos",
+   "nombre": "Ladera de las señales",
+   "region": "hoshai",
+   "tipo": "road",
+   "x_pct": 47.14,
+   "y_pct": 17.86
+  },
+  {
+   "id": "hoshai_lavadero_roca",
+   "nombre": "Lavadero de roca",
+   "region": "hoshai",
+   "tipo": "landmark",
+   "x_pct": 52.86,
+   "y_pct": 5.95
+  },
+  {
+   "id": "hoshai_mercado_cintas",
+   "nombre": "Mercado de las cintas",
+   "region": "hoshai",
+   "tipo": "settlement",
+   "x_pct": 50.0,
+   "y_pct": 8.33
+  },
+  {
+   "id": "hoshai_mirador_nudo",
+   "nombre": "Mirador de la cuerda",
+   "region": "hoshai",
+   "tipo": "landmark",
+   "x_pct": 50.0,
+   "y_pct": 13.1
+  },
+  {
+   "id": "hoshai_pared_goteo",
+   "nombre": "Pared húmeda",
+   "region": "hoshai",
+   "tipo": "road",
+   "x_pct": 47.14,
+   "y_pct": 25.0
+  },
+  {
+   "id": "hoshai_patio_hogares",
+   "nombre": "Patio de las casas",
+   "region": "hoshai",
+   "tipo": "settlement",
+   "x_pct": 47.14,
+   "y_pct": 5.95
+  },
+  {
+   "id": "hoshai_pinar_discontinuo",
+   "nombre": "Pinar abierto",
+   "region": "hoshai",
+   "tipo": "road",
+   "x_pct": 47.14,
+   "y_pct": 22.62
+  },
+  {
+   "id": "hoshai_repecho_raices",
+   "nombre": "Cuesta de las raíces",
+   "region": "hoshai",
+   "tipo": "road",
+   "x_pct": 47.14,
+   "y_pct": 29.76
+  },
+  {
+   "id": "hoshai_sala_cuidados",
+   "nombre": "Asiento de cuidados de Khariel",
+   "region": "hoshai",
+   "tipo": "interior",
+   "x_pct": 52.86,
+   "y_pct": 8.33
+  },
+  {
+   "id": "hoshai_senda_dosel",
+   "nombre": "Senda de los árboles altos",
+   "region": "hoshai",
+   "tipo": "road",
+   "x_pct": 47.14,
+   "y_pct": 1.19
+  },
+  {
+   "id": "hoshai_taller_apoyos",
+   "nombre": "Taller de Khariel",
+   "region": "hoshai",
+   "tipo": "interior",
+   "x_pct": 44.29,
+   "y_pct": 8.33
+  },
+  {
+   "id": "hoshai_terraza_cargas",
+   "nombre": "Terraza de las cargas",
+   "region": "hoshai",
+   "tipo": "landmark",
+   "x_pct": 47.14,
+   "y_pct": 13.1
+  },
+  {
+   "id": "khariel_centro",
+   "nombre": "Plaza de Khariel",
+   "region": "hoshai",
+   "tipo": "pueblo",
+   "x_pct": 47.14,
+   "y_pct": 8.33
+  },
+  {
+   "id": "korven_almacen_balanzas",
+   "nombre": "Mesa de pesaje",
+   "region": "korven",
+   "tipo": "interior",
+   "x_pct": 12.86,
+   "y_pct": 41.67
+  },
+  {
+   "id": "korven_almacen_cruce",
+   "nombre": "Cruce de los sacos vacíos",
+   "region": "korven",
+   "tipo": "interior",
+   "x_pct": 15.71,
+   "y_pct": 44.05
+  },
+  {
+   "id": "korven_almacen_entrada",
+   "nombre": "Puerta del almacén viejo",
+   "region": "korven",
+   "tipo": "interior",
+   "x_pct": 15.71,
+   "y_pct": 41.67
+  },
+  {
+   "id": "korven_almacen_fondo",
+   "nombre": "Depósito del fondo",
+   "region": "korven",
+   "tipo": "interior",
+   "x_pct": 15.71,
+   "y_pct": 46.43
+  },
+  {
+   "id": "korven_almacen_grano",
+   "nombre": "Almacén de grano",
+   "region": "korven",
+   "tipo": "interior",
+   "x_pct": 4.29,
+   "y_pct": 39.29
+  },
+  {
+   "id": "korven_almacen_lateral",
+   "nombre": "Pasillo detrás de los sacos",
+   "region": "korven",
+   "tipo": "interior",
+   "x_pct": 18.57,
+   "y_pct": 44.05
+  },
+  {
+   "id": "korven_asiento_revision",
+   "nombre": "Banco de revisión",
+   "region": "korven",
+   "tipo": "landmark",
+   "x_pct": 18.57,
+   "y_pct": 39.29
+  },
+  {
+   "id": "korven_borde_tierra",
+   "nombre": "Parada de los Cardos",
+   "region": "korven",
+   "tipo": "road",
+   "x_pct": 1.43,
+   "y_pct": 48.81
+  },
+  {
+   "id": "korven_calle_fachadas",
+   "nombre": "Calle de las casas",
+   "region": "korven",
+   "tipo": "settlement",
+   "x_pct": 7.14,
+   "y_pct": 41.67
+  },
+  {
+   "id": "korven_cauce_duro",
+   "nombre": "Cauce seco",
+   "region": "korven",
+   "tipo": "road",
+   "x_pct": 32.86,
+   "y_pct": 39.29
+  },
+  {
+   "id": "korven_cauce_observacion",
+   "nombre": "Cauce de piedras movidas",
+   "region": "korven",
+   "tipo": "wilderness",
+   "x_pct": 10.0,
+   "y_pct": 46.43
+  },
+  {
+   "id": "korven_cisterna_comun",
+   "nombre": "Cisterna común",
+   "region": "korven",
+   "tipo": "landmark",
+   "x_pct": 7.14,
+   "y_pct": 44.05
+  },
+  {
+   "id": "korven_deposito_cubiertas",
+   "nombre": "Depósito de cubiertas",
+   "region": "korven",
+   "tipo": "interior",
+   "x_pct": 4.29,
+   "y_pct": 46.43
+  },
+  {
+   "id": "korven_desvio_horno",
+   "nombre": "Desvío al horno",
+   "region": "korven",
+   "tipo": "road",
+   "x_pct": 30.0,
+   "y_pct": 41.67
+  },
+  {
+   "id": "korven_entrante_piezas",
+   "nombre": "Rincón de las muestras",
+   "region": "korven",
+   "tipo": "landmark",
+   "x_pct": 27.14,
+   "y_pct": 44.05
+  },
+  {
+   "id": "korven_hendidura_transito",
+   "nombre": "Paso estrecho",
+   "region": "korven",
+   "tipo": "road",
+   "x_pct": 21.43,
+   "y_pct": 39.29
+  },
+  {
+   "id": "korven_hitos_paso",
+   "nombre": "Camino de los mojones",
+   "region": "korven",
+   "tipo": "road",
+   "x_pct": 24.29,
+   "y_pct": 39.29
+  },
+  {
+   "id": "korven_horno_reposo",
+   "nombre": "Horno viejo",
+   "region": "korven",
+   "tipo": "landmark",
+   "x_pct": 30.0,
+   "y_pct": 44.05
+  },
+  {
+   "id": "korven_loma_cascajo",
+   "nombre": "Loma de las piedras claras",
+   "region": "korven",
+   "tipo": "road",
+   "x_pct": 35.71,
+   "y_pct": 39.29
+  },
+  {
+   "id": "korven_meseta_baja",
+   "nombre": "Meseta de las dos piedras",
+   "region": "korven",
+   "tipo": "road",
+   "x_pct": 30.0,
+   "y_pct": 39.29
+  },
+  {
+   "id": "korven_meseta_relevo",
+   "nombre": "Refugio de Lajas",
+   "region": "korven",
+   "tipo": "road",
+   "x_pct": 18.57,
+   "y_pct": 27.38
+  },
+  {
+   "id": "korven_mirador_grietas",
+   "nombre": "Mirador de las grietas",
+   "region": "korven",
+   "tipo": "landmark",
+   "x_pct": 10.0,
+   "y_pct": 44.05
+  },
+  {
+   "id": "korven_pared_sotavento",
+   "nombre": "Pared que corta el viento",
+   "region": "korven",
+   "tipo": "landmark",
+   "x_pct": 27.14,
+   "y_pct": 39.29
+  },
+  {
+   "id": "korven_patio_lavado",
+   "nombre": "Patio de lavado",
+   "region": "korven",
+   "tipo": "settlement",
+   "x_pct": 4.29,
+   "y_pct": 44.05
+  },
+  {
+   "id": "korven_peldanos_cortos",
+   "nombre": "Escalones bajos",
+   "region": "korven",
+   "tipo": "road",
+   "x_pct": 15.71,
+   "y_pct": 39.29
+  },
+  {
+   "id": "korven_plataforma_escucha",
+   "nombre": "Plataforma de escucha",
+   "region": "korven",
+   "tipo": "landmark",
+   "x_pct": 12.86,
+   "y_pct": 46.43
+  },
+  {
+   "id": "korven_registro_cauce",
+   "nombre": "Registro del cauce",
+   "region": "korven",
+   "tipo": "interior",
+   "x_pct": 12.86,
+   "y_pct": 44.05
+  },
+  {
+   "id": "korven_roca_cascaron",
+   "nombre": "Roca de los líquenes",
+   "region": "korven",
+   "tipo": "wilderness",
+   "x_pct": 32.86,
+   "y_pct": 41.67
+  },
+  {
+   "id": "korven_sala_cuidados",
+   "nombre": "Casa de cuidados de Brumak",
+   "region": "korven",
+   "tipo": "interior",
+   "x_pct": 10.0,
+   "y_pct": 41.67
+  },
+  {
+   "id": "korven_senda_viento",
+   "nombre": "Senda del viento",
+   "region": "korven",
+   "tipo": "road",
+   "x_pct": 1.43,
+   "y_pct": 39.29
+  },
+  {
+   "id": "korven_taller_juntas",
+   "nombre": "Taller de Brumak",
+   "region": "korven",
+   "tipo": "interior",
+   "x_pct": 7.14,
+   "y_pct": 36.9
+  },
+  {
+   "id": "lethra_banco_barro",
+   "nombre": "Banco de barro",
+   "region": "lethra",
+   "tipo": "wilderness",
+   "x_pct": 50.0,
+   "y_pct": 58.33
+  },
+  {
+   "id": "lethra_banco_conversacion",
+   "nombre": "Banco junto al canal",
+   "region": "lethra",
+   "tipo": "landmark",
+   "x_pct": 58.57,
+   "y_pct": 77.38
+  },
+  {
+   "id": "lethra_cocina_reunion",
+   "nombre": "Cocina vecinal",
+   "region": "lethra",
+   "tipo": "interior",
+   "x_pct": 58.57,
+   "y_pct": 79.76
+  },
+  {
+   "id": "lethra_cruce_canales",
+   "nombre": "Cruce de canales",
+   "region": "lethra",
+   "tipo": "landmark",
+   "x_pct": 52.86,
+   "y_pct": 63.1
+  },
+  {
+   "id": "lethra_cuidado_barcas",
+   "nombre": "Patio de las barcas",
+   "region": "lethra",
+   "tipo": "landmark",
+   "x_pct": 84.29,
+   "y_pct": 84.52
+  },
+  {
+   "id": "lethra_embarcadero_camino",
+   "nombre": "Embarcadero del camino",
+   "region": "lethra",
+   "tipo": "landmark",
+   "x_pct": 52.86,
+   "y_pct": 70.24
+  },
+  {
+   "id": "lethra_escucha_aves",
+   "nombre": "Orilla de las aves",
+   "region": "lethra",
+   "tipo": "wilderness",
+   "x_pct": 44.29,
+   "y_pct": 77.38
+  },
+  {
+   "id": "lethra_hito_tierra",
+   "nombre": "Cruce del puente",
+   "region": "lethra",
+   "tipo": "road",
+   "x_pct": 44.29,
+   "y_pct": 75.0
+  },
+  {
+   "id": "lethra_juncal_abierto",
+   "nombre": "Paso entre los juncos",
+   "region": "lethra",
+   "tipo": "road",
+   "x_pct": 52.86,
+   "y_pct": 58.33
+  },
+  {
+   "id": "lethra_mercado_hojas",
+   "nombre": "Mercado de Narevia",
+   "region": "lethra",
+   "tipo": "settlement",
+   "x_pct": 52.86,
+   "y_pct": 77.38
+  },
+  {
+   "id": "lethra_muelle_vecinal",
+   "nombre": "Muelle de las cestas",
+   "region": "lethra",
+   "tipo": "settlement",
+   "x_pct": 52.86,
+   "y_pct": 84.52
+  },
+  {
+   "id": "lethra_orilla_silente",
+   "nombre": "Orilla del canal",
+   "region": "lethra",
+   "tipo": "wilderness",
+   "x_pct": 50.0,
+   "y_pct": 60.71
+  },
+  {
+   "id": "lethra_pasarela_curva",
+   "nombre": "Pasarela curva",
+   "region": "lethra",
+   "tipo": "road",
+   "x_pct": 52.86,
+   "y_pct": 67.86
+  },
+  {
+   "id": "lethra_patio_ventanas",
+   "nombre": "Patio de las ventanas",
+   "region": "lethra",
+   "tipo": "settlement",
+   "x_pct": 81.43,
+   "y_pct": 84.52
+  },
+  {
+   "id": "lethra_plataforma_secado",
+   "nombre": "Plataforma de secado",
+   "region": "lethra",
+   "tipo": "landmark",
+   "x_pct": 55.71,
+   "y_pct": 77.38
+  },
+  {
+   "id": "lethra_raices_observacion",
+   "nombre": "Raíces junto al agua",
+   "region": "lethra",
+   "tipo": "landmark",
+   "x_pct": 47.14,
+   "y_pct": 60.71
+  },
+  {
+   "id": "lethra_relevo_raices",
+   "nombre": "Orilla Velada",
+   "region": "lethra",
+   "tipo": "landmark",
+   "x_pct": 81.43,
+   "y_pct": 67.86
+  },
+  {
+   "id": "lethra_ribera_firme",
+   "nombre": "Ribera de las cargas",
+   "region": "lethra",
+   "tipo": "road",
+   "x_pct": 52.86,
+   "y_pct": 65.48
+  },
+  {
+   "id": "lethra_ribera_oeste",
+   "nombre": "Ribera hacia Edran",
+   "region": "lethra",
+   "tipo": "road",
+   "x_pct": 50.0,
+   "y_pct": 75.0
+  },
+  {
+   "id": "lethra_ribera_seca",
+   "nombre": "Ribera seca",
+   "region": "lethra",
+   "tipo": "road",
+   "x_pct": 52.86,
+   "y_pct": 53.57
+  },
+  {
+   "id": "lethra_ribera_sombra",
+   "nombre": "Ribera sombreada",
+   "region": "lethra",
+   "tipo": "road",
+   "x_pct": 81.43,
+   "y_pct": 75.0
+  },
+  {
+   "id": "lethra_sala_cuidados",
+   "nombre": "Plataforma de cuidados de Narevia",
+   "region": "lethra",
+   "tipo": "interior",
+   "x_pct": 58.57,
+   "y_pct": 75.0
+  },
+  {
+   "id": "lethra_senda_elevada",
+   "nombre": "Senda sobre el agua",
+   "region": "lethra",
+   "tipo": "road",
+   "x_pct": 52.86,
+   "y_pct": 72.62
+  },
+  {
+   "id": "lethra_tablas_primeras",
+   "nombre": "Primeras tablas",
+   "region": "lethra",
+   "tipo": "road",
+   "x_pct": 52.86,
+   "y_pct": 60.71
+  },
+  {
+   "id": "lethra_taller_fibras",
+   "nombre": "Taller de fibras",
+   "region": "lethra",
+   "tipo": "interior",
+   "x_pct": 55.71,
+   "y_pct": 75.0
+  },
+  {
+   "id": "lethra_tierra_esponjosa",
+   "nombre": "Tierra blanda",
+   "region": "lethra",
+   "tipo": "road",
+   "x_pct": 52.86,
+   "y_pct": 55.95
+  },
+  {
+   "id": "narevia_centro",
+   "nombre": "Plaza de Narevia",
+   "region": "lethra",
+   "tipo": "pueblo",
+   "x_pct": 52.86,
+   "y_pct": 75.0
+  },
+  {
+   "id": "nhal_agua_sombreada",
+   "nombre": "Cauce bajo los árboles",
+   "region": "nhal",
+   "tipo": "wilderness",
+   "x_pct": 81.43,
+   "y_pct": 51.19
+  },
+  {
+   "id": "nhal_arbol_umbral",
+   "nombre": "Primer árbol del bosque",
+   "region": "nhal",
+   "tipo": "road",
+   "x_pct": 61.43,
+   "y_pct": 41.67
+  },
+  {
+   "id": "nhal_calle_hogares",
+   "nombre": "Calle de las casas",
+   "region": "nhal",
+   "tipo": "settlement",
+   "x_pct": 92.86,
+   "y_pct": 32.14
+  },
+  {
+   "id": "nhal_claro_silencio",
+   "nombre": "Claro tranquilo",
+   "region": "nhal",
+   "tipo": "wilderness",
+   "x_pct": 67.14,
+   "y_pct": 39.29
+  },
+  {
+   "id": "nhal_cocina_raices",
+   "nombre": "Cocina del bosque",
+   "region": "nhal",
+   "tipo": "interior",
+   "x_pct": 92.86,
+   "y_pct": 44.05
+  },
+  {
+   "id": "nhal_corteza_clara",
+   "nombre": "Árbol de corteza clara",
+   "region": "nhal",
+   "tipo": "road",
+   "x_pct": 70.0,
+   "y_pct": 41.67
+  },
+  {
+   "id": "nhal_helechos_bajos",
+   "nombre": "Sendero de helechos",
+   "region": "nhal",
+   "tipo": "road",
+   "x_pct": 81.43,
+   "y_pct": 41.67
+  },
+  {
+   "id": "nhal_mercado_setas",
+   "nombre": "Mercado de Velmora",
+   "region": "nhal",
+   "tipo": "settlement",
+   "x_pct": 87.14,
+   "y_pct": 44.05
+  },
+  {
+   "id": "nhal_patio_relato",
+   "nombre": "Patio de reuniones",
+   "region": "nhal",
+   "tipo": "settlement",
+   "x_pct": 92.86,
+   "y_pct": 41.67
+  },
+  {
+   "id": "nhal_piedras_musgo",
+   "nombre": "Piedras con musgo",
+   "region": "nhal",
+   "tipo": "road",
+   "x_pct": 75.71,
+   "y_pct": 41.67
+  },
+  {
+   "id": "nhal_puente_bajo",
+   "nombre": "Puente entre árboles",
+   "region": "nhal",
+   "tipo": "landmark",
+   "x_pct": 78.57,
+   "y_pct": 41.67
+  },
+  {
+   "id": "nhal_raices_altas",
+   "nombre": "Paso de las raíces altas",
+   "region": "nhal",
+   "tipo": "road",
+   "x_pct": 72.86,
+   "y_pct": 41.67
+  },
+  {
+   "id": "nhal_raiz_marcada",
+   "nombre": "Raíz marcada",
+   "region": "nhal",
+   "tipo": "wilderness",
+   "x_pct": 70.0,
+   "y_pct": 39.29
+  },
+  {
+   "id": "nhal_relevo_altura",
+   "nombre": "Alto de las Raíces",
+   "region": "nhal",
+   "tipo": "landmark",
+   "x_pct": 92.86,
+   "y_pct": 1.19
+  },
+  {
+   "id": "nhal_ribera_relevo",
+   "nombre": "Paso hacia Lethra",
+   "region": "nhal",
+   "tipo": "road",
+   "x_pct": 81.43,
+   "y_pct": 58.33
+  },
+  {
+   "id": "nhal_rincon_semillas",
+   "nombre": "Rincón de semillas",
+   "region": "nhal",
+   "tipo": "wilderness",
+   "x_pct": 75.71,
+   "y_pct": 39.29
+  },
+  {
+   "id": "nhal_roca_entre_copas",
+   "nombre": "Roca entre los árboles",
+   "region": "nhal",
+   "tipo": "landmark",
+   "x_pct": 92.86,
+   "y_pct": 10.71
+  },
+  {
+   "id": "nhal_sala_cuidados",
+   "nombre": "Cuarto de cuidados de Velmora",
+   "region": "nhal",
+   "tipo": "interior",
+   "x_pct": 84.29,
+   "y_pct": 44.05
+  },
+  {
+   "id": "nhal_secadero_sombra",
+   "nombre": "Secadero del taller",
+   "region": "nhal",
+   "tipo": "landmark",
+   "x_pct": 90.0,
+   "y_pct": 39.29
+  },
+  {
+   "id": "nhal_senda_recipiente",
+   "nombre": "Senda hacia Elin",
+   "region": "nhal",
+   "tipo": "road",
+   "x_pct": 95.71,
+   "y_pct": 41.67
+  },
+  {
+   "id": "nhal_sendero_altura",
+   "nombre": "Subida entre árboles",
+   "region": "nhal",
+   "tipo": "road",
+   "x_pct": 92.86,
+   "y_pct": 20.24
+  },
+  {
+   "id": "nhal_suelo_hojas",
+   "nombre": "Sendero de hojas",
+   "region": "nhal",
+   "tipo": "road",
+   "x_pct": 64.29,
+   "y_pct": 41.67
+  },
+  {
+   "id": "nhal_taller_cortezas",
+   "nombre": "Taller de madera",
+   "region": "nhal",
+   "tipo": "interior",
+   "x_pct": 87.14,
+   "y_pct": 39.29
+  },
+  {
+   "id": "nhal_tronco_acostado",
+   "nombre": "Tronco caído",
+   "region": "nhal",
+   "tipo": "road",
+   "x_pct": 67.14,
+   "y_pct": 41.67
+  },
+  {
+   "id": "nhal_umbral_elin",
+   "nombre": "Puerta de Elin",
+   "region": "nhal",
+   "tipo": "landmark",
+   "x_pct": 98.57,
+   "y_pct": 41.67
+  },
+  {
+   "id": "nhal_umbral_velmora",
+   "nombre": "Entrada de Velmora",
+   "region": "nhal",
+   "tipo": "road",
+   "x_pct": 84.29,
+   "y_pct": 41.67
+  },
+  {
+   "id": "vaisgard_mercado",
+   "nombre": "Mercado de Vaisgard",
+   "region": "veyra",
+   "tipo": "pueblo",
+   "x_pct": 47.14,
+   "y_pct": 41.67
+  },
+  {
+   "id": "valdren_calle_alta",
+   "nombre": "Calle de la fragua",
+   "region": "edran",
+   "tipo": "settlement",
+   "x_pct": 7.14,
+   "y_pct": 86.9
+  },
+  {
+   "id": "valdren_casa_semillas",
+   "nombre": "Casa de semillas",
+   "region": "edran",
+   "tipo": "interior",
+   "x_pct": 10.0,
+   "y_pct": 86.9
+  },
+  {
+   "id": "valdren_cobertizo",
+   "nombre": "Cobertizo de los carros",
+   "region": "edran",
+   "tipo": "interior",
+   "x_pct": 4.29,
+   "y_pct": 89.29
+  },
+  {
+   "id": "valdren_comedor",
+   "nombre": "Comedor de Elva",
+   "region": "edran",
+   "tipo": "interior",
+   "x_pct": 7.14,
+   "y_pct": 94.05
+  },
+  {
+   "id": "valdren_cuidado",
+   "nombre": "Casa de cuidados",
+   "region": "edran",
+   "tipo": "interior",
+   "x_pct": 1.43,
+   "y_pct": 86.9
+  },
+  {
+   "id": "valdren_fragua",
+   "nombre": "Fragua de Daro",
+   "region": "edran",
+   "tipo": "interior",
+   "x_pct": 7.14,
+   "y_pct": 84.52
+  },
+  {
+   "id": "valdren_graneros",
+   "nombre": "Paso entre los Graneros",
+   "region": "edran",
+   "tipo": "settlement",
+   "x_pct": 7.14,
+   "y_pct": 96.43
+  },
+  {
+   "id": "valdren_huertos",
+   "nombre": "Corredor de los Huertos",
+   "region": "edran",
+   "tipo": "settlement",
+   "x_pct": 10.0,
+   "y_pct": 89.29
+  },
+  {
+   "id": "valdren_patio_carros",
+   "nombre": "Patio de los carros",
+   "region": "edran",
+   "tipo": "settlement",
+   "x_pct": 4.29,
+   "y_pct": 96.43
+  },
+  {
+   "id": "valdren_patio_ropa",
+   "nombre": "Patio de ropa",
+   "region": "edran",
+   "tipo": "settlement",
+   "x_pct": 4.29,
+   "y_pct": 86.9
+  },
+  {
+   "id": "valdren_plaza",
+   "nombre": "Plaza de Valdren",
+   "region": "edran",
+   "tipo": "pueblo",
+   "x_pct": 7.14,
+   "y_pct": 89.29
+  },
+  {
+   "id": "valdren_pozo",
+   "nombre": "Pozo de las Dos Cuerdas",
+   "region": "edran",
+   "tipo": "settlement",
+   "x_pct": 7.14,
+   "y_pct": 91.67
+  },
+  {
+   "id": "velmora_centro",
+   "nombre": "Claro de Velmora",
+   "region": "nhal",
+   "tipo": "pueblo",
+   "x_pct": 87.14,
+   "y_pct": 41.67
+  },
+  {
+   "id": "veyra_acequia_exterior",
+   "nombre": "Camino sobre la acequia",
+   "region": "veyra",
+   "tipo": "road",
+   "x_pct": 50.0,
+   "y_pct": 51.19
+  },
+  {
+   "id": "veyra_archivo_cargas",
+   "nombre": "Archivo de cargas",
+   "region": "veyra",
+   "tipo": "interior",
+   "x_pct": 52.86,
+   "y_pct": 39.29
+  },
+  {
+   "id": "veyra_barrio_cargas",
+   "nombre": "Calle de los almacenes",
+   "region": "veyra",
+   "tipo": "settlement",
+   "x_pct": 41.43,
+   "y_pct": 41.67
+  },
+  {
+   "id": "veyra_calle_toldos",
+   "nombre": "Calle de los Toldos Remendados",
+   "region": "veyra",
+   "tipo": "settlement",
+   "x_pct": 52.86,
+   "y_pct": 41.67
+  },
+  {
+   "id": "veyra_cantera_callada",
+   "nombre": "Cantera vieja",
+   "region": "veyra",
+   "tipo": "landmark",
+   "x_pct": 58.57,
+   "y_pct": 44.05
+  },
+  {
+   "id": "veyra_colina_vista",
+   "nombre": "Colina de las Procedencias",
+   "region": "veyra",
+   "tipo": "landmark",
+   "x_pct": 47.14,
+   "y_pct": 48.81
+  },
+  {
+   "id": "veyra_hondonada_canales",
+   "nombre": "Cruce de canales",
+   "region": "veyra",
+   "tipo": "road",
+   "x_pct": 52.86,
+   "y_pct": 51.19
+  },
+  {
+   "id": "veyra_huerta_baja",
+   "nombre": "Huerta bajo las Escaleras",
+   "region": "veyra",
+   "tipo": "wilderness",
+   "x_pct": 47.14,
+   "y_pct": 46.43
+  },
+  {
+   "id": "veyra_lindero_arboles",
+   "nombre": "Entrada al bosque",
+   "region": "veyra",
+   "tipo": "road",
+   "x_pct": 58.57,
+   "y_pct": 41.67
+  },
+  {
+   "id": "veyra_pastos_exteriores",
+   "nombre": "Camino de los pastos",
+   "region": "veyra",
+   "tipo": "road",
+   "x_pct": 44.29,
+   "y_pct": 51.19
+  },
+  {
+   "id": "veyra_patio_agua",
+   "nombre": "Patio del agua",
+   "region": "veyra",
+   "tipo": "settlement",
+   "x_pct": 47.14,
+   "y_pct": 44.05
+  },
+  {
+   "id": "veyra_patio_porte",
+   "nombre": "Patio de los animales",
+   "region": "veyra",
+   "tipo": "settlement",
+   "x_pct": 44.29,
+   "y_pct": 39.29
+  },
+  {
+   "id": "veyra_patio_senales",
+   "nombre": "Patio de mensajes",
+   "region": "veyra",
+   "tipo": "settlement",
+   "x_pct": 50.0,
+   "y_pct": 39.29
+  },
+  {
+   "id": "veyra_plaza_rutas",
+   "nombre": "Plaza de las Cinco Rutas",
+   "region": "veyra",
+   "tipo": "settlement",
+   "x_pct": 47.14,
+   "y_pct": 39.29
+  },
+  {
+   "id": "veyra_puerta_alta",
+   "nombre": "Puerta del Camino Alto",
+   "region": "veyra",
+   "tipo": "landmark",
+   "x_pct": 47.14,
+   "y_pct": 36.9
+  },
+  {
+   "id": "veyra_puerta_campos",
+   "nombre": "Puerta de los Campos",
+   "region": "veyra",
+   "tipo": "landmark",
+   "x_pct": 35.71,
+   "y_pct": 41.67
+  },
+  {
+   "id": "veyra_puerta_juncos",
+   "nombre": "Puerta de los canales",
+   "region": "veyra",
+   "tipo": "landmark",
+   "x_pct": 52.86,
+   "y_pct": 46.43
+  },
+  {
+   "id": "veyra_puerta_piedra",
+   "nombre": "Puerta del camino de Korven",
+   "region": "veyra",
+   "tipo": "landmark",
+   "x_pct": 41.43,
+   "y_pct": 39.29
+  },
+  {
+   "id": "veyra_puerta_sombra",
+   "nombre": "Puerta del bosque",
+   "region": "veyra",
+   "tipo": "landmark",
+   "x_pct": 55.71,
+   "y_pct": 41.67
+  },
+  {
+   "id": "veyra_rampa_grava",
+   "nombre": "Subida de grava",
+   "region": "veyra",
+   "tipo": "road",
+   "x_pct": 47.14,
+   "y_pct": 34.52
+  },
+  {
+   "id": "veyra_sala_cuidados",
+   "nombre": "Cuarto de cuidados de Vaisgard",
+   "region": "veyra",
+   "tipo": "interior",
+   "x_pct": 50.0,
+   "y_pct": 44.05
+  },
+  {
+   "id": "veyra_terraplen_roca",
+   "nombre": "Camino de piedra",
+   "region": "veyra",
+   "tipo": "road",
+   "x_pct": 38.57,
+   "y_pct": 39.29
+  },
+  {
+   "id": "veyra_vega_abierta",
+   "nombre": "Vega abierta",
+   "region": "veyra",
+   "tipo": "road",
+   "x_pct": 47.14,
+   "y_pct": 51.19
+  }
+ ],
+ "caminos": [
+  [
+   "brumak_centro",
+   "korven_almacen_grano"
+  ],
+  [
+   "brumak_centro",
+   "korven_calle_fachadas"
+  ],
+  [
+   "brumak_centro",
+   "korven_peldanos_cortos"
+  ],
+  [
+   "brumak_centro",
+   "korven_taller_juntas"
+  ],
+  [
+   "edran_acequia",
+   "edran_estanque"
+  ],
+  [
+   "edran_acequia",
+   "edran_salida_huertos"
+  ],
+  [
+   "edran_acequia",
+   "edran_surcos"
+  ],
+  [
+   "edran_arboleda",
+   "edran_camino_carros"
+  ],
+  [
+   "edran_arboleda",
+   "edran_cobertizo_campo"
+  ],
+  [
+   "edran_arboleda",
+   "edran_sendero_regreso"
+  ],
+  [
+   "edran_bajo_humedo",
+   "edran_estanque"
+  ],
+  [
+   "edran_calzada",
+   "edran_casa_camino"
+  ],
+  [
+   "edran_calzada",
+   "edran_hito_campos"
+  ],
+  [
+   "edran_camino_carros",
+   "edran_reparo"
+  ],
+  [
+   "edran_canal_bifurcacion",
+   "edran_canal_compuerta"
+  ],
+  [
+   "edran_canal_bifurcacion",
+   "edran_canal_entrada"
+  ],
+  [
+   "edran_canal_bifurcacion",
+   "edran_canal_refugio"
+  ],
+  [
+   "edran_canal_compuerta",
+   "edran_canal_repisa"
+  ],
+  [
+   "edran_canal_entrada",
+   "edran_canal_herramientas"
+  ],
+  [
+   "edran_canal_entrada",
+   "edran_zanja_antigua"
+  ],
+  [
+   "edran_casa_camino",
+   "edran_terraplen"
+  ],
+  [
+   "edran_cobertizo_campo",
+   "edran_lindero"
+  ],
+  [
+   "edran_era",
+   "edran_reparo"
+  ],
+  [
+   "edran_era",
+   "edran_terraplen"
+  ],
+  [
+   "edran_era",
+   "edran_zanja_antigua"
+  ],
+  [
+   "edran_estanque",
+   "edran_sauces"
+  ],
+  [
+   "edran_hito_campos",
+   "edran_vista_cuenca"
+  ],
+  [
+   "edran_hito_campos",
+   "veyra_puerta_campos"
+  ],
+  [
+   "edran_ladera_piedra",
+   "edran_linde_piedra"
+  ],
+  [
+   "edran_ladera_piedra",
+   "edran_prado"
+  ],
+  [
+   "edran_linde_piedra",
+   "korven_borde_tierra"
+  ],
+  [
+   "edran_lindero",
+   "edran_loma"
+  ],
+  [
+   "edran_lindero",
+   "edran_surcos"
+  ],
+  [
+   "edran_loma",
+   "edran_parcela_vieja"
+  ],
+  [
+   "edran_loma",
+   "edran_prado"
+  ],
+  [
+   "edran_parcela_vieja",
+   "edran_surcos"
+  ],
+  [
+   "edran_puente_juncos",
+   "edran_sauces"
+  ],
+  [
+   "edran_puente_juncos",
+   "edran_sendero_juncos"
+  ],
+  [
+   "edran_puente_juncos",
+   "lethra_hito_tierra"
+  ],
+  [
+   "edran_reparo",
+   "edran_sendero_juncos"
+  ],
+  [
+   "edran_salida_huertos",
+   "valdren_graneros"
+  ],
+  [
+   "edran_salida_huertos",
+   "valdren_huertos"
+  ],
+  [
+   "edran_sendero_regreso",
+   "valdren_patio_carros"
+  ],
+  [
+   "edran_surcos",
+   "edran_zanja_antigua"
+  ],
+  [
+   "edran_vista_cuenca",
+   "veyra_pastos_exteriores"
+  ],
+  [
+   "hoshai_abrigo_pinas",
+   "hoshai_collado_pino"
+  ],
+  [
+   "hoshai_abrigo_pinas",
+   "hoshai_pinar_discontinuo"
+  ],
+  [
+   "hoshai_agua_fria",
+   "hoshai_ladera_hitos"
+  ],
+  [
+   "hoshai_agua_fria",
+   "hoshai_pinar_discontinuo"
+  ],
+  [
+   "hoshai_aprisco_abierto",
+   "hoshai_collado_pino"
+  ],
+  [
+   "hoshai_aprisco_abierto",
+   "hoshai_hombro_lajas"
+  ],
+  [
+   "hoshai_balcon_valle",
+   "hoshai_deposito_comun"
+  ],
+  [
+   "hoshai_cajas_camino",
+   "hoshai_campamento_lona"
+  ],
+  [
+   "hoshai_campamento_lona",
+   "hoshai_terraza_cargas"
+  ],
+  [
+   "hoshai_caseta_revision",
+   "hoshai_mirador_nudo"
+  ],
+  [
+   "hoshai_cuello_roca",
+   "hoshai_ladera_hitos"
+  ],
+  [
+   "hoshai_cuello_roca",
+   "hoshai_terraza_cargas"
+  ],
+  [
+   "hoshai_deposito_comun",
+   "hoshai_lavadero_roca"
+  ],
+  [
+   "hoshai_descanso_tres_piedras",
+   "hoshai_pared_goteo"
+  ],
+  [
+   "hoshai_descanso_tres_piedras",
+   "hoshai_repecho_raices"
+  ],
+  [
+   "hoshai_escalones_sol",
+   "hoshai_terraza_cargas"
+  ],
+  [
+   "hoshai_escalones_sol",
+   "khariel_centro"
+  ],
+  [
+   "hoshai_estacion_cuerda",
+   "hoshai_senda_dosel"
+  ],
+  [
+   "hoshai_estacion_cuerda",
+   "nhal_relevo_altura"
+  ],
+  [
+   "hoshai_estribacion",
+   "hoshai_repecho_raices"
+  ],
+  [
+   "hoshai_estribacion",
+   "veyra_rampa_grava"
+  ],
+  [
+   "hoshai_garganta_oeste",
+   "hoshai_hombro_lajas"
+  ],
+  [
+   "hoshai_garganta_oeste",
+   "korven_meseta_relevo"
+  ],
+  [
+   "hoshai_lavadero_roca",
+   "hoshai_patio_hogares"
+  ],
+  [
+   "hoshai_mercado_cintas",
+   "hoshai_sala_cuidados"
+  ],
+  [
+   "hoshai_mercado_cintas",
+   "khariel_centro"
+  ],
+  [
+   "hoshai_mirador_nudo",
+   "hoshai_terraza_cargas"
+  ],
+  [
+   "hoshai_pared_goteo",
+   "hoshai_pinar_discontinuo"
+  ],
+  [
+   "hoshai_patio_hogares",
+   "hoshai_senda_dosel"
+  ],
+  [
+   "hoshai_patio_hogares",
+   "khariel_centro"
+  ],
+  [
+   "hoshai_taller_apoyos",
+   "khariel_centro"
+  ],
+  [
+   "korven_almacen_balanzas",
+   "korven_almacen_entrada"
+  ],
+  [
+   "korven_almacen_cruce",
+   "korven_almacen_entrada"
+  ],
+  [
+   "korven_almacen_cruce",
+   "korven_almacen_fondo"
+  ],
+  [
+   "korven_almacen_cruce",
+   "korven_almacen_lateral"
+  ],
+  [
+   "korven_almacen_entrada",
+   "korven_peldanos_cortos"
+  ],
+  [
+   "korven_almacen_fondo",
+   "korven_almacen_lateral"
+  ],
+  [
+   "korven_almacen_grano",
+   "korven_senda_viento"
+  ],
+  [
+   "korven_asiento_revision",
+   "korven_hendidura_transito"
+  ],
+  [
+   "korven_asiento_revision",
+   "korven_meseta_relevo"
+  ],
+  [
+   "korven_asiento_revision",
+   "korven_peldanos_cortos"
+  ],
+  [
+   "korven_borde_tierra",
+   "korven_senda_viento"
+  ],
+  [
+   "korven_calle_fachadas",
+   "korven_cisterna_comun"
+  ],
+  [
+   "korven_calle_fachadas",
+   "korven_sala_cuidados"
+  ],
+  [
+   "korven_cauce_duro",
+   "korven_loma_cascajo"
+  ],
+  [
+   "korven_cauce_duro",
+   "korven_meseta_baja"
+  ],
+  [
+   "korven_cauce_duro",
+   "korven_roca_cascaron"
+  ],
+  [
+   "korven_cauce_observacion",
+   "korven_mirador_grietas"
+  ],
+  [
+   "korven_cauce_observacion",
+   "korven_plataforma_escucha"
+  ],
+  [
+   "korven_cisterna_comun",
+   "korven_mirador_grietas"
+  ],
+  [
+   "korven_cisterna_comun",
+   "korven_patio_lavado"
+  ],
+  [
+   "korven_deposito_cubiertas",
+   "korven_patio_lavado"
+  ],
+  [
+   "korven_desvio_horno",
+   "korven_horno_reposo"
+  ],
+  [
+   "korven_desvio_horno",
+   "korven_meseta_baja"
+  ],
+  [
+   "korven_entrante_piezas",
+   "korven_horno_reposo"
+  ],
+  [
+   "korven_hendidura_transito",
+   "korven_hitos_paso"
+  ],
+  [
+   "korven_hitos_paso",
+   "korven_pared_sotavento"
+  ],
+  [
+   "korven_loma_cascajo",
+   "veyra_terraplen_roca"
+  ],
+  [
+   "korven_meseta_baja",
+   "korven_pared_sotavento"
+  ],
+  [
+   "korven_plataforma_escucha",
+   "korven_registro_cauce"
+  ],
+  [
+   "lethra_banco_barro",
+   "lethra_juncal_abierto"
+  ],
+  [
+   "lethra_banco_barro",
+   "lethra_orilla_silente"
+  ],
+  [
+   "lethra_banco_conversacion",
+   "lethra_cocina_reunion"
+  ],
+  [
+   "lethra_banco_conversacion",
+   "lethra_plataforma_secado"
+  ],
+  [
+   "lethra_cruce_canales",
+   "lethra_ribera_firme"
+  ],
+  [
+   "lethra_cruce_canales",
+   "lethra_tablas_primeras"
+  ],
+  [
+   "lethra_cuidado_barcas",
+   "lethra_patio_ventanas"
+  ],
+  [
+   "lethra_embarcadero_camino",
+   "lethra_pasarela_curva"
+  ],
+  [
+   "lethra_embarcadero_camino",
+   "lethra_senda_elevada"
+  ],
+  [
+   "lethra_escucha_aves",
+   "lethra_hito_tierra"
+  ],
+  [
+   "lethra_hito_tierra",
+   "lethra_ribera_oeste"
+  ],
+  [
+   "lethra_juncal_abierto",
+   "lethra_tablas_primeras"
+  ],
+  [
+   "lethra_juncal_abierto",
+   "lethra_tierra_esponjosa"
+  ],
+  [
+   "lethra_mercado_hojas",
+   "lethra_muelle_vecinal"
+  ],
+  [
+   "lethra_mercado_hojas",
+   "narevia_centro"
+  ],
+  [
+   "lethra_muelle_vecinal",
+   "lethra_patio_ventanas"
+  ],
+  [
+   "lethra_orilla_silente",
+   "lethra_raices_observacion"
+  ],
+  [
+   "lethra_pasarela_curva",
+   "lethra_ribera_firme"
+  ],
+  [
+   "lethra_patio_ventanas",
+   "lethra_ribera_sombra"
+  ],
+  [
+   "lethra_plataforma_secado",
+   "lethra_taller_fibras"
+  ],
+  [
+   "lethra_relevo_raices",
+   "lethra_ribera_sombra"
+  ],
+  [
+   "lethra_relevo_raices",
+   "nhal_ribera_relevo"
+  ],
+  [
+   "lethra_ribera_oeste",
+   "narevia_centro"
+  ],
+  [
+   "lethra_ribera_seca",
+   "lethra_tierra_esponjosa"
+  ],
+  [
+   "lethra_ribera_seca",
+   "veyra_hondonada_canales"
+  ],
+  [
+   "lethra_sala_cuidados",
+   "lethra_taller_fibras"
+  ],
+  [
+   "lethra_senda_elevada",
+   "narevia_centro"
+  ],
+  [
+   "lethra_taller_fibras",
+   "narevia_centro"
+  ],
+  [
+   "nhal_agua_sombreada",
+   "nhal_helechos_bajos"
+  ],
+  [
+   "nhal_agua_sombreada",
+   "nhal_ribera_relevo"
+  ],
+  [
+   "nhal_arbol_umbral",
+   "nhal_suelo_hojas"
+  ],
+  [
+   "nhal_arbol_umbral",
+   "veyra_lindero_arboles"
+  ],
+  [
+   "nhal_calle_hogares",
+   "nhal_patio_relato"
+  ],
+  [
+   "nhal_calle_hogares",
+   "nhal_sendero_altura"
+  ],
+  [
+   "nhal_claro_silencio",
+   "nhal_tronco_acostado"
+  ],
+  [
+   "nhal_cocina_raices",
+   "nhal_mercado_setas"
+  ],
+  [
+   "nhal_cocina_raices",
+   "nhal_patio_relato"
+  ],
+  [
+   "nhal_corteza_clara",
+   "nhal_raices_altas"
+  ],
+  [
+   "nhal_corteza_clara",
+   "nhal_raiz_marcada"
+  ],
+  [
+   "nhal_corteza_clara",
+   "nhal_tronco_acostado"
+  ],
+  [
+   "nhal_helechos_bajos",
+   "nhal_puente_bajo"
+  ],
+  [
+   "nhal_helechos_bajos",
+   "nhal_umbral_velmora"
+  ],
+  [
+   "nhal_mercado_setas",
+   "nhal_sala_cuidados"
+  ],
+  [
+   "nhal_mercado_setas",
+   "velmora_centro"
+  ],
+  [
+   "nhal_patio_relato",
+   "nhal_senda_recipiente"
+  ],
+  [
+   "nhal_patio_relato",
+   "velmora_centro"
+  ],
+  [
+   "nhal_piedras_musgo",
+   "nhal_puente_bajo"
+  ],
+  [
+   "nhal_piedras_musgo",
+   "nhal_raices_altas"
+  ],
+  [
+   "nhal_piedras_musgo",
+   "nhal_rincon_semillas"
+  ],
+  [
+   "nhal_relevo_altura",
+   "nhal_roca_entre_copas"
+  ],
+  [
+   "nhal_roca_entre_copas",
+   "nhal_sendero_altura"
+  ],
+  [
+   "nhal_secadero_sombra",
+   "nhal_taller_cortezas"
+  ],
+  [
+   "nhal_senda_recipiente",
+   "nhal_umbral_elin"
+  ],
+  [
+   "nhal_suelo_hojas",
+   "nhal_tronco_acostado"
+  ],
+  [
+   "nhal_taller_cortezas",
+   "velmora_centro"
+  ],
+  [
+   "nhal_umbral_velmora",
+   "velmora_centro"
+  ],
+  [
+   "vaisgard_mercado",
+   "veyra_barrio_cargas"
+  ],
+  [
+   "vaisgard_mercado",
+   "veyra_calle_toldos"
+  ],
+  [
+   "vaisgard_mercado",
+   "veyra_patio_agua"
+  ],
+  [
+   "vaisgard_mercado",
+   "veyra_plaza_rutas"
+  ],
+  [
+   "valdren_calle_alta",
+   "valdren_fragua"
+  ],
+  [
+   "valdren_calle_alta",
+   "valdren_patio_ropa"
+  ],
+  [
+   "valdren_calle_alta",
+   "valdren_plaza"
+  ],
+  [
+   "valdren_casa_semillas",
+   "valdren_huertos"
+  ],
+  [
+   "valdren_cobertizo",
+   "valdren_patio_carros"
+  ],
+  [
+   "valdren_cobertizo",
+   "valdren_plaza"
+  ],
+  [
+   "valdren_comedor",
+   "valdren_pozo"
+  ],
+  [
+   "valdren_cuidado",
+   "valdren_patio_ropa"
+  ],
+  [
+   "valdren_graneros",
+   "valdren_patio_carros"
+  ],
+  [
+   "valdren_huertos",
+   "valdren_plaza"
+  ],
+  [
+   "valdren_plaza",
+   "valdren_pozo"
+  ],
+  [
+   "veyra_acequia_exterior",
+   "veyra_hondonada_canales"
+  ],
+  [
+   "veyra_acequia_exterior",
+   "veyra_vega_abierta"
+  ],
+  [
+   "veyra_archivo_cargas",
+   "veyra_patio_senales"
+  ],
+  [
+   "veyra_barrio_cargas",
+   "veyra_puerta_campos"
+  ],
+  [
+   "veyra_calle_toldos",
+   "veyra_puerta_juncos"
+  ],
+  [
+   "veyra_calle_toldos",
+   "veyra_puerta_sombra"
+  ],
+  [
+   "veyra_cantera_callada",
+   "veyra_lindero_arboles"
+  ],
+  [
+   "veyra_colina_vista",
+   "veyra_huerta_baja"
+  ],
+  [
+   "veyra_colina_vista",
+   "veyra_vega_abierta"
+  ],
+  [
+   "veyra_hondonada_canales",
+   "veyra_puerta_juncos"
+  ],
+  [
+   "veyra_huerta_baja",
+   "veyra_patio_agua"
+  ],
+  [
+   "veyra_lindero_arboles",
+   "veyra_puerta_sombra"
+  ],
+  [
+   "veyra_pastos_exteriores",
+   "veyra_vega_abierta"
+  ],
+  [
+   "veyra_patio_agua",
+   "veyra_sala_cuidados"
+  ],
+  [
+   "veyra_patio_porte",
+   "veyra_plaza_rutas"
+  ],
+  [
+   "veyra_patio_porte",
+   "veyra_puerta_piedra"
+  ],
+  [
+   "veyra_patio_senales",
+   "veyra_plaza_rutas"
+  ],
+  [
+   "veyra_plaza_rutas",
+   "veyra_puerta_alta"
+  ],
+  [
+   "veyra_puerta_alta",
+   "veyra_rampa_grava"
+  ],
+  [
+   "veyra_puerta_piedra",
+   "veyra_terraplen_roca"
+  ]
+ ]
+}
