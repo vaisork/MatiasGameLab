@@ -73,7 +73,8 @@ function finishPrinting(){clearTimeout(printTimer);printTimer=null;for(const ite
 function printNext(){
  printTimer=null;if(!terminalFeed.isConnected)return;
  const item=Array.from(printed.values()).find(item=>item.at<item.text.length);
- if(!item)return;
+ // Urgent lines (combat) appear at once: still follow them to the bottom.
+ if(!item){followTerminal();return;}
  if(instantReading()){finishPrinting();return;}
  const walking=Date.now()<travelPaceUntil;item.node.hidden=false;item.at=Math.min(item.text.length,item.at+(walking?12:4));item.output.textContent=item.text.slice(0,item.at);followTerminal();
  printTimer=setTimeout(printNext,item.at===item.text.length?(walking?25:80):(walking?12:18));
@@ -227,7 +228,7 @@ function openIllustration(creature){
  const species=Object.entries(speciesPortraits).find(([,path])=>path===creature.illustration)?.[0];
  if(species){const miniature=visual3D('species',species);if(creature.open3d)miniature.open=true;dialog.append(miniature);}
 }
-function bestiaryView(){const entries=list(state.bestiary);main.replaceChildren(card(title('Lo que has encontrado','Bestiario'),subtitle('Sólo aparecen criaturas que has observado. Toca una miniatura para ampliarla.'),...entries.map(creature=>el('article',{class:'tile creature-entry'},el('div',{class:'bestiary-entry-heading'},typeof creature.illustration==='string'&&creature.illustration.startsWith('/client/art/bestiary/')?button(el('img',{class:'bestiary-thumbnail',src:creature.illustration,alt:'',loading:'lazy',decoding:'async'}),()=>openIllustration(creature),{class:'bestiary-art-button','aria-label':`Ver imagen de ${creature.name||'la criatura observada'}`}):null,el('h3',{},creature.name||'Criatura observada')),creature.description?el('p',{},creature.description):null,creature.behavior?el('p',{},creature.behavior):null)),entries.length?null:subtitle('Todavía no has observado una criatura. Las señales del camino pueden preceder al encuentro.')));}
+function bestiaryView(){const fighting=state.character?.combat?.creature,nearby=new Set(actions(state.actions).filter(a=>['combatir','acercarse','examinar_criatura','evaluar'].includes(a.id)).map(a=>a.target)),rank=c=>c.id===fighting?0:nearby.has(c.id)?1:2,entries=list(state.bestiary).map((c,i)=>[c,i]).sort((a,b)=>rank(a[0])-rank(b[0])||a[1]-b[1]).map(([c])=>c);main.replaceChildren(card(title('Lo que has encontrado','Bestiario'),subtitle('Sólo aparecen criaturas que has observado. Toca una miniatura para ampliarla.'),...entries.map(creature=>el('article',{class:'tile creature-entry'},el('div',{class:'bestiary-entry-heading'},typeof creature.illustration==='string'&&creature.illustration.startsWith('/client/art/bestiary/')?button(el('img',{class:'bestiary-thumbnail',src:creature.illustration,alt:'',loading:'lazy',decoding:'async'}),()=>openIllustration(creature),{class:'bestiary-art-button','aria-label':`Ver imagen de ${creature.name||'la criatura observada'}`}):null,el('h3',{},creature.id===fighting?el('span',{class:'pill bestiary-now'},'Te enfrentas ahora'):nearby.has(creature.id)?el('span',{class:'pill'},'Aquí'):null,creature.name||'Criatura observada')),creature.description?el('p',{},creature.description):null,creature.behavior?el('p',{},creature.behavior):null)),entries.length?null:subtitle('Todavía no has observado una criatura. Las señales del camino pueden preceder al encuentro.')));}
 
 function keepMapToolFocus(label,change){
  const restore=document.activeElement?.getAttribute('aria-label')===label;
