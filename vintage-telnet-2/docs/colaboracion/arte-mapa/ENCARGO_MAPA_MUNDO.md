@@ -36,3 +36,8 @@ Las zonas vacías entre regiones son terreno natural de transición (praderas, c
 - Al superponer `guia-composicion.png` con un 50 % de opacidad, cada pueblo y cada camino cae sobre su dibujo.
 - Se verifican el SHA256 y las dimensiones, igual que en las entregas anteriores.
 - La integración en el cliente (fondo del mapa con zoom) la hace Claude cuando llegue la imagen.
+
+## Referencia de Javier
+`maqueta-mapa.jpg` (recortada de su maqueta): fondo ilustrado de bosques, ríos y montañas; lugares como etiquetas claras con borde dorado; caminos con puntos dorados; una rosa de los vientos discreta en una esquina; zoom a la derecha y leyenda abajo. El fondo debe tener ese nivel de detalle y esa paleta, pero **sin texto ni etiquetas**: las pone el juego. La rosa de los vientos también la dibuja la interfaz.
+
+El servidor ya envía en el mapa la posición del atlas de cada lugar (`spatial.json`), así que el fondo se podrá calzar debajo sin cambiar la lógica del mapa.
