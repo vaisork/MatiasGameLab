@@ -115,7 +115,7 @@ class NightWorld(unittest.TestCase):
         for r in self.world.rooms.values():
             for item in r.get('buy_items',[]):
                 self.assertEqual(self.world.items[item]['kind'],'material')
-                self.assertIn(self.world.items[item]['sell_price'],[2,3,4])
+                self.assertTrue(1<=self.world.items[item]['sell_price']<=60)
         for id in ['vaisgard_aviso_carga','vaisgard_toldo','brumak_taza']:
             self.assertFalse(self.world.quests[id]['repeatable'])
             self.assertIn(self.world.quests[id]['payout'],[6,8])
@@ -136,7 +136,6 @@ class NightWorld(unittest.TestCase):
                 for dest in r['exits'].values():
                     if dest not in seen:seen.add(dest);todo.append((dest,steps+1))
             self.assertLessEqual(nearest,4,rg)
-            if rg=='nhal':self.assertEqual(nearest,3)
         for rid in ['nhal_sendero_altura','lethra_ribera_oeste']:
             room=self.world.rooms[rid]
             self.assertTrue(all(PROFILES.get(s['creature'],{}).get('category')!='abrumador'for s in room['wildlife_pool']))

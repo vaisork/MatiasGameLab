@@ -18,6 +18,26 @@
           {
             "item": "cuerda_recuperada",
             "text": "Bajo una piedra encuentras un trozo de cuerda que el agua dejó atrapado."
+          },
+          {
+            "item": "clavos_oxidados",
+            "text": "Entre las piedras del camino hay clavos que cayeron de un carro."
+          },
+          {
+            "item": "cuero_curtido",
+            "text": "Bajo un matorral, alguien perdió un trozo de cuero curtido."
+          },
+          {
+            "item": "hierro_viejo",
+            "text": "Una argolla rota de hierro, de las que se usan para atar animales."
+          },
+          {
+            "item": "bolsita_cuentas",
+            "text": "En una grieta del muro hay una bolsita de tela con cuentas de colores."
+          },
+          {
+            "item": "hierbas_curativas",
+            "text": "Junto al agua crecen hierbas que usan los cuidadores."
           }
         ],
         "traces": [
@@ -46,7 +66,7 @@
           "Un carro lejano, y luego silencio."
         ]
       },
-      "entry": "Entras en la cuenca de Veyra. Por aquí pasan todos los caminos, y en medio de todo se levanta Vaisgard, la gran ciudad de muros antiguos."
+      "entry": "Entras en la cuenca de Veyra, donde terminan todos los caminos. En el centro se alza Vaisgard, la gran ciudad donde se juntan todos los pueblos: sus muros ya eran viejos antes de que existiera ninguna aldea, y por sus cinco puertas entra cada día gente de todas las regiones."
     }
   },
   "rooms": {
@@ -56,7 +76,7 @@
       "region": "veyra",
       "kind": "settlement",
       "description": "Frutas, herramientas y cestas llenan los puestos, apretados entre muros mucho más viejos que ellos: nadie sabe quién levantó esas piedras, pero hoy sirven de apoyo para toldos y estantes. Un canal pequeño cruza el mercado por el medio, y hay que pasar por encima de un lado a otro. El aire mezcla fruta cortada, cuerda nueva y pan. Se oyen voces de las cinco rutas a la vez: el acento de la sierra, el de los campos, el del agua.",
-      "day": "Una vendedora corta una fruta para mostrar el centro. Su vecina prueba un trozo y hace una mueca; ambas apartan esa cesta mientras una niña recoge la semilla del plato.",
+      "day": "El mercado hierve de gente: hay que avanzar de lado entre cestas, carros pequeños y compradores de las cinco regiones. Una vendedora corta una fruta para enseñar el centro; su vecina la prueba, pone cara rara, y las dos apartan esa cesta mientras una niña recoge la semilla del plato.",
       "night": "Un vendedor recoge las últimas cestas. Entre los muros se oyen pasos y una discusión sobre quién olvidó devolver una cuchara.",
       "rain": "El agua cae por las esquinas de los toldos hacia el canalillo. Los vendedores suben sus cajas y se reparten los huecos secos; las cargas recién llegadas no se abren hasta sacudirles el agua.",
       "clear": "",
@@ -74,7 +94,7 @@
       "arrivals": {
         "veyra_plaza_rutas": "Dejas la plaza de las cinco rutas y caminas hacia el sur. Pronto te rodean los puestos, los toldos y el olor a fruta: estás en el mercado.",
         "veyra_calle_toldos": "Sales de debajo de los toldos de colores y la luz vuelve a ser normal. Delante tienes el mercado, lleno de puestos y de voces.",
-        "veyra_barrio_cargas": "Dejas pasar un último carro y cruzas hacia el oeste. Los almacenes dan paso a los puestos del mercado.",
+        "veyra_barrio_cargas": "Dejas pasar un último carro y cruzas hacia el este. Los almacenes dan paso a los puestos del mercado, y el ruido sube de golpe.",
         "veyra_patio_agua": "Sigues el agua que corre hacia el norte. El canal pequeño te lleva directo al mercado, que cruza por el medio."
       },
       "npcs": [
@@ -126,19 +146,42 @@
         "punal_camino",
         "arco_ruta",
         "varita_aprendiz",
-        "espada_juramento"
+        "espada_juramento",
+        "pocion_menor",
+        "pocion_vida",
+        "tonico_camino",
+        "unguento_heridas",
+        "espada_larga",
+        "espada_vaisgard",
+        "punal_hueso",
+        "dagas_gemelas",
+        "arco_largo",
+        "arco_cuerno",
+        "varita_sauce",
+        "baston_raiz",
+        "gorro_cuero",
+        "jubon_cuero",
+        "brazales_cuero",
+        "grebas_cuero",
+        "botas_cuero",
+        "casco_reforzado",
+        "coraza_reforzada",
+        "brazales_reforzados",
+        "grebas_reforzadas",
+        "botas_reforzadas",
+        "yelmo_vaisgard",
+        "coraza_vaisgard",
+        "guanteletes_vaisgard",
+        "quijotes_vaisgard",
+        "botas_vaisgard",
+        "anillo_cobre",
+        "anillo_punteria",
+        "anillo_filo",
+        "amuleto_raiz",
+        "amuleto_viento",
+        "amuleto_viajero"
       ],
       "buyer": "veyra_bela",
-      "buy_items": [
-        "semillas_camino",
-        "cuerda_recuperada",
-        "resina_pino",
-        "piedra_veteada",
-        "fibra_junco",
-        "rama_flexible",
-        "fibra_espinajo",
-        "piel_mordelinde"
-      ],
       "states": [
         {
           "requires_time": [
@@ -192,7 +235,7 @@
             "min": 3
           },
           "overrides": {
-            "night": "Un gato recorre los puestos cerrados oliendo cada cesta. En la de las hierbas estornuda, sacude la cabeza y sigue."
+            "night": "Algo pequeño de cuatro patas recorre los puestos cerrados oliendo cada cesta. En la de las hierbas estornuda, sacude la cabeza y sigue."
           }
         },
         {
@@ -254,18 +297,27 @@
           "requires_time": [
             "noche"
           ]
+        },
+        {
+          "text": "Un grupo de viajeros recién llegados se queda parado en medio del mercado, mirándolo todo a la vez, hasta que alguien les pide paso.",
+          "requires_time": [
+            "amanecer",
+            "día",
+            "atardecer"
+          ]
         }
       ],
-      "max_layers": 4
+      "max_layers": 4,
+      "buys_gear": true
     },
     "veyra_plaza_rutas": {
       "id": "veyra_plaza_rutas",
       "name": "Plaza de las Cinco Rutas",
       "region": "veyra",
       "kind": "settlement",
-      "description": "Una plaza empedrada y ancha donde se juntan las cinco rutas de la cuenca. Entre las casas sobresalen piedras antiguas, enormes y lisas, de antes de que nadie recuerde; los niños se sientan en ellas como en bancos. Por aquí pasa todo el mundo: carretas de piedra, cestas de pescado, viajeros con capas de montaña. Desde el centro se ven el camino que sube a la sierra, un patio con animales y un alero lleno de avisos.",
-      "day": "La mensajera sigue con el dedo unas letras pequeñas y pregunta a una viajera si reconoce la mano. El aviso está escrito en el reverso de una cuenta vieja. En el patio oeste, un animal se rasca el cuello contra el poste hasta que su cuidadora lo aparta.",
-      "night": "En cada patio hay una luz baja junto a la puerta. El centro de la plaza está vacío; una conversación se acerca al muro del este, bajo el último alero encendido.",
+      "description": "La Plaza de las Cinco Rutas es el corazón de Vaisgard: aquí se juntan los caminos de todas las regiones. Es tan grande que cabrían dentro la plaza de Valdren y la de Narevia juntas, y aun así casi siempre está llena. Entre las casas sobresalen piedras antiguas, enormes y lisas, de antes de que nadie recuerde; los niños se sientan en ellas como en bancos. Se oyen a la vez el acento de la sierra, el de los campos y el del agua. Al norte sale el camino de la sierra; al oeste hay un patio con animales, y al este, un alero lleno de avisos.",
+      "day": "Por la plaza cruza gente de todas partes: Felaryn que saltan de piedra antigua en piedra antigua, Dravak que empujan carretillas cortas, Marevyn con el pelo todavía húmedo del canal, Vesperi que buscan la sombra de los aleros y gente de los campos con sacos al hombro. Una mensajera sostiene un aviso en alto y pregunta a gritos si alguien reconoce la letra.",
+      "night": "Ni siquiera de noche se vacía del todo: en cada patio arde una luz baja junto a la puerta, y de vez en cuando cruza el centro un viajero recién llegado, mirando a su alrededor con la boca abierta. Bajo el último alero encendido, alguien sigue conversando.",
       "rain": "El abanico de juntas recoge hilos de agua. Los mensajeros protegen sus papeles debajo del alero oriental y dejan las esquinas libres para los carros; las capas mojadas se sacuden siempre fuera de ese refugio.",
       "clear": "",
       "return": "Reconoces las sogas cortas de la gente de la piedra y las cubiertas anchas del campo. Junto al alero esperan los bultos pequeños de la sierra.",
@@ -279,7 +331,12 @@
         "oeste": "veyra_patio_porte",
         "este": "veyra_patio_senales"
       },
-      "arrivals": {},
+      "arrivals": {
+        "veyra_puerta_alta": "Bajas desde la puerta y la calle se abre de golpe en una plaza enorme, llena de gente que va y viene en todas direcciones. Es la Plaza de las Cinco Rutas: aquí se cruzan todos los caminos.",
+        "veyra_patio_porte": "Dejas los animales del patio y sales a la plaza. El ruido te envuelve: cinco caminos llegan aquí a la vez, y por cada uno entra gente distinta.",
+        "veyra_patio_senales": "Dejas el alero de los avisos y entras en la plaza, donde hay más gente junta de la que cabría en todo un pueblo de Edran.",
+        "vaisgard_mercado": "Sales del mercado hacia el norte, entre empujones amables, y llegas a una plaza enorme donde se cruzan cinco caminos. Por cada uno entra gente distinta: es la Plaza de las Cinco Rutas, el corazón de Vaisgard."
+      },
       "npcs": [],
       "signals": [],
       "actions": [],
@@ -383,6 +440,14 @@
           "requires_time": [
             "noche"
           ]
+        },
+        {
+          "text": "Alguien grita un nombre desde un lado de la plaza y le contestan desde el otro, por encima de todas las cabezas.",
+          "requires_time": [
+            "amanecer",
+            "día",
+            "atardecer"
+          ]
         }
       ],
       "max_layers": 4
@@ -413,6 +478,16 @@
       ],
       "signals": [],
       "actions": [
+        {
+          "id": "pasaje_corredor_cantera_vuelta",
+          "label": "Volver por el corredor de la cantera",
+          "requires_flags": [
+            "pasaje_corredor_cantera"
+          ],
+          "scope": "player",
+          "next": "veyra_cantera_callada",
+          "text": "Te escurres detrás del taller y sigues el corredor de piedra hasta la cantera vieja."
+        },
         {
           "id": "veyra_acordar_costura",
           "label": "Ayudar a acordar el desagüe",
@@ -607,7 +682,9 @@
         "este": "vaisgard_mercado",
         "oeste": "veyra_puerta_campos"
       },
-      "arrivals": {},
+      "arrivals": {
+        "veyra_puerta_campos": "Cruzas el arco y la ciudad te envuelve: calles estrechas, casas de dos y tres pisos con escaleras por fuera, y gente por todas partes. Un carro pasa tan cerca que notas el aire que mueve."
+      },
       "npcs": [],
       "signals": [],
       "actions": [],
@@ -939,7 +1016,18 @@
           "journal": "Dejé la tabla de la huerta de Vaisgard encajada para dirigir un hilo de agua al bancal."
         }
       ],
-      "wildlife_pool": [],
+      "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Una persona con un palo corto te corta el paso y señala tu mochila.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "espinajo_rastrojo",
+          "text": "Entre el rastrojo seco se mueve un Espinajo: bufa y te enseña las espinas.",
+          "persistent_trace": false
+        }
+      ],
       "states": [
         {
           "requires_time": [
@@ -1050,7 +1138,19 @@
       ],
       "dawn": "El agrimensor espera junto al primer poste. Mientras llega más luz, anota de qué puerta salió el carro que acaba de subir.",
       "dusk": "El agrimensor recoge la cuerda de medir y cierra el cuaderno. El último carro baja despacio hacia la huerta.",
-      "brief": "La colina de las procedencias, con la cuenca a la vista."
+      "brief": "La colina de las procedencias, con la cuenca a la vista.",
+      "wildlife_pool": [
+        {
+          "creature": "espinajo_rastrojo",
+          "text": "Entre el rastrojo seco se mueve un Espinajo: bufa y te enseña las espinas.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "forajido_camino",
+          "text": "Un salteador sale de detrás de unas piedras y se planta delante de ti: «La mochila, y sigues tu camino».",
+          "persistent_trace": false
+        }
+      ]
     },
     "veyra_archivo_cargas": {
       "id": "veyra_archivo_cargas",
@@ -1092,6 +1192,22 @@
           "scope": "world",
           "journal": "El archivo conoce la causa del retraso de Tov.",
           "requires_npc": "veyra_nera"
+        },
+        {
+          "id": "secreto_h_carga_pendiente",
+          "label": "Leer las anotaciones abiertas",
+          "requires_species": [
+            "humano"
+          ],
+          "forbids_flags": [
+            "sec_h_carga_pendiente"
+          ],
+          "set_flags": [
+            "sec_h_carga_pendiente"
+          ],
+          "text": "Una anotación está abierta, sin tachar. Sabes lo que significa: quien la escribió no la dio por perdida. Esperaba que alguien volviera a buscarla.",
+          "journal": "Una cuenta sin cerrar puede guardar una promesa, no siempre una pérdida.",
+          "scope": "player"
         }
       ],
       "memories": [
@@ -1135,9 +1251,9 @@
       "name": "Puerta de los Campos",
       "region": "veyra",
       "kind": "landmark",
-      "description": "Un arco bajo de piedra abre la ciudad hacia los campos de Edran. Las ruedas han pulido el suelo de debajo hasta dejarlo liso y brillante. A los lados hay sitio para ajustar los sacos antes de bajar entre las primeras cercas. Por el arco entra olor a hierba y a tierra arada; hacia dentro, olor a ciudad.",
-      "day": "Los carros que entran se apartan para que salgan los vacíos. Una guardiana mira el suelo debajo de una carga: si algo pierde semillas, habrá que sujetarlo antes de bajar hacia los cultivos.",
-      "night": "Una luz marca el arco. Los arrieros que llegan esperan junto a los apoyos; fuera, las rodadas se pierden después del último reflejo.",
+      "description": "Los muros de Vaisgard aparecen de golpe: piedra gris y vieja, más alta que cualquier casa de Valdren, que se alarga a izquierda y derecha hasta perderse detrás de los tejados. Nadie sabe quién la levantó. En ella se abre la Puerta de los Campos, un arco ancho cuyo suelo han pulido tantas ruedas que brilla como agua. Hacia fuera huele a hierba y a tierra arada; hacia dentro llega el ruido de la ciudad: carros, voces, martillos y pasos, todo a la vez.",
+      "day": "Por la puerta no deja de pasar gente: un carro de grano de Edran, una Dravak con un saco de piedras a la espalda, dos Felaryn que saltan el bordillo en vez de rodearlo. La guardiana mira cada carga un momento y la deja pasar con un gesto. Nadie se para: aquí todo el mundo va a algún sitio.",
+      "night": "Aunque es de noche, detrás del arco la ciudad no se calla del todo: se oyen puertas, una risa, un carro que llega tarde. Una luz marca la entrada, y los arrieros que llegan esperan junto a los apoyos.",
       "rain": "En la bajada, el barro salpica las ruedas paradas. La guardiana señala el lado firme del arco mientras los viajeros ajustan las cubiertas. Huele a carga mojada y a agua que baja por las cercas.",
       "clear": "",
       "return": "El arco aparece antes que el mercado. Bajo las ruedas, la tierra del campo cede al empedrado; después de la puerta se oye el primer puesto.",
@@ -1150,20 +1266,32 @@
         "sur": "edran_hito_campos"
       },
       "arrivals": {
-        "edran_hito_campos": "Cruzas el arroyo pisando las tres piedras, una, dos y tres, con cuidado de no mojarte. Al otro lado, un arco de piedra antigua te recibe: es la entrada a Vaisgard."
+        "edran_hito_campos": "Cruzas el arroyo pisando las tres piedras, una, dos y tres. Al levantar la vista, ahí están: los muros de Vaisgard, grises y viejos, más largos que cualquier cosa que hayas visto en tu vida. Desde aquí ya se oye la ciudad, como un río de voces al otro lado de la piedra."
       },
       "npcs": [],
       "signals": [],
       "actions": [],
-      "brief": "La Puerta de los Campos, con su suelo pulido por las ruedas."
+      "brief": "La Puerta de los Campos, en los muros viejos de Vaisgard.",
+      "wildlife_pool": [
+        {
+          "creature": "espinajo_rastrojo",
+          "text": "Un Espinajo de rastrojo rasca la tierra con una pata delantera. Está marcando su sitio.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "forajido_camino",
+          "text": "Una persona con un palo corto te corta el paso y señala tu mochila.",
+          "persistent_trace": false
+        }
+      ]
     },
     "veyra_puerta_alta": {
       "id": "veyra_puerta_alta",
       "name": "Puerta del Camino Alto",
       "region": "veyra",
       "kind": "landmark",
-      "description": "El suelo empieza a subir antes incluso de llegar a la puerta: por aquí sale el camino de la sierra de Hoshai. A un lado, una plataforma sirve para ajustar las cargas antes de la subida, porque arriba no hay sitio. Algunos viajeros vuelven por aquí con capas gruesas, de las que se usan en la montaña, y con las mejillas rojas de frío. El viento que baja de la sierra es más fresco.",
-      "day": "La porteadora aprieta el fardo y reduce su ancho. Sus compañeros lo levantan un momento; uno vuelve a tensar la tira que se afloja del lado de la pendiente.",
+      "description": "Aquí los muros de Vaisgard se apoyan en la primera cuesta, y la Puerta del Camino Alto se abre en ellos mirando a la sierra de Hoshai. A un lado, una plataforma sirve para ajustar las cargas antes de subir, porque arriba no hay sitio. Por la puerta bajan viajeros con capas gruesas de montaña y las mejillas rojas de frío, y se cruzan con mercaderes que suben cargados. El viento de la sierra entra fresco en la ciudad.",
+      "day": "Felaryn con capas de montaña bajan los escalones saltando de dos en dos y se cuelan entre las cargas que suben. La porteadora aprieta un fardo para que sea más estrecho; sus compañeros lo levantan un momento mientras uno vuelve a tensar la tira floja.",
       "night": "La plataforma queda vacía y el viento atraviesa el umbral sin las voces que lo cortaban. Una luz baja distingue dónde comienza la grava. Más allá se pierde el ascenso antes de que pueda verse la montaña.",
       "rain": "El agua baja por la grava en franjas y deja algunas piedras secas. Los viajeros eligen dónde pisar antes de volver a cargar. Una cubierta suelta golpea el muro: arriba también hará viento.",
       "clear": "",
@@ -1176,13 +1304,27 @@
         "sur": "veyra_plaza_rutas",
         "norte": "veyra_rampa_grava"
       },
-      "arrivals": {},
+      "arrivals": {
+        "veyra_rampa_grava": "Al final de la rampa, los muros de la ciudad te tapan el cielo. Cruzas la puerta y el silencio de la montaña se rompe de golpe: voces, ruedas, alguien que llama a gritos desde un patio. Has llegado a Vaisgard."
+      },
       "npcs": [],
       "signals": [],
       "actions": [],
       "dawn": "La grava está húmeda de rocío, y los primeros viajeros suben pisando con cuidado. Detrás, en los patios, empiezan a oírse voces.",
       "dusk": "Los viajeros que bajan dejan pasar una carga que llega tarde. Por encima de la puerta, la sierra todavía tiene luz, aunque la rampa ya está en sombra.",
-      "brief": "La Puerta del Camino Alto y su plataforma de carga."
+      "brief": "La Puerta del Camino Alto y su plataforma de carga.",
+      "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Alguien con la ropa gastada del camino espera junto al paso, con un palo en la mano. Quiere tu carga.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "espinajo_rastrojo",
+          "text": "Un Espinajo de rastrojo rasca la tierra con una pata delantera. Está marcando su sitio.",
+          "persistent_trace": false
+        }
+      ]
     },
     "veyra_puerta_piedra": {
       "id": "veyra_puerta_piedra",
@@ -1203,7 +1345,9 @@
         "este": "veyra_patio_porte",
         "oeste": "veyra_terraplen_roca"
       },
-      "arrivals": {},
+      "arrivals": {
+        "veyra_terraplen_roca": "El camino de piedra termina contra los muros de Vaisgard, altos y grises, remendados con piedras de muchos colores distintos. Cruzas la puerta: el polvo del camino se queda fuera, y dentro te recibe el ruido de la ciudad más grande que has visto."
+      },
       "npcs": [
         "veyra_tov"
       ],
@@ -1225,7 +1369,19 @@
           "requires_npc": "veyra_tov"
         }
       ],
-      "brief": "La puerta del camino de Korven, con sus ventanas pequeñas."
+      "brief": "La puerta del camino de Korven, con sus ventanas pequeñas.",
+      "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Una persona con un palo corto te corta el paso y señala tu mochila.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "espinajo_rastrojo",
+          "text": "Entre el rastrojo seco se mueve un Espinajo: bufa y te enseña las espinas.",
+          "persistent_trace": false
+        }
+      ]
     },
     "veyra_puerta_juncos": {
       "id": "veyra_puerta_juncos",
@@ -1246,11 +1402,25 @@
         "norte": "veyra_calle_toldos",
         "sur": "veyra_hondonada_canales"
       },
-      "arrivals": {},
+      "arrivals": {
+        "veyra_hondonada_canales": "Subes desde las hondonadas húmedas y, de pronto, la hierba se acaba contra un muro de piedra antigua. Por la puerta de los canales entra y sale gente con barro hasta las rodillas, y detrás se oye la ciudad: miles de pasos sobre el empedrado."
+      },
       "npcs": [],
       "signals": [],
       "actions": [],
-      "brief": "La puerta de los canales, con su tabla para el calzado."
+      "brief": "La puerta de los canales, con su tabla para el calzado.",
+      "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Un salteador sale de detrás de unas piedras y se planta delante de ti: «La mochila, y sigues tu camino».",
+          "persistent_trace": false
+        },
+        {
+          "creature": "espinajo_rastrojo",
+          "text": "Un Espinajo de rastrojo eriza las espinas del lomo y afirma las patas en medio del paso.",
+          "persistent_trace": false
+        }
+      ]
     },
     "veyra_puerta_sombra": {
       "id": "veyra_puerta_sombra",
@@ -1271,11 +1441,25 @@
         "oeste": "veyra_calle_toldos",
         "este": "veyra_lindero_arboles"
       },
-      "arrivals": {},
+      "arrivals": {
+        "veyra_lindero_arboles": "Sales de entre los árboles y la ciudad aparece entera delante de ti: muros viejos, tejados apretados y el humo de cien cocinas. Después del silencio del bosque, el ruido de Vaisgard parece enorme."
+      },
       "npcs": [],
       "signals": [],
       "actions": [],
-      "brief": "La puerta del bosque, con su hoja vieja contra el muro."
+      "brief": "La puerta del bosque, con su hoja vieja contra el muro.",
+      "wildlife_pool": [
+        {
+          "creature": "espinajo_rastrojo",
+          "text": "Entre el rastrojo seco se mueve un Espinajo: bufa y te enseña las espinas.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "forajido_camino",
+          "text": "Un salteador sale de detrás de unas piedras y se planta delante de ti: «La mochila, y sigues tu camino».",
+          "persistent_trace": false
+        }
+      ]
     },
     "veyra_rampa_grava": {
       "id": "veyra_rampa_grava",
@@ -1302,7 +1486,18 @@
       "npcs": [],
       "signals": [],
       "actions": [],
-      "wildlife_pool": [],
+      "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Un salteador sale de detrás de unas piedras y se planta delante de ti: «La mochila, y sigues tu camino».",
+          "persistent_trace": false
+        },
+        {
+          "creature": "espinajo_rastrojo",
+          "text": "Un Espinajo de rastrojo eriza las espinas del lomo y afirma las patas en medio del paso.",
+          "persistent_trace": false
+        }
+      ],
       "brief": "La subida de grava que rodea la hondonada."
     },
     "veyra_terraplen_roca": {
@@ -1330,7 +1525,13 @@
       "npcs": [],
       "signals": [],
       "actions": [],
-      "wildlife_pool": [],
+      "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Detrás de una piedra grande aparece una persona con un palo corto. Quiere tu carga.",
+          "persistent_trace": false
+        }
+      ],
       "brief": "El camino de piedras claras y su arroyo seco."
     },
     "veyra_hondonada_canales": {
@@ -1359,7 +1560,18 @@
       "npcs": [],
       "signals": [],
       "actions": [],
-      "wildlife_pool": [],
+      "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Una persona con un palo corto te corta el paso y señala tu mochila.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "espinajo_rastrojo",
+          "text": "Entre el rastrojo seco se mueve un Espinajo: bufa y te enseña las espinas.",
+          "persistent_trace": false
+        }
+      ],
       "brief": "El cruce de canales y su pasarela corta.",
       "states": [
         {
@@ -1445,7 +1657,18 @@
       "npcs": [],
       "signals": [],
       "actions": [],
-      "wildlife_pool": [],
+      "wildlife_pool": [
+        {
+          "creature": "espinajo_rastrojo",
+          "text": "Un Espinajo de rastrojo eriza las espinas del lomo y afirma las patas en medio del paso.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "forajido_camino",
+          "text": "Alguien con la ropa gastada del camino espera junto al paso, con un palo en la mano. Quiere tu carga.",
+          "persistent_trace": false
+        }
+      ],
       "brief": "La entrada al bosque, donde las raíces empiezan a levantar el suelo."
     },
     "veyra_cantera_callada": {
@@ -1469,7 +1692,25 @@
       "arrivals": {},
       "npcs": [],
       "signals": [],
-      "actions": [],
+      "actions": [
+        {
+          "id": "pasaje_corredor_cantera",
+          "label": "Seguir el corredor de la cantera",
+          "requires_flags": [
+            "buscado:veyra_cantera_callada"
+          ],
+          "set_flags": [
+            "pasaje_corredor_cantera"
+          ],
+          "scope": "player",
+          "next": "veyra_calle_toldos",
+          "text": "El corredor entre la piedra cortada se estrecha y gira dos veces. De pronto oyes voces y ves toldos de colores: sales por detrás de un taller de la Calle de los Toldos.",
+          "journal": "Descubriste un corredor de cantera que lleva desde la Cantera vieja hasta la Calle de los Toldos.",
+          "discover_rooms": [
+            "veyra_calle_toldos"
+          ]
+        }
+      ],
       "states": [
         {
           "requires_time": [
@@ -1488,7 +1729,31 @@
       ],
       "dawn": "La roca de abajo sigue fría. Un Escarabajo de polvo espera justo donde empieza a llegar el sol.",
       "dusk": "El Escarabajo de polvo se acerca al último borde iluminado. La pluma queda en sombra dentro de su hueco.",
-      "brief": "La cantera vieja y su bloque a medio sacar."
+      "brief": "La cantera vieja y su bloque a medio sacar.",
+      "hallazgos": [
+        {
+          "item": "cristal_veta",
+          "text": "En la base del bloque a medio sacar, entre las raíces, brilla un cristal claro. Lo sacas sin dañar las raíces. Al hacerlo ves, detrás del bloque, un corredor estrecho entre dos paredes de piedra cortada.",
+          "unico": true
+        },
+        {
+          "item": "hierro_viejo",
+          "text": "Entre los escombros hay una punta de herramienta rota.",
+          "chance": 0.5
+        }
+      ],
+      "wildlife_pool": [
+        {
+          "creature": "espinajo_rastrojo",
+          "text": "Un Espinajo de rastrojo rasca la tierra con una pata delantera. Está marcando su sitio.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "forajido_camino",
+          "text": "Una persona con un palo corto te corta el paso y señala tu mochila.",
+          "persistent_trace": false
+        }
+      ]
     },
     "veyra_sala_cuidados": {
       "id": "veyra_sala_cuidados",
@@ -1620,7 +1885,14 @@
         "norte": "Una colina sube hacia los muros viejos de Vaisgard.",
         "oeste": "Un camino ancho cruza pastos entre dos lomas, hacia los campos de Edran.",
         "este": "Un camino elevado sigue una acequia rápida y clara hacia los canales."
-      }
+      },
+      "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Un salteador espera en medio de la vega, donde no hay dónde esconderse, y te mira la mochila.",
+          "persistent_trace": false
+        }
+      ]
     },
     "veyra_pastos_exteriores": {
       "id": "veyra_pastos_exteriores",
@@ -1647,7 +1919,19 @@
       "npcs": [],
       "signals": [],
       "actions": [],
-      "brief": "El camino de los pastos, entre dos lomas."
+      "brief": "El camino de los pastos, entre dos lomas.",
+      "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Una persona con un palo corto te corta el paso y señala tu mochila.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "espinajo_rastrojo",
+          "text": "Entre el rastrojo seco se mueve un Espinajo: bufa y te enseña las espinas.",
+          "persistent_trace": false
+        }
+      ]
     },
     "veyra_acequia_exterior": {
       "id": "veyra_acequia_exterior",
@@ -1672,7 +1956,19 @@
       "npcs": [],
       "signals": [],
       "actions": [],
-      "brief": "El camino sobre la acequia, con sus tablas en los desagües."
+      "brief": "El camino sobre la acequia, con sus tablas en los desagües.",
+      "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Alguien con la ropa gastada del camino espera junto al paso, con un palo en la mano. Quiere tu carga.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "espinajo_rastrojo",
+          "text": "Un Espinajo de rastrojo rasca la tierra con una pata delantera. Está marcando su sitio.",
+          "persistent_trace": false
+        }
+      ]
     }
   },
   "npcs": {
@@ -1726,6 +2022,12 @@
             "pista_piedra_antigua"
           ],
           "text": "La ciudad está hecha sobre piedras más viejas que ella. Las usamos, las reparamos, las movemos. Pero las piedras no nos han contado quién las puso."
+        },
+        "promesa": {
+          "requires_flags": [
+            "sec_h_carga_pendiente"
+          ],
+          "text": "¿Te fijaste en la anotación abierta? No la tacho porque quien la dejó dijo que volvería. Mientras siga abierta, su sitio en el estante es suyo."
         }
       },
       "day": "Reordena las tablillas pendientes por ruta.",

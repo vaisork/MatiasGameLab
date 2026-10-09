@@ -86,7 +86,7 @@ class NightMechanicsTests(unittest.TestCase):
   cached=copy.deepcopy(self.world['wildlife']);calls=rng.calls
   for _ in range(3):self.engine.snapshot(second,self.world)
   self.assertEqual(rng.calls,calls);self.assertEqual(self.world['wildlife'],cached)
-  self.assertEqual(calls,2)
+  self.assertEqual(calls,4)  # two spawns, each one roll for the rival and one for its level
   self.assertTrue(any(a['id']=='combatir' and a.get('target')=='forajido_camino' for a in self.engine.actions(second,self.world)))
  def test_recovery_requires_present_caregiver_and_only_charges_for_effect(self):
   self.state['location']='hoshai_sala_cuidados';self.state.update(hp=50,fatigue=45,wound='moderada',rest_budget=0,seals=18)
@@ -121,7 +121,7 @@ class NightMechanicsTests(unittest.TestCase):
    def random(self):return self.value
   traces=self.content.regions['edran']['search']['traces']
   index=next(i for i,t in enumerate(traces) if isinstance(t,dict) and t['flag']=='pista_huella_partida')
-  self.state['location']='edran_camino_carros';self.engine.rng=Fixed(.4+(index+.5)/len(traces)*.35)
+  self.state['location']='edran_camino_carros';self.engine.rng=Fixed(.5+(index+.5)/len(traces)*.25)
   self.engine.search(self.character,self.world)
   self.assertEqual(self.state['events'][0]['text'],traces[index]['text'])
   self.assertIn('pista_huella_partida',self.state['flags'])
@@ -136,7 +136,7 @@ class NightMechanicsTests(unittest.TestCase):
    def random(self):return self.value
   search=self.content.regions['lethra']['search']
   # First and last variant of each list, using the same proportional selection as Engine.search.
-  for value,kind,start,span in ((.76,'empty',.75,.25),(.99,'empty',.75,.25),(.41,'traces',.4,.35),(.74,'traces',.4,.35)):
+  for value,kind,start,span in ((.76,'empty',.75,.25),(.99,'empty',.75,.25),(.51,'traces',.5,.25),(.74,'traces',.5,.25)):
    options=search[kind];index=min(int((value-start)/span*len(options)),len(options)-1)
    self.state['location']='lethra_tierra_esponjosa';self.engine.rng=Fixed(value)
    self.engine.search(self.character,self.world)
@@ -245,3 +245,39 @@ class HoningApiTests(unittest.TestCase):
    self.assertTrue(restored['inventory'][0]['honed']);self.assertEqual(restored['character']['seals'],updated['character']['seals'])
 
 if __name__=='__main__':unittest.main()
+
+class SpeciesSecretsTests(unittest.TestCase):
+ """Each species perceives its own secrets; the six investigations continue for everyone."""
+ SECRETS={'humano':['secreto_h_estacas','secreto_h_piedra','secreto_h_carga_pendiente'],'felaryn':['secreto_f_nudo','secreto_f_apoyos','secreto_f_eco'],
+          'dravak':['secreto_d_vibracion','secreto_d_espesor','secreto_d_junta'],'marevyn':['secreto_m_corrientes','secreto_m_fibra','lethra_secreto_barquita'],
+          'vesperi':['secreto_v_senal','secreto_v_pausa','secreto_v_fundas']}
+ def setUp(self):
+  self.content=Content(Path(__file__).resolve().parents[1]/'content')
+  self.where={a['id']:rid for rid,room in self.content.rooms.items() for a in room.get('actions',[])}
+ def engine(self,hour):return Engine(self.content,lambda:hour*3600,ZeroRandom())
+ def offered(self,species,action_id,hour=12):
+  state=m.new_state(species,'juramentado','home:1',hour*3600);state['location']=self.where[action_id]
+  return action_id in [a['id'] for a in self.engine(hour).actions({'state':state,'species':species},{'flags':[],'deaths':{}})]
+ def test_each_species_gets_only_its_own_three(self):
+  for species,ids in self.SECRETS.items():
+   for action_id in ids:
+    hour=23 if action_id in ('secreto_v_senal','secreto_v_fundas') else 12
+    self.assertTrue(self.offered(species,action_id,hour),(species,action_id))
+    for other in self.SECRETS:
+     if other!=species:self.assertFalse(self.offered(other,action_id,hour),(other,action_id))
+ def test_secret_is_personal_and_counted(self):
+  engine=self.engine(12);world={'flags':[],'deaths':{}}
+  first,second=(m.new_state('dravak','juramentado',f'home:{i}',43200) for i in (1,2))
+  for state in (first,second):state['location']='korven_roca_cascaron'
+  engine.apply({'state':first,'species':'dravak'},world,{'id':'secreto_d_junta'})
+  self.assertIn('sec_d_junta',first['flags']);self.assertNotIn('sec_d_junta',second['flags']);self.assertNotIn('sec_d_junta',world['flags'])
+  self.assertTrue(self.offered('dravak','secreto_d_junta'))
+  self.assertIn('sec_d_junta',self.content.secrets)
+ def test_second_steps_wait_for_the_first_investigation(self):
+  pairs={'pista2_estacas_exteriores':'edran_rastro_grande','pista2_cuna_conducto':'edran_conduccion_vieja','pista2_marcas_desde_abajo':'hoshai_marcas_altas',
+         'pista2_anotaciones_oma':'korven_presion_abajo','pista2_barro_raices':'lethra_rastro_largo','pista2_brotes_altos':'nhal_rastro_alto'}
+  for action_id,needed in pairs.items():
+   for species in self.SECRETS:
+    state=m.new_state(species,'juramentado','home:1',43200);state['location']=self.where[action_id]
+    ids=lambda:[a['id'] for a in self.engine(12).actions({'state':state,'species':species},{'flags':[],'deaths':{}})]
+    self.assertNotIn(action_id,ids());state['flags'].append(needed);self.assertIn(action_id,ids(),(species,action_id))

@@ -29,6 +29,26 @@
           {
             "item": "semillas_camino",
             "text": "Entre los terrones encuentras una vaina con semillas secas."
+          },
+          {
+            "item": "hierro_viejo",
+            "text": "Entre la hierba asoma una herradura vieja y oxidada. El herrero sabrá aprovecharla."
+          },
+          {
+            "item": "cuna_madera",
+            "text": "Junto a una rodada hay una cuña de madera que se le cayó a algún carro."
+          },
+          {
+            "item": "hierbas_curativas",
+            "text": "En el borde de la acequia crecen hierbas curativas. Cortas un puñado."
+          },
+          {
+            "item": "clavos_oxidados",
+            "text": "En el barro brillan unos clavos viejos, caídos de alguna cerca."
+          },
+          {
+            "item": "pluma_vistosa",
+            "text": "Una pluma larga y brillante se ha quedado enganchada en un cardo."
           }
         ],
         "traces": [
@@ -89,7 +109,24 @@
       },
       "npcs": [],
       "signals": [],
-      "actions": [],
+      "actions": [
+        {
+          "id": "secreto_h_piedra",
+          "label": "Seguir con la mano la madera del banco",
+          "requires_species": [
+            "humano"
+          ],
+          "forbids_flags": [
+            "sec_h_piedra"
+          ],
+          "set_flags": [
+            "sec_h_piedra"
+          ],
+          "text": "Pasas la mano por el banco y notas que la madera cambia de dirección justo antes de tocar la piedra. No es un error: alguien prefirió que el banco rodeara la piedra antes que quitarla de su sitio.",
+          "journal": "Valdren conserva algunas cosas sin necesidad de explicar de dónde vienen.",
+          "scope": "player"
+        }
+      ],
       "return": "Ya sabes orientarte aquí: la calle que sube lleva al golpe de la fragua; el corredor de los huertos, al campo.",
       "weather": {
         "viento": "El cuenco del banco traquetea bajo su tapa. La lámpara oscila junto al corredor y su luz pasa de las tablas al suelo; en las casas, alguien encaja una contraventana."
@@ -285,7 +322,16 @@
         "espada_juramento",
         "varita_aprendiz",
         "punal_camino",
-        "arco_ruta"
+        "arco_ruta",
+        "espada_larga",
+        "punal_hueso",
+        "arco_largo",
+        "varita_sauce",
+        "gorro_cuero",
+        "jubon_cuero",
+        "brazales_cuero",
+        "grebas_cuero",
+        "botas_cuero"
       ],
       "honing_material": "fibra_espinajo",
       "states": [
@@ -1033,7 +1079,8 @@
       "focus": [
         "activity"
       ],
-      "brief": "El comedor: mesa de tres tableros, ollas y tazas boca abajo."
+      "brief": "El comedor: mesa de tres tableros, ollas y tazas boca abajo.",
+      "buys_gear": false
     },
     "edran_salida_huertos": {
       "id": "edran_salida_huertos",
@@ -1307,7 +1354,14 @@
       "focus": [
         "activity"
       ],
-      "brief": "La curva de la acequia, con su losa para cruzar."
+      "brief": "La curva de la acequia, con su losa para cruzar.",
+      "wildlife_pool": [
+        {
+          "creature": "espinajo_rastrojo",
+          "text": "Un Espinajo de rastrojo eriza las espinas del lomo y afirma las patas en medio del paso.",
+          "persistent_trace": false
+        }
+      ]
     },
     "edran_surcos": {
       "id": "edran_surcos",
@@ -1374,6 +1428,18 @@
             "noche"
           ]
         }
+      ],
+      "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Un salteador sale de detrás de unas piedras y se planta delante de ti: «La mochila, y sigues tu camino».",
+          "persistent_trace": false
+        },
+        {
+          "creature": "espinajo_rastrojo",
+          "text": "Un Espinajo de rastrojo eriza las espinas del lomo y afirma las patas en medio del paso.",
+          "persistent_trace": false
+        }
       ]
     },
     "edran_lindero": {
@@ -1428,7 +1494,14 @@
           "text": "Has visto una tablilla de dos cuencos junto al paso del lindero. Su marca no basta para asignarle un propietario."
         }
       ],
-      "brief": "El lindero, donde la piedra hundida separa las parcelas."
+      "brief": "El lindero, donde la piedra hundida separa las parcelas.",
+      "wildlife_pool": [
+        {
+          "creature": "espinajo_rastrojo",
+          "text": "Un Espinajo de rastrojo rasca la tierra con una pata delantera. Está marcando su sitio.",
+          "persistent_trace": false
+        }
+      ]
     },
     "edran_loma": {
       "id": "edran_loma",
@@ -1459,7 +1532,14 @@
       },
       "dawn": "La primera luz dibuja los tejados de Valdren. El campo todavía está en sombra, y el camino de carros se adivina por la neblina que flota sobre las rodadas.",
       "dusk": "Los campos se van borrando de abajo arriba. Desde la loma se oyen las voces de quienes vuelven a casa; las ventanas se encienden mientras la acequia desaparece en la sombra.",
-      "brief": "La loma del pasto cortado, con Valdren a la vista."
+      "brief": "La loma del pasto cortado, con Valdren a la vista.",
+      "wildlife_pool": [
+        {
+          "creature": "espinajo_rastrojo",
+          "text": "Un Espinajo de rastrojo rasca la tierra con una pata delantera. Está marcando su sitio.",
+          "persistent_trace": false
+        }
+      ]
     },
     "edran_cobertizo_campo": {
       "id": "edran_cobertizo_campo",
@@ -1518,6 +1598,38 @@
           "scope": "player",
           "text": "Te agachas. El Espinajo de la pata asoma por detrás de la estaca, igual que uno de verdad en los tallos. Quien lo hizo esperaba sentado justo aquí.",
           "journal": "Otro Espinajo con una L, escondido en la pata del banco del cobertizo de las estacas."
+        },
+        {
+          "id": "pista2_estacas_exteriores",
+          "label": "Comparar las estacas exteriores",
+          "requires_flags": [
+            "edran_rastro_grande"
+          ],
+          "forbids_flags": [
+            "edran_paso_conocido"
+          ],
+          "set_flags": [
+            "edran_paso_conocido"
+          ],
+          "text": "Las estacas del lado del campo se han cambiado muchas más veces que las de dentro. Varias están inclinadas hacia el mismo lado, y entre algunas han dejado un hueco demasiado ancho para una cerca normal. Como si alguien supiera que por ahí pasa algo grande y prefiriera dejarle sitio.",
+          "journal": "Las marcas del prado no fueron un hecho aislado. Alguien conoce ese paso y procura dejarle espacio.",
+          "scope": "player"
+        },
+        {
+          "id": "secreto_h_estacas",
+          "label": "Mirar de cerca las marcas de las estacas",
+          "requires_species": [
+            "humano"
+          ],
+          "forbids_flags": [
+            "sec_h_estacas"
+          ],
+          "set_flags": [
+            "sec_h_estacas"
+          ],
+          "text": "Debajo de la última marca de cada estaca hay otras dos, casi borradas. Reconoces la costumbre: en tu familia también se marcaba así cada arreglo de la misma cerca. No son dueños distintos; son años de volver a reparar lo mismo.",
+          "journal": "Los campos guardan su historia en señales pequeñas. Esta cerca ha necesitado cuidados durante años.",
+          "scope": "player"
         }
       ],
       "return": "Recuerdas la estaca numerada que faltaba en la pared. El hueco está entre dos herramientas con barro seco en el mango.",
@@ -1623,6 +1735,11 @@
         {
           "creature": "cornalomo",
           "text": "En la hondonada, lejos de las rodadas, un Cornalomo se mueve despacio. El suelo tiembla un poco a cada paso.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "forajido_camino",
+          "text": "Una persona con un palo corto sale de detrás de un carro volcado y pide tu equipaje. El camino sigue libre a tu espalda.",
           "persistent_trace": false
         }
       ],
@@ -1808,7 +1925,19 @@
       "focus": [
         "activity"
       ],
-      "brief": "La era: tierra apisonada, tablones y el poste del viento."
+      "brief": "La era: tierra apisonada, tablones y el poste del viento.",
+      "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Alguien con la ropa gastada del camino espera junto al paso, con un palo en la mano. Quiere tu carga.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "espinajo_rastrojo",
+          "text": "Un Espinajo de rastrojo rasca la tierra con una pata delantera. Está marcando su sitio.",
+          "persistent_trace": false
+        }
+      ]
     },
     "edran_terraplen": {
       "id": "edran_terraplen",
@@ -2034,7 +2163,19 @@
         "sur": "Una subida empedrada baja de vuelta hacia los campos de Edran.",
         "este": "Un desvío corto sube a un borde de la loma, abierto al cielo. Desde ahí debe de verse lejos.",
         "norte": "Tres piedras cruzan el arroyo, una detrás de otra. Detrás, el camino sube hacia una muralla que todavía no se ve."
-      }
+      },
+      "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Alguien con la ropa gastada del camino espera junto al paso, con un palo en la mano. Quiere tu carga.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "espinajo_rastrojo",
+          "text": "Un Espinajo de rastrojo rasca la tierra con una pata delantera. Está marcando su sitio.",
+          "persistent_trace": false
+        }
+      ]
     },
     "edran_prado": {
       "id": "edran_prado",
@@ -2083,7 +2224,19 @@
       "weather": {
         "viento": "Las hierbas altas se inclinan juntas salvo donde el peso del Cornalomo las mantiene aplastadas. La dirección del aire hace más visible ese espacio ocupado."
       },
-      "brief": "El prado de las marcas anchas."
+      "brief": "El prado de las marcas anchas.",
+      "wildlife_pool": [
+        {
+          "creature": "espinajo_rastrojo",
+          "text": "Entre el rastrojo seco se mueve un Espinajo: bufa y te enseña las espinas.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "forajido_camino",
+          "text": "Un salteador sale de detrás de unas piedras y se planta delante de ti: «La mochila, y sigues tu camino».",
+          "persistent_trace": false
+        }
+      ]
     },
     "edran_linde_piedra": {
       "id": "edran_linde_piedra",
@@ -2174,6 +2327,11 @@
           "creature": "cornalomo",
           "text": "Al otro lado de los juncos, un Cornalomo aplasta la hierba al pasar. Su peso se nota hasta en el agua quieta.",
           "persistent_trace": false
+        },
+        {
+          "creature": "forajido_camino",
+          "text": "Entre los juncos se levanta alguien con un palo. «Deja la mochila y sigue», dice, sin acercarse todavía.",
+          "persistent_trace": false
         }
       ],
       "brief": "El sendero del agua oculta, entre juncos altos."
@@ -2214,7 +2372,19 @@
         "oeste": "Un sendero estrecho entre juncos altos, que esconden el agua.",
         "este": "Al otro lado del puente, la orilla sube y el aire huele a río y a barro: es Lethra.",
         "sur": "Un sauce inclinado echa sus ramas sobre la orilla."
-      }
+      },
+      "wildlife_pool": [
+        {
+          "creature": "espinajo_rastrojo",
+          "text": "Un Espinajo de rastrojo rasca la tierra con una pata delantera. Está marcando su sitio.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "forajido_camino",
+          "text": "Una persona con un palo corto te corta el paso y señala tu mochila.",
+          "persistent_trace": false
+        }
+      ]
     },
     "valdren_calle_alta": {
       "id": "valdren_calle_alta",
@@ -2352,7 +2522,13 @@
       "return": "El asiento de espera y la mesa limpia, como la otra vez. Sena guarda paños secos junto a la ventana, lejos de las capas del camino.",
       "recovery_service": true,
       "buyer": "edran_sena",
-      "brief": "La casa de cuidados: cama corta, paños limpios y agua tapada."
+      "brief": "La casa de cuidados: cama corta, paños limpios y agua tapada.",
+      "shop": [
+        "pocion_menor",
+        "tonico_camino",
+        "unguento_heridas"
+      ],
+      "buys_gear": false
     },
     "edran_estanque": {
       "id": "edran_estanque",
@@ -2395,6 +2571,18 @@
         },
         "Un pez asoma la boca en la superficie, hace un círculo y desaparece.",
         "Una hoja llega flotando por la corriente, choca con el tronco hundido y se queda allí, atrapada."
+      ],
+      "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Alguien con la ropa gastada del camino espera junto al paso, con un palo en la mano. Quiere tu carga.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "espinajo_rastrojo",
+          "text": "Un Espinajo de rastrojo rasca la tierra con una pata delantera. Está marcando su sitio.",
+          "persistent_trace": false
+        }
       ]
     },
     "edran_bajo_humedo": {
@@ -2449,7 +2637,26 @@
           "text": "La raíz hueca señala la entrada que observaste desde el borde alto. Puedes dejarle su espacio sin apartarte del sendero."
         }
       ],
-      "brief": "La hondonada húmeda, vista desde las piedras del borde."
+      "brief": "La hondonada húmeda, vista desde las piedras del borde.",
+      "hallazgos": [
+        {
+          "item": "unguento_heridas",
+          "text": "Entre las piedras secas del borde, alguien olvidó un tarro de ungüento bien cerrado. Aún huele a hierbas.",
+          "unico": true
+        },
+        {
+          "item": "hierbas_curativas",
+          "text": "En el borde de la hondonada crecen hierbas curativas.",
+          "chance": 0.6
+        }
+      ],
+      "wildlife_pool": [
+        {
+          "creature": "espinajo_rastrojo",
+          "text": "Entre el rastrojo seco se mueve un Espinajo: bufa y te enseña las espinas.",
+          "persistent_trace": false
+        }
+      ]
     },
     "edran_parcela_vieja": {
       "id": "edran_parcela_vieja",
@@ -2517,6 +2724,16 @@
       "signals": [],
       "actions": [
         {
+          "id": "pasaje_conducto_zanja_vuelta",
+          "label": "Bajar por el conducto viejo",
+          "requires_flags": [
+            "pasaje_conducto_zanja"
+          ],
+          "scope": "player",
+          "next": "edran_canal_repisa",
+          "text": "Te metes a gatas en el conducto y bajas hasta la repisa del canal cubierto."
+        },
+        {
           "id": "pista_seguir_linea",
           "label": "Seguir la línea de tierra hundida",
           "requires_flags": [
@@ -2533,7 +2750,19 @@
         }
       ],
       "return": "El borde recto de la zanja no ha cambiado. Su entrada está apisonada; entre las paredes de tierra han crecido plantas.",
-      "brief": "La zanja seca, con la escalera del canal cubierto."
+      "brief": "La zanja seca, con la escalera del canal cubierto.",
+      "wildlife_pool": [
+        {
+          "creature": "espinajo_rastrojo",
+          "text": "Un Espinajo de rastrojo eriza las espinas del lomo y afirma las patas en medio del paso.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "forajido_camino",
+          "text": "Alguien con la ropa gastada del camino espera junto al paso, con un palo en la mano. Quiere tu carga.",
+          "persistent_trace": false
+        }
+      ]
     },
     "edran_sauces": {
       "id": "edran_sauces",
@@ -2659,7 +2888,19 @@
         "activity",
         "return"
       ],
-      "brief": "El mirador de la cuenca, con Vaisgard a lo lejos."
+      "brief": "El mirador de la cuenca, con Vaisgard a lo lejos.",
+      "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Una persona con un palo corto te corta el paso y señala tu mochila.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "espinajo_rastrojo",
+          "text": "Entre el rastrojo seco se mueve un Espinajo: bufa y te enseña las espinas.",
+          "persistent_trace": false
+        }
+      ]
     },
     "edran_ladera_piedra": {
       "id": "edran_ladera_piedra",
@@ -2684,7 +2925,14 @@
       "signals": [],
       "actions": [],
       "return": "Puedes elegir apoyo según tamaño y abrigo. El apoyo bajo protege una carga pequeña; el alto deja espacio para un cesto más ancho.",
-      "brief": "La ladera de los cestos y sus tres salientes."
+      "brief": "La ladera de los cestos y sus tres salientes.",
+      "wildlife_pool": [
+        {
+          "creature": "espinajo_rastrojo",
+          "text": "Un Espinajo de rastrojo rasca la tierra con una pata delantera. Está marcando su sitio.",
+          "persistent_trace": false
+        }
+      ]
     },
     "edran_sendero_regreso": {
       "id": "edran_sendero_regreso",
@@ -2814,9 +3062,38 @@
       },
       "npcs": [],
       "signals": [],
-      "actions": [],
+      "actions": [
+        {
+          "id": "pista2_cuna_conducto",
+          "label": "Comparar la cuña con las marcas del conducto",
+          "requires_flags": [
+            "edran_conduccion_vieja"
+          ],
+          "forbids_flags": [
+            "edran_canal_reparado"
+          ],
+          "set_flags": [
+            "edran_canal_reparado"
+          ],
+          "text": "La cuña de la mesa está gastada por un lado. Una marca de la pared del canal tiene justo su anchura, pero la piedra de alrededor es muchísimo más vieja. Alguien trabajó aquí cuando el canal ya llevaba mucho tiempo construido.",
+          "journal": "El canal fue reparado después de construirse. Todavía no sé quién lo levantó.",
+          "scope": "player"
+        }
+      ],
       "source": "Ampliación original autorizada: campaña nocturna",
-      "brief": "La cámara de herramientas y su mesa de barro seco."
+      "brief": "La cámara de herramientas y su mesa de barro seco.",
+      "hallazgos": [
+        {
+          "item": "punal_hueso",
+          "text": "Al limpiar el barro seco del fondo de la mesa aparece una herramienta que nadie se llevó: un puñal de mango de hueso, todavía afilado.",
+          "unico": true
+        },
+        {
+          "item": "hierro_viejo",
+          "text": "En el suelo de la cámara queda un trozo de hierro de alguna herramienta rota.",
+          "chance": 0.4
+        }
+      ]
     },
     "edran_canal_bifurcacion": {
       "id": "edran_canal_bifurcacion",
@@ -2884,7 +3161,14 @@
           }
         }
       ],
-      "brief": "El refugio junto al canal, con su manta."
+      "brief": "El refugio junto al canal, con su manta.",
+      "hallazgos": [
+        {
+          "item": "pocion_vida",
+          "text": "Debajo de la manta doblada hay un frasco grande de poción, guardado para una emergencia que nunca llegó.",
+          "unico": true
+        }
+      ]
     },
     "edran_canal_compuerta": {
       "id": "edran_canal_compuerta",
@@ -2979,6 +3263,23 @@
             "edran_caja_recogida"
           ],
           "journal": "Recuperaste la caja al final del canal. Nela espera en la entrada."
+        },
+        {
+          "id": "pasaje_conducto_zanja",
+          "label": "Subir por el conducto viejo",
+          "requires_flags": [
+            "buscado:edran_canal_repisa"
+          ],
+          "set_flags": [
+            "pasaje_conducto_zanja"
+          ],
+          "scope": "player",
+          "next": "edran_zanja_antigua",
+          "text": "El conducto es bajo y hay que ir a gatas, pero está seco. Las piedras están puestas a mano, muy antiguas. Al final ves luz: sales al fondo de la zanja seca, en pleno campo.",
+          "journal": "Descubriste el conducto viejo que une el canal cubierto con la Zanja seca.",
+          "discover_rooms": [
+            "edran_zanja_antigua"
+          ]
         }
       ],
       "source": "Ampliación original autorizada: campaña nocturna",
@@ -2996,7 +3297,19 @@
           }
         }
       ],
-      "brief": "El final del canal, con su repisa seca."
+      "brief": "El final del canal, con su repisa seca.",
+      "hallazgos": [
+        {
+          "item": "anillo_filo",
+          "text": "Detrás de la caja, en el fondo de la repisa, hay un anillo frío y oscuro. Al cogerlo notas una corriente de aire: entre las piedras de la pared hay un conducto bajo y seco que sube hacia la superficie.",
+          "unico": true
+        },
+        {
+          "item": "cuna_madera",
+          "text": "Sobre la repisa queda alguna cuña suelta.",
+          "chance": 0.5
+        }
+      ]
     }
   },
   "npcs": {

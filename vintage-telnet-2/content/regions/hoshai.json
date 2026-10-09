@@ -32,6 +32,26 @@
           {
             "item": "resina_pino",
             "text": "En una rama caída encuentras resina seca. Recoges un trozo sin herir el árbol."
+          },
+          {
+            "item": "pluma_vistosa",
+            "text": "Una pluma de ave de montaña, larga y brillante, entre las piedras."
+          },
+          {
+            "item": "cristal_veta",
+            "text": "En una veta de la roca brilla un cristal pequeño. Lo sacas con cuidado."
+          },
+          {
+            "item": "hierbas_curativas",
+            "text": "En una repisa crecen hierbas de montaña, de las que curan."
+          },
+          {
+            "item": "cuero_curtido",
+            "text": "Un trozo de correa de cuero que algún porteador dejó atrás."
+          },
+          {
+            "item": "hierro_viejo",
+            "text": "Un clavo grande de anclaje, viejo, que ya no sujeta nada."
           }
         ],
         "traces": [
@@ -101,6 +121,11 @@
           "creature": "rasgacumbres",
           "text": "Muy arriba, en la sierra, una forma grande cruza una cornisa y deja caer piedrecitas. Es un Rasgacumbres. Desde aquí abajo parece pequeño.",
           "persistent_trace": false
+        },
+        {
+          "creature": "forajido_camino",
+          "text": "Al pie de la subida, alguien con un palo corto bloquea el paso y señala tu mochila.",
+          "persistent_trace": false
         }
       ],
       "brief": "La primera subida, donde la grava se vuelve pasto.",
@@ -136,6 +161,16 @@
       "signals": [],
       "actions": [],
       "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Un salteador sale de detrás de unas piedras y se planta delante de ti: «La mochila, y sigues tu camino».",
+          "persistent_trace": false
+        },
+        {
+          "creature": "cascapedernal",
+          "text": "Junto a la roca, una cubierta de placas se mueve despacio: un Cascapedernal se ha pegado a la piedra.",
+          "persistent_trace": false
+        },
         {
           "creature": "saltacresta",
           "text": "Dos pisadas menudas quedan sobre una raíz húmeda. El Saltacresta está más arriba, recogido en el hueco seco de un tronco inclinado.",
@@ -182,7 +217,19 @@
         "weather",
         "return"
       ],
-      "brief": "El descanso de las tres piedras, a media subida."
+      "brief": "El descanso de las tres piedras, a media subida.",
+      "wildlife_pool": [
+        {
+          "creature": "cascapedernal",
+          "text": "Junto a la roca, una cubierta de placas se mueve despacio: un Cascapedernal se ha pegado a la piedra.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "forajido_camino",
+          "text": "Alguien con la ropa gastada del camino espera junto al paso, con un palo en la mano. Quiere tu carga.",
+          "persistent_trace": false
+        }
+      ]
     },
     "hoshai_pared_goteo": {
       "id": "hoshai_pared_goteo",
@@ -208,6 +255,16 @@
       "signals": [],
       "actions": [],
       "wildlife_pool": [
+        {
+          "creature": "cascapedernal",
+          "text": "Lo que parecía una piedra moteada se mueve: es un Cascapedernal, y no piensa apartarse.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "forajido_camino",
+          "text": "Una persona con un palo corto te corta el paso y señala tu mochila.",
+          "persistent_trace": false
+        },
         {
           "creature": "saltacresta",
           "text": "Una gota golpea junto al hocico del Saltacresta. Sacude la cabeza y se desplaza al entrante seco, lejos del paso de las cargas.",
@@ -251,6 +308,16 @@
       "signals": [],
       "actions": [],
       "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Una persona con un palo corto te corta el paso y señala tu mochila.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "cascapedernal",
+          "text": "Un Cascapedernal asoma de debajo de una laja, con las placas cubiertas de polvo claro.",
+          "persistent_trace": false
+        },
         {
           "creature": "saltacresta",
           "text": "Una piña rueda desde un apoyo bajo. Detrás asoman las patas del Saltacresta, que espera entre dos troncos antes de cruzar el claro.",
@@ -326,6 +393,16 @@
       "dusk": "La sombra de la pared cae sobre la corriente. Quien vuelve se para a escuchar antes de buscar con el pie la piedra que usó por la mañana.",
       "wildlife_pool": [
         {
+          "creature": "forajido_camino",
+          "text": "Un salteador sale de detrás de unas piedras y se planta delante de ti: «La mochila, y sigues tu camino».",
+          "persistent_trace": false
+        },
+        {
+          "creature": "cascapedernal",
+          "text": "Junto a la roca, una cubierta de placas se mueve despacio: un Cascapedernal se ha pegado a la piedra.",
+          "persistent_trace": false
+        },
+        {
           "creature": "saltacresta",
           "text": "El Saltacresta extiende las patas sobre la piedra que divide la corriente. La salpicadura alcanza su apoyo inferior; recoge una pata y espera.",
           "persistent_trace": false
@@ -383,6 +460,11 @@
         {
           "creature": "rasgacumbres",
           "text": "Por encima del paso entre paredes, un Rasgacumbres cruza la ladera de lado. Una piedra suelta rueda desde donde pisó y se para lejos del sendero.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "forajido_camino",
+          "text": "Entre los hitos de piedra espera un salteador, con el viento a la espalda y el palo en la mano.",
           "persistent_trace": false
         }
       ],
@@ -442,9 +524,35 @@
           ],
           "text": "Levantas la cabeza hasta que te duele el cuello. Muy arriba, en la pared, hay arañazos largos y profundos, mucho más altos que los de un Rasgacumbres. Debajo, la grava está recién caída, todavía clara, sin polvo encima. Algo enorme mueve roca allá arriba, donde ningún camino llega. Por un momento, todo el paso parece más estrecho.",
           "journal": "En el Paso entre paredes viste arañazos y roca movida muy por encima del camino: algo mucho más grande que un Rasgacumbres trabaja en las cumbres."
+        },
+        {
+          "id": "secreto_f_apoyos",
+          "label": "Buscar una subida entre los salientes",
+          "requires_species": [
+            "felaryn"
+          ],
+          "forbids_flags": [
+            "sec_f_apoyos"
+          ],
+          "set_flags": [
+            "sec_f_apoyos"
+          ],
+          "text": "Tus ojos encuentran enseguida un camino de salientes por el que podrías subir: aquí, luego allí, luego aquel borde. Pero las marcas grandes de la pared no siguen ese camino. Van por otro sitio, uno que no tiene sentido para alguien que salta.",
+          "journal": "Las señales de la roca no corresponden a la forma en que yo subiría.",
+          "scope": "player"
         }
       ],
       "wildlife_pool": [
+        {
+          "creature": "cascapedernal",
+          "text": "Lo que parecía una piedra moteada se mueve: es un Cascapedernal, y no piensa apartarse.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "forajido_camino",
+          "text": "Una persona con un palo corto te corta el paso y señala tu mochila.",
+          "persistent_trace": false
+        },
         {
           "creature": "saltacresta",
           "text": "En una repisa alta del cuello, el Saltacresta queda inmóvil al oír el golpe de aviso. Sólo baja cuando el estrechamiento vuelve a estar libre.",
@@ -487,7 +595,24 @@
       "arrivals": {},
       "npcs": [],
       "signals": [],
-      "actions": [],
+      "actions": [
+        {
+          "id": "secreto_f_eco",
+          "label": "Escuchar las tablas en silencio",
+          "requires_species": [
+            "felaryn"
+          ],
+          "forbids_flags": [
+            "sec_f_eco"
+          ],
+          "set_flags": [
+            "sec_f_eco"
+          ],
+          "text": "Te quedas muy quieto, con las orejas atentas. Bajo tus pies, una parte de la terraza da un golpecito corto que no suena como el resto. Cuando para la ráfaga de viento, desaparece.",
+          "journal": "Una parte de la terraza responde al viento de otra manera.",
+          "scope": "player"
+        }
+      ],
       "brief": "La terraza de las cargas, bajo el primer techo de Khariel.",
       "states": [
         {
@@ -551,7 +676,19 @@
         "norte": "Escalones al sol suben hacia los tejados oscuros de un pueblo.",
         "este": "Un saliente de roca se asoma a un barranco. Una cuerda cruza el vacío.",
         "oeste": "Una lona azul tapa unas cajas junto al camino."
-      }
+      },
+      "wildlife_pool": [
+        {
+          "creature": "cascapedernal",
+          "text": "Un Cascapedernal asoma de debajo de una laja, con las placas cubiertas de polvo claro.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "forajido_camino",
+          "text": "Un salteador sale de detrás de unas piedras y se planta delante de ti: «La mochila, y sigues tu camino».",
+          "persistent_trace": false
+        }
+      ]
     },
     "hoshai_escalones_sol": {
       "id": "hoshai_escalones_sol",
@@ -578,8 +715,35 @@
       },
       "npcs": [],
       "signals": [],
-      "actions": [],
+      "actions": [
+        {
+          "id": "pista2_marcas_desde_abajo",
+          "label": "Comparar las marcas desde abajo",
+          "requires_flags": [
+            "hoshai_marcas_altas"
+          ],
+          "forbids_flags": [
+            "hoshai_marcas_desde_abajo"
+          ],
+          "set_flags": [
+            "hoshai_marcas_desde_abajo"
+          ],
+          "text": "Desde los escalones se ve otra raspadura, muy por encima de las señales que dejan los que arreglan el camino. Las marcas no siguen el recorrido de las cuerdas ni de las cargas: van por donde ninguna persona podría ir.",
+          "journal": "Algo alcanzó la roca desde una altura poco habitual. Esas marcas no son del trabajo del camino.",
+          "scope": "player"
+        }
+      ],
       "wildlife_pool": [
+        {
+          "creature": "cascapedernal",
+          "text": "Un Cascapedernal asoma de debajo de una laja, con las placas cubiertas de polvo claro.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "forajido_camino",
+          "text": "Un salteador sale de detrás de unas piedras y se planta delante de ti: «La mochila, y sigues tu camino».",
+          "persistent_trace": false
+        },
         {
           "creature": "saltacresta",
           "text": "Un Saltacresta cruza por detrás del peldaño reparado. La franja de grava le permite evitar las botas y salir hacia el canal lateral.",
@@ -916,7 +1080,14 @@
       "focus": [
         "activity"
       ],
-      "brief": "El taller de Khariel, con su dibujo de los escalones."
+      "brief": "El taller de Khariel, con su dibujo de los escalones.",
+      "hallazgos": [
+        {
+          "item": "clavos_oxidados",
+          "text": "En la caja de recortes del taller, que cualquiera puede llevarse, quedan clavos viejos.",
+          "chance": 0.5
+        }
+      ]
     },
     "hoshai_mercado_cintas": {
       "id": "hoshai_mercado_cintas",
@@ -946,13 +1117,43 @@
       "shop": [
         "provision_basica",
         "arco_ruta",
-        "punal_camino"
+        "punal_camino",
+        "pocion_menor",
+        "tonico_camino",
+        "arco_largo",
+        "punal_hueso",
+        "amuleto_viento",
+        "gorro_cuero",
+        "jubon_cuero",
+        "brazales_cuero",
+        "grebas_cuero",
+        "botas_cuero",
+        "brazales_reforzados",
+        "botas_reforzadas"
       ],
       "buyer": "hoshai_luma",
       "buy_items": [
         "resina_pino",
         "cuerda_recuperada",
-        "piedra_veteada"
+        "piedra_veteada",
+        "colmillo_mordelinde",
+        "espina_espinajo",
+        "placa_cascapedernal",
+        "cuero_curtido",
+        "hierro_viejo",
+        "cuna_madera",
+        "clavos_oxidados",
+        "hierbas_curativas",
+        "setas_bosque",
+        "pluma_vistosa",
+        "cristal_veta",
+        "bolsita_cuentas",
+        "cuerno_cornalomo",
+        "escama_dorsalodo",
+        "garra_rasgacumbres",
+        "placa_quebrarrocas",
+        "corteza_rasgacorteza",
+        "bolsa_salteador"
       ],
       "states": [
         {
@@ -1040,7 +1241,8 @@
         "people"
       ],
       "brief": "El mercado de las cintas, al abrigo del viento.",
-      "max_layers": 4
+      "max_layers": 4,
+      "buys_gear": true
     },
     "hoshai_patio_hogares": {
       "id": "hoshai_patio_hogares",
@@ -1167,7 +1369,19 @@
       ],
       "dawn": "La primera manga toca el agua fría. Su dueña sopla los dedos antes de volver a frotar.",
       "dusk": "Una hoja mojada queda sobre la piedra. Los niños vuelven a probar el silbido antes de irse.",
-      "brief": "El lavadero de roca y su pila de agua fría."
+      "brief": "El lavadero de roca y su pila de agua fría.",
+      "wildlife_pool": [
+        {
+          "creature": "cascapedernal",
+          "text": "Lo que parecía una piedra moteada se mueve: es un Cascapedernal, y no piensa apartarse.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "forajido_camino",
+          "text": "Una persona con un palo corto te corta el paso y señala tu mochila.",
+          "persistent_trace": false
+        }
+      ]
     },
     "hoshai_deposito_comun": {
       "id": "hoshai_deposito_comun",
@@ -1241,6 +1455,23 @@
             "hoshai_cornisa_cargas_pequenas",
             "hoshai_cornisa_revision"
           ]
+        },
+        {
+          "id": "pasaje_cornisa_balcon",
+          "label": "Bajar por la cuerda de la cornisa",
+          "requires_flags": [
+            "buscado:hoshai_balcon_valle"
+          ],
+          "set_flags": [
+            "pasaje_cornisa_balcon"
+          ],
+          "scope": "player",
+          "next": "hoshai_senda_dosel",
+          "text": "Te agarras a la cuerda vieja y bajas por la cornisa, con el valle entero a tu espalda. Abajo te recibe la sombra de los árboles: estás en la bajada hacia el dosel.",
+          "journal": "Descubriste una cuerda escondida que baja del Balcón sobre el valle hasta la bajada al dosel.",
+          "discover_rooms": [
+            "hoshai_senda_dosel"
+          ]
         }
       ],
       "states": [
@@ -1291,6 +1522,30 @@
           "requires_time": [
             "noche"
           ]
+        }
+      ],
+      "hallazgos": [
+        {
+          "item": "anillo_punteria",
+          "text": "En una grieta del banco, donde nadie mete la mano, brilla un anillo con una piedra pequeña. Al sacarlo notas que bajo el balcón, por la cornisa, alguien ató hace tiempo una cuerda vieja que baja hacia los árboles.",
+          "unico": true
+        },
+        {
+          "item": "pluma_vistosa",
+          "text": "El viento ha dejado una pluma larga enganchada en la baranda.",
+          "chance": 0.5
+        }
+      ],
+      "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Alguien con la ropa gastada del camino espera junto al paso, con un palo en la mano. Quiere tu carga.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "cascapedernal",
+          "text": "Lo que parecía una piedra moteada se mueve: es un Cascapedernal, y no piensa apartarse.",
+          "persistent_trace": false
         }
       ]
     },
@@ -1376,6 +1631,25 @@
           "scope": "world",
           "text": "Dejas tus cosas fuera del paso y te sientas. Yesa empieza a contar cómo su hijo eligió el paquete pequeño porque pensaba que sería más fácil. A mitad de la historia mueve la cinta al bulto, sin pensarlo. Cuando se levanta ya no se ríe de haberse detenido.",
           "journal": "Compartí una pausa con Yesa antes de que continuara. La cinta quedó en el paquete."
+        },
+        {
+          "id": "secreto_f_nudo",
+          "label": "Buscar otro ángulo desde el saliente",
+          "requires_species": [
+            "felaryn"
+          ],
+          "requires_time": [
+            "día"
+          ],
+          "forbids_flags": [
+            "sec_f_nudo"
+          ],
+          "set_flags": [
+            "sec_f_nudo"
+          ],
+          "text": "Te subes al apoyo más alto y miras de lado, con la cabeza inclinada como haces sin pensar. Detrás del nudo aparece una fibra rozada que desde el sendero parecía intacta.",
+          "journal": "La misma cuerda cuenta otra historia cuando se mira desde el sitio adecuado.",
+          "scope": "player"
         }
       ],
       "dawn": "La primera luz toca la parte de fuera del nudo. La de dentro, pegada al apoyo, sigue en sombra: hay que esperar un poco para compararlas.",
@@ -1406,7 +1680,19 @@
           "text": "La piedra deja sitio para otra pausa como la que compartiste con Yesa antes de que continuara."
         }
       ],
-      "brief": "El mirador de la cuerda tendida sobre el vacío."
+      "brief": "El mirador de la cuerda tendida sobre el vacío.",
+      "wildlife_pool": [
+        {
+          "creature": "cascapedernal",
+          "text": "Junto a la roca, una cubierta de placas se mueve despacio: un Cascapedernal se ha pegado a la piedra.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "forajido_camino",
+          "text": "Alguien con la ropa gastada del camino espera junto al paso, con un palo en la mano. Quiere tu carga.",
+          "persistent_trace": false
+        }
+      ]
     },
     "hoshai_caseta_revision": {
       "id": "hoshai_caseta_revision",
@@ -1518,7 +1804,19 @@
       "focus": [
         "activity"
       ],
-      "brief": "El refugio de las piñas, junto a la pared."
+      "brief": "El refugio de las piñas, junto a la pared.",
+      "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Un salteador sale de detrás de unas piedras y se planta delante de ti: «La mochila, y sigues tu camino».",
+          "persistent_trace": false
+        },
+        {
+          "creature": "cascapedernal",
+          "text": "Junto a la roca, una cubierta de placas se mueve despacio: un Cascapedernal se ha pegado a la piedra.",
+          "persistent_trace": false
+        }
+      ]
     },
     "hoshai_collado_pino": {
       "id": "hoshai_collado_pino",
@@ -1544,6 +1842,16 @@
       "signals": [],
       "actions": [],
       "wildlife_pool": [
+        {
+          "creature": "cascapedernal",
+          "text": "Junto a la roca, una cubierta de placas se mueve despacio: un Cascapedernal se ha pegado a la piedra.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "forajido_camino",
+          "text": "Alguien con la ropa gastada del camino espera junto al paso, con un palo en la mano. Quiere tu carga.",
+          "persistent_trace": false
+        },
         {
           "creature": "saltacresta",
           "text": "El Saltacresta rodea el pino por las raíces que sujetan tierra. Al llegar a piedra desnuda alza la cabeza; su huella termina junto al tronco.",
@@ -1587,6 +1895,16 @@
       "actions": [],
       "wildlife_pool": [
         {
+          "creature": "cascapedernal",
+          "text": "Junto a la roca, una cubierta de placas se mueve despacio: un Cascapedernal se ha pegado a la piedra.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "forajido_camino",
+          "text": "Alguien con la ropa gastada del camino espera junto al paso, con un palo en la mano. Quiere tu carga.",
+          "persistent_trace": false
+        },
+        {
           "creature": "saltacresta",
           "text": "Algo pequeño se recoge junto a la pared seca del aprisco. Es un Saltacresta; deja pasar al rebaño antes de saltar a la ladera.",
           "persistent_trace": false
@@ -1627,7 +1945,14 @@
       "npcs": [],
       "signals": [],
       "actions": [],
-      "brief": "El camino de las lajas, más inclinadas de lo que parecen."
+      "brief": "El camino de las lajas, más inclinadas de lo que parecen.",
+      "wildlife_pool": [
+        {
+          "creature": "cascapedernal",
+          "text": "Bajo una laja inclinada asoma el borde de un Cascapedernal, pegado a la roca.",
+          "persistent_trace": false
+        }
+      ]
     },
     "hoshai_garganta_oeste": {
       "id": "hoshai_garganta_oeste",
@@ -1670,6 +1995,11 @@
           "creature": "rasgacumbres",
           "text": "Por encima de la garganta, un Rasgacumbres baja hasta media pared y se para. Desde el ensanchamiento sólo se ven sus patas y una lluvia de polvo.",
           "persistent_trace": false
+        },
+        {
+          "creature": "cascapedernal",
+          "text": "Entre las piedras sueltas del fondo de la garganta, una cubierta de placas se mueve: un Cascapedernal se ha bajado de los pedrales.",
+          "persistent_trace": false
         }
       ],
       "brief": "La garganta hacia Korven y su ensanche."
@@ -1696,8 +2026,29 @@
       "arrivals": {},
       "npcs": [],
       "signals": [],
-      "actions": [],
+      "actions": [
+        {
+          "id": "pasaje_cornisa_balcon_vuelta",
+          "label": "Subir por la cuerda de la cornisa",
+          "requires_flags": [
+            "pasaje_cornisa_balcon"
+          ],
+          "scope": "player",
+          "next": "hoshai_balcon_valle",
+          "text": "Subes agarrado a la cuerda vieja hasta el balcón sobre el valle."
+        }
+      ],
       "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Un salteador sale de detrás de unas piedras y se planta delante de ti: «La mochila, y sigues tu camino».",
+          "persistent_trace": false
+        },
+        {
+          "creature": "cascapedernal",
+          "text": "Junto a la roca, una cubierta de placas se mueve despacio: un Cascapedernal se ha pegado a la piedra.",
+          "persistent_trace": false
+        },
         {
           "creature": "saltacresta",
           "text": "El Saltacresta aparece en el banco de roca donde aún entra luz. Mira el tramo cubierto por hojas y sigue por encima de la senda.",
@@ -1741,7 +2092,19 @@
       "npcs": [],
       "signals": [],
       "actions": [],
-      "brief": "La parada del cordel, a la entrada de Nhal."
+      "brief": "La parada del cordel, a la entrada de Nhal.",
+      "wildlife_pool": [
+        {
+          "creature": "cascapedernal",
+          "text": "Un Cascapedernal asoma de debajo de una laja, con las placas cubiertas de polvo claro.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "forajido_camino",
+          "text": "Un salteador sale de detrás de unas piedras y se planta delante de ti: «La mochila, y sigues tu camino».",
+          "persistent_trace": false
+        }
+      ]
     },
     "hoshai_campamento_lona": {
       "id": "hoshai_campamento_lona",
@@ -1802,7 +2165,19 @@
             "dejar paso": "La terraza está libre. Si quieres arreglarlo hablando, habla conmigo, no con mi palo."
           }
         }
-      }
+      },
+      "wildlife_pool": [
+        {
+          "creature": "cascapedernal",
+          "text": "Lo que parecía una piedra moteada se mueve: es un Cascapedernal, y no piensa apartarse.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "forajido_camino",
+          "text": "Una persona con un palo corto te corta el paso y señala tu mochila.",
+          "persistent_trace": false
+        }
+      ]
     },
     "hoshai_cajas_camino": {
       "id": "hoshai_cajas_camino",
@@ -1869,7 +2244,31 @@
           }
         }
       ],
-      "brief": "Las cajas bajo la terraza."
+      "brief": "Las cajas bajo la terraza.",
+      "hallazgos": [
+        {
+          "item": "botas_cuero",
+          "text": "Dentro de una caja abierta hay un par de botas de cuero casi nuevas, olvidadas por algún porteador. Te quedan bien.",
+          "unico": true
+        },
+        {
+          "item": "cuero_curtido",
+          "text": "Entre las cajas quedan recortes de correa de cuero.",
+          "chance": 0.4
+        }
+      ],
+      "wildlife_pool": [
+        {
+          "creature": "cascapedernal",
+          "text": "Junto a la roca, una cubierta de placas se mueve despacio: un Cascapedernal se ha pegado a la piedra.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "forajido_camino",
+          "text": "Alguien con la ropa gastada del camino espera junto al paso, con un palo en la mano. Quiere tu carga.",
+          "persistent_trace": false
+        }
+      ]
     },
     "hoshai_sala_cuidados": {
       "id": "hoshai_sala_cuidados",
@@ -1917,6 +2316,24 @@
             "pista_marcas_cresta"
           ],
           "text": "Nuestras marcas de camino están a la altura de la mano, y siempre en piedras que se pueden tocar. Lo que tú viste está demasiado arriba. Eso no lo hizo nadie de Khariel."
+        },
+        "fibra": {
+          "requires_flags": [
+            "sec_f_nudo"
+          ],
+          "text": "¿Desde el apoyo alto se ve la fibra rozada? Lo apunto. Lo revisaré yo misma con la cuerda en la mano antes de decir nada a nadie."
+        },
+        "terraza": {
+          "requires_flags": [
+            "sec_f_eco"
+          ],
+          "text": "¿Un golpecito sólo cuando sopla? Puede ser una tabla floja o sólo el viento. No lo daré por peligroso hasta revisarla, pero gracias por escuchar."
+        },
+        "raspadura": {
+          "requires_flags": [
+            "hoshai_marcas_desde_abajo"
+          ],
+          "text": "Nuestras marcas siguen las cuerdas. Ésas no siguen nada. Por eso no las borramos: quiero ver si aparecen más."
         }
       },
       "day": "Coordina revisiones desde la caseta.",

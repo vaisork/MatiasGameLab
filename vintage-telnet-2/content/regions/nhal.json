@@ -32,6 +32,26 @@
           {
             "item": "rama_flexible",
             "text": "Bajo la hojarasca encuentras una rama caída que todavía se dobla sin romperse."
+          },
+          {
+            "item": "setas_bosque",
+            "text": "Al pie de un tronco crecen setas buenas para comer."
+          },
+          {
+            "item": "hierbas_curativas",
+            "text": "En la sombra crecen hierbas curativas."
+          },
+          {
+            "item": "pluma_vistosa",
+            "text": "Una pluma de colores entre la hojarasca."
+          },
+          {
+            "item": "setas_bosque",
+            "text": "Un corro de setas pequeñas y firmes bajo las raíces."
+          },
+          {
+            "item": "cuerda_recuperada",
+            "text": "Un cordel de corteza trenzada, olvidado en una rama."
           }
         ],
         "traces": [
@@ -85,8 +105,35 @@
       },
       "npcs": [],
       "signals": [],
-      "actions": [],
+      "actions": [
+        {
+          "id": "secreto_v_senal",
+          "label": "Buscar la marca con poca luz",
+          "requires_species": [
+            "vesperi"
+          ],
+          "requires_time": [
+            "amanecer",
+            "atardecer",
+            "noche"
+          ],
+          "forbids_flags": [
+            "sec_v_senal"
+          ],
+          "set_flags": [
+            "sec_v_senal"
+          ],
+          "text": "Con poca luz, tus ojos ven lo que de día se escapa. La marca está sobre madera caída, no sobre el árbol vivo, y colocada para verse desde el paso, no desde el claro. Quien la hizo quería que la encontrara quien camina, sin hacer daño al árbol.",
+          "journal": "Quienes marcaron esta ruta eligieron una señal discreta y respetaron el árbol vivo.",
+          "scope": "player"
+        }
+      ],
       "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Un salteador sale de detrás de unas piedras y se planta delante de ti: «La mochila, y sigues tu camino».",
+          "persistent_trace": false
+        },
         {
           "creature": "rondamusgo",
           "text": "La primera raíz del bosque tiene musgo aplastado y pelo adherido. Un rastro de semillas pasa bajo ella, sin seguir las marcas de los viajeros.",
@@ -137,6 +184,11 @@
           "creature": "rasgacorteza",
           "text": "Hacia el este, un árbol tiene arañazos muy por encima de la altura de una persona. A su lado, quieto como otro tronco, hay un Rasgacorteza.",
           "persistent_trace": false
+        },
+        {
+          "creature": "forajido_camino",
+          "text": "Entre los troncos sale una persona con un palo corto y pide tu mochila. El bosque calla.",
+          "persistent_trace": false
         }
       ],
       "dawn": "Las hojas guardan gotas que aún no han caído del dosel. El animal empuja una cáscara fuera del hueco y vuelve a esconderse cuando una gota golpea la raíz.",
@@ -185,6 +237,11 @@
       "actions": [],
       "wildlife_pool": [
         {
+          "creature": "forajido_camino",
+          "text": "Un salteador sale de detrás de unas piedras y se planta delante de ti: «La mochila, y sigues tu camino».",
+          "persistent_trace": false
+        },
+        {
           "creature": "rondamusgo",
           "text": "La cara baja del tronco guarda un mechón húmedo. Unas semillas se han quedado en la madera podrida, donde el musgo conserva la marca del roce.",
           "persistent_trace": false
@@ -223,6 +280,11 @@
       "actions": [],
       "wildlife_pool": [
         {
+          "creature": "forajido_camino",
+          "text": "Una persona con un palo corto te corta el paso y señala tu mochila.",
+          "persistent_trace": false
+        },
+        {
           "creature": "rondamusgo",
           "text": "Un Rondamusgo hurga entre las hojas al pie del árbol claro. Al oírte se queda quieto, con una seta en la boca, y corre a una raíz hueca. Desde allí asoma el hocico.",
           "persistent_trace": false
@@ -259,6 +321,11 @@
       "signals": [],
       "actions": [],
       "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Un salteador sale de detrás de unas piedras y se planta delante de ti: «La mochila, y sigues tu camino».",
+          "persistent_trace": false
+        },
         {
           "creature": "rondamusgo",
           "text": "Un Rondamusgo sale de entre dos raíces con semillas pegadas al pelo. Al verte se para en seco y espera, sin moverse.",
@@ -317,6 +384,11 @@
       "dusk": "El movimiento bajo las hojas se vuelve más difícil de seguir. Una semilla queda enganchada en un mechón, cerca del hueco donde la criatura regresa.",
       "wildlife_pool": [
         {
+          "creature": "forajido_camino",
+          "text": "Una persona con un palo corto te corta el paso y señala tu mochila.",
+          "persistent_trace": false
+        },
+        {
           "creature": "rondamusgo",
           "text": "Sobre una piedra con musgo, un Rondamusgo se confunde con la piedra. Sólo se le nota cuando se rasca y le caen semillas.",
           "persistent_trace": false
@@ -352,7 +424,14 @@
       "npcs": [],
       "signals": [],
       "actions": [],
-      "brief": "El puente entre árboles y su piedra de aviso."
+      "brief": "El puente entre árboles y su piedra de aviso.",
+      "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Un salteador sale de detrás de unas piedras y se planta delante de ti: «La mochila, y sigues tu camino».",
+          "persistent_trace": false
+        }
+      ]
     },
     "nhal_helechos_bajos": {
       "id": "nhal_helechos_bajos",
@@ -379,6 +458,11 @@
       "signals": [],
       "actions": [],
       "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Una persona con un palo corto te corta el paso y señala tu mochila.",
+          "persistent_trace": false
+        },
         {
           "creature": "rondamusgo",
           "text": "Los helechos bajos conservan un arco de tallos doblados. Bajo ellos hay pelo áspero y dos semillas, separados de las huellas de los porteadores.",
@@ -416,6 +500,11 @@
       "signals": [],
       "actions": [],
       "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Alguien con la ropa gastada del camino espera junto al paso, con un palo en la mano. Quiere tu carga.",
+          "persistent_trace": false
+        },
         {
           "creature": "rondamusgo",
           "text": "Un mechón con musgo roza la pata de la mesa de espera. La marca continúa hacia las raíces exteriores, lejos de las luces de las casas.",
@@ -780,7 +869,14 @@
           }
         }
       ],
-      "brief": "El secadero del taller."
+      "brief": "El secadero del taller.",
+      "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Alguien con la ropa gastada del camino espera junto al paso, con un palo en la mano. Quiere tu carga.",
+          "persistent_trace": false
+        }
+      ]
     },
     "nhal_mercado_setas": {
       "id": "nhal_mercado_setas",
@@ -811,13 +907,44 @@
       "shop": [
         "provision_basica",
         "arco_ruta",
-        "varita_aprendiz"
+        "varita_aprendiz",
+        "pocion_menor",
+        "tonico_camino",
+        "varita_sauce",
+        "arco_largo",
+        "amuleto_raiz",
+        "gorro_cuero",
+        "jubon_cuero",
+        "brazales_cuero",
+        "grebas_cuero",
+        "botas_cuero",
+        "jubon_cuero",
+        "casco_reforzado",
+        "botas_reforzadas"
       ],
       "buyer": "nhal_varo",
       "buy_items": [
         "rama_flexible",
         "semillas_camino",
-        "resina_pino"
+        "resina_pino",
+        "colmillo_mordelinde",
+        "espina_espinajo",
+        "placa_cascapedernal",
+        "cuero_curtido",
+        "hierro_viejo",
+        "cuna_madera",
+        "clavos_oxidados",
+        "hierbas_curativas",
+        "setas_bosque",
+        "pluma_vistosa",
+        "cristal_veta",
+        "bolsita_cuentas",
+        "cuerno_cornalomo",
+        "escama_dorsalodo",
+        "garra_rasgacumbres",
+        "placa_quebrarrocas",
+        "corteza_rasgacorteza",
+        "bolsa_salteador"
       ],
       "states": [
         {
@@ -893,7 +1020,8 @@
       "dawn": "A la mesa llegan las primeras hojas mojadas de rocío. La vendedora limpia la tierra del pie de una seta.",
       "dusk": "El cuenco de recortes queda bajo la mesa. Dos vecinas comparan las setas que llevarán a casa.",
       "brief": "El mercado de Velmora y sus cestas bajo cubierta.",
-      "max_layers": 4
+      "max_layers": 4,
+      "buys_gear": true
     },
     "nhal_cocina_raices": {
       "id": "nhal_cocina_raices",
@@ -1007,6 +1135,23 @@
           "scope": "player",
           "text": "La dejas donde está. Desde aquí la figura oye entero el relato de Leris. Quien la puso eligió el mejor sitio del patio.",
           "journal": "Viste la figura de corteza del sobrino de Desi: bajo el banco del relato asoma la figura de corteza, de cara…"
+        },
+        {
+          "id": "secreto_v_pausa",
+          "label": "Escuchar a Leris",
+          "requires_species": [
+            "vesperi"
+          ],
+          "requires_npc": "nhal_leris",
+          "forbids_flags": [
+            "sec_v_pausa"
+          ],
+          "set_flags": [
+            "sec_v_pausa"
+          ],
+          "text": "Leris deja un silencio corto antes de seguir. Conoces esa pausa desde pequeño: es el hueco que se guarda para quien todavía no ha contado su parte.",
+          "journal": "Una historia puede guardar sitio para otra persona sin dejar de ser verdadera.",
+          "scope": "player"
         }
       ],
       "memories": [
@@ -1226,9 +1371,31 @@
           "scope": "player",
           "text": "La figura mira hacia arriba, donde la luz entra entre las hojas. Alguien la ha dejado aquí para que viera el atardecer. La hoja doblada está bien remetida por debajo.",
           "journal": "Viste la figura de corteza del sobrino de Desi: sobre la piedra del claro está la figura de corteza, mirando…"
+        },
+        {
+          "id": "pasaje_claro_raiz",
+          "label": "Seguir el paso entre los helechos",
+          "requires_flags": [
+            "buscado:nhal_claro_silencio"
+          ],
+          "set_flags": [
+            "pasaje_claro_raiz"
+          ],
+          "scope": "player",
+          "next": "nhal_raiz_marcada",
+          "text": "Te agachas entre los helechos. El paso, apenas un túnel de hojas, baja y sube entre las raíces y sale de golpe junto a la raíz marcada, donde los pájaros no cantan.",
+          "journal": "Descubriste un paso escondido entre el Claro tranquilo y la Raíz marcada.",
+          "discover_rooms": [
+            "nhal_raiz_marcada"
+          ]
         }
       ],
       "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Alguien con la ropa gastada del camino espera junto al paso, con un palo en la mano. Quiere tu carga.",
+          "persistent_trace": false
+        },
         {
           "creature": "rondamusgo",
           "text": "Un Rondamusgo cruza el claro con prisa, se para junto a la raíz donde podrías sentarte y te mira. Después sigue buscando hongos.",
@@ -1270,6 +1437,18 @@
           ]
         },
         "Durante un rato no se oye absolutamente nada. Luego, muy lejos, un pájaro."
+      ],
+      "hallazgos": [
+        {
+          "item": "amuleto_raiz",
+          "text": "Bajo la piedra lisa, envuelto en una hoja grande, hay un amuleto de raíz pulida. Parece que alguien lo dejó aquí hace mucho, como un regalo para el silencio. Al apartar la piedra ves también, entre los helechos, un paso estrecho que no estaba en ningún camino.",
+          "unico": true
+        },
+        {
+          "item": "setas_bosque",
+          "text": "Junto a la raíz-asiento han brotado setas firmes.",
+          "chance": 0.5
+        }
       ]
     },
     "nhal_agua_sombreada": {
@@ -1308,7 +1487,14 @@
         }
       ],
       "actions": [],
-      "brief": "El cauce bajo los árboles."
+      "brief": "El cauce bajo los árboles.",
+      "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Una persona con un palo corto te corta el paso y señala tu mochila.",
+          "persistent_trace": false
+        }
+      ]
     },
     "nhal_ribera_relevo": {
       "id": "nhal_ribera_relevo",
@@ -1337,6 +1523,11 @@
       "signals": [],
       "actions": [],
       "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Alguien con la ropa gastada del camino espera junto al paso, con un palo en la mano. Quiere tu carga.",
+          "persistent_trace": false
+        },
         {
           "creature": "rondamusgo",
           "text": "Una hebra de pelo con musgo queda en la raíz que toca el canal. En el barro del otro lado se ven semillas caídas antes de que el agua las cubra.",
@@ -1373,6 +1564,22 @@
       "npcs": [],
       "signals": [],
       "actions": [
+        {
+          "id": "pista2_brotes_altos",
+          "label": "Comparar los brotes altos",
+          "requires_flags": [
+            "nhal_rastro_alto"
+          ],
+          "forbids_flags": [
+            "nhal_brotes_elegidos"
+          ],
+          "set_flags": [
+            "nhal_brotes_elegidos"
+          ],
+          "text": "Las puntas tiernas de varios árboles están arrancadas, todas más o menos a la misma altura. Las ramas de abajo siguen enteras. Parece que alguien eligió justo los brotes nuevos, como quien escoge la fruta más dulce.",
+          "journal": "Las señales más altas parecen cosa de comida, no de un paso violento.",
+          "scope": "player"
+        },
         {
           "id": "nhal_rodeo_visible_conocido",
           "label": "Conocer el rodeo para evitar la parada",
@@ -1434,7 +1641,14 @@
       "npcs": [],
       "signals": [],
       "actions": [],
-      "brief": "La roca entre los árboles, con Hoshai a lo lejos."
+      "brief": "La roca entre los árboles, con Hoshai a lo lejos.",
+      "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Alguien con la ropa gastada del camino espera junto al paso, con un palo en la mano. Quiere tu carga.",
+          "persistent_trace": false
+        }
+      ]
     },
     "nhal_relevo_altura": {
       "id": "nhal_relevo_altura",
@@ -1461,7 +1675,29 @@
       },
       "npcs": [],
       "signals": [],
-      "actions": [],
+      "actions": [
+        {
+          "id": "secreto_v_fundas",
+          "label": "Mirar cómo están colocadas las fundas",
+          "requires_species": [
+            "vesperi"
+          ],
+          "requires_time": [
+            "amanecer",
+            "atardecer",
+            "noche"
+          ],
+          "forbids_flags": [
+            "sec_v_fundas"
+          ],
+          "set_flags": [
+            "sec_v_fundas"
+          ],
+          "text": "Con la luz baja lo ves claro: las fundas no están puestas al azar. Unas, las de los avisos pendientes, miran hacia el camino; las otras, las ya leídas, hacia el árbol. Así quien llega sabe qué es nuevo sin abrir nada.",
+          "journal": "En los relevos del bosque también se puede leer el paso del tiempo.",
+          "scope": "player"
+        }
+      ],
       "states": [
         {
           "requires_time": [
@@ -1482,7 +1718,14 @@
       "look": {
         "sur": "Una roca ancha sobresale entre las copas; más abajo, las luces de un pueblo entre árboles.",
         "oeste": "Un cordel entre dos árboles marca un camino que sale del bosque hacia la montaña."
-      }
+      },
+      "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Alguien con la ropa gastada del camino espera junto al paso, con un palo en la mano. Quiere tu carga.",
+          "persistent_trace": false
+        }
+      ]
     },
     "nhal_senda_recipiente": {
       "id": "nhal_senda_recipiente",
@@ -1508,6 +1751,11 @@
       "signals": [],
       "actions": [],
       "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Un salteador sale de detrás de unas piedras y se planta delante de ti: «La mochila, y sigues tu camino».",
+          "persistent_trace": false
+        },
         {
           "creature": "rondamusgo",
           "text": "Junto a la tira de tela, una semilla se ha prendido al pelo áspero que quedó en la corteza. Los rastros siguen por debajo del apoyo de paso.",
@@ -1635,7 +1883,14 @@
       ],
       "dawn": "Elin descubre un recipiente que quedó frío. Se ríe al reconocer qué parte del relato hizo olvidar a todos que aún faltaba comer.",
       "dusk": "Elin coloca un asiento cerca de la puerta. La comida se reparte en porciones menores, para que quien llegue tarde pueda sentarse sin pedir que empiece otra cena.",
-      "brief": "La puerta de Elin."
+      "brief": "La puerta de Elin.",
+      "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Un salteador sale de detrás de unas piedras y se planta delante de ti: «La mochila, y sigues tu camino».",
+          "persistent_trace": false
+        }
+      ]
     },
     "nhal_rincon_semillas": {
       "id": "nhal_rincon_semillas",
@@ -1694,9 +1949,45 @@
           "scope": "player",
           "text": "Miras la figura sin moverla. Las tres semillas están colocadas en fila. Un poco más allá, entre las raíces, hay pelo áspero de un Rondamusgo de verdad. Parece que la han traído a conocerlo.",
           "journal": "Viste la figura de corteza del sobrino de Desi: entre las semillas de verdad hay una figura de corteza con f…"
+        },
+        {
+          "id": "pasaje_tunel_semillas",
+          "label": "Seguir el túnel del animal",
+          "requires_flags": [
+            "buscado:nhal_rincon_semillas"
+          ],
+          "set_flags": [
+            "pasaje_tunel_semillas"
+          ],
+          "scope": "player",
+          "next": "nhal_raiz_marcada",
+          "text": "Detrás de la despensa, el animal ha excavado un túnel bajo las raíces. Es estrecho, pero cabes. Sales, lleno de tierra, junto a la raíz marcada.",
+          "journal": "Descubriste el túnel de un animal que une el Rincón de semillas con la Raíz marcada.",
+          "discover_rooms": [
+            "nhal_raiz_marcada"
+          ]
         }
       ],
-      "brief": "El rincón de semillas."
+      "brief": "El rincón de semillas.",
+      "hallazgos": [
+        {
+          "item": "bolsita_cuentas",
+          "text": "Al fondo de la despensa del animal, entre semillas y cáscaras, brillan unas cuentas de colores dentro de una bolsita rota. El animal las había ido guardando, como si fueran nueces.",
+          "unico": true
+        },
+        {
+          "item": "setas_bosque",
+          "text": "Entre las raíces de la despensa crecen setas buenas.",
+          "chance": 0.6
+        }
+      ],
+      "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Alguien con la ropa gastada del camino espera junto al paso, con un palo en la mano. Quiere tu carga.",
+          "persistent_trace": false
+        }
+      ]
     },
     "nhal_raiz_marcada": {
       "id": "nhal_raiz_marcada",
@@ -1737,6 +2028,26 @@
         }
       ],
       "actions": [
+        {
+          "id": "pasaje_tunel_semillas_vuelta",
+          "label": "Volver por el túnel del animal",
+          "requires_flags": [
+            "pasaje_tunel_semillas"
+          ],
+          "scope": "player",
+          "next": "nhal_rincon_semillas",
+          "text": "Te arrastras por el túnel bajo las raíces hasta la despensa del rincón de semillas."
+        },
+        {
+          "id": "pasaje_claro_raiz_vuelta",
+          "label": "Volver por el paso de los helechos",
+          "requires_flags": [
+            "pasaje_claro_raiz"
+          ],
+          "scope": "player",
+          "next": "nhal_claro_silencio",
+          "text": "Te metes otra vez entre los helechos y sales al claro tranquilo."
+        },
         {
           "id": "nhal_atribuir_marcas",
           "label": "Registrar la comparación de la raíz",
@@ -1782,7 +2093,26 @@
           "text": "El dibujo incluye la condición de tu observación. La siguiente persona puede comparar desde suelo firme sin recibir una identidad de criatura que nunca se avistó."
         }
       ],
-      "brief": "La raíz marcada, con la corteza rota."
+      "brief": "La raíz marcada, con la corteza rota.",
+      "hallazgos": [
+        {
+          "item": "pocion_vida",
+          "text": "Entre las hojas aplastadas asoma una bolsa de viajero desgarrada. Dentro, milagrosamente entero, hay un frasco grande de poción. Quien la llevaba salió de aquí con prisa.",
+          "unico": true
+        },
+        {
+          "item": "hierbas_curativas",
+          "text": "En la tierra removida crecen hierbas curativas.",
+          "chance": 0.4
+        }
+      ],
+      "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Una persona con un palo corto te corta el paso y señala tu mochila.",
+          "persistent_trace": false
+        }
+      ]
     },
     "nhal_sala_cuidados": {
       "id": "nhal_sala_cuidados",
@@ -1824,7 +2154,13 @@
       "topics": {
         "relato": "Elin recibió el recipiente después. Si no la escuchamos, sólo contaremos la mitad del viaje.",
         "raspon": "Sé cómo se reparó, pero no cómo se hizo. La diferencia cabe en una pregunta sencilla.",
-        "velmora": "Recordar juntos no obliga a que todos hayamos visto lo mismo."
+        "velmora": "Recordar juntos no obliga a que todos hayamos visto lo mismo.",
+        "pausa": {
+          "requires_flags": [
+            "sec_v_pausa"
+          ],
+          "text": "Reconociste la pausa. Entonces ya sabes que este relato no está cerrado. Cuando tengas tu parte, aquí habrá sitio para ella."
+        }
       },
       "day": "Reúne voces y prepara hojas para una conversación.",
       "night": "Lee historias incompletas bajo cubierta y guarda lo pendiente.",

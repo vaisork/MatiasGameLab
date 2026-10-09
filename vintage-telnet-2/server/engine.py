@@ -95,16 +95,45 @@ class Engine:
         ambient_keys=('requires_time','requires_weather','forbids_weather')
         candidates=[signal for signal in pool if self.allowed({k:v for k,v in signal.items() if k in ambient_keys},character['state'],world)
                     and signal_present(dict(signal,persistent_trace=False),room,world,now)]
+        # Fair fights are three times likelier than overwhelming fauna; most wild places hold something.
+        weighted=[c for c in candidates for _ in range(3 if m.PROFILES.get(c['creature'],{}).get('category')=='comparable' else 1)]
         roll=self.rng.random();signal=None
-        if candidates and roll<.45:signal=dict(candidates[min(int(roll/.45*len(candidates)),len(candidates)-1)])
+        if weighted and roll<.7:
+            signal=dict(weighted[min(int(roll/.7*len(weighted)),len(weighted)-1)])
+            # Farther from a town, stronger rivals: level 1-6 from distance, with a little chance either way.
+            if m.PROFILES.get(signal['creature'],{}).get('category')=='comparable' and 'level' not in signal:
+                try:_,distance=self.nearest_settlement(room['id'])
+                except RuleError:distance=4
+                wobble=self.rng.random();signal['level']=max(1,min(6,1+distance//3+(-1 if wobble<.25 else 1 if wobble>=.75 else 0)))
         records[room['id']]={'signal':signal,'until':now+300}
 
     def search(self,character,world):
         self.encounter(character,world)
-        state=character['state'];room=self.room(character,world);search=self.content.regions[room['region']]['search'];now=self.clock()
+        state=character['state'];room=self.room(character,world);now=self.clock()
+        search=self.content.regions[room['region']].get('search') if room['kind'] in ('road','wilderness','landmark') and not room.get('safe',False) else None
         state.setdefault('searches',{})[room['id']]=now
+        searched='buscado:'+room['id']
+        if searched not in state['flags']:state['flags'].append(searched)
+        # A place's own hidden things come first: unique ones once per player, the rest restock.
+        for index,hidden in enumerate(room.get('hallazgos',[])):
+            if hidden.get('item') not in self.content.items:continue
+            key=f"hallazgo_sala:{room['id']}:{index}"
+            if hidden.get('unico'):
+                if key in state['flags']:continue
+                state['flags'].append(key)
+            else:
+                stock=world.setdefault('search_stock',{})
+                if stock.get(key,0)>now or self.rng.random()>=hidden.get('chance',.5):continue
+                stock[key]=now+1800
+            self.add_item(state,hidden['item'])
+            memory=f"En {room['name']} encontraste {self.content.items[hidden['item']]['name']}."
+            if memory not in state['journal']:state['journal'].append(memory)
+            state['events']=[event('discovery',hidden['text']),event('action',f"Guardas {self.content.items[hidden['item']]['name']} en la mochila.")]
+            return
+        if not search:
+            state['events']=[event('world','Revisas cada rincón, pero no queda nada más que llevarse.')];return
         roll=self.rng.random();finds=search['finds'];stock=world.setdefault('search_stock',{})
-        found=finds[min(int(roll/.4*len(finds)),len(finds)-1)] if roll<.4 else None
+        found=finds[min(int(roll/.5*len(finds)),len(finds)-1)] if roll<.5 else None
         if found and stock.get(room['id']+':'+found['item'],0)<=now:
             self.add_item(state,found['item']);stock[room['id']+':'+found['item']]=now+1800
             flag='hallazgo:'+found['item']
@@ -113,7 +142,7 @@ class Engine:
             if memory not in state['journal']:state['journal'].append(memory)
             state['events']=[event('discovery',found['text']),event('action',f"Guardas {self.content.items[found['item']]['name']} en la mochila.")]
         elif roll<.75:
-            traces=search['traces'];fraction=(roll-.4)/.35 if roll>=.4 else roll/.4
+            traces=search['traces'];fraction=(roll-.5)/.25 if roll>=.5 else roll/.5
             trace=traces[min(int(fraction*len(traces)),len(traces)-1)]
             # A clue may remember that it was seen, so the place that explains it can offer to follow it up.
             if isinstance(trace,dict):
@@ -355,7 +384,7 @@ class Engine:
         state['xp']+=gain;state['victories']=history;state['combat']=None
         world.setdefault('encounters',{}).pop(f"{state['location']}:{combat['creature']}",None)
         if creature.get('combatant_kind')=='human':
-            amount=creature.get('seal_reward',4)
+            amount=creature.get('seal_reward',4)+2*(profile['level']-1)
             if type(amount) is not int or amount<1:raise RuleError('El adversario no tiene una recompensa de sellos válida.',409)
             state['seals']+=amount
             state['ledger'].append({'kind':'combat_seals','creature':combat['creature'],'room':state['location'],'at':self.clock(),'amount':amount})
@@ -375,7 +404,12 @@ class Engine:
             if flag not in state['flags']:state['flags'].append(flag)
         self.update_quests(state,world,{'id':'vencer','target':combat['creature']})
         material=creature.get('material')
-        if creature.get('combatant_kind')!='human' and salvage and material and profile['level'] in (1,2) and self.rng.random()<.7*multiplier:
+        if salvage and creature.get('loot'):
+            # Every rival leaves something worth carrying back to a buyer; repeated farming yields less.
+            for drop in creature['loot']:
+                if drop.get('item') in self.content.items and self.rng.random()<min(1,drop.get('chance',1)*(1+.15*(profile['level']-1)))*max(multiplier,.5):
+                    self.add_item(state,drop['item']);state['events'].append(event('reward',drop.get('text') or f"Recoges {self.content.items[drop['item']]['name']}."))
+        elif creature.get('combatant_kind')!='human' and salvage and material and profile['level'] in (1,2) and self.rng.random()<.7*multiplier:
             item_id=material.get('id') if isinstance(material,dict) else material
             if item_id in self.content.items:
                 self.add_item(state,item_id)
@@ -458,6 +492,8 @@ class Engine:
             weapon=next((i for i in state['inventory'] if i['id']==state['equipment']['weapon']),{})
             block=next((i for i in state['inventory'] if i['id']==state['equipment']['block']),{})
             if weapon.get('block') or block:actions.append({'id':'defender','target':'bloquear','label':'Bloquear'})
+            for item in state['inventory']:
+                if item.get('kind')=='consumable' and item.get('effect') in ('potion','basic_provision'):actions.append({'id':'usar','target':item['id'],'label':f"Beber {item['name']} ({item.get('quantity',1)})" if item.get('effect')=='potion' else f"Comer {item['name']} ({item.get('quantity',1)})",'reason':'Gastas la ronda en usarlo; tu rival responde.'})
             penalty,_=m.penalties(state);attributes=state['attributes']
             dodge=.48*(attributes['agilidad']-10)+.12*(attributes['percepcion']-10)-penalty
             resist=max(0,min(.38,.0055*(attributes['resistencia']-10))-penalty/100)
@@ -481,7 +517,7 @@ class Engine:
                     available['disabled']=True;available['reason']='Tu decisión está preparada para esta ronda.'
             return actions
         actions=[{'id':'mirar','label':'Mirar'},{'id':'observar','label':'Observar'}]
-        if self.content.regions[room['region']].get('search') and room['kind'] in ('road','wilderness','landmark') and not room.get('safe',False):
+        if (self.content.regions[room['region']].get('search') and room['kind'] in ('road','wilderness','landmark') and not room.get('safe',False)) or room.get('hallazgos'):
             remaining=state.get('searches',{}).get(room['id'],-60)+60-self.clock()
             actions.append({'id':'buscar','label':'Buscar alrededor','disabled':remaining>0,'reason':f'Ya revisaste este lugar. Puedes buscar de nuevo en {int(remaining)+1} s.' if remaining>0 else 'Revisar suelo, refugios y objetos que hayan quedado en el camino.'})
         for attribute,value in state['attributes'].items():
@@ -520,7 +556,7 @@ class Engine:
                 if m.PROFILES[cid]['category']=='abrumador' and not warned:
                     actions.append({'id':'acercarse','target':cid,'label':f"Observar de cerca a {self.content.creatures[cid]['name']}"})
                 else:
-                    actions.append({'id':'combatir','target':cid,'label':('Insistir en enfrentarte a ' if m.PROFILES[cid]['category']=='abrumador' else 'Enfrentarte a ')+self.content.creatures[cid]['name']})
+                    actions.append({'id':'combatir','target':cid,'label':('Insistir en enfrentarte a ' if m.PROFILES[cid]['category']=='abrumador' else 'Enfrentarte a ')+self.content.creatures[cid]['name']+(f" · nivel {m.scaled(m.PROFILES[cid],signal.get('level'))['level']}" if signal.get('level') else '')})
                 if m.PROFILES[cid]['category']=='abrumador' and warned:actions.append({'id':'retirarse','target':cid,'label':'Retirarte antes del enfrentamiento'})
         for qid,q in self.content.quests.items():
             if q.get('accept_room')==state['location']:
@@ -528,7 +564,7 @@ class Engine:
                 if instance and instance['status']=='paid' and not q.get('repeatable',qid in ('valdren_recado_forja','valdren_revision_cobertizos','valdren_estado_vado')):continue
                 actions.append({'id':'cobrar' if instance and instance['status']=='ready' else 'aceptar','target':qid,'label':('Entregar ' if instance and instance['status']=='ready' else 'Aceptar ')+q['name'],'disabled':bool(instance and (instance['status']=='accepted' or (instance['status']=='paid' and not q.get('repeatable',qid in ('valdren_recado_forja','valdren_revision_cobertizos','valdren_estado_vado'))))),'reason':'El encargo está en marcha; completa la tarea antes de entregarlo.' if instance and instance['status']=='accepted' else ''})
         for category,item_id in state['equipment'].items():
-            if item_id:actions.append({'id':'desequipar','target':category,'label':{'weapon':'Guardar arma','armor':'Quitar armadura','block':'Guardar escudo'}.get(category,'Guardar pieza')})
+            if item_id:actions.append({'id':'desequipar','target':category,'label':{'weapon':'Guardar arma','armor':'Quitar armadura','block':'Guardar escudo'}.get(category,'Quitar pieza de '+m.SLOT_NAMES.get(category,category))})
         forge=bool(room.get('forge_service') and any(n['id']==room['forge_service'] for n in self.people(room,state,world,self.ambient(room,world))))
         for item in state['inventory']:
             if forge and item.get('kind')=='weapon' and item.get('activated',True) and item.get('condition','intact')=='intact' and not item.get('honed'):
@@ -537,9 +573,10 @@ class Engine:
             catalog=self.content.items.get(item.get('catalog_id',item['id']),{})
             if forge and catalog.get('kind')=='weapon' and item['id'] not in state['equipment'].values() and item.get('condition','intact')=='intact' and sum(i.get('quantity',1) for i in state['inventory'] if i.get('kind')=='weapon' and i.get('activated',True) and i.get('condition','intact')=='intact')>1:
                 actions.append({'id':'vender','target':item['id'],'label':f"Vender {item['name']} · {catalog['sell_price']} sellos",'confirmation':f"¿Vender {item['name']} por {catalog['sell_price']} sellos?"})
-            if item.get('kind') in ('weapon','armor','block'):actions.append({'id':'equipar','target':item['id'],'label':'Equipar '+item['name'],'disabled':item.get('condition','intact')!='intact' or not item.get('activated',True),'reason':'La pieza necesita reparación.' if item.get('condition','intact')!='intact' else 'La pieza requiere validación de Forja.' if not item.get('activated',True) else ''})
+            if item.get('kind') in ('weapon','armor','block','accessory'):actions.append({'id':'equipar','target':item['id'],'label':'Equipar '+item['name'],'disabled':item.get('condition','intact')!='intact' or not item.get('activated',True),'reason':'La pieza necesita reparación.' if item.get('condition','intact')!='intact' else 'La pieza requiere validación de Forja.' if not item.get('activated',True) else ''})
             if item.get('kind')=='consumable':actions.append({'id':'usar','target':item['id'],'label':'Usar '+item['name']})
-            if item.get('kind')=='material' and room.get('buyer') and ('buy_items' not in room or item.get('catalog_id',item['id']) in room['buy_items']) and isinstance(item.get('sell_price'),int) and 0<item['sell_price']<=4 and any(n['id']==room['buyer'] for n in self.people(room,state,world,self.ambient(room,world))):actions.append({'id':'vender','target':item['id'],'label':f"Vender {item['name']} · {item['sell_price']} sellos"})
+            if item.get('kind') in ('armor','accessory','consumable') and room.get('buys_gear') and item['id'] not in state['equipment'].values() and isinstance(item.get('sell_price'),int) and any(n['id']==room.get('buyer') for n in self.people(room,state,world,self.ambient(room,world))):actions.append({'id':'vender','target':item['id'],'label':f"Vender {item['name']} · {item['sell_price']} sellos"})
+            if item.get('kind')=='material' and room.get('buyer') and ('buy_items' not in room or item.get('catalog_id',item['id']) in room['buy_items']) and isinstance(item.get('sell_price'),int) and 0<item['sell_price']<=60 and any(n['id']==room['buyer'] for n in self.people(room,state,world,self.ambient(room,world))):actions.append({'id':'vender','target':item['id'],'label':f"Vender {item['name']} · {item['sell_price']} sellos"})
         recovery_present=not room.get('recovery_npc') or any(n['id']==room['recovery_npc'] for n in self.people(room,state,world,self.ambient(room,world)))
         if room.get('recovery_service') and recovery_present and room.get('safe',room['kind'] in ('home','settlement','interior')):
             no_effect=state['hp']>=.9*m.hp_max(state) and state['fatigue']==0 and state['wound'] is None and state['rest_budget'] is None
@@ -550,12 +587,22 @@ class Engine:
                 details=[]
                 if item.get('kind')=='weapon':
                     details.append(f"daño base {item['damage']}")
+                    for key,value in item.get('bonus',{}).items():details.append(f"+{value} {key.replace('dano','daño').replace('precision','precisión')}")
                     if item.get('ranged'):details.append('a distancia')
                     if item.get('focus'):details.append('foco arcano')
                     if item.get('block'):details.append('permite bloquear')
                     active=next((piece for piece in state['inventory'] if piece['id']==state['equipment'].get('weapon')),None)
                     reference=f" Tu arma activa tiene {active['damage']} de daño base." if active else ' No llevas un arma activa.'
                     explanation='Va a tu mochila; debes equiparla para usarla.'+reference
+                elif item.get('kind')=='armor':
+                    details.append(f"{m.SLOT_NAMES.get(item.get('slot','torso'))} · −{round(item['armor_reduction']*100)}% daño recibido")
+                    explanation='Protege una parte del cuerpo. Las piezas se suman hasta un máximo de −50%.'
+                elif item.get('kind')=='accessory':
+                    details.append(m.SLOT_NAMES.get(item.get('slot'),'')+' · '+', '.join(f"+{v} {k.replace('dano','daño').replace('precision','precisión')}" for k,v in item.get('bonus',{}).items()))
+                    explanation=item.get('description','')
+                elif item.get('effect')=='potion':
+                    details.append(', '.join(x for x in (f"+{round(item.get('heal',0)*100)}% vida" if item.get('heal') else '',f"−{item['fatigue']} fatiga" if item.get('fatigue') else '','alivia heridas' if item.get('wound_steps') else '') if x))
+                    explanation='Puedes usarla también en mitad de un combate.'
                 elif item.get('effect')=='basic_provision':
                     # Same capped recovery as usar; no change to its price or effect.
                     details.append(f"recupera hasta {.18*m.hp_max(state):g} vida; reduce hasta 20 fatiga")
@@ -701,7 +748,7 @@ class Engine:
             signal=next(i for i in room.get('signals',[]) if i['creature']==target)
             if target=='mordelinde' and f"{state['location']}:{target}" not in world.get('encounters',{}) and (world.get('creature_states',{}).get(f"{state['location']}:{target}",{}).get('escape_open') or not (signal.get('cornered') or room.get('combat_context',{}).get('creature_cornered'))):
                 self.withdraw_animal(character,world,target);return
-            profile=dict(m.PROFILES[target]);creature=self.content.creatures[target]
+            profile=m.scaled(m.PROFILES[target],signal.get('level'));creature=self.content.creatures[target]
             world.setdefault('encounters',{}).setdefault(f"{state['location']}:{target}",character['id'])
             state['combat']={'creature':target,'profile':profile,'hp':world.get('creature_states',{}).get(f"{state['location']}:{target}",{}).get('hp',profile['hp']),'round':0,'next_round':self.clock()+4,'prepared':profile.get('prepared',False),'cooldown':0}
             self.observe(state,room,world)
@@ -717,14 +764,16 @@ class Engine:
             item=next(i for i in state['inventory'] if i['id']==target)
             if item.get('condition','intact')!='intact':raise RuleError('La pieza necesita reparación antes de equiparse.',409)
             if not item.get('activated',True):raise RuleError('La pieza requiere validación de Forja.',409)
-            category=item['kind']
-            if category=='armor' and not 0<=item.get('armor_reduction',0)<=.35:raise RuleError('La armadura supera los límites mecánicos.',409)
+            category=item.get('slot',item['kind']) if item['kind'] in ('armor','accessory') else item['kind']
+            if item['kind']=='armor' and not 0<=item.get('armor_reduction',0)<=.35:raise RuleError('La armadura supera los límites mecánicos.',409)
+            if category not in ('weapon','block','armor',*m.ARMOR_SLOTS,*m.ACCESSORY_SLOTS):raise RuleError('La pieza no tiene un lugar donde llevarse.',409)
+            if category=='torso' and state['equipment'].get('armor'):state['equipment']['armor']=None
             state['equipment'][category]=target
-            if category=='armor':state['armor_reduction']=item.get('armor_reduction',0)
-            state['events']=[event('action',f"Dejas listo {item['name']}.")]
+            state['armor_reduction']=m.armor_total(state);state['hp']=min(state['hp'],m.hp_max(state))
+            state['events']=[event('action',f"Te pones {item['name']}." if item['kind'] in ('armor','accessory') else f"Dejas listo {item['name']}.")]
         elif action=='desequipar':
             state['equipment'][target]=None
-            if target=='armor':state['armor_reduction']=0
+            state['armor_reduction']=m.armor_total(state);state['hp']=min(state['hp'],m.hp_max(state))
             state['events']=[event('action','Guardas la pieza sin perder su propiedad.')]
         elif action=='aceptar':
             quest=self.content.quests[target]
@@ -786,11 +835,11 @@ class Engine:
         elif action=='usar':
             item=next(i for i in state['inventory'] if i['id']==target)
             # Recovery quantities must be explicitly source-backed by authored mechanical contract.
-            if item.get('effect')!='basic_provision':raise RuleError('El objeto no tiene efecto de recuperación validado.',409)
-            if state['hp']>=m.hp_max(state) and state['fatigue']==0:raise RuleError('La provisión no tendría efecto ahora.',409)
-            state['hp']=min(m.hp_max(state),state['hp']+.18*m.hp_max(state));state['fatigue']=max(0,state['fatigue']-20);item['quantity']-=1
+            if item.get('effect') not in ('basic_provision','potion'):raise RuleError('El objeto no tiene efecto de recuperación validado.',409)
+            if state['hp']>=m.hp_max(state) and state['fatigue']==0 and not (item.get('wound_steps') and state.get('wound')):raise RuleError('No tendría efecto ahora.',409)
+            text=m.use_consumable(state,item);item['quantity']-=1
             if not item['quantity']:state['inventory'].remove(item)
-            state['events']=[event('action',f"Usas {item['name']} para recuperar fuerzas.")]
+            state['events']=[event('action',text)]
         else:
             authored=next(a for a in room.get('actions',[]) if a['id']==action)
             self.effects(state,world,authored)
@@ -885,7 +934,7 @@ class Engine:
         combat=state['combat'];safe_combat=None
         if combat:
             creature=self.content.creatures[combat['creature']]
-            safe_combat={'creature':combat['creature'],'combatant_kind':creature.get('combatant_kind','animal'),'name':creature['name'],'round':combat['round'],'next_round':combat['next_round'],'prepared':combat['prepared'],'prepared_action':m.preparation(combat),'hp':combat['hp'],'hp_max':combat['profile']['hp'],'cooldown':combat['cooldown'],'intervention_pending':bool(combat.get('intervention'))}
+            safe_combat={'creature':combat['creature'],'combatant_kind':creature.get('combatant_kind','animal'),'name':creature['name']+(f" · nivel {combat['profile']['level']}" if combat['profile'].get('category')=='comparable' and combat['profile']['level']>1 else ''),'round':combat['round'],'next_round':combat['next_round'],'prepared':combat['prepared'],'prepared_action':m.preparation(combat),'hp':combat['hp'],'hp_max':combat['profile']['hp'],'cooldown':combat['cooldown'],'intervention_pending':bool(combat.get('intervention'))}
             if creature.get('illustration') and creature.get('combatant_kind')=='human':safe_combat['illustration']=creature['illustration']
         char={key:character[key] for key in ('id','name','species','class_id','status')}
         char['gender']=state.get('gender')

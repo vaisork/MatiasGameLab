@@ -4343,5 +4343,1492 @@
     "sustituye_archivo_aprobado": false,
     "sha256_png": "e89871a3a44ab95185369da5cb9aa9cb8caba9e856415ca580c2119712605baa",
     "sha256_webp": "41fd5e6beac6349268bc41ff5f83765fb5f0530b7677853201c28384a5d61fdf"
+  },
+  {
+    "id": "edran_cobertizo_campo",
+    "nombre": "Cobertizo de las Estacas Numeradas",
+    "region": "edran",
+    "ruta_propuesta": "client/art/places/edran_cobertizo_campo-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/edran_cobertizo_campo-anime-v1-thumb.webp",
+    "png": "originales/edran_cobertizo_campo-anime-v1.png",
+    "webp": "webp/edran_cobertizo_campo-anime-v1.webp",
+    "miniatura": "miniaturas/edran_cobertizo_campo-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "prompt": "One 3:2 landscape Vintage Telnet 2 game background. Match supplied approved anime environment art exactly: detailed line drawing, painted cel shading, natural materials and normal adult anatomy. Serious practical fantasy, no chibi/cute decoration, no dramatic monuments. Flat agricultural Edran, low undulations, no mountains, neutral partly cloudy day; subdued green/ochre, weathered timber and red roof tiles. Distinct location Cobertizo de las Estacas Numeradas: small half-open roofed work shed, medium interior view with one workbench and narrow EMPTY wooden box divided into slots for SMALL ACCOUNT TABLETS, visibly missing a little splinter on box edge. Wall rack holds wooden stakes SORTED FROM SHORTEST TO LONGEST, each has a simple clear small DIGIT 1, 2, 3, 4 indicating size. A few empty positions among shortest stakes. Young adult worker returns one stake. West open side shows field boundary across shallow level change, east opening shows path to group of three broadleaf trees. Stakes are tools, not ownership plaques; no giant warehouse or workshop machinery. Numbers only on stakes; no title or UI.",
+      "referenced_images": [
+        "/home/jdiaz/Escritorio/Vintage Telnet - Arte - Entrega/referencias/valdren-anime-v1.webp"
+      ],
+      "prompt_exacto_recuperado": true
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 3,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Estacas ordenadas por tamaño con dígitos claros; caja vacía y dividida con astilla ausente. Repetición de números coherente con tamaño, no propietarios.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "sustituye_archivo_aprobado": false,
+    "sha256_png": "f861ce9c293c4325c939ca8f3a058f3ab66330fb59c927ad6cbf8cfdb247b80b",
+    "sha256_webp": "dc997ceb55052a0e9a7005ac5c5c598fee8f035d4f54c41a12901a0c20d17530"
+  },
+  {
+    "id": "edran_arboleda",
+    "nombre": "Arboleda de los tres árboles",
+    "region": "edran",
+    "ruta_propuesta": "client/art/places/edran_arboleda-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/edran_arboleda-anime-v1-thumb.webp",
+    "png": "originales/edran_arboleda-anime-v1.png",
+    "webp": "webp/edran_arboleda-anime-v1.webp",
+    "miniatura": "miniaturas/edran_arboleda-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "prompt": "One 3:2 landscape Vintage Telnet 2 game background. Match supplied approved anime environment art exactly: detailed line drawing, painted cel shading, natural materials and normal adult anatomy. Serious practical fantasy, no chibi/cute decoration, no dramatic monuments. Flat agricultural Edran, low undulations, no mountains, neutral partly cloudy day; subdued green/ochre, weathered timber and red roof tiles. Distinct location Arboleda de los tres árboles: exactly THREE distinct large broadleaf trees in open field, three separate trunks and crowns, NOT dense forest. Under CENTRAL tree a low compacted EARTH seat for two people, no wooden bench; EASTERN third tree has prominent roots raising ground beside path with clear firm walking strip avoiding roots. Northern cart road visible THROUGH gap between branches. West small work shed roof, south curved path around fields returns toward Valdren hidden. One adult rests with pack animal offset from main walking shade. Medium-wide asymmetrical view, each trunk identifiable.",
+      "referenced_images": [
+        "/home/jdiaz/Escritorio/Vintage Telnet - Arte - Entrega/referencias/valdren-anime-v1.webp"
+      ],
+      "prompt_exacto_recuperado": true
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 3,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Tres troncos identificables; asiento de tierra bajo árbol central y raíces altas del oriental. Camino norte visible, bosque abierto de campos.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "sustituye_archivo_aprobado": false,
+    "sha256_png": "cde78f1fb966af3d64f9e1784de3460e057d4f4c5df9155be993a257b6e98bc9",
+    "sha256_webp": "810ea8febb53d3c910eaf6ab31e69afb5e5d364445351cc4d6a07ad67bf71882"
+  },
+  {
+    "id": "edran_sendero_regreso",
+    "nombre": "Senda de regreso",
+    "region": "edran",
+    "ruta_propuesta": "client/art/places/edran_sendero_regreso-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/edran_sendero_regreso-anime-v1-thumb.webp",
+    "png": "originales/edran_sendero_regreso-anime-v1.png",
+    "webp": "webp/edran_sendero_regreso-anime-v1.webp",
+    "miniatura": "miniaturas/edran_sendero_regreso-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "prompt": "One 3:2 landscape Vintage Telnet 2 game background. Match supplied approved anime environment art exactly: detailed line drawing, painted cel shading, natural materials and normal adult anatomy. Serious practical fantasy, no chibi/cute decoration, no dramatic monuments. Flat agricultural Edran, low undulations, no mountains, neutral partly cloudy day; subdued green/ochre, weathered timber and red roof tiles. Distinct location Senda de regreso: medium-wide curved EARTH path wrapping around cultivated fields, entrances not directly opposite, isolated broadleaf tree as recognizable landmark foreground with compacted ground and two shallow impressions where packs rested. Clear dry side spot for scraping mud from boots. Beyond low fence glimpse the red-tile roof of Valdren wheel-storage/cart WORK SHED, low roof wing storing spare wheels and taller working bay for complete cart. Central town plaza NOT VISIBLE. Grove of three trees distant toward east beyond curve. No reeds or canals here, no dense forest, no additional foreground trees; quiet sober rural threshold with one small normal traveler cleaning boots.",
+      "referenced_images": [
+        "/home/jdiaz/Escritorio/Vintage Telnet - Arte - Entrega/referencias/valdren-anime-v1.webp"
+      ],
+      "prompt_exacto_recuperado": true
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 3,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Árbol aislado, dos marcas de cargas, curva y cobertizo de ruedas de dos alturas. Plaza oculta; limpieza de botas fuera del tránsito.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "sustituye_archivo_aprobado": false,
+    "sha256_png": "dec795ba2fb24276be3b26721c696f6a4dc929916b48167631eba48640adcc2b",
+    "sha256_webp": "ceed901ead433618f569ea5a5ba58258ecadece09badb9745d8d17404fcbe8e8"
+  },
+  {
+    "id": "edran_camino_carros",
+    "nombre": "Camino de carros",
+    "region": "edran",
+    "ruta_propuesta": "client/art/places/edran_camino_carros-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/edran_camino_carros-anime-v1-thumb.webp",
+    "png": "originales/edran_camino_carros-anime-v1.png",
+    "webp": "webp/edran_camino_carros-anime-v1.webp",
+    "miniatura": "miniaturas/edran_camino_carros-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "prompt": "One 3:2 landscape Vintage Telnet 2 game background. Match supplied approved anime environment art exactly: detailed line drawing, painted cel shading, natural materials and normal adult anatomy. Serious practical fantasy, no chibi/cute decoration, no dramatic monuments. Flat agricultural Edran, low undulations, no mountains, neutral partly cloudy day; subdued green/ochre, weathered timber and red roof tiles. Distinct location Camino de carros: wide oblique view of TWO cart routes separating BEFORE low rise: one on raised dry firm shoulder, other through shallow depression; routes visibly REJOIN ahead in front of small red-tile travelers shelter matching second reference. Small low stones mark boundary with cultivated soil, not blocking public road. Loaded cart uses upper route slowly; empty cart uses lower dry route, both small for environmental scale, realistic wheels/horses and drivers. Three-tree grove visible south behind, grass and distant humid reeds toward shelter east. Clear branching-and-rejoining topology, no identical long straight forest paths.",
+      "referenced_images": [
+        "/home/jdiaz/Escritorio/Vintage Telnet - Arte - Entrega/referencias/valdren-anime-v1.webp",
+        "/home/jdiaz/Escritorio/Vintage Telnet - Arte - Entrega/originales/edran_reparo-anime-v1.png"
+      ],
+      "prompt_exacto_recuperado": true,
+      "correction": "Edit this approved-style Edran landscape narrowly to fix the CART ROAD TOPOLOGY. Preserve style, flat farmland, two carts and small red-tile travelers refuge. The road must form a clear elongated LOOP around ONE low rise: foreground common road splits at bottom; left route climbs around left shoulder with loaded cart; right route crosses shallow depression with empty cart; BOTH ROUTES MUST VISIBLY REJOIN at a clear junction directly in front of the refuge in middle distance. Make the left route CURVE RIGHT beyond the loaded cart, heading back down to the same refuge junction, rather than disappearing off left edge. Remove fences obstructing the rejoining road. Continuous drivable earth surfaces; both routes public. Keep ploughed fields and 3-tree grove, lower grassy edge toward reeds. No new town, no buildings beyond existing distant ones, no extra branch roads. This is a geographic correction, no change to illustrative anime linework or coloring.",
+      "referenced_images_correction": [
+        "/home/jdiaz/.codex/generated_images/01a11a11-aecc-7d62-bf5e-8b12c19dde46/exec-29fb5fdc-05be-47cc-b828-0bbb42039c25.png"
+      ]
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 3,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Corregida topología: ruta alta rodea loma y se une a baja delante del refugio. Carro cargado arriba y vacío abajo, escala de llanura. Flores silvestres algo abundantes; no se convierten en decoración urbana.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "sustituye_archivo_aprobado": false,
+    "sha256_png": "418e7c3fa22a3ded05a807af6e333b2cc200a5a919f624218f4d4fe6ac7765c5",
+    "sha256_webp": "6dc44169b8abb9c9bdf2ac194b97e2125bc46f0b88d3b07576aaccaec57496d4"
+  },
+  {
+    "id": "nhal_sala_cuidados",
+    "nombre": "Cuarto de cuidados de Velmora",
+    "region": "nhal",
+    "ruta_propuesta": "client/art/places/nhal_sala_cuidados-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/nhal_sala_cuidados-anime-v1-thumb.webp",
+    "png": "originales/nhal_sala_cuidados-anime-v1.png",
+    "webp": "webp/nhal_sala_cuidados-anime-v1.webp",
+    "miniatura": "miniaturas/nhal_sala_cuidados-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "prompt": "Create ONE 3:2 landscape Vintage Telnet 2 game interior matching approved Velmora reference anime detailed linework and cel-painted timber materials. Cuarto de cuidados de Velmora: modest practical timber care room, side window casts soft indirect light ON TABLE without glare on free patient seat; clean wood FLOOR CLEAR OF ALL ROOTS and loads. Clean folded cloths in small box far from doorway where wet traveling cloaks and leaves collect. Mature Vesperi caregiver Sira, human face and build, large natural eyes, modest ears, slightly long forearms, no wings or beast face, brings a small lamp beside table before opening cloth box. Free seat foreground, no blood or injured patient frozen in image, no magic healing apparatus, no clinical modern machinery. East open door hints mushroom market and broadleaf root settlement. Warm small lamp only, cool subdued natural window illumination; sober trustworthy atmosphere, no cute nurse character or flowers.",
+      "referenced_images": [
+        "/home/jdiaz/Escritorio/Vintage Telnet - Arte - Entrega/referencias/velmora-anime-v1.webp"
+      ],
+      "prompt_exacto_recuperado": true
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 3,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Suelo despejado sin raíces; ventana lateral y lámpara iluminan mesa. Paños limpios alejados de capas y hojas de entrada. Sira de proporciones anime normales; sin efecto mágico ni herida fija.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "sustituye_archivo_aprobado": false,
+    "sha256_png": "a3b37ab9874495da730485046c3ee9e311cfc21a54056ee7d6ed98436c77d5f8",
+    "sha256_webp": "339b2d074f5245055d8c1b0ff25944893b4273d3c8b0c56383f4064af4c26e58"
+  },
+  {
+    "id": "nhal_claro_silencio",
+    "nombre": "Claro tranquilo",
+    "region": "nhal",
+    "ruta_propuesta": "client/art/places/nhal_claro_silencio-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/nhal_claro_silencio-anime-v1-thumb.webp",
+    "png": "originales/nhal_claro_silencio-anime-v1.png",
+    "webp": "webp/nhal_claro_silencio-anime-v1.webp",
+    "miniatura": "miniaturas/nhal_claro_silencio-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "prompt": "Create ONE 3:2 landscape Vintage Telnet 2 environment, matching supplied anime game background drawing and painted cel shading, not photographic or cute. Nhal ancient BROADLEAF forest, thick living roots, muted olive/grey-brown and cool deep shade, no evergreen alpine trees. Restrained sober emotion, no skulls/gore/glowing magical horror/no invented ruins. Claro tranquilo. Medium-wide quiet small natural clearing ENCLOSED by trees, opening above shows pale sky light but no view outside forest. Thick root offers natural seat beside a modest stone whose upper side also provides dry perch; single folded broad leaf on EARTH at foreground, small seed on nearby broad leaf. ONLY ONE earthen return path leads south toward familiar moss-covered fallen trunk visible in distance, no passage beyond clearing. No people, no monster, no picturesque sunny meadow, no extra branching path. Slightly lighter than adjacent dense forest but predominantly shaded, subtle restful silence, believable roots and seat scale.",
+      "referenced_images": [
+        "/home/jdiaz/Escritorio/Vintage Telnet - Arte - Entrega/originales/nhal_tronco_acostado-anime-v1.png"
+      ],
+      "prompt_exacto_recuperado": true
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 3,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Raíz y piedra permiten descanso, hoja doblada y semilla visibles. Única senda vuelve al tronco; abertura no muestra exterior del bosque. Sombra y paleta coherentes.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "sustituye_archivo_aprobado": false,
+    "sha256_png": "472f3123c17ca5f3e1b6a737db7b832203424f3c45f6c9ce69ed5959bb1aee6a",
+    "sha256_webp": "c7cbe127c29eb3f6d697defa7a983ca9053049659b5521494072686620407fa7"
+  },
+  {
+    "id": "nhal_raiz_marcada",
+    "nombre": "Raíz marcada",
+    "region": "nhal",
+    "ruta_propuesta": "client/art/places/nhal_raiz_marcada-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/nhal_raiz_marcada-anime-v1-thumb.webp",
+    "png": "originales/nhal_raiz_marcada-anime-v1.png",
+    "webp": "webp/nhal_raiz_marcada-anime-v1.webp",
+    "miniatura": "miniaturas/nhal_raiz_marcada-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "prompt": "Create ONE 3:2 landscape Vintage Telnet 2 environment, matching supplied anime game background drawing and painted cel shading, not photographic or cute. Nhal ancient BROADLEAF forest, thick living roots, muted olive/grey-brown and cool deep shade, no evergreen alpine trees. Restrained sober emotion, no skulls/gore/glowing magical horror/no invented ruins. Raíz marcada. Medium view from firm walkable EARTH strip adjacent thick root with a broad patch of FRESH BROKEN BARK exposing pale wood. Crushed leaves and dragging impressions depart actual return path toward tightly packed tree trunks, stopping beneath roots; NOT a second traversable path. Only genuine return trail SOUTH heads toward pale-barked landmark tree visible behind. Dry firm viewing spot lets player inspect without trampling traces. No actual creature present, cannot identify one from traces; no claw-shaped huge wound, no blood or ritual. Adult caretaker small at side holds old root drawing and compares from safe firm ground, human proportions. Woodland dim overcast daylight gives pale bark quiet visual focus.",
+      "referenced_images": [
+        "/home/jdiaz/Escritorio/Vintage Telnet - Arte - Entrega/originales/nhal_corteza_clara-anime-v1.png"
+      ],
+      "prompt_exacto_recuperado": true
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 3,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Corteza rota clara, hojas aplastadas hacia árboles cerrados y observación desde suelo firme. Dibujo conservado; no criatura inventada ni atribución por imagen.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "sustituye_archivo_aprobado": false,
+    "sha256_png": "478b58f0f66da8ba44ceb3ba51939c0f45347f0a2d53047ee67675473999fb59",
+    "sha256_webp": "5bb0b743e8ff96ff85d7a0b10bcf671c15aff214ae43afd3ff74139819522649"
+  },
+  {
+    "id": "nhal_rincon_semillas",
+    "nombre": "Rincón de semillas",
+    "region": "nhal",
+    "ruta_propuesta": "client/art/places/nhal_rincon_semillas-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/nhal_rincon_semillas-anime-v1-thumb.webp",
+    "png": "originales/nhal_rincon_semillas-anime-v1.png",
+    "webp": "webp/nhal_rincon_semillas-anime-v1.webp",
+    "miniatura": "miniaturas/nhal_rincon_semillas-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "prompt": "Create ONE 3:2 landscape Vintage Telnet 2 environment, matching supplied anime game background drawing and painted cel shading, not photographic or cute. Nhal ancient BROADLEAF forest, thick living roots, muted olive/grey-brown and cool deep shade, no evergreen alpine trees. Restrained sober emotion, no skulls/gore/glowing magical horror/no invented ruins. Rincón de semillas. Medium environmental view at a small pocket BETWEEN LIVING ROOTS with gathered seeds, a few bitten shells and modest food scraps, disturbed earth and tiny tuft of coarse fur stuck to moss. ONE intact seed on broad fallen leaf beside one nibbled seed, no huge acorns or giant mushroom ornaments. Only actual trail south returns toward recognizable mossy low stones of neighboring path, not a west exit. No creature shown, traces only so image remains valid independent of encounter. No dwelling or shrine, no glowing seeds. Branch shade, quiet mildly uneasy stillness, local ecological detail readable while surrounding forest depth retained.",
+      "referenced_images": [
+        "/home/jdiaz/Escritorio/Vintage Telnet - Arte - Entrega/originales/nhal_piedras_musgo-anime-v1.png"
+      ],
+      "prompt_exacto_recuperado": true
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 3,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Semillas intacta y mordida, cáscaras, tierra removida y pelo adherido al musgo. Vista media cercana necesaria para indicios; camino vecino conserva escala de fondo.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "sustituye_archivo_aprobado": false,
+    "sha256_png": "ca99ec3c77adf78cee9007514e0a021265fe855bbb8ed09e64971b4d285527a8",
+    "sha256_webp": "f9463360e2dcf2367369f391c8e87b22cd9709fa654f9cbe13fa3ed2f8ac606f"
+  },
+  {
+    "id": "korven_sala_cuidados",
+    "nombre": "Casa de cuidados de Brumak",
+    "region": "korven",
+    "ruta_propuesta": "client/art/places/korven_sala_cuidados-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/korven_sala_cuidados-anime-v1-thumb.webp",
+    "png": "originales/korven_sala_cuidados-anime-v1.png",
+    "webp": "webp/korven_sala_cuidados-anime-v1.webp",
+    "miniatura": "miniaturas/korven_sala_cuidados-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "prompt": "Create ONE landscape 3:2 Vintage Telnet 2 environment game background matching approved reference detailed fantasy ANIME linework with painted cel shading, natural human anatomy and commercial quality. Serious believable service room, no chibi/cute aesthetics, no magical healing glow, no gore, no modern hospital, no text/UI. Environmental layout is main subject, caregiver secondary. Casa de cuidados de Brumak. ABOVE GROUND modest stone house partly sheltered by dry rocky slope, THICK rough pale wall blocks wind but HIGH open window admits cool daylight. LOW firm seat scaled for Dravak, low repaired timber table, used cloths far from clean covered water. Western open doorway shows low recessed houses and dry fractured rock street, no underground mine. Mature Dravak caregiver Neru brushes dust from cloak at entrance before approaching clean area; HUMAN FACE and compact adult body ~70 percent human height with small discreet stone patches on forearms, no dwarf beard stereotype/no armored golem. Muted limestone/umber, sober airy practical room, not dark dungeon.",
+      "referenced_images": [
+        "/home/jdiaz/Escritorio/Vintage Telnet - Arte - Entrega/referencias/brumak-anime-v1.webp"
+      ],
+      "prompt_exacto_recuperado": true
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 3,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Pared gruesa y ventana alta; escala baja compacta y luz seca de Brumak. Polvo se limpia en entrada, paños usados separados del agua limpia. Neru humano de rasgos Dravak.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "sustituye_archivo_aprobado": false,
+    "sha256_png": "aed8063302a47df2e5c03272511f011a7b7fe68dd91bc55ba3e8d7ee194d3a49",
+    "sha256_webp": "413d42a83ca50926b586f4fc94b7cc65195c04b3dbdc198584e562f75e38e7b3"
+  },
+  {
+    "id": "lethra_sala_cuidados",
+    "nombre": "Plataforma de cuidados de Narevia",
+    "region": "lethra",
+    "ruta_propuesta": "client/art/places/lethra_sala_cuidados-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/lethra_sala_cuidados-anime-v1-thumb.webp",
+    "png": "originales/lethra_sala_cuidados-anime-v1.png",
+    "webp": "webp/lethra_sala_cuidados-anime-v1.webp",
+    "miniatura": "miniaturas/lethra_sala_cuidados-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "prompt": "Create ONE landscape 3:2 Vintage Telnet 2 environment game background matching approved reference detailed fantasy ANIME linework with painted cel shading, natural human anatomy and commercial quality. Serious believable service room, no chibi/cute aesthetics, no magical healing glow, no gore, no modern hospital, no text/UI. Environmental layout is main subject, caregiver secondary. Plataforma de cuidados de Narevia. COVERED timber platform ABOVE freshwater canal, practical reed roof and railing moist only on OUTER edge. Clear DRY plank path joins EMPTY patient seat to WEST workshop door; covered water-cleaning containers with fitted lids, CLEAN cloths stored on dry shelf, never wet railing. Adult Marevyn caregiver Ume small in environment prepares dry seat, subtle blue-green skin HUMAN face and NORMAL rounded ears, no gills/fins/mermaid features. Canal water visible below edge, fiber workshop beams west, restrained cool reflected light and dry natural wood tones, no underwater houses or giant temple. Medium-wide viewpoint shows dry walking continuity.",
+      "referenced_images": [
+        "/home/jdiaz/Escritorio/Vintage Telnet - Arte - Entrega/referencias/narevia-anime-v1.webp"
+      ],
+      "prompt_exacto_recuperado": true
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 3,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Plataforma cubierta sobre canal; apoyo seco enlaza asiento y taller, agua en recipientes con tapas, paños fuera de baranda. Marevyn humana sin aletas. Integración propuesta no altera servicio.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "sustituye_archivo_aprobado": false,
+    "sha256_png": "b1faae712333c748389793a84d047b142a1f097335a79317d179cc2a7d90dc6f",
+    "sha256_webp": "5d7ff67eb83a164001faa7935368e4aedf9a57669e698b6f8576549d6a1f212b"
+  },
+  {
+    "id": "veyra_sala_cuidados",
+    "nombre": "Cuarto de cuidados de Vaisgard",
+    "region": "veyra",
+    "ruta_propuesta": "client/art/places/veyra_sala_cuidados-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/veyra_sala_cuidados-anime-v1-thumb.webp",
+    "png": "originales/veyra_sala_cuidados-anime-v1.png",
+    "webp": "webp/veyra_sala_cuidados-anime-v1.webp",
+    "miniatura": "miniaturas/veyra_sala_cuidados-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "prompt": "Create ONE landscape 3:2 Vintage Telnet 2 environment game background matching approved reference detailed fantasy ANIME linework with painted cel shading, natural human anatomy and commercial quality. Serious believable service room, no chibi/cute aesthetics, no magical healing glow, no gore, no modern hospital, no text/UI. Environmental layout is main subject, caregiver secondary. Cuarto de cuidados de Vaisgard, ancient reused city grey masonry and practical timber. LOW doorway west separates clean table from busy water courtyard glimpsed outside near market. Two modest stretchers against wall leave clear unobstructed exit corridor. Used water in its OWN separate labeled-by-shape vessel, clean covered water distant, folded cloths. Mature human caregiver Doma rinses cloth and checks bowl with back of hand beside table, neutral functional clothes. Several small route-note tablets on table, no readable text. Human traveler small secondary on bench relaxes lightly wrapped fingers, no gruesome injury. Soft side daylight and small low lamp, restrained neutral stone/linen palette, no palace or lavish temple.",
+      "referenced_images": [
+        "/home/jdiaz/Escritorio/Vintage Telnet - Arte - Entrega/referencias/vaisgard-anime-v1.webp"
+      ],
+      "prompt_exacto_recuperado": true,
+      "correction": "Edit ONLY doorway proportions of this fantasy anime environment. Canon says LOW DOOR separates the clean care room from busy outside courtyard. Replace tall monumental arched opening with a much LOWER modest square-topped timber door under a heavy lintel, opening about 1.65 metres tall compared with full adult human caregiver. Infill upper arch with old rough masonry and horizontal timber header so OUTSIDE VIEW is smaller/lower; ordinary adults would slightly duck crossing. Keep door wide enough for clear exit, door leaf open, no floor obstacle. Preserve TWO stretchers, clean cloths, used water separate, caregiver and seated traveler, all art style and palette. Do not change characters or care-room layout.",
+      "referenced_images_correction": [
+        "/home/jdiaz/.codex/generated_images/01a11a11-aecc-7d62-bf5e-8b12c19dde46/exec-1ede62e3-8344-4f3e-bbd7-149d94aa8b61.png"
+      ]
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 3,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Puerta corregida a baja con dintel; dos camillas y mesa quedan fuera del tránsito. Agua usada en recipiente independiente, escala de piedra reutilizada de Vaisgard.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "sustituye_archivo_aprobado": false,
+    "sha256_png": "186fefecf4eb540352830476c4b7609ba4877da6db177a914172853e26ef6bd1",
+    "sha256_webp": "34b1195590907fc2511c9c42cb963ceb8903cbc97b12f5aaf66d1e3f0ca3bb97"
+  },
+  {
+    "id": "hoshai_sala_cuidados",
+    "nombre": "Asiento de cuidados de Khariel",
+    "region": "hoshai",
+    "ruta_propuesta": "client/art/places/hoshai_sala_cuidados-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/hoshai_sala_cuidados-anime-v1-thumb.webp",
+    "png": "originales/hoshai_sala_cuidados-anime-v1.png",
+    "webp": "webp/hoshai_sala_cuidados-anime-v1.webp",
+    "miniatura": "miniaturas/hoshai_sala_cuidados-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "prompt": "Create ONE landscape 3:2 Vintage Telnet 2 environment game background matching approved reference detailed fantasy ANIME linework with painted cel shading, natural human anatomy and commercial quality. Serious believable service room, no chibi/cute aesthetics, no magical healing glow, no gore, no modern hospital, no text/UI. Environmental layout is main subject, caregiver secondary. Asiento de cuidados de Khariel. High MOUNTAIN TERRACE stone-and-timber room with WIDE bench firmly anchored to terrace masonry, valley visible through window. Wet cloaks under exterior eave, CLEAN folded cloths in a CLOSED box on shelf, west doorway hints ribbon market. Adult Felaryn caregiver Ena checks bench support, HUMAN face/body with cat ears and discreet tail, digitigrade legs, no full cat head/no schoolgirl costume. Frame architecture and windproof solid bench, neutral blue-grey mountain light, local stone and reddish timber, no Japanese architecture or modern clinic. Empty clear seat makes resting space legible; no injuries fixed.",
+      "referenced_images": [
+        "/home/jdiaz/Escritorio/Vintage Telnet - Arte - Entrega/referencias/khariel-anime-v1.webp"
+      ],
+      "prompt_exacto_recuperado": true,
+      "correction": "Edit this Khariel fantasy anime care room narrowly. Canon says CLEAN CLOTHS ARE INSIDE A CLOSED BOX, not open on shelves. REMOVE all exposed folded clean white and blue cloth stacks on shelving above caregiver. Replace those stacks with ONE modest CLOSED wooden lidded box, lid flush, hinges/latch readable, no cloth sticking out. Keep other existing closed box and simple shelf. Preserve broad anchored bench, wet cloaks under eave, Felaryn caregiver checking support, valley window, western market doorway, style and composition. Keep weathered practical room, reduce ornamental flower pot beside bench to a small plain foliage sprig if possible. No modern additions.",
+      "referenced_images_correction": [
+        "/home/jdiaz/.codex/generated_images/01a11a11-aecc-7d62-bf5e-8b12c19dde46/exec-c3bb96ca-b445-46ea-8c07-71807649ba5d.png"
+      ]
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 3,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Paños abiertos corregidos a cajas cerradas. Banco ancho anclado, capas mojadas bajo alero y vista de valle identifican Khariel. Ena con cara humana y rasgos Felaryn.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "sustituye_archivo_aprobado": false,
+    "sha256_png": "496171068e4ee1085b99f8a6ea50898a3cd6f6b429381aecb383823916b29418",
+    "sha256_webp": "d0144d795c235739db3de955b6ed25f4be5135817abd6ac5d8f3aed0e70fd572"
+  },
+  {
+    "id": "hoshai_taller_apoyos",
+    "nombre": "Taller de Khariel",
+    "region": "hoshai",
+    "ruta_propuesta": "client/art/places/hoshai_taller_apoyos-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/hoshai_taller_apoyos-anime-v1-thumb.webp",
+    "png": "originales/hoshai_taller_apoyos-anime-v1.png",
+    "webp": "webp/hoshai_taller_apoyos-anime-v1.webp",
+    "miniatura": "miniaturas/hoshai_taller_apoyos-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "prompt": "One new 3:2 landscape game environment, approved Vintage Telnet 2 anime background style as reference: fine outlines, painted cel shading, detailed practical masonry and wood. Hoshai high mountain Khariel, stone terraces and cool valley air, mature sober atmosphere. No chibi, no cute decorative flowers, no Japanese temple or enormous new fortress, no text/UI. Environment main subject, normal adult figures secondary if present, Felaryn have HUMAN faces, cat ears/tails and digitigrade stance. Taller de Khariel. Medium interior workshop with sawdust, big tools beside low TWO-LEVEL bench, small pieces on shelves. WORN template beside FRESH CUT timber support on bench, two clamp holes in upper tier. Wall drawing shows specific stone stair treads and SIDE drainage CHANNEL, not blueprints of giant machinery. East open doorway hints existing town plaza. Adult craftsperson examines splinter with SMALL hand tool and apprentice watches, normal working clothes. No pulley on workbench: quest item NOT yet returned. Cool indirect window light, modest space, rough weathered wood.",
+      "referenced_images": [
+        "/home/jdiaz/Escritorio/Vintage Telnet - Arte - Entrega/referencias/khariel-anime-v1.webp"
+      ],
+      "prompt_exacto_recuperado": true
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 3,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Banco de dos alturas, plantilla gastada, pieza recién cortada y dibujo de escalones con canal. Felaryn humanos y taller sin polea aún devuelta.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "sustituye_archivo_aprobado": false,
+    "sha256_png": "e1b4dd92860a4598816a3c20d63c6700418cf28af88bd4018d6f3c1e4c3ca658",
+    "sha256_webp": "7c04e68239ddd1a4d31f713f5a6129d3213d55470cb40c5bab50d909e7555d8c"
+  },
+  {
+    "id": "hoshai_lavadero_roca",
+    "nombre": "Lavadero de roca",
+    "region": "hoshai",
+    "ruta_propuesta": "client/art/places/hoshai_lavadero_roca-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/hoshai_lavadero_roca-anime-v1-thumb.webp",
+    "png": "originales/hoshai_lavadero_roca-anime-v1.png",
+    "webp": "webp/hoshai_lavadero_roca-anime-v1.webp",
+    "miniatura": "miniaturas/hoshai_lavadero_roca-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "prompt": "One new 3:2 landscape game environment, approved Vintage Telnet 2 anime background style as reference: fine outlines, painted cel shading, detailed practical masonry and wood. Hoshai high mountain Khariel, stone terraces and cool valley air, mature sober atmosphere. No chibi, no cute decorative flowers, no Japanese temple or enormous new fortress, no text/UI. Environment main subject, normal adult figures secondary if present, Felaryn have HUMAN faces, cat ears/tails and digitigrade stance. Lavadero de roca. Medium terrace view cold water falls into NARROW stone basin and CONTINUES DOWNHILL in open channel, water flow not blocked by laundry. Upper border stone holds clean containers; CLEAN garments hang HIGH away from muddy lower arriving-traveler edge. West passage to homes, north stone staircase rises to tool depot roof visible above. One adult laundress folds a sleeve on stone. Steep hillside and distant cool mountain valley show elevation, no wide pond, no giant waterfall at this basin. Modest everyday infrastructure.",
+      "referenced_images": [
+        "/home/jdiaz/Escritorio/Vintage Telnet - Arte - Entrega/referencias/khariel-anime-v1.webp"
+      ],
+      "prompt_exacto_recuperado": true
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 3,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Pila estrecha y agua continúa cuesta abajo; ropa limpia alta, escalera sube al depósito. Infraestructura pequeña frente al valle amplio.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "sustituye_archivo_aprobado": false,
+    "sha256_png": "af809831298bfe3feb8d72ed0ac9e6f8181dcb975cc56e35021a78e1fed04a17",
+    "sha256_webp": "4586f6ec238dfd5863f56579b9390747154fb3d96fbd93f4c933bed0ad888db9"
+  },
+  {
+    "id": "hoshai_deposito_comun",
+    "nombre": "Depósito de herramientas",
+    "region": "hoshai",
+    "ruta_propuesta": "client/art/places/hoshai_deposito_comun-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/hoshai_deposito_comun-anime-v1-thumb.webp",
+    "png": "originales/hoshai_deposito_comun-anime-v1.png",
+    "webp": "webp/hoshai_deposito_comun-anime-v1.webp",
+    "miniatura": "miniaturas/hoshai_deposito_comun-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "prompt": "One new 3:2 landscape game environment, approved Vintage Telnet 2 anime background style as reference: fine outlines, painted cel shading, detailed practical masonry and wood. Hoshai high mountain Khariel, stone terraces and cool valley air, mature sober atmosphere. No chibi, no cute decorative flowers, no Japanese temple or enormous new fortress, no text/UI. Environment main subject, normal adult figures secondary if present, Felaryn have HUMAN faces, cat ears/tails and digitigrade stance. Depósito de herramientas. Interior modest mountain stone/timber store organized shelves by TASK, one shelf clearly EMPTY except small wooden loan tablet showing tiny shovel drawing, markings not legible. Under OUTER EAVE moist muddy returned tools wait separated from clean dry tools INSIDE. Droplets and sawdust at threshold, low stairway SOUTH descends toward narrow wash basin glimpse. West open side leads to small balcony, valley beyond. No tools all lying randomly/no giant warehouse. Person secondary keeps a loan note. Shaded interior cool ambient light.",
+      "referenced_images": [
+        "/home/jdiaz/Escritorio/Vintage Telnet - Arte - Entrega/referencias/khariel-anime-v1.webp"
+      ],
+      "prompt_exacto_recuperado": true
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 3,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Herramientas por tarea, estante vacío con tablilla, humedad separada bajo alero y serrín en umbral. Vista de montaña y escalera enlazan lavadero.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "sustituye_archivo_aprobado": false,
+    "sha256_png": "81b53ef00eed3ca7abedd59fc7a8c4f3188556293b5fff2cba4cbd0ef7dbfbe8",
+    "sha256_webp": "33f310b76bbe2cb9340b584fedd7d02b80f7005b88d61798c1f5d37b7b2444da"
+  },
+  {
+    "id": "hoshai_balcon_valle",
+    "nombre": "Balcón sobre el valle",
+    "region": "hoshai",
+    "ruta_propuesta": "client/art/places/hoshai_balcon_valle-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/hoshai_balcon_valle-anime-v1-thumb.webp",
+    "png": "originales/hoshai_balcon_valle-anime-v1.png",
+    "webp": "webp/hoshai_balcon_valle-anime-v1.webp",
+    "miniatura": "miniaturas/hoshai_balcon_valle-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "prompt": "One new 3:2 landscape game environment, approved Vintage Telnet 2 anime background style as reference: fine outlines, painted cel shading, detailed practical masonry and wood. Hoshai high mountain Khariel, stone terraces and cool valley air, mature sober atmosphere. No chibi, no cute decorative flowers, no Japanese temple or enormous new fortress, no text/UI. Environment main subject, normal adult figures secondary if present, Felaryn have HUMAN faces, cat ears/tails and digitigrade stance. Balcón sobre el valle. Wide environmental view from small stone balcony: wooden resting bench WELL BACK from protected edge, observer with notebook seated there small. EAST doorway belongs to adjacent modest tool depot. Down in valley road APPEARS and DISAPPEARS behind overlapping slopes, a large natural rock shoulder completely HIDES the cold junction; do not show every section continuously. Near town roofs modest, far high mountain ridges hazy, no bridge over the whole gorge. Uneven practical edge wall and bare stone, subdued cool daylight, scale of human rest not monumental palace terrace.",
+      "referenced_images": [
+        "/home/jdiaz/Escritorio/Vintage Telnet - Arte - Entrega/referencias/khariel-anime-v1.webp"
+      ],
+      "prompt_exacto_recuperado": true
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 3,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Banco retrasado y protegido; camino del valle se oculta por laderas y roca. Cuaderno no identifica viajeros remotos. Escala doméstica.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "sustituye_archivo_aprobado": false,
+    "sha256_png": "1af2796ac3c7f06b4ba37a8d96b6da7918269f485e679cc17d690b187773c253",
+    "sha256_webp": "30fdf04c73ebecb1e08ff18d90313121521093302343b537265dd95fac705cb1"
+  },
+  {
+    "id": "hoshai_caseta_revision",
+    "nombre": "Caseta del camino",
+    "region": "hoshai",
+    "ruta_propuesta": "client/art/places/hoshai_caseta_revision-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/hoshai_caseta_revision-anime-v1-thumb.webp",
+    "png": "originales/hoshai_caseta_revision-anime-v1.png",
+    "webp": "webp/hoshai_caseta_revision-anime-v1.webp",
+    "miniatura": "miniaturas/hoshai_caseta_revision-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "prompt": "One new 3:2 landscape game environment, approved Vintage Telnet 2 anime background style as reference: fine outlines, painted cel shading, detailed practical masonry and wood. Hoshai high mountain Khariel, stone terraces and cool valley air, mature sober atmosphere. No chibi, no cute decorative flowers, no Japanese temple or enormous new fortress, no text/UI. Environment main subject, normal adult figures secondary if present, Felaryn have HUMAN faces, cat ears/tails and digitigrade stance. Caseta del camino. Medium interior modest hut snug AGAINST rock, doorway sheltered from wind, southern open doorway returns to protected rope-observation ledge and load terrace beyond. Spare binding STRIPS dry stored HIGH, table has tablets with simple diagrams of rope KNOT, bench and post with a BLANK GAP for pending observation. Tools near entrance, moist tools on separate plank, roof run-off diverted AWAY threshold. No installed replacement knot or completed repair shown. No guard/weapon station, no temple. Small roofed workspace, sober indirect cool mountain light, clear exit.",
+      "referenced_images": [
+        "/home/jdiaz/Escritorio/Vintage Telnet - Arte - Entrega/referencias/khariel-anime-v1.webp"
+      ],
+      "prompt_exacto_recuperado": true
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 3,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Tiras secas altas, dibujos de nudo y herramientas cerca de entrada; depósito de piezas húmedas aparte. Espacio de revisión, sin reparación concluida.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "sustituye_archivo_aprobado": false,
+    "sha256_png": "7422a5eca6bd9f9fdbada61ae21e8e4a371dd6959a1ded1fa50d690917519933",
+    "sha256_webp": "9ca16398e43d84625ad3c76065c9fc60208d5ed8f81931505e30950ef44f8af8"
+  },
+  {
+    "id": "hoshai_mirador_nudo",
+    "nombre": "Mirador de la cuerda",
+    "region": "hoshai",
+    "ruta_propuesta": "client/art/places/hoshai_mirador_nudo-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/hoshai_mirador_nudo-anime-v1-thumb.webp",
+    "png": "originales/hoshai_mirador_nudo-anime-v1.png",
+    "webp": "webp/hoshai_mirador_nudo-anime-v1.webp",
+    "miniatura": "miniaturas/hoshai_mirador_nudo-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "prompt": "One new 3:2 landscape game environment, approved Vintage Telnet 2 anime background style as reference: fine outlines, painted cel shading, detailed practical masonry and wood. Hoshai high mountain Khariel, stone terraces and cool valley air, mature sober atmosphere. No chibi, no cute decorative flowers, no Japanese temple or enormous new fortress, no text/UI. Environment main subject, normal adult figures secondary if present, Felaryn have HUMAN faces, cat ears/tails and digitigrade stance. Mirador de la cuerda. Medium environmental ledge sheltered FROM ravine by sloping ROCK shoulder. Broad safe observation spot offset from main mountain path. Foreground visible sturdy ROPE HANDLINE for passage tied in practical knot around timber post against stone support; ONE outer turn locally FRAYED where rubs stone but remainder intact, not a snapped rope. Knot clear, no rope hanging magically. West connection to load terrace hinted, north short path to small rock-hugging hut visible. No rope bridge invented across gulf, no observer standing on dangerous edge. Quiet stony ledge shows steep valley partially screened, no scenic huge flowers.",
+      "referenced_images": [
+        "/home/jdiaz/Escritorio/Vintage Telnet - Arte - Entrega/referencias/khariel-anime-v1.webp",
+        "/home/jdiaz/Escritorio/Vintage Telnet - Arte - Entrega/originales/hoshai_terraza_cargas-anime-v1.png"
+      ],
+      "prompt_exacto_recuperado": true,
+      "correction": "Narrow edit of the rope detail ONLY. Preserve entire anime mountain terrace, hut, valley, weathered stone and composition. Canon wear is ONE TURN OF THE KNOT rubbing stone AT THE LEFT TIMBER POST. Remove the big tuft of fraying midway along the rope span: middle span should be intact smoothly braided rope. Add a SMALL pale rubbed frayed patch on the lower OUTER TURN of the knot wrapped around the LEFT foreground post, exactly where that turn touches the adjacent left stone. Knot still structurally intact, no broken rope or hanging rope strands across walking path. All other ropes intact. No changes elsewhere.",
+      "referenced_images_correction": [
+        "/home/jdiaz/.codex/generated_images/01a11a11-aecc-7d62-bf5e-8b12c19dde46/exec-8b4b3f0c-a4de-40ba-9ba6-f417e1fe4242.png"
+      ]
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 3,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Roce trasladado del tramo medio a vuelta del nudo junto al poste y piedra; desgaste pequeño, sin cuerda rota. Franja ancha y caseta enlazan terraza. Detalle no domina toda la escena.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "sustituye_archivo_aprobado": false,
+    "sha256_png": "1acdc2440e0ceae5db1c460aa7454796166e34ff8c8fe82db193ed911f826d7a",
+    "sha256_webp": "c185a635d93630388eca1cb3c1e3643832f199d6cc01bb900193b6bc140b2e86"
+  },
+  {
+    "id": "hoshai_abrigo_pinas",
+    "nombre": "Refugio de las piñas",
+    "region": "hoshai",
+    "ruta_propuesta": "client/art/places/hoshai_abrigo_pinas-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/hoshai_abrigo_pinas-anime-v1-thumb.webp",
+    "png": "originales/hoshai_abrigo_pinas-anime-v1.png",
+    "webp": "webp/hoshai_abrigo_pinas-anime-v1.webp",
+    "miniatura": "miniaturas/hoshai_abrigo_pinas-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "prompt": "Create one 3:2 environmental game background in approved Vintage Telnet 2 detailed fantasy anime drawing and painted cel shading. Serious mature world, natural materials, no chibi, no decorative flower beds, no giant invented ruins or fortress, no text/UI. Hoshai mountain geography gradually descends toward dry fractured-rock Korven; coherent cool grey stone to pale ochre rock, restrained natural daylight. Refugio de las piñas. Small modest roofed open refuge against stone wall amid DISCONTINUOUS mountain pines. DRY pinecones accumulated along protected wall, living thick root offers dry rear support to place bundle, entrance side shows minor drip marks. Foreground one normal adult traveler reads repeatedly folded note quietly. Recognizable pine trunk with TWO branches indicates eastern path back to pinar; north narrow path climbs toward isolated windbent pine of pass visible above. Practical small scale, not forest cabin or busy campsite; no snow covering path.",
+      "referenced_images": [
+        "/home/jdiaz/Escritorio/Vintage Telnet - Arte - Entrega/referencias/khariel-anime-v1.webp",
+        "/home/jdiaz/Escritorio/Vintage Telnet - Arte - Entrega/originales/hoshai_pinar_discontinuo-anime-v1.png"
+      ],
+      "prompt_exacto_recuperado": true
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 3,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Abrigo pequeño, piñas protegidas, raíz para carga y dos ramas orientan vuelta. Subida anuncia pino aislado.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "sustituye_archivo_aprobado": false,
+    "sha256_png": "ce0102c38d132ba2b5315d4d3f05aae79ba675ce8a6cdc249c9164c8c60a1df2",
+    "sha256_webp": "95e403ef19a9843e64836d1d22299adda6415ec5d76bd9d5bda9dcf5d0720a26"
+  },
+  {
+    "id": "hoshai_collado_pino",
+    "nombre": "Paso del último pino",
+    "region": "hoshai",
+    "ruta_propuesta": "client/art/places/hoshai_collado_pino-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/hoshai_collado_pino-anime-v1-thumb.webp",
+    "png": "originales/hoshai_collado_pino-anime-v1.png",
+    "webp": "webp/hoshai_collado_pino-anime-v1.webp",
+    "miniatura": "miniaturas/hoshai_collado_pino-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "prompt": "Create one 3:2 environmental game background in approved Vintage Telnet 2 detailed fantasy anime drawing and painted cel shading. Serious mature world, natural materials, no chibi, no decorative flower beds, no giant invented ruins or fortress, no text/UI. Hoshai mountain geography gradually descends toward dry fractured-rock Korven; coherent cool grey stone to pale ochre rock, restrained natural daylight. Paso del último pino. Wide mountain saddle with EXACTLY ONE ISOLATED PINE prominent between fractured grey stones, crown bent by steady wind to one side. Roots retain only SMALL pocket of earth, not broad terrace or rest platform. Tiny mixed footprints circle roots beside travelers track. South path descends toward small pinecone refuge, north track rises toward open sheep shelter glimpsed behind shoulder. Vegetation much scarcer than pinar. No giant flourishing forest, no oversized magical tree. Few tiny normal sheep in distant shelter for scale, not crowded around tree.",
+      "referenced_images": [
+        "/home/jdiaz/Escritorio/Vintage Telnet - Arte - Entrega/referencias/khariel-anime-v1.webp",
+        "/home/jdiaz/Escritorio/Vintage Telnet - Arte - Entrega/originales/hoshai_pinar_discontinuo-anime-v1.png"
+      ],
+      "prompt_exacto_recuperado": true
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 3,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Un pino protagonista doblado por viento; raíces retienen poca tierra y paso sube al aprisco. Vegetación escasa, no plataforma de descanso.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "sustituye_archivo_aprobado": false,
+    "sha256_png": "d53febd5608adf9c8886721ae53abaf5f2941d68a9e2b321ac247a992c2da8b8",
+    "sha256_webp": "68880f4a6532ba156f3aad47d9024f9bdc80bef579bface0408b9d4e151020d6"
+  },
+  {
+    "id": "hoshai_aprisco_abierto",
+    "nombre": "Refugio del rebaño",
+    "region": "hoshai",
+    "ruta_propuesta": "client/art/places/hoshai_aprisco_abierto-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/hoshai_aprisco_abierto-anime-v1-thumb.webp",
+    "png": "originales/hoshai_aprisco_abierto-anime-v1.png",
+    "webp": "webp/hoshai_aprisco_abierto-anime-v1.webp",
+    "miniatura": "miniaturas/hoshai_aprisco_abierto-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "prompt": "Create one 3:2 environmental game background in approved Vintage Telnet 2 detailed fantasy anime drawing and painted cel shading. Serious mature world, natural materials, no chibi, no decorative flower beds, no giant invented ruins or fortress, no text/UI. Hoshai mountain geography gradually descends toward dry fractured-rock Korven; coherent cool grey stone to pale ochre rock, restrained natural daylight. Refugio del rebaño. Open protected mountainside sheep gathering space guided by LOOSE LOW STONES with WIDE openings, no closed wooden corral. A plain water vessel waits in DRY small hollow OUTSIDE movement opening, room for sheep to spread and pass. Modest small flock of normal sheep with adult shepherd secondary. South windbent single pine visible below toward saddle; western trail bends toward slanted bare slabs. Slope shelters site, cold mountain air, no town and no tower. Stone faces show one recently shifted edge not buried under mud, natural scale.",
+      "referenced_images": [
+        "/home/jdiaz/Escritorio/Vintage Telnet - Arte - Entrega/referencias/khariel-anime-v1.webp",
+        "/home/jdiaz/Escritorio/Vintage Telnet - Arte - Entrega/originales/hoshai_pinar_discontinuo-anime-v1.png"
+      ],
+      "prompt_exacto_recuperado": true
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 3,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Piedra baja con abertura amplia, recipiente fuera del tránsito y rebaño disperso. Pino del collado visible; escala práctica.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "sustituye_archivo_aprobado": false,
+    "sha256_png": "c6d313ab82212706c22c14619f7453b5b346ac0bb675f271a91c3a5640707b79",
+    "sha256_webp": "ce4175cd210ee0abcb3a811c8fb83612846a0ead65bdcd09d3c9637534c92181"
+  },
+  {
+    "id": "hoshai_hombro_lajas",
+    "nombre": "Camino de las lajas",
+    "region": "hoshai",
+    "ruta_propuesta": "client/art/places/hoshai_hombro_lajas-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/hoshai_hombro_lajas-anime-v1-thumb.webp",
+    "png": "originales/hoshai_hombro_lajas-anime-v1.png",
+    "webp": "webp/hoshai_hombro_lajas-anime-v1.webp",
+    "miniatura": "miniaturas/hoshai_hombro_lajas-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "prompt": "Create one 3:2 environmental game background in approved Vintage Telnet 2 detailed fantasy anime drawing and painted cel shading. Serious mature world, natural materials, no chibi, no decorative flower beds, no giant invented ruins or fortress, no text/UI. Hoshai mountain geography gradually descends toward dry fractured-rock Korven; coherent cool grey stone to pale ochre rock, restrained natural daylight. Camino de las lajas. Medium-wide directional path BENDS BETWEEN stone SLABS clearly TILTED toward shallow hollow, reflecting thin daylight; NOT flat stair treads or paved monumental staircase. East backward glimpse distant ONE windbent pine at saddle beyond sheep refuge. West trail descends toward narrower gorge, vegetation sparse. Small wood traveler-news tablet on simple post beside safe firm earth path, no legible text. Grey slate transition with pale dry fragments appearing below, no sunny flower meadow or dramatic chasm bridge.",
+      "referenced_images": [
+        "/home/jdiaz/Escritorio/Vintage Telnet - Arte - Entrega/referencias/khariel-anime-v1.webp"
+      ],
+      "prompt_exacto_recuperado": true
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 3,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Lajas inclinadas hacia hondonada, tablilla y curva de descenso. Pino permanece atrás, rocas claras anuncian Korven.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "sustituye_archivo_aprobado": false,
+    "sha256_png": "52b5fedd2682f799df022d05b2ff992e124973b42522cfe13de2b023c18c8c8d",
+    "sha256_webp": "586188d9ddc1eae10fcb3bc7e4a38b5fe5019e4dc0b9be3918f9b5957725a712"
+  },
+  {
+    "id": "hoshai_garganta_oeste",
+    "nombre": "Garganta hacia Korven",
+    "region": "hoshai",
+    "ruta_propuesta": "client/art/places/hoshai_garganta_oeste-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/hoshai_garganta_oeste-anime-v1-thumb.webp",
+    "png": "originales/hoshai_garganta_oeste-anime-v1.png",
+    "webp": "webp/hoshai_garganta_oeste-anime-v1.webp",
+    "miniatura": "miniaturas/hoshai_garganta_oeste-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "prompt": "Create one 3:2 environmental game background in approved Vintage Telnet 2 detailed fantasy anime drawing and painted cel shading. Serious mature world, natural materials, no chibi, no decorative flower beds, no giant invented ruins or fortress, no text/UI. Hoshai mountain geography gradually descends toward dry fractured-rock Korven; coherent cool grey stone to pale ochre rock, restrained natural daylight. Garganta hacia Korven. Medium-wide DESCENDING gorge passage, upper eastern wall retains sparse pine/green roots and tiny water runoff joints; lower southern gorge gradually loses vegetation and becomes pale fractured limestone dust and dry rubble. CLEAR widening protected by LOW wall allows TWO loads to pass without scraping wall or using cliff edge. No visible Brumak town yet. Small normal adult travelers with bundles waiting in widening, no combat or monster. Pale fragments accumulate downhill, no snow on lower Korven rocks. Strong sense moving from mountain to dry plateau, not identical alpine valley.",
+      "referenced_images": [
+        "/home/jdiaz/Escritorio/Vintage Telnet - Arte - Entrega/referencias/khariel-anime-v1.webp",
+        "/home/jdiaz/Escritorio/Vintage Telnet - Arte - Entrega/referencias/brumak-anime-v1.webp"
+      ],
+      "prompt_exacto_recuperado": true
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 3,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Pérdida gradual de vegetación y agua de juntas; pared baja protege ensanche para cargas. Polvo y roca clara aparecen al descender.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "sustituye_archivo_aprobado": false,
+    "sha256_png": "429a42dbd4c7dede5c64ed7e63ac117de13fc8f8966a71af782243802935b526",
+    "sha256_webp": "f776d1b12dbcef9c81e9a25c93ee4517f4ffb36612fb42ffecf89c98c73f2589"
+  },
+  {
+    "id": "korven_meseta_relevo",
+    "nombre": "Refugio de Lajas",
+    "region": "korven",
+    "ruta_propuesta": "client/art/places/korven_meseta_relevo-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/korven_meseta_relevo-anime-v1-thumb.webp",
+    "png": "originales/korven_meseta_relevo-anime-v1.png",
+    "webp": "webp/korven_meseta_relevo-anime-v1.webp",
+    "miniatura": "miniaturas/korven_meseta_relevo-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "prompt": "Create one 3:2 environmental game background in approved Vintage Telnet 2 detailed fantasy anime drawing and painted cel shading. Serious mature world, natural materials, no chibi, no decorative flower beds, no giant invented ruins or fortress, no text/UI. Hoshai mountain geography gradually descends toward dry fractured-rock Korven; coherent cool grey stone to pale ochre rock, restrained natural daylight. Refugio de Lajas, Korven plateau. Open dry pale fractured rock meseta below gorge, FEW windblown pine needles among pale rubble imported from sierra, NO PINE TREES GROWING HERE. LOW simple timber-and-cloth shelter protects ONE table and TWO resting supports. On table TWO separated route notes held by returned small STONES; one tiny sketch of windbent pine no text. Loads parked against LOW wall clear of turning space. NORTH gorge opening rises toward grey Hoshai far above, SOUTH trail descends to rock-marked review bench. Warm dusty ochre here, cool mountain hints behind; aboveground modest refuge not desert bazaar.",
+      "referenced_images": [
+        "/home/jdiaz/Escritorio/Vintage Telnet - Arte - Entrega/referencias/brumak-anime-v1.webp",
+        "/home/jdiaz/Escritorio/Vintage Telnet - Arte - Entrega/originales/korven_asiento_revision-anime-v1.png"
+      ],
+      "prompt_exacto_recuperado": true
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 3,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Mesa y dos apoyos bajo cubierta baja; notas de dos rutas con piedras y agujas importadas, sin pinos propios. Cargas fuera de giro.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "sustituye_archivo_aprobado": false,
+    "sha256_png": "2ba52fd3ac444ce26936863801fe8f61e6bf4cdc42e80d0388e1c3fdf9d68d17",
+    "sha256_webp": "474ee74d7b3d6f83d6308a3ca10ced32c9eac1e6e7f4d4c662a8a6356b41487d"
+  },
+  {
+    "id": "hoshai_campamento_lona",
+    "nombre": "Campamento de la lona azul",
+    "region": "hoshai",
+    "ruta_propuesta": "client/art/places/hoshai_campamento_lona-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/hoshai_campamento_lona-anime-v1-thumb.webp",
+    "png": "originales/hoshai_campamento_lona-anime-v1.png",
+    "webp": "webp/hoshai_campamento_lona-anime-v1.webp",
+    "miniatura": "miniaturas/hoshai_campamento_lona-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "prompt": "Create one 3:2 environmental game background in approved Vintage Telnet 2 detailed fantasy anime drawing and painted cel shading. Serious mature world, natural materials, no chibi, no decorative flower beds, no giant invented ruins or fortress, no text/UI. Hoshai mountain geography gradually descends toward dry fractured-rock Korven; coherent cool grey stone to pale ochre rock, restrained natural daylight. Campamento de la lona azul. Small load camp on mountain side, one BLUE canvas canopy covers EXACTLY THREE traveling wooden boxes, one has discreet tool-shop pictorial stamp. EAST route clearly returns to load terrace with normal stone steps and beige covers matching reference, SOUTH short path descends to separate lower cargo pocket. No big tent village, no military banners. No visible threatening person or completed conversation frozen in image; short walking stick leaning neutrally at side if present. Plain practical blue canvas, drainage outside boxes, natural mountain daylight.",
+      "referenced_images": [
+        "/home/jdiaz/Escritorio/Vintage Telnet - Arte - Entrega/referencias/khariel-anime-v1.webp",
+        "/home/jdiaz/Escritorio/Vintage Telnet - Arte - Entrega/originales/hoshai_terraza_cargas-anime-v1.png"
+      ],
+      "prompt_exacto_recuperado": true
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 3,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Tres cajas bajo lona azul, sello del taller y salida hacia terraza y cargas bajas. Sin enfrentamiento ni acuerdo fijado.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "sustituye_archivo_aprobado": false,
+    "sha256_png": "22114c20bcab04097d3aed49b04fec32c63d8e20e6637e337fea6cd65c4e1090",
+    "sha256_webp": "4f80f8dff97af3dd116bf269900c9c9cd31381aba56c1e80a4d6ed6fb53e41fc"
+  },
+  {
+    "id": "hoshai_cajas_camino",
+    "nombre": "Cajas bajo la terraza",
+    "region": "hoshai",
+    "ruta_propuesta": "client/art/places/hoshai_cajas_camino-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/hoshai_cajas_camino-anime-v1-thumb.webp",
+    "png": "originales/hoshai_cajas_camino-anime-v1.png",
+    "webp": "webp/hoshai_cajas_camino-anime-v1.webp",
+    "miniatura": "miniaturas/hoshai_cajas_camino-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "prompt": "Create one 3:2 environmental game background in approved Vintage Telnet 2 detailed fantasy anime drawing and painted cel shading. Serious mature world, natural materials, no chibi, no decorative flower beds, no giant invented ruins or fortress, no text/UI. Hoshai mountain geography gradually descends toward dry fractured-rock Korven; coherent cool grey stone to pale ochre rock, restrained natural daylight. Cajas bajo la terraza. Medium-close environment view of small LOWER cargo pocket below mountain load terrace, EXACTLY TWO boxes with small HAND PULLEY wedged BETWEEN them, marked handle with tiny plain tool-shop pictogram, pulley sized for short loads NOT immense construction blocks. Upper box held with strip of cloth. ONLY path NORTH returns uphill toward small blue-canvas camp partly visible above, otherwise ends against SOLID rock wall; absolutely no exit/tunnel under mountain. Plain slate and pale timber, subdued shadow, no person stealing item. Baseline before pulley collected; no completed quest or weapon.",
+      "referenced_images": [
+        "/home/jdiaz/Escritorio/Vintage Telnet - Arte - Entrega/referencias/khariel-anime-v1.webp",
+        "/home/jdiaz/Escritorio/Vintage Telnet - Arte - Entrega/originales/hoshai_terraza_cargas-anime-v1.png"
+      ],
+      "prompt_exacto_recuperado": true
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 3,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Dos cajas, polea de mano marcada y pared cierra fondo; escalera vuelve al campamento. Estado base anterior a recoger polea, necesita futura selección por estado.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático. La polea cambia con hoshai_polea_recogida: usar esta vista sólo antes de recogerla; variante posterior propuesta pendiente. Motor actual no selecciona por flags.",
+    "estado_visual": "Base antes de hoshai_polea_recogida",
+    "sustituye_archivo_aprobado": false,
+    "sha256_png": "4dd44cefad2751b2907fed4f73154f40b6890d5e7e8ba3aa417f447fe18a8e3d",
+    "sha256_webp": "c6d98de1626a51d8882263ff2ecf1d4a4d2e20ce588a1763d0da23a5c1baed34"
+  },
+  {
+    "id": "korven_almacen_entrada",
+    "nombre": "Puerta del almacén viejo",
+    "region": "korven",
+    "ruta_propuesta": "client/art/places/korven_almacen_entrada-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/korven_almacen_entrada-anime-v1-thumb.webp",
+    "png": "originales/korven_almacen_entrada-anime-v1.png",
+    "webp": "webp/korven_almacen_entrada-anime-v1.webp",
+    "miniatura": "miniaturas/korven_almacen_entrada-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "prompt": "ONE 3:2 Vintage Telnet 2 fantasy ANIME game ENVIRONMENT matching supplied approved drawing style, fine outlines and painted cel shading, not photo or cute. Korven Brumak weathered pale limestone masonry, low practical timber, dry dust. Modest HUMAN-SIZED chambers, sober subdued cool-grey and umber shadows, faint natural reflected daylight, no golden sunset beams or decorative flowers. No giant dungeon, skulls, torture, lava or magical treasure, no text/UI. KEEP exits count canonical and routes readable; no people/combat frozen. Puerta del almacén viejo. Interior threshold of SMALL old storeroom recessed into SLOPE, open NORTH timber doorway shows outside dry Brumak SHORT stone steps, light reaches dusty threshold. EMPTY flattened/rolled burlap sacks protected from wind off walkway. SOUTH modest corridor clearly DESCENDS inward with drag lines, WEST short SIDE stair leads to weighing chamber. No other doorway. Ceiling low timber over limestone, clear safe retreat to northern exit, no endless mine. Small unlit lantern near entrance, sober sense confinement beginning.",
+      "referenced_images": [
+        "/home/jdiaz/Escritorio/Vintage Telnet - Arte - Entrega/referencias/brumak-anime-v1.webp"
+      ],
+      "prompt_exacto_recuperado": true
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 3,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Umbral separa peldaños exteriores, escalera lateral de pesaje y corredor descendente. Sacos vacíos plegados y retirada libre; escala baja de Brumak.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "sustituye_archivo_aprobado": false,
+    "sha256_png": "c17879a1006f91a2c2760c2dc011bf8055f76dddf7bfe79cbc17ae15fad7f8f3",
+    "sha256_webp": "bbc0749250fb1e14fdad3fd8ee783edd2ba34e4771db3358c444c1b66ff27391"
+  },
+  {
+    "id": "korven_taller_juntas",
+    "nombre": "Taller de Brumak",
+    "region": "korven",
+    "ruta_propuesta": "client/art/places/korven_taller_juntas-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/korven_taller_juntas-anime-v1-thumb.webp",
+    "png": "originales/korven_taller_juntas-anime-v1.png",
+    "webp": "webp/korven_taller_juntas-anime-v1.webp",
+    "miniatura": "miniaturas/korven_taller_juntas-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "prompt": "ONE 3:2 Vintage Telnet 2 fantasy ANIME game ENVIRONMENT matching supplied approved drawing style, fine outlines and painted cel shading, not photo or cute. Korven Brumak weathered pale limestone masonry, low practical timber, dry dust. Modest HUMAN-SIZED chambers, sober subdued cool-grey and umber shadows, faint natural reflected daylight, no golden sunset beams or decorative flowers. No giant dungeon, skulls, torture, lava or magical treasure, no text/UI. KEEP exits count canonical and routes readable; no people/combat frozen. Taller de Brumak. Medium interior practical dry stone workshop: IMPACT tools all on ONE wall, MEASURING tools on ANOTHER, several modest SUPPORT blocks awaiting work on floor away from clear SOUTH exit to town patio. LOW timber workbench with REPAIRED edges, a joint lightly wet for edge examination and small CHALK line marking open section. Thin rear ventilation SLIT catches dust but is NOT traversable opening. Mature Dravak craftsperson secondary, compact adult 70 percent human height, HUMAN FACE with discreet small forearm stone patches, no dwarf beard/golem. No forge lava or gigantic machinery.",
+      "referenced_images": [
+        "/home/jdiaz/Escritorio/Vintage Telnet - Arte - Entrega/referencias/brumak-anime-v1.webp"
+      ],
+      "prompt_exacto_recuperado": true
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 3,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Golpe y medida en paredes distintas, banco bajo reparado y ranura para polvo. Junta examinada con agua; piezas fuera del tránsito sur.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "sustituye_archivo_aprobado": false,
+    "sha256_png": "d72d109abc86caa9208128f438930fed9e2357d33569a758d3ea8edd414b976b",
+    "sha256_webp": "d8929a2f3e63bd33ab8ceee70dbb2b064b9a463b0050d438c1af776aea693c1a"
+  },
+  {
+    "id": "korven_deposito_cubiertas",
+    "nombre": "Depósito de cubiertas",
+    "region": "korven",
+    "ruta_propuesta": "client/art/places/korven_deposito_cubiertas-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/korven_deposito_cubiertas-anime-v1-thumb.webp",
+    "png": "originales/korven_deposito_cubiertas-anime-v1.png",
+    "webp": "webp/korven_deposito_cubiertas-anime-v1.webp",
+    "miniatura": "miniaturas/korven_deposito_cubiertas-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "prompt": "ONE 3:2 Vintage Telnet 2 fantasy ANIME game ENVIRONMENT matching supplied approved drawing style, fine outlines and painted cel shading, not photo or cute. Korven Brumak weathered pale limestone masonry, low practical timber, dry dust. Modest HUMAN-SIZED chambers, sober subdued cool-grey and umber shadows, faint natural reflected daylight, no golden sunset beams or decorative flowers. No giant dungeon, skulls, torture, lava or magical treasure, no text/UI. KEEP exits count canonical and routes readable; no people/combat frozen. Depósito de cubiertas. Small ABOVEGROUND stone-and-timber cover storage adjacent washing courtyard. DRY travel covers hang SEPARATELY on one beam, moist covers opposite near ventilation gap with tiny droplets falling to lower collecting plank. Loan wooden tablets hang at each piece with modest markings not legible. NORTH doorway returns to patio washing, ONLY one exit. Spare empty crossbar for late returns, small raised shelf. Quiet unoccupied environment, cool shade and arid outside light, no cloth touching wet/dry groups, no lavish patterned carpet shop.",
+      "referenced_images": [
+        "/home/jdiaz/Escritorio/Vintage Telnet - Arte - Entrega/referencias/brumak-anime-v1.webp"
+      ],
+      "prompt_exacto_recuperado": true
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 3,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Cubiertas secas y húmedas separadas, tablillas y travesaño libre. Ventilación permite secado y goteo en apoyo separado, puerta al patio de lavado.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "sustituye_archivo_aprobado": false,
+    "sha256_png": "66d236b58649ebbf6438d67afcbb3a83d7dc31757afbe11527c5d57971db014b",
+    "sha256_webp": "4082079ff2c266158ded823a2d452b0ea22e13eb1dec4d7959f32789610a118c"
+  },
+  {
+    "id": "korven_almacen_cruce",
+    "nombre": "Cruce de los sacos vacíos",
+    "region": "korven",
+    "ruta_propuesta": "client/art/places/korven_almacen_cruce-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/korven_almacen_cruce-anime-v1-thumb.webp",
+    "png": "originales/korven_almacen_cruce-anime-v1.png",
+    "webp": "webp/korven_almacen_cruce-anime-v1.webp",
+    "miniatura": "miniaturas/korven_almacen_cruce-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "prompt": "ONE 3:2 Vintage Telnet 2 fantasy ANIME game ENVIRONMENT matching supplied approved drawing style, fine outlines and painted cel shading, not photo or cute. Korven Brumak weathered pale limestone masonry, low practical timber, dry dust. Modest HUMAN-SIZED chambers, sober subdued cool-grey and umber shadows, faint natural reflected daylight, no golden sunset beams or decorative flowers. No giant dungeon, skulls, torture, lava or magical treasure, no text/UI. KEEP exits count canonical and routes readable; no people/combat frozen. Cruce de los sacos vacíos. Small dim limestone store CORRIDOR JUNCTION with EXACTLY THREE connections: NORTH corridor back toward softly daylit entry, SOUTH short opening to closed rear depot, EAST NARROW passage bending behind empty sack stacks. TWO parallel dragging scratches in dusty dry floor lead EAST, not a hidden exit. Sacks EMPTY, folded/rolled fabric supported as stacks, NOT bulging full grain bags. Clear strip allows retreat NORTH. No bandit shown, no monster, no many extra arches. Subdued grey-umber, cramped everyday storage not monumental dungeon.",
+      "referenced_images": [
+        "/home/jdiaz/Escritorio/Vintage Telnet - Arte - Entrega/referencias/brumak-anime-v1.webp"
+      ],
+      "prompt_exacto_recuperado": true,
+      "correction": "Edit ONLY visible connections to fix old-warehouse continuity. Keep anime artwork, small dry limestone room, empty folded sacks, drag lines, three doorways. LEFT closed wooden door leading SOUTH to rear depot must now be OPEN, revealing a SMALL DIM INTERIOR storeroom with solid pale limestone back wall, NO outside sky/town. CENTRAL northern lit arch returns toward warehouse entrance: add a short LOW timber-ceilinged interior corridor before the distant exterior light so this is clearly an INDOOR connection, not a direct courtyard exit. RIGHT narrow eastern passage remains dim behind sacks. No additional doors or rooms, no figures/monster. Preserve restrained sober interior light, do not brightly light deep depot.",
+      "referenced_images_correction": [
+        "/home/jdiaz/.codex/generated_images/01a11a11-aecc-7d62-bf5e-8b12c19dde46/exec-e09b74c3-0dec-40e0-bf59-cf88b5169c3f.png"
+      ]
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 3,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Tres conexiones interiores; puerta sur abierta, corredor norte lleva hacia entrada y rayas al pasillo este. Corregidas salidas que parecían exteriores.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "sustituye_archivo_aprobado": false,
+    "sha256_png": "469d9e3a74e21486cd66869f9d1d080b84a8e355bc8029562e33c858e6795ce0",
+    "sha256_webp": "8316af5970a704741272ff7936f4ee8465f892be8734892e40a25b7bfcbae219"
+  },
+  {
+    "id": "korven_almacen_balanzas",
+    "nombre": "Mesa de pesaje",
+    "region": "korven",
+    "ruta_propuesta": "client/art/places/korven_almacen_balanzas-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/korven_almacen_balanzas-anime-v1-thumb.webp",
+    "png": "originales/korven_almacen_balanzas-anime-v1.png",
+    "webp": "webp/korven_almacen_balanzas-anime-v1.webp",
+    "miniatura": "miniaturas/korven_almacen_balanzas-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "prompt": "ONE 3:2 Vintage Telnet 2 fantasy ANIME game ENVIRONMENT matching supplied approved drawing style, fine outlines and painted cel shading, not photo or cute. Korven Brumak weathered pale limestone masonry, low practical timber, dry dust. Modest HUMAN-SIZED chambers, sober subdued cool-grey and umber shadows, faint natural reflected daylight, no golden sunset beams or decorative flowers. No giant dungeon, skulls, torture, lava or magical treasure, no text/UI. KEEP exits count canonical and routes readable; no people/combat frozen. Mesa de pesaje. Small shaded limestone weighing chamber, ONE low repaired timber table carries simple wooden balance: TWO wooden ARMS crossing table, ONE side has shallow removable metal weighing PLATE, OTHER hangs EMPTY with bare holder/cords and NO plate. Narrow HIGH slit window gives pale indirect daylight and hints outside load steps, not full town vista. EXACTLY ONE modest doorway EAST returns to store entrance. Dry dust on wood, no sack on scale, no modern weighing device. Base state before missing plate returned. Low camera-wide room, worn practical materials.",
+      "referenced_images": [
+        "/home/jdiaz/Escritorio/Vintage Telnet - Arte - Entrega/referencias/brumak-anime-v1.webp"
+      ],
+      "prompt_exacto_recuperado": true,
+      "correction": "Edit ONLY view through RIGHT/EAST doorway. This weighing room has ONE doorway that returns to the INTERIOR warehouse entrance, not directly to the street. Replace exterior town/steps visible THROUGH RIGHT DOOR with dim pale-stone threshold room: timber ceiling, EMPTY rolled sacks, small unlit lantern, short stone landing. Distant northern doorway of that adjacent room may admit tiny indirect outside light, but no sky/town filling this doorway. Keep LEFT narrow slit window showing outdoor load steps, the low table, two balance arms, ONE metal pan and ONE empty holder, entire drawing style and subdued palette. No other changes.",
+      "referenced_images_correction": [
+        "/home/jdiaz/.codex/generated_images/01a11a11-aecc-7d62-bf5e-8b12c19dde46/exec-25127949-e035-46d5-a811-d632c592755d.png"
+      ]
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 3,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Una placa y un soporte vacío; puerta devuelve a sala de entrada interior. Ranura conserva relación con peldaños. Estado base previo a devolver placa.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático. Requiere selección futura por flags: fondo sólo antes de korven_placa_recogida, balanza sólo antes de korven_placa_devuelta. Variantes posteriores propuestas; selector actual no existe.",
+    "estado_visual": "Base de misión de placa",
+    "sustituye_archivo_aprobado": false,
+    "sha256_png": "6e72d099292c058d59c1f8695605ba044ae9f582a5a95845c080bef6cd52dba5",
+    "sha256_webp": "a56647eb9fd5825ecacdb47d0eee0d99ca11317dc380e640c1b50936d63587cf"
+  },
+  {
+    "id": "korven_almacen_fondo",
+    "nombre": "Depósito del fondo",
+    "region": "korven",
+    "ruta_propuesta": "client/art/places/korven_almacen_fondo-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/korven_almacen_fondo-anime-v1-thumb.webp",
+    "png": "originales/korven_almacen_fondo-anime-v1.png",
+    "webp": "webp/korven_almacen_fondo-anime-v1.webp",
+    "miniatura": "miniaturas/korven_almacen_fondo-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "prompt": "ONE 3:2 Vintage Telnet 2 fantasy ANIME game ENVIRONMENT matching supplied approved drawing style, fine outlines and painted cel shading, not photo or cute. Korven Brumak weathered pale limestone masonry, low practical timber, dry dust. Modest HUMAN-SIZED chambers, sober subdued cool-grey and umber shadows, faint natural reflected daylight, no golden sunset beams or decorative flowers. No giant dungeon, skulls, torture, lava or magical treasure, no text/UI. KEEP exits count canonical and routes readable; no people/combat frozen. Depósito del fondo. SMALL rear limestone room, solid BACK WALL closes depot with NO tunnel/hidden exit. Against EMPTY folded burlap sack lies a REMOVABLE flat shallow metal BALANCE PLATE with slightly bent edge and EXACTLY THREE small NOTCHES clearly on rim. Dim indirect northern light terminates on back wall. NORTH doorway returns to junction, EAST small passage connects to narrow lateral route behind sacks, ONLY these TWO openings. Dry dusty floor and low ceiling, no crates of treasure, no person. Baseline before plate picked up; important local item readable but room remains main subject.",
+      "referenced_images": [
+        "/home/jdiaz/Escritorio/Vintage Telnet - Arte - Entrega/referencias/brumak-anime-v1.webp"
+      ],
+      "prompt_exacto_recuperado": true,
+      "correction": "Correct TWO concrete canon errors in this small rear warehouse room, keeping all anime style, limestone, timber ceiling, sacks, solid back wall and exactly TWO doorways. LEFT/NORTH doorway must show DIM INTERIOR junction corridor with timber roof and folded empty sacks, not bright outdoor steps/sky. RIGHT/EAST doorway must show narrow DIM INTERIOR passage behind empty sack stacks tied by cord, no exterior steps or sky. Room is enclosed at rear, reflected soft light only. Metal BALANCE PLATE leaning on sack must have EXACTLY THREE shallow square NOTCHES total around rim, spaced at 10 o'clock, 2 o'clock, 6 o'clock as viewed on circular plate. Remove ALL extra notches, chips and irregular cuts; remainder rim continuous smooth lightly bent metal. Plate clearly readable, no rune pattern or fourth notch. No new exit, no lantern glow, no person.",
+      "referenced_images_correction": [
+        "/home/jdiaz/.codex/generated_images/01a11a11-aecc-7d62-bf5e-8b12c19dde46/exec-1a4765b1-2901-4806-9672-d630de88eca0.png"
+      ]
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 3,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Tres muescas exactas tras corrección; muro cierra fondo y dos puertas van a otras salas. Placa contra saco es estado base anterior a recogerla.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático. Requiere selección futura por flags: fondo sólo antes de korven_placa_recogida, balanza sólo antes de korven_placa_devuelta. Variantes posteriores propuestas; selector actual no existe.",
+    "estado_visual": "Base de misión de placa",
+    "sustituye_archivo_aprobado": false,
+    "sha256_png": "e4a51e9e762fb2c198392500bf9ec38ed86b1b511610b27da679b093f8e117f3",
+    "sha256_webp": "42b7d6f4342a381f8357d61053f2e9ef50e535e36e4cc840466d3d7f9ffdb949"
+  },
+  {
+    "id": "korven_almacen_lateral",
+    "nombre": "Pasillo detrás de los sacos",
+    "region": "korven",
+    "ruta_propuesta": "client/art/places/korven_almacen_lateral-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/korven_almacen_lateral-anime-v1-thumb.webp",
+    "png": "originales/korven_almacen_lateral-anime-v1.png",
+    "webp": "webp/korven_almacen_lateral-anime-v1.webp",
+    "miniatura": "miniaturas/korven_almacen_lateral-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "prompt": "ONE 3:2 Vintage Telnet 2 fantasy ANIME game ENVIRONMENT matching supplied approved drawing style, fine outlines and painted cel shading, not photo or cute. Korven Brumak weathered pale limestone masonry, low practical timber, dry dust. Modest HUMAN-SIZED chambers, sober subdued cool-grey and umber shadows, faint natural reflected daylight, no golden sunset beams or decorative flowers. No giant dungeon, skulls, torture, lava or magical treasure, no text/UI. KEEP exits count canonical and routes readable; no people/combat frozen. Pasillo detrás de los sacos. Narrow but WALKABLE passage behind stable stacks of EMPTY folded or rolled burlap sacks. TIED thin supporting CORD secures upper stacks, leaves lower passage clear; don't depict heavy filled grain bags suspended overhead or collapse. WEST opening back toward junction, SOUTH route through gap to rear depot, EXACTLY TWO routes, no cave tunnel beyond. Faint light from rear depot outlines floor dragging marks. Dry dust, tight timber/limestone room, restrained uneasy confinement, no bandit or monster.",
+      "referenced_images": [
+        "/home/jdiaz/Escritorio/Vintage Telnet - Arte - Entrega/referencias/brumak-anime-v1.webp"
+      ],
+      "prompt_exacto_recuperado": true,
+      "correction": "Edit ONLY what is visible through BOTH connections in this narrow old-warehouse passage. Neither exits outside. LEFT/WEST opening returns to dim INTERIOR warehouse junction with limestone wall, low timber ceiling and folded empty sacks; REMOVE outside sky/town/courtyard steps. STRAIGHT/SOUTH opening goes to SMALL dim rear storeroom: show solid limestone rear wall and one folded burlap sack, no town/sky/cart/wheel. Keep narrow WALKABLE floor gap, supporting TIED CORD, stacks of EMPTY folded/rolled sacks, original anime drawing and muted dusty materials. Reflected low daylight enters indirectly from junction, no direct sunny exterior. EXACTLY TWO interior routes, no new doorway.",
+      "referenced_images_correction": [
+        "/home/jdiaz/.codex/generated_images/01a11a11-aecc-7d62-bf5e-8b12c19dde46/exec-f298971e-df6c-44d9-821b-348fd8e86fc7.png"
+      ]
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 3,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Cordel sostiene sacos vacíos, hueco caminable enlaza cruce y fondo por interiores. Corregida vista falsa de calle. Confinamiento sobrio y escala modesta.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "sustituye_archivo_aprobado": false,
+    "sha256_png": "44793dad80f3bcdfcdbb9bfc6111fdcddf8c7d684e65e2e1792fdf2365290f6d",
+    "sha256_webp": "1faaed46ef27fdc9633dbac091a72618a1cd9da03f8fe17efbbf809c3ccc36c9"
+  },
+  {
+    "id": "korven_cisterna_comun",
+    "nombre": "Cisterna común",
+    "region": "korven",
+    "ruta_propuesta": "client/art/places/korven_cisterna_comun-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/korven_cisterna_comun-anime-v1-thumb.webp",
+    "png": "originales/korven_cisterna_comun-anime-v1.png",
+    "webp": "webp/korven_cisterna_comun-anime-v1.webp",
+    "miniatura": "miniaturas/korven_cisterna_comun-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "prompt": "ONE 3:2 landscape Vintage Telnet 2 game environment, match approved fantasy anime linework and painted cel-shaded materials. Korven dry fractured pale limestone, sparse scrub and dusty ochre ground; no snow, alpine forest or underground city. Sober reserved atmosphere, soft slightly overcast daylight instead of dramatic sunset, no cute decoration. Modest infrastructure and believable human scale, no text/UI, no monster or encounter fixed in image. Cisterna común. Small low platform surrounds deep covered stone CISTERN with practical modest well rim. RAIN RUNOFF channel from dusty walls is PHYSICALLY SEPARATE from vessel filling space by clear stone divider and settles away, NOT pouring directly into clean cistern. Marked measuring ROD with small tally lines, date-like marks not readable, stored under modest cover. Rope and empty filling vessel beside rim. North route to low houses, west washing patio hinted, east path to fissure lookout. No big fountain or waterfall, water scarce and carefully managed. Medium infrastructure view.",
+      "referenced_images": [
+        "/home/jdiaz/Escritorio/Vintage Telnet - Arte - Entrega/referencias/brumak-anime-v1.webp"
+      ],
+      "prompt_exacto_recuperado": true
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 3,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Cisterna cubierta y espacio de llenado separado del canal mediante piedra; vara protegida. Caliza seca y casas bajas coherentes. Luz algo más cálida que solicitada, aceptable con referencia aprobada; escala 3.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "sustituye_archivo_aprobado": false,
+    "sha256_png": "e0b164f877e5b72c364a602836e09ef47a9e2b4f602fbdb04a221692ee63f1f7",
+    "sha256_webp": "ba5ce176964c30a11a94020fec423abdced1c1741675777d5012d46320de24f9"
+  },
+  {
+    "id": "korven_mirador_grietas",
+    "nombre": "Mirador de las grietas",
+    "region": "korven",
+    "ruta_propuesta": "client/art/places/korven_mirador_grietas-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/korven_mirador_grietas-anime-v1-thumb.webp",
+    "png": "originales/korven_mirador_grietas-anime-v1.png",
+    "webp": "webp/korven_mirador_grietas-anime-v1.webp",
+    "miniatura": "miniaturas/korven_mirador_grietas-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "prompt": "ONE 3:2 landscape Vintage Telnet 2 game environment, match approved fantasy anime linework and painted cel-shaded materials. Korven dry fractured pale limestone, sparse scrub and dusty ochre ground; no snow, alpine forest or underground city. Sober reserved atmosphere, soft slightly overcast daylight instead of dramatic sunset, no cute decoration. Modest infrastructure and believable human scale, no text/UI, no monster or encounter fixed in image. Mirador de las grietas. Wide view from small lookout protected by LOW stone edge. Ahead dry stone platforms broken by fissures, dark narrow BAND whose depth CANNOT be seen, not a doorway or cave mouth. A LARGE block occludes farther crack, no bottom or monster revealed. Brumak remains BEHIND camera/wall, do NOT show town in front. WEST path returns to small cistern, SOUTH descends toward moved-stone channel. A small notebook left on safe support, no dramatic observer on edge. Muted grey limestone shadows, distance and geological unease without giant doom chasm.",
+      "referenced_images": [
+        "/home/jdiaz/Escritorio/Vintage Telnet - Arte - Entrega/referencias/brumak-anime-v1.webp"
+      ],
+      "prompt_exacto_recuperado": true
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 3,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Mirador con borde bajo, bloque que oculta la grieta y profundidad sin resolver. La cisterna queda lateral; pueblo fuera de la vista frontal. Mesetas compartidas con escenas vecinas.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "sustituye_archivo_aprobado": false,
+    "sha256_png": "06992a0a628a0c5cef70050da31ef29376e837012a66484c8c200fbcf3669193",
+    "sha256_webp": "c662cf68a578101ab8c229e811db36daf6d3d903dd839c42778e0a97111b2bf0"
+  },
+  {
+    "id": "korven_cauce_observacion",
+    "nombre": "Cauce de piedras movidas",
+    "region": "korven",
+    "ruta_propuesta": "client/art/places/korven_cauce_observacion-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/korven_cauce_observacion-anime-v1-thumb.webp",
+    "png": "originales/korven_cauce_observacion-anime-v1.png",
+    "webp": "webp/korven_cauce_observacion-anime-v1.webp",
+    "miniatura": "miniaturas/korven_cauce_observacion-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "prompt": "ONE 3:2 landscape Vintage Telnet 2 game environment, match approved fantasy anime linework and painted cel-shaded materials. Korven dry fractured pale limestone, sparse scrub and dusty ochre ground; no snow, alpine forest or underground city. Sober reserved atmosphere, soft slightly overcast daylight instead of dramatic sunset, no cute decoration. Modest infrastructure and believable human scale, no text/UI, no monster or encounter fixed in image. Cauce de piedras movidas. Medium-wide DRY channel filled with recently moved modest blocks: some have PALE CLEAN contact FACES contrasting with older DUSTED surfaces and an old impression in ground. One block occupies EDGE of walking pass, not totally blocking exit. Safe OUTER firm viewing strip allows observation without entering loose block band. NORTH trail climbs to lookout's low wall, EAST connects to firm listening platform visible beyond rock shoulder. No water stream or canyon castle; stones not all identical cuboid quarry blocks. Sober geological detail, no creature explaining movement.",
+      "referenced_images": [
+        "/home/jdiaz/Escritorio/Vintage Telnet - Arte - Entrega/referencias/brumak-anime-v1.webp"
+      ],
+      "prompt_exacto_recuperado": true
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 3,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Cauce seco, caras recién expuestas claras y polvo viejo diferenciado. Banda exterior firme permite observar sin pisar bloques sueltos; conexiones visibles al mirador y plataforma.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "sustituye_archivo_aprobado": false,
+    "sha256_png": "779e2ddedea347618314b9128be9499ecb279ef2542128059054bdab95a9ac91",
+    "sha256_webp": "bff43b4581a3b0d2b77e21b8e4a0b2e8b2eec73ea851b7106dc7ae7eb49f70d9"
+  },
+  {
+    "id": "korven_plataforma_escucha",
+    "nombre": "Plataforma de escucha",
+    "region": "korven",
+    "ruta_propuesta": "client/art/places/korven_plataforma_escucha-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/korven_plataforma_escucha-anime-v1-thumb.webp",
+    "png": "originales/korven_plataforma_escucha-anime-v1.png",
+    "webp": "webp/korven_plataforma_escucha-anime-v1.webp",
+    "miniatura": "miniaturas/korven_plataforma_escucha-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "prompt": "ONE 3:2 landscape Vintage Telnet 2 game environment, match approved fantasy anime linework and painted cel-shaded materials. Korven dry fractured pale limestone, sparse scrub and dusty ochre ground; no snow, alpine forest or underground city. Sober reserved atmosphere, soft slightly overcast daylight instead of dramatic sunset, no cute decoration. Modest infrastructure and believable human scale, no text/UI, no monster or encounter fixed in image. Plataforma de escucha. Modest firm ROCK platform safely apart from loose channel blocks. Foreground SMALL EMPTY ceramic vessel rests IN a stable ROCK JOINT as physical vibration indicator, no magical glowing liquid or visible supernatural motion. WEST dry moved-block channel visible but separate, NORTH short route to LOW covered observation record hut. Ordinary distant passing load on near public track small for scale, not monster, no instrument dial/technology. Clear dry viewing footing, muted stone/dust, faint reflected daylight, no dramatic chasm directly under vessel.",
+      "referenced_images": [
+        "/home/jdiaz/Escritorio/Vintage Telnet - Arte - Entrega/referencias/brumak-anime-v1.webp"
+      ],
+      "prompt_exacto_recuperado": true
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 3,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Recipiente pequeño vacío sobre junta de roca firme y apartado de bloques sueltos. Registro cercano reconocible y carga ordinaria para escala. Mantener como vista seca representativa, no variante de lluvia.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "sustituye_archivo_aprobado": false,
+    "sha256_png": "7809d1a439f5338ff9d7e80e20065b067639a831bd2936a94530d701e84e89cd",
+    "sha256_webp": "8d113c99eb761cc0f88a79fb40ce00dcf41acb2164d039b430bdc0b53a7053bf"
+  },
+  {
+    "id": "korven_registro_cauce",
+    "nombre": "Registro del cauce",
+    "region": "korven",
+    "ruta_propuesta": "client/art/places/korven_registro_cauce-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/korven_registro_cauce-anime-v1-thumb.webp",
+    "png": "originales/korven_registro_cauce-anime-v1.png",
+    "webp": "webp/korven_registro_cauce-anime-v1.webp",
+    "miniatura": "miniaturas/korven_registro_cauce-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "prompt": "ONE 3:2 landscape Vintage Telnet 2 game environment, match approved fantasy anime linework and painted cel-shaded materials. Korven dry fractured pale limestone, sparse scrub and dusty ochre ground; no snow, alpine forest or underground city. Sober reserved atmosphere, soft slightly overcast daylight instead of dramatic sunset, no cute decoration. Modest infrastructure and believable human scale, no text/UI, no monster or encounter fixed in image. Registro del cauce. Interior under LOW plain stone/timber cover: observation wooden tablets stored in dry protective SLEEVES, modest desk with one small sketch of BLOCK positions ending behind an occluding block, no legible text. Notes organized by observation site/person/weather, not grand library. Opening/window looks DOWN at dry stone channel from ABOVE without revealing its LOWER cavity. ONLY SOUTH exit returns to firm listening platform with tiny empty vessel glimpsed. Separate dry desk strip and reception strip, simple practical storage, muted cool shade and dust, no magical archive.",
+      "referenced_images": [
+        "/home/jdiaz/Escritorio/Vintage Telnet - Arte - Entrega/referencias/brumak-anime-v1.webp"
+      ],
+      "prompt_exacto_recuperado": true
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 3,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Tablillas en fundas bajo cubierta baja, mesa de observación separada del paso y vista superior parcial del cauce. No revela fondo ni explica movimiento. Cuidador genérico sin identidad narrativa impuesta.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "sustituye_archivo_aprobado": false,
+    "sha256_png": "255a51fae7767a0e872a7294e42fd8a438ef93de3e66eb45b4be75f9d7dcfd0e",
+    "sha256_webp": "b4921598d96afb3209e59408c3a3c3db5158f8cc4ceca8f47764f4a1ca20a209"
+  },
+  {
+    "id": "korven_roca_cascaron",
+    "nombre": "Roca de los líquenes",
+    "region": "korven",
+    "ruta_propuesta": "client/art/places/korven_roca_cascaron-anime-v1.webp",
+    "ruta_miniatura_propuesta": "client/art/places/korven_roca_cascaron-anime-v1-thumb.webp",
+    "png": "originales/korven_roca_cascaron-anime-v1.png",
+    "webp": "webp/korven_roca_cascaron-anime-v1.webp",
+    "miniatura": "miniaturas/korven_roca_cascaron-anime-v1-thumb.webp",
+    "tipo": "Nueva vista específica, sin sustituir original aprobado",
+    "justificacion": "Identidad ambiental y transición según habitación y vecinos canónicos",
+    "prompt": {
+      "prompt": "ONE 3:2 landscape Vintage Telnet 2 game environment, match approved fantasy anime linework and painted cel-shaded materials. Korven dry fractured pale limestone, sparse scrub and dusty ochre ground; no snow, alpine forest or underground city. Sober reserved atmosphere, soft slightly overcast daylight instead of dramatic sunset, no cute decoration. Modest infrastructure and believable human scale, no text/UI, no monster or encounter fixed in image. Roca de los líquenes. Medium close environmental view of ONE ordinary pale boulder with thin PALE LICHEN CRUSTS at end of short side trail. SMALL abrasion marks near base follow narrow dark rock joint, distant return NORTH along dry channel. Firm viewing spot OUTSIDE loose gravel, no deeper walking exit behind boulder. NO creature shown, no giant shell or monster, traces only, no glowing moss. Focus lichen and crevice while context of arid Korven remains visible; sober subtle ecology, not wet Nhal forest.",
+      "referenced_images": [
+        "/home/jdiaz/Escritorio/Vintage Telnet - Arte - Entrega/referencias/brumak-anime-v1.webp"
+      ],
+      "prompt_exacto_recuperado": true
+    },
+    "evaluacion": {
+      "Canon": 4,
+      "Identidad regional": 4,
+      "Continuidad": 4,
+      "Composición": 4,
+      "Escala": 3,
+      "Estilo anime": 4,
+      "Atmósfera": 4,
+      "Originalidad": 3,
+      "Calidad técnica": 4,
+      "Utilidad jugable": 4
+    },
+    "estado": "Aprobación artística del agente, sin revisión humana",
+    "critica": "Costra clara de líquenes y pequeñas abrasiones junto a junta oscura; escala de roca ordinaria, terreno seco y punto de observación fuera de grava. Sin criatura fijada al escenario.",
+    "integracion": "Entrada explícita por id en placeIllustrations. No integrada. Vista representativa fija; no representa estado horario o climático.",
+    "sustituye_archivo_aprobado": false,
+    "sha256_png": "ec846133e414734ff5e8ce296b06487978605e37da42e62a43eb29bc93c86086",
+    "sha256_webp": "c9318996dd2b0d1191d20c4cf4dbfb0c96330a7761ed2de898af0380d996196a"
   }
 ]

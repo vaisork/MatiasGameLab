@@ -676,5 +676,239 @@
     "illustration": "/client/art/places/lethra_ribera_oeste-anime-v1.webp",
     "thumbnail": "/client/art/places/lethra_ribera_oeste-anime-v1-thumb.webp",
     "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "edran_cobertizo_campo": {
+    "name": "Cobertizo de las Estacas Numeradas",
+    "illustration": "/client/art/places/edran_cobertizo_campo-anime-v1.webp",
+    "thumbnail": "/client/art/places/edran_cobertizo_campo-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "edran_arboleda": {
+    "name": "Arboleda de los tres árboles",
+    "illustration": "/client/art/places/edran_arboleda-anime-v1.webp",
+    "thumbnail": "/client/art/places/edran_arboleda-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "edran_sendero_regreso": {
+    "name": "Senda de regreso",
+    "illustration": "/client/art/places/edran_sendero_regreso-anime-v1.webp",
+    "thumbnail": "/client/art/places/edran_sendero_regreso-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "edran_camino_carros": {
+    "name": "Camino de carros",
+    "illustration": "/client/art/places/edran_camino_carros-anime-v1.webp",
+    "thumbnail": "/client/art/places/edran_camino_carros-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "nhal_sala_cuidados": {
+    "name": "Cuarto de cuidados de Velmora",
+    "illustration": "/client/art/places/nhal_sala_cuidados-anime-v1.webp",
+    "thumbnail": "/client/art/places/nhal_sala_cuidados-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "nhal_claro_silencio": {
+    "name": "Claro tranquilo",
+    "illustration": "/client/art/places/nhal_claro_silencio-anime-v1.webp",
+    "thumbnail": "/client/art/places/nhal_claro_silencio-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "nhal_raiz_marcada": {
+    "name": "Raíz marcada",
+    "illustration": "/client/art/places/nhal_raiz_marcada-anime-v1.webp",
+    "thumbnail": "/client/art/places/nhal_raiz_marcada-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "nhal_rincon_semillas": {
+    "name": "Rincón de semillas",
+    "illustration": "/client/art/places/nhal_rincon_semillas-anime-v1.webp",
+    "thumbnail": "/client/art/places/nhal_rincon_semillas-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "korven_sala_cuidados": {
+    "name": "Casa de cuidados de Brumak",
+    "illustration": "/client/art/places/korven_sala_cuidados-anime-v1.webp",
+    "thumbnail": "/client/art/places/korven_sala_cuidados-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "lethra_sala_cuidados": {
+    "name": "Plataforma de cuidados de Narevia",
+    "illustration": "/client/art/places/lethra_sala_cuidados-anime-v1.webp",
+    "thumbnail": "/client/art/places/lethra_sala_cuidados-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "veyra_sala_cuidados": {
+    "name": "Cuarto de cuidados de Vaisgard",
+    "illustration": "/client/art/places/veyra_sala_cuidados-anime-v1.webp",
+    "thumbnail": "/client/art/places/veyra_sala_cuidados-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "hoshai_sala_cuidados": {
+    "name": "Asiento de cuidados de Khariel",
+    "illustration": "/client/art/places/hoshai_sala_cuidados-anime-v1.webp",
+    "thumbnail": "/client/art/places/hoshai_sala_cuidados-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "hoshai_taller_apoyos": {
+    "name": "Taller de Khariel",
+    "illustration": "/client/art/places/hoshai_taller_apoyos-anime-v1.webp",
+    "thumbnail": "/client/art/places/hoshai_taller_apoyos-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "hoshai_lavadero_roca": {
+    "name": "Lavadero de roca",
+    "illustration": "/client/art/places/hoshai_lavadero_roca-anime-v1.webp",
+    "thumbnail": "/client/art/places/hoshai_lavadero_roca-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "hoshai_deposito_comun": {
+    "name": "Depósito de herramientas",
+    "illustration": "/client/art/places/hoshai_deposito_comun-anime-v1.webp",
+    "thumbnail": "/client/art/places/hoshai_deposito_comun-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "hoshai_balcon_valle": {
+    "name": "Balcón sobre el valle",
+    "illustration": "/client/art/places/hoshai_balcon_valle-anime-v1.webp",
+    "thumbnail": "/client/art/places/hoshai_balcon_valle-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "hoshai_caseta_revision": {
+    "name": "Caseta del camino",
+    "illustration": "/client/art/places/hoshai_caseta_revision-anime-v1.webp",
+    "thumbnail": "/client/art/places/hoshai_caseta_revision-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "hoshai_mirador_nudo": {
+    "name": "Mirador de la cuerda",
+    "illustration": "/client/art/places/hoshai_mirador_nudo-anime-v1.webp",
+    "thumbnail": "/client/art/places/hoshai_mirador_nudo-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "hoshai_abrigo_pinas": {
+    "name": "Refugio de las piñas",
+    "illustration": "/client/art/places/hoshai_abrigo_pinas-anime-v1.webp",
+    "thumbnail": "/client/art/places/hoshai_abrigo_pinas-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "hoshai_collado_pino": {
+    "name": "Paso del último pino",
+    "illustration": "/client/art/places/hoshai_collado_pino-anime-v1.webp",
+    "thumbnail": "/client/art/places/hoshai_collado_pino-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "hoshai_aprisco_abierto": {
+    "name": "Refugio del rebaño",
+    "illustration": "/client/art/places/hoshai_aprisco_abierto-anime-v1.webp",
+    "thumbnail": "/client/art/places/hoshai_aprisco_abierto-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "hoshai_hombro_lajas": {
+    "name": "Camino de las lajas",
+    "illustration": "/client/art/places/hoshai_hombro_lajas-anime-v1.webp",
+    "thumbnail": "/client/art/places/hoshai_hombro_lajas-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "hoshai_garganta_oeste": {
+    "name": "Garganta hacia Korven",
+    "illustration": "/client/art/places/hoshai_garganta_oeste-anime-v1.webp",
+    "thumbnail": "/client/art/places/hoshai_garganta_oeste-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "korven_meseta_relevo": {
+    "name": "Refugio de Lajas",
+    "illustration": "/client/art/places/korven_meseta_relevo-anime-v1.webp",
+    "thumbnail": "/client/art/places/korven_meseta_relevo-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "hoshai_campamento_lona": {
+    "name": "Campamento de la lona azul",
+    "illustration": "/client/art/places/hoshai_campamento_lona-anime-v1.webp",
+    "thumbnail": "/client/art/places/hoshai_campamento_lona-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "hoshai_cajas_camino": {
+    "name": "Cajas bajo la terraza",
+    "illustration": "/client/art/places/hoshai_cajas_camino-anime-v1.webp",
+    "thumbnail": "/client/art/places/hoshai_cajas_camino-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "korven_almacen_entrada": {
+    "name": "Puerta del almacén viejo",
+    "illustration": "/client/art/places/korven_almacen_entrada-anime-v1.webp",
+    "thumbnail": "/client/art/places/korven_almacen_entrada-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "korven_taller_juntas": {
+    "name": "Taller de Brumak",
+    "illustration": "/client/art/places/korven_taller_juntas-anime-v1.webp",
+    "thumbnail": "/client/art/places/korven_taller_juntas-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "korven_deposito_cubiertas": {
+    "name": "Depósito de cubiertas",
+    "illustration": "/client/art/places/korven_deposito_cubiertas-anime-v1.webp",
+    "thumbnail": "/client/art/places/korven_deposito_cubiertas-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "korven_almacen_cruce": {
+    "name": "Cruce de los sacos vacíos",
+    "illustration": "/client/art/places/korven_almacen_cruce-anime-v1.webp",
+    "thumbnail": "/client/art/places/korven_almacen_cruce-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "korven_almacen_balanzas": {
+    "name": "Mesa de pesaje",
+    "illustration": "/client/art/places/korven_almacen_balanzas-anime-v1.webp",
+    "thumbnail": "/client/art/places/korven_almacen_balanzas-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "korven_almacen_fondo": {
+    "name": "Depósito del fondo",
+    "illustration": "/client/art/places/korven_almacen_fondo-anime-v1.webp",
+    "thumbnail": "/client/art/places/korven_almacen_fondo-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "korven_almacen_lateral": {
+    "name": "Pasillo detrás de los sacos",
+    "illustration": "/client/art/places/korven_almacen_lateral-anime-v1.webp",
+    "thumbnail": "/client/art/places/korven_almacen_lateral-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "korven_cisterna_comun": {
+    "name": "Cisterna común",
+    "illustration": "/client/art/places/korven_cisterna_comun-anime-v1.webp",
+    "thumbnail": "/client/art/places/korven_cisterna_comun-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "korven_mirador_grietas": {
+    "name": "Mirador de las grietas",
+    "illustration": "/client/art/places/korven_mirador_grietas-anime-v1.webp",
+    "thumbnail": "/client/art/places/korven_mirador_grietas-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "korven_cauce_observacion": {
+    "name": "Cauce de piedras movidas",
+    "illustration": "/client/art/places/korven_cauce_observacion-anime-v1.webp",
+    "thumbnail": "/client/art/places/korven_cauce_observacion-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "korven_plataforma_escucha": {
+    "name": "Plataforma de escucha",
+    "illustration": "/client/art/places/korven_plataforma_escucha-anime-v1.webp",
+    "thumbnail": "/client/art/places/korven_plataforma_escucha-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "korven_registro_cauce": {
+    "name": "Registro del cauce",
+    "illustration": "/client/art/places/korven_registro_cauce-anime-v1.webp",
+    "thumbnail": "/client/art/places/korven_registro_cauce-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
+  },
+  "korven_roca_cascaron": {
+    "name": "Roca de los líquenes",
+    "illustration": "/client/art/places/korven_roca_cascaron-anime-v1.webp",
+    "thumbnail": "/client/art/places/korven_roca_cascaron-anime-v1-thumb.webp",
+    "caption": "Vista representativa del lugar. La hora, el clima y los cambios actuales se describen en la lectura."
   }
 }

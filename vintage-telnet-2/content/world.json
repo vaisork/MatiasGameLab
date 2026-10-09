@@ -10,7 +10,17 @@
       "source": "Canon del prompt; descripción original nueva",
       "material": "piel_mordelinde",
       "illustration": "/client/art/bestiary/mordelinde-anime-v1.webp",
-      "combat_intro": "El Mordelinde se afirma sobre las patas y se vuelve hacia ti para defenderse."
+      "combat_intro": "El Mordelinde se afirma sobre las patas y se vuelve hacia ti para defenderse.",
+      "loot": [
+        {
+          "item": "piel_mordelinde",
+          "chance": 0.8
+        },
+        {
+          "item": "colmillo_mordelinde",
+          "chance": 0.45
+        }
+      ]
     },
     "espinajo_rastrojo": {
       "id": "espinajo_rastrojo",
@@ -20,7 +30,17 @@
       "warning": "El Espinajo se afirma entre los tallos y prepara una carga. Tienes una intervención antes de que alcance tu posición.",
       "source": "Canon del prompt; descripción original nueva",
       "material": "fibra_espinajo",
-      "illustration": "/client/art/bestiary/espinajo-rastrojo-anime-v1.webp"
+      "illustration": "/client/art/bestiary/espinajo-rastrojo-anime-v1.webp",
+      "loot": [
+        {
+          "item": "fibra_espinajo",
+          "chance": 0.8
+        },
+        {
+          "item": "espina_espinajo",
+          "chance": 0.45
+        }
+      ]
     },
     "cornalomo": {
       "id": "cornalomo",
@@ -30,7 +50,13 @@
       "warning": "El Cornalomo gira hacia ti y afirma su peso. Sus patas hunden la tierra al cambiar de posición. Todavía puedes retirarte antes del contacto.",
       "source": "Canon del prompt; descripción original nueva",
       "illustration": "/client/art/bestiary/cornalomo-anime-v1.webp",
-      "combat_intro": "El Cornalomo planta las patas y gira hacia ti. La tierra cede bajo su peso mientras entra en combate."
+      "combat_intro": "El Cornalomo planta las patas y gira hacia ti. La tierra cede bajo su peso mientras entra en combate.",
+      "loot": [
+        {
+          "item": "cuerno_cornalomo",
+          "chance": 0.9
+        }
+      ]
     },
     "cascapedernal": {
       "id": "cascapedernal",
@@ -39,7 +65,17 @@
       "description": "Un caparazón oscuro se recoge contra la piedra, cerca de superficies raspadas de liquen. Cuando la sombra de una persona cruza demasiado cerca, el borde produce un golpe seco. La hendidura que utiliza es mucho más estrecha que su contorno aparente.",
       "warning": "El Cascapedernal golpea la piedra con el caparazón y se orienta hacia ti. Tienes una intervención antes de que alcance tus manos.",
       "source": "Canon del prompt; descripción original nueva",
-      "illustration": "/client/art/bestiary/cascapedernal-anime-v1.webp"
+      "illustration": "/client/art/bestiary/cascapedernal-anime-v1.webp",
+      "loot": [
+        {
+          "item": "placa_cascapedernal",
+          "chance": 0.75
+        },
+        {
+          "item": "cristal_veta",
+          "chance": 0.1
+        }
+      ]
     },
     "dorsalodo": {
       "id": "dorsalodo",
@@ -49,7 +85,13 @@
       "warning": "El Dorsalodo abre un paso ancho entre los juncos. El agua se mueve bajo todo su cuerpo y alcanza la orilla. Aún puedes retirarte antes del contacto.",
       "source": "Canon del prompt; descripción original nueva",
       "illustration": "/client/art/bestiary/dorsalodo-anime-v2.webp",
-      "combat_intro": "El Dorsalodo llena el paso entre los juncos. El agua golpea la orilla cuando orienta su cuerpo hacia ti."
+      "combat_intro": "El Dorsalodo llena el paso entre los juncos. El agua golpea la orilla cuando orienta su cuerpo hacia ti.",
+      "loot": [
+        {
+          "item": "escama_dorsalodo",
+          "chance": 0.9
+        }
+      ]
     },
     "hilaria_niebla": {
       "id": "hilaria_niebla",
@@ -68,7 +110,13 @@
       "warning": "El Rasgacorteza se separa del tronco y deja ver el tamaño de su cuerpo. Las ramas altas se doblan bajo su peso. Puedes retroceder antes de entrar en su alcance.",
       "source": "Canon del prompt; descripción original nueva",
       "illustration": "/client/art/bestiary/rasgacorteza-anime-v2.webp",
-      "combat_intro": "El Rasgacorteza se separa del tronco y ocupa el paso. Las ramas se doblan bajo su peso mientras se dispone a atacar."
+      "combat_intro": "El Rasgacorteza se separa del tronco y ocupa el paso. Las ramas se doblan bajo su peso mientras se dispone a atacar.",
+      "loot": [
+        {
+          "item": "corteza_rasgacorteza",
+          "chance": 0.9
+        }
+      ]
     },
     "rondamusgo": {
       "id": "rondamusgo",
@@ -96,7 +144,13 @@
       "warning": "El Rasgacumbres baja de la cornisa y clava las patas en tu camino. Sus garras dejan marcas nuevas en la piedra. Puedes apartarte antes del contacto.",
       "source": "Canon del prompt; descripción original nueva",
       "illustration": "/client/art/bestiary/rasgacumbres-anime-v2.webp",
-      "combat_intro": "El Rasgacumbres clava las patas en el camino. Sus garras raspan la piedra mientras busca un ángulo para atacarte."
+      "combat_intro": "El Rasgacumbres clava las patas en el camino. Sus garras raspan la piedra mientras busca un ángulo para atacarte.",
+      "loot": [
+        {
+          "item": "garra_rasgacumbres",
+          "chance": 0.9
+        }
+      ]
     },
     "quebrarrocas": {
       "id": "quebrarrocas",
@@ -106,7 +160,13 @@
       "warning": "El Quebrarrocas empuja un bloque y abre espacio entre las piedras. El roce deja polvo y una franja recién despejada. Todavía puedes volver por la senda.",
       "source": "Canon del prompt; descripción original nueva",
       "illustration": "/client/art/bestiary/quebrarrocas-anime-v1.webp",
-      "combat_intro": "El Quebrarrocas deja atrás el bloque que empujaba y se orienta hacia ti. La piedra suelta cruje bajo su cuerpo."
+      "combat_intro": "El Quebrarrocas deja atrás el bloque que empujaba y se orienta hacia ti. La piedra suelta cruje bajo su cuerpo.",
+      "loot": [
+        {
+          "item": "placa_quebrarrocas",
+          "chance": 0.9
+        }
+      ]
     },
     "saltacresta": {
       "id": "saltacresta",
@@ -156,7 +216,25 @@
         "por qué": "Este invierno nadie me ha contratado para cargar. Cuando no hay trabajo, el camino parece fácil de cobrar. Ya sé que no está bien. Hoy no se me ocurre otra cosa.",
         "dejar paso": "Por donde viniste está libre. Si das la vuelta, no te sigo."
       },
-      "defeat_text": "El salteador tropieza y suelta el palo. Levanta las manos: «¡Basta! Ya está.» Lo recoge sin volver a alzarlo y se aparta del camino."
+      "defeat_text": "El salteador tropieza y suelta el palo. Levanta las manos: «¡Basta! Ya está.» Lo recoge sin volver a alzarlo y se aparta del camino.",
+      "loot": [
+        {
+          "item": "bolsa_salteador",
+          "chance": 0.6
+        },
+        {
+          "item": "pocion_menor",
+          "chance": 0.35
+        },
+        {
+          "item": "cuero_curtido",
+          "chance": 0.3
+        },
+        {
+          "item": "anillo_cobre",
+          "chance": 0.06
+        }
+      ]
     }
   },
   "items": {
@@ -298,6 +376,558 @@
       "name": "Junco prestado para Seli",
       "kind": "quest",
       "description": "Haz de Bela destinado a la reparación del toldo; no está en venta."
+    },
+    "espada_larga": {
+      "id": "espada_larga",
+      "source": "Ciclo MUD autorizado por el usuario (2026-10-08): botín, tiendas y equipo por partes del cuerpo.",
+      "name": "Espada larga",
+      "kind": "weapon",
+      "damage": 14,
+      "activated": true,
+      "price": 160,
+      "sell_price": 53,
+      "description": "Hoja más larga y pesada que la de juramento. Golpea fuerte y sigue permitiendo bloquear.",
+      "block": true
+    },
+    "espada_vaisgard": {
+      "id": "espada_vaisgard",
+      "source": "Ciclo MUD autorizado por el usuario (2026-10-08): botín, tiendas y equipo por partes del cuerpo.",
+      "name": "Espada de Vaisgard",
+      "kind": "weapon",
+      "damage": 18,
+      "activated": true,
+      "price": 320,
+      "sell_price": 106,
+      "description": "Forjada en los talleres de la gran ciudad: equilibrada, precisa y con guarda para bloquear.",
+      "block": true,
+      "bonus": {
+        "precision": 4
+      }
+    },
+    "punal_hueso": {
+      "id": "punal_hueso",
+      "source": "Ciclo MUD autorizado por el usuario (2026-10-08): botín, tiendas y equipo por partes del cuerpo.",
+      "name": "Puñal de mango de hueso",
+      "kind": "weapon",
+      "damage": 11,
+      "activated": true,
+      "price": 120,
+      "sell_price": 40,
+      "description": "Ligero y rápido: casi nunca falla.",
+      "bonus": {
+        "precision": 6
+      }
+    },
+    "dagas_gemelas": {
+      "id": "dagas_gemelas",
+      "source": "Ciclo MUD autorizado por el usuario (2026-10-08): botín, tiendas y equipo por partes del cuerpo.",
+      "name": "Dagas gemelas",
+      "kind": "weapon",
+      "damage": 15,
+      "activated": true,
+      "price": 280,
+      "sell_price": 93,
+      "description": "Dos hojas cortas que atacan casi a la vez. Muy precisas.",
+      "bonus": {
+        "precision": 8
+      }
+    },
+    "arco_largo": {
+      "id": "arco_largo",
+      "source": "Ciclo MUD autorizado por el usuario (2026-10-08): botín, tiendas y equipo por partes del cuerpo.",
+      "name": "Arco largo",
+      "kind": "weapon",
+      "damage": 13,
+      "activated": true,
+      "price": 150,
+      "sell_price": 50,
+      "description": "Más alto que una persona: dispara lejos y con fuerza.",
+      "ranged": true
+    },
+    "arco_cuerno": {
+      "id": "arco_cuerno",
+      "source": "Ciclo MUD autorizado por el usuario (2026-10-08): botín, tiendas y equipo por partes del cuerpo.",
+      "name": "Arco de cuerno",
+      "kind": "weapon",
+      "damage": 17,
+      "activated": true,
+      "price": 310,
+      "sell_price": 103,
+      "description": "Arco compuesto de madera y cuerno. Potente y certero.",
+      "ranged": true,
+      "bonus": {
+        "precision": 4
+      }
+    },
+    "varita_sauce": {
+      "id": "varita_sauce",
+      "source": "Ciclo MUD autorizado por el usuario (2026-10-08): botín, tiendas y equipo por partes del cuerpo.",
+      "name": "Varita de sauce",
+      "kind": "weapon",
+      "damage": 10,
+      "activated": true,
+      "price": 130,
+      "sell_price": 43,
+      "description": "Madera viva de sauce: concentra mejor y da un poco de aguante.",
+      "focus": true,
+      "bonus": {
+        "vida": 10
+      }
+    },
+    "baston_raiz": {
+      "id": "baston_raiz",
+      "source": "Ciclo MUD autorizado por el usuario (2026-10-08): botín, tiendas y equipo por partes del cuerpo.",
+      "name": "Bastón de raíz",
+      "kind": "weapon",
+      "damage": 15,
+      "activated": true,
+      "price": 300,
+      "sell_price": 100,
+      "description": "Bastón tallado de una raíz antigua. Foco poderoso y vida extra para quien lo lleva.",
+      "focus": true,
+      "bonus": {
+        "vida": 20
+      }
+    },
+    "gorro_cuero": {
+      "id": "gorro_cuero",
+      "source": "Ciclo MUD autorizado por el usuario (2026-10-08): botín, tiendas y equipo por partes del cuerpo.",
+      "name": "Gorro de cuero",
+      "kind": "armor",
+      "slot": "cabeza",
+      "armor_reduction": 0.03,
+      "price": 20,
+      "sell_price": 10,
+      "description": "Cuero curtido, ligero y fácil de llevar."
+    },
+    "casco_reforzado": {
+      "id": "casco_reforzado",
+      "source": "Ciclo MUD autorizado por el usuario (2026-10-08): botín, tiendas y equipo por partes del cuerpo.",
+      "name": "Casco reforzado",
+      "kind": "armor",
+      "slot": "cabeza",
+      "armor_reduction": 0.05,
+      "price": 60,
+      "sell_price": 30,
+      "description": "Cuero con placas cosidas: protege bastante más."
+    },
+    "yelmo_vaisgard": {
+      "id": "yelmo_vaisgard",
+      "source": "Ciclo MUD autorizado por el usuario (2026-10-08): botín, tiendas y equipo por partes del cuerpo.",
+      "name": "Yelmo de Vaisgard",
+      "kind": "armor",
+      "slot": "cabeza",
+      "armor_reduction": 0.07,
+      "price": 150,
+      "sell_price": 75,
+      "description": "Trabajo fino de los talleres de Vaisgard: la mejor protección que se vende."
+    },
+    "jubon_cuero": {
+      "id": "jubon_cuero",
+      "source": "Ciclo MUD autorizado por el usuario (2026-10-08): botín, tiendas y equipo por partes del cuerpo.",
+      "name": "Jubón de cuero",
+      "kind": "armor",
+      "slot": "torso",
+      "armor_reduction": 0.06,
+      "price": 35,
+      "sell_price": 17,
+      "description": "Cuero curtido, ligero y fácil de llevar."
+    },
+    "coraza_reforzada": {
+      "id": "coraza_reforzada",
+      "source": "Ciclo MUD autorizado por el usuario (2026-10-08): botín, tiendas y equipo por partes del cuerpo.",
+      "name": "Coraza reforzada",
+      "kind": "armor",
+      "slot": "torso",
+      "armor_reduction": 0.1,
+      "price": 110,
+      "sell_price": 55,
+      "description": "Cuero con placas cosidas: protege bastante más."
+    },
+    "coraza_vaisgard": {
+      "id": "coraza_vaisgard",
+      "source": "Ciclo MUD autorizado por el usuario (2026-10-08): botín, tiendas y equipo por partes del cuerpo.",
+      "name": "Coraza de Vaisgard",
+      "kind": "armor",
+      "slot": "torso",
+      "armor_reduction": 0.14,
+      "price": 280,
+      "sell_price": 140,
+      "description": "Trabajo fino de los talleres de Vaisgard: la mejor protección que se vende."
+    },
+    "brazales_cuero": {
+      "id": "brazales_cuero",
+      "source": "Ciclo MUD autorizado por el usuario (2026-10-08): botín, tiendas y equipo por partes del cuerpo.",
+      "name": "Brazales de cuero",
+      "kind": "armor",
+      "slot": "brazos",
+      "armor_reduction": 0.03,
+      "price": 18,
+      "sell_price": 9,
+      "description": "Cuero curtido, ligero y fácil de llevar."
+    },
+    "brazales_reforzados": {
+      "id": "brazales_reforzados",
+      "source": "Ciclo MUD autorizado por el usuario (2026-10-08): botín, tiendas y equipo por partes del cuerpo.",
+      "name": "Brazales reforzados",
+      "kind": "armor",
+      "slot": "brazos",
+      "armor_reduction": 0.05,
+      "price": 55,
+      "sell_price": 27,
+      "description": "Cuero con placas cosidas: protege bastante más."
+    },
+    "guanteletes_vaisgard": {
+      "id": "guanteletes_vaisgard",
+      "source": "Ciclo MUD autorizado por el usuario (2026-10-08): botín, tiendas y equipo por partes del cuerpo.",
+      "name": "Guanteletes de Vaisgard",
+      "kind": "armor",
+      "slot": "brazos",
+      "armor_reduction": 0.07,
+      "price": 140,
+      "sell_price": 70,
+      "description": "Trabajo fino de los talleres de Vaisgard: la mejor protección que se vende."
+    },
+    "grebas_cuero": {
+      "id": "grebas_cuero",
+      "source": "Ciclo MUD autorizado por el usuario (2026-10-08): botín, tiendas y equipo por partes del cuerpo.",
+      "name": "Grebas de cuero",
+      "kind": "armor",
+      "slot": "piernas",
+      "armor_reduction": 0.03,
+      "price": 20,
+      "sell_price": 10,
+      "description": "Cuero curtido, ligero y fácil de llevar."
+    },
+    "grebas_reforzadas": {
+      "id": "grebas_reforzadas",
+      "source": "Ciclo MUD autorizado por el usuario (2026-10-08): botín, tiendas y equipo por partes del cuerpo.",
+      "name": "Grebas reforzadas",
+      "kind": "armor",
+      "slot": "piernas",
+      "armor_reduction": 0.05,
+      "price": 60,
+      "sell_price": 30,
+      "description": "Cuero con placas cosidas: protege bastante más."
+    },
+    "quijotes_vaisgard": {
+      "id": "quijotes_vaisgard",
+      "source": "Ciclo MUD autorizado por el usuario (2026-10-08): botín, tiendas y equipo por partes del cuerpo.",
+      "name": "Quijotes de Vaisgard",
+      "kind": "armor",
+      "slot": "piernas",
+      "armor_reduction": 0.07,
+      "price": 150,
+      "sell_price": 75,
+      "description": "Trabajo fino de los talleres de Vaisgard: la mejor protección que se vende."
+    },
+    "botas_cuero": {
+      "id": "botas_cuero",
+      "source": "Ciclo MUD autorizado por el usuario (2026-10-08): botín, tiendas y equipo por partes del cuerpo.",
+      "name": "Botas de cuero",
+      "kind": "armor",
+      "slot": "pies",
+      "armor_reduction": 0.03,
+      "price": 18,
+      "sell_price": 9,
+      "description": "Cuero curtido, ligero y fácil de llevar."
+    },
+    "botas_reforzadas": {
+      "id": "botas_reforzadas",
+      "source": "Ciclo MUD autorizado por el usuario (2026-10-08): botín, tiendas y equipo por partes del cuerpo.",
+      "name": "Botas reforzadas",
+      "kind": "armor",
+      "slot": "pies",
+      "armor_reduction": 0.05,
+      "price": 55,
+      "sell_price": 27,
+      "description": "Cuero con placas cosidas: protege bastante más."
+    },
+    "botas_vaisgard": {
+      "id": "botas_vaisgard",
+      "source": "Ciclo MUD autorizado por el usuario (2026-10-08): botín, tiendas y equipo por partes del cuerpo.",
+      "name": "Botas de Vaisgard",
+      "kind": "armor",
+      "slot": "pies",
+      "armor_reduction": 0.07,
+      "price": 140,
+      "sell_price": 70,
+      "description": "Trabajo fino de los talleres de Vaisgard: la mejor protección que se vende."
+    },
+    "anillo_cobre": {
+      "id": "anillo_cobre",
+      "source": "Ciclo MUD autorizado por el usuario (2026-10-08): botín, tiendas y equipo por partes del cuerpo.",
+      "name": "Anillo de cobre",
+      "kind": "accessory",
+      "slot": "anillo",
+      "bonus": {
+        "vida": 10
+      },
+      "price": 45,
+      "sell_price": 22,
+      "description": "Un anillo sencillo que, dicen, da aguante a quien camina mucho."
+    },
+    "anillo_punteria": {
+      "id": "anillo_punteria",
+      "source": "Ciclo MUD autorizado por el usuario (2026-10-08): botín, tiendas y equipo por partes del cuerpo.",
+      "name": "Anillo de puntería",
+      "kind": "accessory",
+      "slot": "anillo",
+      "bonus": {
+        "precision": 5
+      },
+      "price": 90,
+      "sell_price": 45,
+      "description": "Una piedra pequeña que parece mirar hacia donde apuntas."
+    },
+    "anillo_filo": {
+      "id": "anillo_filo",
+      "source": "Ciclo MUD autorizado por el usuario (2026-10-08): botín, tiendas y equipo por partes del cuerpo.",
+      "name": "Anillo del filo",
+      "kind": "accessory",
+      "slot": "anillo",
+      "bonus": {
+        "dano": 2
+      },
+      "price": 110,
+      "sell_price": 55,
+      "description": "Frío al tacto. Tus golpes pesan un poco más."
+    },
+    "amuleto_raiz": {
+      "id": "amuleto_raiz",
+      "source": "Ciclo MUD autorizado por el usuario (2026-10-08): botín, tiendas y equipo por partes del cuerpo.",
+      "name": "Amuleto de raíz",
+      "kind": "accessory",
+      "slot": "amuleto",
+      "bonus": {
+        "vida": 20
+      },
+      "price": 120,
+      "sell_price": 60,
+      "description": "Un trozo de raíz pulida colgado de un cordel. Da fuerzas para aguantar."
+    },
+    "amuleto_viento": {
+      "id": "amuleto_viento",
+      "source": "Ciclo MUD autorizado por el usuario (2026-10-08): botín, tiendas y equipo por partes del cuerpo.",
+      "name": "Amuleto del viento",
+      "kind": "accessory",
+      "slot": "amuleto",
+      "bonus": {
+        "esquiva": 6
+      },
+      "price": 130,
+      "sell_price": 65,
+      "description": "Una pluma atrapada en resina. Te mueves más ligero."
+    },
+    "amuleto_viajero": {
+      "id": "amuleto_viajero",
+      "source": "Ciclo MUD autorizado por el usuario (2026-10-08): botín, tiendas y equipo por partes del cuerpo.",
+      "name": "Amuleto del viajero",
+      "kind": "accessory",
+      "slot": "amuleto",
+      "bonus": {
+        "vida": 15,
+        "precision": 3
+      },
+      "price": 160,
+      "sell_price": 80,
+      "description": "Lo llevan los mensajeros de las cinco rutas."
+    },
+    "pocion_menor": {
+      "id": "pocion_menor",
+      "source": "Ciclo MUD autorizado por el usuario (2026-10-08): botín, tiendas y equipo por partes del cuerpo.",
+      "name": "Poción menor",
+      "kind": "consumable",
+      "effect": "potion",
+      "heal": 0.25,
+      "fatigue": 0,
+      "wound_steps": 0,
+      "price": 15,
+      "sell_price": 5,
+      "description": "Un frasco pequeño de líquido rojo. Cura un cuarto de tu vida."
+    },
+    "pocion_vida": {
+      "id": "pocion_vida",
+      "source": "Ciclo MUD autorizado por el usuario (2026-10-08): botín, tiendas y equipo por partes del cuerpo.",
+      "name": "Poción de vida",
+      "kind": "consumable",
+      "effect": "potion",
+      "heal": 0.45,
+      "fatigue": 0,
+      "wound_steps": 0,
+      "price": 35,
+      "sell_price": 11,
+      "description": "Un frasco grande y espeso. Cura casi la mitad de tu vida."
+    },
+    "tonico_camino": {
+      "id": "tonico_camino",
+      "source": "Ciclo MUD autorizado por el usuario (2026-10-08): botín, tiendas y equipo por partes del cuerpo.",
+      "name": "Tónico del camino",
+      "kind": "consumable",
+      "effect": "potion",
+      "heal": 0,
+      "fatigue": 40,
+      "wound_steps": 0,
+      "price": 12,
+      "sell_price": 4,
+      "description": "Sabe a menta y a hierro. Quita gran parte del cansancio."
+    },
+    "unguento_heridas": {
+      "id": "unguento_heridas",
+      "source": "Ciclo MUD autorizado por el usuario (2026-10-08): botín, tiendas y equipo por partes del cuerpo.",
+      "name": "Ungüento para heridas",
+      "kind": "consumable",
+      "effect": "potion",
+      "heal": 0.1,
+      "fatigue": 0,
+      "wound_steps": 1,
+      "price": 25,
+      "sell_price": 8,
+      "description": "Pasta verde que alivia una herida y cura un poco."
+    },
+    "colmillo_mordelinde": {
+      "id": "colmillo_mordelinde",
+      "source": "Ciclo MUD autorizado por el usuario (2026-10-08): botín, tiendas y equipo por partes del cuerpo.",
+      "name": "Colmillo de Mordelinde",
+      "kind": "material",
+      "sell_price": 5,
+      "description": "Pequeño y afilado. Los artesanos lo usan para coser cuero."
+    },
+    "espina_espinajo": {
+      "id": "espina_espinajo",
+      "source": "Ciclo MUD autorizado por el usuario (2026-10-08): botín, tiendas y equipo por partes del cuerpo.",
+      "name": "Espina de Espinajo",
+      "kind": "material",
+      "sell_price": 5,
+      "description": "Dura como un clavo. Sirve para hacer agujas."
+    },
+    "placa_cascapedernal": {
+      "id": "placa_cascapedernal",
+      "source": "Ciclo MUD autorizado por el usuario (2026-10-08): botín, tiendas y equipo por partes del cuerpo.",
+      "name": "Placa de Cascapedernal",
+      "kind": "material",
+      "sell_price": 7,
+      "description": "Una placa dura como la piedra. Muy buscada para reforzar armaduras."
+    },
+    "cuero_curtido": {
+      "id": "cuero_curtido",
+      "source": "Ciclo MUD autorizado por el usuario (2026-10-08): botín, tiendas y equipo por partes del cuerpo.",
+      "name": "Cuero curtido",
+      "kind": "material",
+      "sell_price": 6,
+      "description": "Un trozo de cuero ya trabajado, listo para remendar."
+    },
+    "hierro_viejo": {
+      "id": "hierro_viejo",
+      "source": "Ciclo MUD autorizado por el usuario (2026-10-08): botín, tiendas y equipo por partes del cuerpo.",
+      "name": "Hierro viejo",
+      "kind": "material",
+      "sell_price": 5,
+      "description": "Un trozo de hierro oxidado. El herrero lo funde y lo aprovecha."
+    },
+    "cuna_madera": {
+      "id": "cuna_madera",
+      "source": "Ciclo MUD autorizado por el usuario (2026-10-08): botín, tiendas y equipo por partes del cuerpo.",
+      "name": "Cuña de madera",
+      "kind": "material",
+      "sell_price": 3,
+      "description": "Una cuña dura y gastada, de las que sujetan ruedas y compuertas."
+    },
+    "clavos_oxidados": {
+      "id": "clavos_oxidados",
+      "source": "Ciclo MUD autorizado por el usuario (2026-10-08): botín, tiendas y equipo por partes del cuerpo.",
+      "name": "Clavos oxidados",
+      "kind": "material",
+      "sell_price": 3,
+      "description": "Un puñado de clavos viejos. Aún sirven."
+    },
+    "hierbas_curativas": {
+      "id": "hierbas_curativas",
+      "source": "Ciclo MUD autorizado por el usuario (2026-10-08): botín, tiendas y equipo por partes del cuerpo.",
+      "name": "Hierbas curativas",
+      "kind": "material",
+      "sell_price": 4,
+      "description": "Hojas que los cuidadores usan para sus ungüentos."
+    },
+    "setas_bosque": {
+      "id": "setas_bosque",
+      "source": "Ciclo MUD autorizado por el usuario (2026-10-08): botín, tiendas y equipo por partes del cuerpo.",
+      "name": "Setas del bosque",
+      "kind": "material",
+      "sell_price": 3,
+      "description": "Setas comestibles, muy apreciadas en las cocinas."
+    },
+    "pluma_vistosa": {
+      "id": "pluma_vistosa",
+      "source": "Ciclo MUD autorizado por el usuario (2026-10-08): botín, tiendas y equipo por partes del cuerpo.",
+      "name": "Pluma vistosa",
+      "kind": "material",
+      "sell_price": 4,
+      "description": "Larga y brillante. Los mercaderes de cintas la compran."
+    },
+    "cristal_veta": {
+      "id": "cristal_veta",
+      "source": "Ciclo MUD autorizado por el usuario (2026-10-08): botín, tiendas y equipo por partes del cuerpo.",
+      "name": "Cristal de veta",
+      "kind": "material",
+      "sell_price": 14,
+      "description": "Un cristal claro que brilla por dentro. Vale bastante."
+    },
+    "bolsita_cuentas": {
+      "id": "bolsita_cuentas",
+      "source": "Ciclo MUD autorizado por el usuario (2026-10-08): botín, tiendas y equipo por partes del cuerpo.",
+      "name": "Bolsita de cuentas",
+      "kind": "material",
+      "sell_price": 10,
+      "description": "Cuentas de colores olvidadas en una bolsita de tela."
+    },
+    "cuerno_cornalomo": {
+      "id": "cuerno_cornalomo",
+      "source": "Ciclo MUD autorizado por el usuario (2026-10-08): botín, tiendas y equipo por partes del cuerpo.",
+      "name": "Cuerno de Cornalomo",
+      "kind": "material",
+      "sell_price": 40,
+      "description": "Un trofeo enorme. Pocos pueden decir que lo consiguieron."
+    },
+    "escama_dorsalodo": {
+      "id": "escama_dorsalodo",
+      "source": "Ciclo MUD autorizado por el usuario (2026-10-08): botín, tiendas y equipo por partes del cuerpo.",
+      "name": "Escama de Dorsalodo",
+      "kind": "material",
+      "sell_price": 40,
+      "description": "Grande como una mano abierta, dura y fría."
+    },
+    "garra_rasgacumbres": {
+      "id": "garra_rasgacumbres",
+      "source": "Ciclo MUD autorizado por el usuario (2026-10-08): botín, tiendas y equipo por partes del cuerpo.",
+      "name": "Garra de Rasgacumbres",
+      "kind": "material",
+      "sell_price": 45,
+      "description": "Curva y negra. Un trofeo de las cumbres."
+    },
+    "placa_quebrarrocas": {
+      "id": "placa_quebrarrocas",
+      "source": "Ciclo MUD autorizado por el usuario (2026-10-08): botín, tiendas y equipo por partes del cuerpo.",
+      "name": "Placa de Quebrarrocas",
+      "kind": "material",
+      "sell_price": 45,
+      "description": "Pesa como una piedra. Los armeros pagan bien por ella."
+    },
+    "corteza_rasgacorteza": {
+      "id": "corteza_rasgacorteza",
+      "source": "Ciclo MUD autorizado por el usuario (2026-10-08): botín, tiendas y equipo por partes del cuerpo.",
+      "name": "Corteza de Rasgacorteza",
+      "kind": "material",
+      "sell_price": 40,
+      "description": "Dura como el hierro y con olor a bosque."
+    },
+    "bolsa_salteador": {
+      "id": "bolsa_salteador",
+      "source": "Ciclo MUD autorizado por el usuario (2026-10-08): botín, tiendas y equipo por partes del cuerpo.",
+      "name": "Bolsa del salteador",
+      "kind": "material",
+      "sell_price": 8,
+      "description": "Lo que el salteador había quitado a otros viajeros."
     }
   },
   "quests": {
@@ -659,6 +1289,62 @@
     "nhal_rastro_alto": {
       "flag": "nhal_rastro_alto",
       "title": "El árbol que se dobló sin romperse"
+    },
+    "sec_h_estacas": {
+      "flag": "sec_h_estacas",
+      "title": "Las estacas de generaciones"
+    },
+    "sec_h_piedra": {
+      "flag": "sec_h_piedra",
+      "title": "La piedra respetada"
+    },
+    "sec_h_carga_pendiente": {
+      "flag": "sec_h_carga_pendiente",
+      "title": "La carga que todavía espera"
+    },
+    "sec_f_nudo": {
+      "flag": "sec_f_nudo",
+      "title": "El nudo visto desde otro ángulo"
+    },
+    "sec_f_apoyos": {
+      "flag": "sec_f_apoyos",
+      "title": "Los apoyos que no encajan"
+    },
+    "sec_f_eco": {
+      "flag": "sec_f_eco",
+      "title": "El eco bajo la terraza"
+    },
+    "sec_d_vibracion": {
+      "flag": "sec_d_vibracion",
+      "title": "La piedra que responde distinto"
+    },
+    "sec_d_espesor": {
+      "flag": "sec_d_espesor",
+      "title": "El espesor de Taren"
+    },
+    "sec_d_junta": {
+      "flag": "sec_d_junta",
+      "title": "La junta entre líquenes"
+    },
+    "sec_m_corrientes": {
+      "flag": "sec_m_corrientes",
+      "title": "Dos corrientes"
+    },
+    "sec_m_fibra": {
+      "flag": "sec_m_fibra",
+      "title": "La fibra bajo el amarre"
+    },
+    "sec_v_senal": {
+      "flag": "sec_v_senal",
+      "title": "La señal bajo la sombra"
+    },
+    "sec_v_pausa": {
+      "flag": "sec_v_pausa",
+      "title": "Las pausas del relato"
+    },
+    "sec_v_fundas": {
+      "flag": "sec_v_fundas",
+      "title": "Las fundas del relevo"
     }
   }
 }
