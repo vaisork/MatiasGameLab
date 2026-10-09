@@ -52,6 +52,14 @@
           {
             "item": "cuerda_recuperada",
             "text": "Un cordel de corteza trenzada, olvidado en una rama."
+          },
+          {
+            "item": "mechon_rondamusgo",
+            "text": "En una raíz hueca hay un mechón de pelo áspero con musgo y semillas pegadas: un Rondamusgo se frotó aquí."
+          },
+          {
+            "item": "hilo_hilaria",
+            "text": "Entre dos raíces cuelga una red de Hilaria abandonada. Enrollas los hilos, fuertes y finos, sin romper ninguna red habitada."
           }
         ],
         "traces": [
@@ -68,7 +76,15 @@
             "text": "Una marca tallada en la corteza, muy antigua, medio tapada por la madera nueva: dos líneas y un círculo.",
             "flag": "pista_talla"
           },
-          "Un recipiente de madera viejo, olvidado entre las raíces, lleno de agua de lluvia."
+          "Un recipiente de madera viejo, olvidado entre las raíces, lleno de agua de lluvia.",
+          "Una sombra pequeña cruza entre las copas sin un ruido. Bajo una rama hay restos de alas de insecto: caza de una Velomembrana.",
+          "La corteza de un tronco cuelga en tiras largas y frescas. Algo ha estado buscando larvas: un Roecorteza.",
+          "Un tronco podrido está lleno de túneles anchos, y dentro se oye un crujido constante: un Quebracáscara.",
+          "Hay montones de tierra recién sacada junto a las raíces, y un agujero que se pierde hacia abajo: el refugio de un Escarbaraíz.",
+          "Hay púas largas clavadas en los troncos bajos, todas a la misma altura. Por aquí pasa un Clavaespina.",
+          "Aquí los pájaros no cantan. Entre los helechos hay un paso bajo y estrecho, como de un animal largo: territorio de un Mordesombra.",
+          "Muy arriba, la corteza de las ramas está raspada por uñas ganchudas. Algo acecha ahí arriba: un Garfarrama.",
+          "El suelo del claro está levantado, con raíces arrancadas y tierra revuelta. Se oyen resoplidos lejos: un Tronchacolmillo."
         ],
         "empty": [
           "Sólo hojas, raíces y sombra.",
@@ -130,8 +146,23 @@
       ],
       "wildlife_pool": [
         {
-          "creature": "forajido_camino",
-          "text": "Un salteador sale de detrás de unas piedras y se planta delante de ti: «La mochila, y sigues tu camino».",
+          "creature": "velomembrana",
+          "text": "Una Velomembrana planea entre las copas, con las orejas enormes recortadas contra el cielo.",
+          "persistent_trace": false,
+          "requires_time": [
+            "noche",
+            "atardecer",
+            "amanecer"
+          ]
+        },
+        {
+          "creature": "roecorteza",
+          "text": "Se oye un roer constante: un Roecorteza trabaja la corteza, de espaldas a ti.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "roecorteza",
+          "text": "Un Roecorteza arranca tiras de corteza de un tronco y busca larvas debajo.",
           "persistent_trace": false
         },
         {
@@ -175,6 +206,21 @@
       "signals": [],
       "actions": [],
       "wildlife_pool": [
+        {
+          "creature": "quebracascara",
+          "text": "Una cubierta negra y brillante asoma de un tronco podrido: un Quebracáscara está comiendo.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "roecorteza",
+          "text": "Se oye un roer constante: un Roecorteza trabaja la corteza, de espaldas a ti.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "roecorteza",
+          "text": "Un Roecorteza arranca tiras de corteza de un tronco y busca larvas debajo.",
+          "persistent_trace": false
+        },
         {
           "creature": "rondamusgo",
           "text": "Una franja de hojas removidas llega hasta una raíz. Entre las hojas altas se engancharon pelo áspero y semillas que no cayeron del árbol cercano.",
@@ -237,8 +283,23 @@
       "actions": [],
       "wildlife_pool": [
         {
-          "creature": "forajido_camino",
-          "text": "Un salteador sale de detrás de unas piedras y se planta delante de ti: «La mochila, y sigues tu camino».",
+          "creature": "escarbaraiz",
+          "text": "Un Escarbaraíz saca tierra de su agujero entre las raíces, con las patas delanteras enormes.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "roecorteza",
+          "text": "Se oye un roer constante: un Roecorteza trabaja la corteza, de espaldas a ti.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "roecorteza",
+          "text": "Un Roecorteza arranca tiras de corteza de un tronco y busca larvas debajo.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "quebracascara",
+          "text": "Una cubierta negra y brillante asoma de un tronco podrido: un Quebracáscara está comiendo.",
           "persistent_trace": false
         },
         {
@@ -280,8 +341,23 @@
       "actions": [],
       "wildlife_pool": [
         {
-          "creature": "forajido_camino",
-          "text": "Una persona con un palo corto te corta el paso y señala tu mochila.",
+          "creature": "hilaria_niebla",
+          "text": "Las gotas de niebla dibujan una red baja entre las raíces. Al borde, una Hilaria de niebla espera inmóvil.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "velomembrana",
+          "text": "Una Velomembrana planea entre las copas, con las orejas enormes recortadas contra el cielo.",
+          "persistent_trace": false,
+          "requires_time": [
+            "noche",
+            "atardecer",
+            "amanecer"
+          ]
+        },
+        {
+          "creature": "garfarrama",
+          "text": "Tumbado en una rama, sobre el camino, un Garfarrama te mira con la cola rígida.",
           "persistent_trace": false
         },
         {
@@ -322,8 +398,23 @@
       "actions": [],
       "wildlife_pool": [
         {
-          "creature": "forajido_camino",
-          "text": "Un salteador sale de detrás de unas piedras y se planta delante de ti: «La mochila, y sigues tu camino».",
+          "creature": "roecorteza",
+          "text": "Se oye un roer constante: un Roecorteza trabaja la corteza, de espaldas a ti.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "roecorteza",
+          "text": "Un Roecorteza arranca tiras de corteza de un tronco y busca larvas debajo.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "escarbaraiz",
+          "text": "Un Escarbaraíz saca tierra de su agujero entre las raíces, con las patas delanteras enormes.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "hilaria_niebla",
+          "text": "Las gotas de niebla dibujan una red baja entre las raíces. Al borde, una Hilaria de niebla espera inmóvil.",
           "persistent_trace": false
         },
         {
@@ -384,8 +475,13 @@
       "dusk": "El movimiento bajo las hojas se vuelve más difícil de seguir. Una semilla queda enganchada en un mechón, cerca del hueco donde la criatura regresa.",
       "wildlife_pool": [
         {
-          "creature": "forajido_camino",
-          "text": "Una persona con un palo corto te corta el paso y señala tu mochila.",
+          "creature": "hilaria_niebla",
+          "text": "Las gotas de niebla dibujan una red baja entre las raíces. Al borde, una Hilaria de niebla espera inmóvil.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "escarbaraiz",
+          "text": "Un Escarbaraíz saca tierra de su agujero entre las raíces, con las patas delanteras enormes.",
           "persistent_trace": false
         },
         {
@@ -427,8 +523,13 @@
       "brief": "El puente entre árboles y su piedra de aviso.",
       "wildlife_pool": [
         {
-          "creature": "forajido_camino",
-          "text": "Un salteador sale de detrás de unas piedras y se planta delante de ti: «La mochila, y sigues tu camino».",
+          "creature": "quebracascara",
+          "text": "Una cubierta negra y brillante asoma de un tronco podrido: un Quebracáscara está comiendo.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "garfarrama",
+          "text": "Tumbado en una rama, sobre el camino, un Garfarrama te mira con la cola rígida.",
           "persistent_trace": false
         }
       ]
@@ -459,8 +560,23 @@
       "actions": [],
       "wildlife_pool": [
         {
-          "creature": "forajido_camino",
-          "text": "Una persona con un palo corto te corta el paso y señala tu mochila.",
+          "creature": "mordesombra",
+          "text": "Algo largo de seis patas cruza la senda de un salto y se esconde en los helechos: un Mordesombra.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "mordesombra",
+          "text": "Los pájaros se callan de golpe. Entre los helechos, muy cerca del suelo, brillan unos ojos: un Mordesombra.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "clavaespina",
+          "text": "Un Clavaespina se rasca contra un tronco y deja púas clavadas en la corteza.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "clavaespina",
+          "text": "Entre los helechos se mueve un lomo lleno de púas: un Clavaespina.",
           "persistent_trace": false
         },
         {
@@ -500,11 +616,6 @@
       "signals": [],
       "actions": [],
       "wildlife_pool": [
-        {
-          "creature": "forajido_camino",
-          "text": "Alguien con la ropa gastada del camino espera junto al paso, con un palo en la mano. Quiere tu carga.",
-          "persistent_trace": false
-        },
         {
           "creature": "rondamusgo",
           "text": "Un mechón con musgo roza la pata de la mesa de espera. La marca continúa hacia las raíces exteriores, lejos de las luces de las casas.",
@@ -870,13 +981,7 @@
         }
       ],
       "brief": "El secadero del taller.",
-      "wildlife_pool": [
-        {
-          "creature": "forajido_camino",
-          "text": "Alguien con la ropa gastada del camino espera junto al paso, con un palo en la mano. Quiere tu carga.",
-          "persistent_trace": false
-        }
-      ]
+      "wildlife_pool": []
     },
     "nhal_mercado_setas": {
       "id": "nhal_mercado_setas",
@@ -944,7 +1049,42 @@
         "garra_rasgacumbres",
         "placa_quebrarrocas",
         "corteza_rasgacorteza",
-        "bolsa_salteador"
+        "bolsa_salteador",
+        "incisivo_mordijunco",
+        "piel_mordijunco",
+        "placa_cienfango",
+        "mandibula_cienfango",
+        "placa_raizacapa",
+        "piel_aguaculebra",
+        "espina_aguaculebra",
+        "diente_cortacorriente",
+        "piel_cortacorriente",
+        "placa_faucecieno",
+        "diente_faucecieno",
+        "piel_tragacharco",
+        "hueso_tragacharco",
+        "pelaje_sombranutria",
+        "diente_sombranutria",
+        "membrana_velomembrana",
+        "pelaje_velomembrana",
+        "incisivo_roecorteza",
+        "piel_roecorteza",
+        "quitina_quebracascara",
+        "mandibula_quebracascara",
+        "una_escarbaraiz",
+        "escama_escarbaraiz",
+        "espina_clavaespina",
+        "cuero_clavaespina",
+        "piel_mordesombra",
+        "diente_mordesombra",
+        "garra_garfarrama",
+        "escama_garfarrama",
+        "colmillo_tronchacolmillo",
+        "cuero_tronchacolmillo",
+        "caparazon_mudado_pinzajunco",
+        "piel_mudada_saltalodo",
+        "mechon_rondamusgo",
+        "hilo_hilaria"
       ],
       "states": [
         {
@@ -1392,8 +1532,18 @@
       ],
       "wildlife_pool": [
         {
-          "creature": "forajido_camino",
-          "text": "Alguien con la ropa gastada del camino espera junto al paso, con un palo en la mano. Quiere tu carga.",
+          "creature": "velomembrana",
+          "text": "Una Velomembrana planea entre las copas, con las orejas enormes recortadas contra el cielo.",
+          "persistent_trace": false,
+          "requires_time": [
+            "noche",
+            "atardecer",
+            "amanecer"
+          ]
+        },
+        {
+          "creature": "tronchacolmillo",
+          "text": "En el claro, un Tronchacolmillo levanta raíces con los colmillos, resoplando.",
           "persistent_trace": false
         },
         {
@@ -1490,8 +1640,18 @@
       "brief": "El cauce bajo los árboles.",
       "wildlife_pool": [
         {
-          "creature": "forajido_camino",
-          "text": "Una persona con un palo corto te corta el paso y señala tu mochila.",
+          "creature": "clavaespina",
+          "text": "Un Clavaespina se rasca contra un tronco y deja púas clavadas en la corteza.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "clavaespina",
+          "text": "Entre los helechos se mueve un lomo lleno de púas: un Clavaespina.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "hilaria_niebla",
+          "text": "Las gotas de niebla dibujan una red baja entre las raíces. Al borde, una Hilaria de niebla espera inmóvil.",
           "persistent_trace": false
         }
       ]
@@ -1524,8 +1684,18 @@
       "actions": [],
       "wildlife_pool": [
         {
-          "creature": "forajido_camino",
-          "text": "Alguien con la ropa gastada del camino espera junto al paso, con un palo en la mano. Quiere tu carga.",
+          "creature": "quebracascara",
+          "text": "Una cubierta negra y brillante asoma de un tronco podrido: un Quebracáscara está comiendo.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "clavaespina",
+          "text": "Un Clavaespina se rasca contra un tronco y deja púas clavadas en la corteza.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "clavaespina",
+          "text": "Entre los helechos se mueve un lomo lleno de púas: un Clavaespina.",
           "persistent_trace": false
         },
         {
@@ -1603,6 +1773,21 @@
           ]
         },
         {
+          "creature": "clavaespina",
+          "text": "Un Clavaespina se rasca contra un tronco y deja púas clavadas en la corteza.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "clavaespina",
+          "text": "Entre los helechos se mueve un lomo lleno de púas: un Clavaespina.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "garfarrama",
+          "text": "Tumbado en una rama, sobre el camino, un Garfarrama te mira con la cola rígida.",
+          "persistent_trace": false
+        },
+        {
           "creature": "rondamusgo",
           "text": "Un Rondamusgo baja la cuesta entre raíces con la boca llena de semillas. Al verte se mete en el descanso de raíces y espera a que pases.",
           "persistent_trace": false
@@ -1644,8 +1829,18 @@
       "brief": "La roca entre los árboles, con Hoshai a lo lejos.",
       "wildlife_pool": [
         {
-          "creature": "forajido_camino",
-          "text": "Alguien con la ropa gastada del camino espera junto al paso, con un palo en la mano. Quiere tu carga.",
+          "creature": "velomembrana",
+          "text": "Una Velomembrana planea entre las copas, con las orejas enormes recortadas contra el cielo.",
+          "persistent_trace": false,
+          "requires_time": [
+            "noche",
+            "atardecer",
+            "amanecer"
+          ]
+        },
+        {
+          "creature": "garfarrama",
+          "text": "Tumbado en una rama, sobre el camino, un Garfarrama te mira con la cola rígida.",
           "persistent_trace": false
         }
       ]
@@ -1719,13 +1914,7 @@
         "sur": "Una roca ancha sobresale entre las copas; más abajo, las luces de un pueblo entre árboles.",
         "oeste": "Un cordel entre dos árboles marca un camino que sale del bosque hacia la montaña."
       },
-      "wildlife_pool": [
-        {
-          "creature": "forajido_camino",
-          "text": "Alguien con la ropa gastada del camino espera junto al paso, con un palo en la mano. Quiere tu carga.",
-          "persistent_trace": false
-        }
-      ]
+      "wildlife_pool": []
     },
     "nhal_senda_recipiente": {
       "id": "nhal_senda_recipiente",
@@ -1751,11 +1940,6 @@
       "signals": [],
       "actions": [],
       "wildlife_pool": [
-        {
-          "creature": "forajido_camino",
-          "text": "Un salteador sale de detrás de unas piedras y se planta delante de ti: «La mochila, y sigues tu camino».",
-          "persistent_trace": false
-        },
         {
           "creature": "rondamusgo",
           "text": "Junto a la tira de tela, una semilla se ha prendido al pelo áspero que quedó en la corteza. Los rastros siguen por debajo del apoyo de paso.",
@@ -1884,13 +2068,7 @@
       "dawn": "Elin descubre un recipiente que quedó frío. Se ríe al reconocer qué parte del relato hizo olvidar a todos que aún faltaba comer.",
       "dusk": "Elin coloca un asiento cerca de la puerta. La comida se reparte en porciones menores, para que quien llegue tarde pueda sentarse sin pedir que empiece otra cena.",
       "brief": "La puerta de Elin.",
-      "wildlife_pool": [
-        {
-          "creature": "forajido_camino",
-          "text": "Un salteador sale de detrás de unas piedras y se planta delante de ti: «La mochila, y sigues tu camino».",
-          "persistent_trace": false
-        }
-      ]
+      "wildlife_pool": []
     },
     "nhal_rincon_semillas": {
       "id": "nhal_rincon_semillas",
@@ -1983,8 +2161,18 @@
       ],
       "wildlife_pool": [
         {
-          "creature": "forajido_camino",
-          "text": "Alguien con la ropa gastada del camino espera junto al paso, con un palo en la mano. Quiere tu carga.",
+          "creature": "roecorteza",
+          "text": "Se oye un roer constante: un Roecorteza trabaja la corteza, de espaldas a ti.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "roecorteza",
+          "text": "Un Roecorteza arranca tiras de corteza de un tronco y busca larvas debajo.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "escarbaraiz",
+          "text": "Un Escarbaraíz saca tierra de su agujero entre las raíces, con las patas delanteras enormes.",
           "persistent_trace": false
         }
       ]
@@ -2108,8 +2296,18 @@
       ],
       "wildlife_pool": [
         {
-          "creature": "forajido_camino",
-          "text": "Una persona con un palo corto te corta el paso y señala tu mochila.",
+          "creature": "tronchacolmillo",
+          "text": "En el claro, un Tronchacolmillo levanta raíces con los colmillos, resoplando.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "mordesombra",
+          "text": "Algo largo de seis patas cruza la senda de un salto y se esconde en los helechos: un Mordesombra.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "mordesombra",
+          "text": "Los pájaros se callan de golpe. Entre los helechos, muy cerca del suelo, brillan unos ojos: un Mordesombra.",
           "persistent_trace": false
         }
       ]

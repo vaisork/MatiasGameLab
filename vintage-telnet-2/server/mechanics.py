@@ -61,13 +61,13 @@ PEACEFUL_WITHDRAWALS = {
 
 def scaled(profile,level):
  """Same creature, stronger with level: +20% hp, +12% damage, +2 accuracy per level above its base."""
- if not level or profile.get('category')!='comparable':return dict(profile)
+ if not level or profile.get('category') not in ('favorable','comparable','peligroso'):return dict(profile)
  steps=max(0,int(level)-profile['level'])
  return dict(profile,level=max(profile['level'],int(level)),hp=rounded(profile['hp']*(1+.2*steps)),damage=rounded(profile['damage']*(1+.12*steps)),accuracy=min(85,profile['accuracy']+2*steps))
 
 def threat_observation(creature_id):
  text=THREAT_OBSERVATIONS.get(creature_id,'Conserva una salida antes de entrar en su alcance.')
- intention=REGIONAL_INTENTIONS.get(creature_id)
+ intention=REGIONAL_INTENTIONS.get(creature_id) or MINOR_INTENTIONS.get(creature_id)
  return text+(' '+intention['tell'] if intention else '')
 
 def peaceful_withdrawal(creature_id):
@@ -303,3 +303,99 @@ def resolve_round(state, creature, rng, respond=True):
   if signature and state['_class']=='sombra':combat['opening']=True
  combat['prepared']=False;combat['round']+=1;combat['cooldown']=max(0,combat.get('cooldown',0)-1)
  return events,'death' if state['hp']<=0 else 'ongoing'
+
+
+# Minor fauna of Lethra and Nhal (historian's risk bestiary, PR #669). Three risk tiers on the existing scale:
+# defensive prey (favorable), common rivals (comparable) and dangerous predators (peligroso, warned and avoidable).
+# Existing species (pinzajunco, saltalodo, rondamusgo, hilaria_niebla) stay non-combatant as implemented.
+MINOR_FAUNA = {
+ 'mordijunco': {'profile':{'hp':24,'accuracy':45,'damage':5,'reduction':0,'evasion':10,'level':1,'category':'favorable'},
+  'observation':'Muerde y retrocede hacia su madriguera. Si no le cierras el paso, prefiere huir.',
+  'prose':{'hit':['{n} te muerde la bota con sus incisivos anchos y retrocede','{n} se revuelve entre los tallos y te muerde la mano','{n} salta desde los juncos y te muerde el tobillo'],
+           'miss':['{n} da un mordisco al aire y vuelve a esconderse entre los tallos.','Los dientes de {n} se cierran a un dedo de tu mano.']}},
+ 'cienfango': {'profile':{'hp':38,'accuracy':52,'damage':7,'reduction':.10,'level':2,'category':'comparable'},
+  'intention':{'id':'emboscada_raices','name':'Emboscada desde las raíces','interruptible':True,'frontal':False,'tell':'El Cienfango se pega bajo una raíz húmeda y encoge las patas: va a salir de lado. Puedes interrumpirlo antes de que salte.'},
+  'observation':'Ataca desde debajo de troncos y raíces mojadas. Mantente en el centro del paso, lejos de su escondite.',
+  'prose':{'hit':['{n} sale de debajo de la raíz y sus mandíbulas te cortan el cuero de la manga','Las patas de {n} se te agarran a la pierna y te muerde','{n} se enrosca y te muerde de lado'],
+           'miss':['{n} sale disparado de la raíz, pero sus mandíbulas sólo cortan barro.','Las patas de {n} resbalan en la madera mojada y falla el mordisco.']}},
+ 'raizacapa': {'profile':{'hp':46,'accuracy':46,'damage':7,'reduction':.20,'level':2,'category':'comparable'},
+  'observation':'Su caparazón rugoso aguanta muchos golpes. Es lento: puedes tomarte tiempo para apuntar.',
+  'prose':{'hit':['{n} estira el cuello de golpe y te muerde el brazo','{n} te embiste con el borde del caparazón','La mordida de {n} te pilla la pierna y no suelta enseguida'],
+           'miss':['{n} saca la cabeza, muerde el aire y se recoge bajo el caparazón.','Tu golpe y su mordisco se cruzan sin tocaros; {n} se esconde otra vez.']}},
+ 'aguaculebra': {'profile':{'hp':34,'accuracy':50,'damage':7,'reduction':0,'evasion':15,'level':2,'category':'comparable'},
+  'observation':'Muerde y se mete en una grieta del agua. Golpea cuando asome la cabeza.',
+  'prose':{'hit':['{n} sale de una grieta inundada y te muerde la mano','La cabeza plana de {n} aparece junto a tu pie y te muerde','{n} se enrosca en tu tobillo y te muerde antes de soltarse'],
+           'miss':['{n} asoma, abre la boca y vuelve a desaparecer en el agua.','Sólo ves un remolino: {n} ya no está donde golpeaste.']}},
+ 'cortacorriente': {'profile':{'hp':32,'accuracy':55,'damage':8,'reduction':0,'evasion':10,'level':2,'category':'comparable'},
+  'observation':'Es rápido y muerde fuerte dentro del agua, pero fuera de ella es torpe. Quédate en lo seco.',
+  'prose':{'hit':['{n} salta desde la corriente y sus dientes te enganchan la pierna','{n} te muerde la mano que tenías cerca del agua','{n} da un coletazo y te muerde al pasar'],
+           'miss':['{n} salta, pero cae al agua sin alcanzarte.','Los dientes de {n} chocan contra la tabla donde apoyabas el pie.']}},
+ 'faucecieno': {'profile':{'hp':80,'accuracy':58,'damage':13,'reduction':.20,'level':4,'category':'peligroso'},
+  'intention':{'id':'arrastre','name':'Arrastre al agua','interruptible':False,'frontal':True,'tell':'El Faucecieno abre el hocico ancho y se desliza hacia ti desde el agua turbia: va a morder y arrastrar. No puedes interrumpirlo; protégete o apártate.'},
+  'observation':'Embosca desde el agua turbia y arrastra a su presa. No luches donde no haya suelo firme.',
+  'withdrawal':'Te alejas del borde y buscas suelo firme. El Faucecieno vuelve a hundirse; sólo quedan burbujas.',
+  'prose':{'hit':['{n} te muerde con su hocico ancho y tira de ti hacia el agua','Las placas de {n} te golpean al revolverse en el barro','{n} cierra las mandíbulas sobre tu pierna y sacude la cabeza'],
+           'miss':['{n} muerde la orilla donde estabas y levanta una ola de barro.','Te apartas a tiempo: {n} se queda medio fuera del agua, mirándote.']}},
+ 'tragacharco': {'profile':{'hp':80,'accuracy':56,'damage':13,'reduction':.10,'level':4,'category':'peligroso'},
+  'intention':{'id':'embestida_corta','name':'Embestida corta','interruptible':True,'frontal':True,'tell':'El montículo de barro se hincha: el Tragacharco va a lanzarse de frente con la boca abierta. Puedes cortarle el impulso.'},
+  'observation':'Parece un montón de barro que respira. Ataca de frente y a poca distancia.',
+  'withdrawal':'Retrocedes despacio. El Tragacharco se aplasta otra vez en el charco y vuelve a parecer barro.',
+  'prose':{'hit':['{n} se lanza desde el charco y te muerde con su boca enorme','{n} te embiste con todo el cuerpo y te tira al barro','La mandíbula de {n} te atrapa el brazo un momento'],
+           'miss':['{n} salta y cae en el barro, a un paso de ti.','{n} abre la boca enorme, pero sólo traga agua.']}},
+ 'sombranutria': {'profile':{'hp':72,'accuracy':62,'damage':12,'reduction':0,'evasion':15,'level':4,'category':'peligroso'},
+  'observation':'Caza de noche bajo los muelles y defiende su sitio. Si te apartas de su territorio, te deja ir.',
+  'withdrawal':'Te alejas del muelle. La Sombranutria da dos golpes bajo la madera y se queda en su sitio.',
+  'prose':{'hit':['{n} sale de debajo del muelle y te muerde la pierna','{n} te araña con las patas palmeadas','{n} se te sube al brazo y te muerde antes de saltar'],
+           'miss':['{n} se lanza, pero resbala en la madera mojada.','Oyes el chapoteo de {n} detrás de ti: falló por poco.']}},
+ 'velomembrana': {'profile':{'hp':18,'accuracy':45,'damage':4,'reduction':0,'evasion':25,'level':1,'category':'favorable'},
+  'observation':'Sólo muerde para defenderse y planea lejos. Es difícil de acertar.',
+  'prose':{'hit':['{n} baja planeando y te muerde la oreja','{n} te roza la cara con la membrana y te muerde','Las uñas de {n} te arañan el cuello al pasar'],
+           'miss':['{n} planea por encima de tu cabeza y se aleja.','Tu golpe atraviesa el aire donde estaba la sombra de {n}.']}},
+ 'roecorteza': {'profile':{'hp':28,'accuracy':48,'damage':6,'reduction':0,'evasion':5,'level':1,'category':'favorable'},
+  'observation':'Muerde y araña si lo molestas mientras busca larvas, pero no persigue.',
+  'prose':{'hit':['{n} te araña con sus uñas curvas','{n} te muerde con los incisivos y suelta tiras de corteza','{n} se te encarama a la pierna y te muerde'],
+           'miss':['{n} araña el tronco en vez de a ti.','{n} muerde, pero se queda con un trozo de corteza.']}},
+ 'quebracascara': {'profile':{'hp':44,'accuracy':48,'damage':7,'reduction':.20,'level':2,'category':'comparable'},
+  'observation':'Su cubierta dura frena los golpes. Sus pinzas son lentas: aprovecha cuando las abra.',
+  'prose':{'hit':['Las mandíbulas de {n} te pellizcan la mano con fuerza','{n} te pinza el tobillo y no suelta','{n} te golpea con su cubierta dura al girar'],
+           'miss':['Las pinzas de {n} se cierran en el aire con un chasquido.','{n} se encoge y tu golpe resbala por su cubierta.']}},
+ 'escarbaraiz': {'profile':{'hp':42,'accuracy':50,'damage':8,'reduction':.10,'level':2,'category':'comparable'},
+  'observation':'Protege la entrada de su refugio. Empuja con las patas delanteras antes de dar el zarpazo.',
+  'prose':{'hit':['{n} te empuja con sus patas delanteras y te da un zarpazo','{n} te lanza tierra a los ojos y te araña','Las uñas de {n} te rasgan el pantalón'],
+           'miss':['{n} escarba con fuerza y te cubre de tierra, pero no te toca.','El zarpazo de {n} se clava en la raíz.']}},
+ 'clavaespina': {'profile':{'hp':44,'accuracy':50,'damage':8,'reduction':.10,'level':2,'category':'comparable'},
+  'intention':{'id':'carga_de_puas','name':'Carga de púas','interruptible':True,'frontal':True,'tell':'El Clavaespina levanta los hombros y eriza las púas: va a cargar de frente. Puedes interrumpirlo o protegerte.'},
+  'observation':'No dispara sus púas: carga con ellas. Si lo golpeas de frente, te pincharás.',
+  'prose':{'hit':['{n} carga y sus púas te pinchan el brazo','{n} te golpea con los hombros y las púas','Al golpearlo, las púas de {n} se te clavan en la mano'],
+           'miss':['{n} carga, pero pasa de largo entre los helechos.','Las púas de {n} se quedan clavadas en un tronco.']}},
+ 'mordesombra': {'profile':{'hp':70,'accuracy':62,'damage':13,'reduction':0,'evasion':10,'level':4,'category':'peligroso'},
+  'intention':{'id':'acometida_veloz','name':'Acometida veloz','interruptible':True,'frontal':False,'tell':'Entre los helechos se mueven seis patas a la vez: el Mordesombra va a atacar de lado y retirarse. Puedes adelantarte.'},
+  'observation':'Ataca muy rápido desde los helechos y se retira. Vigila los lados, no sólo el frente.',
+  'withdrawal':'Sales de los helechos a la senda abierta. El Mordesombra no te sigue a la luz.',
+  'prose':{'hit':['{n} sale de los helechos y te muerde la pierna antes de que lo veas','{n} te ataca de lado y vuelve a desaparecer','Sus seis patas lo llevan de un salto hasta ti: {n} te muerde'],
+           'miss':['{n} sale disparado, pero muerde helechos.','Los ojos bajos de {n} te miran desde la sombra; el ataque no llega.']}},
+ 'garfarrama': {'profile':{'hp':76,'accuracy':60,'damage':14,'reduction':.10,'level':4,'category':'peligroso'},
+  'intention':{'id':'salto_descendente','name':'Salto desde la rama','interruptible':True,'frontal':False,'tell':'Arriba, la corteza cruje: el Garfarrama se suelta para caer sobre ti. Puedes adelantarte antes de que salte.'},
+  'observation':'Acecha desde las ramas y salta desde arriba. Mira hacia arriba antes de pasar bajo los árboles.',
+  'withdrawal':'Te alejas de los árboles bajos. El Garfarrama se queda en su rama, con la cola rígida.',
+  'prose':{'hit':['{n} cae desde la rama y te clava las uñas ganchudas','{n} te golpea con la cola rígida','Las garras de {n} te rasgan el hombro'],
+           'miss':['{n} salta, pero cae a tu lado y vuelve a trepar.','Las uñas de {n} se clavan en la corteza, no en ti.']}},
+ 'tronchacolmillo': {'profile':{'hp':85,'accuracy':55,'damage':14,'reduction':.15,'level':4,'category':'peligroso'},
+  'intention':{'id':'carga_anunciada','name':'Carga anunciada','interruptible':True,'frontal':True,'tell':'El Tronchacolmillo resopla, rasca la tierra y baja los colmillos: va a cargar de frente. Interrúmpelo o protégete.'},
+  'observation':'Es tranquilo si no se siente cercado. Si le dejas un camino libre, se va.',
+  'withdrawal':'Te apartas y le dejas el claro libre. El Tronchacolmillo resopla y vuelve a levantar raíces.',
+  'prose':{'hit':['{n} te embiste con los colmillos y te levanta del suelo','El peso de {n} te tira al suelo','{n} te golpea de lado con la cabeza'],
+           'miss':['{n} carga y pasa a tu lado como un tronco rodando.','Los colmillos de {n} levantan tierra donde estabas.']}},
+}
+MINOR_INTENTIONS={}  # signature manoeuvres of minor fauna; REGIONAL_INTENTIONS stays for the great fauna
+for creature_id,spec in MINOR_FAUNA.items():
+ PROFILES[creature_id]=dict(spec['profile'],family=creature_id)
+ THREAT_OBSERVATIONS[creature_id]=spec['observation']
+ CREATURE_PROSE[creature_id]=spec['prose']
+ if 'withdrawal' in spec:PEACEFUL_WITHDRAWALS[creature_id]=spec['withdrawal']
+ if 'intention' in spec:
+  MINOR_INTENTIONS[creature_id]=spec['intention']
+  PROFILES[creature_id].update(prepared=True,prepared_action=dict(spec['intention'],accuracy=PROFILES[creature_id]['accuracy']))
+# Prey, rivals and predators all scale with level; overwhelming fauna stays fixed.
+SCALED_CATEGORIES=('favorable','comparable','peligroso')
+AVOIDABLE_CATEGORIES=('peligroso','abrumador')
