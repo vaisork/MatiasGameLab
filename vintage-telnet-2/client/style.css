@@ -632,3 +632,4 @@ html.large-reading{--reading-size:22px}
 .discovered-map.with-world-art .discovered-roads{position:relative;z-index:1}
 .discovered-map.with-world-art .discovered-place,.discovered-map.with-world-art .discovered-frontier{z-index:2}
 html.playing-map body #navigation .game-tabs{grid-template-columns:repeat(7,minmax(0,1fr))}
+html body .bestiary-now{background:linear-gradient(160deg,#ff6b6b,#c22a5a);color:#fff;border-color:#ffb3c1;margin-right:6px}
