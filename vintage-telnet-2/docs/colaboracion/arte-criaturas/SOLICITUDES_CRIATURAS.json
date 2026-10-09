@@ -1,0 +1,1036 @@
+{
+ "fuente": "PR #669 BESTIARIO_RIESGO_LETHRA_NHAL.md; datos tomados de content/world.json tras la integración",
+ "estado": "pendiente de producción por el agente de arte; no integrar sin aprobación",
+ "solicitudes": [
+  {
+   "id": "hilaria_niebla",
+   "nombre": "Hilaria de niebla",
+   "tipo": "creature",
+   "region": "nhal",
+   "habitat": "suelo del bosque",
+   "riesgo": "fauna sin combate",
+   "anatomia_y_conducta": "El arácnido permanece al borde de una red baja tendida entre raíces y un tronco caído. Las gotas vuelven visibles hilos que el cuerpo opaco casi oculta. Una vibración grande lo lleva a una hendidura de corteza; una vibración pequeña puede ser la presa que espera.",
+   "presagio": "Las gotas dibujan hilos entre las raíces: una Hilaria de niebla tiene aquí su red. Rodéala; la red frena a quien la pisa.",
+   "escala": "cuerpo del tamaño de una mano, red baja entre raíces",
+   "materiales_visibles": [],
+   "salas_de_referencia": [
+    "nhal_corteza_clara",
+    "nhal_raices_altas",
+    "nhal_piedras_musgo",
+    "nhal_agua_sombreada"
+   ],
+   "paleta": "verde oscuro, tierra húmeda, musgo, penumbra del dosel y pocos cálidos",
+   "encargo": "ambiente",
+   "ruta_propuesta": "client/art/encounters/hilaria-niebla-anime-v1.webp",
+   "dimensiones": [
+    1536,
+    1024
+   ],
+   "conservar_ficha": "/client/art/bestiary/hilaria-anime-v1.webp",
+   "prompt": "Use case: illustration-story. Create ONE landscape 3:2 encounter environment illustration for Vintage Telnet 2: Hilaria de niebla in its habitat (suelo del bosque, Nhal). Show the omen first: Las gotas dibujan hilos entre las raíces: una Hilaria de niebla tiene aquí su red. Rodéala; la red frena a quien la pisa. The creature is visible but secondary to the place, at its real scale (cuerpo del tamaño de una mano, red baja entre raíces). Environment continuity with rooms nhal_corteza_clara, nhal_raices_altas, nhal_piedras_musgo. Palette: verde oscuro, tierra húmeda, musgo, penumbra del dosel y pocos cálidos. Una sola criatura, sin texto, sin interfaz, sin bordes. Anatomía funcional y creíble, nada humanoide, sin ropa ni objetos de personas, sin magia ni brillos sobrenaturales. Anime fantástico serio (no tierno): línea fina, fondo pintado con sombras de cel, luz natural del hábitat."
+  },
+  {
+   "id": "rondamusgo",
+   "nombre": "Rondamusgo",
+   "tipo": "creature",
+   "region": "nhal",
+   "habitat": "suelo del bosque",
+   "riesgo": "fauna sin combate",
+   "anatomia_y_conducta": "Cuatro patas cortas sostienen un cuerpo de pelo áspero donde se adhieren musgo y semillas. La criatura busca hongos y frutos bajo las hojas; al oír pasos se inmoviliza antes de correr hacia una raíz hueca. Su recorrido deja semillas donde vuelve a refugiarse.",
+   "presagio": "El musgo se ha movido y hay semillas esparcidas: un Rondamusgo busca hongos. Si lo sorprendes, empuja y huye hacia una raíz hueca.",
+   "escala": "del tamaño de un perro pequeño",
+   "materiales_visibles": [],
+   "salas_de_referencia": [
+    "nhal_arbol_umbral",
+    "nhal_suelo_hojas",
+    "nhal_tronco_acostado",
+    "nhal_corteza_clara"
+   ],
+   "paleta": "verde oscuro, tierra húmeda, musgo, penumbra del dosel y pocos cálidos",
+   "encargo": "ambiente",
+   "ruta_propuesta": "client/art/encounters/rondamusgo-anime-v1.webp",
+   "dimensiones": [
+    1536,
+    1024
+   ],
+   "conservar_ficha": "/client/art/bestiary/rondamusgo-anime-v1.webp",
+   "prompt": "Use case: illustration-story. Create ONE landscape 3:2 encounter environment illustration for Vintage Telnet 2: Rondamusgo in its habitat (suelo del bosque, Nhal). Show the omen first: El musgo se ha movido y hay semillas esparcidas: un Rondamusgo busca hongos. Si lo sorprendes, empuja y huye hacia una raíz hueca. The creature is visible but secondary to the place, at its real scale (del tamaño de un perro pequeño). Environment continuity with rooms nhal_arbol_umbral, nhal_suelo_hojas, nhal_tronco_acostado. Palette: verde oscuro, tierra húmeda, musgo, penumbra del dosel y pocos cálidos. Una sola criatura, sin texto, sin interfaz, sin bordes. Anatomía funcional y creíble, nada humanoide, sin ropa ni objetos de personas, sin magia ni brillos sobrenaturales. Anime fantástico serio (no tierno): línea fina, fondo pintado con sombras de cel, luz natural del hábitat."
+  },
+  {
+   "id": "pinzajunco",
+   "nombre": "Pinzajunco",
+   "tipo": "creature",
+   "region": "lethra",
+   "habitat": "juncal",
+   "riesgo": "fauna sin combate",
+   "anatomia_y_conducta": "El crustáceo se desplaza de lado entre barro y raíces. Su pinza mayor se eleva hacia quien invade el borde poco profundo; detrás, un agujero conserva restos vegetales que arrastra para utilizar como refugio.",
+   "presagio": "Un chasquido de pinza y barro removido: un Pinzajunco defiende su madriguera. Si no pisas el borde, se repliega.",
+   "escala": "pinza mayor del tamaño de una mano",
+   "materiales_visibles": [],
+   "salas_de_referencia": [
+    "lethra_ribera_seca",
+    "lethra_tierra_esponjosa",
+    "lethra_juncal_abierto",
+    "lethra_tablas_primeras"
+   ],
+   "paleta": "verde húmedo, agua azul verdosa clara o turbia según el hábitat, madera cálida, juncos y barro",
+   "encargo": "ambiente",
+   "ruta_propuesta": "client/art/encounters/pinzajunco-anime-v1.webp",
+   "dimensiones": [
+    1536,
+    1024
+   ],
+   "conservar_ficha": "/client/art/bestiary/pinzajunco-anime-v2.webp",
+   "prompt": "Use case: illustration-story. Create ONE landscape 3:2 encounter environment illustration for Vintage Telnet 2: Pinzajunco in its habitat (juncal, Lethra). Show the omen first: Un chasquido de pinza y barro removido: un Pinzajunco defiende su madriguera. Si no pisas el borde, se repliega. The creature is visible but secondary to the place, at its real scale (pinza mayor del tamaño de una mano). Environment continuity with rooms lethra_ribera_seca, lethra_tierra_esponjosa, lethra_juncal_abierto. Palette: verde húmedo, agua azul verdosa clara o turbia según el hábitat, madera cálida, juncos y barro. Una sola criatura, sin texto, sin interfaz, sin bordes. Anatomía funcional y creíble, nada humanoide, sin ropa ni objetos de personas, sin magia ni brillos sobrenaturales. Anime fantástico serio (no tierno): línea fina, fondo pintado con sombras de cel, luz natural del hábitat."
+  },
+  {
+   "id": "saltalodo",
+   "nombre": "Saltalodo",
+   "tipo": "creature",
+   "region": "lethra",
+   "habitat": "juncal",
+   "riesgo": "fauna sin combate",
+   "anatomia_y_conducta": "La piel moteada casi se pierde entre barro y hojas flotantes. El anfibio infla una bolsa del cuello antes de llamar. Un salto repentino lo lleva hacia agua profunda cuando el borde se llena de pasos.",
+   "presagio": "Un chapoteo y una llamada breve: un Saltalodo hincha la bolsa del cuello y salta al agua profunda si te acercas.",
+   "escala": "del tamaño de dos puños",
+   "materiales_visibles": [],
+   "salas_de_referencia": [
+    "lethra_ribera_seca",
+    "lethra_tierra_esponjosa",
+    "lethra_juncal_abierto",
+    "lethra_tablas_primeras"
+   ],
+   "paleta": "verde húmedo, agua azul verdosa clara o turbia según el hábitat, madera cálida, juncos y barro",
+   "encargo": "ambiente",
+   "ruta_propuesta": "client/art/encounters/saltalodo-anime-v1.webp",
+   "dimensiones": [
+    1536,
+    1024
+   ],
+   "conservar_ficha": "/client/art/bestiary/saltalodo-anime-v1.webp",
+   "prompt": "Use case: illustration-story. Create ONE landscape 3:2 encounter environment illustration for Vintage Telnet 2: Saltalodo in its habitat (juncal, Lethra). Show the omen first: Un chapoteo y una llamada breve: un Saltalodo hincha la bolsa del cuello y salta al agua profunda si te acercas. The creature is visible but secondary to the place, at its real scale (del tamaño de dos puños). Environment continuity with rooms lethra_ribera_seca, lethra_tierra_esponjosa, lethra_juncal_abierto. Palette: verde húmedo, agua azul verdosa clara o turbia según el hábitat, madera cálida, juncos y barro. Una sola criatura, sin texto, sin interfaz, sin bordes. Anatomía funcional y creíble, nada humanoide, sin ropa ni objetos de personas, sin magia ni brillos sobrenaturales. Anime fantástico serio (no tierno): línea fina, fondo pintado con sombras de cel, luz natural del hábitat."
+  },
+  {
+   "id": "mordijunco",
+   "nombre": "Mordijunco",
+   "tipo": "creature",
+   "region": "lethra",
+   "habitat": "juncal",
+   "riesgo": "presa defensiva",
+   "anatomia_y_conducta": "Un roedor de cuerpo redondo y pelo pardo, del tamaño de un gato, con incisivos anchos y anaranjados. Corta los juncos al sesgo para tapar la entrada de su madriguera, y la defiende a mordiscos si alguien se acerca demasiado.",
+   "presagio": "Juncos cortados al sesgo, todos a la misma altura, rodean un agujero en el barro: la madriguera de un Mordijunco.",
+   "escala": "del tamaño de un gato",
+   "materiales_visibles": [
+    "Incisivo de Mordijunco",
+    "Piel de Mordijunco"
+   ],
+   "salas_de_referencia": [
+    "lethra_ribera_seca",
+    "lethra_tierra_esponjosa",
+    "lethra_juncal_abierto",
+    "lethra_ribera_firme"
+   ],
+   "paleta": "verde húmedo, agua azul verdosa clara o turbia según el hábitat, madera cálida, juncos y barro",
+   "encargo": "ficha",
+   "ruta_propuesta": "client/art/bestiary/mordijunco-anime-v1.webp",
+   "dimensiones": [
+    1536,
+    1024
+   ],
+   "prompt": "Use case: creature-sheet. Create ONE landscape 3:2 bestiary illustration for Vintage Telnet 2: Mordijunco (mordijunco), presa defensiva of Lethra. Anatomy and behaviour: Un roedor de cuerpo redondo y pelo pardo, del tamaño de un gato, con incisivos anchos y anaranjados. Corta los juncos al sesgo para tapar la entrada de su madriguera, y la defiende a mordiscos si alguien se acerca demasiado. Scale: del tamaño de un gato, with a reed, root or stone giving size reference, no human figure required. Pose shows its signature behaviour, full silhouette readable. Habitat background simplified: juncal. Palette: verde húmedo, agua azul verdosa clara o turbia según el hábitat, madera cálida, juncos y barro. Una sola criatura, sin texto, sin interfaz, sin bordes. Anatomía funcional y creíble, nada humanoide, sin ropa ni objetos de personas, sin magia ni brillos sobrenaturales. Anime fantástico serio (no tierno): línea fina, fondo pintado con sombras de cel, luz natural del hábitat."
+  },
+  {
+   "id": "mordijunco",
+   "nombre": "Mordijunco",
+   "tipo": "creature",
+   "region": "lethra",
+   "habitat": "juncal",
+   "riesgo": "presa defensiva",
+   "anatomia_y_conducta": "Un roedor de cuerpo redondo y pelo pardo, del tamaño de un gato, con incisivos anchos y anaranjados. Corta los juncos al sesgo para tapar la entrada de su madriguera, y la defiende a mordiscos si alguien se acerca demasiado.",
+   "presagio": "Juncos cortados al sesgo, todos a la misma altura, rodean un agujero en el barro: la madriguera de un Mordijunco.",
+   "escala": "del tamaño de un gato",
+   "materiales_visibles": [
+    "Incisivo de Mordijunco",
+    "Piel de Mordijunco"
+   ],
+   "salas_de_referencia": [
+    "lethra_ribera_seca",
+    "lethra_tierra_esponjosa",
+    "lethra_juncal_abierto",
+    "lethra_ribera_firme"
+   ],
+   "paleta": "verde húmedo, agua azul verdosa clara o turbia según el hábitat, madera cálida, juncos y barro",
+   "encargo": "ambiente",
+   "ruta_propuesta": "client/art/encounters/mordijunco-anime-v1.webp",
+   "dimensiones": [
+    1536,
+    1024
+   ],
+   "conservar_ficha": null,
+   "prompt": "Use case: illustration-story. Create ONE landscape 3:2 encounter environment illustration for Vintage Telnet 2: Mordijunco in its habitat (juncal, Lethra). Show the omen first: Juncos cortados al sesgo, todos a la misma altura, rodean un agujero en el barro: la madriguera de un Mordijunco. The creature is visible but secondary to the place, at its real scale (del tamaño de un gato). Environment continuity with rooms lethra_ribera_seca, lethra_tierra_esponjosa, lethra_juncal_abierto. Palette: verde húmedo, agua azul verdosa clara o turbia según el hábitat, madera cálida, juncos y barro. Una sola criatura, sin texto, sin interfaz, sin bordes. Anatomía funcional y creíble, nada humanoide, sin ropa ni objetos de personas, sin magia ni brillos sobrenaturales. Anime fantástico serio (no tierno): línea fina, fondo pintado con sombras de cel, luz natural del hábitat."
+  },
+  {
+   "id": "cienfango",
+   "nombre": "Cienfango",
+   "tipo": "creature",
+   "region": "lethra",
+   "habitat": "raíces",
+   "riesgo": "rival común",
+   "anatomia_y_conducta": "Un artrópodo largo y segmentado, del color del barro mojado, con muchas patas que se pegan a la madera húmeda. Sus mandíbulas curvas cortan el cuero como si fuera hoja. Se esconde bajo troncos y raíces y sale de lado.",
+   "presagio": "Bajo un tronco húmedo se oye un roce de muchas patas. En la madera hay surcos finos, como de cuchilla: ahí vive un Cienfango.",
+   "escala": "largo como un brazo",
+   "materiales_visibles": [
+    "Placa de Cienfango",
+    "Mandíbula de Cienfango"
+   ],
+   "salas_de_referencia": [
+    "lethra_ribera_seca",
+    "lethra_tablas_primeras",
+    "lethra_raices_observacion",
+    "lethra_ribera_sombra"
+   ],
+   "paleta": "verde húmedo, agua azul verdosa clara o turbia según el hábitat, madera cálida, juncos y barro",
+   "encargo": "ficha",
+   "ruta_propuesta": "client/art/bestiary/cienfango-anime-v1.webp",
+   "dimensiones": [
+    1536,
+    1024
+   ],
+   "prompt": "Use case: creature-sheet. Create ONE landscape 3:2 bestiary illustration for Vintage Telnet 2: Cienfango (cienfango), rival común of Lethra. Anatomy and behaviour: Un artrópodo largo y segmentado, del color del barro mojado, con muchas patas que se pegan a la madera húmeda. Sus mandíbulas curvas cortan el cuero como si fuera hoja. Se esconde bajo troncos y raíces y sale de lado. Scale: largo como un brazo, with a reed, root or stone giving size reference, no human figure required. Pose shows its signature behaviour, full silhouette readable. Habitat background simplified: raíces. Palette: verde húmedo, agua azul verdosa clara o turbia según el hábitat, madera cálida, juncos y barro. Una sola criatura, sin texto, sin interfaz, sin bordes. Anatomía funcional y creíble, nada humanoide, sin ropa ni objetos de personas, sin magia ni brillos sobrenaturales. Anime fantástico serio (no tierno): línea fina, fondo pintado con sombras de cel, luz natural del hábitat."
+  },
+  {
+   "id": "cienfango",
+   "nombre": "Cienfango",
+   "tipo": "creature",
+   "region": "lethra",
+   "habitat": "raíces",
+   "riesgo": "rival común",
+   "anatomia_y_conducta": "Un artrópodo largo y segmentado, del color del barro mojado, con muchas patas que se pegan a la madera húmeda. Sus mandíbulas curvas cortan el cuero como si fuera hoja. Se esconde bajo troncos y raíces y sale de lado.",
+   "presagio": "Bajo un tronco húmedo se oye un roce de muchas patas. En la madera hay surcos finos, como de cuchilla: ahí vive un Cienfango.",
+   "escala": "largo como un brazo",
+   "materiales_visibles": [
+    "Placa de Cienfango",
+    "Mandíbula de Cienfango"
+   ],
+   "salas_de_referencia": [
+    "lethra_ribera_seca",
+    "lethra_tablas_primeras",
+    "lethra_raices_observacion",
+    "lethra_ribera_sombra"
+   ],
+   "paleta": "verde húmedo, agua azul verdosa clara o turbia según el hábitat, madera cálida, juncos y barro",
+   "encargo": "ambiente",
+   "ruta_propuesta": "client/art/encounters/cienfango-anime-v1.webp",
+   "dimensiones": [
+    1536,
+    1024
+   ],
+   "conservar_ficha": null,
+   "prompt": "Use case: illustration-story. Create ONE landscape 3:2 encounter environment illustration for Vintage Telnet 2: Cienfango in its habitat (raíces, Lethra). Show the omen first: Bajo un tronco húmedo se oye un roce de muchas patas. En la madera hay surcos finos, como de cuchilla: ahí vive un Cienfango. The creature is visible but secondary to the place, at its real scale (largo como un brazo). Environment continuity with rooms lethra_ribera_seca, lethra_tablas_primeras, lethra_raices_observacion. Palette: verde húmedo, agua azul verdosa clara o turbia según el hábitat, madera cálida, juncos y barro. Una sola criatura, sin texto, sin interfaz, sin bordes. Anatomía funcional y creíble, nada humanoide, sin ropa ni objetos de personas, sin magia ni brillos sobrenaturales. Anime fantástico serio (no tierno): línea fina, fondo pintado con sombras de cel, luz natural del hábitat."
+  },
+  {
+   "id": "raizacapa",
+   "nombre": "Raizacapa",
+   "tipo": "creature",
+   "region": "lethra",
+   "habitat": "raíces",
+   "riesgo": "rival común",
+   "anatomia_y_conducta": "Un reptil de caparazón rugoso, verde oscuro y lleno de musgo, que se confunde con las raíces sumergidas. Saca la cabeza muy despacio y muerde de golpe. Cuando lo amenazan se encierra en su caparazón, duro como una piedra.",
+   "presagio": "Las raíces sumergidas están raspadas, como si algo duro se frotara contra ellas: señal de una Raizacapa.",
+   "escala": "caparazón del ancho de un escudo pequeño",
+   "materiales_visibles": [
+    "Placa de Raizacapa"
+   ],
+   "salas_de_referencia": [
+    "lethra_raices_observacion",
+    "lethra_ribera_sombra",
+    "lethra_relevo_raices"
+   ],
+   "paleta": "verde húmedo, agua azul verdosa clara o turbia según el hábitat, madera cálida, juncos y barro",
+   "encargo": "ficha",
+   "ruta_propuesta": "client/art/bestiary/raizacapa-anime-v1.webp",
+   "dimensiones": [
+    1536,
+    1024
+   ],
+   "prompt": "Use case: creature-sheet. Create ONE landscape 3:2 bestiary illustration for Vintage Telnet 2: Raizacapa (raizacapa), rival común of Lethra. Anatomy and behaviour: Un reptil de caparazón rugoso, verde oscuro y lleno de musgo, que se confunde con las raíces sumergidas. Saca la cabeza muy despacio y muerde de golpe. Cuando lo amenazan se encierra en su caparazón, duro como una piedra. Scale: caparazón del ancho de un escudo pequeño, with a reed, root or stone giving size reference, no human figure required. Pose shows its signature behaviour, full silhouette readable. Habitat background simplified: raíces. Palette: verde húmedo, agua azul verdosa clara o turbia según el hábitat, madera cálida, juncos y barro. Una sola criatura, sin texto, sin interfaz, sin bordes. Anatomía funcional y creíble, nada humanoide, sin ropa ni objetos de personas, sin magia ni brillos sobrenaturales. Anime fantástico serio (no tierno): línea fina, fondo pintado con sombras de cel, luz natural del hábitat."
+  },
+  {
+   "id": "raizacapa",
+   "nombre": "Raizacapa",
+   "tipo": "creature",
+   "region": "lethra",
+   "habitat": "raíces",
+   "riesgo": "rival común",
+   "anatomia_y_conducta": "Un reptil de caparazón rugoso, verde oscuro y lleno de musgo, que se confunde con las raíces sumergidas. Saca la cabeza muy despacio y muerde de golpe. Cuando lo amenazan se encierra en su caparazón, duro como una piedra.",
+   "presagio": "Las raíces sumergidas están raspadas, como si algo duro se frotara contra ellas: señal de una Raizacapa.",
+   "escala": "caparazón del ancho de un escudo pequeño",
+   "materiales_visibles": [
+    "Placa de Raizacapa"
+   ],
+   "salas_de_referencia": [
+    "lethra_raices_observacion",
+    "lethra_ribera_sombra",
+    "lethra_relevo_raices"
+   ],
+   "paleta": "verde húmedo, agua azul verdosa clara o turbia según el hábitat, madera cálida, juncos y barro",
+   "encargo": "ambiente",
+   "ruta_propuesta": "client/art/encounters/raizacapa-anime-v1.webp",
+   "dimensiones": [
+    1536,
+    1024
+   ],
+   "conservar_ficha": null,
+   "prompt": "Use case: illustration-story. Create ONE landscape 3:2 encounter environment illustration for Vintage Telnet 2: Raizacapa in its habitat (raíces, Lethra). Show the omen first: Las raíces sumergidas están raspadas, como si algo duro se frotara contra ellas: señal de una Raizacapa. The creature is visible but secondary to the place, at its real scale (caparazón del ancho de un escudo pequeño). Environment continuity with rooms lethra_raices_observacion, lethra_ribera_sombra, lethra_relevo_raices. Palette: verde húmedo, agua azul verdosa clara o turbia según el hábitat, madera cálida, juncos y barro. Una sola criatura, sin texto, sin interfaz, sin bordes. Anatomía funcional y creíble, nada humanoide, sin ropa ni objetos de personas, sin magia ni brillos sobrenaturales. Anime fantástico serio (no tierno): línea fina, fondo pintado con sombras de cel, luz natural del hábitat."
+  },
+  {
+   "id": "aguaculebra",
+   "nombre": "Aguaculebra",
+   "tipo": "creature",
+   "region": "lethra",
+   "habitat": "raíces",
+   "riesgo": "rival común",
+   "anatomia_y_conducta": "Un pez largo como una serpiente, de cabeza aplanada y bigotes finos, que vive en las grietas inundadas entre raíces. Sale, muerde y vuelve a meterse en su grieta en un instante.",
+   "presagio": "Remolinos pequeños, casi invisibles, giran junto a una grieta inundada: ahí se esconde una Aguaculebra.",
+   "escala": "largo como una persona tumbada, delgado",
+   "materiales_visibles": [
+    "Piel de Aguaculebra",
+    "Espina de Aguaculebra"
+   ],
+   "salas_de_referencia": [
+    "lethra_orilla_silente",
+    "lethra_raices_observacion",
+    "lethra_relevo_raices"
+   ],
+   "paleta": "verde húmedo, agua azul verdosa clara o turbia según el hábitat, madera cálida, juncos y barro",
+   "encargo": "ficha",
+   "ruta_propuesta": "client/art/bestiary/aguaculebra-anime-v1.webp",
+   "dimensiones": [
+    1536,
+    1024
+   ],
+   "prompt": "Use case: creature-sheet. Create ONE landscape 3:2 bestiary illustration for Vintage Telnet 2: Aguaculebra (aguaculebra), rival común of Lethra. Anatomy and behaviour: Un pez largo como una serpiente, de cabeza aplanada y bigotes finos, que vive en las grietas inundadas entre raíces. Sale, muerde y vuelve a meterse en su grieta en un instante. Scale: largo como una persona tumbada, delgado, with a reed, root or stone giving size reference, no human figure required. Pose shows its signature behaviour, full silhouette readable. Habitat background simplified: raíces. Palette: verde húmedo, agua azul verdosa clara o turbia según el hábitat, madera cálida, juncos y barro. Una sola criatura, sin texto, sin interfaz, sin bordes. Anatomía funcional y creíble, nada humanoide, sin ropa ni objetos de personas, sin magia ni brillos sobrenaturales. Anime fantástico serio (no tierno): línea fina, fondo pintado con sombras de cel, luz natural del hábitat."
+  },
+  {
+   "id": "aguaculebra",
+   "nombre": "Aguaculebra",
+   "tipo": "creature",
+   "region": "lethra",
+   "habitat": "raíces",
+   "riesgo": "rival común",
+   "anatomia_y_conducta": "Un pez largo como una serpiente, de cabeza aplanada y bigotes finos, que vive en las grietas inundadas entre raíces. Sale, muerde y vuelve a meterse en su grieta en un instante.",
+   "presagio": "Remolinos pequeños, casi invisibles, giran junto a una grieta inundada: ahí se esconde una Aguaculebra.",
+   "escala": "largo como una persona tumbada, delgado",
+   "materiales_visibles": [
+    "Piel de Aguaculebra",
+    "Espina de Aguaculebra"
+   ],
+   "salas_de_referencia": [
+    "lethra_orilla_silente",
+    "lethra_raices_observacion",
+    "lethra_relevo_raices"
+   ],
+   "paleta": "verde húmedo, agua azul verdosa clara o turbia según el hábitat, madera cálida, juncos y barro",
+   "encargo": "ambiente",
+   "ruta_propuesta": "client/art/encounters/aguaculebra-anime-v1.webp",
+   "dimensiones": [
+    1536,
+    1024
+   ],
+   "conservar_ficha": null,
+   "prompt": "Use case: illustration-story. Create ONE landscape 3:2 encounter environment illustration for Vintage Telnet 2: Aguaculebra in its habitat (raíces, Lethra). Show the omen first: Remolinos pequeños, casi invisibles, giran junto a una grieta inundada: ahí se esconde una Aguaculebra. The creature is visible but secondary to the place, at its real scale (largo como una persona tumbada, delgado). Environment continuity with rooms lethra_orilla_silente, lethra_raices_observacion, lethra_relevo_raices. Palette: verde húmedo, agua azul verdosa clara o turbia según el hábitat, madera cálida, juncos y barro. Una sola criatura, sin texto, sin interfaz, sin bordes. Anatomía funcional y creíble, nada humanoide, sin ropa ni objetos de personas, sin magia ni brillos sobrenaturales. Anime fantástico serio (no tierno): línea fina, fondo pintado con sombras de cel, luz natural del hábitat."
+  },
+  {
+   "id": "cortacorriente",
+   "nombre": "Cortacorriente",
+   "tipo": "creature",
+   "region": "lethra",
+   "habitat": "pasos de agua",
+   "riesgo": "rival común",
+   "anatomia_y_conducta": "Un pez alargado y plateado, con dientes inclinados hacia atrás para que la presa no se suelte. Caza en los pasos estrechos donde el agua corre rápido. Dentro del agua es veloz; fuera de ella, torpe.",
+   "presagio": "En el paso estrecho, algunas ondas avanzan contra la corriente. Algo nada ahí debajo: un Cortacorriente.",
+   "escala": "largo como un brazo",
+   "materiales_visibles": [
+    "Diente de Cortacorriente",
+    "Piel de Cortacorriente"
+   ],
+   "salas_de_referencia": [
+    "lethra_tablas_primeras",
+    "lethra_cruce_canales",
+    "lethra_pasarela_curva",
+    "lethra_banco_barro"
+   ],
+   "paleta": "verde húmedo, agua azul verdosa clara o turbia según el hábitat, madera cálida, juncos y barro",
+   "encargo": "ficha",
+   "ruta_propuesta": "client/art/bestiary/cortacorriente-anime-v1.webp",
+   "dimensiones": [
+    1536,
+    1024
+   ],
+   "prompt": "Use case: creature-sheet. Create ONE landscape 3:2 bestiary illustration for Vintage Telnet 2: Cortacorriente (cortacorriente), rival común of Lethra. Anatomy and behaviour: Un pez alargado y plateado, con dientes inclinados hacia atrás para que la presa no se suelte. Caza en los pasos estrechos donde el agua corre rápido. Dentro del agua es veloz; fuera de ella, torpe. Scale: largo como un brazo, with a reed, root or stone giving size reference, no human figure required. Pose shows its signature behaviour, full silhouette readable. Habitat background simplified: pasos de agua. Palette: verde húmedo, agua azul verdosa clara o turbia según el hábitat, madera cálida, juncos y barro. Una sola criatura, sin texto, sin interfaz, sin bordes. Anatomía funcional y creíble, nada humanoide, sin ropa ni objetos de personas, sin magia ni brillos sobrenaturales. Anime fantástico serio (no tierno): línea fina, fondo pintado con sombras de cel, luz natural del hábitat."
+  },
+  {
+   "id": "cortacorriente",
+   "nombre": "Cortacorriente",
+   "tipo": "creature",
+   "region": "lethra",
+   "habitat": "pasos de agua",
+   "riesgo": "rival común",
+   "anatomia_y_conducta": "Un pez alargado y plateado, con dientes inclinados hacia atrás para que la presa no se suelte. Caza en los pasos estrechos donde el agua corre rápido. Dentro del agua es veloz; fuera de ella, torpe.",
+   "presagio": "En el paso estrecho, algunas ondas avanzan contra la corriente. Algo nada ahí debajo: un Cortacorriente.",
+   "escala": "largo como un brazo",
+   "materiales_visibles": [
+    "Diente de Cortacorriente",
+    "Piel de Cortacorriente"
+   ],
+   "salas_de_referencia": [
+    "lethra_tablas_primeras",
+    "lethra_cruce_canales",
+    "lethra_pasarela_curva",
+    "lethra_banco_barro"
+   ],
+   "paleta": "verde húmedo, agua azul verdosa clara o turbia según el hábitat, madera cálida, juncos y barro",
+   "encargo": "ambiente",
+   "ruta_propuesta": "client/art/encounters/cortacorriente-anime-v1.webp",
+   "dimensiones": [
+    1536,
+    1024
+   ],
+   "conservar_ficha": null,
+   "prompt": "Use case: illustration-story. Create ONE landscape 3:2 encounter environment illustration for Vintage Telnet 2: Cortacorriente in its habitat (pasos de agua, Lethra). Show the omen first: En el paso estrecho, algunas ondas avanzan contra la corriente. Algo nada ahí debajo: un Cortacorriente. The creature is visible but secondary to the place, at its real scale (largo como un brazo). Environment continuity with rooms lethra_tablas_primeras, lethra_cruce_canales, lethra_pasarela_curva. Palette: verde húmedo, agua azul verdosa clara o turbia según el hábitat, madera cálida, juncos y barro. Una sola criatura, sin texto, sin interfaz, sin bordes. Anatomía funcional y creíble, nada humanoide, sin ropa ni objetos de personas, sin magia ni brillos sobrenaturales. Anime fantástico serio (no tierno): línea fina, fondo pintado con sombras de cel, luz natural del hábitat."
+  },
+  {
+   "id": "faucecieno",
+   "nombre": "Faucecieno",
+   "tipo": "creature",
+   "region": "lethra",
+   "habitat": "pasos de agua",
+   "riesgo": "depredador peligroso, evitable",
+   "anatomia_y_conducta": "Un depredador anfibio largo y acorazado, de hocico ancho y placas oscuras en el lomo. Espera inmóvil en el agua turbia hasta que algo se acerca al borde, y entonces muerde y arrastra. Es de los animales más peligrosos de Lethra.",
+   "presagio": "Suben burbujas del agua turbia y ningún pájaro canta en la orilla. Algo grande respira debajo: un Faucecieno.",
+   "escala": "más largo que dos personas tumbadas",
+   "materiales_visibles": [
+    "Placa de Faucecieno",
+    "Diente de Faucecieno"
+   ],
+   "salas_de_referencia": [
+    "lethra_cruce_canales",
+    "lethra_orilla_silente"
+   ],
+   "paleta": "verde húmedo, agua azul verdosa clara o turbia según el hábitat, madera cálida, juncos y barro",
+   "encargo": "ficha",
+   "ruta_propuesta": "client/art/bestiary/faucecieno-anime-v1.webp",
+   "dimensiones": [
+    1536,
+    1024
+   ],
+   "prompt": "Use case: creature-sheet. Create ONE landscape 3:2 bestiary illustration for Vintage Telnet 2: Faucecieno (faucecieno), depredador peligroso, evitable of Lethra. Anatomy and behaviour: Un depredador anfibio largo y acorazado, de hocico ancho y placas oscuras en el lomo. Espera inmóvil en el agua turbia hasta que algo se acerca al borde, y entonces muerde y arrastra. Es de los animales más peligrosos de Lethra. Scale: más largo que dos personas tumbadas, with a reed, root or stone giving size reference, no human figure required. Pose shows its signature behaviour, full silhouette readable. Habitat background simplified: pasos de agua. Palette: verde húmedo, agua azul verdosa clara o turbia según el hábitat, madera cálida, juncos y barro. Una sola criatura, sin texto, sin interfaz, sin bordes. Anatomía funcional y creíble, nada humanoide, sin ropa ni objetos de personas, sin magia ni brillos sobrenaturales. Anime fantástico serio (no tierno): línea fina, fondo pintado con sombras de cel, luz natural del hábitat."
+  },
+  {
+   "id": "faucecieno",
+   "nombre": "Faucecieno",
+   "tipo": "creature",
+   "region": "lethra",
+   "habitat": "pasos de agua",
+   "riesgo": "depredador peligroso, evitable",
+   "anatomia_y_conducta": "Un depredador anfibio largo y acorazado, de hocico ancho y placas oscuras en el lomo. Espera inmóvil en el agua turbia hasta que algo se acerca al borde, y entonces muerde y arrastra. Es de los animales más peligrosos de Lethra.",
+   "presagio": "Suben burbujas del agua turbia y ningún pájaro canta en la orilla. Algo grande respira debajo: un Faucecieno.",
+   "escala": "más largo que dos personas tumbadas",
+   "materiales_visibles": [
+    "Placa de Faucecieno",
+    "Diente de Faucecieno"
+   ],
+   "salas_de_referencia": [
+    "lethra_cruce_canales",
+    "lethra_orilla_silente"
+   ],
+   "paleta": "verde húmedo, agua azul verdosa clara o turbia según el hábitat, madera cálida, juncos y barro",
+   "encargo": "ambiente",
+   "ruta_propuesta": "client/art/encounters/faucecieno-anime-v1.webp",
+   "dimensiones": [
+    1536,
+    1024
+   ],
+   "conservar_ficha": null,
+   "prompt": "Use case: illustration-story. Create ONE landscape 3:2 encounter environment illustration for Vintage Telnet 2: Faucecieno in its habitat (pasos de agua, Lethra). Show the omen first: Suben burbujas del agua turbia y ningún pájaro canta en la orilla. Algo grande respira debajo: un Faucecieno. The creature is visible but secondary to the place, at its real scale (más largo que dos personas tumbadas). Environment continuity with rooms lethra_cruce_canales, lethra_orilla_silente. Palette: verde húmedo, agua azul verdosa clara o turbia según el hábitat, madera cálida, juncos y barro. Una sola criatura, sin texto, sin interfaz, sin bordes. Anatomía funcional y creíble, nada humanoide, sin ropa ni objetos de personas, sin magia ni brillos sobrenaturales. Anime fantástico serio (no tierno): línea fina, fondo pintado con sombras de cel, luz natural del hábitat."
+  },
+  {
+   "id": "tragacharco",
+   "nombre": "Tragacharco",
+   "tipo": "creature",
+   "region": "lethra",
+   "habitat": "charcos",
+   "riesgo": "depredador peligroso, evitable",
+   "anatomia_y_conducta": "Un anfibio enorme y aplastado, cubierto de barro, con una mandíbula tan grande que parece la mitad de su cuerpo. Se queda quieto en los charcos como un montículo de barro, y sólo se mueve para lanzarse de frente.",
+   "presagio": "En el charco, un montículo de barro sube y baja muy despacio, como si respirara. Un Tragacharco duerme ahí.",
+   "escala": "tan ancho como un barril aplastado",
+   "materiales_visibles": [
+    "Piel de Tragacharco",
+    "Hueso mandibular de Tragacharco"
+   ],
+   "salas_de_referencia": [
+    "lethra_tierra_esponjosa",
+    "lethra_banco_barro",
+    "lethra_hito_tierra"
+   ],
+   "paleta": "verde húmedo, agua azul verdosa clara o turbia según el hábitat, madera cálida, juncos y barro",
+   "encargo": "ficha",
+   "ruta_propuesta": "client/art/bestiary/tragacharco-anime-v1.webp",
+   "dimensiones": [
+    1536,
+    1024
+   ],
+   "prompt": "Use case: creature-sheet. Create ONE landscape 3:2 bestiary illustration for Vintage Telnet 2: Tragacharco (tragacharco), depredador peligroso, evitable of Lethra. Anatomy and behaviour: Un anfibio enorme y aplastado, cubierto de barro, con una mandíbula tan grande que parece la mitad de su cuerpo. Se queda quieto en los charcos como un montículo de barro, y sólo se mueve para lanzarse de frente. Scale: tan ancho como un barril aplastado, with a reed, root or stone giving size reference, no human figure required. Pose shows its signature behaviour, full silhouette readable. Habitat background simplified: charcos. Palette: verde húmedo, agua azul verdosa clara o turbia según el hábitat, madera cálida, juncos y barro. Una sola criatura, sin texto, sin interfaz, sin bordes. Anatomía funcional y creíble, nada humanoide, sin ropa ni objetos de personas, sin magia ni brillos sobrenaturales. Anime fantástico serio (no tierno): línea fina, fondo pintado con sombras de cel, luz natural del hábitat."
+  },
+  {
+   "id": "tragacharco",
+   "nombre": "Tragacharco",
+   "tipo": "creature",
+   "region": "lethra",
+   "habitat": "charcos",
+   "riesgo": "depredador peligroso, evitable",
+   "anatomia_y_conducta": "Un anfibio enorme y aplastado, cubierto de barro, con una mandíbula tan grande que parece la mitad de su cuerpo. Se queda quieto en los charcos como un montículo de barro, y sólo se mueve para lanzarse de frente.",
+   "presagio": "En el charco, un montículo de barro sube y baja muy despacio, como si respirara. Un Tragacharco duerme ahí.",
+   "escala": "tan ancho como un barril aplastado",
+   "materiales_visibles": [
+    "Piel de Tragacharco",
+    "Hueso mandibular de Tragacharco"
+   ],
+   "salas_de_referencia": [
+    "lethra_tierra_esponjosa",
+    "lethra_banco_barro",
+    "lethra_hito_tierra"
+   ],
+   "paleta": "verde húmedo, agua azul verdosa clara o turbia según el hábitat, madera cálida, juncos y barro",
+   "encargo": "ambiente",
+   "ruta_propuesta": "client/art/encounters/tragacharco-anime-v1.webp",
+   "dimensiones": [
+    1536,
+    1024
+   ],
+   "conservar_ficha": null,
+   "prompt": "Use case: illustration-story. Create ONE landscape 3:2 encounter environment illustration for Vintage Telnet 2: Tragacharco in its habitat (charcos, Lethra). Show the omen first: En el charco, un montículo de barro sube y baja muy despacio, como si respirara. Un Tragacharco duerme ahí. The creature is visible but secondary to the place, at its real scale (tan ancho como un barril aplastado). Environment continuity with rooms lethra_tierra_esponjosa, lethra_banco_barro, lethra_hito_tierra. Palette: verde húmedo, agua azul verdosa clara o turbia según el hábitat, madera cálida, juncos y barro. Una sola criatura, sin texto, sin interfaz, sin bordes. Anatomía funcional y creíble, nada humanoide, sin ropa ni objetos de personas, sin magia ni brillos sobrenaturales. Anime fantástico serio (no tierno): línea fina, fondo pintado con sombras de cel, luz natural del hábitat."
+  },
+  {
+   "id": "sombranutria",
+   "nombre": "Sombranutria",
+   "tipo": "creature",
+   "region": "lethra",
+   "habitat": "muelles",
+   "riesgo": "depredador peligroso, evitable",
+   "anatomia_y_conducta": "Un mamífero oscuro de patas palmeadas, ágil dentro y fuera del agua. De noche caza bajo los muelles y defiende su territorio con mordiscos y arañazos. De día casi nunca se deja ver.",
+   "presagio": "Sobre las tablas hay conchas partidas, y bajo la madera se oyen golpes. De noche, aquí caza una Sombranutria.",
+   "escala": "del tamaño de un perro mediano",
+   "materiales_visibles": [
+    "Pelaje de Sombranutria",
+    "Diente de Sombranutria"
+   ],
+   "salas_de_referencia": [
+    "lethra_ribera_firme",
+    "lethra_embarcadero_camino",
+    "lethra_senda_elevada"
+   ],
+   "paleta": "verde húmedo, agua azul verdosa clara o turbia según el hábitat, madera cálida, juncos y barro",
+   "encargo": "ficha",
+   "ruta_propuesta": "client/art/bestiary/sombranutria-anime-v1.webp",
+   "dimensiones": [
+    1536,
+    1024
+   ],
+   "prompt": "Use case: creature-sheet. Create ONE landscape 3:2 bestiary illustration for Vintage Telnet 2: Sombranutria (sombranutria), depredador peligroso, evitable of Lethra. Anatomy and behaviour: Un mamífero oscuro de patas palmeadas, ágil dentro y fuera del agua. De noche caza bajo los muelles y defiende su territorio con mordiscos y arañazos. De día casi nunca se deja ver. Scale: del tamaño de un perro mediano, with a reed, root or stone giving size reference, no human figure required. Pose shows its signature behaviour, full silhouette readable. Habitat background simplified: muelles. Palette: verde húmedo, agua azul verdosa clara o turbia según el hábitat, madera cálida, juncos y barro. Una sola criatura, sin texto, sin interfaz, sin bordes. Anatomía funcional y creíble, nada humanoide, sin ropa ni objetos de personas, sin magia ni brillos sobrenaturales. Anime fantástico serio (no tierno): línea fina, fondo pintado con sombras de cel, luz natural del hábitat."
+  },
+  {
+   "id": "sombranutria",
+   "nombre": "Sombranutria",
+   "tipo": "creature",
+   "region": "lethra",
+   "habitat": "muelles",
+   "riesgo": "depredador peligroso, evitable",
+   "anatomia_y_conducta": "Un mamífero oscuro de patas palmeadas, ágil dentro y fuera del agua. De noche caza bajo los muelles y defiende su territorio con mordiscos y arañazos. De día casi nunca se deja ver.",
+   "presagio": "Sobre las tablas hay conchas partidas, y bajo la madera se oyen golpes. De noche, aquí caza una Sombranutria.",
+   "escala": "del tamaño de un perro mediano",
+   "materiales_visibles": [
+    "Pelaje de Sombranutria",
+    "Diente de Sombranutria"
+   ],
+   "salas_de_referencia": [
+    "lethra_ribera_firme",
+    "lethra_embarcadero_camino",
+    "lethra_senda_elevada"
+   ],
+   "paleta": "verde húmedo, agua azul verdosa clara o turbia según el hábitat, madera cálida, juncos y barro",
+   "encargo": "ambiente",
+   "ruta_propuesta": "client/art/encounters/sombranutria-anime-v1.webp",
+   "dimensiones": [
+    1536,
+    1024
+   ],
+   "conservar_ficha": null,
+   "prompt": "Use case: illustration-story. Create ONE landscape 3:2 encounter environment illustration for Vintage Telnet 2: Sombranutria in its habitat (muelles, Lethra). Show the omen first: Sobre las tablas hay conchas partidas, y bajo la madera se oyen golpes. De noche, aquí caza una Sombranutria. The creature is visible but secondary to the place, at its real scale (del tamaño de un perro mediano). Environment continuity with rooms lethra_ribera_firme, lethra_embarcadero_camino, lethra_senda_elevada. Palette: verde húmedo, agua azul verdosa clara o turbia según el hábitat, madera cálida, juncos y barro. Una sola criatura, sin texto, sin interfaz, sin bordes. Anatomía funcional y creíble, nada humanoide, sin ropa ni objetos de personas, sin magia ni brillos sobrenaturales. Anime fantástico serio (no tierno): línea fina, fondo pintado con sombras de cel, luz natural del hábitat."
+  },
+  {
+   "id": "velomembrana",
+   "nombre": "Velomembrana",
+   "tipo": "creature",
+   "region": "nhal",
+   "habitat": "ramas",
+   "riesgo": "presa defensiva",
+   "anatomia_y_conducta": "Un mamífero pequeño de orejas enormes y membranas entre las patas, que planea de árbol en árbol de noche cazando insectos. Sólo muerde si lo atrapan o lo acorralan.",
+   "presagio": "Una sombra pequeña cruza entre las copas sin un ruido. Bajo una rama hay restos de alas de insecto: caza de una Velomembrana.",
+   "escala": "del tamaño de una ardilla grande con las membranas abiertas",
+   "materiales_visibles": [
+    "Membrana de Velomembrana",
+    "Pelaje de Velomembrana"
+   ],
+   "salas_de_referencia": [
+    "nhal_arbol_umbral",
+    "nhal_corteza_clara",
+    "nhal_claro_silencio",
+    "nhal_roca_entre_copas"
+   ],
+   "paleta": "verde oscuro, tierra húmeda, musgo, penumbra del dosel y pocos cálidos",
+   "encargo": "ficha",
+   "ruta_propuesta": "client/art/bestiary/velomembrana-anime-v1.webp",
+   "dimensiones": [
+    1536,
+    1024
+   ],
+   "prompt": "Use case: creature-sheet. Create ONE landscape 3:2 bestiary illustration for Vintage Telnet 2: Velomembrana (velomembrana), presa defensiva of Nhal. Anatomy and behaviour: Un mamífero pequeño de orejas enormes y membranas entre las patas, que planea de árbol en árbol de noche cazando insectos. Sólo muerde si lo atrapan o lo acorralan. Scale: del tamaño de una ardilla grande con las membranas abiertas, with a reed, root or stone giving size reference, no human figure required. Pose shows its signature behaviour, full silhouette readable. Habitat background simplified: ramas. Palette: verde oscuro, tierra húmeda, musgo, penumbra del dosel y pocos cálidos. Una sola criatura, sin texto, sin interfaz, sin bordes. Anatomía funcional y creíble, nada humanoide, sin ropa ni objetos de personas, sin magia ni brillos sobrenaturales. Anime fantástico serio (no tierno): línea fina, fondo pintado con sombras de cel, luz natural del hábitat."
+  },
+  {
+   "id": "velomembrana",
+   "nombre": "Velomembrana",
+   "tipo": "creature",
+   "region": "nhal",
+   "habitat": "ramas",
+   "riesgo": "presa defensiva",
+   "anatomia_y_conducta": "Un mamífero pequeño de orejas enormes y membranas entre las patas, que planea de árbol en árbol de noche cazando insectos. Sólo muerde si lo atrapan o lo acorralan.",
+   "presagio": "Una sombra pequeña cruza entre las copas sin un ruido. Bajo una rama hay restos de alas de insecto: caza de una Velomembrana.",
+   "escala": "del tamaño de una ardilla grande con las membranas abiertas",
+   "materiales_visibles": [
+    "Membrana de Velomembrana",
+    "Pelaje de Velomembrana"
+   ],
+   "salas_de_referencia": [
+    "nhal_arbol_umbral",
+    "nhal_corteza_clara",
+    "nhal_claro_silencio",
+    "nhal_roca_entre_copas"
+   ],
+   "paleta": "verde oscuro, tierra húmeda, musgo, penumbra del dosel y pocos cálidos",
+   "encargo": "ambiente",
+   "ruta_propuesta": "client/art/encounters/velomembrana-anime-v1.webp",
+   "dimensiones": [
+    1536,
+    1024
+   ],
+   "conservar_ficha": null,
+   "prompt": "Use case: illustration-story. Create ONE landscape 3:2 encounter environment illustration for Vintage Telnet 2: Velomembrana in its habitat (ramas, Nhal). Show the omen first: Una sombra pequeña cruza entre las copas sin un ruido. Bajo una rama hay restos de alas de insecto: caza de una Velomembrana. The creature is visible but secondary to the place, at its real scale (del tamaño de una ardilla grande con las membranas abiertas). Environment continuity with rooms nhal_arbol_umbral, nhal_corteza_clara, nhal_claro_silencio. Palette: verde oscuro, tierra húmeda, musgo, penumbra del dosel y pocos cálidos. Una sola criatura, sin texto, sin interfaz, sin bordes. Anatomía funcional y creíble, nada humanoide, sin ropa ni objetos de personas, sin magia ni brillos sobrenaturales. Anime fantástico serio (no tierno): línea fina, fondo pintado con sombras de cel, luz natural del hábitat."
+  },
+  {
+   "id": "roecorteza",
+   "nombre": "Roecorteza",
+   "tipo": "creature",
+   "region": "nhal",
+   "habitat": "suelo",
+   "riesgo": "presa defensiva",
+   "anatomia_y_conducta": "Un cuadrúpedo pequeño y robusto, de incisivos fuertes y uñas curvas, que arranca la corteza en tiras para comerse las larvas de debajo. Es tranquilo, pero muerde y araña si lo interrumpen.",
+   "presagio": "La corteza de un tronco cuelga en tiras largas y frescas. Algo ha estado buscando larvas: un Roecorteza.",
+   "escala": "del tamaño de un perro pequeño",
+   "materiales_visibles": [
+    "Incisivo de Roecorteza",
+    "Piel de Roecorteza"
+   ],
+   "salas_de_referencia": [
+    "nhal_arbol_umbral",
+    "nhal_suelo_hojas",
+    "nhal_tronco_acostado",
+    "nhal_raices_altas"
+   ],
+   "paleta": "verde oscuro, tierra húmeda, musgo, penumbra del dosel y pocos cálidos",
+   "encargo": "ficha",
+   "ruta_propuesta": "client/art/bestiary/roecorteza-anime-v1.webp",
+   "dimensiones": [
+    1536,
+    1024
+   ],
+   "prompt": "Use case: creature-sheet. Create ONE landscape 3:2 bestiary illustration for Vintage Telnet 2: Roecorteza (roecorteza), presa defensiva of Nhal. Anatomy and behaviour: Un cuadrúpedo pequeño y robusto, de incisivos fuertes y uñas curvas, que arranca la corteza en tiras para comerse las larvas de debajo. Es tranquilo, pero muerde y araña si lo interrumpen. Scale: del tamaño de un perro pequeño, with a reed, root or stone giving size reference, no human figure required. Pose shows its signature behaviour, full silhouette readable. Habitat background simplified: suelo. Palette: verde oscuro, tierra húmeda, musgo, penumbra del dosel y pocos cálidos. Una sola criatura, sin texto, sin interfaz, sin bordes. Anatomía funcional y creíble, nada humanoide, sin ropa ni objetos de personas, sin magia ni brillos sobrenaturales. Anime fantástico serio (no tierno): línea fina, fondo pintado con sombras de cel, luz natural del hábitat."
+  },
+  {
+   "id": "roecorteza",
+   "nombre": "Roecorteza",
+   "tipo": "creature",
+   "region": "nhal",
+   "habitat": "suelo",
+   "riesgo": "presa defensiva",
+   "anatomia_y_conducta": "Un cuadrúpedo pequeño y robusto, de incisivos fuertes y uñas curvas, que arranca la corteza en tiras para comerse las larvas de debajo. Es tranquilo, pero muerde y araña si lo interrumpen.",
+   "presagio": "La corteza de un tronco cuelga en tiras largas y frescas. Algo ha estado buscando larvas: un Roecorteza.",
+   "escala": "del tamaño de un perro pequeño",
+   "materiales_visibles": [
+    "Incisivo de Roecorteza",
+    "Piel de Roecorteza"
+   ],
+   "salas_de_referencia": [
+    "nhal_arbol_umbral",
+    "nhal_suelo_hojas",
+    "nhal_tronco_acostado",
+    "nhal_raices_altas"
+   ],
+   "paleta": "verde oscuro, tierra húmeda, musgo, penumbra del dosel y pocos cálidos",
+   "encargo": "ambiente",
+   "ruta_propuesta": "client/art/encounters/roecorteza-anime-v1.webp",
+   "dimensiones": [
+    1536,
+    1024
+   ],
+   "conservar_ficha": null,
+   "prompt": "Use case: illustration-story. Create ONE landscape 3:2 encounter environment illustration for Vintage Telnet 2: Roecorteza in its habitat (suelo, Nhal). Show the omen first: La corteza de un tronco cuelga en tiras largas y frescas. Algo ha estado buscando larvas: un Roecorteza. The creature is visible but secondary to the place, at its real scale (del tamaño de un perro pequeño). Environment continuity with rooms nhal_arbol_umbral, nhal_suelo_hojas, nhal_tronco_acostado. Palette: verde oscuro, tierra húmeda, musgo, penumbra del dosel y pocos cálidos. Una sola criatura, sin texto, sin interfaz, sin bordes. Anatomía funcional y creíble, nada humanoide, sin ropa ni objetos de personas, sin magia ni brillos sobrenaturales. Anime fantástico serio (no tierno): línea fina, fondo pintado con sombras de cel, luz natural del hábitat."
+  },
+  {
+   "id": "quebracascara",
+   "nombre": "Quebracáscara",
+   "tipo": "creature",
+   "region": "nhal",
+   "habitat": "suelo",
+   "riesgo": "rival común",
+   "anatomia_y_conducta": "Un escarabajo forestal del tamaño de un perro, de cubierta negra y brillante, que tritura la madera podrida con sus mandíbulas. Es lento, pero su cubierta para casi todos los golpes.",
+   "presagio": "Un tronco podrido está lleno de túneles anchos, y dentro se oye un crujido constante: un Quebracáscara.",
+   "escala": "escarabajo del tamaño de un perro",
+   "materiales_visibles": [
+    "Quitina de Quebracáscara",
+    "Mandíbula de Quebracáscara"
+   ],
+   "salas_de_referencia": [
+    "nhal_suelo_hojas",
+    "nhal_tronco_acostado",
+    "nhal_puente_bajo",
+    "nhal_ribera_relevo"
+   ],
+   "paleta": "verde oscuro, tierra húmeda, musgo, penumbra del dosel y pocos cálidos",
+   "encargo": "ficha",
+   "ruta_propuesta": "client/art/bestiary/quebracascara-anime-v1.webp",
+   "dimensiones": [
+    1536,
+    1024
+   ],
+   "prompt": "Use case: creature-sheet. Create ONE landscape 3:2 bestiary illustration for Vintage Telnet 2: Quebracáscara (quebracascara), rival común of Nhal. Anatomy and behaviour: Un escarabajo forestal del tamaño de un perro, de cubierta negra y brillante, que tritura la madera podrida con sus mandíbulas. Es lento, pero su cubierta para casi todos los golpes. Scale: escarabajo del tamaño de un perro, with a reed, root or stone giving size reference, no human figure required. Pose shows its signature behaviour, full silhouette readable. Habitat background simplified: suelo. Palette: verde oscuro, tierra húmeda, musgo, penumbra del dosel y pocos cálidos. Una sola criatura, sin texto, sin interfaz, sin bordes. Anatomía funcional y creíble, nada humanoide, sin ropa ni objetos de personas, sin magia ni brillos sobrenaturales. Anime fantástico serio (no tierno): línea fina, fondo pintado con sombras de cel, luz natural del hábitat."
+  },
+  {
+   "id": "quebracascara",
+   "nombre": "Quebracáscara",
+   "tipo": "creature",
+   "region": "nhal",
+   "habitat": "suelo",
+   "riesgo": "rival común",
+   "anatomia_y_conducta": "Un escarabajo forestal del tamaño de un perro, de cubierta negra y brillante, que tritura la madera podrida con sus mandíbulas. Es lento, pero su cubierta para casi todos los golpes.",
+   "presagio": "Un tronco podrido está lleno de túneles anchos, y dentro se oye un crujido constante: un Quebracáscara.",
+   "escala": "escarabajo del tamaño de un perro",
+   "materiales_visibles": [
+    "Quitina de Quebracáscara",
+    "Mandíbula de Quebracáscara"
+   ],
+   "salas_de_referencia": [
+    "nhal_suelo_hojas",
+    "nhal_tronco_acostado",
+    "nhal_puente_bajo",
+    "nhal_ribera_relevo"
+   ],
+   "paleta": "verde oscuro, tierra húmeda, musgo, penumbra del dosel y pocos cálidos",
+   "encargo": "ambiente",
+   "ruta_propuesta": "client/art/encounters/quebracascara-anime-v1.webp",
+   "dimensiones": [
+    1536,
+    1024
+   ],
+   "conservar_ficha": null,
+   "prompt": "Use case: illustration-story. Create ONE landscape 3:2 encounter environment illustration for Vintage Telnet 2: Quebracáscara in its habitat (suelo, Nhal). Show the omen first: Un tronco podrido está lleno de túneles anchos, y dentro se oye un crujido constante: un Quebracáscara. The creature is visible but secondary to the place, at its real scale (escarabajo del tamaño de un perro). Environment continuity with rooms nhal_suelo_hojas, nhal_tronco_acostado, nhal_puente_bajo. Palette: verde oscuro, tierra húmeda, musgo, penumbra del dosel y pocos cálidos. Una sola criatura, sin texto, sin interfaz, sin bordes. Anatomía funcional y creíble, nada humanoide, sin ropa ni objetos de personas, sin magia ni brillos sobrenaturales. Anime fantástico serio (no tierno): línea fina, fondo pintado con sombras de cel, luz natural del hábitat."
+  },
+  {
+   "id": "escarbaraiz",
+   "nombre": "Escarbaraíz",
+   "tipo": "creature",
+   "region": "nhal",
+   "habitat": "suelo",
+   "riesgo": "rival común",
+   "anatomia_y_conducta": "Un reptil bajo y ancho, de escamas pardas, con unas patas delanteras enormes para excavar entre las raíces. Defiende la entrada de su refugio empujando y dando zarpazos.",
+   "presagio": "Hay montones de tierra recién sacada junto a las raíces, y un agujero que se pierde hacia abajo: el refugio de un Escarbaraíz.",
+   "escala": "bajo y ancho, del tamaño de un perro mediano",
+   "materiales_visibles": [
+    "Uña de Escarbaraíz",
+    "Escama de Escarbaraíz"
+   ],
+   "salas_de_referencia": [
+    "nhal_tronco_acostado",
+    "nhal_raices_altas",
+    "nhal_piedras_musgo",
+    "nhal_rincon_semillas"
+   ],
+   "paleta": "verde oscuro, tierra húmeda, musgo, penumbra del dosel y pocos cálidos",
+   "encargo": "ficha",
+   "ruta_propuesta": "client/art/bestiary/escarbaraiz-anime-v1.webp",
+   "dimensiones": [
+    1536,
+    1024
+   ],
+   "prompt": "Use case: creature-sheet. Create ONE landscape 3:2 bestiary illustration for Vintage Telnet 2: Escarbaraíz (escarbaraiz), rival común of Nhal. Anatomy and behaviour: Un reptil bajo y ancho, de escamas pardas, con unas patas delanteras enormes para excavar entre las raíces. Defiende la entrada de su refugio empujando y dando zarpazos. Scale: bajo y ancho, del tamaño de un perro mediano, with a reed, root or stone giving size reference, no human figure required. Pose shows its signature behaviour, full silhouette readable. Habitat background simplified: suelo. Palette: verde oscuro, tierra húmeda, musgo, penumbra del dosel y pocos cálidos. Una sola criatura, sin texto, sin interfaz, sin bordes. Anatomía funcional y creíble, nada humanoide, sin ropa ni objetos de personas, sin magia ni brillos sobrenaturales. Anime fantástico serio (no tierno): línea fina, fondo pintado con sombras de cel, luz natural del hábitat."
+  },
+  {
+   "id": "escarbaraiz",
+   "nombre": "Escarbaraíz",
+   "tipo": "creature",
+   "region": "nhal",
+   "habitat": "suelo",
+   "riesgo": "rival común",
+   "anatomia_y_conducta": "Un reptil bajo y ancho, de escamas pardas, con unas patas delanteras enormes para excavar entre las raíces. Defiende la entrada de su refugio empujando y dando zarpazos.",
+   "presagio": "Hay montones de tierra recién sacada junto a las raíces, y un agujero que se pierde hacia abajo: el refugio de un Escarbaraíz.",
+   "escala": "bajo y ancho, del tamaño de un perro mediano",
+   "materiales_visibles": [
+    "Uña de Escarbaraíz",
+    "Escama de Escarbaraíz"
+   ],
+   "salas_de_referencia": [
+    "nhal_tronco_acostado",
+    "nhal_raices_altas",
+    "nhal_piedras_musgo",
+    "nhal_rincon_semillas"
+   ],
+   "paleta": "verde oscuro, tierra húmeda, musgo, penumbra del dosel y pocos cálidos",
+   "encargo": "ambiente",
+   "ruta_propuesta": "client/art/encounters/escarbaraiz-anime-v1.webp",
+   "dimensiones": [
+    1536,
+    1024
+   ],
+   "conservar_ficha": null,
+   "prompt": "Use case: illustration-story. Create ONE landscape 3:2 encounter environment illustration for Vintage Telnet 2: Escarbaraíz in its habitat (suelo, Nhal). Show the omen first: Hay montones de tierra recién sacada junto a las raíces, y un agujero que se pierde hacia abajo: el refugio de un Escarbaraíz. The creature is visible but secondary to the place, at its real scale (bajo y ancho, del tamaño de un perro mediano). Environment continuity with rooms nhal_tronco_acostado, nhal_raices_altas, nhal_piedras_musgo. Palette: verde oscuro, tierra húmeda, musgo, penumbra del dosel y pocos cálidos. Una sola criatura, sin texto, sin interfaz, sin bordes. Anatomía funcional y creíble, nada humanoide, sin ropa ni objetos de personas, sin magia ni brillos sobrenaturales. Anime fantástico serio (no tierno): línea fina, fondo pintado con sombras de cel, luz natural del hábitat."
+  },
+  {
+   "id": "clavaespina",
+   "nombre": "Clavaespina",
+   "tipo": "creature",
+   "region": "nhal",
+   "habitat": "helechos",
+   "riesgo": "rival común",
+   "anatomia_y_conducta": "Un cuadrúpedo de hombros fuertes, cubierto de púas rígidas y largas. No puede disparar sus púas, pero carga con ellas por delante, y quien lo golpea de frente se pincha.",
+   "presagio": "Hay púas largas clavadas en los troncos bajos, todas a la misma altura. Por aquí pasa un Clavaespina.",
+   "escala": "hasta la cadera de una persona",
+   "materiales_visibles": [
+    "Púa de Clavaespina",
+    "Cuero de Clavaespina"
+   ],
+   "salas_de_referencia": [
+    "nhal_helechos_bajos",
+    "nhal_agua_sombreada",
+    "nhal_ribera_relevo",
+    "nhal_sendero_altura"
+   ],
+   "paleta": "verde oscuro, tierra húmeda, musgo, penumbra del dosel y pocos cálidos",
+   "encargo": "ficha",
+   "ruta_propuesta": "client/art/bestiary/clavaespina-anime-v1.webp",
+   "dimensiones": [
+    1536,
+    1024
+   ],
+   "prompt": "Use case: creature-sheet. Create ONE landscape 3:2 bestiary illustration for Vintage Telnet 2: Clavaespina (clavaespina), rival común of Nhal. Anatomy and behaviour: Un cuadrúpedo de hombros fuertes, cubierto de púas rígidas y largas. No puede disparar sus púas, pero carga con ellas por delante, y quien lo golpea de frente se pincha. Scale: hasta la cadera de una persona, with a reed, root or stone giving size reference, no human figure required. Pose shows its signature behaviour, full silhouette readable. Habitat background simplified: helechos. Palette: verde oscuro, tierra húmeda, musgo, penumbra del dosel y pocos cálidos. Una sola criatura, sin texto, sin interfaz, sin bordes. Anatomía funcional y creíble, nada humanoide, sin ropa ni objetos de personas, sin magia ni brillos sobrenaturales. Anime fantástico serio (no tierno): línea fina, fondo pintado con sombras de cel, luz natural del hábitat."
+  },
+  {
+   "id": "clavaespina",
+   "nombre": "Clavaespina",
+   "tipo": "creature",
+   "region": "nhal",
+   "habitat": "helechos",
+   "riesgo": "rival común",
+   "anatomia_y_conducta": "Un cuadrúpedo de hombros fuertes, cubierto de púas rígidas y largas. No puede disparar sus púas, pero carga con ellas por delante, y quien lo golpea de frente se pincha.",
+   "presagio": "Hay púas largas clavadas en los troncos bajos, todas a la misma altura. Por aquí pasa un Clavaespina.",
+   "escala": "hasta la cadera de una persona",
+   "materiales_visibles": [
+    "Púa de Clavaespina",
+    "Cuero de Clavaespina"
+   ],
+   "salas_de_referencia": [
+    "nhal_helechos_bajos",
+    "nhal_agua_sombreada",
+    "nhal_ribera_relevo",
+    "nhal_sendero_altura"
+   ],
+   "paleta": "verde oscuro, tierra húmeda, musgo, penumbra del dosel y pocos cálidos",
+   "encargo": "ambiente",
+   "ruta_propuesta": "client/art/encounters/clavaespina-anime-v1.webp",
+   "dimensiones": [
+    1536,
+    1024
+   ],
+   "conservar_ficha": null,
+   "prompt": "Use case: illustration-story. Create ONE landscape 3:2 encounter environment illustration for Vintage Telnet 2: Clavaespina in its habitat (helechos, Nhal). Show the omen first: Hay púas largas clavadas en los troncos bajos, todas a la misma altura. Por aquí pasa un Clavaespina. The creature is visible but secondary to the place, at its real scale (hasta la cadera de una persona). Environment continuity with rooms nhal_helechos_bajos, nhal_agua_sombreada, nhal_ribera_relevo. Palette: verde oscuro, tierra húmeda, musgo, penumbra del dosel y pocos cálidos. Una sola criatura, sin texto, sin interfaz, sin bordes. Anatomía funcional y creíble, nada humanoide, sin ropa ni objetos de personas, sin magia ni brillos sobrenaturales. Anime fantástico serio (no tierno): línea fina, fondo pintado con sombras de cel, luz natural del hábitat."
+  },
+  {
+   "id": "mordesombra",
+   "nombre": "Mordesombra",
+   "tipo": "creature",
+   "region": "nhal",
+   "habitat": "helechos",
+   "riesgo": "depredador peligroso, evitable",
+   "anatomia_y_conducta": "Un depredador bajo y alargado, de seis patas y pelo oscuro, que embosca entre los helechos. Ataca muy rápido, muerde y se retira antes de que lo veas bien. Donde caza, los pájaros se callan.",
+   "presagio": "Aquí los pájaros no cantan. Entre los helechos hay un paso bajo y estrecho, como de un animal largo: territorio de un Mordesombra.",
+   "escala": "largo y bajo, como un perro largo de seis patas",
+   "materiales_visibles": [
+    "Piel de Mordesombra",
+    "Diente de Mordesombra"
+   ],
+   "salas_de_referencia": [
+    "nhal_helechos_bajos",
+    "nhal_raiz_marcada"
+   ],
+   "paleta": "verde oscuro, tierra húmeda, musgo, penumbra del dosel y pocos cálidos",
+   "encargo": "ficha",
+   "ruta_propuesta": "client/art/bestiary/mordesombra-anime-v1.webp",
+   "dimensiones": [
+    1536,
+    1024
+   ],
+   "prompt": "Use case: creature-sheet. Create ONE landscape 3:2 bestiary illustration for Vintage Telnet 2: Mordesombra (mordesombra), depredador peligroso, evitable of Nhal. Anatomy and behaviour: Un depredador bajo y alargado, de seis patas y pelo oscuro, que embosca entre los helechos. Ataca muy rápido, muerde y se retira antes de que lo veas bien. Donde caza, los pájaros se callan. Scale: largo y bajo, como un perro largo de seis patas, with a reed, root or stone giving size reference, no human figure required. Pose shows its signature behaviour, full silhouette readable. Habitat background simplified: helechos. Palette: verde oscuro, tierra húmeda, musgo, penumbra del dosel y pocos cálidos. Una sola criatura, sin texto, sin interfaz, sin bordes. Anatomía funcional y creíble, nada humanoide, sin ropa ni objetos de personas, sin magia ni brillos sobrenaturales. Anime fantástico serio (no tierno): línea fina, fondo pintado con sombras de cel, luz natural del hábitat."
+  },
+  {
+   "id": "mordesombra",
+   "nombre": "Mordesombra",
+   "tipo": "creature",
+   "region": "nhal",
+   "habitat": "helechos",
+   "riesgo": "depredador peligroso, evitable",
+   "anatomia_y_conducta": "Un depredador bajo y alargado, de seis patas y pelo oscuro, que embosca entre los helechos. Ataca muy rápido, muerde y se retira antes de que lo veas bien. Donde caza, los pájaros se callan.",
+   "presagio": "Aquí los pájaros no cantan. Entre los helechos hay un paso bajo y estrecho, como de un animal largo: territorio de un Mordesombra.",
+   "escala": "largo y bajo, como un perro largo de seis patas",
+   "materiales_visibles": [
+    "Piel de Mordesombra",
+    "Diente de Mordesombra"
+   ],
+   "salas_de_referencia": [
+    "nhal_helechos_bajos",
+    "nhal_raiz_marcada"
+   ],
+   "paleta": "verde oscuro, tierra húmeda, musgo, penumbra del dosel y pocos cálidos",
+   "encargo": "ambiente",
+   "ruta_propuesta": "client/art/encounters/mordesombra-anime-v1.webp",
+   "dimensiones": [
+    1536,
+    1024
+   ],
+   "conservar_ficha": null,
+   "prompt": "Use case: illustration-story. Create ONE landscape 3:2 encounter environment illustration for Vintage Telnet 2: Mordesombra in its habitat (helechos, Nhal). Show the omen first: Aquí los pájaros no cantan. Entre los helechos hay un paso bajo y estrecho, como de un animal largo: territorio de un Mordesombra. The creature is visible but secondary to the place, at its real scale (largo y bajo, como un perro largo de seis patas). Environment continuity with rooms nhal_helechos_bajos, nhal_raiz_marcada. Palette: verde oscuro, tierra húmeda, musgo, penumbra del dosel y pocos cálidos. Una sola criatura, sin texto, sin interfaz, sin bordes. Anatomía funcional y creíble, nada humanoide, sin ropa ni objetos de personas, sin magia ni brillos sobrenaturales. Anime fantástico serio (no tierno): línea fina, fondo pintado con sombras de cel, luz natural del hábitat."
+  },
+  {
+   "id": "garfarrama",
+   "nombre": "Garfarrama",
+   "tipo": "creature",
+   "region": "nhal",
+   "habitat": "ramas",
+   "riesgo": "depredador peligroso, evitable",
+   "anatomia_y_conducta": "Un reptil trepador de uñas ganchudas y cola rígida que acecha tumbado sobre las ramas. Cuando algo pasa por debajo, se deja caer encima con las garras abiertas.",
+   "presagio": "Muy arriba, la corteza de las ramas está raspada por uñas ganchudas. Algo acecha ahí arriba: un Garfarrama.",
+   "escala": "largo como una persona, cola incluida",
+   "materiales_visibles": [
+    "Garra de Garfarrama",
+    "Escama de Garfarrama"
+   ],
+   "salas_de_referencia": [
+    "nhal_corteza_clara",
+    "nhal_puente_bajo",
+    "nhal_sendero_altura",
+    "nhal_roca_entre_copas"
+   ],
+   "paleta": "verde oscuro, tierra húmeda, musgo, penumbra del dosel y pocos cálidos",
+   "encargo": "ficha",
+   "ruta_propuesta": "client/art/bestiary/garfarrama-anime-v1.webp",
+   "dimensiones": [
+    1536,
+    1024
+   ],
+   "prompt": "Use case: creature-sheet. Create ONE landscape 3:2 bestiary illustration for Vintage Telnet 2: Garfarrama (garfarrama), depredador peligroso, evitable of Nhal. Anatomy and behaviour: Un reptil trepador de uñas ganchudas y cola rígida que acecha tumbado sobre las ramas. Cuando algo pasa por debajo, se deja caer encima con las garras abiertas. Scale: largo como una persona, cola incluida, with a reed, root or stone giving size reference, no human figure required. Pose shows its signature behaviour, full silhouette readable. Habitat background simplified: ramas. Palette: verde oscuro, tierra húmeda, musgo, penumbra del dosel y pocos cálidos. Una sola criatura, sin texto, sin interfaz, sin bordes. Anatomía funcional y creíble, nada humanoide, sin ropa ni objetos de personas, sin magia ni brillos sobrenaturales. Anime fantástico serio (no tierno): línea fina, fondo pintado con sombras de cel, luz natural del hábitat."
+  },
+  {
+   "id": "garfarrama",
+   "nombre": "Garfarrama",
+   "tipo": "creature",
+   "region": "nhal",
+   "habitat": "ramas",
+   "riesgo": "depredador peligroso, evitable",
+   "anatomia_y_conducta": "Un reptil trepador de uñas ganchudas y cola rígida que acecha tumbado sobre las ramas. Cuando algo pasa por debajo, se deja caer encima con las garras abiertas.",
+   "presagio": "Muy arriba, la corteza de las ramas está raspada por uñas ganchudas. Algo acecha ahí arriba: un Garfarrama.",
+   "escala": "largo como una persona, cola incluida",
+   "materiales_visibles": [
+    "Garra de Garfarrama",
+    "Escama de Garfarrama"
+   ],
+   "salas_de_referencia": [
+    "nhal_corteza_clara",
+    "nhal_puente_bajo",
+    "nhal_sendero_altura",
+    "nhal_roca_entre_copas"
+   ],
+   "paleta": "verde oscuro, tierra húmeda, musgo, penumbra del dosel y pocos cálidos",
+   "encargo": "ambiente",
+   "ruta_propuesta": "client/art/encounters/garfarrama-anime-v1.webp",
+   "dimensiones": [
+    1536,
+    1024
+   ],
+   "conservar_ficha": null,
+   "prompt": "Use case: illustration-story. Create ONE landscape 3:2 encounter environment illustration for Vintage Telnet 2: Garfarrama in its habitat (ramas, Nhal). Show the omen first: Muy arriba, la corteza de las ramas está raspada por uñas ganchudas. Algo acecha ahí arriba: un Garfarrama. The creature is visible but secondary to the place, at its real scale (largo como una persona, cola incluida). Environment continuity with rooms nhal_corteza_clara, nhal_puente_bajo, nhal_sendero_altura. Palette: verde oscuro, tierra húmeda, musgo, penumbra del dosel y pocos cálidos. Una sola criatura, sin texto, sin interfaz, sin bordes. Anatomía funcional y creíble, nada humanoide, sin ropa ni objetos de personas, sin magia ni brillos sobrenaturales. Anime fantástico serio (no tierno): línea fina, fondo pintado con sombras de cel, luz natural del hábitat."
+  },
+  {
+   "id": "tronchacolmillo",
+   "nombre": "Tronchacolmillo",
+   "tipo": "creature",
+   "region": "nhal",
+   "habitat": "claros",
+   "riesgo": "depredador peligroso, evitable",
+   "anatomia_y_conducta": "Un herbívoro grande y robusto, de pelo áspero, que levanta raíces con sus colmillos para comérselas. Es tranquilo, pero si se siente cercado avisa con resoplidos y carga de frente con todo su peso.",
+   "presagio": "El suelo del claro está levantado, con raíces arrancadas y tierra revuelta. Se oyen resoplidos lejos: un Tronchacolmillo.",
+   "escala": "tan alto como una persona hasta la cruz",
+   "materiales_visibles": [
+    "Colmillo de Tronchacolmillo",
+    "Cuero de Tronchacolmillo"
+   ],
+   "salas_de_referencia": [
+    "nhal_claro_silencio",
+    "nhal_raiz_marcada"
+   ],
+   "paleta": "verde oscuro, tierra húmeda, musgo, penumbra del dosel y pocos cálidos",
+   "encargo": "ficha",
+   "ruta_propuesta": "client/art/bestiary/tronchacolmillo-anime-v1.webp",
+   "dimensiones": [
+    1536,
+    1024
+   ],
+   "prompt": "Use case: creature-sheet. Create ONE landscape 3:2 bestiary illustration for Vintage Telnet 2: Tronchacolmillo (tronchacolmillo), depredador peligroso, evitable of Nhal. Anatomy and behaviour: Un herbívoro grande y robusto, de pelo áspero, que levanta raíces con sus colmillos para comérselas. Es tranquilo, pero si se siente cercado avisa con resoplidos y carga de frente con todo su peso. Scale: tan alto como una persona hasta la cruz, with a reed, root or stone giving size reference, no human figure required. Pose shows its signature behaviour, full silhouette readable. Habitat background simplified: claros. Palette: verde oscuro, tierra húmeda, musgo, penumbra del dosel y pocos cálidos. Una sola criatura, sin texto, sin interfaz, sin bordes. Anatomía funcional y creíble, nada humanoide, sin ropa ni objetos de personas, sin magia ni brillos sobrenaturales. Anime fantástico serio (no tierno): línea fina, fondo pintado con sombras de cel, luz natural del hábitat."
+  },
+  {
+   "id": "tronchacolmillo",
+   "nombre": "Tronchacolmillo",
+   "tipo": "creature",
+   "region": "nhal",
+   "habitat": "claros",
+   "riesgo": "depredador peligroso, evitable",
+   "anatomia_y_conducta": "Un herbívoro grande y robusto, de pelo áspero, que levanta raíces con sus colmillos para comérselas. Es tranquilo, pero si se siente cercado avisa con resoplidos y carga de frente con todo su peso.",
+   "presagio": "El suelo del claro está levantado, con raíces arrancadas y tierra revuelta. Se oyen resoplidos lejos: un Tronchacolmillo.",
+   "escala": "tan alto como una persona hasta la cruz",
+   "materiales_visibles": [
+    "Colmillo de Tronchacolmillo",
+    "Cuero de Tronchacolmillo"
+   ],
+   "salas_de_referencia": [
+    "nhal_claro_silencio",
+    "nhal_raiz_marcada"
+   ],
+   "paleta": "verde oscuro, tierra húmeda, musgo, penumbra del dosel y pocos cálidos",
+   "encargo": "ambiente",
+   "ruta_propuesta": "client/art/encounters/tronchacolmillo-anime-v1.webp",
+   "dimensiones": [
+    1536,
+    1024
+   ],
+   "conservar_ficha": null,
+   "prompt": "Use case: illustration-story. Create ONE landscape 3:2 encounter environment illustration for Vintage Telnet 2: Tronchacolmillo in its habitat (claros, Nhal). Show the omen first: El suelo del claro está levantado, con raíces arrancadas y tierra revuelta. Se oyen resoplidos lejos: un Tronchacolmillo. The creature is visible but secondary to the place, at its real scale (tan alto como una persona hasta la cruz). Environment continuity with rooms nhal_claro_silencio, nhal_raiz_marcada. Palette: verde oscuro, tierra húmeda, musgo, penumbra del dosel y pocos cálidos. Una sola criatura, sin texto, sin interfaz, sin bordes. Anatomía funcional y creíble, nada humanoide, sin ropa ni objetos de personas, sin magia ni brillos sobrenaturales. Anime fantástico serio (no tierno): línea fina, fondo pintado con sombras de cel, luz natural del hábitat."
+  }
+ ]
+}

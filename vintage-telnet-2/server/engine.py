@@ -96,12 +96,12 @@ class Engine:
         candidates=[signal for signal in pool if self.allowed({k:v for k,v in signal.items() if k in ambient_keys},character['state'],world)
                     and signal_present(dict(signal,persistent_trace=False),room,world,now)]
         # Fair fights are three times likelier than overwhelming fauna; most wild places hold something.
-        weighted=[c for c in candidates for _ in range(3 if m.PROFILES.get(c['creature'],{}).get('category')=='comparable' else 1)]
+        weighted=[c for c in candidates for _ in range({'favorable':3,'comparable':3,'peligroso':2}.get(m.PROFILES.get(c['creature'],{}).get('category'),1))]
         roll=self.rng.random();signal=None
         if weighted and roll<.7:
             signal=dict(weighted[min(int(roll/.7*len(weighted)),len(weighted)-1)])
             # Farther from a town, stronger rivals: level 1-6 from distance, with a little chance either way.
-            if m.PROFILES.get(signal['creature'],{}).get('category')=='comparable' and 'level' not in signal:
+            if m.PROFILES.get(signal['creature'],{}).get('category') in m.SCALED_CATEGORIES and 'level' not in signal:
                 try:_,distance=self.nearest_settlement(room['id'])
                 except RuleError:distance=4
                 wobble=self.rng.random();signal['level']=max(1,min(6,1+distance//3+(-1 if wobble<.25 else 1 if wobble>=.75 else 0)))
@@ -391,6 +391,7 @@ class Engine:
             state['events'].append(event('world',creature.get('defeat_text',f"{creature['name']} deja de impedirte el paso. El enfrentamiento ha terminado; ya puedes decidir por dónde seguir.")))
             state['events'].append(event('reward',f"Vences a {creature['name']}. Ganas {gain} XP y {amount} sellos."))
         else:
+            if creature.get('defeat_text'):state['events'].append(event('world',creature['defeat_text']))
             state['events'].append(event('reward',f"Vences a {creature['name']}. Ganas {gain} XP; este enfrentamiento no entrega sellos."))
         while state['level']<100 and state['xp']>=m.xp_next(state['level']):
             old_max=m.hp_max(state);state['xp']-=m.xp_next(state['level']);state['level']+=1;state['pa']+=2;state['hp']=min(m.hp_max(state),state['hp']+m.hp_max(state)-old_max)
@@ -553,11 +554,11 @@ class Engine:
             key=f"{state['location']}:{cid}"
             if cid in m.PROFILES and cid in self.content.creatures and self.allowed(signal,state,world) and signal_present(dict(signal,persistent_trace=False),room,world,self.clock()) :
                 warned=state.get('wildlife_target')==key or key in world.get('encounters',{})
-                if m.PROFILES[cid]['category']=='abrumador' and not warned:
+                if m.PROFILES[cid]['category'] in m.AVOIDABLE_CATEGORIES and not warned:
                     actions.append({'id':'acercarse','target':cid,'label':f"Observar de cerca a {self.content.creatures[cid]['name']}"})
                 else:
-                    actions.append({'id':'combatir','target':cid,'label':('Insistir en enfrentarte a ' if m.PROFILES[cid]['category']=='abrumador' else 'Enfrentarte a ')+self.content.creatures[cid]['name']+(f" · nivel {m.scaled(m.PROFILES[cid],signal.get('level'))['level']}" if signal.get('level') else '')})
-                if m.PROFILES[cid]['category']=='abrumador' and warned:actions.append({'id':'retirarse','target':cid,'label':'Retirarte antes del enfrentamiento'})
+                    actions.append({'id':'combatir','target':cid,'label':('Insistir en enfrentarte a ' if m.PROFILES[cid]['category'] in m.AVOIDABLE_CATEGORIES else 'Enfrentarte a ')+self.content.creatures[cid]['name']+(f" · nivel {m.scaled(m.PROFILES[cid],signal.get('level'))['level']}" if signal.get('level') else '')})
+                if m.PROFILES[cid]['category'] in m.AVOIDABLE_CATEGORIES and warned:actions.append({'id':'retirarse','target':cid,'label':'Retirarte antes del enfrentamiento'})
         for qid,q in self.content.quests.items():
             if q.get('accept_room')==state['location']:
                 instance=state['quests'].get(qid)
@@ -934,7 +935,7 @@ class Engine:
         combat=state['combat'];safe_combat=None
         if combat:
             creature=self.content.creatures[combat['creature']]
-            safe_combat={'creature':combat['creature'],'combatant_kind':creature.get('combatant_kind','animal'),'name':creature['name']+(f" · nivel {combat['profile']['level']}" if combat['profile'].get('category')=='comparable' and combat['profile']['level']>1 else ''),'round':combat['round'],'next_round':combat['next_round'],'prepared':combat['prepared'],'prepared_action':m.preparation(combat),'hp':combat['hp'],'hp_max':combat['profile']['hp'],'cooldown':combat['cooldown'],'intervention_pending':bool(combat.get('intervention'))}
+            safe_combat={'creature':combat['creature'],'combatant_kind':creature.get('combatant_kind','animal'),'name':creature['name']+(f" · nivel {combat['profile']['level']}" if combat['profile'].get('category') in m.SCALED_CATEGORIES and combat['profile']['level']>1 else ''),'round':combat['round'],'next_round':combat['next_round'],'prepared':combat['prepared'],'prepared_action':m.preparation(combat),'hp':combat['hp'],'hp_max':combat['profile']['hp'],'cooldown':combat['cooldown'],'intervention_pending':bool(combat.get('intervention'))}
             if creature.get('illustration') and creature.get('combatant_kind')=='human':safe_combat['illustration']=creature['illustration']
         char={key:character[key] for key in ('id','name','species','class_id','status')}
         char['gender']=state.get('gender')

@@ -1,6 +1,6 @@
 """Simulación del ciclo MUD: viaje real con búsquedas y peleas; cuenta peleas, botín, sellos y compras posibles.
 
-Uso, desde vintage-telnet-2:  PYTHONPATH=. python3 review/claude-evaluacion/simular_viaje.py [semilla]
+Uso, desde vintage-telnet-2:  PYTHONPATH=. python3 review/claude-evaluacion/simular_viaje.py [semilla] [especie] [salida] [destino]
 """
 import random, sys, collections
 from pathlib import Path
@@ -9,11 +9,12 @@ from server.engine import Engine, RuleError
 from server import mechanics as m
 
 seed = int(sys.argv[1]) if len(sys.argv) > 1 else 1
+SPECIES, START, END = (sys.argv[2:5] + ['humano', 'valdren_plaza', 'vaisgard_mercado'][len(sys.argv[2:5]):])
 content = Content(Path('content')); now = [10 * 3600.0]; rng = random.Random(seed)
 engine = Engine(content, lambda: now[0], rng)
 world = {'flags': [], 'deaths': {}, 'version': 0}
-state = m.new_state('humano', 'juramentado', 'home:sim', now[0]); state['location'] = 'valdren_plaza'
-char = {'id': 1, 'name': 'Sim', 'species': 'humano', 'class_id': 'juramentado', 'status': 'approved', 'state': state}
+state = m.new_state(SPECIES, 'juramentado', 'home:sim', now[0]); state['location'] = START
+char = {'id': 1, 'name': 'Sim', 'species': SPECIES, 'class_id': 'juramentado', 'status': 'approved', 'state': state}
 stats = collections.Counter(); loot = collections.Counter()
 
 def act(intent):
@@ -42,7 +43,7 @@ def visit_room():
             for i in state['inventory']:
                 if i.get('quantity', 1) > before.get(i['id'], 0): loot[i['name']] += 1; stats['hallazgos'] += 1
     for a in engine.actions(char, world):
-        if a['id'] == 'combatir' and m.PROFILES[a['target']]['category'] == 'comparable' and state['hp'] > .5 * m.hp_max(state):
+        if a['id'] == 'combatir' and m.PROFILES[a['target']]['category'] in ('favorable', 'comparable') and state['hp'] > .5 * m.hp_max(state):
             seals = state['seals']; before = {i['id']: i.get('quantity', 1) for i in state['inventory']}
             fight(a['target']); stats['sellos de combate'] += state['seals'] - seals
             for i in state['inventory']:
@@ -61,12 +62,11 @@ def goto(target):
         act({'id': 'mover', 'target': d})
 
 path = []
-main = ['valdren_plaza']
-prev = {'valdren_plaza': None}; queue = ['valdren_plaza']
+prev = {START: None}; queue = [START]
 for here in queue:
     for d, t in content.rooms[here]['exits'].items():
         if t in content.rooms and t not in prev: prev[t] = (here, d); queue.append(t)
-node = 'vaisgard_mercado'; chain = []
+node = END; chain = []
 while node: chain.append(node); node = prev[node][0] if prev[node] else None
 # A thorough trip: every room on the way, plus each neighbour as a short detour.
 for room in reversed(chain):

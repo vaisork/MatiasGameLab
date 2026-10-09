@@ -98,7 +98,7 @@
       "name": "Hilaria de niebla",
       "region": "nhal",
       "description": "El arácnido permanece al borde de una red baja tendida entre raíces y un tronco caído. Las gotas vuelven visibles hilos que el cuerpo opaco casi oculta. Una vibración grande lo lleva a una hendidura de corteza; una vibración pequeña puede ser la presa que espera.",
-      "warning": "",
+      "warning": "Las gotas dibujan hilos entre las raíces: una Hilaria de niebla tiene aquí su red. Rodéala; la red frena a quien la pisa.",
       "source": "Canon del prompt; descripción original nueva",
       "illustration": "/client/art/bestiary/hilaria-anime-v1.webp"
     },
@@ -123,7 +123,7 @@
       "name": "Rondamusgo",
       "region": "nhal",
       "description": "Cuatro patas cortas sostienen un cuerpo de pelo áspero donde se adhieren musgo y semillas. La criatura busca hongos y frutos bajo las hojas; al oír pasos se inmoviliza antes de correr hacia una raíz hueca. Su recorrido deja semillas donde vuelve a refugiarse.",
-      "warning": "",
+      "warning": "El musgo se ha movido y hay semillas esparcidas: un Rondamusgo busca hongos. Si lo sorprendes, empuja y huye hacia una raíz hueca.",
       "source": "Canon del prompt; descripción original nueva",
       "illustration": "/client/art/bestiary/rondamusgo-anime-v1.webp"
     },
@@ -190,7 +190,8 @@
       "region": "lethra",
       "description": "El crustáceo se desplaza de lado entre barro y raíces. Su pinza mayor se eleva hacia quien invade el borde poco profundo; detrás, un agujero conserva restos vegetales que arrastra para utilizar como refugio.",
       "source": "Canon del prompt; descripción nueva de anatomía y conducta",
-      "illustration": "/client/art/bestiary/pinzajunco-anime-v2.webp"
+      "illustration": "/client/art/bestiary/pinzajunco-anime-v2.webp",
+      "warning": "Un chasquido de pinza y barro removido: un Pinzajunco defiende su madriguera. Si no pisas el borde, se repliega."
     },
     "saltalodo": {
       "id": "saltalodo",
@@ -198,7 +199,8 @@
       "region": "lethra",
       "description": "La piel moteada casi se pierde entre barro y hojas flotantes. El anfibio infla una bolsa del cuello antes de llamar. Un salto repentino lo lleva hacia agua profunda cuando el borde se llena de pasos.",
       "source": "Canon del prompt; descripción nueva de anatomía y conducta",
-      "illustration": "/client/art/bestiary/saltalodo-anime-v1.webp"
+      "illustration": "/client/art/bestiary/saltalodo-anime-v1.webp",
+      "warning": "Un chapoteo y una llamada breve: un Saltalodo hincha la bolsa del cuello y salta al agua profunda si te acercas."
     },
     "forajido_camino": {
       "id": "forajido_camino",
@@ -235,6 +237,385 @@
           "chance": 0.06
         }
       ]
+    },
+    "mordijunco": {
+      "id": "mordijunco",
+      "name": "Mordijunco",
+      "region": "lethra",
+      "habitat": "juncal",
+      "description": "Un roedor de cuerpo redondo y pelo pardo, del tamaño de un gato, con incisivos anchos y anaranjados. Corta los juncos al sesgo para tapar la entrada de su madriguera, y la defiende a mordiscos si alguien se acerca demasiado.",
+      "warning": "Los juncos cortados al sesgo marcan su madriguera. Si te acercas a la entrada, el Mordijunco saldrá a defenderla.",
+      "combat_intro": "El Mordijunco sale de la madriguera, se planta entre los tallos y te enseña los incisivos.",
+      "defeat_text": "El Mordijunco chilla, da media vuelta y se mete en su madriguera, tapando la entrada con juncos.",
+      "source": "Bestiario de riesgo Lethra y Nhal (historiador, PR #669); integración de Claude.",
+      "loot": [
+        {
+          "item": "incisivo_mordijunco",
+          "chance": 0.7,
+          "text": "Recoges un incisivo ancho y anaranjado que se le cayó en la pelea."
+        },
+        {
+          "item": "piel_mordijunco",
+          "chance": 0.5,
+          "text": "Te llevas un trozo de piel parda, suave y resistente al agua."
+        }
+      ],
+      "presagio": "Juncos cortados al sesgo, todos a la misma altura, rodean un agujero en el barro: la madriguera de un Mordijunco."
+    },
+    "cienfango": {
+      "id": "cienfango",
+      "name": "Cienfango",
+      "region": "lethra",
+      "habitat": "raíces",
+      "description": "Un artrópodo largo y segmentado, del color del barro mojado, con muchas patas que se pegan a la madera húmeda. Sus mandíbulas curvas cortan el cuero como si fuera hoja. Se esconde bajo troncos y raíces y sale de lado.",
+      "warning": "Algo se arrastra bajo la raíz mojada. Las mandíbulas de un Cienfango pueden cortar el cuero; aún puedes alejarte del tronco.",
+      "combat_intro": "El Cienfango sale de debajo de la raíz con un roce de muchas patas y abre las mandíbulas.",
+      "defeat_text": "El Cienfango se enrosca, se suelta de la madera y desaparece bajo las raíces, dejando un rastro de barro.",
+      "source": "Bestiario de riesgo Lethra y Nhal (historiador, PR #669); integración de Claude.",
+      "loot": [
+        {
+          "item": "placa_cienfango",
+          "chance": 0.7,
+          "text": "Recoges una placa segmentada, ligera y dura."
+        },
+        {
+          "item": "mandibula_cienfango",
+          "chance": 0.45,
+          "text": "Te llevas una mandíbula curva, afilada como una cuchilla."
+        }
+      ],
+      "presagio": "Bajo un tronco húmedo se oye un roce de muchas patas. En la madera hay surcos finos, como de cuchilla: ahí vive un Cienfango."
+    },
+    "raizacapa": {
+      "id": "raizacapa",
+      "name": "Raizacapa",
+      "region": "lethra",
+      "habitat": "raíces",
+      "description": "Un reptil de caparazón rugoso, verde oscuro y lleno de musgo, que se confunde con las raíces sumergidas. Saca la cabeza muy despacio y muerde de golpe. Cuando lo amenazan se encierra en su caparazón, duro como una piedra.",
+      "warning": "Lo que parecía una raíz cubierta de musgo tiene ojos. Una Raizacapa vigila desde el agua; si no te acercas, no saldrá.",
+      "combat_intro": "La Raizacapa estira el cuello fuera del caparazón y abre la boca, sin moverse de su raíz.",
+      "defeat_text": "La Raizacapa se encierra en su caparazón y se deja hundir entre las raíces. Ya no vuelve a salir.",
+      "source": "Bestiario de riesgo Lethra y Nhal (historiador, PR #669); integración de Claude.",
+      "loot": [
+        {
+          "item": "placa_raizacapa",
+          "chance": 0.75,
+          "text": "Recoges una placa rugosa del caparazón, dura como la piedra."
+        }
+      ],
+      "presagio": "Las raíces sumergidas están raspadas, como si algo duro se frotara contra ellas: señal de una Raizacapa."
+    },
+    "aguaculebra": {
+      "id": "aguaculebra",
+      "name": "Aguaculebra",
+      "region": "lethra",
+      "habitat": "raíces",
+      "description": "Un pez largo como una serpiente, de cabeza aplanada y bigotes finos, que vive en las grietas inundadas entre raíces. Sale, muerde y vuelve a meterse en su grieta en un instante.",
+      "warning": "En el agua se forman remolinos pequeños donde no hay corriente: una Aguaculebra espera en su grieta.",
+      "combat_intro": "La cabeza plana de la Aguaculebra asoma de la grieta, con los bigotes temblando.",
+      "defeat_text": "La Aguaculebra se escurre dentro de su grieta y el agua se queda quieta otra vez.",
+      "source": "Bestiario de riesgo Lethra y Nhal (historiador, PR #669); integración de Claude.",
+      "loot": [
+        {
+          "item": "piel_aguaculebra",
+          "chance": 0.65,
+          "text": "Recoges una tira de piel lisa y brillante."
+        },
+        {
+          "item": "espina_aguaculebra",
+          "chance": 0.45,
+          "text": "Te llevas una espina fina de su aleta."
+        }
+      ],
+      "presagio": "Remolinos pequeños, casi invisibles, giran junto a una grieta inundada: ahí se esconde una Aguaculebra."
+    },
+    "cortacorriente": {
+      "id": "cortacorriente",
+      "name": "Cortacorriente",
+      "region": "lethra",
+      "habitat": "pasos de agua",
+      "description": "Un pez alargado y plateado, con dientes inclinados hacia atrás para que la presa no se suelte. Caza en los pasos estrechos donde el agua corre rápido. Dentro del agua es veloz; fuera de ella, torpe.",
+      "warning": "Hay ondas que van contra la corriente: un Cortacorriente caza en este paso. Fuera del agua es torpe.",
+      "combat_intro": "El Cortacorriente salta fuera del agua con la boca abierta y cae junto a tus pies.",
+      "defeat_text": "El Cortacorriente da un último coletazo y se deja llevar por la corriente, lejos de ti.",
+      "source": "Bestiario de riesgo Lethra y Nhal (historiador, PR #669); integración de Claude.",
+      "loot": [
+        {
+          "item": "diente_cortacorriente",
+          "chance": 0.6,
+          "text": "Recoges un diente curvado hacia atrás."
+        },
+        {
+          "item": "piel_cortacorriente",
+          "chance": 0.5,
+          "text": "Te llevas un trozo de piel plateada."
+        }
+      ],
+      "presagio": "En el paso estrecho, algunas ondas avanzan contra la corriente. Algo nada ahí debajo: un Cortacorriente."
+    },
+    "faucecieno": {
+      "id": "faucecieno",
+      "name": "Faucecieno",
+      "region": "lethra",
+      "habitat": "pasos de agua",
+      "description": "Un depredador anfibio largo y acorazado, de hocico ancho y placas oscuras en el lomo. Espera inmóvil en el agua turbia hasta que algo se acerca al borde, y entonces muerde y arrastra. Es de los animales más peligrosos de Lethra.",
+      "warning": "En el agua turbia suben burbujas y la orilla se ha quedado en silencio. Un Faucecieno espera ahí. Luchar sin suelo firme es muy peligroso; todavía puedes retirarte.",
+      "combat_intro": "El Faucecieno sale del agua turbia con el hocico abierto. Necesitas suelo firme bajo los pies.",
+      "defeat_text": "El Faucecieno se revuelve, suelta un bufido y se hunde en el agua turbia. Esta vez no volverá.",
+      "source": "Bestiario de riesgo Lethra y Nhal (historiador, PR #669); integración de Claude.",
+      "loot": [
+        {
+          "item": "placa_faucecieno",
+          "chance": 0.85,
+          "text": "Arrancas una placa oscura del lomo, gruesa como una tabla."
+        },
+        {
+          "item": "diente_faucecieno",
+          "chance": 0.6,
+          "text": "Recoges un diente enorme que se le quedó clavado en la orilla."
+        }
+      ],
+      "presagio": "Suben burbujas del agua turbia y ningún pájaro canta en la orilla. Algo grande respira debajo: un Faucecieno."
+    },
+    "tragacharco": {
+      "id": "tragacharco",
+      "name": "Tragacharco",
+      "region": "lethra",
+      "habitat": "charcos",
+      "description": "Un anfibio enorme y aplastado, cubierto de barro, con una mandíbula tan grande que parece la mitad de su cuerpo. Se queda quieto en los charcos como un montículo de barro, y sólo se mueve para lanzarse de frente.",
+      "warning": "Un montículo de barro en el charco sube y baja: respira. Es un Tragacharco, y ataca de frente; todavía puedes rodearlo.",
+      "combat_intro": "El montículo de barro se levanta y abre una boca enorme: el Tragacharco se prepara para lanzarse.",
+      "defeat_text": "El Tragacharco se aplasta en el charco, se cubre de barro y deja de moverse. Ya no te molesta.",
+      "source": "Bestiario de riesgo Lethra y Nhal (historiador, PR #669); integración de Claude.",
+      "loot": [
+        {
+          "item": "piel_tragacharco",
+          "chance": 0.8,
+          "text": "Te llevas un trozo de piel gruesa y gomosa."
+        },
+        {
+          "item": "hueso_tragacharco",
+          "chance": 0.5,
+          "text": "Recoges un hueso curvo de su enorme mandíbula."
+        }
+      ],
+      "presagio": "En el charco, un montículo de barro sube y baja muy despacio, como si respirara. Un Tragacharco duerme ahí."
+    },
+    "sombranutria": {
+      "id": "sombranutria",
+      "name": "Sombranutria",
+      "region": "lethra",
+      "habitat": "muelles",
+      "description": "Un mamífero oscuro de patas palmeadas, ágil dentro y fuera del agua. De noche caza bajo los muelles y defiende su territorio con mordiscos y arañazos. De día casi nunca se deja ver.",
+      "warning": "Bajo la madera del muelle suenan golpes y hay conchas partidas en las tablas. Una Sombranutria defiende su sitio; si te apartas, te dejará ir.",
+      "combat_intro": "La Sombranutria sale de debajo del muelle, se sacude el agua y te bufa.",
+      "defeat_text": "La Sombranutria da un chillido, salta al agua y desaparece bajo el muelle.",
+      "source": "Bestiario de riesgo Lethra y Nhal (historiador, PR #669); integración de Claude.",
+      "loot": [
+        {
+          "item": "pelaje_sombranutria",
+          "chance": 0.8,
+          "text": "Te llevas un trozo de pelaje oscuro, impermeable."
+        },
+        {
+          "item": "diente_sombranutria",
+          "chance": 0.5,
+          "text": "Recoges un diente afilado y oscuro."
+        }
+      ],
+      "presagio": "Sobre las tablas hay conchas partidas, y bajo la madera se oyen golpes. De noche, aquí caza una Sombranutria."
+    },
+    "velomembrana": {
+      "id": "velomembrana",
+      "name": "Velomembrana",
+      "region": "nhal",
+      "habitat": "ramas",
+      "description": "Un mamífero pequeño de orejas enormes y membranas entre las patas, que planea de árbol en árbol de noche cazando insectos. Sólo muerde si lo atrapan o lo acorralan.",
+      "warning": "Una sombra planea entre las copas sin hacer ruido. Es una Velomembrana; sólo muerde si la molestas.",
+      "combat_intro": "La Velomembrana baja planeando hacia ti con las orejas tiesas y abre la boca.",
+      "defeat_text": "La Velomembrana despliega las membranas y planea lejos, entre las copas.",
+      "source": "Bestiario de riesgo Lethra y Nhal (historiador, PR #669); integración de Claude.",
+      "loot": [
+        {
+          "item": "membrana_velomembrana",
+          "chance": 0.6,
+          "text": "Recoges un trozo de membrana fina y translúcida."
+        },
+        {
+          "item": "pelaje_velomembrana",
+          "chance": 0.5,
+          "text": "Te llevas un poco de pelaje suave como el algodón."
+        }
+      ],
+      "presagio": "Una sombra pequeña cruza entre las copas sin un ruido. Bajo una rama hay restos de alas de insecto: caza de una Velomembrana."
+    },
+    "roecorteza": {
+      "id": "roecorteza",
+      "name": "Roecorteza",
+      "region": "nhal",
+      "habitat": "suelo",
+      "description": "Un cuadrúpedo pequeño y robusto, de incisivos fuertes y uñas curvas, que arranca la corteza en tiras para comerse las larvas de debajo. Es tranquilo, pero muerde y araña si lo interrumpen.",
+      "warning": "Hay corteza arrancada en tiras largas y un roer constante. Un Roecorteza busca larvas; si lo dejas tranquilo, no te molestará.",
+      "combat_intro": "El Roecorteza deja de roer, se vuelve hacia ti y saca las uñas.",
+      "defeat_text": "El Roecorteza suelta un gruñido y trepa por el tronco hasta perderse entre las ramas.",
+      "source": "Bestiario de riesgo Lethra y Nhal (historiador, PR #669); integración de Claude.",
+      "loot": [
+        {
+          "item": "incisivo_roecorteza",
+          "chance": 0.65,
+          "text": "Recoges un incisivo fuerte y amarillento."
+        },
+        {
+          "item": "piel_roecorteza",
+          "chance": 0.5,
+          "text": "Te llevas un trozo de piel parda y gruesa."
+        }
+      ],
+      "presagio": "La corteza de un tronco cuelga en tiras largas y frescas. Algo ha estado buscando larvas: un Roecorteza."
+    },
+    "quebracascara": {
+      "id": "quebracascara",
+      "name": "Quebracáscara",
+      "region": "nhal",
+      "habitat": "suelo",
+      "description": "Un escarabajo forestal del tamaño de un perro, de cubierta negra y brillante, que tritura la madera podrida con sus mandíbulas. Es lento, pero su cubierta para casi todos los golpes.",
+      "warning": "En el tronco blando hay túneles anchos y se oye un crujido constante. Un Quebracáscara está comiendo madera podrida.",
+      "combat_intro": "El Quebracáscara sale del tronco, abre las mandíbulas y se planta delante de ti.",
+      "defeat_text": "El Quebracáscara se da la vuelta y se mete otra vez en el tronco podrido, crujiendo.",
+      "source": "Bestiario de riesgo Lethra y Nhal (historiador, PR #669); integración de Claude.",
+      "loot": [
+        {
+          "item": "quitina_quebracascara",
+          "chance": 0.75,
+          "text": "Recoges un trozo de cubierta negra, dura y ligera."
+        },
+        {
+          "item": "mandibula_quebracascara",
+          "chance": 0.45,
+          "text": "Te llevas una mandíbula con forma de pinza."
+        }
+      ],
+      "presagio": "Un tronco podrido está lleno de túneles anchos, y dentro se oye un crujido constante: un Quebracáscara."
+    },
+    "escarbaraiz": {
+      "id": "escarbaraiz",
+      "name": "Escarbaraíz",
+      "region": "nhal",
+      "habitat": "suelo",
+      "description": "Un reptil bajo y ancho, de escamas pardas, con unas patas delanteras enormes para excavar entre las raíces. Defiende la entrada de su refugio empujando y dando zarpazos.",
+      "warning": "Junto a las raíces hay montones de tierra recién sacada. Un Escarbaraíz protege su refugio; si no te acercas a la entrada, no saldrá.",
+      "combat_intro": "El Escarbaraíz sale de su agujero, sacude la tierra de las patas y avanza hacia ti.",
+      "defeat_text": "El Escarbaraíz retrocede, se mete en su agujero y lo tapa con tierra.",
+      "source": "Bestiario de riesgo Lethra y Nhal (historiador, PR #669); integración de Claude.",
+      "loot": [
+        {
+          "item": "una_escarbaraiz",
+          "chance": 0.65,
+          "text": "Recoges una uña larga y curva, buena para excavar."
+        },
+        {
+          "item": "escama_escarbaraiz",
+          "chance": 0.5,
+          "text": "Te llevas unas escamas pardas y duras."
+        }
+      ],
+      "presagio": "Hay montones de tierra recién sacada junto a las raíces, y un agujero que se pierde hacia abajo: el refugio de un Escarbaraíz."
+    },
+    "clavaespina": {
+      "id": "clavaespina",
+      "name": "Clavaespina",
+      "region": "nhal",
+      "habitat": "helechos",
+      "description": "Un cuadrúpedo de hombros fuertes, cubierto de púas rígidas y largas. No puede disparar sus púas, pero carga con ellas por delante, y quien lo golpea de frente se pincha.",
+      "warning": "Hay púas clavadas en los troncos bajos, a la altura de tus rodillas. Un Clavaespina ronda entre los helechos.",
+      "combat_intro": "El Clavaespina levanta los hombros, eriza todas las púas y bufa.",
+      "defeat_text": "El Clavaespina sacude el cuerpo, deja caer unas púas y se aleja entre los helechos.",
+      "source": "Bestiario de riesgo Lethra y Nhal (historiador, PR #669); integración de Claude.",
+      "loot": [
+        {
+          "item": "espina_clavaespina",
+          "chance": 0.75,
+          "text": "Recoges unas púas largas y rígidas."
+        },
+        {
+          "item": "cuero_clavaespina",
+          "chance": 0.45,
+          "text": "Te llevas un trozo de cuero grueso, sin púas."
+        }
+      ],
+      "presagio": "Hay púas largas clavadas en los troncos bajos, todas a la misma altura. Por aquí pasa un Clavaespina."
+    },
+    "mordesombra": {
+      "id": "mordesombra",
+      "name": "Mordesombra",
+      "region": "nhal",
+      "habitat": "helechos",
+      "description": "Un depredador bajo y alargado, de seis patas y pelo oscuro, que embosca entre los helechos. Ataca muy rápido, muerde y se retira antes de que lo veas bien. Donde caza, los pájaros se callan.",
+      "warning": "Los pájaros han dejado de cantar, y entre los helechos brillan unos ojos muy bajos. Un Mordesombra está al acecho; todavía puedes salir a la senda abierta.",
+      "combat_intro": "Seis patas se mueven entre los helechos: el Mordesombra te ha elegido como presa.",
+      "defeat_text": "El Mordesombra suelta un chillido agudo y desaparece entre los helechos. Poco a poco, los pájaros vuelven a cantar.",
+      "source": "Bestiario de riesgo Lethra y Nhal (historiador, PR #669); integración de Claude.",
+      "loot": [
+        {
+          "item": "piel_mordesombra",
+          "chance": 0.8,
+          "text": "Te llevas un trozo de piel oscura que casi no refleja la luz."
+        },
+        {
+          "item": "diente_mordesombra",
+          "chance": 0.5,
+          "text": "Recoges un diente fino y muy afilado."
+        }
+      ],
+      "presagio": "Aquí los pájaros no cantan. Entre los helechos hay un paso bajo y estrecho, como de un animal largo: territorio de un Mordesombra."
+    },
+    "garfarrama": {
+      "id": "garfarrama",
+      "name": "Garfarrama",
+      "region": "nhal",
+      "habitat": "ramas",
+      "description": "Un reptil trepador de uñas ganchudas y cola rígida que acecha tumbado sobre las ramas. Cuando algo pasa por debajo, se deja caer encima con las garras abiertas.",
+      "warning": "Arriba, la corteza está raspada por uñas ganchudas. Un Garfarrama acecha en las ramas; si no pasas por debajo, no saltará.",
+      "combat_intro": "En la rama de arriba, el Garfarrama clava las uñas y tensa la cola.",
+      "defeat_text": "El Garfarrama trepa a toda prisa por el tronco y se queda arriba, inmóvil, vigilándote.",
+      "source": "Bestiario de riesgo Lethra y Nhal (historiador, PR #669); integración de Claude.",
+      "loot": [
+        {
+          "item": "garra_garfarrama",
+          "chance": 0.75,
+          "text": "Recoges una garra ganchuda, muy afilada."
+        },
+        {
+          "item": "escama_garfarrama",
+          "chance": 0.5,
+          "text": "Te llevas unas escamas verdes, con dibujo de corteza."
+        }
+      ],
+      "presagio": "Muy arriba, la corteza de las ramas está raspada por uñas ganchudas. Algo acecha ahí arriba: un Garfarrama."
+    },
+    "tronchacolmillo": {
+      "id": "tronchacolmillo",
+      "name": "Tronchacolmillo",
+      "region": "nhal",
+      "habitat": "claros",
+      "description": "Un herbívoro grande y robusto, de pelo áspero, que levanta raíces con sus colmillos para comérselas. Es tranquilo, pero si se siente cercado avisa con resoplidos y carga de frente con todo su peso.",
+      "warning": "La tierra del claro está removida y se oyen resoplidos. Un Tronchacolmillo come raíces; si le dejas un camino libre, se irá.",
+      "combat_intro": "El Tronchacolmillo levanta la cabeza, resopla y rasca la tierra: se siente cercado.",
+      "defeat_text": "El Tronchacolmillo resopla una última vez y se va trotando entre los árboles, rompiendo ramas a su paso.",
+      "source": "Bestiario de riesgo Lethra y Nhal (historiador, PR #669); integración de Claude.",
+      "loot": [
+        {
+          "item": "colmillo_tronchacolmillo",
+          "chance": 0.8,
+          "text": "Recoges un colmillo grueso, gastado de levantar raíces."
+        },
+        {
+          "item": "cuero_tronchacolmillo",
+          "chance": 0.55,
+          "text": "Te llevas un trozo de cuero áspero y muy resistente."
+        }
+      ],
+      "presagio": "El suelo del claro está levantado, con raíces arrancadas y tierra revuelta. Se oyen resoplidos lejos: un Tronchacolmillo."
     }
   },
   "items": {
@@ -928,6 +1309,286 @@
       "kind": "material",
       "sell_price": 8,
       "description": "Lo que el salteador había quitado a otros viajeros."
+    },
+    "incisivo_mordijunco": {
+      "id": "incisivo_mordijunco",
+      "name": "Incisivo de Mordijunco",
+      "kind": "material",
+      "sell_price": 4,
+      "description": "Aprovechable de Mordijunco.",
+      "source": "Bestiario de riesgo Lethra y Nhal (historiador, PR #669); integración de Claude."
+    },
+    "piel_mordijunco": {
+      "id": "piel_mordijunco",
+      "name": "Piel de Mordijunco",
+      "kind": "material",
+      "sell_price": 4,
+      "description": "Aprovechable de Mordijunco.",
+      "source": "Bestiario de riesgo Lethra y Nhal (historiador, PR #669); integración de Claude."
+    },
+    "placa_cienfango": {
+      "id": "placa_cienfango",
+      "name": "Placa de Cienfango",
+      "kind": "material",
+      "sell_price": 6,
+      "description": "Aprovechable de Cienfango.",
+      "source": "Bestiario de riesgo Lethra y Nhal (historiador, PR #669); integración de Claude."
+    },
+    "mandibula_cienfango": {
+      "id": "mandibula_cienfango",
+      "name": "Mandíbula de Cienfango",
+      "kind": "material",
+      "sell_price": 6,
+      "description": "Aprovechable de Cienfango.",
+      "source": "Bestiario de riesgo Lethra y Nhal (historiador, PR #669); integración de Claude."
+    },
+    "placa_raizacapa": {
+      "id": "placa_raizacapa",
+      "name": "Placa de Raizacapa",
+      "kind": "material",
+      "sell_price": 7,
+      "description": "Aprovechable de Raizacapa.",
+      "source": "Bestiario de riesgo Lethra y Nhal (historiador, PR #669); integración de Claude."
+    },
+    "piel_aguaculebra": {
+      "id": "piel_aguaculebra",
+      "name": "Piel de Aguaculebra",
+      "kind": "material",
+      "sell_price": 6,
+      "description": "Aprovechable de Aguaculebra.",
+      "source": "Bestiario de riesgo Lethra y Nhal (historiador, PR #669); integración de Claude."
+    },
+    "espina_aguaculebra": {
+      "id": "espina_aguaculebra",
+      "name": "Espina de Aguaculebra",
+      "kind": "material",
+      "sell_price": 5,
+      "description": "Aprovechable de Aguaculebra.",
+      "source": "Bestiario de riesgo Lethra y Nhal (historiador, PR #669); integración de Claude."
+    },
+    "diente_cortacorriente": {
+      "id": "diente_cortacorriente",
+      "name": "Diente de Cortacorriente",
+      "kind": "material",
+      "sell_price": 6,
+      "description": "Aprovechable de Cortacorriente.",
+      "source": "Bestiario de riesgo Lethra y Nhal (historiador, PR #669); integración de Claude."
+    },
+    "piel_cortacorriente": {
+      "id": "piel_cortacorriente",
+      "name": "Piel de Cortacorriente",
+      "kind": "material",
+      "sell_price": 5,
+      "description": "Aprovechable de Cortacorriente.",
+      "source": "Bestiario de riesgo Lethra y Nhal (historiador, PR #669); integración de Claude."
+    },
+    "placa_faucecieno": {
+      "id": "placa_faucecieno",
+      "name": "Placa de Faucecieno",
+      "kind": "material",
+      "sell_price": 12,
+      "description": "Aprovechable de Faucecieno.",
+      "source": "Bestiario de riesgo Lethra y Nhal (historiador, PR #669); integración de Claude."
+    },
+    "diente_faucecieno": {
+      "id": "diente_faucecieno",
+      "name": "Diente de Faucecieno",
+      "kind": "material",
+      "sell_price": 10,
+      "description": "Aprovechable de Faucecieno.",
+      "source": "Bestiario de riesgo Lethra y Nhal (historiador, PR #669); integración de Claude."
+    },
+    "piel_tragacharco": {
+      "id": "piel_tragacharco",
+      "name": "Piel de Tragacharco",
+      "kind": "material",
+      "sell_price": 10,
+      "description": "Aprovechable de Tragacharco.",
+      "source": "Bestiario de riesgo Lethra y Nhal (historiador, PR #669); integración de Claude."
+    },
+    "hueso_tragacharco": {
+      "id": "hueso_tragacharco",
+      "name": "Hueso mandibular de Tragacharco",
+      "kind": "material",
+      "sell_price": 10,
+      "description": "Aprovechable de Tragacharco.",
+      "source": "Bestiario de riesgo Lethra y Nhal (historiador, PR #669); integración de Claude."
+    },
+    "pelaje_sombranutria": {
+      "id": "pelaje_sombranutria",
+      "name": "Pelaje de Sombranutria",
+      "kind": "material",
+      "sell_price": 11,
+      "description": "Aprovechable de Sombranutria.",
+      "source": "Bestiario de riesgo Lethra y Nhal (historiador, PR #669); integración de Claude."
+    },
+    "diente_sombranutria": {
+      "id": "diente_sombranutria",
+      "name": "Diente de Sombranutria",
+      "kind": "material",
+      "sell_price": 10,
+      "description": "Aprovechable de Sombranutria.",
+      "source": "Bestiario de riesgo Lethra y Nhal (historiador, PR #669); integración de Claude."
+    },
+    "membrana_velomembrana": {
+      "id": "membrana_velomembrana",
+      "name": "Membrana de Velomembrana",
+      "kind": "material",
+      "sell_price": 5,
+      "description": "Aprovechable de Velomembrana.",
+      "source": "Bestiario de riesgo Lethra y Nhal (historiador, PR #669); integración de Claude."
+    },
+    "pelaje_velomembrana": {
+      "id": "pelaje_velomembrana",
+      "name": "Pelaje de Velomembrana",
+      "kind": "material",
+      "sell_price": 4,
+      "description": "Aprovechable de Velomembrana.",
+      "source": "Bestiario de riesgo Lethra y Nhal (historiador, PR #669); integración de Claude."
+    },
+    "incisivo_roecorteza": {
+      "id": "incisivo_roecorteza",
+      "name": "Incisivo de Roecorteza",
+      "kind": "material",
+      "sell_price": 4,
+      "description": "Aprovechable de Roecorteza.",
+      "source": "Bestiario de riesgo Lethra y Nhal (historiador, PR #669); integración de Claude."
+    },
+    "piel_roecorteza": {
+      "id": "piel_roecorteza",
+      "name": "Piel de Roecorteza",
+      "kind": "material",
+      "sell_price": 4,
+      "description": "Aprovechable de Roecorteza.",
+      "source": "Bestiario de riesgo Lethra y Nhal (historiador, PR #669); integración de Claude."
+    },
+    "quitina_quebracascara": {
+      "id": "quitina_quebracascara",
+      "name": "Quitina de Quebracáscara",
+      "kind": "material",
+      "sell_price": 7,
+      "description": "Aprovechable de Quebracáscara.",
+      "source": "Bestiario de riesgo Lethra y Nhal (historiador, PR #669); integración de Claude."
+    },
+    "mandibula_quebracascara": {
+      "id": "mandibula_quebracascara",
+      "name": "Mandíbula de Quebracáscara",
+      "kind": "material",
+      "sell_price": 6,
+      "description": "Aprovechable de Quebracáscara.",
+      "source": "Bestiario de riesgo Lethra y Nhal (historiador, PR #669); integración de Claude."
+    },
+    "una_escarbaraiz": {
+      "id": "una_escarbaraiz",
+      "name": "Uña de Escarbaraíz",
+      "kind": "material",
+      "sell_price": 6,
+      "description": "Aprovechable de Escarbaraíz.",
+      "source": "Bestiario de riesgo Lethra y Nhal (historiador, PR #669); integración de Claude."
+    },
+    "escama_escarbaraiz": {
+      "id": "escama_escarbaraiz",
+      "name": "Escama de Escarbaraíz",
+      "kind": "material",
+      "sell_price": 6,
+      "description": "Aprovechable de Escarbaraíz.",
+      "source": "Bestiario de riesgo Lethra y Nhal (historiador, PR #669); integración de Claude."
+    },
+    "espina_clavaespina": {
+      "id": "espina_clavaespina",
+      "name": "Púa de Clavaespina",
+      "kind": "material",
+      "sell_price": 6,
+      "description": "Aprovechable de Clavaespina.",
+      "source": "Bestiario de riesgo Lethra y Nhal (historiador, PR #669); integración de Claude."
+    },
+    "cuero_clavaespina": {
+      "id": "cuero_clavaespina",
+      "name": "Cuero de Clavaespina",
+      "kind": "material",
+      "sell_price": 7,
+      "description": "Aprovechable de Clavaespina.",
+      "source": "Bestiario de riesgo Lethra y Nhal (historiador, PR #669); integración de Claude."
+    },
+    "piel_mordesombra": {
+      "id": "piel_mordesombra",
+      "name": "Piel de Mordesombra",
+      "kind": "material",
+      "sell_price": 11,
+      "description": "Aprovechable de Mordesombra.",
+      "source": "Bestiario de riesgo Lethra y Nhal (historiador, PR #669); integración de Claude."
+    },
+    "diente_mordesombra": {
+      "id": "diente_mordesombra",
+      "name": "Diente de Mordesombra",
+      "kind": "material",
+      "sell_price": 10,
+      "description": "Aprovechable de Mordesombra.",
+      "source": "Bestiario de riesgo Lethra y Nhal (historiador, PR #669); integración de Claude."
+    },
+    "garra_garfarrama": {
+      "id": "garra_garfarrama",
+      "name": "Garra de Garfarrama",
+      "kind": "material",
+      "sell_price": 10,
+      "description": "Aprovechable de Garfarrama.",
+      "source": "Bestiario de riesgo Lethra y Nhal (historiador, PR #669); integración de Claude."
+    },
+    "escama_garfarrama": {
+      "id": "escama_garfarrama",
+      "name": "Escama de Garfarrama",
+      "kind": "material",
+      "sell_price": 9,
+      "description": "Aprovechable de Garfarrama.",
+      "source": "Bestiario de riesgo Lethra y Nhal (historiador, PR #669); integración de Claude."
+    },
+    "colmillo_tronchacolmillo": {
+      "id": "colmillo_tronchacolmillo",
+      "name": "Colmillo de Tronchacolmillo",
+      "kind": "material",
+      "sell_price": 13,
+      "description": "Aprovechable de Tronchacolmillo.",
+      "source": "Bestiario de riesgo Lethra y Nhal (historiador, PR #669); integración de Claude."
+    },
+    "cuero_tronchacolmillo": {
+      "id": "cuero_tronchacolmillo",
+      "name": "Cuero de Tronchacolmillo",
+      "kind": "material",
+      "sell_price": 11,
+      "description": "Aprovechable de Tronchacolmillo.",
+      "source": "Bestiario de riesgo Lethra y Nhal (historiador, PR #669); integración de Claude."
+    },
+    "caparazon_mudado_pinzajunco": {
+      "id": "caparazon_mudado_pinzajunco",
+      "name": "Caparazón mudado de Pinzajunco",
+      "kind": "material",
+      "sell_price": 4,
+      "description": "Recogido sin dañar a ningún Pinzajunco.",
+      "source": "Bestiario de riesgo Lethra y Nhal (historiador, PR #669); integración de Claude."
+    },
+    "piel_mudada_saltalodo": {
+      "id": "piel_mudada_saltalodo",
+      "name": "Piel mudada de Saltalodo",
+      "kind": "material",
+      "sell_price": 3,
+      "description": "Recogido sin dañar a ningún Saltalodo.",
+      "source": "Bestiario de riesgo Lethra y Nhal (historiador, PR #669); integración de Claude."
+    },
+    "mechon_rondamusgo": {
+      "id": "mechon_rondamusgo",
+      "name": "Mechón de Rondamusgo",
+      "kind": "material",
+      "sell_price": 3,
+      "description": "Recogido sin dañar a ningún Rondamusgo.",
+      "source": "Bestiario de riesgo Lethra y Nhal (historiador, PR #669); integración de Claude."
+    },
+    "hilo_hilaria": {
+      "id": "hilo_hilaria",
+      "name": "Hilo de Hilaria",
+      "kind": "material",
+      "sell_price": 5,
+      "description": "Recogido sin dañar a ningún Hilaria de niebla.",
+      "source": "Bestiario de riesgo Lethra y Nhal (historiador, PR #669); integración de Claude."
     }
   },
   "quests": {

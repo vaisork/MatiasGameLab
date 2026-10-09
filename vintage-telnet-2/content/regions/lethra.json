@@ -52,6 +52,14 @@
           {
             "item": "bolsita_cuentas",
             "text": "Entre las tablas, una bolsita de cuentas que alguien dejó caer."
+          },
+          {
+            "item": "caparazon_mudado_pinzajunco",
+            "text": "Junto a una madriguera hay un caparazón vacío de Pinzajunco: lo dejó al mudar. Lo recoges sin molestar a nadie."
+          },
+          {
+            "item": "piel_mudada_saltalodo",
+            "text": "Pegada a una hoja flotante hay una piel fina y moteada: un Saltalodo la dejó al mudar."
           }
         ],
         "traces": [
@@ -71,7 +79,15 @@
             "text": "En el agua flota un trozo de cuerda con la punta deshilachada, no limpia como si la hubiera cortado un cuchillo.",
             "flag": "pista_amarre"
           },
-          "Bajo el agua turbia, entre las raíces, se adivina algo pequeño de madera con forma de barca. Cuando el agua se mueve, se hunde un poco más."
+          "Bajo el agua turbia, entre las raíces, se adivina algo pequeño de madera con forma de barca. Cuando el agua se mueve, se hunde un poco más.",
+          "Juncos cortados al sesgo, todos a la misma altura, rodean un agujero en el barro: la madriguera de un Mordijunco.",
+          "Bajo un tronco húmedo se oye un roce de muchas patas. En la madera hay surcos finos, como de cuchilla: ahí vive un Cienfango.",
+          "Las raíces sumergidas están raspadas, como si algo duro se frotara contra ellas: señal de una Raizacapa.",
+          "Remolinos pequeños, casi invisibles, giran junto a una grieta inundada: ahí se esconde una Aguaculebra.",
+          "En el paso estrecho, algunas ondas avanzan contra la corriente. Algo nada ahí debajo: un Cortacorriente.",
+          "Suben burbujas del agua turbia y ningún pájaro canta en la orilla. Algo grande respira debajo: un Faucecieno.",
+          "En el charco, un montículo de barro sube y baja muy despacio, como si respirara. Un Tragacharco duerme ahí.",
+          "Sobre las tablas hay conchas partidas, y bajo la madera se oyen golpes. De noche, aquí caza una Sombranutria."
         ],
         "empty": [
           "No encuentras nada: sólo barro, agua y juncos.",
@@ -111,8 +127,26 @@
       "actions": [],
       "wildlife_pool": [
         {
-          "creature": "forajido_camino",
-          "text": "Una persona con un palo corto te corta el paso y señala tu mochila.",
+          "creature": "cienfango",
+          "text": "Con la lluvia, un Cienfango ha salido de debajo del tronco y recorre la madera mojada.",
+          "persistent_trace": false,
+          "requires_weather": [
+            "lluvia"
+          ]
+        },
+        {
+          "creature": "cienfango",
+          "text": "Bajo una raíz húmeda asoman muchas patas finas: un Cienfango espera quieto.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "mordijunco",
+          "text": "Entre los tallos asoman dos incisivos anaranjados: un Mordijunco vigila la entrada de su madriguera.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "mordijunco",
+          "text": "Un Mordijunco corta un junco de un mordisco y lo arrastra hacia su madriguera.",
           "persistent_trace": false
         },
         {
@@ -158,8 +192,26 @@
       "actions": [],
       "wildlife_pool": [
         {
-          "creature": "forajido_camino",
-          "text": "Un salteador sale de detrás de unas piedras y se planta delante de ti: «La mochila, y sigues tu camino».",
+          "creature": "tragacharco",
+          "text": "Con la lluvia, el Tragacharco ha salido del charco y se arrastra por el barro con la boca medio abierta.",
+          "persistent_trace": false,
+          "requires_weather": [
+            "lluvia"
+          ]
+        },
+        {
+          "creature": "tragacharco",
+          "text": "En el charco, un montículo de barro sube y baja: un Tragacharco respira debajo.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "mordijunco",
+          "text": "Entre los tallos asoman dos incisivos anaranjados: un Mordijunco vigila la entrada de su madriguera.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "mordijunco",
+          "text": "Un Mordijunco corta un junco de un mordisco y lo arrastra hacia su madriguera.",
           "persistent_trace": false
         },
         {
@@ -224,8 +276,23 @@
       ],
       "wildlife_pool": [
         {
-          "creature": "forajido_camino",
-          "text": "Una persona con un palo corto te corta el paso y señala tu mochila.",
+          "creature": "saltalodo",
+          "text": "Un Saltalodo hincha la bolsa del cuello, llama una vez y salta al agua.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "pinzajunco",
+          "text": "Un Pinzajunco levanta la pinza mayor junto a su madriguera y chasca dos veces.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "mordijunco",
+          "text": "Entre los tallos asoman dos incisivos anaranjados: un Mordijunco vigila la entrada de su madriguera.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "mordijunco",
+          "text": "Un Mordijunco corta un junco de un mordisco y lo arrastra hacia su madriguera.",
           "persistent_trace": false
         }
       ]
@@ -266,8 +333,26 @@
       ],
       "wildlife_pool": [
         {
-          "creature": "forajido_camino",
-          "text": "Un salteador sale de detrás de unas piedras y se planta delante de ti: «La mochila, y sigues tu camino».",
+          "creature": "cienfango",
+          "text": "Con la lluvia, un Cienfango ha salido de debajo del tronco y recorre la madera mojada.",
+          "persistent_trace": false,
+          "requires_weather": [
+            "lluvia"
+          ]
+        },
+        {
+          "creature": "cienfango",
+          "text": "Bajo una raíz húmeda asoman muchas patas finas: un Cienfango espera quieto.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "cortacorriente",
+          "text": "En el agua rápida brilla un lomo plateado que nada al revés que la corriente.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "cortacorriente",
+          "text": "Un pez plateado salta contra la corriente en el paso estrecho: un Cortacorriente está cazando.",
           "persistent_trace": false
         },
         {
@@ -337,8 +422,23 @@
       "brief": "El cruce de canales, uno rápido y otro quieto.",
       "wildlife_pool": [
         {
-          "creature": "forajido_camino",
-          "text": "Una persona con un palo corto te corta el paso y señala tu mochila.",
+          "creature": "faucecieno",
+          "text": "Suben burbujas del agua quieta y la orilla está en silencio. Un hocico ancho asoma un momento: un Faucecieno.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "faucecieno",
+          "text": "En el agua turbia, junto a la orilla, flota algo como un tronco oscuro con dos ojos: un Faucecieno.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "cortacorriente",
+          "text": "En el agua rápida brilla un lomo plateado que nada al revés que la corriente.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "cortacorriente",
+          "text": "Un pez plateado salta contra la corriente en el paso estrecho: un Cortacorriente está cazando.",
           "persistent_trace": false
         }
       ]
@@ -368,9 +468,31 @@
       "actions": [],
       "wildlife_pool": [
         {
-          "creature": "forajido_camino",
-          "text": "Una persona con un palo corto te corta el paso y señala tu mochila.",
+          "creature": "mordijunco",
+          "text": "Entre los tallos asoman dos incisivos anaranjados: un Mordijunco vigila la entrada de su madriguera.",
           "persistent_trace": false
+        },
+        {
+          "creature": "mordijunco",
+          "text": "Un Mordijunco corta un junco de un mordisco y lo arrastra hacia su madriguera.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "sombranutria",
+          "text": "Dos ojos brillan bajo las tablas y un cuerpo oscuro se desliza en el agua: una Sombranutria.",
+          "persistent_trace": false,
+          "requires_time": [
+            "noche"
+          ]
+        },
+        {
+          "creature": "sombranutria",
+          "text": "Bajo el muelle oscuro se oyen golpes y chasquidos de conchas: una Sombranutria está cazando.",
+          "persistent_trace": false,
+          "requires_time": [
+            "noche",
+            "atardecer"
+          ]
         },
         {
           "creature": "pinzajunco",
@@ -414,6 +536,16 @@
       "signals": [],
       "actions": [],
       "wildlife_pool": [
+        {
+          "creature": "cortacorriente",
+          "text": "En el agua rápida brilla un lomo plateado que nada al revés que la corriente.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "cortacorriente",
+          "text": "Un pez plateado salta contra la corriente en el paso estrecho: un Cortacorriente está cazando.",
+          "persistent_trace": false
+        },
         {
           "creature": "pinzajunco",
           "text": "Abajo, junto a un poste de la pasarela, un Pinzajunco corta una hoja con la pinza pequeña y sujeta el resto con la grande.",
@@ -520,9 +652,21 @@
       ],
       "wildlife_pool": [
         {
-          "creature": "forajido_camino",
-          "text": "Alguien con la ropa gastada del camino espera junto al paso, con un palo en la mano. Quiere tu carga.",
-          "persistent_trace": false
+          "creature": "sombranutria",
+          "text": "Dos ojos brillan bajo las tablas y un cuerpo oscuro se desliza en el agua: una Sombranutria.",
+          "persistent_trace": false,
+          "requires_time": [
+            "noche"
+          ]
+        },
+        {
+          "creature": "sombranutria",
+          "text": "Bajo el muelle oscuro se oyen golpes y chasquidos de conchas: una Sombranutria está cazando.",
+          "persistent_trace": false,
+          "requires_time": [
+            "noche",
+            "atardecer"
+          ]
         }
       ]
     },
@@ -551,9 +695,21 @@
       "actions": [],
       "wildlife_pool": [
         {
-          "creature": "forajido_camino",
-          "text": "Una persona con un palo corto te corta el paso y señala tu mochila.",
-          "persistent_trace": false
+          "creature": "sombranutria",
+          "text": "Dos ojos brillan bajo las tablas y un cuerpo oscuro se desliza en el agua: una Sombranutria.",
+          "persistent_trace": false,
+          "requires_time": [
+            "noche"
+          ]
+        },
+        {
+          "creature": "sombranutria",
+          "text": "Bajo el muelle oscuro se oyen golpes y chasquidos de conchas: una Sombranutria está cazando.",
+          "persistent_trace": false,
+          "requires_time": [
+            "noche",
+            "atardecer"
+          ]
         },
         {
           "creature": "pinzajunco",
@@ -945,13 +1101,7 @@
         }
       ],
       "brief": "La plataforma de secado, con el paño de los remiendos.",
-      "wildlife_pool": [
-        {
-          "creature": "forajido_camino",
-          "text": "Una persona con un palo corto te corta el paso y señala tu mochila.",
-          "persistent_trace": false
-        }
-      ]
+      "wildlife_pool": []
     },
     "lethra_banco_conversacion": {
       "id": "lethra_banco_conversacion",
@@ -977,13 +1127,7 @@
       "signals": [],
       "actions": [],
       "brief": "El banco junto al canal.",
-      "wildlife_pool": [
-        {
-          "creature": "forajido_camino",
-          "text": "Alguien con la ropa gastada del camino espera junto al paso, con un palo en la mano. Quiere tu carga.",
-          "persistent_trace": false
-        }
-      ]
+      "wildlife_pool": []
     },
     "lethra_cocina_reunion": {
       "id": "lethra_cocina_reunion",
@@ -1154,7 +1298,42 @@
         "garra_rasgacumbres",
         "placa_quebrarrocas",
         "corteza_rasgacorteza",
-        "bolsa_salteador"
+        "bolsa_salteador",
+        "incisivo_mordijunco",
+        "piel_mordijunco",
+        "placa_cienfango",
+        "mandibula_cienfango",
+        "placa_raizacapa",
+        "piel_aguaculebra",
+        "espina_aguaculebra",
+        "diente_cortacorriente",
+        "piel_cortacorriente",
+        "placa_faucecieno",
+        "diente_faucecieno",
+        "piel_tragacharco",
+        "hueso_tragacharco",
+        "pelaje_sombranutria",
+        "diente_sombranutria",
+        "membrana_velomembrana",
+        "pelaje_velomembrana",
+        "incisivo_roecorteza",
+        "piel_roecorteza",
+        "quitina_quebracascara",
+        "mandibula_quebracascara",
+        "una_escarbaraiz",
+        "escama_escarbaraiz",
+        "espina_clavaespina",
+        "cuero_clavaespina",
+        "piel_mordesombra",
+        "diente_mordesombra",
+        "garra_garfarrama",
+        "escama_garfarrama",
+        "colmillo_tronchacolmillo",
+        "cuero_tronchacolmillo",
+        "caparazon_mudado_pinzajunco",
+        "piel_mudada_saltalodo",
+        "mechon_rondamusgo",
+        "hilo_hilaria"
       ],
       "states": [
         {
@@ -1466,13 +1645,7 @@
           "chance": 0.5
         }
       ],
-      "wildlife_pool": [
-        {
-          "creature": "forajido_camino",
-          "text": "Un salteador sale de detrás de unas piedras y se planta delante de ti: «La mochila, y sigues tu camino».",
-          "persistent_trace": false
-        }
-      ]
+      "wildlife_pool": []
     },
     "lethra_banco_barro": {
       "id": "lethra_banco_barro",
@@ -1499,8 +1672,26 @@
       "actions": [],
       "wildlife_pool": [
         {
-          "creature": "forajido_camino",
-          "text": "Alguien con la ropa gastada del camino espera junto al paso, con un palo en la mano. Quiere tu carga.",
+          "creature": "cortacorriente",
+          "text": "En el agua rápida brilla un lomo plateado que nada al revés que la corriente.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "cortacorriente",
+          "text": "Un pez plateado salta contra la corriente en el paso estrecho: un Cortacorriente está cazando.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "tragacharco",
+          "text": "Con la lluvia, el Tragacharco ha salido del charco y se arrastra por el barro con la boca medio abierta.",
+          "persistent_trace": false,
+          "requires_weather": [
+            "lluvia"
+          ]
+        },
+        {
+          "creature": "tragacharco",
+          "text": "En el charco, un montículo de barro sube y baja: un Tragacharco respira debajo.",
           "persistent_trace": false
         },
         {
@@ -1624,8 +1815,18 @@
       "brief": "La orilla del canal, de agua quieta y sin fondo a la vista.",
       "wildlife_pool": [
         {
-          "creature": "forajido_camino",
-          "text": "Un salteador sale de detrás de unas piedras y se planta delante de ti: «La mochila, y sigues tu camino».",
+          "creature": "aguaculebra",
+          "text": "Una cabeza plana con bigotes asoma de una grieta inundada y vuelve a esconderse: una Aguaculebra.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "faucecieno",
+          "text": "Suben burbujas del agua quieta y la orilla está en silencio. Un hocico ancho asoma un momento: un Faucecieno.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "faucecieno",
+          "text": "En el agua turbia, junto a la orilla, flota algo como un tronco oscuro con dos ojos: un Faucecieno.",
           "persistent_trace": false
         }
       ]
@@ -1723,8 +1924,26 @@
       ],
       "wildlife_pool": [
         {
-          "creature": "forajido_camino",
-          "text": "Un salteador sale de detrás de unas piedras y se planta delante de ti: «La mochila, y sigues tu camino».",
+          "creature": "aguaculebra",
+          "text": "Una cabeza plana con bigotes asoma de una grieta inundada y vuelve a esconderse: una Aguaculebra.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "raizacapa",
+          "text": "Entre las raíces sumergidas, un caparazón cubierto de musgo saca la cabeza: es una Raizacapa.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "cienfango",
+          "text": "Con la lluvia, un Cienfango ha salido de debajo del tronco y recorre la madera mojada.",
+          "persistent_trace": false,
+          "requires_weather": [
+            "lluvia"
+          ]
+        },
+        {
+          "creature": "cienfango",
+          "text": "Bajo una raíz húmeda asoman muchas patas finas: un Cienfango espera quieto.",
           "persistent_trace": false
         }
       ]
@@ -1823,8 +2042,26 @@
       "actions": [],
       "wildlife_pool": [
         {
-          "creature": "forajido_camino",
-          "text": "Alguien con la ropa gastada del camino espera junto al paso, con un palo en la mano. Quiere tu carga.",
+          "creature": "mordijunco",
+          "text": "Entre los tallos asoman dos incisivos anaranjados: un Mordijunco vigila la entrada de su madriguera.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "mordijunco",
+          "text": "Un Mordijunco corta un junco de un mordisco y lo arrastra hacia su madriguera.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "tragacharco",
+          "text": "Con la lluvia, el Tragacharco ha salido del charco y se arrastra por el barro con la boca medio abierta.",
+          "persistent_trace": false,
+          "requires_weather": [
+            "lluvia"
+          ]
+        },
+        {
+          "creature": "tragacharco",
+          "text": "En el charco, un montículo de barro sube y baja: un Tragacharco respira debajo.",
           "persistent_trace": false
         },
         {
@@ -1875,8 +2112,21 @@
       "actions": [],
       "wildlife_pool": [
         {
-          "creature": "forajido_camino",
-          "text": "Una persona con un palo corto te corta el paso y señala tu mochila.",
+          "creature": "raizacapa",
+          "text": "Entre las raíces sumergidas, un caparazón cubierto de musgo saca la cabeza: es una Raizacapa.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "cienfango",
+          "text": "Con la lluvia, un Cienfango ha salido de debajo del tronco y recorre la madera mojada.",
+          "persistent_trace": false,
+          "requires_weather": [
+            "lluvia"
+          ]
+        },
+        {
+          "creature": "cienfango",
+          "text": "Bajo una raíz húmeda asoman muchas patas finas: un Cienfango espera quieto.",
           "persistent_trace": false
         },
         {
@@ -1946,8 +2196,13 @@
       },
       "wildlife_pool": [
         {
-          "creature": "forajido_camino",
-          "text": "Una persona con un palo corto te corta el paso y señala tu mochila.",
+          "creature": "aguaculebra",
+          "text": "Una cabeza plana con bigotes asoma de una grieta inundada y vuelve a esconderse: una Aguaculebra.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "raizacapa",
+          "text": "Entre las raíces sumergidas, un caparazón cubierto de musgo saca la cabeza: es una Raizacapa.",
           "persistent_trace": false
         }
       ]
@@ -1994,8 +2249,18 @@
       ],
       "wildlife_pool": [
         {
-          "creature": "forajido_camino",
-          "text": "Alguien con la ropa gastada del camino espera junto al paso, con un palo en la mano. Quiere tu carga.",
+          "creature": "saltalodo",
+          "text": "Un Saltalodo hincha la bolsa del cuello, llama una vez y salta al agua.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "mordijunco",
+          "text": "Entre los tallos asoman dos incisivos anaranjados: un Mordijunco vigila la entrada de su madriguera.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "mordijunco",
+          "text": "Un Mordijunco corta un junco de un mordisco y lo arrastra hacia su madriguera.",
           "persistent_trace": false
         }
       ]
