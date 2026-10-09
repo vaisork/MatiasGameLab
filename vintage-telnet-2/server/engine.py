@@ -193,7 +193,7 @@ class Engine:
             return [event('world',detail or 'Buscas un detalle nuevo, pero aquí no encuentras una señal adicional.')]
         if mode=='observar':
             for signal in room.get('signals',[]):
-                if self.allowed(signal,state,world) and signal_present(signal,room,world,self.clock()):lines.append(event('danger' if signal['creature'] in m.PROFILES else 'trace',signal['text']))
+                if self.allowed(signal,state,world) and signal_present(signal,room,world,self.clock()):lines.append(event('danger' if m.PROFILES.get(signal['creature'],{}).get('category') not in (None,'favorable') else 'trace',signal['text']))
             for npc in self.people(room,state,world,ambient):lines.append(event('world',npc.get('description',npc['name'])))
             phase_key={'Amanecer':'dawn','Día':'day','Atardecer':'dusk','Noche':'night'}[ambient['time_of_day']]
             if not room.get(phase_key):phase_key='night' if phase_key=='night' else 'day'
@@ -221,7 +221,7 @@ class Engine:
         present=self.people(room,state,world,ambient)
         people_lines=[event('world',npc.get(phase_key) or npc.get('night' if phase_key=='night' else 'day') or npc['name']+' está aquí.') for npc in present]
         for signal in room.get('signals',[]):
-            if self.allowed(signal,state,world) and signal_present(signal,room,world,self.clock()):layers['danger']=event('danger' if signal['creature'] in m.PROFILES else 'trace',signal['text']);break
+            if self.allowed(signal,state,world) and signal_present(signal,room,world,self.clock()):layers['danger']=event('danger' if m.PROFILES.get(signal['creature'],{}).get('category') not in (None,'favorable') else 'trace',signal['text']);break
         visits=state['visits'].get(room['id'],0)
         recall=visits<=2 or visits%3==2
         priority=['danger']+(['memory','return'] if recall else [])+['arrival']

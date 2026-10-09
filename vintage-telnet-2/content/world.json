@@ -125,7 +125,19 @@
       "description": "Cuatro patas cortas sostienen un cuerpo de pelo áspero donde se adhieren musgo y semillas. La criatura busca hongos y frutos bajo las hojas; al oír pasos se inmoviliza antes de correr hacia una raíz hueca. Su recorrido deja semillas donde vuelve a refugiarse.",
       "warning": "El musgo se ha movido y hay semillas esparcidas: un Rondamusgo busca hongos. Si lo sorprendes, empuja y huye hacia una raíz hueca.",
       "source": "Canon del prompt; descripción original nueva",
-      "illustration": "/client/art/bestiary/rondamusgo-anime-v1.webp"
+      "illustration": "/client/art/bestiary/rondamusgo-anime-v1.webp",
+      "combat_intro": "El Rondamusgo baja la cabeza, se le eriza el pelo cubierto de musgo y te empuja para apartarte.",
+      "defeat_text": "El Rondamusgo da media vuelta y corre a esconderse en una raíz hueca, dejando semillas por el camino.",
+      "loot": [
+        {
+          "item": "mechon_rondamusgo",
+          "chance": 0.6
+        },
+        {
+          "item": "setas_bosque",
+          "chance": 0.3
+        }
+      ]
     },
     "unapiedra": {
       "id": "unapiedra",
@@ -191,7 +203,20 @@
       "description": "El crustáceo se desplaza de lado entre barro y raíces. Su pinza mayor se eleva hacia quien invade el borde poco profundo; detrás, un agujero conserva restos vegetales que arrastra para utilizar como refugio.",
       "source": "Canon del prompt; descripción nueva de anatomía y conducta",
       "illustration": "/client/art/bestiary/pinzajunco-anime-v2.webp",
-      "warning": "Un chasquido de pinza y barro removido: un Pinzajunco defiende su madriguera. Si no pisas el borde, se repliega."
+      "warning": "Un chasquido de pinza y barro removido: un Pinzajunco defiende su madriguera. Si no pisas el borde, se repliega.",
+      "combat_intro": "El Pinzajunco levanta la pinza mayor y avanza de lado hacia ti, defendiendo su madriguera.",
+      "defeat_text": "El Pinzajunco chasca la pinza una última vez y se mete de lado en su agujero.",
+      "loot": [
+        {
+          "item": "pinza_pinzajunco",
+          "chance": 0.6,
+          "text": "Recoges una pinza que soltó al replegarse; le crecerá otra."
+        },
+        {
+          "item": "caparazon_mudado_pinzajunco",
+          "chance": 0.3
+        }
+      ]
     },
     "saltalodo": {
       "id": "saltalodo",
@@ -200,7 +225,20 @@
       "description": "La piel moteada casi se pierde entre barro y hojas flotantes. El anfibio infla una bolsa del cuello antes de llamar. Un salto repentino lo lleva hacia agua profunda cuando el borde se llena de pasos.",
       "source": "Canon del prompt; descripción nueva de anatomía y conducta",
       "illustration": "/client/art/bestiary/saltalodo-anime-v1.webp",
-      "warning": "Un chapoteo y una llamada breve: un Saltalodo hincha la bolsa del cuello y salta al agua profunda si te acercas."
+      "warning": "Un chapoteo y una llamada breve: un Saltalodo hincha la bolsa del cuello y salta al agua profunda si te acercas.",
+      "combat_intro": "El Saltalodo hincha la bolsa del cuello y se prepara para saltar contra ti.",
+      "defeat_text": "El Saltalodo da un salto enorme y se zambulle en el agua profunda.",
+      "loot": [
+        {
+          "item": "tendon_saltalodo",
+          "chance": 0.5,
+          "text": "Recoges un tendón elástico que quedó en el barro."
+        },
+        {
+          "item": "piel_mudada_saltalodo",
+          "chance": 0.3
+        }
+      ]
     },
     "forajido_camino": {
       "id": "forajido_camino",
@@ -616,6 +654,146 @@
         }
       ],
       "presagio": "El suelo del claro está levantado, con raíces arrancadas y tierra revuelta. Se oyen resoplidos lejos: un Tronchacolmillo."
+    },
+    "salteador_desesperado": {
+      "id": "salteador_desesperado",
+      "name": "Salteador desesperado",
+      "region": "veyra",
+      "combatant_kind": "human",
+      "description": "Una persona flaca, con la ropa remendada y un palo que le tiembla en las manos. Mira más tu comida que tu mochila. No parece haber hecho esto muchas veces.",
+      "warning": "Parece más hambriento que peligroso. Puedes hablar con él, pasar de largo o enfrentarte.",
+      "source": "Personalidades de salteador (usuario, 2026-10-09); adversario humano sin guerra de especies.",
+      "combat_intro": "El salteador sujeta el palo con las dos manos, pálido. «No quiero hacerte daño... pero no me dejes sin nada.»",
+      "seal_reward": 2,
+      "illustration": "/client/art/encounters/forajido-camino-anime-v1.webp",
+      "dialogue": {
+        "qué quieres": "Comida. O algo que pueda cambiar por comida. No necesito tu mochila entera.",
+        "por qué": "Perdí el trabajo en los campos. Llevo días caminando y nadie me contrata. No sé hacer esto.",
+        "dejar paso": "Sí... sí, pasa. Perdona. Vete."
+      },
+      "defeat_text": "El salteador suelta el palo y se sienta en el suelo, sin fuerzas. «Lo siento. Hace dos días que no como.» Se aparta del camino.",
+      "loot": [
+        {
+          "item": "pocion_menor",
+          "chance": 0.25
+        },
+        {
+          "item": "hierbas_curativas",
+          "chance": 0.4
+        },
+        {
+          "item": "bolsa_salteador",
+          "chance": 0.3
+        }
+      ]
+    },
+    "salteador_bravucon": {
+      "id": "salteador_bravucon",
+      "name": "Salteador bravucón",
+      "region": "veyra",
+      "combatant_kind": "human",
+      "description": "Un tipo grande que habla a gritos y lleva un garrote apoyado en el hombro. Se ríe de su propia voz. Le gusta asustar más que pelear, pero si pelea, pega fuerte.",
+      "warning": "Grita mucho y lleva garrote. Avisa cada golpe grande levantándolo. Puedes evitarlo o enfrentarte.",
+      "source": "Personalidades de salteador (usuario, 2026-10-09); adversario humano sin guerra de especies.",
+      "combat_intro": "El bravucón se golpea la palma con el garrote. «¡Ja! ¿Tú me vas a parar a mí? ¡Venga, a ver!»",
+      "seal_reward": 6,
+      "illustration": "/client/art/encounters/forajido-camino-anime-v1.webp",
+      "dialogue": {
+        "qué quieres": "¡Todo! La mochila, las botas si me gustan, ¡y que me digas que soy el más fuerte del camino!",
+        "por qué": "¡Porque puedo! Bueno... y porque en el pueblo nadie me hace caso. Aquí sí.",
+        "dejar paso": "¿Pasar? ¡Ja! Bueno... si das un rodeo grande, igual ni te veo."
+      },
+      "defeat_text": "El bravucón tropieza, pierde el garrote y se levanta rojo de vergüenza. «¡Hoy no tenía ganas, eh!», grita mientras se va corriendo.",
+      "loot": [
+        {
+          "item": "bolsa_salteador",
+          "chance": 0.6
+        },
+        {
+          "item": "cuero_curtido",
+          "chance": 0.35
+        },
+        {
+          "item": "pocion_menor",
+          "chance": 0.25
+        },
+        {
+          "item": "anillo_filo",
+          "chance": 0.04
+        }
+      ]
+    },
+    "salteador_veterano": {
+      "id": "salteador_veterano",
+      "name": "Salteador veterano",
+      "region": "veyra",
+      "combatant_kind": "human",
+      "description": "Una mujer de pelo gris, con una cota vieja bien cuidada y una espada corta. Se mueve despacio, sin prisa. Hace mucho que vive en los caminos y sabe pelear.",
+      "warning": "Lleva espada corta y cota. Es tranquila y sabe lo que hace. No hay obligación de pelear.",
+      "source": "Personalidades de salteador (usuario, 2026-10-09); adversario humano sin guerra de especies.",
+      "combat_intro": "La veterana desenvaina sin prisa y se pone de lado. «Tú lo has querido. Cuida los pies.»",
+      "seal_reward": 10,
+      "illustration": "/client/art/encounters/forajido-camino-anime-v1.webp",
+      "dialogue": {
+        "qué quieres": "Una parte de lo que lleves. Quien cruza mi tramo paga, como siempre se ha hecho aquí.",
+        "por qué": "Hace años guardaba caravanas. Cuando me echaron, me quedé con el camino. Es lo único que conozco.",
+        "dejar paso": "Hoy estoy de buen humor. Pasa, pero no vuelvas a contar que me viste."
+      },
+      "defeat_text": "La veterana baja la espada y asiente. «Bien peleado.» Se aparta del camino sin darte la espalda.",
+      "loot": [
+        {
+          "item": "bolsa_salteador",
+          "chance": 0.7
+        },
+        {
+          "item": "pocion_vida",
+          "chance": 0.3
+        },
+        {
+          "item": "brazales_reforzados",
+          "chance": 0.08
+        },
+        {
+          "item": "amuleto_viajero",
+          "chance": 0.03
+        }
+      ]
+    },
+    "salteadora_negociante": {
+      "id": "salteadora_negociante",
+      "name": "Salteadora negociante",
+      "region": "veyra",
+      "combatant_kind": "human",
+      "description": "Una joven de sonrisa rápida y cuchillo corto en el cinturón. Antes de amenazar, prefiere hablar. Lleva una bolsa llena de cosas que no son suyas.",
+      "warning": "Prefiere hablar que pelear. Si peleas, es rápida. Puedes conversar antes de decidir.",
+      "source": "Personalidades de salteador (usuario, 2026-10-09); adversario humano sin guerra de especies.",
+      "combat_intro": "La negociante suspira y saca el cuchillo. «Qué pena. Con lo bien que íbamos.»",
+      "seal_reward": 8,
+      "illustration": "/client/art/encounters/forajido-camino-anime-v1.webp",
+      "dialogue": {
+        "qué quieres": "Un trato. Tú me das algo que no necesites, yo te digo por dónde no hay salteadores peores que yo.",
+        "por qué": "Porque es más fácil convencer que pelear. Y porque soy muy buena convenciendo.",
+        "dejar paso": "Claro. Pero acuérdate de mí cuando quieras vender algo sin preguntas."
+      },
+      "defeat_text": "La negociante levanta las manos riendo. «Vale, vale, tú ganas. Quédate con la bolsa; seguro que encuentro otra.» Desaparece entre las piedras.",
+      "loot": [
+        {
+          "item": "bolsa_salteador",
+          "chance": 0.8
+        },
+        {
+          "item": "bolsita_cuentas",
+          "chance": 0.35
+        },
+        {
+          "item": "anillo_cobre",
+          "chance": 0.1
+        },
+        {
+          "item": "tonico_camino",
+          "chance": 0.3
+        }
+      ]
     }
   },
   "items": {
@@ -1589,6 +1767,22 @@
       "sell_price": 5,
       "description": "Recogido sin dañar a ningún Hilaria de niebla.",
       "source": "Bestiario de riesgo Lethra y Nhal (historiador, PR #669); integración de Claude."
+    },
+    "pinza_pinzajunco": {
+      "id": "pinza_pinzajunco",
+      "name": "Pinza de Pinzajunco",
+      "kind": "material",
+      "sell_price": 4,
+      "description": "Aprovechable de Pinzajunco.",
+      "source": "Combate ligero de presas defensivas (usuario, 2026-10-09)."
+    },
+    "tendon_saltalodo": {
+      "id": "tendon_saltalodo",
+      "name": "Tendón de Saltalodo",
+      "kind": "material",
+      "sell_price": 3,
+      "description": "Aprovechable de Saltalodo.",
+      "source": "Combate ligero de presas defensivas (usuario, 2026-10-09)."
     }
   },
   "quests": {

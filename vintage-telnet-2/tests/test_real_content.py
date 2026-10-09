@@ -56,7 +56,8 @@ class RealContentTests(unittest.TestCase):
   initial=self.client.get('/api/state').json
   self.assertIn('pinzajunco',{entry['id'] for entry in initial['bestiary']})
   self.assertTrue(any(a['id']=='examinar_criatura' and a.get('target')=='pinzajunco' for a in initial['actions']))
-  self.assertFalse(any(a['id'] in ('combatir','evaluar') and a.get('target')=='pinzajunco' for a in initial['actions']))
+  # Light combat is optional (user decision 2026-10-09): examining never forces a fight.
+  self.assertIsNone(initial['character']['combat'])
   examined=self.action('examinar_criatura','pinzajunco')
   self.assertTrue(any('pinza' in e['text'].lower() for e in examined['narrative']))
   self.assertTrue(any('bestiario' in e['text'] for e in examined['narrative']))

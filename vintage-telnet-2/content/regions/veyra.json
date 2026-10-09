@@ -1018,8 +1018,8 @@
       ],
       "wildlife_pool": [
         {
-          "creature": "forajido_camino",
-          "text": "Una persona con un palo corto te corta el paso y señala tu mochila.",
+          "creature": "salteadora_negociante",
+          "text": "Una joven sonriente sale de detrás de unas piedras. «¡Hola! Antes de nada: ¿hablamos de negocios?»",
           "persistent_trace": false
         },
         {
@@ -1146,8 +1146,8 @@
           "persistent_trace": false
         },
         {
-          "creature": "forajido_camino",
-          "text": "Un salteador sale de detrás de unas piedras y se planta delante de ti: «La mochila, y sigues tu camino».",
+          "creature": "salteador_bravucon",
+          "text": "Un tipo grande con un garrote al hombro se planta en medio del camino. «¡Alto ahí! ¡Este camino es mío!», grita.",
           "persistent_trace": false
         }
       ]
@@ -1279,8 +1279,8 @@
           "persistent_trace": false
         },
         {
-          "creature": "forajido_camino",
-          "text": "Una persona con un palo corto te corta el paso y señala tu mochila.",
+          "creature": "salteador_bravucon",
+          "text": "Un tipo grande con un garrote al hombro se planta en medio del camino. «¡Alto ahí! ¡Este camino es mío!», grita.",
           "persistent_trace": false
         }
       ]
@@ -1315,8 +1315,8 @@
       "brief": "La Puerta del Camino Alto y su plataforma de carga.",
       "wildlife_pool": [
         {
-          "creature": "forajido_camino",
-          "text": "Alguien con la ropa gastada del camino espera junto al paso, con un palo en la mano. Quiere tu carga.",
+          "creature": "salteador_veterano",
+          "text": "Una mujer de pelo gris, con cota vieja y espada corta, espera sentada en una piedra junto al paso. Te mira sin levantarse.",
           "persistent_trace": false
         },
         {
@@ -1372,8 +1372,8 @@
       "brief": "La puerta del camino de Korven, con sus ventanas pequeñas.",
       "wildlife_pool": [
         {
-          "creature": "forajido_camino",
-          "text": "Una persona con un palo corto te corta el paso y señala tu mochila.",
+          "creature": "salteador_veterano",
+          "text": "Una mujer de pelo gris, con cota vieja y espada corta, espera sentada en una piedra junto al paso. Te mira sin levantarse.",
           "persistent_trace": false
         },
         {
@@ -1411,8 +1411,8 @@
       "brief": "La puerta de los canales, con su tabla para el calzado.",
       "wildlife_pool": [
         {
-          "creature": "forajido_camino",
-          "text": "Un salteador sale de detrás de unas piedras y se planta delante de ti: «La mochila, y sigues tu camino».",
+          "creature": "salteadora_negociante",
+          "text": "Una joven sonriente sale de detrás de unas piedras. «¡Hola! Antes de nada: ¿hablamos de negocios?»",
           "persistent_trace": false
         },
         {
@@ -1455,8 +1455,8 @@
           "persistent_trace": false
         },
         {
-          "creature": "forajido_camino",
-          "text": "Un salteador sale de detrás de unas piedras y se planta delante de ti: «La mochila, y sigues tu camino».",
+          "creature": "salteador_bravucon",
+          "text": "Un tipo grande con un garrote al hombro se planta en medio del camino. «¡Alto ahí! ¡Este camino es mío!», grita.",
           "persistent_trace": false
         }
       ]
@@ -1488,8 +1488,8 @@
       "actions": [],
       "wildlife_pool": [
         {
-          "creature": "forajido_camino",
-          "text": "Un salteador sale de detrás de unas piedras y se planta delante de ti: «La mochila, y sigues tu camino».",
+          "creature": "salteadora_negociante",
+          "text": "Una joven sonriente sale de detrás de unas piedras. «¡Hola! Antes de nada: ¿hablamos de negocios?»",
           "persistent_trace": false
         },
         {
@@ -1562,8 +1562,8 @@
       "actions": [],
       "wildlife_pool": [
         {
-          "creature": "forajido_camino",
-          "text": "Una persona con un palo corto te corta el paso y señala tu mochila.",
+          "creature": "salteadora_negociante",
+          "text": "Una joven sonriente sale de detrás de unas piedras. «¡Hola! Antes de nada: ¿hablamos de negocios?»",
           "persistent_trace": false
         },
         {
@@ -1664,8 +1664,8 @@
           "persistent_trace": false
         },
         {
-          "creature": "forajido_camino",
-          "text": "Alguien con la ropa gastada del camino espera junto al paso, con un palo en la mano. Quiere tu carga.",
+          "creature": "salteador_bravucon",
+          "text": "Un tipo grande con un garrote al hombro se planta en medio del camino. «¡Alto ahí! ¡Este camino es mío!», grita.",
           "persistent_trace": false
         }
       ],
@@ -1749,8 +1749,8 @@
           "persistent_trace": false
         },
         {
-          "creature": "forajido_camino",
-          "text": "Una persona con un palo corto te corta el paso y señala tu mochila.",
+          "creature": "salteador_bravucon",
+          "text": "Un tipo grande con un garrote al hombro se planta en medio del camino. «¡Alto ahí! ¡Este camino es mío!», grita.",
           "persistent_trace": false
         }
       ]
@@ -1922,8 +1922,8 @@
       "brief": "El camino de los pastos, entre dos lomas.",
       "wildlife_pool": [
         {
-          "creature": "forajido_camino",
-          "text": "Una persona con un palo corto te corta el paso y señala tu mochila.",
+          "creature": "salteador_veterano",
+          "text": "Una mujer de pelo gris, con cota vieja y espada corta, espera sentada en una piedra junto al paso. Te mira sin levantarse.",
           "persistent_trace": false
         },
         {
@@ -1959,8 +1959,8 @@
       "brief": "El camino sobre la acequia, con sus tablas en los desagües.",
       "wildlife_pool": [
         {
-          "creature": "forajido_camino",
-          "text": "Alguien con la ropa gastada del camino espera junto al paso, con un palo en la mano. Quiere tu carga.",
+          "creature": "salteadora_negociante",
+          "text": "Una joven sonriente sale de detrás de unas piedras. «¡Hola! Antes de nada: ¿hablamos de negocios?»",
           "persistent_trace": false
         },
         {

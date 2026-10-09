@@ -399,3 +399,46 @@ for creature_id,spec in MINOR_FAUNA.items():
 # Prey, rivals and predators all scale with level; overwhelming fauna stays fixed.
 SCALED_CATEGORIES=('favorable','comparable','peligroso')
 AVOIDABLE_CATEGORIES=('peligroso','abrumador')
+
+# Light combat for the three existing defensive prey (user decision 2026-10-09); Hilaria de niebla stays non-combatant.
+LIGHT_PREY = {
+ 'pinzajunco': {'profile':{'hp':22,'accuracy':44,'damage':4,'reduction':.15,'level':1,'category':'favorable'},
+  'observation':'Defiende su madriguera con la pinza mayor y se repliega enseguida. Si no pisas el borde, no ataca.',
+  'prose':{'hit':['{n} te da un pinzazo en el tobillo y retrocede de lado','La pinza mayor de {n} te pellizca la mano','{n} se lanza de lado y te pinza la bota'],
+           'miss':['{n} chasca la pinza en el aire y se repliega hacia su agujero.','{n} amaga con la pinza, pero se queda en el borde.']}},
+ 'saltalodo': {'profile':{'hp':18,'accuracy':40,'damage':3,'reduction':0,'evasion':20,'level':1,'category':'favorable'},
+  'observation':'Salta lejos y sólo ataca para defenderse. Cuesta acertarle.',
+  'prose':{'hit':['{n} salta contra ti y te golpea con las patas traseras','{n} te escupe barro a la cara y te da un cabezazo','{n} te muerde la mano y salta hacia atrás'],
+           'miss':['{n} da un salto enorme y cae lejos de tu golpe.','{n} hincha la bolsa del cuello y se aparta de un brinco.']}},
+ 'rondamusgo': {'profile':{'hp':26,'accuracy':40,'damage':4,'reduction':.05,'level':1,'category':'favorable'},
+  'observation':'Empuja para apartarte y huye hacia una raíz hueca. No persigue.',
+  'prose':{'hit':['{n} te empuja con el lomo y casi te tira','{n} te da un topetazo en las rodillas','{n} gira y te golpea con el cuerpo cubierto de musgo'],
+           'miss':['{n} embiste, pero tropieza con una raíz.','{n} se encoge y tu golpe sólo arranca un poco de musgo.']}},
+}
+# Bandit personalities share the 'forajidos' family (repeat-victory limits apply to all of them).
+BANDITS = {
+ 'salteador_desesperado': {'profile':{'hp':22,'accuracy':42,'damage':4,'reduction':0,'evasion':5,'level':1,'category':'comparable'},
+  'observation':'Le tiemblan las manos y mira más tu comida que tu mochila. Probablemente se rinda pronto.',
+  'prose':{'hit':['{n} te da un golpe torpe con el palo','{n} te empuja con las dos manos','{n} agita el palo y te alcanza el brazo'],
+           'miss':['{n} lanza un golpe sin fuerza que no llega.','{n} da un paso atrás, dudando.']}},
+ 'salteador_bravucon': {'profile':{'hp':36,'accuracy':50,'damage':7,'reduction':0,'level':2,'category':'comparable'},
+  'intention':{'id':'golpe_aplastante','name':'Golpe aplastante','interruptible':True,'frontal':True,'tell':'El bravucón levanta el garrote por encima de la cabeza, gritando: va a descargar un golpe enorme. Puedes interrumpirlo o protegerte.'},
+  'observation':'Grita mucho y pega fuerte, pero avisa cada golpe grande levantando el garrote.',
+  'prose':{'hit':['{n} te da un garrotazo en el hombro mientras se ríe','{n} te empuja con el pecho y te golpea','{n} descarga el garrote y te alcanza la pierna'],
+           'miss':['{n} golpea el suelo con el garrote y maldice.','{n} se lanza gritando, pero lo esquivas.']}},
+ 'salteador_veterano': {'profile':{'hp':50,'accuracy':58,'damage':9,'reduction':.10,'level':3,'category':'comparable'},
+  'intention':{'id':'finta_veterana','name':'Finta del veterano','interruptible':True,'frontal':False,'tell':'El veterano baja la espada corta y mira a un lado: es una finta, el golpe vendrá por el otro. Puedes adelantarte.'},
+  'observation':'Pelea con calma, con una espada corta y una cota vieja. Engaña con fintas laterales.',
+  'prose':{'hit':['{n} te corta en el brazo con un movimiento seco','{n} te engaña con una finta y te golpea en el costado','{n} bloquea tu golpe y te devuelve otro'],
+           'miss':['{n} retrocede un paso y estudia tu guardia.','Tu golpe y el de {n} chocan; ninguno pasa.']}},
+ 'salteadora_negociante': {'profile':{'hp':30,'accuracy':52,'damage':5,'reduction':0,'evasion':10,'level':1,'category':'comparable'},
+  'observation':'Prefiere hablar a pelear. Si peleas, es rápida y busca terminar pronto.',
+  'prose':{'hit':['{n} te pincha con un cuchillo corto y se aparta','{n} te da una patada rápida en la rodilla','{n} te golpea con la empuñadura del cuchillo'],
+           'miss':['{n} se aparta con una sonrisa: «Todavía podemos hablar».','{n} amaga y vuelve a guardar distancia.']}},
+}
+for creature_id,spec in {**LIGHT_PREY,**BANDITS}.items():
+ PROFILES[creature_id]=dict(spec['profile'],family='forajidos' if creature_id in BANDITS else creature_id)
+ THREAT_OBSERVATIONS[creature_id]=spec['observation'];CREATURE_PROSE[creature_id]=spec['prose']
+ if 'intention' in spec:
+  MINOR_INTENTIONS[creature_id]=spec['intention']
+  PROFILES[creature_id].update(prepared=True,prepared_action=dict(spec['intention'],accuracy=PROFILES[creature_id]['accuracy']))

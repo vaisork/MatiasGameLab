@@ -280,8 +280,8 @@
       "brief": "La pared que corta el viento, con su escoba y su marca en el suelo.",
       "wildlife_pool": [
         {
-          "creature": "forajido_camino",
-          "text": "Un salteador sale de detrás de unas piedras y se planta delante de ti: «La mochila, y sigues tu camino».",
+          "creature": "salteadora_negociante",
+          "text": "Una joven sonriente sale de detrás de unas piedras. «¡Hola! Antes de nada: ¿hablamos de negocios?»",
           "persistent_trace": false
         },
         {
@@ -469,8 +469,8 @@
       },
       "wildlife_pool": [
         {
-          "creature": "forajido_camino",
-          "text": "Una persona con un palo corto te corta el paso y señala tu mochila.",
+          "creature": "salteador_veterano",
+          "text": "Una mujer de pelo gris, con cota vieja y espada corta, espera sentada en una piedra junto al paso. Te mira sin levantarse.",
           "persistent_trace": false
         },
         {
@@ -1021,8 +1021,8 @@
           "persistent_trace": false
         },
         {
-          "creature": "forajido_camino",
-          "text": "Un salteador sale de detrás de unas piedras y se planta delante de ti: «La mochila, y sigues tu camino».",
+          "creature": "salteador_desesperado",
+          "text": "Una persona flaca, con un palo que le tiembla en las manos, te corta el paso. Mira tu mochila con hambre.",
           "persistent_trace": false
         }
       ]
@@ -1124,8 +1124,8 @@
           "persistent_trace": false
         },
         {
-          "creature": "forajido_camino",
-          "text": "Una persona con un palo corto te corta el paso y señala tu mochila.",
+          "creature": "salteador_desesperado",
+          "text": "Una persona flaca, con un palo que le tiembla en las manos, te corta el paso. Mira tu mochila con hambre.",
           "persistent_trace": false
         }
       ]
@@ -1261,8 +1261,8 @@
       "brief": "La plataforma de escucha y su recipiente que tiembla.",
       "wildlife_pool": [
         {
-          "creature": "forajido_camino",
-          "text": "Una persona con un palo corto te corta el paso y señala tu mochila.",
+          "creature": "salteador_veterano",
+          "text": "Una mujer de pelo gris, con cota vieja y espada corta, espera sentada en una piedra junto al paso. Te mira sin levantarse.",
           "persistent_trace": false
         },
         {
@@ -1458,8 +1458,8 @@
       "brief": "El horno viejo y su recipiente torcido.",
       "wildlife_pool": [
         {
-          "creature": "forajido_camino",
-          "text": "Un salteador sale de detrás de unas piedras y se planta delante de ti: «La mochila, y sigues tu camino».",
+          "creature": "salteador_veterano",
+          "text": "Una mujer de pelo gris, con cota vieja y espada corta, espera sentada en una piedra junto al paso. Te mira sin levantarse.",
           "persistent_trace": false
         },
         {
@@ -1667,8 +1667,8 @@
       "buys_gear": false,
       "wildlife_pool": [
         {
-          "creature": "forajido_camino",
-          "text": "Un salteador sale de detrás de unas piedras y se planta delante de ti: «La mochila, y sigues tu camino».",
+          "creature": "salteador_veterano",
+          "text": "Una mujer de pelo gris, con cota vieja y espada corta, espera sentada en una piedra junto al paso. Te mira sin levantarse.",
           "persistent_trace": false
         },
         {
@@ -1957,8 +1957,8 @@
       ],
       "wildlife_pool": [
         {
-          "creature": "forajido_camino",
-          "text": "Un salteador sale de detrás de unas piedras y se planta delante de ti: «La mochila, y sigues tu camino».",
+          "creature": "salteador_veterano",
+          "text": "Una mujer de pelo gris, con cota vieja y espada corta, espera sentada en una piedra junto al paso. Te mira sin levantarse.",
           "persistent_trace": false
         },
         {
