@@ -32,6 +32,26 @@
           {
             "item": "fibra_junco",
             "text": "Entre los tallos caídos encuentras fibras secas de junco. Separas un manojo pequeño."
+          },
+          {
+            "item": "hierbas_curativas",
+            "text": "En la orilla crecen hierbas curativas de hoja ancha."
+          },
+          {
+            "item": "pluma_vistosa",
+            "text": "Una pluma de ave del agua flota junto a los juncos."
+          },
+          {
+            "item": "cuerda_recuperada",
+            "text": "Un trozo de cuerda de amarre aún útil, enredado en las raíces."
+          },
+          {
+            "item": "cuero_curtido",
+            "text": "Una correa de cuero mojada; se secará bien."
+          },
+          {
+            "item": "bolsita_cuentas",
+            "text": "Entre las tablas, una bolsita de cuentas que alguien dejó caer."
           }
         ],
         "traces": [
@@ -91,6 +111,11 @@
       "actions": [],
       "wildlife_pool": [
         {
+          "creature": "forajido_camino",
+          "text": "Una persona con un palo corto te corta el paso y señala tu mochila.",
+          "persistent_trace": false
+        },
+        {
           "creature": "pinzajunco",
           "text": "En el borde del cauce, un Pinzajunco camina de lado con una hoja seca en la pinza grande. Al llegar a su agujero, la mete dentro.",
           "persistent_trace": false
@@ -132,6 +157,11 @@
       "signals": [],
       "actions": [],
       "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Un salteador sale de detrás de unas piedras y se planta delante de ti: «La mochila, y sigues tu camino».",
+          "persistent_trace": false
+        },
         {
           "creature": "pinzajunco",
           "text": "Junto a las varas del paso estrecho, un Pinzajunco levanta la pinza mayor hacia tus pies. No retrocede: ésa es su orilla.",
@@ -191,6 +221,13 @@
             "atardecer"
           ]
         }
+      ],
+      "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Una persona con un palo corto te corta el paso y señala tu mochila.",
+          "persistent_trace": false
+        }
       ]
     },
     "lethra_tablas_primeras": {
@@ -215,8 +252,24 @@
       "arrivals": {},
       "npcs": [],
       "signals": [],
-      "actions": [],
+      "actions": [
+        {
+          "id": "pasaje_tablas_hundidas_vuelta",
+          "label": "Bajar por las tablas hundidas",
+          "requires_flags": [
+            "pasaje_tablas_hundidas"
+          ],
+          "scope": "player",
+          "next": "lethra_raices_observacion",
+          "text": "Bajas por las tablas viejas, bajo las raíces, hasta el sitio de observación junto al agua."
+        }
+      ],
       "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Un salteador sale de detrás de unas piedras y se planta delante de ti: «La mochila, y sigues tu camino».",
+          "persistent_trace": false
+        },
         {
           "creature": "pinzajunco",
           "text": "Entre los primeros apoyos de madera, un Pinzajunco levanta una hoja de la corriente. El agua vuelve a moverla cuando suelta el tallo.",
@@ -281,7 +334,14 @@
         "niebla": "La hoja desaparece antes de llegar al siguiente canal. La observadora deja de anotar y escucha: el rumor de la corriente rápida continúa bajo el apoyo seco.",
         "viento": "El viento empuja la hoja de lado sobre el remanso. La observadora señala una planta hundida que sigue inclinándose corriente abajo y borra el último giro de su tablilla."
       },
-      "brief": "El cruce de canales, uno rápido y otro quieto."
+      "brief": "El cruce de canales, uno rápido y otro quieto.",
+      "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Una persona con un palo corto te corta el paso y señala tu mochila.",
+          "persistent_trace": false
+        }
+      ]
     },
     "lethra_ribera_firme": {
       "id": "lethra_ribera_firme",
@@ -307,6 +367,11 @@
       "signals": [],
       "actions": [],
       "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Una persona con un palo corto te corta el paso y señala tu mochila.",
+          "persistent_trace": false
+        },
         {
           "creature": "pinzajunco",
           "text": "Bajo un apoyo de madera, un Pinzajunco arrastra una hoja que se cayó de una envoltura. Nadie se la quita.",
@@ -362,6 +427,11 @@
         {
           "creature": "dorsalodo",
           "text": "En medio del agua quieta, una ola ancha avanza hacia la orilla. Un Dorsalodo nada por debajo, sin acercarse a la pasarela.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "forajido_camino",
+          "text": "En mitad de la curva, una persona con un palo corto te corta el paso sobre las tablas. Detrás de ti sólo hay agua y pasarela.",
           "persistent_trace": false
         }
       ],
@@ -447,6 +517,13 @@
             "night": "Un vecino que espera su traslado tardío se ha quedado dormido sentado sobre su carga, con la cabeza apoyada en un poste."
           }
         }
+      ],
+      "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Alguien con la ropa gastada del camino espera junto al paso, con un palo en la mano. Quiere tu carga.",
+          "persistent_trace": false
+        }
       ]
     },
     "lethra_senda_elevada": {
@@ -473,6 +550,11 @@
       "signals": [],
       "actions": [],
       "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Una persona con un palo corto te corta el paso y señala tu mochila.",
+          "persistent_trace": false
+        },
         {
           "creature": "pinzajunco",
           "text": "El Pinzajunco trabaja abajo, junto a un apoyo de la senda alta. Corta el borde de una hoja con la pinza desigual sin subir a las tablas.",
@@ -862,7 +944,14 @@
           }
         }
       ],
-      "brief": "La plataforma de secado, con el paño de los remiendos."
+      "brief": "La plataforma de secado, con el paño de los remiendos.",
+      "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Una persona con un palo corto te corta el paso y señala tu mochila.",
+          "persistent_trace": false
+        }
+      ]
     },
     "lethra_banco_conversacion": {
       "id": "lethra_banco_conversacion",
@@ -887,7 +976,14 @@
       "npcs": [],
       "signals": [],
       "actions": [],
-      "brief": "El banco junto al canal."
+      "brief": "El banco junto al canal.",
+      "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Alguien con la ropa gastada del camino espera junto al paso, con un palo en la mano. Quiere tu carga.",
+          "persistent_trace": false
+        }
+      ]
     },
     "lethra_cocina_reunion": {
       "id": "lethra_cocina_reunion",
@@ -1022,13 +1118,43 @@
       "shop": [
         "provision_basica",
         "punal_camino",
-        "varita_aprendiz"
+        "varita_aprendiz",
+        "pocion_menor",
+        "tonico_camino",
+        "unguento_heridas",
+        "punal_hueso",
+        "varita_sauce",
+        "anillo_cobre",
+        "gorro_cuero",
+        "jubon_cuero",
+        "brazales_cuero",
+        "grebas_cuero",
+        "botas_cuero",
+        "grebas_reforzadas"
       ],
       "buyer": "lethra_nera_mercado",
       "buy_items": [
         "fibra_junco",
         "resina_pino",
-        "rama_flexible"
+        "rama_flexible",
+        "colmillo_mordelinde",
+        "espina_espinajo",
+        "placa_cascapedernal",
+        "cuero_curtido",
+        "hierro_viejo",
+        "cuna_madera",
+        "clavos_oxidados",
+        "hierbas_curativas",
+        "setas_bosque",
+        "pluma_vistosa",
+        "cristal_veta",
+        "bolsita_cuentas",
+        "cuerno_cornalomo",
+        "escama_dorsalodo",
+        "garra_rasgacumbres",
+        "placa_quebrarrocas",
+        "corteza_rasgacorteza",
+        "bolsa_salteador"
       ],
       "states": [
         {
@@ -1121,7 +1247,8 @@
         },
         "El agua golpea suavemente los postes del puesto: chap, chap."
       ],
-      "max_layers": 4
+      "max_layers": 4,
+      "buys_gear": true
     },
     "lethra_muelle_vecinal": {
       "id": "lethra_muelle_vecinal",
@@ -1331,7 +1458,21 @@
           }
         }
       ],
-      "brief": "El patio de las barcas, inclinadas para escurrir."
+      "brief": "El patio de las barcas, inclinadas para escurrir.",
+      "hallazgos": [
+        {
+          "item": "cuerda_recuperada",
+          "text": "Entre las piezas que Sola guarda por si sirven, hay un trozo de cuerda que te deja llevar.",
+          "chance": 0.5
+        }
+      ],
+      "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Un salteador sale de detrás de unas piedras y se planta delante de ti: «La mochila, y sigues tu camino».",
+          "persistent_trace": false
+        }
+      ]
     },
     "lethra_banco_barro": {
       "id": "lethra_banco_barro",
@@ -1357,6 +1498,11 @@
       "signals": [],
       "actions": [],
       "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Alguien con la ropa gastada del camino espera junto al paso, con un palo en la mano. Quiere tu carga.",
+          "persistent_trace": false
+        },
         {
           "creature": "pinzajunco",
           "text": "En el barro firme, un Pinzajunco excava su agujero con la pinza grande. Se para y la apunta hacia ti.",
@@ -1475,7 +1621,14 @@
       ],
       "dawn": "La hoja queda inmóvil en el agua clara. Una burbuja pequeña aparece junto al borde y desaparece.",
       "dusk": "La hoja pierde su reflejo antes de que el canal oscurezca. Desde la otra orilla llega un solo golpe.",
-      "brief": "La orilla del canal, de agua quieta y sin fondo a la vista."
+      "brief": "La orilla del canal, de agua quieta y sin fondo a la vista.",
+      "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Un salteador sale de detrás de unas piedras y se planta delante de ti: «La mochila, y sigues tu camino».",
+          "persistent_trace": false
+        }
+      ]
     },
     "lethra_raices_observacion": {
       "id": "lethra_raices_observacion",
@@ -1528,6 +1681,23 @@
           "text": "Hay barro pegado a una raíz alta, muy por encima del agua, pero las raíces de al lado están limpias. El agua tuvo que levantarse con mucha fuerza en un solo punto, como cuando algo enorme se mueve de golpe.",
           "journal": "El canal guarda señales de un movimiento grande, distinto de la corriente de siempre.",
           "scope": "player"
+        },
+        {
+          "id": "pasaje_tablas_hundidas",
+          "label": "Seguir las tablas hundidas",
+          "requires_flags": [
+            "buscado:lethra_raices_observacion"
+          ],
+          "set_flags": [
+            "pasaje_tablas_hundidas"
+          ],
+          "scope": "player",
+          "next": "lethra_tablas_primeras",
+          "text": "Pisas con cuidado las tablas viejas, medio hundidas en el barro. Crujen, pero aguantan. Te llevan bajo las raíces hasta las primeras tablas de la pasarela.",
+          "journal": "Descubriste unas tablas hundidas que unen las Raíces junto al agua con las primeras tablas.",
+          "discover_rooms": [
+            "lethra_tablas_primeras"
+          ]
         }
       ],
       "memories": [
@@ -1538,7 +1708,26 @@
           "text": "La nota que dejaste conserva lugar y condición del canal. Otra persona puede leerla desde el apoyo sin seguir los arrastres al agua."
         }
       ],
-      "brief": "Las raíces junto al agua, con su nota atada."
+      "brief": "Las raíces junto al agua, con su nota atada.",
+      "hallazgos": [
+        {
+          "item": "pocion_menor",
+          "text": "Encajado entre dos raíces, un frasquito de poción que alguien dejó para quien llegara aquí cansado. Al cogerlo ves, bajo las raíces, unas tablas viejas medio hundidas que siguen hacia el norte.",
+          "unico": true
+        },
+        {
+          "item": "hierbas_curativas",
+          "text": "Entre las raíces crecen hierbas de hoja ancha.",
+          "chance": 0.5
+        }
+      ],
+      "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Un salteador sale de detrás de unas piedras y se planta delante de ti: «La mochila, y sigues tu camino».",
+          "persistent_trace": false
+        }
+      ]
     },
     "lethra_ribera_oeste": {
       "id": "lethra_ribera_oeste",
@@ -1634,6 +1823,11 @@
       "actions": [],
       "wildlife_pool": [
         {
+          "creature": "forajido_camino",
+          "text": "Alguien con la ropa gastada del camino espera junto al paso, con un palo en la mano. Quiere tu carga.",
+          "persistent_trace": false
+        },
+        {
           "creature": "pinzajunco",
           "text": "Un Pinzajunco sostiene una hoja empapada bajo la piedra menor del hito. La pinza grande asoma sobre el barro; la pequeña recoge el tallo.",
           "persistent_trace": false
@@ -1680,6 +1874,11 @@
       "signals": [],
       "actions": [],
       "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Una persona con un palo corto te corta el paso y señala tu mochila.",
+          "persistent_trace": false
+        },
         {
           "creature": "pinzajunco",
           "text": "Una hoja desaparece despacio bajo la raíz del canal. El Pinzajunco la arrastra por el tallo y deja un surco pequeño en el barro sombreado.",
@@ -1744,7 +1943,14 @@
       "look": {
         "sur": "El canal vuelve a la luz, entre raíces y una pasarela corta.",
         "norte": "El agua se mete bajo los árboles y todo se vuelve sombra verde: el bosque de Nhal."
-      }
+      },
+      "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Una persona con un palo corto te corta el paso y señala tu mochila.",
+          "persistent_trace": false
+        }
+      ]
     },
     "lethra_escucha_aves": {
       "id": "lethra_escucha_aves",
@@ -1773,7 +1979,26 @@
         }
       ],
       "actions": [],
-      "brief": "La orilla de las aves."
+      "brief": "La orilla de las aves.",
+      "hallazgos": [
+        {
+          "item": "anillo_cobre",
+          "text": "Bajo la raíz seca, enterrado a medias, hay un anillo de cobre. Alguien se sentó aquí a escuchar a las aves y lo perdió.",
+          "unico": true
+        },
+        {
+          "item": "pluma_vistosa",
+          "text": "Una pluma de ave del agua ha caído junto a la raíz.",
+          "chance": 0.6
+        }
+      ],
+      "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Alguien con la ropa gastada del camino espera junto al paso, con un palo en la mano. Quiere tu carga.",
+          "persistent_trace": false
+        }
+      ]
     },
     "lethra_sala_cuidados": {
       "id": "lethra_sala_cuidados",

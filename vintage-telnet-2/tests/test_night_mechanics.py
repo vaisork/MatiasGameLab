@@ -86,7 +86,7 @@ class NightMechanicsTests(unittest.TestCase):
   cached=copy.deepcopy(self.world['wildlife']);calls=rng.calls
   for _ in range(3):self.engine.snapshot(second,self.world)
   self.assertEqual(rng.calls,calls);self.assertEqual(self.world['wildlife'],cached)
-  self.assertEqual(calls,2)
+  self.assertEqual(calls,4)  # two spawns, each one roll for the rival and one for its level
   self.assertTrue(any(a['id']=='combatir' and a.get('target')=='forajido_camino' for a in self.engine.actions(second,self.world)))
  def test_recovery_requires_present_caregiver_and_only_charges_for_effect(self):
   self.state['location']='hoshai_sala_cuidados';self.state.update(hp=50,fatigue=45,wound='moderada',rest_budget=0,seals=18)
@@ -121,7 +121,7 @@ class NightMechanicsTests(unittest.TestCase):
    def random(self):return self.value
   traces=self.content.regions['edran']['search']['traces']
   index=next(i for i,t in enumerate(traces) if isinstance(t,dict) and t['flag']=='pista_huella_partida')
-  self.state['location']='edran_camino_carros';self.engine.rng=Fixed(.4+(index+.5)/len(traces)*.35)
+  self.state['location']='edran_camino_carros';self.engine.rng=Fixed(.5+(index+.5)/len(traces)*.25)
   self.engine.search(self.character,self.world)
   self.assertEqual(self.state['events'][0]['text'],traces[index]['text'])
   self.assertIn('pista_huella_partida',self.state['flags'])
@@ -136,7 +136,7 @@ class NightMechanicsTests(unittest.TestCase):
    def random(self):return self.value
   search=self.content.regions['lethra']['search']
   # First and last variant of each list, using the same proportional selection as Engine.search.
-  for value,kind,start,span in ((.76,'empty',.75,.25),(.99,'empty',.75,.25),(.41,'traces',.4,.35),(.74,'traces',.4,.35)):
+  for value,kind,start,span in ((.76,'empty',.75,.25),(.99,'empty',.75,.25),(.51,'traces',.5,.25),(.74,'traces',.5,.25)):
    options=search[kind];index=min(int((value-start)/span*len(options)),len(options)-1)
    self.state['location']='lethra_tierra_esponjosa';self.engine.rng=Fixed(value)
    self.engine.search(self.character,self.world)

@@ -59,6 +59,12 @@ PEACEFUL_WITHDRAWALS = {
  'quebrarrocas': 'Te apartas del terreno que ocupa. El Quebrarrocas conserva su espacio entre las piedras.',
 }
 
+def scaled(profile,level):
+ """Same creature, stronger with level: +20% hp, +12% damage, +2 accuracy per level above its base."""
+ if not level or profile.get('category')!='comparable':return dict(profile)
+ steps=max(0,int(level)-profile['level'])
+ return dict(profile,level=max(profile['level'],int(level)),hp=rounded(profile['hp']*(1+.2*steps)),damage=rounded(profile['damage']*(1+.12*steps)),accuracy=min(85,profile['accuracy']+2*steps))
+
 def threat_observation(creature_id):
  text=THREAT_OBSERVATIONS.get(creature_id,'Conserva una salida antes de entrar en su alcance.')
  intention=REGIONAL_INTENTIONS.get(creature_id)
@@ -70,8 +76,40 @@ def peaceful_withdrawal(creature_id):
 def clamp(value, low, high): return max(low,min(high,value))
 def rounded(value): return math.floor(value+.5)
 def cg(state): return 8*(state['level']-1)/99
+# Body slots for armour pieces and accessories; legacy 'armor' stays valid as the torso piece of older characters.
+ARMOR_SLOTS=('cabeza','torso','brazos','piernas','pies')
+ACCESSORY_SLOTS=('anillo','amuleto')
+SLOT_NAMES={'weapon':'arma','block':'escudo','armor':'armadura','cabeza':'cabeza','torso':'torso','brazos':'brazos','piernas':'piernas','pies':'pies','anillo':'anillo','amuleto':'amuleto'}
+ARMOR_CAP=.5
+
+def gear(state):
+ """Equipped items, once each, from any slot."""
+ equipped={v for v in (state.get('equipment') or {}).values() if v}
+ return [i for i in state.get('inventory',[]) if i.get('id') in equipped]
+
+def gear_bonus(state,key):
+ return sum(i.get('bonus',{}).get(key,0) for i in gear(state))
+
+def armor_total(state):
+ return min(ARMOR_CAP,sum(i.get('armor_reduction',0) for i in gear(state) if i.get('kind')=='armor'))
+
+def use_consumable(state,item):
+ """Apply a potion or provision; returns the narrated result."""
+ effect=item.get('effect')
+ if effect=='basic_provision':heal,fatigue,wound_steps=.18,20,0
+ elif effect=='potion':heal,fatigue,wound_steps=item.get('heal',0),item.get('fatigue',0),item.get('wound_steps',0)
+ else:return None
+ before=state['hp'];state['hp']=min(hp_max(state),state['hp']+heal*hp_max(state));state['fatigue']=max(0,state['fatigue']-fatigue)
+ order=[None,'leve','moderada','grave']
+ if wound_steps and state.get('wound') in order:state['wound']=order[max(0,order.index(state['wound'])-wound_steps)]
+ parts=[]
+ if state['hp']>before:parts.append(f"recuperas {rounded(state['hp']-before)} de vida")
+ if fatigue:parts.append('se te pasa el cansancio')
+ if wound_steps:parts.append('la herida deja de doler tanto')
+ return f"Usas {item['name']}: "+(', '.join(parts) if parts else 'no notas cambios')+'.'
+
 def hp_max(state):
- a=state['attributes']; return 100+1.25*(state['level']-1)+2.5*(a['resistencia']-10)+.5*(a['voluntad']-10)
+ a=state['attributes']; return 100+1.25*(state['level']-1)+2.5*(a['resistencia']-10)+.5*(a['voluntad']-10)+gear_bonus(state,'vida')
 def xp_next(level): return rounded(100+18*(level-1)+.25*(level-1)**2)
 def fatigue_cost(state, base):
  multiplier = (1.10 if state['wound']=='leve' else 1.20 if state['wound']=='moderada' else 1.35 if state['wound']=='grave' else 1)
@@ -198,12 +236,19 @@ def resolve_round(state, creature, rng, respond=True):
  combat=state['combat']; profile=combat['profile']; intervention=combat.pop('intervention',None) or {'id':'atacar'}
  action=intervention['id']; target=intervention.get('target'); a=state['attributes']; penalty,power=penalties(state)
  weapon=next((i for i in state['inventory'] if i['id']==state['equipment']['weapon']),None)
- accuracy=clamp(55+.45*(a['destreza']-10)+.18*(a['percepcion']-10)+.5*(cg(state)-8*(profile['level']-1)/99)-penalty-profile.get('evasion',0),25,90)
- raw=(weapon['damage'] if weapon else 0)+.48*(a['fuerza']-10)+.12*(a['destreza']-10)+.25*cg(state)
+ accuracy=clamp(55+.45*(a['destreza']-10)+.18*(a['percepcion']-10)+.5*(cg(state)-8*(profile['level']-1)/99)-penalty-profile.get('evasion',0)+gear_bonus(state,'precision'),25,90)
+ raw=(weapon['damage'] if weapon else 0)+.48*(a['fuerza']-10)+.12*(a['destreza']-10)+.25*cg(state)+gear_bonus(state,'dano')
  prepared=preparation(combat)
  enemy_accuracy=prepared.get('accuracy',60) if prepared else profile['accuracy']
- reduction=0; guard=0; events=[]; signature=False; costs={'atacar':4,'esquivar':6,'bloquear':5,'resistir':3,'huir':8,'capacidad':5}
+ reduction=0; guard=0; events=[]; signature=False; costs={'atacar':4,'esquivar':6,'bloquear':5,'resistir':3,'huir':8,'capacidad':5,'usar':2}
  if action=='defender':action=target
+ if action=='usar':
+  item=next((i for i in state['inventory'] if i['id']==target),None)
+  text=use_consumable(state,item) if item else None
+  if text:
+   item['quantity']-=1
+   if not item['quantity']:state['inventory'].remove(item)
+  events.append({'kind':'action','text':text or 'No encuentras ese objeto en la mochila.'})
  if action=='huir':
   chance=clamp(50+.45*(a['agilidad']-10)+.15*(a['percepcion']-10)+min(30,.6*max(0,profile['level']-state['level']))+15*combat.get('failed_flee',0)-penalty,20,95)
   if rng.random()*100<chance:
@@ -244,6 +289,7 @@ def resolve_round(state, creature, rng, respond=True):
  if action=='esquivar':enemy_accuracy-=.48*(a['agilidad']-10)+.12*(a['percepcion']-10)-penalty
  elif action=='bloquear':reduction=max(0,min(.32,.10+.0035*(a['destreza']-10))-penalty/100)
  elif action=='resistir':reduction=max(0,min(.38,.0055*(a['resistencia']-10))-penalty/100)
+ enemy_accuracy-=gear_bonus(state,'esquiva')
  combat['_response']={'accuracy':enemy_accuracy,'reduction':reduction,'guard':guard,'signature':signature}
  if not respond:
   combat['round']+=1;combat['cooldown']=max(0,combat.get('cooldown',0)-1)

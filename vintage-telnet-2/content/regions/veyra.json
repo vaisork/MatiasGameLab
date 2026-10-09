@@ -18,6 +18,26 @@
           {
             "item": "cuerda_recuperada",
             "text": "Bajo una piedra encuentras un trozo de cuerda que el agua dejó atrapado."
+          },
+          {
+            "item": "clavos_oxidados",
+            "text": "Entre las piedras del camino hay clavos que cayeron de un carro."
+          },
+          {
+            "item": "cuero_curtido",
+            "text": "Bajo un matorral, alguien perdió un trozo de cuero curtido."
+          },
+          {
+            "item": "hierro_viejo",
+            "text": "Una argolla rota de hierro, de las que se usan para atar animales."
+          },
+          {
+            "item": "bolsita_cuentas",
+            "text": "En una grieta del muro hay una bolsita de tela con cuentas de colores."
+          },
+          {
+            "item": "hierbas_curativas",
+            "text": "Junto al agua crecen hierbas que usan los cuidadores."
           }
         ],
         "traces": [
@@ -126,19 +146,42 @@
         "punal_camino",
         "arco_ruta",
         "varita_aprendiz",
-        "espada_juramento"
+        "espada_juramento",
+        "pocion_menor",
+        "pocion_vida",
+        "tonico_camino",
+        "unguento_heridas",
+        "espada_larga",
+        "espada_vaisgard",
+        "punal_hueso",
+        "dagas_gemelas",
+        "arco_largo",
+        "arco_cuerno",
+        "varita_sauce",
+        "baston_raiz",
+        "gorro_cuero",
+        "jubon_cuero",
+        "brazales_cuero",
+        "grebas_cuero",
+        "botas_cuero",
+        "casco_reforzado",
+        "coraza_reforzada",
+        "brazales_reforzados",
+        "grebas_reforzadas",
+        "botas_reforzadas",
+        "yelmo_vaisgard",
+        "coraza_vaisgard",
+        "guanteletes_vaisgard",
+        "quijotes_vaisgard",
+        "botas_vaisgard",
+        "anillo_cobre",
+        "anillo_punteria",
+        "anillo_filo",
+        "amuleto_raiz",
+        "amuleto_viento",
+        "amuleto_viajero"
       ],
       "buyer": "veyra_bela",
-      "buy_items": [
-        "semillas_camino",
-        "cuerda_recuperada",
-        "resina_pino",
-        "piedra_veteada",
-        "fibra_junco",
-        "rama_flexible",
-        "fibra_espinajo",
-        "piel_mordelinde"
-      ],
       "states": [
         {
           "requires_time": [
@@ -264,7 +307,8 @@
           ]
         }
       ],
-      "max_layers": 4
+      "max_layers": 4,
+      "buys_gear": true
     },
     "veyra_plaza_rutas": {
       "id": "veyra_plaza_rutas",
@@ -434,6 +478,16 @@
       ],
       "signals": [],
       "actions": [
+        {
+          "id": "pasaje_corredor_cantera_vuelta",
+          "label": "Volver por el corredor de la cantera",
+          "requires_flags": [
+            "pasaje_corredor_cantera"
+          ],
+          "scope": "player",
+          "next": "veyra_cantera_callada",
+          "text": "Te escurres detrás del taller y sigues el corredor de piedra hasta la cantera vieja."
+        },
         {
           "id": "veyra_acordar_costura",
           "label": "Ayudar a acordar el desagüe",
@@ -962,7 +1016,18 @@
           "journal": "Dejé la tabla de la huerta de Vaisgard encajada para dirigir un hilo de agua al bancal."
         }
       ],
-      "wildlife_pool": [],
+      "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Una persona con un palo corto te corta el paso y señala tu mochila.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "espinajo_rastrojo",
+          "text": "Entre el rastrojo seco se mueve un Espinajo: bufa y te enseña las espinas.",
+          "persistent_trace": false
+        }
+      ],
       "states": [
         {
           "requires_time": [
@@ -1073,7 +1138,19 @@
       ],
       "dawn": "El agrimensor espera junto al primer poste. Mientras llega más luz, anota de qué puerta salió el carro que acaba de subir.",
       "dusk": "El agrimensor recoge la cuerda de medir y cierra el cuaderno. El último carro baja despacio hacia la huerta.",
-      "brief": "La colina de las procedencias, con la cuenca a la vista."
+      "brief": "La colina de las procedencias, con la cuenca a la vista.",
+      "wildlife_pool": [
+        {
+          "creature": "espinajo_rastrojo",
+          "text": "Entre el rastrojo seco se mueve un Espinajo: bufa y te enseña las espinas.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "forajido_camino",
+          "text": "Un salteador sale de detrás de unas piedras y se planta delante de ti: «La mochila, y sigues tu camino».",
+          "persistent_trace": false
+        }
+      ]
     },
     "veyra_archivo_cargas": {
       "id": "veyra_archivo_cargas",
@@ -1194,7 +1271,19 @@
       "npcs": [],
       "signals": [],
       "actions": [],
-      "brief": "La Puerta de los Campos, en los muros viejos de Vaisgard."
+      "brief": "La Puerta de los Campos, en los muros viejos de Vaisgard.",
+      "wildlife_pool": [
+        {
+          "creature": "espinajo_rastrojo",
+          "text": "Un Espinajo de rastrojo rasca la tierra con una pata delantera. Está marcando su sitio.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "forajido_camino",
+          "text": "Una persona con un palo corto te corta el paso y señala tu mochila.",
+          "persistent_trace": false
+        }
+      ]
     },
     "veyra_puerta_alta": {
       "id": "veyra_puerta_alta",
@@ -1223,7 +1312,19 @@
       "actions": [],
       "dawn": "La grava está húmeda de rocío, y los primeros viajeros suben pisando con cuidado. Detrás, en los patios, empiezan a oírse voces.",
       "dusk": "Los viajeros que bajan dejan pasar una carga que llega tarde. Por encima de la puerta, la sierra todavía tiene luz, aunque la rampa ya está en sombra.",
-      "brief": "La Puerta del Camino Alto y su plataforma de carga."
+      "brief": "La Puerta del Camino Alto y su plataforma de carga.",
+      "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Alguien con la ropa gastada del camino espera junto al paso, con un palo en la mano. Quiere tu carga.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "espinajo_rastrojo",
+          "text": "Un Espinajo de rastrojo rasca la tierra con una pata delantera. Está marcando su sitio.",
+          "persistent_trace": false
+        }
+      ]
     },
     "veyra_puerta_piedra": {
       "id": "veyra_puerta_piedra",
@@ -1268,7 +1369,19 @@
           "requires_npc": "veyra_tov"
         }
       ],
-      "brief": "La puerta del camino de Korven, con sus ventanas pequeñas."
+      "brief": "La puerta del camino de Korven, con sus ventanas pequeñas.",
+      "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Una persona con un palo corto te corta el paso y señala tu mochila.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "espinajo_rastrojo",
+          "text": "Entre el rastrojo seco se mueve un Espinajo: bufa y te enseña las espinas.",
+          "persistent_trace": false
+        }
+      ]
     },
     "veyra_puerta_juncos": {
       "id": "veyra_puerta_juncos",
@@ -1295,7 +1408,19 @@
       "npcs": [],
       "signals": [],
       "actions": [],
-      "brief": "La puerta de los canales, con su tabla para el calzado."
+      "brief": "La puerta de los canales, con su tabla para el calzado.",
+      "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Un salteador sale de detrás de unas piedras y se planta delante de ti: «La mochila, y sigues tu camino».",
+          "persistent_trace": false
+        },
+        {
+          "creature": "espinajo_rastrojo",
+          "text": "Un Espinajo de rastrojo eriza las espinas del lomo y afirma las patas en medio del paso.",
+          "persistent_trace": false
+        }
+      ]
     },
     "veyra_puerta_sombra": {
       "id": "veyra_puerta_sombra",
@@ -1322,7 +1447,19 @@
       "npcs": [],
       "signals": [],
       "actions": [],
-      "brief": "La puerta del bosque, con su hoja vieja contra el muro."
+      "brief": "La puerta del bosque, con su hoja vieja contra el muro.",
+      "wildlife_pool": [
+        {
+          "creature": "espinajo_rastrojo",
+          "text": "Entre el rastrojo seco se mueve un Espinajo: bufa y te enseña las espinas.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "forajido_camino",
+          "text": "Un salteador sale de detrás de unas piedras y se planta delante de ti: «La mochila, y sigues tu camino».",
+          "persistent_trace": false
+        }
+      ]
     },
     "veyra_rampa_grava": {
       "id": "veyra_rampa_grava",
@@ -1349,7 +1486,18 @@
       "npcs": [],
       "signals": [],
       "actions": [],
-      "wildlife_pool": [],
+      "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Un salteador sale de detrás de unas piedras y se planta delante de ti: «La mochila, y sigues tu camino».",
+          "persistent_trace": false
+        },
+        {
+          "creature": "espinajo_rastrojo",
+          "text": "Un Espinajo de rastrojo eriza las espinas del lomo y afirma las patas en medio del paso.",
+          "persistent_trace": false
+        }
+      ],
       "brief": "La subida de grava que rodea la hondonada."
     },
     "veyra_terraplen_roca": {
@@ -1377,7 +1525,13 @@
       "npcs": [],
       "signals": [],
       "actions": [],
-      "wildlife_pool": [],
+      "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Detrás de una piedra grande aparece una persona con un palo corto. Quiere tu carga.",
+          "persistent_trace": false
+        }
+      ],
       "brief": "El camino de piedras claras y su arroyo seco."
     },
     "veyra_hondonada_canales": {
@@ -1406,7 +1560,18 @@
       "npcs": [],
       "signals": [],
       "actions": [],
-      "wildlife_pool": [],
+      "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Una persona con un palo corto te corta el paso y señala tu mochila.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "espinajo_rastrojo",
+          "text": "Entre el rastrojo seco se mueve un Espinajo: bufa y te enseña las espinas.",
+          "persistent_trace": false
+        }
+      ],
       "brief": "El cruce de canales y su pasarela corta.",
       "states": [
         {
@@ -1492,7 +1657,18 @@
       "npcs": [],
       "signals": [],
       "actions": [],
-      "wildlife_pool": [],
+      "wildlife_pool": [
+        {
+          "creature": "espinajo_rastrojo",
+          "text": "Un Espinajo de rastrojo eriza las espinas del lomo y afirma las patas en medio del paso.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "forajido_camino",
+          "text": "Alguien con la ropa gastada del camino espera junto al paso, con un palo en la mano. Quiere tu carga.",
+          "persistent_trace": false
+        }
+      ],
       "brief": "La entrada al bosque, donde las raíces empiezan a levantar el suelo."
     },
     "veyra_cantera_callada": {
@@ -1516,7 +1692,25 @@
       "arrivals": {},
       "npcs": [],
       "signals": [],
-      "actions": [],
+      "actions": [
+        {
+          "id": "pasaje_corredor_cantera",
+          "label": "Seguir el corredor de la cantera",
+          "requires_flags": [
+            "buscado:veyra_cantera_callada"
+          ],
+          "set_flags": [
+            "pasaje_corredor_cantera"
+          ],
+          "scope": "player",
+          "next": "veyra_calle_toldos",
+          "text": "El corredor entre la piedra cortada se estrecha y gira dos veces. De pronto oyes voces y ves toldos de colores: sales por detrás de un taller de la Calle de los Toldos.",
+          "journal": "Descubriste un corredor de cantera que lleva desde la Cantera vieja hasta la Calle de los Toldos.",
+          "discover_rooms": [
+            "veyra_calle_toldos"
+          ]
+        }
+      ],
       "states": [
         {
           "requires_time": [
@@ -1535,7 +1729,31 @@
       ],
       "dawn": "La roca de abajo sigue fría. Un Escarabajo de polvo espera justo donde empieza a llegar el sol.",
       "dusk": "El Escarabajo de polvo se acerca al último borde iluminado. La pluma queda en sombra dentro de su hueco.",
-      "brief": "La cantera vieja y su bloque a medio sacar."
+      "brief": "La cantera vieja y su bloque a medio sacar.",
+      "hallazgos": [
+        {
+          "item": "cristal_veta",
+          "text": "En la base del bloque a medio sacar, entre las raíces, brilla un cristal claro. Lo sacas sin dañar las raíces. Al hacerlo ves, detrás del bloque, un corredor estrecho entre dos paredes de piedra cortada.",
+          "unico": true
+        },
+        {
+          "item": "hierro_viejo",
+          "text": "Entre los escombros hay una punta de herramienta rota.",
+          "chance": 0.5
+        }
+      ],
+      "wildlife_pool": [
+        {
+          "creature": "espinajo_rastrojo",
+          "text": "Un Espinajo de rastrojo rasca la tierra con una pata delantera. Está marcando su sitio.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "forajido_camino",
+          "text": "Una persona con un palo corto te corta el paso y señala tu mochila.",
+          "persistent_trace": false
+        }
+      ]
     },
     "veyra_sala_cuidados": {
       "id": "veyra_sala_cuidados",
@@ -1667,7 +1885,14 @@
         "norte": "Una colina sube hacia los muros viejos de Vaisgard.",
         "oeste": "Un camino ancho cruza pastos entre dos lomas, hacia los campos de Edran.",
         "este": "Un camino elevado sigue una acequia rápida y clara hacia los canales."
-      }
+      },
+      "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Un salteador espera en medio de la vega, donde no hay dónde esconderse, y te mira la mochila.",
+          "persistent_trace": false
+        }
+      ]
     },
     "veyra_pastos_exteriores": {
       "id": "veyra_pastos_exteriores",
@@ -1694,7 +1919,19 @@
       "npcs": [],
       "signals": [],
       "actions": [],
-      "brief": "El camino de los pastos, entre dos lomas."
+      "brief": "El camino de los pastos, entre dos lomas.",
+      "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Una persona con un palo corto te corta el paso y señala tu mochila.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "espinajo_rastrojo",
+          "text": "Entre el rastrojo seco se mueve un Espinajo: bufa y te enseña las espinas.",
+          "persistent_trace": false
+        }
+      ]
     },
     "veyra_acequia_exterior": {
       "id": "veyra_acequia_exterior",
@@ -1719,7 +1956,19 @@
       "npcs": [],
       "signals": [],
       "actions": [],
-      "brief": "El camino sobre la acequia, con sus tablas en los desagües."
+      "brief": "El camino sobre la acequia, con sus tablas en los desagües.",
+      "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Alguien con la ropa gastada del camino espera junto al paso, con un palo en la mano. Quiere tu carga.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "espinajo_rastrojo",
+          "text": "Un Espinajo de rastrojo rasca la tierra con una pata delantera. Está marcando su sitio.",
+          "persistent_trace": false
+        }
+      ]
     }
   },
   "npcs": {

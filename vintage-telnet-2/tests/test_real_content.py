@@ -99,7 +99,7 @@ class RealContentTests(unittest.TestCase):
   self.assertTrue(any('guardia' in e['text'].lower() for e in response['narrative']))
  def test_random_major_in_lethra_warns_before_fighting(self):
   class Major:
-   def random(self):return .44
+   def random(self):return .69
   self.app.config['RNG']=Major();self.create();self.walk('lethra_tierra_esponjosa')
   state=self.client.get('/api/state').json
   self.assertTrue(any(a['id']=='acercarse' and a.get('target')=='dorsalodo' for a in state['actions']))

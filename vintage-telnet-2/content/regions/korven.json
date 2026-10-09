@@ -32,6 +32,26 @@
           {
             "item": "piedra_veteada",
             "text": "Entre la grava encuentras una piedra pequeña con una veta clara."
+          },
+          {
+            "item": "cristal_veta",
+            "text": "Al partir una laja aparece un cristal claro que brilla por dentro."
+          },
+          {
+            "item": "hierro_viejo",
+            "text": "Un trozo de herramienta de hierro, rota y oxidada."
+          },
+          {
+            "item": "clavos_oxidados",
+            "text": "Bajo el polvo, clavos y remaches viejos."
+          },
+          {
+            "item": "cuna_madera",
+            "text": "Una cuña de madera dura, de las que sujetan ruedas en la cuesta."
+          },
+          {
+            "item": "placa_cascapedernal",
+            "text": "Una placa vieja de Cascapedernal, perdida hace tiempo entre las piedras."
           }
         ],
         "traces": [
@@ -103,6 +123,11 @@
         {
           "creature": "quebrarrocas",
           "text": "Hacia el oeste, entre las rocas del cauce, un bloque se mueve. Detrás, un Quebrarrocas sigue empujando. El polvo sube hasta la loma.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "forajido_camino",
+          "text": "Sobre el cascajo, una persona con la cara tapada por el polvo te corta el paso. Quiere lo que llevas.",
           "persistent_trace": false
         }
       ],
@@ -252,7 +277,19 @@
       "weather": {
         "viento": "La escoba permanece quieta dentro del entrante. Fuera, el polvo roza la pared con un siseo seco; dos viajeros esperan a que baje para distinguir el siguiente mojón."
       },
-      "brief": "La pared que corta el viento, con su escoba y su marca en el suelo."
+      "brief": "La pared que corta el viento, con su escoba y su marca en el suelo.",
+      "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Un salteador sale de detrás de unas piedras y se planta delante de ti: «La mochila, y sigues tu camino».",
+          "persistent_trace": false
+        },
+        {
+          "creature": "cascapedernal",
+          "text": "Junto a la roca, una cubierta de placas se mueve despacio: un Cascapedernal se ha pegado a la piedra.",
+          "persistent_trace": false
+        }
+      ]
     },
     "korven_hitos_paso": {
       "id": "korven_hitos_paso",
@@ -291,6 +328,11 @@
         {
           "creature": "quebrarrocas",
           "text": "Lejos de los mojones, un Quebrarrocas abre paso entre rocas que nadie ha marcado. Cada empujón deja una franja de polvo nueva.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "forajido_camino",
+          "text": "Entre dos mojones espera un salteador. Golpea el suelo con el palo: «La carga aquí».",
           "persistent_trace": false
         }
       ],
@@ -424,7 +466,19 @@
         "este": "Dos paredes de roca se cierran en un paso estrecho y en sombra.",
         "oeste": "Escalones bajos y una franja para carros suben hacia casas metidas en la roca.",
         "norte": "Una senda sube a una meseta. Arriba, la sierra se ve más cerca."
-      }
+      },
+      "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Una persona con un palo corto te corta el paso y señala tu mochila.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "cascapedernal",
+          "text": "Un Cascapedernal asoma de debajo de una laja, con las placas cubiertas de polvo claro.",
+          "persistent_trace": false
+        }
+      ]
     },
     "brumak_centro": {
       "id": "brumak_centro",
@@ -611,7 +665,16 @@
       "shop": [
         "provision_basica",
         "punal_camino",
-        "espada_juramento"
+        "espada_juramento",
+        "pocion_menor",
+        "espada_larga",
+        "punal_hueso",
+        "casco_reforzado",
+        "coraza_reforzada",
+        "brazales_reforzados",
+        "grebas_reforzadas",
+        "botas_reforzadas",
+        "anillo_filo"
       ],
       "buyer": "korven_beran",
       "forge_service": "korven_beran",
@@ -619,7 +682,25 @@
       "buy_items": [
         "piedra_veteada",
         "fibra_espinajo",
-        "cuerda_recuperada"
+        "cuerda_recuperada",
+        "colmillo_mordelinde",
+        "espina_espinajo",
+        "placa_cascapedernal",
+        "cuero_curtido",
+        "hierro_viejo",
+        "cuna_madera",
+        "clavos_oxidados",
+        "hierbas_curativas",
+        "setas_bosque",
+        "pluma_vistosa",
+        "cristal_veta",
+        "bolsita_cuentas",
+        "cuerno_cornalomo",
+        "escama_dorsalodo",
+        "garra_rasgacumbres",
+        "placa_quebrarrocas",
+        "corteza_rasgacorteza",
+        "bolsa_salteador"
       ],
       "states": [
         {
@@ -662,7 +743,15 @@
       "focus": [
         "activity"
       ],
-      "brief": "El taller de Brumak: golpe en una pared, medida en la otra."
+      "brief": "El taller de Brumak: golpe en una pared, medida en la otra.",
+      "buys_gear": true,
+      "hallazgos": [
+        {
+          "item": "hierro_viejo",
+          "text": "Beran deja junto a la puerta una caja de restos para quien los quiera. Hay un trozo de hierro viejo.",
+          "chance": 0.5
+        }
+      ]
     },
     "korven_almacen_grano": {
       "id": "korven_almacen_grano",
@@ -889,6 +978,18 @@
             "atardecer"
           ]
         }
+      ],
+      "wildlife_pool": [
+        {
+          "creature": "cascapedernal",
+          "text": "Un Cascapedernal asoma de debajo de una laja, con las placas cubiertas de polvo claro.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "forajido_camino",
+          "text": "Un salteador sale de detrás de unas piedras y se planta delante de ti: «La mochila, y sigues tu camino».",
+          "persistent_trace": false
+        }
       ]
     },
     "korven_patio_lavado": {
@@ -980,7 +1081,19 @@
       "npcs": [],
       "signals": [],
       "actions": [],
-      "brief": "El mirador de las grietas."
+      "brief": "El mirador de las grietas.",
+      "wildlife_pool": [
+        {
+          "creature": "cascapedernal",
+          "text": "Lo que parecía una piedra moteada se mueve: es un Cascapedernal, y no piensa apartarse.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "forajido_camino",
+          "text": "Una persona con un palo corto te corta el paso y señala tu mochila.",
+          "persistent_trace": false
+        }
+      ]
     },
     "korven_cauce_observacion": {
       "id": "korven_cauce_observacion",
@@ -1110,7 +1223,19 @@
           "scope": "player"
         }
       ],
-      "brief": "La plataforma de escucha y su recipiente que tiembla."
+      "brief": "La plataforma de escucha y su recipiente que tiembla.",
+      "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Una persona con un palo corto te corta el paso y señala tu mochila.",
+          "persistent_trace": false
+        },
+        {
+          "creature": "cascapedernal",
+          "text": "Un Cascapedernal asoma de debajo de una laja, con las placas cubiertas de polvo claro.",
+          "persistent_trace": false
+        }
+      ]
     },
     "korven_registro_cauce": {
       "id": "korven_registro_cauce",
@@ -1202,7 +1327,18 @@
       "arrivals": {},
       "npcs": [],
       "signals": [],
-      "actions": [],
+      "actions": [
+        {
+          "id": "pasaje_grieta_roca_vuelta",
+          "label": "Meterte por la grieta de la roca",
+          "requires_flags": [
+            "pasaje_grieta_roca"
+          ],
+          "scope": "player",
+          "next": "korven_roca_cascaron",
+          "text": "Pasas otra vez de lado por la grieta y sales junto a la roca de los líquenes."
+        }
+      ],
       "wildlife_pool": [
         {
           "creature": "cascapedernal",
@@ -1284,7 +1420,19 @@
           "text": "Una nota junto al recipiente describe el espesor desigual. El objeto gana una observación atribuida sin que nadie invente por ella el motivo del abandono del horno."
         }
       ],
-      "brief": "El horno viejo y su recipiente torcido."
+      "brief": "El horno viejo y su recipiente torcido.",
+      "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Un salteador sale de detrás de unas piedras y se planta delante de ti: «La mochila, y sigues tu camino».",
+          "persistent_trace": false
+        },
+        {
+          "creature": "cascapedernal",
+          "text": "Junto a la roca, una cubierta de placas se mueve despacio: un Cascapedernal se ha pegado a la piedra.",
+          "persistent_trace": false
+        }
+      ]
     },
     "korven_entrante_piezas": {
       "id": "korven_entrante_piezas",
@@ -1425,9 +1573,40 @@
       "buyer": "korven_taren",
       "buy_items": [
         "piedra_veteada",
-        "rama_flexible"
+        "rama_flexible",
+        "colmillo_mordelinde",
+        "espina_espinajo",
+        "placa_cascapedernal",
+        "cuero_curtido",
+        "hierro_viejo",
+        "cuna_madera",
+        "clavos_oxidados",
+        "hierbas_curativas",
+        "setas_bosque",
+        "pluma_vistosa",
+        "cristal_veta",
+        "bolsita_cuentas",
+        "cuerno_cornalomo",
+        "escama_dorsalodo",
+        "garra_rasgacumbres",
+        "placa_quebrarrocas",
+        "corteza_rasgacorteza",
+        "bolsa_salteador"
       ],
-      "brief": "El rincón de las muestras."
+      "brief": "El rincón de las muestras.",
+      "buys_gear": false,
+      "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Un salteador sale de detrás de unas piedras y se planta delante de ti: «La mochila, y sigues tu camino».",
+          "persistent_trace": false
+        },
+        {
+          "creature": "cascapedernal",
+          "text": "Junto a la roca, una cubierta de placas se mueve despacio: un Cascapedernal se ha pegado a la piedra.",
+          "persistent_trace": false
+        }
+      ]
     },
     "korven_meseta_relevo": {
       "id": "korven_meseta_relevo",
@@ -1674,9 +1853,50 @@
           "text": "Sin arrancar los líquenes, sigues con el dedo una línea oscura que continúa por debajo. No es una inscripción ni una puerta: es una junta de la propia piedra. Tu gente lo reconoce enseguida; así envejece la roca.",
           "journal": "Una marca extraña puede ser sólo la forma en que envejece la roca.",
           "scope": "player"
+        },
+        {
+          "id": "pasaje_grieta_roca",
+          "label": "Pasar de lado por la grieta",
+          "requires_flags": [
+            "buscado:korven_roca_cascaron"
+          ],
+          "set_flags": [
+            "pasaje_grieta_roca"
+          ],
+          "scope": "player",
+          "next": "korven_desvio_horno",
+          "text": "Te pones de lado y avanzas por la grieta, con la piedra rozándote la espalda. Huele a polvo y a frío. Sales junto al desvío del horno viejo.",
+          "journal": "Descubriste una grieta que une la Roca de los líquenes con el desvío del horno.",
+          "discover_rooms": [
+            "korven_desvio_horno"
+          ]
         }
       ],
-      "brief": "La roca de los líquenes."
+      "brief": "La roca de los líquenes.",
+      "hallazgos": [
+        {
+          "item": "cristal_veta",
+          "text": "Donde los líquenes se separan, la roca tiene una veta de cristal claro. Sacas un trozo con cuidado. Al apartarte ves que detrás de la roca la grieta se ensancha: una persona de lado podría pasar.",
+          "unico": true
+        },
+        {
+          "item": "placa_cascapedernal",
+          "text": "Junto a la base de la roca hay una placa vieja de caparazón, caída hace tiempo.",
+          "chance": 0.4
+        }
+      ],
+      "wildlife_pool": [
+        {
+          "creature": "forajido_camino",
+          "text": "Un salteador sale de detrás de unas piedras y se planta delante de ti: «La mochila, y sigues tu camino».",
+          "persistent_trace": false
+        },
+        {
+          "creature": "cascapedernal",
+          "text": "Junto a la roca, una cubierta de placas se mueve despacio: un Cascapedernal se ha pegado a la piedra.",
+          "persistent_trace": false
+        }
+      ]
     },
     "korven_peldanos_cortos": {
       "id": "korven_peldanos_cortos",
@@ -1862,7 +2082,25 @@
       "buy_items": [
         "piedra_veteada",
         "cuerda_recuperada",
-        "fibra_junco"
+        "fibra_junco",
+        "colmillo_mordelinde",
+        "espina_espinajo",
+        "placa_cascapedernal",
+        "cuero_curtido",
+        "hierro_viejo",
+        "cuna_madera",
+        "clavos_oxidados",
+        "hierbas_curativas",
+        "setas_bosque",
+        "pluma_vistosa",
+        "cristal_veta",
+        "bolsita_cuentas",
+        "cuerno_cornalomo",
+        "escama_dorsalodo",
+        "garra_rasgacumbres",
+        "placa_quebrarrocas",
+        "corteza_rasgacorteza",
+        "bolsa_salteador"
       ],
       "states": [
         {
@@ -1875,7 +2113,8 @@
           }
         }
       ],
-      "brief": "La puerta del almacén viejo."
+      "brief": "La puerta del almacén viejo.",
+      "buys_gear": false
     },
     "korven_almacen_balanzas": {
       "id": "korven_almacen_balanzas",
@@ -1914,7 +2153,14 @@
           }
         }
       ],
-      "brief": "La mesa de pesaje y sus dos brazos de madera."
+      "brief": "La mesa de pesaje y sus dos brazos de madera.",
+      "hallazgos": [
+        {
+          "item": "clavos_oxidados",
+          "text": "Bajo la mesa de pesaje hay remaches y clavos caídos.",
+          "chance": 0.5
+        }
+      ]
     },
     "korven_almacen_cruce": {
       "id": "korven_almacen_cruce",
