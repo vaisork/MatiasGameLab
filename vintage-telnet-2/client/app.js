@@ -61,11 +61,14 @@ function navigate(next){view=next;message('');render();main.focus({preventScroll
 function narrativeNode(event){return el('p',{class:`event event-${event.kind.toLowerCase()}`},el('span',{class:'event-kind'},kindNames[event.kind]||'Mundo'),combatReading(event));}
 
 const terminalFeed=el('div',{class:'terminal-feed',tabIndex:0,'aria-label':'Lectura e historial del recorrido'}),printed=new Map();
-let printTimer=null,following=true,readingVisit=null;
-terminalFeed.addEventListener('scroll',()=>{following=terminalFeed.scrollHeight-terminalFeed.scrollTop-terminalFeed.clientHeight<45;});
+let printTimer=null,following=true,readingVisit=null,expectedTop=null;
+// Only the reader's own scrolling decides whether the terminal keeps following new text:
+// a scroll that lands exactly where the game moved the terminal is the game's, not the reader's.
+const autoScroll=top=>{expectedTop=Math.max(0,Math.min(top,terminalFeed.scrollHeight-terminalFeed.clientHeight));};
+terminalFeed.addEventListener('scroll',()=>{const own=expectedTop!==null&&Math.abs(terminalFeed.scrollTop-expectedTop)<2;expectedTop=null;if(!own)following=terminalFeed.scrollHeight-terminalFeed.scrollTop-terminalFeed.clientHeight<45;});
 function instantReading(){return document.documentElement.classList.contains('reduced-motion')||window.matchMedia('(prefers-reduced-motion: reduce)').matches;}
-function followTerminal(){if(following)terminalFeed.scrollTo({top:terminalFeed.scrollHeight,behavior:'auto'});}
-function resetTerminal(){clearTimeout(printTimer);printTimer=null;printed.clear();terminalFeed.replaceChildren();following=true;}
+function followTerminal(){if(following){autoScroll(terminalFeed.scrollHeight);terminalFeed.scrollTo({top:terminalFeed.scrollHeight,behavior:'auto'});}}
+function resetTerminal(){autoScroll(0);clearTimeout(printTimer);printTimer=null;printed.clear();terminalFeed.replaceChildren();following=true;}
 function finishPrinting(){clearTimeout(printTimer);printTimer=null;for(const item of printed.values()){item.at=item.text.length;item.node.hidden=false;item.output.textContent=item.text;}followTerminal();}
 function printNext(){
  printTimer=null;if(!terminalFeed.isConnected)return;
@@ -77,7 +80,7 @@ function printNext(){
 }
 function captureReadingPosition(){return {top:terminalFeed.scrollTop,page:window.scrollY,following};}
 function restoreReadingPosition(position){
- following=position.following;terminalFeed.scrollTop=position.top;
+ autoScroll(position.top);following=position.following;terminalFeed.scrollTop=position.top;
  window.scrollTo({top:position.page,behavior:'instant'});
 }
 
@@ -486,7 +489,7 @@ function applyPassiveSnapshot(next){
  // Reattach synchronously: its observer sees a connected node and keeps the canvas.
  if(retainMap)main.querySelector('.visual-3d[data-map-visual-key]')?.replaceWith(retainMap);
  for(const detail of main.querySelectorAll('details')){const previous=opened.find(saved=>saved.label===detail.querySelector('summary')?.textContent);if(previous){detail.open=previous.open;detail.scrollTop=previous.scroll;}}
- if(locationChanged&&view==='adventure'){following=true;terminalFeed.scrollTop=0;}else if(!wasFollowing){following=false;terminalFeed.scrollTop=terminalScroll;}
+ if(locationChanged&&view==='adventure'){autoScroll(0);following=true;terminalFeed.scrollTop=0;}else if(!wasFollowing){autoScroll(terminalScroll);following=false;terminalFeed.scrollTop=terminalScroll;}
  if(focus){
   let target=focus.node.isConnected?focus.node:null;
   if(!target&&focus.id)target=document.getElementById(focus.id);
